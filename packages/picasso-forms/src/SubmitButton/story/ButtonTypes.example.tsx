@@ -1,6 +1,6 @@
 import React from 'react'
 import { Check16, Container, Typography } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, SubmitButton } from '@toptal/picasso-forms';
 
 const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000))
 
@@ -10,35 +10,35 @@ const Example = () => (
       Rectangular (Default)
     </Typography>
     <Container top='small' bottom='large'>
-      <Form onSubmit={onSubmit}>
+      <FormNonCompound onSubmit={onSubmit}>
         <Container top='small'>
-          <Form.SubmitButton buttonType='rectangular'>
+          <SubmitButton buttonType='rectangular'>
             Rectangular
-          </Form.SubmitButton>
+          </SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
     </Container>
 
     <Typography variant='heading' size='small'>
       Circular
     </Typography>
     <Container top='small' bottom='large'>
-      <Form onSubmit={onSubmit}>
+      <FormNonCompound onSubmit={onSubmit}>
         <Container top='small'>
-          <Form.SubmitButton buttonType='circular' icon={<Check16 />} />
+          <SubmitButton buttonType='circular' icon={<Check16 />} />
         </Container>
-      </Form>
+      </FormNonCompound>
     </Container>
 
     <Typography variant='heading' size='small'>
       Action
     </Typography>
     <Container top='small' bottom='large'>
-      <Form onSubmit={onSubmit}>
+      <FormNonCompound onSubmit={onSubmit}>
         <Container top='small'>
-          <Form.SubmitButton buttonType='action'>Action</Form.SubmitButton>
+          <SubmitButton buttonType='action'>Action</SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
     </Container>
   </>
 )

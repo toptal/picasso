@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, RadioGroup, Radio, SubmitButton } from '@toptal/picasso-forms';
 
 const deserializeValue = (value: unknown) => {
   if (value === 'true') {
@@ -14,21 +14,21 @@ const deserializeValue = (value: unknown) => {
 }
 
 const Example = () => (
-  <Form
+  <FormNonCompound
     onSubmit={values => {
       console.log('Raw: ', { foo: values.foo })
       console.log('Deserialized: ', { foo: deserializeValue(values.foo) })
     }}
     initialValues={{ foo: 'true' }}
   >
-    <Form.RadioGroup name='foo' label='Foo'>
-      <Form.Radio label='yes' value='true' />
-      <Form.Radio label='no' value='false' />
-    </Form.RadioGroup>
+    <RadioGroup name='foo' label='Foo'>
+      <Radio label='yes' value='true' />
+      <Radio label='no' value='false' />
+    </RadioGroup>
     <Container top='small'>
-      <Form.SubmitButton>Submit</Form.SubmitButton>
+      <SubmitButton>Submit</SubmitButton>
     </Container>
-  </Form>
+  </FormNonCompound>
 )
 
 export default Example

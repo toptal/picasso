@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, Dropzone, SubmitButton } from '@toptal/picasso-forms'
 import { FileUpload } from '@toptal/picasso/FileInput'
 
 type FormType = {
@@ -18,23 +18,23 @@ const Example = () => {
   }
 
   return (
-    <Form<FormType>
+    <FormNonCompound<FormType>
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
         'dropzone-attachments': initialAttachments,
       }}
     >
-      <Form.Dropzone
+      <Dropzone
         required
         name='dropzone-attachments'
         dropzoneHint={`Max file size: ${MAX_SIZE}MB.`}
         hint='These documents will be used to analyze and identify your potential.'
       />
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
-    </Form>
+    </FormNonCompound>
   )
 }
 

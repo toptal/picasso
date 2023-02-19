@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, Input, SubmitButton } from '@toptal/picasso-forms'
 
 const BackendCommunicationExample = () => {
   const handleSuccessSubmit = useCallback(
@@ -24,18 +24,18 @@ const BackendCommunicationExample = () => {
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
       }}
     >
-      <Form
+      <FormNonCompound
         onSubmit={handleSuccessSubmit}
         successSubmitMessage='Login successful!'
       >
-        <Form.Input
+        <Input
           required
           name='backendCommunication-successName'
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
-        <Form.Input
+        <Input
           required
           name='backendCommunication-successSurname'
           label='Last name'
@@ -44,27 +44,24 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton
-            variant='positive'
-            data-testid='success-submit-button'
-          >
+          <SubmitButton variant='positive' data-testid='success-submit-button'>
             Login Success
-          </Form.SubmitButton>
+          </SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
 
-      <Form
+      <FormNonCompound
         onSubmit={handleSubmitWithInlineError}
         failedSubmitMessage='Login failed! Please try another combination of first and last names.'
       >
-        <Form.Input
+        <Input
           required
           name='backendCommunication-inlineErrorName'
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
-        <Form.Input
+        <Input
           required
           name='backendCommunication-inlineErrorSurname'
           label='Last name'
@@ -73,24 +70,24 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton
+          <SubmitButton
             variant='negative'
             data-testid='submit-with-inline-error-button'
           >
             Login with Inline Error
-          </Form.SubmitButton>
+          </SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
 
-      <Form onSubmit={handleSubmitWithCustomNotificationError}>
-        <Form.Input
+      <FormNonCompound onSubmit={handleSubmitWithCustomNotificationError}>
+        <Input
           required
           name='backendCommunication-customNotificationErrorName'
           label='First name'
           placeholder='e.g. Bruce'
           width='full'
         />
-        <Form.Input
+        <Input
           required
           name='backendCommunication-customNotificationErrorSurname'
           label='Last name'
@@ -99,14 +96,14 @@ const BackendCommunicationExample = () => {
         />
 
         <Container top='small'>
-          <Form.SubmitButton
+          <SubmitButton
             variant='negative'
             data-testid='submit-with-custom-notification-button'
           >
             Login with Custom Notification Error
-          </Form.SubmitButton>
+          </SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
     </Container>
   )
 }

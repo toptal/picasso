@@ -1,15 +1,15 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, SubmitButton } from '@toptal/picasso-forms';
 
 const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000))
 
 const Example = () => (
-  <Form onSubmit={onSubmit}>
+  <FormNonCompound onSubmit={onSubmit}>
     <Container top='small'>
-      <Form.SubmitButton>Submit form</Form.SubmitButton>
+      <SubmitButton>Submit form</SubmitButton>
     </Container>
-  </Form>
+  </FormNonCompound>
 )
 
 export default Example

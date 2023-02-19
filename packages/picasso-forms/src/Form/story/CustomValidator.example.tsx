@@ -1,6 +1,11 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import {
+  FormNonCompound,
+  Input,
+  NumberInput,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 const minMaxValidator = (value?: string | number) => {
   if (value === undefined) {
@@ -21,14 +26,16 @@ const minMaxValidator = (value?: string | number) => {
 }
 
 const CustomValidatorExample = () => (
-  <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
-    <Form.Input
+  <FormNonCompound
+    onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
+  >
+    <Input
       required
       name='customValidator-userName'
       label='First name'
       placeholder='e.g. Bruce'
     />
-    <Form.NumberInput
+    <NumberInput
       required
       validate={minMaxValidator}
       name='customValidator-userAge'
@@ -37,9 +44,9 @@ const CustomValidatorExample = () => (
     />
 
     <Container top='small'>
-      <Form.SubmitButton>Submit</Form.SubmitButton>
+      <SubmitButton>Submit</SubmitButton>
     </Container>
-  </Form>
+  </FormNonCompound>
 )
 
 export default CustomValidatorExample

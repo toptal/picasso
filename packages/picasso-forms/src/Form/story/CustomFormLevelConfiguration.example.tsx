@@ -1,17 +1,23 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form, FormConfigProps } from '@toptal/picasso-forms'
+import {
+  FormConfigProps,
+  FormNonCompound,
+  ConfigProvider,
+  Input,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 const formConfig: FormConfigProps = {
   requiredVariant: 'asterisk',
 }
 
 const Example = () => (
-  <Form.ConfigProvider value={formConfig}>
-    <Form
+  <ConfigProvider value={formConfig}>
+    <FormNonCompound
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
     >
-      <Form.Input
+      <Input
         required
         name='formConfig-firstName'
         label='First name'
@@ -19,10 +25,10 @@ const Example = () => (
       />
 
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
-    </Form>
-  </Form.ConfigProvider>
+    </FormNonCompound>
+  </ConfigProvider>
 )
 
 export default Example

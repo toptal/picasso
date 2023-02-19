@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form, FormSpy } from '@toptal/picasso-forms'
+import { FormSpy, FormNonCompound, Input, SubmitButton } from '@toptal/picasso-forms';
 
 const Example = () => (
-  <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
-    <Form.Input
+  <FormNonCompound onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
+    <Input
       required
       name='firstName'
       label='First name'
@@ -13,7 +13,7 @@ const Example = () => (
 
     <FormSpy>
       {({ values }) => (
-        <Form.Input
+        <Input
           required
           name='lastName'
           disabled={!values?.firstName}
@@ -29,14 +29,14 @@ const Example = () => (
           const isDisabled = pristine || !values?.lastName
 
           return (
-            <Form.SubmitButton disabled={isDisabled}>
+            <SubmitButton disabled={isDisabled}>
               {isDisabled ? 'Fill out form to enable' : 'Submit'}
-            </Form.SubmitButton>
-          )
+            </SubmitButton>
+          );
         }}
       </FormSpy>
     </Container>
-  </Form>
+  </FormNonCompound>
 )
 
 export default Example
