@@ -3,7 +3,7 @@ import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
 
 const CarouselDefaultExample = () => (
   <Container style={{ maxWidth: 370 }}>
-    <Carousel>
+    <Carousel slidesToShow={2.5} rewind={false}>
       <SlideExample>Delivery Manager</SlideExample>
       <SlideExample>Designer</SlideExample>
       <SlideExample>Developer</SlideExample>

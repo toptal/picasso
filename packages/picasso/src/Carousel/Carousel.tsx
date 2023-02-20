@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Glider from 'react-glider'
 import cx from 'classnames'
@@ -53,6 +53,12 @@ export const Carousel = ({
     slidesToShow,
   })
 
+  useEffect(() => {
+    if (onSlide) {
+      onSlide(currentSlide)
+    }
+  }, [currentSlide, onSlide])
+
   const [startAutoplay, stopAutoplay] = useAutoplay({
     gliderRef,
     slidesToScroll,
@@ -83,10 +89,6 @@ export const Carousel = ({
     const {
       detail: { type, value },
     } = event
-
-    if (onSlide) {
-      onSlide(currentSlide, event)
-    }
 
     if (type === 'slide') {
       setCurrentSlide(value)

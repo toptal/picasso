@@ -27,7 +27,7 @@ export default ({ palette, transitions }: Theme) =>
           top: 0,
           right: 0,
           background:
-            'linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, white 90%)',
+            'linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, white 95%)',
         },
       },
     },

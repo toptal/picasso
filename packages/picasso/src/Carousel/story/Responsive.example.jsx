@@ -3,7 +3,14 @@ import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
 
 const CarouselDefaultExample = () => (
   <Container style={{ maxWidth: 370 }}>
-    <Carousel>
+    <Carousel
+      slidesToShow={1}
+      slidesToScroll={1}
+      responsive={[
+        // >= 768px
+        { breakpoint: 768, settings: { slidesToScroll: 2, slidesToShow: 2 } },
+      ]}
+    >
       <SlideExample>Delivery Manager</SlideExample>
       <SlideExample>Designer</SlideExample>
       <SlideExample>Developer</SlideExample>

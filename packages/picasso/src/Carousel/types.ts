@@ -4,10 +4,8 @@ import { BaseProps } from '@toptal/picasso-shared'
 export interface BreakPoint {
   breakpoint: number
   settings: {
-    slidesToShow?: number | 'auto'
-    slidesToScroll?: number | 'auto'
-    itemWidth?: number
-    duration?: number
+    slidesToShow?: number
+    slidesToScroll?: number
   }
 }
 
@@ -71,5 +69,5 @@ export interface Props extends BaseProps {
   /**
    * Callback triggered when Carousel finished scrolling to a slide
    */
-  onSlide?: (currentSlide: number, event: CustomEvent) => void
+  onSlide?: (currentSlide: number) => void
 }

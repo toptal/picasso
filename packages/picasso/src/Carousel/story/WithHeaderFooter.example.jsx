@@ -3,7 +3,22 @@ import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
 
 const CarouselDefaultExample = () => (
   <Container style={{ maxWidth: 370 }}>
-    <Carousel>
+    <Carousel
+      header={
+        <Typography size='small' align='center'>
+          A typical Toptal Projects engagement
+          <br />
+          includes these four roles.
+        </Typography>
+      }
+      footer={
+        <Typography size='small' align='center'>
+          A typical Toptal Projects engagement
+          <br />
+          includes these four roles.
+        </Typography>
+      }
+    >
       <SlideExample>Delivery Manager</SlideExample>
       <SlideExample>Designer</SlideExample>
       <SlideExample>Developer</SlideExample>

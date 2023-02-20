@@ -14,6 +14,20 @@ type NavigationProps = {
   disableNextButton: boolean
 }
 
+const getNavigationLayout = (dots: boolean, arrows: boolean) => {
+  if (dots && arrows) {
+    return 'space-between'
+  }
+
+  if (dots && !arrows) {
+    return 'center'
+  }
+
+  if (arrows && !dots) {
+    return 'flex-end'
+  }
+}
+
 const Navigation = ({
   hideDots,
   hideArrows,
@@ -29,7 +43,7 @@ const Navigation = ({
     <Container
       className={classes.navigation}
       flex
-      justifyContent='space-between'
+      justifyContent={getNavigationLayout(!hideDots, !hideArrows)}
     >
       {!hideDots && <div className={classes.dots} />}
       {!hideArrows && (
