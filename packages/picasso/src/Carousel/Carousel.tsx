@@ -10,15 +10,16 @@ import styles from './styles'
 import Section from '../Section'
 import Container from '../Container'
 import useOnScreen from '../utils/useOnScreen/use-on-screen'
-import Navigation from './Navigation'
 import useAutoplay from './hooks/useAutoplay'
 import usePauseAutoplayOnHover from './hooks/usePauseAutoplayOnHover'
 import useHandleOnScreen from './hooks/useHandleOnScreen'
 import getCurrentSlideOnDotEvent from './utils/getCurrentSlideOnDotEvent'
 import getIsOnLastSlide from './utils/getIsOnLastSlide'
 import type { Props } from './types'
+import ButtonCircular from '../ButtonCircular'
+import { ChevronRight24 } from '../Icon'
 
-const useStyles = makeStyles<Theme>(styles)
+const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
 export const Carousel = ({
   autoplay = true,
@@ -42,6 +43,9 @@ export const Carousel = ({
   const gliderRef = useRef<GliderMethods & { track: HTMLDivElement }>(null)
 
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const prevRef = useRef<HTMLButtonElement>(null)
+  const nextRef = useRef<HTMLButtonElement>(null)
+  const dotsRef = useRef<HTMLDivElement>(null)
   const intervalRef = useRef<NodeJS.Timer>()
 
   const isOnScreen = useOnScreen(wrapperRef)
@@ -130,23 +134,41 @@ export const Carousel = ({
         rewind={rewind}
         slidesToScroll={slidesToScroll}
         arrows={{
-          prev: `.${classes.arrowPrev}`,
-          next: `.${classes.arrowNext}`,
+          prev: prevRef.current,
+          next: nextRef.current,
         }}
         responsive={responsive}
-        dots={`.${classes.dots}`}
+        dots={dotsRef.current}
         onAnimated={handleAnimated}
       >
         {children}
       </Glider>
 
-      <Navigation
-        disablePrevButton={rewind ? false : currentSlide === 0}
-        disableNextButton={rewind ? false : isOnLastSlide}
-        hideArrows={hideArrows}
-        hideDots={hideDots}
-        classes={classes}
-      />
+      <Container
+        className={classes.navigation}
+        flex
+        justifyContent='space-between'
+      >
+        {!hideDots && <div ref={dotsRef} className={classes.dots} />}
+        {!hideArrows && (
+          <Container className={classes.arrows}>
+            <ButtonCircular
+              variant='flat'
+              className={classes.arrowPrev}
+              icon={<ChevronRight24 />}
+              disabled={rewind ? false : currentSlide === 0}
+              ref={prevRef}
+            />
+            <ButtonCircular
+              variant='flat'
+              className={classes.arrowNext}
+              icon={<ChevronRight24 />}
+              disabled={rewind ? false : isOnLastSlide}
+              ref={nextRef}
+            />
+          </Container>
+        )}
+      </Container>
       {footer && <Container className={classes.footer}>{footer}</Container>}
     </Section>
   )
