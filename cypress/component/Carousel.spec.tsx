@@ -5,7 +5,6 @@ import {
   Settings16,
   Typography,
   CarouselProps,
-  Button,
 } from '@toptal/picasso'
 
 type SlideExampleProps = {
@@ -45,7 +44,7 @@ const testIds = {
 
 const CarouselExample = (props: Partial<CarouselProps>) => (
   <Container style={{ maxWidth: 370 }}>
-    <Carousel autoplay={false} testIds={testIds} {...props}>
+    <Carousel testIds={testIds} {...props}>
       <SlideExample dataTestid='delivery'>Delivery Manager</SlideExample>
       <SlideExample dataTestid='designer'>Designer</SlideExample>
       <SlideExample dataTestid='developer'>Developer</SlideExample>
@@ -61,20 +60,20 @@ const component = 'Carousel'
 
 describe(component, () => {
   describe('navigation', () => {
-    it('renders without arrows', () => {
-      cy.mount(<CarouselExample hideArrows />)
+    it('renders with dots only', () => {
+      cy.mount(<CarouselExample hasDots />)
 
       // Wait until navigation is visible
-      cy.getByTestId(testIds.arrows).should('not.exist')
       cy.getByTestId(testIds.dots).should('exist')
+      cy.getByTestId(testIds.arrows).should('not.exist')
 
       cy.get('body').happoScreenshot({
         component,
-        variant: 'hide-arrows',
+        variant: 'has-dots',
       })
     })
-    it('renders without dots', () => {
-      cy.mount(<CarouselExample hideDots />)
+    it('renders with arrows only', () => {
+      cy.mount(<CarouselExample hasArrows />)
 
       // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('exist')
@@ -82,11 +81,11 @@ describe(component, () => {
 
       cy.get('body').happoScreenshot({
         component,
-        variant: 'hide-dots',
+        variant: 'has-arrows',
       })
     })
     it('renders without navigation', () => {
-      cy.mount(<CarouselExample hideDots hideArrows />)
+      cy.mount(<CarouselExample />)
 
       // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('not.exist')
@@ -100,10 +99,11 @@ describe(component, () => {
     describe('arrows', () => {
       describe('when rewind is enabled', () => {
         it('moves back to first slide', () => {
-          cy.mount(<CarouselExample />)
+          cy.mount(
+            <CarouselExample rewind hasArrows hasDots slidesToShow={2} />
+          )
 
           // Wait until navigation is visible
-          cy.getByTestId(testIds.arrows).should('exist')
           cy.getByTestId(testIds.dots).should('exist')
 
           cy.getByTestId(testIds.prev).should('not.be.disabled')
@@ -116,7 +116,7 @@ describe(component, () => {
           // move to last item
           cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
             component,
-            variant: 'arrow/after-hovered',
+            variant: 'arrow/during-hovering',
           })
 
           cy.getByTestId(testIds.next)
@@ -142,10 +142,9 @@ describe(component, () => {
 
       describe('when rewind is disabled', () => {
         it('is ends on last slide', () => {
-          cy.mount(<CarouselExample rewind={false} />)
+          cy.mount(<CarouselExample slidesToShow={2} hasArrows hasDots />)
 
           // Wait until navigation is visible
-          cy.getByTestId(testIds.arrows).should('exist')
           cy.getByTestId(testIds.dots).should('exist')
 
           cy.getByTestId(testIds.prev).should('be.disabled')
@@ -172,10 +171,9 @@ describe(component, () => {
     })
     describe('dots', () => {
       it('slides on dot click', () => {
-        cy.mount(<CarouselExample />)
+        cy.mount(<CarouselExample hasDots slidesToShow={2} />)
 
         // Wait until navigation is visible
-        cy.getByTestId(testIds.arrows).should('exist')
         cy.getByTestId(testIds.dots).should('exist')
 
         cy.getByTestId(testIds.dots)
@@ -195,61 +193,12 @@ describe(component, () => {
       })
     })
   })
-  describe('header and footer', () => {
-    it('renders with header', () => {
-      cy.mount(
-        <CarouselExample
-          header={<Typography variant='heading'>Header</Typography>}
-        />
-      )
-      // Wait until navigation is visible
-      cy.getByTestId(testIds.arrows).should('exist')
-      cy.getByTestId(testIds.dots).should('exist')
-      cy.getByTestId(testIds.header).should('exist')
-
-      cy.get('body').happoScreenshot({
-        component,
-        variant: 'with-header',
-      })
-    })
-    it('renders with footer', () => {
-      cy.mount(<CarouselExample footer={<Button>Action</Button>} />)
-      // Wait until navigation is visible
-      cy.getByTestId(testIds.arrows).should('exist')
-      cy.getByTestId(testIds.dots).should('exist')
-      cy.getByTestId(testIds.footer).should('exist')
-
-      cy.get('body').happoScreenshot({
-        component,
-        variant: 'with-footer',
-      })
-    })
-    it('renders with header and footer', () => {
-      cy.mount(
-        <CarouselExample
-          header={<Typography variant='heading'>Header</Typography>}
-          footer={<Button>Action</Button>}
-        />
-      )
-      // Wait until navigation is visible
-      cy.getByTestId(testIds.arrows).should('exist')
-      cy.getByTestId(testIds.dots).should('exist')
-      cy.getByTestId(testIds.footer).should('exist')
-      cy.getByTestId(testIds.header).should('exist')
-
-      cy.get('body').happoScreenshot({
-        component,
-        variant: 'with-header-and-footer',
-      })
-    })
-  })
 
   describe('slides to show', () => {
     it('renders gradient over partially visible item', () => {
-      cy.mount(<CarouselExample slidesToShow={2.5} />)
+      cy.mount(<CarouselExample slidesToShow={2.5} hasDots />)
 
       // Wait until navigation is visible
-      cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('exist')
 
       cy.get('body').happoScreenshot({
