@@ -36,6 +36,7 @@ export const Carousel = ({
   rewind = true,
   slidesToScroll = 1,
   slidesToShow = 2,
+  testIds = {},
 }: Props) => {
   const classes = useStyles()
 
@@ -124,8 +125,13 @@ export const Carousel = ({
         [classes.gradient]: !Number.isInteger(slidesToShow) && !isOnLastSlide,
       })}
       variant='bordered'
+      data-testid={testIds.root}
     >
-      {header && <Container className={classes.header}>{header}</Container>}
+      {header && (
+        <Container className={classes.header} data-testid={testIds.header}>
+          {header}
+        </Container>
+      )}
       <Glider
         ref={gliderRef}
         hasArrows={!hideArrows}
@@ -140,6 +146,7 @@ export const Carousel = ({
         responsive={responsive}
         dots={dotsRef.current}
         onAnimated={handleAnimated}
+        data-testid={testIds.carousel}
       >
         {children}
       </Glider>
@@ -148,28 +155,41 @@ export const Carousel = ({
         className={classes.navigation}
         flex
         justifyContent='space-between'
+        data-testid={testIds.navigation}
       >
-        {!hideDots && <div ref={dotsRef} className={classes.dots} />}
+        {!hideDots && (
+          <div
+            ref={dotsRef}
+            data-testid={testIds.dots}
+            className={classes.dots}
+          />
+        )}
         {!hideArrows && (
-          <Container className={classes.arrows}>
+          <Container className={classes.arrows} data-testid={testIds.arrows}>
             <ButtonCircular
-              variant='flat'
               className={classes.arrowPrev}
-              icon={<ChevronRight24 />}
+              data-testid={testIds.prev}
               disabled={rewind ? false : currentSlide === 0}
+              icon={<ChevronRight24 />}
               ref={prevRef}
+              variant='flat'
             />
             <ButtonCircular
-              variant='flat'
               className={classes.arrowNext}
-              icon={<ChevronRight24 />}
+              data-testid={testIds.next}
               disabled={rewind ? false : isOnLastSlide}
+              icon={<ChevronRight24 />}
               ref={nextRef}
+              variant='flat'
             />
           </Container>
         )}
       </Container>
-      {footer && <Container className={classes.footer}>{footer}</Container>}
+      {footer && (
+        <Container className={classes.footer} data-testid={testIds.footer}>
+          {footer}
+        </Container>
+      )}
     </Section>
   )
 }

@@ -70,4 +70,18 @@ export interface Props extends BaseProps {
    * Callback triggered when Carousel finished scrolling to a slide
    */
   onSlide?: (currentSlide: number) => void
+  /**
+   * data-testid passed to parts of the Carousel
+   */
+  testIds?: {
+    arrows?: string
+    carousel?: string
+    dots?: string
+    footer?: string
+    header?: string
+    navigation?: string
+    next?: string
+    prev?: string
+    root?: string
+  }
 }
