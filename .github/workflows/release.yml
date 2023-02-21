@@ -27,10 +27,10 @@ jobs:
           # This forces changesets to use git user, provided by GITHUB_TOKEN env var
           persist-credentials: false
 
-      - name: Setup Node.js 14.x
+      - name: Setup node 16
         uses: actions/setup-node@v3
         with:
-          node-version: 14.x
+          node-version: '16'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
