@@ -13,7 +13,7 @@ const CarouselDefaultExample = () => (
   </Container>
 )
 
-const SlideExample = ({ children }) => {
+const SlideExample = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container
       flex

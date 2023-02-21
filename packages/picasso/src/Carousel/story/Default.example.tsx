@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
 
 const CarouselDefaultExample = () => {
-  const [slide, setSlide] = useState(0)
-
   return (
     <Container style={{ maxWidth: 370 }}>
-      <Typography>{slide}</Typography>
-      <Carousel onSlide={setSlide} hasDots hasArrows>
+      <Carousel hasDots hasArrows>
         <SlideExample>Delivery Manager</SlideExample>
         <SlideExample>Designer</SlideExample>
         <SlideExample>Developer</SlideExample>
@@ -18,7 +15,7 @@ const CarouselDefaultExample = () => {
   )
 }
 
-const SlideExample = ({ children }) => {
+const SlideExample = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container
       flex

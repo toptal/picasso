@@ -1,6 +1,6 @@
 import isOnLastPage from './isOnLastPage'
 
-describe('getIsOnLastSlide', () => {
+describe('isOnLastPage', () => {
   it('returns expected results', () => {
     expect(
       isOnLastPage({ currentSlide: 0, slidesCount: 5, slidesToShow: 2 })

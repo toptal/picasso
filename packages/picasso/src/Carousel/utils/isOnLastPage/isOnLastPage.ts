@@ -9,10 +9,7 @@ const isOnLastPage = ({ currentSlide, slidesCount, slidesToShow }: Props) => {
     return currentSlide >= slidesCount - slidesToShow
   }
 
-  const slidesToShowRoundedDown = slidesToShow | 0
-  const diff = slidesToShow - slidesToShowRoundedDown
-
-  if (diff <= 0.5) {
+  if (slidesToShow % 1 <= 0.5) {
     return currentSlide >= slidesCount - slidesToShow
   }
 
