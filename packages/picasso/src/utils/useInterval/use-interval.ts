@@ -31,7 +31,9 @@ const useInterval = ({
     const tick = () => savedCallback.current!()
 
     if (isPaused || intervalId.current) {
-      clearInterval(intervalId.current!)
+      if (intervalId.current) {
+        clearInterval(intervalId.current)
+      }
     }
 
     if (!isPaused) {

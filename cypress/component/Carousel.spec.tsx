@@ -64,7 +64,7 @@ describe(component, () => {
     it('renders without arrows', () => {
       cy.mount(<CarouselExample hideArrows />)
 
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('not.exist')
       cy.getByTestId(testIds.dots).should('exist')
 
@@ -76,7 +76,7 @@ describe(component, () => {
     it('renders without dots', () => {
       cy.mount(<CarouselExample hideDots />)
 
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('not.exist')
 
@@ -88,7 +88,7 @@ describe(component, () => {
     it('renders without navigation', () => {
       cy.mount(<CarouselExample hideDots hideArrows />)
 
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('not.exist')
       cy.getByTestId(testIds.dots).should('not.exist')
 
@@ -102,7 +102,7 @@ describe(component, () => {
         it('moves back to first slide', () => {
           cy.mount(<CarouselExample />)
 
-          // make sure that carousel is initialized
+          // Wait until navigation is visible
           cy.getByTestId(testIds.arrows).should('exist')
           cy.getByTestId(testIds.dots).should('exist')
 
@@ -144,7 +144,7 @@ describe(component, () => {
         it('is ends on last slide', () => {
           cy.mount(<CarouselExample rewind={false} />)
 
-          // make sure that carousel is initialized
+          // Wait until navigation is visible
           cy.getByTestId(testIds.arrows).should('exist')
           cy.getByTestId(testIds.dots).should('exist')
 
@@ -174,7 +174,7 @@ describe(component, () => {
       it('slides on dot click', () => {
         cy.mount(<CarouselExample />)
 
-        // make sure that carousel is initialized
+        // Wait until navigation is visible
         cy.getByTestId(testIds.arrows).should('exist')
         cy.getByTestId(testIds.dots).should('exist')
 
@@ -202,7 +202,7 @@ describe(component, () => {
           header={<Typography variant='heading'>Header</Typography>}
         />
       )
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('exist')
       cy.getByTestId(testIds.header).should('exist')
@@ -214,7 +214,7 @@ describe(component, () => {
     })
     it('renders with footer', () => {
       cy.mount(<CarouselExample footer={<Button>Action</Button>} />)
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('exist')
       cy.getByTestId(testIds.footer).should('exist')
@@ -231,7 +231,7 @@ describe(component, () => {
           footer={<Button>Action</Button>}
         />
       )
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('exist')
       cy.getByTestId(testIds.footer).should('exist')
@@ -248,7 +248,7 @@ describe(component, () => {
     it('renders gradient over partially visible item', () => {
       cy.mount(<CarouselExample slidesToShow={2.5} />)
 
-      // make sure that carousel is initialized
+      // Wait until navigation is visible
       cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('exist')
 

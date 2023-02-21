@@ -7,35 +7,29 @@ import 'glider-js/glider.css'
 import type { GliderMethods } from 'react-glider/dist/types'
 
 import styles from './styles'
-import Section from '../Section'
 import Container from '../Container'
 import useOnScreen from '../utils/useOnScreen/use-on-screen'
-import useAutoplay from './hooks/useAutoplay'
-import usePauseAutoplayOnHover from './hooks/usePauseAutoplayOnHover'
-import useHandleOnScreen from './hooks/useHandleOnScreen'
-import getCurrentSlideOnDotEvent from './utils/getCurrentSlideOnDotEvent'
-import getIsOnLastSlide from './utils/getIsOnLastSlide'
 import type { Props } from './types'
 import ButtonCircular from '../ButtonCircular'
-import { ChevronRight24 } from '../Icon'
+import ChevronRight24 from '../Icon/ChevronRight24'
+import useMouseEnter from '../utils/useMouseEnter'
+import { useInterval } from '../utils'
+import isOnLastPage from './utils/isOnLastPage'
+import getCurrentSlide from './utils/getCurrentSlide'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
 export const Carousel = ({
-  autoplay = true,
+  autoplay = false,
   autoplayDelay = 3000,
+  className,
   children,
-  footer,
-  header,
-  hideArrows,
-  hideDots,
-  onInView,
+  hasArrows,
+  hasDots,
   onSlide,
-  pauseAutoplayOnHover = true,
-  responsive,
-  rewind = true,
+  rewind = false,
   slidesToScroll = 1,
-  slidesToShow = 2,
+  slidesToShow = 1,
   testIds = {},
 }: Props) => {
   const classes = useStyles()
@@ -47,95 +41,63 @@ export const Carousel = ({
   const prevRef = useRef<HTMLButtonElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
   const dotsRef = useRef<HTMLDivElement>(null)
-  const intervalRef = useRef<NodeJS.Timer>()
 
   const isOnScreen = useOnScreen(wrapperRef)
+  const isMouseOver = useMouseEnter(wrapperRef)
 
   const slidesCount = gliderRef.current?.track.childElementCount || 0
-  const isOnLastSlide = getIsOnLastSlide({
+  const isLastPage = isOnLastPage({
     currentSlide,
     slidesCount,
     slidesToShow,
   })
 
   useEffect(() => {
-    if (onSlide) {
-      onSlide(currentSlide)
-    }
+    onSlide?.(currentSlide)
   }, [currentSlide, onSlide])
 
-  const [startAutoplay, stopAutoplay] = useAutoplay({
-    gliderRef,
-    slidesToScroll,
-    intervalRef,
-    autoplay,
-    autoplayDelay,
-    rewind,
-    currentSlide,
-    isOnLastSlide,
-  })
+  const isPaused = !autoplay || !isOnScreen || isMouseOver
 
-  usePauseAutoplayOnHover({
-    pauseAutoplayOnHover,
-    startAutoplay,
-    stopAutoplay,
-    wrapperRef,
-  })
-
-  useHandleOnScreen({
-    autoplay,
-    isOnScreen,
-    startAutoplay,
-    stopAutoplay,
-    onInView,
-  })
-
-  const handleAnimated = (event: CustomEvent) => {
-    const {
-      detail: { type, value },
-    } = event
-
-    if (type === 'slide') {
-      setCurrentSlide(value)
-    }
-
-    if (type === 'arrow') {
-      if (value === 'next') {
-        setCurrentSlide(currentSlide + 1)
+  const { pauseInterval } = useInterval({
+    callback: () => {
+      if (isLastPage) {
+        if (!rewind) {
+          pauseInterval()
+        } else {
+          gliderRef.current?.scrollItem(0)
+        }
+      } else {
+        gliderRef.current?.scrollItem(currentSlide + slidesToScroll)
       }
-      if (value === 'prev') {
-        setCurrentSlide(currentSlide - 1)
-      }
-    }
+    },
+    delay: autoplayDelay,
+    isPaused,
+  })
 
-    if (type === 'dot') {
-      setCurrentSlide(
-        getCurrentSlideOnDotEvent({
-          slidesToShow,
-          currentDot: value,
-        })
-      )
-    }
+  const handleOnAnimated = (event: CustomEvent) => {
+    const index = getCurrentSlide({
+      event,
+      slidesCount,
+      prevSlide: currentSlide,
+      slidesToShow,
+      isLastPage,
+    })
+
+    setCurrentSlide(index)
   }
 
   return (
-    <Section
-      ref={wrapperRef}
-      className={cx(classes.root, {
-        [classes.gradient]: !Number.isInteger(slidesToShow) && !isOnLastSlide,
+    <Container
+      className={cx(classes.root, className, {
+        [classes.gradient]: !Number.isInteger(slidesToShow) && !isLastPage,
       })}
-      variant='bordered'
+      ref={wrapperRef}
       data-testid={testIds.root}
     >
-      {header && (
-        <Container className={classes.header} data-testid={testIds.header}>
-          {header}
-        </Container>
-      )}
       <Glider
         ref={gliderRef}
-        hasArrows={!hideArrows}
-        hasDots={!hideDots}
+        hasArrows={hasArrows}
+        hasDots={hasDots}
         slidesToShow={slidesToShow}
         rewind={rewind}
         slidesToScroll={slidesToScroll}
@@ -143,9 +105,8 @@ export const Carousel = ({
           prev: prevRef.current,
           next: nextRef.current,
         }}
-        responsive={responsive}
         dots={dotsRef.current}
-        onAnimated={handleAnimated}
+        onAnimated={handleOnAnimated}
         data-testid={testIds.carousel}
       >
         {children}
@@ -157,14 +118,14 @@ export const Carousel = ({
         justifyContent='space-between'
         data-testid={testIds.navigation}
       >
-        {!hideDots && (
+        {hasDots && (
           <div
             ref={dotsRef}
             data-testid={testIds.dots}
             className={classes.dots}
           />
         )}
-        {!hideArrows && (
+        {hasArrows && (
           <Container className={classes.arrows} data-testid={testIds.arrows}>
             <ButtonCircular
               className={classes.arrowPrev}
@@ -177,7 +138,7 @@ export const Carousel = ({
             <ButtonCircular
               className={classes.arrowNext}
               data-testid={testIds.next}
-              disabled={rewind ? false : isOnLastSlide}
+              disabled={rewind ? false : isLastPage}
               icon={<ChevronRight24 />}
               ref={nextRef}
               variant='flat'
@@ -185,24 +146,18 @@ export const Carousel = ({
           </Container>
         )}
       </Container>
-      {footer && (
-        <Container className={classes.footer} data-testid={testIds.footer}>
-          {footer}
-        </Container>
-      )}
-    </Section>
+    </Container>
   )
 }
 
 Carousel.defaultProps = {
-  hideArrows: false,
-  hideDots: false,
-  rewind: true,
-  autoplay: true,
+  hasArrows: false,
+  hasDots: false,
+  rewind: false,
+  autoplay: false,
   autoplayDelay: 3000,
-  pauseAutoplayOnHover: true,
   slidesToScroll: 1,
-  slidesToShow: 2,
+  slidesToShow: 1,
 }
 
 Carousel.displayName = 'Carousel'

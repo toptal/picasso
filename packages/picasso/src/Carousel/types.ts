@@ -1,14 +1,6 @@
 import { ReactNode } from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 
-export interface BreakPoint {
-  breakpoint: number
-  settings: {
-    slidesToShow?: number
-    slidesToScroll?: number
-  }
-}
-
 export interface Props extends BaseProps {
   /**
    * Slide automatically to next slides
@@ -19,10 +11,6 @@ export interface Props extends BaseProps {
    */
   autoplayDelay?: number
   /**
-   * Pause autoplay on hover
-   */
-  pauseAutoplayOnHover?: boolean
-  /**
    * Carousel items
    */
   children: ReactNode
@@ -31,21 +19,13 @@ export interface Props extends BaseProps {
    */
   rewind: boolean
   /**
-   * Any content that should be rendered above the carousel
-   */
-  header?: ReactNode
-  /**
-   * Any content taht should be rendered below the carousel
-   */
-  footer?: ReactNode
-  /**
    * Hide dots from the navigation bar
    */
-  hideDots?: boolean
+  hasDots?: boolean
   /**
    * Hide arrows from the navigation bar
    */
-  hideArrows?: boolean
+  hasArrows?: boolean
   /**
    * The number of slides to show in container
    */
@@ -55,17 +35,6 @@ export interface Props extends BaseProps {
    * is used.
    */
   slidesToScroll?: number
-
-  /**
-   * An object containing custom settings per provided breakpoint.
-   * Glider.js breakpoints are mobile-first
-   * be conscious of your ordering,
-   */
-  responsive?: BreakPoint[]
-  /**
-   * Callback triggered when carousel is visible on screen
-   */
-  onInView?: (isInView: boolean) => void
   /**
    * Callback triggered when Carousel finished scrolling to a slide
    */

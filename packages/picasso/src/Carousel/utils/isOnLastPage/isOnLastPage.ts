@@ -4,11 +4,7 @@ type Props = {
   slidesToShow: number
 }
 
-const getIsOnLastSlide = ({
-  currentSlide,
-  slidesCount,
-  slidesToShow,
-}: Props) => {
+const isOnLastPage = ({ currentSlide, slidesCount, slidesToShow }: Props) => {
   if (Number.isInteger(slidesToShow)) {
     return currentSlide >= slidesCount - slidesToShow
   }
@@ -25,4 +21,4 @@ const getIsOnLastSlide = ({
   return currentSlide >= slidesCount - slidesToShow - 1
 }
 
-export default getIsOnLastSlide
+export default isOnLastPage

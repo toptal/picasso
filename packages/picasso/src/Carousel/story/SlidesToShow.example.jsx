@@ -3,7 +3,7 @@ import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
 
 const CarouselDefaultExample = () => (
   <Container style={{ maxWidth: 370 }}>
-    <Carousel slidesToShow={2.5} rewind={false}>
+    <Carousel slidesToShow={2.5} hasArrows hasDots>
       <SlideExample>Delivery Manager</SlideExample>
       <SlideExample>Designer</SlideExample>
       <SlideExample>Developer</SlideExample>
@@ -15,20 +15,18 @@ const CarouselDefaultExample = () => (
 
 const SlideExample = ({ children }) => {
   return (
-    <div>
-      <Container
-        flex
-        gap='xsmall'
-        direction='column'
-        alignItems='center'
-        style={{ maxWidth: '100%' }}
-      >
-        <Settings16 scale={4} color='blue' />
-        <Typography align='center' size='xsmall'>
-          {children}
-        </Typography>
-      </Container>
-    </div>
+    <Container
+      flex
+      gap='xsmall'
+      direction='column'
+      alignItems='center'
+      style={{ maxWidth: '100%' }}
+    >
+      <Settings16 scale={4} color='blue' />
+      <Typography align='center' size='xsmall'>
+        {children}
+      </Typography>
+    </Container>
   )
 }
 
