@@ -58,6 +58,12 @@
       "@toptal/picasso-provider": [
         "packages/picasso-provider/src"
       ],
+      "@toptal/picasso-pictograms/*": [
+        "packages/picasso-pictograms/src/*"
+      ],
+      "@toptal/picasso-pictograms": [
+        "packages/picasso-pictograms/src"
+      ],
       "*": [
         "@types/*"
       ],

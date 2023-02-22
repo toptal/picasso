@@ -11,6 +11,8 @@ const config = {
     '^@toptal/picasso$': '<rootDir>/packages/picasso/src/index.ts',
     '^@toptal/picasso-provider$':
       '<rootDir>/packages/picasso-provider/src/index.ts',
+    '^@toptal/picasso-pictograms$':
+      '<rootDir>/packages/picasso-pictograms/src/index.ts',
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1',
   },
   setupFiles: ['jest-canvas-mock'],

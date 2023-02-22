@@ -18,14 +18,14 @@ const decorateWithClassNameProp = svgElement => {
 }
 
 /**
- * Add `name={value}` to the svg tag
+ * Add `{propName}={propValue}` to the svg tag
  */
-const decorateWithIdentifierProp = (svgElement, propName, identifierName) => {
+const decorateWithProp = (svgElement, propName, propValue) => {
   svgElement.attributes = [
     ...svgElement.attributes,
     types.jsxAttribute(
       types.jsxIdentifier(propName),
-      types.jsxExpressionContainer(types.identifier(identifierName))
+      types.jsxExpressionContainer(types.identifier(propValue))
     ),
   ]
 }
@@ -52,11 +52,11 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   // add `className={cx(classes.root, classes[colorClassName], className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
-  decorateWithIdentifierProp(svgElement, 'style', 'svgStyle')
+  decorateWithProp(svgElement, 'style', 'svgStyle')
   // add `ref={ref}` to svg root tag
-  decorateWithIdentifierProp(svgElement, 'ref', 'ref')
+  decorateWithProp(svgElement, 'ref', 'ref')
   // add `data-testid={testId} to svg root tag
-  decorateWithIdentifierProp(svgElement, 'data-testid', 'testId')
+  decorateWithProp(svgElement, 'data-testid', 'testId')
 
   return tpl`
     import React, { forwardRef, Ref } from 'react'

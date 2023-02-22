@@ -146,6 +146,10 @@ module.exports = {
             __dirname,
             '../packages/picasso-provider/src'
           ),
+          '@toptal/picasso-pictograms': path.resolve(
+            __dirname,
+            '../packages/picasso-pictograms/src'
+          ),
         },
       },
     }

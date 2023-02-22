@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# initialize
+CWD="$(dirname "$0")"
+cd "$CWD/../"
+BASE_PATH=$(pwd)
+
+if [ $1 = 'icon' ]
+then
+  COMPONENTS_PATH="packages/picasso/src/Icon"
+else
+  COMPONENTS_PATH="packages/picasso-pictograms/src/Pictogram"
+fi
+
+COMPONENTS_FULL_PATH="$BASE_PATH/$COMPONENTS_PATH"
+
+echo "Converting svg into React components ..."
+svgr \
+--out-dir $COMPONENTS_PATH \
+--ext tsx \
+--typescript \
+--template $COMPONENTS_PATH/_generatorTemplate.js \
+--expand-props none -- $COMPONENTS_PATH/svg
+
+# rename index.tsx --> index.ts because svgr generates index with .tsx extension
+mv $COMPONENTS_FULL_PATH/index.tsx $COMPONENTS_FULL_PATH/index.ts
+
+# format all generated code with prettier and eslint
+davinci-syntax lint code $COMPONENTS_FULL_PATH
+yarn prettier --write $COMPONENTS_FULL_PATH/*.tsx $COMPONENTS_FULL_PATH/**/*.tsx $COMPONENTS_FULL_PATH/index.ts
