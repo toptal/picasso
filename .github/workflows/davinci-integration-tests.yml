@@ -28,6 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
       - uses: toptal/davinci-github-actions/yarn-install@v4.9.0
 
       - name: Build packages

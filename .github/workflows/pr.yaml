@@ -57,6 +57,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
       - name: Check missing changeset
         uses: toptal/davinci-github-actions/report-missing-changeset@v4.9.0
         with:
