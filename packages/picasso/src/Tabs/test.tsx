@@ -122,6 +122,24 @@ describe('Tabs', () => {
     expect(onChange).toHaveBeenCalledTimes(1)
   })
 
+  it('fires onChange with custom value when clicked', () => {
+    const onChange = jest.fn()
+    const { getByTestId } = renderTabs(
+      [
+        { label: 'Tab 1', value: 'first' },
+        { label: 'Tab 2', value: 'second' },
+      ],
+      {
+        value: 'first',
+        onChange,
+      }
+    )
+
+    fireEvent.click(getByTestId('tab-2'))
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith(expect.anything(), 'second')
+  })
+
   it('doesnt fire onChange when disabled', () => {
     const onChange = jest.fn()
     const { getByTestId } = renderTabs(
