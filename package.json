@@ -65,7 +65,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-ci": "^4.0.3",
-    "@toptal/davinci-code": "^1.7.2",
+    "@toptal/davinci-code": "^2.0.4",
     "@toptal/davinci-engine": "^7.6.1",
     "@toptal/davinci-qa": "^14.0.3",
     "@toptal/davinci-syntax": "^16.2.0",
