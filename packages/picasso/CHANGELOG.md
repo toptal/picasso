@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.4.3
+
+### Patch Changes
+
+- [#3392](https://github.com/toptal/picasso/pull/3392) [`fc4b5c66`](https://github.com/toptal/picasso/commit/fc4b5c66864066863b0e1a2436f5cee259d9a6f9) Thanks [@domagojkorman](https://github.com/domagojkorman)! - ---
+
+  ### Tabs
+
+  - fix typings for the `onChange` handler
+
 ## 31.4.2
 
 ### Patch Changes
