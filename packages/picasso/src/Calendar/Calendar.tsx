@@ -149,7 +149,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               onMouseEnter={handleOnEnter}
               value={date.toString()}
               type='button'
-              disabled={isDisabled}
             >
               {getDayFormatted(date)}
               <CalendarIndicators
