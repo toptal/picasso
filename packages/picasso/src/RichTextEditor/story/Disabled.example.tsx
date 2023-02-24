@@ -1,6 +1,6 @@
 import React from 'react'
 import { ASTType } from '@toptal/picasso'
-import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms';
+import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms'
 import { noop } from '@toptal/picasso/utils'
 
 const ast: ASTType = {
@@ -38,7 +38,7 @@ const Example = () => {
         disabled
       />
     </FormNonCompound>
-  );
+  )
 }
 
 export default Example

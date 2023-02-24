@@ -1,6 +1,11 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { FormNonCompound, RadioGroup, Radio, SubmitButton } from '@toptal/picasso-forms';
+import {
+  FormNonCompound,
+  RadioGroup,
+  Radio,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 const deserializeValue = (value: unknown) => {
   if (value === 'true') {

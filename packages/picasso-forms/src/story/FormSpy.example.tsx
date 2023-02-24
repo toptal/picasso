@@ -1,9 +1,16 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { FormSpy, FormNonCompound, Input, SubmitButton } from '@toptal/picasso-forms';
+import {
+  FormSpy,
+  FormNonCompound,
+  Input,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 const Example = () => (
-  <FormNonCompound onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
+  <FormNonCompound
+    onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
+  >
     <Input
       required
       name='firstName'
@@ -32,7 +39,7 @@ const Example = () => (
             <SubmitButton disabled={isDisabled}>
               {isDisabled ? 'Fill out form to enable' : 'Submit'}
             </SubmitButton>
-          );
+          )
         }}
       </FormSpy>
     </Container>

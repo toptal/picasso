@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms';
+import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms'
 
 const Example = () => {
   return (
@@ -18,7 +18,7 @@ const Example = () => {
         name='error'
       />
     </FormNonCompound>
-  );
+  )
 }
 
 export default Example
