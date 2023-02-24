@@ -1,23 +1,46 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 
-const useOnScreen = (ref: React.RefObject<HTMLElement>) => {
+interface UseOnScreenProps {
+  ref: React.RefObject<HTMLElement>
+  root?: React.RefObject<HTMLElement>
+  rootMargin?: string
+  threshold?: number | number[]
+}
+
+const useOnScreen = ({
+  ref,
+  root,
+  rootMargin,
+  threshold,
+}: UseOnScreenProps) => {
   const [isIntersecting, setIntersecting] = useState(false)
 
   const observer = useMemo(
     () =>
-      new IntersectionObserver(([entry]) =>
-        setIntersecting(entry.isIntersecting)
+      new IntersectionObserver(
+        ([entry]) => {
+          setIntersecting(entry.isIntersecting)
+        },
+        {
+          root: root?.current,
+          rootMargin: rootMargin,
+          threshold: threshold,
+        }
       ),
-    []
+    [root, rootMargin, threshold]
   )
 
   useEffect(() => {
-    if (ref.current) {
-      const element = ref.current
+    const element = ref.current
 
-      observer.observe(element)
+    if (!element) {
+      return
+    }
 
-      return () => observer.unobserve(element)
+    observer.observe(element)
+
+    return () => {
+      observer.unobserve(element)
     }
   }, [observer, ref])
 
