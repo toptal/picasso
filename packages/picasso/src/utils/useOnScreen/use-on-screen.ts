@@ -23,8 +23,8 @@ const useOnScreen = ({
         },
         {
           root: root?.current,
-          rootMargin: rootMargin,
-          threshold: threshold,
+          rootMargin,
+          threshold,
         }
       ),
     [root, rootMargin, threshold]

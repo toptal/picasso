@@ -1,10 +1,14 @@
-import React, { useRef, useState, ReactNode } from 'react'
+import React, {
+  useRef,
+  useState,
+  ReactNode,
+  useEffect,
+  useCallback,
+} from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import Glider from 'react-glider'
+import Glider from 'glider-js'
 import cx from 'classnames'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'glider-js/glider.css'
-import type { GliderMethods } from 'react-glider/dist/types'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
@@ -16,6 +20,24 @@ import useMouseEnter from '../utils/useMouseEnter'
 import { useInterval } from '../utils'
 import isOnLastPage from './utils/isOnLastPage'
 import getCurrentSlide from './utils/getCurrentSlide'
+
+let autoId = 0
+
+const generateUniqueId = (prefix: string) => `${prefix}-${autoId++}`
+
+const getLayout = (hasArrows: boolean, hasDots: boolean) => {
+  if (hasArrows && hasDots) {
+    return 'space-between'
+  }
+
+  if (hasArrows) {
+    return 'flex-end'
+  }
+
+  if (hasDots) {
+    return 'center'
+  }
+}
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
@@ -53,6 +75,8 @@ export interface Props extends BaseProps {
    * is used.
    */
   slidesToScroll?: number
+  /** Unique identifier for the Carousel */
+  id?: string
   /**
    * Callback triggered when Carousel finished scrolling to a slide
    */
@@ -78,35 +102,90 @@ export const Carousel = ({
   autoplayDelay = 3000,
   className,
   children,
-  hasArrows,
-  hasDots,
+  hasArrows = false,
+  hasDots = false,
   onSlide,
   rewind = false,
   slidesToScroll = 1,
   slidesToShow = 1,
   testIds = {},
+  id,
 }: Props) => {
   const classes = useStyles()
 
   const [currentSlide, setCurrentSlide] = useState(0)
-  const gliderRef = useRef<GliderMethods & { track: HTMLDivElement }>(null)
+  const [slidesCount, setSlidesCount] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
+  const gliderRef = useRef<Glider<HTMLDivElement>>()
 
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const elementRef = useRef<HTMLDivElement>(null)
   const prevRef = useRef<HTMLButtonElement>(null)
-  const nextRef = useRef<HTMLButtonElement>(null)
   const dotsRef = useRef<HTMLDivElement>(null)
+  const nextRef = useRef<HTMLButtonElement>(null)
 
-  const isOnScreen = useOnScreen(wrapperRef)
+  const isOnScreen = useOnScreen({ ref: wrapperRef })
   const isMouseOver = useMouseEnter(wrapperRef)
-
-  const slidesCount = gliderRef.current?.track.childElementCount || 0
+  const isPaused = !autoplay || !isOnScreen || isMouseOver
   const isLastPage = isOnLastPage({
     currentSlide,
     slidesCount,
     slidesToShow,
   })
 
-  const isPaused = !autoplay || !isOnScreen || isMouseOver
+  useEffect(() => {
+    setIsMounted(true)
+  }, [setIsMounted])
+
+  const handleOnAnimated = useCallback(
+    (
+      event: Glider.GliderEvent<{
+        value: string | number
+        type: 'arrow' | 'dot' | 'slide'
+      }>
+    ) => {
+      const index = getCurrentSlide({
+        event,
+        slidesCount,
+        prevSlide: currentSlide,
+        slidesToShow,
+        isLastPage,
+      })
+
+      setCurrentSlide(index)
+      onSlide?.(index)
+    },
+    [currentSlide, slidesCount, slidesToShow, isLastPage, onSlide]
+  )
+
+  useEffect(() => {
+    const element = elementRef.current
+
+    if (element && !gliderRef.current) {
+      gliderRef.current = new Glider(element, {
+        slidesToShow,
+        rewind,
+        slidesToScroll,
+        dots: dotsRef.current,
+        arrows: {
+          prev: prevRef.current,
+          next: nextRef.current,
+        },
+      })
+
+      setSlidesCount(gliderRef.current.track.childElementCount)
+    }
+  }, [isMounted, slidesToShow, rewind, slidesToScroll, handleOnAnimated])
+
+  useEffect(() => {
+    const element = elementRef.current
+
+    element?.addEventListener('glider-animated', handleOnAnimated)
+
+    return () => {
+      element?.removeEventListener('glider-animated', handleOnAnimated)
+    }
+  }, [handleOnAnimated])
 
   const { pauseInterval } = useInterval({
     callback: () => {
@@ -114,59 +193,39 @@ export const Carousel = ({
         if (!rewind) {
           pauseInterval()
         } else {
-          gliderRef.current?.scrollItem(0)
+          gliderRef.current?.scrollItem(0, false)
         }
       } else {
-        gliderRef.current?.scrollItem(currentSlide + slidesToScroll)
+        gliderRef.current?.scrollItem(currentSlide + slidesToScroll, false)
       }
     },
     delay: autoplayDelay,
     isPaused,
   })
 
-  const handleOnAnimated = (event: CustomEvent) => {
-    const index = getCurrentSlide({
-      event,
-      slidesCount,
-      prevSlide: currentSlide,
-      slidesToShow,
-      isLastPage,
-    })
-
-    setCurrentSlide(index)
-    onSlide?.(index)
-  }
-
   return (
     <Container
-      className={cx(classes.root, className, {
-        [classes.gradient]: !Number.isInteger(slidesToShow) && !isLastPage,
-      })}
+      className={cx(classes.root, className)}
       ref={wrapperRef}
       data-testid={testIds.root}
     >
-      <Glider
-        ref={gliderRef}
-        hasArrows={hasArrows}
-        hasDots={hasDots}
-        slidesToShow={slidesToShow}
-        rewind={rewind}
-        slidesToScroll={slidesToScroll}
-        arrows={{
-          prev: prevRef.current,
-          next: nextRef.current,
-        }}
-        dots={dotsRef.current}
-        onAnimated={handleOnAnimated}
-        data-testid={testIds.carousel}
+      <Container
+        className={cx({
+          [classes.gradient]: !Number.isInteger(slidesToShow) && !isLastPage,
+        })}
       >
-        {children}
-      </Glider>
-
+        <Container
+          id={id || generateUniqueId('carousel')}
+          ref={elementRef}
+          data-testid={testIds.carousel}
+        >
+          {children}
+        </Container>
+      </Container>
       <Container
         className={classes.navigation}
         flex
-        justifyContent='space-between'
+        justifyContent={getLayout(hasArrows, hasDots)}
         data-testid={testIds.navigation}
       >
         {hasDots && (

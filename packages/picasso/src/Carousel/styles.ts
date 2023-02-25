@@ -4,29 +4,25 @@ import { Theme, createStyles } from '@material-ui/core/styles'
 export default ({ palette, transitions }: Theme) =>
   createStyles({
     root: {
-      '& .glider-contain': {
-        padding: 0,
-      },
+      padding: 0,
 
       '& .glider-slide': {
         minWidth: '100px',
       },
     },
     gradient: {
-      '& .glider-contain': {
-        position: 'relative',
+      position: 'relative',
 
-        '&:after': {
-          content: '""',
-          display: 'block',
-          position: 'absolute',
-          width: '20%',
-          height: '100%',
-          top: 0,
-          right: 0,
-          background:
-            'linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, white 95%)',
-        },
+      '&:after': {
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        width: '20%',
+        height: '100%',
+        top: 0,
+        right: 0,
+        background:
+          'linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, white 95%)',
       },
     },
     arrowPrev: {
