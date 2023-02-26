@@ -40,6 +40,6 @@ describe('useCarousel', () => {
 
     expect(result.current.prevDisabled).toBe(true)
     expect(result.current.nextDisabled).toBe(false)
-    expect(result.current.hasGradient).toBe(false)
+    expect(result.current.isLastPage).toBe(false)
   })
 })

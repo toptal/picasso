@@ -129,14 +129,13 @@ const useCarousel = ({
     isPaused,
   })
 
-  const hasGradient = !Number.isInteger(slidesToShow) && !isLastPage
   const prevDisabled = rewind ? false : currentSlide === 0
   const nextDisabled = rewind ? false : isLastPage
 
   return {
-    hasGradient,
-    prevDisabled,
+    isLastPage,
     nextDisabled,
+    prevDisabled,
   }
 }
 

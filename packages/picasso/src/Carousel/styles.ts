@@ -1,62 +1,12 @@
-import { rem } from '@toptal/picasso-shared'
-import { Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, transitions }: Theme) =>
+export default () =>
   createStyles({
     root: {
-      padding: 0,
-
       '& .glider-slide': {
         minWidth: '100px',
       },
     },
-    gradient: {
-      position: 'relative',
-
-      '&:after': {
-        content: '""',
-        display: 'block',
-        position: 'absolute',
-        width: '20%',
-        height: '100%',
-        top: 0,
-        right: 0,
-        background:
-          'linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, white 95%)',
-      },
-    },
-    arrowPrev: {
-      transform: 'rotate(180deg)',
-    },
-    arrowNext: {},
-    arrows: {
-      alignSelf: 'flex-end',
-    },
-    dots: {
-      alignSelf: 'flex-start',
-      margin: 0,
-      '& .glider-dot': {
-        width: 10,
-        height: 10,
-        backgroundColor: palette.blue.main,
-        opacity: 0.2,
-        '&.active': {
-          opacity: 1,
-        },
-        '&:hover:not(.active)': {
-          transition: `box-shadow, opacity ${transitions.duration.standard}ms ${transitions.easing.easeOut}`,
-          opacity: 1,
-          boxShadow: '0 0 0 2px rgba(32, 78, 207, 0.2)',
-        },
-      },
-    },
-    navigation: {
-      padding: `${rem('14px')} 1.5rem 0`,
-    },
-    header: {
-      paddingBottom: '1.5rem',
-    },
-    footer: {
-      paddingTop: '1.5rem',
-    },
+    // important for gradient component to be on top of carousel
+    container: { position: 'relative' },
   })

@@ -6,23 +6,9 @@ import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import Container from '../Container'
-import ButtonCircular from '../ButtonCircular'
-import ChevronRight24 from '../Icon/ChevronRight24'
+import CarouselGradient from '../CarouselGradient'
 import useCarousel from './hooks/useCarousel'
-
-const getLayout = (hasArrows: boolean, hasDots: boolean) => {
-  if (hasArrows && hasDots) {
-    return 'space-between'
-  }
-
-  if (hasArrows) {
-    return 'flex-end'
-  }
-
-  if (hasDots) {
-    return 'center'
-  }
-}
+import CarouselNavigation from '../CarouselNavigation'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
@@ -100,7 +86,7 @@ export const Carousel = ({
   const dotsRef = useRef<HTMLDivElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
 
-  const { nextDisabled, prevDisabled, hasGradient } = useCarousel({
+  const { nextDisabled, prevDisabled, isLastPage } = useCarousel({
     autoplay,
     autoplayDelay,
     dotsRef,
@@ -118,49 +104,23 @@ export const Carousel = ({
       className={cx(classes.root, className)}
       data-testid={testIds.root}
     >
-      <Container
-        className={cx({
-          [classes.gradient]: hasGradient,
-        })}
-      >
+      <Container className={classes.container}>
+        <CarouselGradient slidesToShow={slidesToShow} isLastPage={isLastPage} />
         <Container ref={elementRef} data-testid={testIds.carousel}>
           {children}
         </Container>
       </Container>
-      <Container
-        className={classes.navigation}
-        flex
-        justifyContent={getLayout(hasArrows, hasDots)}
-        data-testid={testIds.navigation}
-      >
-        {hasDots && (
-          <div
-            ref={dotsRef}
-            data-testid={testIds.dots}
-            className={classes.dots}
-          />
-        )}
-        {hasArrows && (
-          <Container className={classes.arrows} data-testid={testIds.arrows}>
-            <ButtonCircular
-              className={classes.arrowPrev}
-              data-testid={testIds.prev}
-              disabled={prevDisabled}
-              icon={<ChevronRight24 />}
-              ref={prevRef}
-              variant='flat'
-            />
-            <ButtonCircular
-              className={classes.arrowNext}
-              data-testid={testIds.next}
-              disabled={nextDisabled}
-              icon={<ChevronRight24 />}
-              ref={nextRef}
-              variant='flat'
-            />
-          </Container>
-        )}
-      </Container>
+
+      <CarouselNavigation
+        dotsRef={dotsRef}
+        hasArrows={hasArrows}
+        hasDots={hasDots}
+        nextDisabled={nextDisabled}
+        nextRef={nextRef}
+        prevDisabled={prevDisabled}
+        prevRef={prevRef}
+        testIds={testIds}
+      />
     </Container>
   )
 }
