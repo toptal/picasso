@@ -1,29 +1,14 @@
-import React, {
-  useRef,
-  useState,
-  ReactNode,
-  useEffect,
-  useCallback,
-} from 'react'
+import React, { useRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
-import Glider from 'glider-js'
 import cx from 'classnames'
 import 'glider-js/glider.css'
 import { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import Container from '../Container'
-import useOnScreen from '../utils/useOnScreen/use-on-screen'
 import ButtonCircular from '../ButtonCircular'
 import ChevronRight24 from '../Icon/ChevronRight24'
-import useMouseEnter from '../utils/useMouseEnter'
-import { useInterval } from '../utils'
-import isOnLastPage from './utils/isOnLastPage'
-import getCurrentSlide from './utils/getCurrentSlide'
-
-let autoId = 0
-
-const generateUniqueId = (prefix: string) => `${prefix}-${autoId++}`
+import useCarousel from './hooks/useCarousel'
 
 const getLayout = (hasArrows: boolean, hasDots: boolean) => {
   if (hasArrows && hasDots) {
@@ -113,112 +98,35 @@ export const Carousel = ({
 }: Props) => {
   const classes = useStyles()
 
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [slidesCount, setSlidesCount] = useState(0)
-  const [isMounted, setIsMounted] = useState(false)
-  const gliderRef = useRef<Glider<HTMLDivElement>>()
-
-  const wrapperRef = useRef<HTMLDivElement>(null)
   const elementRef = useRef<HTMLDivElement>(null)
   const prevRef = useRef<HTMLButtonElement>(null)
   const dotsRef = useRef<HTMLDivElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
 
-  const isOnScreen = useOnScreen({ ref: wrapperRef })
-  const isMouseOver = useMouseEnter(wrapperRef)
-  const isPaused = !autoplay || !isOnScreen || isMouseOver
-  const isLastPage = isOnLastPage({
-    currentSlide,
-    slidesCount,
+  const { nextDisabled, prevDisabled, hasGradient } = useCarousel({
+    autoplay,
+    autoplayDelay,
+    dotsRef,
+    elementRef,
+    nextRef,
+    onSlide,
+    prevRef,
+    rewind,
+    slidesToScroll,
     slidesToShow,
-  })
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [setIsMounted])
-
-  const handleOnAnimated = useCallback(
-    (
-      event: Glider.GliderEvent<{
-        value: string | number
-        type: 'arrow' | 'dot' | 'slide'
-      }>
-    ) => {
-      const index = getCurrentSlide({
-        event,
-        slidesCount,
-        prevSlide: currentSlide,
-        slidesToShow,
-        isLastPage,
-      })
-
-      setCurrentSlide(index)
-      onSlide?.(index)
-    },
-    [currentSlide, slidesCount, slidesToShow, isLastPage, onSlide]
-  )
-
-  useEffect(() => {
-    const element = elementRef.current
-
-    if (element && !gliderRef.current) {
-      gliderRef.current = new Glider(element, {
-        slidesToShow,
-        rewind,
-        slidesToScroll,
-        dots: dotsRef.current,
-        arrows: {
-          prev: prevRef.current,
-          next: nextRef.current,
-        },
-      })
-
-      setSlidesCount(gliderRef.current.track.childElementCount)
-    }
-  }, [isMounted, slidesToShow, rewind, slidesToScroll, handleOnAnimated])
-
-  useEffect(() => {
-    const element = elementRef.current
-
-    element?.addEventListener('glider-animated', handleOnAnimated)
-
-    return () => {
-      element?.removeEventListener('glider-animated', handleOnAnimated)
-    }
-  }, [handleOnAnimated])
-
-  const { pauseInterval } = useInterval({
-    callback: () => {
-      if (isLastPage) {
-        if (!rewind) {
-          pauseInterval()
-        } else {
-          gliderRef.current?.scrollItem(0, false)
-        }
-      } else {
-        gliderRef.current?.scrollItem(currentSlide + slidesToScroll, false)
-      }
-    },
-    delay: autoplayDelay,
-    isPaused,
   })
 
   return (
     <Container
       className={cx(classes.root, className)}
-      ref={wrapperRef}
       data-testid={testIds.root}
     >
       <Container
         className={cx({
-          [classes.gradient]: !Number.isInteger(slidesToShow) && !isLastPage,
+          [classes.gradient]: hasGradient,
         })}
       >
-        <Container
-          id={id || generateUniqueId('carousel')}
-          ref={elementRef}
-          data-testid={testIds.carousel}
-        >
+        <Container id={id} ref={elementRef} data-testid={testIds.carousel}>
           {children}
         </Container>
       </Container>
@@ -240,7 +148,7 @@ export const Carousel = ({
             <ButtonCircular
               className={classes.arrowPrev}
               data-testid={testIds.prev}
-              disabled={rewind ? false : currentSlide === 0}
+              disabled={prevDisabled}
               icon={<ChevronRight24 />}
               ref={prevRef}
               variant='flat'
@@ -248,7 +156,7 @@ export const Carousel = ({
             <ButtonCircular
               className={classes.arrowNext}
               data-testid={testIds.next}
-              disabled={rewind ? false : isLastPage}
+              disabled={nextDisabled}
               icon={<ChevronRight24 />}
               ref={nextRef}
               variant='flat'
