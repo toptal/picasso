@@ -60,8 +60,6 @@ export interface Props extends BaseProps {
    * is used.
    */
   slidesToScroll?: number
-  /** Unique identifier for the Carousel */
-  id?: string
   /**
    * Callback triggered when Carousel finished scrolling to a slide
    */
@@ -94,7 +92,6 @@ export const Carousel = ({
   slidesToScroll = 1,
   slidesToShow = 1,
   testIds = {},
-  id,
 }: Props) => {
   const classes = useStyles()
 
@@ -126,7 +123,7 @@ export const Carousel = ({
           [classes.gradient]: hasGradient,
         })}
       >
-        <Container id={id} ref={elementRef} data-testid={testIds.carousel}>
+        <Container ref={elementRef} data-testid={testIds.carousel}>
           {children}
         </Container>
       </Container>
