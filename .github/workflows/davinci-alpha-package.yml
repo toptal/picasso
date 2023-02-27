@@ -1,8 +1,8 @@
 name: Release Alpha Package
 
 on:
-  issue_comment:
-    types: [ created ]
+  pull_request:
+    types: [opened, edited]
 
 jobs:
   triggerPrWorkflow:
@@ -17,22 +17,14 @@ jobs:
       STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: Feedback on action started
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ env.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.issue;
-            await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
-
       - id: branch
         uses: xt0rted/pull-request-comment-branch@v1.4.0
 
       - name: Specify branch
         id: get-branch
         run: |
-          echo "::set-output name=branch::${{ steps.branch.outputs.head_ref }}"
-          echo "::set-output name=sha::${{ steps.branch.outputs.head_sha }}"
+          echo "::set-output name=branch::${{ github.head_ref }}"
+          echo "::set-output name=sha::${{ github.head_sha }}"
 
       - name: Configure git user
         run: |
@@ -43,7 +35,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ env.GITHUB_TOKEN }}
-          ref: ${{ steps.get-branch.outputs.branch }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
 
       - name: Set status check - pending
@@ -56,7 +48,7 @@ jobs:
               repo,
               owner,
               state: 'pending',
-              sha: "${{ steps.get-branch.outputs.sha }}",
+              sha: "${{ github.event.pull_request.head.sha }}",
               context: process.env.STATUS_CHECK_NAME,
               target_url: process.env.STATUS_TARGET_URL
             })
@@ -66,7 +58,7 @@ jobs:
         uses: toptal/davinci-github-actions/build-publish-alpha-package@fx-3737-need-to-add-input-parameter-to-davinci-alpha-package-gh-action
         with:
           npm-token: ${{ env.NPM_TOKEN }}
-          branch: ${{ steps.get-branch.outputs.branch }}
+          branch: ${{ github.event.pull_request.head.sha }}
 
       - name: Alpha package — Handle success
         if: ${{ success() }}
