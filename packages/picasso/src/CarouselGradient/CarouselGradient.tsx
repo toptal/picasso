@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import cx from 'classnames'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
-import calculateGradientWidth from './utils/calculateGradientWidth'
+import gradientWidth from './utils/gradientWidth'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'CarouselGradient' })
@@ -26,7 +26,7 @@ const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
     }
 
     return {
-      width: `${calculateGradientWidth(slidesToShow)}%`,
+      width: `${gradientWidth(slidesToShow)}%`,
     }
   }, [slidesToShow, hasGradient])
 
