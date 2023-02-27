@@ -44,8 +44,8 @@ const useCarousel = ({
     slidesCount,
     slidesToShow,
   })
-  const isPaused =
-    !autoplay || !isOnScreen || isMouseOver || (!rewind && isLastPage)
+  const isActive =
+    autoplay || isOnScreen || !isMouseOver || (rewind && !isLastPage)
 
   useEffect(() => {
     setIsMounted(true)
@@ -125,7 +125,7 @@ const useCarousel = ({
   useInterval({
     callback: scrollNext,
     delay: autoplayDelay,
-    isPaused,
+    isActive,
   })
 
   const isPrevDisabled = rewind ? false : currentSlide === 0

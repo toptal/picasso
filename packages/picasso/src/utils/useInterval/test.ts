@@ -15,40 +15,36 @@ describe('useInterval', () => {
 
   it('pauses and resumes the interval', () => {
     const callback = jest.fn()
-    const { result } = renderHook(() => useInterval({ callback, delay: 100 }))
+    const { rerender } = renderHook(props => useInterval(props), {
+      initialProps: { callback, delay: 100, isActive: true },
+    })
 
     jest.advanceTimersByTime(500)
-    result.current.pauseInterval()
+
+    rerender({ callback, delay: 100, isActive: false })
     jest.advanceTimersByTime(500)
     expect(callback).toHaveBeenCalledTimes(5)
-    result.current.resumeInterval()
+    rerender({ callback, delay: 100, isActive: true })
     jest.advanceTimersByTime(500)
     expect(callback).toHaveBeenCalledTimes(10)
   })
 
   it('cleans up the interval on unmount', () => {
     const callback = jest.fn()
-    const { result, unmount } = renderHook(() =>
-      useInterval({ callback, delay: 100 })
-    )
+    const { unmount } = renderHook(() => useInterval({ callback, delay: 100 }))
 
     jest.advanceTimersByTime(500)
     unmount()
     jest.advanceTimersByTime(500)
     expect(callback).toHaveBeenCalledTimes(5)
-    expect(result.current.pauseInterval).not.toThrow()
-    expect(result.current.resumeInterval).not.toThrow()
   })
 
   it('does not call the callback when isPaused is true', () => {
     const callback = jest.fn()
-    const { result } = renderHook(() =>
-      useInterval({ callback, delay: 100, isPaused: true })
-    )
+
+    renderHook(() => useInterval({ callback, delay: 100, isActive: false }))
 
     jest.advanceTimersByTime(1000)
     expect(callback).toHaveBeenCalledTimes(0)
-    expect(result.current.pauseInterval).not.toThrow()
-    expect(result.current.resumeInterval).not.toThrow()
   })
 })
