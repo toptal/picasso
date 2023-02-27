@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.5.1
+
+### Patch Changes
+
+- [#3395](https://github.com/toptal/picasso/pull/3395) [`dcbe1ab4`](https://github.com/toptal/picasso/commit/dcbe1ab4dfcef506c13bf1cf17d74f5c1ede23f0) Thanks [@mateusbzerra](https://github.com/mateusbzerra)! - ---
+
+  ### Datepicker
+
+  - fix `datepicker` disabled days attribute that prevents buttons from being able to trigger tooltips
+
 ## 31.5.0
 
 ### Minor Changes
