@@ -1,12 +1,15 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import Glider from 'glider-js'
 
 import isOnLastPage from '../../utils/isOnLastPage'
 import getCurrentSlide from '../../utils/getCurrentSlide'
+import useOnSecondRender from '../../../utils/useOnSecondRender'
+import useOnGliderAnimated from '../useOnGliderAnimated'
+import useAutoplay from '../useAutoplay'
 
 type Props = {
-  dotsRef: React.RefObject<HTMLDivElement>
-  elementRef: React.RefObject<HTMLDivElement>
+  autoplay: boolean
+  autoplayDelay: number
   /**
    * Callback triggered when Carousel finished scrolling to a slide
    */
@@ -24,19 +27,26 @@ type Props = {
    * The number of slides to show in container
    */
   slidesToShow: number
+  slidesCount: number
 }
 
+type OnAnimatedEvent = Glider.GliderEvent<{
+  value: string | number
+  type: 'arrow' | 'dot' | 'slide'
+}>
+
 const useCarousel = ({
-  dotsRef,
-  elementRef,
+  autoplay,
+  autoplayDelay,
   onSlide,
   rewind,
   slidesToScroll,
   slidesToShow,
+  slidesCount,
 }: Props) => {
+  const dotsRef = useRef<HTMLDivElement>(null)
+  const elementRef = useRef<HTMLDivElement>(null)
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [slidesCount, setSlidesCount] = useState(0)
-  const [isMounted, setIsMounted] = useState(false)
   const gliderRef = useRef<Glider<HTMLDivElement>>()
 
   const isLastPage = isOnLastPage({
@@ -44,10 +54,6 @@ const useCarousel = ({
     slidesCount,
     slidesToShow,
   })
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [setIsMounted])
 
   const initializeGlider = useCallback(() => {
     const element = elementRef.current
@@ -59,24 +65,13 @@ const useCarousel = ({
         slidesToScroll,
         dots: dotsRef.current,
       })
-
-      setSlidesCount(gliderRef.current.track.childElementCount)
     }
   }, [slidesToShow, rewind, slidesToScroll, elementRef, dotsRef])
 
-  useEffect(() => {
-    if (isMounted) {
-      initializeGlider()
-    }
-  }, [isMounted, initializeGlider])
+  useOnSecondRender(initializeGlider)
 
   const handleOnAnimated = useCallback(
-    (
-      event: Glider.GliderEvent<{
-        value: string | number
-        type: 'arrow' | 'dot' | 'slide'
-      }>
-    ) => {
+    (event: OnAnimatedEvent) => {
       const index = getCurrentSlide({
         event,
         slidesCount,
@@ -91,24 +86,15 @@ const useCarousel = ({
     [currentSlide, slidesCount, slidesToShow, isLastPage, onSlide]
   )
 
-  useEffect(() => {
-    const element = elementRef.current
-
-    element?.addEventListener('glider-animated', handleOnAnimated)
-
-    return () => {
-      element?.removeEventListener('glider-animated', handleOnAnimated)
-    }
-  }, [handleOnAnimated, elementRef])
+  useOnGliderAnimated({ callback: handleOnAnimated, elementRef })
 
   const slideNext = useCallback(() => {
     const glider = gliderRef.current
-    const nextSlide = currentSlide + slidesToScroll
 
     if (isLastPage) {
       glider?.scrollItem(0, false)
     } else {
-      glider?.scrollItem(nextSlide, false)
+      glider?.scrollItem(currentSlide + slidesToScroll, false)
     }
   }, [currentSlide, isLastPage, slidesToScroll])
 
@@ -124,15 +110,51 @@ const useCarousel = ({
     }
   }, [currentSlide, slidesCount, slidesToShow, slidesToScroll])
 
-  const isPrevDisabled = rewind ? false : currentSlide === 0
-  const isNextDisabled = rewind ? false : isLastPage
+  useAutoplay({
+    slideNext,
+    rewind,
+    isLastPage,
+    autoplay,
+    autoplayDelay,
+    elementRef,
+  })
+
+  const getPrevProps = useCallback(
+    () => ({
+      disabled: rewind ? false : currentSlide === 0,
+      onClick: slidePrev,
+    }),
+    [currentSlide, rewind, slidePrev]
+  )
+
+  const getNextProps = useCallback(
+    () => ({
+      disabled: rewind ? false : isLastPage,
+      onClick: slideNext,
+    }),
+    [isLastPage, rewind, slideNext]
+  )
+
+  const getDotsProps = useCallback(
+    () => ({
+      ref: dotsRef,
+    }),
+    []
+  )
+
+  const getContainerProps = useCallback(
+    () => ({
+      ref: elementRef,
+    }),
+    []
+  )
 
   return {
     isLastPage,
-    isNextDisabled,
-    isPrevDisabled,
-    slideNext,
-    slidePrev,
+    getPrevProps,
+    getNextProps,
+    getDotsProps,
+    getContainerProps,
   }
 }
 

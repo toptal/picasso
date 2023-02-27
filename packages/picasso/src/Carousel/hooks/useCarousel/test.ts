@@ -10,36 +10,21 @@ jest.mock('../../../utils/useMouseEnter', () =>
 )
 
 describe('useCarousel', () => {
-  const elementMock = document.createElement('div')
-
-  elementMock.innerHTML = `
-      <div></div>
-      <div></div>
-      <div></div>
-    `
-  const elementRef = { current: elementMock }
-  const dotsRef = { current: document.createElement('div') }
-  const nextRef = { current: document.createElement('button') }
-  const prevRef = { current: document.createElement('button') }
-
-  const defaultProps = {
+  const props = {
     autoplay: false,
-    autoplayDelay: 0,
-    dotsRef,
-    elementRef,
-    nextRef,
+    autoplayDelay: 5000,
     onSlide: jest.fn(),
-    prevRef,
     rewind: false,
     slidesToScroll: 1,
-    slidesToShow: 1,
+    slidesToShow: 2,
+    slidesCount: 5,
   }
 
-  it('should initialize glider', () => {
-    const { result } = renderHook(() => useCarousel(defaultProps))
+  it('should return expected values', () => {
+    const { result } = renderHook(() => useCarousel(props))
 
-    expect(result.current.isPrevDisabled).toBe(true)
-    expect(result.current.isNextDisabled).toBe(false)
     expect(result.current.isLastPage).toBe(false)
+    expect(result.current.getPrevProps().disabled).toBe(true)
+    expect(result.current.getNextProps().disabled).toBe(false)
   })
 })

@@ -6,7 +6,7 @@ import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import ChevronRight24 from '../Icon/ChevronRight24'
 
-const getLayout = (hasArrows: boolean, hasDots: boolean) => {
+const getJustifyContent = (hasArrows: boolean, hasDots: boolean) => {
   if (hasArrows && hasDots) {
     return 'space-between'
   }
@@ -23,13 +23,11 @@ const getLayout = (hasArrows: boolean, hasDots: boolean) => {
 const useStyles = makeStyles<Theme>(styles, { name: 'CarouselNavigation' })
 
 type Props = {
-  dotsRef: React.RefObject<HTMLDivElement>
   hasArrows: boolean
   hasDots: boolean
-  isNextDisabled: boolean
-  isPrevDisabled: boolean
-  slidePrev: () => void
-  slideNext: () => void
+  getDotsProps: () => {}
+  getNextProps: () => {}
+  getPrevProps: () => {}
   testIds: {
     navigation?: string
     arrows?: string
@@ -40,14 +38,12 @@ type Props = {
 }
 
 const CarouselNavigation = ({
-  dotsRef,
+  getDotsProps,
+  getNextProps,
+  getPrevProps,
   hasArrows,
   hasDots,
-  isNextDisabled,
-  isPrevDisabled,
   testIds,
-  slidePrev,
-  slideNext,
 }: Props) => {
   const classes = useStyles()
 
@@ -55,12 +51,12 @@ const CarouselNavigation = ({
     <Container
       className={classes.navigation}
       flex
-      justifyContent={getLayout(hasArrows, hasDots)}
+      justifyContent={getJustifyContent(hasArrows, hasDots)}
       data-testid={testIds.navigation}
     >
       {hasDots && (
         <div
-          ref={dotsRef}
+          {...getDotsProps()}
           data-testid={testIds.dots}
           className={classes.dots}
         />
@@ -70,17 +66,15 @@ const CarouselNavigation = ({
           <ButtonCircular
             className={classes.arrowPrev}
             data-testid={testIds.prev}
-            disabled={isPrevDisabled}
             icon={<ChevronRight24 />}
             variant='flat'
-            onClick={slidePrev}
+            {...getPrevProps()}
           />
           <ButtonCircular
             data-testid={testIds.next}
-            disabled={isNextDisabled}
             icon={<ChevronRight24 />}
             variant='flat'
-            onClick={slideNext}
+            {...getNextProps()}
           />
         </Container>
       )}

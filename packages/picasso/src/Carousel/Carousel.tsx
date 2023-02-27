@@ -1,4 +1,4 @@
-import React, { useRef, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import 'glider-js/glider.css'
@@ -9,9 +9,6 @@ import Container from '../Container'
 import CarouselGradient from '../CarouselGradient'
 import useCarousel from './hooks/useCarousel'
 import CarouselNavigation from '../CarouselNavigation'
-import useInterval from '../utils/useInterval'
-import useMouseEnter from '../utils/useMouseEnter'
-import useOnScreen from '../utils/useOnScreen'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
@@ -84,27 +81,20 @@ export const Carousel = ({
 }: Props) => {
   const classes = useStyles()
 
-  const elementRef = useRef<HTMLDivElement>(null)
-  const dotsRef = useRef<HTMLDivElement>(null)
-
-  const { isNextDisabled, isPrevDisabled, isLastPage, slideNext, slidePrev } =
-    useCarousel({
-      dotsRef,
-      elementRef,
-      onSlide,
-      rewind,
-      slidesToScroll,
-      slidesToShow,
-    })
-
-  const isOnScreen = useOnScreen({ ref: elementRef })
-  const isMouseOver = useMouseEnter(elementRef)
-
-  useInterval({
-    callback: slideNext,
-    delay: autoplayDelay,
-    isPaused:
-      !autoplay || (!rewind && isLastPage) || !isOnScreen || isMouseOver,
+  const {
+    isLastPage,
+    getContainerProps,
+    getDotsProps,
+    getNextProps,
+    getPrevProps,
+  } = useCarousel({
+    autoplay,
+    autoplayDelay,
+    onSlide,
+    rewind,
+    slidesToScroll,
+    slidesToShow,
+    slidesCount: React.Children.count(children),
   })
 
   return (
@@ -114,20 +104,18 @@ export const Carousel = ({
     >
       <Container className={classes.container}>
         <CarouselGradient slidesToShow={slidesToShow} isLastPage={isLastPage} />
-        <Container ref={elementRef} data-testid={testIds.carousel}>
+        <Container {...getContainerProps()} data-testid={testIds.carousel}>
           {children}
         </Container>
       </Container>
 
       <CarouselNavigation
-        dotsRef={dotsRef}
         hasArrows={hasArrows}
         hasDots={hasDots}
-        isNextDisabled={isNextDisabled}
-        isPrevDisabled={isPrevDisabled}
+        getDotsProps={getDotsProps}
+        getPrevProps={getPrevProps}
+        getNextProps={getNextProps}
         testIds={testIds}
-        slideNext={slideNext}
-        slidePrev={slidePrev}
       />
     </Container>
   )
