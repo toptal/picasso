@@ -9,6 +9,9 @@ import Container from '../Container'
 import CarouselGradient from '../CarouselGradient'
 import useCarousel from './hooks/useCarousel'
 import CarouselNavigation from '../CarouselNavigation'
+import useInterval from '../utils/useInterval'
+import useMouseEnter from '../utils/useMouseEnter'
+import useOnScreen from '../utils/useOnScreen'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
@@ -82,21 +85,26 @@ export const Carousel = ({
   const classes = useStyles()
 
   const elementRef = useRef<HTMLDivElement>(null)
-  const prevRef = useRef<HTMLButtonElement>(null)
   const dotsRef = useRef<HTMLDivElement>(null)
-  const nextRef = useRef<HTMLButtonElement>(null)
 
-  const { isNextDisabled, isPrevDisabled, isLastPage } = useCarousel({
-    autoplay,
-    autoplayDelay,
-    dotsRef,
-    elementRef,
-    nextRef,
-    onSlide,
-    prevRef,
-    rewind,
-    slidesToScroll,
-    slidesToShow,
+  const { isNextDisabled, isPrevDisabled, isLastPage, slideNext, slidePrev } =
+    useCarousel({
+      dotsRef,
+      elementRef,
+      onSlide,
+      rewind,
+      slidesToScroll,
+      slidesToShow,
+    })
+
+  const isOnScreen = useOnScreen({ ref: elementRef })
+  const isMouseOver = useMouseEnter(elementRef)
+
+  useInterval({
+    callback: slideNext,
+    delay: autoplayDelay,
+    isPaused:
+      !autoplay || (!rewind && isLastPage) || !isOnScreen || isMouseOver,
   })
 
   return (
@@ -116,10 +124,10 @@ export const Carousel = ({
         hasArrows={hasArrows}
         hasDots={hasDots}
         isNextDisabled={isNextDisabled}
-        nextRef={nextRef}
         isPrevDisabled={isPrevDisabled}
-        prevRef={prevRef}
         testIds={testIds}
+        slideNext={slideNext}
+        slidePrev={slidePrev}
       />
     </Container>
   )

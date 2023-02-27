@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef } from 'react'
 interface UseIntervalOptions {
   callback: () => void
   delay: number
-  isActive?: boolean
+  isPaused?: boolean
 }
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
@@ -11,7 +11,7 @@ interface UseIntervalOptions {
 const useInterval = ({
   callback,
   delay,
-  isActive = true,
+  isPaused = false,
 }: UseIntervalOptions) => {
   const intervalId = useRef<NodeJS.Timeout>()
 
@@ -29,18 +29,18 @@ const useInterval = ({
   }, [callback, delay])
 
   useEffect(() => {
-    if (!isActive) {
+    if (isPaused) {
       pauseInterval()
     }
 
-    if (isActive) {
+    if (!isPaused) {
       resumeInterval()
     }
 
     return () => {
       pauseInterval()
     }
-  }, [isActive, pauseInterval, resumeInterval])
+  }, [isPaused, pauseInterval, resumeInterval])
 }
 
 export default useInterval

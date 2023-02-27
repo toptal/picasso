@@ -1,33 +1,22 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import Glider from 'glider-js'
 
-import useOnScreen from '../../../utils/useOnScreen'
-import useMouseEnter from '../../../utils/useMouseEnter'
-import useInterval from '../../../utils/useInterval'
 import isOnLastPage from '../../utils/isOnLastPage'
 import getCurrentSlide from '../../utils/getCurrentSlide'
 
 type Props = {
-  autoplay: boolean
-  autoplayDelay: number
   dotsRef: React.RefObject<HTMLDivElement>
   elementRef: React.RefObject<HTMLDivElement>
-  nextRef: React.RefObject<HTMLButtonElement>
   onSlide?: (currentSlide: number) => void
-  prevRef: React.RefObject<HTMLButtonElement>
   rewind: boolean
   slidesToScroll: number
   slidesToShow: number
 }
 
 const useCarousel = ({
-  autoplay,
-  autoplayDelay,
   dotsRef,
   elementRef,
-  nextRef,
   onSlide,
-  prevRef,
   rewind,
   slidesToScroll,
   slidesToShow,
@@ -37,15 +26,11 @@ const useCarousel = ({
   const [isMounted, setIsMounted] = useState(false)
   const gliderRef = useRef<Glider<HTMLDivElement>>()
 
-  const isOnScreen = useOnScreen({ ref: elementRef })
-  const isMouseOver = useMouseEnter(elementRef)
   const isLastPage = isOnLastPage({
     currentSlide,
     slidesCount,
     slidesToShow,
   })
-  const isActive =
-    autoplay || isOnScreen || !isMouseOver || (rewind && !isLastPage)
 
   useEffect(() => {
     setIsMounted(true)
@@ -60,27 +45,16 @@ const useCarousel = ({
         rewind,
         slidesToScroll,
         dots: dotsRef.current,
-        arrows: {
-          prev: prevRef.current,
-          next: nextRef.current,
-        },
       })
 
       setSlidesCount(gliderRef.current.track.childElementCount)
     }
-  }, [
-    slidesToShow,
-    rewind,
-    slidesToScroll,
-    elementRef,
-    gliderRef,
-    dotsRef,
-    prevRef,
-    nextRef,
-  ])
+  }, [slidesToShow, rewind, slidesToScroll, elementRef, dotsRef])
 
   useEffect(() => {
-    initializeGlider()
+    if (isMounted) {
+      initializeGlider()
+    }
   }, [isMounted, initializeGlider])
 
   const handleOnAnimated = useCallback(
@@ -114,19 +88,28 @@ const useCarousel = ({
     }
   }, [handleOnAnimated, elementRef])
 
-  const scrollNext = useCallback(() => {
+  const slideNext = useCallback(() => {
+    const glider = gliderRef.current
+    const nextSlide = currentSlide + slidesToScroll
+
     if (isLastPage) {
-      gliderRef.current?.scrollItem(0, false)
+      glider?.scrollItem(0, false)
     } else {
-      gliderRef.current?.scrollItem(currentSlide + slidesToScroll, false)
+      glider?.scrollItem(nextSlide, false)
     }
   }, [currentSlide, isLastPage, slidesToScroll])
 
-  useInterval({
-    callback: scrollNext,
-    delay: autoplayDelay,
-    isActive,
-  })
+  const slidePrev = useCallback(() => {
+    const glider = gliderRef.current
+    const lastPage = slidesCount - slidesToShow
+    const prevSlide = currentSlide - slidesToScroll
+
+    if (currentSlide === 0) {
+      glider?.scrollItem(lastPage, false)
+    } else {
+      glider?.scrollItem(prevSlide, false)
+    }
+  }, [currentSlide, slidesCount, slidesToShow, slidesToScroll])
 
   const isPrevDisabled = rewind ? false : currentSlide === 0
   const isNextDisabled = rewind ? false : isLastPage
@@ -135,6 +118,8 @@ const useCarousel = ({
     isLastPage,
     isNextDisabled,
     isPrevDisabled,
+    slideNext,
+    slidePrev,
   }
 }
 

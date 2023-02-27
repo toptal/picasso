@@ -27,9 +27,9 @@ type Props = {
   hasArrows: boolean
   hasDots: boolean
   isNextDisabled: boolean
-  nextRef: React.RefObject<HTMLButtonElement>
   isPrevDisabled: boolean
-  prevRef: React.RefObject<HTMLButtonElement>
+  slidePrev: () => void
+  slideNext: () => void
   testIds: {
     navigation?: string
     arrows?: string
@@ -44,10 +44,10 @@ const CarouselNavigation = ({
   hasArrows,
   hasDots,
   isNextDisabled,
-  nextRef,
   isPrevDisabled,
-  prevRef,
   testIds,
+  slidePrev,
+  slideNext,
 }: Props) => {
   const classes = useStyles()
 
@@ -72,15 +72,15 @@ const CarouselNavigation = ({
             data-testid={testIds.prev}
             disabled={isPrevDisabled}
             icon={<ChevronRight24 />}
-            ref={prevRef}
             variant='flat'
+            onClick={slidePrev}
           />
           <ButtonCircular
             data-testid={testIds.next}
             disabled={isNextDisabled}
             icon={<ChevronRight24 />}
-            ref={nextRef}
             variant='flat'
+            onClick={slideNext}
           />
         </Container>
       )}
