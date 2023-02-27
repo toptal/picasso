@@ -7,9 +7,22 @@ import getCurrentSlide from '../../utils/getCurrentSlide'
 type Props = {
   dotsRef: React.RefObject<HTMLDivElement>
   elementRef: React.RefObject<HTMLDivElement>
+  /**
+   * Callback triggered when Carousel finished scrolling to a slide
+   */
   onSlide?: (currentSlide: number) => void
+  /**
+   * If true, Carousel will scroll to the beginning/end when its respective endpoint is reached
+   */
   rewind: boolean
+  /**
+   * The number of slides to scroll when arrow navigation
+   * is used.
+   */
   slidesToScroll: number
+  /**
+   * The number of slides to show in container
+   */
   slidesToShow: number
 }
 
