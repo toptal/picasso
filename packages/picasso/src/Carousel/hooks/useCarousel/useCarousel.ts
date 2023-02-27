@@ -39,12 +39,13 @@ const useCarousel = ({
 
   const isOnScreen = useOnScreen({ ref: elementRef })
   const isMouseOver = useMouseEnter(elementRef)
-  const isPaused = !autoplay || !isOnScreen || isMouseOver
   const isLastPage = isOnLastPage({
     currentSlide,
     slidesCount,
     slidesToShow,
   })
+  const isPaused =
+    !autoplay || !isOnScreen || isMouseOver || (!rewind && isLastPage)
 
   useEffect(() => {
     setIsMounted(true)
@@ -113,18 +114,16 @@ const useCarousel = ({
     }
   }, [handleOnAnimated, elementRef])
 
-  const { pauseInterval } = useInterval({
-    callback: () => {
-      if (isLastPage) {
-        if (!rewind) {
-          pauseInterval()
-        } else {
-          gliderRef.current?.scrollItem(0, false)
-        }
-      } else {
-        gliderRef.current?.scrollItem(currentSlide + slidesToScroll, false)
-      }
-    },
+  const scrollNext = useCallback(() => {
+    if (isLastPage) {
+      gliderRef.current?.scrollItem(0, false)
+    } else {
+      gliderRef.current?.scrollItem(currentSlide + slidesToScroll, false)
+    }
+  }, [currentSlide, isLastPage, slidesToScroll])
+
+  useInterval({
+    callback: scrollNext,
     delay: autoplayDelay,
     isPaused,
   })

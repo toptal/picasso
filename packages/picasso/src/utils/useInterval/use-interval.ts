@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 interface UseIntervalOptions {
   callback: () => void
@@ -16,48 +16,34 @@ const useInterval = ({
   pauseInterval: () => void
   resumeInterval: () => void
 } => {
-  const savedCallback = useRef<() => void>()
-  const savedDelay = useRef<number>(delay)
   const intervalId = useRef<NodeJS.Timeout>()
 
-  // Remember the latest callback and delay.
-  useEffect(() => {
-    savedCallback.current = callback
-    savedDelay.current = delay
-  }, [callback, delay])
-
-  // Set up the interval.
-  useEffect(() => {
-    const tick = () => savedCallback.current!()
-
-    if (isPaused || intervalId.current) {
-      if (intervalId.current) {
-        clearInterval(intervalId.current)
-      }
-    }
-
-    if (!isPaused) {
-      intervalId.current = setInterval(tick, savedDelay.current)
-    }
-
-    return () => {
+  const pauseInterval = useCallback(() => {
+    if (intervalId.current) {
       clearInterval(intervalId.current!)
       intervalId.current = undefined
     }
-  }, [isPaused])
+  }, [])
 
-  const pauseInterval = () => {
-    clearInterval(intervalId.current!)
-    intervalId.current = undefined
-  }
-
-  const resumeInterval = () => {
+  const resumeInterval = useCallback(() => {
     if (!intervalId.current) {
-      const tick = () => savedCallback.current!()
-
-      intervalId.current = setInterval(tick, savedDelay.current)
+      intervalId.current = setInterval(callback, delay)
     }
-  }
+  }, [callback, delay])
+
+  useEffect(() => {
+    if (isPaused || intervalId.current) {
+      pauseInterval()
+    }
+
+    if (!isPaused) {
+      resumeInterval()
+    }
+
+    return () => {
+      pauseInterval()
+    }
+  }, [isPaused, pauseInterval, resumeInterval])
 
   return { pauseInterval, resumeInterval }
 }
