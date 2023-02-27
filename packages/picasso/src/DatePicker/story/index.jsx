@@ -5,7 +5,7 @@ const page = PicassoBook.section('Components').createPage(
   'DatePicker',
   `
     Date Picker component
-    
+
     ${PicassoBook.createBaseDocsLink(
       'https://share.goabstract.com/cc5f669e-ee2c-4375-946d-93b20db16ecc?collectionLayerId=10d3230f-5c9c-4fed-85b2-5cfda0bcd25f&mode=design&present=true'
     )}
@@ -89,5 +89,10 @@ page
   .addExample('DatePicker/story/WithFooterBackgroundColor.example.tsx', {
     title: 'With Footer background color customized',
     description: 'Show a custom color footer at the bottom of the calendar',
+    takeScreenshot: false,
+  })
+  .addExample('DatePicker/story/WithTooltip.example.tsx', {
+    title: 'With Tooltip',
+    description: 'Show tooltip on disabled dates',
     takeScreenshot: false,
   })
