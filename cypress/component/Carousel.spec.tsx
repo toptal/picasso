@@ -113,12 +113,12 @@ describe(component, () => {
             variant: 'rewind-enabled/first-item',
           })
 
-          // move to last item
           cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
             component,
             variant: 'arrow/during-hovering',
           })
 
+          // move to last item
           cy.getByTestId(testIds.next)
             .click()
             .click()
@@ -126,12 +126,15 @@ describe(component, () => {
             .click()
             .should('not.be.disabled')
 
+          cy.get('[data-gslide=4]').should('have.class', 'visible')
+
           cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-enabled/last-item',
           })
 
           cy.getByTestId(testIds.next).click()
+          cy.get('[data-gslide=0]').should('have.class', 'visible')
 
           cy.get('body').happoScreenshot({
             component,
@@ -162,6 +165,8 @@ describe(component, () => {
             .click()
             .should('be.disabled')
 
+          cy.get('[data-gslide=4]').should('have.class', 'visible')
+
           cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-disabled/last-item',
@@ -186,6 +191,9 @@ describe(component, () => {
 
         cy.get('@dotTwo').click()
 
+        // wait until third slide is visible
+        cy.get('[data-gslide=2]').should('have.class', 'visible')
+
         cy.get('body').happoScreenshot({
           component,
           variant: 'dots/after-click',
@@ -196,14 +204,22 @@ describe(component, () => {
 
   describe('slides to show', () => {
     it('renders gradient over partially visible item', () => {
-      cy.mount(<CarouselExample slidesToShow={2.5} hasDots />)
+      cy.mount(<CarouselExample slidesToShow={2.5} hasDots hasArrows rewind />)
 
       // Wait until navigation is visible
       cy.getByTestId(testIds.dots).should('exist')
 
       cy.get('body').happoScreenshot({
         component,
-        variant: 'slides-to-show/with-gradient',
+        variant: 'slides-to-show/with-gradient-right',
+      })
+
+      cy.getByTestId(testIds.prev).click()
+      cy.get('[data-gslide=4]').should('have.class', 'visible')
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'slides-to-show/with-gradient-left',
       })
     })
   })
