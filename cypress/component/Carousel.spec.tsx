@@ -72,6 +72,7 @@ describe(component, () => {
         variant: 'has-dots',
       })
     })
+
     it('renders with arrows only', () => {
       cy.mount(<CarouselExample hasArrows />)
 
@@ -84,6 +85,7 @@ describe(component, () => {
         variant: 'has-arrows',
       })
     })
+
     it('renders without navigation', () => {
       cy.mount(<CarouselExample />)
 
@@ -96,6 +98,7 @@ describe(component, () => {
         variant: 'hide-navigation',
       })
     })
+
     describe('arrows', () => {
       describe('when rewind is enabled', () => {
         it('moves back to first slide', () => {
@@ -174,6 +177,7 @@ describe(component, () => {
         })
       })
     })
+
     describe('dots', () => {
       it('slides on dot click', () => {
         cy.mount(<CarouselExample hasDots slidesToShow={2} />)
