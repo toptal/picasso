@@ -96,8 +96,10 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
       {!disableToggle && needsTruncation && (
         <ButtonAction
           onClick={() => {
-            setShownMore(!shownMore)
-            onToggle(!shownMore)
+            const nextState = !shownMore
+
+            setShownMore(nextState)
+            onToggle(nextState)
           }}
           className={classes.toggleText}
           icon={

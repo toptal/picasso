@@ -6,7 +6,7 @@
 
 ### ShowMore
 
-- the `onToggle` callback has a new state as a parameter
+- add a new state as a parameter to `onToggle` callback
 
 ```diff
 <ShowMore
