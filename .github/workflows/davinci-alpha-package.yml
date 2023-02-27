@@ -63,7 +63,7 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v4.10.3
+        uses: toptal/davinci-github-actions/build-publish-alpha-package@fx-3737-need-to-add-input-parameter-to-davinci-alpha-package-gh-action
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
