@@ -86,7 +86,7 @@ export const Carousel = ({
   const dotsRef = useRef<HTMLDivElement>(null)
   const nextRef = useRef<HTMLButtonElement>(null)
 
-  const { nextDisabled, prevDisabled, isLastPage } = useCarousel({
+  const { isNextDisabled, isPrevDisabled, isLastPage } = useCarousel({
     autoplay,
     autoplayDelay,
     dotsRef,
@@ -115,9 +115,9 @@ export const Carousel = ({
         dotsRef={dotsRef}
         hasArrows={hasArrows}
         hasDots={hasDots}
-        nextDisabled={nextDisabled}
+        isNextDisabled={isNextDisabled}
         nextRef={nextRef}
-        prevDisabled={prevDisabled}
+        isPrevDisabled={isPrevDisabled}
         prevRef={prevRef}
         testIds={testIds}
       />

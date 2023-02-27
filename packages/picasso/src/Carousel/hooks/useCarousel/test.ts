@@ -38,8 +38,8 @@ describe('useCarousel', () => {
   it('should initialize glider', () => {
     const { result } = renderHook(() => useCarousel(defaultProps))
 
-    expect(result.current.prevDisabled).toBe(true)
-    expect(result.current.nextDisabled).toBe(false)
+    expect(result.current.isPrevDisabled).toBe(true)
+    expect(result.current.isNextDisabled).toBe(false)
     expect(result.current.isLastPage).toBe(false)
   })
 })

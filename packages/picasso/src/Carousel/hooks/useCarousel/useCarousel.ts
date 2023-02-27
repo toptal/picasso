@@ -129,13 +129,13 @@ const useCarousel = ({
     isPaused,
   })
 
-  const prevDisabled = rewind ? false : currentSlide === 0
-  const nextDisabled = rewind ? false : isLastPage
+  const isPrevDisabled = rewind ? false : currentSlide === 0
+  const isNextDisabled = rewind ? false : isLastPage
 
   return {
     isLastPage,
-    nextDisabled,
-    prevDisabled,
+    isNextDisabled,
+    isPrevDisabled,
   }
 }
 
