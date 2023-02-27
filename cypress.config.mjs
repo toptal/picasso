@@ -76,7 +76,7 @@ export default defineConfig({
               process.cwd(),
               './packages/picasso-provider/dist-package'
             ),
-            '@toptal/picasso-pi': path.resolve(
+            '@toptal/picasso-pictograms': path.resolve(
               process.cwd(),
               './packages/picasso-pictograms/dist-package'
             ),
