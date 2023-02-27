@@ -1,5 +1,24 @@
 # Change Log
 
+## 31.5.0
+
+### Minor Changes
+
+- [#3380](https://github.com/toptal/picasso/pull/3380) [`4ab3bded`](https://github.com/toptal/picasso/commit/4ab3bded76bac251105f9b46ec4e7fcd4996fec7) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### ShowMore
+
+  - add a new state as a parameter to `onToggle` callback
+
+  ```diff
+  <ShowMore
+    onToggle={
+  -    () => {}
+  +    (newState) => {}
+    }
+  />
+  ```
+
 ## 31.4.3
 
 ### Patch Changes
