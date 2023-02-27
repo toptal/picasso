@@ -43,6 +43,11 @@ describe('when onToggle function is passed', () => {
     fireEvent.click(toggleText)
 
     expect(onToggle).toHaveBeenCalledTimes(1)
+    expect(onToggle).toHaveBeenCalledWith(true)
+
+    fireEvent.click(toggleText)
+    expect(onToggle).toHaveBeenCalledTimes(2)
+    expect(onToggle).toHaveBeenCalledWith(false)
   })
 })
 

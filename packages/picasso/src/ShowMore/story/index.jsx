@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Components').createPage(
   'ShowMore',
   `Strips provided content.
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -26,6 +26,10 @@ page
   })
   .addExample('ShowMore/story/ReactChildren.example.tsx', {
     title: 'With React children',
+    takeScreenshot: false,
+  })
+  .addExample('ShowMore/story/OnToggle.example.tsx', {
+    title: 'With onToggle callback',
     takeScreenshot: false,
   })
   .addExample('ShowMore/story/ShortText.example.tsx', {

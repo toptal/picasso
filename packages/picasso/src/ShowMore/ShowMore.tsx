@@ -30,7 +30,7 @@ export interface Props extends BaseProps {
   /** Define whether action link should be displayed or not */
   disableToggle?: boolean
   /** Callback triggered when show more/less is clicked */
-  onToggle?: () => void
+  onToggle?: (nextState: boolean) => void
   testIds?: {
     contentWrapper?: string
     toggleButton?: string
@@ -96,8 +96,10 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
       {!disableToggle && needsTruncation && (
         <ButtonAction
           onClick={() => {
-            setShownMore(!shownMore)
-            onToggle()
+            const nextState = !shownMore
+
+            setShownMore(nextState)
+            onToggle(nextState)
           }}
           className={classes.toggleText}
           icon={
