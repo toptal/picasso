@@ -5162,23 +5162,25 @@
     uuid "^9.0.0"
     vorpal "^1.12.0"
 
-"@toptal/davinci-cli-shared@2.1.2-alpha-cypress-12-98b69211.20+98b69211":
-  version "2.1.2-alpha-cypress-12-98b69211.20"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-2.1.2-alpha-cypress-12-98b69211.20.tgz#d07c9acefb1ab860b0d6a0e7de0ff47c8d895c84"
-  integrity sha512-l+T3LiGb6vhYh4h8iyiDfiy9I+iq7DHF9SrJvXU/SFjPj5G68Idg4tdcztVu6EWMnkQ1SNwhO7JSj+dhIlXKyw==
+"@toptal/davinci-cli-shared@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-2.2.2.tgz#4fdc432bbaf0c950a6e3f93388062d551438b3e8"
+  integrity sha512-DUyg1EKdMMZ30amo0ZwpsliyuXCj1Wv888LvRv+66nvc3xZYkKsfvDtGj3AyAJA8TazWkz4dei04jZ94AVXO7w==
   dependencies:
     analytics-node "^6.2.0"
     chalk "^4.1.2"
+    commander "^10.0.0"
     execa "^5.1.1"
     find-yarn-workspace-root "^2.0.0"
+    gradient-string "^2.0.0"
     inquirer "^8.2.0"
     isomorphic-git "^1.21.0"
     js-yaml "^4.1.0"
     lodash "^4.17.21"
+    ora "^5.4.1"
+    proper-lockfile "^4.1.2"
     read-pkg-up "7.0.1"
     semver "^7.3.7"
-    uuid "^9.0.0"
-    vorpal "^1.12.0"
 
 "@toptal/davinci-cloudflare-requests-handler@0.1.1":
   version "0.1.1"
@@ -5287,10 +5289,10 @@
     ora "^5.4.1"
     rambda "^7.2.1"
 
-"@toptal/davinci-qa@14.0.4-alpha-cypress-12-98b69211.20+98b69211":
-  version "14.0.4-alpha-cypress-12-98b69211.20"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-14.0.4-alpha-cypress-12-98b69211.20.tgz#4a29e347c647cba44483db1b51cc4dd44615f33b"
-  integrity sha512-nrGYryCpL9/D5uQ+7ji5RX+s2I/dHC3GD2uh1YLq/MhSRguPmVVtYA1hrh0wnoh8/hUMwLfUB+coN61hw1OzNg==
+"@toptal/davinci-qa@^15.1.3":
+  version "15.1.3"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-15.1.3.tgz#e0237a72dfba8e380821aa68188846e16cca809f"
+  integrity sha512-OpILvyGEv3UNDtMcpvZ0ygF1qL0CEHP2hxKTg25gfYwFEp+g8zmuEnLTArX1iyvKbx4vR4QC/pe8giqGwq3rgg==
   dependencies:
     "@babel/core" "^7.18.0"
     "@babel/preset-env" "^7.18.0"
@@ -5300,7 +5302,7 @@
     "@cypress/webpack-preprocessor" "^5.12.0"
     "@testing-library/jest-dom" "^5.16.4"
     "@testing-library/react" "^13.3.0"
-    "@toptal/davinci-cli-shared" "2.1.2-alpha-cypress-12-98b69211.20+98b69211"
+    "@toptal/davinci-cli-shared" "2.2.2"
     "@types/jest" "^27.5.1"
     babel-jest "^28.1.3"
     fs-extra "^10.0.0"
@@ -6260,6 +6262,11 @@
   integrity sha512-yYn5EKHO3MPEMSOrcAb1dLWY+68CG29LiXKsWmmpVHqoP5+ZRiAVLyUHvPNrO2dABDdUGZvavMsaGpWNjM6N2g==
   dependencies:
     "@types/jest" "*"
+
+"@types/tinycolor2@^1.4.0":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.3.tgz#ed4a0901f954b126e6a914b4839c77462d56e706"
+  integrity sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==
 
 "@types/tough-cookie@*":
   version "4.0.2"
@@ -8676,6 +8683,11 @@ commander@9.4.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
   integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
 
+commander@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
+  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
+
 commander@^2.15.1, commander@^2.16.0, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.20.3, commander@^2.8.1:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
@@ -9374,10 +9386,10 @@ cypress-real-events@^1.7.6:
   resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.7.6.tgz#6f17e0b2ceea1d6dc60f6737d8f84cc517bbbb4c"
   integrity sha512-yP6GnRrbm6HK5q4DH6Nnupz37nOfZu/xn1xFYqsE2o4G73giPWQOdu6375QYpwfU1cvHNCgyD2bQ2hPH9D7NMw==
 
-cypress@>=6.4.0, cypress@^12.5.1:
-  version "12.5.1"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-12.5.1.tgz#effdcccdd5a6187d61d497300903d4f3b5b21b6e"
-  integrity sha512-ZmCmJ3lsyeOpBfh410m5+AO2CO1AxAzFBt7k6/uVbNcrNZje1vdiwYTpj2ksPKg9mjr9lR6V8tmlDNMvr4H/YQ==
+cypress@>=6.4.0, cypress@^12.7.0:
+  version "12.7.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-12.7.0.tgz#69900f82af76cf3ba0ddb9b59ec3b0d38222ab22"
+  integrity sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==
   dependencies:
     "@cypress/request" "^2.88.10"
     "@cypress/xvfb" "^1.2.4"
@@ -9396,7 +9408,7 @@ cypress@>=6.4.0, cypress@^12.5.1:
     commander "^5.1.0"
     common-tags "^1.8.0"
     dayjs "^1.10.4"
-    debug "^4.3.2"
+    debug "^4.3.4"
     enquirer "^2.3.6"
     eventemitter2 "6.4.7"
     execa "4.1.0"
@@ -12459,6 +12471,14 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.5
   version "4.2.10"
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
+
+gradient-string@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gradient-string/-/gradient-string-2.0.2.tgz#a90402618990ec993ecbb72a56bd7e6598f45c0e"
+  integrity sha512-rEDCuqUQ4tbD78TpzsMtt5OIf0cBCSDWSJtUDaF6JsAh+k0v9r++NzxNEG87oDZx9ZwGhD8DaezR2L/yrw0Jdw==
+  dependencies:
+    chalk "^4.1.2"
+    tinygradient "^1.1.5"
 
 grapheme-splitter@^1.0.4:
   version "1.0.4"
@@ -18692,6 +18712,15 @@ prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, 
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+proper-lockfile@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/proper-lockfile/-/proper-lockfile-4.1.2.tgz#c8b9de2af6b2f1601067f98e01ac66baa223141f"
+  integrity sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==
+  dependencies:
+    graceful-fs "^4.2.4"
+    retry "^0.12.0"
+    signal-exit "^3.0.2"
+
 property-information@^5.0.0, property-information@^5.3.0:
   version "5.6.0"
   resolved "https://registry.npmjs.org/property-information/-/property-information-5.6.0.tgz"
@@ -21784,6 +21813,19 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tinycolor2@^1.0.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
+  integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
+
+tinygradient@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/tinygradient/-/tinygradient-1.1.5.tgz#0fb855ceb18d96b21ba780b51a8012033b2530ef"
+  integrity sha512-8nIfc2vgQ4TeLnk2lFj4tRLvvJwEfQuabdsmvDdQPT0xlk9TaNtpGd6nNRxXoK6vQhN6RSzj+Cnp5tTQmpxmbw==
+  dependencies:
+    "@types/tinycolor2" "^1.4.0"
+    tinycolor2 "^1.0.0"
 
 title-case@^2.1.0:
   version "2.1.1"
