@@ -1,10 +1,7 @@
-import { useState, useRef, useCallback } from 'react'
+import { useRef, useCallback, useState, useEffect } from 'react'
 import Glider from 'glider-js'
 
 import isOnLastPage from '../../utils/isOnLastPage'
-import getCurrentSlide from '../../utils/getCurrentSlide'
-import useOnSecondRender from '../../../utils/useOnSecondRender'
-import useOnGliderAnimated from '../useOnGliderAnimated'
 import useAutoplay from '../useAutoplay'
 
 type Props = {
@@ -28,12 +25,8 @@ type Props = {
    */
   slidesToShow: number
   slidesCount: number
+  hasDots: boolean
 }
-
-type OnAnimatedEvent = Glider.GliderEvent<{
-  value: string | number
-  type: 'arrow' | 'dot' | 'slide'
-}>
 
 const useCarousel = ({
   autoplay,
@@ -43,63 +36,67 @@ const useCarousel = ({
   slidesToScroll,
   slidesToShow,
   slidesCount,
+  hasDots,
 }: Props) => {
   const dotsRef = useRef<HTMLDivElement>(null)
   const elementRef = useRef<HTMLDivElement>(null)
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [isLastPage, setLastPage] = useState(false)
+  const [isFirstPage, setFirstPage] = useState(false)
   const gliderRef = useRef<Glider<HTMLDivElement>>()
 
-  const isLastPage = isOnLastPage({
-    currentSlide,
-    slidesCount,
-    slidesToShow,
-  })
+  const handleOnAnimated = useCallback(() => {
+    const currentSlide = gliderRef.current?.slide || 0
+
+    setLastPage(
+      isOnLastPage({
+        currentSlide,
+        slidesCount,
+        slidesToShow,
+      })
+    )
+
+    setFirstPage(currentSlide === 0)
+    onSlide?.(currentSlide)
+  }, [slidesCount, slidesToShow, onSlide])
 
   const initializeGlider = useCallback(() => {
     const element = elementRef.current
 
-    if (element && !gliderRef.current) {
+    if (
+      element &&
+      !gliderRef.current &&
+      (!hasDots || (hasDots && dotsRef.current))
+    ) {
       gliderRef.current = new Glider(element, {
         slidesToShow,
         rewind,
         slidesToScroll,
         dots: dotsRef.current,
       })
+
+      element.addEventListener('glider-animated', handleOnAnimated)
     }
-  }, [slidesToShow, rewind, slidesToScroll, elementRef, dotsRef])
+  }, [slidesToShow, rewind, slidesToScroll, handleOnAnimated, hasDots])
 
-  useOnSecondRender(initializeGlider)
-
-  const handleOnAnimated = useCallback(
-    (event: OnAnimatedEvent) => {
-      const index = getCurrentSlide({
-        event,
-        slidesCount,
-        prevSlide: currentSlide,
-        slidesToShow,
-        isLastPage,
-      })
-
-      setCurrentSlide(index)
-      onSlide?.(index)
-    },
-    [currentSlide, slidesCount, slidesToShow, isLastPage, onSlide]
-  )
-
-  useOnGliderAnimated({ callback: handleOnAnimated, elementRef })
+  useEffect(() => {
+    initializeGlider()
+  }, [initializeGlider])
 
   const slideNext = useCallback(() => {
     const glider = gliderRef.current
+    const currentSlide = glider?.slide || 0
 
     if (isLastPage) {
       glider?.scrollItem(0, false)
     } else {
       glider?.scrollItem(currentSlide + slidesToScroll, false)
     }
-  }, [currentSlide, isLastPage, slidesToScroll])
+  }, [isLastPage, slidesToScroll])
 
   const slidePrev = useCallback(() => {
     const glider = gliderRef.current
+    const currentSlide = glider?.slide || 0
     const lastPage = slidesCount - slidesToShow
     const prevSlide = currentSlide - slidesToScroll
 
@@ -108,7 +105,7 @@ const useCarousel = ({
     } else {
       glider?.scrollItem(prevSlide, false)
     }
-  }, [currentSlide, slidesCount, slidesToShow, slidesToScroll])
+  }, [slidesCount, slidesToShow, slidesToScroll])
 
   useAutoplay({
     slideNext,
@@ -116,15 +113,15 @@ const useCarousel = ({
     isLastPage,
     autoplay,
     autoplayDelay,
-    elementRef,
+    wrapperRef,
   })
 
   const getPrevProps = useCallback(
     () => ({
-      disabled: rewind ? false : currentSlide === 0,
+      disabled: rewind ? false : isFirstPage,
       onClick: slidePrev,
     }),
-    [currentSlide, rewind, slidePrev]
+    [rewind, slidePrev, isFirstPage]
   )
 
   const getNextProps = useCallback(
@@ -142,9 +139,16 @@ const useCarousel = ({
     []
   )
 
-  const getContainerProps = useCallback(
+  const getCarouselProps = useCallback(
     () => ({
       ref: elementRef,
+    }),
+    []
+  )
+
+  const getContainerProps = useCallback(
+    () => ({
+      ref: wrapperRef,
     }),
     []
   )
@@ -155,6 +159,7 @@ const useCarousel = ({
     getNextProps,
     getDotsProps,
     getContainerProps,
+    getCarouselProps,
   }
 }
 

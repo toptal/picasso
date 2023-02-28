@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 
 import styles from './styles'
@@ -37,6 +37,15 @@ type Props = {
   }
 }
 
+type DotsProps = {
+  getDotsProps: () => {}
+  className: string
+  dataTestid?: string
+}
+const Dots = memo(({ getDotsProps, className, dataTestid }: DotsProps) => (
+  <div {...getDotsProps()} data-testid={dataTestid} className={className} />
+))
+
 const CarouselNavigation = ({
   getDotsProps,
   getNextProps,
@@ -55,10 +64,10 @@ const CarouselNavigation = ({
       data-testid={testIds.navigation}
     >
       {hasDots && (
-        <div
-          {...getDotsProps()}
-          data-testid={testIds.dots}
+        <Dots
+          dataTestid={testIds.dots}
           className={classes.dots}
+          getDotsProps={getDotsProps}
         />
       )}
       {hasArrows && (
@@ -82,4 +91,4 @@ const CarouselNavigation = ({
   )
 }
 
-export default CarouselNavigation
+export default memo(CarouselNavigation)

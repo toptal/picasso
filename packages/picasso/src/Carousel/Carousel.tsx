@@ -66,6 +66,8 @@ export interface Props extends BaseProps {
   }
 }
 
+const testIdsDefault = {}
+
 export const Carousel = ({
   autoplay = false,
   autoplayDelay = 3000,
@@ -77,13 +79,12 @@ export const Carousel = ({
   rewind = false,
   slidesToScroll = 1,
   slidesToShow = 1,
-  testIds = {},
+  testIds = testIdsDefault,
 }: Props) => {
-  const classes = useStyles()
-
   const {
     isLastPage,
     getContainerProps,
+    getCarouselProps,
     getDotsProps,
     getNextProps,
     getPrevProps,
@@ -95,16 +96,20 @@ export const Carousel = ({
     slidesToScroll,
     slidesToShow,
     slidesCount: React.Children.count(children),
+    hasDots,
   })
+
+  const classes = useStyles()
 
   return (
     <Container
       className={cx(classes.root, className)}
       data-testid={testIds.root}
+      {...getContainerProps()}
     >
       <Container className={classes.container}>
         <CarouselGradient slidesToShow={slidesToShow} isLastPage={isLastPage} />
-        <Container {...getContainerProps()} data-testid={testIds.carousel}>
+        <Container {...getCarouselProps()} data-testid={testIds.carousel}>
           {children}
         </Container>
       </Container>
