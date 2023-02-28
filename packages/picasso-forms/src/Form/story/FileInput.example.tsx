@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, FileInput, SubmitButton } from '@toptal/picasso-forms'
 import { FileUpload } from '@toptal/picasso/FileInput'
 
 type FormType = {
@@ -21,21 +21,21 @@ const Example = () => {
   }
 
   return (
-    <Form<FormType>
+    <FormNonCompound<FormType>
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
         'fileInput-attachments': initialAttachments,
       }}
     >
-      <Form.FileInput
+      <FileInput
         name='fileInput-attachments'
         hint={`Max file size: ${MAX_SIZE}MB.`}
       />
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
-    </Form>
+    </FormNonCompound>
   )
 }
 

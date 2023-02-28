@@ -1,6 +1,6 @@
 import React from 'react'
 import { ASTType } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms'
 import { noop } from '@toptal/picasso/utils'
 
 const ast: ASTType = {
@@ -19,9 +19,9 @@ const ast: ASTType = {
 
 const Example = () => {
   return (
-    <Form onSubmit={() => {}}>
+    <FormNonCompound onSubmit={() => {}}>
       {' '}
-      <Form.RichTextEditor
+      <RichTextEditor
         id='disabled-no-value'
         name='disabledWithNoValue'
         label='disabled without value'
@@ -29,7 +29,7 @@ const Example = () => {
         placeholder='Write some cool rich text'
         disabled
       />
-      <Form.RichTextEditor
+      <RichTextEditor
         id='disabled-with-value'
         name='disabledWithValue'
         label='disabled with default value'
@@ -37,7 +37,7 @@ const Example = () => {
         defaultValue={ast}
         disabled
       />
-    </Form>
+    </FormNonCompound>
   )
 }
 

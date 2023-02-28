@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, Input, SubmitButton } from '@toptal/picasso-forms'
 
 const failWithAnError = () => ({
   fieldName: 'This form will always blame on a wrong user name',
@@ -9,31 +9,31 @@ const failWithAnError = () => ({
 const NoScrollingExample = () => (
   <Container>
     <Container top='small'>
-      <Form onSubmit={failWithAnError}>
-        <Form.Input
+      <FormNonCompound onSubmit={failWithAnError}>
+        <Input
           required
           name='noScrollingDefault-fieldName'
           label='With scrolling'
           placeholder='Some field'
         />
         <Container top='small'>
-          <Form.SubmitButton>Submit</Form.SubmitButton>
+          <SubmitButton>Submit</SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
     </Container>
 
     <Container top='small'>
-      <Form disableScrollOnError onSubmit={failWithAnError}>
-        <Form.Input
+      <FormNonCompound disableScrollOnError onSubmit={failWithAnError}>
+        <Input
           required
           name='noScrollingDisableScroll-fieldName'
           label='No scrolling'
           placeholder='Some field'
         />
         <Container top='small'>
-          <Form.SubmitButton>Submit</Form.SubmitButton>
+          <SubmitButton>Submit</SubmitButton>
         </Container>
-      </Form>
+      </FormNonCompound>
     </Container>
   </Container>
 )

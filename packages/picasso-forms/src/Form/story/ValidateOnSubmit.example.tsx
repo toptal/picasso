@@ -1,7 +1,14 @@
 import React, { useCallback } from 'react'
 import { useField } from 'react-final-form'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import {
+  FormNonCompound,
+  Checkbox,
+  Input,
+  DatePicker,
+  ConfigProvider,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 type FormType = {
   'validateOnSubmit-hide': boolean
@@ -19,28 +26,28 @@ const FormContent = () => {
 
   return (
     <>
-      <Form.Checkbox
+      <Checkbox
         name='validateOnSubmit-hide'
         label='Check to hide fields below'
       />
 
       {!hide && (
         <>
-          <Form.Input
+          <Input
             enableReset
             required
             name='validateOnSubmit-name.first'
             label='Your first name'
             placeholder='e.g. Bruce'
           />
-          <Form.Input
+          <Input
             enableReset
             required
             name='validateOnSubmit-name.last'
             label='Your last name'
             placeholder='e.g. Wayne'
           />
-          <Form.DatePicker required name='validateOnSubmit-dob' label='DOB' />
+          <DatePicker required name='validateOnSubmit-dob' label='DOB' />
         </>
       )}
     </>
@@ -51,8 +58,8 @@ const Example = () => {
   const handleSubmit = useCallback((values: FormType) => api.submit(values), [])
 
   return (
-    <Form.ConfigProvider value={{ validateOnSubmit: true }}>
-      <Form<FormType>
+    <ConfigProvider value={{ validateOnSubmit: true }}>
+      <FormNonCompound<FormType>
         onSubmit={handleSubmit}
         successSubmitMessage='Success!'
         failedSubmitMessage='Failure!'
@@ -60,10 +67,10 @@ const Example = () => {
         <FormContent />
 
         <Container top='small'>
-          <Form.SubmitButton>Submit</Form.SubmitButton>
+          <SubmitButton>Submit</SubmitButton>
         </Container>
-      </Form>
-    </Form.ConfigProvider>
+      </FormNonCompound>
+    </ConfigProvider>
   )
 }
 

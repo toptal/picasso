@@ -2,7 +2,24 @@ import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
 import { Item } from '@toptal/picasso/Autocomplete'
 import { isSubstring } from '@toptal/picasso/utils'
-import { Form } from '@toptal/picasso-forms'
+import {
+  FormNonCompound,
+  Input,
+  NumberInput,
+  RadioGroup,
+  Radio,
+  DatePicker,
+  TimePicker,
+  TagSelector,
+  CheckboxGroup,
+  Checkbox,
+  Select,
+  Autocomplete,
+  Rating,
+  FileInput,
+  Switch,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 const countries = [
   { value: 'Afghanistan', text: 'Afghanistan' },
@@ -49,12 +66,12 @@ const Example = () => {
   )
 
   return (
-    <Form
+    <FormNonCompound
       autoComplete='off'
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       initialValues={{ 'titleCase-gender': 'female' }}
     >
-      <Form.Input
+      <Input
         titleCase
         enableReset
         onResetClick={(set: (value: string) => void) => {
@@ -65,7 +82,7 @@ const Example = () => {
         label='First name'
         placeholder='e.g. Bruce'
       />
-      <Form.NumberInput
+      <NumberInput
         titleCase
         enableReset
         required
@@ -73,21 +90,21 @@ const Example = () => {
         label="What's your age?"
         placeholder='e.g. 25'
       />
-      <Form.RadioGroup titleCase name='titleCase-gender' label='Select gender'>
-        <Form.Radio label='Male' value='male' />
-        <Form.Radio label='Female' value='female' />
-      </Form.RadioGroup>
-      <Form.DatePicker
+      <RadioGroup titleCase name='titleCase-gender' label='Select gender'>
+        <Radio label='Male' value='male' />
+        <Radio label='Female' value='female' />
+      </RadioGroup>
+      <DatePicker
         titleCase
         name='titleCase-dateOfBirth'
         label='Date of birth'
       />
-      <Form.TimePicker
+      <TimePicker
         titleCase
         name='titleCase-timeOfBirth'
         label='Time of birth'
       />
-      <Form.TagSelector
+      <TagSelector
         titleCase
         name='titleCase-skills'
         label='Your skills'
@@ -95,16 +112,12 @@ const Example = () => {
         options={skillOptions}
         onInputChange={setSkillInputValue}
       />
-      <Form.CheckboxGroup
-        titleCase
-        name='titleCase-hobbies'
-        label='Your hobbies'
-      >
-        <Form.Checkbox label='Skiing' value='skiing' />
-        <Form.Checkbox titleCase label='Free diving' value='freeDiving' />
-        <Form.Checkbox label='Dancing' value='dancing' />
-      </Form.CheckboxGroup>
-      <Form.Select
+      <CheckboxGroup titleCase name='titleCase-hobbies' label='Your hobbies'>
+        <Checkbox label='Skiing' value='skiing' />
+        <Checkbox titleCase label='Free diving' value='freeDiving' />
+        <Checkbox label='Dancing' value='dancing' />
+      </CheckboxGroup>
+      <Select
         titleCase
         enableReset
         required
@@ -116,7 +129,7 @@ const Example = () => {
           { value: 1, text: 'Individual' },
         ]}
       />
-      <Form.Autocomplete
+      <Autocomplete
         titleCase
         name='titleCase-current_country'
         label='Current country'
@@ -141,30 +154,30 @@ const Example = () => {
         }}
         getDisplayValue={getAutocompleteDisplayValue}
       />
-      <Form.Rating.Stars
+      <Rating.Stars
         name='titleCase-rating'
         label='How much do you love Picasso?'
         required
       />
-      <Form.Rating.Thumbs
+      <Rating.Thumbs
         name='titleCase-thumbs'
         label='Would you recommend picasso?'
         required
       />
-      <Form.FileInput
+      <FileInput
         titleCase
         required
         name='titleCase-resume'
         label='Your resume'
         status='No file selected.'
       />
-      <Form.Checkbox
+      <Checkbox
         titleCase
         required
         name='titleCase-legal'
         label='I confirm that I have legal permission from the client to feature this project.'
       />
-      <Form.Switch
+      <Switch
         titleCase
         name='titleCase-publicProfile'
         label='Public profile'
@@ -172,9 +185,9 @@ const Example = () => {
       />
 
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
-    </Form>
+    </FormNonCompound>
   )
 }
 

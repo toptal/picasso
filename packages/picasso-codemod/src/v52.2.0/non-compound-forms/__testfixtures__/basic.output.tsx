@@ -1,84 +1,32 @@
-import React, { useState } from 'react'
-import { Container } from '@toptal/picasso'
-import { Item } from '@toptal/picasso/Autocomplete'
-import { isSubstring } from '@toptal/picasso/utils'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import {
-  FormNonCompound as Form,
-  NumberInput,
+  FormNonCompound,
   Input,
+  NumberInput,
   RadioGroup,
   Radio,
-  SubmitButton,
   ButtonRadio,
-  CheckboxGroup,
-  Checkbox,
   DatePicker,
   TimePicker,
+  TagSelector,
+  CheckboxGroup,
+  Checkbox,
   ButtonCheckbox,
+  Select,
   Autocomplete,
+  Rating,
   FileInput,
   Dropzone,
   AvatarUpload,
-  Rating,
-  TagSelector,
-  Select,
   Switch,
-} from '@toptal/picasso-forms'
-
-const countries = [
-  { value: 'Afghanistan', text: 'Afghanistan' },
-  { value: 'Albania', text: 'Albania' },
-  { value: 'Algeria', text: 'Algeria' },
-  { value: 'Belarus', text: 'Belarus' },
-  { value: 'Croatia', text: 'Croatia' },
-  { value: 'Lithuania', text: 'Lithuania' },
-  { value: 'Slovakia', text: 'Slovakia' },
-  { value: 'Spain', text: 'Spain' },
-  { value: 'Ukraine', text: 'Ukraine' },
-]
-
-const skills = [
-  { value: 0, text: 'HTML' },
-  { value: 1, text: 'CSS' },
-  { value: 2, text: 'Javascript' },
-]
-
-const EMPTY_INPUT_VALUE = ''
-const getAutocompleteDisplayValue = (item: Item | null) =>
-  item?.text || EMPTY_INPUT_VALUE
-
-const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
-  if (!str) {
-    return options
-  }
-  const result = options.filter(option =>
-    option?.text ? isSubstring(str, option.text) : false
-  )
-
-  return result.length > 0 ? result : null
-}
-
-const initialValues = {
-  'default-gender': 'female',
-}
+  SubmitButton,
+} from '@toptal/picasso-forms';
+import React from 'react'
 
 const Example = () => {
-  const [skillInputValue, setSkillInputValue] =
-    useState<string>(EMPTY_INPUT_VALUE)
-  const skillOptions = filterOptions(skillInputValue, skills)
-
-  const [autocompleteValue, setAutocompleteValue] =
-    useState<string>(EMPTY_INPUT_VALUE)
-  const [autocompleteOptions, setAutocompleteOptions] = useState<Item[] | null>(
-    countries
-  )
-
   return (
-    <Form
-      autoComplete='off'
-      onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
-      initialValues={initialValues}
-    >
+    <FormNonCompound autoComplete='off' onSubmit={values => () => values}>
       <Input
         enableReset
         onResetClick={(set: (value: string) => void) => {
@@ -106,19 +54,18 @@ const Example = () => {
         <Radio label='Male' value='male' />
         <Radio label='Female' value='female' />
       </RadioGroup>
-      <RadioGroup name='default-gender' label='Gender' horizontal spacing={8}>
+      <RadioGroup
+        name='default-gender'
+        label='Gender'
+        horizontal
+        spacing={8}
+      >
         <ButtonRadio value='male'>Male</ButtonRadio>
         <ButtonRadio value='female'>Female</ButtonRadio>
       </RadioGroup>
       <DatePicker name='default-dateOfBirth' label='Date of birth' />
       <TimePicker name='default-timeOfBirth' label='Time of birth' />
-      <TagSelector
-        name='default-skills'
-        label='Skills'
-        inputValue={skillInputValue}
-        options={skillOptions}
-        onInputChange={setSkillInputValue}
-      />
+      <TagSelector name='default-skills' label='Skills' />
       <CheckboxGroup name='default-hobbies' label='Hobbies'>
         <Checkbox label='Skiing' value='skiing' />
         <Checkbox label='Free diving' value='freeDiving' />
@@ -131,7 +78,9 @@ const Example = () => {
         spacing={8}
       >
         <ButtonCheckbox value='skiing'>Skiing</ButtonCheckbox>
-        <ButtonCheckbox value='freeDiving'>Free diving</ButtonCheckbox>
+        <ButtonCheckbox value='freeDiving'>
+          Free diving
+        </ButtonCheckbox>
         <ButtonCheckbox value='dancing'>Dancing</ButtonCheckbox>
       </CheckboxGroup>
       <Select
@@ -149,31 +98,12 @@ const Example = () => {
         name='default-origin_country'
         label='Origin country'
         width='auto'
-        options={countries}
       />
       <Autocomplete
         name='default-current_country'
         label='Current country'
         placeholder='Start typing country...'
         width='auto'
-        value={autocompleteValue}
-        options={autocompleteOptions}
-        onSelect={(item: Item) => {
-          console.log('onSelect returns item object:', item)
-
-          const itemValue = getAutocompleteDisplayValue(item)
-
-          if (autocompleteValue !== itemValue) {
-            setAutocompleteValue(itemValue)
-          }
-        }}
-        onChange={(newValue: string) => {
-          console.log('onChange returns just item value:', newValue)
-
-          setAutocompleteOptions(filterOptions(newValue, countries))
-          setAutocompleteValue(newValue)
-        }}
-        getDisplayValue={getAutocompleteDisplayValue}
       />
       <Rating.Stars
         name='default-rating'
@@ -208,11 +138,7 @@ const Example = () => {
         width='auto'
       />
 
-      <Container top='small'>
-        <SubmitButton>Submit</SubmitButton>
-      </Container>
-    </Form>
-  )
+      <SubmitButton>Submit</SubmitButton>
+    </FormNonCompound>
+  );
 }
-
-export default Example

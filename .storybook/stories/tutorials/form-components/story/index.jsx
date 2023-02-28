@@ -68,7 +68,7 @@ advancedChapter
     `
 Picasso Forms is a powerful wrapper around React Final Form. it comes with a full set of tools to validate, parse, keep and sanitize the form state.
 
-You will find exactly the same set of form inputs as in regular Picasso, but as a part of a compound \`Form\` component imported from \`@toptal/picasso-forms\`.
+You will find exactly the same set of form inputs as in regular Picasso, but exported from \`@toptal/picasso-forms\`.
 
 Please note: most of the time you want to use **either** only pure components from Picasso or only components from Picasso Forms,
 almost never both types at the same time (unless you need something very specific-looking).
@@ -89,10 +89,10 @@ advancedChapter.addTextSection(
   `
 If you look for handlers for sanitizing / validating your form component data into form state, you can do so by taking a look at the available props for FieldWrapper.
 
-All the components that are a part of the compound \`Form\` share the common set of props from the [FieldWrapper](/?path=/story/picasso-forms-form--form).
+All the components exported from \`@toptal/picasso-forms\` share the common set of props from the [FieldWrapper](/?path=/story/picasso-forms-form--form).
 If you need converting your data between plain HTML form values (always string) and internal form state, \`parse\` and \`format\` is a good place to start.
 
-You can also convert your data before submitting if you need it. Field and form level validators are also available in \`Form\` and it's compound components respectively.
+You can also convert your data before submitting if you need it. Field and form level validators are also available in \`Form\` and all Picasso Forms components.
 `,
   {
     title: 'Sanitizing and validating',

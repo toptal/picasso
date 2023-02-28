@@ -1,6 +1,10 @@
 import React from 'react'
 import { Container, ASTType } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import {
+  FormNonCompound,
+  RichTextEditor,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 const DEFAULT_EXAMPLE: ASTType = {
   type: 'root',
@@ -8,9 +12,9 @@ const DEFAULT_EXAMPLE: ASTType = {
 }
 
 const RichTextEditorExample = () => (
-  <Form onSubmit={data => window.alert(JSON.stringify(data))}>
+  <FormNonCompound onSubmit={data => window.alert(JSON.stringify(data))}>
     <Container bottom='small'>
-      <Form.RichTextEditor
+      <RichTextEditor
         required
         defaultValue={DEFAULT_EXAMPLE}
         label='Text editor'
@@ -19,8 +23,8 @@ const RichTextEditorExample = () => (
       />
     </Container>
 
-    <Form.SubmitButton>Submit</Form.SubmitButton>
-  </Form>
+    <SubmitButton>Submit</SubmitButton>
+  </FormNonCompound>
 )
 
 export default RichTextEditorExample

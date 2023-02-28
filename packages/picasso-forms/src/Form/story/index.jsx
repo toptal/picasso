@@ -143,8 +143,8 @@ page
   .createChapter()
   .addTextSection(
     `
-Form is a wrapper for 'react-final-form' Form component. It also
-provides inside all the necessary input components types.
+Form is a wrapper for 'react-final-form' Form component.
+The rest of the form components can be imported from \`@toptal/picasso-forms\`
     `
   )
   .addExample(

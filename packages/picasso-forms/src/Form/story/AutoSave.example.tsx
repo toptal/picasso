@@ -1,6 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { Container, FormAutoSaveIndicator, Typography } from '@toptal/picasso'
-import { Form, ChangedFields, useFormAutoSave } from '@toptal/picasso-forms'
+import {
+  FormNonCompound as Form,
+  ChangedFields,
+  useFormAutoSave,
+  Input,
+  RichTextEditor,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 // the emulation of the api call
 const saveWithDelay = async () =>
@@ -47,19 +54,19 @@ const Example = () => {
     >
       <Container flex direction='row' gap='medium'>
         <Container>
-          <Form.Input
+          <Input
             required
             name='autoSave-firstName'
             label='First name'
             placeholder='e.g. Bruce'
           />
-          <Form.Input
+          <Input
             required
             name='autoSave-lastName'
             label='Last name'
             placeholder='e.g. Wayne'
           />
-          <Form.Input
+          <Input
             required
             name='autoSave-about'
             multiline
@@ -74,7 +81,7 @@ const Example = () => {
               />
             }
           />
-          <Form.RichTextEditor
+          <RichTextEditor
             id='autoSave-rich-text-editor'
             label='Bio'
             required
@@ -103,7 +110,7 @@ const Example = () => {
       </Container>
 
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
     </Form>
   )

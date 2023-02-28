@@ -1,16 +1,18 @@
 import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, Input, SubmitButton } from '@toptal/picasso-forms'
 
 const ParseInputExample = () => (
-  <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
+  <FormNonCompound
+    onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
+  >
     <Container bottom='small'>
       <Typography size='medium'>
         I want to trim my first name from the empty spaces:
       </Typography>
     </Container>
     <Container flex alignItems='flex-end'>
-      <Form.Input
+      <Input
         name='parseInput-firstName'
         label='First name'
         placeholder='e.g. Bruce'
@@ -19,10 +21,10 @@ const ParseInputExample = () => (
       />
 
       <Container left='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
     </Container>
-  </Form>
+  </FormNonCompound>
 )
 
 export default ParseInputExample

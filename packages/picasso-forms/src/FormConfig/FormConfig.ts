@@ -27,5 +27,6 @@ export type FormConfigProps = (
 }
 
 export const FormConfigContext = createContext<FormConfigProps>({})
+export const FormConfigProvider = FormConfigContext.Provider
 
 export const useFormConfig = () => useContext(FormConfigContext)

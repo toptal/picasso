@@ -1,6 +1,10 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { Form } from '@toptal/picasso-forms'
+import {
+  FormNonCompound,
+  PasswordInput,
+  SubmitButton,
+} from '@toptal/picasso-forms'
 
 type FormType = {
   'fieldRequirements-password': string
@@ -16,7 +20,7 @@ const Example = () => {
   }
 
   return (
-    <Form<FormType>
+    <FormNonCompound<FormType>
       autoComplete='off'
       onSubmit={handleSubmit}
       initialValues={{
@@ -24,12 +28,12 @@ const Example = () => {
         'fieldRequirements-confirmPassword': '',
       }}
     >
-      <Form.PasswordInput
+      <PasswordInput
         label='Password'
         name='fieldRequirements-password'
         required
       />
-      <Form.PasswordInput
+      <PasswordInput
         label='Confirm password'
         name='fieldRequirements-confirmPassword'
         hideRequirements
@@ -44,9 +48,9 @@ const Example = () => {
         }}
       />
       <Container top='small'>
-        <Form.SubmitButton>Submit</Form.SubmitButton>
+        <SubmitButton>Submit</SubmitButton>
       </Container>
-    </Form>
+    </FormNonCompound>
   )
 }
 

@@ -1,23 +1,23 @@
 import React from 'react'
-import { Form } from '@toptal/picasso-forms'
+import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms'
 
 const Example = () => {
   return (
-    <Form onSubmit={() => {}}>
-      <Form.RichTextEditor
+    <FormNonCompound onSubmit={() => {}}>
+      <RichTextEditor
         label='Default'
         id='editor-default'
         placeholder='Write some cool rich text'
         name='default'
       />
-      <Form.RichTextEditor
+      <RichTextEditor
         label='Error'
         id='editor-error'
         placeholder='Write some cool rich text'
         status='error'
         name='error'
       />
-    </Form>
+    </FormNonCompound>
   )
 }
 
