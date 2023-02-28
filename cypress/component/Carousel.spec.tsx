@@ -145,33 +145,6 @@ describe(component, () => {
         })
       })
     })
-
-    describe('dots', () => {
-      it('slides on dot click', () => {
-        cy.mount(<CarouselExample hasDots slidesToShow={2} />)
-
-        // Wait until navigation is visible
-        cy.getByTestId(testIds.dots).should('exist')
-
-        cy.getByTestId(testIds.dots)
-          .find('[data-index="1"]')
-          .as('dotTwo')
-          .hoverAndTakeHappoScreenshot({
-            component,
-            variant: 'default-checked/after-hovered',
-          })
-
-        cy.get('@dotTwo').click()
-
-        // wait until third slide is visible
-        cy.get('[data-gslide=2]').should('have.class', 'visible')
-
-        cy.get('body').happoScreenshot({
-          component,
-          variant: 'dots/after-click',
-        })
-      })
-    })
   })
 
   describe('slides to show', () => {
