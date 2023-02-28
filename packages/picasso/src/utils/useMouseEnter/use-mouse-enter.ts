@@ -4,25 +4,27 @@ const useMouseEnter = <T extends HTMLElement>(ref: RefObject<T>): boolean => {
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false)
 
   useEffect(() => {
-    const handleMouseEnter = () => {
-      setIsMouseOver(true)
-    }
+    const handleMouseHover = (event: MouseEvent) => {
+      if (event.type === 'mouseenter') {
+        setIsMouseOver(true)
+      }
 
-    const handleMouseLeave = () => {
-      setIsMouseOver(false)
+      if (event.type === 'mouseleave') {
+        setIsMouseOver(false)
+      }
     }
 
     const node = ref.current
 
     if (node) {
-      node.addEventListener('mouseenter', handleMouseEnter)
-      node.addEventListener('mouseleave', handleMouseLeave)
+      node.addEventListener('mouseenter', handleMouseHover)
+      node.addEventListener('mouseleave', handleMouseHover)
     }
 
     return () => {
       if (node) {
-        node.removeEventListener('mouseenter', handleMouseEnter)
-        node.removeEventListener('mouseleave', handleMouseLeave)
+        node.removeEventListener('mouseenter', handleMouseHover)
+        node.removeEventListener('mouseleave', handleMouseHover)
       }
     }
   }, [ref])

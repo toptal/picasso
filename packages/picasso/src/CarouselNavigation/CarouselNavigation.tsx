@@ -37,15 +37,6 @@ type Props = {
   }
 }
 
-type DotsProps = {
-  getDotsProps: () => {}
-  className: string
-  dataTestid?: string
-}
-const Dots = memo(({ getDotsProps, className, dataTestid }: DotsProps) => (
-  <div {...getDotsProps()} data-testid={dataTestid} className={className} />
-))
-
 const CarouselNavigation = ({
   getDotsProps,
   getNextProps,
@@ -64,10 +55,10 @@ const CarouselNavigation = ({
       data-testid={testIds.navigation}
     >
       {hasDots && (
-        <Dots
-          dataTestid={testIds.dots}
+        <div
+          {...getDotsProps()}
+          data-testid={testIds.dots}
           className={classes.dots}
-          getDotsProps={getDotsProps}
         />
       )}
       {hasArrows && (

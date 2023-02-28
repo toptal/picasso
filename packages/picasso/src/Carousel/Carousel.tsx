@@ -108,10 +108,15 @@ export const Carousel = ({
       {...getContainerProps()}
     >
       <Container className={classes.container}>
-        <CarouselGradient slidesToShow={slidesToShow} isLastPage={isLastPage} />
         <Container {...getCarouselProps()} data-testid={testIds.carousel}>
           {children}
         </Container>
+        {!Number.isInteger(slidesToShow) && (
+          <CarouselGradient
+            slidesToShow={slidesToShow}
+            isLastPage={isLastPage}
+          />
+        )}
       </Container>
 
       <CarouselNavigation

@@ -6,7 +6,6 @@ export default () =>
       position: 'absolute',
       height: '100%',
       top: 0,
-      zIndex: 1,
     },
     nextGradient: {
       right: 0,

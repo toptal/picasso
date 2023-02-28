@@ -15,24 +15,14 @@ type Props = {
 const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
   const classes = useStyles()
 
-  const hasGradient = !Number.isInteger(slidesToShow)
-
-  const showNextGradient = hasGradient && !isLastPage
-  const showPrevGradient = hasGradient && isLastPage
+  const showNextGradient = !isLastPage
+  const showPrevGradient = isLastPage
 
   const gradientStyle = useMemo(() => {
-    if (!hasGradient) {
-      return {}
-    }
-
     return {
-      width: `${gradientWidth(slidesToShow)}%`,
+      width: gradientWidth(slidesToShow),
     }
-  }, [slidesToShow, hasGradient])
-
-  if (!hasGradient) {
-    return null
-  }
+  }, [slidesToShow])
 
   return (
     <div
@@ -46,4 +36,4 @@ const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
   )
 }
 
-export default CarouselGradient
+export default React.memo(CarouselGradient)

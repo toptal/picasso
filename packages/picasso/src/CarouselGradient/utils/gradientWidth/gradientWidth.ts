@@ -1,12 +1,13 @@
-const calculateGradientWidth = (slidesToShow: number) => {
-  if (Number.isInteger(slidesToShow)) {
-    return 0
-  }
-
+/**
+ * Calculates the width of the gradient that fades out the edges of the slider.
+ * @param slidesToShow The number of slides to show in the slider.
+ * @returns The width of the gradient in %
+ */
+const gradientWidth = (slidesToShow: number) => {
   const slideWidth = 100 / slidesToShow
-  const gradientWidth = slideWidth * (slidesToShow % 1)
+  const partialSlideWidth = slideWidth * (slidesToShow % 1)
 
-  return gradientWidth
+  return `${Math.round(partialSlideWidth)}%`
 }
 
-export default calculateGradientWidth
+export default gradientWidth

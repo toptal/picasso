@@ -5,11 +5,7 @@ type Props = {
 }
 
 const isOnLastPage = ({ currentSlide, slidesCount, slidesToShow }: Props) => {
-  if (Number.isInteger(slidesToShow)) {
-    return currentSlide >= slidesCount - slidesToShow
-  }
-
-  if (slidesToShow % 1 <= 0.5) {
+  if (Number.isInteger(slidesToShow) || slidesToShow % 1 <= 0.5) {
     return currentSlide >= slidesCount - slidesToShow
   }
 
