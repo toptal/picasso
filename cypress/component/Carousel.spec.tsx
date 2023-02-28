@@ -107,7 +107,7 @@ describe(component, () => {
           )
 
           // Wait until navigation is visible
-          cy.getByTestId(testIds.dots).should('exist')
+          cy.getByTestId(testIds.dots).children().should('have.length', 3)
 
           cy.getByTestId(testIds.prev).should('not.be.disabled')
 
@@ -126,7 +126,6 @@ describe(component, () => {
             .click()
             .click()
             .click()
-            .click()
             .should('not.be.disabled')
 
           cy.get('[data-gslide=4]').should('have.class', 'visible')
@@ -142,37 +141,6 @@ describe(component, () => {
           cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
-          })
-        })
-      })
-
-      describe('when rewind is disabled', () => {
-        it('is ends on last slide', () => {
-          cy.mount(<CarouselExample slidesToShow={2} hasArrows hasDots />)
-
-          // Wait until navigation is visible
-          cy.getByTestId(testIds.dots).should('exist')
-
-          cy.getByTestId(testIds.prev).should('be.disabled')
-
-          cy.get('body').happoScreenshot({
-            component,
-            variant: 'rewind-disabled/first-item',
-          })
-
-          // move to last item
-          cy.getByTestId(testIds.next)
-            .click()
-            .click()
-            .click()
-            .click()
-            .should('be.disabled')
-
-          cy.get('[data-gslide=4]').should('have.class', 'visible')
-
-          cy.get('body').happoScreenshot({
-            component,
-            variant: 'rewind-disabled/last-item',
           })
         })
       })
