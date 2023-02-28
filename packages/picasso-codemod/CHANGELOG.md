@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- [#3384](https://github.com/toptal/picasso/pull/3384) [`20542bde`](https://github.com/toptal/picasso/commit/20542bdee3b977847ce749026dcfb9a33d4d9500) Thanks [@mkrl](https://github.com/mkrl)! - ---
+
+  - all the Picasso Forms components exported from `picasso-forms` are now available to be directly imported from the root entry point
+  - compound usage of `Form` is now deprecated, you can replace the compound `Form` with `FormNonCompound` (in the future compound Form will no longer be available)
+  - added a codemod to effortlessly migrate your compound `Form` to separate components `npx @toptal/picasso-codemod v52.2.0/non-compound-forms`
+
 ## 5.3.1
 
 ### Patch Changes
