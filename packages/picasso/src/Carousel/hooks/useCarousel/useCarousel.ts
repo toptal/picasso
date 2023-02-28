@@ -86,12 +86,9 @@ const useCarousel = ({
   const slideNext = useCallback(() => {
     const glider = gliderRef.current
     const currentSlide = glider?.slide || 0
+    const item = isLastPage ? 0 : currentSlide + slidesToScroll
 
-    if (isLastPage) {
-      glider?.scrollItem(0, false)
-    } else {
-      glider?.scrollItem(currentSlide + slidesToScroll, false)
-    }
+    glider?.scrollItem(item, false)
   }, [isLastPage, slidesToScroll])
 
   const slidePrev = useCallback(() => {
@@ -99,12 +96,9 @@ const useCarousel = ({
     const currentSlide = glider?.slide || 0
     const lastPage = slidesCount - slidesToShow
     const prevSlide = currentSlide - slidesToScroll
+    const item = currentSlide === 0 ? lastPage : prevSlide
 
-    if (currentSlide === 0) {
-      glider?.scrollItem(lastPage, false)
-    } else {
-      glider?.scrollItem(prevSlide, false)
-    }
+    glider?.scrollItem(item, false)
   }, [slidesCount, slidesToShow, slidesToScroll])
 
   useAutoplay({

@@ -5,13 +5,7 @@ const useMouseEnter = <T extends HTMLElement>(ref: RefObject<T>): boolean => {
 
   useEffect(() => {
     const handleMouseHover = (event: MouseEvent) => {
-      if (event.type === 'mouseenter') {
-        setIsMouseOver(true)
-      }
-
-      if (event.type === 'mouseleave') {
-        setIsMouseOver(false)
-      }
+      setIsMouseOver(event.type === 'mouseenter')
     }
 
     const node = ref.current
