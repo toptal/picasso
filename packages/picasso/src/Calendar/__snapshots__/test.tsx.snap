@@ -155,7 +155,7 @@ exports[`Calendar renders 1`] = `
               1
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-02"
               data-testid="day-button-2"
               type="button"
@@ -164,7 +164,7 @@ exports[`Calendar renders 1`] = `
               2
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-03"
               data-testid="day-button-3"
               type="button"
@@ -222,7 +222,7 @@ exports[`Calendar renders 1`] = `
               8
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-09"
               data-testid="day-button-9"
               type="button"
@@ -231,7 +231,7 @@ exports[`Calendar renders 1`] = `
               9
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-10"
               data-testid="day-button-10"
               type="button"
@@ -289,7 +289,7 @@ exports[`Calendar renders 1`] = `
               15
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-16"
               data-testid="day-button-16"
               type="button"
@@ -298,7 +298,7 @@ exports[`Calendar renders 1`] = `
               16
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-17"
               data-testid="day-button-17"
               type="button"
@@ -356,7 +356,7 @@ exports[`Calendar renders 1`] = `
               22
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-23"
               data-testid="day-button-23"
               type="button"
@@ -365,7 +365,7 @@ exports[`Calendar renders 1`] = `
               23
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable"
               data-simple-react-calendar-day="2019-02-24"
               data-testid="day-button-24"
               type="button"
@@ -423,7 +423,7 @@ exports[`Calendar renders 1`] = `
               1
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-03-02"
               data-testid="day-button-2"
               type="button"
@@ -432,7 +432,7 @@ exports[`Calendar renders 1`] = `
               2
             </button>
             <button
-              class="PicassoCalendar-day PicassoCalendar-selectable PicassoCalendar-grayed"
+              class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-selectable PicassoCalendar-grayed"
               data-simple-react-calendar-day="2019-03-03"
               data-testid="day-button-3"
               type="button"
