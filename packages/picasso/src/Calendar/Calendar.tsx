@@ -5,6 +5,7 @@ import SimpleReactCalendar from 'simple-react-calendar'
 import cx from 'classnames'
 import { Theme, makeStyles } from '@material-ui/core/styles'
 import { BaseProps } from '@toptal/picasso-shared'
+import isWeekend from 'date-fns/isWeekend'
 
 import {
   CalendarProps,
@@ -138,6 +139,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               tabIndex={isDisabled || !isSelectable ? -1 : undefined}
               className={cx(classes.day, {
                 [classes.selected]: isSelected,
+                [classes.weekend]: isWeekend(date),
                 [classes.selectable]: isSelectable,
                 [classes.grayed]:
                   (isMonthPrev || isMonthNext) && !isSelected && !isDisabled,
