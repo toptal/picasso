@@ -76,6 +76,10 @@ export default defineConfig({
               process.cwd(),
               './packages/picasso-provider/dist-package'
             ),
+            '@toptal/picasso-pictograms': path.resolve(
+              process.cwd(),
+              './packages/picasso-pictograms/dist-package'
+            ),
             '@topkit/analytics-charts': path.resolve(
               process.cwd(),
               './packages/topkit-analytics-charts/dist-package'

@@ -25,50 +25,57 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 ## Project commands
 
-| Command                   | Description                                         |
-| ------------------------- | --------------------------------------------------- |
-| **build:package**         | Build the packages                                  |
-| **build:storybook**       | Build Storybook as static website                   |
-| **commit**                | Interactive conventional commits                    |
-| **generate:component**    | Generate a new component template                   |
-| **generate:example**      | Generate a new component component code example     |
-| **generate:icons**        | [Generate JSX icon components from svgs](#add-icon) |
-| **happo**                 | Run Happo locally and generate report on happo.io   |
-| **happo:storybook**       | Run Happo for Storybook on CI                       |
-| **lint**                  | Lint all files                                      |
-| **start**                 | Start storybook instance and inspect components     |
-| **test**                  | Run jest and cypress tests                          |
-| **test:integration**      | Run cypress tests                                   |
-| **test:integration:open** | Run cypress in development mode                     |
-| **test:unit**             | Run unit tests                                      |
-| **test:unit -u**          | Update jest snapshots                               |
-| **test:unit:watch**       | Run unit tests in watch mode                        |
-| **typecheck**             | Validate typescript compilation                     |
+| Command                     | Description                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------- |
+| **build:package**           | Build the packages                                                                  |
+| **build:storybook**         | Build Storybook as static website                                                   |
+| **commit**                  | Interactive conventional commits                                                    |
+| **generate:component**      | Generate a new component template                                                   |
+| **generate:example**        | Generate a new component component code example                                     |
+| **generate:svg-components** | [Generate JSX components from SVGs](#adding-icons-and-pictograms)                   |
+| **generate:icons**          | [Generate JSX components from SVGs (only icons)](#adding-icons-and-pictograms)      |
+| **generate:pictograms**     | [Generate JSX components from SVGs (only pictograms)](#adding-icons-and-pictograms) |
+| **happo**                   | Run Happo locally and generate report on happo.io                                   |
+| **happo:storybook**         | Run Happo for Storybook on CI                                                       |
+| **lint**                    | Lint all files                                                                      |
+| **start**                   | Start storybook instance and inspect components                                     |
+| **test**                    | Run jest and cypress tests                                                          |
+| **test:integration**        | Run cypress tests                                                                   |
+| **test:integration:open**   | Run cypress in development mode                                                     |
+| **test:unit**               | Run unit tests                                                                      |
+| **test:unit -u**            | Update jest snapshots                                                               |
+| **test:unit:watch**         | Run unit tests in watch mode                                                        |
+| **typecheck**               | Validate typescript compilation                                                     |
 
-## Icons
+## Adding icons and pictograms
 
-### Add an icon
+In Picasso, we keep icons and pictograms in `svg` format and transform them into React components to make usage in React projects easier. This transformation is processed by the [`svgr`](https://github.com/smooth-code/svgr) tool.
 
-In Picasso, we keep icons in `svg` format and transform them into react components to make usage in react projects easier. This transformation is processed by the [`svgr`](https://github.com/smooth-code/svgr) tool.
+Pictograms are stored in a separate package due to their size and use cases. 
 
-To add a new Icon to Picasso library please follow these steps:
+To add a new icon to `@toptal/picasso` or pictogram to `@toptal/picasso-pictograms` please follow these steps:
 
 1. Prepare your SVG:
    - Make sure that it has `viewBox` attribute specified
-   - Make sure that `viewBox` size is `0 0 16 16` (be careful this isn't just a simple value set!)
+   - Make sure that `viewBox` size is `0 0 16 16` for icon and `0 0 64 64` for pictogram (be careful this isn't just a simple value set!)
    - Make sure all paths are expanded and strokes are not used
 2. Add your SVG file(s) to the Picasso project:
-   > packages/picasso/src/Icon/svg/[your_icon_name].svg
-3. Run the command
-
-   ```js
-   yarn generate:icons
+   ```bash
+   packages/picasso/src/Icon/svg/[your_icon_name].svg                       # icons
+   packages/picasso-pictograms/src/Pictograms/svg/[your_pictogram_name].svg # pictograms
    ```
 
-   This command will prepare corresponding react components for your icons
-   and add export statements to `packages/picasso/src/Icon/index.ts`
+3. Run the command
 
-After Picasso will be released with your changes you can start using your Icon as described in the [Icons section](https://picasso.toptal.net/?path=/story/components-folder--icon#icon).
+   ```bash
+   yarn generate:svg-components # runs generation for icons and pictograms
+   yarn generate:icons          # generates icons
+   yarn generate:pictograms     # generates pictograms
+   ```
+
+   This command will prepare corresponding react components and add export statements index files.
+
+After Picasso will be released with your changes you can start using your icons and pictograms as described in the [Icons section](https://picasso.toptal.net/?path=/story/components-folder--icon#icon) and [Pictograms section](https://picasso.toptal.net/?path=/story/picasso-pictograms-pictograms--pictograms).
 
 ## Adding new packages
 
@@ -109,7 +116,7 @@ After Picasso will be released with your changes you can start using your Icon a
 2. Add the new package to:
 
    - the `paths` key in `/tsconfig.json`
-   - the `alias` key in `/.storybook/webpack.config.js`
+   - the `alias` key in `/.storybook/main.js`
    - the `imports` variable in `/.storybook/components/CodeExample/CodeExample.tsx`
    - the new record to Dockerfile
 

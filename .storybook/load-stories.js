@@ -25,7 +25,8 @@ PicassoBook.addSections([
   'Forms',
   'Picasso Forms',
   'Picasso Charts',
-  'Widgets'
+  'Widgets',
+  'Picasso Pictograms',
 ])
 
 reqStorybook.keys().forEach(filename => reqStorybook(filename))

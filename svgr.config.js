@@ -1,7 +1,5 @@
-const path = require('path')
-
-const ICON_CONFIG = {
-  'logo.svg': {
+const ICON_CLEANUP_CONFIG = {
+  '/logo.svg': {
     mergePaths: false,
     removeFill: false,
     replaceColors: {
@@ -9,11 +7,26 @@ const ICON_CONFIG = {
       '#204ecf': 'var(--logo-emblem-color)',
     },
   },
+  '/picasso-pictograms/': {
+    skip: true
+  }
+}
+
+const getCleanupConfig = (svgPath) => {
+  for (const [key, value] of Object.entries(ICON_CLEANUP_CONFIG)) {
+    if (svgPath.indexOf(key) > -1) {
+      return value
+    }
+  }
+
+  return {}
 }
 
 const cleanupSketch = (doc, params, extra) => {
-  const fileName = path.basename(extra.path)
-  const config = ICON_CONFIG[fileName] || {}
+  const config = getCleanupConfig(extra.path)
+  if (config.skip) {
+    return doc
+  }
 
   const svg = doc.querySelector('svg')
   let paths = null

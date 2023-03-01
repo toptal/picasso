@@ -6,7 +6,7 @@ import React, {
   useState,
   useEffect,
   useLayoutEffect,
-  useCallback
+  useCallback,
 } from 'react'
 import debounce from 'debounce'
 import styled from 'styled-components'
@@ -28,7 +28,7 @@ const COPY_LINK_COPIED_TEXT = 'Copied!'
 const PRESETS = [['typescript', { allExtensions: true, isTSX: true }], 'es2015']
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCodeExample'
+  name: 'PicassoCodeExample',
 })
 
 interface Props extends BaseProps {
@@ -54,7 +54,9 @@ const imports: Record<string, object> = {
   '@topkit/analytics-charts/utils': require('@topkit/analytics-charts'),
   '@toptal/picasso/utils': require('@toptal/picasso/utils'),
   '@toptal/picasso/Icon': require('@toptal/picasso/Icon'),
-  '@toptal/picasso-provider': require('@toptal/picasso-provider')
+  '@toptal/picasso-provider': require('@toptal/picasso-provider'),
+  '@toptal/picasso-pictograms': require('@toptal/picasso-pictograms'),
+  '@toptal/picasso-pictograms/Pictogram': require('@toptal/picasso-pictograms/Pictogram'),
 }
 
 const resolver = (path: string) => imports[path]
@@ -107,7 +109,7 @@ const requireContext = require.context(
 
 const getOriginalSourceCode = ({
   src,
-  module
+  module,
 }: Pick<Props, 'src' | 'module'>) => {
   try {
     return requireContext(`./${module}/src/${src}`).default
@@ -131,6 +133,10 @@ const getOriginalSourceCode = ({
 
   try {
     return requireContext(`./picasso-provider/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./picasso-pictograms/src/${src}`).default
   } catch {}
 
   return require(`!raw-loader!~/.storybook/stories/${src}`).default
@@ -175,7 +181,7 @@ const CodeExample = (props: Props) => {
       <div className={classes.componentRenderer}>
         <SourceRender
           babelConfig={{
-            presets: PRESETS
+            presets: PRESETS,
           }}
           wrap={renderInTestPicasso}
           resolver={resolver}
@@ -210,7 +216,7 @@ const CodeExample = (props: Props) => {
   return (
     <SourceRender
       babelConfig={{
-        presets: PRESETS
+        presets: PRESETS,
       }}
       wrap={renderInPicasso}
       resolver={resolver}
@@ -262,7 +268,7 @@ CodeExample.displayName = 'CodeExample'
 
 CodeExample.defaultProps = {
   showEditCode: true,
-  module: 'picasso'
+  module: 'picasso',
 }
 
 export default CodeExample
