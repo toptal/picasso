@@ -1,5 +1,24 @@
 # Change Log
 
+## 31.6.0
+
+### Minor Changes
+
+- [#3389](https://github.com/toptal/picasso/pull/3389) [`742ba65a`](https://github.com/toptal/picasso/commit/742ba65a48f4305df4dc140b0efb61bebf974184) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Carousel
+
+  - add new component Carousel component using Glider.js
+  - for more details, you can check examples in [the storybook](https://picasso.toptal.net/?path=/story/components-carousel--carousel)
+
+  ```jsx
+  <Carousel slidesToShow={2} autoplay hasArrows hasDots rewind>
+    <div>slide 1</div>
+    <div>slide 2</div>
+    <div>slide 3</div>
+  </Carousel>
+  ```
+
 ## 31.5.1
 
 ### Patch Changes
