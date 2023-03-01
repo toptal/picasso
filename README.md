@@ -25,25 +25,27 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 ## Project commands
 
-| Command                          | Description                                                       |
-| -------------------------------- | ----------------------------------------------------------------- |
-| **build:package**                | Build the packages                                                |
-| **build:storybook**              | Build Storybook as static website                                 |
-| **commit**                       | Interactive conventional commits                                  |
-| **generate:component**           | Generate a new component template                                 |
-| **generate:example**             | Generate a new component component code example                   |
-| **generate:components-from-svg** | [Generate JSX components from svgs](#adding-icons-and-pictograms) |
-| **happo**                        | Run Happo locally and generate report on happo.io                 |
-| **happo:storybook**              | Run Happo for Storybook on CI                                     |
-| **lint**                         | Lint all files                                                    |
-| **start**                        | Start storybook instance and inspect components                   |
-| **test**                         | Run jest and cypress tests                                        |
-| **test:integration**             | Run cypress tests                                                 |
-| **test:integration:open**        | Run cypress in development mode                                   |
-| **test:unit**                    | Run unit tests                                                    |
-| **test:unit -u**                 | Update jest snapshots                                             |
-| **test:unit:watch**              | Run unit tests in watch mode                                      |
-| **typecheck**                    | Validate typescript compilation                                   |
+| Command                     | Description                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------- |
+| **build:package**           | Build the packages                                                                  |
+| **build:storybook**         | Build Storybook as static website                                                   |
+| **commit**                  | Interactive conventional commits                                                    |
+| **generate:component**      | Generate a new component template                                                   |
+| **generate:example**        | Generate a new component component code example                                     |
+| **generate:svg-components** | [Generate JSX components from SVGs](#adding-icons-and-pictograms)                   |
+| **generate:icons**          | [Generate JSX components from SVGs (only icons)](#adding-icons-and-pictograms)      |
+| **generate:pictograms**     | [Generate JSX components from SVGs (only pictograms)](#adding-icons-and-pictograms) |
+| **happo**                   | Run Happo locally and generate report on happo.io                                   |
+| **happo:storybook**         | Run Happo for Storybook on CI                                                       |
+| **lint**                    | Lint all files                                                                      |
+| **start**                   | Start storybook instance and inspect components                                     |
+| **test**                    | Run jest and cypress tests                                                          |
+| **test:integration**        | Run cypress tests                                                                   |
+| **test:integration:open**   | Run cypress in development mode                                                     |
+| **test:unit**               | Run unit tests                                                                      |
+| **test:unit -u**            | Update jest snapshots                                                               |
+| **test:unit:watch**         | Run unit tests in watch mode                                                        |
+| **typecheck**               | Validate typescript compilation                                                     |
 
 ## Adding icons and pictograms
 
@@ -66,9 +68,9 @@ To add a new icon to `@toptal/picasso` or pictogram to `@toptal/picasso-pictogra
 3. Run the command
 
    ```bash
-   yarn generate:components-from-svg # runs generation for icons and pictograms
-   yarn generate:icons               # generates icons
-   yarn generate:pictograms          # generates pictograms
+   yarn generate:svg-components # runs generation for icons and pictograms
+   yarn generate:icons          # generates icons
+   yarn generate:pictograms     # generates pictograms
    ```
 
    This command will prepare corresponding react components and add export statements index files.
