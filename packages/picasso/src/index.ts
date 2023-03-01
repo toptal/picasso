@@ -212,5 +212,8 @@ export type {
   DropEvent as AvatarUploadDropEvent,
 } from './AvatarUpload'
 
+export { default as Carousel } from './Carousel'
+export type { CarouselProps } from './Carousel'
+
 // hygen code generator inserts export statements above this comment.
 export * from './Icon'
