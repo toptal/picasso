@@ -8,8 +8,7 @@ jobs:
   triggerPrWorkflow:
     name: Trigger PR Workflow
     if: >
-      github.event.issue.pull_request &&
-      github.event.comment.body == '@toptal-bot run package:alpha-release'
+      github.event.issue.pull_request
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
