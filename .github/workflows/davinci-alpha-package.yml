@@ -7,8 +7,6 @@ on:
 jobs:
   triggerPrWorkflow:
     name: Trigger PR Workflow
-    if: >
-      github.event.issue.pull_request
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
