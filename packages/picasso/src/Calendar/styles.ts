@@ -49,13 +49,23 @@ export default ({ palette, sizes }: Theme) =>
       justifyContent: 'space-between',
       marginBottom: '1.5rem',
     },
+    weekend: {
+      background: palette.grey.lighter,
+      '&:not(:hover):not($selected)': {
+        border: '4px solid white',
+        borderRadius: sizes.borderRadius.medium,
+      },
+    },
     selected: {
       background: palette.blue.lighter,
+      '&:not($startSelection):not($endSelection)': {
+        borderRadius: 0,
+      },
     },
     selectable: {
       cursor: 'pointer',
 
-      '&:hover, &:focus': {
+      '&:hover': {
         backgroundColor: alpha(palette.blue.main, 0.24),
       },
 
@@ -85,6 +95,6 @@ export default ({ palette, sizes }: Theme) =>
     },
     disabled: {
       color: palette.grey.main,
-      cursor: 'default'
-    }
+      cursor: 'default',
+    },
   })
