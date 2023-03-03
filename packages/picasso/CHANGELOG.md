@@ -1,5 +1,16 @@
 # Change Log
 
+## 31.6.1
+
+### Patch Changes
+
+- [#3408](https://github.com/toptal/picasso/pull/3408) [`c1157bef`](https://github.com/toptal/picasso/commit/c1157befbcbed60ebb0ae4be8d858b62b9211564) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Calendar
+
+  - highlight weekends
+  - remove border-radius on selected items between the start and end date
+
 ## 31.6.0
 
 ### Minor Changes
