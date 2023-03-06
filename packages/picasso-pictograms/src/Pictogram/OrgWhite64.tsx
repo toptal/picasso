@@ -23,7 +23,7 @@ const SvgOrgWhite64 = forwardRef(function SvgOrgWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 65'
+      viewBox='0 0 64 64'
       fill='none'
       className={className}
       style={svgStyle}
