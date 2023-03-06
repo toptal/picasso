@@ -1,14 +1,14 @@
 import { Container } from '@toptal/picasso'
 import React from 'react'
-import { WaterfallCascadeBlue64 } from '@toptal/picasso-pictograms/Pictogram'
+import { WaterfallBlue64 } from '@toptal/picasso-pictograms/Pictogram'
 
 const Example = () => (
   <Container flex>
     <Container padded='medium' right='medium'>
-      <WaterfallCascadeBlue64 scale={1} />
+      <WaterfallBlue64 scale={1} />
     </Container>
     <Container padded='medium'>
-      <WaterfallCascadeBlue64 scale={2} />
+      <WaterfallBlue64 scale={2} />
     </Container>
   </Container>
 )
