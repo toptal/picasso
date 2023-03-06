@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.4.0
+
+### Minor Changes
+
+- [#3412](https://github.com/toptal/picasso/pull/3412) [`8ab79f8d`](https://github.com/toptal/picasso/commit/8ab79f8dda7fded2afe1a51c2ee815db93cbf926) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  - add `DesignerExpertWhite64` and `DesignerExpertBlue64` pictograms
+
 ## 0.3.0
 
 ### Minor Changes
