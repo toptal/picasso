@@ -5102,22 +5102,6 @@
     danger "^11.2.2"
     markdown-table "^2.0.0"
 
-"@toptal/davinci-cli-shared@1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.10.0.tgz#fe5e558a1fb407fa3dfb220c5b39a4d3a72051ec"
-  integrity sha512-9FQ8/3nsbO7I1jVRAkWkBJgZTGKv/mNyIEgzhjWqZgD8a4Xj+CCgyoa/Cr3mYpiYsmVVPAT1ltQKWTN4ggPk7w==
-  dependencies:
-    analytics-node "^6.2.0"
-    chalk "^4.1.2"
-    execa "^5.1.1"
-    find-yarn-workspace-root "^2.0.0"
-    inquirer "^8.2.0"
-    js-yaml "^4.1.0"
-    read-pkg-up "7.0.1"
-    semver "^7.3.7"
-    uuid "^9.0.0"
-    vorpal "^1.12.0"
-
 "@toptal/davinci-cli-shared@1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-1.7.0.tgz#a66627c38da48bb27d15451bb62ccef162667b00"
@@ -5162,17 +5146,37 @@
     uuid "^9.0.0"
     vorpal "^1.12.0"
 
+"@toptal/davinci-cli-shared@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-2.2.2.tgz#4fdc432bbaf0c950a6e3f93388062d551438b3e8"
+  integrity sha512-DUyg1EKdMMZ30amo0ZwpsliyuXCj1Wv888LvRv+66nvc3xZYkKsfvDtGj3AyAJA8TazWkz4dei04jZ94AVXO7w==
+  dependencies:
+    analytics-node "^6.2.0"
+    chalk "^4.1.2"
+    commander "^10.0.0"
+    execa "^5.1.1"
+    find-yarn-workspace-root "^2.0.0"
+    gradient-string "^2.0.0"
+    inquirer "^8.2.0"
+    isomorphic-git "^1.21.0"
+    js-yaml "^4.1.0"
+    lodash "^4.17.21"
+    ora "^5.4.1"
+    proper-lockfile "^4.1.2"
+    read-pkg-up "7.0.1"
+    semver "^7.3.7"
+
 "@toptal/davinci-cloudflare-requests-handler@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz#a220538c1bf21cf4ab2e12a6888a47c06a098d07"
   integrity sha512-gKQYU2NxZJ8VLGETCDzlrOayfuELtxoRKFWPCNW7OXfgfNQlOmtoZVy127ZedEZ3K2gn9mPQdEBGH6SOFSKEIw==
 
-"@toptal/davinci-code@^1.7.2":
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-1.7.2.tgz#49dcf187429f5db957c69e8b01bc7a27d69dafd9"
-  integrity sha512-k+dbE5ip3tOPGyJ7LcSl70rrXhzJlJEBIfjoVwmiiOrGSmT6QrHyg6hTTt9vUEtAPjIGdPqYbsz5PNbdHaVlPg==
+"@toptal/davinci-code@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-code/-/davinci-code-2.0.5.tgz#6a7b4b6dd3957a6a173c8a60d5cbccd6fb56051e"
+  integrity sha512-scqzaoqluc9ItdpFgP8LF7O1Te0GlxmORKIS4aBLpFo3Ldgo00HZmnPd1J0myY9m7V6wQ27/WeYB8te8PDrdEA==
   dependencies:
-    "@toptal/davinci-cli-shared" "1.10.0"
+    "@toptal/davinci-cli-shared" "2.2.2"
     hygen "^6.2.11"
     lodash.camelcase "^4.3.0"
     lodash.kebabcase "^4.1.1"
@@ -6243,6 +6247,11 @@
   integrity sha512-yYn5EKHO3MPEMSOrcAb1dLWY+68CG29LiXKsWmmpVHqoP5+ZRiAVLyUHvPNrO2dABDdUGZvavMsaGpWNjM6N2g==
   dependencies:
     "@types/jest" "*"
+
+"@types/tinycolor2@^1.4.0":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.3.tgz#ed4a0901f954b126e6a914b4839c77462d56e706"
+  integrity sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==
 
 "@types/tough-cookie@*":
   version "4.0.2"
@@ -8658,6 +8667,11 @@ commander@9.4.1:
   version "9.4.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
   integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+
+commander@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
+  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
 
 commander@^2.15.1, commander@^2.16.0, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.20.3, commander@^2.8.1:
   version "2.20.3"
@@ -12442,6 +12456,14 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.5
   version "4.2.10"
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
+
+gradient-string@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gradient-string/-/gradient-string-2.0.2.tgz#a90402618990ec993ecbb72a56bd7e6598f45c0e"
+  integrity sha512-rEDCuqUQ4tbD78TpzsMtt5OIf0cBCSDWSJtUDaF6JsAh+k0v9r++NzxNEG87oDZx9ZwGhD8DaezR2L/yrw0Jdw==
+  dependencies:
+    chalk "^4.1.2"
+    tinygradient "^1.1.5"
 
 grapheme-splitter@^1.0.4:
   version "1.0.4"
@@ -18697,6 +18719,15 @@ prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, 
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+proper-lockfile@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/proper-lockfile/-/proper-lockfile-4.1.2.tgz#c8b9de2af6b2f1601067f98e01ac66baa223141f"
+  integrity sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==
+  dependencies:
+    graceful-fs "^4.2.4"
+    retry "^0.12.0"
+    signal-exit "^3.0.2"
+
 property-information@^5.0.0, property-information@^5.3.0:
   version "5.6.0"
   resolved "https://registry.npmjs.org/property-information/-/property-information-5.6.0.tgz"
@@ -21789,6 +21820,19 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tinycolor2@^1.0.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
+  integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
+
+tinygradient@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/tinygradient/-/tinygradient-1.1.5.tgz#0fb855ceb18d96b21ba780b51a8012033b2530ef"
+  integrity sha512-8nIfc2vgQ4TeLnk2lFj4tRLvvJwEfQuabdsmvDdQPT0xlk9TaNtpGd6nNRxXoK6vQhN6RSzj+Cnp5tTQmpxmbw==
+  dependencies:
+    "@types/tinycolor2" "^1.4.0"
+    tinycolor2 "^1.0.0"
 
 title-case@^2.1.0:
   version "2.1.1"
