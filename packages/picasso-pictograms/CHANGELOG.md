@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.4.1
+
+### Patch Changes
+
+- [#3414](https://github.com/toptal/picasso/pull/3414) [`66ff9392`](https://github.com/toptal/picasso/commit/66ff9392ca10e506d0d6913164f0b0c6a4d723dd) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  - fix `viewBox` from `0 0 64 65` to `0 0 64 64`
+
 ## 0.4.0
 
 ### Minor Changes
