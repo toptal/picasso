@@ -5162,6 +5162,26 @@
     uuid "^9.0.0"
     vorpal "^1.12.0"
 
+"@toptal/davinci-cli-shared@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-2.2.2.tgz#4fdc432bbaf0c950a6e3f93388062d551438b3e8"
+  integrity sha512-DUyg1EKdMMZ30amo0ZwpsliyuXCj1Wv888LvRv+66nvc3xZYkKsfvDtGj3AyAJA8TazWkz4dei04jZ94AVXO7w==
+  dependencies:
+    analytics-node "^6.2.0"
+    chalk "^4.1.2"
+    commander "^10.0.0"
+    execa "^5.1.1"
+    find-yarn-workspace-root "^2.0.0"
+    gradient-string "^2.0.0"
+    inquirer "^8.2.0"
+    isomorphic-git "^1.21.0"
+    js-yaml "^4.1.0"
+    lodash "^4.17.21"
+    ora "^5.4.1"
+    proper-lockfile "^4.1.2"
+    read-pkg-up "7.0.1"
+    semver "^7.3.7"
+
 "@toptal/davinci-cloudflare-requests-handler@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.1.tgz#a220538c1bf21cf4ab2e12a6888a47c06a098d07"
@@ -5269,10 +5289,10 @@
     ora "^5.4.1"
     rambda "^7.2.1"
 
-"@toptal/davinci-qa@^14.0.3":
-  version "14.0.3"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-14.0.3.tgz#406a086d04645e3ce5a59617aaf5fdd1b7def158"
-  integrity sha512-fCZ/+tuG22em1vx/Hn+fiVlvD2XYcK/mpTL519tJDzPSYUz1BUBrpsT95K3V/IjFib8VVRpooeoiFU2IF+xIOQ==
+"@toptal/davinci-qa@^15.1.3":
+  version "15.1.3"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-15.1.3.tgz#e0237a72dfba8e380821aa68188846e16cca809f"
+  integrity sha512-OpILvyGEv3UNDtMcpvZ0ygF1qL0CEHP2hxKTg25gfYwFEp+g8zmuEnLTArX1iyvKbx4vR4QC/pe8giqGwq3rgg==
   dependencies:
     "@babel/core" "^7.18.0"
     "@babel/preset-env" "^7.18.0"
@@ -5282,14 +5302,13 @@
     "@cypress/webpack-preprocessor" "^5.12.0"
     "@testing-library/jest-dom" "^5.16.4"
     "@testing-library/react" "^13.3.0"
-    "@toptal/davinci-cli-shared" "2.1.1"
+    "@toptal/davinci-cli-shared" "2.2.2"
     "@types/jest" "^27.5.1"
     babel-jest "^28.1.3"
-    cypress "^10.6.0"
     fs-extra "^10.0.0"
     glob "^8.0.3"
     happo-cypress "^4.0.1"
-    happo-e2e "^2.0.1"
+    happo-e2e "^2.1.2"
     happo-plugin-storybook "^3.0.0"
     happo.io "^8.3.1"
     jest "^28.1.0"
@@ -5806,12 +5825,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/happo-cypress@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@types/happo-cypress/-/happo-cypress-3.0.1.tgz#f93bbfc9d12303923984f0d8ba5e6bb737b4014f"
-  integrity sha512-lqj3+9EiJUwvWjAUEbQqkbqN0OGvifb/X2kwV1qZmVZvIw2wIKAs+CMIVatC9kSHrgDVrRSzN3NETowZh4BHSg==
+"@types/happo-cypress@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/happo-cypress/-/happo-cypress-3.0.2.tgz#191728282d21991f34e36c081f02faefafe6b354"
+  integrity sha512-hLQiG/pH9678uzD9mNiasyCiNlk01KbVk5JJrsSNmXuq1Azx+tiaqIM9PUOCvVs+Wt21hxlhQkY+KiP2XZEhOA==
   dependencies:
-    cypress "^6.4.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0"
+    cypress ">=6.4.0"
 
 "@types/hast@^2.0.0":
   version "2.3.4"
@@ -6243,6 +6262,11 @@
   integrity sha512-yYn5EKHO3MPEMSOrcAb1dLWY+68CG29LiXKsWmmpVHqoP5+ZRiAVLyUHvPNrO2dABDdUGZvavMsaGpWNjM6N2g==
   dependencies:
     "@types/jest" "*"
+
+"@types/tinycolor2@^1.4.0":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.3.tgz#ed4a0901f954b126e6a914b4839c77462d56e706"
+  integrity sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==
 
 "@types/tough-cookie@*":
   version "4.0.2"
@@ -8659,6 +8683,11 @@ commander@9.4.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
   integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
 
+commander@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
+  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
+
 commander@^2.15.1, commander@^2.16.0, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.20.3, commander@^2.8.1:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
@@ -9352,15 +9381,15 @@ cypress-plugin-tab@^1.0.5:
   dependencies:
     ally.js "^1.4.1"
 
-cypress-real-events@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.7.1.tgz#8f430d67c29ea4f05b9c5b0311780120cbc9b935"
-  integrity sha512-/Bg15RgJ0SYsuXc6lPqH08x19z6j2vmhWN4wXfJqm3z8BTAFiK2MvipZPzxT8Z0jJP0q7kuniWrLIvz/i/8lCQ==
+cypress-real-events@^1.7.6:
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.7.6.tgz#6f17e0b2ceea1d6dc60f6737d8f84cc517bbbb4c"
+  integrity sha512-yP6GnRrbm6HK5q4DH6Nnupz37nOfZu/xn1xFYqsE2o4G73giPWQOdu6375QYpwfU1cvHNCgyD2bQ2hPH9D7NMw==
 
-cypress@^10.6.0, "cypress@^6.4.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0":
-  version "10.6.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-10.6.0.tgz#13f46867febf2c3715874ed5dce9c2e946b175fe"
-  integrity sha512-6sOpHjostp8gcLO34p6r/Ci342lBs8S5z9/eb3ZCQ22w2cIhMWGUoGKkosabPBfKcvRS9BE4UxybBtlIs8gTQA==
+cypress@>=6.4.0, cypress@^12.7.0:
+  version "12.7.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-12.7.0.tgz#69900f82af76cf3ba0ddb9b59ec3b0d38222ab22"
+  integrity sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==
   dependencies:
     "@cypress/request" "^2.88.10"
     "@cypress/xvfb" "^1.2.4"
@@ -9379,9 +9408,9 @@ cypress@^10.6.0, "cypress@^6.4.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0":
     commander "^5.1.0"
     common-tags "^1.8.0"
     dayjs "^1.10.4"
-    debug "^4.3.2"
+    debug "^4.3.4"
     enquirer "^2.3.6"
-    eventemitter2 "^6.4.3"
+    eventemitter2 "6.4.7"
     execa "4.1.0"
     executable "^4.1.1"
     extract-zip "2.0.1"
@@ -11123,10 +11152,10 @@ event-target-shim@^5.0.0:
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
-eventemitter2@^6.4.3:
-  version "6.4.5"
-  resolved "https://registry.npmjs.org/eventemitter2/-/eventemitter2-6.4.5.tgz"
-  integrity sha512-bXE7Dyc1i6oQElDG0jMRZJrRAn9QR2xyyFGmBdZleNmyQX0FqGYmhZIrIrpPfm/w//LTo4tVQGOGQcGCb5q9uw==
+eventemitter2@6.4.7:
+  version "6.4.7"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-6.4.7.tgz#a7f6c4d7abf28a14c1ef3442f21cb306a054271d"
+  integrity sha512-tYUSVOGeQPKt/eC1ABfhHy5Xd96N3oIijJvN3O9+TsC28T5V9yX9oEfEK5faP0EFSNVOG97qtAS68GBrQB2hDg==
 
 eventemitter3@^2.0.3:
   version "2.0.3"
@@ -12443,6 +12472,14 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.5
   resolved "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"
   integrity sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==
 
+gradient-string@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gradient-string/-/gradient-string-2.0.2.tgz#a90402618990ec993ecbb72a56bd7e6598f45c0e"
+  integrity sha512-rEDCuqUQ4tbD78TpzsMtt5OIf0cBCSDWSJtUDaF6JsAh+k0v9r++NzxNEG87oDZx9ZwGhD8DaezR2L/yrw0Jdw==
+  dependencies:
+    chalk "^4.1.2"
+    tinygradient "^1.1.5"
+
 grapheme-splitter@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz"
@@ -12496,22 +12533,15 @@ handlebars@4.7.7, handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/happo-cypress/-/happo-cypress-3.0.1.tgz"
-  integrity sha512-x95Nhj1tjPzBZS8MyCyCbzXSJBJwjK2R/EJ5WQJQDHpj+bPoBP6JmT2wM5Pzoq7gt9+BhQm5IE8SIM05ltOSxQ==
-  dependencies:
-    happo-e2e "^1.0.3"
-
 happo-cypress@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.0.1.tgz#e02e3740461cf44450648ea6b0ebc296d164a354"
   integrity sha512-4cXFwfaALDTTKH95FGbWN4V0zWnv30XTxxmBTJV/YkqXuozsWRBiZOR7eC0WT2wZ9hiaBhNiw5J/w00RZ0zbCw==
 
-happo-e2e@^1.0.3:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-1.2.0.tgz#a7bdc71c48fe4fcdd51fc9dfac0c58a7410017d3"
-  integrity sha512-F94HEJgAq1dnZXlty9t7E/uTHrKJlTsem1oqkPpH6EkqXKasWGShEo+f74YvXzxwBlzs+Kw3vVT0E+ibOVmKHw==
+happo-e2e@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.1.2.tgz#5acb8e4848f2fb08fc1a45f886fcaeb4d3c2edb8"
+  integrity sha512-x1nBOPKYeuX9OQHfPgPuiP63vzvxWW+gJzB+IB/+FD0o+oUACmfCAPNIHlkan1GIqCDdOpBGKwQwzlBSsv2O8A==
   dependencies:
     archiver "^5.3.0"
     base64-stream "^1.0.0"
@@ -12523,25 +12553,10 @@ happo-e2e@^1.0.3:
     parse-srcset "^1.0.2"
     string.prototype.replaceall "^1.0.6"
 
-happo-e2e@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.0.1.tgz#2a7d8c15375ea19e0df991de1e43cb197c28803e"
-  integrity sha512-Gmi22Oi3Pw6IZbfzI505Cdat1uXZo69gt/Moy9oXMw+f0yDnF+jPfpwUx/f9ammVgRUkymMVbMOEvWV/T8/hKQ==
-  dependencies:
-    archiver "^5.3.0"
-    base64-stream "^1.0.0"
-    crypto-js "^4.1.1"
-    https-proxy-agent "^5.0.0"
-    image-size "^1.0.1"
-    mkdirp "^1.0.4"
-    node-fetch "^2.0.0"
-    parse-srcset "^1.0.2"
-    string.prototype.replaceall "^1.0.6"
-
-happo-plugin-storybook@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/happo-plugin-storybook/-/happo-plugin-storybook-3.0.0.tgz#a1ab09dddefa0a638f5d686e109aec58b2c65698"
-  integrity sha512-qRjM54dJ43CkDNEKXY2dZk8eGbGUN/Wzm/xpon8GtnDbBEcfFGQeLiOEZzwyYLD1fOkrZU7p3fLYylLkH8jzjw==
+happo-plugin-storybook@^3.0.0, happo-plugin-storybook@^3.1.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/happo-plugin-storybook/-/happo-plugin-storybook-3.2.0.tgz#f9f61a637f4199c6863f6cb19a2d2845cd70b346"
+  integrity sha512-d4iDnLQZZmxjg+/ggMGsnAvPW5Jx9OIcRZd7xNC1B8AohugIcgGeFkNoyWbXK3fefBrmQCbns3xgMZcBaHx7hw==
   dependencies:
     "@babel/runtime" ">=7.0.0"
     archiver "^3.0.0"
@@ -18697,6 +18712,15 @@ prop-types@^15.0.0, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, 
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+proper-lockfile@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/proper-lockfile/-/proper-lockfile-4.1.2.tgz#c8b9de2af6b2f1601067f98e01ac66baa223141f"
+  integrity sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==
+  dependencies:
+    graceful-fs "^4.2.4"
+    retry "^0.12.0"
+    signal-exit "^3.0.2"
+
 property-information@^5.0.0, property-information@^5.3.0:
   version "5.6.0"
   resolved "https://registry.npmjs.org/property-information/-/property-information-5.6.0.tgz"
@@ -21789,6 +21813,19 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/tiny-warning/-/tiny-warning-1.0.3.tgz"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tinycolor2@^1.0.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
+  integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
+
+tinygradient@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/tinygradient/-/tinygradient-1.1.5.tgz#0fb855ceb18d96b21ba780b51a8012033b2530ef"
+  integrity sha512-8nIfc2vgQ4TeLnk2lFj4tRLvvJwEfQuabdsmvDdQPT0xlk9TaNtpGd6nNRxXoK6vQhN6RSzj+Cnp5tTQmpxmbw==
+  dependencies:
+    "@types/tinycolor2" "^1.4.0"
+    tinycolor2 "^1.0.0"
 
 title-case@^2.1.0:
   version "2.1.1"
