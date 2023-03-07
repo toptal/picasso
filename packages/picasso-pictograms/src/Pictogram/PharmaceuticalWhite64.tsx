@@ -23,7 +23,7 @@ const SvgPharmaceuticalWhite64 = forwardRef(function SvgPharmaceuticalWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 65'
+      viewBox='0 0 64 64'
       fill='none'
       className={className}
       style={svgStyle}
