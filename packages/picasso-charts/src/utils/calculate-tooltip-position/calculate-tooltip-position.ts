@@ -45,8 +45,8 @@ export const calculateTooltipPosition = debounce(
     tooltipElem: HTMLDivElement | null,
     chartElem: HTMLDivElement | null
   ) => {
-    const nextX = payload.activeCoordinate?.x
-    const nextY = payload.chartY
+    const nextX = payload.activeCoordinate?.x || 0
+    const nextY = payload.chartY || 0
 
     if (!tooltipElem || !chartElem) {
       return

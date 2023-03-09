@@ -2,13 +2,13 @@ import { BaseProps } from '@toptal/picasso'
 import { ReactNode } from 'react'
 
 export type CoordinatePayload = {
-  activeCoordinate: { x: number; y: number }
-  activeLabel: number
-  activePayload: object[]
-  activeTooltipIndex: number
-  chartX: number
-  chartY: number
-  isTooltipActive: boolean
+  activeCoordinate?: { x: number; y: number }
+  activeLabel?: string
+  activePayload?: object[]
+  activeTooltipIndex?: number
+  chartX?: number
+  chartY?: number
+  isTooltipActive?: boolean
 }
 
 export type PositionTranslate = {
