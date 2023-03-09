@@ -5,7 +5,7 @@ const page = PicassoBook.section('Forms').createPage(
   'Input',
   `Input fields are UI elements through which users submit information to the system.
     Input fields should be clearly labeled by the topic to ensure users know exactly what is being asked of them.
-    
+
   ${PicassoBook.createSourceLink(__filename)}
     `
 )
@@ -27,6 +27,7 @@ page
     takeScreenshot: false,
   })
   .addExample('Input/story/Disabled.example.tsx', 'Disabled')
+  .addExample('Input/story/HighlightAutofill.example.tsx', 'Highlight autofill')
   .addExample('Input/story/Status.example.tsx', 'Status')
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')

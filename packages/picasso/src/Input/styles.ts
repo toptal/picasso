@@ -15,6 +15,10 @@ export default ({ palette }: Theme) =>
     rootMultiline: {
       height: 'auto',
     },
+    highlightAutofill: {
+      // palette.yellow.lighter
+      backgroundColor: 'rgba(255, 245, 227, 0.6)',
+    },
     inputMultilineResizable: {
       resize: 'vertical',
     },
