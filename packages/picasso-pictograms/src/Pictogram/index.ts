@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export { default as Svg3DCubeScreenBlue64 } from './3DCubeScreenBlue64'
 export { default as Svg3DCubeScreenWhite64 } from './3DCubeScreenWhite64'
 export { default as Svg404ErrorBlue64 } from './404ErrorBlue64'
@@ -298,7 +299,6 @@ export { default as ThinkingWhite64 } from './ThinkingWhite64'
 export { default as ThumbsBlue64 } from './ThumbsBlue64'
 export { default as ThumbsWhite64 } from './ThumbsWhite64'
 export { default as TimezoneBlue64 } from './TimezoneBlue64'
-// eslint-disable-next-line max-lines
 export { default as TimezoneWhite64 } from './TimezoneWhite64'
 export { default as TopBlue64 } from './TopBlue64'
 export { default as TopWhite64 } from './TopWhite64'
