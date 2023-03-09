@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.5.0
+
+### Minor Changes
+
+- [#3417](https://github.com/toptal/picasso/pull/3417) [`02189ac4`](https://github.com/toptal/picasso/commit/02189ac4a41e263e7a77f29b5edd2b155bf45279) Thanks [@DmitriyT51](https://github.com/DmitriyT51)! - ---
+
+  - add `DeveloperExpertBlue64` pictogram
+
 ## 0.4.1
 
 ### Patch Changes
