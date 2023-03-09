@@ -157,6 +157,8 @@ const useStyles = makeStyles<Theme>(styles, {
 const defaultGetYAxisTicks = (domain: Domain) =>
   getD3Ticks(domain[0], domain[1], NUMBER_OF_TICKS)
 
+const TOOLTIP_WRAPPER_STYLE = { outline: 'none' }
+
 export const LineChart = (props: Props) => {
   const classes = useStyles()
   const {
@@ -282,6 +284,7 @@ export const LineChart = (props: Props) => {
 
           {tooltip && (
             <Tooltip
+              wrapperStyle={TOOLTIP_WRAPPER_STYLE}
               allowEscapeViewBox={
                 allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
               }
