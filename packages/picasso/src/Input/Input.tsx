@@ -386,6 +386,7 @@ Input.defaultProps = {
   autoComplete: 'none',
   counter: 'remaining',
   iconPosition: 'start',
+  highlightAutofill: false,
   multiline: false,
   size: 'medium',
   width: 'auto',
