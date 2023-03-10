@@ -28,6 +28,7 @@ const {
   TICK_WIDTH,
   TICK_HEIGHT,
 } = CHART_CONSTANTS
+const TOOLTIP_WRAPPER_STYLE = { outline: 'none' }
 
 export type BarChartDataItem<K extends string | number | symbol> = {
   name: string
@@ -119,6 +120,7 @@ const BarChart = <K extends string>({
     () =>
       tooltip ? (
         <Tooltip
+          wrapperStyle={TOOLTIP_WRAPPER_STYLE}
           data-testid={testIds?.tooltip}
           allowEscapeViewBox={
             allowTooltipEscapeViewBox ? { x: true, y: true } : undefined
@@ -127,7 +129,7 @@ const BarChart = <K extends string>({
           cursor={false}
         />
       ) : undefined,
-    [tooltip, customTooltip, allowTooltipEscapeViewBox]
+    [tooltip, customTooltip, allowTooltipEscapeViewBox, testIds?.tooltip]
   )
 
   const topDomain = findTopDomain(extractValues(data))
