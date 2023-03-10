@@ -27,7 +27,6 @@ page
     takeScreenshot: false,
   })
   .addExample('Input/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Input/story/HighlightAutofill.example.tsx', 'Highlight autofill')
   .addExample('Input/story/Status.example.tsx', 'Status')
   .addExample('Input/story/WithIcon.example.tsx', 'With icon')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes')
