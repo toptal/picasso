@@ -1,5 +1,13 @@
 # Change Log
 
+## 45.0.2
+
+### Patch Changes
+
+- [#3418](https://github.com/toptal/picasso/pull/3418) [`0e2ae4bd`](https://github.com/toptal/picasso/commit/0e2ae4bd737c930d7651076f08c5e1e393b1f2b6) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  - bump `recharts` to the latest version
+
 ## 45.0.1
 
 ### Patch Changes
