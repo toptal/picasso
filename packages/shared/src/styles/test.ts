@@ -41,23 +41,32 @@ describe('rem to px units converter using the BASE font size by default', () => 
 })
 
 describe('hexToRgba', () => {
-  it('should convert #000 with opacity 1 to rgba(0, 0, 0, 1)', () => {
-    expect(hexToRgba('#000', 1)).toBe('rgba(0, 0, 0, 1)')
+  describe('when opacity is out of range', () => {
+    it('should throw an error', () => {
+      expect(() => hexToRgba('#000', -1)).toThrow()
+      expect(() => hexToRgba('#000', 1.1)).toThrow()
+    })
   })
 
-  it('should convert #FFF with opacity 0.5 to rgba(255, 255, 255, 0.5)', () => {
-    expect(hexToRgba('#FFF', 0.5)).toBe('rgba(255, 255, 255, 0.5)')
+  describe('when hex code is invalid', () => {
+    it('should throw an error', () => {
+      expect(() => hexToRgba('#00', 1)).toThrow()
+      expect(() => hexToRgba('000', 1)).toThrow()
+      expect(() => hexToRgba('000000', 1)).toThrow()
+      expect(() => hexToRgba('#0000000', 1)).toThrow()
+      expect(() => hexToRgba('#u00000', 1)).toThrow()
+    })
   })
 
-  it('should convert #FF0000 with opacity 0.25 to rgba(255, 0, 0, 0.25)', () => {
-    expect(hexToRgba('#FF0000', 0.25)).toBe('rgba(255, 0, 0, 0.25)')
+  describe('when shorthand hex code is used', () => {
+    it('should convert #0F0 to rgba(0, 255, 0, 1)', () => {
+      expect(hexToRgba('#0F0', 1)).toBe('rgba(0, 255, 0, 1)')
+    })
   })
 
-  it('should convert #00FF00 with opacity 0.75 to rgba(0, 255, 0, 0.75)', () => {
-    expect(hexToRgba('#00FF00', 0.75)).toBe('rgba(0, 255, 0, 0.75)')
-  })
-
-  it('should convert #0000FF with opacity 0.4 to rgba(0, 0, 255, 0.4)', () => {
-    expect(hexToRgba('#0000FF', 0.4)).toBe('rgba(0, 0, 255, 0.4)')
+  describe('when opacity is 0.75 and hex is #00FF00', () => {
+    it('should convert to rgba(0, 255, 0, 0.75)', () => {
+      expect(hexToRgba('#00FF00', 0.75)).toBe('rgba(0, 255, 0, 0.75)')
+    })
   })
 })
