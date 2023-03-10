@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles'
+import { alpha } from '@toptal/picasso-shared'
 
 import '../InputBase/styles'
 import '../InputLabel/styles'
@@ -14,6 +15,10 @@ export default ({ palette }: Theme) =>
     },
     rootMultiline: {
       height: 'auto',
+    },
+    highlightAutofill: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      backgroundColor: alpha(palette.yellow.lighter!, 0.6),
     },
     inputMultilineResizable: {
       resize: 'vertical',
