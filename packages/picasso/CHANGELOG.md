@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.7.0
+
+### Minor Changes
+
+- [#3421](https://github.com/toptal/picasso/pull/3421) [`a3e0d03e`](https://github.com/toptal/picasso/commit/a3e0d03ecc6c38908d368778227137b48257846d) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Input
+
+  - add `highlightAutofill` property
+
 ## 31.6.1
 
 ### Patch Changes
