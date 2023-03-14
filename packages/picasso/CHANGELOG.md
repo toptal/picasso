@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.8.0
+
+### Minor Changes
+
+- [#3427](https://github.com/toptal/picasso/pull/3427) [`be5fc491`](https://github.com/toptal/picasso/commit/be5fc491311cd91fe58bb40b5c230c2616817ef3) Thanks [@dulishkovych](https://github.com/dulishkovych)! - ---
+
+  ### Icon
+
+  - add `VerificationBadge16` and `VerificationBadge24` icons
+
 ## 31.7.0
 
 ### Minor Changes
