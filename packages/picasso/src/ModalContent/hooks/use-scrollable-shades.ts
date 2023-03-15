@@ -26,11 +26,15 @@ const useScrollableShades = (ref: React.RefObject<HTMLDivElement>) => {
 
     el.addEventListener('scroll', updateShades)
     window.addEventListener('resize', updateShades)
+    const observer = new MutationObserver(updateShades)
+
+    observer.observe(el, { childList: true, subtree: true })
 
     return () => {
       updateShades.clear()
       el.removeEventListener('scroll', updateShades)
       window.addEventListener('resize', updateShades)
+      observer.disconnect()
     }
   }, [ref])
 

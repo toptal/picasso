@@ -58,3 +58,7 @@ component and manage the internal state there.
       'Demonstrate how `disableBackdropClick` prop can be used to avoid closing modal on backdrop click',
     takeScreenshot: false,
   })
+  .addExample('Modal/story/DynamicContent.example.tsx', {
+    title: 'Dynamic Content',    
+    takeScreenshot: false,
+  })
