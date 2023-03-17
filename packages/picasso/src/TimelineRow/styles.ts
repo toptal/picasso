@@ -37,6 +37,7 @@ export default ({ palette }: Theme) =>
     },
     date: {
       flex: '0 0 auto',
+      minWidth: rem('84px'),
     },
     dateText: {
       lineHeight: rem('24px'),
