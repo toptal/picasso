@@ -1,8 +1,9 @@
 name: Visual Testing
 
+# TODO: remove the "FX-3787-update-external-dependencies-test" from branches
 on:
   push:
-    branches: [master]
+    branches: [master, FX-3787-update-external-dependencies-test]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -37,7 +38,7 @@ jobs:
         with:
           node-version: '16'
 
-      - uses: toptal/davinci-github-actions/yarn-install@v4.10.4
+      - uses: toptal/davinci-github-actions/yarn-install@FX-3787-update-external-dependencies
 
       - name: Happo Tests
         run: yarn happo:storybook

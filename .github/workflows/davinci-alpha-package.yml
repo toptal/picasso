@@ -63,7 +63,7 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v4.10.4
+        uses: toptal/davinci-github-actions/build-publish-alpha-package@FX-3787-update-external-dependencies
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
