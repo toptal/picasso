@@ -10,7 +10,7 @@ jobs:
     if: >
       github.event.issue.pull_request &&
       github.event.comment.body == '@toptal-bot run package:alpha-release'
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/standard']
     env:
       GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}

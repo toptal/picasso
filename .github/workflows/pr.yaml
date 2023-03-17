@@ -28,7 +28,7 @@ jobs:
   build-docker-image:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Build Picasso docker image
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     timeout-minutes: 45
 
     steps:
@@ -48,7 +48,7 @@ jobs:
   static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: PR Checks
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     timeout-minutes: 45
 
     steps:
@@ -95,7 +95,7 @@ jobs:
   storybook-visual-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Visual Tests
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     needs: [static-checks]
 
     steps:
@@ -129,7 +129,7 @@ jobs:
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Deploy Picasso docs
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     needs: [build-docker-image]
 
     steps:

@@ -22,7 +22,7 @@ jobs:
   storybook-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Tests
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     env:
       HAPPO_PROJECT: Picasso/Storybook
       HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}

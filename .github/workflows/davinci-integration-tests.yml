@@ -23,7 +23,7 @@ env:
 jobs:
   build-packages:
     name: Build packages
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -46,7 +46,7 @@ jobs:
 
   integration-tests:
     name: Run Integration Tests
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     needs: [build-packages]
     strategy:
       fail-fast: false
@@ -84,7 +84,7 @@ jobs:
 
   finalize-integration-tests:
     name: Finalize Integration Tests
-    runs-on: ubuntu-latest
+    runs-on: ['org/toptal', 'os/linux', 'arch/x64', 'size/large']
     needs: [integration-tests]
     steps:
       - name: Checkout project
