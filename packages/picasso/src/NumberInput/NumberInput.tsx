@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, ReactNode } from 'react'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import OutlinedInput, { Props as OutlinedInputProps } from '../OutlinedInput'
 import InputAdornment from '../InputAdornment'
@@ -31,6 +32,7 @@ export interface Props
   disabled?: boolean
   /** Callback invoked when `NumberInput` changes its state. */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  highlightAutofill?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -55,6 +57,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       icon,
       size,
       testIds,
+      highlightAutofill,
       ...rest
     } = props
 
@@ -94,7 +97,9 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
     return (
       <OutlinedInput
         classes={{
-          root: classes.root,
+          root: cx(classes.root, {
+            [classes.highlightAutofill]: highlightAutofill,
+          }),
           input: classes.input,
         }}
         inputProps={{
@@ -128,6 +133,7 @@ NumberInput.defaultProps = {
   min: -Infinity,
   max: Infinity,
   hideControls: false,
+  highlightAutofill: false,
   size: 'medium',
   status: 'default',
 }
