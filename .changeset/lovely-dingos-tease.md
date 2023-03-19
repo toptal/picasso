@@ -23,3 +23,7 @@
 ### Select
 
 - add `highlightAutofill` property
+
+### DatePicker
+
+- add `highlightAutofill` property
