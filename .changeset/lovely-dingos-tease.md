@@ -15,3 +15,7 @@
 ### PasswordInput
 
 - add `highlightAutofill` property
+
+### TagSelector
+
+- add `highlightAutofill` property
