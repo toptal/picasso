@@ -11,3 +11,7 @@
 ### Autocomplete
 
 - add `highlightAutofill` property
+
+### PasswordInput
+
+- add `highlightAutofill` property

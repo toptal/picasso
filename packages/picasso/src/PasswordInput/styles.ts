@@ -1,7 +1,11 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default ({ spacing }: Theme) =>
-  createStyles({
+import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
+
+export default (theme: Theme) => {
+  const { spacing } = theme
+
+  return createStyles({
     root: {
       paddingRight: 0,
       cursor: 'text',
@@ -14,7 +18,10 @@ export default ({ spacing }: Theme) =>
       },
     },
 
+    ...highlightAutofillStyles(theme),
+
     toggle: {
       marginRight: spacing(1),
     },
   })
+}
