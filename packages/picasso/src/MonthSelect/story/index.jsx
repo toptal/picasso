@@ -1,10 +1,10 @@
 import { MonthSelect } from '../MonthSelect'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Forms').createPage(
   'MonthSelect',
   `Month selector
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )

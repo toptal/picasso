@@ -1,7 +1,7 @@
 import { Dropzone } from '../Dropzone'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Forms').createPage(
   'Dropzone',
   `
   ${PicassoBook.createBaseDocsLink(

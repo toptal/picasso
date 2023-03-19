@@ -1,7 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import RichTextEditor from '../RichTextEditor'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Forms').createPage(
   'RichTextEditor',
   `
   ${PicassoBook.createBaseDocsLink(
