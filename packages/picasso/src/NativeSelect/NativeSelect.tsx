@@ -62,6 +62,7 @@ export const NativeSelect = documentable(
         limit,
         native,
         testIds,
+        highlightAutofill,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest
       } = props
@@ -130,6 +131,7 @@ export const NativeSelect = documentable(
           classes={{
             root: cx(classes.select, {
               [classes.placeholder]: !selection.isSelected(),
+              [classes.highlightAutofill]: highlightAutofill,
             }),
             select: cx({
               [classes.startAdornmentPadding]:

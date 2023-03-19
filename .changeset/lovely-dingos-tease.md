@@ -19,3 +19,7 @@
 ### TagSelector
 
 - add `highlightAutofill` property
+
+### Select
+
+- add `highlightAutofill` property

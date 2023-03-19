@@ -104,6 +104,7 @@ export interface SelectProps<
     limitFooter?: string
     searchInput?: string
   }
+  highlightAutofill?: boolean
 }
 
 export type ValueType = string | number
