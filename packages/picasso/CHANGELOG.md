@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.8.1
+
+### Patch Changes
+
+- [#3431](https://github.com/toptal/picasso/pull/3431) [`2d3a195f`](https://github.com/toptal/picasso/commit/2d3a195f1342348465ba20ad9d000988cd6895c6) Thanks [@ascrazy](https://github.com/ascrazy)! - ---
+
+  ### Modal
+
+  - Make scrollable shades properly apply on modals with dynamic content
+
 ## 31.8.0
 
 ### Minor Changes
