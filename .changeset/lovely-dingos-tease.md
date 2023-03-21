@@ -27,3 +27,7 @@
 ### DatePicker
 
 - add `highlightAutofill` property
+
+### TimePicker
+
+- add `highlightAutofill` property
