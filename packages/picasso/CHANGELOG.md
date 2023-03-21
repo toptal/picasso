@@ -1,5 +1,43 @@
 # Change Log
 
+## 31.9.0
+
+### Minor Changes
+
+- [#3439](https://github.com/toptal/picasso/pull/3439) [`28c98b23a`](https://github.com/toptal/picasso/commit/28c98b23ad837554059f0ff49fff521c483f1b38) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### NumberInput
+
+  - add `highlightAutofill` property
+
+  ### Autocomplete
+
+  - add `highlightAutofill` property
+
+  ### PasswordInput
+
+  - add `highlightAutofill` property
+
+  ### TagSelector
+
+  - add `highlightAutofill` property
+
+  ### Select
+
+  - add `highlightAutofill` property
+
+  ### DatePicker
+
+  - add `highlightAutofill` property
+
+  ### TimePicker
+
+  - add `highlightAutofill` property
+
+  ### RichTextEditor
+
+  - add `highlightAutofill` property
+
 ## 31.8.1
 
 ### Patch Changes
