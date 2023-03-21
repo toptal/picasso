@@ -4,9 +4,12 @@ import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../Input/styles'
 import '../Loader/styles'
+import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
 
-export default ({ palette }: Theme) =>
-  createStyles({
+export default (theme: Theme) => {
+  const { palette } = theme
+
+  return createStyles({
     root: {
       position: 'relative',
       display: 'inline-flex',
@@ -52,4 +55,6 @@ export default ({ palette }: Theme) =>
     endAdornmentPadding: {
       paddingRight: '3.5625rem',
     },
+    ...highlightAutofillStyles(theme),
   })
+}

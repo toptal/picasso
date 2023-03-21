@@ -128,6 +128,7 @@ export interface Props
     input?: string
     disableAutofillInput?: string
   }
+  highlightAutofill?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -177,6 +178,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       value,
       width = 'auto',
       disabled = false,
+      highlightAutofill,
       ...rest
     } = props
 
@@ -338,6 +340,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             autoComplete={enableAutofill ? autoComplete : autoComplete || 'off'}
             testIds={testIds}
             data-testid={testIds?.input}
+            highlightAutofill={highlightAutofill}
           />
         </Container>
         <div role='listbox'>
@@ -380,6 +383,7 @@ Autocomplete.defaultProps = {
   poweredByGoogle: false,
   disabled: false,
   status: 'default',
+  highlightAutofill: false,
 }
 
 Autocomplete.displayName = 'Autocomplete'

@@ -1,7 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import { AvatarUpload } from '../AvatarUpload'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Forms').createPage(
   'AvatarUpload',
   `
     Gets the image from file input and displays it in the Avatar component.

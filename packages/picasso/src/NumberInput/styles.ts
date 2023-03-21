@@ -1,6 +1,8 @@
-import { createStyles } from '@material-ui/core/styles'
+import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default () =>
+import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
+
+export default (theme: Theme) =>
   createStyles({
     root: {
       paddingRight: 0,
@@ -14,4 +16,5 @@ export default () =>
       },
       '-moz-appearance': 'textfield',
     },
+    ...highlightAutofillStyles(theme),
   })

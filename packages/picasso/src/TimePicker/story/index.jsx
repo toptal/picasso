@@ -1,10 +1,10 @@
 import { TimePicker } from '../TimePicker'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage(
+const page = PicassoBook.section('Forms').createPage(
   'TimePicker',
   `Time Picker component
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )

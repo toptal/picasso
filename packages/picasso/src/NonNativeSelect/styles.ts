@@ -6,9 +6,12 @@ import '../Input/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
 import '../Loader/styles'
+import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
 
-export default ({ palette }: Theme) =>
-  createStyles({
+export default (theme: Theme) => {
+  const { palette } = theme
+
+  return createStyles({
     root: {
       position: 'relative',
       display: 'inline-flex',
@@ -53,4 +56,6 @@ export default ({ palette }: Theme) =>
     placeholder: {
       color: palette.grey.main2,
     },
+    ...highlightAutofillStyles(theme),
   })
+}

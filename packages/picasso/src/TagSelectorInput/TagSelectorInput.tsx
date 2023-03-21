@@ -40,6 +40,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       enableReset,
       inputProps,
       testIds,
+      highlightAutofill,
       ...rest
     } = props
 
@@ -67,6 +68,9 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         className={cx(classes.inputBase, {
           [classes.withEndAdornment]: Boolean(endAdornment),
         })}
+        classes={{
+          root: cx({ [classes.highlightAutofill]: highlightAutofill }),
+        }}
         id={id}
         name={name}
         defaultValue={defaultValue}
@@ -101,6 +105,7 @@ TagSelectorInput.defaultProps = {
   multiline: false,
   width: 'auto',
   status: 'default',
+  highlightAutofill: false,
 }
 
 TagSelectorInput.displayName = 'TagSelectorInput'

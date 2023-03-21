@@ -45,7 +45,16 @@ export interface Props
 }
 
 export const TimePicker = (props: Props) => {
-  const { onChange, value, width, className, error, status, ...rest } = props
+  const {
+    onChange,
+    value,
+    width,
+    className,
+    error,
+    status,
+    highlightAutofill,
+    ...rest
+  } = props
 
   usePropDeprecationWarning({
     props,
@@ -80,6 +89,7 @@ export const TimePicker = (props: Props) => {
         width={width}
         status={error ? 'error' : status}
         className={cx(classes.root, className)}
+        highlightAutofill={highlightAutofill}
         inputProps={{
           className: classes.inputBase,
           ...rest,
@@ -88,8 +98,6 @@ export const TimePicker = (props: Props) => {
           <InputMask
             mask={inputMask}
             alwaysShowMask
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             maskPlaceholder='-'
             value={value}
             onChange={onChange}
@@ -107,6 +115,7 @@ export const TimePicker = (props: Props) => {
       className={cx(classes.root, className)}
       onChange={onChange}
       iconPosition='end'
+      highlightAutofill={highlightAutofill}
       icon={icon}
       width={width}
       status={error ? 'error' : status}

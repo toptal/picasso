@@ -115,6 +115,7 @@ export interface Props
   footerBackgroundColor?: string
   /** Shows orange dot indicator in days between a date range */
   indicatedIntervals?: { start: Date; end: Date }[]
+  highlightAutofill?: boolean
 }
 
 export const DatePicker = (props: Props) => {
@@ -146,6 +147,7 @@ export const DatePicker = (props: Props) => {
     footer,
     indicatedIntervals,
     footerBackgroundColor,
+    highlightAutofill,
     ...rest
   } = props
   const classes = useStyles()
@@ -395,6 +397,7 @@ export const DatePicker = (props: Props) => {
           width={width}
           testIds={testIds}
           data-testid={testIds?.input}
+          highlightAutofill={highlightAutofill}
         />
       </Container>
       {inputWrapperRef.current && (
@@ -448,6 +451,7 @@ DatePicker.defaultProps = {
   displayDateFormat: 'MMM d, yyyy',
   autoComplete: 'off',
   status: 'default',
+  highlightAutofill: false,
 }
 
 DatePicker.displayName = 'DatePicker'
