@@ -12,54 +12,18 @@ jest.mock('debounce', () => ({
   },
 }))
 
-interface currentProps {
-  scrollTop?: number
-  clientHeight?: number
-  scrollHeight?: number
-  addEventListener?: Function
-  removeEventListener?: Function
-}
-
-interface testRefProps {
-  current?: currentProps
-}
-
 describe('useScrollableShades', () => {
-  const windowAddEventListenerOriginal = window.addEventListener
-  const windowRemoveEventListenerOriginal = window.removeEventListener
-
-  beforeAll(() => {
-    window.addEventListener = jest.fn()
-    window.removeEventListener = jest.fn()
-  })
-
-  afterAll(() => {
-    window.addEventListener = windowAddEventListenerOriginal
-    window.removeEventListener = windowRemoveEventListenerOriginal
-  })
-
-  const getTestRef = (currentUpdates?: currentProps) => {
-    const testRef: testRefProps = {
-      current: currentUpdates
-        ? {
-            scrollTop: 0,
-            clientHeight: 0,
-            scrollHeight: 100,
-            addEventListener: jest.fn(),
-            removeEventListener: jest.fn(),
-            ...currentUpdates,
-          }
-        : undefined,
-    }
-
-    return testRef
+  const getTestRef = () => {
+    const el = document.createElement('div')    
+    
+    return {current: el}
   }
 
-  const renderScrollableShadesHook = (ref: testRefProps) => {
+  const renderScrollableShadesHook = (ref: RefObject<HTMLDivElement>) => {
     const {
       result: { current },
     } = renderHook(() =>
-      useScrollableShades(ref as unknown as RefObject<HTMLDivElement>)
+      useScrollableShades(ref)
     )
 
     return current
@@ -67,7 +31,7 @@ describe('useScrollableShades', () => {
 
   describe('when no current object', () => {
     it('returns top = false and bottom = false', () => {
-      const testRef = getTestRef(undefined)
+      const testRef = getTestRef()
       const { top, bottom } = renderScrollableShadesHook(testRef)
 
       expect(top).toBeFalsy()
@@ -77,10 +41,10 @@ describe('useScrollableShades', () => {
 
   describe('when clientHeight === scrollHeight', () => {
     it('returns top = false and bottom = false', () => {
-      const testRef = getTestRef({
-        clientHeight: 100,
-        scrollHeight: 100,
-      })
+      const testRef = getTestRef()
+
+      jest.spyOn(testRef.current, 'clientHeight', 'get').mockReturnValue(100)
+      jest.spyOn(testRef.current, 'scrollHeight', 'get').mockReturnValue(100)
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
 
@@ -91,11 +55,11 @@ describe('useScrollableShades', () => {
 
   describe('when sum of scrollTop and clientHeight less then scrollHeight', () => {
     it('returns top = true and bottom = true', () => {
-      const testRef = getTestRef({
-        scrollTop: 10,
-        clientHeight: 50,
-        scrollHeight: 100,
-      })
+      const testRef = getTestRef()
+
+      jest.spyOn(testRef.current, 'scrollTop', 'get').mockReturnValue(10)
+      jest.spyOn(testRef.current, 'clientHeight', 'get').mockReturnValue(50)
+      jest.spyOn(testRef.current, 'scrollHeight', 'get').mockReturnValue(100)
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
 
@@ -106,11 +70,11 @@ describe('useScrollableShades', () => {
 
   describe('when sum of scrollTop and clientHeight not less then scrollHeight', () => {
     it('returns top = true and bottom = false', () => {
-      const testRef = getTestRef({
-        scrollTop: 50,
-        clientHeight: 50,
-        scrollHeight: 100,
-      })
+      const testRef = getTestRef()
+
+      jest.spyOn(testRef.current, 'scrollTop', 'get').mockReturnValue(50)
+      jest.spyOn(testRef.current, 'clientHeight', 'get').mockReturnValue(50)
+      jest.spyOn(testRef.current, 'scrollHeight', 'get').mockReturnValue(100)
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
 
@@ -121,11 +85,11 @@ describe('useScrollableShades', () => {
 
   describe('when scrollTop gives an edge value for a zoomed view', () => {
     it('returns top = true and bottom = false', () => {
-      const testRef = getTestRef({
-        scrollTop: 49.654, // may give a bug without rounding
-        clientHeight: 50,
-        scrollHeight: 100,
-      })
+      const testRef = getTestRef()
+
+      jest.spyOn(testRef.current, 'scrollTop', 'get').mockReturnValue(49.654)
+      jest.spyOn(testRef.current, 'clientHeight', 'get').mockReturnValue(50)
+      jest.spyOn(testRef.current, 'scrollHeight', 'get').mockReturnValue(100)
 
       const { top, bottom } = renderScrollableShadesHook(testRef)
 
