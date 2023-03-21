@@ -48,7 +48,7 @@
     "hast-util-to-html": "^7.1.3",
     "quill": "^1.3.7",
     "quill-paste-smart": "^1.4.9",
-    "react-content-loader": "^6.2.0",
+    "react-content-loader": "^6.2.1",
     "react-dropzone": "^11.4.0",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-router-dom": "^5.2.0",
