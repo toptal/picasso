@@ -1,8 +1,12 @@
 import { outline } from '@toptal/picasso-shared'
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-export default ({ palette, sizes }: Theme) =>
-  createStyles({
+import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
+
+export default (theme: Theme) => {
+  const { palette, sizes } = theme
+
+  return createStyles({
     editorWrapper: {
       position: 'relative',
       borderRadius: sizes.borderRadius.small,
@@ -32,4 +36,7 @@ export default ({ palette, sizes }: Theme) =>
       borderColor: palette.grey.main2,
       ...outline(palette.primary.main),
     },
+
+    ...highlightAutofillStyles(theme),
   })
+}

@@ -31,3 +31,7 @@
 ### TimePicker
 
 - add `highlightAutofill` property
+
+### RichTextEditor
+
+- add `highlightAutofill` property
