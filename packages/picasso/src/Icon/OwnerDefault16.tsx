@@ -14,7 +14,7 @@ export interface Props extends StandardProps {
   base?: number
 }
 const useStyles = makeStyles(styles, {
-  name: 'PicassoSvgOwnerDefault16',
+  name: 'PicassoSvgOwnerDefault16'
 })
 const SvgOwnerDefault16 = forwardRef(function SvgOwnerDefault16(
   props: Props,
@@ -26,7 +26,7 @@ const SvgOwnerDefault16 = forwardRef(function SvgOwnerDefault16(
     color,
     scale,
     base,
-    'data-testid': testId,
+    'data-testid': testId
   } = props
   const classes: Record<string, string> = useStyles(props)
   const classNames = [classes.root, className]
@@ -40,7 +40,7 @@ const SvgOwnerDefault16 = forwardRef(function SvgOwnerDefault16(
   const svgStyle = {
     minWidth: `${scaledSize}px`,
     minHeight: `${scaledSize}px`,
-    ...style,
+    ...style
   }
 
   return (
