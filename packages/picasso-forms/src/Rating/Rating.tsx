@@ -30,7 +30,12 @@ const Stars = (props: RatingStarsProps) => {
         ) : null
       }
     >
-      {inputProps => <PicassoRating.Stars {...inputProps} />}
+      {({
+        // omit 'highlight' as it is used only for classic inputs
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        highlight,
+        ...inputProps
+      }) => <PicassoRating.Stars {...inputProps} />}
     </PicassoField>
   )
 }

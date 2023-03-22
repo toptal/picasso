@@ -30,7 +30,12 @@ export const RadioGroup = (props: Props) => {
           ) : null
         }
       >
-        {radioGroupProps => (
+        {({
+          // omit 'highlight' as it is used only for classic inputs
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          highlight,
+          ...radioGroupProps
+        }) => (
           <PicassoRadio.Group {...radioGroupProps}>
             {children}
           </PicassoRadio.Group>

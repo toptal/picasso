@@ -46,7 +46,14 @@ const ButtonCheckbox = ({ name, value, required, ...restProps }: Props) => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       name={name!}
     >
-      {(input: ButtonCheckboxProps) => <Button.Checkbox {...input} />}
+      {({
+        // omit 'highlight' as it is used only for classic inputs
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        highlight,
+        ...input
+      }: ButtonCheckboxProps & { highlight?: 'autofill' }) => (
+        <Button.Checkbox {...input} />
+      )}
     </PicassoField>
   )
 }
