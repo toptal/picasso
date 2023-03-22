@@ -16,11 +16,14 @@ COMPONENTS_FULL_PATH="$BASE_PATH/$COMPONENTS_PATH"
 
 echo "Converting svg into React components ..."
 svgr \
+--replace-attr-values "#000=currentColor" \
+--replace-attr-values "#000000=currentColor" \
+--replace-attr-values "#455065=currentColor" \
 --out-dir $COMPONENTS_PATH \
 --ext tsx \
 --typescript \
 --template $COMPONENTS_PATH/_generatorTemplate.js \
---expand-props none -- $COMPONENTS_PATH/svg
+--expand-props none -- $COMPONENTS_PATH/svg \
 
 # rename index.tsx --> index.ts because svgr generates index with .tsx extension
 mv $COMPONENTS_FULL_PATH/index.tsx $COMPONENTS_FULL_PATH/index.ts

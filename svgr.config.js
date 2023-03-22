@@ -7,59 +7,39 @@ const ICON_CLEANUP_CONFIG = {
       '#204ecf': 'var(--logo-emblem-color)',
     },
   },
-  '/picasso-pictograms/': {
-    skip: true
-  }
 }
 
-const getCleanupConfig = (svgPath) => {
+const getCleanupConfig = svgPath => {
   for (const [key, value] of Object.entries(ICON_CLEANUP_CONFIG)) {
     if (svgPath.indexOf(key) > -1) {
       return value
     }
   }
 
-  return {}
+  return
 }
 
-const cleanupSketch = (doc, params, extra) => {
+const replaceColorsInLogo = (doc, params, extra) => {
   const config = getCleanupConfig(extra.path)
-  if (config.skip) {
+
+  if (!config) {
     return doc
   }
 
   const svg = doc.querySelector('svg')
-  let paths = null
+  const paths = svg.querySelectorAll('path')
 
-  if (config.mergePaths !== false) {
-    paths = svg.querySelector('path')
-  } else {
-    paths = svg.querySelectorAll('path')
-  }
+  const replaceColor = node => {
+    const color = node.attr('fill')
+    const currentColor = color && color.value.toLowerCase()
 
-  const cleanupAttributes = node => {
-    node.removeAttr('id')
-
-    if (config.removeFill !== false) {
-      node.removeAttr('fill')
-    } else {
-      // attempt to replace colors
-      const color = node.attr('fill')
-      const currentColor = color && color.value.toLowerCase()
-
-      if (color && config.replaceColors && config.replaceColors[currentColor]) {
-        color.value = config.replaceColors[currentColor]
-      }
+    if (color && config.replaceColors && config.replaceColors[currentColor]) {
+      color.value = config.replaceColors[currentColor]
     }
   }
 
-  if (config.mergePaths !== false) {
-    cleanupAttributes(paths)
-    svg.children = [paths]
-  } else {
-    paths.forEach(cleanupAttributes)
-    svg.children = paths
-  }
+  paths.forEach(replaceColor)
+  svg.children = paths
 
   return doc
 }
@@ -75,21 +55,24 @@ module.exports = {
           },
         },
       },
+
       {
         name: 'removeDimensions',
         active: true,
       },
       {
-        name: 'removeAttrs',
-        params: {
-          attrs: '(stroke|width|height|xmlns.*)',
-        },
+        name: 'removeXMLNS',
+        active: true,
       },
       {
-        name: 'cleanupSketch',
+        name: 'prefixIds',
+        active: true,
+      },
+      {
+        name: 'replaceColorsInLogo',
         type: 'full',
-        description: 'Cleanup svg after export from sketch',
-        fn: cleanupSketch,
+        description: 'Replace colors in Logo',
+        fn: replaceColorsInLogo,
       },
     ],
   },

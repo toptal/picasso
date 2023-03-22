@@ -3,7 +3,6 @@ import { Theme, createStyles } from '@material-ui/core'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
-      fill: 'currentColor',
       display: 'inline-block',
       fontSize: 'inherit',
       height: '1em',
