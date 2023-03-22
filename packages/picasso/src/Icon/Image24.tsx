@@ -52,7 +52,11 @@ const SvgImage24 = forwardRef(function SvgImage24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M0 2h24v19H0V2Zm1 1v17h22V3H1Z' />
+      <g fill='#455065' fill-rule='evenodd' clip-rule='evenodd'>
+        <path d='M0 2h24v19H0V2Zm1 1v17h22V3H1Z' />
+        <path d='m18.442 6.813 5.37 4.297-.624.78-4.63-3.703-7.939 8.932-4.083-2.042-5.759 3.839-.554-.832 6.241-4.161 3.917 1.958 8.06-9.068Z' />
+        <path d='M8 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM5 9a3 3 0 1 1 6 0 3 3 0 0 1-6 0Z' />
+      </g>
     </svg>
   )
 })
