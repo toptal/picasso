@@ -263,3 +263,6 @@ however, you may need custom validators for more complex types of fields.
     description: 'Showcase how to use auto-save functionality.',
     takeScreenshot: false,
   })
+  .addExample('Form/story/HighlightAutofill.example.tsx', {
+    title: 'Highlight autofill',
+  })

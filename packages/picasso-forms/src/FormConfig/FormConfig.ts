@@ -24,9 +24,12 @@ export type FormConfigProps = (
   | NoValidationConfig
 ) & {
   requiredVariant?: RequiredVariant
+  highlightAutofill?: boolean
 }
 
-export const FormConfigContext = createContext<FormConfigProps>({})
+export const FormConfigContext = createContext<FormConfigProps>({
+  highlightAutofill: false,
+})
 export const FormConfigProvider = FormConfigContext.Provider
 
 export const useFormConfig = () => useContext(FormConfigContext)
