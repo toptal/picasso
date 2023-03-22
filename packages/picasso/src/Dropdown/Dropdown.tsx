@@ -11,7 +11,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import { PopperPlacementType } from '@material-ui/core/Popper'
 import { PopperOptions } from 'popper.js'
-import RootRef from '@material-ui/core/RootRef'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import {
@@ -115,7 +114,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   } = props
   const classes = useStyles(props)
 
-  const contentRef = useRef<HTMLElement>()
+  const contentRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -181,10 +180,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 
-    if (firstChild && firstChild.focus) {
+    if (firstChild && firstChild.firstChild?.focus) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      return firstChild.focus()
+      return firstChild.firstChild.focus()
     }
 
     if (contentRef.current.focus) {
@@ -270,7 +269,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                   elevation={2}
                 >
                   <DropdownContext.Provider value={context}>
-                    <RootRef rootRef={contentRef}>{content}</RootRef>
+                    <div ref={contentRef}>{content}</div>
                   </DropdownContext.Provider>
                 </Paper>
               </Grow>

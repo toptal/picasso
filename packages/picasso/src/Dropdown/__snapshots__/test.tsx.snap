@@ -50,84 +50,86 @@ exports[`Dropdown should render menu 1`] = `
             class="MuiPaper-root PicassoDropdown-content MuiPaper-elevation2"
             style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
-            <ul
-              class="MuiList-root PicassoMenu-root"
-              role="menu"
-              tabindex="-1"
-            >
-              <li
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                role="menuitem"
-                tabindex="0"
-              >
-                <div
-                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
-                >
-                  <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
-                  >
-                    <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-                    >
-                      <span
-                        class="PicassoMenuItem-stringContent"
-                      >
-                        Item1
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                role="menuitem"
+            <div>
+              <ul
+                class="MuiList-root PicassoMenu-root"
+                role="menu"
                 tabindex="-1"
               >
-                <div
-                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                <li
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  role="menuitem"
+                  tabindex="0"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                     >
-                      <span
-                        class="PicassoMenuItem-stringContent"
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
-                        Item2
-                      </span>
+                        <span
+                          class="PicassoMenuItem-stringContent"
+                        >
+                          Item1
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <div
-                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                </li>
+                <li
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  role="menuitem"
+                  tabindex="-1"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                     >
-                      <span
-                        class="PicassoMenuItem-stringContent"
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
-                        Item3
-                      </span>
+                        <span
+                          class="PicassoMenuItem-stringContent"
+                        >
+                          Item2
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+                <li
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  role="menuitem"
+                  tabindex="-1"
+                >
+                  <div
+                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                  >
+                    <div
+                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                    >
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      >
+                        <span
+                          class="PicassoMenuItem-stringContent"
+                        >
+                          Item3
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -169,84 +171,86 @@ exports[`Dropdown should render menu with focus 1`] = `
             class="MuiPaper-root PicassoDropdown-content MuiPaper-elevation2"
             style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
-            <ul
-              class="MuiList-root PicassoMenu-root"
-              role="menu"
-              tabindex="-1"
-            >
-              <li
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
-                role="menuitem"
-                tabindex="0"
-              >
-                <div
-                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
-                >
-                  <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
-                  >
-                    <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-                    >
-                      <span
-                        class="PicassoMenuItem-stringContent"
-                      >
-                        Item1
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                role="menuitem"
+            <div>
+              <ul
+                class="MuiList-root PicassoMenu-root"
+                role="menu"
                 tabindex="-1"
               >
-                <div
-                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                <li
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
+                  role="menuitem"
+                  tabindex="0"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                     >
-                      <span
-                        class="PicassoMenuItem-stringContent"
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
-                        Item2
-                      </span>
+                        <span
+                          class="PicassoMenuItem-stringContent"
+                        >
+                          Item1
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li
-                aria-disabled="false"
-                class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
-                role="menuitem"
-                tabindex="-1"
-              >
-                <div
-                  class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                </li>
+                <li
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  role="menuitem"
+                  tabindex="-1"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
                   >
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
                     >
-                      <span
-                        class="PicassoMenuItem-stringContent"
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
-                        Item3
-                      </span>
+                        <span
+                          class="PicassoMenuItem-stringContent"
+                        >
+                          Item2
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            </ul>
+                </li>
+                <li
+                  aria-disabled="false"
+                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  role="menuitem"
+                  tabindex="-1"
+                >
+                  <div
+                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                  >
+                    <div
+                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                    >
+                      <div
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                      >
+                        <span
+                          class="PicassoMenuItem-stringContent"
+                        >
+                          Item3
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
