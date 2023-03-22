@@ -45,18 +45,18 @@ const SvgImage16 = forwardRef(function SvgImage16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
       fill='none'
+      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <g fill='#455065' fill-rule='evenodd' clip-rule='evenodd'>
-        <path d='M0 1h16v13H0V1Zm1 1v11h14V2H1Z' />
-        <path d='m12.5 3.793 3.354 3.354-.708.707L12.5 5.207l-5.901 5.901-2.046-1.023L.8 12.9l-.6-.8 4.247-3.185 1.954.977L12.5 3.793Z' />
-        <path d='M5 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM3 6a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z' />
-      </g>
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M16 1H0v13h16V1ZM1 11.5V2h14v4.293l-2.5-2.5-6.099 6.099-1.954-.977L1 11.5Zm0 1.25V13h14V7.707l-2.5-2.5-5.901 5.902-2.046-1.024L1 12.75ZM5 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM3 6a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z'
+      />
     </svg>
   )
 })
