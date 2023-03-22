@@ -1,20 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>116E5865-A94D-4805-9A8E-C5D6DE151B36@1x</title>
-    <defs>
-        <path d="M7.5,1 C8.88071187,1 10,2.11928813 10,3.5 C10,4.70932545 9.14133817,5.71809967 8.00043449,5.94990271 L8,8 L13,8 L13,11 L15,11 L15,16 L10,16 L10,11 L12,11 L12,9 L3,9 L3,11 L5,11 L5,16 L0,16 L0,11 L2,11 L2,8 L7,8 L7.00057405,5.9501074 C5.85916789,5.7186941 5,4.70968176 5,3.5 C5,2.11928813 6.11928813,1 7.5,1 Z M14,12 L11,12 L11,15 L14,15 L14,12 Z M4,12 L1,12 L1,15 L4,15 L4,12 Z M7.5,2 C6.67157288,2 6,2.67157288 6,3.5 C6,4.32842712 6.67157288,5 7.5,5 C8.32842712,5 9,4.32842712 9,3.5 C9,2.67157288 8.32842712,2 7.5,2 Z" id="path-1"></path>
-    </defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Icons-/-Misc-/-16-/-Function">
-            <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-            </mask>
-            <use id="Combined-Shape" fill="#262D3D" fill-rule="nonzero" xlink:href="#path-1"></use>
-            <g id="Group" mask="url(#mask-2)" fill="#455065">
-                <g id="Colors-/-307-Gray-Dark">
-                    <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C6.52724 0 5.33333 1.19391 5.33333 2.66667c0 1.29011.91614 2.36624 2.13334 2.61332v2.18668H2.13333v3.20003H0V16h5.33333v-5.3333H3.2V8.53333H12.8v2.13337h-2.1333V16H16v-5.3333h-2.1333V7.46667H8.53333V5.27999c1.2172-.24708 2.13337-1.32321 2.13337-2.61332C10.6667 1.19391 9.47276 0 8 0Zm.00002 4.26667c.88366 0 1.6-.71635 1.6-1.6 0-.88366-.71634-1.6-1.6-1.6-.88366 0-1.6.71634-1.6 1.6 0 .88365.71634 1.6 1.6 1.6ZM1.06667 11.7333h3.2v3.2h-3.2v-3.2Zm10.66663 0h3.2v3.2h-3.2v-3.2Z" fill="#455065"/>
 </svg>
