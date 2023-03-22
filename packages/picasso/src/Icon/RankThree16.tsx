@@ -51,7 +51,25 @@ const SvgRankThree16 = forwardRef(function SvgRankThree16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m8 8.882 6.198 4.508-.588.808L8 10.118l-5.61 4.08-.588-.808L8 8.882Zm0-4 6.198 4.508-.588.808L8 6.118l-5.61 4.08-.588-.808L8 4.882Zm0-4 6.198 4.508-.588.808L8 2.118l-5.61 4.08-.588-.808L8 .882Z' />
+      <defs>
+        <path
+          d='m8 8.882 6.198 4.508-.588.808L8 10.118l-5.61 4.08-.588-.808L8 8.882Zm0-4 6.198 4.508-.588.808L8 6.118l-5.61 4.08-.588-.808L8 4.882Zm0-4 6.198 4.508-.588.808L8 2.118l-5.61 4.08-.588-.808L8 .882Z'
+          id='rankThree16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='rankThree16_svg__b' fill='#fff'>
+          <use xlinkHref='#rankThree16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#rankThree16_svg__a'
+        />
+        <g mask='url(#rankThree16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

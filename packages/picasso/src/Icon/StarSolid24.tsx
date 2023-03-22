@@ -51,7 +51,25 @@ const SvgStarSolid24 = forwardRef(function SvgStarSolid24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m12 18.5-6.466 3.4 1.235-7.2-5.23-5.1 7.228-1.05L12 2l3.233 6.55 7.229 1.05-5.231 5.1 1.235 7.2z' />
+      <defs>
+        <path
+          id='starSolid24_svg__a'
+          d='m12 18.5-6.466 3.4 1.235-7.2-5.23-5.1 7.228-1.05L12 2l3.233 6.55 7.229 1.05-5.231 5.1 1.235 7.2z'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='starSolid24_svg__b' fill='#fff'>
+          <use xlinkHref='#starSolid24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#starSolid24_svg__a'
+        />
+        <g mask='url(#starSolid24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

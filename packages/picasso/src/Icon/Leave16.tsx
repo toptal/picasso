@@ -51,7 +51,25 @@ const SvgLeave16 = forwardRef(function SvgLeave16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1 2v13h4v1H0V1h5v1H1Zm12.293 7H5V8h8.293l-2.5-2.5.707-.707 3 3 .707.707-3.707 3.707-.707-.707 2.5-2.5Z' />
+      <defs>
+        <path
+          d='M1 2v13h4v1H0V1h5v1H1Zm12.293 7H5V8h8.293l-2.5-2.5.707-.707 3 3 .707.707-3.707 3.707-.707-.707 2.5-2.5Z'
+          id='leave16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='leave16_svg__b' fill='#fff'>
+          <use xlinkHref='#leave16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#leave16_svg__a'
+        />
+        <g mask='url(#leave16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

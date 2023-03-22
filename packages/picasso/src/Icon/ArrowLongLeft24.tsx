@@ -51,7 +51,25 @@ const SvgArrowLongLeft24 = forwardRef(function SvgArrowLongLeft24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m8.5 6.793.707.707-4.5 4.5H21v1H4.708l4.5 4.5-.708.707L2.793 12.5l.707-.707 5-5Z' />
+      <defs>
+        <path
+          d='m8.5 6.793.707.707-4.5 4.5H21v1H4.708l4.5 4.5-.708.707L2.793 12.5l.707-.707 5-5Z'
+          id='arrowLongLeft24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='arrowLongLeft24_svg__b' fill='#fff'>
+          <use xlinkHref='#arrowLongLeft24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#arrowLongLeft24_svg__a'
+        />
+        <g mask='url(#arrowLongLeft24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

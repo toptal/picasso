@@ -51,7 +51,21 @@ const SvgExclamationSolid24 = forwardRef(function SvgExclamationSolid24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-10a1 1 0 0 0-1 1v7a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1Z' />
+      <defs>
+        <path
+          d='M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-10a1 1 0 0 0-1 1v7a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1Z'
+          id='exclamationSolid24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='exclamationSolid24_svg__b' fill='#fff'>
+          <use xlinkHref='#exclamationSolid24_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#exclamationSolid24_svg__a' />
+        <g mask='url(#exclamationSolid24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgFullscreen24 = forwardRef(function SvgFullscreen24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3 18h4v1H2v-5h1v4ZM22 6v4h-1V6h-4V5h5v1ZM0 3h24v18H0V3Zm1 1v16h22V4H1Z' />
+      <defs>
+        <path
+          d='M3 18h4v1H2v-5h1v4ZM22 6v4h-1V6h-4V5h5v1ZM0 3h24v18H0V3Zm1 1v16h22V4H1Z'
+          id='fullscreen24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='fullscreen24_svg__b' fill='#fff'>
+          <use xlinkHref='#fullscreen24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#fullscreen24_svg__a'
+        />
+        <g mask='url(#fullscreen24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

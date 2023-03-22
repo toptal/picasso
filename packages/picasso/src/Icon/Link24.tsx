@@ -51,7 +51,28 @@ const SvgLink24 = forwardRef(function SvgLink24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4 15a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4h3a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4h-9a4 4 0 0 1-4-4H4Zm16-5h-3v1a4 4 0 0 1-4 4H8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-2a3 3 0 0 0-3-3Zm-7-4H4a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h3v-1a4 4 0 0 1 4-4h5a3 3 0 0 0-3-3Zm3 4h-5a3 3 0 0 0-3 3v1h5a3 3 0 0 0 3-3v-1Z' />
+      <defs>
+        <path
+          d='M4 15a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4h3a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4h-9a4 4 0 0 1-4-4H4Zm16-5h-3v1a4 4 0 0 1-4 4H8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-2a3 3 0 0 0-3-3Zm-7-4H4a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h3v-1a4 4 0 0 1 4-4h5a3 3 0 0 0-3-3Zm3 4h-5a3 3 0 0 0-3 3v1h5a3 3 0 0 0 3-3v-1Z'
+          id='link24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <path fill='#FFF' d='M-60-590h1440V679H-60z' />
+        <g transform='translate(0 -5)'>
+          <mask id='link24_svg__b' fill='#fff'>
+            <use xlinkHref='#link24_svg__a' />
+          </mask>
+          <use
+            fill='currentColor'
+            fillRule='nonzero'
+            xlinkHref='#link24_svg__a'
+          />
+          <g mask='url(#link24_svg__b)' fill='currentColor'>
+            <path d='M0 0h24v24H0z' />
+          </g>
+        </g>
+      </g>
     </svg>
   )
 })

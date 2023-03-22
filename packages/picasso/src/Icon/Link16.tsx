@@ -51,7 +51,28 @@ const SvgLink16 = forwardRef(function SvgLink16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3 10a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h5a3 3 0 0 1 3 3h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3H3Zm10-3h-2a3 3 0 0 1-3 3H6a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2ZM8 4H3a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h2a3 3 0 0 1 3-3h2a2 2 0 0 0-2-2Zm2 3H8a2 2 0 0 0-2 2h2a2 2 0 0 0 2-2Z' />
+      <defs>
+        <path
+          d='M3 10a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h5a3 3 0 0 1 3 3h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3H3Zm10-3h-2a3 3 0 0 1-3 3H6a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2ZM8 4H3a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h2a3 3 0 0 1 3-3h2a2 2 0 0 0-2-2Zm2 3H8a2 2 0 0 0-2 2h2a2 2 0 0 0 2-2Z'
+          id='link16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <path fill='#FFF' d='M-51-592h1440V677H-51z' />
+        <g transform='translate(0 -3)'>
+          <mask id='link16_svg__b' fill='#fff'>
+            <use xlinkHref='#link16_svg__a' />
+          </mask>
+          <use
+            fill='currentColor'
+            fillRule='nonzero'
+            xlinkHref='#link16_svg__a'
+          />
+          <g mask='url(#link16_svg__b)' fill='currentColor'>
+            <path d='M0 0h16v16H0z' />
+          </g>
+        </g>
+      </g>
     </svg>
   )
 })

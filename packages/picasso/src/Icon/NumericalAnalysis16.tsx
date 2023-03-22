@@ -51,7 +51,25 @@ const SvgNumericalAnalysis16 = forwardRef(function SvgNumericalAnalysis16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M16 0v16H0V0h16Zm-1 1H1v14h14V1Zm-3 12v1h-1v-1h1ZM5.914 9.379l.707.707L5.207 11.5l1.414 1.414-.707.707L4.5 12.207l-1.414 1.414-.707-.707L3.793 11.5l-1.414-1.414.707-.707L4.5 10.793l1.414-1.414ZM14 11v1H9v-1h5Zm-2-2v1h-1V9h1ZM5 2v2h2v1H5v2H4V5H2V4h2V2h1Zm9 2v1H9V4h5Z' />
+      <defs>
+        <path
+          d='M16 0v16H0V0h16Zm-1 1H1v14h14V1Zm-3 12v1h-1v-1h1ZM5.914 9.379l.707.707L5.207 11.5l1.414 1.414-.707.707L4.5 12.207l-1.414 1.414-.707-.707L3.793 11.5l-1.414-1.414.707-.707L4.5 10.793l1.414-1.414ZM14 11v1H9v-1h5Zm-2-2v1h-1V9h1ZM5 2v2h2v1H5v2H4V5H2V4h2V2h1Zm9 2v1H9V4h5Z'
+          id='numericalAnalysis16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='numericalAnalysis16_svg__b' fill='#fff'>
+          <use xlinkHref='#numericalAnalysis16_svg__a' />
+        </mask>
+        <use
+          fill='#979797'
+          fillRule='nonzero'
+          xlinkHref='#numericalAnalysis16_svg__a'
+        />
+        <g mask='url(#numericalAnalysis16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

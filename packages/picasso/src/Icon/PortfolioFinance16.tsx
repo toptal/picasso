@@ -51,7 +51,25 @@ const SvgPortfolioFinance16 = forwardRef(function SvgPortfolioFinance16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M14.883 10.441 16 11l-8 4-8-4 1.117-.559L8 13.882l6.883-3.44Zm0-3L16 8l-8 4-8-4 1.117-.559L8 10.882l6.883-3.44ZM8 1l8 4-8 4-8-4 8-4Zm0 1.118L2.236 5 8 7.882 13.764 5 8 2.118Z' />
+      <defs>
+        <path
+          d='M14.883 10.441 16 11l-8 4-8-4 1.117-.559L8 13.882l6.883-3.44Zm0-3L16 8l-8 4-8-4 1.117-.559L8 10.882l6.883-3.44ZM8 1l8 4-8 4-8-4 8-4Zm0 1.118L2.236 5 8 7.882 13.764 5 8 2.118Z'
+          id='portfolioFinance16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='portfolioFinance16_svg__b' fill='#fff'>
+          <use xlinkHref='#portfolioFinance16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#portfolioFinance16_svg__a'
+        />
+        <g mask='url(#portfolioFinance16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

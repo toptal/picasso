@@ -51,7 +51,25 @@ const SvgCommission24 = forwardRef(function SvgCommission24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm0 1C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2Zm4.5 4.793.707.707L7.5 17.207l-.707-.707L16.5 6.793ZM15 13a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM9 7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z' />
+      <defs>
+        <path
+          d='M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm0 1C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2Zm4.5 4.793.707.707L7.5 17.207l-.707-.707L16.5 6.793ZM15 13a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM9 7a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z'
+          id='commission24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='commission24_svg__b' fill='#fff'>
+          <use xlinkHref='#commission24_svg__a' />
+        </mask>
+        <use
+          fill='#979797'
+          fillRule='nonzero'
+          xlinkHref='#commission24_svg__a'
+        />
+        <g mask='url(#commission24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

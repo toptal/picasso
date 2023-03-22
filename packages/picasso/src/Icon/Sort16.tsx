@@ -51,7 +51,25 @@ const SvgSort16 = forwardRef(function SvgSort16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1ZM11.5.793 15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793Z' />
+      <defs>
+        <path
+          d='M5 5v8.292l2.5-2.5.707.708L4.5 15.207l-.707-.707-3-3 .707-.707 2.5 2.5V5h1ZM11.5.793 15.207 4.5l-.707.707-2.5-2.5V11h-1V2.707l-2.5 2.5-.707-.707 3-3L11.5.793Z'
+          id='sort16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='sort16_svg__b' fill='#fff'>
+          <use xlinkHref='#sort16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#sort16_svg__a'
+        />
+        <g mask='url(#sort16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

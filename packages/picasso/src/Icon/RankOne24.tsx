@@ -51,7 +51,25 @@ const SvgRankOne24 = forwardRef(function SvgRankOne24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3.797 14.422 12 7.86l8.203 6.562-.625.78L12 9.14l-7.578 6.063z' />
+      <defs>
+        <path
+          id='rankOne24_svg__a'
+          d='M3.797 14.422 12 7.86l8.203 6.562-.625.78L12 9.14l-7.578 6.063z'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='rankOne24_svg__b' fill='#fff'>
+          <use xlinkHref='#rankOne24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#rankOne24_svg__a'
+        />
+        <g mask='url(#rankOne24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

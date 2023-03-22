@@ -51,7 +51,25 @@ const SvgChat16 = forwardRef(function SvgChat16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 5h3v7h-1l-3 3v-3H7v-2h1v1h5v1.586L14.586 11H15V6h-2V5ZM0 1h12v8H5v3L2 9H0V1Zm1 1v6h1.414L4 9.586V8h7V2H1Z' />
+      <defs>
+        <path
+          d='M13 5h3v7h-1l-3 3v-3H7v-2h1v1h5v1.586L14.586 11H15V6h-2V5ZM0 1h12v8H5v3L2 9H0V1Zm1 1v6h1.414L4 9.586V8h7V2H1Z'
+          id='chat16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='chat16_svg__b' fill='#fff'>
+          <use xlinkHref='#chat16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#chat16_svg__a'
+        />
+        <g mask='url(#chat16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

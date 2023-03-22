@@ -51,7 +51,21 @@ const SvgItalic16 = forwardRef(function SvgItalic16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 1v1H9.897L7.128 14H9v1H4v-1h2.102L8.871 2H7V1h5Z' />
+      <defs>
+        <path
+          d='M12 1v1H9.897L7.128 14H9v1H4v-1h2.102L8.871 2H7V1h5Z'
+          id='Italic16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='Italic16_svg__b' fill='#fff'>
+          <use xlinkHref='#Italic16_svg__a' />
+        </mask>
+        <use fill='#D8D8D8' xlinkHref='#Italic16_svg__a' />
+        <g mask='url(#Italic16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

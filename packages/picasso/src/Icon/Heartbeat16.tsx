@@ -51,7 +51,25 @@ const SvgHeartbeat16 = forwardRef(function SvgHeartbeat16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4.589 8 6 .95l2.025 10.127 1.946-8.75L11.39 8H16v1h-5.388l-.583-2.325-2.055 9.246L6 6.05 5.41 9H0V8z' />
+      <defs>
+        <path
+          id='heartbeat16_svg__a'
+          d='M4.589 8 6 .95l2.025 10.127 1.946-8.75L11.39 8H16v1h-5.388l-.583-2.325-2.055 9.246L6 6.05 5.41 9H0V8z'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='heartbeat16_svg__b' fill='#fff'>
+          <use xlinkHref='#heartbeat16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#heartbeat16_svg__a'
+        />
+        <g mask='url(#heartbeat16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

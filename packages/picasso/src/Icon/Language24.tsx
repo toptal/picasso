@@ -51,7 +51,25 @@ const SvgLanguage24 = forwardRef(function SvgLanguage24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m8 18-5 5v-5H1V1h22v17H8Zm-4 2.586L7.586 17H22V2H2v15h2v3.586ZM16.437 14h-1.235l-.767-1.924h-4.316L9.352 14H8.117l3.484-8.671h1.339L16.437 14Zm-2.327-2.886-1.833-4.667-1.846 4.667h3.679Z' />
+      <defs>
+        <path
+          d='m8 18-5 5v-5H1V1h22v17H8Zm-4 2.586L7.586 17H22V2H2v15h2v3.586ZM16.437 14h-1.235l-.767-1.924h-4.316L9.352 14H8.117l3.484-8.671h1.339L16.437 14Zm-2.327-2.886-1.833-4.667-1.846 4.667h3.679Z'
+          id='language24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='language24_svg__b' fill='#fff'>
+          <use xlinkHref='#language24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#language24_svg__a'
+        />
+        <g mask='url(#language24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

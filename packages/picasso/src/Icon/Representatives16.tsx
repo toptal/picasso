@@ -51,7 +51,25 @@ const SvgRepresentatives16 = forwardRef(function SvgRepresentatives16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2 0h12v16l-6-4.005L2 16V0Zm1 1v13.13l5-3.337 5 3.337V1H3Z' />
+      <defs>
+        <path
+          d='M2 0h12v16l-6-4.005L2 16V0Zm1 1v13.13l5-3.337 5 3.337V1H3Z'
+          id='representatives16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='representatives16_svg__b' fill='#fff'>
+          <use xlinkHref='#representatives16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#representatives16_svg__a'
+        />
+        <g mask='url(#representatives16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

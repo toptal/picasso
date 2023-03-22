@@ -53,6 +53,7 @@ const SvgGuests24 = forwardRef(function SvgGuests24(
     >
       <path
         d='M7 1v1H5v21h14V2h-2V1h3v23H4V1h3Zm8 17v1H9v-1h6ZM12 6a3 3 0 0 1 1.777 5.418 3.995 3.995 0 0 1 2.217 3.37L16 15h-1a3 3 0 0 0-5.995-.176L9 15H8a4 4 0 0 1 2.223-3.585A3 3 0 0 1 12 6Zm0 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm4-7v3H8V0h8Zm-1 1H9v1h6V1Z'
+        fill='currentColor'
         fillRule='nonzero'
       />
     </svg>

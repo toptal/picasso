@@ -51,7 +51,25 @@ const SvgMorning16 = forwardRef(function SvgMorning16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4.337 12a3.5 3.5 0 1 1 6.326 0H9.5a2.5 2.5 0 1 0-4 0H4.337ZM7 3h1v3H7V3Zm5.45 1.843.707.707-2.121 2.122-.708-.708 2.122-2.12ZM15 10v1h-3v-1h3ZM0 11v-1h3v1H0Zm1.843-5.45.707-.707 2.122 2.121-.708.708-2.12-2.122Z' />
+      <defs>
+        <path
+          d='M4.337 12a3.5 3.5 0 1 1 6.326 0H9.5a2.5 2.5 0 1 0-4 0H4.337ZM7 3h1v3H7V3Zm5.45 1.843.707.707-2.121 2.122-.708-.708 2.122-2.12ZM15 10v1h-3v-1h3ZM0 11v-1h3v1H0Zm1.843-5.45.707-.707 2.122 2.121-.708.708-2.12-2.122Z'
+          id='morning16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='morning16_svg__b' fill='#fff'>
+          <use xlinkHref='#morning16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#morning16_svg__a'
+        />
+        <g mask='url(#morning16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

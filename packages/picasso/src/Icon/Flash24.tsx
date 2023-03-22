@@ -51,7 +51,25 @@ const SvgFlash24 = forwardRef(function SvgFlash24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 0v9h8l-9 15v-9H3l9-15Zm-1 3.609L4.765 14H12v6.388L18.233 10H11V3.609Z' />
+      <defs>
+        <path
+          d='M12 0v9h8l-9 15v-9H3l9-15Zm-1 3.609L4.765 14H12v6.388L18.233 10H11V3.609Z'
+          id='flash24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='flash24_svg__b' fill='#fff'>
+          <use xlinkHref='#flash24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#flash24_svg__a'
+        />
+        <g mask='url(#flash24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

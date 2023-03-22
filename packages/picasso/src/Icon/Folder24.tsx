@@ -51,7 +51,21 @@ const SvgFolder24 = forwardRef(function SvgFolder24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m7 3 3 3h14v15H0V3h7Zm-.415 1H1v16h22V7H9.586L6.585 4Z' />
+      <defs>
+        <path
+          d='m7 3 3 3h14v15H0V3h7Zm-.415 1H1v16h22V7H9.586L6.585 4Z'
+          id='folder24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='folder24_svg__b' fill='#fff'>
+          <use xlinkHref='#folder24_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#folder24_svg__a' />
+        <g mask='url(#folder24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

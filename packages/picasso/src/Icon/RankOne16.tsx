@@ -51,7 +51,25 @@ const SvgRankOne16 = forwardRef(function SvgRankOne16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1.802 9.39 8 4.882l6.198 4.508-.588.808L8 6.118l-5.61 4.08z' />
+      <defs>
+        <path
+          id='rankOne16_svg__a'
+          d='M1.802 9.39 8 4.882l6.198 4.508-.588.808L8 6.118l-5.61 4.08z'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='rankOne16_svg__b' fill='#fff'>
+          <use xlinkHref='#rankOne16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#rankOne16_svg__a'
+        />
+        <g mask='url(#rankOne16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

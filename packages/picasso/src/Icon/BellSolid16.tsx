@@ -56,6 +56,7 @@ const SvgBellSolid16 = forwardRef(function SvgBellSolid16(
         fillRule='evenodd'
         clipRule='evenodd'
         d='M8 0H7v1.022A5.5 5.5 0 0 0 2 6.5v3.505c0 .72-.275.995-1 .995v1h13v-1c-.723 0-1-.275-1-.995V6.5a5.5 5.5 0 0 0-5-5.478V0ZM5 13.5a2.5 2.5 0 0 0 5 0V13H5v.5Z'
+        fill='currentColor'
       />
     </svg>
   )

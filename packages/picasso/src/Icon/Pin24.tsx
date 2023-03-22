@@ -51,7 +51,21 @@ const SvgPin24 = forwardRef(function SvgPin24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 24C6 17.314 3 12.314 3 9a9 9 0 1 1 18 0c0 3.314-3 8.314-9 15ZM4 9c0 2.855 2.656 7.406 8 13.494C17.344 16.406 20 11.855 20 9A8 8 0 1 0 4 9Zm8 3a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm-2-3a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z' />
+      <defs>
+        <path
+          d='M12 24C6 17.314 3 12.314 3 9a9 9 0 1 1 18 0c0 3.314-3 8.314-9 15ZM4 9c0 2.855 2.656 7.406 8 13.494C17.344 16.406 20 11.855 20 9A8 8 0 1 0 4 9Zm8 3a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm-2-3a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z'
+          id='pin24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='pin24_svg__b' fill='#fff'>
+          <use xlinkHref='#pin24_svg__a' />
+        </mask>
+        <use fill='currentColor' fillRule='nonzero' xlinkHref='#pin24_svg__a' />
+        <g mask='url(#pin24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

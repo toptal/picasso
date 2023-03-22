@@ -51,7 +51,25 @@ const SvgUploadDocument24 = forwardRef(function SvgUploadDocument24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M19 13h-1V2H2v20h11v1H1V1h18v12ZM4 7h12v1H4V7Zm0 3h12v1H4v-1Zm0 3h5v1H4v-1Zm15 3.707V23h-1v-6.293l-2.5 2.5-.707-.707 3.707-3.707.707.707 3 3-.707.707-2.5-2.5Z' />
+      <defs>
+        <path
+          d='M19 13h-1V2H2v20h11v1H1V1h18v12ZM4 7h12v1H4V7Zm0 3h12v1H4v-1Zm0 3h5v1H4v-1Zm15 3.707V23h-1v-6.293l-2.5 2.5-.707-.707 3.707-3.707.707.707 3 3-.707.707-2.5-2.5Z'
+          id='uploadDocument24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='uploadDocument24_svg__b' fill='#fff'>
+          <use xlinkHref='#uploadDocument24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#uploadDocument24_svg__a'
+        />
+        <g mask='url(#uploadDocument24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

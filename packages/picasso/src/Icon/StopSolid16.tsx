@@ -45,13 +45,14 @@ const SvgStopSolid16 = forwardRef(function SvgStopSolid16(
 
   return (
     <svg
+      fill='none'
       viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1 1h14v14H1z' />
+      <path fill='currentColor' d='M1 1h14v14H1z' />
     </svg>
   )
 })

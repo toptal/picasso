@@ -51,7 +51,25 @@ const SvgBackspace24 = forwardRef(function SvgBackspace24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M24 4v16H6l-6-8 6-8h18Zm-1 1H6.5l-5.25 7 5.25 7H23V5Zm-6.5 3.793.707.707-2.5 2.5 2.5 2.5-.707.707-2.5-2.5-2.5 2.5-.707-.707 2.5-2.5-2.5-2.5.707-.707 2.5 2.5 2.5-2.5Z' />
+      <defs>
+        <path
+          d='M24 4v16H6l-6-8 6-8h18Zm-1 1H6.5l-5.25 7 5.25 7H23V5Zm-6.5 3.793.707.707-2.5 2.5 2.5 2.5-.707.707-2.5-2.5-2.5 2.5-.707-.707 2.5-2.5-2.5-2.5.707-.707 2.5 2.5 2.5-2.5Z'
+          id='backspace24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='backspace24_svg__b' fill='#fff'>
+          <use xlinkHref='#backspace24_svg__a' />
+        </mask>
+        <use
+          fill='#979797'
+          fillRule='nonzero'
+          xlinkHref='#backspace24_svg__a'
+        />
+        <g mask='url(#backspace24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

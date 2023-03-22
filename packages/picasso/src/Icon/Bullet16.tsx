@@ -51,7 +51,18 @@ const SvgBullet16 = forwardRef(function SvgBullet16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z' />
+      <defs>
+        <path d='M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z' id='bullet16_svg__a' />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='bullet16_svg__b' fill='#fff'>
+          <use xlinkHref='#bullet16_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#bullet16_svg__a' />
+        <g mask='url(#bullet16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

@@ -51,7 +51,21 @@ const SvgFilter24 = forwardRef(function SvgFilter24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M0 6h24v1H0V6Zm6 12h12v1H6v-1Zm15-6v1H3v-1h18Z' />
+      <defs>
+        <path
+          d='M0 6h24v1H0V6Zm6 12h12v1H6v-1Zm15-6v1H3v-1h18Z'
+          id='filter24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='filter24_svg__b' fill='#fff'>
+          <use xlinkHref='#filter24_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#filter24_svg__a' />
+        <g mask='url(#filter24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

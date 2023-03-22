@@ -51,7 +51,25 @@ const SvgOwnerDefault16 = forwardRef(function SvgOwnerDefault16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 6a3 3 0 0 1 3 3h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3H3a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h5Zm5 4h-2a3 3 0 0 1-3 3H6a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2ZM8 7H3a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h2a3 3 0 0 1 3-3h2a2 2 0 0 0-2-2Zm2 3H8a2 2 0 0 0-2 2h2a2 2 0 0 0 2-2Zm4-9v2h2v1h-2v2h-1V4h-2V3h2V1h1Z' />
+      <defs>
+        <path
+          d='M8 6a3 3 0 0 1 3 3h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3H3a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h5Zm5 4h-2a3 3 0 0 1-3 3H6a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2ZM8 7H3a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h2a3 3 0 0 1 3-3h2a2 2 0 0 0-2-2Zm2 3H8a2 2 0 0 0-2 2h2a2 2 0 0 0 2-2Zm4-9v2h2v1h-2v2h-1V4h-2V3h2V1h1Z'
+          id='ownerDefault16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='ownerDefault16_svg__b' fill='#fff'>
+          <use xlinkHref='#ownerDefault16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#ownerDefault16_svg__a'
+        />
+        <g mask='url(#ownerDefault16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

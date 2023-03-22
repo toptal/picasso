@@ -51,7 +51,25 @@ const SvgArrowUpMinor16 = forwardRef(function SvgArrowUpMinor16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m7.997 5.29 4.707 4.707-.707.707-4-4-4 4-.707-.707 4-4 .707-.707Z' />
+      <defs>
+        <path
+          d='m7.997 5.29 4.707 4.707-.707.707-4-4-4 4-.707-.707 4-4 .707-.707Z'
+          id='arrowUpMinor16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='arrowUpMinor16_svg__b' fill='#fff'>
+          <use xlinkHref='#arrowUpMinor16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#arrowUpMinor16_svg__a'
+        />
+        <g mask='url(#arrowUpMinor16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

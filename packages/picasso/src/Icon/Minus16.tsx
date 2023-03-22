@@ -51,7 +51,18 @@ const SvgMinus16 = forwardRef(function SvgMinus16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2 7h11v1H2z' />
+      <defs>
+        <path id='minus16_svg__a' d='M2 7h11v1H2z' />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='minus16_svg__b' fill='#fff'>
+          <use xlinkHref='#minus16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#minus16_svg__a' />
+        <g mask='url(#minus16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

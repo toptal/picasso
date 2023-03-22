@@ -51,7 +51,25 @@ const SvgCreditCard16 = forwardRef(function SvgCreditCard16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15 5V3H1v2h14Zm0 1H1v7h14V6ZM1 2h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm1 6h5v1H2V8Zm0 2h3v1H2v-1Zm9-2h3v1h-3V8Z' />
+      <defs>
+        <path
+          d='M15 5V3H1v2h14Zm0 1H1v7h14V6ZM1 2h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm1 6h5v1H2V8Zm0 2h3v1H2v-1Zm9-2h3v1h-3V8Z'
+          id='creditCard16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='creditCard16_svg__b' fill='#fff'>
+          <use xlinkHref='#creditCard16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#creditCard16_svg__a'
+        />
+        <g mask='url(#creditCard16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

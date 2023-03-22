@@ -49,7 +49,18 @@ const SvgTriangleRightMinorSolid24 = forwardRef(
         ref={ref}
         data-testid={testId}
       >
-        <path d='m7 4 10 8-10 8z' />
+        <defs>
+          <path id='triangleRightMinorSolid24_svg__a' d='m7 4 10 8-10 8z' />
+        </defs>
+        <g fill='none' fillRule='evenodd'>
+          <mask id='triangleRightMinorSolid24_svg__b' fill='#fff'>
+            <use xlinkHref='#triangleRightMinorSolid24_svg__a' />
+          </mask>
+          <use fill='#D8D8D8' xlinkHref='#triangleRightMinorSolid24_svg__a' />
+          <g mask='url(#triangleRightMinorSolid24_svg__b)' fill='currentColor'>
+            <path d='M0 0h24v24H0z' />
+          </g>
+        </g>
       </svg>
     )
   }

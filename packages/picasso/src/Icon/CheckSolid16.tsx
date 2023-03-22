@@ -51,7 +51,21 @@ const SvgCheckSolid16 = forwardRef(function SvgCheckSolid16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm3.034 4.667-3.895 3.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 5.267-5.289-1.372-1.377Z' />
+      <defs>
+        <path
+          d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm3.034 4.667-3.895 3.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 5.267-5.289-1.372-1.377Z'
+          id='CheckSolid16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='CheckSolid16_svg__b' fill='#fff'>
+          <use xlinkHref='#CheckSolid16_svg__a' />
+        </mask>
+        <use fill='#00CC83' xlinkHref='#CheckSolid16_svg__a' />
+        <g mask='url(#CheckSolid16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgGuests16 = forwardRef(function SvgGuests16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4 1v1H3v13h10V2h-1V1h2v15H2V1h2Zm6 11v1H6v-1h4ZM8 5a2 2 0 0 1 1.452 3.375 2.998 2.998 0 0 1 1.542 2.427L11 11h-1a2 2 0 0 0-3.995-.15L6 11H5a3 3 0 0 1 1.549-2.626A2 2 0 0 1 8 5Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm3-6v3H5V0h6Zm-1 1H6v1h4V1Z' />
+      <defs>
+        <path
+          d='M4 1v1H3v13h10V2h-1V1h2v15H2V1h2Zm6 11v1H6v-1h4ZM8 5a2 2 0 0 1 1.452 3.375 2.998 2.998 0 0 1 1.542 2.427L11 11h-1a2 2 0 0 0-3.995-.15L6 11H5a3 3 0 0 1 1.549-2.626A2 2 0 0 1 8 5Zm0 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm3-6v3H5V0h6Zm-1 1H6v1h4V1Z'
+          id='guests16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='guests16_svg__b' fill='#fff'>
+          <use xlinkHref='#guests16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#guests16_svg__a'
+        />
+        <g mask='url(#guests16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

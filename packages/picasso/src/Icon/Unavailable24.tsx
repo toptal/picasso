@@ -45,13 +45,19 @@ const SvgUnavailable24 = forwardRef(function SvgUnavailable24(
 
   return (
     <svg
+      fill='none'
       viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm7.415 4.29L5.291 19.416A9.963 9.963 0 0 0 12 22c5.523 0 10-4.477 10-10a9.963 9.963 0 0 0-2.585-6.71ZM12 2C6.477 2 2 6.477 2 12c0 2.582.978 4.935 2.585 6.71L18.709 4.584A9.963 9.963 0 0 0 12 2Z' />
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M12 23c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11Zm-7.416-4.291A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2c2.582 0 4.935.978 6.709 2.584L4.584 18.71Zm.707.707A9.963 9.963 0 0 0 12 22c5.523 0 10-4.477 10-10a9.963 9.963 0 0 0-2.584-6.709L5.29 19.416Z'
+        fill='currentColor'
+      />
     </svg>
   )
 })

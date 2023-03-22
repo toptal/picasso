@@ -56,6 +56,7 @@ const SvgNew24 = forwardRef(function SvgNew24(
         fillRule='evenodd'
         clipRule='evenodd'
         d='M19.5.793 23.207 4.5 12.707 15H9v-3.707L19.5.793ZM12 1v1H2v20h20V12h1v11H1V1h11Zm-2 10.707 9.5-9.5L21.793 4.5l-9.5 9.5H10v-2.293Z'
+        fill='currentColor'
       />
     </svg>
   )

@@ -51,7 +51,25 @@ const SvgTeam16 = forwardRef(function SvgTeam16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2.691 10 5 5.382V0h6v5.38L13.31 10H16v6h-6v-3H6v3H0v-6h2.691Zm1.118 0H6v2h4v-2h2.191l-2-4H5.81l-2 4ZM5 13v-2H1v4h4v-2Zm6-1v3h4v-4h-4v1ZM6 5h4V1H6v4Z' />
+      <defs>
+        <path
+          d='M2.691 10 5 5.382V0h6v5.38L13.31 10H16v6h-6v-3H6v3H0v-6h2.691Zm1.118 0H6v2h4v-2h2.191l-2-4H5.81l-2 4ZM5 13v-2H1v4h4v-2Zm6-1v3h4v-4h-4v1ZM6 5h4V1H6v4Z'
+          id='team16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='team16_svg__b' fill='#fff'>
+          <use xlinkHref='#team16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#team16_svg__a'
+        />
+        <g mask='url(#team16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

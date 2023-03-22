@@ -51,7 +51,22 @@ const SvgPlaySolid16 = forwardRef(function SvgPlaySolid16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M15 8 2 15V1z' />
+      <defs>
+        <path id='playSolid16_svg__a' d='M15 8 2 15V1z' />
+      </defs>
+      <g transform='translate(-2 -1)' fill='none' fillRule='evenodd'>
+        <mask id='playSolid16_svg__b' fill='#fff'>
+          <use xlinkHref='#playSolid16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#playSolid16_svg__a'
+        />
+        <g mask='url(#playSolid16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

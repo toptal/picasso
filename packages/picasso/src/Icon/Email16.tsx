@@ -51,7 +51,25 @@ const SvgEmail16 = forwardRef(function SvgEmail16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1.768 3 8 8.342 14.232 3H1.768ZM15 3.659l-7 6-7-6V13h14V3.659ZM0 2h16v12H0V2Z' />
+      <defs>
+        <path
+          d='M1.768 3 8 8.342 14.232 3H1.768ZM15 3.659l-7 6-7-6V13h14V3.659ZM0 2h16v12H0V2Z'
+          id='email16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='email16_svg__b' fill='#fff'>
+          <use xlinkHref='#email16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#email16_svg__a'
+        />
+        <g mask='url(#email16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

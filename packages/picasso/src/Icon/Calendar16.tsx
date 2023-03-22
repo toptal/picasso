@@ -51,7 +51,25 @@ const SvgCalendar16 = forwardRef(function SvgCalendar16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3 2V1h1v1h8V1h1v1h3v13H0V2h3Zm0 1H1v2h14V3h-2v1h-1V3H4v1H3V3Zm12 3H1v8h14V6Z' />
+      <defs>
+        <path
+          d='M3 2V1h1v1h8V1h1v1h3v13H0V2h3Zm0 1H1v2h14V3h-2v1h-1V3H4v1H3V3Zm12 3H1v8h14V6Z'
+          id='calendar16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='calendar16_svg__b' fill='#fff'>
+          <use xlinkHref='#calendar16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#calendar16_svg__a'
+        />
+        <g mask='url(#calendar16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

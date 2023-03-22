@@ -51,7 +51,21 @@ const SvgTransfer24 = forwardRef(function SvgTransfer24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M22 14v1H4.707l3.5 3.5-.707.707L2.293 14H22Zm-5.5-9.207L21.707 10H2V9h17.293l-3.5-3.5.707-.707Z' />
+      <defs>
+        <path
+          d='M22 14v1H4.707l3.5 3.5-.707.707L2.293 14H22Zm-5.5-9.207L21.707 10H2V9h17.293l-3.5-3.5.707-.707Z'
+          id='transfer24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='transfer24_svg__b' fill='#fff'>
+          <use xlinkHref='#transfer24_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#transfer24_svg__a' />
+        <g mask='url(#transfer24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

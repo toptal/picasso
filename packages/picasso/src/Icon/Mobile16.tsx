@@ -52,7 +52,10 @@ const SvgMobile16 = forwardRef(function SvgMobile16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 0v16H3V0h10Zm-1 1H4v14h8V1ZM9 13v1H7v-1h2Z' />
+      <path
+        d='M13 0v16H3V0h10Zm-1 1H4v14h8V1ZM9 13v1H7v-1h2Z'
+        fill='currentColor'
+      />
     </svg>
   )
 })

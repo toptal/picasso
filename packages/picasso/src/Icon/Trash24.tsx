@@ -51,7 +51,21 @@ const SvgTrash24 = forwardRef(function SvgTrash24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M9 3V0h6v3h8v1H1V3h8Zm1 0h4V1h-4v2Zm10 20V5h1v19H3V5h1v18h16ZM9 10h1v8H9v-8Zm5 0h1v8h-1v-8Z' />
+      <defs>
+        <path
+          d='M9 3V0h6v3h8v1H1V3h8Zm1 0h4V1h-4v2Zm10 20V5h1v19H3V5h1v18h16ZM9 10h1v8H9v-8Zm5 0h1v8h-1v-8Z'
+          id='trash24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='trash24_svg__b' fill='#fff'>
+          <use xlinkHref='#trash24_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#trash24_svg__a' />
+        <g mask='url(#trash24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

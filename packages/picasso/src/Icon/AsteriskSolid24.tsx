@@ -51,7 +51,21 @@ const SvgAsteriskSolid24 = forwardRef(function SvgAsteriskSolid24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M14 1v7.535l6.526-3.767 2 3.464L16.001 12l6.525 3.769-2 3.464L14 15.464V23h-4v-7.536l-6.526 3.768-2-3.464L7.999 12 1.474 8.232l2-3.464L10 8.535V1h4Z' />
+      <defs>
+        <path
+          d='M14 1v7.535l6.526-3.767 2 3.464L16.001 12l6.525 3.769-2 3.464L14 15.464V23h-4v-7.536l-6.526 3.768-2-3.464L7.999 12 1.474 8.232l2-3.464L10 8.535V1h4Z'
+          id='asteriskSolid24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='asteriskSolid24_svg__b' fill='#fff'>
+          <use xlinkHref='#asteriskSolid24_svg__a' />
+        </mask>
+        <use fill='#D8D8D8' xlinkHref='#asteriskSolid24_svg__a' />
+        <g mask='url(#asteriskSolid24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

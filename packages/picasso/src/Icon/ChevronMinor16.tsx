@@ -51,7 +51,25 @@ const SvgChevronMinor16 = forwardRef(function SvgChevronMinor16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m5.997 3.29 4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707Z' />
+      <defs>
+        <path
+          d='m5.997 3.29 4 4 .707.707-.707.707-4 4-.707-.707 4-4-4-4 .707-.707Z'
+          id='chevronMinor16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='chevronMinor16_svg__b' fill='#fff'>
+          <use xlinkHref='#chevronMinor16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#chevronMinor16_svg__a'
+        />
+        <g mask='url(#chevronMinor16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

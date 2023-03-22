@@ -51,7 +51,21 @@ const SvgExclamationSolid16 = forwardRef(function SvgExclamationSolid16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-8a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1Z' />
+      <defs>
+        <path
+          d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-8a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1Z'
+          id='exclamationSolid16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='exclamationSolid16_svg__b' fill='#fff'>
+          <use xlinkHref='#exclamationSolid16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#exclamationSolid16_svg__a' />
+        <g mask='url(#exclamationSolid16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

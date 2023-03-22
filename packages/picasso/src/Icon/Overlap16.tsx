@@ -51,7 +51,25 @@ const SvgOverlap16 = forwardRef(function SvgOverlap16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 2H2v10H1V1h11v1Zm2 2h1v11H4v-1h10V4ZM4 4h8v8H4V4Zm1 1v6h6V5H5Z' />
+      <defs>
+        <path
+          d='M12 2H2v10H1V1h11v1Zm2 2h1v11H4v-1h10V4ZM4 4h8v8H4V4Zm1 1v6h6V5H5Z'
+          id='overlap16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='overlap16_svg__b' fill='#fff'>
+          <use xlinkHref='#overlap16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#overlap16_svg__a'
+        />
+        <g mask='url(#overlap16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

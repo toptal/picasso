@@ -45,13 +45,19 @@ const SvgUnavailable16 = forwardRef(function SvgUnavailable16(
 
   return (
     <svg
+      fill='none'
       viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm5.29 3.416-9.874 9.875a7 7 0 0 0 9.874-9.874ZM8 1a7 7 0 0 0-5.29 11.584l9.874-9.875A6.973 6.973 0 0 0 8 1Z' />
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm-5.29-3.416a7 7 0 0 1 9.874-9.874l-9.875 9.874Zm.706.707a7 7 0 0 0 9.874-9.874L3.417 13.29Z'
+        fill='currentColor'
+      />
     </svg>
   )
 })

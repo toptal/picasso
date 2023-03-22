@@ -51,7 +51,25 @@ const SvgAward24 = forwardRef(function SvgAward24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 0a8 8 0 0 1 5 14.245V24l-5-3-5 3v-9.754A8 8 0 0 1 12 0Zm0 16a7.963 7.963 0 0 1-4-1.07v7.303l4-2.4 4 2.401.001-7.305A7.963 7.963 0 0 1 12 16Zm0-15a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z' />
+      <defs>
+        <path
+          d='M12 0a8 8 0 0 1 5 14.245V24l-5-3-5 3v-9.754A8 8 0 0 1 12 0Zm0 16a7.963 7.963 0 0 1-4-1.07v7.303l4-2.4 4 2.401.001-7.305A7.963 7.963 0 0 1 12 16Zm0-15a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z'
+          id='award24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='award24_svg__b' fill='#fff'>
+          <use xlinkHref='#award24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#award24_svg__a'
+        />
+        <g mask='url(#award24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgSearch24 = forwardRef(function SvgSearch24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m15.854 15.147 6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 1 1 .707-.707ZM9.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z' />
+      <defs>
+        <path
+          d='m15.854 15.147 6.353 6.353-.707.707-6.353-6.353a8.5 8.5 0 1 1 .707-.707ZM9.5 17a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Z'
+          id='search24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='search24_svg__b' fill='#fff'>
+          <use xlinkHref='#search24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#search24_svg__a'
+        />
+        <g mask='url(#search24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

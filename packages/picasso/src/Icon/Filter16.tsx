@@ -51,7 +51,21 @@ const SvgFilter16 = forwardRef(function SvgFilter16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M0 4h16v1H0V4Zm4 8h8v1H4v-1Zm10-4v1H2V8h12Z' />
+      <defs>
+        <path
+          d='M0 4h16v1H0V4Zm4 8h8v1H4v-1Zm10-4v1H2V8h12Z'
+          id='filter16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='filter16_svg__b' fill='#fff'>
+          <use xlinkHref='#filter16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#filter16_svg__a' />
+        <g mask='url(#filter16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

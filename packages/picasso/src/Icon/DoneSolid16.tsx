@@ -56,6 +56,7 @@ const SvgDoneSolid16 = forwardRef(function SvgDoneSolid16(
         fillRule='evenodd'
         clipRule='evenodd'
         d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16Zm-.86-7.422 3.894-3.91 1.372 1.376-5.267 5.29-1.372-1.378-1.934-1.942 1.373-1.38 1.933 1.944Z'
+        fill='currentColor'
       />
     </svg>
   )

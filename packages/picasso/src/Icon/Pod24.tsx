@@ -45,13 +45,19 @@ const SvgPod24 = forwardRef(function SvgPod24(
 
   return (
     <svg
+      fill='none'
       viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M6 13a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm12 0a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM6 14a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm12 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM6 1a5 5 0 1 1 0 10A5 5 0 0 1 6 1Zm12 0a5 5 0 1 1 0 10 5 5 0 0 1 0-10ZM6 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm12 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z' />
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M6 1a5 5 0 1 0 0 10A5 5 0 0 0 6 1Zm0 1a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm12-1a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 1a4 4 0 1 1 0 8 4 4 0 0 1 0-8ZM1 18a5 5 0 1 1 10 0 5 5 0 0 1-10 0Zm9 0a4 4 0 1 0-8 0 4 4 0 0 0 8 0Zm8-5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 1a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z'
+        fill='currentColor'
+      />
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgPinSolid16 = forwardRef(function SvgPinSolid16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0a6 6 0 0 1 6 6c0 2.21-2 5.542-6 10-4-4.458-6-7.79-6-10a6 6 0 0 1 6-6Zm0 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z' />
+      <defs>
+        <path
+          d='M8 0a6 6 0 0 1 6 6c0 2.21-2 5.542-6 10-4-4.458-6-7.79-6-10a6 6 0 0 1 6-6Zm0 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z'
+          id='pinSolid16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='pinSolid16_svg__b' fill='#fff'>
+          <use xlinkHref='#pinSolid16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#pinSolid16_svg__a'
+        />
+        <g mask='url(#pinSolid16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

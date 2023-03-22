@@ -53,6 +53,7 @@ const SvgAdd16 = forwardRef(function SvgAdd16(
       data-testid={testId}
     >
       <path
+        fill='currentColor'
         fillRule='evenodd'
         d='M10 0v1H1v10h2v2.586L5.586 11H15V6h1v6H6l-4 4v-4H0V0h10Zm4 0v2h2v1h-2v2h-1V3h-2V2h2V0h1Z'
         clipRule='evenodd'

@@ -51,7 +51,25 @@ const SvgPlayer24 = forwardRef(function SvgPlayer24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M24 3v18H0V3h24Zm-1 1H1v16h22V4ZM9 8l7 4-7 4V8Zm1 1.723v4.553L13.984 12 10 9.723Z' />
+      <defs>
+        <path
+          d='M24 3v18H0V3h24Zm-1 1H1v16h22V4ZM9 8l7 4-7 4V8Zm1 1.723v4.553L13.984 12 10 9.723Z'
+          id='player24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='player24_svg__b' fill='#fff'>
+          <use xlinkHref='#player24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#player24_svg__a'
+        />
+        <g mask='url(#player24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

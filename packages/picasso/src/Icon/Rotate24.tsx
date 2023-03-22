@@ -51,7 +51,21 @@ const SvgRotate24 = forwardRef(function SvgRotate24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2.707 5H23v7h-1V6H2.707l3.5 3.5-.707.707-4-4L.793 5.5 5.5.793l.707.707-3.5 3.5Zm18.586 14H1v-7h1v6h19.293l-3.5-3.5.707-.707 4 4 .707.707-4.707 4.707-.707-.707 3.5-3.5Z' />
+      <defs>
+        <path
+          d='M2.707 5H23v7h-1V6H2.707l3.5 3.5-.707.707-4-4L.793 5.5 5.5.793l.707.707-3.5 3.5Zm18.586 14H1v-7h1v6h19.293l-3.5-3.5.707-.707 4 4 .707.707-4.707 4.707-.707-.707 3.5-3.5Z'
+          id='rotate24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='rotate24_svg__b' fill='#fff'>
+          <use xlinkHref='#rotate24_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#rotate24_svg__a' />
+        <g mask='url(#rotate24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

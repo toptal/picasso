@@ -51,7 +51,25 @@ const SvgMessage24 = forwardRef(function SvgMessage24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m8 18-5 5v-5H1V1h22v17H8Zm-4 2.586L7.586 17H22V2H2v15h2v3.586Z' />
+      <defs>
+        <path
+          d='m8 18-5 5v-5H1V1h22v17H8Zm-4 2.586L7.586 17H22V2H2v15h2v3.586Z'
+          id='message24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='message24_svg__b' fill='#fff'>
+          <use xlinkHref='#message24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#message24_svg__a'
+        />
+        <g mask='url(#message24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

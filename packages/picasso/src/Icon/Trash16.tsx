@@ -51,7 +51,25 @@ const SvgTrash16 = forwardRef(function SvgTrash16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2 4h1v12H2V4Zm0 11h12v1H2v-1ZM6 2V0h4v2h5v1H1V2h5Zm1 0h2V1H7v1Zm6 2h1v12h-1V4ZM6 7h1v5H6V7Zm3 0h1v5H9V7Z' />
+      <defs>
+        <path
+          d='M2 4h1v12H2V4Zm0 11h12v1H2v-1ZM6 2V0h4v2h5v1H1V2h5Zm1 0h2V1H7v1Zm6 2h1v12h-1V4ZM6 7h1v5H6V7Zm3 0h1v5H9V7Z'
+          id='trash16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='trash16_svg__b' fill='#fff'>
+          <use xlinkHref='#trash16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#trash16_svg__a'
+        />
+        <g mask='url(#trash16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

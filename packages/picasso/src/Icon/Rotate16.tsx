@@ -51,7 +51,21 @@ const SvgRotate16 = forwardRef(function SvgRotate16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2.707 3H15v5h-1V4H2.707l1.5 1.5-.707.707-2-2L.793 3.5 3.5.793l.707.707-1.5 1.5Zm10.586 10H1V8h1v4h11.293l-1.5-1.5.707-.707 2 2 .707.707-2.707 2.707-.707-.707 1.5-1.5Z' />
+      <defs>
+        <path
+          d='M2.707 3H15v5h-1V4H2.707l1.5 1.5-.707.707-2-2L.793 3.5 3.5.793l.707.707-1.5 1.5Zm10.586 10H1V8h1v4h11.293l-1.5-1.5.707-.707 2 2 .707.707-2.707 2.707-.707-.707 1.5-1.5Z'
+          id='rotate16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='rotate16_svg__b' fill='#fff'>
+          <use xlinkHref='#rotate16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#rotate16_svg__a' />
+        <g mask='url(#rotate16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

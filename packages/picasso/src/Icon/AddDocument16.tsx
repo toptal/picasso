@@ -51,7 +51,25 @@ const SvgAddDocument16 = forwardRef(function SvgAddDocument16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M13 0v8h-1V1H1v14h7v1H0V0h13Zm0 11v2h2v1h-2v2h-1v-2h-2v-1h2v-2h1ZM6 8v1H3V8h3Zm4-2v1H3V6h7Zm0-2v1H3V4h7Z' />
+      <defs>
+        <path
+          d='M13 0v8h-1V1H1v14h7v1H0V0h13Zm0 11v2h2v1h-2v2h-1v-2h-2v-1h2v-2h1ZM6 8v1H3V8h3Zm4-2v1H3V6h7Zm0-2v1H3V4h7Z'
+          id='addDocument16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='addDocument16_svg__b' fill='#fff'>
+          <use xlinkHref='#addDocument16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#addDocument16_svg__a'
+        />
+        <g mask='url(#addDocument16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

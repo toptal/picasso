@@ -51,7 +51,28 @@ const SvgTimesheet16 = forwardRef(function SvgTimesheet16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M3 4v1H1v10h13V5h-2V4h3v12H0V4h3Zm6 8v1H3v-1h6Zm3 0v1h-2v-1h2ZM9 9v1H3V9h6Zm3 0v1h-2V9h2ZM7.5 0a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm0 1a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM8 2v2H6V3h1V2h1Z' />
+      <defs>
+        <path
+          d='M3 4v1H1v10h13V5h-2V4h3v12H0V4h3Zm6 8v1H3v-1h6Zm3 0v1h-2v-1h2ZM9 9v1H3V9h6Zm3 0v1h-2V9h2ZM7.5 0a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm0 1a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM8 2v2H6V3h1V2h1Z'
+          id='timesheet16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <path fill='#FFF' d='M-625-1087h2321v2687H-625z' />
+        <g>
+          <mask id='timesheet16_svg__b' fill='#fff'>
+            <use xlinkHref='#timesheet16_svg__a' />
+          </mask>
+          <use
+            fill='currentColor'
+            fillRule='nonzero'
+            xlinkHref='#timesheet16_svg__a'
+          />
+          <g mask='url(#timesheet16_svg__b)' fill='currentColor'>
+            <path d='M0 0h16v16H0z' />
+          </g>
+        </g>
+      </g>
     </svg>
   )
 })

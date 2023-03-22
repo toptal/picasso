@@ -51,7 +51,22 @@ const SvgCareer16 = forwardRef(function SvgCareer16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M4 14v2H3v-2h1zm3-1v3H6v-3h1zm3-2v5H9v-5h1zm3-3v8h-1V8h1zm3-7.309V16h-1V5.809L10.382 3.5 16 .691zM4 0a3 3 0 0 1 1.777 5.418A3.994 3.994 0 0 1 7.995 8.8L8 9H7a3 3 0 0 0-5.995-.176L1 9H0a4 4 0 0 1 2.223-3.585A3 3 0 0 1 4 0zm0 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm11 1.309L12.618 3.5 15 4.691V2.309z' />
+      <defs>
+        <path
+          d='M4 14v2H3v-2h1zm3-1v3H6v-3h1zm3-2v5H9v-5h1zm3-3v8h-1V8h1zm3-7.309V16h-1V5.809L10.382 3.5 16 .691zM4 0a3 3 0 0 1 1.777 5.418A3.994 3.994 0 0 1 7.995 8.8L8 9H7a3 3 0 0 0-5.995-.176L1 9H0a4 4 0 0 1 2.223-3.585A3 3 0 0 1 4 0zm0 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm11 1.309L12.618 3.5 15 4.691V2.309z'
+          id='career16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <path fill='#FFF' d='M-385-252h1440v2230H-385z' />
+        <mask id='career16_svg__b' fill='#fff'>
+          <use xlinkHref='#career16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#career16_svg__a' />
+        <g mask='url(#career16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

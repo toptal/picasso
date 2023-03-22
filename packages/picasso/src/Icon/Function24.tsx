@@ -45,13 +45,19 @@ const SvgFunction24 = forwardRef(function SvgFunction24(
 
   return (
     <svg
+      fill='none'
       viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11.5 1a3.5 3.5 0 0 1 .5 6.964V12h8v5h3v7h-7v-7h3v-4H4v4h3v7H0v-7h3v-5h8V7.965A3.5 3.5 0 0 1 11.5 1ZM22 18h-5v5h5v-5ZM6 18H1v5h5v-5Zm5.5-16a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z' />
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M12 0a3.652 3.652 0 0 0-.522 7.267v4.211H3.13v5.218H0V24h7.304v-7.304h-3.13v-4.174h15.652v4.174h-3.13V24H24v-7.304h-3.13v-5.218h-8.348v-4.21A3.653 3.653 0 0 0 12 0Zm0 6.26a2.609 2.609 0 1 0 0-5.217 2.609 2.609 0 0 0 0 5.218ZM6.26 22.958v-5.218H1.044v5.218h5.218Zm16.697 0v-5.218h-5.218v5.218h5.217Z'
+        fill='currentColor'
+      />
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgListUnordered16 = forwardRef(function SvgListUnordered16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M2.5 13a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 14v1H6v-1h9ZM2.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 8v1H6V8h9ZM2.5 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 2v1H6V2h9Z' />
+      <defs>
+        <path
+          d='M2.5 13a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 14v1H6v-1h9ZM2.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 8v1H6V8h9ZM2.5 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm0 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1ZM15 2v1H6V2h9Z'
+          id='ListUnordered16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='ListUnordered16_svg__b' fill='#fff'>
+          <use xlinkHref='#ListUnordered16_svg__a' />
+        </mask>
+        <use
+          fill='#979797'
+          fillRule='nonzero'
+          xlinkHref='#ListUnordered16_svg__a'
+        />
+        <g mask='url(#ListUnordered16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

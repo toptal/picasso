@@ -51,7 +51,25 @@ const SvgTime24 = forwardRef(function SvgTime24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11 12H6v-1h5V4h1v8h-1Zm.5 10C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22Zm0-1a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19Z' />
+      <defs>
+        <path
+          d='M11 12H6v-1h5V4h1v8h-1Zm.5 10C5.701 22 1 17.299 1 11.5S5.701 1 11.5 1 22 5.701 22 11.5 17.299 22 11.5 22Zm0-1a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19Z'
+          id='time24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='time24_svg__b' fill='#fff'>
+          <use xlinkHref='#time24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#time24_svg__a'
+        />
+        <g mask='url(#time24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

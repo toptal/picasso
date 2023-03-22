@@ -51,7 +51,25 @@ const SvgDownload16 = forwardRef(function SvgDownload16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m8 10.293 2.5-2.5.707.707L7.5 12.207 3.793 8.5l.707-.707 2.5 2.5V1h1v9.293ZM15 14v1H0v-3h1v2h13v-2h1v2Z' />
+      <defs>
+        <path
+          d='m8 10.293 2.5-2.5.707.707L7.5 12.207 3.793 8.5l.707-.707 2.5 2.5V1h1v9.293ZM15 14v1H0v-3h1v2h13v-2h1v2Z'
+          id='download16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='download16_svg__b' fill='#fff'>
+          <use xlinkHref='#download16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#download16_svg__a'
+        />
+        <g mask='url(#download16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

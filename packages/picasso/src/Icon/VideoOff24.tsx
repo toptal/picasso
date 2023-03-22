@@ -51,7 +51,25 @@ const SvgVideoOff24 = forwardRef(function SvgVideoOff24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m7.121 19 1-1H17V9.121l1-1v.45L24 6v12l-6-2.571V19H7.121ZM2.88 19H0V5h16.879l-1 1H1v12h2.879l-1 1ZM18 9.66v4.68l5 2.143V7.517l-5 2.142ZM2.5 22.206l-.707-.707L21.5 1.793l.707.707L2.5 22.207Z' />
+      <defs>
+        <path
+          d='m7.121 19 1-1H17V9.121l1-1v.45L24 6v12l-6-2.571V19H7.121ZM2.88 19H0V5h16.879l-1 1H1v12h2.879l-1 1ZM18 9.66v4.68l5 2.143V7.517l-5 2.142ZM2.5 22.206l-.707-.707L21.5 1.793l.707.707L2.5 22.207Z'
+          id='videoOff24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='videoOff24_svg__b' fill='#fff'>
+          <use xlinkHref='#videoOff24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#videoOff24_svg__a'
+        />
+        <g mask='url(#videoOff24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

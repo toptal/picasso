@@ -51,7 +51,21 @@ const SvgReset16 = forwardRef(function SvgReset16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M5.5 6.5h-1V3.756a5.5 5.5 0 1 0 3.72-1.252l-.22-.004v-1a6.5 6.5 0 1 1-4.69 2H1.5v-1h4v4Z' />
+      <defs>
+        <path
+          d='M5.5 6.5h-1V3.756a5.5 5.5 0 1 0 3.72-1.252l-.22-.004v-1a6.5 6.5 0 1 1-4.69 2H1.5v-1h4v4Z'
+          id='reset16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='reset16_svg__b' fill='#fff'>
+          <use xlinkHref='#reset16_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#reset16_svg__a' />
+        <g mask='url(#reset16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgArrowSubdirectory16 = forwardRef(function SvgArrowSubdirectory16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m10.5 12.207-.707-.707L12.29 9H2V4h1v4h9.292l-2.5-2.5.708-.707L14.207 8.5 10.5 12.207Z' />
+      <defs>
+        <path
+          d='m10.5 12.207-.707-.707L12.29 9H2V4h1v4h9.292l-2.5-2.5.708-.707L14.207 8.5 10.5 12.207Z'
+          id='arrowSubdirectory16_svg__a'
+        />
+      </defs>
+      <g transform='translate(-2 -4)' fill='none' fillRule='evenodd'>
+        <mask id='arrowSubdirectory16_svg__b' fill='#fff'>
+          <use xlinkHref='#arrowSubdirectory16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#arrowSubdirectory16_svg__a'
+        />
+        <g mask='url(#arrowSubdirectory16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

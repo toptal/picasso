@@ -51,7 +51,25 @@ const SvgLanguage16 = forwardRef(function SvgLanguage16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m6 12-4 4v-4H0V0h16v12H6Zm-3 1.586L5.586 11H15V1H1v10h2v2.586ZM11.039 9H9.842l-.441-1.152H6.647L6.206 9H5.009l2.358-6.003h1.314L11.039 9ZM9.104 6.921l-1.08-2.862-1.08 2.862h2.16Z' />
+      <defs>
+        <path
+          d='m6 12-4 4v-4H0V0h16v12H6Zm-3 1.586L5.586 11H15V1H1v10h2v2.586ZM11.039 9H9.842l-.441-1.152H6.647L6.206 9H5.009l2.358-6.003h1.314L11.039 9ZM9.104 6.921l-1.08-2.862-1.08 2.862h2.16Z'
+          id='language16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='language16_svg__b' fill='#fff'>
+          <use xlinkHref='#language16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#language16_svg__a'
+        />
+        <g mask='url(#language16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

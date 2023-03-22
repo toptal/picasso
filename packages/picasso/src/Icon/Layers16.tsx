@@ -56,6 +56,7 @@ const SvgLayers16 = forwardRef(function SvgLayers16(
         fillRule='evenodd'
         clipRule='evenodd'
         d='m8 1 8 4-8 4-8-4 8-4Zm8 7-1.116-.559L8 10.882l-6.884-3.44L0 8l8 4 8-4Zm0 3-1.116-.559L8 13.882l-6.884-3.44L0 11l8 4 8-4ZM2.236 5 8 2.118 13.764 5 8 7.882 2.236 5Z'
+        fill='currentColor'
       />
     </svg>
   )

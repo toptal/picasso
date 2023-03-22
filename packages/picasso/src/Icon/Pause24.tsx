@@ -51,7 +51,21 @@ const SvgPause24 = forwardRef(function SvgPause24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm-2 6v10H9V7h1Zm5 0v10h-1V7h1Z' />
+      <defs>
+        <path
+          d='M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm-2 6v10H9V7h1Zm5 0v10h-1V7h1Z'
+          id='pause24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='pause24_svg__b' fill='#fff'>
+          <use xlinkHref='#pause24_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#pause24_svg__a' />
+        <g mask='url(#pause24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

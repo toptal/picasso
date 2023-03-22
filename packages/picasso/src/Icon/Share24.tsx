@@ -51,7 +51,21 @@ const SvgShare24 = forwardRef(function SvgShare24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M19 20v1H0V6h12v1H1v13h17v-9h1v9ZM13 3h11v7H13V3Zm1 1v5h9V4h-9Z' />
+      <defs>
+        <path
+          d='M19 20v1H0V6h12v1H1v13h17v-9h1v9ZM13 3h11v7H13V3Zm1 1v5h9V4h-9Z'
+          id='share24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='share24_svg__b' fill='#fff'>
+          <use xlinkHref='#share24_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#share24_svg__a' />
+        <g mask='url(#share24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

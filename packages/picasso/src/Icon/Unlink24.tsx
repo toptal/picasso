@@ -51,7 +51,25 @@ const SvgUnlink24 = forwardRef(function SvgUnlink24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m21.5 1.793.707.707L2.5 22.207l-.707-.707L21.5 1.793ZM20 9a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4h-9a3.987 3.987 0 0 1-2.767-1.111l.708-.707A2.99 2.99 0 0 0 11 18h9a3 3 0 0 0 3-3v-2a3 3 0 0 0-3-3h-3v1a4 4 0 0 1-4 4h-1.879l1-1H13a3 3 0 0 0 3-3v-.879L17.121 9H20Zm-7-4c1.074 0 2.05.423 2.768 1.112l-.708.707A2.99 2.99 0 0 0 13 6H4a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h3v-1a4 4 0 0 1 4-4h1.878l-1 1H11a3 3 0 0 0-3 3v.878L6.878 15H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h9Z' />
+      <defs>
+        <path
+          d='m21.5 1.793.707.707L2.5 22.207l-.707-.707L21.5 1.793ZM20 9a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4h-9a3.987 3.987 0 0 1-2.767-1.111l.708-.707A2.99 2.99 0 0 0 11 18h9a3 3 0 0 0 3-3v-2a3 3 0 0 0-3-3h-3v1a4 4 0 0 1-4 4h-1.879l1-1H13a3 3 0 0 0 3-3v-.879L17.121 9H20Zm-7-4c1.074 0 2.05.423 2.768 1.112l-.708.707A2.99 2.99 0 0 0 13 6H4a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h3v-1a4 4 0 0 1 4-4h1.878l-1 1H11a3 3 0 0 0-3 3v.878L6.878 15H4a4 4 0 0 1-4-4V9a4 4 0 0 1 4-4h9Z'
+          id='unlink24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='unlink24_svg__b' fill='#fff'>
+          <use xlinkHref='#unlink24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#unlink24_svg__a'
+        />
+        <g mask='url(#unlink24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

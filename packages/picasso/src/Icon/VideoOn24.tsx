@@ -51,7 +51,25 @@ const SvgVideoOn24 = forwardRef(function SvgVideoOn24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M18 8.571 24 6v12l-6-2.571V19H0V5h18v3.571Zm0 1.088v4.682l5 2.142V7.517l-5 2.142ZM17 9V6H1v12h16V9Z' />
+      <defs>
+        <path
+          d='M18 8.571 24 6v12l-6-2.571V19H0V5h18v3.571Zm0 1.088v4.682l5 2.142V7.517l-5 2.142ZM17 9V6H1v12h16V9Z'
+          id='videoOn24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='videoOn24_svg__b' fill='#fff'>
+          <use xlinkHref='#videoOn24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#videoOn24_svg__a'
+        />
+        <g mask='url(#videoOn24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

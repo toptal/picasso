@@ -51,7 +51,25 @@ const SvgTimeConvert24 = forwardRef(function SvgTimeConvert24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M24 18a6 6 0 0 1-11.001 3.316L13 24h-1v-4h4v1l-2 .002a5 5 0 0 0 8.995-2.785L23 18h1zM11.5 1c5.631 0 10.227 4.433 10.488 10h-1A9.501 9.501 0 0 0 11.5 2 9.5 9.5 0 0 0 2 11.5c0 5.08 3.986 9.227 9 9.487v1.001C5.433 21.728 1 17.131 1 11.5 1 5.701 5.701 1 11.5 1zM24 12v4h-4v-1h2a5 5 0 0 0-8.996 2.784L13 18h-1a6 6 0 0 1 11.001-3.316L23 12h1zM12 4v8H6v-1h5V4h1z' />
+      <defs>
+        <path
+          d='M24 18a6 6 0 0 1-11.001 3.316L13 24h-1v-4h4v1l-2 .002a5 5 0 0 0 8.995-2.785L23 18h1zM11.5 1c5.631 0 10.227 4.433 10.488 10h-1A9.501 9.501 0 0 0 11.5 2 9.5 9.5 0 0 0 2 11.5c0 5.08 3.986 9.227 9 9.487v1.001C5.433 21.728 1 17.131 1 11.5 1 5.701 5.701 1 11.5 1zM24 12v4h-4v-1h2a5 5 0 0 0-8.996 2.784L13 18h-1a6 6 0 0 1 11.001-3.316L23 12h1zM12 4v8H6v-1h5V4h1z'
+          id='timeConvert24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='timeConvert24_svg__b' fill='#fff'>
+          <use xlinkHref='#timeConvert24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#timeConvert24_svg__a'
+        />
+        <g mask='url(#timeConvert24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

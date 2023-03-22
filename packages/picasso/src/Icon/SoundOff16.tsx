@@ -51,7 +51,21 @@ const SvgSoundOff16 = forwardRef(function SvgSoundOff16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7 2v12l-3-3H0V5h4l3-3ZM6 4.414 4.414 6H1v4h3.414L6 11.585V4.414Zm7.5 1.379.707.707-1.5 1.5 1.5 1.5-.707.707-1.5-1.5-1.5 1.5-.707-.707 1.5-1.5-1.5-1.5.707-.707 1.5 1.5 1.5-1.5Z' />
+      <defs>
+        <path
+          d='M7 2v12l-3-3H0V5h4l3-3ZM6 4.414 4.414 6H1v4h3.414L6 11.585V4.414Zm7.5 1.379.707.707-1.5 1.5 1.5 1.5-.707.707-1.5-1.5-1.5 1.5-.707-.707 1.5-1.5-1.5-1.5.707-.707 1.5 1.5 1.5-1.5Z'
+          id='soundOff16_svg__a'
+        />
+      </defs>
+      <g transform='translate(0 -2)' fill='none' fillRule='evenodd'>
+        <mask id='soundOff16_svg__b' fill='#fff'>
+          <use xlinkHref='#soundOff16_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#soundOff16_svg__a' />
+        <g mask='url(#soundOff16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

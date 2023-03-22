@@ -51,7 +51,21 @@ const SvgReferralDashboard16 = forwardRef(function SvgReferralDashboard16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 7a3 3 0 0 1 1.777 5.418 3.994 3.994 0 0 1 2.218 3.382L16 16h-1a3 3 0 0 0-5.995-.176L9 16H8a4 4 0 0 1 2.223-3.585A3 3 0 0 1 12 7ZM1.444 10.459a7.015 7.015 0 0 0 4.858 4.334l-.243.97a8.017 8.017 0 0 1-5.551-4.952l.936-.352ZM12 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM4 0a3 3 0 0 1 1.777 5.418A3.994 3.994 0 0 1 7.995 8.8L8 9H7a3 3 0 0 0-5.995-.176L1 9H0a4 4 0 0 1 2.223-3.585A3 3 0 0 1 4 0Zm4 0a8.001 8.001 0 0 1 7.94 7.008l-.993.124A7.001 7.001 0 0 0 8 1V0ZM4 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z' />
+      <defs>
+        <path
+          d='M12 7a3 3 0 0 1 1.777 5.418 3.994 3.994 0 0 1 2.218 3.382L16 16h-1a3 3 0 0 0-5.995-.176L9 16H8a4 4 0 0 1 2.223-3.585A3 3 0 0 1 12 7ZM1.444 10.459a7.015 7.015 0 0 0 4.858 4.334l-.243.97a8.017 8.017 0 0 1-5.551-4.952l.936-.352ZM12 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM4 0a3 3 0 0 1 1.777 5.418A3.994 3.994 0 0 1 7.995 8.8L8 9H7a3 3 0 0 0-5.995-.176L1 9H0a4 4 0 0 1 2.223-3.585A3 3 0 0 1 4 0Zm4 0a8.001 8.001 0 0 1 7.94 7.008l-.993.124A7.001 7.001 0 0 0 8 1V0ZM4 1a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z'
+          id='referralDashboard16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='referralDashboard16_svg__b' fill='#fff'>
+          <use xlinkHref='#referralDashboard16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#referralDashboard16_svg__a' />
+        <g mask='url(#referralDashboard16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

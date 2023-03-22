@@ -51,7 +51,21 @@ const SvgReset24 = forwardRef(function SvgReset24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7.5 8.5h-1V5.519a8.5 8.5 0 1 0 5.755-2.015L12 3.5v-1a9.5 9.5 0 1 1-5.832 2H2.5v-1h5v5Z' />
+      <defs>
+        <path
+          d='M7.5 8.5h-1V5.519a8.5 8.5 0 1 0 5.755-2.015L12 3.5v-1a9.5 9.5 0 1 1-5.832 2H2.5v-1h5v5Z'
+          id='reset24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='reset24_svg__b' fill='#fff'>
+          <use xlinkHref='#reset24_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#reset24_svg__a' />
+        <g mask='url(#reset24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

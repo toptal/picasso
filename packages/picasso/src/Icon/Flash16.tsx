@@ -51,7 +51,25 @@ const SvgFlash16 = forwardRef(function SvgFlash16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8 0v6h5L7 16v-6H2L8 0zM7 3.609 3.765 9H8v3.388L11.233 7H7V3.609z' />
+      <defs>
+        <path
+          d='M8 0v6h5L7 16v-6H2L8 0zM7 3.609 3.765 9H8v3.388L11.233 7H7V3.609z'
+          id='flash16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='flash16_svg__b' fill='#fff'>
+          <use xlinkHref='#flash16_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#flash16_svg__a'
+        />
+        <g mask='url(#flash16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

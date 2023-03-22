@@ -56,6 +56,7 @@ const SvgTimeSolid16 = forwardRef(function SvgTimeSolid16(
         fillRule='evenodd'
         clipRule='evenodd'
         d='M7.5 15a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15ZM7 7V2h1v6H4V7h3Z'
+        fill='currentColor'
       />
     </svg>
   )

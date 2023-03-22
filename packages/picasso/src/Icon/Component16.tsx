@@ -51,7 +51,25 @@ const SvgComponent16 = forwardRef(function SvgComponent16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M11 15v1H5v-1h6Zm2-12v10H3V3h10Zm-1 1H4v8h8V4ZM1 5v6H0V5h1Zm15 0v6h-1V5h1Zm-5-5v1H5V0h6Z' />
+      <defs>
+        <path
+          d='M11 15v1H5v-1h6Zm2-12v10H3V3h10Zm-1 1H4v8h8V4ZM1 5v6H0V5h1Zm15 0v6h-1V5h1Zm-5-5v1H5V0h6Z'
+          id='component16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='component16_svg__b' fill='#fff'>
+          <use xlinkHref='#component16_svg__a' />
+        </mask>
+        <use
+          fill='#979797'
+          fillRule='nonzero'
+          xlinkHref='#component16_svg__a'
+        />
+        <g mask='url(#component16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

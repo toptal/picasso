@@ -51,7 +51,25 @@ const SvgReferrals24 = forwardRef(function SvgReferrals24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='m21.5 10.793.707.707-9.707 9.707-.707-.707 9-9-9-9 .707-.707 9 9Zm-10 0 .707.707L2.5 21.207l-.707-.707 9-9-9-9 .707-.707 9 9Z' />
+      <defs>
+        <path
+          d='m21.5 10.793.707.707-9.707 9.707-.707-.707 9-9-9-9 .707-.707 9 9Zm-10 0 .707.707L2.5 21.207l-.707-.707 9-9-9-9 .707-.707 9 9Z'
+          id='referrals24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='referrals24_svg__b' fill='#fff'>
+          <use xlinkHref='#referrals24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#referrals24_svg__a'
+        />
+        <g mask='url(#referrals24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

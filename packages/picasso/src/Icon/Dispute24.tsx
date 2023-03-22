@@ -51,7 +51,21 @@ const SvgDispute24 = forwardRef(function SvgDispute24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M8.5.793 15.207 7.5l-.707.707-.5-.5-2.793 2.793 1.147 1.147L13 11l10 10-2 2-10-10 .647-.646-1.147-1.147L7.707 14l.5.5-.707.707L.793 8.5l.707-.707.5.5L8.293 2l-.5-.5L8.5.793ZM13 12.415l-.585.585L21 21.585l.585-.585L13 12.415ZM9 2.707 2.707 9 7 13.293 13.293 7 9 2.707Z' />
+      <defs>
+        <path
+          d='M8.5.793 15.207 7.5l-.707.707-.5-.5-2.793 2.793 1.147 1.147L13 11l10 10-2 2-10-10 .647-.646-1.147-1.147L7.707 14l.5.5-.707.707L.793 8.5l.707-.707.5.5L8.293 2l-.5-.5L8.5.793ZM13 12.415l-.585.585L21 21.585l.585-.585L13 12.415ZM9 2.707 2.707 9 7 13.293 13.293 7 9 2.707Z'
+          id='dispute24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='dispute24_svg__b' fill='#fff'>
+          <use xlinkHref='#dispute24_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#dispute24_svg__a' />
+        <g mask='url(#dispute24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

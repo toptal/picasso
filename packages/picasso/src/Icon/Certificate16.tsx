@@ -51,7 +51,21 @@ const SvgCertificate16 = forwardRef(function SvgCertificate16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M14 10.663a3.486 3.486 0 0 1-1.5.337c-.537 0-1.045-.12-1.5-.337v3.165l1.5-.45 1.5.45v-3.165Zm1-.714v5.223l-2.5-.75-2.5.75V9.949a3.5 3.5 0 1 1 5 0ZM1 16H0V0h13v3h-1V1H1v14h8v1H1Zm11.5-6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z' />
+      <defs>
+        <path
+          d='M14 10.663a3.486 3.486 0 0 1-1.5.337c-.537 0-1.045-.12-1.5-.337v3.165l1.5-.45 1.5.45v-3.165Zm1-.714v5.223l-2.5-.75-2.5.75V9.949a3.5 3.5 0 1 1 5 0ZM1 16H0V0h13v3h-1V1H1v14h8v1H1Zm11.5-6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z'
+          id='certificate16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='certificate16_svg__b' fill='#fff'>
+          <use xlinkHref='#certificate16_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#certificate16_svg__a' />
+        <g mask='url(#certificate16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

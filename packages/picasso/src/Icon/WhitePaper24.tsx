@@ -51,7 +51,25 @@ const SvgWhitePaper24 = forwardRef(function SvgWhitePaper24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M22 0v24H2V0h20Zm-1 1H3v22h18V1Zm-9 17v1H6v-1h6Zm4-3v1H6v-1h10ZM10 4l3 8h-1l-.75-2h-3.5L7 12H6l3-8h1Zm-.5 1.333L8.125 9h2.75L9.5 5.333Z' />
+      <defs>
+        <path
+          d='M22 0v24H2V0h20Zm-1 1H3v22h18V1Zm-9 17v1H6v-1h6Zm4-3v1H6v-1h10ZM10 4l3 8h-1l-.75-2h-3.5L7 12H6l3-8h1Zm-.5 1.333L8.125 9h2.75L9.5 5.333Z'
+          id='whitePaper24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='whitePaper24_svg__b' fill='#fff'>
+          <use xlinkHref='#whitePaper24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#whitePaper24_svg__a'
+        />
+        <g mask='url(#whitePaper24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

@@ -51,7 +51,25 @@ const SvgWorkExperience24 = forwardRef(function SvgWorkExperience24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M7 10v1H1v4h6v1H0V5h6V3h4v2h6v3h-1V6H1v4h6Zm0-5h2V4H7v1Zm1 4h16v10H8V9Zm1 1v8h14v-8H9Zm1 10h12v1H10v-1Z' />
+      <defs>
+        <path
+          d='M7 10v1H1v4h6v1H0V5h6V3h4v2h6v3h-1V6H1v4h6Zm0-5h2V4H7v1Zm1 4h16v10H8V9Zm1 1v8h14v-8H9Zm1 10h12v1H10v-1Z'
+          id='workExperience24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='workExperience24_svg__b' fill='#fff'>
+          <use xlinkHref='#workExperience24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#workExperience24_svg__a'
+        />
+        <g mask='url(#workExperience24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

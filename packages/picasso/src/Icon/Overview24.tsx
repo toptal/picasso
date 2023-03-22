@@ -51,7 +51,21 @@ const SvgOverview24 = forwardRef(function SvgOverview24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z' />
+      <defs>
+        <path
+          d='M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z'
+          id='overview24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='overview24_svg__b' fill='#fff'>
+          <use xlinkHref='#overview24_svg__a' />
+        </mask>
+        <use fill='currentColor' xlinkHref='#overview24_svg__a' />
+        <g mask='url(#overview24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

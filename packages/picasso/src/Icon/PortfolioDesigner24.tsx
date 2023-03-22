@@ -51,7 +51,25 @@ const SvgPortfolioDesigner24 = forwardRef(function SvgPortfolioDesigner24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M1 1h9v9H1V1Zm1 1v7h7V2H2Zm12-1h9v9h-9V1Zm1 1v7h7V2h-7ZM1 14h9v9H1v-9Zm1 8h7v-7H2v7Zm12-8h9v9h-9v-9Zm1 8h7v-7h-7v7Z' />
+      <defs>
+        <path
+          d='M1 1h9v9H1V1Zm1 1v7h7V2H2Zm12-1h9v9h-9V1Zm1 1v7h7V2h-7ZM1 14h9v9H1v-9Zm1 8h7v-7H2v7Zm12-8h9v9h-9v-9Zm1 8h7v-7h-7v7Z'
+          id='portfolioDesigner24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='portfolioDesigner24_svg__b' fill='#fff'>
+          <use xlinkHref='#portfolioDesigner24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#portfolioDesigner24_svg__a'
+        />
+        <g mask='url(#portfolioDesigner24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

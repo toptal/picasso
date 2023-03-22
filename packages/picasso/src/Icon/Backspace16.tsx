@@ -51,7 +51,25 @@ const SvgBackspace16 = forwardRef(function SvgBackspace16(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M16 3v10H4L0 8l4-5h12Zm-1 1H4.479L1.28 8l3.2 4H15V4Zm-4.5 1.793.707.707-1.5 1.5 1.5 1.5-.707.707-1.5-1.5-1.5 1.5-.707-.707 1.5-1.5-1.5-1.5.707-.707 1.5 1.5 1.5-1.5Z' />
+      <defs>
+        <path
+          d='M16 3v10H4L0 8l4-5h12Zm-1 1H4.479L1.28 8l3.2 4H15V4Zm-4.5 1.793.707.707-1.5 1.5 1.5 1.5-.707.707-1.5-1.5-1.5 1.5-.707-.707 1.5-1.5-1.5-1.5.707-.707 1.5 1.5 1.5-1.5Z'
+          id='backspace16_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='backspace16_svg__b' fill='#fff'>
+          <use xlinkHref='#backspace16_svg__a' />
+        </mask>
+        <use
+          fill='#979797'
+          fillRule='nonzero'
+          xlinkHref='#backspace16_svg__a'
+        />
+        <g mask='url(#backspace16_svg__b)' fill='currentColor'>
+          <path d='M0 0h16v16H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

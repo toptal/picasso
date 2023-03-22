@@ -51,7 +51,25 @@ const SvgArchive24 = forwardRef(function SvgArchive24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M24 2v5h-1v15H1V7H0V2h24Zm-2 5H2v14h20V7Zm-7 4v1H9v-1h6Zm8-8H1v3h22V3Z' />
+      <defs>
+        <path
+          d='M24 2v5h-1v15H1V7H0V2h24Zm-2 5H2v14h20V7Zm-7 4v1H9v-1h6Zm8-8H1v3h22V3Z'
+          id='archive24_svg__a'
+        />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='archive24_svg__b' fill='#fff'>
+          <use xlinkHref='#archive24_svg__a' />
+        </mask>
+        <use
+          fill='currentColor'
+          fillRule='nonzero'
+          xlinkHref='#archive24_svg__a'
+        />
+        <g mask='url(#archive24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })

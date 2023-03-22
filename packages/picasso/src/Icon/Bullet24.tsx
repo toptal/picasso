@@ -51,7 +51,18 @@ const SvgBullet24 = forwardRef(function SvgBullet24(
       ref={ref}
       data-testid={testId}
     >
-      <path d='M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z' />
+      <defs>
+        <path d='M12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z' id='bullet24_svg__a' />
+      </defs>
+      <g fill='none' fillRule='evenodd'>
+        <mask id='bullet24_svg__b' fill='#fff'>
+          <use xlinkHref='#bullet24_svg__a' />
+        </mask>
+        <use fill='#979797' fillRule='nonzero' xlinkHref='#bullet24_svg__a' />
+        <g mask='url(#bullet24_svg__b)' fill='currentColor'>
+          <path d='M0 0h24v24H0z' />
+        </g>
+      </g>
     </svg>
   )
 })
