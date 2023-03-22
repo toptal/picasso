@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.10.0
+
+### Minor Changes
+
+- [#3435](https://github.com/toptal/picasso/pull/3435) [`78f5771d6`](https://github.com/toptal/picasso/commit/78f5771d62e4de1de341cc18e321b117dac200bc) Thanks [@denys-medynskyi](https://github.com/denys-medynskyi)! - ---
+
+  ### Icon
+
+  - add `Image16`, `Image24`, `Preview16`, `Preview24` icons
+
 ## 31.9.0
 
 ### Minor Changes
