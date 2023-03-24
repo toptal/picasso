@@ -1,3 +1,4 @@
+import { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { createStyles, Theme } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
@@ -20,10 +21,70 @@ const margins = {
   },
 }
 
+const outlinedBullet = `url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8 9c.55228 0 1-.44772 1-1s-.44772-1-1-1-1 .44772-1 1 .44772 1 1 1Zm0 1c1.10457 0 2-.89543 2-2s-.89543-2-2-2-2 .89543-2 2 .89543 2 2 2Z' fill='%23455065'/%3E%3C/svg%3E")`
+const bullet = `url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='2' fill='%23455065'/%3E%3C/svg%3E");`
+
+const orderedContent = (indent: number) => {
+  const decimalContent = [3, 6, 9]
+  const lowerRomanContent = [2, 5, 8]
+  const lowerAlphaContent = [1, 4, 7]
+
+  if (decimalContent.includes(indent)) {
+    return `counter(list-${indent}, decimal) "."`
+  }
+
+  if (lowerRomanContent.includes(indent)) {
+    return `counter(list-${indent}, lower-roman) "."`
+  }
+
+  if (lowerAlphaContent.includes(indent)) {
+    return `counter(list-${indent}, lower-alpha) "."`
+  }
+}
+
+const unorderedContent = (indent: number) => {
+  if (indent % 2 === 0) {
+    return bullet
+  }
+
+  return outlinedBullet
+}
+
+const indentStyles = [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce(
+  (acc: { [key: string]: CSSProperties }, indent: number) => {
+    acc[`& .ql-indent-${indent}`] = {
+      paddingLeft: `${1.5 + 1.5 * indent}rem`,
+    }
+
+    acc[`& .ql-indent-${indent}:before`] = {
+      left: `${1.5 * indent}rem`,
+    }
+
+    acc[`& ol li.ql-indent-${indent}`] = {
+      counterIncrement: `list-${indent}`,
+    }
+
+    acc[`& ol li.ql-indent-${indent}:before`] = {
+      content: orderedContent(indent),
+    }
+
+    acc[`& ul li.ql-indent-${indent}:before`] = {
+      backgroundImage: unorderedContent(indent),
+    }
+
+    return acc
+  },
+  {}
+)
+
 const listStyles = {
+  '& p,& ol,& ul,& pre,& blockquote,& h1,& h2,& h3,& h4,& h5,& h6': {
+    counterReset:
+      'list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9',
+  },
   '& li': {
     listStyleType: 'none',
-    paddingLeft: '2rem',
+    paddingLeft: '1.5rem',
     position: 'relative',
     '&:before': {
       display: 'inline-block',
@@ -45,14 +106,14 @@ const listStyles = {
   '& ul li': {
     '&:before': {
       content: '""',
-      backgroundImage:
-        "url(\"data:image/svg+xml,%3Csvg width='16' height='16' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cdefs%3E%3Cpath d='M8 6c1.1046 0 2 .8954 2 2s-.8954 2-2 2-2-.8954-2-2 .8954-2 2-2Z' id='a'/%3E%3C/defs%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cmask id='b' fill='%23fff'%3E%3Cuse xlink:href='%23a'/%3E%3C/mask%3E%3Cuse fill='%23979797' fill-rule='nonzero' xlink:href='%23a'/%3E%3Cg mask='url(%23b)' fill='%23455065'%3E%3Cpath d='M0 0h16v16H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+      backgroundImage: bullet,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
       height: rem('22px'),
       width: '1rem',
     },
   },
+  ...indentStyles,
 }
 
 const horizontalPadding = '0.5em'

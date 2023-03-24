@@ -87,6 +87,7 @@ const formats: QuillOptionsStatic['formats'] = [
   'italic',
   'header',
   'list',
+  'indent',
 ]
 
 const Inline = Quill.import('blots/inline')

@@ -2,6 +2,7 @@ import Quill, { TextChangeHandler } from 'quill'
 
 import removeClasses from '../remove-classes'
 import removeCursorSpan from '../remove-cursor-span'
+import quillDecodeIndent from '../quillDecodeIndent'
 
 const getTextChangeHandler = (
   quill: Quill,
@@ -23,6 +24,7 @@ const getTextChangeHandler = (
     }
 
     const [cleanValue] = [quill.root.innerHTML]
+      .map(quillDecodeIndent)
       .map(removeCursorSpan)
       .map(removeClasses)
 
