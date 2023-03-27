@@ -77,7 +77,7 @@ describe('Dropdown', () => {
     cy.getByTestId('content-overflow-scroll').click()
 
     // scroll to bottom of menu
-    cy.getByTestId('menu').parent().scrollTo('bottom')
+    cy.getByTestId('menu').parent().parent().scrollTo('bottom')
 
     cy.get('body').happoScreenshot({
       component,
