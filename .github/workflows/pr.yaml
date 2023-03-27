@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: toptal/davinci-github-actions/build-push-image@v5.0.0
+      - uses: toptal/davinci-github-actions/build-push-image@v6.0.3
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
@@ -63,7 +63,7 @@ jobs:
           node-version: '16'
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v5.0.0
+        uses: toptal/davinci-github-actions/report-missing-changeset@v6.0.3
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -75,7 +75,7 @@ jobs:
         uses: actions/dependency-review-action@v3
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v5.0.0
+        uses: toptal/davinci-github-actions/yarn-install@v6.0.3
 
       - name: Syncpack check
         run: yarn syncpack:list
@@ -108,7 +108,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v5.0.0
+        uses: toptal/davinci-github-actions/yarn-install@v6.0.3
 
       - name: Visual Tests
         run: yarn happo:storybook
