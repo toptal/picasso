@@ -3,6 +3,7 @@ node_modules
 yarn-error.log
 dist-package/
 build/
+.swc
 
 .envrc
 .DS_Store

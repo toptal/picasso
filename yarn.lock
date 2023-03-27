@@ -5317,10 +5317,10 @@
     globby "^11.0.1"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@^10.2.6":
-  version "10.2.6"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-10.2.6.tgz#7226a43098832e00867b186ccfff9cf495c030bf"
-  integrity sha512-Yt4wI6iLY/YtnHjhqOsnqo1lXI2oY1vb4UtLUh7ucYbXEB4WNXvOkDSSenoK3DNkdVqvvjwm6mQyhR7CeZ4aVQ==
+"@toptal/davinci-engine@^10.3.0":
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-10.3.0.tgz#2848702eea5eebadcba7aa8679d1fdf2c8792d0b"
+  integrity sha512-i/YbUkQnFcYt0XvlEn3IaW2iXM+FHdulssAFVY4kPA2j+fkOs20IiLbnUi9JMPPop6fB+CrB8YDXndevZE3G8A==
   dependencies:
     "@babel/cli" "^7.20.7"
     "@babel/core" "^7.18.0"
@@ -5384,7 +5384,7 @@
     swc-loader "^0.2.3"
     terser-webpack-plugin "^5.3.0"
     tsc-alias "^1.7.0"
-    webpack "^5.74.0"
+    webpack "^5.76.0"
     webpack-bundle-analyzer "^4.4.1"
     webpack-dev-server "^4.11.1"
     webpackbar "^5.0.2"
@@ -23130,7 +23130,7 @@ webpack-virtual-modules@^0.4.1:
   resolved "https://registry.yarnpkg.com/webpack-virtual-modules/-/webpack-virtual-modules-0.4.3.tgz#cd597c6d51d5a5ecb473eea1983a58fa8a17ded9"
   integrity sha512-5NUqC2JquIL2pBAAo/VfBP6KuGkHIZQXW/lNKupLPfhViwh8wNsu0BObtl09yuKZszeEUfbXz8xhrHvSG16Nqw==
 
-webpack@4, "webpack@>=4.43.0 <6.0.0", webpack@^5.0.0, webpack@^5.74.0, webpack@^5.9.0:
+webpack@4, "webpack@>=4.43.0 <6.0.0", webpack@^5.0.0, webpack@^5.76.0, webpack@^5.9.0:
   version "5.76.2"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.76.2.tgz#6f80d1c1d1e3bf704db571b2504a0461fac80230"
   integrity sha512-Th05ggRm23rVzEOlX8y67NkYCHa9nTNcwHPBhdg+lKG+mtiW7XgggjAeeLnADAe7mLjJ6LUNfgHAuRRh+Z6J7w==
