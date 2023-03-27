@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.11.0
+
+### Minor Changes
+
+- [#3434](https://github.com/toptal/picasso/pull/3434) [`1b328123a`](https://github.com/toptal/picasso/commit/1b328123aae7469f3a218b15dc8567b8326e7934) Thanks [@mkrl](https://github.com/mkrl)! - ---
+
+  ### Dropdown
+
+  - removed deprecated RootRef from all the dropdown components in Picasso
+
 ## 31.10.0
 
 ### Minor Changes
