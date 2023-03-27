@@ -26,15 +26,15 @@ const Li = ({ children, ...props }: Props) => (
 
 /* eslint-disable id-length */
 const P = ({ children }: Props) => (
-  <Typography size='small'>{children}</Typography>
+  <Typography size='medium'>{children}</Typography>
 )
 const Strong = ({ children }: Props) => (
-  <Typography size='small' as='strong' weight='semibold'>
+  <Typography size='medium' as='strong' weight='semibold'>
     {children}
   </Typography>
 )
 const Em = ({ children }: Props) => (
-  <Typography size='small' as='em'>
+  <Typography size='medium' as='em'>
     {children}
   </Typography>
 )
