@@ -60,8 +60,17 @@ const Example = () => (
       <NumberInput label='numberinput' name='highlight-numberinput' />
       <PasswordInput label='passwordinput' name='highlight-passwordinput' />
       <RichTextEditor id='highlight-rte' label='rte' name='highlight-rte' />
-      <Select label='select' options={[]} name='highlight-select' />
-      <TagSelector label='tagselector' name='highlight-tagselector' />
+      <Select
+        options={[{ value: 'foo', text: 'first option ' }]}
+        label='select'
+        name='highlight-select'
+      />
+      <TagSelector
+        options={[{ value: 'foo', text: 'first option ' }]}
+        label='tagselector'
+        name='highlight-tagselector'
+        inputValue='foo'
+      />
       <TimePicker label='timepicker' name='highlight-timepicker' />
 
       <Container top='small'>

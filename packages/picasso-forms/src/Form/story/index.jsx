@@ -264,5 +264,5 @@ however, you may need custom validators for more complex types of fields.
     takeScreenshot: false,
   })
   .addExample('Form/story/HighlightAutofill.example.tsx', {
-    title: 'Highlight autofill',
+    title: 'Highlight fields with default value',
   })
