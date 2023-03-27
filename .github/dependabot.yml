@@ -8,6 +8,9 @@ updates:
   pull-request-branch-name:
     separator: "-"
   open-pull-requests-limit: 3
+  ignore:
+  - dependency-name: '*'
+    update-types: ['version-update:semver-patch']
   labels:
     - no-jira
   versioning-strategy: increase
@@ -17,6 +20,9 @@ updates:
     interval: weekly
     time: "07:00"
   open-pull-requests-limit: 2
+  ignore:
+  - dependency-name: '*'
+    update-types: ['version-update:semver-patch']
   pull-request-branch-name:
     separator: "-"
   labels:
