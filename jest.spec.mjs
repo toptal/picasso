@@ -1,4 +1,4 @@
-import davinciJestConfig from '@toptal/davinci-qa/src/configs/jest.config.js'
+import davinciJestConfig from '@toptal/davinci-qa/src/configs/jest.swc.config.js'
 
 const config = {
   ...davinciJestConfig,
@@ -16,7 +16,9 @@ const config = {
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1',
   },
   setupFiles: ['jest-canvas-mock'],
-  transformIgnorePatterns: ["node_modules/(?!@toptal|@topkit|d3|internmap|robust-predicates|delaunator)"]
+  transformIgnorePatterns: [
+    'node_modules/(?!@toptal|@topkit|d3|internmap|robust-predicates|delaunator)',
+  ],
 }
 
 export default config
