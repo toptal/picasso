@@ -42,15 +42,7 @@ const orderedContent = (indent: number) => {
   }
 }
 
-const unorderedContent = (indent: number) => {
-  if (indent % 2 === 0) {
-    return bullet
-  }
-
-  return outlinedBullet
-}
-
-const indentStyles = [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce(
+const indentStyles = [1, 2, 3, 4, 5].reduce(
   (acc: { [key: string]: CSSProperties }, indent: number) => {
     acc[`& .ql-indent-${indent}`] = {
       paddingLeft: `${1.5 + 1.5 * indent}rem`,
@@ -68,8 +60,10 @@ const indentStyles = [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce(
       content: orderedContent(indent),
     }
 
-    acc[`& ul li.ql-indent-${indent}:before`] = {
-      backgroundImage: unorderedContent(indent),
+    if (indent % 2 !== 0) {
+      acc[`& ul li.ql-indent-${indent}:before`] = {
+        backgroundImage: outlinedBullet,
+      }
     }
 
     return acc

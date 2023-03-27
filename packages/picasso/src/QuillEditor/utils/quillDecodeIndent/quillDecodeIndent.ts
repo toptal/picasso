@@ -25,19 +25,23 @@ const quillDecodeIndent = (text: string): string => {
 
         item.classList.remove(`ql-indent-${currLevel}`)
 
-        if (currLevel > prevLevel) {
+        if (
+          currLevel > prevLevel ||
+          (currLevel > 0 && currLevel === prevLevel)
+        ) {
           const newParent = document.createElement(type)
 
+          newParent.appendChild(item)
+
           currParent.lastChild?.appendChild(newParent)
-          currParent = newParent
         } else if (currLevel < prevLevel) {
           for (let index = 0; index < prevLevel - currLevel; index++) {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            currParent = currParent.parentNode!.parentNode! as HTMLElement
+            currParent = currParent?.parentNode?.parentNode as HTMLElement
           }
+        } else {
+          currParent.appendChild(item)
         }
 
-        currParent.appendChild(item)
         prevLevel = currLevel
       })
     })
