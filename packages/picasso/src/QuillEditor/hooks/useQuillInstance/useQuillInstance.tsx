@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Quill, { QuillOptionsStatic } from 'quill'
+import Quill, { QuillOptionsStatic, RangeStatic } from 'quill'
 import 'quill-paste-smart'
 
 import {
@@ -69,6 +69,40 @@ export const getModules = (
           metaKey: true,
           ctrlKey: true,
           handler: function () {},
+        },
+        indent: {
+          key: 'Tab',
+          format: ['blockquote', 'indent', 'list'],
+          handler: function (
+            this: { quill: Quill },
+            range: RangeStatic,
+            context: {
+              collapsed: boolean
+              empty: boolean
+              offset: number
+              format: { [key: string]: string }
+              prefix: string
+              suffix: string
+            }
+          ) {
+            if (context.collapsed && context.offset !== 0) {
+              return true
+            }
+
+            const { quill } = this
+            const { format } = context
+            const currentIndent = format.indent || 0
+            const [line] = quill.getLine(range.index)
+            const prevLine = line.prev
+
+            const isPrevLineListItem = prevLine?.domNode?.tagName === 'LI'
+            const prevIndent =
+              prevLine?.domNode?.className?.match(/\d+/)?.[0] || 0
+
+            if (isPrevLineListItem && currentIndent == prevIndent) {
+              quill.format('indent', '+1', 'user')
+            }
+          },
         },
       },
     },
