@@ -31,5 +31,6 @@
     "@toptal/picasso": "31.11.1",
     "storybook-readme": "^5.0.9",
     "@babel/types": "^7.20.7"
-  }
+  },
+  "sideEffects": false
 }
