@@ -4,7 +4,7 @@ import {
   StylesProvider,
   createGenerateClassName,
 } from '@material-ui/core/styles'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useMemo } from 'react'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -80,11 +80,17 @@ const Picasso = ({
     PicassoBreakpoints.disableMobileBreakpoints()
   }
 
-  const generateClassName = createGenerateClassName({
-    // if there are multiples instances of Picasso
-    // on the page we want each set of styles to be unique
-    seed: disableClassNamePrefix ? '' : generateRandomStringOrGetEmptyInTest(),
-  })
+  const generateClassName = useMemo(
+    () =>
+      createGenerateClassName({
+        // if there are multiples instances of Picasso
+        // on the page we want each set of styles to be unique
+        seed: disableClassNamePrefix
+          ? ''
+          : generateRandomStringOrGetEmptyInTest(),
+      }),
+    [disableClassNamePrefix]
+  )
 
   return (
     <StylesProvider
