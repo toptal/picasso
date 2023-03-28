@@ -42,7 +42,7 @@ const orderedContent = (indent: number) => {
   }
 }
 
-const indentStyles = [1, 2, 3, 4, 5].reduce(
+const indentStyles = [1, 2, 3, 4, 4].reduce(
   (acc: { [key: string]: CSSProperties }, indent: number) => {
     acc[`& .ql-indent-${indent}`] = {
       paddingLeft: `${1.5 + 1.5 * indent}rem`,

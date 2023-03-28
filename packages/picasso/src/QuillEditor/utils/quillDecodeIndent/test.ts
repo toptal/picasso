@@ -37,4 +37,13 @@ describe('quillDecodeIndent', () => {
     expect(quillDecodeIndent(input)).toBe(expectedOutput)
     expect(quillDecodeIndent(input2)).toBe(expectedOutput2)
   })
+
+  it('should correctly process multiple nested lists', () => {
+    const input =
+      '<ul><li>item 1</li><li class="ql-indent-1">item 1.1</li><li class="ql-indent-2">item 1.1.1</li><li class="ql-indent-3">item 1.1.1.1</li></ul><ul><li>item 1</li><li class="ql-indent-1">item 1.1</li></ul>'
+    const expectedOutput =
+      '<ul><li>item 1<ul><li class="">item 1.1<ul><li class="">item 1.1.1<ul><li class="">item 1.1.1.1</li></ul></li></ul></li></ul></li></ul><ul><li>item 1<ul><li class="">item 1.1</li></ul></li></ul>'
+
+    expect(quillDecodeIndent(input)).toBe(expectedOutput)
+  })
 })

@@ -99,7 +99,11 @@ export const getModules = (
             const prevIndent =
               prevLine?.domNode?.className?.match(/\d+/)?.[0] || 0
 
-            if (isPrevLineListItem && currentIndent == prevIndent) {
+            if (
+              isPrevLineListItem &&
+              currentIndent <= prevIndent &&
+              Number(currentIndent) < 4
+            ) {
               quill.format('indent', '+1', 'user')
             }
           },
