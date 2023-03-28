@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.11.1
+
+### Patch Changes
+
+- [#3455](https://github.com/toptal/picasso/pull/3455) [`d93b63ab2`](https://github.com/toptal/picasso/commit/d93b63ab26571dffedcab8c8d6b0b881ab675897) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### RichText
+
+  - update font-size to follow BASE
+
 ## 31.11.0
 
 ### Minor Changes
