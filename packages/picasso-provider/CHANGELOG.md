@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.1
+
+### Patch Changes
+
+- [#3445](https://github.com/toptal/picasso/pull/3445) [`26533bda9`](https://github.com/toptal/picasso/commit/26533bda9b64232a090a3e4560c2f33ebefa49a1) Thanks [@dmaklygin](https://github.com/dmaklygin)! - ---
+
+  - memoize class names creator in Picasso provider
+
 ## 2.1.0
 
 ### Minor Changes
