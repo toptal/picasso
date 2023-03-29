@@ -25,24 +25,24 @@ const outlinedBullet = `url("data:image/svg+xml,%3Csvg fill='none' xmlns='http:/
 const bullet = `url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='2' fill='%23455065'/%3E%3C/svg%3E");`
 
 const orderedContent = (indent: number) => {
-  const decimalContent = [3, 6, 9]
-  const lowerRomanContent = [2, 5, 8]
-  const lowerAlphaContent = [1, 4, 7]
+  const decimalIndentLevels = [3]
+  const lowerRomanIndentLevels = [2]
+  const lowerAlphaIndentLevels = [1, 4]
 
-  if (decimalContent.includes(indent)) {
+  if (decimalIndentLevels.includes(indent)) {
     return `counter(list-${indent}, decimal) "."`
   }
 
-  if (lowerRomanContent.includes(indent)) {
+  if (lowerRomanIndentLevels.includes(indent)) {
     return `counter(list-${indent}, lower-roman) "."`
   }
 
-  if (lowerAlphaContent.includes(indent)) {
+  if (lowerAlphaIndentLevels.includes(indent)) {
     return `counter(list-${indent}, lower-alpha) "."`
   }
 }
 
-const indentStyles = [1, 2, 3, 4, 4].reduce(
+const indentStyles = [1, 2, 3, 4].reduce(
   (acc: { [key: string]: CSSProperties }, indent: number) => {
     acc[`& .ql-indent-${indent}`] = {
       paddingLeft: `${1.5 + 1.5 * indent}rem`,
