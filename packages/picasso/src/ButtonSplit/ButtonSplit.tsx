@@ -3,11 +3,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles'
 import { SizeType, BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
-import { ArrowDownMinor16 } from '../Icon'
+import { ArrowDownMinor24, ArrowDownMinor16 } from '../Icon'
 import Button, { ButtonProps } from '../Button'
 import ButtonGroup from '../ButtonGroup'
 import Dropdown from '../Dropdown'
 import styles from './styles'
+
+// Test comment
 
 export interface Props
   extends BaseProps,
@@ -48,7 +50,7 @@ const DropdownIcon = ({
   className?: string
 }) => {
   if (size === 'large') {
-    throw new Error('Test')
+    return <ArrowDownMinor24 className={className} />
   }
 
   return <ArrowDownMinor16 className={className} />
