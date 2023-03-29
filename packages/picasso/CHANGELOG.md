@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.12.0
+
+### Minor Changes
+
+- [#3447](https://github.com/toptal/picasso/pull/3447) [`b82f644f0`](https://github.com/toptal/picasso/commit/b82f644f06cf5f0de0b40b80da830fb06caa21a5) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### RichTextEditor
+
+  - allow nested lists
+
 ## 31.11.1
 
 ### Patch Changes
