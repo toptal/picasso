@@ -33,7 +33,7 @@ export const getModules = (
     'li',
     'h3',
   ]
-  const allowedAttributes = []
+  const allowedAttributes = ['class']
 
   if (allowLinks) {
     allowedTags.push('a')
