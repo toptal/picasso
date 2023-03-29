@@ -26,13 +26,13 @@ jobs:
             await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
 
       - id: branch
-        uses: xt0rted/pull-request-comment-branch@v1.4.0
+        uses: xt0rted/pull-request-comment-branch@0cb1cc92a57e44274e9d862202f0d40df70f4478
 
       - name: Specify branch
         id: get-branch
         run: |
-          echo "::set-output name=branch::${{ steps.branch.outputs.head_ref }}"
-          echo "::set-output name=sha::${{ steps.branch.outputs.head_sha }}"
+          echo "branch=${{ steps.branch.outputs.head_ref }}" >> $GITHUB_OUTPUT
+          echo "sha=${{ steps.branch.outputs.head_sha }}" >> $GITHUB_OUTPUT
 
       - name: Configure git user
         run: |
