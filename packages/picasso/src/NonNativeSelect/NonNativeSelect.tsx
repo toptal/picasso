@@ -75,7 +75,7 @@ export const NonNativeSelect = documentable(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         native,
         testIds,
-        highlightAutofill,
+        highlight,
         ...rest
       } = props
 
@@ -178,7 +178,7 @@ export const NonNativeSelect = documentable(
               defaultValue={undefined}
               className={classes.outlinedInput}
               classes={{
-                root: cx({ [classes.highlightAutofill]: highlightAutofill }),
+                root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),
               }}
               inputProps={{
                 size: 1, // let input to have smallest width by default for width:'shrink'

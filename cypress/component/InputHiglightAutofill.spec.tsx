@@ -18,56 +18,56 @@ import {
 const component = 'HiglightAutofill'
 
 describe('Highlight Autofill', () => {
-  describe('when highlightAutofill prop is true', () => {
+  describe('when highlight prop is true', () => {
     it('renders inputs with correct background color', () => {
       cy.mount(
         <Container padded='small' gap='small' flex direction='column'>
           <Container>
             <FormLabel>Autocomplete</FormLabel>
-            <Autocomplete value='' highlightAutofill />
+            <Autocomplete value='' highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>DatePicker</FormLabel>
-            <DatePicker onChange={() => {}} highlightAutofill />
+            <DatePicker onChange={() => {}} highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>MonthSelect</FormLabel>
-            <MonthSelect highlightAutofill />
+            <MonthSelect highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>NumberInput</FormLabel>
-            <NumberInput highlightAutofill />
+            <NumberInput highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>PasswordInput</FormLabel>
-            <PasswordInput highlightAutofill />
+            <PasswordInput highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>RichTextEditor</FormLabel>
-            <RichTextEditor id='foo' highlightAutofill />
+            <RichTextEditor id='foo' highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>Select</FormLabel>
             <Select
               options={[{ text: 'foo', value: 'bar' }]}
-              highlightAutofill
+              highlight='autofill'
             />
           </Container>
           <Container>
             <FormLabel>TagSelector</FormLabel>
-            <TagSelector highlightAutofill />
+            <TagSelector highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>TimePicker</FormLabel>
-            <TimePicker highlightAutofill />
+            <TimePicker highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>YearSelect</FormLabel>
-            <YearSelect from={2000} to={2010} highlightAutofill />
+            <YearSelect from={2000} to={2010} highlight='autofill' />
           </Container>
           <Container>
             <FormLabel>Input</FormLabel>
-            <Input highlightAutofill />
+            <Input highlight='autofill' />
           </Container>
         </Container>
       )

@@ -52,7 +52,7 @@ export const TimePicker = (props: Props) => {
     className,
     error,
     status,
-    highlightAutofill,
+    highlight,
     ...rest
   } = props
 
@@ -89,7 +89,7 @@ export const TimePicker = (props: Props) => {
         width={width}
         status={error ? 'error' : status}
         className={cx(classes.root, className)}
-        highlightAutofill={highlightAutofill}
+        highlight={highlight}
         inputProps={{
           className: classes.inputBase,
           ...rest,
@@ -115,7 +115,7 @@ export const TimePicker = (props: Props) => {
       className={cx(classes.root, className)}
       onChange={onChange}
       iconPosition='end'
-      highlightAutofill={highlightAutofill}
+      highlight={highlight}
       icon={icon}
       width={width}
       status={error ? 'error' : status}

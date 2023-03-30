@@ -1,6 +1,6 @@
 import { createStyles, Theme } from '@material-ui/core/styles'
 
-import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
+import highlightAutofillStyles from '../InputBase/highlightStyles'
 
 export default (theme: Theme) => {
   const { spacing } = theme

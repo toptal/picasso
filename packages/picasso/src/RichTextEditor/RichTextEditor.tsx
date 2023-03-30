@@ -90,7 +90,7 @@ export interface Props extends BaseProps {
     unorderedListButton?: string
     orderedListButton?: string
   }
-  highlightAutofill?: boolean
+  highlight?: 'autofill'
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -121,7 +121,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       hiddenInputId,
       setHasMultilineCounter,
       name,
-      highlightAutofill,
+      highlight,
     } = props
 
     const classes = useStyles()
@@ -191,7 +191,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
               [classes.disabled]: disabled,
               [classes.focused]: isEditorFocused,
               [classes.error]: status === 'error',
-              [classes.highlightAutofill]: highlightAutofill,
+              [classes.highlightAutofill]: highlight === 'autofill',
             },
             className
           )}
@@ -273,7 +273,6 @@ RichTextEditor.defaultProps = {
   onBlur: noop,
   disabled: false,
   status: 'default',
-  highlightAutofill: false,
 }
 
 RichTextEditor.displayName = 'RichTextEditor'

@@ -32,7 +32,7 @@ export interface Props
   disabled?: boolean
   /** Callback invoked when `NumberInput` changes its state. */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  highlightAutofill?: boolean
+  highlight?: 'autofill'
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -57,7 +57,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       icon,
       size,
       testIds,
-      highlightAutofill,
+      highlight,
       ...rest
     } = props
 
@@ -98,7 +98,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       <OutlinedInput
         classes={{
           root: cx(classes.root, {
-            [classes.highlightAutofill]: highlightAutofill,
+            [classes.highlightAutofill]: highlight === 'autofill',
           }),
           input: classes.input,
         }}
@@ -133,7 +133,6 @@ NumberInput.defaultProps = {
   min: -Infinity,
   max: Infinity,
   hideControls: false,
-  highlightAutofill: false,
   size: 'medium',
   status: 'default',
 }
