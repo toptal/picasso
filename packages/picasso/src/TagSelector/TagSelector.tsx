@@ -110,7 +110,7 @@ export interface Props
   /** Options provided to the popper.js instance */
   popperOptions?: PopperOptions
   testIds?: AutocompleteProps['testIds']
-  highlightAutofill?: boolean
+  highlight?: 'autofill'
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
@@ -141,7 +141,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       error,
       status,
       testIds,
-      highlightAutofill,
+      highlight,
       ...rest
     } = props
 
@@ -260,7 +260,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         popperContainer={popperContainer}
         popperOptions={popperOptions}
         testIds={testIds}
-        highlightAutofill={highlightAutofill}
+        highlight={highlight}
       />
     )
   }
@@ -280,7 +280,6 @@ TagSelector.defaultProps = {
   placeholder: '',
   showOtherOption: false,
   status: 'default',
-  highlightAutofill: false,
 }
 
 TagSelector.displayName = 'TagSelector'

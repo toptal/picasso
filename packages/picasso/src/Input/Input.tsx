@@ -99,7 +99,7 @@ export interface Props
     validIcon?: string
   }
   setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
-  highlightAutofill?: boolean
+  highlight?: 'autofill'
 }
 
 type StartAdornmentProps = Pick<Props, 'icon' | 'iconPosition' | 'disabled'>
@@ -275,7 +275,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     outlineRef,
     testIds,
     setHasMultilineCounter,
-    highlightAutofill,
+    highlight,
     ...rest
   } = purifyProps(props)
 
@@ -305,7 +305,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         classes={{
           root: cx(classes.root, {
             [classes.rootMultiline]: multiline,
-            [classes.highlightAutofill]: highlightAutofill,
+            [classes.highlightAutofill]: highlight === 'autofill',
           }),
           input: cx(classes.input, {
             [classes.inputMultilineResizable]: multiline && multilineResizable,
@@ -386,7 +386,6 @@ Input.defaultProps = {
   autoComplete: 'none',
   counter: 'remaining',
   iconPosition: 'start',
-  highlightAutofill: false,
   multiline: false,
   size: 'medium',
   width: 'auto',

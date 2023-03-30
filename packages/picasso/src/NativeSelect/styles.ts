@@ -4,7 +4,7 @@ import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../Input/styles'
 import '../Loader/styles'
-import highlightAutofillStyles from '../InputBase/highlightAutofillStyles'
+import highlightAutofillStyles from '../InputBase/highlightStyles'
 
 export default (theme: Theme) => {
   const { palette } = theme

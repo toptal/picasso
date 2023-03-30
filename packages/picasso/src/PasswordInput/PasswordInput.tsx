@@ -33,7 +33,7 @@ export interface Props
     input?: string
     toggle?: string
   }
-  highlightAutofill?: boolean
+  highlight?: 'autofill'
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -54,7 +54,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       testIds,
       enableReset,
       onResetClick,
-      highlightAutofill,
+      highlight,
       ...rest
     } = props
 
@@ -91,7 +91,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         style={style}
         className={cx(classes.root, className)}
         classes={{
-          root: cx({ [classes.highlightAutofill]: highlightAutofill }),
+          root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),
           input: classes.input,
         }}
         inputProps={{
