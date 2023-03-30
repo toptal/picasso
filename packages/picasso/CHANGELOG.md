@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.12.1
+
+### Patch Changes
+
+- [#3466](https://github.com/toptal/picasso/pull/3466) [`307ca32dd`](https://github.com/toptal/picasso/commit/307ca32dde6b386d51e69d6a4fa12ddb164117db) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### Picasso inputs
+
+  - rename `highlightAutofill` to `highlight`
+
 ## 31.12.0
 
 ### Minor Changes
