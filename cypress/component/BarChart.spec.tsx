@@ -103,6 +103,15 @@ describe('BarChart', () => {
       variant: 'no-label',
     })
   })
+
+  it('renders chart with vertical layout', () => {
+    cy.mount(<TestBarChart layout='vertical' />)
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'vertical',
+    })
+  })
 })
 
 const chartDataDefault = [
