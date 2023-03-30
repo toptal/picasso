@@ -82,6 +82,12 @@ export default (theme: Theme) => {
       fontSize: '16px',
       lineHeight: '24px',
     },
+    bodyXlarge: {
+      color: palette.common.black,
+      fontWeight: typography.fontWeights.regular,
+      fontSize: '18px',
+      lineHeight: '24px',
+    },
     bodyInherit: {
       fontSize: '1em',
       lineHeight: '1.5em',

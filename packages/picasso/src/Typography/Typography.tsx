@@ -73,6 +73,8 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   } = props
   const classes = useStyles(props)
 
+  console.log('@@@', size, variant)
+
   return (
     <MUITypography
       {...rest}
