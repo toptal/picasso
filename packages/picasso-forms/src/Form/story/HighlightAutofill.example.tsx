@@ -20,6 +20,8 @@ const formConfig: FormConfigProps = {
   highlightAutofill: true,
 }
 
+const april2nd = new Date(2023, 3, 2)
+
 const Example = () => (
   <ConfigProvider value={formConfig}>
     <FormNonCompound
@@ -27,13 +29,13 @@ const Example = () => (
       initialValues={{
         'highlight-firstName': 'Bruce',
         'highlight-autocomplete': 'foo',
-        'highlight-datepicker': new Date(),
+        'highlight-datepicker': april2nd,
         'highlight-numberinput': 1,
         'highlight-passwordinput': 'password',
         'highlight-rte': '<p>Rich Text Editor</p>',
         'highlight-select': 'foo',
         'highlight-tagselector': 'foo',
-        'highlight-timepicker': new Date(),
+        'highlight-timepicker': april2nd,
       }}
     >
       <Input
