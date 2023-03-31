@@ -355,10 +355,22 @@ export const DatePicker = (props: Props) => {
     }
   }
 
-  const handleFocusOrClick = () => {
+  const handleClick: React.MouseEventHandler<HTMLInputElement> = event => {
     if (disabled) {
       return
     }
+
+    inputProps?.onClick?.(event)
+    showCalendar()
+    setIsInputFocused(true)
+  }
+
+  const handleFocus: React.FocusEventHandler<HTMLInputElement> = event => {
+    if (disabled) {
+      return
+    }
+
+    inputProps?.onFocus?.(event)
     showCalendar()
     setIsInputFocused(true)
   }
@@ -386,8 +398,8 @@ export const DatePicker = (props: Props) => {
           disabled={disabled}
           ref={inputRef}
           onKeyDown={handleInputKeydown}
-          onClick={handleFocusOrClick}
-          onFocus={handleFocusOrClick}
+          onClick={handleClick}
+          onFocus={handleFocus}
           onBlur={handleBlur}
           onResetClick={handleResetClick}
           value={inputValue}

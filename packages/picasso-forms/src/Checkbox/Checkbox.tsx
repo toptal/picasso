@@ -57,7 +57,12 @@ export const Checkbox = ({
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       name={name!}
     >
-      {(input: CheckboxProps) => (
+      {({
+        // omit 'highlight' as it is used only for classic inputs
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        highlight,
+        ...input
+      }: CheckboxProps & { highlight?: 'autofill' }) => (
         <PicassoCheckbox
           {...input}
           label={label}

@@ -64,7 +64,12 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
         />
       }
     >
-      {inputProps => (
+      {({
+        // omit 'highlight' as it is used only for classic inputs
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        highlight,
+        ...inputProps
+      }) => (
         <PicassoDropzone
           {...inputProps}
           hint={dropzoneHint}

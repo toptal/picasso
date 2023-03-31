@@ -17,9 +17,14 @@ type FinalFormOnChangeType = FinalFieldInputProps<
 >['onChange']
 
 const AvatarUpload = (props: Props) => {
-  // dropping 'src' value here out from 'rest'. 'src' value should be provided via form context
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { label, titleCase, src, ...rest } = props
+  const {
+    label,
+    titleCase,
+    // dropping 'src' value here out from 'rest'. 'src' value should be provided via form context
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    src,
+    ...rest
+  } = props
 
   const handleDropAccepted = async ({
     acceptedFile,
@@ -52,7 +57,12 @@ const AvatarUpload = (props: Props) => {
         ) : null
       }
     >
-      {inputProps => (
+      {({
+        // omit 'highlight' as it is used only for classic inputs
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        highlight,
+        ...inputProps
+      }) => (
         <PicassoAvatarUpload
           {...inputProps}
           src={inputProps.value?.src}

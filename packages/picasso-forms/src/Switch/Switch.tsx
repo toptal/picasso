@@ -24,7 +24,12 @@ export const Switch = (props: Props) => (
       ) : null
     }
   >
-    {(inputProps: SwitchProps) => {
+    {({
+      // omitting highlight from inputProps
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      highlight,
+      ...inputProps
+    }: SwitchProps & { highlight?: 'autofill' }) => {
       return <PicassoSwitch {...inputProps} />
     }}
   </PicassoField>

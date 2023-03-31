@@ -89,7 +89,8 @@ const Field = <
     ...rest
   } = props
 
-  const { validateOnSubmit: shouldValidateOnSubmit } = useFormConfig()
+  const { validateOnSubmit: shouldValidateOnSubmit, highlightAutofill } =
+    useFormConfig()
   const validators = useMemo(
     () => getValidators(required, validate),
     [required, validate]
@@ -119,6 +120,9 @@ const Field = <
     validators,
     shouldValidateOnSubmit,
   })
+
+  const shouldHighlightAutofill =
+    highlightAutofill && !meta.visited && meta.pristine && input.value
 
   const childProps: Record<string, unknown> = {
     id,
@@ -162,6 +166,7 @@ const Field = <
         rest.onFocus(event)
       }
     },
+    ...(shouldHighlightAutofill ? { highlight: 'autofill' } : {}),
   }
 
   return (

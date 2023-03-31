@@ -57,7 +57,12 @@ export const FileInput = (props: Props) => {
         ) : null
       }
     >
-      {inputProps => (
+      {({
+        // omit 'highlight' as it is used only for classic inputs
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        highlight,
+        ...inputProps
+      }) => (
         <PicassoFileInput
           {...inputProps}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
