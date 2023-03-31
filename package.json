@@ -108,7 +108,7 @@
     "react-deprecate": "^0.1.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.6",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^5.3.4",
     "react-source-render": "^3.0.0-5",
     "react-storybook-addon-chapters": "^3.1.7",
     "react-test-renderer": "^18.2.0",
