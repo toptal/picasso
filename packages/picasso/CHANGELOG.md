@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.12.2
+
+### Patch Changes
+
+- [#3444](https://github.com/toptal/picasso/pull/3444) [`6fd3dec59`](https://github.com/toptal/picasso/commit/6fd3dec59080d280dbd92de8ded8f2db429d9e1b) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  ### DatePicker
+
+  - use passed `onClick` and `onFocus` from the parent component
+
 ## 31.12.1
 
 ### Patch Changes

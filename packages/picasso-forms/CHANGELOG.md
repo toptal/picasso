@@ -1,5 +1,19 @@
 # Change Log
 
+## 53.0.0
+
+### Major Changes
+
+- [#3444](https://github.com/toptal/picasso/pull/3444) [`6fd3dec59`](https://github.com/toptal/picasso/commit/6fd3dec59080d280dbd92de8ded8f2db429d9e1b) Thanks [@TomasSlama](https://github.com/TomasSlama)! - ---
+
+  - add a hint background color on the component field to show preselected fill (automatically filled)
+  - this feature is disabled by default, you can turn it on in the form config
+  - update `@toptal/picasso@^31.12.1` to support new visual state (**BREAKING CHANGE**)
+
+  ```
+  <ConfigProvider value={{ highlightAutofill: true }}>
+  ```
+
 ## 52.2.0
 
 ### Minor Changes
