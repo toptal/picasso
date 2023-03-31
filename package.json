@@ -99,7 +99,7 @@
     "happo-e2e": "^2.1.2",
     "happo-plugin-storybook": "^3.1.0",
     "happo.io": "^8.3.1",
-    "jest-canvas-mock": "^2.4.0",
+    "jest-canvas-mock": "^2.5.0",
     "lerna": "^6.1.0",
     "madge": "^5.0.1",
     "raw-loader": "^4.0.2",
