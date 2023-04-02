@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@1.6.1/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "toptal/picasso" }],
+  "changelog": ["./changelog.config.js", { "repo": "toptal/picasso" }],
   "commit": false,
   "linked": [],
   "access": "public",
