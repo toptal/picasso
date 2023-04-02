@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.12.3
+
+### Patch Changes
+
+- [#3475](https://github.com/toptal/picasso/pull/3475) [`612d5b6d7`](https://github.com/toptal/picasso/commit/612d5b6d7e2c77c83cd4385fb66dc5d67fc7aa85) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Notification
+
+- fix prop description
+
 ## 31.12.2
 
 ### Patch Changes
