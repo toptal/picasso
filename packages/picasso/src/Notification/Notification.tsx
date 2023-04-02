@@ -31,7 +31,7 @@ export interface PrivateProps
     HTMLAttributes<HTMLDivElement> {
   /** Main content of the Notification */
   children: ReactNode
-  /** Callback invoked when close is clicked */
+  /** Callback invoked when close button is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
   /** Style variant of Notification */
   variant?: VariantType
