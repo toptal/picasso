@@ -1,4 +1,4 @@
-const { changelogFunctions } = require('@changesets/changelog-github')
+const changelogFunctions = require('@changesets/changelog-github')
 const getGithubInfo = require('@changesets/get-github-info')
 
 const { getDependencyReleaseLine } = changelogFunctions
