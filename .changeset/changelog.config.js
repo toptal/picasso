@@ -1,7 +1,7 @@
 const changelogFunctions = require('@changesets/changelog-github')
 const getGithubInfo = require('@changesets/get-github-info')
 
-const { getDependencyReleaseLine } = changelogFunctions
+const { getDependencyReleaseLine } = changelogFunctions.default
 
 // Modified copy of getReleaseLine from @changesets/changelog-github
 const getReleaseLine = async (changeset, type, options) => {
