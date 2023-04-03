@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.6.0
+
+### Minor Changes
+
+- [#3461](https://github.com/toptal/picasso/pull/3461) [`e221d6b7e`](https://github.com/toptal/picasso/commit/e221d6b7e9835ef9955be5f1104b9a72a540dc0f) Thanks [@mkrl](https://github.com/mkrl)!
+- enable `sideEffects: false`
+
 ## 0.5.0
 
 ### Minor Changes
