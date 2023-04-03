@@ -5917,10 +5917,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/happo-cypress@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@types/happo-cypress/-/happo-cypress-3.0.2.tgz#191728282d21991f34e36c081f02faefafe6b354"
-  integrity sha512-hLQiG/pH9678uzD9mNiasyCiNlk01KbVk5JJrsSNmXuq1Azx+tiaqIM9PUOCvVs+Wt21hxlhQkY+KiP2XZEhOA==
+"@types/happo-cypress@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/happo-cypress/-/happo-cypress-4.1.0.tgz#bd2d76fd0453c4d980d9be85328d77122e506e45"
+  integrity sha512-RwY+ExkWtiItcCH10DIaTGQXwSt/z6r1Yh0XTd4/jtoFRT8ZKMt/Mgaxyoc3LooAIpm7mV1Dq2bpS0NtqsY+EQ==
   dependencies:
     cypress ">=6.4.0"
 
@@ -12597,10 +12597,10 @@ handlebars@4.7.7, handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.0.1.tgz#e02e3740461cf44450648ea6b0ebc296d164a354"
-  integrity sha512-4cXFwfaALDTTKH95FGbWN4V0zWnv30XTxxmBTJV/YkqXuozsWRBiZOR7eC0WT2wZ9hiaBhNiw5J/w00RZ0zbCw==
+happo-cypress@^4.0.1, happo-cypress@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.1.1.tgz#d10f064fad72a6a733a22f2baa234518e582b6bc"
+  integrity sha512-qMSjOOlCGjGis+i/VTzcL8/2te73I2jrNcQkx+rJgcbgYV7x13tiEVVo/MrR5lCg7kHtXiNNXAXgw7XUxNh3pQ==
 
 happo-e2e@^2.1.2:
   version "2.1.2"
