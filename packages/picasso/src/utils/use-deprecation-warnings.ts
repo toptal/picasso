@@ -27,19 +27,20 @@ interface UsePropDeprecationWarningArgs<P> {
   props: P
   componentName: string
   description?: string
-  name: string
+  name: keyof P
   newName?: string
 }
 
-const usePropDeprecationWarning = <P>({
+const usePropDeprecationWarning = <P extends {}>({
   props,
   componentName,
   description,
   name,
   newName,
 }: UsePropDeprecationWarningArgs<P>) => {
+  const propName = String(name)
   const message =
-    `${componentName}'s '${name}' prop is deprecated and will be removed in the next major release of Picasso.` +
+    `${componentName}'s '${propName}' prop is deprecated and will be removed in the next major release of Picasso.` +
     `${newName ? ` Please use '${newName}' instead.` : ''}` +
     `${description ? `\n${description}` : ''}`
 
