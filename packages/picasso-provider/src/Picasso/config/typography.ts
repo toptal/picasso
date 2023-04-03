@@ -1,28 +1,38 @@
-declare module '@material-ui/core/styles/createTypography' {
-  export interface Typography {
-    buttons: {
-      fontSizeSmall: string
-      lineHeightSmall: string
-      fontSizeMedium: string
-      lineHeightMedium: string
-      fontSizeLarge: string
-      lineHeightLarge: string
-    }
-    fontWeights: {
-      thin: number
-      light: number
-      regular: number
-      semibold: number
-      bold: number
-    }
+import { Typography } from '@material-ui/core/styles/createTypography'
+
+export interface AdditionalTypography {
+  buttons: {
+    fontSizeSmall: string
+    lineHeightSmall: string
+    fontSizeMedium: string
+    lineHeightMedium: string
+    fontSizeLarge: string
+    lineHeightLarge: string
   }
+  fontWeights: {
+    thin: number
+    light: number
+    regular: number
+    semibold: number
+  }
+  fontSizes: {
+    xxsmall: string
+    xsmall: string
+    small: string
+    medium: string
+    large: string
+  }
+}
+
+declare module '@material-ui/core/styles/createTypography' {
+  export interface Typography extends AdditionalTypography {}
 
   export interface FontStyle {
     inputSize: string
   }
 }
 
-const typography = {
+const typography: AdditionalTypography & Partial<Typography> = {
   fontFamily: ['proxima-nova', 'Arial', 'sans-serif'].join(','),
   fontSize: 16,
   fontWeights: {
@@ -39,6 +49,13 @@ const typography = {
     lineHeightMedium: '16px',
     fontSizeLarge: '15px',
     lineHeightLarge: '18px',
+  },
+  fontSizes: {
+    xxsmall: '11px',
+    xsmall: '12px',
+    small: '13px',
+    medium: '14px',
+    large: '16px',
   },
 }
 
