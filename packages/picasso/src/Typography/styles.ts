@@ -56,31 +56,31 @@ export default (theme: Theme) => {
     bodyXxsmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
-      fontSize: '11px',
+      fontSize: typography.fontSizes.xxsmall,
       lineHeight: '16px',
     },
     bodyXsmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
-      fontSize: '12px',
+      fontSize: typography.fontSizes.xsmall,
       lineHeight: '18px',
     },
     bodySmall: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
-      fontSize: '13px',
+      fontSize: typography.fontSizes.small,
       lineHeight: '20px',
     },
     bodyMedium: {
       color: palette.text.primary,
       fontWeight: typography.fontWeights.regular,
-      fontSize: '14px',
+      fontSize: typography.fontSizes.medium,
       lineHeight: '22px',
     },
     bodyLarge: {
       color: palette.common.black,
       fontWeight: typography.fontWeights.regular,
-      fontSize: '16px',
+      fontSize: typography.fontSizes.large,
       lineHeight: '24px',
     },
     bodyInherit: {
