@@ -6,109 +6,74 @@ exports[`List renders ordered list 1`] = `
     class="Picasso-root"
   >
     <ol
-      class="PicassoList-root"
+      class="PicassoList-root PicassoList-firstLevel"
       data-testid="ordered-list"
     >
-      <li>
+      <li
+        class=""
+        index="0"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-            >
-              1
-              .
-            </p>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N1
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="1"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-            >
-              2
-              .
-            </p>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N2
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="2"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-            >
-              3
-              .
-            </p>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N3
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="3"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-            >
-              4
-              .
-            </p>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N4
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="4"
+      >
         <div
-          class="PicassoContainer-flex PicassoListItem-listContainer PicassoListItem-lastElement"
+          class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-ordered"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-            >
-              5
-              .
-            </p>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N5
           </div>
@@ -125,124 +90,74 @@ exports[`List renders unordered list 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="PicassoList-root PicassoList-unordered"
+      class="PicassoList-root PicassoList-unordered PicassoList-firstLevel PicassoList-disc"
       data-testid="unordered-list"
     >
-      <li>
+      <li
+        class=""
+        index="0"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
-          >
-            <svg
-              class="PicassoSvgBullet16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N1
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="1"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
-          >
-            <svg
-              class="PicassoSvgBullet16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N2
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="2"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
-          >
-            <svg
-              class="PicassoSvgBullet16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N3
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="3"
+      >
         <div
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
-          >
-            <svg
-              class="PicassoSvgBullet16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N4
           </div>
         </div>
       </li>
-      <li>
+      <li
+        class=""
+        index="4"
+      >
         <div
-          class="PicassoContainer-flex PicassoListItem-listContainer PicassoListItem-lastElement"
+          class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="PicassoContainer-rightsmallMargin PicassoContainer-flexEndJustifyContent PicassoContainer-inline PicassoListItem-unordered"
-          >
-            <svg
-              class="PicassoSvgBullet16-root"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
           >
             list item N5
           </div>
