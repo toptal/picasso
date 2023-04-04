@@ -7,24 +7,22 @@ const Example = () => (
     {Object.entries(gradients).map(([gradientKey, gradientValue]) => (
       <Grid.Item small={6} key={gradientKey}>
         <Container>
-          <Typography size='large'>
-            {gradientKey}
-          </Typography>
+          <Typography size='large'>{gradientKey}</Typography>
         </Container>
         <Container>
-          <ColorRectangle gradient={gradientValue}/>
+          <GradientRectangle gradient={gradientValue} />
         </Container>
       </Grid.Item>
     ))}
   </Grid>
 )
 
-const ColorRectangle = ({ gradient }: { gradient: string }) => (
+const GradientRectangle = ({ gradient }: { gradient: string }) => (
   <div
     style={{
       height: '14rem',
       background: gradient,
-      boxShadow: shadows[5]
+      boxShadow: shadows[5],
     }}
   />
 )
