@@ -7,6 +7,7 @@ import cx from 'classnames'
 
 import ListItem from '../ListItem'
 import styles from './styles'
+import { ListContextProvider, useListContext } from './context'
 
 export type Props = BaseProps & {
   children: ReactNode
@@ -26,6 +27,7 @@ const Tags = {
 export const List = (props: Props) => {
   const classes = useStyles()
   const { variant, children, start = 1, className, ...rest } = props
+  const { level } = useListContext()
 
   const totalChildElements = React.Children.count(children)
 
@@ -45,10 +47,20 @@ export const List = (props: Props) => {
 
   return (
     <ListTag
-      className={cx(classes.root, classes[variant], className)}
+      className={cx(
+        classes.root,
+        classes[variant],
+        {
+          [classes.firstLevel]: level === 0,
+          [level % 2 === 0 ? classes.disc : classes.circle]:
+            variant === 'unordered',
+        },
+
+        className
+      )}
       {...rest}
     >
-      {listItems}
+      <ListContextProvider>{listItems}</ListContextProvider>
     </ListTag>
   )
 }

@@ -7,71 +7,45 @@ import cx from 'classnames'
 
 import Container from '../Container'
 import Typography from '../Typography'
-import { Bullet16 } from '../Icon'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export type Props = BaseProps & {
   children: ReactNode
   variant?: 'ordered' | 'unordered'
   index?: number
-  /** Add a custom `<Icon />` to set a custom bullet in ordered lists */
+  /** @deprecated */
   icon?: ReactNode
+  type?: 'circle' | 'disc' | 'checkmark' | 'numeral'
   isLastElement?: boolean
-}
-
-const Index = ({ children }: { children: ReactNode }) => (
-  <Typography size='medium'>{children}.</Typography>
-)
-
-const getBulletOrNumber = (
-  variant: 'ordered' | 'unordered',
-  index: number,
-  icon?: ReactNode
-): ReactNode => {
-  if (icon) {
-    return icon
-  }
-
-  if (variant === 'unordered') {
-    return <Bullet16 />
-  }
-
-  return <Index>{index + 1}</Index>
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
 
 export const ListItem = (props: Props) => {
   const classes = useStyles()
-  const {
-    children,
-    icon,
-    variant = 'unordered',
-    index = 1,
-    isLastElement,
-    ...rest
-  } = props
+  const { children, icon, variant = 'unordered', ...rest } = props
 
-  const itemIcon = getBulletOrNumber(variant, index, icon)
+  usePropDeprecationWarning({
+    props,
+    componentName: ListItem.name,
+    name: 'icon',
+  })
 
   return (
-    <li {...rest}>
-      <Container
-        flex
-        direction='row'
-        className={cx(classes.listContainer, {
-          [classes.lastElement]: isLastElement,
-        })}
-      >
-        <Container
-          inline
-          right='small'
-          justifyContent='flex-end'
-          className={classes[variant]}
-        >
-          {itemIcon}
-        </Container>
-        <Typography as='div' size='medium'>
+    <li
+      className={cx(classes.root, classes[variant], {
+        [classes.hasIcon]: icon != null,
+      })}
+      {...rest}
+    >
+      <Container flex direction='row' className={cx(classes.listContainer)}>
+        {icon && (
+          <Container inline justifyContent='flex-end'>
+            {icon}
+          </Container>
+        )}
+        <Typography as='div' size='medium' className={classes.content}>
           {children}
         </Typography>
       </Container>

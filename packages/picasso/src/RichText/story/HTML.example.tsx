@@ -93,13 +93,22 @@ const defaultValue: ASTType = {
               value:
                 'Collaborate with PMs and other designers to ship your first product features.',
             },
+            {
+              type: 'element',
+              tagName: 'ol',
+              properties: {},
+              children: [
+                {
+                  type: 'element',
+                  tagName: 'li',
+                  properties: {},
+                  children: [
+                    { type: 'text', value: 'Learn about our design system.' },
+                  ],
+                },
+              ],
+            },
           ],
-        },
-        {
-          type: 'element',
-          tagName: 'li',
-          properties: {},
-          children: [{ type: 'text', value: 'Learn about our design system.' }],
         },
       ],
     },

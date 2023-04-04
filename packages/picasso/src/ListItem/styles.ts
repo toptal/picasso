@@ -13,18 +13,15 @@ PicassoProvider.override(() => ({
 
 export default () =>
   createStyles({
+    content: {
+      paddingLeft: '8px',
+    },
     listContainer: {
-      lineHeight: '1.375em',
-      marginBottom: '0.5em',
+      lineHeight: '1.5em',
+      marginTop: '4px',
     },
-    ordered: {
-      minWidth: '1.25em',
-      marginRight: '0.75em',
-    },
-    unordered: {
-      minWidth: '1rem',
-    },
-    lastElement: {
-      marginBottom: 0,
+    hasIcon: {
+      listStyleType: 'none',
+      marginLeft: '-22px',
     },
   })

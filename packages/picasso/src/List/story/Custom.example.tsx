@@ -33,6 +33,44 @@ const DefaultExample = () => (
         mollit anim id est laborum.
       </List.Item>
     </List>
+
+    <List variant='ordered'>
+      <List.Item>
+        Adipisicing quidem amet aspernatur aliquam aliquam ex? Dicta non
+        doloremque.
+      </List.Item>
+      <List.Item>
+        Adipisicing quidem amet aspernatur aliquam aliquam ex? Dicta non
+        doloremque.
+        <List>
+          <List.Item icon={<Referrals16 />}>
+            Adipisicing officia quae adipisicing eaque consequuntur provident.
+          </List.Item>
+          <List.Item icon={<Referrals16 color='green' />}>
+            Sit quam labore facilis dicta.
+          </List.Item>
+        </List>
+      </List.Item>
+    </List>
+
+    <List variant='unordered'>
+      <List.Item>
+        Adipisicing quidem amet aspernatur aliquam aliquam ex? Dicta non
+        doloremque.
+      </List.Item>
+      <List.Item>
+        Adipisicing quidem amet aspernatur aliquam aliquam ex? Dicta non
+        doloremque.
+        <List>
+          <List.Item icon={<Referrals16 />}>
+            Adipisicing officia quae adipisicing eaque consequuntur provident.
+          </List.Item>
+          <List.Item icon={<Referrals16 color='green' />}>
+            Sit quam labore facilis dicta.
+          </List.Item>
+        </List>
+      </List.Item>
+    </List>
   </Container>
 )
 
