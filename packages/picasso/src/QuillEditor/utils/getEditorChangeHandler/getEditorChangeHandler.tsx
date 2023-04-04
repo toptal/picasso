@@ -31,10 +31,10 @@ const handleNewLineAfterBlock = ({
   }
 }
 
-const isDeleteOperationOfSelection = (delta: DeltaStatic) => {
+const isDeleteOperation = (delta: DeltaStatic) => {
   const delOperation = delta.ops?.[0].delete
 
-  return delOperation && delOperation > 1
+  return Boolean(delOperation)
 }
 
 const getEditorChangeHandler = (
@@ -58,7 +58,9 @@ const getEditorChangeHandler = (
       } else if (isFromUser) {
         handleNewLineAfterBlock({ latestDelta, quill, onSelectionChange })
 
-        if (isDeleteOperationOfSelection(latestDelta)) {
+        // when removing formatted text, we automatically remove the format,
+        // so we need to update the toolbar
+        if (isDeleteOperation(latestDelta)) {
           onSelectionChange(quill.getFormat() as FormatType)
         }
       }
