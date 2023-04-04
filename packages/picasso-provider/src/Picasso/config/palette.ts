@@ -68,6 +68,14 @@ export const colors = {
   },
 }
 
+export const gradients = {
+  blue: `linear-gradient(153.94deg, ${colors.blue.darker}, ${colors.blue.main})`,
+  darkerBlue: `linear-gradient(153.94deg, #071237, ${colors.blue.darker})`,
+  lightGrey: `linear-gradient(153.94deg, ${colors.grey.light}, ${colors.common.white})`,
+  grey: `linear-gradient(153.94deg, ${colors.grey.darker}, ${colors.grey.dark})`,
+  darkerGrey: `linear-gradient(153.94deg, ${colors.common.black}, ${colors.grey.darker})`,
+}
+
 const palette = {
   // MUI adds additional colors, like `contrastText` to the
   // palette. So to prevent changing colors object we should
@@ -89,6 +97,7 @@ const palette = {
   background: {
     default: colors.common.white,
   },
+  gradients
 }
 
 export default palette

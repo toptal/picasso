@@ -14,6 +14,7 @@ export {
   breakpointsList,
   useScreens,
   colors,
+  gradients,
   palette,
   layout,
   breakpoints,
