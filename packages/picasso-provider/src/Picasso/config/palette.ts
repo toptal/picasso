@@ -69,11 +69,11 @@ export const colors = {
 }
 
 export const gradients = {
-  blue: `linear-gradient(153.94deg, ${colors.blue.darker}, ${colors.blue.main})`,
-  darkerBlue: `linear-gradient(153.94deg, #071237, ${colors.blue.darker})`,
-  lightGrey: `linear-gradient(153.94deg, ${colors.grey.light}, ${colors.common.white})`,
-  grey: `linear-gradient(153.94deg, ${colors.grey.darker}, ${colors.grey.dark})`,
-  darkerGrey: `linear-gradient(153.94deg, ${colors.common.black}, ${colors.grey.darker})`,
+  blue: `linear-gradient(to right bottom, ${colors.blue.darker}, ${colors.blue.main})`,
+  darkerBlue: `linear-gradient(to right bottom, #071237, ${colors.blue.darker})`,
+  lightGrey: `linear-gradient(to right bottom, ${colors.grey.light}, ${colors.common.white})`,
+  grey: `linear-gradient(to right bottom, ${colors.grey.darker}, ${colors.grey.dark})`,
+  darkerGrey: `linear-gradient(to right bottom, ${colors.common.black}, ${colors.grey.darker})`,
 }
 
 const palette = {
@@ -97,7 +97,7 @@ const palette = {
   background: {
     default: colors.common.white,
   },
-  gradients
+  gradients,
 }
 
 export default palette
