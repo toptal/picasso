@@ -52,7 +52,9 @@ const getEditorChangeHandler = (
       if (isFromApi) {
         // this event is triggered when format of block element is changed
         // for example from p > h3 | h3 > ol
-        onSelectionChange(quill.getFormat() as FormatType)
+        if (!latestDelta.ops?.[latestDelta.ops.length - 1].delete) {
+          onSelectionChange(quill.getFormat() as FormatType)
+        }
       } else if (isFromUser) {
         handleNewLineAfterBlock({ latestDelta, quill, onSelectionChange })
 
