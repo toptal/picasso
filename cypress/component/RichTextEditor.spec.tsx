@@ -329,6 +329,22 @@ describe('RichTextEditor', () => {
       buttonShouldNotBeActive(cy.get('@boldButton'))
     })
   })
+  describe('when we delete inline formatted word in the middle of sentense', () => {
+    it('updates the toolbar state correctly', () => {
+      cy.mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.get('@editor').realClick()
+      cy.get('@editor').type('a ')
+
+      cy.get('@boldButton').realClick()
+      buttonShouldBeActive(cy.get('@boldButton'))
+      cy.get('@editor').type('b')
+      buttonShouldBeActive(cy.get('@boldButton'))
+      cy.get('@editor').type('{backspace}')
+      buttonShouldNotBeActive(cy.get('@boldButton'))
+    })
+  })
 
   describe('Form.RichTextEditor', () => {
     it('focuses editor on label click', () => {
