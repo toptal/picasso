@@ -8,8 +8,8 @@ const ICON_CLEANUP_CONFIG = {
     },
   },
   '/picasso-pictograms/': {
-    skip: true
-  }
+    skip: true,
+  },
 }
 
 const getCleanupConfig = (svgPath) => {
@@ -24,6 +24,7 @@ const getCleanupConfig = (svgPath) => {
 
 const cleanupSketch = (doc, params, extra) => {
   const config = getCleanupConfig(extra.path)
+
   if (config.skip) {
     return doc
   }

@@ -8,7 +8,6 @@ import React, {
   useCallback,
   useEffect,
   useState,
-  CSSProperties,
 } from 'react'
 
 import ButtonCircular from '../ButtonCircular'
@@ -66,7 +65,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     size = 'medium',
     wrapperMaxHeight,
     disableSticky,
-    onCollapse
+    onCollapse,
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
