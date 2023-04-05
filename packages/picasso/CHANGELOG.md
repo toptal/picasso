@@ -1,5 +1,17 @@
 # Change Log
 
+## 31.13.0
+
+### Minor Changes
+
+- [#3485](https://github.com/toptal/picasso/pull/3485) [`360a28d3d`](https://github.com/toptal/picasso/commit/360a28d3d635b4bb48673170f671a62f5ad1f176) Thanks [@mkrl](https://github.com/mkrl)!
+
+---
+
+### SkeletonLoader
+
+- updated `SkeletonLoader` and all subcomponents to use a new color scheme suitable for dark backgrounds
+
 ## 31.12.4
 
 ### Patch Changes
