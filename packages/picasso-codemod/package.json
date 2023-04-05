@@ -33,7 +33,7 @@
     "picasso-codemod": "./bin/picasso-codemod.mjs"
   },
   "dependencies": {
-    "execa": "^6.1.0",
+    "execa": "^7.1.1",
     "globby": "^13.1.2",
     "jscodeshift": "^0.13.1",
     "meow": "^10.1.3"
