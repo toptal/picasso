@@ -1,5 +1,15 @@
 # Change Log
 
+## 31.12.4
+
+### Patch Changes
+
+- [#3486](https://github.com/toptal/picasso/pull/3486) [`fbe7d8e01`](https://github.com/toptal/picasso/commit/fbe7d8e01d76a7a25c52b5f03f9e08d281568d0d) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+---
+
+- use non-fixable lint command on CI
+
 ## 31.12.3
 
 ### Patch Changes
