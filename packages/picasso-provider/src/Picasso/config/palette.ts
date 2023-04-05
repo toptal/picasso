@@ -19,6 +19,13 @@ declare module '@material-ui/core/styles/createPalette' {
     yellow: SimplePaletteColorOptions
     red: SimplePaletteColorOptions
     purple: SimplePaletteColorOptions
+    gradients: {
+      blue: string
+      darkerBlue: string
+      lightGrey: string
+      grey: string
+      darkerGrey: string
+    }
   }
 }
 
@@ -68,6 +75,14 @@ export const colors = {
   },
 }
 
+export const gradients = {
+  blue: `linear-gradient(to right bottom, ${colors.blue.darker}, ${colors.blue.main})`,
+  darkerBlue: `linear-gradient(to right bottom, #071237, ${colors.blue.darker})`,
+  lightGrey: `linear-gradient(to right bottom, ${colors.grey.light}, ${colors.common.white})`,
+  grey: `linear-gradient(to right bottom, ${colors.grey.darker}, ${colors.grey.dark})`,
+  darkerGrey: `linear-gradient(to right bottom, ${colors.common.black}, ${colors.grey.darker})`,
+}
+
 const palette = {
   // MUI adds additional colors, like `contrastText` to the
   // palette. So to prevent changing colors object we should
@@ -89,6 +104,7 @@ const palette = {
   background: {
     default: colors.common.white,
   },
+  gradients,
 }
 
 export default palette

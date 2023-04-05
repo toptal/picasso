@@ -18,6 +18,7 @@ export {
   useScreens,
   shadows,
   colors as palette,
+  gradients,
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
   sizes,
