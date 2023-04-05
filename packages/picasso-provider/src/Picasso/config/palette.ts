@@ -19,6 +19,13 @@ declare module '@material-ui/core/styles/createPalette' {
     yellow: SimplePaletteColorOptions
     red: SimplePaletteColorOptions
     purple: SimplePaletteColorOptions
+    gradients: {
+      blue: string
+      darkerBlue: string
+      lightGrey: string
+      grey: string
+      darkerGrey: string
+    }
   }
 }
 
