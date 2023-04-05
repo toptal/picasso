@@ -2,7 +2,7 @@ import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
-import { palette } from '../utils'
+import { loaderPalette } from '../utils'
 import { ButtonProps } from '../Button'
 
 export interface Props extends BaseProps, Pick<ButtonProps, 'size'> {
@@ -38,7 +38,8 @@ export const ButtonLoader = ({
     <ContentLoader
       className={className}
       viewBox={`0 0 ${width} ${height}`}
-      color={palette.grey.main2}
+      foregroundColor={loaderPalette.foreground}
+      backgroundColor={loaderPalette.background}
       width={width}
       height={height}
       style={style}

@@ -2,7 +2,7 @@ import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
-import { palette } from '../utils'
+import { loaderPalette } from '../utils'
 
 const HEIGHT = 10
 const WIDTH = 200
@@ -16,7 +16,8 @@ export const HeaderLoader = ({ className, style }: Props) => {
   return (
     <ContentLoader
       className={className}
-      color={palette.grey.main2}
+      foregroundColor={loaderPalette.foreground}
+      backgroundColor={loaderPalette.background}
       width={WIDTH}
       height={CONTAINER_HEIGHT}
       style={style}
