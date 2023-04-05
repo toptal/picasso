@@ -3,7 +3,7 @@ import React from 'react'
 import { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
-import { palette } from '../utils'
+import { loaderPalette } from '../utils'
 
 export interface Props extends BaseProps {
   /** Specify the amount of rows */
@@ -19,7 +19,8 @@ const BORDER_RADIUS = HEIGHT / 2
 const Paragraph = ({ className, style = {} }: BaseProps) => (
   <ContentLoader
     className={className}
-    color={palette.grey.main2}
+    foregroundColor={loaderPalette.foreground}
+    backgroundColor={loaderPalette.background}
     height={CONTAINER_HEIGHT}
     style={{ width: WIDTH, ...style }}
   >

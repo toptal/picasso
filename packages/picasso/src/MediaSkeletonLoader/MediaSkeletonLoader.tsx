@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import ContentLoader from 'react-content-loader'
 import { pxFromRem, BaseProps } from '@toptal/picasso-shared'
 
-import { palette } from '../utils'
+import { loaderPalette } from '../utils'
 
 interface ImageProps extends BaseProps {
   /** Each variant exposes a different set of props */
@@ -113,7 +113,8 @@ export const MediaSkeletonLoader = (props: Props) => {
   return (
     <ContentLoader
       viewBox={viewBox}
-      color={palette.grey.main2}
+      foregroundColor={loaderPalette.foreground}
+      backgroundColor={loaderPalette.background}
       width={width}
       height={height}
       data-testid={props['data-testid']}

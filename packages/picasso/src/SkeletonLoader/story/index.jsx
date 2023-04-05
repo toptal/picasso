@@ -30,3 +30,13 @@ page.connect(headerLoaderStory.chapter)
 page.connect(typographyLoaderStory.chapter)
 page.connect(buttonLoaderStory.chapter)
 page.connect(mediaLoaderStory.chapter)
+
+page
+  .createChapter()
+  .addExample('SkeletonLoader/story/DarkBackground.example.tsx', {
+    title: 'Different background color',
+    description: `
+    Skeleton loader is designed to be used on a variety of backgrounds.
+    `,
+    takeScreenshot: false,
+  })
