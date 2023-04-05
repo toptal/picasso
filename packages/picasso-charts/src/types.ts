@@ -32,6 +32,8 @@ export interface BaseChartProps extends BaseProps {
   customTooltip?: React.ReactElement
   /** Allows the tooltip to extend beyond the viewBox of the chart itself */
   allowTooltipEscapeViewBox?: boolean
+  /** Layout of the barChart */
+  layout?: 'vertical' | 'horizontal'
 }
 
 export type ChartDataPoint = Record<string, string | number | boolean>

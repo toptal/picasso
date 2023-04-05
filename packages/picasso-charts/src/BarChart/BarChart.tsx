@@ -74,11 +74,6 @@ const StyleOverrides = () => (
             font-size: 11px;
             fill: ${palette.grey.dark};
           }
-
-          /* Hide first tick */
-          .recharts-yAxis .recharts-cartesian-axis-tick:first-child {
-            display: none;
-          }
       `,
     }}
   />
@@ -110,8 +105,10 @@ const BarChart = <K extends string>({
   testIds,
   showBarLabel,
   isAnimationActive,
+  layout,
   ...rest
 }: Props<K>) => {
+  const horizontal = layout === 'horizontal'
   const dataKeys = Object.keys(data[0].value) as K[]
 
   const formattedData = formatData(data)
@@ -135,11 +132,27 @@ const BarChart = <K extends string>({
   const topDomain = findTopDomain(extractValues(data))
   const ticks = getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
 
+  const categoryAxisProps = {
+    dataKey: labelKey || 'name',
+    height: TICK_HEIGHT,
+    interval: 0,
+    tick: { width: TICK_WIDTH },
+  }
+  const valueAxisProps = {
+    width: Y_AXIS_WIDTH,
+    ticks: ticks,
+    domain: [ticks[0], ticks[ticks.length - 1]],
+  }
+
+  const xAxisProps = horizontal ? categoryAxisProps : valueAxisProps
+  const yAxisProps = !horizontal ? categoryAxisProps : valueAxisProps
+
   return (
     <div style={{ height, width }} className={className} {...rest}>
       <StyleOverrides />
       <ResponsiveContainer width={width} height={height}>
         <RechartsBarChart
+          layout={layout}
           margin={chartMargins}
           data={formattedData}
           barGap={2}
@@ -149,27 +162,23 @@ const BarChart = <K extends string>({
           <CartesianGrid
             strokeDasharray='3 3'
             stroke={palette.grey.lighter2}
-            vertical={false}
+            vertical={!horizontal}
           />
           <XAxis
-            dataKey={labelKey || 'name'}
+            {...xAxisProps}
+            type={horizontal ? 'category' : 'number'}
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
-            height={TICK_HEIGHT}
-            interval={0}
-            tick={{ width: TICK_WIDTH }}
           />
           <YAxis
-            type='number'
+            {...yAxisProps}
+            type={horizontal ? 'number' : 'category'}
             tickLine={TICK_LINE}
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
-            width={Y_AXIS_WIDTH}
-            ticks={ticks}
-            domain={[ticks[0], ticks[ticks.length - 1]]}
           />
           {tooltipElement}
           {dataKeys.map(dataKey => (
@@ -209,6 +218,7 @@ BarChart.defaultProps = {
   width: 'auto',
   tooltip: false,
   showBarLabel: true,
+  layout: 'horizontal',
 }
 
 export default BarChart
