@@ -1,4 +1,4 @@
-import { alpha } from '@material-ui/core'
+import { alpha } from '@toptal/picasso-shared'
 import { colors } from '@toptal/picasso-provider'
 
 const loaderColors = {
