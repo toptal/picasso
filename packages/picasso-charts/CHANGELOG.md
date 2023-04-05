@@ -1,5 +1,17 @@
 # Change Log
 
+## 45.1.0
+
+### Minor Changes
+
+- [#3468](https://github.com/toptal/picasso/pull/3468) [`fbb086921`](https://github.com/toptal/picasso/commit/fbb08692152d2590d1793bb154c924149448b71d) Thanks [@zorguiala](https://github.com/zorguiala)!
+
+---
+
+### barChart
+
+- add vertical layout to barChart
+
 ## 45.0.2
 
 ### Patch Changes
