@@ -56,13 +56,9 @@ const getEditorChangeHandler = (
       } else if (isFromUser) {
         handleNewLineAfterBlock({ latestDelta, quill, onSelectionChange })
 
-        console.log(latestDelta, false)
-
         // when removing formatted text, we automatically remove the format,
         // so we need to update the toolbar
         if (isDeleteOperation(latestDelta)) {
-          console.log(latestDelta)
-
           onSelectionChange(quill.getFormat() as FormatType)
         }
       }
