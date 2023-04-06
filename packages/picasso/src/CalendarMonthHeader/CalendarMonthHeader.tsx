@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import ButtonCircular from '../ButtonCircular'
 import Typography from '../Typography'
 import { ChevronMinor24, BackMinor24 } from '../Icon'
-import { MonthHeaderProps } from '../Calendar/types'
+import type { MonthHeaderProps } from '../Calendar/types'
 import Container from '../Container'
 
 const CalendarMonthHeader = ({

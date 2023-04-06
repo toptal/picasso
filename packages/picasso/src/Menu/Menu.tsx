@@ -1,8 +1,10 @@
-import React, { HTMLAttributes, forwardRef } from 'react'
+import type { HTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { MenuList as MUIMenuList } from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { BackMinor16 } from '../Icon'
 import MenuItem from '../MenuItem'
@@ -10,7 +12,7 @@ import Typography from '../Typography'
 import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
 import styles from './styles'
-import { MenuVariant } from './types'
+import type { MenuVariant } from './types'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   /** Switches between slide and drilldown variants */

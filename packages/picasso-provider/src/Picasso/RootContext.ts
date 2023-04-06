@@ -1,6 +1,7 @@
-import React, { RefObject, useContext } from 'react'
+import type { RefObject } from 'react'
+import React, { useContext } from 'react'
 
-import { TextLabelProps, EnvironmentType } from '../types'
+import type { TextLabelProps, EnvironmentType } from '../types'
 
 export interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>

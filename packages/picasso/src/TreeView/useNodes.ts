@@ -1,7 +1,11 @@
 import { createRef, useEffect, useMemo, useRef, useState } from 'react'
-import { HierarchyPointNode } from 'd3-hierarchy'
+import type { HierarchyPointNode } from 'd3-hierarchy'
 
-import { DirectionsType, DynamicPointNode, TreeNodeInterface } from './types'
+import type {
+  DirectionsType,
+  DynamicPointNode,
+  TreeNodeInterface,
+} from './types'
 
 const getDynamicNodes = (
   nodes: HierarchyPointNode<TreeNodeInterface>[]

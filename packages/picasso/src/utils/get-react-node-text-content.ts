@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 /**
  * Extracts only the text contents of a ReactNode *recursively*.

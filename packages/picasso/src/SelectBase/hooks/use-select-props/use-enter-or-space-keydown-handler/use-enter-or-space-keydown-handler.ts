@@ -1,8 +1,9 @@
-import { KeyboardEvent, useCallback } from 'react'
+import type { KeyboardEvent } from 'react'
+import { useCallback } from 'react'
 
-import { ValueType, UseSelectProps } from '../../../types'
+import type { ValueType, UseSelectProps } from '../../../types'
 import flattenOptions from '../../../utils/flatten-options'
-import useSelectHandler from '../use-select-handler'
+import type useSelectHandler from '../use-select-handler'
 
 const useEnterOrSpaceKeyDownHandler = <
   T extends ValueType,

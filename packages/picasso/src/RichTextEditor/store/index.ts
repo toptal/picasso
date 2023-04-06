@@ -1,5 +1,5 @@
 import * as toolbarStore from './toolbar'
-import { StateType, ActionsType } from './types'
+import type { StateType, ActionsType } from './types'
 
 export * from './types'
 

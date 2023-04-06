@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { ValueType, UseSelectProps } from '../../../types'
+import type { ValueType, UseSelectProps } from '../../../types'
 import { isRelatedTargetInsidePopper, focusRef } from '../../../utils'
 
 const useSearchBlurHandler = <T extends ValueType, M extends boolean = false>({

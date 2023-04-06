@@ -1,16 +1,18 @@
-import React, { ChangeEvent, FocusEvent, useMemo } from 'react'
-import {
-  useField,
+import type { ChangeEvent, FocusEvent } from 'react'
+import React, { useMemo } from 'react'
+import type {
   FieldProps as FinalFieldProps,
   FieldRenderProps,
 } from 'react-final-form'
-import { Form as PicassoForm, OutlinedInputStatus } from '@toptal/picasso'
-import { TextLabelProps } from '@toptal/picasso-shared'
+import { useField } from 'react-final-form'
+import type { OutlinedInputStatus } from '@toptal/picasso'
+import { Form as PicassoForm } from '@toptal/picasso'
+import type { TextLabelProps } from '@toptal/picasso-shared'
 import { detect } from 'detect-browser'
 
 import { useFormConfig } from '../FormConfig'
 import { validators, useFieldValidation } from '../utils'
-import { ValueType, IFormComponentProps } from '../FieldBase'
+import type { ValueType, IFormComponentProps } from '../FieldBase'
 
 const { composeValidators, required: requiredValidator } = validators
 

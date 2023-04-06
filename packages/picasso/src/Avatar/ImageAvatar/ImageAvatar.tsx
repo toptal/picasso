@@ -1,7 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
-import { JssProps, BaseProps, SizeType } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { JssProps, BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Image from '../../Image'
 import Logo from '../../Logo'

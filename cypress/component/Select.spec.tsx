@@ -1,12 +1,7 @@
-import React, { useState, ChangeEvent } from 'react'
-import {
-  Select,
-  SelectValueType,
-  Form,
-  Container,
-  SelectProps,
-  Drawer,
-} from '@toptal/picasso'
+import type { ChangeEvent } from 'react'
+import React, { useState } from 'react'
+import type { SelectValueType, SelectProps } from '@toptal/picasso'
+import { Select, Form, Container, Drawer } from '@toptal/picasso'
 import { noop, palette } from '@toptal/picasso/utils'
 
 const TestSelect = ({

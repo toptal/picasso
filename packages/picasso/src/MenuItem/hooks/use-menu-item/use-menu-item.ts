@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react'
+import type { ReactElement } from 'react'
+import type React from 'react'
 
 import useMenuItemKey from '../use-menu-item-key'
 import useSlideMenuItem from '../use-slide-menu-item'

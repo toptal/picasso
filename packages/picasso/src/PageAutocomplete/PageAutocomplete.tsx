@@ -1,6 +1,7 @@
 import React from 'react'
 
-import Autocomplete, { AutocompleteProps } from '../Autocomplete'
+import type { AutocompleteProps } from '../Autocomplete'
+import Autocomplete from '../Autocomplete'
 
 export interface Props extends AutocompleteProps {
   /** The variant to use */

@@ -1,17 +1,10 @@
-import React, {
-  ReactNode,
-  HTMLAttributes,
-  forwardRef,
-  useMemo,
-  ElementType,
-} from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode, HTMLAttributes, ElementType } from 'react'
+import React, { forwardRef, useMemo } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  BaseProps,
-  addClassesToChildren,
-  Classes,
-} from '@toptal/picasso-shared'
+import type { BaseProps, Classes } from '@toptal/picasso-shared'
+import { addClassesToChildren } from '@toptal/picasso-shared'
 
 import Button from '../Button'
 import ButtonGroupItem from '../ButtonGroupItem'

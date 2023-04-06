@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import {
+import type {
   AvatarUploadFileUpload,
   AvatarUploadFileRejection,
-  Container,
 } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 import {
   FormNonCompound as Form,
   useForm,

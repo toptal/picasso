@@ -1,9 +1,8 @@
 import React from 'react'
 
 import Radio from '../Radio'
-import ButtonControlLabel, {
-  ButtonControlLabelProps,
-} from '../ButtonControlLabel'
+import type { ButtonControlLabelProps } from '../ButtonControlLabel'
+import ButtonControlLabel from '../ButtonControlLabel'
 
 export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   testIds?: {

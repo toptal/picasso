@@ -1,4 +1,4 @@
-import { FocusEvent } from 'react'
+import type { FocusEvent } from 'react'
 
 import isRelatedTargetInsidePopper from './is-related-target-inside-popper'
 

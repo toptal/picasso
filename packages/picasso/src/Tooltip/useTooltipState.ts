@@ -1,4 +1,5 @@
-import { MutableRefObject, useRef, useState } from 'react'
+import type { MutableRefObject } from 'react'
+import { useRef, useState } from 'react'
 
 import isPointerDevice from '../utils/is-pointer-device'
 

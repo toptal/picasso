@@ -1,4 +1,4 @@
-import { ToolbarStateType, ToolbarActionsType } from './toolbar/types'
+import type { ToolbarStateType, ToolbarActionsType } from './toolbar/types'
 
 export type StateType = {
   toolbar: ToolbarStateType

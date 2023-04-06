@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { useTitleCase } from '@toptal/picasso-shared'
 
@@ -7,7 +8,7 @@ import Indicator from '../Indicator'
 import Chip from '../Chip'
 import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
-import { Props } from './types'
+import type { Props } from './types'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagRectangular',

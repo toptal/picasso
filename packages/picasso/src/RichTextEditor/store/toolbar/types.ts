@@ -1,4 +1,4 @@
-import actionTypes from './actionTypes'
+import type actionTypes from './actionTypes'
 
 export type HeaderValue = '3' | ''
 export type BoldValue = boolean

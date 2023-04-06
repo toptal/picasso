@@ -1,5 +1,6 @@
-import { JssProps } from '@toptal/picasso-shared'
-import React, { ReactNode } from 'react'
+import type { JssProps } from '@toptal/picasso-shared'
+import type { ReactNode } from 'react'
+import React from 'react'
 
 import { MenuCompound as Menu } from '../MenuCompound'
 import Typography from '../Typography'

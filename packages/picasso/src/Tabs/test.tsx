@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { TestingPicasso } from '@toptal/picasso/test-utils'
 
-import { TabProps } from '../Tab'
-import { Props } from './Tabs'
+import type { TabProps } from '../Tab'
+import type { Props } from './Tabs'
 import { TabsCompound as Tabs } from '../TabsCompound'
 
 const renderTabContent = (tab: TabProps, index: number, value: any) => {

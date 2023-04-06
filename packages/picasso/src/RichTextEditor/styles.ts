@@ -1,5 +1,6 @@
 import { outline } from '@toptal/picasso-shared'
-import { createStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
 import highlightAutofillStyles from '../InputBase/highlightStyles'
 

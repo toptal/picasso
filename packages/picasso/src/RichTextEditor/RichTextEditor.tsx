@@ -1,13 +1,16 @@
 import React, { forwardRef, useMemo, useRef, useState } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, useHasMultilineCounter } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
+import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 import hastSanitize from 'hast-util-sanitize'
 
 import noop from '../utils/noop'
 import Container from '../Container'
-import QuillEditor, { EditorPlugin } from '../QuillEditor'
+import type { EditorPlugin } from '../QuillEditor'
+import QuillEditor from '../QuillEditor'
 import InputMultilineAdornment from '../InputMultilineAdornment'
 import Toolbar from '../RichTextEditorToolbar'
 import styles from './styles'
@@ -19,10 +22,10 @@ import {
   useToolbarHandlers,
   useCounter,
 } from './hooks'
-import { ASTType } from '../RichText'
+import type { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { Status } from '../OutlinedInput'
-import { CounterMessageSetter } from './types'
+import type { Status } from '../OutlinedInput'
+import type { CounterMessageSetter } from './types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */

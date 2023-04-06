@@ -1,5 +1,6 @@
-import React, { ReactNode, forwardRef, HTMLAttributes } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import Notification from '../Notification'
 import NotificationActions from '../NotificationActions'

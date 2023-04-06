@@ -1,6 +1,7 @@
-import { ReactElement, useCallback, useMemo, useState } from 'react'
+import type { ReactElement } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
-import { MenuContextProps } from '../../../Menu/MenuContext'
+import type { MenuContextProps } from '../../../Menu/MenuContext'
 
 const useDrilldownMenu = () => {
   const [activeItemKey, setActiveItemKey] = useState<string>()

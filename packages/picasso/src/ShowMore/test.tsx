@@ -1,8 +1,10 @@
 import React from 'react'
-import { render, fireEvent, RenderResult } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { RenderResult } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import ShowMore, { Props } from './ShowMore'
+import type { Props } from './ShowMore'
+import ShowMore from './ShowMore'
 
 const renderShowMore = (props: OmitInternalProps<Props>) => {
   const {

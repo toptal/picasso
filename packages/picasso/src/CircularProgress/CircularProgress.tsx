@@ -1,7 +1,9 @@
-import React, { HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { HTMLAttributes } from 'react'
+import React from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { CircularProgress as MUICircularProgress } from '@material-ui/core'
-import { StandardProps } from '@toptal/picasso-shared'
+import type { StandardProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 

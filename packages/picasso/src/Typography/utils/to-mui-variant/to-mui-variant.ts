@@ -1,4 +1,4 @@
-import { SizeType } from '@toptal/picasso-shared'
+import type { SizeType } from '@toptal/picasso-shared'
 
 const variantsMapping = {
   heading: {
@@ -29,6 +29,6 @@ const toMuiVariant = <
 >(
   variant: V,
   size: S
-): typeof variantsMapping[V][S] => variantsMapping[variant][size]
+): (typeof variantsMapping)[V][S] => variantsMapping[variant][size]
 
 export default toMuiVariant

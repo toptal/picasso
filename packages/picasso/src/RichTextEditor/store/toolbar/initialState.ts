@@ -1,4 +1,4 @@
-import { ToolbarStateType } from './types'
+import type { ToolbarStateType } from './types'
 
 const initialState: ToolbarStateType = {
   format: {

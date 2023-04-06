@@ -1,5 +1,6 @@
 import React from 'react'
-import { PasswordInput, PasswordInputProps } from '@toptal/picasso'
+import type { PasswordInputProps } from '@toptal/picasso'
+import { PasswordInput } from '@toptal/picasso'
 
 const PasswordInputExample = ({ status }: Partial<PasswordInputProps>) => (
   <PasswordInput

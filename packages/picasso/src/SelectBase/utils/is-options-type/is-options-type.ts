@@ -1,4 +1,4 @@
-import { Option, OptionGroups } from '../../types'
+import type { Option, OptionGroups } from '../../types'
 
 export const isOptionsType = (
   input: Option[] | OptionGroups

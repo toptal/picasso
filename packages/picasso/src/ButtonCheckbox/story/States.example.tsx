@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react'
+import type { ChangeEvent } from 'react'
+import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 
 const handleClick = (_: ChangeEvent<HTMLInputElement>, value: boolean) =>

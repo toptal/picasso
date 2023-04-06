@@ -1,8 +1,11 @@
-import React, { ReactNode } from 'react'
-import { render, RenderResult } from '@testing-library/react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { ReactNode } from 'react'
+import React from 'react'
+import type { RenderResult } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Slider, { Props } from './Slider'
+import type { Props } from './Slider'
+import Slider from './Slider'
 
 const renderSlider = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { value } = props

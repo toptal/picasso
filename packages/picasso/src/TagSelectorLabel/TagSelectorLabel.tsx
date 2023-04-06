@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 import Tag from '../Tag'
-import { Props as TagProps } from '../Tag/Tag'
+import type { Props as TagProps } from '../Tag/Tag'
 
 export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(
   function TagSelectorLabel(props, ref) {

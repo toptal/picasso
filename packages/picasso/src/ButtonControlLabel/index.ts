@@ -1,4 +1,4 @@
-import { Props } from './ButtonControlLabel'
+import type { Props } from './ButtonControlLabel'
 
 export { default } from './ButtonControlLabel'
 export type ButtonControlLabelProps = Props

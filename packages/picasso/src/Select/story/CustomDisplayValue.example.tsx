@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Select, SelectOption } from '@toptal/picasso'
+import type { SelectOption } from '@toptal/picasso'
+import { Select } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')

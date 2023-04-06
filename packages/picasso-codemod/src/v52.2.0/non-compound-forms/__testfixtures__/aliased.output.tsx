@@ -1,4 +1,4 @@
-import { FormNonCompound, Input, Rating } from '@toptal/picasso-forms';
+import { FormNonCompound, Input, Rating } from '@toptal/picasso-forms'
 import React from 'react'
 
 const Example = () => {
@@ -20,5 +20,5 @@ const Example = () => {
         required
       />
     </FormNonCompound>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { Transform } from 'jscodeshift'
+import type { Transform } from 'jscodeshift'
 
 import { findComponents, renameImport } from '../../utils'
 

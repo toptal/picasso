@@ -1,9 +1,10 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import FormLabel, { Props } from './FormLabel'
+import type { Props } from './FormLabel'
+import FormLabel from './FormLabel'
 import { FormCompound as Form } from '../FormCompound'
 
 jest.mock('ap-style-title-case')

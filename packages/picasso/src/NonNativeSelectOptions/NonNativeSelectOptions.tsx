@@ -1,13 +1,13 @@
-import React, { ReactNode, useMemo } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode } from 'react'
+import React, { useMemo } from 'react'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import MenuItem from '../MenuItem'
 import NonNativeSelectOption from '../NonNativeSelectOption'
 import SelectOptions from '../SelectOptions'
-import {
-  flattenOptions,
-  isOptionsType,
+import type {
   FocusEventType,
   ItemProps,
   Option,
@@ -15,6 +15,7 @@ import {
   SelectProps,
   Selection,
 } from '../SelectBase'
+import { flattenOptions, isOptionsType } from '../SelectBase'
 import Typography from '../Typography'
 import styles from './styles'
 

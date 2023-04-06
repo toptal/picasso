@@ -1,4 +1,4 @@
-import { SidebarTagProps } from '../../../SidebarItemContent'
+import type { SidebarTagProps } from '../../../SidebarItemContent'
 import getTagProps from './getTagProps'
 
 describe('getTagProps', () => {

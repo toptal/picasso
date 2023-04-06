@@ -1,7 +1,8 @@
 import { useCallback } from 'react'
-import { DropzoneRootProps, useDropzone } from 'react-dropzone'
+import type { DropzoneRootProps } from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
 
-import { AvatarUploadOptions, DropEvent, FileRejection } from '../../types'
+import type { AvatarUploadOptions, DropEvent, FileRejection } from '../../types'
 
 interface Props {
   /** Set accepted file types. See https://github.com/okonet/attr-accept for more information. */

@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Image, { Props } from './Image'
+import type { Props } from './Image'
+import Image from './Image'
 
 const renderImage = (props: OmitInternalProps<Props>) => {
   const { variant, alt, src } = props

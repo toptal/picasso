@@ -1,6 +1,7 @@
-import React, { ElementType, ReactNode } from 'react'
+import type { ElementType, ReactNode } from 'react'
+import React from 'react'
 
-import { Classes } from './types'
+import type { Classes } from './types'
 
 type ConfigItem = [ElementType, Classes]
 type Config = (classes: Classes) => ConfigItem[]

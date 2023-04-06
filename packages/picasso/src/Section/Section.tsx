@@ -1,8 +1,10 @@
 import cx from 'classnames'
-import React, { forwardRef, ReactNode, useState } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode } from 'react'
+import React, { forwardRef, useState } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
-import { SizeType, BaseProps } from '@toptal/picasso-shared'
+import type { SizeType, BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import ButtonCircular from '../ButtonCircular'

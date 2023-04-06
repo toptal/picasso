@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './HelpboxActions'
+import type { Props } from './HelpboxActions'
 
 export { default } from './HelpboxActions'
 export type HelpboxActionsProps = OmitInternalProps<Props>

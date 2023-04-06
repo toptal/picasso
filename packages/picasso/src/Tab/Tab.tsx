@@ -1,13 +1,11 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  HTMLAttributes,
-  ReactElement,
-  useContext,
-} from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Tab as MUITab, TabProps } from '@material-ui/core'
-import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
+import type { ReactNode, HTMLAttributes, ReactElement } from 'react'
+import React, { forwardRef, useContext } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { TabProps } from '@material-ui/core'
+import { Tab as MUITab } from '@material-ui/core'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { useTitleCase } from '@toptal/picasso-shared'
 
 import UserBadge from '../UserBadge'
 import styles from './styles'

@@ -1,6 +1,7 @@
-import Quill, { TextChangeHandler } from 'quill'
+import type { TextChangeHandler } from 'quill'
+import type Quill from 'quill'
 
-import { TextLengthChangeHandler } from '../../types'
+import type { TextLengthChangeHandler } from '../../types'
 
 const getTextLengthChangeHandler = (
   quill: Quill,

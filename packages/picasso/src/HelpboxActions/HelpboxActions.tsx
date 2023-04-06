@@ -1,11 +1,13 @@
-import React, { ReactNode, forwardRef, useContext, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, useContext } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import styles from './styles'
-import { HelpboxContextProps } from '../Helpbox/types'
+import type { HelpboxContextProps } from '../Helpbox/types'
 import HelpboxContext from '../Helpbox/HelpboxContext'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

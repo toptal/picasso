@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Menu, MenuProps } from '@toptal/picasso'
+import type { MenuProps } from '@toptal/picasso'
+import { Container, Menu } from '@toptal/picasso'
 
 const MenuExample = (props: MenuProps) => {
   const menuForItemB1 = (

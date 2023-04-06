@@ -1,7 +1,8 @@
 import React, { forwardRef, useState } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
+import type { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
 
 import styles from './styles'

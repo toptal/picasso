@@ -1,10 +1,6 @@
-import React, {
-  forwardRef,
-  FormEventHandler,
-  ReactNode,
-  FormHTMLAttributes,
-} from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { FormEventHandler, ReactNode, FormHTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */

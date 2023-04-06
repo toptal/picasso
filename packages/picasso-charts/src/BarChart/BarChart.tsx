@@ -13,7 +13,7 @@ import {
 import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
-import { BaseChartProps } from '../types'
+import type { BaseChartProps } from '../types'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 

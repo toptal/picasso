@@ -15,7 +15,8 @@ import {
   Tooltip,
 } from 'recharts'
 import { ticks as getD3Ticks } from 'd3-array'
-import { makeStyles, Theme } from '@material-ui/core'
+import type { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
 import { ChartDot } from './ChartDot'
 import calculateTooltipPosition from '../utils/calculate-tooltip-position'
@@ -23,7 +24,7 @@ import { getChartTicks, toRechartsHighlightFormat, orderData } from '../utils'
 import { findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 import styles from './styles'
-import {
+import type {
   CoordinatePayload,
   BaseLineChartProps,
   ChartDataPoint,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
-import { FileRejection } from '@toptal/picasso/AvatarUpload'
+import type { FileRejection } from '@toptal/picasso/AvatarUpload'
 
 const Example = () => {
   const [uploading, setUploading] = useState<boolean>(false)

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { DatePicker, DatePickerValue, Form } from '@toptal/picasso'
+import type { DatePickerValue } from '@toptal/picasso'
+import { DatePicker, Form } from '@toptal/picasso'
 
 const Example = () => {
   const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>()

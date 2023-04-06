@@ -1,4 +1,5 @@
 import React from 'react'
+import type { BaseProps } from '@toptal/picasso'
 import {
   Archive24,
   Award16,
@@ -8,7 +9,6 @@ import {
   Page,
   Referral16,
   Team16,
-  BaseProps,
 } from '@toptal/picasso'
 
 const TopBarMenuExample = ({ 'data-testid': testId }: BaseProps) => {

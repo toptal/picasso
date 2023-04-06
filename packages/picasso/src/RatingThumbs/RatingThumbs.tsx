@@ -1,7 +1,9 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import classNames from 'classnames'
-import React, { ChangeEvent, forwardRef, useCallback, useState } from 'react'
+import type { ChangeEvent } from 'react'
+import React, { forwardRef, useCallback, useState } from 'react'
 
 import { Container } from '../Container'
 import { ThumbsDown16, ThumbsDown24, ThumbsUp16, ThumbsUp24 } from '../Icon'

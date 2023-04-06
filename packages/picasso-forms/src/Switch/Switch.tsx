@@ -1,11 +1,9 @@
 import React from 'react'
-import {
-  Switch as PicassoSwitch,
-  SwitchProps,
-  Form as PicassoForm,
-} from '@toptal/picasso'
+import type { SwitchProps } from '@toptal/picasso'
+import { Switch as PicassoSwitch, Form as PicassoForm } from '@toptal/picasso'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 
 export type FormSwitchProps = Omit<SwitchProps, 'onChange'> & {
   onChange?: SwitchProps['onChange']

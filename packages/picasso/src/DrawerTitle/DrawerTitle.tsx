@@ -1,6 +1,8 @@
-import React, { ReactNode } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode } from 'react'
+import React from 'react'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
 import Typography from '../Typography'

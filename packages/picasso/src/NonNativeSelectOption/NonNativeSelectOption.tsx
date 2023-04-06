@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 
 import MenuItem from '../MenuItem'
-import { ItemProps, Option, ValueType } from '../SelectBase'
+import type { ItemProps, Option, ValueType } from '../SelectBase'
 
 export interface Props<T extends ValueType> extends ItemProps {
   children?: ReactNode

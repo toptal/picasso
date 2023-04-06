@@ -1,7 +1,8 @@
-import React, { forwardRef, ReactNode, useMemo, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+import React, { forwardRef, useMemo, useRef, useState } from 'react'
 
 import { useIsomorphicLayoutEffect } from '../../utils'
-import { DynamicPointNode } from '../types'
+import type { DynamicPointNode } from '../types'
 import { NodeContent } from './NodeContent'
 
 export interface Props {

@@ -1,5 +1,5 @@
 import formatData from './format-data'
-import { DataItem } from '../../types'
+import type { DataItem } from '../../types'
 
 describe('formatData', () => {
   it('formats categories chart data', () => {

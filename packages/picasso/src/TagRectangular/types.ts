@@ -1,7 +1,7 @@
-import { HTMLAttributes, AnchorHTMLAttributes } from 'react'
-import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type { HTMLAttributes, AnchorHTMLAttributes } from 'react'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
-import { IndicatorProps } from '../Indicator'
+import type { IndicatorProps } from '../Indicator'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>

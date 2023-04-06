@@ -1,13 +1,10 @@
-import {
-  ASTType,
-  RichTextEditor as PicassoRichTextEditor,
-  RichTextEditorProps,
-} from '@toptal/picasso'
+import type { ASTType, RichTextEditorProps } from '@toptal/picasso'
+import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso'
 import React, { useCallback, useState } from 'react'
-import { Except } from 'type-fest'
+import type { Except } from 'type-fest'
 import { useForm } from 'react-final-form'
 
-import { FieldProps } from '../FieldWrapper'
+import type { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
 

@@ -1,24 +1,24 @@
+import type { ThemeOptions } from '@material-ui/core/styles'
 import {
   MuiThemeProvider,
-  ThemeOptions,
   StylesProvider,
   createGenerateClassName,
 } from '@material-ui/core/styles'
-import React, { ReactNode, useMemo } from 'react'
+import type { ReactNode } from 'react'
+import React, { useMemo } from 'react'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
 import HelmetProvider from './HelmetProvider'
 import NotificationsProvider from './NotificationsProvider'
 import Favicon from '../Favicon'
-import { EnvironmentType, TextLabelProps } from '../types'
+import type { EnvironmentType, TextLabelProps } from '../types'
 import { generateRandomStringOrGetEmptyInTest } from './utils'
 import { PicassoBreakpoints } from './config'
 import PicassoProvider from './PicassoProvider'
 import FixViewport from './FixViewport'
-import PicassoGlobalStylesProvider, {
-  PicassoGlobalStylesProviderProps,
-} from './PicassoGlobalStylesProvider'
+import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProvider'
+import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
 
 export interface PicassoProps extends TextLabelProps {

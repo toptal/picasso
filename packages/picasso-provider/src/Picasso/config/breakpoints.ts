@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import { useState, useEffect, useCallback } from 'react'
-import { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
+import type { BreakpointValues } from '@material-ui/core/styles/createBreakpoints'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { isBrowser } from '../../utils'

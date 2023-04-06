@@ -1,17 +1,18 @@
-import React, {
+import type {
   ChangeEventHandler,
   ReactType,
   ReactNode,
   InputHTMLAttributes,
   MouseEvent,
-  forwardRef,
 } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
-import { InputBaseComponentProps } from '@material-ui/core/InputBase'
+import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import type { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
 
 import InputAdornment from '../InputAdornment'
 import ButtonCircular from '../ButtonCircular'

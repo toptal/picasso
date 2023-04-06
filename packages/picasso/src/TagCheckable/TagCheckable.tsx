@@ -1,6 +1,7 @@
 import cx from 'classnames'
-import React, { ReactElement, MouseEventHandler, forwardRef } from 'react'
-import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type { ReactElement, MouseEventHandler } from 'react'
+import React, { forwardRef } from 'react'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import Tag from '../Tag'
 import { useStyles } from '../Tag/Tag'

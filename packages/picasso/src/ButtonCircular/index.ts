@@ -1,4 +1,4 @@
-import { Props } from './ButtonCircular'
+import type { Props } from './ButtonCircular'
 
 export { default } from './ButtonCircular'
 export type ButtonCircularProps = Props

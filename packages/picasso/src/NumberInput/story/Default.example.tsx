@@ -1,4 +1,5 @@
-import React, { useState, ChangeEventHandler } from 'react'
+import type { ChangeEventHandler } from 'react'
+import React, { useState } from 'react'
 import { NumberInput, Container } from '@toptal/picasso'
 
 const DefaultExample = () => {

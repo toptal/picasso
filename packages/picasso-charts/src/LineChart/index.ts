@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './LineChart'
+import type { Props } from './LineChart'
 
 export { default } from './LineChart'
 export type { ReferenceLineType } from './LineChart'

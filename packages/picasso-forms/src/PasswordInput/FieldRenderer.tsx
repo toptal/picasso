@@ -1,8 +1,7 @@
-import React, { FocusEvent, useCallback } from 'react'
-import {
-  PasswordInput as PicassoPasswordInput,
-  PasswordInputProps,
-} from '@toptal/picasso'
+import type { FocusEvent } from 'react'
+import React, { useCallback } from 'react'
+import type { PasswordInputProps } from '@toptal/picasso'
+import { PasswordInput as PicassoPasswordInput } from '@toptal/picasso'
 
 interface FieldRendererProps extends PasswordInputProps {
   onShowContent: () => void

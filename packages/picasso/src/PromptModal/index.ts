@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './PromptModal'
+import type { Props } from './PromptModal'
 
 export { default } from './PromptModal'
 export type PromptModalProps = OmitInternalProps<Props>

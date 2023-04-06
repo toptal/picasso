@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
 export const headerHeight = { default: '3.5rem', smallAndMedium: '3rem' }
 

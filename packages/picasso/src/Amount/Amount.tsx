@@ -1,6 +1,7 @@
 import React from 'react'
 
-import Typography, { TypographyProps } from '../Typography'
+import type { TypographyProps } from '../Typography'
+import Typography from '../Typography'
 import {
   formatAmount,
   DEFAULT_LOCALE,

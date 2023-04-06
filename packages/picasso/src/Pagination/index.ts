@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Pagination'
+import type { Props } from './Pagination'
 
 export { default } from './Pagination'
 export type PaginationProps = OmitInternalProps<Props>

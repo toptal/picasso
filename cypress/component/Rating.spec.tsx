@@ -1,11 +1,6 @@
 import React from 'react'
-import {
-  Container,
-  Pin16,
-  PinSolid16,
-  Rating,
-  RatingStarsProps,
-} from '@toptal/picasso'
+import type { RatingStarsProps } from '@toptal/picasso'
+import { Container, Pin16, PinSolid16, Rating } from '@toptal/picasso'
 import RatingIcon from '@toptal/picasso/RatingIcon'
 
 const defaultProps: RatingStarsProps = {

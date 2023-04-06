@@ -1,8 +1,9 @@
-import { Dispatch, useCallback } from 'react'
+import type { Dispatch } from 'react'
+import { useCallback } from 'react'
 
-import { ActionsType } from '../../store'
+import type { ActionsType } from '../../store'
 import { actions as toolbarActions } from '../../store/toolbar'
-import { TextFormatHandlerEvent } from '../../../QuillEditor'
+import type { TextFormatHandlerEvent } from '../../../QuillEditor'
 import {
   convertBoldFromEditorValue,
   convertItalicFromEditorValue,

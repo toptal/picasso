@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import TimelineRow from '../TimelineRow'
 import Container from '../Container'

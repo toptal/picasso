@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Dropzone, DropzoneProps } from '@toptal/picasso'
+import type { DropzoneProps } from '@toptal/picasso'
+import { Container, Dropzone } from '@toptal/picasso'
 
 const renderDropzone = (props?: DropzoneProps) => (
   <Container padded='small'>

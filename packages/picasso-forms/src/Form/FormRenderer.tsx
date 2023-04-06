@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
-import { Form, Container, FormProps } from '@toptal/picasso'
+import type { FormProps } from '@toptal/picasso'
+import { Form, Container } from '@toptal/picasso'
 
 interface Props extends FormProps {
   setActiveFieldTouched: () => void

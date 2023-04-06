@@ -1,12 +1,8 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 
-import {
-  isOptionsType,
-  Option,
-  OptionGroups,
-  ItemProps,
-  Selection,
-} from '../SelectBase'
+import type { Option, OptionGroups, ItemProps, Selection } from '../SelectBase'
+import { isOptionsType } from '../SelectBase'
 
 export interface Props {
   options: Option[] | OptionGroups

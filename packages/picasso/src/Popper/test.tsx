@@ -3,7 +3,8 @@ import MUIPopper from '@material-ui/core/Popper'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 import { render } from '@testing-library/react'
 
-import Popper, { Props, getPopperOptions } from './Popper'
+import type { Props } from './Popper'
+import Popper, { getPopperOptions } from './Popper'
 
 jest.mock('@material-ui/core/Popper', () => jest.fn(() => null))
 jest.mock('@toptal/picasso-provider', () => ({

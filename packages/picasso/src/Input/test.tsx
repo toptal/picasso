@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Input, { Props } from './Input'
+import type { Props } from './Input'
+import Input from './Input'
 import Search16 from '../Icon/Search16'
 
 const testIds = {

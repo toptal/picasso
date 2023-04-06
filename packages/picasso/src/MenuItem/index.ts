@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './MenuItem'
+import type { Props } from './MenuItem'
 
 export { default } from './MenuItem'
 export type MenuItemProps = OmitInternalProps<Props>

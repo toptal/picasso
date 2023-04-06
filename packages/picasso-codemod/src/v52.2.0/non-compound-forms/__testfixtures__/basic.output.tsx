@@ -21,7 +21,7 @@ import {
   AvatarUpload,
   Switch,
   SubmitButton,
-} from '@toptal/picasso-forms';
+} from '@toptal/picasso-forms'
 import React from 'react'
 
 const Example = () => {
@@ -54,12 +54,7 @@ const Example = () => {
         <Radio label='Male' value='male' />
         <Radio label='Female' value='female' />
       </RadioGroup>
-      <RadioGroup
-        name='default-gender'
-        label='Gender'
-        horizontal
-        spacing={8}
-      >
+      <RadioGroup name='default-gender' label='Gender' horizontal spacing={8}>
         <ButtonRadio value='male'>Male</ButtonRadio>
         <ButtonRadio value='female'>Female</ButtonRadio>
       </RadioGroup>
@@ -78,9 +73,7 @@ const Example = () => {
         spacing={8}
       >
         <ButtonCheckbox value='skiing'>Skiing</ButtonCheckbox>
-        <ButtonCheckbox value='freeDiving'>
-          Free diving
-        </ButtonCheckbox>
+        <ButtonCheckbox value='freeDiving'>Free diving</ButtonCheckbox>
         <ButtonCheckbox value='dancing'>Dancing</ButtonCheckbox>
       </CheckboxGroup>
       <Select
@@ -140,5 +133,5 @@ const Example = () => {
 
       <SubmitButton>Submit</SubmitButton>
     </FormNonCompound>
-  );
+  )
 }

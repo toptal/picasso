@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './EnvironmentBanner'
+import type { Props } from './EnvironmentBanner'
 
 export { default } from './EnvironmentBanner'
 export type EnvironmentBannerProps = OmitInternalProps<Props>

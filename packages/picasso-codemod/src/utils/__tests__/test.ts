@@ -4,7 +4,7 @@ import { addImportMember } from '..'
 import { findSpecifierForImport } from '../find-specifier-for-import'
 import { isImportFor } from '../is-import-for'
 import { isSpecifierFor } from '../is-specifier-for'
-import { PackageMember } from '../types'
+import type { PackageMember } from '../types'
 
 const j = core
 

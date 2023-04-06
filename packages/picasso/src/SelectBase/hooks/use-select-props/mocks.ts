@@ -1,4 +1,4 @@
-import { UseSelectProps } from '../../types'
+import type { UseSelectProps } from '../../types'
 
 export const getUseSelectPropsMock = (): UseSelectProps => {
   return {

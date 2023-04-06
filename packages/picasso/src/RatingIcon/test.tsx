@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import RatingIcon, { Props } from './RatingIcon'
+import type { Props } from './RatingIcon'
+import RatingIcon from './RatingIcon'
 
 const defaultProps: Props = {
   active: true,

@@ -1,12 +1,12 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 import { renderHook } from '@testing-library/react-hooks'
 
 import { Candidates16 } from '../Icon'
 import PageSidebar from '../PageSidebar'
-import { Props } from './types'
+import type { Props } from './types'
 import {
   SubMenuContextProvider,
   useSubMenuContext,

@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import Typography from '../Typography'

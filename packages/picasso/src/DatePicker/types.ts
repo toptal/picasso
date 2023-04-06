@@ -1,4 +1,4 @@
-import { DateOrDateRangeType } from '../Calendar'
+import type { DateOrDateRangeType } from '../Calendar'
 
 export type DatePickerValue = DateOrDateRangeType | null
 

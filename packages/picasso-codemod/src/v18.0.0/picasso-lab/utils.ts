@@ -1,4 +1,4 @@
-import { ASTPath, Core, ImportDeclaration, JSCodeshift } from 'jscodeshift'
+import type { ASTPath, Core, ImportDeclaration, JSCodeshift } from 'jscodeshift'
 
 const warnUsersAbout = (
   unsolvableImportDeclarations: ASTPath<ImportDeclaration>[],

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { ValueType, UseSelectProps } from '../../../types'
+import type { ValueType, UseSelectProps } from '../../../types'
 import { EMPTY_INPUT_VALUE } from '../../../utils'
 
 const useFocusHandler = <T extends ValueType, M extends boolean = false>({

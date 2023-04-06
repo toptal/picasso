@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Container, Tooltip } from '@toptal/picasso'
 
-import { Props } from '../Input'
+import type { Props } from '../Input'
 
 const InputWrapper = React.forwardRef<HTMLInputElement, Props>((props, ref) => (
   <Input {...props} outlineRef={ref} />

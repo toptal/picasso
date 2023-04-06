@@ -1,27 +1,19 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactNode,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
+import React, { forwardRef, useContext, useMemo, useRef, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
-import { PopperPlacementType } from '@material-ui/core/Popper'
-import { PopperOptions } from 'popper.js'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { PopperPlacementType } from '@material-ui/core/Popper'
+import type { PopperOptions } from 'popper.js'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import {
-  spacingToRem,
-  SpacingType,
-  StandardProps,
-} from '@toptal/picasso-shared'
+import type { SpacingType, StandardProps } from '@toptal/picasso-shared'
+import { spacingToRem } from '@toptal/picasso-shared'
 
 import Popper from '../Popper'
 import Paper from '../Paper'
-import styles, { StyleProps } from './styles'
+import type { StyleProps } from './styles'
+import styles from './styles'
 import noop from '../utils/noop'
 
 type ContentOverflowType = 'scroll' | 'visible'

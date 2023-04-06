@@ -9,7 +9,7 @@ import CssBaseline from '../../CssBaseline'
 import { generateRandomStringOrGetEmptyInTest } from '../utils'
 import { PicassoBreakpoints } from '../config'
 import PicassoProvider from '../PicassoProvider'
-import { PicassoProps } from '../Picasso'
+import type { PicassoProps } from '../Picasso'
 import PicassoRootNode from '../PicassoRootNode'
 import PicassoGlobalStylesProvider from '../PicassoGlobalStylesProvider'
 

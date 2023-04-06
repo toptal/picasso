@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Autocomplete, AutocompleteItem, Form } from '@toptal/picasso'
+import type { AutocompleteItem } from '@toptal/picasso'
+import { Autocomplete, Form } from '@toptal/picasso'
 
 const allOptions = [
   { text: 'Belarus' },

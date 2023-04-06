@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './ModalTitle'
+import type { Props } from './ModalTitle'
 
 export { default } from './ModalTitle'
 export type ModalTitleProps = OmitInternalProps<Props>

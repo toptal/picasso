@@ -1,8 +1,9 @@
 import React from 'react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
-import FileListItem, { Props } from './FileListItem'
+import type { Props } from './FileListItem'
+import FileListItem from './FileListItem'
 
 const testIds = {
   progressBar: 'file-list-item-progressbar',

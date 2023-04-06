@@ -1,10 +1,11 @@
 import React from 'react'
 /* eslint-disable-next-line */
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import { MenuCompound as Menu } from '../MenuCompound'
-import PageTopBarMenu, { Props } from './PageTopBarMenu'
+import type { Props } from './PageTopBarMenu'
+import PageTopBarMenu from './PageTopBarMenu'
 
 const TestPageTopBarMenu = ({
   children,

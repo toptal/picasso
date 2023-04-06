@@ -1,7 +1,8 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
-import NonNativeSelectOption, { Props } from './NonNativeSelectOption'
+import type { Props } from './NonNativeSelectOption'
+import NonNativeSelectOption from './NonNativeSelectOption'
 import noop from '../utils/noop'
 
 const CHILDREN = 'Test'

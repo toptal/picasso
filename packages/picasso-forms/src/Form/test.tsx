@@ -1,9 +1,9 @@
 import React from 'react'
 import { fireEvent, render, waitFor, act } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso'
 
-import { Props } from './Form'
+import type { Props } from './Form'
 import { FormCompound as Form } from '../FormCompound'
 import { scrollTo } from '../utils/scroll-to'
 

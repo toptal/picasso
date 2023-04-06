@@ -1,10 +1,8 @@
 import React from 'react'
-import {
-  TagSelector as PicassoTagSelector,
-  TagSelectorProps,
-} from '@toptal/picasso'
+import type { TagSelectorProps } from '@toptal/picasso'
+import { TagSelector as PicassoTagSelector } from '@toptal/picasso'
 
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 

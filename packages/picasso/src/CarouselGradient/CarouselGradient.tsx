@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import gradientWidth from './utils/gradientWidth'
 import styles from './styles'

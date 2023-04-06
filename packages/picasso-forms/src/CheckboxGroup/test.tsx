@@ -3,7 +3,8 @@ import React from 'react'
 
 import Checkbox from '../Checkbox'
 import Form from '../Form'
-import CheckboxGroup, { Props } from './CheckboxGroup'
+import type { Props } from './CheckboxGroup'
+import CheckboxGroup from './CheckboxGroup'
 
 const arrangeTest = ({ titleCase }: Partial<Props> = {}) =>
   render(

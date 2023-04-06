@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from 'react'
+import type { ChangeEvent } from 'react'
+import React, { useState } from 'react'
 import { Container, Rating, Typography } from '@toptal/picasso'
 
 const Example = () => {

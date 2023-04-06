@@ -1,10 +1,9 @@
-import { AnyObject } from 'final-form'
+import type { AnyObject } from 'final-form'
 import { useCallback, useMemo, useState } from 'react'
 import { debounce } from 'debounce'
 
-import createFormValuesChangeDecorator, {
-  ChangedFields,
-} from '../form-values-change-decorator'
+import type { ChangedFields } from '../form-values-change-decorator'
+import createFormValuesChangeDecorator from '../form-values-change-decorator'
 
 interface Props<T extends AnyObject> {
   subscribedFields?: (keyof T)[]

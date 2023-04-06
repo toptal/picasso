@@ -1,14 +1,10 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { useSidebar } from '@toptal/picasso-provider'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import React, {
-  forwardRef,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import type { ReactNode } from 'react'
+import React, { forwardRef, useCallback, useEffect, useState } from 'react'
 
 import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
@@ -20,7 +16,7 @@ import SidebarMenu from '../SidebarMenu'
 import { noop, useBreakpoint } from '../utils'
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
-import { VariantType } from './types'
+import type { VariantType } from './types'
 
 export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */

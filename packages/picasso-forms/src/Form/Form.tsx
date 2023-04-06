@@ -1,18 +1,14 @@
-import React, { useMemo, ReactNode, useRef } from 'react'
-import {
-  Form as FinalForm,
-  FormProps as FinalFormProps,
-} from 'react-final-form'
-import { FormApi, SubmissionErrors, getIn, setIn, AnyObject } from 'final-form'
+import type { ReactNode } from 'react'
+import React, { useMemo, useRef } from 'react'
+import type { FormProps as FinalFormProps } from 'react-final-form'
+import { Form as FinalForm } from 'react-final-form'
+import type { FormApi, SubmissionErrors, AnyObject } from 'final-form'
+import { getIn, setIn } from 'final-form'
 import { useNotifications } from '@toptal/picasso/utils'
 
 import { createScrollToErrorDecorator } from '../utils'
-import {
-  FormContext,
-  Validators,
-  FormContextProps,
-  createFormContext,
-} from './FormContext'
+import type { Validators, FormContextProps } from './FormContext'
+import { FormContext, createFormContext } from './FormContext'
 import FormRenderer from './FormRenderer'
 import { setActiveFieldTouched, setHasMultilineCounter } from './mutators'
 

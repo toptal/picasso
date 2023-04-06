@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { ToolbarReducerType } from './types'
+import type { ToolbarReducerType } from './types'
 import initialState from './initialState'
 
 const reducer: ToolbarReducerType = (state = initialState, action) => {

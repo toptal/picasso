@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import Quill from 'quill'
+import type Quill from 'quill'
 
 import useSubscribeToQuillEvents from './useSubscribeToQuillEvents'
 

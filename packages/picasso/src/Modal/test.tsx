@@ -6,15 +6,15 @@ import {
   fireEvent,
   waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Button from '../Button'
-import { Props as ModalProps } from './Modal'
+import type { Props as ModalProps } from './Modal'
 import { ModalCompound as Modal } from '../ModalCompound'
 import { useModal } from '../utils'
-import { Props as ModalActionsProps } from '../ModalActions/ModalActions'
-import { Props as ModalTitleProps } from '../ModalTitle/ModalTitle'
-import { Props as ModalContentProps } from '../ModalContent/ModalContent'
+import type { Props as ModalActionsProps } from '../ModalActions/ModalActions'
+import type { Props as ModalTitleProps } from '../ModalTitle/ModalTitle'
+import type { Props as ModalContentProps } from '../ModalContent/ModalContent'
 
 const testIds = {
   closeButton: 'close-modal',

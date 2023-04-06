@@ -1,5 +1,5 @@
 import React from 'react'
-import { LabelProps } from 'recharts'
+import type { LabelProps } from 'recharts'
 
 export type Props = {
   value?: LabelProps['value']

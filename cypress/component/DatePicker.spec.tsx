@@ -1,10 +1,5 @@
-import {
-  Container,
-  DatePicker,
-  DatePickerProps,
-  Link,
-  Typography,
-} from '@toptal/picasso'
+import type { DatePickerProps } from '@toptal/picasso'
+import { Container, DatePicker, Link, Typography } from '@toptal/picasso'
 import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { MenuVariant } from '../../types'
+import type { MenuVariant } from '../../types'
 import MenuContext from '../../MenuContext'
 
 export interface Props {

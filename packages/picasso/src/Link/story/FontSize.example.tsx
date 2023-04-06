@@ -1,4 +1,5 @@
-import React, { MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
+import React from 'react'
 import { Link, Container, Typography } from '@toptal/picasso'
 
 const FontSizeExample = () => {

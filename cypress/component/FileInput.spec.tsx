@@ -1,5 +1,6 @@
 import React from 'react'
-import { FileInput, FileInputProps } from '@toptal/picasso'
+import type { FileInputProps } from '@toptal/picasso'
+import { FileInput } from '@toptal/picasso'
 
 const TestFileInput = (props: FileInputProps = {}) => (
   <FileInput hint='No file uploaded.' {...props} />

@@ -6,7 +6,7 @@ import useSafeState from '@toptal/picasso/utils/use-safe-state'
 import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 
 import { getIcons } from './icons'
-import { EnvironmentType } from '../types'
+import type { EnvironmentType } from '../types'
 import { useAppConfig } from '../Picasso/RootContext'
 
 export interface Props {

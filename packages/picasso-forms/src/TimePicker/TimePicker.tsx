@@ -1,10 +1,8 @@
 import React from 'react'
-import {
-  TimePicker as PicassoTimePicker,
-  TimePickerProps,
-} from '@toptal/picasso'
+import type { TimePickerProps } from '@toptal/picasso'
+import { TimePicker as PicassoTimePicker } from '@toptal/picasso'
 
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
 

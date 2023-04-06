@@ -1,16 +1,14 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  useCallback,
-  useEffect,
-} from 'react'
+import type { HTMLAttributes } from 'react'
+import React, { forwardRef, useCallback, useEffect } from 'react'
 
 import Menu from '../Menu'
 import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
-import { SidebarItemProps, useSubMenuContext } from '../SidebarItem'
+import type { SidebarItemProps } from '../SidebarItem'
+import { useSubMenuContext } from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {

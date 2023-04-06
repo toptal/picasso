@@ -1,4 +1,4 @@
-import { ChangeHandler } from '../QuillEditor'
+import type { ChangeHandler } from '../QuillEditor'
 
 export type RichTextEditorChangeHandler = ChangeHandler
 

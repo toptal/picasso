@@ -1,7 +1,9 @@
-import React, { HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
+import React from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { CheckSolid24 as TickIcon } from '../Icon'
 import styles from './styles'

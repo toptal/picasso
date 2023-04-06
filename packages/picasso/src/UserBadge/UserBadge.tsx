@@ -1,8 +1,10 @@
 /* eslint-disable complexity */
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { StandardProps, SizeType } from '@toptal/picasso-shared'
+import type { StandardProps, SizeType } from '@toptal/picasso-shared'
 
 import Avatar from '../Avatar'
 import Typography from '../Typography'

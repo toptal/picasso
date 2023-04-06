@@ -1,5 +1,5 @@
-import { BaseProps } from '@toptal/picasso'
-import { ReactNode } from 'react'
+import type { BaseProps } from '@toptal/picasso'
+import type { ReactNode } from 'react'
 
 export type CoordinatePayload = {
   activeCoordinate?: { x: number; y: number }

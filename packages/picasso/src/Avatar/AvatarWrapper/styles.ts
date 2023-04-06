@@ -1,7 +1,8 @@
-import { SizeType } from '@toptal/picasso-shared'
-import { createStyles, Theme } from '@material-ui/core/styles'
+import type { SizeType } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { CSSProperties } from '@material-ui/core/styles/withStyles'
+import type { CSSProperties } from '@material-ui/core/styles/withStyles'
 
 const SETTINGS = {
   xxsmall: {

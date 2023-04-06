@@ -1,6 +1,7 @@
 import React from 'react'
 import { useScreens } from '@toptal/picasso/utils'
-import { Typography, Button, ButtonVariantType } from '@toptal/picasso'
+import type { ButtonVariantType } from '@toptal/picasso'
+import { Typography, Button } from '@toptal/picasso'
 
 const Example = () => {
   const screens = useScreens<ButtonVariantType>()

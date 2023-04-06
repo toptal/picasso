@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './CircularProgress'
+import type { Props } from './CircularProgress'
 
 export { default } from './CircularProgress'
 export type CircularProgressProps = OmitInternalProps<Props>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Loader from '../Loader'

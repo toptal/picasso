@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { Button, Link, LinkProps } from '@toptal/picasso'
+import type { LinkProps } from '@toptal/picasso'
+import { Button, Link } from '@toptal/picasso'
 import { Settings16 } from '@toptal/picasso/Icon'
 
 // variant & noUnderline are statically set in ActionLink

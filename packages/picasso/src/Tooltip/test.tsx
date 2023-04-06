@@ -1,9 +1,11 @@
-import React, { forwardRef, MouseEventHandler } from 'react'
+import type { MouseEventHandler } from 'react'
+import React, { forwardRef } from 'react'
 import { fireEvent, waitFor } from '@testing-library/react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso/test-utils'
 
-import Tooltip, { Props } from './Tooltip'
+import type { Props } from './Tooltip'
+import Tooltip from './Tooltip'
 import {
   mouseMoveDebounceTimeout,
   mouseMoveCloseTooltipDistance,

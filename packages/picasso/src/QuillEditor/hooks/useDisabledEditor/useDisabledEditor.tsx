@@ -1,4 +1,4 @@
-import Quill from 'quill'
+import type Quill from 'quill'
 import { useEffect } from 'react'
 
 const useDisabledEditor = ({

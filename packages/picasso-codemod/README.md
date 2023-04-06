@@ -12,7 +12,7 @@ This repository contains a collection of codemod scripts based for use with [JSC
 npx @toptal/picasso-codemod <codemod> [<files>] [options]
 ```
 
-@toptal/picasso-codemod can detect what type of 
+@toptal/picasso-codemod can detect what type of
 repository you use and select files automatically for you.
 
 For `monorepo` it looks through following paths:
@@ -31,8 +31,8 @@ and for `SPA` it checks:
 src/**/*.tsx
 ```
 
-If your repository follows a different structure, you can **specify 
-path to your files as a second parameter** (`files`) shown in the usage 
+If your repository follows a different structure, you can **specify
+path to your files as a second parameter** (`files`) shown in the usage
 command.
 
 ## Limitations
@@ -40,7 +40,6 @@ command.
 Codemods do not guarantee the code format preservation. Therefore be sure to run `prettier` and `eslint` on your repo after applying a codemod. Take a look [here](https://github.com/benjamn/recast/issues/140) to learn more about the issue.
 
 ## Included Scripts
-
 
 ### v52.2.0
 
@@ -71,7 +70,6 @@ npx @toptal/picasso-codemod v52.2.0/non-compound-forms src/**/*.tsx
 ```
 
 </details>
-
 
 ### v24.0.0
 
@@ -157,7 +155,7 @@ both components. We also add an prop `size` as `medium` in previous
 `OverlayBadge`s if `size` is missing, this is because the default for `Badge` is
 actually `large`
 
-``` diff
+```diff
 -import { OverlayBadge } from '@toptal/picasso'
 +import { Badge } from '@toptal/picasso'
 

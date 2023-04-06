@@ -1,8 +1,9 @@
 import { useMemo } from 'react'
-import { hierarchy, HierarchyPointNode, tree } from 'd3'
+import type { HierarchyPointNode } from 'd3'
+import { hierarchy, tree } from 'd3'
 
 import { useNodes } from './useNodes'
-import {
+import type {
   DirectionsType,
   DynamicPointLink,
   DynamicPointNode,

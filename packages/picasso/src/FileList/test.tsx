@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import FileList, { Props } from './FileList'
+import type { Props } from './FileList'
+import FileList from './FileList'
 
 const renderFileList = (props: OmitInternalProps<Props>) =>
   render(<FileList {...props} />)

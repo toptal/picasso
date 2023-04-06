@@ -59,6 +59,6 @@ component and manage the internal state there.
     takeScreenshot: false,
   })
   .addExample('Modal/story/DynamicContent.example.tsx', {
-    title: 'Dynamic Content',    
+    title: 'Dynamic Content',
     takeScreenshot: false,
   })

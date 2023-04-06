@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FileInput, Form } from '@toptal/picasso'
 
-import { FileUpload } from '../../FileInput/types'
+import type { FileUpload } from '../../FileInput/types'
 
 const useUploader = (config: { maxSize: number; files?: FileUpload[] }) => {
   let intervalID: number | null = null

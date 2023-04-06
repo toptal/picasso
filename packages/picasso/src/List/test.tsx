@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import List, { Props } from './List'
+import type { Props } from './List'
+import List from './List'
 import { generateListItems } from './utils'
 
 const testIds = {

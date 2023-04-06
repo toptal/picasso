@@ -1,9 +1,10 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import { TableConfig, TableContext } from '../Table'
+import type { TableConfig } from '../Table'
+import { TableContext } from '../Table'
 import { TableCompound as Table } from '../TableCompound'
-import { Props } from './TableCell'
+import type { Props } from './TableCell'
 
 const renderTableCell = (
   { children = 'Cell', ...rest }: Partial<Props> = {},

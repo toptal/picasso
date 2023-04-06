@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './FormAutoSaveIndicator'
+import type { Props } from './FormAutoSaveIndicator'
 
 export { default } from './FormAutoSaveIndicator'
 export type FormAutoSaveIndicatorProps = OmitInternalProps<Props>

@@ -1,22 +1,22 @@
-import React, {
-  forwardRef,
+import type {
   ReactNode,
   LiHTMLAttributes,
   HTMLAttributes,
   ElementType,
   ReactElement,
-  useRef,
 } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { MenuItem as MUIMenuItem } from '@material-ui/core'
-import {
-  useTitleCase,
+import type {
   BaseProps,
   ButtonOrAnchorProps,
   TextLabelProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
+import { useTitleCase } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
@@ -26,7 +26,8 @@ import Link from '../Link'
 import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
-import Avatar, { AvatarProps } from '../Avatar'
+import type { AvatarProps } from '../Avatar'
+import type Avatar from '../Avatar'
 
 export type VariantType = 'light' | 'dark'
 

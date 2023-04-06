@@ -1,4 +1,4 @@
-import { Option } from '../../types'
+import type { Option } from '../../types'
 import getSingleSelection from './get-single-selection'
 
 const getDisplayValue = (option: Option | null) => option?.text ?? ''

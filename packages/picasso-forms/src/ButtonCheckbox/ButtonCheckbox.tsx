@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { Button, ButtonCheckboxProps } from '@toptal/picasso'
-import {
-  Field,
-  FieldRenderProps as FinalFormFieldProps,
-} from 'react-final-form'
+import type { ButtonCheckboxProps } from '@toptal/picasso'
+import { Button } from '@toptal/picasso'
+import type { FieldRenderProps as FinalFormFieldProps } from 'react-final-form'
+import { Field } from 'react-final-form'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import { CheckboxGroupContext } from '../CheckboxGroup'
 
 type CheckboxValue =

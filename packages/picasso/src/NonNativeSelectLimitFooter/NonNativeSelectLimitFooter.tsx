@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import MenuItem from '../MenuItem'
 import styles from './styles'

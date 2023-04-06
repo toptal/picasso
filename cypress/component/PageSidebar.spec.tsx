@@ -1,4 +1,5 @@
 import React from 'react'
+import type { PageSidebarProps } from '@toptal/picasso'
 import {
   Candidates16,
   Container,
@@ -6,7 +7,6 @@ import {
   Logo,
   Overview16,
   Page,
-  PageSidebarProps,
   Referral16,
   Team16,
   Typography,

@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './PageSidebar'
+import type { Props } from './PageSidebar'
 
 export { default } from './PageSidebar'
 export type PageSidebarProps = OmitInternalProps<Props>

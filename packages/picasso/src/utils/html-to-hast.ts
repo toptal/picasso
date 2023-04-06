@@ -1,7 +1,8 @@
-import hastSanitize, { Schema } from 'hast-util-sanitize'
+import type { Schema } from 'hast-util-sanitize'
+import hastSanitize from 'hast-util-sanitize'
 import hastFromDom from 'hast-util-from-dom'
 
-import { ASTType, ASTChildType } from '../RichText/types'
+import type { ASTType, ASTChildType } from '../RichText/types'
 
 export const hastSanitizeSchema: Schema = {
   allowComments: false,

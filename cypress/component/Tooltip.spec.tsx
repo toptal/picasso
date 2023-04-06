@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import type { TooltipProps } from '@toptal/picasso'
 import {
   Autocomplete,
   Button,
@@ -11,7 +12,6 @@ import {
   Modal,
   Radio,
   Tooltip,
-  TooltipProps,
   Typography,
 } from '@toptal/picasso'
 

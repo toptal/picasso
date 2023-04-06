@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-import {
-  RichTextEditor,
-  RichTextEditorChangeHandler,
-  Container,
-  ASTType,
-} from '@toptal/picasso'
+import type { RichTextEditorChangeHandler, ASTType } from '@toptal/picasso'
+import { RichTextEditor, Container } from '@toptal/picasso'
 
 const ast: ASTType = {
   type: 'root',

@@ -1,8 +1,10 @@
 import React from 'react'
-import { Form as PicassoForm, RequiredDecoration } from '@toptal/picasso'
-import { TextLabelProps } from '@toptal/picasso-shared'
+import type { RequiredDecoration } from '@toptal/picasso'
+import { Form as PicassoForm } from '@toptal/picasso'
+import type { TextLabelProps } from '@toptal/picasso-shared'
 
-import { useFormConfig, RequiredVariant } from '../FormConfig'
+import type { RequiredVariant } from '../FormConfig'
+import { useFormConfig } from '../FormConfig'
 
 export type Props = {
   name?: string

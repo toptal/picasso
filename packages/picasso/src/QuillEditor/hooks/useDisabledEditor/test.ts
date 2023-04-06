@@ -1,4 +1,5 @@
-import Quill, { DeltaStatic } from 'quill'
+import type { DeltaStatic } from 'quill'
+import type Quill from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Delta from 'quill-delta'

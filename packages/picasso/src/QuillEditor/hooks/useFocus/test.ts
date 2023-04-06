@@ -1,4 +1,4 @@
-import Quill from 'quill'
+import type Quill from 'quill'
 import { renderHook } from '@testing-library/react-hooks'
 
 import useFocus from './useFocus'

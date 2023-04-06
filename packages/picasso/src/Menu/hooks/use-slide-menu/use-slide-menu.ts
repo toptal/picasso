@@ -1,12 +1,9 @@
-import React, {
-  ReactElement,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react'
+import type { ReactElement } from 'react'
+import type React from 'react'
+import { useCallback, useContext, useMemo, useState } from 'react'
 
-import MenuContext, { MenuContextProps } from '../../MenuContext'
+import type { MenuContextProps } from '../../MenuContext'
+import MenuContext from '../../MenuContext'
 
 const useSlideMenu = () => {
   const [items, setItems] = useState<Record<string, ReactElement>>({})

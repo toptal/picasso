@@ -1,13 +1,15 @@
-import React, { forwardRef, HTMLAttributes, useContext } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { HTMLAttributes } from 'react'
+import React, { forwardRef, useContext } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { TableCell as MUITableCell } from '@material-ui/core'
-import {
+import type {
   BaseProps,
   ColorType,
   SizeType,
   TextLabelProps,
-  useTitleCase,
 } from '@toptal/picasso-shared'
+import { useTitleCase } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import toTitleCase from '../utils/to-title-case'

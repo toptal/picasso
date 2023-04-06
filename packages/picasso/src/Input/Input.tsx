@@ -1,30 +1,27 @@
 /* eslint-disable max-lines */
-import React, {
+import type {
   ReactNode,
   ChangeEvent,
   InputHTMLAttributes,
   MouseEvent,
-  forwardRef,
 } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import {
-  BaseProps,
-  SizeType,
-  useHasMultilineCounter,
-} from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { useHasMultilineCounter } from '@toptal/picasso-shared'
 
-import OutlinedInput, { BaseInputProps, Status } from '../OutlinedInput'
+import type { BaseInputProps, Status } from '../OutlinedInput'
+import OutlinedInput from '../OutlinedInput'
 import { disableUnsupportedProps } from '../utils'
-import { FeatureOptions } from '../utils/disable-unsupported-props'
+import type { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import InputLimitAdornment, {
-  InputLimitAdornmentProps,
-} from '../InputLimitAdornment'
-import InputIconAdornment, {
-  InputIconAdornmentProps,
-} from '../InputIconAdornment'
+import type { InputLimitAdornmentProps } from '../InputLimitAdornment'
+import InputLimitAdornment from '../InputLimitAdornment'
+import type { InputIconAdornmentProps } from '../InputIconAdornment'
+import InputIconAdornment from '../InputIconAdornment'
 import Container from '../Container'
 import InputValidIconAdornment from '../InputValidIconAdornment'
 

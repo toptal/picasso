@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 import { useState, useCallback, useEffect, useMemo } from 'react'
 
-import {
+import type {
   Option,
   OptionGroups,
   ValueType,

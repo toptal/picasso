@@ -1,9 +1,10 @@
 import React from 'react'
 /* eslint-disable-next-line */
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import SidebarMenu, { Props } from './SidebarMenu'
+import type { Props } from './SidebarMenu'
+import SidebarMenu from './SidebarMenu'
 
 const TestSidebarMenu = ({ children, bottom }: OmitInternalProps<Props>) => {
   return <SidebarMenu bottom={bottom}>{children}</SidebarMenu>

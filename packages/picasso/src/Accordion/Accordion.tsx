@@ -1,15 +1,15 @@
-import React, {
+import type {
   ReactNode,
   ChangeEvent,
   HTMLAttributes,
   ReactElement,
-  forwardRef,
-  useState,
 } from 'react'
+import React, { forwardRef, useState } from 'react'
 import cx from 'classnames'
 import { Accordion as MUIAccordion } from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps, TransitionProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { StandardProps, TransitionProps } from '@toptal/picasso-shared'
 
 import { ArrowDownMinor16 } from '../Icon'
 import AccordionSummary from '../AccordionSummary'

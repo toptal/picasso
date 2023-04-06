@@ -5,7 +5,8 @@ import {
   waitForElementToBeRemoved,
 } from '@toptal/picasso/test-utils'
 
-import Section, { Props } from './Section'
+import type { Props } from './Section'
+import Section from './Section'
 
 const DEFAULT_HEADER_TEST_ID = 'header'
 const DEFAULT_TITLE_TEST_ID = 'title'

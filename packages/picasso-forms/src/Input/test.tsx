@@ -2,9 +2,9 @@ import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import { Button } from '@toptal/picasso'
 
-import { Props as FormProps } from '../Form'
+import type { Props as FormProps } from '../Form'
 import { FormCompound as Form } from '../FormCompound'
-import { Props as InputProps } from './Input'
+import type { Props as InputProps } from './Input'
 
 type TestFormProps = Pick<FormProps, 'onSubmit'> & Pick<InputProps, 'onFocus'>
 

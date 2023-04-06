@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
 import { loaderPalette } from '../utils'

@@ -1,4 +1,4 @@
-import { DirectionsType, TreeViewVariant, Vector2 } from './types'
+import type { DirectionsType, TreeViewVariant, Vector2 } from './types'
 
 export const DEFAULT_VERTICAL_MARGIN_H = 10
 export const DEFAULT_VERTICAL_MARGIN_V = 97

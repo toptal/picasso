@@ -1,5 +1,7 @@
-import React, { PropsWithChildren } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { PropsWithChildren } from 'react'
+import React from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Typography from '../Typography'
 import { GridCompound as Grid } from '../GridCompound'

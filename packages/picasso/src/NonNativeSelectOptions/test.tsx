@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import NonNativeSelectOptions, { Props } from './NonNativeSelectOptions'
+import type { Props } from './NonNativeSelectOptions'
+import NonNativeSelectOptions from './NonNativeSelectOptions'
 import noop from '../utils/noop'
 
 const OPTIONS = [

@@ -1,6 +1,7 @@
-import React, { RefObject } from 'react'
-import { HierarchyPointNode } from 'd3-hierarchy'
-import { ZoomBehavior } from 'd3-zoom'
+import type { RefObject } from 'react'
+import type React from 'react'
+import type { HierarchyPointNode } from 'd3-hierarchy'
+import type { ZoomBehavior } from 'd3-zoom'
 
 export interface TreeViewContextProps {
   zoom?: ZoomBehavior<SVGSVGElement, unknown>

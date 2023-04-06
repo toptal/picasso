@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { UseSelectProps, ValueType } from '../../../types'
+import type { UseSelectProps, ValueType } from '../../../types'
 
 const useItemOnMouseEnterHandler = <
   T extends ValueType,

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Tabs, Tooltip, Exclamation16, TabsProps } from '@toptal/picasso'
+import type { TabsProps } from '@toptal/picasso'
+import { Tabs, Tooltip, Exclamation16 } from '@toptal/picasso'
 
 const TestIcon = () => (
   <Tooltip content='Some content...' placement='top'>

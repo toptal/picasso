@@ -1,7 +1,8 @@
-import core, { Collection, Program } from 'jscodeshift'
+import type { Collection, Program } from 'jscodeshift'
+import core from 'jscodeshift'
 
 import { isSpecifierFor } from './is-specifier-for'
-import { PackageMember } from './types'
+import type { PackageMember } from './types'
 
 /**
  * Add an import for a package member on a file.

@@ -1,16 +1,17 @@
 import { useMemo, useEffect } from 'react'
-import Quill, {
+import type {
   SelectionChangeHandler,
   TextChangeHandler,
   EditorChangeHandler,
 } from 'quill'
+import type Quill from 'quill'
 
 import getTextChangeHandler from '../../utils/getTextChangeHandler'
 import getSelectionChangeHandler from '../../utils/getSelectionChangeHandler'
 import getEditorChangeHandler from '../../utils/getEditorChangeHandler'
 import getTextLengthChangeHandler from '../../utils/getTextLengthChangeHandler'
 import getCleanupOnAllContentRemovalHandler from '../../utils/getCleanupOnAllContentRemovalHandler'
-import {
+import type {
   SelectionHandler,
   ChangeHandler,
   TextLengthChangeHandler,

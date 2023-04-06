@@ -1,4 +1,4 @@
-import { ValueType } from '../../types'
+import type { ValueType } from '../../types'
 
 export const isEmpty = (value?: ValueType | ValueType[]) =>
   Array.isArray(value) ? value.length === 0 : value === ''

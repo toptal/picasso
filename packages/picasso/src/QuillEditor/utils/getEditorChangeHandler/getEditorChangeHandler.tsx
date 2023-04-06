@@ -1,6 +1,7 @@
-import Quill, { RangeStatic, Sources, DeltaStatic } from 'quill'
+import type { RangeStatic, Sources, DeltaStatic } from 'quill'
+import type Quill from 'quill'
 
-import { FormatType } from '../../types'
+import type { FormatType } from '../../types'
 
 type SelectionChangeArgs = [RangeStatic, RangeStatic, Sources]
 type TextChangeArgs = [DeltaStatic, DeltaStatic, Sources]

@@ -1,4 +1,4 @@
-import { Option, ValueType } from '../../types'
+import type { Option, ValueType } from '../../types'
 
 const getSelectedOptions = (
   flatOptions: Option[],

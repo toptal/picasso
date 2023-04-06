@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import titleCase from 'ap-style-title-case'
 
 import isString from './is-string'

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import {
-  Container,
-  RichTextEditor,
-  RichTextEditorChangeHandler,
-} from '@toptal/picasso'
+import type { RichTextEditorChangeHandler } from '@toptal/picasso'
+import { Container, RichTextEditor } from '@toptal/picasso'
 
 const Example = () => {
   const [value, setValue] = useState<string | undefined>()

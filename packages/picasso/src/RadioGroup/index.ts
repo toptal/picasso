@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props as InternalRadioGroupProps } from './RadioGroup'
+import type { Props as InternalRadioGroupProps } from './RadioGroup'
 export { default } from './RadioGroup'
 export type RadioGroupProps = OmitInternalProps<InternalRadioGroupProps>
 /** @deprecated Use RadioGroupProps instead */

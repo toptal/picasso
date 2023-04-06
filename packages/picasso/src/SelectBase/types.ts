@@ -1,13 +1,13 @@
-import {
+import type {
   HTMLAttributes,
   InputHTMLAttributes,
   ChangeEvent,
   ReactNode,
 } from 'react'
-import PopperJs from 'popper.js'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type PopperJs from 'popper.js'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 
-import { OutlinedInputProps, Status } from '../OutlinedInput'
+import type { OutlinedInputProps, Status } from '../OutlinedInput'
 
 /**
  * Select props are generalized over possible values in the component and whether

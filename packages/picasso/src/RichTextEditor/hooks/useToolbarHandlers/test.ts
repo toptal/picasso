@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import { act } from '@toptal/picasso/test-utils'
 import { renderHook } from '@testing-library/react-hooks'
 

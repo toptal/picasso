@@ -2,14 +2,12 @@ import React from 'react'
 
 import NativeSelect from '../NativeSelect'
 import NonNativeSelect from '../NonNativeSelect'
-import disableUnsupportedProps, {
-  FeatureOptions,
-} from '../utils/disable-unsupported-props'
+import type { FeatureOptions } from '../utils/disable-unsupported-props'
+import disableUnsupportedProps from '../utils/disable-unsupported-props'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import type { SelectProps, ValueType } from '../SelectBase'
 import {
-  SelectProps,
-  ValueType,
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   getOptionText,

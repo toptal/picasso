@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, fireEvent, act } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import RatingThumbs, { Props } from './RatingThumbs'
+import type { Props } from './RatingThumbs'
+import RatingThumbs from './RatingThumbs'
 
 const enum DataIds {
   POSITIVE_INPUT = 'positive-input',

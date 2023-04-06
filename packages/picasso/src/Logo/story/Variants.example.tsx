@@ -1,5 +1,6 @@
 import React from 'react'
-import { Logo, Container, ContainerProps } from '@toptal/picasso'
+import type { ContainerProps } from '@toptal/picasso'
+import { Logo, Container } from '@toptal/picasso'
 
 const Example = () => (
   <div>

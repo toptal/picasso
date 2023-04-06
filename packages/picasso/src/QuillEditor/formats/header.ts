@@ -1,4 +1,4 @@
-import { Classes } from '@toptal/picasso-shared'
+import type { Classes } from '@toptal/picasso-shared'
 import Quill from 'quill'
 
 import getTypographyClassName from '../../Typography/utils/get-typography-class-name'

@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, fireEvent, act } from '@toptal/picasso/test-utils'
 
-import AvatarUpload, { Props } from './AvatarUpload'
-import { FileRejection } from './types'
+import type { Props } from './AvatarUpload'
+import AvatarUpload from './AvatarUpload'
+import type { FileRejection } from './types'
 
 const renderAvatarUpload = (props: Props) => render(<AvatarUpload {...props} />)
 

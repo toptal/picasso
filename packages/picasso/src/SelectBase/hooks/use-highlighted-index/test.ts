@@ -1,6 +1,7 @@
-import { renderHook, act, RenderResult } from '@testing-library/react-hooks'
+import type { RenderResult } from '@testing-library/react-hooks'
+import { renderHook, act } from '@testing-library/react-hooks'
 
-import { Option } from '../../types'
+import type { Option } from '../../types'
 import useHighlightedIndex from './use-highlighted-index'
 
 const OPTIONS = [

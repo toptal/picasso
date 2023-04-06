@@ -1,5 +1,7 @@
-import React, { useState, AnchorHTMLAttributes } from 'react'
-import { TagSelector, AutocompleteItem, Link, TagProps } from '@toptal/picasso'
+import type { AnchorHTMLAttributes } from 'react'
+import React, { useState } from 'react'
+import type { AutocompleteItem, TagProps } from '@toptal/picasso'
+import { TagSelector, Link } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 interface Country extends AutocompleteItem {

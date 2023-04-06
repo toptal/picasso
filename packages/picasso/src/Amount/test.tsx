@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Amount, { Props } from './Amount'
+import type { Props } from './Amount'
+import Amount from './Amount'
 
 const renderAmount = (props: OmitInternalProps<Props>) => {
   return render(<Amount {...props} />)

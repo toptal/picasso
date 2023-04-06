@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 import { actions as toolbarActions } from '../../store/toolbar'
-import { ActionsType } from '../../store'
+import type { ActionsType } from '../../store'
 
 type Props = {
   autoFocus: boolean

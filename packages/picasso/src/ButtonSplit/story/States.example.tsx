@@ -1,4 +1,5 @@
-import React, { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
+import React from 'react'
 import { Button, Menu, Container, Typography } from '@toptal/picasso'
 
 type ButtonSplitProps = ComponentProps<typeof Button.Split>

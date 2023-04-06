@@ -1,4 +1,5 @@
-import getDisplayTexts, { GetDisplayTextsParams } from './get-display-texts'
+import type { GetDisplayTextsParams } from './get-display-texts'
+import getDisplayTexts from './get-display-texts'
 
 describe('getDisplayTexts', () => {
   it('returns correct data', () => {

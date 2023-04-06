@@ -1,8 +1,10 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
 import cx from 'classnames'
 
-import ScrollMenu, { ScrollMenuProps } from '../ScrollMenu'
+import type { ScrollMenuProps } from '../ScrollMenu'
+import ScrollMenu from '../ScrollMenu'
 import styles from './styles'
 
 export interface Props extends ScrollMenuProps {}

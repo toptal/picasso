@@ -1,16 +1,11 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  MouseEvent,
-  ReactElement,
-  cloneElement,
-  HTMLAttributes,
-} from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode, MouseEvent, ReactElement, HTMLAttributes } from 'react'
+import React, { forwardRef, cloneElement } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { SnackbarContent } from '@material-ui/core'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
-import { StandardProps } from '@toptal/picasso-shared'
+import type { StandardProps } from '@toptal/picasso-shared'
 
 import {
   CloseMinor16,

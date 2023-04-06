@@ -1,4 +1,4 @@
-import { AnyObject, FormApi } from 'final-form'
+import type { AnyObject, FormApi } from 'final-form'
 
 export type ChangedFields<T extends AnyObject> = Partial<
   Record<keyof T, boolean>

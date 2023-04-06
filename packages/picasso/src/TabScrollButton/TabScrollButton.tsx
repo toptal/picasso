@@ -2,7 +2,7 @@ import cx from 'classnames'
 import React, { forwardRef } from 'react'
 import { ButtonBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { Container } from '../Container'
 import { BackMinor16, ChevronMinor16 } from '../Icon'

@@ -2,9 +2,10 @@
 import React from 'react'
 
 import { act, fireEvent, render } from '../test-utils'
-import DatePicker, { Props } from './DatePicker'
+import type { Props } from './DatePicker'
+import DatePicker from './DatePicker'
 import Tooltip from '../Tooltip'
-import { DatePickerInputCustomValueParser } from './'
+import type { DatePickerInputCustomValueParser } from './'
 
 const testIds = {
   calendar: 'calendar',

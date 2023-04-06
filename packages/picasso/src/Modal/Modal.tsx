@@ -1,16 +1,11 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  HTMLAttributes,
-  useEffect,
-  useRef,
-  useCallback,
-} from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef, useEffect, useRef, useCallback } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Dialog } from '@material-ui/core'
-import { PaperProps } from '@material-ui/core/Paper'
+import type { PaperProps } from '@material-ui/core/Paper'
 import cx from 'classnames'
-import {
+import type {
   StandardProps,
   SizeType,
   TransitionProps,

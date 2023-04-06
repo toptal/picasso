@@ -1,8 +1,10 @@
 import capitalize from '@material-ui/core/utils/capitalize'
-import { Theme, createStyles } from '@material-ui/core/styles'
-import { Color } from '@material-ui/core'
-import { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
-import { SpacingType, spacingToRem } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
+import type { Color } from '@material-ui/core'
+import type { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
+import type { SpacingType } from '@toptal/picasso-shared'
+import { spacingToRem } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
@@ -51,11 +53,11 @@ const containerVariants = [
   'grey',
 ] as const
 
-export type VariantType = typeof containerVariants[number]
-export type AlignItemsType = typeof alignItemsVariants[number]
-export type JustifyContentType = typeof justifyContentVariants[number]
-type Direction = typeof directionVariants[number]
-type Spacing = typeof spacingVariants[number]
+export type VariantType = (typeof containerVariants)[number]
+export type AlignItemsType = (typeof alignItemsVariants)[number]
+export type JustifyContentType = (typeof justifyContentVariants)[number]
+type Direction = (typeof directionVariants)[number]
+type Spacing = (typeof spacingVariants)[number]
 type MapOfClasses = Record<string, Record<string, string>>
 
 const paddings = spacingVariants.reduce((acc, variant) => {

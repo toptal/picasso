@@ -1,5 +1,6 @@
 import React from 'react'
-import { Slider, SliderProps, Typography, Container } from '@toptal/picasso'
+import type { SliderProps } from '@toptal/picasso'
+import { Slider, Typography, Container } from '@toptal/picasso'
 
 const TestSlider = ({
   value = undefined,

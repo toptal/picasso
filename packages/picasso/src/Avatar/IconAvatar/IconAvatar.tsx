@@ -1,7 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import { Profile16 } from '../../Icon'
 import styles from './styles'

@@ -1,8 +1,9 @@
 import React from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { CalendarProps } from '../Calendar/types'
+import type { CalendarProps } from '../Calendar/types'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

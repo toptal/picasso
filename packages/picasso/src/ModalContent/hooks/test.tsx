@@ -1,4 +1,4 @@
-import { RefObject } from 'react'
+import type { RefObject } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
 import useScrollableShades from './use-scrollable-shades'
@@ -14,17 +14,15 @@ jest.mock('debounce', () => ({
 
 describe('useScrollableShades', () => {
   const getTestRef = () => {
-    const el = document.createElement('div')    
-    
-    return {current: el}
+    const el = document.createElement('div')
+
+    return { current: el }
   }
 
   const renderScrollableShadesHook = (ref: RefObject<HTMLDivElement>) => {
     const {
       result: { current },
-    } = renderHook(() =>
-      useScrollableShades(ref)
-    )
+    } = renderHook(() => useScrollableShades(ref))
 
     return current
   }

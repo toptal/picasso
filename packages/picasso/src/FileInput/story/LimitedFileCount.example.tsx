@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FileInput } from '@toptal/picasso'
 
-import { FileUpload } from '../../FileInput/types'
+import type { FileUpload } from '../../FileInput/types'
 
 const useFiles = (initialFiles?: FileUpload[]) => {
   const [files, setFiles] = useState<FileUpload[]>(initialFiles ?? [])

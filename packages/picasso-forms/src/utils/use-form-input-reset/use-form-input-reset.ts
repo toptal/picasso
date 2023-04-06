@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { FieldInputProps } from 'react-final-form'
+import type { FieldInputProps } from 'react-final-form'
 
 export type Props<TInputValue> = {
   input: FieldInputProps<TInputValue, HTMLInputElement>

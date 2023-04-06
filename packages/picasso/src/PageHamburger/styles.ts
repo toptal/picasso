@@ -1,4 +1,5 @@
-import { Theme, createStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 
 export default ({ palette, screens, zIndex }: Theme) => {
   const wrapperBoxShadow = `inset -1px 0px 0px 0px ${palette.grey.lighter2}`

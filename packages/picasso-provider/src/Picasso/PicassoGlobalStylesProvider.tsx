@@ -1,15 +1,10 @@
-import React, {
-  ReactNode,
-  useRef,
-  useState,
-  ForwardRefExoticComponent,
-  RefAttributes,
-  useCallback,
-} from 'react'
+import type { ReactNode, ForwardRefExoticComponent, RefAttributes } from 'react'
+import React, { useRef, useState, useCallback } from 'react'
 
-import { RootContext, RootContextProps } from './RootContext'
-import { EnvironmentType, TextLabelProps } from '../types'
-import { PicassoRootNodeProps } from './PicassoRootNode'
+import type { RootContextProps } from './RootContext'
+import { RootContext } from './RootContext'
+import type { EnvironmentType, TextLabelProps } from '../types'
+import type { PicassoRootNodeProps } from './PicassoRootNode'
 
 export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode

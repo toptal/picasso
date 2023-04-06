@@ -1,6 +1,6 @@
 import { sum } from '@toptal/picasso/utils'
 
-import { DataItem, LabelMap } from '../../types'
+import type { DataItem, LabelMap } from '../../types'
 
 const formatData = (data: DataItem[], labels: LabelMap) => {
   return data.map(({ id, values }) => {

@@ -1,13 +1,8 @@
-import {
-  ChangeEvent,
-  MouseEvent,
-  cloneElement,
-  ReactElement,
-  useState,
-} from 'react'
+import type { ChangeEvent, MouseEvent, ReactElement } from 'react'
+import { cloneElement, useState } from 'react'
 
-import { TooltipState } from './useTooltipState'
-import { ChildrenProps } from './types'
+import type { TooltipState } from './useTooltipState'
+import type { ChildrenProps } from './types'
 
 interface UseTooltipHandlersOptions {
   onOpen?: (event: ChangeEvent<{}>) => void
