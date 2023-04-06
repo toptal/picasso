@@ -13,10 +13,9 @@ const useDefaultValue = ({ defaultValue, quill }: Props) => {
     if (!defaultValue || !quill || hasBeenCalled.current) {
       return
     }
-
     const delta = quill.clipboard.convert(defaultValue)
 
-    quill.setContents(delta, 'user')
+    quill.setContents(delta, 'api')
     hasBeenCalled.current = true
   }, [defaultValue, quill])
 }

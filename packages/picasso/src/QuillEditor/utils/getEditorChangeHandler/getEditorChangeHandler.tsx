@@ -31,10 +31,8 @@ const handleNewLineAfterBlock = ({
   }
 }
 
-const isDeleteOperationOfSelection = (delta: DeltaStatic) => {
-  const delOperation = delta.ops?.[0].delete
-
-  return delOperation && delOperation > 1
+const isDeleteOperation = (delta: DeltaStatic) => {
+  return delta.ops?.some(obj => obj.delete)
 }
 
 const getEditorChangeHandler = (
@@ -54,11 +52,15 @@ const getEditorChangeHandler = (
       if (isFromApi) {
         // this event is triggered when format of block element is changed
         // for example from p > h3 | h3 > ol
-        onSelectionChange(quill.getFormat() as FormatType)
+        if (!latestDelta.ops?.[latestDelta.ops.length - 1].delete) {
+          onSelectionChange(quill.getFormat() as FormatType)
+        }
       } else if (isFromUser) {
         handleNewLineAfterBlock({ latestDelta, quill, onSelectionChange })
 
-        if (isDeleteOperationOfSelection(latestDelta)) {
+        // when removing formatted text, we automatically remove the format,
+        // so we need to update the toolbar
+        if (isDeleteOperation(latestDelta)) {
           onSelectionChange(quill.getFormat() as FormatType)
         }
       }
