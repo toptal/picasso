@@ -1,13 +1,10 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  ElementType,
-  AnchorHTMLAttributes,
-} from 'react'
+import type { ReactNode, ElementType, AnchorHTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
 import { Link as MUILink } from '@material-ui/core'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import styles from './styles'
 

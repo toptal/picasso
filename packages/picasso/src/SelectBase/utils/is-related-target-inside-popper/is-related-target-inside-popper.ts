@@ -1,4 +1,4 @@
-import PopperJs from 'popper.js'
+import type PopperJs from 'popper.js'
 
 const isRelatedTargetInsidePopper = (
   event: React.FocusEvent,

@@ -1,8 +1,9 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
-import PopperJs from 'popper.js'
+import type PopperJs from 'popper.js'
 import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 
 import { Search16 } from '../Icon'
@@ -11,13 +12,12 @@ import Popper from '../Popper'
 import MenuItem from '../MenuItem'
 import SelectCaret from '../SelectCaret'
 import NonNativeSelectLoader from '../NonNativeSelectLoader'
+import type { ValueType, SelectProps } from '../SelectBase'
 import {
   useAdornments,
   useSelectState,
   useSelectProps,
   renderOption as defaultRenderOption,
-  ValueType,
-  SelectProps,
   getOptionText,
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
@@ -178,7 +178,9 @@ export const NonNativeSelect = documentable(
               defaultValue={undefined}
               className={classes.outlinedInput}
               classes={{
-                root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),
+                root: cx({
+                  [classes.highlightAutofill]: highlight === 'autofill',
+                }),
               }}
               inputProps={{
                 size: 1, // let input to have smallest width by default for width:'shrink'

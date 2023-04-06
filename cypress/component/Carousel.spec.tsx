@@ -1,11 +1,6 @@
 import React from 'react'
-import {
-  Carousel,
-  Container,
-  Settings16,
-  Typography,
-  CarouselProps,
-} from '@toptal/picasso'
+import type { CarouselProps } from '@toptal/picasso'
+import { Carousel, Container, Settings16, Typography } from '@toptal/picasso'
 
 type SlideExampleProps = {
   children: React.ReactNode

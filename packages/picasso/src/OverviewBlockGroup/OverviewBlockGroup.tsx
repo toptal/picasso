@@ -1,6 +1,7 @@
-import React, { HTMLAttributes, ReactNode, ReactComponentElement } from 'react'
+import type { HTMLAttributes, ReactNode, ReactComponentElement } from 'react'
+import React from 'react'
 
-import { Alignment, BlockWidth } from './settings'
+import type { Alignment, BlockWidth } from './settings'
 import { OverviewBlockGroupContext } from './OverviewBlockGroupContext'
 import OverviewBlockRow from '../OverviewBlockRow'
 

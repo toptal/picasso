@@ -1,13 +1,16 @@
 import cx from 'classnames'
-import React, { ReactNode, useCallback, useState } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { ReactNode } from 'react'
+import React, { useCallback, useState } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import Tooltip from '../Tooltip'
-import Typography, { TypographyProps } from '../Typography'
+import type { TypographyProps } from '../Typography'
+import Typography from '../Typography'
 import { isOverflown } from '../utils'
-import { DelayType } from '../Tooltip/Tooltip'
+import type { DelayType } from '../Tooltip/Tooltip'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */

@@ -1,20 +1,16 @@
 /* eslint-disable complexity */
 
-import React, { ReactNode, HTMLAttributes, Ref } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { PropTypes } from '@material-ui/core'
+import type { ReactNode, HTMLAttributes, Ref } from 'react'
+import React from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
-import {
-  StandardProps,
-  SpacingType,
-  spacingToRem,
-} from '@toptal/picasso-shared'
+import type { StandardProps, SpacingType } from '@toptal/picasso-shared'
+import { spacingToRem } from '@toptal/picasso-shared'
 
-import styles, {
-  AlignItemsType,
-  JustifyContentType,
-  VariantType,
-} from './styles'
+import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
+import styles from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { forwardRef, documentable } from '../utils/forward-ref'
 

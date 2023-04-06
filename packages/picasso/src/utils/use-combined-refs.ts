@@ -1,4 +1,5 @@
-import { RefObject, Ref, useRef, useEffect } from 'react'
+import type { RefObject, Ref } from 'react'
+import { useRef, useEffect } from 'react'
 
 const useCombinedRefs = <T>(...refs: (RefObject<T> | Ref<T>)[]) => {
   const targetRef = useRef<T>(null)

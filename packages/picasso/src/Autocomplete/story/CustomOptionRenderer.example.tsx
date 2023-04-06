@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Item } from '@toptal/picasso/Autocomplete'
+import type { Item } from '@toptal/picasso/Autocomplete'
 import { Typography, Container, Autocomplete } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 

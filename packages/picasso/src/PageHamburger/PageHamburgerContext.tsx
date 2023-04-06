@@ -1,4 +1,5 @@
-import React, { ReactNode, createContext, useContext, useState } from 'react'
+import type { ReactNode } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 export interface HamburgerContextProps {
   hamburgerId: string

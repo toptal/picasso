@@ -1,4 +1,4 @@
-import { Option, OptionGroups } from '../../types'
+import type { Option, OptionGroups } from '../../types'
 import isOptionsType from '../is-options-type'
 
 const countOptions = (options: Option[] | OptionGroups) => {

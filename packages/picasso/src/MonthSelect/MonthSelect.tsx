@@ -1,6 +1,8 @@
-import React, { useMemo, Ref } from 'react'
+import type { Ref } from 'react'
+import React, { useMemo } from 'react'
 
-import Select, { SelectProps } from '../Select'
+import type { SelectProps } from '../Select'
+import Select from '../Select'
 import { documentable, forwardRef } from '../utils/forward-ref'
 
 type AdjustedSelectProps<M extends boolean> = Omit<

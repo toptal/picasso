@@ -1,6 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import Typography from '../Typography'
@@ -9,7 +10,7 @@ import ButtonCircular from '../ButtonCircular'
 import Loader from '../Loader'
 import ProgressBar from '../ProgressBar'
 import { Attachment16, Trash16, CloseMinor16 } from '../Icon'
-import { FileUpload } from '../FileInput/types'
+import type { FileUpload } from '../FileInput/types'
 import styles from './styles'
 import TypographyOverflow from '../TypographyOverflow'
 

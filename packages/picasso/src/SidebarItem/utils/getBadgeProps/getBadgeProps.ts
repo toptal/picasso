@@ -1,4 +1,4 @@
-import { SidebarBadgeProps } from '../../../SidebarItemContent'
+import type { SidebarBadgeProps } from '../../../SidebarItemContent'
 
 const getBadgeProps = (badge?: number | SidebarBadgeProps) => {
   if (typeof badge === 'number') {

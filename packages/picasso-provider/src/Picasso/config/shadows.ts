@@ -1,4 +1,5 @@
-import muiShadows, { Shadows } from '@material-ui/core/styles/shadows'
+import type { Shadows } from '@material-ui/core/styles/shadows'
+import muiShadows from '@material-ui/core/styles/shadows'
 
 const shadows: Shadows = [
   ...[

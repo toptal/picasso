@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 
 import { SidebarItemHeader } from './SidebarItemHeader'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
-import { Props } from './types'
+import type { Props } from './types'
 
 export const SidebarItemBasic = forwardRef<HTMLElement, Props>(
   function BasicSidebarItem(props: Props, ref) {

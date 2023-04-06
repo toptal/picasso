@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import { FormConfigProps } from '../FormConfig'
+import type { FormConfigProps } from '../FormConfig'
 import { FormCompound as Form } from '../FormCompound'
-import { Props as RadioGroupProps } from '../RadioGroup'
+import type { Props as RadioGroupProps } from '../RadioGroup'
 
 const renderFormRadio = (
   { required, name }: RadioGroupProps,

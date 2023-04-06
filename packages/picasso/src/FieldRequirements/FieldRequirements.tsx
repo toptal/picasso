@@ -1,14 +1,14 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
-import FieldRequirementItem, {
-  FieldRequirementItemStatus,
-} from './FieldRequirementItem'
+import type { FieldRequirementItemStatus } from './FieldRequirementItem'
+import FieldRequirementItem from './FieldRequirementItem'
 import Typography from '../Typography'
-import { FieldRequirement } from './types'
+import type { FieldRequirement } from './types'
 import Grid from '../Grid'
 
 export interface Props<TValueType> extends BaseProps {

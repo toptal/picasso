@@ -7,8 +7,8 @@ import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
 import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
 
-import { DatePickerInputValueParserParameters } from './types'
-import { DateOrDateRangeType, DateRangeType } from '../Calendar'
+import type { DatePickerInputValueParserParameters } from './types'
+import type { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
 // Convert date to given timezone. If timezone is undefined, return given date as is.
 export const timezoneConvert = (

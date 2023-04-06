@@ -1,6 +1,8 @@
-import React, { createContext, ReactElement } from 'react'
+import type { ReactElement } from 'react'
+import type React from 'react'
+import { createContext } from 'react'
 
-import { MenuVariant } from './types'
+import type { MenuVariant } from './types'
 
 export interface MenuContextProps {
   variant?: MenuVariant

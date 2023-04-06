@@ -1,5 +1,6 @@
 import { act } from '@toptal/picasso/test-utils'
-import Quill, { RangeStatic, Sources } from 'quill'
+import type { RangeStatic, Sources } from 'quill'
+import type Quill from 'quill'
 
 import getSelectionChangeHandler from './getSelectionChangeHandler'
 

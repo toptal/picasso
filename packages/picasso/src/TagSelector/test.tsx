@@ -1,13 +1,10 @@
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  waitFor,
-  RenderResult,
-} from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { RenderResult } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import TagSelector, { Props, filterOutSelectedOptions } from './TagSelector'
+import type { Props } from './TagSelector'
+import TagSelector, { filterOutSelectedOptions } from './TagSelector'
 
 const testOptions = [
   { value: 'AF', text: 'Afghanistan', id: '100' },

@@ -1,5 +1,4 @@
-import React, {
-  forwardRef,
+import type {
   ReactNode,
   ReactElement,
   HTMLAttributes,
@@ -7,9 +6,12 @@ import React, {
   MouseEvent,
   AnchorHTMLAttributes,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, TextLabelProps, useTitleCase } from '@toptal/picasso-shared'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { useTitleCase } from '@toptal/picasso-shared'
 
 import Chip from '../Chip'
 import { CloseMinor16 } from '../Icon'

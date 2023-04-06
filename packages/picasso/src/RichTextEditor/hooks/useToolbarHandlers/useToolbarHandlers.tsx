@@ -1,16 +1,16 @@
 import { useCallback } from 'react'
 
-import {
+import type {
   TextFormatHandler,
-  CUSTOM_QUILL_EDITOR_FORMAT_EVENT,
   FormatType as EditorFormatType,
 } from '../../../QuillEditor'
+import { CUSTOM_QUILL_EDITOR_FORMAT_EVENT } from '../../../QuillEditor'
 import { INSERT_DEFAULT_LINK_TEXT } from '../../../QuillEditor/constants'
-import {
+import type {
   SelectOnChangeHandler,
   ButtonHandlerType,
 } from '../../../RichTextEditorToolbar'
-import { FormatType } from '../../store/toolbar'
+import type { FormatType } from '../../store/toolbar'
 import { convertHeaderToEditorValue } from '../../utils/convertFormat'
 
 type Props = {

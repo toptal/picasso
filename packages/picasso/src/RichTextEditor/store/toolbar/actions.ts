@@ -1,7 +1,7 @@
-import { Dispatch } from 'react'
+import type { Dispatch } from 'react'
 
 import actionTypes from './actionTypes'
-import {
+import type {
   SetBoldActionType,
   SetHeaderActionType,
   SetItalicActionType,

@@ -1,26 +1,26 @@
-import React, {
+import type {
   KeyboardEvent,
-  forwardRef,
   ComponentType,
   InputHTMLAttributes,
   ReactNode,
   FocusEventHandler,
-  Fragment,
 } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
-import { PopperOptions } from 'popper.js'
+import React, { forwardRef, Fragment } from 'react'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type { PopperOptions } from 'popper.js'
 
-import Autocomplete, {
+import type {
   AutocompleteProps,
   Item as AutocompleteItem,
 } from '../Autocomplete'
+import Autocomplete from '../Autocomplete'
 import TagSelectorInput from '../TagSelectorInput'
-import { Props as InputProps } from '../Input'
+import type { Props as InputProps } from '../Input'
 import TagSelectorLabel from '../TagSelectorLabel'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 import noop from '../utils/noop'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { Status } from '../OutlinedInput'
+import type { Status } from '../OutlinedInput'
 
 export interface Item extends AutocompleteItem {
   value?: string

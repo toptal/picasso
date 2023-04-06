@@ -1,4 +1,4 @@
-import { JSXAttribute, Transform } from 'jscodeshift'
+import type { JSXAttribute, Transform } from 'jscodeshift'
 
 const getNewValue = (attribute: JSXAttribute) => {
   if (!attribute?.value) {

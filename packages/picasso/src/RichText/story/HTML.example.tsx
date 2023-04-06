@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { RichText, RichTextEditor, Grid, ASTType } from '@toptal/picasso'
+import type { ASTType } from '@toptal/picasso'
+import { RichText, RichTextEditor, Grid } from '@toptal/picasso'
 import { htmlToHast } from '@toptal/picasso/utils'
 
 const Example = () => {

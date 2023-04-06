@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Table'
+import type { Props } from './Table'
 export { TableSectionContext, TableSection } from './TableSectionContext'
 export { default as TableContext } from './TableContext'
 export type { TableConfig } from './TableContext'

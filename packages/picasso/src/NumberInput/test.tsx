@@ -1,7 +1,9 @@
-import React, { useState, ChangeEventHandler } from 'react'
+import type { ChangeEventHandler } from 'react'
+import React, { useState } from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
-import NumberInput, { Props as NumberInputProps } from './NumberInput'
+import type { Props as NumberInputProps } from './NumberInput'
+import NumberInput from './NumberInput'
 
 const NumberInputRenderer = (
   props: { initialValue: number | string } & Partial<NumberInputProps>

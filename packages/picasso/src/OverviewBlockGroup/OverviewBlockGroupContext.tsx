@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-import { Alignment, BlockWidth } from './settings'
+import type { Alignment, BlockWidth } from './settings'
 
 interface OverviewBlockGroupSettings {
   align: Alignment

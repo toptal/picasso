@@ -1,20 +1,17 @@
-import { capitalize, makeStyles, Theme } from '@material-ui/core'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core'
+import { capitalize, makeStyles } from '@material-ui/core'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import React, {
-  CSSProperties,
-  FocusEvent,
-  forwardRef,
-  useImperativeHandle,
-} from 'react'
+import type { CSSProperties, FocusEvent } from 'react'
+import React, { forwardRef, useImperativeHandle } from 'react'
 
 import Avatar from '../Avatar'
 import AvatarDropzoneSvg from '../AvatarDropzoneSvg'
 import { Upload16, Upload24 } from '../Icon'
 import Loader from '../Loader'
-import { Status } from '../OutlinedInput'
+import type { Status } from '../OutlinedInput'
 import styles from './styles'
-import { AvatarUploadOptions, FileUpload } from './types'
+import type { AvatarUploadOptions, FileUpload } from './types'
 import useAvatarUpload from './hooks/use-avatar-upload'
 import useAvatarStates from './hooks/use-avatar-states'
 

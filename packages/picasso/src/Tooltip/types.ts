@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
 
 export type ChildrenProps = {
   onClick?: (event: MouseEvent<HTMLElement>) => void

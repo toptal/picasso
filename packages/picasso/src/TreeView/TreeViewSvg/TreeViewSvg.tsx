@@ -1,9 +1,9 @@
-import { HierarchyPointNode } from 'd3-hierarchy'
+import type { HierarchyPointNode } from 'd3-hierarchy'
 import React from 'react'
 
 import PointLink from '../PointLink'
 import PointNode from '../PointNode'
-import {
+import type {
   DirectionsType,
   DynamicPointLink,
   DynamicPointNode,

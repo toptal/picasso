@@ -1,7 +1,7 @@
-import { ReactElement } from 'react'
+import type { ReactElement } from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
-import { ASTType } from '../../types'
+import type { ASTType } from '../../types'
 import useRichText from './useRichText'
 
 describe('useRichText', () => {

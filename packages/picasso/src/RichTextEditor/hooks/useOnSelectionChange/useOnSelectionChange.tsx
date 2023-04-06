@@ -1,8 +1,9 @@
-import { Dispatch, useCallback } from 'react'
+import type { Dispatch } from 'react'
+import { useCallback } from 'react'
 
-import { FormatType as EditorFormatType } from '../../../QuillEditor'
+import type { FormatType as EditorFormatType } from '../../../QuillEditor'
 import { actions as toolbarActions } from '../../store/toolbar'
-import { ActionsType } from '../../store'
+import type { ActionsType } from '../../store'
 import { getToolbarFormatFromEditorFormat } from '../../utils/convertFormat'
 
 type Props = {

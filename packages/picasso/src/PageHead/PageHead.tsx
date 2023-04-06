@@ -1,7 +1,8 @@
-import React, { forwardRef, ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React, { forwardRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
+import type { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import Typography from '../Typography'

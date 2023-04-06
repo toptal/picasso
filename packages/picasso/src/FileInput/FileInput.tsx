@@ -1,13 +1,15 @@
-import React, { forwardRef, useRef, FocusEventHandler } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { FocusEventHandler } from 'react'
+import React, { forwardRef, useRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import FileList from '../FileList'
 import Container from '../Container'
 import Button from '../Button'
 import FormHint from '../FormHint'
 import { useCombinedRefs } from '../utils'
-import { FileUpload } from './types'
+import type { FileUpload } from './types'
 import styles from './styles'
 
 export interface Props extends BaseProps {

@@ -1,12 +1,9 @@
 import React from 'react'
-import {
-  AvatarUpload as PicassoAvatarUpload,
-  AvatarUploadProps,
-  AvatarUploadFileUpload,
-} from '@toptal/picasso'
-import { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
+import type { AvatarUploadProps, AvatarUploadFileUpload } from '@toptal/picasso'
+import { AvatarUpload as PicassoAvatarUpload } from '@toptal/picasso'
+import type { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 

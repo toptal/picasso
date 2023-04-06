@@ -1,9 +1,9 @@
 import React from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
 
 import { loaderPalette } from '../utils'
-import { ButtonProps } from '../Button'
+import type { ButtonProps } from '../Button'
 
 export interface Props extends BaseProps, Pick<ButtonProps, 'size'> {
   circular?: boolean

@@ -1,7 +1,9 @@
-import React, { forwardRef, ReactNode, HTMLAttributes } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { ReactNode, HTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
+import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 
 import Container from '../Container'
 import styles from './styles'

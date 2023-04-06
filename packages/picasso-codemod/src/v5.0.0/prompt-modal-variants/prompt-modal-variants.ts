@@ -1,4 +1,4 @@
-import { Transform, JSXAttribute, JSXText } from 'jscodeshift'
+import type { Transform, JSXAttribute, JSXText } from 'jscodeshift'
 
 const getNewVariant = (oldVariant?: string) => {
   if (oldVariant === 'blue' || oldVariant === 'green') {

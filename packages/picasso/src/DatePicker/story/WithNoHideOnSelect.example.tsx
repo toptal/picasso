@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { DatePicker, DatePickerValue } from '@toptal/picasso'
+import type { DatePickerValue } from '@toptal/picasso'
+import { DatePicker } from '@toptal/picasso'
 
 const WithNoHideOnSelect = () => {
   const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>()

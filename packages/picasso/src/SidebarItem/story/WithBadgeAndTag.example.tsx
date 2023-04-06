@@ -30,9 +30,7 @@ const Menu = () => (
       icon={<Referrals16 />}
       menu={
         <Page.Sidebar.Menu>
-          <Page.Sidebar.Item badge={5}>
-            Referrals
-          </Page.Sidebar.Item>
+          <Page.Sidebar.Item badge={5}>Referrals</Page.Sidebar.Item>
         </Page.Sidebar.Menu>
       }
     >
@@ -43,9 +41,7 @@ const Menu = () => (
       icon={<Overview16 />}
       menu={
         <Page.Sidebar.Menu>
-          <Page.Sidebar.Item tag='New'>
-            Share Online
-          </Page.Sidebar.Item>
+          <Page.Sidebar.Item tag='New'>Share Online</Page.Sidebar.Item>
         </Page.Sidebar.Menu>
       }
     >

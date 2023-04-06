@@ -1,11 +1,6 @@
 import React from 'react'
-import {
-  Container,
-  Menu,
-  Page,
-  PageSidebarProps,
-  Typography,
-} from '@toptal/picasso'
+import type { PageSidebarProps } from '@toptal/picasso'
+import { Container, Menu, Page, Typography } from '@toptal/picasso'
 
 const component = 'Page'
 const containerHeight = '30rem'
@@ -41,16 +36,12 @@ const Sidebar = (props: PageSidebarProps) => (
     {...props}
   >
     <Page.Sidebar.Menu>
-      <Page.Sidebar.Item selected>
-        Overview
-      </Page.Sidebar.Item>
+      <Page.Sidebar.Item selected>Overview</Page.Sidebar.Item>
       <Page.Sidebar.Item>Jobs</Page.Sidebar.Item>
       <Page.Sidebar.Item>Candidates</Page.Sidebar.Item>
       <Page.Sidebar.Item>Team</Page.Sidebar.Item>
       <Page.Sidebar.Item>Users</Page.Sidebar.Item>
-      <Page.Sidebar.Item disabled>
-        Billing
-      </Page.Sidebar.Item>
+      <Page.Sidebar.Item disabled>Billing</Page.Sidebar.Item>
       <Page.Sidebar.Item
         badge={{ content: 5 }}
         menu={

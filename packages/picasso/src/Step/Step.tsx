@@ -1,6 +1,8 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Step as MUIStep, StepProps } from '@material-ui/core'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { StepProps } from '@material-ui/core'
+import { Step as MUIStep } from '@material-ui/core'
 
 import styles from './styles'
 

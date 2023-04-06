@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Table, TableProps, Select, Container } from '@toptal/picasso'
+import type { TableProps } from '@toptal/picasso'
+import { Table, Select, Container } from '@toptal/picasso'
 
 const data = [
   {

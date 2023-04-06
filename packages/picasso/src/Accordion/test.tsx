@@ -1,8 +1,8 @@
 import React from 'react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
 
-import { Props } from './Accordion'
+import type { Props } from './Accordion'
 import { AccordionCompound as Accordion } from '../AccordionCompound'
 
 const DETAILS_TEXT =

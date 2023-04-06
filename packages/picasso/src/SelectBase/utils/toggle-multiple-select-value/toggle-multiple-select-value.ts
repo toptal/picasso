@@ -1,4 +1,4 @@
-import { ValueType, Option } from '../../types'
+import type { ValueType, Option } from '../../types'
 import isOptionInSelectedValues from '../is-option-in-selected-values'
 
 const toggleMultipleSelectValue = (value: ValueType[], option: Option) => {

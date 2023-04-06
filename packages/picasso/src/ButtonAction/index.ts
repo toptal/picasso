@@ -1,4 +1,4 @@
-import { Props } from './ButtonAction'
+import type { Props } from './ButtonAction'
 
 export { default } from './ButtonAction'
 export type ButtonActionProps = Props

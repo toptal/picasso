@@ -1,8 +1,9 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import PageAutocomplete, { Props } from './PageAutocomplete'
+import type { Props } from './PageAutocomplete'
+import PageAutocomplete from './PageAutocomplete'
 
 const testOptions = [
   { text: 'Belarus', value: 'BY' },

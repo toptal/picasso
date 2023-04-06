@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { RefObject } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps, SizeType, isBrowser } from '@toptal/picasso-shared'
+import type { RefObject } from 'react'
+import React from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { isBrowser } from '@toptal/picasso-shared'
 import { ButtonBase } from '@material-ui/core'
 import cx from 'classnames'
 

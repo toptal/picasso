@@ -1,8 +1,9 @@
-import { MouseEvent, useCallback, useRef } from 'react'
-import PopperJs from 'popper.js'
+import type { MouseEvent } from 'react'
+import { useCallback, useRef } from 'react'
+import type PopperJs from 'popper.js'
 import debounce from 'debounce'
 
-import { TooltipState } from './useTooltipState'
+import type { TooltipState } from './useTooltipState'
 
 interface UseTooltipFollowCursorOptions {
   followCursor: boolean

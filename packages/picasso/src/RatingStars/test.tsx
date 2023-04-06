@@ -1,7 +1,8 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 
-import RatingStars, { Props } from './RatingStars'
+import type { Props } from './RatingStars'
+import RatingStars from './RatingStars'
 
 const defaultProps: Props = {
   name: 'rating-name',

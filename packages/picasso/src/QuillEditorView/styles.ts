@@ -1,5 +1,6 @@
-import { CSSProperties } from '@material-ui/core/styles/withStyles'
-import { createStyles, Theme } from '@material-ui/core/styles'
+import type { CSSProperties } from '@material-ui/core/styles/withStyles'
+import type { Theme } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
 const margins = {

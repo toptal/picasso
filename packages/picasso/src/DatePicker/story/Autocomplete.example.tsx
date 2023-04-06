@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from 'react'
+import type { FormEvent } from 'react'
+import React, { useState } from 'react'
 import { DatePicker, Form, Button, Container } from '@toptal/picasso'
 
 const AutocompleteExample = () => {

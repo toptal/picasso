@@ -1,14 +1,16 @@
 import { Checkbox as MUICheckbox } from '@material-ui/core'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import {
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type {
   ButtonOrAnchorProps,
   BaseProps,
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import React, { ComponentProps, forwardRef, ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
+import React, { forwardRef } from 'react'
 
-import { RequiredDecoration } from '../FormLabel'
+import type { RequiredDecoration } from '../FormLabel'
 import Container from '../Container'
 import FormControlLabel from '../FormControlLabel'
 import styles from './styles'

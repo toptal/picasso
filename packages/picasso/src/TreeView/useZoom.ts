@@ -1,5 +1,6 @@
-import { ZoomBehavior, ZoomedElementBaseType } from 'd3-zoom'
-import { RefObject, useEffect, useMemo, useState } from 'react'
+import type { ZoomBehavior, ZoomedElementBaseType } from 'd3-zoom'
+import type { RefObject } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { zoom as d3zoom, select, zoomIdentity } from 'd3'
 
 export interface UseZoomArguments<

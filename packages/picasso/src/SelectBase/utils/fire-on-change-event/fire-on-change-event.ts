@@ -1,4 +1,4 @@
-import { ValueType } from '../../types'
+import type { ValueType } from '../../types'
 
 const fireOnChangeEvent = ({
   event,

@@ -1,15 +1,12 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  LabelHTMLAttributes,
-  forwardRef,
-} from 'react'
-import { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
+import type { ReactElement, ReactNode, LabelHTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
+import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
-import { RequiredDecoration } from '../FormLabel'
+import type { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import { FormCompound as Form } from '../FormCompound'
 

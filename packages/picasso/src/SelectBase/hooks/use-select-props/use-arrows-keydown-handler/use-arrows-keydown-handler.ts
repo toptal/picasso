@@ -1,7 +1,8 @@
-import { KeyboardEvent, useCallback } from 'react'
+import type { KeyboardEvent } from 'react'
+import { useCallback } from 'react'
 
 import { flattenOptions, getNextWrappingIndex } from '../../../utils'
-import { ValueType, UseSelectProps } from '../../../types'
+import type { ValueType, UseSelectProps } from '../../../types'
 
 const useArrowsKeyDownHandler = <
   T extends ValueType,

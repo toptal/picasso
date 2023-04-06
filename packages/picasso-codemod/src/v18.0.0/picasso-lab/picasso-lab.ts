@@ -26,7 +26,7 @@
  *  IMPORTANT: Does not cover edge cases for comments and namespace imports.
  */
 
-import {
+import type {
   Core,
   ImportDefaultSpecifier,
   ImportNamespaceSpecifier,

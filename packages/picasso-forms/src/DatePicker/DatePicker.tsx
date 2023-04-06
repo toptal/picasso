@@ -1,10 +1,8 @@
 import React from 'react'
-import {
-  DatePicker as PicassoDatePicker,
-  DatePickerProps,
-} from '@toptal/picasso'
+import type { DatePickerProps } from '@toptal/picasso'
+import { DatePicker as PicassoDatePicker } from '@toptal/picasso'
 
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
 

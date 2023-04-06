@@ -10,7 +10,7 @@ import {
   TimePicker as PicassoTimePicker,
   Select as PicassoSelect,
   TagSelector as PicassoTagSelector,
-  FieldRequirements
+  FieldRequirements,
 } from '@toptal/picasso'
 
 const Example = () => (

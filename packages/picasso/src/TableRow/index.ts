@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './TableRow'
+import type { Props } from './TableRow'
 
 export { default } from './TableRow'
 export type TableRowProps = OmitInternalProps<Props>

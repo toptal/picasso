@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { SizeType, ColorType } from '@toptal/picasso-shared'
+import type { SizeType, ColorType } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../../../utils/kebab-to-camel-case'
 

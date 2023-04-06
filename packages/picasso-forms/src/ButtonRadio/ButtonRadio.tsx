@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Button, ButtonRadioProps } from '@toptal/picasso'
+import type { ButtonRadioProps } from '@toptal/picasso'
+import { Button } from '@toptal/picasso'
 import { Field } from 'react-final-form'
 
 import { RadioGroupContext } from '../RadioGroup'

@@ -43,7 +43,7 @@ export const ErrorCode = {
   TooManyFiles: 'too-many-files',
 } as const
 
-type ErrorCodeType = typeof ErrorCode[keyof typeof ErrorCode]
+type ErrorCodeType = (typeof ErrorCode)[keyof typeof ErrorCode]
 
 export interface FileError {
   message: string

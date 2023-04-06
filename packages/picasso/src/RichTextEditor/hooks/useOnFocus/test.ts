@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { act } from '@toptal/picasso/test-utils'
-import React from 'react'
+import type React from 'react'
 
 import { actionTypes as toolbarActionTypes } from '../../store/toolbar'
 import useOnFocus from './useOnFocus'

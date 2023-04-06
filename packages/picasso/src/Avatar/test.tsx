@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Avatar, { Props } from './Avatar'
+import type { Props } from './Avatar'
+import Avatar from './Avatar'
 
 const renderAvatar = (props: OmitInternalProps<Props>) => {
   const { alt, name, src, size, onEdit, testIds } = props

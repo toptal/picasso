@@ -1,7 +1,8 @@
 import React from 'react'
 import { render, screen, TestingPicasso } from '@toptal/picasso/test-utils'
 
-import CategoriesChartTooltip, { Props } from './CategoriesChartTooltip'
+import type { Props } from './CategoriesChartTooltip'
+import CategoriesChartTooltip from './CategoriesChartTooltip'
 
 const testIds = {
   paper: 'tooltip-content',

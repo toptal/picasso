@@ -1,10 +1,14 @@
-import React, { ElementType, ReactElement } from 'react'
-import { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import { MenuItemProps } from '@material-ui/core/MenuItem'
+import type { ElementType, ReactElement } from 'react'
+import type React from 'react'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type { MenuItemProps } from '@material-ui/core/MenuItem'
 
-import { MenuItemAttributes } from '../MenuItem'
-import { VariantType } from '../PageSidebar/types'
-import { SidebarTagProps, SidebarBadgeProps } from '../SidebarItemContent/types'
+import type { MenuItemAttributes } from '../MenuItem'
+import type { VariantType } from '../PageSidebar/types'
+import type {
+  SidebarTagProps,
+  SidebarBadgeProps,
+} from '../SidebarItemContent/types'
 
 export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Pass icon to be used as part of item */

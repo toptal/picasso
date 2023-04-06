@@ -1,20 +1,15 @@
-import React, {
-  ReactNode,
-  ReactElement,
-  forwardRef,
-  useMemo,
-  useCallback,
-} from 'react'
+import type { ReactNode, ReactElement } from 'react'
+import React, { forwardRef, useMemo, useCallback } from 'react'
 import cx from 'classnames'
-import { useSnackbar, OptionsObject } from 'notistack'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { SnackbarOrigin } from '@material-ui/core/Snackbar'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { OptionsObject } from 'notistack'
+import { useSnackbar } from 'notistack'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { SnackbarOrigin } from '@material-ui/core/Snackbar'
+import type { BaseProps } from '@toptal/picasso-shared'
 
-import {
-  Notification as PicassoNotification,
-  VariantType,
-} from '../../Notification'
+import type { VariantType } from '../../Notification'
+import { Notification as PicassoNotification } from '../../Notification'
 import styles from './styles'
 
 const defaultPosition: SnackbarOrigin = {
@@ -62,30 +57,31 @@ export const useNotifications = () => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
   const getNotification = useCallback(
-    () => (notificationElement: React.ReactElement, options?: OptionsObject) => {
-      const closeNotification = () => {
-        if (!notificationId) {
-          return
+    () =>
+      (notificationElement: React.ReactElement, options?: OptionsObject) => {
+        const closeNotification = () => {
+          if (!notificationId) {
+            return
+          }
+
+          closeSnackbar(notificationId)
+
+          if (notificationElement.props.onClose) {
+            notificationElement.props.onClose()
+          }
         }
+        const notificationId = enqueueSnackbar('', {
+          anchorOrigin: defaultPosition,
+          content: (key: string) =>
+            React.cloneElement(notificationElement, {
+              key,
+              onClose: closeNotification,
+            }),
+          ...options,
+        })
 
-        closeSnackbar(notificationId)
-
-        if (notificationElement.props.onClose) {
-          notificationElement.props.onClose()
-        }
-      }
-      const notificationId = enqueueSnackbar('', {
-        anchorOrigin: defaultPosition,
-        content: (key: string) =>
-          React.cloneElement(notificationElement, {
-            key,
-            onClose: closeNotification,
-          }),
-        ...options,
-      })
-
-      return notificationId
-    },
+        return notificationId
+      },
     [closeSnackbar, enqueueSnackbar]
   )
 

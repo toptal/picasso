@@ -1,4 +1,4 @@
-import { FormApi } from 'final-form'
+import type { FormApi } from 'final-form'
 
 import { scrollTo } from './scroll-to'
 

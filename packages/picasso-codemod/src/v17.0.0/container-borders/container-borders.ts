@@ -1,4 +1,4 @@
-import { Transform } from 'jscodeshift'
+import type { Transform } from 'jscodeshift'
 
 const borderableVariants = ['white', 'transparent', undefined]
 

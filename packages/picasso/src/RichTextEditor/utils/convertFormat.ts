@@ -1,4 +1,4 @@
-import {
+import type {
   FormatType as EditorFormatType,
   BoldValue as EditorBoldValue,
   ItalicValue as EditorItalicValue,
@@ -6,7 +6,10 @@ import {
   HeaderValue as EditorHeaderValue,
   LinkValue as EditorLinkValue,
 } from '../../QuillEditor'
-import { FormatType as ToolbarFormatType, HeaderValue } from '../store/toolbar'
+import type {
+  FormatType as ToolbarFormatType,
+  HeaderValue,
+} from '../store/toolbar'
 
 export const convertBoldFromEditorValue = (bold: EditorBoldValue) =>
   bold || false

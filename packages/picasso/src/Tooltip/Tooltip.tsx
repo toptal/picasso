@@ -1,19 +1,21 @@
-import React, {
-  forwardRef,
+import type {
   ReactNode,
   ReactElement,
   ChangeEvent,
   HTMLAttributes,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { Tooltip as MUITooltip, TooltipProps } from '@material-ui/core'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { TooltipProps } from '@material-ui/core'
+import { Tooltip as MUITooltip } from '@material-ui/core'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
 
 import Typography from '../Typography'
 import styles from './styles'
-import { ChildrenProps, ContainerValue } from './types'
+import type { ChildrenProps, ContainerValue } from './types'
 import { useTooltipState } from './useTooltipState'
 import { useTooltipHandlers } from './useTooltipHandlers'
 import { useTooltipFollowCursor } from './useTooltipFollowCursor'

@@ -1,4 +1,4 @@
-import {
+import type {
   Option,
   ItemProps,
   ValueType,

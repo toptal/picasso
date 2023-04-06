@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 
-import { ValueType, UseSelectProps } from '../../../types'
-import useSelectHandler from '../use-select-handler'
+import type { ValueType, UseSelectProps } from '../../../types'
+import type useSelectHandler from '../use-select-handler'
 
 const useResetClickHandler = <T extends ValueType, M extends boolean = false>({
   selectState: { close },

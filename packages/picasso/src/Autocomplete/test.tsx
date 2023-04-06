@@ -1,13 +1,15 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import React, { forwardRef } from 'react'
-import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { generateRandomString } from '@toptal/picasso-provider'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Autocomplete, { Props } from './Autocomplete'
-import { InputProps } from '../Input'
+import type { Props } from './Autocomplete'
+import Autocomplete from './Autocomplete'
+import type { InputProps } from '../Input'
 
 jest.mock('ap-style-title-case')
 

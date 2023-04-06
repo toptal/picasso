@@ -7,7 +7,12 @@ const SidebarDefaultExample = () => (
   <BrowserRouter>
     <Page.Sidebar>
       <Page.Sidebar.Menu>
-        <Page.Sidebar.Item icon={<Overview16 />} as={Link} to='/#overview' selected>
+        <Page.Sidebar.Item
+          icon={<Overview16 />}
+          as={Link}
+          to='/#overview'
+          selected
+        >
           Overview
         </Page.Sidebar.Item>
       </Page.Sidebar.Menu>

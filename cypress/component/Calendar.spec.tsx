@@ -1,4 +1,5 @@
-import React, { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
+import React from 'react'
 import { Calendar, Container } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 

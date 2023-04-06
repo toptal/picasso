@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import NativeSelectPlaceholder, { Props } from './NativeSelectPlaceholder'
+import type { Props } from './NativeSelectPlaceholder'
+import NativeSelectPlaceholder from './NativeSelectPlaceholder'
 
 const CHILDREN = 'Select an option'
 

@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent } from 'react'
+import type { ChangeEvent } from 'react'
+import React, { useState } from 'react'
 import { Container, Form, Select } from '@toptal/picasso'
 
 const Example = () => {

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Dropzone,
-  DropzoneErrorCode,
+import type {
   DropzoneFileUpload,
   DropzoneFileError,
   DropzoneFileRejection,
 } from '@toptal/picasso'
+import { Dropzone, DropzoneErrorCode } from '@toptal/picasso'
 
 const MAX_SIZE = 600 * 1000
 

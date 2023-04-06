@@ -1,37 +1,29 @@
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
-import PopperJs from 'popper.js'
-import React, {
-  KeyboardEvent,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import type PopperJs from 'popper.js'
+import type { KeyboardEvent, ReactNode } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { Calendar16 } from '../Icon'
 import Popper from '../Popper'
 import Container from '../Container'
-import Input, { InputProps } from '../Input'
+import type { InputProps } from '../Input'
+import Input from '../Input'
 import InputAdornment from '../InputAdornment'
 import { noop } from '../utils'
-import Calendar, {
-  DateOrDateRangeType,
-  DateRangeType,
-  DayProps,
-} from '../Calendar'
+import type { DateOrDateRangeType, DateRangeType, DayProps } from '../Calendar'
+import Calendar from '../Calendar'
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
   DEFAULT_POPPER_OPTIONS,
 } from './constants'
 import styles from './styles'
-import { DatePickerValue, DatePickerInputCustomValueParser } from './types'
+import type { DatePickerValue, DatePickerInputCustomValueParser } from './types'
 import {
   formatDateRange,
   datePickerParseDateString,
@@ -40,7 +32,7 @@ import {
   getStartOfTheDayDate,
 } from './utils'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { Status } from '../OutlinedInput'
+import type { Status } from '../OutlinedInput'
 
 const EMPTY_INPUT_VALUE = ''
 

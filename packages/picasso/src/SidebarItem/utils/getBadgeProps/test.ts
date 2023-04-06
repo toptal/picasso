@@ -1,5 +1,5 @@
 import getBadgeProps from './getBadgeProps'
-import { SidebarBadgeProps } from '../../../SidebarItemContent'
+import type { SidebarBadgeProps } from '../../../SidebarItemContent'
 
 describe('getBadgeProps', () => {
   describe('when number value is passed', () => {

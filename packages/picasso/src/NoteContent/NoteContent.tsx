@@ -1,5 +1,6 @@
-import React, { forwardRef, ReactNode } from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { ReactNode } from 'react'
+import React, { forwardRef } from 'react'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'
 

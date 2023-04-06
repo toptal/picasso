@@ -1,8 +1,10 @@
 import React from 'react'
-import { render, PicassoConfig, screen } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render, screen } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Badge, { Props } from './Badge'
+import type { Props } from './Badge'
+import Badge from './Badge'
 
 jest.mock('ap-style-title-case')
 

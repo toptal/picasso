@@ -1,17 +1,15 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 
-import {
+import type {
   MouseEvent,
   KeyboardEvent,
-  useState,
   ChangeEvent,
   FocusEventHandler,
   Ref,
-  useEffect,
-  useMemo,
 } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 
-import { Item, ChangedOptions } from '../types'
+import type { Item, ChangedOptions } from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
 export const INITIAL_HIGHLIGHT_INDEX = 0

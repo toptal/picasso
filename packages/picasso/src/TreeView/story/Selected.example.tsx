@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
+import type { TreeNodeInterface } from '@toptal/picasso'
 import {
   TreeView,
-  TreeNodeInterface,
   TreeNodeAvatar,
   Button,
   Container,
   UserBadge,
 } from '@toptal/picasso'
-import { HierarchyPointNode } from 'd3-hierarchy'
+import type { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
 import { palette } from '@toptal/picasso/utils'
 

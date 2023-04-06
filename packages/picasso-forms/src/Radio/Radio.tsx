@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Radio as PicassoRadio, RadioProps } from '@toptal/picasso'
+import type { RadioProps } from '@toptal/picasso'
+import { Radio as PicassoRadio } from '@toptal/picasso'
 import { Field } from 'react-final-form'
 
 import { RadioGroupContext } from '../RadioGroup'

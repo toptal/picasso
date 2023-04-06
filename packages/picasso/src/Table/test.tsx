@@ -1,11 +1,12 @@
 import React from 'react'
-import { render, PicassoConfig } from '@toptal/picasso/test-utils'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import { TableProps } from '../Table'
+import type { TableProps } from '../Table'
 import { TableCompound as Table } from '../TableCompound'
 import TableContext from './TableContext'
-import { TableCellProps } from '../TableCell'
+import type { TableCellProps } from '../TableCell'
 
 jest.mock('ap-style-title-case')
 

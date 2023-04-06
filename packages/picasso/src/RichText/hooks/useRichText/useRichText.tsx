@@ -1,14 +1,8 @@
 import toH from 'hast-to-hyperscript'
-import React, {
-  useMemo,
-  createElement,
-  ReactElement,
-  isValidElement,
-  ReactNode,
-  FC,
-} from 'react'
+import type { ReactElement, ReactNode, FC } from 'react'
+import React, { useMemo, createElement, isValidElement } from 'react'
 
-import { ASTType } from '../../types'
+import type { ASTType } from '../../types'
 import Typography from '../../../Typography'
 import Container from '../../../Container'
 import List from '../../../List'

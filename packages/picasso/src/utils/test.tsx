@@ -1,6 +1,8 @@
 import { render, act } from '@toptal/picasso/test-utils'
-import React, { createRef, Ref, useEffect } from 'react'
+import type { Ref } from 'react'
+import React, { createRef, useEffect } from 'react'
 
+import type { ReferenceObject } from './index'
 import {
   capitalize,
   getNameInitials,
@@ -12,7 +14,6 @@ import {
   kebabToCamelCase,
   useCombinedRefs,
   useWidthOf,
-  ReferenceObject,
   useSafeState,
   forwardRef,
   documentable,

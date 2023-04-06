@@ -1,5 +1,7 @@
-import React, { forwardRef, ReactNode } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode } from 'react'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import globalStyles from './styles'
 

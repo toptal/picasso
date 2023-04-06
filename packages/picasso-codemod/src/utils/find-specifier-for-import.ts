@@ -1,6 +1,7 @@
-import core, { Collection, ImportSpecifier, Program } from 'jscodeshift'
+import type { Collection, ImportSpecifier, Program } from 'jscodeshift'
+import core from 'jscodeshift'
 
-import { PackageMember } from './types'
+import type { PackageMember } from './types'
 
 /**
  * Find the specifier for a package member on the file if it exists.

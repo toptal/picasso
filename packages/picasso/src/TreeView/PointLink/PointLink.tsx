@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
-import { DirectionsType, DynamicPointLink } from '../types'
+import type { DirectionsType, DynamicPointLink } from '../types'
 import styles from './styles'
 
 export interface Props {

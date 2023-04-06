@@ -1,8 +1,8 @@
 import { isBrowser } from '@toptal/picasso-shared'
 import { useEffect, useMemo } from 'react'
 
-const layers = new Set<number>();
-let scrollLock: { prevBodyOverflow: string } | undefined = undefined;
+const layers = new Set<number>()
+let scrollLock: { prevBodyOverflow: string } | undefined = undefined
 
 export const useBodyScrollLock = (isLocked: boolean) => {
   const layerId = useMemo(generateLayerId, [])
@@ -25,8 +25,8 @@ const generateLayerId = (() => {
 
   return () => {
     count = count + 1
-    
-    return count;
+
+    return count
   }
 })()
 
@@ -35,7 +35,7 @@ const syncBodyScrollLock = () => {
     addBodyScrollLock()
   } else {
     removeBodyScrollLock()
-  }  
+  }
 }
 
 const addBodyScrollLock = () => {

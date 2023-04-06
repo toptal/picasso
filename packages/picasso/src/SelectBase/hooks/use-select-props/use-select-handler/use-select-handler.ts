@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import { useCallback } from 'react'
 
-import { Option, ValueType, UseSelectProps } from '../../../types'
+import type { Option, ValueType, UseSelectProps } from '../../../types'
 import {
   EMPTY_INPUT_VALUE,
   toggleMultipleSelectValue,

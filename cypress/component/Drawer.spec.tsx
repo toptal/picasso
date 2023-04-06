@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
+import type { DrawerProps } from '@toptal/picasso'
 import {
   Button,
   Modal,
   Drawer,
   Container,
   List,
-  DrawerProps,
   Typography,
 } from '@toptal/picasso'
 import { useModal, useNotifications } from '@toptal/picasso/utils'

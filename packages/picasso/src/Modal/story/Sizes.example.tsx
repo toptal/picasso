@@ -1,4 +1,5 @@
 import React from 'react'
+import type { ModalProps } from '@toptal/picasso'
 import {
   Modal,
   Button,
@@ -7,7 +8,6 @@ import {
   Checkbox,
   Form,
   Container,
-  ModalProps,
 } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 

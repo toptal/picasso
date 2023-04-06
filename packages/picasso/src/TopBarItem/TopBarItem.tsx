@@ -1,11 +1,13 @@
-import {
+import type {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
-import React, { forwardRef, memo, ElementType, ReactElement } from 'react'
-import { MenuItemProps } from '@material-ui/core/MenuItem'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { ElementType, ReactElement } from 'react'
+import React, { forwardRef, memo } from 'react'
+import type { MenuItemProps } from '@material-ui/core/MenuItem'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import MenuItem from '../MenuItem'

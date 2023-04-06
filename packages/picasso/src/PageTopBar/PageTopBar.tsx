@@ -1,15 +1,11 @@
 /* eslint-disable complexity */
-import React, {
-  useContext,
-  forwardRef,
-  ReactNode,
-  ReactElement,
-  HTMLAttributes,
-} from 'react'
+import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
+import React, { useContext, forwardRef } from 'react'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 import { usePageTopBar } from '@toptal/picasso-provider'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
 import Container from '../Container'
@@ -19,7 +15,7 @@ import PageHamburger, {
 } from '../PageHamburger'
 import Typography from '../Typography'
 import { PageContext } from '../Page'
-import { PageContextProps } from '../Page/types'
+import type { PageContextProps } from '../Page/types'
 import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
 import styles from './styles'
 

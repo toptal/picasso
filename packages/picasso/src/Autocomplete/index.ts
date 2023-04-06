@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props as OuterProps } from './Autocomplete'
+import type { Props as OuterProps } from './Autocomplete'
 export { default } from './Autocomplete'
 export * from './types'
 export type AutocompleteProps = OmitInternalProps<OuterProps>

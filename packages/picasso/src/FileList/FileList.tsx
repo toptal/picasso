@@ -1,11 +1,13 @@
-import React, { forwardRef, HTMLAttributes } from 'react'
+import type { HTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { BaseProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
 import FileListItem from '../FileListItem'
-import { FileUpload } from '../FileInput/types'
+import type { FileUpload } from '../FileInput/types'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

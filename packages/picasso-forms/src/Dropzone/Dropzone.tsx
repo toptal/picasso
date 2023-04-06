@@ -1,9 +1,11 @@
 import React from 'react'
-import { Dropzone as PicassoDropzone, DropzoneProps } from '@toptal/picasso'
-import { FileUpload } from '@toptal/picasso/FileInput'
-import { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
+import type { DropzoneProps } from '@toptal/picasso'
+import { Dropzone as PicassoDropzone } from '@toptal/picasso'
+import type { FileUpload } from '@toptal/picasso/FileInput'
+import type { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
 
 export type Props = DropzoneProps &

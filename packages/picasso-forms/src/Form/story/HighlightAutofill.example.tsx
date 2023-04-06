@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import type { FormConfigProps } from '@toptal/picasso-forms'
 import {
-  FormConfigProps,
   FormNonCompound,
   ConfigProvider,
   SubmitButton,

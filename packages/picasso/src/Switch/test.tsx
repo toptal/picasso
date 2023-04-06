@@ -1,8 +1,10 @@
 import React from 'react'
-import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Switch, { Props } from './Switch'
+import type { Props } from './Switch'
+import Switch from './Switch'
 
 const renderSwitch = (
   props: OmitInternalProps<Props>,

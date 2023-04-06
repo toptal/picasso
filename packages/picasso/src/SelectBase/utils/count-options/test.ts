@@ -1,4 +1,4 @@
-import { Option, OptionGroups } from '../..'
+import type { Option, OptionGroups } from '../..'
 import countOptions from './count-options'
 
 describe('countOptions', () => {

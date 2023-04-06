@@ -1,4 +1,4 @@
-import { ImportDeclaration } from 'jscodeshift'
+import type { ImportDeclaration } from 'jscodeshift'
 
 /**
  * Checks if specifier is from a specific package.

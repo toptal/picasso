@@ -1,4 +1,4 @@
-import {
+import type {
   CSSProperties,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -6,7 +6,7 @@ import {
   ComponentPropsWithRef,
 } from 'react'
 
-import { Classes } from './styles'
+import type { Classes } from './styles'
 
 export interface BaseProps {
   /** Classnames applied to root element */

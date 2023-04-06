@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react'
-import Quill from 'quill'
+import type Quill from 'quill'
 
 import {
   CUSTOM_QUILL_EDITOR_FORMAT_EVENT,

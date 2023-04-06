@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './CheckboxGroup'
+import type { Props } from './CheckboxGroup'
 
 export { default } from './CheckboxGroup'
 export type CheckboxGroupProps = OmitInternalProps<Props>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { DynamicPointNode } from '../types'
+import type { DynamicPointNode } from '../types'
 
 export const NodeContent = ({ node }: { node: DynamicPointNode }) => {
   return (

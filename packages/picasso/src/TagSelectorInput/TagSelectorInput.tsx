@@ -1,8 +1,10 @@
-import React, { forwardRef, ReactElement } from 'react'
+import type { ReactElement } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
-import { Props as InputProps } from '../Input/Input'
+import type { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'

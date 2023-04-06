@@ -1,5 +1,6 @@
 import React from 'react'
-import { Stepper, StepperProps, Container } from '@toptal/picasso'
+import type { StepperProps } from '@toptal/picasso'
+import { Stepper, Container } from '@toptal/picasso'
 
 const TestStepper = ({ overflowEllipsis }: Partial<StepperProps> = {}) => (
   <Container style={{ width: '400px' }}>

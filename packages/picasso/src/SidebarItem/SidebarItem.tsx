@@ -1,11 +1,12 @@
-import { OverridableComponent } from '@toptal/picasso-shared'
-import React, { forwardRef, memo, ReactElement } from 'react'
+import type { OverridableComponent } from '@toptal/picasso-shared'
+import type { ReactElement } from 'react'
+import React, { forwardRef, memo } from 'react'
 
 import noop from '../utils/noop'
 import { SidebarItemBasic } from './SidebarItemBasic'
 import { SidebarItemCompact } from './SidebarItemCompact'
 import { SidebarItemAccordion } from './SidebarItemAccordion'
-import { Props } from './types'
+import type { Props } from './types'
 
 export const getSelectedSubMenu = (sidebarItem: ReactElement<Props>) => {
   const menu = sidebarItem.props.menu

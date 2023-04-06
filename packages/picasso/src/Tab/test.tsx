@@ -1,10 +1,11 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import Tab, { Props } from './Tab'
-import { PicassoConfig } from '../test-utils'
+import type { Props } from './Tab'
+import Tab from './Tab'
+import type { PicassoConfig } from '../test-utils'
 
 jest.mock('ap-style-title-case')
 

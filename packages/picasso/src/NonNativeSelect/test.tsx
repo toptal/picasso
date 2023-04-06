@@ -1,11 +1,12 @@
 /* eslint-disable max-lines */
 import React from 'react'
-import { render, fireEvent, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import NonNativeSelect from './NonNativeSelect'
-import { SelectProps } from '../SelectBase'
+import type { SelectProps } from '../SelectBase'
 
 jest.mock('ap-style-title-case')
 

@@ -1,5 +1,5 @@
-import { Layout } from './layout'
-import { Sizes } from './sizes'
+import type { Layout } from './layout'
+import type { Sizes } from './sizes'
 
 declare module '@material-ui/core/styles' {
   interface Theme {

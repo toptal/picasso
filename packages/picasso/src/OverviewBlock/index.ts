@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './OverviewBlock'
+import type { Props } from './OverviewBlock'
 
 export { default } from './OverviewBlock'
 export type OverviewBlockProps = OmitInternalProps<Props>

@@ -1,6 +1,6 @@
-import Quill from 'quill'
+import type Quill from 'quill'
 
-import { FormatType } from '../../types'
+import type { FormatType } from '../../types'
 
 export const getFormatChangeHandler = (quill: Quill) => {
   const handler = (e: CustomEvent<FormatType>) => {

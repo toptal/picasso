@@ -1,16 +1,13 @@
-import React, {
-  forwardRef,
-  ElementType,
-  HTMLAttributes,
-  ReactNode,
-} from 'react'
-import {
+import type { ElementType, HTMLAttributes, ReactNode } from 'react'
+import React, { forwardRef } from 'react'
+import type {
   BaseProps,
   TextLabelProps,
   OverridableComponent,
-  useTitleCase,
 } from '@toptal/picasso-shared'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import { useTitleCase } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import Typography from '../Typography'

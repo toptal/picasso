@@ -1,6 +1,8 @@
-import React, { ReactNode, RefObject, useRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { ReactNode, RefObject } from 'react'
+import React, { useRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import { useIsomorphicLayoutEffect } from '../utils'

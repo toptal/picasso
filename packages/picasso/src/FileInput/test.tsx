@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
 import FileInput from './FileInput'
-import { FileInputProps } from '.'
+import type { FileInputProps } from '.'
 
 const TestFileInput = (props: FileInputProps = {}) => {
   return <FileInput {...props} />

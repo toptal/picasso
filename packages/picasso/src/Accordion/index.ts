@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Accordion'
+import type { Props } from './Accordion'
 
 export { default } from './Accordion'
 export type AccordionProps = OmitInternalProps<Props>

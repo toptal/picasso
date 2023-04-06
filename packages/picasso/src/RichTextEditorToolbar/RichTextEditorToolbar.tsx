@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import type { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 
 import {
@@ -13,7 +14,11 @@ import Container from '../Container'
 import Select from '../Select'
 import styles from './styles'
 import TextEditorButton from '../RichTextEditorButton'
-import { ButtonHandlerType, SelectOnChangeHandler, FormatType } from './types'
+import type {
+  ButtonHandlerType,
+  SelectOnChangeHandler,
+  FormatType,
+} from './types'
 import type { EditorPlugin } from '../QuillEditor'
 
 type Props = {

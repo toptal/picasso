@@ -1,15 +1,17 @@
 import React from 'react'
-import { BaseProps } from '@toptal/picasso-shared'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
 import cx from 'classnames'
 
-import Input, { InputProps } from '../Input'
+import type { InputProps } from '../Input'
+import Input from '../Input'
 import { Time16 } from '../Icon'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { Status } from '../OutlinedInput'
+import type { Status } from '../OutlinedInput'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker',

@@ -1,8 +1,11 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { renderHook } from '@testing-library/react-hooks'
 
-import useMenuVariant, { Props } from './use-menu-variant'
-import MenuContext, { MenuContextProps } from '../../MenuContext'
+import type { Props } from './use-menu-variant'
+import useMenuVariant from './use-menu-variant'
+import type { MenuContextProps } from '../../MenuContext'
+import MenuContext from '../../MenuContext'
 
 describe('useMenuVariant', () => {
   it('uses variant from props if there is no context', () => {

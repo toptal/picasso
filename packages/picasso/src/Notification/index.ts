@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { PublicProps } from './Notification'
+import type { PublicProps } from './Notification'
 
 export { default } from './Notification'
 export type NotificationProps = OmitInternalProps<PublicProps>

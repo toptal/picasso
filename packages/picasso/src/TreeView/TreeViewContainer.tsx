@@ -1,7 +1,8 @@
-import React, { useState, ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React, { useState } from 'react'
 import { zoomTransform, select } from 'd3'
 
-import { TreeViewContextProps } from './types'
+import type { TreeViewContextProps } from './types'
 
 type TreeViewContextValue = {
   state: TreeViewContextProps

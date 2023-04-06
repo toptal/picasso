@@ -1,10 +1,11 @@
-import { KeyboardEvent, useCallback } from 'react'
+import type { KeyboardEvent } from 'react'
+import { useCallback } from 'react'
 
-import { ValueType, UseSelectProps } from '../../../types'
+import type { ValueType, UseSelectProps } from '../../../types'
 import { normalizeArrowKey, focusRef } from '../../../utils'
-import useArrowsKeyDownHandler from '../use-arrows-keydown-handler'
-import useEnterOrSpaceKeyDownHandler from '../use-enter-or-space-keydown-handler'
-import useEscapeKeyDownHandler from '../use-escape-keydown-handler'
+import type useArrowsKeyDownHandler from '../use-arrows-keydown-handler'
+import type useEnterOrSpaceKeyDownHandler from '../use-enter-or-space-keydown-handler'
+import type useEscapeKeyDownHandler from '../use-escape-keydown-handler'
 
 const useSelectKeyDownHandler = <
   T extends ValueType,

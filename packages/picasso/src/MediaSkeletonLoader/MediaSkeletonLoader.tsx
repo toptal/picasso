@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import ContentLoader from 'react-content-loader'
-import { pxFromRem, BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
+import { pxFromRem } from '@toptal/picasso-shared'
 
 import { loaderPalette } from '../utils'
 

@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
-import { BarChartProps, BarChart } from '@toptal/picasso-charts'
+import type { BarChartProps } from '@toptal/picasso-charts'
+import { BarChart } from '@toptal/picasso-charts'
 
-import { DataItem, LabelMap, TooltipMap } from './types'
+import type { DataItem, LabelMap, TooltipMap } from './types'
 import { formatData, getColor } from './utils'
 import CategoriesChartTooltip from '../CategoriesChartTooltip'
 

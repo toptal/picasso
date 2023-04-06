@@ -1,6 +1,7 @@
 import React from 'react'
-import { StandardProps } from '@toptal/picasso-shared'
-import { makeStyles, Theme } from '@material-ui/core'
+import type { StandardProps } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 
 import Button from '../Button'

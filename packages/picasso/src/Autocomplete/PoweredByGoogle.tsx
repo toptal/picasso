@@ -1,4 +1,4 @@
-import { JssProps } from '@toptal/picasso-shared'
+import type { JssProps } from '@toptal/picasso-shared'
 import React from 'react'
 
 import { Container } from '../Container'

@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Dropzone'
+import type { Props } from './Dropzone'
 export { default } from './Dropzone'
 export * from './types'
 

@@ -1,21 +1,17 @@
-import React, {
-  ReactNode,
-  ReactElement,
-  MouseEvent,
-  forwardRef,
-  ElementType,
-} from 'react'
+import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import {
+import type {
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
   OverridableComponent,
-  useTitleCase,
   TextLabelProps,
   Classes,
 } from '@toptal/picasso-shared'
-import { makeStyles, Theme, ButtonBase } from '@material-ui/core'
+import { useTitleCase } from '@toptal/picasso-shared'
+import type { Theme } from '@material-ui/core'
+import { makeStyles, ButtonBase } from '@material-ui/core'
 
 import styles from './styles'
 import Loader from '../Loader'

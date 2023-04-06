@@ -1,7 +1,9 @@
-import React, { forwardRef, HTMLAttributes } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { HTMLAttributes } from 'react'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
 

@@ -1,6 +1,6 @@
-import { ChangeEvent } from 'react'
+import type { ChangeEvent } from 'react'
 
-import { ValueType, UseSelectProps } from '../../../types'
+import type { ValueType, UseSelectProps } from '../../../types'
 
 const useSearchChangeHandler =
   <T extends ValueType, M extends boolean = false>({

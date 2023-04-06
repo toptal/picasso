@@ -1,4 +1,4 @@
-import { Transform, JSXAttribute, JSXIdentifier } from 'jscodeshift'
+import type { Transform, JSXAttribute, JSXIdentifier } from 'jscodeshift'
 
 const transparentToButtonAction = [
   'transparent-white',

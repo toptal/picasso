@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 
-import { Option, Selection } from '../../types'
+import type { Option, Selection } from '../../types'
 
 interface Props {
   flatOptions: Option[]

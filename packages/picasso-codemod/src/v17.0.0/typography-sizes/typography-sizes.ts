@@ -1,4 +1,9 @@
-import { JSXAttribute, JSXIdentifier, JSXText, Transform } from 'jscodeshift'
+import type {
+  JSXAttribute,
+  JSXIdentifier,
+  JSXText,
+  Transform,
+} from 'jscodeshift'
 
 let affectedComponents = ['Typography', 'TypographyOverflow', 'Amount']
 

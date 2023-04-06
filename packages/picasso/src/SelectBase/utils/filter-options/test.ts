@@ -1,5 +1,5 @@
 import filterOptions from './filter-options'
-import { Option, OptionGroups } from '../../types'
+import type { Option, OptionGroups } from '../../types'
 
 describe('filterOptions', () => {
   const simpleOptions: Option[] = [

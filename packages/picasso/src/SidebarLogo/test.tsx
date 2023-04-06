@@ -2,7 +2,8 @@ import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
 import Logo from '../Logo'
-import SidebarLogo, { Props } from './SidebarLogo'
+import type { Props } from './SidebarLogo'
+import SidebarLogo from './SidebarLogo'
 import { SidebarContextProvider } from '../PageSidebar/SidebarContextProvider'
 import { noop } from '../utils'
 

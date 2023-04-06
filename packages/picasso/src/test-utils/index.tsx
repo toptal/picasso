@@ -1,5 +1,7 @@
-import React, { ReactElement } from 'react'
-import { render, RenderOptions, RenderResult } from '@testing-library/react'
+import type { ReactElement } from 'react'
+import React from 'react'
+import type { RenderOptions, RenderResult } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import TestingPicasso from './TestingPicasso'
 

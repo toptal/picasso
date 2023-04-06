@@ -1,7 +1,8 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import { Option } from '../../types'
-import useSelectState, { Props, EMPTY_INPUT_VALUE } from './use-select-state'
+import type { Option } from '../../types'
+import type { Props } from './use-select-state'
+import useSelectState, { EMPTY_INPUT_VALUE } from './use-select-state'
 import useHighlightedIndex from '../use-highlighted-index'
 import {
   getMultipleSelection,

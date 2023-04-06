@@ -1,12 +1,9 @@
-import React, {
-  forwardRef,
-  ReactNode,
-  TableHTMLAttributes,
-  useMemo,
-} from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { ReactNode, TableHTMLAttributes } from 'react'
+import React, { forwardRef, useMemo } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Table as MUITable } from '@material-ui/core'
-import { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import TableContext from './TableContext'
 import styles from './styles'

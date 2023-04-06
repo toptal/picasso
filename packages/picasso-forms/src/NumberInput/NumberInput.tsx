@@ -1,12 +1,10 @@
 import React from 'react'
-import {
-  NumberInput as PicassoNumberInput,
-  NumberInputProps,
-} from '@toptal/picasso'
-import { FieldValidator } from 'final-form'
+import type { NumberInputProps } from '@toptal/picasso'
+import { NumberInput as PicassoNumberInput } from '@toptal/picasso'
+import type { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 

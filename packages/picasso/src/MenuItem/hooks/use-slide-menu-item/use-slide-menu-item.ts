@@ -1,4 +1,6 @@
-import React, { ReactElement, useCallback, useContext, useEffect } from 'react'
+import type { ReactElement } from 'react'
+import type React from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 
 import MenuContext from '../../../Menu/MenuContext'
 

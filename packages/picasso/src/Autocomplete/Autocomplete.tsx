@@ -1,24 +1,26 @@
 /* eslint-disable max-lines */
 /* eslint-disable complexity, max-statements, max-lines-per-function */ // Squiggly lines makes code difficult to work with
 
-import React, {
+import type {
   InputHTMLAttributes,
   KeyboardEvent,
-  forwardRef,
   ReactNode,
   ComponentType,
-  useRef,
   FocusEventHandler,
   MouseEvent,
   Ref,
 } from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import React, { forwardRef, useRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
-import { BaseProps, isForwardRef } from '@toptal/picasso-shared'
-import { PopperOptions } from 'popper.js'
+import type { BaseProps } from '@toptal/picasso-shared'
+import { isForwardRef } from '@toptal/picasso-shared'
+import type { PopperOptions } from 'popper.js'
 
-import Input, { InputProps } from '../Input'
+import type { InputProps } from '../Input'
+import Input from '../Input'
 import { MenuCompound as Menu } from '../MenuCompound'
 import Container from '../Container'
 import Loader from '../Loader'
@@ -28,10 +30,10 @@ import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
 import NoOptionsMenuItem from './NoOptionsMenuItem'
 import OtherOptionMenuItem from './OtherOptionMenuItem'
-import { Item, ChangedOptions } from './types'
+import type { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
-import { BaseInputProps, Status } from '../OutlinedInput'
+import type { BaseInputProps, Status } from '../OutlinedInput'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 

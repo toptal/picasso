@@ -6,13 +6,13 @@ const Example = () => {
   const [maintainBodyScrollLock, setMaintainBodyScrollLock] = useState(true)
 
   return (
-    <div>    
-      <Checkbox 
-        checked={maintainBodyScrollLock} 
+    <div>
+      <Checkbox
+        checked={maintainBodyScrollLock}
         onChange={(evt, val) => {
           setMaintainBodyScrollLock(val)
-        }} 
-        label="Maintain body scroll lock" 
+        }}
+        label='Maintain body scroll lock'
       />
       <Container top='small'>
         <Button data-testid='trigger' onClick={() => setOpen(!open)}>
@@ -22,15 +22,17 @@ const Example = () => {
       <Drawer
         title='My Operational Issues'
         open={open}
-        onClose={() => setOpen(false)}    
-        maintainBodyScrollLock={maintainBodyScrollLock} 
+        onClose={() => setOpen(false)}
+        maintainBodyScrollLock={maintainBodyScrollLock}
       >
         <Container data-testid='content' padded='medium'>
           <List variant='ordered'>
-            {Array(100).fill(undefined).map((_, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <List.Item key={index}>Row {index}</List.Item>
-            ))}
+            {Array(100)
+              .fill(undefined)
+              .map((_, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <List.Item key={index}>Row {index}</List.Item>
+              ))}
             <List.Item>Add at least 10 skills</List.Item>
             <List.Item>Set your age</List.Item>
           </List>

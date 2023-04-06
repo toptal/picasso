@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import debounce from 'debounce'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import styles from './styles'

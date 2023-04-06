@@ -1,9 +1,11 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import FieldRequirements, { Props } from './FieldRequirements'
-import { FieldRequirement } from './types'
+import type { Props } from './FieldRequirements'
+import FieldRequirements from './FieldRequirements'
+import type { FieldRequirement } from './types'
 
 const renderFieldRequirements = function <TInputValue>(
   children: ReactNode,

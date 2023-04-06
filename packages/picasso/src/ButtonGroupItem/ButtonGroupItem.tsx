@@ -1,8 +1,10 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import type { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 
-import Button, { ButtonProps } from '../Button'
+import type { ButtonProps } from '../Button'
+import Button from '../Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

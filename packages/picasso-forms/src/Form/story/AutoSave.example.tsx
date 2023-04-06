@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { Container, FormAutoSaveIndicator, Typography } from '@toptal/picasso'
+import type { ChangedFields } from '@toptal/picasso-forms'
 import {
   FormNonCompound as Form,
-  ChangedFields,
   useFormAutoSave,
   Input,
   RichTextEditor,

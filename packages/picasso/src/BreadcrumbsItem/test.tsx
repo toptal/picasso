@@ -1,8 +1,10 @@
 import React from 'react'
-import { render, PicassoConfig } from '@toptal/picasso/test-utils'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import BreadcrumbsItem, { Props } from './BreadcrumbsItem'
+import type { Props } from './BreadcrumbsItem'
+import BreadcrumbsItem from './BreadcrumbsItem'
 
 jest.mock('ap-style-title-case')
 

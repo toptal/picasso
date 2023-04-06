@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-file
 // @ts-nocheck
 import { Form } from '@toptal/picasso-forms'
 import React from 'react'

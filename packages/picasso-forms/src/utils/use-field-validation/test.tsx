@@ -1,4 +1,4 @@
-import { FieldMetaState } from 'react-final-form'
+import type { FieldMetaState } from 'react-final-form'
 
 import { getFieldError } from './use-field-validation'
 

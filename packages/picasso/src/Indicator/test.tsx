@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Indicator, { Props } from './Indicator'
+import type { Props } from './Indicator'
+import Indicator from './Indicator'
 
 const renderIndicator = (
   children: ReactNode,

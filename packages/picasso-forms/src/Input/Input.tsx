@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { Input as PicassoInput, InputProps } from '@toptal/picasso'
+import type { InputProps } from '@toptal/picasso'
+import { Input as PicassoInput } from '@toptal/picasso'
 import { useForm } from 'react-final-form'
 
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 

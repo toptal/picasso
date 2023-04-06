@@ -1,7 +1,7 @@
-import Quill from 'quill'
+import type Quill from 'quill'
 import { useEffect } from 'react'
 
-import { TextFormatHandler } from '../../types'
+import type { TextFormatHandler } from '../../types'
 
 const useKeyBindings = ({
   quill,

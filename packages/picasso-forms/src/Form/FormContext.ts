@@ -1,5 +1,6 @@
-import { createContext, useContext, MutableRefObject } from 'react'
-import { FieldValidator } from 'final-form'
+import type { MutableRefObject } from 'react'
+import { createContext, useContext } from 'react'
+import type { FieldValidator } from 'final-form'
 
 export type Validators = Record<string, FieldValidator<any>>
 

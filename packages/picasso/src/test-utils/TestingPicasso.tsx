@@ -1,6 +1,6 @@
 import React from 'react'
 import Picasso from '@toptal/picasso-provider'
-import { TextLabelProps } from '@toptal/picasso-shared'
+import type { TextLabelProps } from '@toptal/picasso-shared'
 
 export type Props = TextLabelProps & {
   children: React.ReactNode

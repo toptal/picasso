@@ -1,8 +1,9 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import Pagination, { Props } from './Pagination'
+import type { Props } from './Pagination'
+import Pagination from './Pagination'
 
 const renderPagination = (props: OmitInternalProps<Props>) => {
   const { activePage, disabled, onPageChange, totalPages } = props

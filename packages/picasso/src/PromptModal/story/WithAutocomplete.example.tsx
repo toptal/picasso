@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Autocomplete, PromptModal } from '@toptal/picasso'
-import { Item } from '@toptal/picasso/Autocomplete'
+import type { Item } from '@toptal/picasso/Autocomplete'
 import { useNotifications, isSubstring, useModal } from '@toptal/picasso/utils'
 
 const allOptions = [

@@ -1,4 +1,5 @@
-import core, { Transform, Collection } from 'jscodeshift'
+import type { Transform, Collection } from 'jscodeshift'
+import core from 'jscodeshift'
 
 import {
   addImportMember,
@@ -6,7 +7,7 @@ import {
   isImportFor,
   isSpecifierFor,
 } from '../../utils'
-import { PackageMember } from '../../utils/types'
+import type { PackageMember } from '../../utils/types'
 
 const PICASSO_PACKAGE = '@toptal/picasso'
 

@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './BarChart'
+import type { Props } from './BarChart'
 
 export { default } from './BarChart'
 

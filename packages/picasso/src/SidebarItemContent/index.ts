@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './types'
+import type { Props } from './types'
 
 export type { SidebarTagProps, SidebarBadgeProps } from './types'
 export { default } from './SidebarItemContent'

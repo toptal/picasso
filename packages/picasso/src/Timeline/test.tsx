@@ -1,7 +1,8 @@
 import React from 'react'
 import { render, TestingPicasso } from '@toptal/picasso/test-utils'
 
-import Timeline, { Props } from './Timeline'
+import type { Props } from './Timeline'
+import Timeline from './Timeline'
 
 const renderTimeline = ({ children }: Props) =>
   render(

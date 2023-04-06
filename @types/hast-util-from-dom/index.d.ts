@@ -1,4 +1,4 @@
-import { Parent, Root } from 'hast'
+import type { Parent, Root } from 'hast'
 
 declare module 'hast-util-from-dom' {
   type HastChild = Parent['children'][number]

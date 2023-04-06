@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
 import { FormNonCompound, FileInput, SubmitButton } from '@toptal/picasso-forms'
-import { FileUpload } from '@toptal/picasso/FileInput'
+import type { FileUpload } from '@toptal/picasso/FileInput'
 
 type FormType = {
   'fileInput-attachments': FileUpload[]

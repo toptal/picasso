@@ -1,18 +1,18 @@
 import React, { useRef } from 'react'
 import cx from 'classnames'
 import { NativeSelect as MUINativeSelect } from '@material-ui/core'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 
 import OutlinedInput from '../OutlinedInput'
 import SelectCaret from '../SelectCaret'
+import type { ValueType, SelectProps } from '../SelectBase'
 import {
-  ValueType,
   getOptionText,
   useAdornments,
   useSelectState,
   useSelectProps,
-  SelectProps,
   renderOption as defaultRenderOption,
 } from '../SelectBase'
 import NativeSelectOptions from '../NativeSelectOptions'

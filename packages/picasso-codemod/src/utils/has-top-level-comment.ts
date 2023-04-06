@@ -1,4 +1,4 @@
-import { Core, JSCodeshift } from 'jscodeshift'
+import type { Core, JSCodeshift } from 'jscodeshift'
 
 const hasTopLevelComment = (root: ReturnType<Core>, j: JSCodeshift) => {
   let _hastTopLevelComment = false

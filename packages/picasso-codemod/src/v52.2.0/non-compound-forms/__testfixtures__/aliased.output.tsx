@@ -1,3 +1,4 @@
+// eslint-disable-file
 import { FormNonCompound, Input, Rating } from '@toptal/picasso-forms';
 import React from 'react'
 

@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Alert'
+import type { Props } from './Alert'
 
 export { default } from './Alert'
 export type AlertProps = OmitInternalProps<Props>

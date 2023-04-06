@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import Quill, { QuillOptionsStatic, RangeStatic } from 'quill'
+import type { QuillOptionsStatic, RangeStatic } from 'quill'
+import Quill from 'quill'
 import 'quill-paste-smart'
 
 import {

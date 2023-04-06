@@ -1,5 +1,6 @@
 import React from 'react'
-import { RichText, ASTType } from '@toptal/picasso'
+import type { ASTType } from '@toptal/picasso'
+import { RichText } from '@toptal/picasso'
 
 const ast: ASTType = {
   type: 'root',

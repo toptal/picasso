@@ -1,10 +1,8 @@
 import React from 'react'
-import {
-  Autocomplete as PicassoAutocomplete,
-  AutocompleteProps,
-} from '@toptal/picasso'
+import type { AutocompleteProps } from '@toptal/picasso'
+import { Autocomplete as PicassoAutocomplete } from '@toptal/picasso'
 
-import { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 

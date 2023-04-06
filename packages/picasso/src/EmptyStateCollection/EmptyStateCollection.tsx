@@ -1,10 +1,7 @@
-import React, {
-  forwardRef,
-  HTMLAttributes,
-  ReactElement,
-  cloneElement,
-} from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { HTMLAttributes, ReactElement } from 'react'
+import React, { forwardRef, cloneElement } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { Search16 as Search } from '../Icon'
 import Container from '../Container'

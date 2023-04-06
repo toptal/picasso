@@ -1,8 +1,10 @@
 import React from 'react'
-import { render, RenderResult, fireEvent } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { RenderResult } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import AccountSelect, { Props } from './AccountSelect'
+import type { Props } from './AccountSelect'
+import AccountSelect from './AccountSelect'
 
 const renderAccountSelect = (
   children: React.ReactNode,

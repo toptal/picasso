@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Popper'
+import type { Props } from './Popper'
 
 export { default } from './Popper'
 export type PopperProps = OmitInternalProps<Props>

@@ -3,7 +3,8 @@ import React from 'react'
 
 import Radio from '../Radio'
 import Form from '../Form'
-import RadioGroup, { Props } from './RadioGroup'
+import type { Props } from './RadioGroup'
+import RadioGroup from './RadioGroup'
 
 const arrangeTest = ({ titleCase }: Partial<Props> = {}) =>
   render(

@@ -1,4 +1,4 @@
-import { Props } from './SubmitButton'
+import type { Props } from './SubmitButton'
 
 export { default } from './SubmitButton'
 

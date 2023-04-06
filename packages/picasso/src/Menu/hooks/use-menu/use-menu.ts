@@ -1,4 +1,4 @@
-import { MenuVariant } from '../../types'
+import type { MenuVariant } from '../../types'
 import useMenuVariant from '../use-menu-variant'
 import useDrilldownMenu from '../use-drilldown-menu'
 import useSlideMenu from '../use-slide-menu'

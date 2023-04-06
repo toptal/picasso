@@ -1,11 +1,12 @@
 import React from 'react'
-import {
-  Rating as PicassoRating,
+import type {
   RatingStarsProps as PicassoRatingStarsProps,
   RatingThumbsProps as PicassoRatingThumbsProps,
 } from '@toptal/picasso'
+import { Rating as PicassoRating } from '@toptal/picasso'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
 import { validators } from '../utils'
 

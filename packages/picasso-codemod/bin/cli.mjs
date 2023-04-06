@@ -20,8 +20,8 @@ const paths = {
     hosts: '*hosts/*/src/*',
     apps: '*apps/*/src/*',
     namespaceLibs: '*namespaces/*/libs/*/src/*',
-    namespaceApps: '*namespaces/*/apps/*/src/*'
-  }
+    namespaceApps: '*namespaces/*/apps/*/src/*',
+  },
 }
 
 const findFilesInMonorepo = () =>
@@ -35,12 +35,12 @@ const findFilesInMonorepo = () =>
     ...['-or', '-path', paths.monorepo.hosts],
     ...['-or', '-path', paths.monorepo.namespaceApps],
     ...['-or', '-path', paths.monorepo.namespaceLibs],
-    ')'
+    ')',
   ])
 
 const checkIsMonorepo = async () => {
   const result = await execa('yarn', ['workspaces', 'info'], {
-    reject: false
+    reject: false,
   })
 
   return result.exitCode === 0
@@ -79,7 +79,7 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
     args.push('--stdin')
     options = {
       ...options,
-      input: findFilesOutput.stdout
+      input: findFilesOutput.stdout,
     }
   }
 
@@ -87,7 +87,7 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
 
   const result = execaSync(jscodeshift, args, {
     stdout: 'inherit',
-    ...options
+    ...options,
   })
 
   if (result.error) {
@@ -115,9 +115,9 @@ export const run = () => {
       importMeta: import.meta,
       flags: {
         parserConfig: {
-          type: 'string'
-        }
-      }
+          type: 'string',
+        },
+      },
     }
   )
 
@@ -128,6 +128,6 @@ export const run = () => {
   return runTransform({
     codemod,
     inputFiles,
-    parserConfig
+    parserConfig,
   })
 }

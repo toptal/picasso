@@ -1,9 +1,10 @@
 import React from 'react'
-import { render, PicassoConfig } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { PicassoConfig } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso/test-utils'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Select from './Select'
-import { SelectProps } from './'
+import type { SelectProps } from './'
 
 jest.mock('../NonNativeSelect', () => ({
   __esModule: true,

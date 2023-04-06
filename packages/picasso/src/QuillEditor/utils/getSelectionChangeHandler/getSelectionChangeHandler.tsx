@@ -1,6 +1,7 @@
-import Quill, { SelectionChangeHandler } from 'quill'
+import type { SelectionChangeHandler } from 'quill'
+import type Quill from 'quill'
 
-import { FormatType, SelectionHandler } from '../../types'
+import type { FormatType, SelectionHandler } from '../../types'
 
 const getSelectionChangeHandler = (
   quill: Quill,

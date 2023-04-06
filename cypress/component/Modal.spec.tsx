@@ -1,13 +1,6 @@
 import React from 'react'
-import {
-  Modal,
-  ModalProps,
-  Form,
-  Input,
-  Select,
-  Checkbox,
-  Button,
-} from '@toptal/picasso'
+import type { ModalProps } from '@toptal/picasso'
+import { Modal, Form, Input, Select, Checkbox, Button } from '@toptal/picasso'
 
 const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => (
   <Modal {...props} open>

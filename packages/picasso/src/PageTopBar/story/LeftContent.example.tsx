@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-  Page,
-  Container,
-  Button,
-  UserBadge,
-  Typography,
-  AutocompleteItem,
-} from '@toptal/picasso'
+import type { AutocompleteItem } from '@toptal/picasso'
+import { Page, Container, Button, UserBadge, Typography } from '@toptal/picasso'
 
 const options = [
   { text: 'Denis Usanov', value: '1' },

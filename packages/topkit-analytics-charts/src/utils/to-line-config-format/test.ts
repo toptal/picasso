@@ -1,4 +1,4 @@
-import { LineConfig } from '@toptal/picasso-charts'
+import type { LineConfig } from '@toptal/picasso-charts'
 
 import generateReferenceKey from './../generate-reference-key'
 import toLineConfigFormat from './'

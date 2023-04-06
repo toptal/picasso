@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, fireEvent, waitFor, act } from '@toptal/picasso/test-utils'
 
-import { RatingThumbsProps } from './Rating'
-import { Props as FormProps } from '../Form'
+import type { RatingThumbsProps } from './Rating'
+import type { Props as FormProps } from '../Form'
 import { FormCompound as Form } from '../FormCompound'
 
 let defaultOnSubmit: jest.Mock = jest.fn()

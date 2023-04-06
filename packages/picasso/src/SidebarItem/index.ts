@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './types'
+import type { Props } from './types'
 
 export { default, getSelectedSubMenu } from './SidebarItem'
 export type SidebarItemProps = OmitInternalProps<Props>

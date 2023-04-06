@@ -1,4 +1,5 @@
-import Quill, { TextChangeHandler } from 'quill'
+import type { TextChangeHandler } from 'quill'
+import type Quill from 'quill'
 
 import removeClasses from '../remove-classes'
 import removeCursorSpan from '../remove-cursor-span'

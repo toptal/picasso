@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
-import { BaseLineChartProps, LineChart } from '@toptal/picasso-charts'
+import type { BaseLineChartProps } from '@toptal/picasso-charts'
+import { LineChart } from '@toptal/picasso-charts'
 
 import {
   toChartFormat,
@@ -9,7 +10,7 @@ import {
   getYAxisTicks,
   formatYAxisTick,
 } from './../utils'
-import { Point, Highlight, ReferenceLine, ChartGranularity } from './types'
+import type { Point, Highlight, ReferenceLine, ChartGranularity } from './types'
 
 export type Props = BaseLineChartProps & {
   /**

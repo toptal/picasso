@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-import {
-  Container,
-  Input,
-  FieldRequirements,
-  FieldRequirement,
-} from '@toptal/picasso'
+import type { FieldRequirement } from '@toptal/picasso'
+import { Container, Input, FieldRequirements } from '@toptal/picasso'
 
 const requirements: FieldRequirement<string>[] = [
   {

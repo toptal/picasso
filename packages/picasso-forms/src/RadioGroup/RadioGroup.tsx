@@ -1,11 +1,9 @@
 import React from 'react'
-import {
-  Radio as PicassoRadio,
-  RadioProps,
-  RadioGroupProps,
-} from '@toptal/picasso'
+import type { RadioProps, RadioGroupProps } from '@toptal/picasso'
+import { Radio as PicassoRadio } from '@toptal/picasso'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
 import RadioGroupContext from './RadioGroupContext'
 

@@ -1,12 +1,12 @@
 import React from 'react'
+import type { TreeNodeInterface } from '@toptal/picasso'
 import {
-  TreeNodeInterface,
   TreeNodeAvatar,
   Container,
   UserBadge,
   StaticTreeView,
 } from '@toptal/picasso'
-import { HierarchyPointNode } from 'd3-hierarchy'
+import type { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
 import { palette } from '@toptal/picasso/utils'
 

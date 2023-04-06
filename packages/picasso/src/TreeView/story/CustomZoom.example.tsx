@@ -1,7 +1,7 @@
 import React from 'react'
+import type { TreeNodeInterface } from '@toptal/picasso'
 import {
   TreeView,
-  TreeNodeInterface,
   TreeViewContainer,
   useTreeView,
   TreeNodeAvatar,
@@ -9,7 +9,7 @@ import {
   Container,
   UserBadge,
 } from '@toptal/picasso'
-import { HierarchyPointNode } from 'd3-hierarchy'
+import type { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
 import { palette } from '@toptal/picasso/utils'
 

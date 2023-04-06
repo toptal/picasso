@@ -1,5 +1,6 @@
-import { Ref, useEffect, useRef } from 'react'
-import { TabsActions } from '@material-ui/core'
+import type { Ref } from 'react'
+import { useEffect, useRef } from 'react'
+import type { TabsActions } from '@material-ui/core'
 
 /*
  * MuiTabs break when the size of a tab changes without rendering with React.

@@ -1,4 +1,4 @@
-import { KeyboardEvent } from 'react'
+import type { KeyboardEvent } from 'react'
 
 const normalizeArrowKey = (event: KeyboardEvent<HTMLInputElement>) => {
   const { key, keyCode } = event

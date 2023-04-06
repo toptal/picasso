@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 
-import { UseSelectProps, ValueType, Option } from '../../../types'
-import useSelectHandler from '../use-select-handler'
+import type { UseSelectProps, ValueType, Option } from '../../../types'
+import type useSelectHandler from '../use-select-handler'
 
 const useItemOnClick = <T extends ValueType, M extends boolean = false>({
   selectState: { close },

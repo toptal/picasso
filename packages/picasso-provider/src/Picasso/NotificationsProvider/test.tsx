@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
+import React from 'react'
 import { render, screen, fireEvent } from '@toptal/picasso/test-utils'
 import { useNotifications } from '@toptal/picasso/utils'
 import { Button } from '@material-ui/core'

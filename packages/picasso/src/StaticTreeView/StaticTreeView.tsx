@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef } from 'react'
 
 import { useIsomorphicLayoutEffect } from '../utils'
+import type { TreeViewPropsBase } from '../TreeView/shared'
 import {
-  TreeViewPropsBase,
   useTree,
   TreeViewPropsDefaults,
   TreeViewSvg,

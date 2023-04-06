@@ -1,15 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
+import type { TreeNodeInterface } from '@toptal/picasso'
 import {
   TreeView,
-  TreeNodeInterface,
   TreeNodeAvatar,
   Button,
   Container,
   Modal,
   UserBadge,
 } from '@toptal/picasso'
-import { HierarchyPointNode } from 'd3-hierarchy'
+import type { HierarchyPointNode } from 'd3-hierarchy'
 import { useModal, palette } from '@toptal/picasso/utils'
 import styled from 'styled-components'
 

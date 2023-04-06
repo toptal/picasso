@@ -1,9 +1,10 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Typography from '../Typography'
-import UserBadge, { Props } from './UserBadge'
+import type { Props } from './UserBadge'
+import UserBadge from './UserBadge'
 
 const renderUserBadge = (
   children: React.ReactNode,

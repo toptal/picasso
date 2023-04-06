@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Helpbox'
+import type { Props } from './Helpbox'
 import { HelpboxCompound as Helpbox } from '../HelpboxCompound'
 import Button from '../Button'
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 
-import InputLimitAdornment, { Props } from './InputLimitAdornment'
+import type { Props } from './InputLimitAdornment'
+import InputLimitAdornment from './InputLimitAdornment'
 
 const renderAdornment = (props: Props) =>
   render(<InputLimitAdornment {...props} />)

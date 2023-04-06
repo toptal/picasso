@@ -1,13 +1,15 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import React, { ChangeEvent, forwardRef, useCallback } from 'react'
+import type { ChangeEvent } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 
 import Accordion from '../Accordion'
 import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { ParentItemContextProvider } from './ParentItemContextProvider'
-import { Props } from './types'
+import type { Props } from './types'
 import { SidebarItemHeader } from './SidebarItemHeader'
 
 const useStyles = makeStyles<Theme>(styles, {

@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { mount } from 'cypress/react'
-import { HappoScreenshotOptions } from 'happo-cypress'
+import type { mount } from 'cypress/react'
+import type { HappoScreenshotOptions } from 'happo-cypress'
 
 declare global {
   namespace Cypress {

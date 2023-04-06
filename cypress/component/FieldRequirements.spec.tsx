@@ -1,9 +1,6 @@
 import React from 'react'
-import {
-  FieldRequirement,
-  FieldRequirements,
-  FieldRequirementsProps,
-} from '@toptal/picasso'
+import type { FieldRequirement, FieldRequirementsProps } from '@toptal/picasso'
+import { FieldRequirements } from '@toptal/picasso'
 
 const requirements: FieldRequirement<string>[] = [
   {

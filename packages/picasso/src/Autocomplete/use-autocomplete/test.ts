@@ -3,12 +3,12 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 import { waitFor } from '@toptal/picasso/test-utils'
 
-import { Item } from '../types'
+import type { Item } from '../types'
+import type { Props } from './use-autocomplete'
 import {
   useAutocomplete,
   getNextWrappingIndex,
   normalizeInitialIndex,
-  Props,
 } from './use-autocomplete'
 
 const TEST_OPTIONS = [

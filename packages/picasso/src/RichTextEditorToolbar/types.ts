@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler } from 'react'
+import type { ChangeEvent, MouseEventHandler } from 'react'
 
 export type HeaderValue = '3' | ''
 export type BoldValue = boolean

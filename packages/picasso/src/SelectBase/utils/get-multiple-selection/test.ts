@@ -1,4 +1,4 @@
-import { Option } from '../../types'
+import type { Option } from '../../types'
 import getMultipleSelection from './get-multiple-selection'
 
 const getDisplayValue = (option: Option | null) => option?.text ?? ''

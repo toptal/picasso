@@ -1,4 +1,4 @@
-import { MutableState } from 'final-form'
+import type { MutableState } from 'final-form'
 
 export const setHasMultilineCounter = <
   FormValues = object,

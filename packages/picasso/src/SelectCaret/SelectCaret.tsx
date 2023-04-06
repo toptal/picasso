@@ -1,5 +1,6 @@
 import React from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { DropdownArrows16 } from '../Icon'

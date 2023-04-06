@@ -1,4 +1,5 @@
-import Quill, { TextChangeHandler } from 'quill'
+import type { TextChangeHandler } from 'quill'
+import type Quill from 'quill'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Delta from 'quill-delta'
 

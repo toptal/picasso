@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { act, renderHook } from '@testing-library/react-hooks'
 
 import useSlideMenu from './use-slide-menu'
-import MenuContext, { MenuContextProps } from '../../MenuContext'
+import type { MenuContextProps } from '../../MenuContext'
+import MenuContext from '../../MenuContext'
 
 describe('useSlideMenu', () => {
   it('renders initially', () => {

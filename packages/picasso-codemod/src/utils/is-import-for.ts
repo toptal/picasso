@@ -1,6 +1,6 @@
-import { ImportDeclaration } from 'jscodeshift'
+import type { ImportDeclaration } from 'jscodeshift'
 
-import { PackageMember } from './types'
+import type { PackageMember } from './types'
 
 /**
  * Finds import declarations for specific member of a package.

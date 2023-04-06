@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import type { TableProps } from '@toptal/picasso'
 import {
   Button,
   Calendar16,
@@ -8,7 +9,6 @@ import {
   More16,
   Star16,
   Table,
-  TableProps,
   Tabs,
   Tag,
   Typography,

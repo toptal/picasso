@@ -1,4 +1,4 @@
-import { Core, JSCodeshift } from 'jscodeshift'
+import type { Core, JSCodeshift } from 'jscodeshift'
 
 const replaceWith = (
   prev: string,

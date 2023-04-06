@@ -1,15 +1,13 @@
-import React, { AnchorHTMLAttributes, useState } from 'react'
+import type { AnchorHTMLAttributes } from 'react'
+import React, { useState } from 'react'
 import { Form } from '@toptal/picasso-forms'
 import { isSubstring, noop } from '@toptal/picasso/utils'
-import {
+import type {
   AutocompleteItem,
-  Container,
-  Link,
   TagProps,
-  TagSelector,
   TagSelectorProps,
-  Typography,
 } from '@toptal/picasso'
+import { Container, Link, TagSelector, Typography } from '@toptal/picasso'
 
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = (item: AutocompleteItem | null) =>

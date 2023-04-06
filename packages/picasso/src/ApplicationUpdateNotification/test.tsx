@@ -1,11 +1,10 @@
 import React from 'react'
 import { render } from '@toptal/picasso/test-utils'
 import { screen } from '@testing-library/react'
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import ApplicationUpdateNotification, {
-  Props,
-} from './ApplicationUpdateNotification'
+import type { Props } from './ApplicationUpdateNotification'
+import ApplicationUpdateNotification from './ApplicationUpdateNotification'
 
 const renderApplicationUpdateNotification = (
   props: OmitInternalProps<Props> = {}

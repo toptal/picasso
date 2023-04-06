@@ -1,5 +1,6 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { Link16 } from '../Icon'
 import Typography from '../Typography'

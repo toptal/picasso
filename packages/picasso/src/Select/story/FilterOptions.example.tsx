@@ -1,5 +1,7 @@
-import React, { useState, ChangeEvent, useCallback } from 'react'
-import { Select, Container, SelectOption, Typography } from '@toptal/picasso'
+import type { ChangeEvent } from 'react'
+import React, { useState, useCallback } from 'react'
+import type { SelectOption } from '@toptal/picasso'
+import { Select, Container, Typography } from '@toptal/picasso'
 
 const FilterOptionsExample = () => {
   const [value, setValue] = useState<string>('')

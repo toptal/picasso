@@ -1,7 +1,8 @@
-import React, { ReactNode, useContext } from 'react'
+import type { ReactNode } from 'react'
+import React, { useContext } from 'react'
 
 import { noop } from '../utils'
-import { SidebarContextProps, VariantType } from './types'
+import type { SidebarContextProps, VariantType } from './types'
 
 const SidebarContext = React.createContext<SidebarContextProps>({
   expandedItemKey: null,

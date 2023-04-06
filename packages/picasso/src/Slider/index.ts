@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './Slider'
+import type { Props } from './Slider'
 
 export { default } from './Slider'
 export { useSliderContext } from './SliderContext'

@@ -1,4 +1,4 @@
-import { Option, Selection } from '../../types'
+import type { Option, Selection } from '../../types'
 
 const getSingleSelection = (selectedOption: Option | null): Selection => {
   return {

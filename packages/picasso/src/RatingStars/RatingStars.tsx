@@ -1,5 +1,6 @@
-import React, { forwardRef, ReactNode, ChangeEvent, useCallback } from 'react'
-import { BaseProps, SizeType } from '@toptal/picasso-shared'
+import type { ReactNode, ChangeEvent } from 'react'
+import React, { forwardRef, useCallback } from 'react'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 

@@ -1,5 +1,5 @@
 import { createStyles } from '@material-ui/core'
-import { Theme } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
 import { alpha } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) => {

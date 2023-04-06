@@ -6,7 +6,7 @@ import {
   DEFAULT_HORIZONTAL_MARGIN_H,
   DEFAULT_HORIZONTAL_MARGIN_V,
 } from './variables'
-import { DirectionsType } from './types'
+import type { DirectionsType } from './types'
 
 export const useFinalMargins = (
   direction: DirectionsType,

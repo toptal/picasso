@@ -1,8 +1,11 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 
-import MenuContext, { MenuContextProps } from '../../../Menu/MenuContext'
-import useSlideMenuItem, { Props } from './use-slide-menu-item'
+import type { MenuContextProps } from '../../../Menu/MenuContext'
+import MenuContext from '../../../Menu/MenuContext'
+import type { Props } from './use-slide-menu-item'
+import useSlideMenuItem from './use-slide-menu-item'
 
 const renderUseSlideMenuItem = (
   props: Props,

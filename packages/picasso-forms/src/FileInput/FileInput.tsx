@@ -1,9 +1,11 @@
 import React from 'react'
-import { FileInput as PicassoFileInput, FileInputProps } from '@toptal/picasso'
-import { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
-import { FileUpload } from '@toptal/picasso/FileInput'
+import type { FileInputProps } from '@toptal/picasso'
+import { FileInput as PicassoFileInput } from '@toptal/picasso'
+import type { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
+import type { FileUpload } from '@toptal/picasso/FileInput'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
 
 type FinalFormOnChangeType = FinalFieldInputProps<

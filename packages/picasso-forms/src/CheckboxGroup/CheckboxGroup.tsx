@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import {
-  Checkbox as PicassoCheckbox,
-  CheckboxGroupProps,
-} from '@toptal/picasso'
+import type { CheckboxGroupProps } from '@toptal/picasso'
+import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
 import CheckboxGroupContext from './CheckboxGroupContext'
 

@@ -1,4 +1,8 @@
-import { DataItem, Value, TooltipMap } from '../../../CategoriesChart/types'
+import type {
+  DataItem,
+  Value,
+  TooltipMap,
+} from '../../../CategoriesChart/types'
 import { getColor } from '../../../CategoriesChart/utils'
 
 type CurrentPayload = { name: string; user: number; team: number }

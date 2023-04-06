@@ -1,4 +1,5 @@
-import React, { ReactNode, ChangeEvent } from 'react'
+import type { ReactNode, ChangeEvent } from 'react'
+import React from 'react'
 import { Container, Slider, Tooltip } from '@toptal/picasso'
 
 const BottomTooltip = ({

@@ -1,12 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import debounce from 'debounce'
-import {
-  Autocomplete,
-  AutocompleteProps,
-  Globe16,
-  Check16,
-  Container,
-} from '@toptal/picasso'
+import type { AutocompleteProps } from '@toptal/picasso'
+import { Autocomplete, Globe16, Check16, Container } from '@toptal/picasso'
 import { isSubstring } from '@toptal/picasso/utils'
 
 const MIN_CHARS_TO_LOAD = 2

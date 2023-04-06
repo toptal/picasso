@@ -1,5 +1,7 @@
-import React, { HTMLAttributes } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { HTMLAttributes } from 'react'
+import React from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import styles from './styles'

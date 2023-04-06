@@ -1,7 +1,7 @@
-import { DateOrDateRangeType } from '@toptal/picasso'
-import { Item } from '@toptal/picasso/Autocomplete'
-import { FileUpload } from '@toptal/picasso/FileInput'
-import { FileUpload as AvatarUploadFileUpload } from '@toptal/picasso/AvatarUpload'
+import type { DateOrDateRangeType } from '@toptal/picasso'
+import type { Item } from '@toptal/picasso/Autocomplete'
+import type { FileUpload } from '@toptal/picasso/FileInput'
+import type { FileUpload as AvatarUploadFileUpload } from '@toptal/picasso/AvatarUpload'
 
 export type ValueType =
   | string

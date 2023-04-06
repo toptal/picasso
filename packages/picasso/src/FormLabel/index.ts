@@ -1,6 +1,6 @@
-import { OmitInternalProps } from '@toptal/picasso-shared'
+import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import { Props } from './FormLabel'
+import type { Props } from './FormLabel'
 
 export { default } from './FormLabel'
 export type { RequiredDecoration } from './FormLabel'

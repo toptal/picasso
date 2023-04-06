@@ -1,4 +1,5 @@
-import React, { ChangeEvent, ReactNode, useState } from 'react'
+import type { ChangeEvent, ReactNode } from 'react'
+import React, { useState } from 'react'
 import { Tooltip, Rating } from '@toptal/picasso'
 
 const Example = () => {

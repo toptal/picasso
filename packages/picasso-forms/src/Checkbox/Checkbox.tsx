@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { Checkbox as PicassoCheckbox, CheckboxProps } from '@toptal/picasso'
-import {
-  Field,
-  FieldRenderProps as FinalFormFieldProps,
-} from 'react-final-form'
+import type { CheckboxProps } from '@toptal/picasso'
+import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
+import type { FieldRenderProps as FinalFormFieldProps } from 'react-final-form'
+import { Field } from 'react-final-form'
 
-import PicassoField, { FieldProps } from '../Field'
+import type { FieldProps } from '../Field'
+import PicassoField from '../Field'
 import { CheckboxGroupContext } from '../CheckboxGroup'
 import { useFormConfig } from '../FormConfig'
 

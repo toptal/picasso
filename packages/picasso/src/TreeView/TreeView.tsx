@@ -5,7 +5,8 @@ import React, {
   useState,
   useMemo,
 } from 'react'
-import { Theme, makeStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { TreeViewContext } from './TreeViewContainer'
 import { useTree } from './useTree'
@@ -17,7 +18,7 @@ import {
   ZERO_VECTOR2,
   TreeViewPropsDefaults,
 } from './variables'
-import { TreeViewPropsBase, Vector2 } from './types'
+import type { TreeViewPropsBase, Vector2 } from './types'
 import { TreeViewSvg } from './TreeViewSvg'
 import { useFinalMargins } from './useFinalMargins'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
