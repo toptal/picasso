@@ -8,7 +8,6 @@ exports[`List renders ordered list 1`] = `
     <ol
       class="PicassoList-root PicassoList-firstLevel"
       data-testid="ordered-list"
-      start="1"
     >
       <li
         class=""
@@ -88,7 +87,6 @@ exports[`List renders unordered list 1`] = `
     <ul
       class="PicassoList-root PicassoList-unordered PicassoList-firstLevel"
       data-testid="unordered-list"
-      start="1"
     >
       <li
         class=""

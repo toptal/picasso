@@ -27,15 +27,11 @@ const Tags = {
   ordered: 'ol',
 } as const
 
-const getOrderedStyle = (
-  variant: Props['variant'],
-  level: number,
-  classes: Record<string, string>
-) => {
+const getDefaultType = (variant: Props['variant'], level: number) => {
   if (variant === 'unordered') {
     const isOddLevel = level % 2 === 0
 
-    return isOddLevel ? classes.disc : classes.circle
+    return isOddLevel ? 'disc' : 'circle'
   }
 
   return undefined
@@ -69,15 +65,13 @@ export const List = (props: Props) => {
 
   const ListTag = Tags[variant]
 
-  const orderedDefault = getOrderedStyle(variant, level, classes)
-
   return (
     <ListTag
-      start={start}
+      start={start !== 1 ? start : undefined}
       className={cx(
         classes.root,
         classes[variant],
-        classes[styleType ?? orderedDefault ?? ''],
+        classes[styleType ?? getDefaultType(variant, level) ?? ''],
         {
           [classes.firstLevel]: level === 0,
         },
