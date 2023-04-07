@@ -9,22 +9,52 @@ import Container from '../Container'
 import Typography from '../Typography'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { useListContext } from '../List/context'
+import { ArrowLongRight16, Check16 } from '../Icon'
+
+export type ListItemType =
+  | 'circle'
+  | 'disc'
+  | 'checkmark'
+  | 'arrow'
+  | 'numeral'
+  | 'alpha'
+  | 'roman'
 
 export type Props = BaseProps & {
   children: ReactNode
   variant?: 'ordered' | 'unordered'
   index?: number
-  /** @deprecated */
+  /** @deprecated if you need a custom icon that is not available on the prop `type`, please contact the BASE team to add it to the theme */
   icon?: ReactNode
-  type?: 'circle' | 'disc' | 'checkmark' | 'numeral'
+  /** Style of the bullet/ordinal */
+  type?: ListItemType
   isLastElement?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
 
+const resolveIcon = (type: ListItemType | undefined) => {
+  switch (type) {
+    case 'checkmark':
+      return <Check16 />
+    case 'arrow':
+      return <ArrowLongRight16 />
+    default:
+      return undefined
+  }
+}
+
 export const ListItem = (props: Props) => {
   const classes = useStyles()
-  const { children, icon, variant = 'unordered', ...rest } = props
+  const { styleType: parentType } = useListContext()
+  const {
+    children,
+    variant = 'unordered',
+    type,
+    icon = resolveIcon(type ?? parentType),
+    ...rest
+  } = props
 
   usePropDeprecationWarning({
     props,
@@ -36,6 +66,7 @@ export const ListItem = (props: Props) => {
     <li
       className={cx(classes.root, classes[variant], {
         [classes.hasIcon]: icon != null,
+        [classes[type ?? '']]: type != null,
       })}
       {...rest}
     >
@@ -52,8 +83,6 @@ export const ListItem = (props: Props) => {
     </li>
   )
 }
-
-ListItem.defaultProps = {}
 
 ListItem.displayName = 'ListItem'
 
