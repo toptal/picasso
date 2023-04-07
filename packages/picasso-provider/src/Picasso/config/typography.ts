@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core/styles/createTypography'
+import type { Typography } from '@material-ui/core/styles/createTypography'
 
 export interface AdditionalTypography {
   buttons: {
