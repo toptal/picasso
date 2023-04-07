@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, List, Typography } from '@toptal/picasso'
-import { ListItemType } from '@toptal/picasso/ListItem'
+import type { ListItemType } from '@toptal/picasso/List'
 
 const ListStyleExample = ({ type }: { type: ListItemType }) => (
   <Container bottom='large'>

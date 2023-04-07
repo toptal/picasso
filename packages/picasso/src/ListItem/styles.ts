@@ -1,7 +1,8 @@
-import { createStyles, StyleRules } from '@material-ui/core/styles'
+import type { StyleRules } from '@material-ui/core/styles'
+import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-import { ListItemType } from './ListItem'
+import type { ListItemType } from '../List/context'
 
 PicassoProvider.override(() => ({
   MuiListItem: {

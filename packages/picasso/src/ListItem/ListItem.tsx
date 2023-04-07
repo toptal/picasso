@@ -9,17 +9,9 @@ import Container from '../Container'
 import Typography from '../Typography'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import type { ListItemType } from '../List/context'
 import { useListContext } from '../List/context'
 import { ArrowLongRight16, Check16 } from '../Icon'
-
-export type ListItemType =
-  | 'circle'
-  | 'disc'
-  | 'checkmark'
-  | 'arrow'
-  | 'numeral'
-  | 'alpha'
-  | 'roman'
 
 export type Props = BaseProps & {
   children: ReactNode
