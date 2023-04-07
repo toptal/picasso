@@ -5,7 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import ListItem from '../ListItem'
+import ListItem, { ListItemType } from '../ListItem'
 import styles from './styles'
 import { ListContextProvider, useListContext } from './context'
 
@@ -15,6 +15,8 @@ export type Props = BaseProps & {
   variant: 'ordered' | 'unordered'
   /** Specifies the start value of the first list item in an ordered list */
   start?: number
+  /** Style for items bullet/ordinal, can be overridden on a item level */
+  styleType?: ListItemType
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
@@ -24,9 +26,23 @@ const Tags = {
   ordered: 'ol',
 } as const
 
+const getOrderedStyle = (
+  variant: Props['variant'],
+  level: number,
+  classes: Record<string, string>
+) => {
+  if (variant === 'unordered') {
+    const isOddLevel = level % 2 === 0
+
+    return isOddLevel ? classes.disc : classes.circle
+  }
+
+  return undefined
+}
+
 export const List = (props: Props) => {
   const classes = useStyles()
-  const { variant, children, start = 1, className, ...rest } = props
+  const { variant, children, start = 1, className, styleType, ...rest } = props
   const { level } = useListContext()
 
   const totalChildElements = React.Children.count(children)
@@ -45,22 +61,25 @@ export const List = (props: Props) => {
 
   const ListTag = Tags[variant]
 
+  const orderedDefault = getOrderedStyle(variant, level, classes)
+
   return (
     <ListTag
+      start={start}
       className={cx(
         classes.root,
         classes[variant],
+        classes[styleType ?? orderedDefault ?? ''],
         {
           [classes.firstLevel]: level === 0,
-          [level % 2 === 0 ? classes.disc : classes.circle]:
-            variant === 'unordered',
         },
-
         className
       )}
       {...rest}
     >
-      <ListContextProvider>{listItems}</ListContextProvider>
+      <ListContextProvider styleType={styleType}>
+        {listItems}
+      </ListContextProvider>
     </ListTag>
   )
 }
