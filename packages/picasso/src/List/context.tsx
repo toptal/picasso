@@ -1,6 +1,13 @@
 import React, { createContext, useContext } from 'react'
 
-import { ListItemType } from '../ListItem'
+export type ListItemType =
+  | 'circle'
+  | 'disc'
+  | 'checkmark'
+  | 'arrow'
+  | 'numeral'
+  | 'alpha'
+  | 'roman'
 
 export interface ListContextType {
   styleType?: ListItemType
