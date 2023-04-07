@@ -53,7 +53,7 @@ export const ListItem = (props: Props) => {
     variant = 'unordered',
     type,
     icon = resolveIcon(type ?? parentType),
-    ...rest
+    'data-testid': testId,
   } = props
 
   usePropDeprecationWarning({
@@ -68,7 +68,7 @@ export const ListItem = (props: Props) => {
         [classes.hasIcon]: icon != null,
         [classes[type ?? '']]: type != null,
       })}
-      {...rest}
+      data-testid={testId}
     >
       <Container flex direction='row' className={cx(classes.listContainer)}>
         {icon && (

@@ -42,7 +42,14 @@ const getOrderedStyle = (
 
 export const List = (props: Props) => {
   const classes = useStyles()
-  const { variant, children, start = 1, className, styleType, ...rest } = props
+  const {
+    variant,
+    children,
+    start = 1,
+    className,
+    styleType,
+    'data-testid': testId,
+  } = props
   const { level } = useListContext()
 
   const totalChildElements = React.Children.count(children)
@@ -75,7 +82,7 @@ export const List = (props: Props) => {
         },
         className
       )}
-      {...rest}
+      data-testid={testId}
     >
       <ListContextProvider styleType={styleType}>
         {listItems}
