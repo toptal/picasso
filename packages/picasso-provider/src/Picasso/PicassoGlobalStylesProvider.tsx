@@ -15,6 +15,8 @@ export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   disableTransitions?: boolean
 }
 
+const isBrowser = typeof window !== 'undefined' && !!window.document
+
 const PicassoGlobalStylesProvider = (
   props: PicassoGlobalStylesProviderProps
 ) => {
@@ -64,10 +66,12 @@ const PicassoGlobalStylesProvider = (
     [setPicassoRootMounted]
   )
 
+  const rootNodeReady = !isBrowser || picassoRootMounted
+
   return (
     <RootComponent ref={setRootRef}>
       <RootContext.Provider value={contextValue}>
-        {picassoRootMounted && children}
+        {rootNodeReady && children}
       </RootContext.Provider>
     </RootComponent>
   )
