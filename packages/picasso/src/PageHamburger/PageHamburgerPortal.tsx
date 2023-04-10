@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import Portal from '@material-ui/core/Portal'
 import { getElementById } from '@toptal/picasso-shared'
 
@@ -11,12 +11,7 @@ interface Props {
 const PageHamburgerPortal = ({ children }: Props) => {
   const { hamburgerId } = useHamburgerContext()
 
-  const container = useCallback(
-    () => getElementById(hamburgerId),
-    [hamburgerId]
-  )
-
-  return <Portal container={container}>{children}</Portal>
+  return <Portal container={getElementById(hamburgerId)}>{children}</Portal>
 }
 
 export default PageHamburgerPortal
