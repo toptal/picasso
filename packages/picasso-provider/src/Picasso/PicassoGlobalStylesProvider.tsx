@@ -5,6 +5,7 @@ import type { RootContextProps } from './RootContext'
 import { RootContext } from './RootContext'
 import type { EnvironmentType, TextLabelProps } from '../types'
 import type { PicassoRootNodeProps } from './PicassoRootNode'
+import { isBrowser } from '../utils'
 
 export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   children?: ReactNode
@@ -64,10 +65,12 @@ const PicassoGlobalStylesProvider = (
     [setPicassoRootMounted]
   )
 
+  const rootNodeReady = !isBrowser() || picassoRootMounted
+
   return (
     <RootComponent ref={setRootRef}>
       <RootContext.Provider value={contextValue}>
-        {picassoRootMounted && children}
+        {rootNodeReady && children}
       </RootContext.Provider>
     </RootComponent>
   )
