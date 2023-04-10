@@ -1,7 +1,7 @@
 import type { StyleRules, Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
-import { em, fromPx } from '@toptal/picasso-shared/styles'
+import { em, fromPx } from '@toptal/picasso-shared'
 
 import type { ListItemType } from '../List/context'
 
