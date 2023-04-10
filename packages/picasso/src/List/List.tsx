@@ -29,9 +29,9 @@ const Tags = {
 
 const getDefaultType = (variant: Props['variant'], level: number) => {
   if (variant === 'unordered') {
-    const isOddLevel = level % 2 === 0
+    const isLevelEven = level % 2 === 0
 
-    return isOddLevel ? 'disc' : 'circle'
+    return isLevelEven ? 'disc' : 'circle'
   }
 
   return undefined
