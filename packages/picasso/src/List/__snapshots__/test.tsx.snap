@@ -85,7 +85,7 @@ exports[`List renders unordered list 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="PicassoList-root PicassoList-unordered PicassoList-firstLevel"
+      class="PicassoList-root PicassoList-unordered PicassoList-disc PicassoList-firstLevel"
       data-testid="unordered-list"
     >
       <li
