@@ -1,5 +1,37 @@
 # Change Log
 
+## 32.0.0
+
+### Major Changes
+
+- [#3484](https://github.com/toptal/picasso/pull/3484) [`e6e371e1f`](https://github.com/toptal/picasso/commit/e6e371e1fa4823a92bd7be44f58023ebf3e43709) Thanks [@sashuk](https://github.com/sashuk)!
+
+---
+
+- basic gradients were added (blue, darker blue, light grey, grey, darker grey); `@toptal/picasso` requires `@toptal/picasso-provider >= 2.2.0`
+
+- [#3483](https://github.com/toptal/picasso/pull/3483) [`287093756`](https://github.com/toptal/picasso/commit/28709375694f01640dd6174e7d1aa0146caf9a10) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+---
+
+### List
+
+- add support for BASE nested lists
+- requires latest version of @toptal/picasso-provider
+
+### Patch Changes
+
+- [#3494](https://github.com/toptal/picasso/pull/3494) [`7537324b6`](https://github.com/toptal/picasso/commit/7537324b6ac07d802f69ca45bf3cf574a8fc0f5c) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump date-fns-tz from 1.3.6 to 2.0.0
+
+- [#3482](https://github.com/toptal/picasso/pull/3482) [`a4f2e0856`](https://github.com/toptal/picasso/commit/a4f2e085626107e0e2b2421f83d66aedcdbed41a) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+---
+
+### RichTextEditor
+
+- fix bug when removing formatted word, it should also update the toolbar
+
 ## 31.13.0
 
 ### Minor Changes
