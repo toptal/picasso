@@ -30,8 +30,16 @@ export const mix = (baseColor: string, mixColor: string, amount: number) => {
   return baseColorValue.mix(mixColorValue, amount).hex()
 }
 
-export const rem = (pxValue: string, baseFontSize = 16) =>
-  `${Number.parseFloat(pxValue) / baseFontSize}rem`
+export const rem = (pxValue: string | number, baseFontSize = 16) =>
+  `${
+    (typeof pxValue === 'number' ? pxValue : Number.parseFloat(pxValue)) /
+    baseFontSize
+  }rem`
+
+export const fromPx = (pxValue: string) => Number.parseFloat(pxValue)
+
+export const em = (pxValue: number, baseFontSize: number) =>
+  `${pxValue / baseFontSize}em`
 
 export const pxFromRem = (remValue: string, baseFontSize = 16) =>
   `${Number.parseFloat(remValue) * baseFontSize}px`

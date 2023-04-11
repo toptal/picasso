@@ -1,5 +1,9 @@
+import type { StyleRules } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
+import { rem } from '@toptal/picasso-shared'
+
+import type { ListItemType } from '../List/context'
 
 PicassoProvider.override(() => ({
   MuiListItem: {
@@ -11,20 +15,41 @@ PicassoProvider.override(() => ({
   },
 }))
 
+export const listStyleTypes: StyleRules<ListItemType> = {
+  circle: {
+    listStyleType: 'circle',
+  },
+  disc: {
+    listStyleType: 'disc',
+  },
+  checkmark: {
+    listStyleType: 'none',
+  },
+  arrow: {
+    listStyleType: 'none',
+  },
+  numeral: {
+    listStyleType: 'decimal',
+  },
+  alpha: {
+    listStyleType: 'lower-alpha',
+  },
+  roman: {
+    listStyleType: 'lower-roman',
+  },
+}
+
 export default () =>
   createStyles({
+    content: {
+      paddingLeft: rem(8),
+    },
     listContainer: {
-      lineHeight: '1.375em',
-      marginBottom: '0.5em',
+      marginTop: rem(4),
     },
-    ordered: {
-      minWidth: '1.25em',
-      marginRight: '0.75em',
+    hasIcon: {
+      listStyleType: 'none',
+      marginLeft: rem(-22),
     },
-    unordered: {
-      minWidth: '1rem',
-    },
-    lastElement: {
-      marginBottom: 0,
-    },
+    ...listStyleTypes,
   })

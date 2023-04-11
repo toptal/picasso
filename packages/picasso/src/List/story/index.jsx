@@ -42,4 +42,5 @@ page
     'Ordered with custom start'
   )
   .addExample('List/story/Unordered.example.tsx', 'Unordered')
-  .addExample('List/story/Custom.example.tsx', 'Custom')
+  .addExample('List/story/Nested.example.tsx', 'Nested')
+  .addExample('List/story/Styles.example.tsx', 'Styles')

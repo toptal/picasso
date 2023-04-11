@@ -93,13 +93,22 @@ const defaultValue: ASTType = {
               value:
                 'Collaborate with PMs and other designers to ship your first product features.',
             },
+            {
+              type: 'element',
+              tagName: 'ol',
+              properties: {},
+              children: [
+                {
+                  type: 'element',
+                  tagName: 'li',
+                  properties: {},
+                  children: [
+                    { type: 'text', value: 'Learn about our design system.' },
+                  ],
+                },
+              ],
+            },
           ],
-        },
-        {
-          type: 'element',
-          tagName: 'li',
-          properties: {},
-          children: [{ type: 'text', value: 'Learn about our design system.' }],
         },
       ],
     },
@@ -136,6 +145,25 @@ const defaultValue: ASTType = {
               type: 'text',
               value:
                 'An understanding that phenomenal experiences come from collaborative decision-making with front-end developers, engineers, researchers, content strategists, and other disciplines.',
+            },
+            {
+              type: 'element',
+              tagName: 'ul',
+              properties: {},
+              children: [
+                {
+                  type: 'element',
+                  tagName: 'li',
+                  properties: {},
+                  children: [
+                    {
+                      type: 'text',
+                      value:
+                        'Lorem itaque assumenda id accusamus omnis! Vel veritatis voluptatibus possimus eum aspernatur Facilis nobis iste iste reprehenderit nihil. Fugiat ipsam',
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },

@@ -7,79 +7,74 @@ import cx from 'classnames'
 
 import Container from '../Container'
 import Typography from '../Typography'
-import { Bullet16 } from '../Icon'
 import styles from './styles'
+import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import type { ListItemType } from '../List/context'
+import { useListContext } from '../List/context'
+import { ArrowLongRight16, Check16 } from '../Icon'
 
 export type Props = BaseProps & {
   children: ReactNode
   variant?: 'ordered' | 'unordered'
   index?: number
-  /** Add a custom `<Icon />` to set a custom bullet in ordered lists */
+  /** @deprecated if you need a custom icon that is not available on the prop `type`, please contact the BASE team to add it to the theme */
   icon?: ReactNode
+  /** Style of the bullet/ordinal */
+  type?: ListItemType
   isLastElement?: boolean
-}
-
-const Index = ({ children }: { children: ReactNode }) => (
-  <Typography size='medium'>{children}.</Typography>
-)
-
-const getBulletOrNumber = (
-  variant: 'ordered' | 'unordered',
-  index: number,
-  icon?: ReactNode
-): ReactNode => {
-  if (icon) {
-    return icon
-  }
-
-  if (variant === 'unordered') {
-    return <Bullet16 />
-  }
-
-  return <Index>{index + 1}</Index>
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
 
+const resolveIcon = (type: ListItemType | undefined) => {
+  switch (type) {
+    case 'checkmark':
+      return <Check16 />
+    case 'arrow':
+      return <ArrowLongRight16 />
+    default:
+      return undefined
+  }
+}
+
 export const ListItem = (props: Props) => {
   const classes = useStyles()
+  const { styleType: parentType } = useListContext()
   const {
     children,
-    icon,
     variant = 'unordered',
-    index = 1,
-    isLastElement,
-    ...rest
+    type,
+    icon = resolveIcon(type ?? parentType),
+    'data-testid': testId,
   } = props
 
-  const itemIcon = getBulletOrNumber(variant, index, icon)
+  usePropDeprecationWarning({
+    props,
+    componentName: ListItem.name,
+    name: 'icon',
+  })
 
   return (
-    <li {...rest}>
-      <Container
-        flex
-        direction='row'
-        className={cx(classes.listContainer, {
-          [classes.lastElement]: isLastElement,
-        })}
-      >
-        <Container
-          inline
-          right='small'
-          justifyContent='flex-end'
-          className={classes[variant]}
-        >
-          {itemIcon}
-        </Container>
-        <Typography as='div' size='medium'>
+    <li
+      className={cx(classes.root, classes[variant], {
+        [classes.hasIcon]: icon != null,
+        [classes[type ?? '']]: type != null,
+      })}
+      data-testid={testId}
+    >
+      <Container flex direction='row' className={cx(classes.listContainer)}>
+        {icon && (
+          <Container inline justifyContent='flex-end'>
+            {icon}
+          </Container>
+        )}
+        <Typography as='div' size='medium' className={classes.content}>
           {children}
         </Typography>
       </Container>
     </li>
   )
 }
-
-ListItem.defaultProps = {}
 
 ListItem.displayName = 'ListItem'
 
