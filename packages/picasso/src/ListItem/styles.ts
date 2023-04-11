@@ -1,7 +1,7 @@
-import type { StyleRules, Theme } from '@material-ui/core/styles'
+import type { StyleRules } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
-import { em, fromPx } from '@toptal/picasso-shared'
+import { rem } from '@toptal/picasso-shared'
 
 import type { ListItemType } from '../List/context'
 
@@ -39,20 +39,17 @@ export const listStyleTypes: StyleRules<ListItemType> = {
   },
 }
 
-export default ({ typography }: Theme) => {
-  const toEmUnit = (px: number) => em(px, fromPx(typography.fontSizes.medium))
-
-  return createStyles({
+export default () =>
+  createStyles({
     content: {
-      paddingLeft: toEmUnit(8),
+      paddingLeft: rem(8),
     },
     listContainer: {
-      marginTop: toEmUnit(4),
+      marginTop: rem(4),
     },
     hasIcon: {
       listStyleType: 'none',
-      marginLeft: toEmUnit(-22),
+      marginLeft: rem(-22),
     },
     ...listStyleTypes,
   })
-}
