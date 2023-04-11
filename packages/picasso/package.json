@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "31.13.0",
+  "version": "32.0.0",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
@@ -59,7 +59,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/react-hooks": "^8.0.1",
-    "@toptal/picasso-provider": "2.1.1",
+    "@toptal/picasso-provider": "2.2.0",
     "@types/classnames": "^2.3.1",
     "@types/d3": "^7.4.0",
     "@types/glider-js": "^1.7.8",
