@@ -1,5 +1,12 @@
 # Change Log
 
+## 54.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`dd2dc7a28`](https://github.com/toptal/picasso/commit/dd2dc7a28b71e07506a5c5422a3e0df6f4a7b7cd), [`dd2dc7a28`](https://github.com/toptal/picasso/commit/dd2dc7a28b71e07506a5c5422a3e0df6f4a7b7cd), [`dd2dc7a28`](https://github.com/toptal/picasso/commit/dd2dc7a28b71e07506a5c5422a3e0df6f4a7b7cd), [`dd2dc7a28`](https://github.com/toptal/picasso/commit/dd2dc7a28b71e07506a5c5422a3e0df6f4a7b7cd)]:
+  - @toptal/picasso@32.0.0
+
 ## 53.0.0
 
 ### Major Changes
