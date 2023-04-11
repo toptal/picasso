@@ -1,37 +1,5 @@
 # Change Log
 
-## 2.2.0
-
-### Minor Changes
-
-- [#3483](https://github.com/toptal/picasso/pull/3483) [`287093756`](https://github.com/toptal/picasso/commit/28709375694f01640dd6174e7d1aa0146caf9a10) Thanks [@augustobmoura](https://github.com/augustobmoura)!
-
----
-
-### PicassoProvider
-
-- add font sizes to Picasso theme
-
-- [#3484](https://github.com/toptal/picasso/pull/3484) [`e6e371e1f`](https://github.com/toptal/picasso/commit/e6e371e1fa4823a92bd7be44f58023ebf3e43709) Thanks [@sashuk](https://github.com/sashuk)!
-
----
-
-- basic gradients were added (blue, darker blue, light grey, grey, darker grey); `@toptal/picasso` requires `@toptal/picasso-provider >= 2.2.0`
-
-### Patch Changes
-
-- [#3497](https://github.com/toptal/picasso/pull/3497) [`7f8958614`](https://github.com/toptal/picasso/commit/7f8958614b333e779da72b237df691d0bf183bd5) Thanks [@dmaklygin](https://github.com/dmaklygin)!
-
----
-
-- memoize class names creator in PicassoLight
-
-- [#3492](https://github.com/toptal/picasso/pull/3492) [`c920a8a00`](https://github.com/toptal/picasso/commit/c920a8a00ae03b4412fb38daab9394c3c34dd627) Thanks [@augustobmoura](https://github.com/augustobmoura)!
-
-### PicassoGlobalStylesProvider
-
-- add exception to SSR on Picasso root mounted guard
-
 ## 2.1.1
 
 ### Patch Changes
