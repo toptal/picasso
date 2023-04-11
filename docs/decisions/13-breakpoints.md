@@ -33,7 +33,7 @@ sm:  480px  (small)
 md:  768px  (medium)
 lg:  1024px (large)
 xl:  1440px (extra-large)
-xxl: 1920px (extra-extra-large)
+2xl: 1920px (extra-extra-large)
 
 // Breakpoint ranges
 xs:  0-479px
@@ -41,12 +41,12 @@ sm:  480-767px
 md:  768-1023px
 lg:  1024-1493px
 xl:  1440-1919px
-xxl: 1920px+
+2xl: 1920px+
 
 Value         |0px     480px    768px    1024px   1440px   1920px
-Key           |xs      sm       md       lg       xl       xxl
+Key           |xs      sm       md       lg       xl       2xl
 Screen width  |--------|--------|--------|--------|--------|------->
-Range         |   xs   |   sm   |   md   |   lg   |   xl   |   xxl
+Range         |   xs   |   sm   |   md   |   lg   |   xl   |   2xl
 ```
 
 ## Decision
