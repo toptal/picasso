@@ -150,6 +150,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleOrdered,
       handleUnordered,
       handleLink,
+      insertEmoji,
     } = useToolbarHandlers({
       editorRef,
       handleTextFormat,
@@ -223,6 +224,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             onOrderedClick={handleOrdered}
             onHeaderChange={handleHeader}
             onLinkClick={handleLink}
+            onInsertEmoji={insertEmoji}
             plugins={memoizedPlugins}
             testIds={{
               headerSelect: testIds?.headerSelect,

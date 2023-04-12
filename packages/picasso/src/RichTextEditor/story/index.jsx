@@ -33,3 +33,7 @@ page
     title: 'Links',
     takeScreenshot: false,
   })
+  .addExample('RichTextEditor/story/Emoji.example.tsx', {
+    title: 'Emojis',
+    takeScreenshot: false,
+  })
