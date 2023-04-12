@@ -1,5 +1,15 @@
 # Change Log
 
+## 32.0.1
+
+### Patch Changes
+
+- [#3498](https://github.com/toptal/picasso/pull/3498) [`5ecfc70e5`](https://github.com/toptal/picasso/commit/5ecfc70e53bf0b19f2cfed09aa3d5832aa498cbd) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Page, Page.Sidebar
+
+- fixed dropdown menu not being visible when initially rendered on a narrow viewport
+
 ## 32.0.0
 
 ### Major Changes
