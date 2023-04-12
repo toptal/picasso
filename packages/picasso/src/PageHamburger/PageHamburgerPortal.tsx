@@ -9,11 +9,11 @@ interface Props {
 }
 
 const PageHamburgerPortal = ({ children }: Props) => {
-  const { hamburgerId } = useHamburgerContext()
+  const { hamburgerId, isHamburgerVisible } = useHamburgerContext()
 
   const container = useCallback(
-    () => getElementById(hamburgerId),
-    [hamburgerId]
+    () => isHamburgerVisible ? getElementById(hamburgerId) : null, 
+    [hamburgerId, isHamburgerVisible]
   )
 
   return <Portal container={container}>{children}</Portal>
