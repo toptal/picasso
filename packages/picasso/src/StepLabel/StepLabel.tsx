@@ -57,6 +57,7 @@ export const StepLabel = (props: Props) => {
         }),
         label: cx({
           [classes.hidden]: hideLabel && !active,
+          [classes.hiddenOnMobile]: !active,
           [classes.labelOverflowEllipsis]: withOverflowEllipsis,
         }),
       }}

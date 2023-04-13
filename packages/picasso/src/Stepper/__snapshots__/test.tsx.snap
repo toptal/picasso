@@ -35,7 +35,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -82,7 +82,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -129,7 +129,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -176,7 +176,7 @@ exports[`Stepper render with all steps completed 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -227,7 +227,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -274,7 +274,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -321,7 +321,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -368,7 +368,7 @@ exports[`Stepper render with hidden labels 1`] = `
             class="MuiStepLabel-labelContainer"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -419,7 +419,7 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -466,7 +466,7 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
@@ -540,7 +540,7 @@ exports[`Stepper renders 1`] = `
             class="MuiStepLabel-labelContainer PicassoStepLabel-root"
           >
             <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
+              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
             >
               <span
                 class="PicassoStepLabel-label"
