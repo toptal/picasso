@@ -51,4 +51,8 @@ Range         |   xs   |   sm   |   md   |   lg   |   xl   |   2xl
 
 ## Decision
 
-Pending discussion and approval
+In order to adopt new breakpoints in Picasso, the following steps need to be taken:
+
+- update breakpoints in Picasso
+- extend Grid, RadioGroup, CheckboxGroup APIs to take into account new breakpoints and breakpoint ranges
+- come up with migration guide and announce it upon merge if all the changes to `master` branch
