@@ -1,5 +1,5 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import RichTextEditor from '../RichTextEditor'
+// import RichTextEditor from '../RichTextEditor'
 
 const page = PicassoBook.section('Forms').createPage(
   'RichTextEditor',
@@ -12,9 +12,9 @@ const page = PicassoBook.section('Forms').createPage(
   `
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: RichTextEditor, name: 'RichTextEditor' })
+// page
+//   .createTabChapter('Props')
+//   .addComponentDocs({ component: RichTextEditor, name: 'RichTextEditor' })
 
 page
   .createChapter()
@@ -24,12 +24,12 @@ page
     takeScreenshot: false,
   })
   .addExample('RichTextEditor/story/Disabled.example.tsx', 'Disabled')
-  .addExample('RichTextEditor/story/Limit.example.tsx', {
-    title: 'Limit Length',
-    takeScreenshot: false,
-  })
-  .addExample('RichTextEditor/story/Status.example.tsx', 'Status')
-  .addExample('RichTextEditor/story/Links.example.tsx', {
-    title: 'Links',
-    takeScreenshot: false,
-  })
+// .addExample('RichTextEditor/story/Limit.example.tsx', {
+//   title: 'Limit Length',
+//   takeScreenshot: false,
+// })
+// .addExample('RichTextEditor/story/Status.example.tsx', 'Status')
+// .addExample('RichTextEditor/story/Links.example.tsx', {
+//   title: 'Links',
+//   takeScreenshot: false,
+// })

@@ -1,7 +1,7 @@
 import type { TextChangeHandler } from 'quill'
 import type Quill from 'quill'
 
-import removeClasses from '../remove-classes'
+import removeClasses from '../remove-attributes'
 import removeCursorSpan from '../remove-cursor-span'
 import quillDecodeIndent from '../quillDecodeIndent'
 

@@ -38,6 +38,27 @@ export default (theme: Theme) => {
       ...outline(palette.primary.main),
     },
 
+    editorContainer: {
+      position: 'relative',
+    },
+    contentEditable: {
+      outline: 'none',
+    },
+    italic: {
+      fontStyle: 'italic',
+    },
+    placeholder: {
+      overflow: 'hidden',
+      position: 'absolute',
+      textOverflow: 'ellipsis',
+      top: '0px',
+      left: '0px',
+      userSelect: 'none',
+      whiteSpace: 'nowrap',
+      display: 'inline-block',
+      pointerEvents: 'none',
+    },
+
     ...highlightAutofillStyles(theme),
   })
 }

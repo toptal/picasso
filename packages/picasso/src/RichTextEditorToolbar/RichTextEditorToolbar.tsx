@@ -14,17 +14,12 @@ import Container from '../Container'
 import Select from '../Select'
 import styles from './styles'
 import TextEditorButton from '../RichTextEditorButton'
-import type {
-  ButtonHandlerType,
-  SelectOnChangeHandler,
-  FormatType,
-} from './types'
-import type { EditorPlugin } from '../QuillEditor'
+import type { ButtonHandlerType, SelectOnChangeHandler } from './types'
 
 type Props = {
-  disabled: boolean
+  disabled?: boolean
   id: string
-  format: FormatType
+  blockType: 'number' | 'bullet' | 'paragraph' | 'check' | 'h3'
   testIds?: {
     headerSelect?: string
     boldButton?: string
@@ -36,10 +31,14 @@ type Props = {
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
   onLinkClick: ButtonHandlerType
+
+  isLink: boolean
+  isBold: boolean
+  isItalic: boolean
   onHeaderChange: SelectOnChangeHandler
   onUnorderedClick: ButtonHandlerType
   onOrderedClick: ButtonHandlerType
-  plugins?: EditorPlugin[]
+  plugins?: 'link'[]
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -51,7 +50,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     const {
       disabled,
       id,
-      format,
       onBoldClick,
       onItalicClick,
       onLinkClick,
@@ -59,11 +57,15 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       onUnorderedClick,
       onOrderedClick,
       testIds,
+      blockType,
       plugins,
+      isItalic,
+      isBold,
+      isLink,
     } = props
 
     const classes = useStyles(props)
-    const isHeadingFormat = format.header === '3'
+    const isHeadingFormat = blockType === 'h3'
 
     const allowLinks = plugins?.includes('link')
 
@@ -76,7 +78,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         >
           <Select
             onChange={onHeaderChange}
-            value={format.header}
+            value={blockType === 'h3' ? '3' : ''}
             options={[
               { value: '3', text: 'heading' },
               { value: '', text: 'normal' },
@@ -92,14 +94,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<Bold16 />}
             onClick={onBoldClick}
-            active={isHeadingFormat ? false : format.bold}
+            active={isHeadingFormat ? false : isBold}
             disabled={isHeadingFormat || disabled}
             data-testid={testIds?.boldButton}
           />
           <TextEditorButton
             icon={<Italic16 />}
             onClick={onItalicClick}
-            active={isHeadingFormat ? false : format.italic}
+            active={isHeadingFormat ? false : isItalic}
             disabled={isHeadingFormat || disabled}
             data-testid={testIds?.italicButton}
           />
@@ -108,14 +110,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<ListUnordered16 />}
             onClick={onUnorderedClick}
-            active={format.list === 'bullet'}
+            active={blockType === 'bullet'}
             disabled={disabled}
             data-testid={testIds?.unorderedListButton}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
             onClick={onOrderedClick}
-            active={format.list === 'ordered'}
+            active={blockType === 'number'}
             disabled={disabled}
             data-testid={testIds?.orderedListButton}
           />
@@ -125,7 +127,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             <TextEditorButton
               icon={<Link16 />}
               onClick={onLinkClick}
-              active={!!format.link}
+              active={isLink}
               disabled={disabled}
               data-testid={testIds?.linkButton}
             />
@@ -138,16 +140,10 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 
 RichTextEditorToolbar.defaultProps = {
   disabled: false,
-  format: {
-    bold: false,
-    italic: false,
-    list: false,
-    header: '',
-    link: '',
-  },
+
   onBoldClick: () => {},
   onItalicClick: () => {},
-  onHeaderChange: () => {},
+  // onHeaderChange: () => {},
   onUnorderedClick: () => {},
   onOrderedClick: () => {},
 }

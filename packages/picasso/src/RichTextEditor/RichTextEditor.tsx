@@ -1,31 +1,40 @@
-import React, { forwardRef, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, useCallback, useState } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { useHasMultilineCounter } from '@toptal/picasso-shared'
+// import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import hastUtilToHtml from 'hast-util-to-html'
 import hastSanitize from 'hast-util-sanitize'
+import { LexicalComposer } from '@lexical/react/LexicalComposer'
+import type { InitialConfigType } from '@lexical/react/LexicalComposer'
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
+import { ContentEditable } from '@lexical/react/LexicalContentEditable'
+import { ListPlugin } from '@lexical/react/LexicalListPlugin'
+import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
+import { ListItemNode, ListNode } from '@lexical/list'
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html'
+import { LinkNode } from '@lexical/link'
+import { HeadingNode } from '@lexical/rich-text'
+import { $getRoot, $insertNodes } from 'lexical'
 
 import noop from '../utils/noop'
-import Container from '../Container'
 import type { EditorPlugin } from '../QuillEditor'
-import QuillEditor from '../QuillEditor'
-import InputMultilineAdornment from '../InputMultilineAdornment'
-import Toolbar from '../RichTextEditorToolbar'
+// import InputMultilineAdornment from '../InputMultilineAdornment'
+import ToolbarPlugin from './plugins/ToolbarPlugin'
 import styles from './styles'
-import {
-  useTextEditorState,
-  useOnSelectionChange,
-  useOnTextFormat,
-  useOnFocus,
-  useToolbarHandlers,
-  useCounter,
-} from './hooks'
 import type { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import type { Status } from '../OutlinedInput'
 import type { CounterMessageSetter } from './types'
+import validateUrl from './utils/validateUrl'
+import Typography from '../Typography/Typography'
+import getTypographyClassName from '../Typography/utils/get-typography-class-name/get-typography-class-name'
+import { useTypographyClasses } from '../QuillEditor/formats'
+import removeAttributes from '../QuillEditor/utils/remove-attributes'
+import FocusPlugin from './plugins/FocusPlugin'
+import BlurPlugin from './plugins/BlurPlugin'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -101,37 +110,56 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
-  function RichTextEditor(props, ref) {
+  function RichTextEditor(props) {
     const {
-      'data-testid': dataTestId,
+      // 'data-testid': dataTestId,
       plugins,
-      autoFocus = false,
+      // autoFocus = false,
       className,
       defaultValue,
       disabled,
-      id,
+      // id,
       onChange = noop,
       onFocus = noop,
       onBlur = noop,
-      placeholder,
-      minLength,
-      maxLength,
-      minLengthMessage,
-      maxLengthMessage,
-      style,
+      // placeholder,
+      // minLength,
+      // maxLength,
+      // minLengthMessage,
+      // maxLengthMessage,
+      // style,
       status,
-      testIds,
-      hiddenInputId,
-      setHasMultilineCounter,
-      name,
+      // testIds,
+      // hiddenInputId,
+      // setHasMultilineCounter,
+      // name,
       highlight,
     } = props
 
     const classes = useStyles()
-    const toolbarRef = useRef<HTMLDivElement | null>(null)
-    const editorRef = useRef<HTMLDivElement | null>(null)
-    const wrapperRef = useRef<HTMLDivElement | null>(null)
-    const { dispatch, state } = useTextEditorState()
+    const typographyClasses = useTypographyClasses()
+
+    const theme = {
+      paragraph: getTypographyClassName(typographyClasses, {
+        variant: 'body',
+        size: 'medium',
+      }),
+      heading: {
+        h3: getTypographyClassName(typographyClasses, {
+          variant: 'heading',
+          size: 'medium',
+        }),
+      },
+
+      text: {
+        bold: getTypographyClassName(typographyClasses, {
+          variant: 'body',
+          size: 'medium',
+          weight: 'semibold',
+        }),
+        italic: classes.italic,
+      },
+    }
 
     usePropDeprecationWarning({
       props,
@@ -141,133 +169,124 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const { handleSelectionChange } = useOnSelectionChange({ dispatch })
-    const { handleTextFormat } = useOnTextFormat({ dispatch })
-    const {
-      handleBold,
-      handleItalic,
-      handleHeader,
-      handleOrdered,
-      handleUnordered,
-      handleLink,
-    } = useToolbarHandlers({
-      editorRef,
-      handleTextFormat,
-      format: state.toolbar.format,
-    })
+    // Possibly use useRef for synchronous updates but no re-rendering effect
+    const [hasFocus, setFocus] = useState(false)
 
-    const { isEditorFocused, handleFocus, handleBlur } = useOnFocus({
-      autoFocus,
-      editorRef,
-      toolbarRef,
-      wrapperRef,
-      onFocus,
-      onBlur,
-      dispatch,
-    })
+    const handleFocus = useCallback(() => {
+      setFocus(true)
+      onFocus?.()
+    }, [onFocus])
+
+    const handleBlur = useCallback(() => {
+      setFocus(false)
+      onBlur?.()
+    }, [onBlur])
 
     const [defaultValueInHtml] = useState(() =>
       defaultValue ? hastUtilToHtml(hastSanitize(defaultValue)) : defaultValue
     )
 
-    const { counterMessage, counterError, handleCounterMessage } = useCounter({
-      minLength,
-      maxLength,
-      minLengthMessage,
-      maxLengthMessage,
-    })
+    console.log(defaultValueInHtml)
+    const editorConfig: InitialConfigType = {
+      theme,
+      onError(error: Error) {
+        throw error
+      },
+      namespace: 'editor',
+      nodes: [ListNode, ListItemNode, LinkNode, HeadingNode],
+      editorState: editor => {
+        editor.update(() => {
+          if (!defaultValueInHtml) {
+            return
+          }
+          const parser = new DOMParser()
+          const dom = parser.parseFromString(defaultValueInHtml, 'text/html')
 
-    // Disabled the exhaustive deps rule to allow users to
-    // declare prop like "plugins={[]}" instead of having to
-    // declare the array outside the component level
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const memoizedPlugins = useMemo(() => plugins, [])
+          // Once you have the DOM instance it's easy to generate LexicalNodes.
+          const nodes = $generateNodesFromDOM(editor, dom)
 
-    useHasMultilineCounter(name, !!counterMessage, setHasMultilineCounter)
+          console.log(nodes)
+
+          // Select the root
+          $getRoot().select()
+          $insertNodes(nodes)
+        })
+      },
+    }
 
     return (
-      <>
-        <Container
+      <LexicalComposer initialConfig={editorConfig}>
+        <div
           className={cx(
             classes.editorWrapper,
             {
               [classes.disabled]: disabled,
-              [classes.focused]: isEditorFocused,
+              [classes.focused]: hasFocus,
               [classes.error]: status === 'error',
               [classes.highlightAutofill]: highlight === 'autofill',
             },
             className
           )}
-          tabIndex={-1}
-          style={style}
-          ref={node => {
-            if (typeof ref === 'function') {
-              ref(node)
-            } else if (ref != null) {
-              ref.current = node
-            }
-            wrapperRef.current = node
-          }}
-          data-testid={testIds?.wrapper || dataTestId}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
         >
-          <Toolbar
-            ref={toolbarRef}
-            disabled={disabled || state.toolbar.disabled}
-            id={id}
-            format={state.toolbar.format}
-            onBoldClick={handleBold}
-            onItalicClick={handleItalic}
-            onUnorderedClick={handleUnordered}
-            onOrderedClick={handleOrdered}
-            onHeaderChange={handleHeader}
-            onLinkClick={handleLink}
-            plugins={memoizedPlugins}
-            testIds={{
-              headerSelect: testIds?.headerSelect,
-              boldButton: testIds?.boldButton,
-              italicButton: testIds?.italicButton,
-              unorderedListButton: testIds?.unorderedListButton,
-              orderedListButton: testIds?.orderedListButton,
+          <ToolbarPlugin plugins={plugins} disabled={!hasFocus} />
+          <FocusPlugin onFocus={handleFocus} />
+          <BlurPlugin onBlur={handleBlur} />
+          <ListPlugin />
+          {/* <DefaultValuePlugin defaultValue={defaultValueInHtml} /> */}
+          <LinkPlugin validateUrl={validateUrl} />
+          <OnChangePlugin
+            ignoreSelectionChange
+            onChange={(editorState, editor) => {
+              editorState.read(() => {
+                const htmlValue = $generateHtmlFromNodes(editor, null)
+
+                onChange?.(removeAttributes(htmlValue))
+              })
             }}
           />
-          <QuillEditor
-            ref={editorRef}
-            disabled={!!disabled}
-            data-testid={testIds?.editor}
-            id={id}
-            isFocused={isEditorFocused}
-            placeholder={placeholder}
-            onTextLengthChange={handleCounterMessage}
-            onTextFormat={handleTextFormat}
-            onSelectionChange={handleSelectionChange}
-            onTextChange={onChange}
-            defaultValue={defaultValueInHtml}
-            plugins={memoizedPlugins}
-          />
-          {hiddenInputId && enableFocusOnLabelClick(hiddenInputId)}
-        </Container>
-        {counterMessage && (
-          <InputMultilineAdornment error={counterError}>
-            {counterMessage}
-          </InputMultilineAdornment>
-        )}
-      </>
+          <div className={classes.editorContainer}>
+            <RichTextPlugin
+              contentEditable={
+                <ContentEditable className={classes.contentEditable} />
+              }
+              placeholder={
+                <Typography
+                  size='medium'
+                  color='grey'
+                  className={classes.placeholder}
+                >
+                  Play around with the list plugin...
+                </Typography>
+              }
+              ErrorBoundary={ErrorBoundary}
+            />
+          </div>
+        </div>
+      </LexicalComposer>
     )
   }
 )
 
-const hiddenInputStyle: React.CSSProperties = {
-  position: 'absolute',
-  opacity: 0,
-  zIndex: -1,
+type ErrorBoundaryProps = {
+  children: JSX.Element
+  onError: (error: Error) => void
 }
 
-// Native `for` attribute on label does not work for div target
-const enableFocusOnLabelClick = (hiddenInputId: string) => (
-  <input type='text' id={hiddenInputId} style={hiddenInputStyle} />
-)
+export class ErrorBoundary extends React.Component<ErrorBoundaryProps> {
+  componentDidCatch(error: Error) {
+    this.props.onError(error)
+  }
+
+  render() {
+    return this.props.children
+  }
+}
+
+// const hiddenInputStyle: React.CSSProperties = {
+//   position: 'absolute',
+//   opacity: 0,
+//   zIndex: -1,
+// }
 
 RichTextEditor.defaultProps = {
   autoFocus: false,
