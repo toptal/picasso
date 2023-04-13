@@ -228,7 +228,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             className
           )}
         >
-          <ToolbarPlugin plugins={plugins} disabled={!hasFocus} />
+          <ToolbarPlugin plugins={plugins} disabled={false} />
           <FocusPlugin onFocus={handleFocus} />
           <BlurPlugin onBlur={handleBlur} />
           <ListPlugin />
