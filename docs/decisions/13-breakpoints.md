@@ -5,7 +5,7 @@
 
 ## Problem
 
-Picasso breakpoints and responsiveness in general has to be in sync with BASE design guidelines. Current breakpoints and breakpoint ranges are presented below (as well as in https://picasso.toptal.net/?path=/story/utils-breakpoints--breakpoints):
+Picasso breakpoints and responsiveness in general has to be in sync with [BASE design guidelines](https://www.figma.com/file/q2nvjiyO2CLqBv4DeJnU3i/Product-Library-Documentation?node-id=4533%3A28468&t=RruM6iH4OeX5Csm7-1). Current breakpoints and breakpoint ranges are presented below (as well as in https://picasso.toptal.net/?path=/story/utils-breakpoints--breakpoints):
 
 ```
 // Breakpoints
@@ -24,7 +24,7 @@ extra-large: 992px+
 
 ## Proposal
 
-Breakpoints from BASE design should be fully supported in Picasso. Proposed breakpoints and breakpoint ranges that correspond to the BASE design:
+[Breakpoints from BASE design](https://www.figma.com/file/q2nvjiyO2CLqBv4DeJnU3i/Product-Library-Documentation?node-id=4533%3A28468&t=RruM6iH4OeX5Csm7-1) should be fully supported in Picasso. Proposed breakpoints and breakpoint ranges that correspond to the BASE design:
 
 ```
 // Breakpoints
