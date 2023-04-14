@@ -1,5 +1,17 @@
 # Change Log
 
+## 32.0.2
+
+### Patch Changes
+
+- [#3506](https://github.com/toptal/picasso/pull/3506) [`8c6645af0`](https://github.com/toptal/picasso/commit/8c6645af02f41d2767b95721e2a2485e46148b34) Thanks [@aesqe](https://github.com/aesqe)!
+
+---
+
+### Stepper
+
+- always show active Step's StepLabel
+
 ## 32.0.1
 
 ### Patch Changes
