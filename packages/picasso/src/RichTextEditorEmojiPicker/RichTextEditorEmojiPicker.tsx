@@ -1,3 +1,4 @@
+/* eslint-disable no-inline-styles/no-inline-styles */
 import React, { useEffect } from 'react'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
@@ -7,37 +8,15 @@ import { makeStyles } from '@material-ui/core'
 import Container from '../Container'
 import TextEditorButton from '../RichTextEditorButton'
 import styles from '../Icon/styles'
+import type { CustomEmojiGroup } from '../QuillEditor'
 
 interface Props {
+  richEditorId: string
+  customEmojis?: CustomEmojiGroup[]
   onInsertEmoji: (emoji: string) => void
 }
 
-const EMOJI_PICKER_LOCAL_NAME = 'em-emoji-picker'
 const TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker'
-
-const handleEmojiPickerBehaviour = (
-  event: MouseEvent,
-  showEmojiPicker: boolean,
-  setShowEmojiPicker: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  if (!showEmojiPicker) {
-    return
-  }
-
-  // If we click on the trigger but the picker is shown, we should do nothing
-  // @ts-ignore
-  if (event.target.offsetParent.id === TRIGGER_EMOJI_PICKER_ID) {
-    return
-  }
-
-  // If we click on the emoji picker custom component, we should keep it open :)
-  // @ts-ignore
-  if (event.target.localName === EMOJI_PICKER_LOCAL_NAME) {
-    return
-  }
-
-  setShowEmojiPicker(false)
-}
 
 const handleEmojiPickerEscBehaviour = (
   event: KeyboardEvent,
@@ -48,19 +27,33 @@ const handleEmojiPickerEscBehaviour = (
   }
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<Theme, Omit<Props, 'customEmojis'>>(styles, {
   name: 'RichTextEditorToolbar',
 })
 
-export const RichtTextEditorEmojiPicker = ({ onInsertEmoji }: Props) => {
+export const RichtTextEditorEmojiPicker = ({
+  richEditorId,
+  customEmojis,
+  onInsertEmoji,
+}: Props) => {
   const [showEmojiPicker, setShowEmojiPicker] = React.useState(false)
 
   const classes = useStyles({
+    richEditorId,
     onInsertEmoji,
   })
 
   const handleEmojiPickerClick = () => {
     setShowEmojiPicker(!showEmojiPicker)
+  }
+
+  const closePicker = () => {
+    setShowEmojiPicker(false)
+  }
+
+  const handleEmojiInsert = (emoji: string) => {
+    onInsertEmoji(emoji)
+    setShowEmojiPicker(false)
   }
 
   useEffect(() => {
@@ -71,14 +64,8 @@ export const RichtTextEditorEmojiPicker = ({ onInsertEmoji }: Props) => {
     document.body.addEventListener('keyup', event => {
       handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
     })
-    document.body.addEventListener('click', event => {
-      handleEmojiPickerBehaviour(event, showEmojiPicker, setShowEmojiPicker)
-    })
 
     return () => {
-      document.body.removeEventListener('click', event => {
-        handleEmojiPickerBehaviour(event, showEmojiPicker, setShowEmojiPicker)
-      })
       document.body.removeEventListener('keyup', event => {
         handleEmojiPickerEscBehaviour(event, setShowEmojiPicker)
       })
@@ -92,13 +79,25 @@ export const RichtTextEditorEmojiPicker = ({ onInsertEmoji }: Props) => {
         icon={<Container style={{ pointerEvents: 'none' }}>🙂</Container>}
         id={TRIGGER_EMOJI_PICKER_ID}
       />
-      {showEmojiPicker && (
-        <Container
-          style={{ position: 'absolute', top: 34, left: 0, zIndex: 10 }}
-        >
-          <Picker data={data} onEmojiSelect={onInsertEmoji} />
-        </Container>
-      )}
+      <Container
+        style={{
+          position: 'absolute',
+          top: 34,
+          left: 0,
+          zIndex: 10,
+          opacity: showEmojiPicker ? 1 : 0,
+          pointerEvents: showEmojiPicker ? 'all' : 'none',
+        }}
+      >
+        <Picker
+          id={`emoji-picker-${richEditorId}`}
+          key={`emoji-picker-${richEditorId}`}
+          data={data}
+          custom={customEmojis}
+          onEmojiSelect={handleEmojiInsert}
+          onClickOutside={showEmojiPicker && closePicker}
+        />
+      </Container>
     </Container>
   )
 }

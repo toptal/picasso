@@ -11,11 +11,12 @@ import getFormatChangeHandler from '../../utils/getFormatChangeHandler'
 type Emoji = {
   id: string
   name: string
-  native: string
+  native: string | undefined
   unified: string
   keywords: string[]
   shortcodes: string
   emoticons: string[]
+  src: string | undefined
 }
 
 const useSubscribeToTextEditorEvents = ({
@@ -60,12 +61,35 @@ const useSubscribeToTextEditorEvents = ({
         return
       }
 
-      const { native } = detail as Emoji
+      console.log({ detail })
+
+      const { native, src, id } = detail as Emoji
+
+      if (native) {
+        const selection = quill.getSelection(true) ?? { index: 0, length: 0 }
+
+        if (selection.length === 0) {
+          quill.insertText(selection.index, native)
+        }
+
+        return
+      }
 
       const selection = quill.getSelection(true) ?? { index: 0, length: 0 }
 
       if (selection.length === 0) {
-        quill.insertText(selection.index, native)
+        console.log({ src })
+
+        quill.insertEmbed(selection.index, 'emojiBlot', {
+          src,
+          width: 22,
+          height: 22,
+          emojiId: id,
+          // In order to preserve the paragraph line height and formatting, we need to set the vertical alignment of the image to be at the bottom:)
+          style: `vertical-align: bottom;`,
+        })
+
+        quill.setSelection(selection.index + 1, selection.length + 1)
       }
     },
     [quill]

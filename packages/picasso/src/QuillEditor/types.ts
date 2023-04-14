@@ -26,3 +26,19 @@ export type ChangeHandler = (html: string) => void
 export type TextLengthChangeHandler = (length: number) => void
 
 export type EditorPlugin = 'link' | 'emoji'
+
+export type CustomEmoji = {
+  id: string
+  name: string
+  keywords: string[]
+  skins: [
+    {
+      src: string
+    }
+  ]
+}
+export type CustomEmojiGroup = {
+  id: string
+  name: string
+  emojis: CustomEmoji[]
+}

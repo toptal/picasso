@@ -10,6 +10,7 @@ import {
   makeLinkFormat,
 } from '../../formats'
 import type { EditorPlugin } from '../../types'
+import { EmojiBlot } from '../../blots/emoji'
 
 export type EditorOptionsType = {
   id: string
@@ -21,6 +22,7 @@ export const getModules = (
   plugins: EditorOptionsType['plugins']
 ): QuillOptionsStatic['modules'] => {
   const allowLinks = plugins?.includes('link')
+  const allowEmojis = plugins?.includes('emoji')
 
   const allowedTags = [
     'b',
@@ -39,6 +41,11 @@ export const getModules = (
   if (allowLinks) {
     allowedTags.push('a')
     allowedAttributes.push('href')
+  }
+
+  if (allowEmojis) {
+    allowedTags.push('img')
+    allowedAttributes.push('src', 'width', 'height', 'style')
   }
 
   return {
@@ -135,6 +142,7 @@ const Inline = Quill.import('blots/inline')
 // Lower index means deeper in the DOM tree, since not found (-1) is for embeds
 Inline.order = [
   'cursor',
+  'emojiBlot',
   'link',
   'inline', // Must be lower
   'underline',
@@ -158,6 +166,13 @@ const useQuillInstance = ({
 
     Quill.register(makeHeaderFormat(typographyClasses), true)
     Quill.register(makeBoldFormat(typographyClasses), true)
+
+    const allowEmojis = plugins?.includes('emoji')
+
+    if (allowEmojis) {
+      Quill.register({ 'formats/emojiBlot': EmojiBlot }, true)
+      extendedFormats.push('image', 'emojiBlot')
+    }
 
     const allowLinks = plugins?.includes('link')
 
