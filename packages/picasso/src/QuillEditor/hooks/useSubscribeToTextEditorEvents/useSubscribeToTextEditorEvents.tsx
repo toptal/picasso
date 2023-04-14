@@ -61,8 +61,6 @@ const useSubscribeToTextEditorEvents = ({
         return
       }
 
-      console.log({ detail })
-
       const { native, src, id } = detail as Emoji
 
       if (native) {
@@ -78,15 +76,11 @@ const useSubscribeToTextEditorEvents = ({
       const selection = quill.getSelection(true) ?? { index: 0, length: 0 }
 
       if (selection.length === 0) {
-        console.log({ src })
-
         quill.insertEmbed(selection.index, 'emojiBlot', {
           src,
           width: 22,
           height: 22,
           emojiId: id,
-          // In order to preserve the paragraph line height and formatting, we need to set the vertical alignment of the image to be at the bottom:)
-          style: `vertical-align: bottom;`,
         })
 
         quill.setSelection(selection.index + 1, selection.length + 1)

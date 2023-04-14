@@ -155,11 +155,18 @@ const clipboard = {
   },
 }
 
+const emojiIcon = {
+  '& .emoji-icon': {
+    verticalAlign: 'bottom',
+  },
+}
+
 const quillSpecificStyles = (theme: Theme) => ({
   ...placeholder(theme),
   ...editor,
   ...hidden,
   ...clipboard,
+  ...emojiIcon,
 })
 
 export default (theme: Theme) => {

@@ -13,8 +13,7 @@ export class EmojiBlot extends EmbedBlot {
     node.setAttribute('src', data.src)
     node.setAttribute('width', data.width)
     node.setAttribute('height', data.height)
-    node.setAttribute('style', data.style)
-    console.log(node)
+    node.setAttribute('class', 'emoji-icon')
 
     return node
   }
