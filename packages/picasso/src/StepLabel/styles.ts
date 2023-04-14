@@ -26,6 +26,11 @@ export default ({ palette, breakpoints: { down } }: Theme) =>
     hidden: {
       display: 'none',
     },
+    hiddenOnMobile: {
+      [down(breakpoints.small)]: {
+        display: 'none',
+      },
+    },
     labelContainerOverflowEllipsis: {
       display: 'grid',
     },
@@ -40,8 +45,5 @@ export default ({ palette, breakpoints: { down } }: Theme) =>
       fontWeight: 600,
       lineHeight: '1em',
       color: palette.grey.dark,
-      [down(breakpoints.small)]: {
-        display: 'none',
-      },
     },
   })
