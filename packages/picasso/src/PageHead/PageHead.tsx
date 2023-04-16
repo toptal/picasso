@@ -28,9 +28,10 @@ const useMainStyles = makeStyles(styles, {
 const Title = ({
   titleCase,
   children,
-}: TextLabelProps & { children: ReactNode }) => {
+  id,
+}: TextLabelProps & { children: ReactNode; id?: string }) => {
   return (
-    <Typography variant='heading' size='large' titleCase={titleCase}>
+    <Typography variant='heading' size='large' titleCase={titleCase} id={id}>
       {children}
     </Typography>
   )
