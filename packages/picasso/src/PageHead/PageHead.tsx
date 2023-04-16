@@ -28,20 +28,25 @@ const useMainStyles = makeStyles(styles, {
 const Title = ({
   titleCase,
   children,
-  id,
-}: TextLabelProps & { children: ReactNode; id?: string }) => {
+  className,
+}: TextLabelProps & { children: ReactNode } & BaseProps) => {
   return (
-    <Typography variant='heading' size='large' titleCase={titleCase} id={id}>
+    <Typography
+      variant='heading'
+      size='large'
+      titleCase={titleCase}
+      className={className}
+    >
       {children}
     </Typography>
   )
 }
 
-const Tabs = ({ children }: { children: ReactNode }) => {
-  return <Container>{children}</Container>
+const Tabs = ({ children, className }: { children: ReactNode } & BaseProps) => {
+  return <Container className={className}>{children}</Container>
 }
 
-const Main = (props: { children?: ReactNode }) => {
+const Main = (props: { children?: ReactNode } & BaseProps) => {
   const classes = useMainStyles(props)
 
   return (
@@ -49,16 +54,19 @@ const Main = (props: { children?: ReactNode }) => {
       flex
       justifyContent='space-between'
       alignItems='center'
-      className={classes.main}
+      className={cx(classes.main, props.className)}
     >
       {props.children}
     </Container>
   )
 }
 
-const Actions = ({ children }: { children: ReactNode }) => {
+const Actions = ({
+  children,
+  className,
+}: { children: ReactNode } & BaseProps) => {
   return (
-    <Container flex alignItems='center'>
+    <Container flex alignItems='center' className={className}>
       {children}
     </Container>
   )
@@ -68,13 +76,13 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {
-  const { children, noBorder, rightPadding } = props
+  const { children, noBorder, rightPadding, className } = props
   const classes = useStyles()
 
   return (
     <Container
       ref={ref}
-      className={cx(classes.root, {
+      className={cx(classes.root, className, {
         [classes.withBorder]: !noBorder,
         [classes.rightPadding]: rightPadding,
       })}

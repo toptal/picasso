@@ -4,6 +4,6 @@
 
 ---
 
-### PageHead.Title
+### PageHead
 
-- add id property to PageHead.Title
+- add className property to PageHead components
