@@ -45,7 +45,7 @@ export const getModules = (
 
   if (allowEmojis) {
     allowedTags.push('img')
-    allowedAttributes.push('src', 'width', 'height', 'style')
+    allowedAttributes.push('src', 'data-src', 'data-emoji-name', 'class')
   }
 
   return {
