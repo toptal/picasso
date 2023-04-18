@@ -29,6 +29,7 @@ const Title = ({
   titleCase,
   children,
   className,
+  ...rest
 }: TextLabelProps & { children: ReactNode } & BaseProps) => {
   return (
     <Typography
@@ -36,17 +37,28 @@ const Title = ({
       size='large'
       titleCase={titleCase}
       className={className}
+      {...rest}
     >
       {children}
     </Typography>
   )
 }
 
-const Tabs = ({ children, className }: { children: ReactNode } & BaseProps) => {
-  return <Container className={className}>{children}</Container>
+const Tabs = ({
+  children,
+  className,
+  ...rest
+}: { children: ReactNode } & BaseProps) => {
+  return (
+    <Container className={className} {...rest}>
+      {children}
+    </Container>
+  )
 }
 
 const Main = (props: { children?: ReactNode } & BaseProps) => {
+  const { className, children, ...rest } = props
+
   const classes = useMainStyles(props)
 
   return (
@@ -54,9 +66,10 @@ const Main = (props: { children?: ReactNode } & BaseProps) => {
       flex
       justifyContent='space-between'
       alignItems='center'
-      className={cx(classes.main, props.className)}
+      className={cx(classes.main, className)}
+      {...rest}
     >
-      {props.children}
+      {children}
     </Container>
   )
 }
@@ -64,9 +77,10 @@ const Main = (props: { children?: ReactNode } & BaseProps) => {
 const Actions = ({
   children,
   className,
+  ...rest
 }: { children: ReactNode } & BaseProps) => {
   return (
-    <Container flex alignItems='center' className={className}>
+    <Container flex alignItems='center' className={className} {...rest}>
       {children}
     </Container>
   )
