@@ -14,5 +14,5 @@ BASE design standardises page layout – the page content (section between heade
 
 ## Decision
 
-- Sidebar is hidden (and is accessible via hamburger button) on screens narrower than `1280px`
-- Sidebar is shown on screens equal or wider than `1280px` and it has two variants – wide and compact
+- Sidebar is hidden on screens narrower than `1280px` and is accessible as an overlay by clicking on hamburger button 
+- Sidebar is shown on screens equal or wider than `1280px` and it can toggle between wide and compact modes by clicking expand / collapse button.
