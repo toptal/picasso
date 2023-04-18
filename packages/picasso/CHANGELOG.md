@@ -1,5 +1,18 @@
 # Change Log
 
+## 32.1.0
+
+### Minor Changes
+
+- [#3504](https://github.com/toptal/picasso/pull/3504) [`e1a5f6f76`](https://github.com/toptal/picasso/commit/e1a5f6f76a1cf7e34b288e3d98f3be86bb88c464) Thanks [@sachalifs](https://github.com/sachalifs)!
+
+---
+
+### Icon
+
+- add new `flag` icon from BASE
+- add new `leadOrgUnitJoin` icon from BASE
+
 ## 32.0.2
 
 ### Patch Changes
