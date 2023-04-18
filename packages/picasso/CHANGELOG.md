@@ -1,5 +1,17 @@
 # Change Log
 
+## 32.2.0
+
+### Minor Changes
+
+- [#3510](https://github.com/toptal/picasso/pull/3510) [`87a11eb9f`](https://github.com/toptal/picasso/commit/87a11eb9fd7962208896e307d126607b9b3ac238) Thanks [@DmitriyT51](https://github.com/DmitriyT51)!
+
+---
+
+### PageHead
+
+- add className property to PageHead components
+
 ## 32.1.0
 
 ### Minor Changes
