@@ -28,19 +28,37 @@ const useMainStyles = makeStyles(styles, {
 const Title = ({
   titleCase,
   children,
-}: TextLabelProps & { children: ReactNode }) => {
+  className,
+  ...rest
+}: TextLabelProps & { children: ReactNode } & BaseProps) => {
   return (
-    <Typography variant='heading' size='large' titleCase={titleCase}>
+    <Typography
+      variant='heading'
+      size='large'
+      titleCase={titleCase}
+      className={className}
+      {...rest}
+    >
       {children}
     </Typography>
   )
 }
 
-const Tabs = ({ children }: { children: ReactNode }) => {
-  return <Container>{children}</Container>
+const Tabs = ({
+  children,
+  className,
+  ...rest
+}: { children: ReactNode } & BaseProps) => {
+  return (
+    <Container className={className} {...rest}>
+      {children}
+    </Container>
+  )
 }
 
-const Main = (props: { children?: ReactNode }) => {
+const Main = (props: { children?: ReactNode } & BaseProps) => {
+  const { className, children, ...rest } = props
+
   const classes = useMainStyles(props)
 
   return (
@@ -48,16 +66,21 @@ const Main = (props: { children?: ReactNode }) => {
       flex
       justifyContent='space-between'
       alignItems='center'
-      className={classes.main}
+      className={cx(classes.main, className)}
+      {...rest}
     >
-      {props.children}
+      {children}
     </Container>
   )
 }
 
-const Actions = ({ children }: { children: ReactNode }) => {
+const Actions = ({
+  children,
+  className,
+  ...rest
+}: { children: ReactNode } & BaseProps) => {
   return (
-    <Container flex alignItems='center'>
+    <Container flex alignItems='center' className={className} {...rest}>
       {children}
     </Container>
   )
@@ -67,13 +90,13 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {
-  const { children, noBorder, rightPadding } = props
+  const { children, noBorder, rightPadding, className } = props
   const classes = useStyles()
 
   return (
     <Container
       ref={ref}
-      className={cx(classes.root, {
+      className={cx(classes.root, className, {
         [classes.withBorder]: !noBorder,
         [classes.rightPadding]: rightPadding,
       })}
