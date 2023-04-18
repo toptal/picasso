@@ -105,7 +105,9 @@ describe('BarChart', () => {
   })
 
   it('renders chart with vertical layout', () => {
-    cy.mount(<TestBarChart layout='vertical' />)
+    cy.mount(
+      <TestBarChart layout='vertical' showBarLabel={false} tooltip={false} />
+    )
 
     cy.get('body').happoScreenshot({
       component,
