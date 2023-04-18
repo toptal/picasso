@@ -78,8 +78,6 @@ const useSubscribeToTextEditorEvents = ({
       if (selection.length === 0) {
         quill.insertEmbed(selection.index, 'emojiBlot', {
           src,
-          width: 22,
-          height: 22,
           emojiId: id,
         })
 

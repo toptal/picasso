@@ -158,6 +158,8 @@ const clipboard = {
 const emojiIcon = {
   '& .emoji-icon': {
     verticalAlign: 'bottom',
+    width: '22px',
+    height: '22px',
   },
 }
 

@@ -5,24 +5,20 @@ const EmbedBlot = Quill.import('blots/embed')
 export class EmojiBlot extends EmbedBlot {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static create(data: any) {
-    console.log(data)
     const node = super.create(data)
 
     node.setAttribute('data-src', data.src)
     node.setAttribute('data-emoji-name', data.emojiId)
     node.setAttribute('src', data.src)
-    node.setAttribute('width', data.width)
-    node.setAttribute('height', data.height)
     node.setAttribute('class', 'emoji-icon')
 
     return node
   }
-  static value(domNode: {
-    dataset: { src: string; width: number; height: number }
-  }) {
-    const { src, width, height } = domNode.dataset
 
-    return { src, width, height }
+  static value(domNode: { dataset: { src: string } }) {
+    const { src } = domNode.dataset
+
+    return { src }
   }
 }
 
