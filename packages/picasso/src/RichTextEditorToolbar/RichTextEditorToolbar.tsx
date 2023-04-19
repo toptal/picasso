@@ -19,7 +19,8 @@ import type {
   SelectOnChangeHandler,
   FormatType,
 } from './types'
-import type { EditorPlugin } from '../QuillEditor'
+import type { CustomEmojiGroup, EditorPlugin } from '../QuillEditor'
+import { RichtTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
 
 type Props = {
   disabled: boolean
@@ -32,14 +33,17 @@ type Props = {
     unorderedListButton?: string
     orderedListButton?: string
     linkButton?: string
+    emojiButton?: string
   }
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
   onLinkClick: ButtonHandlerType
+  onInsertEmoji: (emoji: string) => void
   onHeaderChange: SelectOnChangeHandler
   onUnorderedClick: ButtonHandlerType
   onOrderedClick: ButtonHandlerType
   plugins?: EditorPlugin[]
+  customEmojis?: CustomEmojiGroup[]
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -55,17 +59,20 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       onBoldClick,
       onItalicClick,
       onLinkClick,
+      onInsertEmoji,
       onHeaderChange,
       onUnorderedClick,
       onOrderedClick,
       testIds,
       plugins,
+      customEmojis,
     } = props
 
     const classes = useStyles(props)
     const isHeadingFormat = format.header === '3'
 
     const allowLinks = plugins?.includes('link')
+    const allowEmojis = plugins?.includes('emoji')
 
     return (
       <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
@@ -130,6 +137,13 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
               data-testid={testIds?.linkButton}
             />
           </Container>
+        )}
+        {allowEmojis && (
+          <RichtTextEditorEmojiPicker
+            richEditorId={id}
+            customEmojis={customEmojis}
+            onInsertEmoji={onInsertEmoji}
+          />
         )}
       </Container>
     )

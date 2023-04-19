@@ -13,6 +13,7 @@ type Props = BaseProps & {
   disabled: boolean
   icon: ReactElement
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+  id?: string
 }
 
 // Using { index: 10 } to inject CSS generated classes after the button's classes

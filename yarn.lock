@@ -1665,6 +1665,16 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
+"@emoji-mart/data@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@emoji-mart/data/-/data-1.1.2.tgz#777c976f8f143df47cbb23a7077c9ca9fe5fc513"
+  integrity sha512-1HP8BxD2azjqWJvxIaWAMyTySeZY0Osr83ukYjltPVkNXeJvTz7yDrPLBtnrD5uqJ3tg4CcLuuBW09wahqL/fg==
+
+"@emoji-mart/react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@emoji-mart/react/-/react-1.1.1.tgz#ddad52f93a25baf31c5383c3e7e4c6e05554312a"
+  integrity sha512-NMlFNeWgv1//uPsvLxvGQoIerPuVdXwK/EUek8OOkJ6wVOWPUizRBJU0hDqWZCOROVpfBgCemaC3m6jDOXi03g==
+
 "@emotion/cache@^10.0.27":
   version "10.0.29"
   resolved "https://registry.npmjs.org/@emotion/cache/-/cache-10.0.29.tgz"
@@ -8456,7 +8466,7 @@ classnames@*, classnames@^2.2.5, classnames@^2.3.1:
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.1.tgz"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
-clean-css@4.2.x, clean-css@^4.2.3:
+clean-css@4.2.x, clean-css@^3.4.20, clean-css@^4, clean-css@^4.2.3:
   version "4.2.4"
   resolved "https://registry.npmjs.org/clean-css/-/clean-css-4.2.4.tgz"
   integrity sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==
@@ -10554,6 +10564,24 @@ emittery@^0.10.2:
   resolved "https://registry.npmjs.org/emittery/-/emittery-0.10.2.tgz"
   integrity sha512-aITqOwnLanpHLNXZJENbOgjUBeHocD+xsSJmNrjovKBW5HbSpW3d1pEls7GFQPUWXiwG9+0P4GtHfEqC/4M0Iw==
 
+emoji-data-css@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/emoji-data-css/-/emoji-data-css-1.0.1.tgz#4f95b48394b58571ed3284acfa709ea511875f8f"
+  integrity sha512-+fV7z7bDAMx4FrnC1YyIhi3yBURSkNETxwEstw7kl/cmwzF2vGiT0aRWipoWPtmM2fdD9ezvRai9DUEKBlT6YA==
+  dependencies:
+    clean-css "^3.4.20"
+    emoji-datasource "^2.4.4"
+
+emoji-datasource@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-2.4.4.tgz#b97ac1896bc208ecf1833564a20687a5215d0389"
+  integrity sha512-Uyb23tvxUSlPiRQaK1ot+uOlLv1ivd/gcI8x+cqvLCRRMoan8waXXPrXU6UtASpORzcwCOA9dGlzqzLXw+WL7Q==
+
+emoji-mart@^5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/emoji-mart/-/emoji-mart-5.5.2.tgz#3ddbaf053139cf4aa217650078bc1c50ca8381af"
+  integrity sha512-Sqc/nso4cjxhOwWJsp9xkVm8OF5c+mJLZJFoFfzRuKO+yWiN7K8c96xmtughYb0d/fZ8UC6cLIQ/p4BR6Pv3/A==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz"
@@ -12069,6 +12097,11 @@ functions-have-names@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/functions-have-names/-/functions-have-names-1.2.2.tgz"
   integrity sha512-bLgc3asbWdwPbx2mNk2S49kmJCuQeu0nfmaOgbs8WIyzzkw3r4htszdIi9Q9EMezDPTYuJx2wvjZ/EwgAthpnA==
+
+fuse.js@^3.3.0:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.6.1.tgz#7de85fdd6e1b3377c23ce010892656385fd9b10c"
+  integrity sha512-hT9yh/tiinkmirKrlv4KWOjztdoZo1mx9Qh4KvWqC7isoXwdUY3PNWUxceF4/qO9R6riA2C29jdTOeQOIROjgw==
 
 gauge@^3.0.0:
   version "3.0.1"
@@ -18925,6 +18958,14 @@ quill-delta@^3.6.2:
     deep-equal "^1.0.1"
     extend "^3.0.2"
     fast-diff "1.1.2"
+
+quill-emoji@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/quill-emoji/-/quill-emoji-0.2.0.tgz#2d8b830cfd3389a408100f3b7de8d656da74d06f"
+  integrity sha512-0kqHKTFA9hk1Vf5g32KBm/NYZal6n9N/ATmk13Hka/XYsgrEIaShSR84B5VMB7bg5o9+TMeIzc+wey5OP7hv+A==
+  dependencies:
+    emoji-data-css "^1.0.1"
+    fuse.js "^3.3.0"
 
 quill-paste-smart@^1.4.9:
   version "1.4.10"

@@ -52,7 +52,11 @@ const QuillEditor = forwardRef<HTMLDivElement, Props>(function QuillEditor(
   },
   ref
 ) {
-  const quill = useQuillInstance({ id, placeholder, plugins })
+  const quill = useQuillInstance({
+    id,
+    placeholder,
+    plugins,
+  })
   const editorRef = useCombinedRefs<HTMLDivElement>(
     ref,
     useRef<HTMLDivElement>(null)

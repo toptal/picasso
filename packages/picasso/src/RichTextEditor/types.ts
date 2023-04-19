@@ -7,3 +7,5 @@ export type CounterMessageSetter = (
   currLength: number,
   isError: boolean
 ) => string
+
+export type { CustomEmojiGroup, CustomEmoji } from '../QuillEditor'

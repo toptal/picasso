@@ -9,7 +9,7 @@ import hastSanitize from 'hast-util-sanitize'
 
 import noop from '../utils/noop'
 import Container from '../Container'
-import type { EditorPlugin } from '../QuillEditor'
+import type { CustomEmojiGroup, EditorPlugin } from '../QuillEditor'
 import QuillEditor from '../QuillEditor'
 import InputMultilineAdornment from '../InputMultilineAdornment'
 import Toolbar from '../RichTextEditorToolbar'
@@ -94,6 +94,7 @@ export interface Props extends BaseProps {
     orderedListButton?: string
   }
   highlight?: 'autofill'
+  customEmojis?: CustomEmojiGroup[]
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -125,6 +126,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       setHasMultilineCounter,
       name,
       highlight,
+      customEmojis,
     } = props
 
     const classes = useStyles()
@@ -150,6 +152,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       handleOrdered,
       handleUnordered,
       handleLink,
+      insertEmoji,
     } = useToolbarHandlers({
       editorRef,
       handleTextFormat,
@@ -182,6 +185,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     // declare the array outside the component level
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const memoizedPlugins = useMemo(() => plugins, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const memoizedCustomEmojis = useMemo(() => customEmojis, [])
 
     useHasMultilineCounter(name, !!counterMessage, setHasMultilineCounter)
 
@@ -223,7 +228,9 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             onOrderedClick={handleOrdered}
             onHeaderChange={handleHeader}
             onLinkClick={handleLink}
+            onInsertEmoji={insertEmoji}
             plugins={memoizedPlugins}
+            customEmojis={memoizedCustomEmojis}
             testIds={{
               headerSelect: testIds?.headerSelect,
               boldButton: testIds?.boldButton,

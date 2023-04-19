@@ -5,7 +5,10 @@ import type {
   FormatType as EditorFormatType,
 } from '../../../QuillEditor'
 import { CUSTOM_QUILL_EDITOR_FORMAT_EVENT } from '../../../QuillEditor'
-import { INSERT_DEFAULT_LINK_TEXT } from '../../../QuillEditor/constants'
+import {
+  INSERT_DEFAULT_LINK_TEXT,
+  INSERT_EMOJI,
+} from '../../../QuillEditor/constants'
 import type {
   SelectOnChangeHandler,
   ButtonHandlerType,
@@ -38,6 +41,17 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
       })
 
       editorRef.current?.dispatchEvent(defaultLinkTextEvent)
+    },
+    [editorRef]
+  )
+
+  const sendInsertEmojiEvent = useCallback(
+    detail => {
+      const insertEmojiEvent = new CustomEvent(INSERT_EMOJI, {
+        detail,
+      })
+
+      editorRef.current?.dispatchEvent(insertEmojiEvent)
     },
     [editorRef]
   )
@@ -116,6 +130,10 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     })
   }
 
+  const insertEmoji = (emoji: any) => {
+    sendInsertEmojiEvent(emoji)
+  }
+
   return {
     handleBold,
     handleItalic,
@@ -123,6 +141,7 @@ const useToolbarHandlers = ({ editorRef, handleTextFormat, format }: Props) => {
     handleUnordered,
     handleHeader,
     handleLink,
+    insertEmoji,
   }
 }
 
