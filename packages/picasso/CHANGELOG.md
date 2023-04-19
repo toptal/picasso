@@ -1,5 +1,12 @@
 # Change Log
 
+## 32.3.0
+
+### Minor Changes
+
+- [#3509](https://github.com/toptal/picasso/pull/3509) [`a67a29ad3`](https://github.com/toptal/picasso/commit/a67a29ad327fdf8c7d34101452eda7145a17048c) Thanks [@alexvcasillas](https://github.com/alexvcasillas)!
+- implement emoji picker into RichTextEditor with support for native unicode emojis and custom emojis provided from external source as images
+
 ## 32.2.0
 
 ### Minor Changes
