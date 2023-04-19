@@ -53,4 +53,5 @@ In order to adopt new breakpoints in Picasso, the following steps need to be tak
 
 - update breakpoints in Picasso
 - [Grid item](https://picasso.toptal.net/?path=/story/layout-grid--grid), [Radio group](https://picasso.toptal.net/?path=/story/forms-radio--radio), and [Checkbox group](https://picasso.toptal.net/?path=/story/forms-checkbox--checkbox) have to extend the list of supported breakpoints – `extra-small` and `extra-large` have to be added (for now it is only `small`, `medium`, and `large`)
+- [Grid](https://picasso.toptal.net/?path=/story/layout-grid--grid)'s `spacing` default property value has to depend on screen size (aligned with [BASE design breakpoints table](https://www.figma.com/file/q2nvjiyO2CLqBv4DeJnU3i/Product-Library-Documentation?node-id=4533%3A28468&t=O6NGIGAxAbtfzWfm-1)), unless it is explicitly specified by user
 - come up with migration guide and announce it upon merge if all the changes to `master` branch
