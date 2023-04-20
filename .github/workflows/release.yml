@@ -18,6 +18,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    env:
+      DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -169,6 +171,14 @@ jobs:
           slack-message: 'A new PR was merged to Picasso :parrotspin:'
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+
+      - uses: toptal/davinci-github-actions/create-jira-deployment@v6.3.0
+        name: Create Jira deployment
+        if: ${{ steps.changesets.outputs.published == 'true' }}
+        with:
+          token: ${{ env.DEVBOT_TOKEN }}
+          environment: production
+          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
 
   integration-tests:
     name: Integration Tests

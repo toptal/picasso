@@ -103,3 +103,10 @@ jobs:
               context: process.env.STATUS_CHECK_NAME,
               target_url: process.env.STATUS_TARGET_URL
             })
+
+      - uses: toptal/davinci-github-actions/create-jira-deployment@v6.3.0
+        name: Create Jira deployment
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
+          environment: alpha-package
+          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
