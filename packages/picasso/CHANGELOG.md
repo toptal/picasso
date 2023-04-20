@@ -1,5 +1,17 @@
 # Change Log
 
+## 32.3.1
+
+### Patch Changes
+
+- [#3520](https://github.com/toptal/picasso/pull/3520) [`384988790`](https://github.com/toptal/picasso/commit/384988790cb57de868829da3af305515eccc24db) Thanks [@sergiubutnarasu](https://github.com/sergiubutnarasu)!
+
+---
+
+### DatePicker
+
+- prevent opening the calendar when clicking on the datepicker reset button
+
 ## 32.3.0
 
 ### Minor Changes
