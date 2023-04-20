@@ -372,6 +372,9 @@ export const DatePicker = (props: Props) => {
   ) => {
     setInputValue(EMPTY_INPUT_VALUE)
     onResetClick?.(event)
+
+    // prevent re-opening the calendar popper
+    event.stopPropagation()
   }
 
   const startAdornment =

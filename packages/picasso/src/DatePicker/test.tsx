@@ -515,6 +515,29 @@ describe('DatePicker', () => {
 
         expect(queryByTestId('day-button-selected')).toBeInTheDocument()
       })
+
+      it('should not open calendar on `reset` button click', async () => {
+        const { getByRole, queryByTestId, getByPlaceholderText, getByText } =
+          renderDatePicker({
+            ...defaultProps,
+            enableReset: true,
+          })
+
+        const input = getByPlaceholderText(defaultProps.placeholder)
+
+        fireEvent.focus(input)
+
+        const day15 = getByText(/15/)
+
+        fireEvent.click(day15)
+
+        expect(queryByTestId(testIds.calendar)).not.toBeInTheDocument()
+
+        fireEvent.click(getByRole('reset', { hidden: true }))
+
+        expect(input).toHaveAttribute('value', '')
+        expect(queryByTestId(testIds.calendar)).not.toBeInTheDocument()
+      })
     })
 
     describe('when `footer` option is passed', () => {
