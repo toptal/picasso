@@ -47,12 +47,22 @@ describe('quillDecodeIndent', () => {
     expect(quillDecodeIndent(input)).toBe(expectedOutput)
   })
 
-  describe('when removing parent list item', () => {
+  describe('when removing first level parent', () => {
     it('should not break', () => {
       const input =
         '<ul><li>s</li><li class="ql-indent-1">a</li></ul><p>b</p><ul><li class="ql-indent-1">c</li></ul>'
       const expectedOutput =
         '<ul><li>s<ul><li class="">a</li></ul></li></ul><p>b</p><ul><li class="">c</li></ul>'
+
+      expect(quillDecodeIndent(input)).toBe(expectedOutput)
+    })
+  })
+  describe('when removing parent level', () => {
+    it('should not break', () => {
+      const input =
+        '<ul><li>aaa</li><li>a</li><li class="ql-indent-2">a</li><li> bbb</li></ul><p>aaaa</p><ul><li>asdfadsf</li><li class="ql-indent-1">sadfa</li></ul><p><br></p><p><br></p><p><br></p>'
+      const expectedOutput =
+        '<ul><li>aaa</li><li>a<ul><li class="">a</li></ul></li><li> bbb</li></ul><p>aaaa</p><ul><li>asdfadsf<ul><li class="">sadfa</li></ul></li></ul><p><br></p><p><br></p><p><br></p>'
 
       expect(quillDecodeIndent(input)).toBe(expectedOutput)
     })
