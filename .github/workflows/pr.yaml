@@ -153,6 +153,7 @@ jobs:
       
       - name: Prepare temploy URL
         id: temploy
+        if: ${{ always() }}
         run: |
           BRANCH="${{ github.event.pull_request.head.ref }}"
           targetBranch=$(echo "$BRANCH" | sed 's/[\/(]/-/g' | sed 's/)//g')
@@ -161,6 +162,7 @@ jobs:
 
       - name: Create Jira Deployment
         uses: toptal/davinci-github-actions/create-jira-deployment@v6.3.0
+        if: ${{ always() }}
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: temploy
