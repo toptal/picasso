@@ -28,16 +28,19 @@ const quillDecodeIndent = (text: string): string => {
         if (currLevel > prevLevel) {
           const newParent = document.createElement(type)
 
-          currParent.lastChild?.appendChild(newParent)
-          currParent = newParent
+          if (currParent.lastChild != item) {
+            currParent.lastChild?.appendChild(newParent)
+            currParent = newParent
+            currParent?.appendChild(item)
+          }
         } else if (currLevel < prevLevel) {
           for (let index = 0; index < prevLevel - currLevel; index++) {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            currParent = currParent.parentNode!.parentNode! as HTMLElement
+            currParent?.parentNode?.parentNode?.appendChild(item) as HTMLElement
           }
+        } else {
+          currParent?.appendChild(item)
         }
 
-        currParent.appendChild(item)
         prevLevel = currLevel
       })
     })
