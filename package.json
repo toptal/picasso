@@ -103,7 +103,7 @@
     "happo.io": "^8.3.1",
     "jest-canvas-mock": "^2.5.0",
     "lerna": "^6.1.0",
-    "madge": "^5.0.1",
+    "madge": "^6.0.0",
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
