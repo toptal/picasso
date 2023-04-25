@@ -1,5 +1,15 @@
 # Change Log
 
+## 32.3.2
+
+### Patch Changes
+
+- [#3529](https://github.com/toptal/picasso/pull/3529) [`a2aa14332`](https://github.com/toptal/picasso/commit/a2aa1433217ab3eaca16d07a3982375a1eafd5cb) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### RichTextEditor
+
+- fix unhandled error in nested lists
+
 ## 32.3.1
 
 ### Patch Changes
