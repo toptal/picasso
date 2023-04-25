@@ -150,3 +150,20 @@ jobs:
               "PR_ID": "${{ env.PR_ID }}"
             }
           job_timeout: '3600'
+      
+      - name: Prepare temploy URL
+        id: temploy
+        if: ${{ always() }}
+        run: |
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          targetBranch=$(echo "$BRANCH" | sed 's/[\/(]/-/g' | sed 's/)//g')
+          temployURL="https://picasso.toptal.net/${targetBranch}/"
+          echo "temployURL=$temployURL" >> $GITHUB_OUTPUT
+
+      - name: Create Jira Deployment
+        uses: toptal/davinci-github-actions/create-jira-deployment@v6.3.0
+        if: ${{ always() }}
+        with:
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          environment: temploy
+          environment-url: ${{ steps.temploy.outputs.temployURL }}
