@@ -38,7 +38,7 @@ xl:  1440px (extra-large)
 xs:  0-479px
 sm:  480-767px
 md:  768-1023px
-lg:  1024-1493px
+lg:  1024-1439px
 xl:  1440px+
 
 Value         |0px     480px    768px    1024px   1440px
