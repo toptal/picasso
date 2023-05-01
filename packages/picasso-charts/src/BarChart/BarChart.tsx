@@ -14,7 +14,7 @@ import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
 import type { BaseChartProps } from '../types'
-import { findTopDomain } from './utils'
+import { findTopDomain, defineStackId } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
 const {
@@ -63,7 +63,9 @@ export interface Props<K extends string | number | symbol>
   /** Shows label of each bar */
   showBarLabel?: boolean
   /** If set false, animation of bar will be disabled */
-  isAnimationActive?: boolean
+  isAnimationActive?: boolean,
+  /** List of bar groups. i.e.: [ ['a', 'b'], ['c', 'd'] ] */
+  stackedBars?: string[][],
 }
 
 const StyleOverrides = () => (
@@ -105,6 +107,7 @@ const BarChart = <K extends string>({
   testIds,
   showBarLabel,
   isAnimationActive,
+  stackedBars,
   layout,
   ...rest
 }: Props<K>) => {
@@ -129,7 +132,7 @@ const BarChart = <K extends string>({
     [tooltip, customTooltip, allowTooltipEscapeViewBox, testIds?.tooltip]
   )
 
-  const topDomain = findTopDomain(extractValues(data))
+  const topDomain = findTopDomain(extractValues(data), stackedBars)
   const ticks = getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
 
   const categoryAxisProps = {
@@ -194,6 +197,7 @@ const BarChart = <K extends string>({
                 ) : undefined
               }
               isAnimationActive={isAnimationActive}
+              stackId={stackedBars && defineStackId(dataKey, stackedBars)}
             >
               {data.map((entry, index) => {
                 const fill = getBarColor?.({ dataKey, entry, index })
