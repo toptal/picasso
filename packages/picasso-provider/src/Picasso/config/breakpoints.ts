@@ -5,7 +5,12 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { isBrowser } from '../../utils'
 
-type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
+type BreakpointKeys =
+  | 'extra-small'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'extra-large'
 
 type BreakpointsList = {
   [key: string]: number
@@ -15,10 +20,10 @@ class BreakpointProvider {
   breakpoints: Record<'values', BreakpointValues> = {
     values: {
       xs: 0,
-      sm: 576,
+      sm: 480,
       md: 768,
-      lg: 992,
-      xl: 1920,
+      lg: 1024,
+      xl: 1440,
     },
   }
 
@@ -27,13 +32,14 @@ class BreakpointProvider {
   }
 
   constructor() {
-    const { sm, md, lg } = this.breakpoints.values
+    const { sm, md, lg, xl } = this.breakpoints.values
 
     this.mediaQueries = {
-      small: `(max-width: ${sm}px)`,
-      medium: `(min-width: ${sm}px) and (max-width: ${md}px)`,
-      large: `(min-width: ${md}px) and (max-width: ${lg}px)`,
-      'extra-large': `(min-width: ${lg}px)`,
+      'extra-small': `(max-width: ${sm}px)`,
+      small: `(min-width: ${sm}px) and (max-width: ${md}px)`,
+      medium: `(min-width: ${md}px) and (max-width: ${lg}px)`,
+      large: `(min-width: ${lg}px) and (max-width: ${xl}px)`,
+      'extra-large': `(min-width: ${xl}px)`,
     }
   }
 
@@ -41,6 +47,7 @@ class BreakpointProvider {
     this.breakpoints.values.xs = 768
     this.breakpoints.values.sm = 768
 
+    this.mediaQueries['extra-small'] = ''
     this.mediaQueries.small = ''
     this.mediaQueries.medium = ''
   }
@@ -49,6 +56,7 @@ class BreakpointProvider {
 export const PicassoBreakpoints = new BreakpointProvider()
 
 export const breakpointsList: BreakpointsList = {
+  'extra-small': PicassoBreakpoints.breakpoints.values.xs,
   small: PicassoBreakpoints.breakpoints.values.sm,
   medium: PicassoBreakpoints.breakpoints.values.md,
   large: PicassoBreakpoints.breakpoints.values.lg,
@@ -74,18 +82,20 @@ const screenSizeToBreakpointKey = (size: number): BreakpointKeys => {
    * Gets a screen size nickname that corresponds to the given screen size.
    *
    * For the list of breakpoint names and pixel-values we use in designs, check
-   * https://picasso.toptal.net/?path=/story/utils-folder--breakpoints
+   * https://picasso.toptal.net/?path=/story/utils-breakpoints--breakpoints
    *
    * @param {number} size Screen size
    */
 
-  const { sm, md, lg } = PicassoBreakpoints.breakpoints.values
+  const { sm, md, lg, xl } = PicassoBreakpoints.breakpoints.values
 
   if (size < sm) {
-    return 'small'
+    return 'extra-small'
   } else if (size >= sm && size < md) {
-    return 'medium'
+    return 'small'
   } else if (size >= md && size < lg) {
+    return 'medium'
+  } else if (size >= lg && size < xl) {
     return 'large'
   }
 

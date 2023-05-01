@@ -1,7 +1,7 @@
 import React from 'react'
 import { useScreens } from '@toptal/picasso/utils'
 import type { ButtonVariantType } from '@toptal/picasso'
-import { Typography, Button } from '@toptal/picasso'
+import { Typography, Button, Container } from '@toptal/picasso'
 
 const Example = () => {
   const screens = useScreens<ButtonVariantType>()
@@ -9,6 +9,18 @@ const Example = () => {
 
   return (
     <>
+      <Container bottom={2}>
+        <Typography variant='heading' size='medium'>
+          Current screen breakpoint:{' '}
+          {screenTexts({
+            'extra-small': 'extra-small',
+            small: 'small',
+            medium: 'medium',
+            large: 'large',
+            'extra-large': 'extra-large',
+          })}
+        </Typography>
+      </Container>
       <Typography as='span'>
         The button below will use:
         <ul>

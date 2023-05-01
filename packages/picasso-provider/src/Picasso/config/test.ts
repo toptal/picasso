@@ -2,24 +2,31 @@ import { isScreenSize, screens, PicassoBreakpoints } from './'
 
 const SCREEN_SIZES = {
   small: 500,
-  medium: 750,
-  large: 990,
-  extraLarge: 1000,
+  medium: 800,
+  large: 1060,
+  extraLarge: 1500,
 }
 
 describe('responsive breakpoint utils', () => {
   describe('media query generation', () => {
+    it('extra-small', () => {
+      const mediaQuery = screens('extra-small')
+
+      expect(mediaQuery).toBe('@media (max-width: 480px)')
+    })
     it('small', () => {
       const mediaQuery = screens('small')
 
-      expect(mediaQuery).toBe('@media (max-width: 576px)')
+      expect(mediaQuery).toBe(
+        '@media (min-width: 480px) and (max-width: 768px)'
+      )
     })
 
     it('small medium', () => {
       const mediaQuery = screens('small', 'medium')
 
       expect(mediaQuery).toBe(
-        '@media (max-width: 576px), (min-width: 576px) and (max-width: 768px)'
+        '@media (min-width: 480px) and (max-width: 768px), (min-width: 768px) and (max-width: 1024px)'
       )
     })
 
@@ -27,7 +34,7 @@ describe('responsive breakpoint utils', () => {
       const mediaQuery = screens('small', 'medium', 'large')
 
       expect(mediaQuery).toBe(
-        '@media (max-width: 576px), (min-width: 576px) and (max-width: 768px), (min-width: 768px) and (max-width: 992px)'
+        '@media (min-width: 480px) and (max-width: 768px), (min-width: 768px) and (max-width: 1024px), (min-width: 1024px) and (max-width: 1440px)'
       )
     })
   })
@@ -107,6 +114,12 @@ describe('non-responsive breakpoint utils', () => {
   })
 
   describe('media query generation', () => {
+    it('extra-small', () => {
+      const mediaQuery = screens('extra-small')
+
+      expect(mediaQuery).toBe('')
+    })
+
     it('small', () => {
       const mediaQuery = screens('small')
 
@@ -123,7 +136,7 @@ describe('non-responsive breakpoint utils', () => {
       const mediaQuery = screens('small', 'medium', 'large')
 
       expect(mediaQuery).toBe(
-        '@media (min-width: 768px) and (max-width: 992px)'
+        '@media (min-width: 1024px) and (max-width: 1440px)'
       )
     })
   })
@@ -138,7 +151,7 @@ describe('non-responsive breakpoint utils', () => {
     it('small breakpoint on a small screen', () => {
       const isSmall = isScreenSize('small', SCREEN_SIZES.small)
 
-      expect(isSmall).toBeTruthy()
+      expect(isSmall).toBeFalsy()
     })
 
     it('small breakpoint on a large screen', () => {
@@ -162,7 +175,7 @@ describe('non-responsive breakpoint utils', () => {
     it('medium breakpoint on a medium screen', () => {
       const isMedium = isScreenSize('medium', SCREEN_SIZES.medium)
 
-      expect(isMedium).toBeFalsy()
+      expect(isMedium).toBeTruthy()
     })
 
     it('medium breakpoint on a large screen', () => {
