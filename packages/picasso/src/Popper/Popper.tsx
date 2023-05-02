@@ -139,7 +139,7 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const isInsideModal = useContext(ModalContext)
 
   const classes = useStyles()
-  const isCompactLayoutResolution = useBreakpoint(['small', 'medium'])
+  const isCompactLayoutResolution = useBreakpoint(['sm', 'md'])
   const isCompactLayout = enableCompactMode && isCompactLayoutResolution
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })
   const anchorElWidthStyle = !isCompactLayout && widthStyle

@@ -22,7 +22,7 @@ const PageHamburger = ({ id }: Props) => {
   const { isHamburgerVisible } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
-  const isCompactLayout = useBreakpoint(['small', 'medium'])
+  const isCompactLayout = useBreakpoint(['sm', 'md'])
 
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)

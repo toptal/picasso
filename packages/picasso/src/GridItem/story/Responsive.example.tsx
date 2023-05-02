@@ -3,9 +3,9 @@ import { Grid, Container, Typography } from '@toptal/picasso'
 import { palette, useBreakpoint } from '@toptal/picasso/utils'
 
 const ScreenSize = () => {
-  const isExtraLarge = useBreakpoint('extra-large')
-  const isLarge = useBreakpoint('large')
-  const isMedium = useBreakpoint('medium')
+  const isExtraLarge = useBreakpoint('xl')
+  const isLarge = useBreakpoint('lg')
+  const isMedium = useBreakpoint('md')
 
   if (isExtraLarge) {
     return <>Extra Large</>
