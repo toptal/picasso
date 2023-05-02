@@ -13,11 +13,11 @@ const Example = () => {
         <Typography variant='heading' size='medium'>
           Current screen breakpoint:{' '}
           {screenTexts({
-            'extra-small': 'extra-small',
-            small: 'small',
-            medium: 'medium',
-            large: 'large',
-            'extra-large': 'extra-large',
+            xs: 'xs',
+            sm: 'sm',
+            md: 'md',
+            lg: 'lg',
+            xl: 'xl',
           })}
         </Typography>
       </Container>
@@ -39,16 +39,16 @@ const Example = () => {
       <Button
         variant={screens(
           {
-            small: 'secondary',
-            large: 'positive',
+            sm: 'secondary',
+            lg: 'positive',
           },
           'primary'
         )}
       >
         {screenTexts(
           {
-            small: 'small (secondary)',
-            large: 'large (positive)',
+            sm: 'small (secondary)',
+            lg: 'large (positive)',
           },
           'default (primary)'
         )}
