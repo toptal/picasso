@@ -33,7 +33,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
     const { name, meta, avatar, className, style, children, ...rest } = props
     const classes = useStyles()
 
-    const isCompactLayout = useBreakpoint(['small', 'medium'])
+    const isCompactLayout = useBreakpoint(['sm', 'md'])
 
     const metaContent =
       typeof meta === 'string' ? (

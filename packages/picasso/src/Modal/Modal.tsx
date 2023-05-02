@@ -178,7 +178,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
   useBodyScrollLock(open)
 
-  const isSmall = useBreakpoint('small')
+  const isSmall = useBreakpoint('sm')
 
   const handleClose = useCallback(
     (_event, reason: 'backdropClick' | 'escapeKeyDown') => {

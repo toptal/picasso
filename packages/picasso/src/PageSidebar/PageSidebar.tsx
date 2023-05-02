@@ -86,7 +86,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   usePortalToHamburger()
 
-  const isCompactLayout = useBreakpoint(['small', 'medium'])
+  const isCompactLayout = useBreakpoint(['sm', 'md'])
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
