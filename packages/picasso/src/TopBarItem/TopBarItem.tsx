@@ -35,7 +35,7 @@ export const TopBarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
     const { className, icon, children, ...rest } = props
     const classes = useStyles()
-    const isCompactLayout = useBreakpoint(['small', 'medium'])
+    const isCompactLayout = useBreakpoint(['sm', 'md'])
 
     return isCompactLayout ? (
       <SidebarItem {...props} ref={ref} />

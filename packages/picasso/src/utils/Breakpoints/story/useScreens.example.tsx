@@ -1,7 +1,7 @@
 import React from 'react'
 import { useScreens } from '@toptal/picasso/utils'
 import type { ButtonVariantType } from '@toptal/picasso'
-import { Typography, Button } from '@toptal/picasso'
+import { Typography, Button, Container } from '@toptal/picasso'
 
 const Example = () => {
   const screens = useScreens<ButtonVariantType>()
@@ -9,6 +9,18 @@ const Example = () => {
 
   return (
     <>
+      <Container bottom={2}>
+        <Typography variant='heading' size='medium'>
+          Current screen breakpoint:{' '}
+          {screenTexts({
+            xs: 'xs',
+            sm: 'sm',
+            md: 'md',
+            lg: 'lg',
+            xl: 'xl',
+          })}
+        </Typography>
+      </Container>
       <Typography as='span'>
         The button below will use:
         <ul>
@@ -27,16 +39,16 @@ const Example = () => {
       <Button
         variant={screens(
           {
-            small: 'secondary',
-            large: 'positive',
+            sm: 'secondary',
+            lg: 'positive',
           },
           'primary'
         )}
       >
         {screenTexts(
           {
-            small: 'small (secondary)',
-            large: 'large (positive)',
+            sm: 'small (secondary)',
+            lg: 'large (positive)',
           },
           'default (primary)'
         )}
