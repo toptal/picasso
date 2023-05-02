@@ -26,10 +26,10 @@ const Example = () => (
               </Typography>
               <Typography size='xsmall'>
                 {isSmallestBreakpoint && `< ${nextBreakpointValue} px`}
-                {isLargestBreakpoint && `> ${breakpointValue} px`}
+                {isLargestBreakpoint && `≥ ${breakpointValue} px`}
                 {!isSmallestBreakpoint &&
                   !isLargestBreakpoint &&
-                  `${breakpointValue} px < ... < ${nextBreakpointValue} px`}
+                  `${breakpointValue} px ≤ ... < ${nextBreakpointValue} px`}
               </Typography>
               <Container top={1}>
                 <Image
