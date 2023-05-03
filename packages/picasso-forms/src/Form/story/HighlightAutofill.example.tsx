@@ -68,7 +68,7 @@ const Example = () => (
         id='highlight-rte'
         label='rte'
         name='highlight-rte'
-        defaultValue={htmlToHast(INITIAL_RTE_VALUE)}
+        defaultValue={htmlToHast(INITIAL_RTE_VALUE)} // we expect HAST from BE
       />
       <Select
         options={[{ value: 'foo', text: 'first option ' }]}
