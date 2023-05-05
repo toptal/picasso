@@ -2,6 +2,7 @@ import type { RefObject } from 'react'
 import React, { useContext } from 'react'
 
 import type { TextLabelProps, EnvironmentType } from '../types'
+import type { BreakpointKeys } from './config'
 
 export interface RootContextProps extends TextLabelProps {
   rootRef?: RefObject<HTMLDivElement>
@@ -13,6 +14,7 @@ export interface RootContextProps extends TextLabelProps {
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
   disableTransitions?: boolean
+  currentBreakpointRange?: BreakpointKeys
 }
 
 export const RootContext = React.createContext<RootContextProps>({
@@ -25,6 +27,7 @@ export const RootContext = React.createContext<RootContextProps>({
   hasDrawer: false,
   setHasDrawer: () => {},
   disableTransitions: false,
+  currentBreakpointRange: undefined,
 })
 
 export const usePicassoRoot = () => {
@@ -67,5 +70,13 @@ export const useAppConfig = () => {
     environment: context.environment,
     titleCase: context.titleCase,
     disableTransitions: context.disableTransitions,
+  }
+}
+
+export const useCurrentBreakpointRange = () => {
+  const context = useContext(RootContext)
+
+  return {
+    currentBreakpointRange: context.currentBreakpointRange,
   }
 }

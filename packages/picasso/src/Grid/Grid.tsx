@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { useMemo, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type {
@@ -11,7 +11,8 @@ import type {
 } from '@material-ui/core'
 import { Grid as MUIGrid } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { useScreens } from '@toptal/picasso-provider'
+import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
+import type { BreakpointKeys } from '@toptal/picasso-provider/Picasso/config'
 
 import styles from './styles'
 
@@ -42,16 +43,22 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoGrid',
 })
 
-const useResponsiveSpacing = () => {
-  const screens = useScreens()
+const responsiveSpacingConfiguration: Record<BreakpointKeys, number> = {
+  xs: 16,
+  sm: 16,
+  md: 24,
+  lg: 32,
+  xl: 32,
+}
 
-  return screens({
-    xs: 16,
-    sm: 16,
-    md: 24,
-    lg: 32,
-    xl: 32,
-  }) as number
+const useResponsiveSpacing = () => {
+  const { currentBreakpointRange } = useCurrentBreakpointRange()
+
+  if (currentBreakpointRange) {
+    return responsiveSpacingConfiguration[currentBreakpointRange]
+  }
+
+  return responsiveSpacingConfiguration.md
 }
 
 // eslint-disable-next-line react/display-name
@@ -71,40 +78,26 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     ...rest
   } = props
   const classes = useStyles()
+
   const responsiveSpacing = useResponsiveSpacing()
   const gridSpacing = humanToMUISpacing(userSpacing || responsiveSpacing)
 
-  return useMemo(
-    () => (
-      <MUIGrid
-        {...rest}
-        ref={ref}
-        container
-        spacing={gridSpacing}
-        direction={direction}
-        alignItems={alignItems}
-        justifyContent={justifyContent}
-        wrap={wrap}
-        classes={classes}
-        className={className}
-        style={style}
-      >
-        {children}
-      </MUIGrid>
-    ),
-    [
-      ref,
-      gridSpacing,
-      direction,
-      alignItems,
-      justifyContent,
-      wrap,
-      classes,
-      className,
-      style,
-      children,
-      ...Object.values(rest),
-    ]
+  return (
+    <MUIGrid
+      {...rest}
+      ref={ref}
+      container
+      spacing={gridSpacing}
+      direction={direction}
+      alignItems={alignItems}
+      justifyContent={justifyContent}
+      wrap={wrap}
+      classes={classes}
+      className={className}
+      style={style}
+    >
+      {children}
+    </MUIGrid>
   )
 })
 

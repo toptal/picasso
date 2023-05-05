@@ -34,6 +34,7 @@ export {
   useAppConfig,
   useDrawer,
   useSidebar,
+  useCurrentBreakpointRange,
   RootContext,
 } from './Picasso/RootContext'
 

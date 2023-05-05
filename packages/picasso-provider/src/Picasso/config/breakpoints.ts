@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { isBrowser } from '../../utils'
 
-type BreakpointKeys = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type BreakpointKeys = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 type BreakpointsList = {
   [key: string]: number

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Grid, Container } from '@toptal/picasso'
+import React, { useState } from 'react'
+import { Grid, Container, Button } from '@toptal/picasso'
 import { useScreens } from '@toptal/picasso-provider'
 
 const BorderedContainer = () => {
@@ -20,15 +20,25 @@ const BorderedContainer = () => {
 }
 
 const Example = () => {
+  const gridItem = (
+    <Grid.Item small={6}>
+      <BorderedContainer />
+    </Grid.Item>
+  )
+
+  const [gridItems, setGridItems] = useState([gridItem, gridItem])
+
   return (
-    <Grid>
-      <Grid.Item small={6}>
-        <BorderedContainer />
-      </Grid.Item>
-      <Grid.Item small={6}>
-        <BorderedContainer />
-      </Grid.Item>
-    </Grid>
+    <>
+      <Container>
+        <Grid>{gridItems}</Grid>
+      </Container>
+      <Container top='small'>
+        <Button onClick={() => setGridItems([...gridItems, gridItem])}>
+          Add another grid item
+        </Button>
+      </Container>
+    </>
   )
 }
 
