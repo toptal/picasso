@@ -11,8 +11,8 @@ import type {
 } from '@material-ui/core'
 import { Grid as MUIGrid } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import type { BreakpointKeys } from '@toptal/picasso-provider'
 import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
-import type { BreakpointKeys } from '@toptal/picasso-provider/Picasso/config'
 
 import styles from './styles'
 

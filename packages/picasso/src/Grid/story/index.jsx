@@ -1,3 +1,4 @@
+import gridItemStory from '../../GridItem/story'
 import { Grid } from '../Grid'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -20,19 +21,17 @@ const page = PicassoBook.section('Layout').createPage(
 page
   .createTabChapter('Props')
   .addComponentDocs({ component: Grid, name: 'Grid' })
-//.addComponentDocs(gridItemStory.componentDocs)
+  .addComponentDocs(gridItemStory.componentDocs)
 
 page
   .createChapter()
-  /*
   .addExample('Grid/story/Alignment.example.tsx', 'Alignment')
   .addExample('Grid/story/Direction.example.tsx', 'Direction')
   .addExample('Grid/story/Wrapping.example.tsx', 'Wrapping')
-  */
   .addExample('Grid/story/ResponsiveSpacing.example.tsx', {
     title: 'Responsive spacing',
     description:
       'When `spacing` is not explicitly specified by consumer, grid adjusts it according to the screen size (please see the property description for details). You can try to resize screen, to see how different spacing is applied.',
   })
 
-//page.connect(gridItemStory.chapter)
+page.connect(gridItemStory.chapter)
