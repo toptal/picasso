@@ -92,7 +92,7 @@
     "debounce": "^1.2.1",
     "ejs": "^3.1.8",
     "escodegen": "^2.0.0",
-    "eslint-plugin-ssr-friendly": "^1.0.6",
+    "eslint-plugin-ssr-friendly": "^1.2.0",
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "fs-extra": "^11.1.1",
