@@ -18,7 +18,7 @@ export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   disableTransitions?: boolean
 }
 
-const breakpointRangesToKeys: Record<BreakpointKeys, BreakpointKeys> = {
+const breakpointKeyByRange: Record<BreakpointKeys, BreakpointKeys> = {
   xs: 'xs',
   sm: 'sm',
   md: 'md',
@@ -41,7 +41,7 @@ const PicassoGlobalStylesProvider = (
   const rootRef = useRef<HTMLDivElement | null>(null)
 
   const screens = useScreens<BreakpointKeys>()
-  const currentBreakpointRange = screens(breakpointRangesToKeys)
+  const currentBreakpointRange = screens(breakpointKeyByRange)
 
   useEffect(() => {
     if (contextValue.currentBreakpointRange !== currentBreakpointRange) {
