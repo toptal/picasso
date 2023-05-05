@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { isBrowser } from '../../utils'
 
-type BreakpointKeys = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type BreakpointKeys = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 type BreakpointsList = {
   [key: string]: number
@@ -136,7 +136,7 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
  *
  * The function returned accepts 2 arguments:
  * 1. An object mapping values to screen size nicknames, e.g.
- *   {small: 'secondary', large: 'positive'}
+ *   { sm: 'secondary', lg: 'positive' }
  * 2. A default value to use if no keys match in the object
  *
  * The function returns a value from the first argument that corresponds to the current
@@ -149,16 +149,16 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
  * <Button
  *   variant={screens(
  *     {
- *       small: 'secondary',
- *       large: 'positive'
+ *       sm: 'secondary',
+ *       lg: 'positive'
  *     },
  *     'primary'
  *   )}
  * >
  * {screens(
  *   {
- *     small: 'small (secondary)',
- *     large: 'large (positive)'
+ *     sm: 'small (secondary)',
+ *     lg: 'large (positive)'
  *   },
  *   'default (primary)'
  * )}

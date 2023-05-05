@@ -238,7 +238,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
       role="radiogroup"
     >
       <div
-        class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
+        class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
       >
         <div
           class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
