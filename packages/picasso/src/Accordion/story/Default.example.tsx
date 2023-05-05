@@ -3,12 +3,12 @@ import { Accordion, Grid } from '@toptal/picasso'
 
 const Example = () => (
   <Grid>
-    <Grid.Item small={6}>
+    <Grid.Item sm={6}>
       <Accordion content={<DetailsDogDefinitionPanel />}>
         <Accordion.Summary>What is a dog?</Accordion.Summary>
       </Accordion>
     </Grid.Item>
-    <Grid.Item small={6}>
+    <Grid.Item sm={6}>
       <Accordion defaultExpanded content={<DetailsDogDefinitionPanel />}>
         <Accordion.Summary>What is a dog?</Accordion.Summary>
       </Accordion>

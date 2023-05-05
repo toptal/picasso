@@ -23,12 +23,12 @@ const Example = () => {
   return (
     <Container>
       <Grid alignItems='center' spacing={16}>
-        <Grid.Item small={1}>
+        <Grid.Item sm={1}>
           <Typography align='center' size='medium'>
             {firstValue}
           </Typography>
         </Grid.Item>
-        <Grid.Item small={10}>
+        <Grid.Item sm={10}>
           <Slider
             value={value}
             min={0}
@@ -39,7 +39,7 @@ const Example = () => {
             compact
           />
         </Grid.Item>
-        <Grid.Item small={1}>
+        <Grid.Item sm={1}>
           <Typography align='center' size='medium'>
             {secondValue}
           </Typography>

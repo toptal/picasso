@@ -21,7 +21,7 @@ const BorderedContainer = () => {
 
 const Example = () => {
   const gridItem = (
-    <Grid.Item small={6}>
+    <Grid.Item sm={6}>
       <BorderedContainer />
     </Grid.Item>
   )

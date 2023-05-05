@@ -8,7 +8,7 @@ const Example = () => {
 
   return (
     <Grid>
-      <Grid.Item small={12} large={6}>
+      <Grid.Item sm={12} lg={6}>
         <RichTextEditor
           defaultValue={defaultValue}
           onChange={setHtml}
@@ -16,7 +16,7 @@ const Example = () => {
           plugins={['link']}
         />
       </Grid.Item>
-      <Grid.Item small={12} large={6}>
+      <Grid.Item sm={12} lg={6}>
         <RichText value={htmlToHast(html)} />
       </Grid.Item>
     </Grid>

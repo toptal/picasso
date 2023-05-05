@@ -54,7 +54,7 @@ const Example = () => {
       <Form.Field>
         <Form.Label>From</Form.Label>
         <Grid>
-          <Grid.Item small={2}>
+          <Grid.Item sm={2}>
             <MonthSelect
               width='full'
               onChange={handleStartMonthChange}
@@ -68,7 +68,7 @@ const Example = () => {
             />
           </Grid.Item>
 
-          <Grid.Item small={2}>
+          <Grid.Item sm={2}>
             <YearSelect
               placeholder='Year'
               width='full'
@@ -84,7 +84,7 @@ const Example = () => {
       <Form.Field>
         <Form.Label>To</Form.Label>
         <Grid>
-          <Grid.Item small={2}>
+          <Grid.Item sm={2}>
             <MonthSelect
               value={endMonth}
               onChange={handleEndMonthChange}
@@ -98,7 +98,7 @@ const Example = () => {
             />
           </Grid.Item>
 
-          <Grid.Item small={2}>
+          <Grid.Item sm={2}>
             <YearSelect
               placeholder='Year'
               value={endYear}

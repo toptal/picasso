@@ -18,7 +18,7 @@ const Example = () => (
       const isLargestBreakpoint = index === breakpointsList.length - 1
 
       return (
-        <Grid.Item key={breakpointName} medium={2}>
+        <Grid.Item key={breakpointName} md={2}>
           <Paper style={{ padding: '2rem' }}>
             <Container flex direction='column' alignItems='center'>
               <Typography variant='heading' size='large'>

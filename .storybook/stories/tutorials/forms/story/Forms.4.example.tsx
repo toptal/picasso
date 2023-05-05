@@ -4,7 +4,7 @@ import { Grid, Checkbox, Select, Input, Form } from '@toptal/picasso'
 const Example = () => (
   <div>
     <Grid justifyContent='center' alignItems='center'>
-      <Grid.Item small={12} medium={8} large={6}>
+      <Grid.Item sm={12} md={8} lg={6}>
         <Form>
           <Form.Field>
             <Form.Label>Select talent</Form.Label>
@@ -12,21 +12,19 @@ const Example = () => (
           </Form.Field>
 
           <Form.Field>
-            <Form.Label required htmlFor='job-title-4'>
-              Job title
-            </Form.Label>
+            <Form.Label htmlFor='job-title-4'>Job title</Form.Label>
             <Input id='job-title-4' width='full' />
           </Form.Field>
 
           <Form.Field>
             <Grid direction='row'>
-              <Grid.Item small={6}>
+              <Grid.Item sm={6}>
                 <Form.Field>
                   <Form.Label>Current country</Form.Label>
                   <Select options={OPTIONS} />
                 </Form.Field>
               </Grid.Item>
-              <Grid.Item small={6}>
+              <Grid.Item sm={6}>
                 <Form.Field>
                   <Form.Label htmlFor='city-4'>City of residence</Form.Label>
                   <Input id='city-4' width='full' />
@@ -62,7 +60,7 @@ const OPTIONS = [
   { value: '1', text: 'Option 1' },
   { value: '2', text: 'Option 2' },
   { value: '3', text: 'Option 3' },
-  { value: '4', text: 'Option 4' }
+  { value: '4', text: 'Option 4' },
 ]
 
 export default Example
