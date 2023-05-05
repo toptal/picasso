@@ -29,7 +29,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
             name="checkbox-group"
           >
             <div
-              class="MuiGrid-root PicassoCheckboxGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
+              class="MuiGrid-root PicassoCheckboxGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
             >
               <div
                 class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item"

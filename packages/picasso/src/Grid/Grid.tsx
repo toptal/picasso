@@ -80,7 +80,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   const classes = useStyles()
 
   const responsiveSpacing = useResponsiveSpacing()
-  const gridSpacing = humanToMUISpacing(userSpacing || responsiveSpacing)
+  const gridSpacing = humanToMUISpacing(userSpacing ?? responsiveSpacing)
 
   return (
     <MUIGrid
