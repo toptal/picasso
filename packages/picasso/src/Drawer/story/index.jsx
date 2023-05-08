@@ -45,3 +45,7 @@ page
     title: 'With notification',
     takeScreenshot: false,
   })
+  .addExample('Drawer/story/WithTransparentBackdrop.example.tsx', {
+    title: 'With transparent backdrop',
+    takeScreenshot: false,
+  })
