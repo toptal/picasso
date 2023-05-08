@@ -7165,10 +7165,10 @@ anymatch@^3.0.0, anymatch@^3.0.3, anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-ap-style-title-case@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/ap-style-title-case/-/ap-style-title-case-1.1.2.tgz"
-  integrity sha512-8k5jYIf7b+glU3f16eEw5RLdyhXjVWkLYy7XDYSw77a4CUUfGge5c9M/2Obbft5AhZD3RTkCbf3/LAVguLFMfQ==
+ap-style-title-case@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ap-style-title-case/-/ap-style-title-case-2.0.0.tgz#c9fddb3ca94f0eb87078e3f6164efd36df2dfb82"
+  integrity sha512-8vCoCer8ZTXjvCK+JQLU0YW0EWI+70lyP9Q33mafLG0VRT7UY1BHoDq7WzaQYwzh9t+eG94tEJuVHrEDcRP1Fg==
 
 app-module-path@^2.2.0:
   version "2.2.0"
@@ -23472,9 +23472,9 @@ webpack-virtual-modules@^0.4.1:
   integrity sha512-5NUqC2JquIL2pBAAo/VfBP6KuGkHIZQXW/lNKupLPfhViwh8wNsu0BObtl09yuKZszeEUfbXz8xhrHvSG16Nqw==
 
 webpack@4, "webpack@>=4.43.0 <6.0.0", webpack@^5.0.0, webpack@^5.76.0, webpack@^5.9.0:
-  version "5.81.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.81.0.tgz#27a2e8466c8b4820d800a8d90f06ef98294f9956"
-  integrity sha512-AAjaJ9S4hYCVODKLQTgG5p5e11hiMawBwV2v8MYLE0C/6UAGLuAF4n1qa9GOwdxnicaP+5k6M5HrLmD4+gIB8Q==
+  version "5.82.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.82.0.tgz#3c0d074dec79401db026b4ba0fb23d6333f88e7d"
+  integrity sha512-iGNA2fHhnDcV1bONdUu554eZx+XeldsaeQ8T67H6KKHl2nUSwX8Zm7cmzOA46ox/X1ARxf7Bjv8wQ/HsB5fxBg==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^1.0.0"

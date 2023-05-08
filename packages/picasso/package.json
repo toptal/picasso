@@ -34,7 +34,7 @@
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
     "@toptal/picasso-shared": "11.3.0",
-    "ap-style-title-case": "^1.1.2",
+    "ap-style-title-case": "^2.0.0",
     "classnames": "^2.3.1",
     "d3": "^7.8.2",
     "d3-hierarchy": "^3.1.2",
