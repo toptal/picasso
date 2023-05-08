@@ -33,22 +33,22 @@ const ContentContainer = ({ children }: Props) => (
 const Example = () => {
   return (
     <Grid>
-      <Grid.Item small={12} medium={6} large={3}>
+      <Grid.Item sm={12} md={6} lg={3}>
         <ContentContainer>
           <ScreenSize />
         </ContentContainer>
       </Grid.Item>
-      <Grid.Item small={12} medium={6} large={3}>
+      <Grid.Item sm={12} md={6} lg={3}>
         <ContentContainer>
           <ScreenSize />
         </ContentContainer>
       </Grid.Item>
-      <Grid.Item small={12} medium={6} large={3}>
+      <Grid.Item sm={12} md={6} lg={3}>
         <ContentContainer>
           <ScreenSize />
         </ContentContainer>
       </Grid.Item>
-      <Grid.Item small={12} medium={6} large={3}>
+      <Grid.Item sm={12} md={6} lg={3}>
         <ContentContainer>
           <ScreenSize />
         </ContentContainer>

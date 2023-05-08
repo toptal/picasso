@@ -49,7 +49,7 @@ const Content = () => (
       Default example
     </Typography>
     <Grid>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -60,7 +60,7 @@ const Content = () => (
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Grid.Item>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

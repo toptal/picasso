@@ -3,7 +3,7 @@ import { Form, Input, Grid } from '@toptal/picasso'
 
 const Example = () => (
   <Grid>
-    <Grid.Item small={5}>
+    <Grid.Item sm={5}>
       <Form>
         <Form.Field
           error='This field is required'

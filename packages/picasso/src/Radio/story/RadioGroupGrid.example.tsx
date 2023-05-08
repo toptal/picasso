@@ -12,7 +12,7 @@ const Example = () => {
           setValue(event.target.value)
         }
         horizontal
-        small={4}
+        sm={4}
         value={value}
       >
         <Radio label='Radio 1' value='radio1' />

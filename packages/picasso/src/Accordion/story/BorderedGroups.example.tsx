@@ -4,7 +4,7 @@ import { Accordion, Container, Grid, Typography } from '@toptal/picasso'
 const Example = () => {
   return (
     <Grid>
-      <Grid.Item small={4}>
+      <Grid.Item sm={4}>
         <Container bottom='medium'>
           <Typography variant='heading'>All Borders</Typography>
         </Container>
@@ -24,7 +24,7 @@ const Example = () => {
         </Accordion>
       </Grid.Item>
 
-      <Grid.Item small={4}>
+      <Grid.Item sm={4}>
         <Container bottom='medium'>
           <Typography variant='heading'>Middle Borders</Typography>
         </Container>
@@ -43,7 +43,7 @@ const Example = () => {
           <Accordion.Summary>How do you acquire a dog?</Accordion.Summary>
         </Accordion>
       </Grid.Item>
-      <Grid.Item small={4}>
+      <Grid.Item sm={4}>
         <Container bottom='medium'>
           <Typography variant='heading'>No Borders</Typography>
         </Container>

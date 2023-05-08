@@ -4,7 +4,7 @@ import { Grid, Form, Input } from '@toptal/picasso'
 const Example = () => (
   <div>
     <Grid justifyContent='center' alignItems='center'>
-      <Grid.Item small={12} medium={8} large={6}>
+      <Grid.Item sm={12} md={8} lg={6}>
         <Form>
           <Form.Field>
             <Input width='full' placeholder='Job title' />
