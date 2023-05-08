@@ -140,6 +140,10 @@ const getOriginalSourceCode = ({
     return requireContext(`./picasso-pictograms/src/${src}`).default
   } catch {}
 
+  try {
+    return requireContext(`./picasso-lexical-rte/src/${src}`).default
+  } catch {}
+
   return require(`!raw-loader!~/.storybook/stories/${src}`).default
 }
 

@@ -1,9 +1,7 @@
 import React from 'react'
 
-// export type Props = {}
-
-export const LexicalRTE = () => {
-  return <p>Hello World</p>
+const LexicalRTE = () => {
+  return <div>Hello World to Lexical RTE</div>
 }
 
 export default LexicalRTE
