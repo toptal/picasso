@@ -64,6 +64,12 @@
       "@toptal/picasso-pictograms": [
         "packages/picasso-pictograms/src"
       ],
+      "@toptal/picasso-lexical-rte": [
+        "packages/picasso-lexical-rte/src"
+      ],
+      "@toptal/picasso-lexical-rte/*": [
+        "packages/picasso-lexical-rte/src/*"
+      ],
       "*": [
         "@types/*"
       ],

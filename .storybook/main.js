@@ -150,6 +150,10 @@ module.exports = {
             __dirname,
             '../packages/picasso-pictograms/src'
           ),
+          '@toptal/picasso-lexical-rte': path.resolve(
+            __dirname,
+            '../packages/picasso-lexical-rte/src'
+          ),
         },
       },
     }

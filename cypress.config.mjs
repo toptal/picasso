@@ -84,6 +84,10 @@ export default defineConfig({
               process.cwd(),
               './packages/topkit-analytics-charts/dist-package'
             ),
+            '@topkit/picasso-lexical-rte': path.resolve(
+              process.cwd(),
+              './packages/picasso-lexical-rte/dist-package'
+            ),
           },
         },
       },

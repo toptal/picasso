@@ -27,6 +27,7 @@ PicassoBook.addSections([
   'Picasso Charts',
   'Widgets',
   'Picasso Pictograms',
+  'Picasso Lexical RTE',
 ])
 
 reqStorybook.keys().forEach(filename => reqStorybook(filename))

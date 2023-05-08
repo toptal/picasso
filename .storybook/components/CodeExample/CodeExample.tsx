@@ -57,6 +57,7 @@ const imports: Record<string, object> = {
   '@toptal/picasso-provider': require('@toptal/picasso-provider'),
   '@toptal/picasso-pictograms': require('@toptal/picasso-pictograms'),
   '@toptal/picasso-pictograms/Pictogram': require('@toptal/picasso-pictograms/Pictogram'),
+  '@toptal/picasso-lexical-rte': require('@toptal/picasso-lexical-rte'),
 }
 
 const resolver = (path: string) => imports[path]
