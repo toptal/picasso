@@ -505,7 +505,7 @@ describe('NonNativeSelect', () => {
 })
 
 describe('NonNativeSelect (multiple)', () => {
-  const spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+  const spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
 
   afterEach(() => {
     spiedOnTitleCase.mockReset()

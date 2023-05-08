@@ -57,7 +57,7 @@ const renderTable = (
   )
 }
 
-const spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+const spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
 
 describe('Table', () => {
   beforeEach(() => {

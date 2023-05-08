@@ -26,7 +26,7 @@ let spiedOnTitleCase: jest.SpyInstance
 
 describe('Tab', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
   })
   afterEach(() => {
     spiedOnTitleCase.mockReset()

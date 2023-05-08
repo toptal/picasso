@@ -39,7 +39,7 @@ let spiedOnTitleCase: jest.SpyInstance
 
 describe('SidebarItem', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
   })
 
   afterEach(() => {

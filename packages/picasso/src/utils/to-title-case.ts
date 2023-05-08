@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import titleCase from 'ap-style-title-case'
+import { apStyleTitleCase as titleCase } from 'ap-style-title-case'
 
 import isString from './is-string'
 

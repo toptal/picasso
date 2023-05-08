@@ -25,7 +25,7 @@ let spiedOnTitleCase: jest.SpyInstance
 
 describe('StepperVertical', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
   })
   afterEach(() => {
     spiedOnTitleCase.mockReset()

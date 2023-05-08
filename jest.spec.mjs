@@ -17,7 +17,7 @@ const config = {
   },
   setupFiles: ['jest-canvas-mock'],
   transformIgnorePatterns: [
-    'node_modules/(?!@toptal|@topkit|d3|internmap|robust-predicates|delaunator)',
+    'node_modules/(?!@toptal|@topkit|d3|ap-style-title-case|internmap|robust-predicates|delaunator)',
   ],
 }
 

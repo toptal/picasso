@@ -40,7 +40,7 @@ const renderCheckbox = (
 
 describe('Checkbox', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
   })
 
   afterEach(() => {

@@ -26,7 +26,7 @@ let spiedOnTitleCase: jest.SpyInstance
 
 describe('TagRectangular', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
     mockedConsoleError = jest.spyOn(console, 'error')
     mockedConsoleError.mockImplementation(() => {})
   })

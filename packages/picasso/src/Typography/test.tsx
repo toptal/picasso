@@ -33,7 +33,7 @@ let spiedOnTitleCase: jest.SpyInstance
 
 describe('Typography', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
   })
 
   afterEach(() => {

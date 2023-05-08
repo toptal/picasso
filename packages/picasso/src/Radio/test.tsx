@@ -31,7 +31,7 @@ let spiedOnTitleCase: jest.SpyInstance
 
 describe('Radio', () => {
   beforeEach(() => {
-    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'default')
+    spiedOnTitleCase = jest.spyOn(titleCaseModule, 'apStyleTitleCase')
   })
 
   afterEach(() => {
