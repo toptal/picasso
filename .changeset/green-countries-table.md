@@ -24,8 +24,8 @@ Range         |   xs   |   sm   |   md   |   lg   |   xl
 **Migration guide**
 
 - `screenSizeToBreakpointKey()` hook now returns the breakpoint range for a specific screen size in a different manner (according to the differences in the breakpoints ranges scheme mentioned above, there is a new breakpoint range `xs`, the smallest one). Please see the examples below:
-  - before: `screenSizeToBreakpointKey(300) = 'small`; now: `screenSizeToBreakpointKey(300) = 'xs` (because `300px` is between `xs` and `sm` breakpoints)
-  - before: `screenSizeToBreakpointKey(2000) = 'extra-large`; now: `screenSizeToBreakpointKey(2000) = 'xl` (because `2000px` is bigger than the biggest `xl` breakpoint)
+  - before: `screenSizeToBreakpointKey(300) = 'small'`; now: `screenSizeToBreakpointKey(300) = 'xs'` (because `300px` is between `xs` and `sm` breakpoints)
+  - before: `screenSizeToBreakpointKey(2000) = 'extra-large'`; now: `screenSizeToBreakpointKey(2000) = 'xl'` (because `2000px` is bigger than the biggest `xl` breakpoint)
 - `isScreenSize()`, `useBreakpoint()`, and `useScreens()` hooks also changed their behavior due to the same changes in breakpoint ranges.
 
 ### Grid ([#3538](https://github.com/toptal/picasso/pull/3538))
@@ -34,7 +34,7 @@ Range         |   xs   |   sm   |   md   |   lg   |   xl
 
 **Migration guide**
 
-- grids are expected to work as before, as responsive grid gutters do not change the overall layout. However, please manually check how Grids that do not have `spacing` property set explicitly (so, the responsive spacing will be applied by default) look on different screens to ensure that it does not interfere with some custom grid item styling if there is any.
+- grids are expected to work as before, as responsive grid spacing (the space between grid items) does not change the overall layout. However, please manually check how Grids that do not have `spacing` property set explicitly (so, the responsive spacing will be applied by default) look on different screens to ensure that it does not interfere with some custom grid item styling if there is any.
 
 ### Grid.Item, Checkbox.Group and Radio.Group ([#3540](https://github.com/toptal/picasso/pull/3540))
 
