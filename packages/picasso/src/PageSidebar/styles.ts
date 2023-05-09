@@ -17,7 +17,7 @@ export default ({ palette, screens, transitions }: Theme) =>
       position: 'relative',
       transition: `width ${transitions.duration.enteringScreen}ms ease-in-out`,
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         width: '100vw',
         overflowY: 'scroll',
       },
@@ -37,7 +37,7 @@ export default ({ palette, screens, transitions }: Theme) =>
         maxHeight: `calc(100vh - ${headerHeight.default})`,
         position: 'sticky',
         top: headerHeight.default,
-        [screens('small', 'medium')]: {
+        [screens('xs', 'sm')]: {
           maxHeight: `calc(100vh - ${headerHeight.smallAndMedium})`,
           top: headerHeight.smallAndMedium,
         },

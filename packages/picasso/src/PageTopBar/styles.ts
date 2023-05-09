@@ -33,14 +33,14 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       maxWidth: layout.contentWidth,
       padding: `0 ${layout.contentPaddingHorizontal}`,
       height: headerHeight.default,
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         height: headerHeight.smallAndMedium,
       },
     },
     wrapper: {
       height: headerHeight.default,
       minHeight: headerHeight.default,
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         height: headerHeight.smallAndMedium,
         minHeight: headerHeight.smallAndMedium,
       },
@@ -69,7 +69,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       backgroundColor: palette.blue.darker,
     },
     logoContainer: {
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         lineHeight: '1em',
         position: 'absolute',
         left: '50%',
@@ -77,7 +77,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       },
     },
     logo: {
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         fontSize: '1.5em',
       },
     },
