@@ -1,5 +1,12 @@
 # Change Log
 
+## 12.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`87068a468`](https://github.com/toptal/picasso/commit/87068a4680f099185be00863b7ebeada893c0e29)]:
+  - @toptal/picasso-provider@3.0.0
+
 ## 11.3.0
 
 ### Minor Changes
