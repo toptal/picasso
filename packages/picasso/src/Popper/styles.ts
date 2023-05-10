@@ -5,7 +5,7 @@ export default ({ zIndex, screens }: Theme) =>
   createStyles({
     root: {
       zIndex: zIndex.modal,
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         width: '100vw',
         maxWidth: '100vw',
         padding: 0,

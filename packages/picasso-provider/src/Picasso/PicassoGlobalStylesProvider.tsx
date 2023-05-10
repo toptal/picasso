@@ -43,15 +43,6 @@ const PicassoGlobalStylesProvider = (
   const screens = useScreens<BreakpointKeys>()
   const currentBreakpointRange = screens(breakpointKeyByRange)
 
-  useEffect(() => {
-    if (contextValue.currentBreakpointRange !== currentBreakpointRange) {
-      setContextValue({
-        ...contextValue,
-        currentBreakpointRange,
-      })
-    }
-  }, [currentBreakpointRange])
-
   const [contextValue, setContextValue] = useState<RootContextProps>({
     rootRef,
     currentBreakpointRange,
@@ -80,6 +71,15 @@ const PicassoGlobalStylesProvider = (
     },
     disableTransitions,
   })
+
+  useEffect(() => {
+    if (contextValue.currentBreakpointRange !== currentBreakpointRange) {
+      setContextValue({
+        ...contextValue,
+        currentBreakpointRange,
+      })
+    }
+  }, [currentBreakpointRange])
 
   const setRootRef = useCallback(
     (ref: HTMLDivElement) => {

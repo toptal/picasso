@@ -10,7 +10,7 @@ Picasso breakpoints and responsiveness in general has to be in sync with [BASE d
 ```
 // Breakpoints
 xs: 0px,
-sm: 576,
+sm: 576px,
 md: 768px,
 lg: 992px,
 xl: 1920px,
