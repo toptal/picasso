@@ -4,7 +4,7 @@ import { Checkbox, Container, TypographyOverflow } from '@toptal/picasso'
 const Example = () => {
   return (
     <Container style={{ width: '500px' }}>
-      <Checkbox.Group horizontal small={4}>
+      <Checkbox.Group horizontal sm={4}>
         <Checkbox label='Checkbox 1' value='checkbox1' />
         <Checkbox label='Checkbox 2' value='checkbox2' />
         <Checkbox

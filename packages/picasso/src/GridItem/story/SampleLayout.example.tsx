@@ -6,11 +6,11 @@ const Example = () => (
     <Page.TopBar title='Onboarding' />
     <Page.Content>
       <Grid>
-        <Grid.Item small={8}>
+        <Grid.Item sm={8}>
           <SampleContainer>Main Content</SampleContainer>
         </Grid.Item>
 
-        <Grid.Item small={4}>
+        <Grid.Item sm={4}>
           <SampleContainer>Sidebar</SampleContainer>
         </Grid.Item>
       </Grid>

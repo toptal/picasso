@@ -24,6 +24,7 @@ export {
   sizes,
   shadows,
   PicassoBreakpoints,
+  BreakpointKeys,
 } from './Picasso/config'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'
@@ -34,6 +35,7 @@ export {
   useAppConfig,
   useDrawer,
   useSidebar,
+  useCurrentBreakpointRange,
   RootContext,
 } from './Picasso/RootContext'
 

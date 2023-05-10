@@ -26,7 +26,7 @@ const Example = () => {
   return (
     <div>
       <Grid spacing={16}>
-        <Grid.Item small={12}>
+        <Grid.Item sm={12}>
           <Container flex>
             <Input
               icon={<Search16 />}

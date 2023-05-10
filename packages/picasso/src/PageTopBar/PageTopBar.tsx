@@ -62,7 +62,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     ...rest
   } = props
   const classes = useStyles()
-  const isCompactLayout = useBreakpoint(['small', 'medium'])
+  const isCompactLayout = useBreakpoint(['sm', 'md'])
 
   const { setHasTopBar } = usePageTopBar()
 

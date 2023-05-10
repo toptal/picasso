@@ -4,12 +4,12 @@ import { Grid, Slider, Typography } from '@toptal/picasso'
 const Example = () => {
   return (
     <Grid alignItems='center'>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Grid alignItems='center'>
           <Grid.Item>
             <Typography size='medium'>{0}</Typography>
           </Grid.Item>
-          <Grid.Item small>
+          <Grid.Item sm>
             <Slider max={100} />
           </Grid.Item>
           <Grid.Item>

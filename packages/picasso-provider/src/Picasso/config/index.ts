@@ -12,6 +12,7 @@ export {
   useScreenSize,
   useBreakpoint,
   useScreens,
+  BreakpointKeys,
 } from './breakpoints'
 export { default as layout } from './layout'
 export { default as shadows } from './shadows'

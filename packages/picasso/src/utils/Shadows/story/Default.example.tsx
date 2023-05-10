@@ -30,7 +30,7 @@ interface ShadowBoxProps {
   description?: ReactNode
 }
 const ShadowBox = ({ index, shadow, description }: ShadowBoxProps) => (
-  <Grid.Item small={4}>
+  <Grid.Item sm={4}>
     <Container padded='small' style={{ boxShadow: shadow }}>
       <Typography variant='heading' size='large' align='center'>
         {index}

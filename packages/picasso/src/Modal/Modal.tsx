@@ -178,7 +178,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
   useBodyScrollLock(open)
 
-  const isSmall = useBreakpoint('small')
+  const isExtraSmall = useBreakpoint('xs')
 
   const handleClose = useCallback(
     (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
@@ -210,7 +210,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       }}
       className={className}
       style={style}
-      fullScreen={isSmall}
+      fullScreen={isExtraSmall}
       container={container || picassoRootContainer}
       PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}

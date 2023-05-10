@@ -72,7 +72,7 @@ const Content = () => (
     </p>
 
     <Grid>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography align='center' variant='heading'>
           My section
         </Typography>
@@ -90,7 +90,7 @@ const Content = () => (
           aliquip ex ea commodo consequat.
         </Typography>
       </Grid.Item>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography align='center' variant='heading'>
           My Section
         </Typography>
@@ -125,7 +125,7 @@ const PageLoader = () => (
     </Container>
 
     <Grid>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Container flex alignItems='center' bottom='small' direction='column'>
           <SkeletonLoader.Header />
 
@@ -135,7 +135,7 @@ const PageLoader = () => (
         <SkeletonLoader.Typography rows={5} />
       </Grid.Item>
 
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Container flex justifyContent='center' bottom='small'>
           <SkeletonLoader.Header />
         </Container>

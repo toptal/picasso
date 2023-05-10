@@ -7,7 +7,7 @@ export default ({ screens, layout }: Theme) =>
       flex: 1,
       margin: `0 ${layout.contentPaddingHorizontal}`,
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         margin: `0 ${layout.contentMobilePaddingHorizontal}`,
       },
     },

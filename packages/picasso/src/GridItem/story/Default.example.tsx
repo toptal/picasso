@@ -14,85 +14,85 @@ const ContentContainer = ({ children }: Props) => (
 
 const Example = () => (
   <Grid>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={1}>
+    <Grid.Item sm={1}>
       <ContentContainer>1</ContentContainer>
     </Grid.Item>
 
-    <Grid.Item small={12}>
+    <Grid.Item sm={12}>
       <ContentContainer>12</ContentContainer>
     </Grid.Item>
 
-    <Grid.Item small={6}>
+    <Grid.Item sm={6}>
       <ContentContainer>6</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={6}>
+    <Grid.Item sm={6}>
       <ContentContainer>6</ContentContainer>
     </Grid.Item>
 
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>3</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>3</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>3</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>3</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>Sidebar</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={9}>
+    <Grid.Item sm={9}>
       <ContentContainer>Main Content</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={9}>
+    <Grid.Item sm={9}>
       <ContentContainer>Main Content</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>Sidebar</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>Sidebar</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={6}>
+    <Grid.Item sm={6}>
       <ContentContainer>Main Content</ContentContainer>
     </Grid.Item>
-    <Grid.Item small={3}>
+    <Grid.Item sm={3}>
       <ContentContainer>Sidebar</ContentContainer>
     </Grid.Item>
   </Grid>

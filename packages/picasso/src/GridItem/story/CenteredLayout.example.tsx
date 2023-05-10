@@ -6,7 +6,7 @@ const Example = () => (
     <Page.TopBar title='Onboarding' />
     <Page.Content>
       <Grid justifyContent='center'>
-        <Grid.Item small={8}>
+        <Grid.Item sm={8}>
           <SampleContainer>Content</SampleContainer>
         </Grid.Item>
       </Grid>

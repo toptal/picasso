@@ -5,7 +5,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import { isBrowser } from '../../utils'
 
-type BreakpointKeys = 'small' | 'medium' | 'large' | 'extra-large'
+export type BreakpointKeys = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 type BreakpointsList = {
   [key: string]: number
@@ -15,25 +15,26 @@ class BreakpointProvider {
   breakpoints: Record<'values', BreakpointValues> = {
     values: {
       xs: 0,
-      sm: 576,
+      sm: 480,
       md: 768,
-      lg: 992,
-      xl: 1920,
+      lg: 1024,
+      xl: 1440,
     },
   }
 
   mediaQueries: {
-    [key: string]: string
+    [key in BreakpointKeys]: string
   }
 
   constructor() {
-    const { sm, md, lg } = this.breakpoints.values
+    const { sm, md, lg, xl } = this.breakpoints.values
 
     this.mediaQueries = {
-      small: `(max-width: ${sm}px)`,
-      medium: `(min-width: ${sm}px) and (max-width: ${md}px)`,
-      large: `(min-width: ${md}px) and (max-width: ${lg}px)`,
-      'extra-large': `(min-width: ${lg}px)`,
+      xs: `(max-width: ${sm}px)`,
+      sm: `(min-width: ${sm}px) and (max-width: ${md}px)`,
+      md: `(min-width: ${md}px) and (max-width: ${lg}px)`,
+      lg: `(min-width: ${lg}px) and (max-width: ${xl}px)`,
+      xl: `(min-width: ${xl}px)`,
     }
   }
 
@@ -41,19 +42,16 @@ class BreakpointProvider {
     this.breakpoints.values.xs = 768
     this.breakpoints.values.sm = 768
 
-    this.mediaQueries.small = ''
-    this.mediaQueries.medium = ''
+    this.mediaQueries.xs = ''
+    this.mediaQueries.sm = ''
+    this.mediaQueries.md = ''
   }
 }
 
 export const PicassoBreakpoints = new BreakpointProvider()
 
-export const breakpointsList: BreakpointsList = {
-  small: PicassoBreakpoints.breakpoints.values.sm,
-  medium: PicassoBreakpoints.breakpoints.values.md,
-  large: PicassoBreakpoints.breakpoints.values.lg,
-  'extra-large': PicassoBreakpoints.breakpoints.values.xl,
-}
+export const breakpointsList: BreakpointsList =
+  PicassoBreakpoints.breakpoints.values
 
 export const screens = (...sizes: BreakpointKeys[]) => {
   const validSizes = sizes.filter(size => PicassoBreakpoints.mediaQueries[size])
@@ -74,22 +72,24 @@ const screenSizeToBreakpointKey = (size: number): BreakpointKeys => {
    * Gets a screen size nickname that corresponds to the given screen size.
    *
    * For the list of breakpoint names and pixel-values we use in designs, check
-   * https://picasso.toptal.net/?path=/story/utils-folder--breakpoints
+   * https://picasso.toptal.net/?path=/story/utils-breakpoints--breakpoints
    *
    * @param {number} size Screen size
    */
 
-  const { sm, md, lg } = PicassoBreakpoints.breakpoints.values
+  const { sm, md, lg, xl } = PicassoBreakpoints.breakpoints.values
 
   if (size < sm) {
-    return 'small'
+    return 'xs'
   } else if (size >= sm && size < md) {
-    return 'medium'
+    return 'sm'
   } else if (size >= md && size < lg) {
-    return 'large'
+    return 'md'
+  } else if (size >= lg && size < xl) {
+    return 'lg'
   }
 
-  return 'extra-large'
+  return 'xl'
 }
 
 export const isScreenSize = (
@@ -136,7 +136,7 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
  *
  * The function returned accepts 2 arguments:
  * 1. An object mapping values to screen size nicknames, e.g.
- *   {small: 'secondary', large: 'positive'}
+ *   { sm: 'secondary', lg: 'positive' }
  * 2. A default value to use if no keys match in the object
  *
  * The function returns a value from the first argument that corresponds to the current
@@ -149,16 +149,16 @@ export const useBreakpoint = (sizes: BreakpointKeys[] | BreakpointKeys) => {
  * <Button
  *   variant={screens(
  *     {
- *       small: 'secondary',
- *       large: 'positive'
+ *       sm: 'secondary',
+ *       lg: 'positive'
  *     },
  *     'primary'
  *   )}
  * >
  * {screens(
  *   {
- *     small: 'small (secondary)',
- *     large: 'large (positive)'
+ *     sm: 'small (secondary)',
+ *     lg: 'large (positive)'
  *   },
  *   'default (primary)'
  * )}

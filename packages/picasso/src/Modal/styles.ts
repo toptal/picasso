@@ -4,8 +4,8 @@ import { createStyles } from '@material-ui/core/styles'
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
-const maxHeightForSmall = 'calc(100% - 2rem)'
-const maxWidthForSmall = 'calc(100% - 2rem)'
+const maxHeightForExtraSmall = 'calc(100% - 2rem)'
+const maxWidthForExtraSmall = 'calc(100% - 2rem)'
 
 export default ({ screens, sizes }: Theme) =>
   createStyles({
@@ -24,9 +24,9 @@ export default ({ screens, sizes }: Theme) =>
       borderRadius: sizes.borderRadius.medium,
       margin: '2rem',
 
-      [screens('small')]: {
-        maxHeight: maxHeightForSmall,
-        maxWidth: maxWidthForSmall,
+      [screens('xs')]: {
+        maxHeight: maxHeightForExtraSmall,
+        maxWidth: maxWidthForExtraSmall,
         margin: '1rem',
       },
     },
@@ -48,8 +48,8 @@ export default ({ screens, sizes }: Theme) =>
       top: 0,
       maxHeight: maxHeightForTopAligned,
 
-      [screens('small')]: {
-        maxHeight: maxHeightForSmall,
+      [screens('xs')]: {
+        maxHeight: maxHeightForExtraSmall,
       },
     },
     closeButton: {

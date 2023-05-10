@@ -5,7 +5,7 @@ import { Typography, Grid, Container } from '@toptal/picasso'
 const Example = () => (
   <Grid>
     {Object.entries(gradients).map(([gradientKey, gradientValue]) => (
-      <Grid.Item small={6} key={gradientKey}>
+      <Grid.Item sm={6} key={gradientKey}>
         <Container>
           <Typography size='large'>{gradientKey}</Typography>
         </Container>

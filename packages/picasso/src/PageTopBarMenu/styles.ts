@@ -7,7 +7,7 @@ export default ({ screens }: Theme) =>
       fontSize: '0.9rem',
     },
     contentUserBadge: {
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         padding: '1em',
         zIndex: 1,
         backgroundColor: 'white',
@@ -18,7 +18,7 @@ export default ({ screens }: Theme) =>
       width: '15em',
       maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         width: '100vw',
         maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
       },
@@ -27,7 +27,7 @@ export default ({ screens }: Theme) =>
       '@media screen and (max-height: 585px)': {
         maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-        [screens('small', 'medium')]: {
+        [screens('xs', 'sm')]: {
           maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
         },
       },
@@ -45,12 +45,12 @@ export default ({ screens }: Theme) =>
     arrow: {
       color: 'white',
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         marginLeft: '0.5rem',
       },
     },
     paper: {
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         top: '2.5em !important',
       },
     },

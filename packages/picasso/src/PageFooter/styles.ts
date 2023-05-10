@@ -18,11 +18,11 @@ export default ({ palette, screens, layout }: Theme) =>
       fontSize: '0.875rem',
       lineHeight: '1em',
 
-      [screens('small', 'medium', 'large')]: {
+      [screens('xs', 'sm', 'md')]: {
         flexDirection: 'column',
       },
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         padding: `0.5rem ${layout.contentMobilePaddingHorizontal} 1.5rem`,
       },
     },
@@ -45,11 +45,11 @@ export default ({ palette, screens, layout }: Theme) =>
       justifyContent: 'center',
       marginTop: '1rem',
 
-      [screens('small', 'medium', 'large')]: {
+      [screens('xs', 'sm', 'md')]: {
         order: -1,
       },
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         flexDirection: 'column',
       },
     },
