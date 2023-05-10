@@ -5,11 +5,21 @@ import { palette } from '@toptal/picasso/utils'
 const CHART_DATA = [
   {
     name: 'Training',
-    value: { 'q1 budget': 2000, 'q1 actual': 1600, 'q2 budget': 1672, 'q2 actual': 1200 },
+    value: {
+      'q1 budget': 2000,
+      'q1 actual': 1600,
+      'q2 budget': 1672,
+      'q2 actual': 1200,
+    },
   },
   {
     name: 'Events',
-    value: { 'q1 budget': 1752, 'q1 actual': 1423, 'q2 budget': 1856, 'q2 actual': 1452 },
+    value: {
+      'q1 budget': 1752,
+      'q1 actual': 1423,
+      'q2 budget': 1856,
+      'q2 actual': 1452,
+    },
   },
 ]
 
@@ -31,6 +41,7 @@ const Example = () => (
       getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
       getBarLabelColor={() => palette.grey.dark}
       width='100%'
+      valueAxisTickFormatter={value => `$${value / 1000}k`}
     />
   </div>
 )

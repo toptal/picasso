@@ -63,9 +63,11 @@ export interface Props<K extends string | number | symbol>
   /** Shows label of each bar */
   showBarLabel?: boolean
   /** If set false, animation of bar will be disabled */
-  isAnimationActive?: boolean,
+  isAnimationActive?: boolean
   /** List of bar groups. i.e.: [ ['a', 'b'], ['c', 'd'] ] */
-  stackedBars?: string[][],
+  stackedBars?: string[][]
+  /** Function to format ticks of the value axis */
+  valueAxisTickFormatter?: ((value: any, index: number) => string) | undefined
 }
 
 const StyleOverrides = () => (
@@ -108,6 +110,7 @@ const BarChart = <K extends string>({
   showBarLabel,
   isAnimationActive,
   stackedBars,
+  valueAxisTickFormatter,
   layout,
   ...rest
 }: Props<K>) => {
@@ -145,6 +148,7 @@ const BarChart = <K extends string>({
     width: Y_AXIS_WIDTH,
     ticks: ticks,
     domain: [ticks[0], ticks[ticks.length - 1]],
+    tickFormatter: valueAxisTickFormatter,
   }
 
   const xAxisProps = horizontal ? categoryAxisProps : valueAxisProps
