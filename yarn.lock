@@ -5687,57 +5687,6 @@
     requireindex "^1.2.0"
     resolve-ts-aliases "^1.0.1"
 
-"@toptal/picasso-provider@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@toptal/picasso-provider/-/picasso-provider-2.2.0.tgz#527da523d3dfa80377c5df504ae6b1465930d5b3"
-  integrity sha512-lCgPHjgQec50tSMypZPqAgiuI3eFi6LWD2KTba18DrsPa1mPXfBvCeUaQQLhokkkiXr3GhXN4isAH9UXvGK21w==
-  dependencies:
-    "@material-ui/core" "4.12.4"
-    "@material-ui/utils" "4.11.3"
-    classnames "^2.3.1"
-    notistack "1.0.10"
-    react-helmet-async "1.3.0"
-
-"@toptal/picasso-shared@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@toptal/picasso-shared/-/picasso-shared-11.3.0.tgz#3660bdb275bef1d586b6ce85cb320dc948135bdb"
-  integrity sha512-D3rjU+1O68sXLkaAbzkki4WvGV7/Bb0lyBVuIP4WqSkgf/98Q9SyOyfDAMfUB6hPPVfFNHWmer7ife0t7lY4hw==
-  dependencies:
-    classnames "^2.3.1"
-    color "^4.2.3"
-
-"@toptal/picasso@^32.0.0":
-  version "32.3.2"
-  resolved "https://registry.yarnpkg.com/@toptal/picasso/-/picasso-32.3.2.tgz#0a14771e13d48d90d9d2a85ae2acdd48232b1818"
-  integrity sha512-VVDtfiIpSKGEwwg69pQ7erj1KwU7hr1ssOAKt9QTPHrvWXBqfb0dLepUDLTn1lj/ncYpNB6YpVig1B1J/WByWA==
-  dependencies:
-    "@emoji-mart/data" "^1.1.2"
-    "@emoji-mart/react" "^1.1.1"
-    "@toptal/picasso-shared" "11.3.0"
-    ap-style-title-case "^1.1.2"
-    classnames "^2.3.1"
-    d3 "^7.8.2"
-    d3-hierarchy "^3.1.2"
-    d3-zoom "^3"
-    date-fns "^2.9.0"
-    date-fns-tz "^2.0.0"
-    debounce "^1.2.1"
-    detect-browser "^5.3.0"
-    emoji-mart "^5.5.2"
-    glider-js "^1.7.8"
-    hast-to-hyperscript "^9.0.1"
-    hast-util-from-dom "^3.0.0"
-    hast-util-sanitize "^3.0.2"
-    hast-util-to-html "^7.1.3"
-    quill "^1.3.7"
-    quill-emoji "^0.2.0"
-    quill-paste-smart "^1.4.9"
-    react-content-loader "^6.2.1"
-    react-dropzone "^11.4.0"
-    react-input-mask "^3.0.0-alpha.2"
-    react-truncate "^2.4.0"
-    simple-react-calendar "^2.2.8"
-
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"
@@ -10111,7 +10060,7 @@ date-fns@^1.27.2:
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-1.30.1.tgz"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
-date-fns@^2.30.0, date-fns@^2.9.0:
+date-fns@^2.30.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==

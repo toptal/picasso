@@ -37,14 +37,14 @@
     "@lexical/selection": "^0.10.0",
     "@lexical/utils": "^0.10.0",
     "@material-ui/core": "4.12.4",
-    "@toptal/picasso": "^32.0.0",
+    "@toptal/picasso": "33.0.0",
     "classnames": "^2.3.1",
     "debounce": "^1.2.1",
     "lexical": "^0.10.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^8.0.1",
-    "@toptal/picasso-provider": "2.2.0",
+    "@toptal/picasso-provider": "3.0.0",
     "@types/classnames": "^2.3.1",
     "storybook-readme": "^5.0.9",
     "type-fest": "^3.9.0"
