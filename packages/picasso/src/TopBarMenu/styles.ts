@@ -6,7 +6,7 @@ export default ({ screens }: Theme) =>
     root: {
       display: 'flex',
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         display: 'block',
       },
     },

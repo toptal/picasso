@@ -6,7 +6,7 @@ import { screens } from '@toptal/picasso/utils'
 const StyledLink = styled(Link)`
   margin-left: 2.5rem;
 
-  ${screens('small')} {
+  ${screens('sm')} {
     margin-left: 0;
     margin-bottom: 0.5rem;
   }

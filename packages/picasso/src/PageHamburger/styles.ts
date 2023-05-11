@@ -22,7 +22,7 @@ export default ({ palette, screens, zIndex }: Theme) => {
       boxShadow: wrapperBoxShadow,
       maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
       },
 
@@ -31,7 +31,7 @@ export default ({ palette, screens, zIndex }: Theme) => {
       '@media screen and (max-height: 585px)': {
         maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
 
-        [screens('small', 'medium')]: {
+        [screens('xs', 'sm')]: {
           maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
         },
       },

@@ -11,13 +11,18 @@ import type {
 } from '@material-ui/core'
 import { Grid as MUIGrid } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import type { BreakpointKeys } from '@toptal/picasso-provider'
+import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
 
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
-  /** Defines amount of space between Grid.Item components (in px) */
+  /** Defines amount of space between Grid.Item components (in px). If spacing is not set, then it will
+   * be automatically adjusted based on the screen size (16px for screens smaller than medium, 24px
+   * for medium screens, and 32px for screens bigger than medium)
+   */
   spacing?: 0 | 8 | 16 | 32 | 64 | 72 | 80
   /** Defines the orientation of the grid */
   direction?: GridDirection
@@ -38,6 +43,24 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoGrid',
 })
 
+const responsiveSpacingConfiguration: Record<BreakpointKeys, number> = {
+  xs: 16,
+  sm: 16,
+  md: 24,
+  lg: 32,
+  xl: 32,
+}
+
+const useResponsiveSpacing = () => {
+  const { currentBreakpointRange } = useCurrentBreakpointRange()
+
+  if (currentBreakpointRange) {
+    return responsiveSpacingConfiguration[currentBreakpointRange]
+  }
+
+  return responsiveSpacingConfiguration.md
+}
+
 // eslint-disable-next-line react/display-name
 export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   props,
@@ -45,7 +68,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
 ) {
   const {
     children,
-    spacing = 32,
+    spacing: userSpacing,
     direction,
     alignItems,
     justifyContent,
@@ -56,12 +79,15 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   } = props
   const classes = useStyles()
 
+  const responsiveSpacing = useResponsiveSpacing()
+  const gridSpacing = humanToMUISpacing(userSpacing ?? responsiveSpacing)
+
   return (
     <MUIGrid
       {...rest}
       ref={ref}
       container
-      spacing={humanToMUISpacing(spacing)}
+      spacing={gridSpacing}
       direction={direction}
       alignItems={alignItems}
       justifyContent={justifyContent}
@@ -79,7 +105,6 @@ Grid.defaultProps = {
   alignItems: 'flex-start',
   direction: 'row',
   justifyContent: 'flex-start',
-  spacing: 32,
   wrap: 'wrap',
 }
 

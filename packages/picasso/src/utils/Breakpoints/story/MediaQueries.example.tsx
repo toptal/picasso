@@ -6,7 +6,7 @@ const StyledBox = styled.div`
   background-color: ${palette.green.main};
   padding: 2rem;
 
-  ${screens('small', 'medium')} {
+  ${screens('sm', 'md')} {
     background-color: ${palette.blue.main};
   }
 `

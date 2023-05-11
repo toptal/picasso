@@ -11,7 +11,7 @@ const options = [
 
 const AutofillExample = () => (
   <Grid>
-    <Grid.Item small={5}>
+    <Grid.Item sm={5}>
       <Typography variant='heading'>Autofill enabled for country</Typography>
       <Form>
         <Form.Field>
@@ -59,7 +59,7 @@ const AutofillExample = () => (
       </Form>
     </Grid.Item>
 
-    <Grid.Item small={5}>
+    <Grid.Item sm={5}>
       <Typography variant='heading'>Autofill disabled for country</Typography>
       <Form>
         <Form.Field>

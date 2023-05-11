@@ -4,7 +4,7 @@ import { Grid, List, Typography, Section } from '@toptal/picasso'
 const Example = () => {
   return (
     <Grid>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography>Default title size</Typography>
         <Section title='Quotes'>
           <List variant='unordered'>
@@ -15,7 +15,7 @@ const Example = () => {
           </List>
         </Section>
       </Grid.Item>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography>Small title size</Typography>
         <Section title='Quotes' titleSize='small'>
           <List variant='unordered'>

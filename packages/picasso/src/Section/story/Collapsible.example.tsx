@@ -36,7 +36,7 @@ const Example = () => {
 
   return (
     <Grid>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography>Collapsible section is collapsed by default.</Typography>
         <Section
           title='Talents'
@@ -51,7 +51,7 @@ const Example = () => {
           {content}
         </Section>
       </Grid.Item>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography>
           You can modify this behavior with `defaultCollapsed` property.
         </Typography>
@@ -70,7 +70,7 @@ const Example = () => {
         </Section>
       </Grid.Item>
 
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography>Collapsible section with header bar.</Typography>
         <Container top='small'>
           <Section title='Details' collapsible variant='withHeaderBar'>
@@ -84,7 +84,7 @@ const Example = () => {
         </Container>
       </Grid.Item>
 
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Typography>Collapsible bordered section.</Typography>
         <Container top='small'>
           <Section title='Details' collapsible variant='bordered'>

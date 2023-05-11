@@ -4,7 +4,7 @@ import { PicassoProvider } from '@toptal/picasso-provider'
 PicassoProvider.override(({ screens }: Theme) => ({
   MuiPopover: {
     paper: {
-      [screens('small')]: {
+      [screens('xs')]: {
         width: '100vw',
         maxWidth: '100vw',
         left: '0 !important',

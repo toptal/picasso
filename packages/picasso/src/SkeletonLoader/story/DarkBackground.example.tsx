@@ -23,11 +23,11 @@ const LoaderContent = ({ backgroundColor }: Props) => (
     </Container>
 
     <Grid>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <SkeletonLoader.Media variant='image' width='5rem' height='5rem' />
       </Grid.Item>
 
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Container flex justifyContent='center' bottom='small'>
           <SkeletonLoader.Header />
         </Container>

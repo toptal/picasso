@@ -11,9 +11,9 @@ const Example = () => {
 
   return (
     <Grid alignItems='center'>
-      <Grid.Item small={6}>
+      <Grid.Item sm={6}>
         <Grid alignItems='center'>
-          <Grid.Item small>
+          <Grid.Item sm>
             <Slider value={value} onChange={handleChange} max={100} compact />
           </Grid.Item>
           <Grid.Item>

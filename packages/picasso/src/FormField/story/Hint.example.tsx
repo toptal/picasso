@@ -3,7 +3,7 @@ import { Form, Input, Grid } from '@toptal/picasso'
 
 const Example = () => (
   <Grid>
-    <Grid.Item small={5}>
+    <Grid.Item sm={5}>
       <Form>
         <Form.Field hint='Choose the place where you would like to live'>
           <Form.Label htmlFor='district'>District</Form.Label>

@@ -12,7 +12,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
         class="MuiGrid-root PicassoCheckboxGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
       >
         <div
-          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
         >
           <label
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
@@ -51,7 +51,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
         >
           <label
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
@@ -90,7 +90,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
         >
           <label
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
@@ -129,7 +129,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
         >
           <label
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
@@ -168,7 +168,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
         >
           <label
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
@@ -207,7 +207,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-xs"
+          class="MuiGrid-root PicassoCheckboxGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
         >
           <label
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"

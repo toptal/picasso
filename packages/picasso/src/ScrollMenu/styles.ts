@@ -10,7 +10,7 @@ export default ({ palette, screens }: Theme) =>
       maxHeight: '26.875rem', // ~8.5 lines of menu to show
       overflowY: 'auto',
 
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         maxHeight: '26.875rem', // ~8.5 lines of menu to show
       },
 
@@ -19,7 +19,7 @@ export default ({ palette, screens }: Theme) =>
       '@media screen and (max-height: 585px)': {
         maxHeight: 'calc(50vh - 4.8125rem)', // half of viewport minus header and anchor
 
-        [screens('small', 'medium')]: {
+        [screens('xs', 'sm')]: {
           maxHeight: 'calc(50vh - 4.3125rem)', // half of viewport minus header and anchor
         },
       },

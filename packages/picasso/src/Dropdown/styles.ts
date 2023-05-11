@@ -28,7 +28,7 @@ export default ({ screens, shadows, palette }: Theme) =>
       maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
       boxShadow: shadows[0],
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         maxHeight: '14.75rem', // 6.5 lines of menu to show
       },
 
@@ -37,7 +37,7 @@ export default ({ screens, shadows, palette }: Theme) =>
       '@media screen and (max-height: 585px)': {
         maxHeight: 'calc(50vh - 3.5rem)', // half of screen minus header and anchor
 
-        [screens('small', 'medium')]: {
+        [screens('xs', 'sm')]: {
           maxHeight: 'calc(50vh - 3rem)', // half of viewport minus header and anchor
         },
       },
@@ -49,9 +49,9 @@ export default ({ screens, shadows, palette }: Theme) =>
       // Basically a whole content of a dropdown will be shown without a vertical scrollbar inside the dropdown
       maxHeight: 'none',
 
-      // Will show a whole content on the `small` and `medium` screen with a vertical scrollbar if needed
+      // Will show a whole content on the `xs` and `sm` screens with a vertical scrollbar if needed
       // For non desktop devices better if we have a scrollbar when a dropdown content is pretty long
-      [screens('small', 'medium')]: {
+      [screens('xs', 'sm')]: {
         overflowY: 'scroll',
         maxHeight: '100vh',
       },

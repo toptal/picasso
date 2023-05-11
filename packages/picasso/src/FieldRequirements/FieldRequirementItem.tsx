@@ -44,7 +44,7 @@ const FieldRequirementItem = ({ children, status, testIds }: Props) => {
 
   return (
     <Grid.Item
-      small={6}
+      xs={6}
       className={classes.fieldRequirementItem}
       data-testid={testIds?.root}
     >

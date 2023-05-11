@@ -16,7 +16,7 @@ export default ({ screens, layout }: Theme) =>
       },
       '& > header + *': {
         marginTop: headerHeight.default,
-        [screens('small', 'medium')]: {
+        [screens('xs', 'sm')]: {
           marginTop: headerHeight.smallAndMedium,
         },
       },
