@@ -22,5 +22,5 @@ export default ({ palette, sizes }: Theme) =>
     divider: {
       width: '1px',
       borderRight: `1px solid ${palette.grey[200]}`,
-    }
+    },
   })

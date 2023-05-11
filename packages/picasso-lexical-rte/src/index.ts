@@ -2,5 +2,5 @@ export {
   default as LexicalRTE,
   LinkPlugin,
   LinkNode,
-  Heading
+  Heading,
 } from './LexicalRTE'

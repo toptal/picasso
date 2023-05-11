@@ -1,5 +1,5 @@
-export { default as getSelectedNode } from "./getSelectedNode";
-export { default as validateUrl } from "./validateUrl";
+export { default as getSelectedNode } from './getSelectedNode';
+export { default as validateUrl } from './validateUrl';
 
 export const CAN_USE_DOM: boolean =
   typeof window !== 'undefined' &&

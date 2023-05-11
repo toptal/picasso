@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -13,8 +13,10 @@ import { ListPlugin } from '@lexical/react/LexicalListPlugin'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import Picasso from '@toptal/picasso-provider'
 
-import editorNodes, { EditorNodes } from "./nodes/EditorNodes";
-import ToolbarPlugin, { Feature, Config } from './plugins/ToolbarPlugin';
+import type { EditorNodes } from './nodes/EditorNodes';
+import editorNodes from './nodes/EditorNodes';
+import type { Feature, Config } from './plugins/ToolbarPlugin';
+import ToolbarPlugin from './plugins/ToolbarPlugin';
 import styles from './styles';
 import FocusPlugin from './plugins/FocusPlugin';
 
@@ -41,7 +43,7 @@ const LexicalRTE = ({ children, nodes, config }: Props) => {
       },
       ol: classes['list-ol'],
       ul: classes['list-ul'],
-      listitem: classes['list-item']
+      listitem: classes['list-item'],
     },
     image: classes.image,
     link: classes.link,
@@ -74,8 +76,14 @@ const LexicalRTE = ({ children, nodes, config }: Props) => {
     nodes: [...editorNodes, ...nodes],
   };
 
-  const toolbarFeatures: Feature[] = [];
-  !!nodes.find(({name}) => name === 'LinkNode') && toolbarFeatures.push('link')
+  const toolbarFeatures = useMemo(() => {
+    const features: Feature[] = [];
+
+    if (nodes.find(({ name }) => name === 'LinkNode'))
+      {features.push('link')}
+
+    return features;
+  }, [nodes.length]);
 
   return (
     <Picasso>

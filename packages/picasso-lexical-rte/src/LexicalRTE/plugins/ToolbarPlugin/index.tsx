@@ -34,15 +34,14 @@ import {
   SELECTION_CHANGE_COMMAND,
   COMMAND_PRIORITY_NORMAL,
   KEY_MODIFIER_COMMAND,
-  DEPRECATED_$isGridSelection
+  DEPRECATED_$isGridSelection,
 } from 'lexical'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { sanitizeUrl } from '@braintree/sanitize-url'
-import type { ListType } from '@lexical/list'
 
 import styles from '../styles'
-import { getSelectedNode, validateUrl, CAN_USE_DOM, IS_APPLE } from '../../utils'
+import { getSelectedNode, validateUrl, IS_APPLE } from '../../utils'
 
 const blockTypeToBlockName = {
   paragraph: 'Normal',
@@ -57,6 +56,7 @@ const blockTypeToBlockName = {
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' })
+
 export type Feature = 'link' | 'table' 
 export type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 export type Config = {
@@ -181,14 +181,16 @@ const ToolbarPlugin = ({ features, config }: Props) => {
 
         if (code === 'KeyK' && (ctrlKey || metaKey)) {
           event.preventDefault();
+
           return activeEditor.dispatchCommand(
             TOGGLE_LINK_COMMAND,
-            sanitizeUrl('https://'),
+            sanitizeUrl('https://')
           );
         }
+
         return false;
       },
-      COMMAND_PRIORITY_NORMAL,
+      COMMAND_PRIORITY_NORMAL
     );
   }, [activeEditor, isLink]);
 
@@ -298,7 +300,8 @@ const ToolbarPlugin = ({ features, config }: Props) => {
     },
   ]
 
-  isLinkAllowed && toolBarButtons.push({
+  if (isLinkAllowed) { 
+    toolBarButtons.push({
       name: 'Link',
       onClick: insertLink,
       isActive: isLink,
@@ -307,6 +310,7 @@ const ToolbarPlugin = ({ features, config }: Props) => {
           IS_APPLE ? '⌘K' : 'Ctrl+K'
         }`,
     })
+  } 
 
   return (
     <div className={classes.toolbar}>

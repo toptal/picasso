@@ -1,5 +1,5 @@
 import React from 'react'
-import { LexicalRTE, LinkPlugin, LinkNode } from '@toptal/picasso-lexical-rte'
+import { LexicalRTE } from '@toptal/picasso-lexical-rte'
 
 const Example = () => { 
   return (
