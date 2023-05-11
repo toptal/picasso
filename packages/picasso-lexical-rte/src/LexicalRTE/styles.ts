@@ -33,4 +33,14 @@ export default ({ palette, sizes, typography }: Theme) =>
     'heading-small': {
       ...typography.headings.small,
     },
+    'editor-underline': {
+      textDecoration: 'underline',
+    },
+
+    'editor-italic': {
+      fontStyle: 'italic',
+    },
+    'editor-bold': {
+      fontWeight: typography.fontWeights.semibold,
+    },
   })
