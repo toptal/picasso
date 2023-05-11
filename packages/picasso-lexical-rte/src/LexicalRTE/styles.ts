@@ -36,7 +36,6 @@ export default ({ palette, sizes, typography }: Theme) =>
     'editor-underline': {
       textDecoration: 'underline',
     },
-
     'editor-italic': {
       fontStyle: 'italic',
     },

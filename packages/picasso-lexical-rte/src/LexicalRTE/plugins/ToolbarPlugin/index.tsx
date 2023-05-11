@@ -57,17 +57,19 @@ const blockTypeToBlockName = {
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' })
-type Plugin = 'link' | 'table' 
+export type Feature = 'link' | 'table' 
+export type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+export type Config = {
+  headings? : Heading[],
+}
 
 type Props = {
-  plugins?: Plugin[],
-  config?: {
-    headings? : 'h3'[],
-  }
+  features: Feature[],
+  config?: Config,
   disabled?: boolean
 }
 
-const ToolbarPlugin = ({ plugins, config }: Props) => {
+const ToolbarPlugin = ({ features, config }: Props) => {
   const [editor] = useLexicalComposerContext()
   const [activeEditor, setActiveEditor] = useState(editor)
   const [blockType, setBlockType] =
@@ -81,6 +83,7 @@ const ToolbarPlugin = ({ plugins, config }: Props) => {
   const [isUnderline, setIsUnderline] = useState(false)
   // const [isStrikethrough , setIsStrikethrough] = useState(false)
 
+  const isLinkAllowed = features.includes('link');
   const classes = useStyles()
 
   const updateToolbar = useCallback(() => {
@@ -112,7 +115,7 @@ const ToolbarPlugin = ({ plugins, config }: Props) => {
       const node = getSelectedNode(selection)
       const parent = node.getParent()
 
-      if ($isLinkNode(parent) || $isLinkNode(node)) {
+      if (isLinkAllowed && ($isLinkNode(parent) || $isLinkNode(node))) {
         setIsLink(true)
       } else {
         setIsLink(false)
@@ -295,7 +298,7 @@ const ToolbarPlugin = ({ plugins, config }: Props) => {
     },
   ]
 
-  plugins?.includes('link') && toolBarButtons.push({
+  isLinkAllowed && toolBarButtons.push({
       name: 'Link',
       onClick: insertLink,
       isActive: isLink,

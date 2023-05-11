@@ -1,1 +1,6 @@
-export { default as LexicalRTE } from './LexicalRTE'
+export {
+  default as LexicalRTE,
+  LinkPlugin,
+  LinkNode,
+  Heading
+} from './LexicalRTE'

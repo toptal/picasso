@@ -9,22 +9,24 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
-import { HeadingNode } from '@lexical/rich-text'
 import { ListPlugin } from '@lexical/react/LexicalListPlugin'
-import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin'
-import { ListItemNode, ListNode } from '@lexical/list'
-import { LinkNode } from '@lexical/link'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import Picasso from '@toptal/picasso-provider'
 
-import ToolbarPlugin from './plugins/ToolbarPlugin'
-import styles from './styles'
-import FocusPlugin from './plugins/FocusPlugin'
-import validateUrl from './utils/validateUrl'
+import editorNodes, { EditorNodes } from "./nodes/EditorNodes";
+import ToolbarPlugin, { Feature, Config } from './plugins/ToolbarPlugin';
+import styles from './styles';
+import FocusPlugin from './plugins/FocusPlugin';
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' })
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' });
 
-const LexicalRTE = () => {
+type Props = {
+    children?: JSX.Element;
+    nodes: EditorNodes;
+    config?: Config;
+};
+
+const LexicalRTE = ({ children, nodes, config }: Props) => {
   const classes = useStyles()
   const theme: EditorThemeClasses = {
     heading: {
@@ -39,9 +41,7 @@ const LexicalRTE = () => {
       },
       ol: classes['list-ol'],
       ul: classes['list-ul'],
-      listitem: classes['list-item'],
-      listitemChecked: classes['list-item-checked'],
-      listitemUnchecked: classes['list-item-unchecked'],
+      listitem: classes['list-item']
     },
     image: classes.image,
     link: classes.link,
@@ -50,6 +50,7 @@ const LexicalRTE = () => {
       bold: classes['editor-bold'],
       italic: classes['editor-italic'],
       underline: classes['editor-underline'],
+      strikethrough: 'editor-text-strike-through',
     },
   }
 
@@ -70,18 +71,20 @@ const LexicalRTE = () => {
     namespace: 'MyEditor', 
     theme,
     onError,
-    nodes: [HeadingNode, ListNode, ListItemNode, LinkNode],
+    nodes: [...editorNodes, ...nodes],
   };
+
+  const toolbarFeatures: Feature[] = [];
+  !!nodes.find(({name}) => name === 'LinkNode') && toolbarFeatures.push('link')
 
   return (
     <Picasso>
       <div className={classes.wrapper}>
         <LexicalComposer initialConfig={initialConfig}>
-          <ToolbarPlugin />
+          <ToolbarPlugin features={toolbarFeatures} config={config} />
           <FocusPlugin />
           <ListPlugin />
           {/* <DefaultValuePlugin defaultValue={defaultValueInHtml} /> */}
-          <LinkPlugin validateUrl={validateUrl} />
           <OnChangePlugin onChange={onChange} />
           <RichTextPlugin
             contentEditable={
@@ -91,6 +94,7 @@ const LexicalRTE = () => {
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
+          { children ? children : <></> }
         </LexicalComposer>
       </div>
     </Picasso>

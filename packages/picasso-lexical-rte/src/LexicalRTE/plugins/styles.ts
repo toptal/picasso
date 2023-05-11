@@ -19,4 +19,8 @@ export default ({ palette, sizes }: Theme) =>
       borderColor: `1px solid ${palette.primary.dark}`,
       fontWeight: 'bold',
     },
+    divider: {
+      width: '1px',
+      borderRight: `1px solid ${palette.grey[200]}`,
+    }
   })
