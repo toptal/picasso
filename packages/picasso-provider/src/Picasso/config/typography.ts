@@ -22,6 +22,24 @@ export interface AdditionalTypography {
     medium: string
     large: string
   }
+  headings: {
+    xlarge: {
+      fontSize: string
+      lineHeight: string
+    }
+    large: {
+      fontSize: string
+      lineHeight: string
+    }
+    medium: {
+      fontSize: string
+      lineHeight: string
+    }
+    small: {
+      fontSize: string
+      lineHeight: string
+    }
+  }
 }
 
 declare module '@material-ui/core/styles/createTypography' {
@@ -56,6 +74,24 @@ const typography: AdditionalTypography & Partial<Typography> = {
     small: '13px',
     medium: '14px',
     large: '16px',
+  },
+  headings: {
+    xlarge: {
+      fontSize: '28px',
+      lineHeight: '42px',
+    },
+    large: {
+      fontSize: '20px',
+      lineHeight: '30px',
+    },
+    medium: {
+      fontSize: '16px',
+      lineHeight: '24px',
+    },
+    small: {
+      fontSize: '14px',
+      lineHeight: '22px',
+    },
   },
 }
 

@@ -28,12 +28,23 @@
     "typescript": "~4.7.0"
   },
   "dependencies": {
+    "@braintree/sanitize-url": "^6.0.2",
+    "@lexical/html": "^0.9.1",
+    "@lexical/link": "^0.9.1",
+    "@lexical/list": "^0.9.1",
+    "@lexical/react": "^0.9.1",
+    "@lexical/rich-text": "^0.9.1",
+    "@lexical/selection": "^0.9.1",
+    "@lexical/utils": "^0.9.1",
     "classnames": "^2.3.1",
-    "debounce": "^1.2.1"
-  },
+    "debounce": "^1.2.1",
+    "lexical": "^0.10.0",
+    "@toptal/picasso": "^32.0.0",
+    "@material-ui/core": "4.12.4"
+},
   "devDependencies": {
-    "@toptal/picasso-provider": "2.2.0",
     "@testing-library/react-hooks": "^8.0.1",
+    "@toptal/picasso-provider": "2.2.0",
     "@types/classnames": "^2.3.1",
     "storybook-readme": "^5.0.9",
     "type-fest": "^3.9.0"

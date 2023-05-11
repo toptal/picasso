@@ -7,8 +7,7 @@ import toMuiVariant from './utils/to-mui-variant'
 const getHeadingMedium = (theme: Theme) => ({
   color: theme.palette.common.black,
   fontWeight: theme.typography.fontWeights.semibold,
-  fontSize: '16px',
-  lineHeight: '24px',
+  ...theme.typography.headings.medium,
 })
 
 // TODO: https://toptal-core.atlassian.net/browse/FX-2166
@@ -22,21 +21,18 @@ PicassoProvider.override(theme => {
       [toMuiVariant('heading', 'xlarge')]: {
         color: palette.common.black,
         fontWeight: typography.fontWeights.semibold,
-        fontSize: '28px',
-        lineHeight: '42px',
+        ...typography.headings.xlarge,
       },
       [toMuiVariant('heading', 'large')]: {
         color: palette.common.black,
         fontWeight: typography.fontWeights.semibold,
-        fontSize: '20px',
-        lineHeight: '30px',
+        ...typography.headings.large,
       },
       [toMuiVariant('heading', 'medium')]: getHeadingMedium(theme),
       [toMuiVariant('heading', 'small')]: {
         color: palette.common.black,
         fontWeight: typography.fontWeights.semibold,
-        fontSize: '14px',
-        lineHeight: '22px',
+        ...typography.headings.small,
       },
       [toMuiVariant('body', 'medium')]: {
         color: palette.text.primary,
