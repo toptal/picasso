@@ -1,5 +1,23 @@
 # Change Log
 
+## 33.1.0
+
+### Minor Changes
+
+- [#3551](https://github.com/toptal/picasso/pull/3551) [`fa9b2aebb`](https://github.com/toptal/picasso/commit/fa9b2aebb530a0d64a1b747778e5f7b5d3813ace) Thanks [@vzinchenko06](https://github.com/vzinchenko06)!
+
+### Icon
+
+- add keyboard icon
+
+### Patch Changes
+
+- [#3546](https://github.com/toptal/picasso/pull/3546) [`c00953688`](https://github.com/toptal/picasso/commit/c00953688a796466fe91f02cfa5e58a9cf18b4ec) Thanks [@MrBra1nwash](https://github.com/MrBra1nwash)!
+
+### Drawer
+
+- add transparentBackdrop
+
 ## 33.0.0
 
 ### Major Changes
