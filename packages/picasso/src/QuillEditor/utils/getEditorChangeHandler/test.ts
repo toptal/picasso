@@ -28,6 +28,11 @@ describe('getEditorChangeHandler', () => {
       it('calls the callback with quill format', () => {
         const quill = {
           getFormat: jest.fn(() => ({})),
+          selection: {
+            savedRange: {
+              index: 0,
+            },
+          },
         } as unknown as Quill
         const onSelectionChange = jest.fn()
 
