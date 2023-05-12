@@ -13,12 +13,12 @@ import { ListPlugin } from '@lexical/react/LexicalListPlugin'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import Picasso from '@toptal/picasso-provider'
 
-import type { EditorNodes } from './nodes/EditorNodes';
-import editorNodes from './nodes/EditorNodes';
-import type { Feature, Config } from './plugins/ToolbarPlugin';
-import ToolbarPlugin from './plugins/ToolbarPlugin';
+import type { EditorNodes } from '../../nodes/EditorNodes';
+import editorNodes from '../../nodes/EditorNodes';
+import type { Feature, Config } from '../../plugins/ToolbarPlugin';
+import ToolbarPlugin from '../../plugins/ToolbarPlugin';
 import styles from './styles';
-import FocusPlugin from './plugins/FocusPlugin';
+import FocusPlugin from '../../plugins/FocusPlugin';
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' });
 
