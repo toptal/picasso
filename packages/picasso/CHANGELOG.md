@@ -1,5 +1,15 @@
 # Change Log
 
+## 33.1.1
+
+### Patch Changes
+
+- [#3556](https://github.com/toptal/picasso/pull/3556) [`c3ab7f29a`](https://github.com/toptal/picasso/commit/c3ab7f29ad6cdbda0754d7531c669338027af377) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+---
+
+- fix quill issue in Safari when editor is hidden
+
 ## 33.1.0
 
 ### Minor Changes
