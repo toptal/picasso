@@ -1,5 +1,15 @@
 # Change Log
 
+## 47.1.0
+
+### Minor Changes
+
+- [#3550](https://github.com/toptal/picasso/pull/3550) [`c11ff7092`](https://github.com/toptal/picasso/commit/c11ff7092086dae4c40451993c75e93c34b2d4bd) Thanks [@sashuk](https://github.com/sashuk)!
+
+### BarChart
+
+- add `showEveryNthTickOnXAxis` and `showEveryNthTickOnYAxis` properties to `BarChart`, so X and Y axes ticks can be skipped
+
 ## 47.0.0
 
 ### Patch Changes
