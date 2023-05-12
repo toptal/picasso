@@ -2,33 +2,48 @@ import React, { useMemo } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import type { EditorState, EditorThemeClasses } from 'lexical';
-import { $getRoot, $getSelection } from 'lexical'
+import type {
+  EditorState,
+  EditorThemeClasses,
+  LexicalNode,
+  LexicalEditor,
+} from 'lexical'
+import { $getRoot, $getSelection, $insertNodes } from 'lexical'
+import type { InitialConfigType } from '@lexical/react/LexicalComposer'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
-import {HistoryPlugin} from '@lexical/react/LexicalHistoryPlugin';
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { ListPlugin } from '@lexical/react/LexicalListPlugin'
-import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
+import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html'
 import Picasso from '@toptal/picasso-provider'
 
-import type { EditorNodes } from '../../nodes/EditorNodes';
-import editorNodes from '../../nodes/EditorNodes';
-import type { Feature, Config } from '../../plugins/ToolbarPlugin';
-import ToolbarPlugin from '../../plugins/ToolbarPlugin';
-import styles from './styles';
-import FocusPlugin from '../../plugins/FocusPlugin';
+import type { EditorNodes } from '../../nodes/EditorNodes'
+import editorNodes from '../../nodes/EditorNodes'
+import type { Feature, Config } from '../../plugins/ToolbarPlugin'
+import ToolbarPlugin from '../../plugins/ToolbarPlugin'
+import styles from './styles'
+import FocusPlugin from '../../plugins/FocusPlugin'
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' });
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLexicalRTE' })
 
 type Props = {
-    children?: JSX.Element;
-    nodes: EditorNodes;
-    config?: Config;
-};
+  children?: JSX.Element
+  nodes: EditorNodes
+  config?: Config
+  defaultValue?: string | Record<string, unknown>
+  onChange?: (value: string | Record<string, unknown>) => void
+}
 
-const LexicalRTE = ({ children, nodes, config }: Props) => {
+const LexicalRTE = ({
+  children,
+  nodes,
+  config,
+  defaultValue,
+  onChange,
+}: Props) => {
   const classes = useStyles()
   const theme: EditorThemeClasses = {
     heading: {
@@ -57,33 +72,63 @@ const LexicalRTE = ({ children, nodes, config }: Props) => {
   }
 
   const onError = (error: Error) => {
-    console.error(error);
+    console.error(error)
   }
 
-  const onChange = (editorState: EditorState) => {
+  const handleChange = (editorState: EditorState, editor: LexicalEditor) => {
     editorState.read(() => {
-      const root = $getRoot();
-      const selection = $getSelection();
+      const htmlValue = $generateHtmlFromNodes(editor, null)
 
-      console.log(root, selection);
-    });
+      onChange?.(htmlValue)
+
+      const root = $getRoot()
+      const selection = $getSelection()
+
+      console.log(root, selection)
+    })
   }
 
-  const initialConfig = {
-    namespace: 'MyEditor', 
+  const initialConfig: InitialConfigType = {
+    namespace: 'MyEditor',
     theme,
     onError,
     nodes: [...editorNodes, ...nodes],
-  };
+    editorState: editor => {
+      editor.update(() => {
+        if (!defaultValue) {
+          return
+        }
+
+        let nodes: LexicalNode[] = []
+
+        if (typeof defaultValue === 'string') {
+          const parser = new DOMParser()
+          const dom = parser.parseFromString(defaultValue, 'text/html')
+
+          // Once you have the DOM instance it's easy to generate LexicalNodes.
+          nodes = $generateNodesFromDOM(editor, dom)
+        } else {
+          console.log('TODO: Handle JSON default value')
+        }
+
+        console.log(nodes)
+
+        // Select the root
+        $getRoot().select()
+        $insertNodes(nodes)
+      })
+    },
+  }
 
   const toolbarFeatures = useMemo(() => {
-    const features: Feature[] = [];
+    const features: Feature[] = []
 
-    if (nodes.find(({ name }) => name === 'LinkNode'))
-      {features.push('link')}
+    if (nodes.find(({ name }) => name === 'LinkNode')) {
+      features.push('link')
+    }
 
-    return features;
-  }, [nodes.length]);
+    return features
+  }, [nodes.length])
 
   return (
     <Picasso>
@@ -93,20 +138,18 @@ const LexicalRTE = ({ children, nodes, config }: Props) => {
           <FocusPlugin />
           <ListPlugin />
           {/* <DefaultValuePlugin defaultValue={defaultValueInHtml} /> */}
-          <OnChangePlugin onChange={onChange} />
+          <OnChangePlugin onChange={handleChange} />
           <RichTextPlugin
-            contentEditable={
-              <ContentEditable className={classes.content} />
-            }
+            contentEditable={<ContentEditable className={classes.content} />}
             placeholder={<div>Enter some text...</div>}
             ErrorBoundary={LexicalErrorBoundary}
           />
           <HistoryPlugin />
-          { children ? children : <></> }
+          {children ? children : <></>}
         </LexicalComposer>
       </div>
     </Picasso>
-  );
+  )
 }
 
 export default LexicalRTE

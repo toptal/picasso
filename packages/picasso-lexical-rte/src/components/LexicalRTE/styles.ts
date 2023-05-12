@@ -42,4 +42,8 @@ export default ({ palette, sizes, typography }: Theme) =>
     'editor-bold': {
       fontWeight: typography.fontWeights.semibold,
     },
+    'nested-list-item': {},
+    'list-ol': {},
+    'list-ul': {},
+    'list-item': {},
   })
