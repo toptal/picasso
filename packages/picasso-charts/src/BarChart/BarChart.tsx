@@ -14,7 +14,7 @@ import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
 import type { BaseChartProps } from '../types'
-import { findTopDomain } from './utils'
+import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
 const {
@@ -66,6 +66,8 @@ export interface Props<K extends string | number | symbol>
   showBarLabel?: boolean
   /** If set false, animation of bar will be disabled */
   isAnimationActive?: boolean
+  /** List of bar groups to be stacked. i.e.: [ ['a', 'b'], ['c', 'd'] ] */
+  stackedBars?: string[][]
   /** Makes X-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
   showEveryNthTickOnXAxis?: ShowEverytNthTickValue
   /** Makes Y-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
@@ -120,6 +122,7 @@ const BarChart = <T extends string>({
   showBarLabel,
   isAnimationActive,
   layout,
+  stackedBars,
   showEveryNthTickOnXAxis = 1,
   showEveryNthTickOnYAxis = 1,
   autoSize,
@@ -147,7 +150,7 @@ const BarChart = <T extends string>({
     [tooltip, customTooltip, allowTooltipEscapeViewBox, testIds?.tooltip]
   )
 
-  const topDomain = findTopDomain(extractValues(data))
+  const topDomain = findTopDomain(extractValues(data), stackedBars)
   const ticks = getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
 
   const categoryAxisProps = {
@@ -215,6 +218,7 @@ const BarChart = <T extends string>({
                 ) : undefined
               }
               isAnimationActive={isAnimationActive}
+              stackId={stackedBars && defineStackId(dataKey, stackedBars)}
             >
               {data.map((entry, index) => {
                 const fill = getBarColor?.({ dataKey, entry, index })
