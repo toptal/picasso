@@ -70,6 +70,10 @@ export interface Props<K extends string | number | symbol>
   showEveryNthTickOnXAxis?: ShowEverytNthTickValue
   /** Makes Y-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
   showEveryNthTickOnYAxis?: ShowEverytNthTickValue
+  /** If bars should fill all the empty space */
+  autoSize?: boolean
+  /** Maximum size for the bar */
+  maxBarSize?: number
 }
 
 const StyleOverrides = () => (
@@ -85,7 +89,7 @@ const StyleOverrides = () => (
   />
 )
 
-export const formatData = <K extends string>(data: Props<K>['data']) =>
+export const formatData = <T extends string>(data: Props<T>['data']) =>
   data.map(dataItem => ({
     ...dataItem.value,
     ...dataItem,
@@ -94,10 +98,14 @@ export const formatData = <K extends string>(data: Props<K>['data']) =>
 const defaultGetBarColor = () => palette.blue.main
 const defaultGetBarLabelColor = () => palette.grey.dark
 
-export const extractValues = <K extends string>(data: Props<K>['data']) =>
+export const extractValues = <T extends string>(data: Props<T>['data']) =>
   data.map(dataItem => dataItem.value)
 
-const BarChart = <K extends string>({
+const DEFAULT_BAR_CATEGORY_GAP = 50
+const DEFAULT_BAR_SIZE = 32
+const DEFAULT_BAR_GAP = 2
+
+const BarChart = <T extends string>({
   data,
   className,
   height,
@@ -114,10 +122,12 @@ const BarChart = <K extends string>({
   layout,
   showEveryNthTickOnXAxis = 1,
   showEveryNthTickOnYAxis = 1,
+  autoSize,
+  maxBarSize,
   ...rest
-}: Props<K>) => {
+}: Props<T>) => {
   const horizontal = layout === 'horizontal'
-  const dataKeys = Object.keys(data[0].value) as K[]
+  const dataKeys = Object.keys(data[0].value) as T[]
 
   const formattedData = formatData(data)
 
@@ -163,9 +173,10 @@ const BarChart = <K extends string>({
           layout={layout}
           margin={chartMargins}
           data={formattedData}
-          barGap={2}
-          barCategoryGap={50}
-          barSize={32}
+          maxBarSize={maxBarSize}
+          barGap={DEFAULT_BAR_GAP}
+          barCategoryGap={!autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined}
+          barSize={!autoSize ? DEFAULT_BAR_SIZE : undefined}
         >
           <CartesianGrid
             strokeDasharray='3 3'
