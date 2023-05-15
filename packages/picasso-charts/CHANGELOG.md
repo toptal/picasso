@@ -1,5 +1,15 @@
 # Change Log
 
+## 47.2.0
+
+### Minor Changes
+
+- [#3554](https://github.com/toptal/picasso/pull/3554) [`c02f8f6c3`](https://github.com/toptal/picasso/commit/c02f8f6c306a77db715389a36cbfc8ca7db5257e) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### BarChart
+
+- add options for autosizing and maxBarSize
+
 ## 47.1.0
 
 ### Minor Changes
