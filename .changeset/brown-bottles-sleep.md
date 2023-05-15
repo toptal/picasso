@@ -10,6 +10,6 @@
 ```diff
 <Dropzone
 - accept='image/*'
-+ accept={{ 'image/*': ['jpg', 'png'] }}
++ accept={{ 'image/*': [] }}
 >
 ```
