@@ -38,6 +38,8 @@ export interface Props extends BaseProps {
   transitionProps?: TransitionProps
   /** enable Drawer to maintain body scroll lock */
   maintainBodyScrollLock?: boolean
+  /** Specify the backdrop transparency  */
+  transparentBackdrop?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
@@ -52,6 +54,7 @@ export const Drawer = (props: Props) => {
     width = 'regular',
     transitionProps,
     maintainBodyScrollLock,
+    transparentBackdrop,
     ...rest
   } = props
   const classes = useStyles()
@@ -82,6 +85,7 @@ export const Drawer = (props: Props) => {
       {...rest}
       open={open}
       onClose={handleOnClose}
+      BackdropProps={{ invisible: transparentBackdrop }}
       disablePortal={disablePortal}
       container={container}
       ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}

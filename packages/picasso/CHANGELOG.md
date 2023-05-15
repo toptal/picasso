@@ -1,5 +1,33 @@
 # Change Log
 
+## 33.1.1
+
+### Patch Changes
+
+- [#3556](https://github.com/toptal/picasso/pull/3556) [`c3ab7f29a`](https://github.com/toptal/picasso/commit/c3ab7f29ad6cdbda0754d7531c669338027af377) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+---
+
+- fix quill issue in Safari when editor is hidden
+
+## 33.1.0
+
+### Minor Changes
+
+- [#3551](https://github.com/toptal/picasso/pull/3551) [`fa9b2aebb`](https://github.com/toptal/picasso/commit/fa9b2aebb530a0d64a1b747778e5f7b5d3813ace) Thanks [@vzinchenko06](https://github.com/vzinchenko06)!
+
+### Icon
+
+- add keyboard icon
+
+### Patch Changes
+
+- [#3546](https://github.com/toptal/picasso/pull/3546) [`c00953688`](https://github.com/toptal/picasso/commit/c00953688a796466fe91f02cfa5e58a9cf18b4ec) Thanks [@MrBra1nwash](https://github.com/MrBra1nwash)!
+
+### Drawer
+
+- add transparentBackdrop
+
 ## 33.0.0
 
 ### Major Changes

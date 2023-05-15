@@ -54,7 +54,12 @@ const getEditorChangeHandler = (
         // this event is triggered when format of block element is changed
         // for example from p > h3 | h3 > ol
         if (!latestDelta.ops?.[latestDelta.ops.length - 1].delete) {
-          onSelectionChange(quill.getFormat() as FormatType)
+          // we need to set range index manually, because Safari has an issue with it. See: https://github.com/quilljs/quill/issues/3093
+          onSelectionChange(
+            quill.getFormat(
+              (quill as any).selection.savedRange.index
+            ) as FormatType
+          )
         }
       } else if (isFromUser) {
         handleNewLineAfterBlock({ latestDelta, quill, onSelectionChange })
