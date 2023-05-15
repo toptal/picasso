@@ -26,8 +26,8 @@ page
       'Bar chart has built-in tooltips support. You can enable them via `tooltip` prop.',
     takeScreenshot: false,
   })
-  .addExample('BarChart/story/Autosize.example.tsx', {
-    title: 'Autosize',
+  .addExample('BarChart/story/AutoSize.example.tsx', {
+    title: 'Auto size',
     description: 'Bars try to fill all the space of the chart',
     takeScreenshot: false,
   })

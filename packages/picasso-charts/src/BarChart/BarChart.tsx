@@ -95,6 +95,10 @@ const defaultGetBarLabelColor = () => palette.grey.dark
 export const extractValues = <T extends string>(data: Props<T>['data']) =>
   data.map(dataItem => dataItem.value)
 
+const DEFAULT_BAR_CATEGORY_GAP = 50
+const DEFAULT_BAR_SIZE = 32
+const DEFAULT_BAR_GAP = 2
+
 const BarChart = <T extends string>({
   data,
   className,
@@ -162,9 +166,9 @@ const BarChart = <T extends string>({
           margin={chartMargins}
           data={formattedData}
           maxBarSize={maxBarSize}
-          barGap={2}
-          barCategoryGap={!autoSize ? 50 : undefined}
-          barSize={!autoSize ? 32 : undefined}
+          barGap={DEFAULT_BAR_GAP}
+          barCategoryGap={!autoSize ? DEFAULT_BAR_CATEGORY_GAP : undefined}
+          barSize={!autoSize ? DEFAULT_BAR_SIZE : undefined}
         >
           <CartesianGrid
             strokeDasharray='3 3'

@@ -46,6 +46,7 @@ const Example = () => (
         getBarColor={() => palette.blue.main}
         width='100%'
         tooltip
+        showBarLabel={false}
         maxBarSize={40}
         autoSize
       />
