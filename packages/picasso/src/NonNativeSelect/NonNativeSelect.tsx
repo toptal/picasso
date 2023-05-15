@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React, { useRef } from 'react'
 import type PopperJs from 'popper.js'
 import cx from 'classnames'

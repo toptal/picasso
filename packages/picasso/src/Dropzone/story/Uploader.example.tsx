@@ -109,7 +109,9 @@ const Example = () => {
       onDrop={addFiles}
       onRemove={removeFile}
       hint={`Files allowed 2. Max file size: ${MAX_SIZE / 1000}KB`}
-      accept='image/*'
+      accept={{
+        'image/*': [],
+      }}
       validator={customSizeValidator}
       disabled={disabled}
     />
