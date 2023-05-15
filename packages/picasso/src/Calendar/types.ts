@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import type { DayPickerDefaultProps } from 'react-day-picker'
 
 export interface DayProps {
   isDisabled: boolean
@@ -16,11 +17,6 @@ export interface DayProps {
   getDayFormatted: (date: Date) => string
   key?: string
   children?: ReactNode
-}
-
-export interface MonthHeaderProps {
-  switchMonth: (diff: number) => void
-  activeMonth: Date
 }
 
 export interface WeekProps {
@@ -41,3 +37,11 @@ export interface CalendarProps {
   children?: ReactNode
   hasFooter?: boolean
 }
+
+export type CalendarDateRange = { start: Date; end: Date }
+
+export type DateOrDateRangeType = Date | DateRangeType
+
+export type DateRangeType = [Date, Date]
+
+export type WeekStart = DayPickerDefaultProps['weekStartsOn']

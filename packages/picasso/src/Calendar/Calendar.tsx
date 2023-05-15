@@ -1,160 +1,57 @@
-import React, {forwardRef, ReactNode, useMemo, useRef, useState} from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// import SimpleReactCalendar from 'simple-react-calendar'
-import cx from 'classnames'
-import { Theme, makeStyles } from '@material-ui/core/styles'
-import { BaseProps } from '@toptal/picasso-shared'
-import {
-  DayPicker,
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps } from '@toptal/picasso-shared'
+import type {
   SelectRangeEventHandler,
   SelectSingleEventHandler,
-  Matcher,
   DateRange,
-  DayProps,
-  useDayRender,
-  Button, useDayPicker,
-  InternalModifier, CaptionProps, CaptionLabel, useNavigation
-} from 'react-day-picker';
-const {
-  Selected,
-  Disabled,
-  Hidden,
-  Today,
-  RangeEnd,
-  RangeMiddle,
-  RangeStart,
-  Outside
-} = InternalModifier;
-// import 'react-day-picker/dist/style.css';
-import {
-  CalendarProps,
-  MonthHeaderProps,
-  WeekProps,
-  DayOfWeekProps,
-  DaysOfWeekProps,
-} from './types'
-import styles from './styles-react-day-picker'
+} from 'react-day-picker'
+import { DayPicker } from 'react-day-picker'
+import isWeekend from 'date-fns/isWeekend'
+import { format, isEqual } from 'date-fns'
+
+import styles from './styles'
+import type { RenderDay } from '../CalendarDay'
+import CalendarDay from '../CalendarDay'
+import type { RenderMonthHeader } from '../CalendarMonthHeader'
 import CalendarMonthHeader from '../CalendarMonthHeader'
+import CalendarContext from '../CalendarContext'
+import type {
+  CalendarDateRange,
+  CalendarProps,
+  DateOrDateRangeType,
+  DateRangeType,
+  WeekStart,
+} from './types'
 import CalendarContainer from '../CalendarContainer'
-import isSameMonth from "date-fns/isSameMonth";
-import ButtonCircular from "../ButtonCircular/ButtonCircular";
-import {BackMinor24, ChevronMinor24} from "@toptal/picasso/Icon";
-import Typography from "@toptal/picasso/Typography";
-import {format} from "date-fns";
-import Container from "../Container/Container";
-
-type SimpleReactCalendarRangeType = {
-  start: Date
-  end: Date
-}
-export type DateOrDateRangeType = Date | DateRangeType
-export type DateRangeType = [Date, Date]
-
-
-const getNormalizedValue = (value: DateOrDateRangeType | undefined) => {
-  if (!value) {
-    return
-  }
-
-  if (value instanceof Date) {
-    return value
-  }
-
-  const [start, end] = value
-
-  return { start, end }
-}
 
 export interface Props
   extends BaseProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
   onChange: (value: DateOrDateRangeType) => void
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
-  renderDay?: (args: DayProps) => ReactNode
   minDate?: Date
   maxDate?: Date
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
-  disabledIntervals?: { start: Date; end: Date }[]
-  weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-  renderMonthHeader?: (props: MonthHeaderProps) => JSX.Element | null
   renderRoot?: (props: CalendarProps) => JSX.Element
+  renderMonthHeader?: RenderMonthHeader
+  renderDay?: RenderDay
+  disabledIntervals?: CalendarDateRange[]
+  indicatedIntervals?: CalendarDateRange[]
+  weekStartsOn?: WeekStart
   hasFooter?: boolean
 }
 
-const isDateRange = (
-  value: Date | SimpleReactCalendarRangeType
-): value is SimpleReactCalendarRangeType => {
-  return !(value instanceof Date) && Boolean(value.start && value.end)
-}
-
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
-
-const CustomCaption = (props: CaptionProps) => {
-  const { formatters: { formatCaption }, locale, classNames, disableNavigation, styles, captionLayout, components, numberOfMonths, onMonthChange, dir, labels: { labelPrevious, labelNext }, } = useDayPicker()
-
-  if (disableNavigation) {
-    return (
-      <div className={classNames.caption} style={styles.caption}>
-        <Typography variant='heading' size='medium' aria-live="polite" aria-atomic="true">
-          {formatCaption(props.displayMonth, { locale })}
-        </Typography>
-      </div>
-    )
-  }
-
-  const { previousMonth, nextMonth, goToMonth, displayMonths } = useNavigation()
-  const displayIndex = displayMonths.findIndex((month) => isSameMonth(props.displayMonth, month))
-
-  let isFirst = displayIndex === 0
-  let isLast = displayIndex === displayMonths.length - 1
-  if (dir === 'rtl') {
-    [isLast, isFirst] = [isFirst, isLast];
-  }
-
-  const hideNext = numberOfMonths > 1 && (isFirst || !isLast);
-  const hidePrevious = numberOfMonths > 1 && (isLast || !isFirst);
-
-  const handlePreviousClick: React.MouseEventHandler = () => {
-    if (!previousMonth) return;
-    goToMonth(previousMonth);
-    onMonthChange?.(previousMonth);
-  };
-
-  const handleNextClick: React.MouseEventHandler = () => {
-    if (!nextMonth) return;
-    goToMonth(nextMonth);
-    onMonthChange?.(nextMonth);
-  };
-
-  return (
-    <Container flex justifyContent='space-between' bottom='medium'>
-      {!hidePrevious && (
-        <ButtonCircular
-          title='Previous month'
-          aria-label='Previous month'
-          variant='flat'
-          icon={<BackMinor24 />}
-          onClick={handlePreviousClick}
-        />
-      )}
-      <Typography variant='heading' size='medium' aria-live="polite" aria-atomic="true">
-        {formatCaption(props.displayMonth, { locale })}
-      </Typography>
-      {!hideNext && (
-        <ButtonCircular
-          title='Next month'
-          aria-label='Next month'
-          variant='flat'
-          icon={<ChevronMinor24 />}
-          onClick={handleNextClick}
-        />
-      )}
-    </Container>
-  )
-}
 
 export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
@@ -171,94 +68,153 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     disabledIntervals,
     indicatedIntervals,
     renderDay,
+    renderMonthHeader,
     weekStartsOn,
-    hasFooter,
-    renderRoot = rootProps => (
+    hasFooter = false,
+    renderRoot: RenderRoot = rootProps => (
       <CalendarContainer {...rootProps} hasFooter={hasFooter} />
     ),
-    renderMonthHeader = CalendarMonthHeader,
     ...rest
   } = props
 
-  const handleSingleChange: SelectSingleEventHandler = (date, selectedData, modifiers) => {
-    date && onChange(date)
-  }
+  const [navigationMonth, setNavigationMonth] = useState<Date | undefined>()
 
-  // @todo we have to partually implement range selection
-  const initialRangeValue: DateRangeType | undefined = range ? value as DateRangeType : undefined
-  const [rangeValue, setRangeValue] = useState<DateRange | undefined>(initialRangeValue ? {from: initialRangeValue[0], to: initialRangeValue[1]} : undefined);
+  useEffect(() => {
+    setNavigationMonth(undefined)
+  }, [value])
 
-  const handleRangeChange: SelectRangeEventHandler = (range) => {
-    if (rangeValue?.from && rangeValue?.to) {
-      setRangeValue({
-        from: range?.from,
-        to: undefined
-      })
-    } else if (rangeValue?.from && range?.to) {
-      setRangeValue(range)
-      onChange([rangeValue.from, range.to])
-    } else {
-      setRangeValue(range)
-    }
-  }
+  const [rangeValue, setRangeValue] = useState<DateRange | undefined>(
+    range && value
+      ? { from: (value as DateRangeType)[0], to: (value as DateRangeType)[1] }
+      : undefined
+  )
 
-  // test disabled intervals. Coz the format is quite different we need to convert to another format
-  const disabled = useMemo(() => {
-    return disabledIntervals?.map((interval) => ({
+  const disabledIntervalsFormatted = useMemo(() => {
+    return disabledIntervals?.map(interval => ({
       from: interval.start,
-      to: interval.end
+      to: interval.end,
     }))
   }, [disabledIntervals])
 
-  console.log('rest: ', rest)
+  const [rangeSelectionHoverDate, setRangeSelectionHoverDate] =
+    useState<Date | null>(null)
+  const isTemporaryRangeMiddle = useCallback(
+    (date: Date) => {
+      if (!rangeSelectionHoverDate || !rangeValue?.from || rangeValue?.to) {
+        return false
+      }
+
+      return (
+        (date > rangeValue.from && date < rangeSelectionHoverDate) ||
+        (date < rangeValue.from && date > rangeSelectionHoverDate)
+      )
+    },
+    [rangeSelectionHoverDate, rangeValue]
+  )
+
+  const isTemporaryRangeEnd = useCallback(
+    (date: Date) => {
+      if (!rangeSelectionHoverDate || !rangeValue?.from || rangeValue?.to) {
+        return false
+      }
+
+      return isEqual(date, rangeSelectionHoverDate)
+    },
+    [rangeSelectionHoverDate, rangeValue]
+  )
+
+  const isIndicated = useCallback(
+    (date: Date) =>
+      (indicatedIntervals || []).some(
+        ({ start, end }) => date >= start && date <= end
+      ),
+    [indicatedIntervals]
+  )
+
+  const handleSingleDateChange: SelectSingleEventHandler = date =>
+    date && onChange(date)
+
+  const handleRangeChange: SelectRangeEventHandler = (
+    range,
+    selectedDay,
+    { range_middle: isRangeMiddle }
+  ) => {
+    const currentRangeExists = Boolean(rangeValue?.from && rangeValue?.to)
+
+    if (isRangeMiddle || currentRangeExists) {
+      setRangeValue({
+        from: selectedDay,
+        to: undefined,
+      })
+    } else {
+      setRangeSelectionHoverDate(null)
+      setRangeValue({
+        from: range?.from,
+        to: range?.to,
+      })
+
+      if (range?.from && range?.to) {
+        onChange([range.from, range.to])
+      }
+    }
+  }
+
+  const handleDayEnter = (date: Date) =>
+    range && rangeValue?.from && setRangeSelectionHoverDate(date)
 
   return (
     <div ref={ref} {...rest} tabIndex={0}>
-      <DayPicker
-        required
-        mode={range ? 'range' : 'single'}
-        // className={classes.root}
-        selected={range ? rangeValue : value}
-        // @ts-ignore
-        onSelect={range ? handleRangeChange : handleSingleChange}
-        fromDate={minDate}
-        toDate={maxDate}
-        disabled={disabled}
-        weekStartsOn={weekStartsOn}
-        components={{
-          Caption: CustomCaption
-        }}
-        classNames={{
-          root: classes.root,
-          vhidden: classes.vhidden,
-          day: classes.day,
-          button: classes.button,
-          table: classes.table,
-          head: classes.head,
-          head_row: classes.head_row,
-          head_cell: classes.head_cell,
-          row: classes.row,
-          cell: classes.cell,
-        }}
-        modifiersClassNames={{
-          [Selected]: classes.selected,
-          [Disabled]: classes.disabled,
-          // @todo
-          // [Hidden]: undefined,
-          [Today]: classes.today,
-          [RangeEnd]: classes.endSelection,
-          [RangeMiddle]: classes.selectable,
-          [RangeStart]: classes.startSelection,
-          // @todo
-          // [Outside]: undefined
-        }}
-      />
+      <RenderRoot hasFooter={hasFooter}>
+        <CalendarContext.Provider
+          value={{
+            onDayMouseEnter: handleDayEnter,
+            renderDay,
+            renderMonthHeader,
+          }}
+        >
+          <DayPicker
+            required
+            showOutsideDays
+            month={navigationMonth || activeMonth}
+            mode={range ? 'range' : 'single'}
+            selected={range ? rangeValue : value}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            onSelect={range ? handleRangeChange : handleSingleDateChange}
+            fromDate={minDate}
+            onMonthChange={month => setNavigationMonth(month)}
+            toDate={maxDate}
+            disabled={disabledIntervalsFormatted}
+            weekStartsOn={weekStartsOn}
+            formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
+            modifiers={{
+              weekend: isWeekend,
+              indicated: isIndicated,
+              temporaryRangeMiddle: isTemporaryRangeMiddle,
+              temporaryRangeEnd: isTemporaryRangeEnd,
+            }}
+            components={{
+              Caption: CalendarMonthHeader,
+              Day: CalendarDay,
+            }}
+            classNames={{
+              head: classes.head,
+              head_row: classes.head_row,
+              head_cell: classes.head_cell,
+              row: classes.row,
+              cell: classes.cell,
+              vhidden: classes.vhidden,
+            }}
+          />
+        </CalendarContext.Provider>
+      </RenderRoot>
     </div>
   )
 })
 
 Calendar.defaultProps = {
   range: false,
+  weekStartsOn: 1,
 }
 
 Calendar.displayName = 'Calendar'
