@@ -37,6 +37,8 @@ export type BarChartDataItem<K extends string | number | symbol> = {
   }
 }
 
+type ShowEverytNthTickValue = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
   /**
@@ -64,6 +66,10 @@ export interface Props<K extends string | number | symbol>
   showBarLabel?: boolean
   /** If set false, animation of bar will be disabled */
   isAnimationActive?: boolean
+  /** Makes X-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
+  showEveryNthTickOnXAxis?: ShowEverytNthTickValue
+  /** Makes Y-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
+  showEveryNthTickOnYAxis?: ShowEverytNthTickValue
 }
 
 const StyleOverrides = () => (
@@ -106,6 +112,8 @@ const BarChart = <K extends string>({
   showBarLabel,
   isAnimationActive,
   layout,
+  showEveryNthTickOnXAxis = 1,
+  showEveryNthTickOnYAxis = 1,
   ...rest
 }: Props<K>) => {
   const horizontal = layout === 'horizontal'
@@ -171,6 +179,7 @@ const BarChart = <K extends string>({
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
+            interval={showEveryNthTickOnXAxis - 1}
           />
           <YAxis
             {...yAxisProps}
@@ -179,6 +188,7 @@ const BarChart = <K extends string>({
             axisLine={AXIS_LINE}
             minTickGap={MIN_TICK_GAP}
             tickMargin={TICK_MARGIN}
+            interval={showEveryNthTickOnYAxis - 1}
           />
           {tooltipElement}
           {dataKeys.map(dataKey => (
