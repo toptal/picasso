@@ -1,5 +1,15 @@
 # Change Log
 
+## 47.3.0
+
+### Minor Changes
+
+- [#3558](https://github.com/toptal/picasso/pull/3558) [`4dbe38c0a`](https://github.com/toptal/picasso/commit/4dbe38c0a7b1d25570f981a20c762516973815c4) Thanks [@mkrl](https://github.com/mkrl)!
+
+### BarChart
+
+- added a possibility to stack bars by providing `stackedBars` prop
+
 ## 47.2.0
 
 ### Minor Changes
