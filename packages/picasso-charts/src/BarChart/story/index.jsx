@@ -42,6 +42,12 @@ page
       "You can customize chart's tooltip, height, width, fill and label colors.",
     takeScreenshot: false,
   })
+  .addExample('BarChart/story/Stacked.example.tsx', {
+    title: 'Stacked',
+    description:
+      'Bars can be stacked on top of each other by providing `stackedBars`',
+    takeScreenshot: false,
+  })
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
     title: 'Hide bar label',
     description:
