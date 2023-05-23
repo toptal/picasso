@@ -15,6 +15,9 @@ const Example = () => (
     <Container right='small' top={0.5}>
       <Tag.Rectangular indicator='blue'>Blue</Tag.Rectangular>
     </Container>
+    <Container right='small' top={0.5}>
+      <Tag.Rectangular indicator='light-blue'>Light blue</Tag.Rectangular>
+    </Container>
   </Container>
 )
 

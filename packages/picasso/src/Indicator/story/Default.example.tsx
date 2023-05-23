@@ -4,6 +4,15 @@ import { Indicator, Typography, Container } from '@toptal/picasso'
 const Example = () => (
   <>
     <Container bottom='medium'>
+      <Container inline right='small'>
+        <Indicator color='light-blue' />
+      </Container>
+      <Typography inline size='medium'>
+        Light blue
+      </Typography>
+    </Container>
+
+    <Container bottom='medium'>
       <Container bottom='medium'>
         <Container inline right='small'>
           <Indicator color='light-grey' />
