@@ -1,5 +1,15 @@
 # Change Log
 
+## 33.1.2
+
+### Patch Changes
+
+- [#3565](https://github.com/toptal/picasso/pull/3565) [`aac446bba`](https://github.com/toptal/picasso/commit/aac446bbacf6b6c3c424e655240e55a2996acc5d) Thanks [@isabellymonteiro](https://github.com/isabellymonteiro)!
+
+### Drawer
+
+- fix close button and standard title overlap
+
 ## 33.1.1
 
 ### Patch Changes
