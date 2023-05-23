@@ -56,7 +56,8 @@
     "react-dropzone": "^11.4.0",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-truncate": "^2.4.0",
-    "simple-react-calendar": "^2.2.8"
+    "simple-react-calendar": "^2.2.8",
+    "react-day-picker": "^8.7.1"
   },
   "devDependencies": {
     "@babel/types": "^7.20.7",
