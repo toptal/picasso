@@ -1,5 +1,6 @@
 import React from 'react'
 
+import type { RenderRoot } from '../CalendarContainer'
 import type { RenderDay } from '../CalendarDay'
 import type { RenderMonthHeader } from '../CalendarMonthHeader'
 
@@ -9,10 +10,12 @@ import type { RenderMonthHeader } from '../CalendarMonthHeader'
  */
 const CalendarContext = React.createContext<{
   onDayMouseEnter?: (date: Date) => void
+  renderRoot?: RenderRoot
   renderDay?: RenderDay
   renderMonthHeader?: RenderMonthHeader
 }>({
   onDayMouseEnter: undefined,
+  renderRoot: undefined,
   renderDay: undefined,
   renderMonthHeader: undefined,
 })

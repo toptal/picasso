@@ -33,15 +33,10 @@ export interface DaysOfWeekProps {
   children?: ReactNode
 }
 
-export interface CalendarProps {
-  children?: ReactNode
-  hasFooter?: boolean
-}
-
 export type CalendarDateRange = { start: Date; end: Date }
 
 export type DateOrDateRangeType = Date | DateRangeType
 
-export type DateRangeType = [Date, Date]
+export type DateRangeType = [start: Date, end: Date]
 
 export type WeekStart = DayPickerDefaultProps['weekStartsOn']

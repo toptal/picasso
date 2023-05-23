@@ -23,7 +23,7 @@ export default ({ palette, sizes }: Theme) =>
       borderRadius: sizes.borderRadius.small,
       cursor: 'pointer',
 
-      '&:hover:not($selected):not($disabled):not($startSelection):not($endSelection), &:focus:not($selected)':
+      '&:hover:not($selected):not($disabled):not($startSelection):not($endSelection), &:focus:not($selected):not($disabled):not($startSelection):not($endSelection)':
         {
           backgroundColor: alpha(palette.blue.main, 0.24),
         },

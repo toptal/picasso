@@ -59,10 +59,10 @@ const CalendarMonthHeader = (props: CaptionProps) => {
     ;[isLast, isFirst] = [isFirst, isLast]
   }
 
-  const hideNext = numberOfMonths > 1 && (isFirst || !isLast)
-  const hidePrevious = numberOfMonths > 1 && (isLast || !isFirst)
+  const hideNext = numberOfMonths > 1 && !isLast
+  const hidePrevious = numberOfMonths > 1 && !isFirst
 
-  const handlePreviousClick: React.MouseEventHandler = () => {
+  const handlePreviousClick = () => {
     if (!previousMonth) {
       return
     }
@@ -70,7 +70,7 @@ const CalendarMonthHeader = (props: CaptionProps) => {
     onMonthChange?.(previousMonth)
   }
 
-  const handleNextClick: React.MouseEventHandler = () => {
+  const handleNextClick = () => {
     if (!nextMonth) {
       return
     }

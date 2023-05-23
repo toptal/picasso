@@ -91,23 +91,11 @@ const CalendarDay = (dayProps: CalendarDayProps): JSX.Element => {
         [classes.withinSelection]: isRangeMiddle || isTemporaryRangeMiddle,
         [classes.endSelection]: isRangeEnd || isTemporaryRangeEnd,
       })}
-      onClick={
-        isDisabled
-          ? undefined
-          : event => {
-              if (buttonProps?.onClick) {
-                buttonProps.onClick(event)
-              }
-            }
-      }
+      onClick={isDisabled ? undefined : event => buttonProps?.onClick?.(event)}
       onMouseEnter={event => {
-        if (onDayMouseEnter) {
-          onDayMouseEnter(date)
-        }
+        onDayMouseEnter?.(date)
 
-        if (buttonProps.onMouseEnter) {
-          buttonProps.onMouseEnter(event)
-        }
+        buttonProps?.onMouseEnter?.(event)
       }}
       value={date.toString()}
     >

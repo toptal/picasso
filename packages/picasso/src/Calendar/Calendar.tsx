@@ -25,11 +25,11 @@ import CalendarMonthHeader from '../CalendarMonthHeader'
 import CalendarContext from '../CalendarContext'
 import type {
   CalendarDateRange,
-  CalendarProps,
   DateOrDateRangeType,
   DateRangeType,
   WeekStart,
 } from './types'
+import type { RenderRoot } from '../CalendarContainer'
 import CalendarContainer from '../CalendarContainer'
 
 export interface Props
@@ -42,7 +42,7 @@ export interface Props
   range?: boolean
   value?: DateOrDateRangeType
   activeMonth?: Date
-  renderRoot?: (props: CalendarProps) => JSX.Element
+  renderRoot?: RenderRoot
   renderMonthHeader?: RenderMonthHeader
   renderDay?: RenderDay
   disabledIntervals?: CalendarDateRange[]
@@ -59,7 +59,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 ) {
   const classes = useStyles()
   const {
-    range,
+    range = false,
     activeMonth,
     value,
     onChange,
@@ -69,11 +69,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     indicatedIntervals,
     renderDay,
     renderMonthHeader,
-    weekStartsOn,
+    weekStartsOn = 1,
     hasFooter = false,
-    renderRoot: RenderRoot = rootProps => (
-      <CalendarContainer {...rootProps} hasFooter={hasFooter} />
-    ),
+    renderRoot,
     ...rest
   } = props
 
@@ -134,6 +132,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const handleSingleDateChange: SelectSingleEventHandler = date =>
     date && onChange(date)
 
+  // "handleRangeChange" is fired in two cases – either the range start or the range end is set
+  // The handler needs to distinguish both cases to enable specific modifiers and call "onChange"
+  // handler (if it is applicable when both range start and end are set)
   const handleRangeChange: SelectRangeEventHandler = (
     range,
     selectedDay,
@@ -164,20 +165,23 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 
   return (
     <div ref={ref} {...rest} tabIndex={0}>
-      <RenderRoot hasFooter={hasFooter}>
-        <CalendarContext.Provider
-          value={{
-            onDayMouseEnter: handleDayEnter,
-            renderDay,
-            renderMonthHeader,
-          }}
-        >
+      <CalendarContext.Provider
+        value={{
+          onDayMouseEnter: handleDayEnter,
+          renderRoot,
+          renderDay,
+          renderMonthHeader,
+        }}
+      >
+        <CalendarContainer hasFooter={hasFooter}>
           <DayPicker
             required
             showOutsideDays
             month={navigationMonth || activeMonth}
             mode={range ? 'range' : 'single'}
             selected={range ? rangeValue : value}
+            // Moving mode-dependent props to a separate object to satisfy TypeScript breaks
+            // the change detection, so error is ignored
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             onSelect={range ? handleRangeChange : handleSingleDateChange}
@@ -199,6 +203,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             }}
             classNames={{
               head: classes.head,
+              table: classes.table,
               head_row: classes.head_row,
               head_cell: classes.head_cell,
               row: classes.row,
@@ -206,16 +211,11 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               vhidden: classes.vhidden,
             }}
           />
-        </CalendarContext.Provider>
-      </RenderRoot>
+        </CalendarContainer>
+      </CalendarContext.Provider>
     </div>
   )
 })
-
-Calendar.defaultProps = {
-  range: false,
-  weekStartsOn: 1,
-}
 
 Calendar.displayName = 'Calendar'
 

@@ -340,7 +340,6 @@ export const DatePicker = (props: Props) => {
       if (!calendarIsShown) {
         event.currentTarget.blur()
       } else {
-        // TODO: Manage this whole logic inside date picker library
         const firstButton =
           calendarRef.current?.querySelector<HTMLButtonElement>(
             'button:not([tabindex="-1"])'
