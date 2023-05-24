@@ -298,6 +298,7 @@ export { default as ThinkingBlue64 } from './ThinkingBlue64'
 export { default as ThinkingWhite64 } from './ThinkingWhite64'
 export { default as ThumbsBlue64 } from './ThumbsBlue64'
 export { default as ThumbsWhite64 } from './ThumbsWhite64'
+// eslint-disable-next-line max-lines
 export { default as TimezoneBlue64 } from './TimezoneBlue64'
 export { default as TimezoneWhite64 } from './TimezoneWhite64'
 export { default as TopBlue64 } from './TopBlue64'
