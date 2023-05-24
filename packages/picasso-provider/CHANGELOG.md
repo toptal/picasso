@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- [#3570](https://github.com/toptal/picasso/pull/3570) [`cb4e71886`](https://github.com/toptal/picasso/commit/cb4e718860b7df72064ff5041bfd1775c40ef733) Thanks [@sashuk](https://github.com/sashuk)!
+- remove media queries overlap for breakpoint range detection
+
 ## 3.0.0
 
 ### Major Changes
