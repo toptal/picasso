@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 export { default as Svg3DCubeScreenBlue64 } from './3DCubeScreenBlue64'
 export { default as Svg3DCubeScreenWhite64 } from './3DCubeScreenWhite64'
 export { default as Svg404ErrorBlue64 } from './404ErrorBlue64'
@@ -263,6 +262,7 @@ export { default as SearchWhite64 } from './SearchWhite64'
 export { default as SecurityBlue64 } from './SecurityBlue64'
 export { default as SecurityWhite64 } from './SecurityWhite64'
 export { default as ShareBlue64 } from './ShareBlue64'
+export { default as ShareLinkBlue64 } from './ShareLinkBlue64'
 export { default as ShareWhite64 } from './ShareWhite64'
 export { default as ShieldBlue64 } from './ShieldBlue64'
 export { default as ShieldWhite64 } from './ShieldWhite64'
