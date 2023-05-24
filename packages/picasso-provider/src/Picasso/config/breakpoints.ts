@@ -11,8 +11,6 @@ type BreakpointsList = {
   [key: string]: number
 }
 
-const decreaseByOne = (value: number) => value - 1
-
 class BreakpointProvider {
   breakpoints: Record<'values', BreakpointValues> = {
     values: {
@@ -32,10 +30,10 @@ class BreakpointProvider {
     const { sm, md, lg, xl } = this.breakpoints.values
 
     this.mediaQueries = {
-      xs: `(max-width: ${decreaseByOne(sm)}px)`,
-      sm: `(min-width: ${sm}px) and (max-width: ${decreaseByOne(md)}px)`,
-      md: `(min-width: ${md}px) and (max-width: ${decreaseByOne(lg)}px)`,
-      lg: `(min-width: ${lg}px) and (max-width: ${decreaseByOne(xl)}px)`,
+      xs: `(max-width: ${sm - 1}px)`,
+      sm: `(min-width: ${sm}px) and (max-width: ${md - 1}px)`,
+      md: `(min-width: ${md}px) and (max-width: ${lg - 1}px)`,
+      lg: `(min-width: ${lg}px) and (max-width: ${xl - 1}px)`,
       xl: `(min-width: ${xl}px)`,
     }
   }
