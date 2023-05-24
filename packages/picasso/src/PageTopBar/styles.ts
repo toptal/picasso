@@ -3,7 +3,7 @@ import { createStyles } from '@material-ui/core/styles'
 
 import { headerHeight } from './constants'
 
-export default ({ palette, layout, zIndex }: Theme) =>
+export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
@@ -31,8 +31,12 @@ export default ({ palette, layout, zIndex }: Theme) =>
       margin: '0 auto',
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
-      padding: `0 ${layout.contentPaddingHorizontal}`,
+      padding: `0 ${layout.contentMobilePaddingHorizontal}`,
       height: headerHeight.default,
+
+      [screens('md', 'lg', 'xl')]: {
+        padding: `0 ${layout.contentPaddingHorizontal}`,
+      },
     },
     wrapper: {
       position: 'relative',
