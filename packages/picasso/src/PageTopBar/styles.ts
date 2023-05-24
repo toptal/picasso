@@ -1,9 +1,9 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = { default: '3.5rem', smallAndMedium: '3rem' }
+import { headerHeight } from './constants'
 
-export default ({ palette, layout, zIndex, screens }: Theme) =>
+export default ({ palette, layout, zIndex }: Theme) =>
   createStyles({
     root: {
       fontSize: '1rem',
@@ -33,17 +33,11 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       maxWidth: layout.contentWidth,
       padding: `0 ${layout.contentPaddingHorizontal}`,
       height: headerHeight.default,
-      [screens('xs', 'sm')]: {
-        height: headerHeight.smallAndMedium,
-      },
     },
     wrapper: {
+      position: 'relative',
       height: headerHeight.default,
       minHeight: headerHeight.default,
-      [screens('xs', 'sm')]: {
-        height: headerHeight.smallAndMedium,
-        minHeight: headerHeight.smallAndMedium,
-      },
     },
     wide: {
       maxWidth: layout.contentWidthWide,
@@ -54,10 +48,12 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     left: {
       display: 'flex',
       alignItems: 'center',
+      gap: '1rem',
     },
     right: {
       display: 'flex',
       alignItems: 'center',
+      gap: '1.5rem',
     },
     divider: {
       width: '1px',
@@ -67,18 +63,5 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     dividerBlue: {
       backgroundColor: palette.blue.darker,
-    },
-    logoContainer: {
-      [screens('xs', 'sm')]: {
-        lineHeight: '1em',
-        position: 'absolute',
-        left: '50%',
-        transform: 'translate(-50%, 0%)',
-      },
-    },
-    logo: {
-      [screens('xs', 'sm')]: {
-        fontSize: '1.5em',
-      },
     },
   })

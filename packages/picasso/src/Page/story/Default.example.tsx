@@ -1,11 +1,25 @@
 import React from 'react'
-import { Page, Container, Menu, Typography } from '@toptal/picasso'
-import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
+import {
+  Page,
+  Container,
+  Menu,
+  Typography,
+  Tooltip,
+  Button,
+  Globe16,
+  Profile16,
+  PortfolioDesigner16,
+  Heartbeat16,
+} from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page>
-      <Page.TopBar rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar
+        rightContent={<RightContent />}
+        actionItems={<ActionItems />}
+        title='Default example'
+      />
       <Page.Content>
         <SidebarMenu />
         <Page.Article>
@@ -42,6 +56,19 @@ const RightContent = () => (
     </Menu>
   </Page.TopBarMenu>
 )
+
+const ActionItems = () => {
+  return (
+    <Tooltip content='Your Operational Issues'>
+      <Button.Circular
+        variant='transparent'
+        icon={<Heartbeat16 color='light-grey' />}
+        data-testid='operational-issues-button'
+        onClick={() => {}}
+      />
+    </Tooltip>
+  )
+}
 
 const Content = () => (
   <Container top='small' bottom='small'>

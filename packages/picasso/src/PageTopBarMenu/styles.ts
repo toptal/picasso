@@ -1,6 +1,8 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
+import { headerHeight } from '../PageTopBar/constants'
+
 export default ({ screens }: Theme) =>
   createStyles({
     avatar: {
@@ -16,21 +18,7 @@ export default ({ screens }: Theme) =>
     },
     content: {
       width: '15em',
-      maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
-
-      [screens('xs', 'sm')]: {
-        width: '100vw',
-        maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
-      },
-
-      // override existing media-query because we have full height
-      '@media screen and (max-height: 585px)': {
-        maxHeight: 'calc(100vh - 4.5rem)', // viewport minus header height
-
-        [screens('xs', 'sm')]: {
-          maxHeight: 'calc(100vh - 3rem)', // viewport minus header height
-        },
-      },
+      maxHeight: `calc(100vh - ${headerHeight.default})`, // viewport minus header height
     },
     name: {
       fontWeight: 400,
