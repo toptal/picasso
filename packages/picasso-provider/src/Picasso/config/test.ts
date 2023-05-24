@@ -12,13 +12,13 @@ describe('responsive breakpoint utils', () => {
     it('xs', () => {
       const mediaQuery = screens('xs')
 
-      expect(mediaQuery).toBe('@media (max-width: 480px)')
+      expect(mediaQuery).toBe('@media (max-width: 479px)')
     })
     it('sm', () => {
       const mediaQuery = screens('sm')
 
       expect(mediaQuery).toBe(
-        '@media (min-width: 480px) and (max-width: 768px)'
+        '@media (min-width: 480px) and (max-width: 767px)'
       )
     })
 
@@ -26,7 +26,7 @@ describe('responsive breakpoint utils', () => {
       const mediaQuery = screens('sm', 'md')
 
       expect(mediaQuery).toBe(
-        '@media (min-width: 480px) and (max-width: 768px), (min-width: 768px) and (max-width: 1024px)'
+        '@media (min-width: 480px) and (max-width: 767px), (min-width: 768px) and (max-width: 1023px)'
       )
     })
 
@@ -34,7 +34,7 @@ describe('responsive breakpoint utils', () => {
       const mediaQuery = screens('sm', 'md', 'lg')
 
       expect(mediaQuery).toBe(
-        '@media (min-width: 480px) and (max-width: 768px), (min-width: 768px) and (max-width: 1024px), (min-width: 1024px) and (max-width: 1440px)'
+        '@media (min-width: 480px) and (max-width: 767px), (min-width: 768px) and (max-width: 1023px), (min-width: 1024px) and (max-width: 1439px)'
       )
     })
   })
@@ -136,7 +136,7 @@ describe('non-responsive breakpoint utils', () => {
       const mediaQuery = screens('sm', 'md', 'lg')
 
       expect(mediaQuery).toBe(
-        '@media (min-width: 1024px) and (max-width: 1440px)'
+        '@media (min-width: 1024px) and (max-width: 1439px)'
       )
     })
   })
