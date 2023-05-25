@@ -118,22 +118,20 @@ const Example = ({ sidebarProps }: ExampleProps) => (
 )
 
 describe('Page', () => {
-  describe('responsive test', () => {
-    const sizes = [
-      { device: 'xs', width: 375, height: 667 },
-      { device: 'sm', width: 480, height: 1024 },
-      { device: 'md', width: 768, height: 900 },
-      { device: 'lg', width: 1024, height: 900 },
-      // for TopBar we dont use 1440px
-      { device: 'xl', width: 1280, height: 900 },
-    ]
+  const sizes = [
+    { device: 'xs', width: 375, height: 667 },
+    { device: 'sm', width: 480, height: 1024 },
+    { device: 'md', width: 768, height: 900 },
+    { device: 'lg', width: 1024, height: 900 },
+    // for TopBar we dont use 1440px
+    { device: 'xl', width: 1280, height: 900 },
+  ]
 
+  describe('responsive test', () => {
     sizes.forEach(size => {
       // eslint-disable-next-line max-nested-callbacks
       it(`Should display correctly on ${size.device}`, () => {
-        // Set viewport to desired size
         cy.viewport(size.width, size.height)
-
         // Render component
         cy.mount(<Example />)
 
@@ -145,6 +143,7 @@ describe('Page', () => {
       })
     })
   })
+
   describe('when the sidebar is sticky', () => {
     it('sticks to TopBar on scroll', () => {
       cy.mount(<Example />)

@@ -26,8 +26,8 @@ export default ({ palette, screens, layout }: Theme) =>
       },
 
       [screens('md', 'lg', 'xl')]: {
-        paddingLeft: `0.5rem ${layout.contentPaddingHorizontal} 1.5rem`,
-        paddingRight: `0.5rem ${layout.contentPaddingHorizontal} 1.5rem`,
+        paddingLeft: layout.contentPaddingHorizontal,
+        paddingRight: layout.contentPaddingHorizontal,
       },
     },
     centered: {},
