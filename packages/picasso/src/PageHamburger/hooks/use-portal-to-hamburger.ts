@@ -13,7 +13,7 @@ const usePortalToHamburger = () => {
 
   useEffect(() => {
     setIsHamburgerVisible(true)
-  }, [])
+  }, [setIsHamburgerVisible])
 }
 
 export default usePortalToHamburger

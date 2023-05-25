@@ -4,7 +4,13 @@ import { useSidebar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { ReactNode } from 'react'
-import React, { forwardRef, useCallback, useEffect, useState } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useState,
+  useContext,
+} from 'react'
 
 import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
@@ -13,10 +19,11 @@ import { PageHamburgerPortal, usePortalToHamburger } from '../PageHamburger'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import SidebarMenu from '../SidebarMenu'
-import { noop, useBreakpoint } from '../utils'
+import { noop } from '../utils'
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import type { VariantType } from './types'
+import { PageContext } from '../Page/Page'
 
 export interface Props extends BaseProps {
   /** Style variant of Sidebar and subcomponents */
@@ -68,6 +75,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+  const { isHamburgerModeActive } = useContext(PageContext)
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
@@ -86,12 +94,10 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   usePortalToHamburger()
 
-  const isCompactLayout = useBreakpoint(['xs', 'sm', 'md', 'lg'])
-
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
     onCollapse?.()
-  }, [setIsCollapsed])
+  }, [setIsCollapsed, onCollapse])
 
   const sidebar = (
     <Container
@@ -147,7 +153,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     </Container>
   )
 
-  return isCompactLayout ? (
+  return isHamburgerModeActive ? (
     <PageHamburgerPortal>{children}</PageHamburgerPortal>
   ) : (
     sidebar

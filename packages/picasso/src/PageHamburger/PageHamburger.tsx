@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -7,8 +7,8 @@ import ButtonCircular from '../ButtonCircular'
 import { useHamburgerContext } from './PageHamburgerContext'
 import Dropdown from '../Dropdown'
 import { Close24, Overview24 } from '../Icon'
-import { useBreakpoint } from '../utils'
 import styles from './styles'
+import { PageContext } from '../Page/Page'
 
 interface Props {
   id: string
@@ -19,10 +19,10 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const PageHamburger = ({ id }: Props) => {
+  const { isHamburgerModeActive } = useContext(PageContext)
   const { isHamburgerVisible } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
-  const isCompactLayout = useBreakpoint(['xs', 'sm', 'md', 'lg'])
 
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)
@@ -31,7 +31,7 @@ const PageHamburger = ({ id }: Props) => {
     <Dropdown
       content={<div id={id} />}
       className={cx({
-        [classes.hidden]: !isCompactLayout || !isHamburgerVisible,
+        [classes.hidden]: !isHamburgerModeActive || !isHamburgerVisible,
       })}
       classes={{ content: classes.responsiveWrapperContent }}
       offset={{ top: 0.4 }}

@@ -63,13 +63,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   } = props
   const classes = useStyles()
 
-  const isCenterContentMovedToHamburger = useBreakpoint([
-    'xs',
-    'sm',
-    'md',
-    'lg',
-  ])
-
   const showEmlemOnly = useBreakpoint(['xs', 'sm'])
   const showTagline = useBreakpoint(['lg', 'xl'])
 
@@ -83,7 +76,8 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     }
   }, [setHasTopBar])
 
-  const { width, fullWidth } = useContext<PageContextProps>(PageContext)
+  const { width, fullWidth, isHamburgerModeActive } =
+    useContext<PageContextProps>(PageContext)
   const { hamburgerId } = useHamburgerContext()
 
   const isDark = ['dark', 'grey'].includes(variant)
@@ -105,7 +99,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     </Container>
   )
 
-  const responsiveCenterContent = isCenterContentMovedToHamburger ? (
+  const responsiveCenterContent = isHamburgerModeActive ? (
     <PageHamburgerPortal>{centerContent}</PageHamburgerPortal>
   ) : (
     <Container flex alignItems='center'>
