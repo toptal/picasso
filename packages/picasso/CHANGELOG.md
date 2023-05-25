@@ -1,5 +1,17 @@
 # Change Log
 
+## 33.2.0
+
+### Minor Changes
+
+- [#3571](https://github.com/toptal/picasso/pull/3571) [`5263f70ae`](https://github.com/toptal/picasso/commit/5263f70ae601dc691e12e30f6af1328c6b7fb328) Thanks [@samsonovkirill](https://github.com/samsonovkirill)!
+
+---
+
+### Indicator
+
+- add light-blue color
+
 ## 33.1.2
 
 ### Patch Changes
