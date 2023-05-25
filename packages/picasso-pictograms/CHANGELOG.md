@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.0
+
+### Minor Changes
+
+- [`748ac8afb`](https://github.com/toptal/picasso/commit/748ac8afbc2a79214c7e61b6db49716d8aa326a4) Thanks [@DmitriyT51](https://github.com/DmitriyT51)!
+
+---
+
+- add `ShareLinkBlue64` pictogram
+
 ## 1.0.0
 
 ### Patch Changes
