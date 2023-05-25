@@ -18,26 +18,38 @@ exports[`Page.TopBar render with custom logo 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
+              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
+              <div
+                class="PicassoDropdown-root PageHamburger-hidden"
+              >
+                <div
+                  class="PicassoDropdown-anchor"
+                >
+                  <button
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+                    data-component-type="button"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                    >
+                      <svg
+                        class="PicassoSvgOverview24-root PicassoButton-icon PageHamburger-hamburger"
+                        style="min-width: 24px; min-height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
               <div>
                 Custom logo content
-              </div>
-            </div>
-            <div
-              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoTopBar-divider"
-              />
-              <div
-                class="PicassoContainer-leftsmallMargin"
-              >
-                <p
-                  class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
-                >
-                  Something
-                </p>
               </div>
             </div>
           </div>
@@ -46,34 +58,6 @@ exports[`Page.TopBar render with custom logo 1`] = `
           />
         </div>
       </header>
-      <div
-        class="PicassoDropdown-root PageHamburger-responsiveWrapper PageHamburger-hidden"
-      >
-        <div
-          class="PicassoDropdown-anchor"
-        >
-          <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
-            data-component-type="button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-            >
-              <svg
-                class="PicassoSvgOverview16-root PicassoButton-icon PageHamburger-hamburger"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M0 13h16v1H0v-1Zm0-5h16v1H0V8Zm0-5h16v1H0V3Z"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
-      </div>
     </div>
     <div
       class="PicassoPopper-root PicassoDropdown-popper"
@@ -115,14 +99,42 @@ exports[`Page.TopBar render with link 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
+              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
+              <div
+                class="PicassoDropdown-root PageHamburger-hidden"
+              >
+                <div
+                  class="PicassoDropdown-anchor"
+                >
+                  <button
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+                    data-component-type="button"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                    >
+                      <svg
+                        class="PicassoSvgOverview24-root PicassoButton-icon PageHamburger-hamburger"
+                        style="min-width: 24px; min-height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-blue MuiTypography-colorPrimary"
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
+                  class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >
@@ -137,56 +149,12 @@ exports[`Page.TopBar render with link 1`] = `
                 </svg>
               </a>
             </div>
-            <div
-              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoTopBar-divider"
-              />
-              <div
-                class="PicassoContainer-leftsmallMargin"
-              >
-                <p
-                  class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
-                >
-                  Something
-                </p>
-              </div>
-            </div>
           </div>
           <div
             class="PicassoTopBar-right"
           />
         </div>
       </header>
-      <div
-        class="PicassoDropdown-root PageHamburger-responsiveWrapper PageHamburger-hidden"
-      >
-        <div
-          class="PicassoDropdown-anchor"
-        >
-          <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
-            data-component-type="button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-            >
-              <svg
-                class="PicassoSvgOverview16-root PicassoButton-icon PageHamburger-hamburger"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M0 13h16v1H0v-1Zm0-5h16v1H0V8Zm0-5h16v1H0V3Z"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
-      </div>
     </div>
     <div
       class="PicassoPopper-root PicassoDropdown-popper"
@@ -228,10 +196,38 @@ exports[`Page.TopBar renders 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoTopBar-logoContainer"
+              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
+              <div
+                class="PicassoDropdown-root PageHamburger-hidden"
+              >
+                <div
+                  class="PicassoDropdown-anchor"
+                >
+                  <button
+                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+                    data-component-type="button"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                    >
+                      <svg
+                        class="PicassoSvgOverview24-root PicassoButton-icon PageHamburger-hamburger"
+                        style="min-width: 24px; min-height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
               <svg
-                class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
+                class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -245,56 +241,12 @@ exports[`Page.TopBar renders 1`] = `
                 />
               </svg>
             </div>
-            <div
-              class="PicassoContainer-leftsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex"
-            >
-              <div
-                class="PicassoTopBar-divider"
-              />
-              <div
-                class="PicassoContainer-leftsmallMargin"
-              >
-                <p
-                  class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
-                >
-                  Default
-                </p>
-              </div>
-            </div>
           </div>
           <div
             class="PicassoTopBar-right"
           />
         </div>
       </header>
-      <div
-        class="PicassoDropdown-root PageHamburger-responsiveWrapper PageHamburger-hidden"
-      >
-        <div
-          class="PicassoDropdown-anchor"
-        >
-          <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
-            data-component-type="button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-            >
-              <svg
-                class="PicassoSvgOverview16-root PicassoButton-icon PageHamburger-hamburger"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M0 13h16v1H0v-1Zm0-5h16v1H0V8Zm0-5h16v1H0V3Z"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
-      </div>
     </div>
     <div
       class="PicassoPopper-root PicassoDropdown-popper"
