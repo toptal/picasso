@@ -17,5 +17,15 @@ export default ({ layout }: Theme) =>
       '& > header + *': {
         marginTop: headerHeight.default,
       },
+
+      '--displayHamburger': 'block',
+      '--displayCenterMenu': 'block',
+      '--displaySidebar': 'none',
+
+      '@media (min-width: 1280px)': {
+        '--displayHamburger': 'none',
+        '--displaySidebar': 'block',
+        '--displayCenterMenu': 'flex',
+      },
     },
   })

@@ -76,8 +76,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     }
   }, [setHasTopBar])
 
-  const { width, fullWidth, isHamburgerModeActive } =
-    useContext<PageContextProps>(PageContext)
+  const { width, fullWidth } = useContext<PageContextProps>(PageContext)
   const { hamburgerId } = useHamburgerContext()
 
   const isDark = ['dark', 'grey'].includes(variant)
@@ -96,14 +95,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
       <Container left='small'>
         <Typography invert={isDark}>{title}</Typography>
       </Container>
-    </Container>
-  )
-
-  const responsiveCenterContent = isHamburgerModeActive ? (
-    <PageHamburgerPortal>{centerContent}</PageHamburgerPortal>
-  ) : (
-    <Container flex alignItems='center'>
-      {centerContent}
     </Container>
   )
 
@@ -137,7 +128,22 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
           </div>
 
           {/* Center part: inline menu */}
-          {centerContent && responsiveCenterContent}
+          {centerContent && (
+            <>
+              <PageHamburgerPortal>
+                <div className={classes.centerContentPortal}>
+                  {centerContent}
+                </div>
+              </PageHamburgerPortal>
+              <Container
+                flex
+                alignItems='center'
+                className={classes.centerContent}
+              >
+                {centerContent}
+              </Container>
+            </>
+          )}
 
           {/* Right part: Action items, User menu, Notifications */}
           <div className={classes.right}>

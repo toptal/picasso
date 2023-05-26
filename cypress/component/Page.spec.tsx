@@ -118,28 +118,28 @@ const Example = ({ sidebarProps }: ExampleProps) => (
 )
 
 describe('Page', () => {
-  const sizes = [
-    { device: 'xs', width: 375, height: 667 },
-    { device: 'sm', width: 480, height: 1024 },
-    { device: 'md', width: 768, height: 900 },
-    { device: 'lg', width: 1024, height: 900 },
-    // for TopBar we dont use 1440px
-    { device: 'xl', width: 1280, height: 900 },
-  ]
-
   describe('responsive test', () => {
-    sizes.forEach(size => {
-      // eslint-disable-next-line max-nested-callbacks
-      it(`Should display correctly on ${size.device}`, () => {
-        cy.viewport(size.width, size.height)
-        // Render component
-        cy.mount(<Example />)
+    it(`Should display correctly on all viewports`, () => {
+      // Render component
+      cy.mount(<Example />)
 
-        // Take a snapshot for visual diffing
-        cy.get('body').happoScreenshot({
-          component,
-          variant: `default/${size.device}`,
-        })
+      // Take a snapshot for visual diffing
+      cy.get('body').happoScreenshot({
+        component,
+        variant: `default/responsive`,
+        targets: [
+          // @ts-ignore
+          { name: 'xs', browser: 'chrome', viewport: '375x667' },
+          // @ts-ignore
+          { name: 'sm', browser: 'chrome', viewport: '480x1024' },
+          // @ts-ignore
+          { name: 'md', browser: 'chrome', viewport: '768x900' },
+          // @ts-ignore
+          { name: 'lg', browser: 'chrome', viewport: '1024x900' },
+          // for TopBar we dont use 1440px
+          // @ts-ignore
+          { name: 'xl', browser: 'chrome', viewport: '1280x900' },
+        ],
       })
     })
   })

@@ -7,6 +7,9 @@ export default ({ palette }: Theme) => {
   const wrapperBoxShadow = `inset -1px 0px 0px 0px ${palette.grey.lighter2}`
 
   return createStyles({
+    root: {
+      display: 'var(--displayHamburger)',
+    },
     hamburger: {
       pointerEvents: 'none',
     },

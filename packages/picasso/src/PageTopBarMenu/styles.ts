@@ -9,7 +9,7 @@ export default ({ screens }: Theme) =>
       fontSize: '0.9rem',
     },
     contentUserBadge: {
-      [screens('xs', 'sm')]: {
+      [screens('xs', 'sm', 'md')]: {
         padding: '1em',
         zIndex: 1,
         backgroundColor: 'white',
@@ -17,8 +17,11 @@ export default ({ screens }: Theme) =>
       },
     },
     content: {
-      width: '15em',
       maxHeight: `calc(100vh - ${headerHeight.default})`, // viewport minus header height
+      width: '15em',
+      [screens('xs', 'sm')]: {
+        width: '100vw',
+      },
     },
     name: {
       fontWeight: 400,
@@ -33,12 +36,12 @@ export default ({ screens }: Theme) =>
     arrow: {
       color: 'white',
 
-      [screens('xs', 'sm')]: {
+      [screens('xs', 'sm', 'md')]: {
         marginLeft: '0.5rem',
       },
     },
     paper: {
-      [screens('xs', 'sm')]: {
+      [screens('xs', 'sm', 'md')]: {
         top: '2.5em !important',
       },
     },

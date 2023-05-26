@@ -16,6 +16,7 @@ export default ({ palette, screens, transitions }: Theme) =>
       fontSize: '1rem',
       position: 'relative',
       transition: `width ${transitions.duration.enteringScreen}ms ease-in-out`,
+      display: 'var(--displaySidebar)',
 
       [screens('xs', 'sm')]: {
         width: '100vw',

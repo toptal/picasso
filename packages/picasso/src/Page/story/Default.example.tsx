@@ -18,6 +18,7 @@ const Example = () => (
       <Page.TopBar
         rightContent={<RightContent />}
         actionItems={<ActionItems />}
+        centerContent={<CenterContent />}
         title='Default example'
       />
       <Page.Content>
@@ -32,6 +33,14 @@ const Example = () => (
 )
 
 const handleClick = () => window.alert('Item clicked')
+
+const CenterContent = () => (
+  <Page.TopBar.Menu>
+    <Page.TopBar.Item>Item 1</Page.TopBar.Item>
+    <Page.TopBar.Item>Item 2</Page.TopBar.Item>
+    <Page.TopBar.Item>Item 3</Page.TopBar.Item>
+  </Page.TopBar.Menu>
+)
 
 const SidebarMenu = () => (
   <Page.Sidebar>

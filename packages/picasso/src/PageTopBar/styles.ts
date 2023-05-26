@@ -59,6 +59,13 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       alignItems: 'center',
       gap: '1.5rem',
     },
+    centerContent: {
+      display: 'var(--displaySidebar)',
+    },
+    centerContentPortal: {
+      // as soon as hamburger is visible, center content is ported to hamburger menu
+      display: 'var(--displayHamburger)',
+    },
     divider: {
       width: '1px',
       height: '1.5em',
