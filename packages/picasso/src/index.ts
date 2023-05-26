@@ -159,7 +159,7 @@ export type { BadgeProps } from './Badge'
 export { BreadcrumbsCompound as Breadcrumbs } from './BreadcrumbsCompound'
 export type { BreadcrumbsProps } from './Breadcrumbs'
 export { default as Calendar } from './Calendar'
-export type { DateOrDateRangeType } from './Calendar'
+export type { DateOrDateRangeType, DateRangeType } from './Calendar'
 export {
   default as DatePicker,
   datePickerParseDateString,

@@ -1,19 +1,30 @@
-import React from 'react'
+import type { ReactNode } from 'react'
+import React, { useContext } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import type { CalendarProps } from '../Calendar/types'
 import styles from './styles'
+import CalendarContext from '../CalendarContext'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoCalendarContainer',
 })
 
-const CalendarContainer = ({ children, hasFooter }: CalendarProps) => {
-  const classes = useStyles()
+export type CalendarContainerProps = {
+  children?: ReactNode
+  hasFooter?: boolean
+}
 
-  return (
+export type RenderRoot = (args: CalendarContainerProps) => ReactNode
+
+const CalendarContainer = ({ children, hasFooter }: CalendarContainerProps) => {
+  const classes = useStyles()
+  const { renderRoot } = useContext(CalendarContext)
+
+  return renderRoot ? (
+    <>{renderRoot({ hasFooter, children })}</>
+  ) : (
     <div
       className={cx(classes.root, {
         [classes.hasFooter]: hasFooter,
