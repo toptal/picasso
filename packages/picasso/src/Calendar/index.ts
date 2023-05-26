@@ -5,4 +5,5 @@ export type {
   DateRangeType,
   CalendarDateRange,
   WeekStart,
+  DayProps,
 } from './types'
