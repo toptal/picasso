@@ -30,10 +30,10 @@ class BreakpointProvider {
     const { sm, md, lg, xl } = this.breakpoints.values
 
     this.mediaQueries = {
-      xs: `(max-width: ${sm - 1}px)`,
-      sm: `(min-width: ${sm}px) and (max-width: ${md - 1}px)`,
-      md: `(min-width: ${md}px) and (max-width: ${lg - 1}px)`,
-      lg: `(min-width: ${lg}px) and (max-width: ${xl - 1}px)`,
+      xs: `(max-width: ${sm - 0.02}px)`,
+      sm: `(min-width: ${sm}px) and (max-width: ${md - 0.02}px)`,
+      md: `(min-width: ${md}px) and (max-width: ${lg - 0.02}px)`,
+      lg: `(min-width: ${lg}px) and (max-width: ${xl - 0.02}px)`,
       xl: `(min-width: ${xl}px)`,
     }
   }
