@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -6,10 +6,9 @@ import cx from 'classnames'
 import styles from './styles'
 
 export interface Props {
-  indicatedIntervals?: { start: Date; end: Date }[]
-  date: Date
   isSelected: boolean
   isToday: boolean
+  isIndicated: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -17,21 +16,13 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const CalendarIndicators = ({
-  date,
-  indicatedIntervals,
+  isIndicated,
   isSelected,
   isToday,
 }: Props) => {
   const classes = useStyles()
 
-  const isIndicated = useMemo(() => {
-    return (
-      indicatedIntervals != null &&
-      indicatedIntervals.some(({ start, end }) => date >= start && date <= end)
-    )
-  }, [indicatedIntervals, date])
-
-  if (isToday || indicatedIntervals) {
+  if (isToday || isIndicated) {
     return (
       <div className={classes.indicators}>
         {isToday && (
