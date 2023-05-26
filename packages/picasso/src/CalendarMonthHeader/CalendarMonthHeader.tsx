@@ -1,36 +1,124 @@
-import React from 'react'
-import { format } from 'date-fns'
+import type { ReactNode } from 'react'
+import React, { useContext } from 'react'
+import type { CaptionProps } from 'react-day-picker'
+import { useDayPicker, useNavigation } from 'react-day-picker'
+import isSameMonth from 'date-fns/isSameMonth'
 
 import ButtonCircular from '../ButtonCircular'
 import Typography from '../Typography'
 import { ChevronMinor24, BackMinor24 } from '../Icon'
-import type { MonthHeaderProps } from '../Calendar/types'
 import Container from '../Container'
+import CalendarContext from '../CalendarContext'
 
-const CalendarMonthHeader = ({
-  switchMonth,
-  activeMonth: headerActiveMonth,
-}: MonthHeaderProps) => (
-  <Container flex justifyContent='space-between' bottom='medium'>
-    <ButtonCircular
-      title='Previous month'
-      aria-label='Previous month'
-      variant='flat'
-      icon={<BackMinor24 />}
-      onClick={() => switchMonth(-1)}
-    />
+interface RenderMonthHeaderProps extends CaptionProps {
+  /** Unique key */
+  key?: string
+  /** Children nodes */
+  children?: ReactNode
+}
 
-    <Typography variant='heading' size='medium'>
-      {format(headerActiveMonth, 'MMMM y')}
-    </Typography>
-    <ButtonCircular
-      title='Next month'
-      aria-label='Previous month'
-      variant='flat'
-      icon={<ChevronMinor24 />}
-      onClick={() => switchMonth(1)}
-    />
-  </Container>
-)
+export type RenderMonthHeader = (args: RenderMonthHeaderProps) => ReactNode
+
+const CalendarMonthHeader = (props: CaptionProps) => {
+  const {
+    formatters: { formatCaption },
+    locale,
+    classNames,
+    disableNavigation,
+    styles,
+    numberOfMonths,
+    onMonthChange,
+    dir,
+  } = useDayPicker()
+  const { previousMonth, nextMonth, goToMonth, displayMonths } = useNavigation()
+  const { renderMonthHeader } = useContext(CalendarContext)
+
+  if (disableNavigation) {
+    return (
+      <div className={classNames.caption} style={styles.caption}>
+        <Typography
+          variant='heading'
+          size='medium'
+          aria-live='polite'
+          aria-atomic='true'
+        >
+          {formatCaption(props.displayMonth, { locale })}
+        </Typography>
+      </div>
+    )
+  }
+
+  const displayIndex = displayMonths.findIndex(month =>
+    isSameMonth(props.displayMonth, month)
+  )
+
+  let isFirst = displayIndex === 0
+  let isLast = displayIndex === displayMonths.length - 1
+
+  if (dir === 'rtl') {
+    ;[isLast, isFirst] = [isFirst, isLast]
+  }
+
+  const hideNext = numberOfMonths > 1 && !isLast
+  const hidePrevious = numberOfMonths > 1 && !isFirst
+
+  const handlePreviousClick = () => {
+    if (!previousMonth) {
+      return
+    }
+    goToMonth(previousMonth)
+    onMonthChange?.(previousMonth)
+  }
+
+  const handleNextClick = () => {
+    if (!nextMonth) {
+      return
+    }
+    goToMonth(nextMonth)
+    onMonthChange?.(nextMonth)
+  }
+
+  const defaultMarkup = (
+    <Container flex justifyContent='space-between' bottom='medium'>
+      {!hidePrevious && (
+        <ButtonCircular
+          title='Previous month'
+          aria-label='Previous month'
+          variant='flat'
+          icon={<BackMinor24 />}
+          onClick={handlePreviousClick}
+        />
+      )}
+      <Typography
+        variant='heading'
+        size='medium'
+        aria-live='polite'
+        aria-atomic='true'
+      >
+        {formatCaption(props.displayMonth, { locale })}
+      </Typography>
+      {!hideNext && (
+        <ButtonCircular
+          title='Next month'
+          aria-label='Next month'
+          variant='flat'
+          icon={<ChevronMinor24 />}
+          onClick={handleNextClick}
+        />
+      )}
+    </Container>
+  )
+
+  return renderMonthHeader ? (
+    <>
+      {renderMonthHeader({
+        ...props,
+        children: defaultMarkup,
+      })}
+    </>
+  ) : (
+    defaultMarkup
+  )
+}
 
 export default CalendarMonthHeader
