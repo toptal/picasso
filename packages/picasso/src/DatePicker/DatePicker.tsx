@@ -15,7 +15,12 @@ import type { InputProps } from '../Input'
 import Input from '../Input'
 import InputAdornment from '../InputAdornment'
 import { noop } from '../utils'
-import type { DateOrDateRangeType, DateRangeType, DayProps } from '../Calendar'
+import type {
+  CalendarDateRange,
+  DateOrDateRangeType,
+  DateRangeType,
+  WeekStart,
+} from '../Calendar'
 import Calendar from '../Calendar'
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
@@ -33,6 +38,7 @@ import {
 } from './utils'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import type { Status } from '../OutlinedInput'
+import type { RenderDay } from '../CalendarDay'
 
 const EMPTY_INPUT_VALUE = ''
 
@@ -70,7 +76,7 @@ export interface Props
   /** Date format that user will see in the input */
   displayDateFormat?: string
   /** Date range where selection is not allowed */
-  disabledIntervals?: { start: Date; end: Date }[]
+  disabledIntervals?: CalendarDateRange[]
   /** Date format that user will see during manual input */
   editDateFormat?: string
   /** Specify icon which should be rendered inside `DatePicker` */
@@ -85,10 +91,10 @@ export interface Props
   /** Indicate `DatePicker` status */
   status?: Status
   /** Function to override default markup to show Date */
-  renderDay?: (args: DayProps) => ReactNode
+  renderDay?: RenderDay
   popperContainer?: HTMLElement
   /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
-  weekStartsOn?: number
+  weekStartsOn?: WeekStart
   /** IANA timezone to display and edit date(s) */
   timezone?: string
   /** Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates */
@@ -106,7 +112,7 @@ export interface Props
   /** Change the footer background color */
   footerBackgroundColor?: string
   /** Shows orange dot indicator in days between a date range */
-  indicatedIntervals?: { start: Date; end: Date }[]
+  indicatedIntervals?: CalendarDateRange[]
   highlight?: 'autofill'
 }
 
@@ -334,7 +340,6 @@ export const DatePicker = (props: Props) => {
       if (!calendarIsShown) {
         event.currentTarget.blur()
       } else {
-        // TODO: Manage this whole logic inside simple-react-calendar
         const firstButton =
           calendarRef.current?.querySelector<HTMLButtonElement>(
             'button:not([tabindex="-1"])'
