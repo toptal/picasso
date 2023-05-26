@@ -21,7 +21,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
               class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoDropdown-root PageHamburger-hidden"
+                class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
               >
                 <div
                   class="PicassoDropdown-anchor"
@@ -102,7 +102,7 @@ exports[`Page.TopBar render with link 1`] = `
               class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoDropdown-root PageHamburger-hidden"
+                class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
               >
                 <div
                   class="PicassoDropdown-anchor"
@@ -199,7 +199,7 @@ exports[`Page.TopBar renders 1`] = `
               class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoDropdown-root PageHamburger-hidden"
+                class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
               >
                 <div
                   class="PicassoDropdown-anchor"

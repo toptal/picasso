@@ -8,7 +8,10 @@ export default ({ palette }: Theme) => {
 
   return createStyles({
     root: {
-      display: 'var(--displayHamburger)',
+      display: 'block',
+      '@media (min-width: 1280px)': {
+        display: 'none',
+      },
     },
     hamburger: {
       pointerEvents: 'none',

@@ -60,11 +60,17 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       gap: '1.5rem',
     },
     centerContent: {
-      display: 'var(--displaySidebar)',
+      display: 'none',
+      '@media (min-width: 1280px)': {
+        display: 'block',
+      },
     },
     centerContentPortal: {
       // as soon as hamburger is visible, center content is ported to hamburger menu
-      display: 'var(--displayHamburger)',
+      display: 'block',
+      '@media (min-width: 1280px)': {
+        display: 'none',
+      },
     },
     divider: {
       width: '1px',

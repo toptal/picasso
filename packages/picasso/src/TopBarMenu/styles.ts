@@ -3,6 +3,9 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      display: 'var(--displayCenterMenu)',
+      display: 'block',
+      '@media (min-width: 1280px)': {
+        display: 'flex',
+      },
     },
   })
