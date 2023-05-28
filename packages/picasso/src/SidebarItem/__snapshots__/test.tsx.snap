@@ -6,7 +6,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"
@@ -152,7 +152,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium"
+      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"

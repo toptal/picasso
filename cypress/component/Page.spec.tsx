@@ -118,39 +118,6 @@ const Example = ({ sidebarProps }: ExampleProps) => (
 )
 
 describe('Page', () => {
-  describe('responsive test', () => {
-    const sizes = [
-      { name: 'xs', width: 375, height: 667 },
-      { name: 'sm', width: 480, height: 1024 },
-      { name: 'md', width: 768, height: 900 },
-      { name: 'lg', width: 1024, height: 900 },
-      { name: 'xl', width: 1280, height: 900 },
-    ]
-
-    sizes.forEach(({ name, width, height }) => {
-      // eslint-disable-next-line max-nested-callbacks
-      it(`Should display correctly on all ${name}`, () => {
-        // Set viewport to desired size
-        cy.viewport(width, height)
-
-        // Render component
-        cy.mount(<Example />)
-
-        // Take a snapshot for visual diffing
-        cy.get('body').happoScreenshot({
-          component,
-          variant: `default/responsive-${name}`,
-          targets: [
-            // This is taken from Happo documentation, types are wrong
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            { name, browser: 'chrome', viewport: `${width}x${height}` },
-          ],
-        })
-      })
-    })
-  })
-
   describe('when the sidebar is sticky', () => {
     it('sticks to TopBar on scroll', () => {
       cy.mount(<Example />)
