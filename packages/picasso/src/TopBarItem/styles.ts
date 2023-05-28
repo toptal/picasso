@@ -38,9 +38,6 @@ export default ({ spacing, palette }: Theme) =>
         '& svg': {
           width: '1em',
         },
-        '& svg + div': {
-          marginLeft: 0,
-        },
       },
     },
     selected: {},

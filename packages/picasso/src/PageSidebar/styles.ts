@@ -35,6 +35,9 @@ export default ({ palette, screens, transitions }: Theme) =>
         height: '100%',
       },
     },
+    hamburgerNotAvailable: {
+      display: 'block',
+    },
     wrapper: {
       height: '100%',
       '&$sticky': {

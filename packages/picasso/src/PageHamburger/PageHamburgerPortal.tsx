@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useMemo } from 'react'
 import Portal from '@material-ui/core/Portal'
 import { getElementById } from '@toptal/picasso-shared'
 
@@ -9,12 +9,13 @@ interface Props {
 }
 
 const PageHamburgerPortal = ({ children }: Props) => {
-  const { hamburgerId, isHamburgerVisible } = useHamburgerContext()
+  const { hamburgerId } = useHamburgerContext()
 
-  const container = useCallback(
-    () => isHamburgerVisible ? getElementById(hamburgerId) : null, 
-    [hamburgerId, isHamburgerVisible]
-  )
+  const container = useMemo(() => getElementById(hamburgerId), [hamburgerId])
+
+  if (!container) {
+    return null
+  }
 
   return <Portal container={container}>{children}</Portal>
 }

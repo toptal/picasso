@@ -119,27 +119,34 @@ const Example = ({ sidebarProps }: ExampleProps) => (
 
 describe('Page', () => {
   describe('responsive test', () => {
-    it(`Should display correctly on all viewports`, () => {
-      // Render component
-      cy.mount(<Example />)
+    const sizes = [
+      { name: 'xs', width: 375, height: 667 },
+      { name: 'sm', width: 480, height: 1024 },
+      { name: 'md', width: 768, height: 900 },
+      { name: 'lg', width: 1024, height: 900 },
+      { name: 'xl', width: 1280, height: 900 },
+    ]
 
-      // Take a snapshot for visual diffing
-      cy.get('body').happoScreenshot({
-        component,
-        variant: `default/responsive`,
-        targets: [
-          // @ts-ignore
-          { name: 'xs', browser: 'chrome', viewport: '375x667' },
-          // @ts-ignore
-          { name: 'sm', browser: 'chrome', viewport: '480x1024' },
-          // @ts-ignore
-          { name: 'md', browser: 'chrome', viewport: '768x900' },
-          // @ts-ignore
-          { name: 'lg', browser: 'chrome', viewport: '1024x900' },
-          // for TopBar we dont use 1440px
-          // @ts-ignore
-          { name: 'xl', browser: 'chrome', viewport: '1280x900' },
-        ],
+    sizes.forEach(({ name, width, height }) => {
+      // eslint-disable-next-line max-nested-callbacks
+      it(`Should display correctly on all ${name}`, () => {
+        // Set viewport to desired size
+        cy.viewport(width, height)
+
+        // Render component
+        cy.mount(<Example />)
+
+        // Take a snapshot for visual diffing
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `default/responsive-${name}`,
+          targets: [
+            // This is taken from Happo documentation, types are wrong
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            { name, browser: 'chrome', viewport: `${width}x${height}` },
+          ],
+        })
       })
     })
   })

@@ -84,7 +84,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     }
   }, [setHasSidebar])
 
-  usePortalToHamburger()
+  const { isHamburgerAvailable } = usePortalToHamburger()
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
@@ -99,12 +99,15 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       style={style}
       className={cx(classes.root, className, classes[variant], classes[size], {
         [classes.rootCollapsed]: collapsible && isCollapsed,
+        [classes.hamburgerNotAvailable]: !isHamburgerAvailable,
       })}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
       onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
-      <PageHamburgerPortal>{children}</PageHamburgerPortal>
+      {isHamburgerAvailable && (
+        <PageHamburgerPortal>{children}</PageHamburgerPortal>
+      )}
       <div
         style={{
           maxHeight: wrapperMaxHeight,

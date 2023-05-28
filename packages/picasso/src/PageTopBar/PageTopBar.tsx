@@ -63,7 +63,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   } = props
   const classes = useStyles()
 
-  const showEmlemOnly = useBreakpoint(['xs', 'sm'])
+  const showEmblemOnly = useBreakpoint(['xs', 'sm'])
   const showTagline = useBreakpoint(['lg', 'xl'])
 
   const { setHasTopBar } = usePageTopBar()
@@ -82,7 +82,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const isDark = ['dark', 'grey'].includes(variant)
 
   const logoDefault = (
-    <Logo variant={isDark ? 'white' : 'default'} emblem={showEmlemOnly} />
+    <Logo variant={isDark ? 'white' : 'default'} emblem={showEmblemOnly} />
   )
 
   const logoComponent = logo || logoDefault
