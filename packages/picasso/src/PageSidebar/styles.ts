@@ -2,7 +2,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
-import { headerHeight } from '../PageTopBar/constants'
+import { headerHeight, headerBreakingPointXL } from '../PageTopBar/constants'
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =
@@ -17,7 +17,7 @@ export default ({ palette, screens, transitions }: Theme) =>
       position: 'relative',
       transition: `width ${transitions.duration.enteringScreen}ms ease-in-out`,
       display: 'none',
-      '@media (min-width: 1280px)': {
+      [headerBreakingPointXL]: {
         display: 'block',
       },
 

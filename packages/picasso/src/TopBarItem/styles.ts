@@ -1,10 +1,14 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export default ({ spacing, palette }: Theme) =>
-  createStyles({
+import { headerBreakingPointXL } from '../PageTopBar/constants'
+
+export default ({ spacing, palette, typography }: Theme) => {
+  const itemSpacing = spacing(1)
+
+  return createStyles({
     root: {
-      '@media (min-width: 1280px)': {
+      [headerBreakingPointXL]: {
         color: palette.grey.main2,
         padding: 0,
         height: 'auto',
@@ -15,9 +19,9 @@ export default ({ spacing, palette }: Theme) =>
           backgroundColor: palette.grey.main2,
           content: '""',
           display: 'inline-block',
-          height: spacing(1),
-          marginLeft: spacing(1),
-          marginRight: spacing(1),
+          height: itemSpacing,
+          marginLeft: itemSpacing,
+          marginRight: itemSpacing,
           width: 1,
         },
         '&:hover': {
@@ -29,12 +33,12 @@ export default ({ spacing, palette }: Theme) =>
           color: palette.common.white,
         },
         '& p': {
-          fontSize: '13px',
+          fontSize: typography.fontSizes.small,
         },
       },
     },
     icon: {
-      '@media (min-width: 1280px)': {
+      [headerBreakingPointXL]: {
         '& svg': {
           width: '1em',
         },
@@ -42,3 +46,4 @@ export default ({ spacing, palette }: Theme) =>
     },
     selected: {},
   })
+}

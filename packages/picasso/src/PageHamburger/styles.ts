@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import { headerHeight } from '../PageTopBar/constants'
+import { headerHeight, headerBreakingPointXL } from '../PageTopBar/constants'
 
 export default ({ palette }: Theme) => {
   const wrapperBoxShadow = `inset -1px 0px 0px 0px ${palette.grey.lighter2}`
@@ -9,7 +9,7 @@ export default ({ palette }: Theme) => {
   return createStyles({
     root: {
       display: 'block',
-      '@media (min-width: 1280px)': {
+      [headerBreakingPointXL]: {
         display: 'none',
       },
     },

@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import { headerHeight } from './constants'
+import { headerHeight, headerBreakingPointXL } from './constants'
 
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
@@ -61,14 +61,14 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     centerContent: {
       display: 'none',
-      '@media (min-width: 1280px)': {
+      [headerBreakingPointXL]: {
         display: 'block',
       },
     },
     centerContentPortal: {
       // as soon as hamburger is visible, center content is ported to hamburger menu
       display: 'block',
-      '@media (min-width: 1280px)': {
+      [headerBreakingPointXL]: {
         display: 'none',
       },
     },

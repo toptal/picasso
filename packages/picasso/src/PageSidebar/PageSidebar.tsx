@@ -61,7 +61,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     size = 'medium',
     wrapperMaxHeight,
     disableSticky,
-    onCollapse,
+    onCollapse = noop,
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
@@ -88,7 +88,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
-    onCollapse?.()
+    onCollapse()
   }, [setIsCollapsed, onCollapse])
 
   return (
