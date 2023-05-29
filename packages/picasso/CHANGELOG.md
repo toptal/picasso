@@ -1,5 +1,22 @@
 # Change Log
 
+## 34.0.0
+
+### Major Changes
+
+- [#3561](https://github.com/toptal/picasso/pull/3561) [`d4d055678`](https://github.com/toptal/picasso/commit/d4d055678455cdefdcc6d814a5eb773146eb17f9) Thanks [@dependabot](https://github.com/apps/dependabot)!
+
+### Dropdown, AvatarUpload
+
+- type of the `accept` prop has changed
+
+```diff
+<Dropzone
+- accept='image/*'
++ accept={{ 'image/*': [] }}
+>
+```
+
 ## 33.2.0
 
 ### Minor Changes
