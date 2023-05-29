@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: toptal/davinci-github-actions/build-push-image@v6.5.0
+      - uses: toptal/davinci-github-actions/build-push-image@v7.0.0
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
@@ -63,7 +63,7 @@ jobs:
           node-version: '16'
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v6.5.0
+        uses: toptal/davinci-github-actions/report-missing-changeset@v7.0.0
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -75,7 +75,7 @@ jobs:
         uses: actions/dependency-review-action@v3
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v6.5.0
+        uses: toptal/davinci-github-actions/yarn-install@v7.0.0
 
       - name: Syncpack check
         run: yarn syncpack:list
@@ -108,7 +108,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v6.5.0
+        uses: toptal/davinci-github-actions/yarn-install@v7.0.0
 
       - name: Visual Tests
         run: yarn happo:storybook
@@ -161,7 +161,7 @@ jobs:
           echo "temployURL=$temployURL" >> $GITHUB_OUTPUT
 
       - name: Create Jira Deployment
-        uses: toptal/davinci-github-actions/create-jira-deployment@v6.5.0
+        uses: toptal/davinci-github-actions/create-jira-deployment@v7.0.0
         if: ${{ always() }}
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
