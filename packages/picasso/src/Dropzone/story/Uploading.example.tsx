@@ -10,7 +10,15 @@ const value = [
 ]
 
 const Example = () => {
-  return <Dropzone value={value} hint='Max file size: 25MB' accept='image/*' />
+  return (
+    <Dropzone
+      value={value}
+      hint='Max file size: 25MB'
+      accept={{
+        'image/*': [],
+      }}
+    />
+  )
 }
 
 export default Example

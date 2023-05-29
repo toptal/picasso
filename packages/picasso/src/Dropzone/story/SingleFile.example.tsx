@@ -32,7 +32,9 @@ const Example = () => {
       value={files}
       onDrop={addFile}
       onRemove={handleRemove}
-      accept='image/*'
+      accept={{
+        'image/*': [],
+      }}
     />
   )
 }

@@ -7,11 +7,11 @@ exports[`AvatarUpload renders 1`] = `
   >
     <div
       class="PicassoAvatarUpload-root PicassoAvatarUpload-sizeSmall"
+      role="presentation"
       tabindex="0"
     >
       <input
         accept="image/*"
-        autocomplete="off"
         style="display: none;"
         tabindex="-1"
         type="file"

@@ -5,7 +5,9 @@ const Example = () => {
   return (
     <Dropzone
       hint='Files allowed: 2. Max file size: 25MB'
-      accept='image/*'
+      accept={{
+        'image/*': [],
+      }}
       value={[
         {
           file: new File(['resume.pdf'], 'resume.pdf'),

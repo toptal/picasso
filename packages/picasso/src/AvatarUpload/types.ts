@@ -4,7 +4,9 @@ export interface FileUpload {
 }
 
 export type AvatarUploadOptions = {
-  accept?: string | string[]
+  accept?: {
+    [key: string]: string[]
+  }
   onDrop?: <T extends File>(
     acceptedFile: T | null,
     fileRejection: FileRejection | null,
