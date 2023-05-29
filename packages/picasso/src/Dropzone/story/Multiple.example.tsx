@@ -25,7 +25,9 @@ const Example = () => {
         onDrop={() => alert('onDrop callback triggered')}
         onRemove={() => alert('onRemove callback triggered')}
         hint='Files allowed: 2. Max file size: 25MB'
-        accept='image/*'
+        accept={{
+          'image/*': [],
+        }}
         disabled
       />
     </Container>

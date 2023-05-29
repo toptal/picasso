@@ -222,13 +222,17 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
 
 AvatarUpload.displayName = 'AvatarUpload'
 
+const accept = {
+  'image/*': [],
+}
+
 AvatarUpload.defaultProps = {
   size: 'small',
   disabled: false,
   uploading: false,
   maxSize: 104857600, // 100MB in bytes (100 * 1024 * 1024)
   minSize: 0,
-  accept: 'image/*',
+  accept,
 }
 
 export default AvatarUpload

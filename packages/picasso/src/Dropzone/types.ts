@@ -9,7 +9,9 @@ export type DropzoneOptions = {
   /**
    * Set accepted file types. See https://github.com/okonet/attr-accept for more information.
    */
-  accept?: string | string[]
+  accept?: {
+    [key: string]: string[]
+  }
   /** Enable/disable the dropzone */
   disabled?: boolean
   /** Maximum file size (in bytes) */

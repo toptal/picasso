@@ -61,7 +61,7 @@
     "quill-emoji": "^0.2.0",
     "quill-paste-smart": "^1.4.9",
     "react-content-loader": "^6.2.1",
-    "react-dropzone": "^11.4.0",
+    "react-dropzone": "^14.2.3",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-truncate": "^2.4.0",
     "simple-react-calendar": "^2.2.8"
