@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- [#3577](https://github.com/toptal/picasso/pull/3577) [`324b067c5`](https://github.com/toptal/picasso/commit/324b067c535122ba332207a4e405ec8f9c2812e5) Thanks [@sashuk](https://github.com/sashuk)!
+- breakpoints media queries now cover the 1px gap problem
+
 ## 3.1.0
 
 ### Minor Changes
