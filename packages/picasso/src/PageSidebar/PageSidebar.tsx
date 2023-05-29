@@ -1,6 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import { useSidebar } from '@toptal/picasso-provider'
+import { usePageTopBar, useSidebar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { ReactNode } from 'react'
@@ -68,6 +68,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+  const { hasTopBar } = usePageTopBar()
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
@@ -84,7 +85,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     }
   }, [setHasSidebar])
 
-  const { isHamburgerAvailable } = usePortalToHamburger()
+  usePortalToHamburger()
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
@@ -99,15 +100,14 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       style={style}
       className={cx(classes.root, className, classes[variant], classes[size], {
         [classes.rootCollapsed]: collapsible && isCollapsed,
-        [classes.hamburgerNotAvailable]: !isHamburgerAvailable,
+        [classes.hamburgerNotAvailable]: !hasTopBar,
       })}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
       onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
-      {isHamburgerAvailable && (
-        <PageHamburgerPortal>{children}</PageHamburgerPortal>
-      )}
+      <PageHamburgerPortal>{children}</PageHamburgerPortal>
+
       <div
         style={{
           maxHeight: wrapperMaxHeight,

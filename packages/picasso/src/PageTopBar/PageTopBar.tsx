@@ -66,7 +66,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const showEmblemOnly = useBreakpoint(['xs', 'sm'])
   const showTagline = useBreakpoint(['lg', 'xl'])
 
-  const { setHasTopBar } = usePageTopBar()
+  const { setHasTopBar, hasTopBar } = usePageTopBar()
 
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
@@ -74,7 +74,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     return function cleanup() {
       setHasTopBar(false)
     }
-  }, [setHasTopBar])
+  }, [setHasTopBar, hasTopBar])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
   const { hamburgerId } = useHamburgerContext()

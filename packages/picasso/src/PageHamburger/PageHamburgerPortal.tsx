@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Portal from '@material-ui/core/Portal'
 import { getElementById } from '@toptal/picasso-shared'
+import { usePageTopBar } from '@toptal/picasso-provider'
 
 import { useHamburgerContext } from './PageHamburgerContext'
 
@@ -10,10 +11,11 @@ interface Props {
 
 const PageHamburgerPortal = ({ children }: Props) => {
   const { hamburgerId } = useHamburgerContext()
+  const { hasTopBar } = usePageTopBar()
 
-  const container = useMemo(() => getElementById(hamburgerId), [hamburgerId])
+  const container = getElementById(hamburgerId)
 
-  if (!container) {
+  if (!container || !hasTopBar) {
     return null
   }
 

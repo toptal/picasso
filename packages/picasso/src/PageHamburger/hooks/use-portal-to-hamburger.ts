@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react'
-import { getElementById } from '@toptal/picasso-shared'
+import { usePageTopBar } from '@toptal/picasso-provider'
+import { useEffect } from 'react'
 
 import { useHamburgerContext } from '../PageHamburgerContext'
 
@@ -10,20 +10,14 @@ import { useHamburgerContext } from '../PageHamburgerContext'
  * It sets hamburger menu to be visible in compact screens.
  */
 const usePortalToHamburger = () => {
-  const { setIsHamburgerVisible, hamburgerId } = useHamburgerContext()
-
-  const isHamburgerAvailable = useMemo(
-    () => getElementById(hamburgerId),
-    [hamburgerId]
-  )
+  const { setIsHamburgerVisible } = useHamburgerContext()
+  const { hasTopBar } = usePageTopBar()
 
   useEffect(() => {
-    if (isHamburgerAvailable) {
+    if (hasTopBar) {
       setIsHamburgerVisible(true)
     }
-  }, [setIsHamburgerVisible, isHamburgerAvailable])
-
-  return { isHamburgerAvailable }
+  }, [hasTopBar, setIsHamburgerVisible])
 }
 
 export default usePortalToHamburger
