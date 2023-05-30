@@ -10,7 +10,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Layout').createPage(
   'Page',
   `A Page component
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )

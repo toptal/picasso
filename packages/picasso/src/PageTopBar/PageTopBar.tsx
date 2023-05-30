@@ -62,9 +62,11 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     ...rest
   } = props
   const classes = useStyles()
-  const isCompactLayout = useBreakpoint(['sm', 'md'])
 
-  const { setHasTopBar } = usePageTopBar()
+  const showEmblemOnly = useBreakpoint(['xs', 'sm'])
+  const showTagline = useBreakpoint(['lg', 'xl'])
+
+  const { setHasTopBar, hasTopBar } = usePageTopBar()
 
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
@@ -72,7 +74,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     return function cleanup() {
       setHasTopBar(false)
     }
-  }, [setHasTopBar])
+  }, [setHasTopBar, hasTopBar])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
   const { hamburgerId } = useHamburgerContext()
@@ -80,31 +82,19 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const isDark = ['dark', 'grey'].includes(variant)
 
   const logoDefault = (
-    <Logo
-      variant={isDark ? 'white' : 'default'}
-      emblem={isCompactLayout}
-      className={classes.logo}
-    />
+    <Logo variant={isDark ? 'white' : 'default'} emblem={showEmblemOnly} />
   )
 
   const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
-    <Container left='small' flex alignItems='center'>
+    <Container flex alignItems='center'>
       <div
         className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
       />
       <Container left='small'>
         <Typography invert={isDark}>{title}</Typography>
       </Container>
-    </Container>
-  )
-
-  const responsiveCenterContent = isCompactLayout ? (
-    <PageHamburgerPortal>{centerContent}</PageHamburgerPortal>
-  ) : (
-    <Container flex alignItems='center'>
-      {centerContent}
     </Container>
   )
 
@@ -125,29 +115,43 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
         style={style}
       >
         <div className={innerClassName}>
+          {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
           <div className={classes.left}>
-            <Container
-              className={classes.logoContainer}
-              flex
-              alignItems='center'
-            >
+            <Container flex alignItems='center' gap='small'>
+              <PageHamburger id={hamburgerId} />
               {logoLink
                 ? React.cloneElement(logoLink, {}, logoComponent)
                 : logoComponent}
+              {showTagline && titleComponent}
             </Container>
-            {!isCompactLayout && titleComponent}
             {leftContent}
           </div>
 
-          {centerContent && responsiveCenterContent}
+          {/* Center part: inline menu */}
+          {centerContent && (
+            <>
+              <PageHamburgerPortal>
+                <div className={classes.centerContentPortal}>
+                  {centerContent}
+                </div>
+              </PageHamburgerPortal>
+              <Container
+                flex
+                alignItems='center'
+                className={classes.centerContent}
+              >
+                {centerContent}
+              </Container>
+            </>
+          )}
 
+          {/* Right part: Action items, User menu, Notifications */}
           <div className={classes.right}>
-            {!isCompactLayout && actionItems}
+            {actionItems}
             {rightContent}
           </div>
         </div>
       </header>
-      <PageHamburger id={hamburgerId} />
     </div>
   )
 })

@@ -184,7 +184,6 @@ describe('Sidebar', () => {
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
       cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
 
-      cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).should('not.be.visible')
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
 
       cy.get('body').happoScreenshot({

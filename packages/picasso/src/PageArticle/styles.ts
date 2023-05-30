@@ -5,10 +5,10 @@ export default ({ screens, layout }: Theme) =>
   createStyles({
     root: {
       flex: 1,
-      margin: `0 ${layout.contentPaddingHorizontal}`,
+      margin: `0 ${layout.contentMobilePaddingHorizontal}`,
 
-      [screens('xs', 'sm')]: {
-        margin: `0 ${layout.contentMobilePaddingHorizontal}`,
+      [screens('md', 'lg', 'xl')]: {
+        margin: `0 ${layout.contentPaddingHorizontal}`,
       },
     },
   })

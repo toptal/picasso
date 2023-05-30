@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, UserBadge, Typography, Container } from '@toptal/picasso'
+import { Page, UserBadge, Typography } from '@toptal/picasso'
 import type { Item } from '@toptal/picasso/Autocomplete'
 
 const options = [
@@ -27,14 +27,12 @@ const Example = () => (
       <Page.TopBar
         title='Dark variant'
         leftContent={
-          <Container left='large'>
-            <Page.Autocomplete
-              value=''
-              placeholder='Users'
-              options={options}
-              renderOption={renderOption}
-            />
-          </Container>
+          <Page.Autocomplete
+            value=''
+            placeholder='Users'
+            options={options}
+            renderOption={renderOption}
+          />
         }
       />
     </div>

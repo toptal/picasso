@@ -6,8 +6,7 @@ import cx from 'classnames'
 import ButtonCircular from '../ButtonCircular'
 import { useHamburgerContext } from './PageHamburgerContext'
 import Dropdown from '../Dropdown'
-import { Close16, Overview16 } from '../Icon'
-import { useBreakpoint } from '../utils'
+import { Close24, Overview24 } from '../Icon'
 import styles from './styles'
 
 interface Props {
@@ -22,7 +21,6 @@ const PageHamburger = ({ id }: Props) => {
   const { isHamburgerVisible } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
-  const isCompactLayout = useBreakpoint(['sm', 'md'])
 
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)
@@ -30,8 +28,8 @@ const PageHamburger = ({ id }: Props) => {
   return (
     <Dropdown
       content={<div id={id} />}
-      className={cx(classes.responsiveWrapper, {
-        [classes.hidden]: !isCompactLayout || !isHamburgerVisible,
+      className={cx(classes.root, {
+        [classes.hidden]: !isHamburgerVisible,
       })}
       classes={{ content: classes.responsiveWrapperContent }}
       offset={{ top: 0.4 }}
@@ -53,9 +51,9 @@ const PageHamburger = ({ id }: Props) => {
       <ButtonCircular
         icon={
           showContent ? (
-            <Close16 />
+            <Close24 />
           ) : (
-            <Overview16 className={classes.hamburger} />
+            <Overview24 className={classes.hamburger} />
           )
         }
         variant='transparent'

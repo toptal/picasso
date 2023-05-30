@@ -1,13 +1,13 @@
-import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export default ({ screens }: Theme) =>
+import { headerBreakingPointXL } from '../PageTopBar/constants'
+
+export default () =>
   createStyles({
     root: {
-      display: 'flex',
-
-      [screens('xs', 'sm')]: {
-        display: 'block',
+      display: 'block',
+      [headerBreakingPointXL]: {
+        display: 'flex',
       },
     },
   })

@@ -1,6 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import { useSidebar } from '@toptal/picasso-provider'
+import { usePageTopBar, useSidebar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { ReactNode } from 'react'
@@ -13,7 +13,7 @@ import { PageHamburgerPortal, usePortalToHamburger } from '../PageHamburger'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import SidebarMenu from '../SidebarMenu'
-import { noop, useBreakpoint } from '../utils'
+import { noop } from '../utils'
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import type { VariantType } from './types'
@@ -61,13 +61,14 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     size = 'medium',
     wrapperMaxHeight,
     disableSticky,
-    onCollapse,
+    onCollapse = noop,
   } = props
   const classes = useStyles()
   const { setHasSidebar } = useSidebar()
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+  const { hasTopBar } = usePageTopBar()
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
@@ -86,14 +87,12 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
 
   usePortalToHamburger()
 
-  const isCompactLayout = useBreakpoint(['sm', 'md'])
-
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
-    onCollapse?.()
-  }, [setIsCollapsed])
+    onCollapse()
+  }, [setIsCollapsed, onCollapse])
 
-  const sidebar = (
+  return (
     <Container
       ref={ref}
       flex
@@ -101,11 +100,14 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       style={style}
       className={cx(classes.root, className, classes[variant], classes[size], {
         [classes.rootCollapsed]: collapsible && isCollapsed,
+        [classes.hamburgerNotAvailable]: !hasTopBar,
       })}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
       onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
+      <PageHamburgerPortal>{children}</PageHamburgerPortal>
+
       <div
         style={{
           maxHeight: wrapperMaxHeight,
@@ -145,12 +147,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         </Container>
       </div>
     </Container>
-  )
-
-  return isCompactLayout ? (
-    <PageHamburgerPortal>{children}</PageHamburgerPortal>
-  ) : (
-    sidebar
   )
 })
 

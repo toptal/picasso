@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from 'react'
 export interface HamburgerContextProps {
   hamburgerId: string
   isHamburgerVisible: boolean
-  setIsHamburgerVisible: (showHamburger: boolean) => void
+  setIsHamburgerVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const PageHamburgerContext = createContext<HamburgerContextProps>({

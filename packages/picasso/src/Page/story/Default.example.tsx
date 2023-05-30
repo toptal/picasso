@@ -1,11 +1,26 @@
 import React from 'react'
-import { Page, Container, Menu, Typography } from '@toptal/picasso'
-import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
+import {
+  Page,
+  Container,
+  Menu,
+  Typography,
+  Tooltip,
+  Button,
+  Globe16,
+  Profile16,
+  PortfolioDesigner16,
+  Heartbeat16,
+} from '@toptal/picasso'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
     <Page>
-      <Page.TopBar rightContent={<RightContent />} title='Default example' />
+      <Page.TopBar
+        rightContent={<RightContent />}
+        actionItems={<ActionItems />}
+        centerContent={<CenterContent />}
+        title='Default example'
+      />
       <Page.Content>
         <SidebarMenu />
         <Page.Article>
@@ -18,6 +33,14 @@ const Example = () => (
 )
 
 const handleClick = () => window.alert('Item clicked')
+
+const CenterContent = () => (
+  <Page.TopBar.Menu>
+    <Page.TopBar.Item>Item 1</Page.TopBar.Item>
+    <Page.TopBar.Item>Item 2</Page.TopBar.Item>
+    <Page.TopBar.Item>Item 3</Page.TopBar.Item>
+  </Page.TopBar.Menu>
+)
 
 const SidebarMenu = () => (
   <Page.Sidebar>
@@ -42,6 +65,19 @@ const RightContent = () => (
     </Menu>
   </Page.TopBarMenu>
 )
+
+const ActionItems = () => {
+  return (
+    <Tooltip content='Your Operational Issues'>
+      <Button.Circular
+        variant='transparent'
+        icon={<Heartbeat16 color='light-grey' />}
+        data-testid='operational-issues-button'
+        onClick={() => {}}
+      />
+    </Tooltip>
+  )
+}
 
 const Content = () => (
   <Container top='small' bottom='small'>
