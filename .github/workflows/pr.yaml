@@ -161,9 +161,10 @@ jobs:
           echo "temployURL=$temployURL" >> $GITHUB_OUTPUT
 
       - name: Create Jira Deployment
-        uses: toptal/davinci-github-actions/create-jira-deployment@v7.0.0
+        uses: toptal/davinci-github-actions/create-jira-deployment@chore/add-auto-inactive-parameter
         if: ${{ always() }}
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: temploy
           environment-url: ${{ steps.temploy.outputs.temployURL }}
+          auto-inactive: false
