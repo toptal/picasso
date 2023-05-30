@@ -1,5 +1,15 @@
 # Change Log
 
+## 34.0.1
+
+### Patch Changes
+
+- [#3574](https://github.com/toptal/picasso/pull/3574) [`160529614`](https://github.com/toptal/picasso/commit/160529614704e2fcf5cd08d59ac0264efc58d1d1) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Page.TopBar
+
+- apply new responsive BASE design
+
 ## 34.0.0
 
 ### Major Changes
