@@ -1,3 +1,4 @@
+import { usePageTopBar } from '@toptal/picasso-provider'
 import { useEffect } from 'react'
 
 import { useHamburgerContext } from '../PageHamburgerContext'
@@ -10,10 +11,13 @@ import { useHamburgerContext } from '../PageHamburgerContext'
  */
 const usePortalToHamburger = () => {
   const { setIsHamburgerVisible } = useHamburgerContext()
+  const { hasTopBar } = usePageTopBar()
 
   useEffect(() => {
-    setIsHamburgerVisible(true)
-  }, [])
+    if (hasTopBar) {
+      setIsHamburgerVisible(true)
+    }
+  }, [hasTopBar, setIsHamburgerVisible])
 }
 
 export default usePortalToHamburger

@@ -1,34 +1,49 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export default ({ spacing, palette }: Theme) =>
-  createStyles({
+import { headerBreakingPointXL } from '../PageTopBar/constants'
+
+export default ({ spacing, palette, typography }: Theme) => {
+  const itemSpacing = spacing(1)
+
+  return createStyles({
     root: {
-      color: palette.grey.main2,
-      minWidth: 0,
-      padding: 0,
-      '& + &:before': {
-        backgroundColor: palette.grey.main2,
-        content: '""',
-        display: 'inline-block',
-        height: spacing(1),
-        marginLeft: spacing(1),
-        marginRight: spacing(1),
-        width: 1,
-      },
-      '&:hover': {
-        backgroundColor: 'transparent',
-        color: palette.grey.light2,
-      },
-      '&:focus, &$selected$dark': {
-        backgroundColor: 'transparent',
-        color: palette.common.white,
+      [headerBreakingPointXL]: {
+        color: palette.grey.main2,
+        padding: 0,
+        height: 'auto',
+        width: 'auto',
+        margin: 0,
+        flex: '1 1 auto',
+        '& + &:before': {
+          backgroundColor: palette.grey.main2,
+          content: '""',
+          display: 'inline-block',
+          height: itemSpacing,
+          marginLeft: itemSpacing,
+          marginRight: itemSpacing,
+          width: 1,
+        },
+        '&:hover': {
+          backgroundColor: 'transparent',
+          color: palette.grey.light2,
+        },
+        '&:focus, &$selected': {
+          backgroundColor: 'transparent',
+          color: palette.common.white,
+        },
+        '& p': {
+          fontSize: typography.fontSizes.small,
+        },
       },
     },
     icon: {
-      marginRight: '0.875em',
-      width: '1em',
+      [headerBreakingPointXL]: {
+        '& svg': {
+          width: '1em',
+        },
+      },
     },
     selected: {},
-    dark: {},
   })
+}

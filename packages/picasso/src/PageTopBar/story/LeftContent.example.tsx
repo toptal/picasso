@@ -28,14 +28,12 @@ const Example = () => (
         </Container>
       }
       leftContent={
-        <Container left='large'>
-          <Page.Autocomplete
-            value=''
-            placeholder='Users'
-            options={options}
-            renderOption={renderOption}
-          />
-        </Container>
+        <Page.Autocomplete
+          value=''
+          placeholder='Users'
+          options={options}
+          renderOption={renderOption}
+        />
       }
     />
   </div>

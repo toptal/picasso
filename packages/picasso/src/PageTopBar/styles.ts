@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export const headerHeight = { default: '3.5rem', smallAndMedium: '3rem' }
+import { headerHeight, headerBreakingPointXL } from './constants'
 
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
@@ -31,19 +31,17 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       margin: '0 auto',
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
-      padding: `0 ${layout.contentPaddingHorizontal}`,
+      padding: `0 ${layout.contentMobilePaddingHorizontal}`,
       height: headerHeight.default,
-      [screens('xs', 'sm')]: {
-        height: headerHeight.smallAndMedium,
+
+      [screens('md', 'lg', 'xl')]: {
+        padding: `0 ${layout.contentPaddingHorizontal}`,
       },
     },
     wrapper: {
+      position: 'relative',
       height: headerHeight.default,
       minHeight: headerHeight.default,
-      [screens('xs', 'sm')]: {
-        height: headerHeight.smallAndMedium,
-        minHeight: headerHeight.smallAndMedium,
-      },
     },
     wide: {
       maxWidth: layout.contentWidthWide,
@@ -54,10 +52,25 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     left: {
       display: 'flex',
       alignItems: 'center',
+      gap: '1rem',
     },
     right: {
       display: 'flex',
       alignItems: 'center',
+      gap: '1.5rem',
+    },
+    centerContent: {
+      display: 'none',
+      [headerBreakingPointXL]: {
+        display: 'block',
+      },
+    },
+    centerContentPortal: {
+      // as soon as hamburger is visible, center content is ported to hamburger menu
+      display: 'block',
+      [headerBreakingPointXL]: {
+        display: 'none',
+      },
     },
     divider: {
       width: '1px',
@@ -67,18 +80,5 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     dividerBlue: {
       backgroundColor: palette.blue.darker,
-    },
-    logoContainer: {
-      [screens('xs', 'sm')]: {
-        lineHeight: '1em',
-        position: 'absolute',
-        left: '50%',
-        transform: 'translate(-50%, 0%)',
-      },
-    },
-    logo: {
-      [screens('xs', 'sm')]: {
-        fontSize: '1.5em',
-      },
     },
   })

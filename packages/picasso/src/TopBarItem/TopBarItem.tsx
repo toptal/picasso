@@ -10,10 +10,8 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import MenuItem from '../MenuItem'
 import SidebarItem from '../SidebarItem'
-import Typography from '../Typography'
-import { useBreakpoint, noop } from '../utils'
+import { noop } from '../utils'
 import styles from './styles'
 
 export interface Props extends BaseProps, TextLabelProps {
@@ -33,25 +31,18 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTopBarMenuItem' })
 
 export const TopBarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
-    const { className, icon, children, ...rest } = props
+    const { className, icon } = props
     const classes = useStyles()
-    const isCompactLayout = useBreakpoint(['sm', 'md'])
 
-    return isCompactLayout ? (
-      <SidebarItem {...props} ref={ref} />
-    ) : (
-      <MenuItem
-        {...rest}
-        className={cx(classes.root, className, classes.dark, {
+    return (
+      <SidebarItem
+        {...props}
+        className={cx(classes.root, className, {
           [classes.selected]: props.selected,
+          [classes.icon]: icon,
         })}
         ref={ref}
-      >
-        {icon && <div className={classes.icon}>{icon}</div>}
-        <Typography size='small' color='inherit'>
-          {children}
-        </Typography>
-      </MenuItem>
+      />
     )
   })
 )

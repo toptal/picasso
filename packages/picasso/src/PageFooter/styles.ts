@@ -12,7 +12,10 @@ export default ({ palette, screens, layout }: Theme) =>
       display: 'flex',
       justifyContent: 'space-between',
       margin: '0 auto',
-      padding: `0.5rem ${layout.contentPaddingHorizontal} 1.5rem`,
+      paddingTop: '0.5rem',
+      paddingBottom: '1.5rem',
+      paddingLeft: layout.contentMobilePaddingHorizontal,
+      paddingRight: layout.contentMobilePaddingHorizontal,
       maxWidth: layout.contentWidth,
       color: palette.common.white,
       fontSize: '0.875rem',
@@ -22,8 +25,9 @@ export default ({ palette, screens, layout }: Theme) =>
         flexDirection: 'column',
       },
 
-      [screens('xs', 'sm')]: {
-        padding: `0.5rem ${layout.contentMobilePaddingHorizontal} 1.5rem`,
+      [screens('md', 'lg', 'xl')]: {
+        paddingLeft: layout.contentPaddingHorizontal,
+        paddingRight: layout.contentPaddingHorizontal,
       },
     },
     centered: {},
