@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
-import React, { useContext, forwardRef } from 'react'
+import React, { useContext, forwardRef, useEffect } from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { usePageTopBar } from '@toptal/picasso-provider'
@@ -66,7 +66,9 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const showEmblemOnly = useBreakpoint(['xs', 'sm'])
   const showTagline = useBreakpoint(['lg', 'xl'])
 
-  const { setHasTopBar, hasTopBar } = usePageTopBar()
+  const { setHasTopBar } = usePageTopBar()
+  const { setHasTopBar: setHasTopBarHamburger, hasTopBar } =
+    useHamburgerContext()
 
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
@@ -74,7 +76,13 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     return function cleanup() {
       setHasTopBar(false)
     }
-  }, [setHasTopBar, hasTopBar])
+  }, [setHasTopBar])
+
+  useEffect(() => {
+    setHasTopBarHamburger(true)
+
+    return () => setHasTopBarHamburger(false)
+  }, [hasTopBar, setHasTopBarHamburger])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
   const { hamburgerId } = useHamburgerContext()

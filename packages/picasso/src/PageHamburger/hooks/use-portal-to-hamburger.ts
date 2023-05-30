@@ -1,4 +1,3 @@
-import { usePageTopBar } from '@toptal/picasso-provider'
 import { useEffect } from 'react'
 
 import { useHamburgerContext } from '../PageHamburgerContext'
@@ -10,8 +9,7 @@ import { useHamburgerContext } from '../PageHamburgerContext'
  * It sets hamburger menu to be visible in compact screens.
  */
 const usePortalToHamburger = () => {
-  const { setIsHamburgerVisible } = useHamburgerContext()
-  const { hasTopBar } = usePageTopBar()
+  const { setIsHamburgerVisible, hasTopBar } = useHamburgerContext()
 
   useEffect(() => {
     if (hasTopBar) {

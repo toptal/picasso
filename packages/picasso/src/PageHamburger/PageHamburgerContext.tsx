@@ -5,12 +5,16 @@ export interface HamburgerContextProps {
   hamburgerId: string
   isHamburgerVisible: boolean
   setIsHamburgerVisible: React.Dispatch<React.SetStateAction<boolean>>
+  hasTopBar: boolean
+  setHasTopBar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const PageHamburgerContext = createContext<HamburgerContextProps>({
   hamburgerId: 'hamburger',
   isHamburgerVisible: false,
   setIsHamburgerVisible: () => {},
+  hasTopBar: false,
+  setHasTopBar: () => {},
 })
 
 interface Props {
@@ -23,11 +27,14 @@ export const PageHamburgerContextProvider = ({
   hamburgerId,
 }: Props) => {
   const [isHamburgerVisible, setIsHamburgerVisible] = useState<boolean>(false)
+  const [hasTopBar, setHasTopBar] = useState(false)
 
   const context = {
     hamburgerId,
     isHamburgerVisible,
     setIsHamburgerVisible,
+    hasTopBar,
+    setHasTopBar,
   }
 
   return (

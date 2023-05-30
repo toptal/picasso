@@ -1,6 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import { usePageTopBar, useSidebar } from '@toptal/picasso-provider'
+import { useSidebar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { ReactNode } from 'react'
@@ -9,7 +9,11 @@ import React, { forwardRef, useCallback, useEffect, useState } from 'react'
 import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import { BackMinor16, ChevronRight16 } from '../Icon'
-import { PageHamburgerPortal, usePortalToHamburger } from '../PageHamburger'
+import {
+  PageHamburgerPortal,
+  useHamburgerContext,
+  usePortalToHamburger,
+} from '../PageHamburger'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
 import SidebarMenu from '../SidebarMenu'
@@ -68,7 +72,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
-  const { hasTopBar } = usePageTopBar()
+  const { hasTopBar } = useHamburgerContext()
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
