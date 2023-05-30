@@ -1,31 +1,19 @@
-import React, { forwardRef, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, useRef, useState, useCallback } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import hastUtilToHtml from 'hast-util-to-html'
-import hastSanitize from 'hast-util-sanitize'
 
 import noop from '../utils/noop'
-import Container from '../Container'
+// @todo: remove this import once we remove the old QuillEditor
 import type { CustomEmojiGroup, EditorPlugin } from '../QuillEditor'
-import QuillEditor from '../QuillEditor'
-import InputMultilineAdornment from '../InputMultilineAdornment'
-import Toolbar from '../RichTextEditorToolbar'
 import styles from './styles'
-import {
-  useTextEditorState,
-  useOnSelectionChange,
-  useOnTextFormat,
-  useOnFocus,
-  useToolbarHandlers,
-  useCounter,
-} from './hooks'
 import type { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import type { Status } from '../OutlinedInput'
 import type { CounterMessageSetter } from './types'
+import LexicalEditor from '../LexicalEditor'
+import type { ChangeHandler } from '../LexicalEditor'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -70,7 +58,7 @@ export interface Props extends BaseProps {
   /**
    * Callback on text change
    */
-  onChange?: (value: string) => void
+  onChange?: ChangeHandler
   /**
    * Callback for blur event
    */
@@ -105,36 +93,35 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
   function RichTextEditor(props, ref) {
     const {
       'data-testid': dataTestId,
-      plugins,
-      autoFocus = false,
+      // plugins,
+      // autoFocus = false,
       className,
-      defaultValue,
-      disabled,
+      // defaultValue,
+      // disabled,
       id,
       onChange = noop,
       onFocus = noop,
       onBlur = noop,
       placeholder,
-      minLength,
-      maxLength,
-      minLengthMessage,
-      maxLengthMessage,
+      // minLength,
+      // maxLength,
+      // minLengthMessage,
+      // maxLengthMessage,
       style,
-      status,
+      // status,
       testIds,
-      hiddenInputId,
-      setHasMultilineCounter,
-      name,
-      highlight,
-      customEmojis,
+      // hiddenInputId,
+      // setHasMultilineCounter,
+      // @todo don't know what to do with NAME prop
+      // name,
+      // highlight,
+      // customEmojis,
     } = props
 
     const classes = useStyles()
-    const toolbarRef = useRef<HTMLDivElement | null>(null)
-    const editorRef = useRef<HTMLDivElement | null>(null)
     const wrapperRef = useRef<HTMLDivElement | null>(null)
-    const { dispatch, state } = useTextEditorState()
 
+    // @todo I think it should be removed
     usePropDeprecationWarning({
       props,
       name: 'error',
@@ -143,63 +130,26 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const { handleSelectionChange } = useOnSelectionChange({ dispatch })
-    const { handleTextFormat } = useOnTextFormat({ dispatch })
-    const {
-      handleBold,
-      handleItalic,
-      handleHeader,
-      handleOrdered,
-      handleUnordered,
-      handleLink,
-      insertEmoji,
-    } = useToolbarHandlers({
-      editorRef,
-      handleTextFormat,
-      format: state.toolbar.format,
-    })
+    // Possibly use useRef for synchronous updates but no re-rendering effect
+    const [hasFocus, setFocus] = useState(false)
 
-    const { isEditorFocused, handleFocus, handleBlur } = useOnFocus({
-      autoFocus,
-      editorRef,
-      toolbarRef,
-      wrapperRef,
-      onFocus,
-      onBlur,
-      dispatch,
-    })
+    const handleFocus = useCallback(() => {
+      setFocus(true)
+      onFocus()
+    }, [onFocus])
 
-    const [defaultValueInHtml] = useState(() =>
-      defaultValue ? hastUtilToHtml(hastSanitize(defaultValue)) : defaultValue
-    )
-
-    const { counterMessage, counterError, handleCounterMessage } = useCounter({
-      minLength,
-      maxLength,
-      minLengthMessage,
-      maxLengthMessage,
-    })
-
-    // Disabled the exhaustive deps rule to allow users to
-    // declare prop like "plugins={[]}" instead of having to
-    // declare the array outside the component level
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const memoizedPlugins = useMemo(() => plugins, [])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const memoizedCustomEmojis = useMemo(() => customEmojis, [])
-
-    useHasMultilineCounter(name, !!counterMessage, setHasMultilineCounter)
+    const handleBlur = useCallback(() => {
+      setFocus(false)
+      onBlur()
+    }, [onBlur])
 
     return (
       <>
-        <Container
+        <div
           className={cx(
             classes.editorWrapper,
             {
-              [classes.disabled]: disabled,
-              [classes.focused]: isEditorFocused,
-              [classes.error]: status === 'error',
-              [classes.highlightAutofill]: highlight === 'autofill',
+              [classes.focused]: hasFocus,
             },
             className
           )}
@@ -208,7 +158,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           ref={node => {
             if (typeof ref === 'function') {
               ref(node)
-            } else if (ref != null) {
+            } else if (ref !== null) {
               ref.current = node
             }
             wrapperRef.current = node
@@ -217,63 +167,17 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           onFocus={handleFocus}
           onBlur={handleBlur}
         >
-          <Toolbar
-            ref={toolbarRef}
-            disabled={disabled || state.toolbar.disabled}
+          <LexicalEditor
             id={id}
-            format={state.toolbar.format}
-            onBoldClick={handleBold}
-            onItalicClick={handleItalic}
-            onUnorderedClick={handleUnordered}
-            onOrderedClick={handleOrdered}
-            onHeaderChange={handleHeader}
-            onLinkClick={handleLink}
-            onInsertEmoji={insertEmoji}
-            plugins={memoizedPlugins}
-            customEmojis={memoizedCustomEmojis}
-            testIds={{
-              headerSelect: testIds?.headerSelect,
-              boldButton: testIds?.boldButton,
-              italicButton: testIds?.italicButton,
-              unorderedListButton: testIds?.unorderedListButton,
-              orderedListButton: testIds?.orderedListButton,
-            }}
-          />
-          <QuillEditor
-            ref={editorRef}
-            disabled={!!disabled}
-            data-testid={testIds?.editor}
-            id={id}
-            isFocused={isEditorFocused}
+            onChange={onChange}
             placeholder={placeholder}
-            onTextLengthChange={handleCounterMessage}
-            onTextFormat={handleTextFormat}
-            onSelectionChange={handleSelectionChange}
-            onTextChange={onChange}
-            defaultValue={defaultValueInHtml}
-            plugins={memoizedPlugins}
+            testIds={testIds}
           />
-          {hiddenInputId && enableFocusOnLabelClick(hiddenInputId)}
-        </Container>
-        {counterMessage && (
-          <InputMultilineAdornment error={counterError}>
-            {counterMessage}
-          </InputMultilineAdornment>
-        )}
+        </div>
+        {/* counter should be here */}
       </>
     )
   }
-)
-
-const hiddenInputStyle: React.CSSProperties = {
-  position: 'absolute',
-  opacity: 0,
-  zIndex: -1,
-}
-
-// Native `for` attribute on label does not work for div target
-const enableFocusOnLabelClick = (hiddenInputId: string) => (
-  <input type='text' id={hiddenInputId} style={hiddenInputStyle} />
 )
 
 RichTextEditor.defaultProps = {
