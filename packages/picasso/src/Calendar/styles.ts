@@ -25,14 +25,15 @@ export default ({ palette }: Theme) =>
     },
     table: {
       borderSpacing: '0px',
+      display: 'flex',
+      flexDirection: 'column',
     },
     row: {
       display: 'flex',
     },
     cell: {
       padding: 0,
-      height: '2.5rem',
-      width: '2.5rem',
+      flexBasis: '15%',
     },
     vhidden: {
       display: 'none',
