@@ -27,7 +27,7 @@ export const PageHamburgerContextProvider = ({
   hamburgerId,
 }: Props) => {
   const [isHamburgerVisible, setIsHamburgerVisible] = useState<boolean>(false)
-  const [hasTopBar, setHasTopBar] = useState(false)
+  const [hasTopBar, setHasTopBar] = useState(true)
 
   const context = {
     hamburgerId,
