@@ -11,12 +11,12 @@ interface Props {
 const PageHamburgerPortal = ({ children }: Props) => {
   const { hamburgerId, isHamburgerVisible } = useHamburgerContext()
 
-  const container = useCallback(
+  const getContainer = useCallback(
     () => (isHamburgerVisible ? getElementById(hamburgerId) : null),
     [hamburgerId, isHamburgerVisible]
   )
 
-  return <Portal container={container}>{children}</Portal>
+  return <Portal container={getContainer}>{children}</Portal>
 }
 
 export default PageHamburgerPortal

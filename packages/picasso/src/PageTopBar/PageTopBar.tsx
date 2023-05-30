@@ -73,9 +73,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
 
-    return function cleanup() {
-      setHasTopBar(false)
-    }
+    return () => setHasTopBar(false)
   }, [setHasTopBar])
 
   useEffect(() => {
