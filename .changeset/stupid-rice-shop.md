@@ -4,4 +4,4 @@
 
 ### Page.TopBar
 
-- fix responsivnes when running on react@16
+- fix responsiveness when running on react@16
