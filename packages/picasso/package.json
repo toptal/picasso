@@ -33,6 +33,8 @@
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
+    "@lexical/html": "^0.9.1",
+    "@lexical/react": "^0.9.1",
     "@toptal/picasso-shared": "12.0.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.3.1",
@@ -49,6 +51,7 @@
     "hast-util-from-dom": "^3.0.0",
     "hast-util-sanitize": "^3.0.2",
     "hast-util-to-html": "^7.1.3",
+    "lexical": "^0.9.1",
     "quill": "^1.3.7",
     "quill-emoji": "^0.2.0",
     "quill-paste-smart": "^1.4.9",

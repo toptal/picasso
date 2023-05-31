@@ -7,15 +7,15 @@ import Typography from '../Typography'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'QuillEditorView',
+  name: 'LexicalEditorView',
 })
 
-type QuillEditorViewProps = BaseProps & {
+type LexicalEditorViewProps = BaseProps & {
   id?: string
 }
 
-const QuillEditorView = forwardRef<HTMLDivElement, QuillEditorViewProps>(
-  function QuillEditorView({ id, 'data-testid': dataTestId }, ref) {
+const LexicalEditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
+  function LexicalEditorView({ id, 'data-testid': dataTestId }, ref) {
     const classes = useStyles()
 
     return (
@@ -33,4 +33,4 @@ const QuillEditorView = forwardRef<HTMLDivElement, QuillEditorViewProps>(
   }
 )
 
-export default QuillEditorView
+export default LexicalEditorView
