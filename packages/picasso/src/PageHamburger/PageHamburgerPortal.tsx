@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import Portal from '@material-ui/core/Portal'
 import { getElementById } from '@toptal/picasso-shared'
 
@@ -10,13 +10,20 @@ interface Props {
 
 const PageHamburgerPortal = ({ children }: Props) => {
   const { hamburgerId, isHamburgerVisible } = useHamburgerContext()
+  const [container, setContainer] = useState<HTMLElement | null>(null)
+  const containerElement = getElementById(hamburgerId)
 
-  const getContainer = useCallback(
-    () => (isHamburgerVisible ? getElementById(hamburgerId) : null),
-    [hamburgerId, isHamburgerVisible]
-  )
+  useEffect(() => {
+    if (containerElement !== container) {
+      setContainer(containerElement)
+    }
+  }, [containerElement, container])
 
-  return <Portal container={getContainer}>{children}</Portal>
+  if (!container || !isHamburgerVisible) {
+    return null
+  }
+
+  return <Portal container={container}>{children}</Portal>
 }
 
 export default PageHamburgerPortal
