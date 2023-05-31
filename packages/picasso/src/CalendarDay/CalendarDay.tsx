@@ -12,7 +12,7 @@ import styles from './styles'
 import { CalendarIndicators } from '../CalendarIndicators'
 import CalendarContext from '../CalendarContext'
 
-interface RenderDayProps extends DayProps {
+export interface RenderDayProps extends DayProps {
   /** Unique key */
   key?: string
   /** Children nodes */
