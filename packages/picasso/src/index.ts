@@ -117,8 +117,12 @@ export { TagSelectorCompound as TagSelector } from './TagSelectorCompound'
 export type { TagSelectorProps } from './TagSelector'
 export { default as Tooltip } from './Tooltip'
 export type { TooltipProps } from './Tooltip'
-export { default as Typography, getTypographyClassName } from './Typography'
-export type { TypographyProps } from './Typography'
+export {
+  default as Typography,
+  getTypographyClassName,
+  typographyStyles,
+} from './Typography'
+export type { TypographyProps, TypographyOptions } from './Typography'
 export { default as UserBadge } from './UserBadge'
 export type { UserBadgeProps } from './UserBadge'
 export { default as YearSelect } from './YearSelect'

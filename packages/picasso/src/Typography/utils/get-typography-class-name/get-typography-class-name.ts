@@ -3,6 +3,19 @@ import type { SizeType, ColorType } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../../../utils/kebab-to-camel-case'
 
+export type TypographyOptions = {
+  variant: 'heading' | 'body'
+  size:
+    | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+    | 'inherit'
+  color?: ColorType
+  weight?: 'regular' | 'semibold' | 'inherit'
+  underline?: 'solid' | 'dashed'
+  invert?: boolean
+  lineThrough?: boolean
+  as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
+}
+
 const getTypographyClassName = (
   classes: Record<string, string>,
   {
@@ -14,18 +27,7 @@ const getTypographyClassName = (
     invert,
     lineThrough,
     as,
-  }: {
-    variant: 'heading' | 'body'
-    size:
-      | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
-      | 'inherit'
-    color?: ColorType
-    weight?: 'regular' | 'semibold' | 'inherit'
-    underline?: 'solid' | 'dashed'
-    invert?: boolean
-    lineThrough?: boolean
-    as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
-  }
+  }: TypographyOptions
 ) => {
   const variantClassName = kebabToCamelCase(`${variant}-${size}`)
   const colorClassName = kebabToCamelCase(`${color}`)
