@@ -11,13 +11,22 @@ interface Props {
 const PageHamburgerPortal = ({ children }: Props) => {
   const { hamburgerId, isHamburgerVisible } = useHamburgerContext()
   const [container, setContainer] = useState<HTMLElement | null>(null)
-  const containerElement = getElementById(hamburgerId)
 
   useEffect(() => {
-    if (containerElement !== container) {
-      setContainer(containerElement)
+    const handleSetContainer = () => setContainer(getElementById(hamburgerId))
+
+    handleSetContainer()
+
+    // If the container doesn't exist on the first render, try again once the whole page has loaded
+    if (!container) {
+      window.addEventListener('load', handleSetContainer)
     }
-  }, [containerElement, container])
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener('load', handleSetContainer)
+    }
+  }, [container, hamburgerId])
 
   if (!container || !isHamburgerVisible) {
     return null
