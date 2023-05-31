@@ -1,5 +1,5 @@
-import React from 'react'
-import Portal from '@material-ui/core/Portal'
+import React, { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 import { useHamburgerContext } from './PageHamburgerContext'
 
@@ -9,12 +9,22 @@ interface Props {
 
 const PageHamburgerPortal = ({ children }: Props) => {
   const { isHamburgerVisible, hamburgerRef } = useHamburgerContext()
+  const [container, setContainer] = React.useState<HTMLElement | null>(null)
+  const [isMounted, setIsMounted] = React.useState<boolean>(false)
 
-  if (!hamburgerRef?.current || !isHamburgerVisible) {
+  useEffect(() => {
+    setIsMounted(true)
+
+    if (hamburgerRef?.current) {
+      setContainer(hamburgerRef.current)
+    }
+  }, [hamburgerRef, isMounted])
+
+  if (!container || !isHamburgerVisible) {
     return null
   }
 
-  return <Portal container={hamburgerRef.current}>{children}</Portal>
+  return createPortal(children, container)
 }
 
 export default PageHamburgerPortal
