@@ -18,7 +18,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const PageHamburger = ({ id }: Props) => {
-  const { isHamburgerVisible } = useHamburgerContext()
+  const { isHamburgerVisible, hamburgerRef } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
 
@@ -27,7 +27,7 @@ const PageHamburger = ({ id }: Props) => {
 
   return (
     <Dropdown
-      content={<div id={id} />}
+      content={<div id={id} ref={hamburgerRef} />}
       className={cx(classes.root, {
         [classes.hidden]: !isHamburgerVisible,
       })}

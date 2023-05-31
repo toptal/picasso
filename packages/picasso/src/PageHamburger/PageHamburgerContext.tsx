@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useRef, useState } from 'react'
 
 export interface HamburgerContextProps {
   hamburgerId: string
@@ -7,6 +7,7 @@ export interface HamburgerContextProps {
   setIsHamburgerVisible: (val: boolean) => void
   hasTopBar: boolean
   setHasTopBar: (val: boolean) => void
+  hamburgerRef?: React.RefObject<HTMLDivElement>
 }
 
 const PageHamburgerContext = createContext<HamburgerContextProps>({
@@ -28,6 +29,7 @@ export const PageHamburgerContextProvider = ({
 }: Props) => {
   const [isHamburgerVisible, setIsHamburgerVisible] = useState<boolean>(false)
   const [hasTopBar, setHasTopBar] = useState(true)
+  const hamburgerRef = useRef<HTMLDivElement>(null)
 
   const context = {
     hamburgerId,
@@ -35,6 +37,7 @@ export const PageHamburgerContextProvider = ({
     setIsHamburgerVisible,
     hasTopBar,
     setHasTopBar,
+    hamburgerRef,
   }
 
   return (
