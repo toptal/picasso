@@ -1,13 +1,12 @@
 import type { ReactNode } from 'react'
 import React, { createContext, useContext, useState } from 'react'
 
-type BooleanStateSetter = React.Dispatch<React.SetStateAction<boolean>>
 export interface HamburgerContextProps {
   hamburgerId: string
   isHamburgerVisible: boolean
-  setIsHamburgerVisible: BooleanStateSetter
+  setIsHamburgerVisible: (val: boolean) => void
   hasTopBar: boolean
-  setHasTopBar: BooleanStateSetter
+  setHasTopBar: (val: boolean) => void
 }
 
 const PageHamburgerContext = createContext<HamburgerContextProps>({
