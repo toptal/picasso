@@ -3,12 +3,7 @@ import type { QuillOptionsStatic, RangeStatic } from 'quill'
 import Quill from 'quill'
 import 'quill-paste-smart'
 
-import {
-  useTypographyClasses,
-  makeHeaderFormat,
-  makeBoldFormat,
-  makeLinkFormat,
-} from '../../formats'
+import { makeHeaderFormat, makeBoldFormat, makeLinkFormat } from '../../formats'
 import type { EditorPlugin } from '../../types'
 import { EmojiBlot } from '../../blots/emoji'
 
@@ -159,6 +154,9 @@ const useQuillInstance = ({
   plugins,
 }: EditorOptionsType): Quill | undefined => {
   const [quill, setQuill] = useState<Quill>()
+  // @todo remove it in a separate task
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const typographyClasses = useTypographyClasses()
 
   useEffect(() => {
