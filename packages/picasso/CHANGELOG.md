@@ -1,5 +1,15 @@
 # Change Log
 
+## 34.0.2
+
+### Patch Changes
+
+- [#3590](https://github.com/toptal/picasso/pull/3590) [`89b0697ba`](https://github.com/toptal/picasso/commit/89b0697ba3a94338f18bdfbae343060e98410929) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Page.TopBar
+
+- fix responsiveness when running on react@16
+
 ## 34.0.1
 
 ### Patch Changes
