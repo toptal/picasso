@@ -76,6 +76,8 @@ export interface Props<K extends string | number | symbol>
   autoSize?: boolean
   /** Maximum size for the bar */
   maxBarSize?: number
+  /** Function to format ticks of the value axis */
+  valueAxisTickFormatter?: ((value: any, index: number) => string) | undefined
 }
 
 const StyleOverrides = () => (
@@ -127,6 +129,7 @@ const BarChart = <T extends string>({
   showEveryNthTickOnYAxis = 1,
   autoSize,
   maxBarSize,
+  valueAxisTickFormatter,
   ...rest
 }: Props<T>) => {
   const horizontal = layout === 'horizontal'
@@ -163,6 +166,7 @@ const BarChart = <T extends string>({
     width: Y_AXIS_WIDTH,
     ticks: ticks,
     domain: [ticks[0], ticks[ticks.length - 1]],
+    tickFormatter: valueAxisTickFormatter,
   }
 
   const xAxisProps = horizontal ? categoryAxisProps : valueAxisProps
