@@ -59,3 +59,9 @@ page
     description: `You can show every Nth tick for X-axis or Y-axis. "0" hides all ticks, "1" shows all ticks (default behavior). The example below has "showEveryNthTickOnXAxis={3}" (every third tick is shown on X-axis) and "showEveryNthTickOnYAxis={0}" (no ticks are shown on Y-axis).`,
     takeScreenshot: false,
   })
+  .addExample('BarChart/story/ValueAxisTickFormatter.example.tsx', {
+    title: 'Format the value axis',
+    description:
+      'You can format the ticks on the value axis by providing the format function in the `valueAxisTickFormatter` property.',
+    takeScreenshot: false,
+  })
