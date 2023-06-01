@@ -1,16 +1,21 @@
 import type { ReactNode } from 'react'
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useRef, useState } from 'react'
 
 export interface HamburgerContextProps {
   hamburgerId: string
   isHamburgerVisible: boolean
-  setIsHamburgerVisible: React.Dispatch<React.SetStateAction<boolean>>
+  setIsHamburgerVisible: (val: boolean) => void
+  hasTopBar: boolean
+  setHasTopBar: (val: boolean) => void
+  hamburgerRef?: React.RefObject<HTMLDivElement>
 }
 
 const PageHamburgerContext = createContext<HamburgerContextProps>({
   hamburgerId: 'hamburger',
   isHamburgerVisible: false,
   setIsHamburgerVisible: () => {},
+  hasTopBar: false,
+  setHasTopBar: () => {},
 })
 
 interface Props {
@@ -23,11 +28,16 @@ export const PageHamburgerContextProvider = ({
   hamburgerId,
 }: Props) => {
   const [isHamburgerVisible, setIsHamburgerVisible] = useState<boolean>(false)
+  const [hasTopBar, setHasTopBar] = useState(true)
+  const hamburgerRef = useRef<HTMLDivElement>(null)
 
   const context = {
     hamburgerId,
     isHamburgerVisible,
     setIsHamburgerVisible,
+    hasTopBar,
+    setHasTopBar,
+    hamburgerRef,
   }
 
   return (
