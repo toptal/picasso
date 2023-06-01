@@ -1,5 +1,12 @@
 # Change Log
 
+## 48.1.0
+
+### Minor Changes
+
+- [#3591](https://github.com/toptal/picasso/pull/3591) [`2436f215c`](https://github.com/toptal/picasso/commit/2436f215c69ae5ab60c709e5985666fc8e916b91) Thanks [@michel-gatti](https://github.com/michel-gatti)!
+- add `valueAxisTickFormatter` option to format value axis ticks
+
 ## 48.0.0
 
 ### Patch Changes
