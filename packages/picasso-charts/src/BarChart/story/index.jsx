@@ -26,6 +26,12 @@ page
       'Bar chart has built-in tooltips support. You can enable them via `tooltip` prop.',
     takeScreenshot: false,
   })
+  .addExample('BarChart/story/BarIndicator.example.tsx', {
+    title: 'Bar indicator',
+    description:
+      'Bars can have a letter indicator.',
+    takeScreenshot: false,
+  })
   .addExample('BarChart/story/AutoSize.example.tsx', {
     title: 'Auto size',
     description: 'Bars try to fill all the space of the chart',
