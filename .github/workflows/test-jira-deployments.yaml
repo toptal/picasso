@@ -31,22 +31,69 @@ jobs:
     
     steps:
       
-      - name: Create Jira Deployment
-        uses: toptal/davinci-github-actions/create-jira-deployment@v7.1.0
+      # - name: Create Jira Deployment
+      #   uses: toptal/davinci-github-actions/create-jira-deployment@v7.1.0
+      #   if: ${{ always() }}
+      #   with:
+      #     token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+      #     environment: temploy
+      #     environment-url: http://temploy.toptal.net
+      #     transient-environment: false
+      #     auto-inactive: false
+
+
+      - uses: chrnorm/deployment-action@v2
+        name: Create Temploy GitHub deployment
+        id: gh-temploy-deployment
         if: ${{ always() }}
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment: temploy
           environment-url: http://temploy.toptal.net
+          environment: temploy
+          transient-environment: true
+          auto-inactive: false
+
+      - name: Update deployment status on success
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          environment-url: http://temploy.toptal.net
+          environment: ${{ steps.gh-temploy-deployment.outputs.environment_url }}
+          deployment-id: ${{ steps.gh-temploy-deployment.outputs.deployment_id }}
+          log-url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          state: 'success'
+          description: 'Temploy Deployment successful'
+
+
+      # - name: Create Jira Deployment for Alpha-package
+      #   uses: toptal/davinci-github-actions/create-jira-deployment@v7.1.0
+      #   if: ${{ always() }}
+      #   with:
+      #     token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+      #     environment: alpha-package
+      #     environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=dependents
+      #     transient-environment: false
+      #     auto-inactive: false
+
+
+      - uses: chrnorm/deployment-action@v2
+        name: Create Alpha GitHub deployment
+        id: gh-alpha-deployment
+        if: ${{ always() }}
+        with:
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=dependents
+          environment: alpha-package
           transient-environment: false
           auto-inactive: false
 
-      - name: Create Jira Deployment for Alpha-package
-        uses: toptal/davinci-github-actions/create-jira-deployment@v7.1.0
-        if: ${{ always() }}
+      - name: Update deployment status on success
+        uses: chrnorm/deployment-status@v2
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment: alpha-package
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=dependents
-          transient-environment: false
-          auto-inactive: false
+          environment: ${{ steps.gh-alpha-deployment.outputs.environment_url }}
+          deployment-id: ${{ steps.gh-alpha-deployment.outputs.deployment_id }}
+          log-url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          state: 'success'
+          description: 'Alpha Package Deployment successful'
