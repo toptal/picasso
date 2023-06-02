@@ -9,5 +9,6 @@ export type {
   ChartDataPoint,
   OrderedChartDataPoint,
   HighlightConfig,
+  BarIndicatorConfig,
 } from './types'
 // hygen code generator inserts export statements above this comment.

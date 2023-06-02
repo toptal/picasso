@@ -6,6 +6,7 @@ import {
   XAxis,
   Tooltip,
   Bar,
+  Customized,
   YAxis,
   ResponsiveContainer,
   Cell,
@@ -13,6 +14,8 @@ import {
 import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
+import { BarChartIndicators } from '../BarChartIndicators'
+import type { BarIndicatorFunction } from '../BarChartIndicators'
 import type { BaseChartProps } from '../types'
 import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
@@ -59,6 +62,7 @@ export interface Props<K extends string | number | symbol>
   }) => string
   /** Maps bar's key with a label color */
   getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
+  getBarIndicator?: BarIndicatorFunction
   testIds?: {
     tooltip?: string
   }
@@ -120,6 +124,7 @@ const BarChart = <T extends string>({
   getBarColor = defaultGetBarColor,
   labelKey,
   getBarLabelColor = defaultGetBarLabelColor,
+  getBarIndicator,
   testIds,
   showBarLabel,
   isAnimationActive,
@@ -236,6 +241,13 @@ const BarChart = <T extends string>({
               })}
             </Bar>
           ))}
+          {getBarIndicator && (
+            <Customized
+              component={
+                <BarChartIndicators getBarChartIndicator={getBarIndicator} />
+              }
+            />
+          )}
         </RechartsBarChart>
       </ResponsiveContainer>
     </div>
