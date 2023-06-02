@@ -1,0 +1,52 @@
+name: Test JIRA Deployments
+
+on:
+  pull_request:
+    branches:
+      - master # triggers the flow for every PR to master
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
+
+    types:
+      - synchronize # PR was updated
+      - opened # PR was open
+      - reopened # PR was closed and is now open again
+      - ready_for_review # PR was converted from draft to open
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
+  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+
+jobs:
+  create-deployments:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Create Jira Deployments
+    runs-on: ubuntu-latest
+    
+    steps:
+      
+      - name: Create Jira Deployment
+        uses: toptal/davinci-github-actions/create-jira-deployment@v7.1.0
+        if: ${{ always() }}
+        with:
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          environment: temploy
+          environment-url: http://temploy.toptal.net
+          transient-environment: false
+          auto-inactive: false
+
+      - name: Create Jira Deployment for Alpha-package
+        uses: toptal/davinci-github-actions/create-jira-deployment@v7.1.0
+        if: ${{ always() }}
+        with:
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          environment: alpha-package
+          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=dependents
+          transient-environment: false
+          auto-inactive: false
