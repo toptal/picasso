@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import type { ReactNode } from 'react'
 import { palette } from '@toptal/picasso/utils'
 import {
   BarChart as RechartsBarChart,
@@ -6,6 +7,7 @@ import {
   XAxis,
   Tooltip,
   Bar,
+  Customized,
   YAxis,
   ResponsiveContainer,
   Cell,
@@ -13,7 +15,8 @@ import {
 import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
-import type { BaseChartProps } from '../types'
+import { BarChartIndicators } from '../BarChartIndicators'
+import type { BaseChartProps, BarOptions } from '../types'
 import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
@@ -58,7 +61,8 @@ export interface Props<K extends string | number | symbol>
     index?: number
   }) => string
   /** Maps bar's key with a label color */
-  getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
+  getBarLabelColor?: (barOptions: BarOptions) => string
+  renderBarIndicators?: (barOptions: BarOptions) => ReactNode
   testIds?: {
     tooltip?: string
   }
@@ -120,6 +124,7 @@ const BarChart = <T extends string>({
   getBarColor = defaultGetBarColor,
   labelKey,
   getBarLabelColor = defaultGetBarLabelColor,
+  renderBarIndicators,
   testIds,
   showBarLabel,
   isAnimationActive,
@@ -236,6 +241,13 @@ const BarChart = <T extends string>({
               })}
             </Bar>
           ))}
+          {renderBarIndicators && (
+            <Customized
+              component={
+                <BarChartIndicators renderIndicator={renderBarIndicators} />
+              }
+            />
+          )}
         </RechartsBarChart>
       </ResponsiveContainer>
     </div>
