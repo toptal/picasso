@@ -1,7 +1,7 @@
 deployments:
   environmentMapping:
     testing:
-      - "templ*"
+      - "temploy"
       - "alpha*"
     production:
       - "prod*"
