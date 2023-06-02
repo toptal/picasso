@@ -91,7 +91,7 @@ jobs:
         uses: chrnorm/deployment-status@v2
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment-url: ${{ stepsgh-alpha-deployment.outputs.environment_url }}
+          environment-url: ${{ steps.gh-alpha-deployment.outputs.environment_url }}
           environment: 'alpha-package'
           deployment-id: ${{ steps.gh-alpha-deployment.outputs.deployment_id }}
           log-url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
