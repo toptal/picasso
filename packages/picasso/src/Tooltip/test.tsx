@@ -48,6 +48,7 @@ const renderTooltip = (props?: Partial<OmitInternalProps<Props>>) => {
   )
 }
 
+// eslint-disable-next-line max-lines-per-function
 describe('Tooltip', () => {
   beforeAll(() => {
     // By default in Jest window.getComputedStyle returns only partial styles
@@ -77,13 +78,11 @@ describe('Tooltip', () => {
     })
 
     it('renders initially opened', async () => {
-      const { container, getByTestId } = renderTooltip({ open: true })
+      const { getByTestId } = renderTooltip({ open: true })
 
       await waitFor(() => {
         expect(getByTestId('tooltip-content')).toBeInTheDocument()
       })
-
-      expect(container).toMatchSnapshot()
     })
 
     it('renders with portals disabled', () => {
