@@ -1,5 +1,15 @@
 # Change Log
 
+## 34.1.0
+
+### Minor Changes
+
+- [#3594](https://github.com/toptal/picasso/pull/3594) [`9219d3fa5`](https://github.com/toptal/picasso/commit/9219d3fa5da2244b262f8912f7fec0d1002b742c) Thanks [@aesqe](https://github.com/aesqe)!
+
+### Icon
+
+- add `PauseSolid16` and `PauseSolid24` icons
+
 ## 34.0.2
 
 ### Patch Changes
