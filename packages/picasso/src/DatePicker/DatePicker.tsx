@@ -93,12 +93,8 @@ export interface Props
   /** Function to override default markup to show Date */
   renderDay?: RenderDay
   popperContainer?: HTMLElement
-  /**
-   * @deprecated Please use `weekStartDay` instead as it is properly typed
-   */
-  weekStartsOn?: number
   /** Index of the first day of the week (0 - Sunday). Default is 1 - Monday */
-  weekStartDay?: WeekStart
+  weekStartsOn?: WeekStart
   /** IANA timezone to display and edit date(s) */
   timezone?: string
   /** Custom parser for `DatePicker`'s input value to process custom input value, like, human-readable dates */
@@ -138,7 +134,6 @@ export const DatePicker = (props: Props) => {
     popperContainer,
     renderDay,
     weekStartsOn,
-    weekStartDay,
     timezone,
     size,
     parseInputValue,
@@ -445,7 +440,6 @@ export const DatePicker = (props: Props) => {
             className={classes.calendar}
             hasFooter={Boolean(footer)}
             weekStartsOn={weekStartsOn}
-            weekStartDay={weekStartDay}
           />
           {footer && (
             <div

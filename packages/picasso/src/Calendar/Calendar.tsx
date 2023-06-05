@@ -47,17 +47,11 @@ export interface Props
   renderDay?: RenderDay
   disabledIntervals?: CalendarDateRange[]
   indicatedIntervals?: CalendarDateRange[]
-  /**
-   * @deprecated Please use `weekStartDay` instead as it is properly typed
-   */
-  weekStartsOn?: number
-  weekStartDay?: WeekStart
+  weekStartsOn?: WeekStart
   hasFooter?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
-
-const DEFAULT_WEEK_START_DAY = 1
 
 export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
@@ -75,8 +69,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     indicatedIntervals,
     renderDay,
     renderMonthHeader,
-    weekStartsOn,
-    weekStartDay,
+    weekStartsOn = 1,
     hasFooter = false,
     renderRoot,
     ...rest
@@ -170,7 +163,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const handleDayEnter = (date: Date) =>
     range && rangeValue?.from && setRangeSelectionHoverDate(date)
 
-  // TODO: change the weekStartOn in stories
   return (
     <div ref={ref} {...rest} tabIndex={0}>
       <CalendarContext.Provider
@@ -197,13 +189,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             onMonthChange={month => setNavigationMonth(month)}
             toDate={maxDate}
             disabled={disabledIntervalsFormatted}
-            weekStartsOn={
-              weekStartDay !== undefined
-                ? weekStartDay
-                : weekStartsOn !== undefined
-                ? (weekStartsOn as WeekStart)
-                : DEFAULT_WEEK_START_DAY
-            }
+            weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
             modifiers={{
               weekend: isWeekend,

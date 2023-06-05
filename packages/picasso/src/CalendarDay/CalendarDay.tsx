@@ -61,6 +61,7 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
   } = activeModifiers
 
   const isToday = isTodayDateFns(date)
+  const isoDate = getISODate(date)
 
   const classes = useStyles()
 
@@ -71,6 +72,7 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       data-testid={`day-button-${
         isSelected ? 'selected' : getDayFormatted(date)
       }`}
+      data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
       className={cx(classes.day, {
         [classes.selected]: isSelected,
@@ -115,8 +117,8 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
         handleOnClick: buttonProps?.onClick as () => void,
         handleOnEnter: buttonProps?.onMouseEnter as () => void,
         date,
-        key: getISODate(date),
-        ISODate: getISODate(date),
+        key: isoDate,
+        ISODate: isoDate,
         getDayFormatted,
         children: defaultMarkup,
       })}
