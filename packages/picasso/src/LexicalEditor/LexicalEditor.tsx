@@ -17,6 +17,7 @@ import Typography from '../Typography'
 import { useTypographyClasses } from './hooks'
 import styles from './styles'
 import type { ChangeHandler } from './types'
+import ToolbarPlugin from './plugins/LexicalEditorToolbar'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -34,7 +35,7 @@ export type Props = BaseProps & {
   /**
    * This Boolean attribute indicates that the user cannot interact with the control.
    */
-  //   disabled?: boolean
+  disabled?: boolean
   /** unique identifier */
   id: string
   /**
@@ -95,7 +96,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     // plugins,
     // autoFocus = false,
     // defaultValue,
-    // disabled,
+    disabled,
     id,
     onChange = noop,
     // onFocus = noop,
@@ -158,28 +159,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   return (
     <LexicalComposer initialConfig={editorConfig}>
-      {/* <Toolbar
-                ref={toolbarRef}
-                disabled={disabled || state.toolbar.disabled}
-                id={id}
-                format={state.toolbar.format}
-                onBoldClick={handleBold}
-                onItalicClick={handleItalic}
-                onUnorderedClick={handleUnordered}
-                onOrderedClick={handleOrdered}
-                onHeaderChange={handleHeader}
-                onLinkClick={handleLink}
-                onInsertEmoji={insertEmoji}
-                plugins={memoizedPlugins}
-                customEmojis={memoizedCustomEmojis}
-                testIds={{
-                headerSelect: testIds?.headerSelect,
-                boldButton: testIds?.boldButton,
-                italicButton: testIds?.italicButton,
-                unorderedListButton: testIds?.unorderedListButton,
-                orderedListButton: testIds?.orderedListButton,
-                }}
-            /> */}
+      <ToolbarPlugin disabled={disabled} />
       <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
       <div className={classes.editorContainer} id={id} ref={ref}>
         <RichTextPlugin
