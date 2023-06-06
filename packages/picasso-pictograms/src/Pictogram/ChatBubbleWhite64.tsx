@@ -24,8 +24,8 @@ const SvgChatBubbleWhite64 = forwardRef(function SvgChatBubbleWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,17 +33,17 @@ const SvgChatBubbleWhite64 = forwardRef(function SvgChatBubbleWhite64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.3}
-          d='M43.145 6.073.5 6.072v37.029l7.374-7.374h12.981V20.899h22.29V6.073Z'
           fill='#231F20'
+          d='M43.145 6.073.5 6.072v37.029l7.374-7.374h12.981V20.899h22.29V6.073Z'
+          opacity={0.3}
         />
         <path
+          fill='#fff'
           d='M0 44.308V5.572h43.645v15.327h-1V6.572H1v35.322l6.667-6.667h13.188v1H8.081L0 44.308Z'
-          fill='#fff'
         />
         <path
-          d='m64 59.135-8.081-8.081H20.356V20.399H64v38.736Zm-42.645-9.081h34.978L63 56.72V21.399H21.355v28.655Z'
           fill='#fff'
+          d='m64 59.135-8.081-8.081H20.356V20.399H64v38.736Zm-42.645-9.081h34.978L63 56.72V21.399H21.355v28.655Z'
         />
       </g>
       <defs>

@@ -24,8 +24,8 @@ const SvgBriefcaseWhite64 = forwardRef(function SvgBriefcaseWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,26 +33,26 @@ const SvgBriefcaseWhite64 = forwardRef(function SvgBriefcaseWhite64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.3}
-          d='M.5 21.947v42.091h63v-42.09H.5Zm37.367 29.444H26.133v-8.923h11.735v8.923Z'
           fill='#231F20'
+          d='M.5 21.947v42.091h63v-42.09H.5Zm37.367 29.444H26.133v-8.923h11.735v8.923Z'
+          opacity={0.3}
         />
         <path
+          fill='#fff'
           d='M64 64.538H0V12.213h64v52.325Zm-63-1h62V13.213H1v50.325Z'
-          fill='#fff'
         />
         <path
+          fill='#fff'
           d='M44.969 12.713h-1v-8.3a2.878 2.878 0 0 0-2.875-2.875H22.906a2.878 2.878 0 0 0-2.875 2.875v8.3h-1v-8.3A3.88 3.88 0 0 1 22.906.538h18.188a3.88 3.88 0 0 1 3.875 3.875v8.3ZM38.368 51.891H25.632v-9.923h12.736v9.923Zm-11.736-1h10.736v-7.923H26.632v7.923Z'
-          fill='#fff'
         />
         <path
-          d='M26.132 47.43H3.875A3.88 3.88 0 0 1 0 43.555V40.18h1v3.375a2.878 2.878 0 0 0 2.875 2.875h22.257v1ZM60.125 47.43H37.868v-1h22.257A2.878 2.878 0 0 0 63 43.555V40.18h1v3.375a3.88 3.88 0 0 1-3.875 3.875Z'
           fill='#fff'
+          d='M26.132 47.43H3.875A3.88 3.88 0 0 1 0 43.555V40.18h1v3.375a2.878 2.878 0 0 0 2.875 2.875h22.257v1ZM60.125 47.43H37.868v-1h22.257A2.878 2.878 0 0 0 63 43.555V40.18h1v3.375a3.88 3.88 0 0 1-3.875 3.875Z'
         />
       </g>
       <defs>
         <clipPath id='a'>
-          <path fill='#fff' transform='translate(0 .538)' d='M0 0h64v64H0z' />
+          <path fill='#fff' d='M0 .538h64v64H0z' />
         </clipPath>
       </defs>
     </svg>

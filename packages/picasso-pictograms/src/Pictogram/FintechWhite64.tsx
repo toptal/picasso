@@ -24,8 +24,8 @@ const SvgFintechWhite64 = forwardRef(function SvgFintechWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,30 +33,30 @@ const SvgFintechWhite64 = forwardRef(function SvgFintechWhite64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.3}
-          d='M48.497 16.362H15.503v32.993h32.994V16.362Z'
           fill='#231F20'
+          d='M48.497 16.362H15.503v32.993h32.994V16.362Z'
+          opacity={0.3}
         />
         <path
+          fill='#fff'
           d='M37.11 45.22H26.89a6.438 6.438 0 0 1-6.43-6.43h1a5.436 5.436 0 0 0 5.43 5.43h10.22a5.431 5.431 0 0 0 0-10.861H26.89a6.43 6.43 0 1 1 0-12.862h10.22a6.438 6.438 0 0 1 6.43 6.431h-1a5.437 5.437 0 0 0-5.43-5.43H26.89a5.432 5.432 0 1 0 0 10.86h10.22a6.431 6.431 0 0 1 0 12.862Z'
-          fill='#fff'
         />
         <path
+          fill='#fff'
           d='M32.5 16.362h-1v32.993h1V16.362ZM63.5 43.96h-9.227v1H63.5v-1ZM63.5 32.359h-9.227v1H63.5v-1Z'
-          fill='#fff'
         />
         <path
+          fill='#fff'
           d='M54.773 55.632H9.227V10.086h45.546v45.546Zm-44.546-1h43.546V11.086H10.227v43.546Z'
-          fill='#fff'
         />
         <path
-          d='M9.727 20.757H.5v1h9.227v-1ZM44.102 55.132h-1v9.227h1v-9.227ZM20.898 1.359h-1v9.227h1V1.359ZM9.727 43.96H.5v1h9.227v-1ZM44.102 1.359h-1v9.227h1V1.359ZM20.898 55.132h-1v9.227h1v-9.227ZM63.5 20.757h-9.227v1H63.5v-1ZM9.727 32.359H.5v1h9.227v-1ZM32.5 1.359h-1v9.227h1V1.359ZM32.5 55.132h-1v9.227h1v-9.227Z'
           fill='#fff'
+          d='M9.727 20.757H.5v1h9.227v-1ZM44.102 55.132h-1v9.227h1v-9.227ZM20.898 1.359h-1v9.227h1V1.359ZM9.727 43.96H.5v1h9.227v-1ZM44.102 1.359h-1v9.227h1V1.359ZM20.898 55.132h-1v9.227h1v-9.227ZM63.5 20.757h-9.227v1H63.5v-1ZM9.727 32.359H.5v1h9.227v-1ZM32.5 1.359h-1v9.227h1V1.359ZM32.5 55.132h-1v9.227h1v-9.227Z'
         />
       </g>
       <defs>
         <clipPath id='a'>
-          <path fill='#fff' transform='translate(0 .859)' d='M0 0h64v64H0z' />
+          <path fill='#fff' d='M0 .859h64v64H0z' />
         </clipPath>
       </defs>
     </svg>
