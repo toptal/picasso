@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:16-alpine
 
 ENV PATH="${PATH}:/app/node_modules/.bin" \
   # Defines version of dependencies for apk add
