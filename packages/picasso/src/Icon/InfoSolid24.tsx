@@ -46,8 +46,8 @@ const SvgInfoSolid24 = forwardRef(function SvgInfoSolid24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
       fill='none'
+      viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
@@ -55,8 +55,8 @@ const SvgInfoSolid24 = forwardRef(function SvgInfoSolid24(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='M23 12c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1s11 4.925 11 11ZM11 9h1a1 1 0 0 1 1 1v6a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2v-5a1 1 0 1 1 0-2Zm1-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z'
+        clipRule='evenodd'
       />
     </svg>
   )

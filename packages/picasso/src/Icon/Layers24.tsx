@@ -46,8 +46,8 @@ const SvgLayers24 = forwardRef(function SvgLayers24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
       fill='none'
+      viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
@@ -55,8 +55,8 @@ const SvgLayers24 = forwardRef(function SvgLayers24(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='m12 2 12 6-12 6L0 8l12-6Zm12 10-1.104-.553L12 16.882 1.104 11.447 0 12l12 6 12-6Zm0 4-1.104-.553L12 20.882 1.104 15.447 0 16l12 6 12-6ZM2.236 8 12 3.118 21.764 8 12 12.882 2.236 8Z'
+        clipRule='evenodd'
       />
     </svg>
   )

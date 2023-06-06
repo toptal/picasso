@@ -46,8 +46,8 @@ const SvgMobile24 = forwardRef(function SvgMobile24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
       fill='none'
+      viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
