@@ -17,7 +17,7 @@ import Typography from '../Typography'
 import { useTypographyClasses } from './hooks'
 import styles from './styles'
 import type { ChangeHandler } from './types'
-import ToolbarPlugin from './plugins/LexicalEditorToolbar'
+import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',

@@ -6,16 +6,16 @@ import {
   registerLexicalEvents,
   synchronizeToolbarState,
   toolbarStateReducer,
-} from '../utils'
-import { noop } from '../../utils'
-import type { FormatType } from '../../RichTextEditorToolbar'
-import RichTextEditorToolbar from '../../RichTextEditorToolbar'
+} from '../LexicalEditor/utils'
+import { noop } from '../utils'
+import type { FormatType } from '../RichTextEditorToolbar'
+import RichTextEditorToolbar from '../RichTextEditorToolbar'
 
 type Props = {
   disabled?: boolean
 }
 
-const LexicalEditorToolbar = ({ disabled = false }: Props) => {
+const LexicalEditorToolbarPlugin = ({ disabled = false }: Props) => {
   const [editor] = useLexicalComposerContext()
   const [{ isBold, isItalic, isEditable, activeEditor }, dispatch] = useReducer(
     toolbarStateReducer,
@@ -76,4 +76,4 @@ const LexicalEditorToolbar = ({ disabled = false }: Props) => {
   )
 }
 
-export default LexicalEditorToolbar
+export default LexicalEditorToolbarPlugin

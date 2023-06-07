@@ -13,8 +13,8 @@ const mockUpdateToolbar = jest.fn()
 const mockMergeRegister = mergeRegister as jest.MockedFunction<
   typeof mergeRegister
 >
-const mockEditorListenerCleanup = jest.fn()
-const mockEditorCommandsCleanup = jest.fn()
+const mockedEditorListenerCleanup = jest.fn()
+const mockedEditorCommandsCleanup = jest.fn()
 
 describe('registerLexicalEvents', () => {
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('registerLexicalEvents', () => {
       registerUpdateListener: jest.fn().mockReturnValueOnce(() => {}),
       registerCommand: jest
         .fn()
-        .mockReturnValueOnce(() => mockEditorCommandsCleanup),
+        .mockReturnValueOnce(() => mockedEditorCommandsCleanup),
     }
     const mockActiveEditor = {
       registerUpdateListener: jest.fn().mockReturnValueOnce(() => {}),
@@ -38,7 +38,7 @@ describe('registerLexicalEvents', () => {
         mockEditor.registerEditableListener()
         mockActiveEditor.registerUpdateListener()
       })
-      .mockReturnValueOnce(() => mockEditorListenerCleanup)
+      .mockReturnValueOnce(() => mockedEditorListenerCleanup)
 
     const params = {
       editor: mockEditor,
@@ -65,7 +65,7 @@ describe('registerLexicalEvents', () => {
     cleanup()
 
     // Assert cleanup
-    expect(mockEditorCommandsCleanup).toHaveBeenCalledTimes(1)
-    expect(mockEditorListenerCleanup).toHaveBeenCalledTimes(1)
+    expect(mockedEditorCommandsCleanup).toHaveBeenCalledTimes(1)
+    expect(mockedEditorListenerCleanup).toHaveBeenCalledTimes(1)
   })
 })

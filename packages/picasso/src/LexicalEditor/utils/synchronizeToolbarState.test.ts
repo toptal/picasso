@@ -9,10 +9,10 @@ jest.mock('lexical', () => ({
   $isRangeSelection: jest.fn(),
 }))
 
-const mockGetSelection = $getSelection as jest.MockedFunction<
+const mockedGetSelection = $getSelection as jest.MockedFunction<
   typeof $getSelection
 >
-const mockIsRangeSelection = $isRangeSelection as jest.MockedFunction<
+const mockedIsRangeSelection = $isRangeSelection as jest.MockedFunction<
   typeof $isRangeSelection
 >
 
@@ -21,50 +21,46 @@ describe('synchronizeToolbarState', () => {
     jest.clearAllMocks()
   })
 
-  it('should dispatch an action with the correct values when range selection has bold and italic format', () => {
-    // Arrange
-    const dispatchMock = jest.fn()
-    const hasFormatMock = jest
-      .fn()
-      .mockReturnValueOnce(true)
-      .mockReturnValueOnce(true)
+  describe('when range selection has bold and italic format', () => {
+    it('should dispatch an action with the correct values', () => {
+      const dispatchMock = jest.fn()
+      const hasFormatMock = jest
+        .fn()
+        .mockReturnValueOnce(true)
+        .mockReturnValueOnce(true)
 
-    mockGetSelection.mockReturnValueOnce({
-      hasFormat: hasFormatMock,
-    } as unknown as RangeSelection)
-    mockIsRangeSelection.mockReturnValueOnce(true)
+      mockedGetSelection.mockReturnValueOnce({
+        hasFormat: hasFormatMock,
+      } as unknown as RangeSelection)
+      mockedIsRangeSelection.mockReturnValueOnce(true)
 
-    // Act
-    synchronizeToolbarState(dispatchMock)
+      synchronizeToolbarState(dispatchMock)
 
-    // Assert
-    expect(dispatchMock).toHaveBeenCalledTimes(1)
-    expect(dispatchMock).toHaveBeenCalledWith({
-      type: ToolbarActions.UPDATE_VISUAL_STATE,
-      value: {
-        isBold: true,
-        isItalic: true,
-      },
+      expect(dispatchMock).toHaveBeenCalledTimes(1)
+      expect(dispatchMock).toHaveBeenCalledWith({
+        type: ToolbarActions.UPDATE_VISUAL_STATE,
+        value: {
+          isBold: true,
+          isItalic: true,
+        },
+      })
+      expect(mockedGetSelection).toHaveBeenCalledTimes(1)
+      expect(mockedIsRangeSelection).toHaveBeenCalledTimes(1)
+      expect(hasFormatMock).toHaveBeenCalledTimes(2)
+      expect(hasFormatMock).toHaveBeenCalledWith('bold')
+      expect(hasFormatMock).toHaveBeenCalledWith('italic')
     })
-    expect(mockGetSelection).toHaveBeenCalledTimes(1)
-    expect(mockIsRangeSelection).toHaveBeenCalledTimes(1)
-    expect(hasFormatMock).toHaveBeenCalledTimes(2)
-    expect(hasFormatMock).toHaveBeenCalledWith('bold')
-    expect(hasFormatMock).toHaveBeenCalledWith('italic')
   })
 
   it('should not dispatch any action when selection is not a range selection', () => {
-    // Arrange
     const dispatchMock = jest.fn()
 
-    mockIsRangeSelection.mockReturnValueOnce(false)
+    mockedIsRangeSelection.mockReturnValueOnce(false)
 
-    // Act
     synchronizeToolbarState(dispatchMock)
 
-    // Assert
     expect(dispatchMock).not.toHaveBeenCalled()
-    expect(mockGetSelection).toHaveBeenCalledTimes(1)
-    expect(mockIsRangeSelection).toHaveBeenCalledTimes(1)
+    expect(mockedGetSelection).toHaveBeenCalledTimes(1)
+    expect(mockedIsRangeSelection).toHaveBeenCalledTimes(1)
   })
 })
