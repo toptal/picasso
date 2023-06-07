@@ -17,7 +17,9 @@ interface RenderMonthHeaderProps extends CaptionProps {
   children?: ReactNode
 }
 
-export type RenderMonthHeader = (args: RenderMonthHeaderProps) => ReactNode
+export type RenderMonthHeader = (
+  args: RenderMonthHeaderProps
+) => JSX.Element | null
 
 const CalendarMonthHeader = (props: CaptionProps) => {
   const {

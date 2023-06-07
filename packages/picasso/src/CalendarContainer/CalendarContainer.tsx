@@ -16,7 +16,7 @@ export type CalendarContainerProps = {
   hasFooter?: boolean
 }
 
-export type RenderRoot = (args: CalendarContainerProps) => ReactNode
+export type RenderRoot = (args: CalendarContainerProps) => JSX.Element
 
 const CalendarContainer = ({ children, hasFooter }: CalendarContainerProps) => {
   const classes = useStyles()

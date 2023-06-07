@@ -5,37 +5,25 @@ import { useDayRender } from 'react-day-picker'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import isToday from 'date-fns/isToday'
-import { endOfMonth, format, isAfter, isBefore, startOfMonth } from 'date-fns'
+import {
+  isToday as isTodayDateFns,
+  endOfMonth,
+  format,
+  isAfter,
+  isBefore,
+  startOfMonth,
+} from 'date-fns'
 
 import styles from './styles'
 import { CalendarIndicators } from '../CalendarIndicators'
 import CalendarContext from '../CalendarContext'
-
-export interface RenderDayProps extends DayProps {
-  /** Unique key */
-  key?: string
-  /** Children nodes */
-  children?: ReactNode
-  /** Returns formatted date */
-  getDayFormatted: (date: Date) => string
-  /** Specifies if current day belongs to the previous month */
-  isMonthPrev: boolean
-  /** Specifies if current day belongs to the next month */
-  isMonthNext: boolean
-  /** Specifies if day can be selected */
-  isSelectable: boolean
-}
+import type { DayProps as RenderDayProps } from '../Calendar'
 
 export type RenderDay = (args: RenderDayProps) => ReactNode
 
-/** Represent the props used by the {@link Day} component. */
-export interface CalendarDayProps extends DayProps {
-  /** Unique key */
-  key?: string
-}
-
 const getDayFormatted = (date: Date) => format(date, 'd')
+
+const getISODate = (date: Date) => format(date, 'yyyy-MM-dd')
 
 const checkIfBelongsToPreviousMonth = (date: Date, currentMonth: Date) =>
   isBefore(date, startOfMonth(currentMonth))
@@ -48,8 +36,8 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 /**
  * The content of a day cell
  */
-const CalendarDay = (dayProps: CalendarDayProps): JSX.Element => {
-  const { key, date, displayMonth } = dayProps
+const CalendarDay = (dayProps: DayProps): JSX.Element => {
+  const { date, displayMonth } = dayProps
   const buttonRef = useRef<HTMLButtonElement>(null)
   const { onDayMouseEnter, renderDay } = useContext(CalendarContext)
 
@@ -58,18 +46,22 @@ const CalendarDay = (dayProps: CalendarDayProps): JSX.Element => {
     displayMonth,
     buttonRef
   )
+
   const {
-    selected: isSelected,
-    disabled: isDisabled,
-    indicated: isIndicated,
-    outside: isOutside,
-    weekend: isWeekend,
-    temporaryRangeMiddle: isTemporaryRangeMiddle,
-    temporaryRangeEnd: isTemporaryRangeEnd,
-    range_start: isRangeStart,
-    range_middle: isRangeMiddle,
-    range_end: isRangeEnd,
+    selected: isSelected = false,
+    disabled: isDisabled = false,
+    indicated: isIndicated = false,
+    outside: isOutside = false,
+    weekend: isWeekend = false,
+    temporaryRangeMiddle: isTemporaryRangeMiddle = false,
+    temporaryRangeEnd: isTemporaryRangeEnd = false,
+    range_start: isRangeStart = false,
+    range_middle: isRangeMiddle = false,
+    range_end: isRangeEnd = false,
   } = activeModifiers
+
+  const isToday = isTodayDateFns(date)
+  const isoDate = getISODate(date)
 
   const classes = useStyles()
 
@@ -80,7 +72,7 @@ const CalendarDay = (dayProps: CalendarDayProps): JSX.Element => {
       data-testid={`day-button-${
         isSelected ? 'selected' : getDayFormatted(date)
       }`}
-      key={key}
+      data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
       className={cx(classes.day, {
         [classes.selected]: isSelected,
@@ -103,7 +95,7 @@ const CalendarDay = (dayProps: CalendarDayProps): JSX.Element => {
       <CalendarIndicators
         isIndicated={isIndicated}
         isSelected={Boolean(isSelected)}
-        isToday={isToday(date)}
+        isToday={isToday}
       />
     </button>
   )
@@ -114,12 +106,21 @@ const CalendarDay = (dayProps: CalendarDayProps): JSX.Element => {
   return renderDay ? (
     <>
       {renderDay({
-        ...dayProps,
-        children: defaultMarkup,
-        getDayFormatted,
+        isDisabled,
+        isSelected,
         isSelectable: !isDisabled,
+        isToday,
         isMonthPrev,
         isMonthNext,
+        isSelectionStart: isRangeStart,
+        isSelectionEnd: isRangeEnd,
+        handleOnClick: buttonProps?.onClick as () => void,
+        handleOnEnter: buttonProps?.onMouseEnter as () => void,
+        date,
+        key: isoDate,
+        ISODate: isoDate,
+        getDayFormatted,
+        children: defaultMarkup,
       })}
     </>
   ) : (
