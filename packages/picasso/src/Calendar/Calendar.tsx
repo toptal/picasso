@@ -16,6 +16,7 @@ import type {
 import { DayPicker } from 'react-day-picker'
 import isWeekend from 'date-fns/isWeekend'
 import { format, isEqual } from 'date-fns'
+import { useBreakpoint } from '@toptal/picasso-provider'
 
 import styles from './styles'
 import type { RenderDay } from '../CalendarDay'
@@ -49,6 +50,7 @@ export interface Props
   indicatedIntervals?: CalendarDateRange[]
   weekStartsOn?: WeekStart
   hasFooter?: boolean
+  showTwoMonths?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
@@ -82,6 +84,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     weekStartsOn = 1,
     hasFooter = false,
     renderRoot,
+    showTwoMonths = false,
     ...rest
   } = props
 
@@ -185,6 +188,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     [isWeekend, isIndicated, isTemporaryRangeMiddle, isTemporaryRangeEnd]
   )
 
+  const mobileScreen = useBreakpoint(['xs', 'sm'])
+  const shouldRenderTwoMonths = showTwoMonths && !mobileScreen
+
   return (
     <div ref={ref} {...rest} tabIndex={0}>
       <CalendarContext.Provider
@@ -195,7 +201,10 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
           renderMonthHeader,
         }}
       >
-        <CalendarContainer hasFooter={hasFooter}>
+        <CalendarContainer
+          hasFooter={hasFooter}
+          showTwoMonths={shouldRenderTwoMonths}
+        >
           <DayPicker
             required
             showOutsideDays
@@ -210,6 +219,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             fromDate={minDate}
             onMonthChange={month => setNavigationMonth(month)}
             toDate={maxDate}
+            numberOfMonths={shouldRenderTwoMonths ? 2 : 1}
             disabled={disabledIntervalsFormatted}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
@@ -219,6 +229,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               Day: CalendarDay,
             }}
             classNames={{
+              months: classes.months,
               head: classes.head,
               table: classes.table,
               head_row: classes.head_row,

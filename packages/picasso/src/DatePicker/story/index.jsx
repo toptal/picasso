@@ -91,3 +91,9 @@ page
     description: 'Show a custom color footer at the bottom of the calendar',
     takeScreenshot: false,
   })
+  .addExample('DatePicker/story/WithTwoMonths.example.tsx', {
+    title: 'With two months',
+    description:
+      'Display two months at the same time (not applicable to screens below SM size)',
+    takeScreenshot: false,
+  })

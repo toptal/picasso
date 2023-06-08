@@ -114,6 +114,8 @@ export interface Props
   /** Shows orange dot indicator in days between a date range */
   indicatedIntervals?: CalendarDateRange[]
   highlight?: 'autofill'
+  /** Display two months at the same time */
+  showTwoMonths?: boolean
 }
 
 export const DatePicker = (props: Props) => {
@@ -146,6 +148,7 @@ export const DatePicker = (props: Props) => {
     indicatedIntervals,
     footerBackgroundColor,
     highlight,
+    showTwoMonths,
     ...rest
   } = props
   const classes = useStyles()
@@ -440,6 +443,7 @@ export const DatePicker = (props: Props) => {
             className={classes.calendar}
             hasFooter={Boolean(footer)}
             weekStartsOn={weekStartsOn}
+            showTwoMonths={showTwoMonths}
           />
           {footer && (
             <div
@@ -463,6 +467,7 @@ DatePicker.defaultProps = {
   displayDateFormat: 'MMM d, yyyy',
   autoComplete: 'off',
   status: 'default',
+  showTwoMonths: false,
 }
 
 DatePicker.displayName = 'DatePicker'
