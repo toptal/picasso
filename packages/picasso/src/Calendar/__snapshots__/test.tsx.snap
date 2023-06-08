@@ -50,7 +50,7 @@ exports[`Calendar renders 1`] = `
                   aria-live="polite"
                   class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
                 >
-                  February 2019
+                  December 2019
                 </h3>
                 <button
                   aria-label="Next month"
@@ -150,10 +150,52 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day PicassoCalendar-grayed"
-                        data-calendar-day="2019-01-28"
+                        data-calendar-day="2019-11-25"
+                        data-testid="day-button-25"
+                        type="button"
+                        value="Mon Nov 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        25
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-26"
+                        data-testid="day-button-26"
+                        type="button"
+                        value="Tue Nov 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        26
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-27"
+                        data-testid="day-button-27"
+                        type="button"
+                        value="Wed Nov 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        27
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-28"
                         data-testid="day-button-28"
                         type="button"
-                        value="Mon Jan 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Thu Nov 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         28
                       </button>
@@ -164,10 +206,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day PicassoCalendar-grayed"
-                        data-calendar-day="2019-01-29"
+                        data-calendar-day="2019-11-29"
                         data-testid="day-button-29"
                         type="button"
-                        value="Tue Jan 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Fri Nov 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         29
                       </button>
@@ -177,11 +219,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day PicassoCalendar-grayed"
-                        data-calendar-day="2019-01-30"
+                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-30"
                         data-testid="day-button-30"
                         type="button"
-                        value="Wed Jan 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sat Nov 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         30
                       </button>
@@ -191,55 +233,13 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day PicassoCalendar-grayed"
-                        data-calendar-day="2019-01-31"
-                        data-testid="day-button-31"
-                        type="button"
-                        value="Thu Jan 31 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        31
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-01"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-01"
                         data-testid="day-button-1"
                         type="button"
-                        value="Fri Feb 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sun Dec 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         1
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-02"
-                        data-testid="day-button-2"
-                        type="button"
-                        value="Sat Feb 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        2
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-03"
-                        data-testid="day-button-3"
-                        type="button"
-                        value="Sun Feb 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        3
                       </button>
                     </td>
                   </tr>
@@ -252,10 +252,38 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-04"
+                        data-calendar-day="2019-12-02"
+                        data-testid="day-button-2"
+                        type="button"
+                        value="Mon Dec 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        2
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-03"
+                        data-testid="day-button-3"
+                        type="button"
+                        value="Tue Dec 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        3
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-04"
                         data-testid="day-button-4"
                         type="button"
-                        value="Mon Feb 04 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Wed Dec 04 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         4
                       </button>
@@ -266,10 +294,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-05"
+                        data-calendar-day="2019-12-05"
                         data-testid="day-button-5"
                         type="button"
-                        value="Tue Feb 05 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Thu Dec 05 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         5
                       </button>
@@ -280,10 +308,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-06"
+                        data-calendar-day="2019-12-06"
                         data-testid="day-button-6"
                         type="button"
-                        value="Wed Feb 06 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Fri Dec 06 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         6
                       </button>
@@ -293,11 +321,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-07"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-07"
                         data-testid="day-button-7"
                         type="button"
-                        value="Thu Feb 07 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sat Dec 07 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         7
                       </button>
@@ -307,41 +335,13 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-08"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-08"
                         data-testid="day-button-8"
                         type="button"
-                        value="Fri Feb 08 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sun Dec 08 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         8
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-09"
-                        data-testid="day-button-9"
-                        type="button"
-                        value="Sat Feb 09 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        9
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-10"
-                        data-testid="day-button-10"
-                        type="button"
-                        value="Sun Feb 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        10
                       </button>
                     </td>
                   </tr>
@@ -354,10 +354,38 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-11"
+                        data-calendar-day="2019-12-09"
+                        data-testid="day-button-9"
+                        type="button"
+                        value="Mon Dec 09 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        9
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-10"
+                        data-testid="day-button-10"
+                        type="button"
+                        value="Tue Dec 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        10
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-11"
                         data-testid="day-button-11"
                         type="button"
-                        value="Mon Feb 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Wed Dec 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         11
                       </button>
@@ -367,11 +395,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-12"
-                        data-testid="day-button-12"
+                        class="PicassoCalendar-day PicassoCalendar-selected"
+                        data-calendar-day="2019-12-12"
+                        data-testid="day-button-selected"
                         type="button"
-                        value="Tue Feb 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Thu Dec 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         12
                       </button>
@@ -382,10 +410,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-13"
+                        data-calendar-day="2019-12-13"
                         data-testid="day-button-13"
                         type="button"
-                        value="Wed Feb 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Fri Dec 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         13
                       </button>
@@ -395,11 +423,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-14"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-14"
                         data-testid="day-button-14"
                         type="button"
-                        value="Thu Feb 14 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sat Dec 14 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         14
                       </button>
@@ -409,41 +437,13 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-15"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-15"
                         data-testid="day-button-15"
                         type="button"
-                        value="Fri Feb 15 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sun Dec 15 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         15
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-16"
-                        data-testid="day-button-16"
-                        type="button"
-                        value="Sat Feb 16 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        16
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-17"
-                        data-testid="day-button-17"
-                        type="button"
-                        value="Sun Feb 17 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        17
                       </button>
                     </td>
                   </tr>
@@ -456,10 +456,38 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-18"
+                        data-calendar-day="2019-12-16"
+                        data-testid="day-button-16"
+                        type="button"
+                        value="Mon Dec 16 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        16
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-17"
+                        data-testid="day-button-17"
+                        type="button"
+                        value="Tue Dec 17 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        17
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-18"
                         data-testid="day-button-18"
                         type="button"
-                        value="Mon Feb 18 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Wed Dec 18 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         18
                       </button>
@@ -470,10 +498,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-19"
+                        data-calendar-day="2019-12-19"
                         data-testid="day-button-19"
                         type="button"
-                        value="Tue Feb 19 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Thu Dec 19 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         19
                       </button>
@@ -484,10 +512,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-20"
+                        data-calendar-day="2019-12-20"
                         data-testid="day-button-20"
                         type="button"
-                        value="Wed Feb 20 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Fri Dec 20 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         20
                       </button>
@@ -497,11 +525,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-21"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-21"
                         data-testid="day-button-21"
                         type="button"
-                        value="Thu Feb 21 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sat Dec 21 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         21
                       </button>
@@ -511,41 +539,13 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-22"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-22"
                         data-testid="day-button-22"
                         type="button"
-                        value="Fri Feb 22 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sun Dec 22 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         22
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-23"
-                        data-testid="day-button-23"
-                        type="button"
-                        value="Sat Feb 23 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        23
-                      </button>
-                    </td>
-                    <td
-                      class="PicassoCalendar-cell"
-                      role="presentation"
-                    >
-                      <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend"
-                        data-calendar-day="2019-02-24"
-                        data-testid="day-button-24"
-                        type="button"
-                        value="Sun Feb 24 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                      >
-                        24
                       </button>
                     </td>
                   </tr>
@@ -558,10 +558,38 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-25"
+                        data-calendar-day="2019-12-23"
+                        data-testid="day-button-23"
+                        type="button"
+                        value="Mon Dec 23 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        23
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-24"
+                        data-testid="day-button-24"
+                        type="button"
+                        value="Tue Dec 24 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        24
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-25"
                         data-testid="day-button-25"
                         type="button"
-                        value="Mon Feb 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Wed Dec 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         25
                       </button>
@@ -572,10 +600,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-26"
+                        data-calendar-day="2019-12-26"
                         data-testid="day-button-26"
                         type="button"
-                        value="Tue Feb 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Thu Dec 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         26
                       </button>
@@ -586,10 +614,10 @@ exports[`Calendar renders 1`] = `
                     >
                       <button
                         class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-27"
+                        data-calendar-day="2019-12-27"
                         data-testid="day-button-27"
                         type="button"
-                        value="Wed Feb 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Fri Dec 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         27
                       </button>
@@ -599,11 +627,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day"
-                        data-calendar-day="2019-02-28"
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-28"
                         data-testid="day-button-28"
                         type="button"
-                        value="Thu Feb 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Sat Dec 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         28
                       </button>
@@ -613,11 +641,57 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-29"
+                        data-testid="day-button-29"
+                        type="button"
+                        value="Sun Dec 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        29
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-30"
+                        data-testid="day-button-30"
+                        type="button"
+                        value="Mon Dec 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        30
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-31"
+                        data-testid="day-button-31"
+                        type="button"
+                        value="Tue Dec 31 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        31
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
                         class="PicassoCalendar-day PicassoCalendar-grayed"
-                        data-calendar-day="2019-03-01"
+                        data-calendar-day="2020-01-01"
                         data-testid="day-button-1"
                         type="button"
-                        value="Fri Mar 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Wed Jan 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         1
                       </button>
@@ -627,11 +701,11 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
-                        data-calendar-day="2019-03-02"
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-02"
                         data-testid="day-button-2"
                         type="button"
-                        value="Sat Mar 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Thu Jan 02 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         2
                       </button>
@@ -641,13 +715,41 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
-                        data-calendar-day="2019-03-03"
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-03"
                         data-testid="day-button-3"
                         type="button"
-                        value="Sun Mar 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                        value="Fri Jan 03 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
                       >
                         3
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-04"
+                        data-testid="day-button-4"
+                        type="button"
+                        value="Sat Jan 04 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        4
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-05"
+                        data-testid="day-button-5"
+                        type="button"
+                        value="Sun Jan 05 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        5
                       </button>
                     </td>
                   </tr>

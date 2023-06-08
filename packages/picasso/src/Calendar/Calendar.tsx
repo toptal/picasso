@@ -75,7 +75,9 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     ...rest
   } = props
 
-  const [navigationMonth, setNavigationMonth] = useState<Date | undefined>()
+  const [navigationMonth, setNavigationMonth] = useState<Date | undefined>(
+    value ? (range ? (value as DateRangeType)[0] : (value as Date)) : undefined
+  )
 
   useEffect(() => {
     setNavigationMonth(undefined)
