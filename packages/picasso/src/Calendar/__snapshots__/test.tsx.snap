@@ -15,7 +15,7 @@ exports[`Calendar renders 1`] = `
           class="rdp"
         >
           <div
-            class="rdp-months"
+            class="PicassoCalendar-months"
           >
             <div
               class="rdp-month rdp-caption_start rdp-caption_end"
