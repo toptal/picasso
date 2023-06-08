@@ -1,3 +1,7 @@
+/**
+ * @type {import('svgo').Config}
+ */
+
 const ICON_CLEANUP_CONFIG = {
   '/logo.svg': {
     mergePaths: false,
@@ -12,7 +16,7 @@ const ICON_CLEANUP_CONFIG = {
   },
 }
 
-const getCleanupConfig = (svgPath) => {
+const getCleanupConfig = svgPath => {
   for (const [key, value] of Object.entries(ICON_CLEANUP_CONFIG)) {
     if (svgPath.indexOf(key) > -1) {
       return value
@@ -22,47 +26,115 @@ const getCleanupConfig = (svgPath) => {
   return {}
 }
 
-const cleanupSketch = (doc, params, extra) => {
-  const config = getCleanupConfig(extra.path)
-
-  if (config.skip) {
-    return doc
+const findChildWithName = (node, name) => {
+  if (node.type === 'element' && node.name === name) {
+    return node
   }
 
-  const svg = doc.querySelector('svg')
-  let paths = null
+  if (node.children) {
+    for (let index = 0; index < node.children.length; index++) {
+      const found = findChildWithName(node.children[index], name)
 
-  if (config.mergePaths !== false) {
-    paths = svg.querySelector('path')
-  } else {
-    paths = svg.querySelectorAll('path')
-  }
-
-  const cleanupAttributes = node => {
-    node.removeAttr('id')
-
-    if (config.removeFill !== false) {
-      node.removeAttr('fill')
-    } else {
-      // attempt to replace colors
-      const color = node.attr('fill')
-      const currentColor = color && color.value.toLowerCase()
-
-      if (color && config.replaceColors && config.replaceColors[currentColor]) {
-        color.value = config.replaceColors[currentColor]
+      if (found) {
+        return found
       }
     }
   }
 
+  return null
+}
+
+const findAllChildrenWithName = (node, name) => {
+  let result = []
+
+  if (node.type === 'element' && node.name === name) {
+    result.push(node)
+  }
+
+  if (node.children) {
+    for (let inidex = 0; inidex < node.children.length; inidex++) {
+      const found = findAllChildrenWithName(node.children[inidex], name)
+
+      result = result.concat(found)
+    }
+  }
+
+  return result
+}
+
+const updateAttributes = (node, attributeModifier) => {
+  if (node.type === 'element') {
+    node.attributes = attributeModifier(node.attributes)
+  }
+
+  if (node.children) {
+    for (let index = 0; index < node.children.length; index++) {
+      updateAttributes(node.children[index], attributeModifier)
+    }
+  }
+}
+
+const removeAttribute = attributeName => attributes => {
+  // Make a copy of the attributes object to avoid mutating the original one
+  const newAttributes = { ...attributes }
+
+  // Remove the specified attribute from the copy
+  delete newAttributes[attributeName]
+
+  return newAttributes
+}
+
+const cleanupAttributes = config => node => {
+  updateAttributes(node, removeAttribute('id'))
+
+  if (config.removeFill !== false) {
+    updateAttributes(node, removeAttribute('fill'))
+  } else {
+    // attempt to replace colors
+    const replaceColors = attributes => {
+      const color = attributes['fill']
+      const currentColor = color && color.toLowerCase()
+
+      if (color && config.replaceColors && config.replaceColors[currentColor]) {
+        return {
+          ...attributes,
+          fill: config.replaceColors[currentColor],
+        }
+      }
+
+      return attributes
+    }
+
+    updateAttributes(node, replaceColors)
+  }
+}
+
+const cleanupSketch = (root, params, info) => {
+  const config = getCleanupConfig(info.path)
+
+  if (config.skip) {
+    return root
+  }
+
+  const svg = root.children[0]
+
+  let paths = null
+
   if (config.mergePaths !== false) {
-    cleanupAttributes(paths)
+    paths = findChildWithName(svg, 'path')
+  } else {
+    paths = findAllChildrenWithName(svg, 'path')
+  }
+
+  if (config.mergePaths !== false) {
+    cleanupAttributes(config)(paths)
     svg.children = [paths]
   } else {
-    paths.forEach(cleanupAttributes)
+    paths.forEach(cleanupAttributes(config))
     svg.children = paths
   }
 
-  return doc
+  return root
 }
 
 module.exports = {
@@ -78,7 +150,6 @@ module.exports = {
       },
       {
         name: 'removeDimensions',
-        active: true,
       },
       {
         name: 'removeAttrs',

@@ -24,8 +24,8 @@ const SvgProductWhite64 = forwardRef(function SvgProductWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,32 +33,32 @@ const SvgProductWhite64 = forwardRef(function SvgProductWhite64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.3}
+          fill='#231F20'
           d='M63.5 57.768H.5V63.5h63v-5.732ZM32 10.95A5.225 5.225 0 1 0 32 .5a5.225 5.225 0 0 0 0 10.45Z'
-          fill='#231F20'
-        />
-        <path
           opacity={0.3}
-          d='M32 10.95A10.549 10.549 0 0 0 21.45 21.5h21.1A10.55 10.55 0 0 0 32 10.95ZM20.488 47.921H7.518v6.485h12.97v-6.485ZM38.485 47.921h-12.97v6.485h12.97v-6.485ZM56.482 47.921h-12.97v6.485h12.97v-6.485Z'
+        />
+        <path
           fill='#231F20'
+          d='M32 10.95A10.549 10.549 0 0 0 21.45 21.5h21.1A10.55 10.55 0 0 0 32 10.95ZM20.488 47.921H7.518v6.485h12.97v-6.485ZM38.485 47.921h-12.97v6.485h12.97v-6.485ZM56.482 47.921h-12.97v6.485h12.97v-6.485Z'
+          opacity={0.3}
         />
         <path
+          fill='#fff'
           d='M32 11.45a5.726 5.726 0 1 1 5.725-5.725A5.732 5.732 0 0 1 32 11.45ZM32 1a4.725 4.725 0 1 0 0 9.45A4.725 4.725 0 0 0 32 1Z'
-          fill='#fff'
         />
         <path
+          fill='#fff'
           d='M43.05 21.5h-1a10.05 10.05 0 1 0-20.1 0h-1a11.05 11.05 0 1 1 22.1 0Z'
-          fill='#fff'
         />
-        <path d='M64 64H0V21h64v43ZM1 63h62V22H1v41Z' fill='#fff' />
+        <path fill='#fff' d='M64 64H0V21h64v43ZM1 63h62V22H1v41Z' />
         <path
+          fill='#fff'
           d='M20.988 54.906H7.018v-13.97h13.97v13.97Zm-12.97-1h11.97v-11.97H8.018v11.97ZM38.984 54.906H25.015v-13.97h13.97v13.97Zm-12.969-1h11.97v-11.97h-11.97v11.97ZM56.983 54.906h-13.97v-13.97h13.97v13.97Zm-12.97-1h11.97v-11.97h-11.97v11.97Z'
-          fill='#fff'
         />
-        <path d='M32.5 26.249h-1v15.188h1V26.248Z' fill='#fff' />
+        <path fill='#fff' d='M32.5 26.249h-1v15.188h1V26.248Z' />
         <path
-          d='M50.497 41.437h-1v-7.094H14.503v7.094h-1v-8.094h36.994v8.094Z'
           fill='#fff'
+          d='M50.497 41.437h-1v-7.094H14.503v7.094h-1v-8.094h36.994v8.094Z'
         />
       </g>
       <defs>

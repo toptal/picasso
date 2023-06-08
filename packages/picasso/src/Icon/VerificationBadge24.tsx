@@ -46,8 +46,8 @@ const SvgVerificationBadge24 = forwardRef(function SvgVerificationBadge24(
 
   return (
     <svg
-      viewBox='0 0 26 26'
       fill='none'
+      viewBox='0 0 26 26'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
@@ -55,8 +55,8 @@ const SvgVerificationBadge24 = forwardRef(function SvgVerificationBadge24(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='M14.297 1.168a2 2 0 0 0-2.594 0L9.53 3.02a2 2 0 0 1-1.138.472l-2.845.227a2 2 0 0 0-1.835 1.834l-.227 2.845a2 2 0 0 1-.471 1.138l-1.851 2.172a2 2 0 0 0 0 2.595l1.851 2.172a2 2 0 0 1 .471 1.138l.227 2.844a2 2 0 0 0 1.835 1.835l2.845.227a2 2 0 0 1 1.138.471l2.172 1.851a2 2 0 0 0 2.594 0l2.172-1.85a2 2 0 0 1 1.138-.472l2.845-.227a2 2 0 0 0 1.834-1.835l.227-2.844a2 2 0 0 1 .472-1.138l1.85-2.172a2 2 0 0 0 0-2.595l-1.85-2.172a2 2 0 0 1-.472-1.138l-.227-2.845a2 2 0 0 0-1.834-1.834l-2.845-.227a2 2 0 0 1-1.138-.472l-2.172-1.85Zm-2.73 12.669 5.685-5.652 2.003 1.99-7.687 7.644-2.004-1.99-2.821-2.807 2.003-1.993 2.822 2.808Z'
+        clipRule='evenodd'
       />
     </svg>
   )

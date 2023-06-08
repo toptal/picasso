@@ -46,8 +46,8 @@ const SvgLeadOrgUnitJoin24 = forwardRef(function SvgLeadOrgUnitJoin24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
       fill='none'
+      viewBox='0 0 24 24'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}

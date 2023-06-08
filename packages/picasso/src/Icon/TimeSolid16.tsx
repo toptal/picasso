@@ -46,8 +46,8 @@ const SvgTimeSolid16 = forwardRef(function SvgTimeSolid16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
       fill='none'
+      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
@@ -55,8 +55,8 @@ const SvgTimeSolid16 = forwardRef(function SvgTimeSolid16(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='M7.5 15a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15ZM7 7V2h1v6H4V7h3Z'
+        clipRule='evenodd'
       />
     </svg>
   )
