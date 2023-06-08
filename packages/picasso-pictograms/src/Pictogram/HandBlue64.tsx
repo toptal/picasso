@@ -24,8 +24,8 @@ const SvgHandBlue64 = forwardRef(function SvgHandBlue64(
 
   return (
     <svg
-      viewBox='0 0 64 66'
       fill='none'
+      viewBox='0 0 64 66'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,15 +33,15 @@ const SvgHandBlue64 = forwardRef(function SvgHandBlue64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.15}
-          d='M32 64.206V51.081H.5V32.706h63L32 64.206Z'
           fill='#183A9E'
+          d='M32 64.206V51.081H.5V32.706h63L32 64.206Z'
+          opacity={0.15}
         />
         <path
-          d='M31.5 65.412v-13.83H0V13.83h31.5V0l32.22 32.19a.773.773 0 0 1 .035.995L31.5 65.412ZM1 50.582h31.5V63l30.325-30.296L32.5 2.412v12.419H1v35.75Z'
           fill='#204ECF'
+          d='M31.5 65.412v-13.83H0V13.83h31.5V0l32.22 32.19a.773.773 0 0 1 .035.995L31.5 65.412ZM1 50.582h31.5V63l30.325-30.296L32.5 2.412v12.419H1v35.75Z'
         />
-        <path d='M64 14.331h-1v36.75h1v-36.75Z' fill='#204ECF' />
+        <path fill='#204ECF' d='M64 14.331h-1v36.75h1v-36.75Z' />
       </g>
       <defs>
         <clipPath id='a'>

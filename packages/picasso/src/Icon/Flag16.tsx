@@ -46,8 +46,8 @@ const SvgFlag16 = forwardRef(function SvgFlag16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
       fill='none'
+      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
@@ -55,8 +55,8 @@ const SvgFlag16 = forwardRef(function SvgFlag16(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='M3 0H2v16h1V9h11l-2-4 2-4H3V0Zm0 2v6h9.381l-1.499-3 1.499-3H3Z'
+        clipRule='evenodd'
       />
     </svg>
   )

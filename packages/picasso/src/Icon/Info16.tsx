@@ -46,8 +46,8 @@ const SvgInfo16 = forwardRef(function SvgInfo16(
 
   return (
     <svg
-      viewBox='0 0 16 16'
       fill='none'
+      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
@@ -55,8 +55,8 @@ const SvgInfo16 = forwardRef(function SvgInfo16(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='M7.5 15a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15Zm0-1a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM8 6v5h1v1H6v-1h1V7H6V6h2Zm0-2V3H7v1h1Z'
+        clipRule='evenodd'
       />
     </svg>
   )

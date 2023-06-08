@@ -24,8 +24,8 @@ const SvgDownloadWhite64 = forwardRef(function SvgDownloadWhite64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,24 +33,24 @@ const SvgDownloadWhite64 = forwardRef(function SvgDownloadWhite64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.3}
-          d='M32 1.246v63a31.5 31.5 0 1 0 0-63Z'
           fill='#231F20'
+          d='M32 1.246v63a31.5 31.5 0 1 0 0-63Z'
+          opacity={0.3}
         />
         <path
+          fill='#fff'
           d='M32 64.746a31.999 31.999 0 1 1 32-32 32.036 32.036 0 0 1-32 32Zm0-63a31 31 0 1 0 31 31 31.036 31.036 0 0 0-31-31Z'
-          fill='#fff'
         />
-        <path d='M46.479 45.724H17.524v1h28.955v-1Z' fill='#fff' />
+        <path fill='#fff' d='M46.479 45.724H17.524v1h28.955v-1Z' />
         <path
-          d='M32 46.654a.664.664 0 0 1-.473-.196L17.168 32.1l.707-.707L32 45.517l14.125-14.124.707.707-14.359 14.358a.664.664 0 0 1-.473.196Z'
           fill='#fff'
+          d='M32 46.654a.664.664 0 0 1-.473-.196L17.168 32.1l.707-.707L32 45.517l14.125-14.124.707.707-14.359 14.358a.664.664 0 0 1-.473.196Z'
         />
-        <path d='M32.5 17.268h-1v28.956h1V17.268Z' fill='#fff' />
+        <path fill='#fff' d='M32.5 17.268h-1v28.956h1V17.268Z' />
       </g>
       <defs>
         <clipPath id='a'>
-          <path fill='#fff' transform='translate(0 .746)' d='M0 0h64v64H0z' />
+          <path fill='#fff' d='M0 .746h64v64H0z' />
         </clipPath>
       </defs>
     </svg>

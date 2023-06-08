@@ -24,8 +24,8 @@ const SvgContentImageBlue64 = forwardRef(function SvgContentImageBlue64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,25 +33,25 @@ const SvgContentImageBlue64 = forwardRef(function SvgContentImageBlue64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.15}
-          d='M18.523 36.058v21.367h38.902V34.016h-5.873v2.042H18.523Zm28.466 20.28H20.942l13.023-13.023 7.994 7.993 4.008-4.008 9.04 9.039h-8.018Z'
           fill='#183A9E'
+          d='M18.523 36.058v21.367h38.902V34.016h-5.873v2.042H18.523Zm28.466 20.28H20.942l13.023-13.023 7.994 7.993 4.008-4.008 9.04 9.039h-8.018Z'
+          opacity={0.15}
         />
         <path
+          fill='#204ECF'
           d='M56.214 56.838h-36.48l14.232-14.23 7.993 7.993 4.009-4.009 10.246 10.246Zm-34.066-1H53.8l-7.832-7.832-4.009 4.009-7.993-7.993-11.818 11.816Z'
-          fill='#204ECF'
         />
         <path
+          fill='#204ECF'
           d='M64 64H11.948V36.058h1V63H63V28.442H51.552v-1H64V64Z'
-          fill='#204ECF'
         />
         <path
+          fill='#204ECF'
           d='M52.052 36.558H0V0h52.052v36.558ZM1 35.558h50.052V1H1v34.558Z'
-          fill='#204ECF'
         />
         <path
-          d='M40.443 10.06H8.286v1h32.157v-1ZM40.443 17.78H8.286v1h32.157v-1ZM20.472 25.498H8.286v1h12.186v-1Z'
           fill='#204ECF'
+          d='M40.443 10.06H8.286v1h32.157v-1ZM40.443 17.78H8.286v1h32.157v-1ZM20.472 25.498H8.286v1h12.186v-1Z'
         />
       </g>
       <defs>

@@ -54,8 +54,8 @@ const SvgInbox16 = forwardRef(function SvgInbox16(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='m12.382 3 2.5 5H10.75l-1.5 2h-2.5l-1.5-2H1.118l2.5-5h8.764ZM15 9h-3.75l-1.5 2h-3.5l-1.5-2H1v4h14V9Zm-2-7H3L0 8v6h16V8l-3-6Z'
+        clipRule='evenodd'
       />
     </svg>
   )

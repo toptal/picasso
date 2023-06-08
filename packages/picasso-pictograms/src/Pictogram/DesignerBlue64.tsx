@@ -24,22 +24,22 @@ const SvgDesignerBlue64 = forwardRef(function SvgDesignerBlue64(
 
   return (
     <svg
-      viewBox='0 0 64 64'
       fill='none'
+      viewBox='0 0 64 64'
       className={className}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
       <g
-        clipPath='url(#a)'
-        fillRule='evenodd'
-        clipRule='evenodd'
         fill='#204ECF'
+        fillRule='evenodd'
+        clipPath='url(#a)'
+        clipRule='evenodd'
       >
         <path
-          opacity={0.1}
           d='M29.067 15.166h5.892c0 9.987 7.73 15.38 7.73 15.38l-5.372 10.201H26.683l-5.372-10.201s7.756-5.383 7.756-15.38ZM28.84 32.43a3.157 3.157 0 1 0 6.314 0 3.157 3.157 0 0 0-6.314 0Z'
+          opacity={0.1}
         />
         <path d='M13.356 3.452h15.19v.994h-15.19v-.994Z' />
         <path d='M11.283 2.373a1.576 1.576 0 1 0 0 3.151 1.576 1.576 0 0 0 0-3.15ZM8.713 3.95a2.57 2.57 0 1 1 5.14 0 2.57 2.57 0 0 1-5.14 0ZM52.717 2.373a1.576 1.576 0 1 0 0 3.152 1.576 1.576 0 0 0 0-3.152Zm-2.57 1.576a2.57 2.57 0 1 1 5.14 0 2.57 2.57 0 0 1-5.14 0Z' />

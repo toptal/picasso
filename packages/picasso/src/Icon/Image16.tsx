@@ -55,8 +55,8 @@ const SvgImage16 = forwardRef(function SvgImage16(
     >
       <path
         fillRule='evenodd'
-        clipRule='evenodd'
         d='M16 1H0v13h16V1ZM1 11.5V2h14v4.293l-2.5-2.5-6.099 6.099-1.954-.977L1 11.5Zm0 1.25V13h14V7.707l-2.5-2.5-5.901 5.902-2.046-1.024L1 12.75ZM5 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2ZM3 6a2 2 0 1 1 4 0 2 2 0 0 1-4 0Z'
+        clipRule='evenodd'
       />
     </svg>
   )

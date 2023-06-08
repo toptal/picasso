@@ -24,8 +24,8 @@ const SvgEducationWhite64 = forwardRef(function SvgEducationWhite64(
 
   return (
     <svg
-      viewBox='0 0 67 65'
       fill='none'
+      viewBox='0 0 67 65'
       className={className}
       style={svgStyle}
       ref={ref}
@@ -33,30 +33,26 @@ const SvgEducationWhite64 = forwardRef(function SvgEducationWhite64(
     >
       <g clipPath='url(#a)'>
         <path
-          opacity={0.3}
-          d='M13.553 22.042v6.388l19.557 6.407 19.557-6.407v-6.388l-19.562 6.416-19.552-6.416Z'
           fill='#231F20'
+          d='M13.553 22.042v6.388l19.557 6.407 19.557-6.407v-6.388l-19.562 6.416-19.552-6.416Z'
+          opacity={0.3}
         />
         <path
+          fill='#fff'
           d='M33.105 28.984 0 18.13 33.105 7.277 66.21 18.13 33.105 28.984ZM3.21 18.13l29.895 9.801L63 18.131 33.105 8.328 3.21 18.13Z'
-          fill='#fff'
         />
         <path
+          fill='#fff'
           d='m33.11 47.548-20.057-6.571V22.042h1v18.21l19.057 6.243 19.057-6.243v-18.21h1v18.935l-20.057 6.57ZM59.674 20.063h-1v22.93h1v-22.93Z'
-          fill='#fff'
         />
         <path
-          d='M59.174 50.01a3.759 3.759 0 1 1 0-7.518 3.759 3.759 0 0 1 0 7.518Zm0-6.517a2.758 2.758 0 1 0 0 5.515 2.758 2.758 0 0 0 0-5.515ZM61.532 57.188H4.934v1h56.598v-1Z'
           fill='#fff'
+          d='M59.174 50.01a3.759 3.759 0 1 1 0-7.518 3.759 3.759 0 0 1 0 7.518Zm0-6.517a2.758 2.758 0 1 0 0 5.515 2.758 2.758 0 0 0 0-5.515ZM61.532 57.188H4.934v1h56.598v-1Z'
         />
       </g>
       <defs>
         <clipPath id='a'>
-          <path
-            fill='#fff'
-            transform='translate(0 .746)'
-            d='M0 0h66.21v64H0z'
-          />
+          <path fill='#fff' d='M0 .746h66.21v64H0z' />
         </clipPath>
       </defs>
     </svg>
