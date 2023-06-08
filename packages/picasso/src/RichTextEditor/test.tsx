@@ -49,7 +49,7 @@ describe('RichTextEditor', () => {
         onChange: expect.any(Function),
         placeholder: 'placeholder+1',
         testIds: {
-          wrapper: 'wrapper-test-id+1',
+          wrapper: 'wrapper-test-id-1',
         },
       },
       {}
@@ -67,7 +67,7 @@ describe('RichTextEditor', () => {
           onChange: expect.any(Function),
           placeholder: 'placeholder+1',
           testIds: {
-            wrapper: 'wrapper-test-id+1',
+            wrapper: 'wrapper-test-id-1',
           },
         },
         {}
