@@ -1,5 +1,15 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- [#3596](https://github.com/toptal/picasso/pull/3596) [`f4d02d57c`](https://github.com/toptal/picasso/commit/f4d02d57c3fd834b7187169f34fe7e91660d2362) Thanks [@dependabot](https://github.com/apps/dependabot)!
+
+### Icons, Pictograms
+
+- regenerated with svgo@3, attributes in the SVG are sorted
+
 ## 1.1.0
 
 ### Minor Changes
