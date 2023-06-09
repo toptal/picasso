@@ -83,7 +83,9 @@ const CalendarMonthHeader = (props: RenderMonthHeaderProps) => {
 
   const defaultComponent = (
     <Container flex justifyContent='space-between' bottom='medium'>
-      {!hidePrevious && (
+      {hidePrevious ? (
+        <div />
+      ) : (
         <ButtonCircular
           title='Previous month'
           aria-label='Previous month'
@@ -100,7 +102,9 @@ const CalendarMonthHeader = (props: RenderMonthHeaderProps) => {
       >
         {formatCaption(props.displayMonth, { locale })}
       </Typography>
-      {!hideNext && (
+      {hideNext ? (
+        <div />
+      ) : (
         <ButtonCircular
           title='Next month'
           aria-label='Next month'

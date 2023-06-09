@@ -38,4 +38,8 @@ export default ({ palette }: Theme) =>
     vhidden: {
       display: 'none',
     },
+    months: {
+      display: 'flex',
+      gap: rem('24px'),
+    },
   })

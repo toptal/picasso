@@ -14,11 +14,16 @@ const useStyles = makeStyles<Theme>(styles, {
 export type CalendarContainerProps = {
   children?: ReactNode
   hasFooter?: boolean
+  isFlexible?: boolean
 }
 
 export type RenderRoot = (args: CalendarContainerProps) => JSX.Element
 
-const CalendarContainer = ({ children, hasFooter }: CalendarContainerProps) => {
+const CalendarContainer = ({
+  children,
+  hasFooter,
+  isFlexible,
+}: CalendarContainerProps) => {
   const classes = useStyles()
   const { renderRoot } = useCalendar()
 
@@ -28,6 +33,7 @@ const CalendarContainer = ({ children, hasFooter }: CalendarContainerProps) => {
     <div
       className={cx(classes.root, {
         [classes.hasFooter]: hasFooter,
+        [classes.flexible]: isFlexible,
       })}
     >
       {children}

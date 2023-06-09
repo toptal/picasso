@@ -14,9 +14,7 @@ exports[`Calendar renders 1`] = `
         <div
           class="rdp"
         >
-          <div
-            class="rdp-months"
-          >
+          <div>
             <div
               class="rdp-month rdp-caption_start rdp-caption_end"
             >
