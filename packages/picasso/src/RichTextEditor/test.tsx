@@ -31,15 +31,11 @@ const renderRichTextEditor = (props?: Partial<OmitInternalProps<Props>>) =>
   )
 
 describe('RichTextEditor', () => {
-  beforeEach(() => {
-    mockedLexicalEditor.mockClear()
-  })
-
   afterEach(() => {
     jest.clearAllMocks()
   })
 
-  it('renders enabled RichTextEditor', () => {
+  it('renders active RichTextEditor', () => {
     renderRichTextEditor()
 
     expect(mockedLexicalEditor).toHaveBeenCalledWith(
