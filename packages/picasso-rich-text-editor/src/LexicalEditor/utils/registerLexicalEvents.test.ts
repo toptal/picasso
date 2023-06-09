@@ -21,13 +21,13 @@ describe('registerLexicalEvents', () => {
     jest.clearAllMocks()
   })
 
-  it('should register listeners and commands correctly and return a cleanup function', () => {
+  it('registers listeners and commands correctly and return a cleanup function', () => {
     const mockEditor = {
       registerEditableListener: jest.fn().mockReturnValueOnce(() => {}),
       registerUpdateListener: jest.fn().mockReturnValueOnce(() => {}),
       registerCommand: jest
         .fn()
-        .mockReturnValueOnce(() => mockedEditorCommandsCleanup),
+        .mockReturnValueOnce(mockedEditorCommandsCleanup),
     }
     const mockActiveEditor = {
       registerUpdateListener: jest.fn().mockReturnValueOnce(() => {}),
@@ -38,7 +38,7 @@ describe('registerLexicalEvents', () => {
         mockEditor.registerEditableListener()
         mockActiveEditor.registerUpdateListener()
       })
-      .mockReturnValueOnce(() => mockedEditorListenerCleanup)
+      .mockReturnValueOnce(mockedEditorListenerCleanup)
 
     const params = {
       editor: mockEditor,
