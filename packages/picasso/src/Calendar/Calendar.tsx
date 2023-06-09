@@ -205,7 +205,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       >
         <CalendarContainer
           hasFooter={hasFooter}
-          showTwoMonths={shouldRenderMultipleMonths}
+          isFlexible={shouldRenderMultipleMonths}
         >
           <DayPicker
             required
