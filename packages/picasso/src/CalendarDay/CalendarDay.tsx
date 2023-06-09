@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import React, { useContext, useRef } from 'react'
+import React, { useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
 import { useDayRender } from 'react-day-picker'
 import cx from 'classnames'
@@ -16,7 +16,7 @@ import {
 
 import styles from './styles'
 import { CalendarIndicators } from '../CalendarIndicators'
-import CalendarContext from '../CalendarContext'
+import { useCalendar } from '../CalendarContext'
 import type { DayProps as RenderDayProps } from '../Calendar'
 
 export type RenderDay = (args: RenderDayProps) => ReactNode
@@ -39,7 +39,7 @@ const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 const CalendarDay = (dayProps: DayProps): JSX.Element => {
   const { date, displayMonth } = dayProps
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const { onDayMouseEnter, renderDay } = useContext(CalendarContext)
+  const { onDayMouseEnter, renderDay } = useCalendar()
 
   const { activeModifiers, buttonProps } = useDayRender(
     date,
@@ -65,7 +65,7 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
 
   const classes = useStyles()
 
-  const defaultMarkup = (
+  const defaultComponent = (
     <button
       ref={buttonRef}
       type='button'
@@ -120,11 +120,11 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
         key: isoDate,
         ISODate: isoDate,
         getDayFormatted,
-        children: defaultMarkup,
+        children: defaultComponent,
       })}
     </>
   ) : (
-    defaultMarkup
+    defaultComponent
   )
 }
 

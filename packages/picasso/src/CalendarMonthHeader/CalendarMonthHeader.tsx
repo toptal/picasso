@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
-import React, { useContext } from 'react'
-import type { CaptionProps } from 'react-day-picker'
+import React from 'react'
 import { useDayPicker, useNavigation } from 'react-day-picker'
 import isSameMonth from 'date-fns/isSameMonth'
 
@@ -8,20 +7,22 @@ import ButtonCircular from '../ButtonCircular'
 import Typography from '../Typography'
 import { ChevronMinor24, BackMinor24 } from '../Icon'
 import Container from '../Container'
-import CalendarContext from '../CalendarContext'
+import { useCalendar } from '../CalendarContext'
 
-interface RenderMonthHeaderProps extends CaptionProps {
+interface RenderMonthHeaderProps {
   /** Unique key */
   key?: string
   /** Children nodes */
   children?: ReactNode
+  /** The month where the caption is displayed. */
+  displayMonth: Date
 }
 
 export type RenderMonthHeader = (
   args: RenderMonthHeaderProps
 ) => JSX.Element | null
 
-const CalendarMonthHeader = (props: CaptionProps) => {
+const CalendarMonthHeader = (props: RenderMonthHeaderProps) => {
   const {
     formatters: { formatCaption },
     locale,
@@ -33,7 +34,7 @@ const CalendarMonthHeader = (props: CaptionProps) => {
     dir,
   } = useDayPicker()
   const { previousMonth, nextMonth, goToMonth, displayMonths } = useNavigation()
-  const { renderMonthHeader } = useContext(CalendarContext)
+  const { renderMonthHeader } = useCalendar()
 
   if (disableNavigation) {
     return (
@@ -80,7 +81,7 @@ const CalendarMonthHeader = (props: CaptionProps) => {
     onMonthChange?.(nextMonth)
   }
 
-  const defaultMarkup = (
+  const defaultComponent = (
     <Container flex justifyContent='space-between' bottom='medium'>
       {!hidePrevious && (
         <ButtonCircular
@@ -115,11 +116,11 @@ const CalendarMonthHeader = (props: CaptionProps) => {
     <>
       {renderMonthHeader({
         ...props,
-        children: defaultMarkup,
+        children: defaultComponent,
       })}
     </>
   ) : (
-    defaultMarkup
+    defaultComponent
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import type { RenderRoot } from '../CalendarContainer'
 import type { RenderDay } from '../CalendarDay'
@@ -19,5 +19,7 @@ const CalendarContext = React.createContext<{
   renderDay: undefined,
   renderMonthHeader: undefined,
 })
+
+export const useCalendar = () => useContext(CalendarContext)
 
 export default CalendarContext

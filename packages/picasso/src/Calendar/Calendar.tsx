@@ -53,6 +53,16 @@ export interface Props
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 
+const getDefaultNavigationMonth = (
+  value: DateOrDateRangeType | undefined,
+  rangeModeIsEnabled: boolean
+) =>
+  value
+    ? rangeModeIsEnabled
+      ? (value as DateRangeType)[0]
+      : (value as Date)
+    : undefined
+
 export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
   ref
@@ -75,8 +85,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     ...rest
   } = props
 
-  const [navigationMonth, setNavigationMonth] = useState<Date | undefined>(
-    value ? (range ? (value as DateRangeType)[0] : (value as Date)) : undefined
+  const [navigationMonth, setNavigationMonth] = useState(
+    getDefaultNavigationMonth(value, range)
   )
 
   useEffect(() => {
@@ -165,6 +175,16 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const handleDayEnter = (date: Date) =>
     range && rangeValue?.from && setRangeSelectionHoverDate(date)
 
+  const modifiers = useMemo(
+    () => ({
+      weekend: isWeekend,
+      indicated: isIndicated,
+      temporaryRangeMiddle: isTemporaryRangeMiddle,
+      temporaryRangeEnd: isTemporaryRangeEnd,
+    }),
+    [isWeekend, isIndicated, isTemporaryRangeMiddle, isTemporaryRangeEnd]
+  )
+
   return (
     <div ref={ref} {...rest} tabIndex={0}>
       <CalendarContext.Provider
@@ -193,12 +213,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             disabled={disabledIntervalsFormatted}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
-            modifiers={{
-              weekend: isWeekend,
-              indicated: isIndicated,
-              temporaryRangeMiddle: isTemporaryRangeMiddle,
-              temporaryRangeEnd: isTemporaryRangeEnd,
-            }}
+            modifiers={modifiers}
             components={{
               Caption: CalendarMonthHeader,
               Day: CalendarDay,

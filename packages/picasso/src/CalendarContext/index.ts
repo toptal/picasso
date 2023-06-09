@@ -1,1 +1,1 @@
-export { default } from './CalendarContext'
+export { default, useCalendar } from './CalendarContext'
