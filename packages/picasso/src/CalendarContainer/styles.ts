@@ -18,4 +18,7 @@ export default ({ palette, shadows, sizes }: Theme) =>
     hasFooter: {
       borderRadius: `${sizes.borderRadius.small} ${sizes.borderRadius.small} 0 0`,
     },
+    flexible: {
+      maxWidth: 'unset',
+    },
   })
