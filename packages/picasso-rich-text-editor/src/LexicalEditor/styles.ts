@@ -8,6 +8,7 @@ export default () => {
       overflowY: 'hidden',
       resize: 'vertical',
       position: 'relative',
+      fontSize: '14px',
       // ...listStyles,
       // ...margins,
       // ...quillSpecificStyles(theme),
