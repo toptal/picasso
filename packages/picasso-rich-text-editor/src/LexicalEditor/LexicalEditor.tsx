@@ -141,8 +141,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
+      editable: !disabled,
     }),
-    [theme]
+    [theme, disabled]
   )
 
   const handleChange = useCallback(
@@ -174,7 +175,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
               top='small'
               className={classes.placeholder}
             >
-              <Typography size='medium' color='grey'>
+              <Typography size='medium' color='grey-main-2'>
                 {placeholder}
               </Typography>
             </Container>
