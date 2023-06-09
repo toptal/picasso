@@ -97,7 +97,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       // autoFocus = false,
       className,
       // defaultValue,
-      // disabled,
+      disabled,
       id,
       onChange = noop,
       onFocus = noop,
@@ -149,6 +149,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
           className={cx(
             classes.editorWrapper,
             {
+              [classes.disabled]: disabled,
               [classes.focused]: hasFocus,
             },
             className
@@ -172,6 +173,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             onChange={onChange}
             placeholder={placeholder}
             testIds={testIds}
+            disabled={disabled}
           />
         </div>
         {/* counter should be here */}
