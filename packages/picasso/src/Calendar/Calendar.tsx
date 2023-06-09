@@ -231,7 +231,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               Day: CalendarDay,
             }}
             classNames={{
-              months: classes.months,
+              months: shouldRenderMultipleMonths ? classes.months : undefined,
               head: classes.head,
               table: classes.table,
               head_row: classes.head_row,
