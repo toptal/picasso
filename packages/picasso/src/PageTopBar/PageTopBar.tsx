@@ -16,7 +16,7 @@ import PageHamburger, {
 import Typography from '../Typography'
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page/types'
-import { useBreakpoint, useIsomorphicLayoutEffect } from '../utils'
+import { useIsomorphicLayoutEffect } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light' | 'grey'
@@ -63,9 +63,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   } = props
   const classes = useStyles()
 
-  const showEmblemOnly = useBreakpoint(['xs', 'sm'])
-  const showTagline = useBreakpoint(['lg', 'xl'])
-
   const { setHasTopBar } = usePageTopBar()
   const { setHasTopBar: setHasTopBarHamburger, hasTopBar } =
     useHamburgerContext()
@@ -87,14 +84,18 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   const isDark = ['dark', 'grey'].includes(variant)
 
+  const logoVariant = isDark ? 'white' : 'default'
   const logoDefault = (
-    <Logo variant={isDark ? 'white' : 'default'} emblem={showEmblemOnly} />
+    <>
+      <Logo variant={logoVariant} emblem className={classes.logoEmblem} />
+      <Logo variant={logoVariant} emblem className={classes.logo} />
+    </>
   )
 
   const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
-    <Container flex alignItems='center'>
+    <Container className={classes.title} alignItems='center'>
       <div
         className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
       />
@@ -128,7 +129,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
               {logoLink
                 ? React.cloneElement(logoLink, {}, logoComponent)
                 : logoComponent}
-              {showTagline && titleComponent}
+              {titleComponent}
             </Container>
             {leftContent}
           </div>

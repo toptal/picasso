@@ -29,14 +29,13 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
 
   const classes = useStyles()
 
-  const rootClass = emblem ? classes.rootEmblem : classes.root
   const colorClass = classes[variant]
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 
   return (
     <LogoComponent
       ref={ref}
-      className={cx(rootClass, colorClass, className)}
+      className={cx(classes.root, colorClass, className)}
       style={style}
       data-testid={testId}
     />
