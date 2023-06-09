@@ -33,6 +33,8 @@ import type {
 import type { RenderRoot } from '../CalendarContainer'
 import CalendarContainer from '../CalendarContainer'
 
+export type CalendarMonthsAmount = 1 | 2
+
 export interface Props
   extends BaseProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
@@ -50,7 +52,7 @@ export interface Props
   indicatedIntervals?: CalendarDateRange[]
   weekStartsOn?: WeekStart
   hasFooter?: boolean
-  showTwoMonths?: boolean
+  numberOfMonths?: CalendarMonthsAmount
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
@@ -84,7 +86,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     weekStartsOn = 1,
     hasFooter = false,
     renderRoot,
-    showTwoMonths = false,
+    numberOfMonths = 1,
     ...rest
   } = props
 
@@ -189,7 +191,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   )
 
   const mobileScreen = useBreakpoint(['xs', 'sm'])
-  const shouldRenderTwoMonths = showTwoMonths && !mobileScreen
+  const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
 
   return (
     <div ref={ref} {...rest} tabIndex={0}>
@@ -203,7 +205,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       >
         <CalendarContainer
           hasFooter={hasFooter}
-          showTwoMonths={shouldRenderTwoMonths}
+          showTwoMonths={shouldRenderMultipleMonths}
         >
           <DayPicker
             required
@@ -219,7 +221,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             fromDate={minDate}
             onMonthChange={month => setNavigationMonth(month)}
             toDate={maxDate}
-            numberOfMonths={shouldRenderTwoMonths ? 2 : 1}
+            numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
             disabled={disabledIntervalsFormatted}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}

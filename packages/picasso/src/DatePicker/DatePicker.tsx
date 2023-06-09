@@ -20,6 +20,7 @@ import type {
   DateOrDateRangeType,
   DateRangeType,
   WeekStart,
+  CalendarMonthsAmount,
 } from '../Calendar'
 import Calendar from '../Calendar'
 import {
@@ -114,8 +115,8 @@ export interface Props
   /** Shows orange dot indicator in days between a date range */
   indicatedIntervals?: CalendarDateRange[]
   highlight?: 'autofill'
-  /** Display two months at the same time */
-  showTwoMonths?: boolean
+  /** Display more than one month at the same time */
+  numberOfMonths?: CalendarMonthsAmount
 }
 
 export const DatePicker = (props: Props) => {
@@ -148,7 +149,7 @@ export const DatePicker = (props: Props) => {
     indicatedIntervals,
     footerBackgroundColor,
     highlight,
-    showTwoMonths,
+    numberOfMonths,
     ...rest
   } = props
   const classes = useStyles()
@@ -443,7 +444,7 @@ export const DatePicker = (props: Props) => {
             className={classes.calendar}
             hasFooter={Boolean(footer)}
             weekStartsOn={weekStartsOn}
-            showTwoMonths={showTwoMonths}
+            numberOfMonths={numberOfMonths}
           />
           {footer && (
             <div

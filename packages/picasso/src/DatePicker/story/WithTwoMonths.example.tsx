@@ -8,7 +8,7 @@ const TwoMonthsExample = () => {
     <div style={{ height: '50vh' }}>
       <DatePicker
         value={datepickerValue}
-        showTwoMonths
+        numberOfMonths={2}
         onChange={date => {
           setDatepickerValue(date as Date)
         }}
