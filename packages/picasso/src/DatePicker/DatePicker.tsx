@@ -468,7 +468,6 @@ DatePicker.defaultProps = {
   displayDateFormat: 'MMM d, yyyy',
   autoComplete: 'off',
   status: 'default',
-  showTwoMonths: false,
 }
 
 DatePicker.displayName = 'DatePicker'
