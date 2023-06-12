@@ -5,7 +5,11 @@ import { pxFromRem } from '@toptal/picasso-shared'
 
 import { loaderPalette } from '../utils'
 
-interface ImageProps extends BaseProps {
+interface MediaSkeletonBase extends BaseProps {
+  /** Default to random unique id, you can set your own unique id to fix SSR */
+  uniqueKey?: string
+}
+interface ImageProps extends MediaSkeletonBase {
   /** Each variant exposes a different set of props */
   variant: 'image'
   width: string | number
@@ -13,12 +17,12 @@ interface ImageProps extends BaseProps {
   circle?: boolean
 }
 
-interface AvatarProps extends BaseProps {
+interface AvatarProps extends MediaSkeletonBase {
   variant: 'avatar'
   size?: 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
 }
 
-interface IconProps extends BaseProps {
+interface IconProps extends MediaSkeletonBase {
   variant: 'icon'
   circle?: boolean
   size?: 'medium' | 'large'
@@ -103,7 +107,7 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
 }
 
 export const MediaSkeletonLoader = (props: Props) => {
-  const { className, style } = props
+  const { className, style, uniqueKey } = props
   const { width, height, borderRadius } = useMemo(
     () => getAttributes(props),
     [props]
@@ -121,6 +125,7 @@ export const MediaSkeletonLoader = (props: Props) => {
       data-testid={props['data-testid']}
       className={className}
       style={style}
+      uniqueKey={uniqueKey}
     >
       <rect
         x='0'

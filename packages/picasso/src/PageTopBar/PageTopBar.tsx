@@ -88,7 +88,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const logoDefault = (
     <>
       <Logo variant={logoVariant} emblem className={classes.logoEmblem} />
-      <Logo variant={logoVariant} emblem className={classes.logo} />
+      <Logo variant={logoVariant} className={classes.logo} />
     </>
   )
 
