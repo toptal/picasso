@@ -149,7 +149,7 @@ export const DatePicker = (props: Props) => {
     indicatedIntervals,
     footerBackgroundColor,
     highlight,
-    numberOfMonths,
+    numberOfMonths = 1,
     ...rest
   } = props
   const classes = useStyles()
@@ -468,7 +468,7 @@ DatePicker.defaultProps = {
   displayDateFormat: 'MMM d, yyyy',
   autoComplete: 'off',
   status: 'default',
-  showTwoMonths: false,
+  numberOfMonths: 1,
 }
 
 DatePicker.displayName = 'DatePicker'
