@@ -1,5 +1,15 @@
 # Change Log
 
+## 35.0.2
+
+### Patch Changes
+
+- [#3612](https://github.com/toptal/picasso/pull/3612) [`cb4dafe24`](https://github.com/toptal/picasso/commit/cb4dafe24c2d386d1b898ada03fd762ece863b3b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### DatePicker
+
+- remove unused `showTwoMonths` from default props to stop propagating it to DOM
+
 ## 35.0.1
 
 ### Patch Changes
