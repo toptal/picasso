@@ -149,7 +149,7 @@ export const DatePicker = (props: Props) => {
     indicatedIntervals,
     footerBackgroundColor,
     highlight,
-    numberOfMonths,
+    numberOfMonths = 1,
     ...rest
   } = props
   const classes = useStyles()
