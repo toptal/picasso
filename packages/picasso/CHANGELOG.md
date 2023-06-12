@@ -1,5 +1,17 @@
 # Change Log
 
+## 35.0.1
+
+### Patch Changes
+
+- [#3616](https://github.com/toptal/picasso/pull/3616) [`6a5530274`](https://github.com/toptal/picasso/commit/6a553027426002804f2da503a1560799fc6f2746) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+### useBreakpoint
+
+- show useBreakpoint code example in storybook
+
 ## 35.0.0
 
 ### Major Changes
