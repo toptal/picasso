@@ -32,7 +32,6 @@ page
     description: `
     Provides programmatic way to check what screen size defined by breakpoints is active
   `,
-    showEditCode: false,
     takeScreenshot: false,
   })
   .addExample('utils/Breakpoints/story/useScreens.example.tsx', {
