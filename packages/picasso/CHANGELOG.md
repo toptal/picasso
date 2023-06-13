@@ -1,5 +1,17 @@
 # Change Log
 
+## 35.0.3
+
+### Patch Changes
+
+- [#3610](https://github.com/toptal/picasso/pull/3610) [`951591101`](https://github.com/toptal/picasso/commit/95159110183d47b78c4bfc595417196247c93627) Thanks [@ascrazy](https://github.com/ascrazy)!
+
+---
+
+### Modal
+
+- Fix scrollable shade at the bottom to properly disappear on different screen sizes
+
 ## 35.0.2
 
 ### Patch Changes
