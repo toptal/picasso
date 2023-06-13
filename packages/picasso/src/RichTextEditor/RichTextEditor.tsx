@@ -178,12 +178,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             wrapperRef.current = node
           }}
           data-testid={testIds?.wrapper || dataTestId}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
         >
           <LexicalEditor
             id={id}
             onChange={onChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             placeholder={placeholder}
             onTextLengthChange={handleCounterMessage}
             testIds={testIds}

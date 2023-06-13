@@ -20,6 +20,8 @@ import styles from './styles'
 import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
+import LexicalOnFocusPlugin from '../LexicalOnFocusPlugin/LexicalOnFocusPlugin'
+import LexicalOnBlurPlugin from '../LexicalOnBlurPlugin/LexicalOnBlurPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -74,6 +76,14 @@ export type Props = BaseProps & {
    */
   onChange?: ChangeHandler
   /**
+   * Callback for blur event
+   */
+  onBlur?: () => void
+  /**
+   * Callback for focus event
+   */
+  onFocus?: () => void
+  /**
    * Callback on text length change
    */
   onTextLengthChange: TextLengthChangeHandler
@@ -102,12 +112,12 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     // plugins,
     // autoFocus = false,
     // defaultValue,
-    disabled,
+    disabled = false,
     id,
     onChange = noop,
     onTextLengthChange = noop,
-    // onFocus = noop,
-    // onBlur = noop,
+    onFocus = noop,
+    onBlur = noop,
     placeholder,
     // minLength,
     // maxLength,
@@ -129,6 +139,13 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   // const toolbarRef = useRef<HTMLDivElement | null>(null)
   // @todo don't know what to do with this, maybe for future needs
   // const editorRef = useRef<HTMLDivElement | null>(null)
+  // Possibly use useRef for synchronous updates but no re-rendering effect
+  // const [hasFocus, setFocus] = useState(false)
+
+  // const handleFocus = useCallback(() => {
+  //   setFocus(true)
+  //   onFocus()
+  // }, [onFocus])
 
   const typographyClassNames = useTypographyClasses({
     variant: 'body',
@@ -173,6 +190,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     <LexicalComposer initialConfig={editorConfig}>
       <ToolbarPlugin disabled={disabled} />
       <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
+      <LexicalOnFocusPlugin onFocus={onFocus} />
+      <LexicalOnBlurPlugin onBlur={onBlur} />
       <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
       <div className={classes.editorContainer} id={id} ref={ref}>
         <RichTextPlugin
@@ -199,12 +218,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     </LexicalComposer>
   )
 })
-
-LexicalEditor.defaultProps = {
-  onChange: noop,
-  onTextLengthChange: noop,
-  disabled: false,
-}
 
 LexicalEditor.displayName = 'LexicalEditor'
 
