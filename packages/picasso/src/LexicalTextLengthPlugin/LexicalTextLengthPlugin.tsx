@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { $getSelection, $isRangeSelection, RootNode } from 'lexical'
+import { RootNode } from 'lexical'
 
 import noop from '../utils/noop'
 
@@ -13,17 +13,11 @@ export type Props = {
   onTextLengthChange: TextLengthChangeHandler
 }
 
-const LexicalTextLengthPlugin = ({ onTextLengthChange }: Props) => {
+const LexicalTextLengthPlugin = ({ onTextLengthChange = noop }: Props) => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
     return editor.registerNodeTransform(RootNode, (rootNode: RootNode) => {
-      const selection = $getSelection()
-
-      if (!$isRangeSelection(selection) || !selection.isCollapsed()) {
-        return
-      }
-
       const prevTextContentSize = editor
         .getEditorState()
         .read(() => rootNode.getTextContentSize())
@@ -36,10 +30,6 @@ const LexicalTextLengthPlugin = ({ onTextLengthChange }: Props) => {
   }, [editor, onTextLengthChange])
 
   return null
-}
-
-LexicalTextLengthPlugin.defaultProps = {
-  onTextLengthChange: noop,
 }
 
 LexicalTextLengthPlugin.displayName = 'LexicalTextLengthPlugin'
