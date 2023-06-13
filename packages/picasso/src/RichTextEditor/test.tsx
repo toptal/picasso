@@ -181,4 +181,24 @@ describe('RichTextEditor', () => {
       })
     })
   })
+
+  describe('when status prop is "default"', () => {
+    it('renders editor wrapper without error className', () => {
+      const { getByTestId } = renderRichTextEditor({ status: 'default' })
+
+      expect(getByTestId('wrapper-test-id-1')).toHaveClass(
+        'RichTextEditor-editorWrapper-4'
+      )
+    })
+  })
+
+  describe('when status prop is "error"', () => {
+    it('renders editor wrapper with error className', () => {
+      const { getByTestId } = renderRichTextEditor({ status: 'error' })
+
+      expect(getByTestId('wrapper-test-id-1')).toHaveClass(
+        'RichTextEditor-editorWrapper-4 RichTextEditor-error-6'
+      )
+    })
+  })
 })

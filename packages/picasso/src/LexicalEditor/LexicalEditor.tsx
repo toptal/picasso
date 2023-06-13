@@ -10,6 +10,7 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { $generateHtmlFromNodes } from '@lexical/html'
+import { $isRootTextContentEmpty } from '@lexical/text'
 
 import noop from '../utils/noop'
 import Container from '../Container'
@@ -156,9 +157,13 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   const handleChange = useCallback(
     (editorState, editor) => {
       editorState.read(() => {
-        const htmlValue = $generateHtmlFromNodes(editor, null)
+        const isEmpty = $isRootTextContentEmpty(editor.isComposing(), false)
 
-        onChange(removeAttributesFromString(htmlValue))
+        const htmlValue = isEmpty
+          ? ''
+          : removeAttributesFromString($generateHtmlFromNodes(editor, null))
+
+        onChange(htmlValue)
       })
     },
     [onChange]
