@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react'
 
-import type { TextLengthChangeHandler } from '../../../QuillEditor'
-import type { CounterMessageSetter } from '../../types'
+import type { CounterMessageSetter, TextLengthChangeHandler } from '../../types'
 
 type Props = {
   minLength?: number
