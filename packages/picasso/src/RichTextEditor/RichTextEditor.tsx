@@ -116,7 +116,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       hiddenInputId,
       setHasMultilineCounter,
       name,
-      // highlight,
+      highlight,
       // customEmojis,
     } = props
 
@@ -163,6 +163,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
               [classes.disabled]: disabled,
               [classes.focused]: hasFocus,
               [classes.error]: status === 'error',
+              [classes.highlightAutofill]: highlight === 'autofill',
             },
             className
           )}
