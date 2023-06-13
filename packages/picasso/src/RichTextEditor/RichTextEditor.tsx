@@ -189,7 +189,14 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             testIds={testIds}
             disabled={disabled}
           />
-          {hiddenInputId && enableFocusOnLabelClick(hiddenInputId)}
+          {hiddenInputId && (
+            // Native `for` attribute on label does not work for div target
+            <input
+              type='text'
+              id={hiddenInputId}
+              style={{ position: 'absolute', opacity: 0, zIndex: -1 }}
+            />
+          )}
         </div>
         {counterMessage && (
           <InputMultilineAdornment error={counterError}>
@@ -199,17 +206,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       </>
     )
   }
-)
-
-const hiddenInputStyle: React.CSSProperties = {
-  position: 'absolute',
-  opacity: 0,
-  zIndex: -1,
-}
-
-// Native `for` attribute on label does not work for div target
-const enableFocusOnLabelClick = (hiddenInputId: string) => (
-  <input type='text' id={hiddenInputId} style={hiddenInputStyle} />
 )
 
 RichTextEditor.defaultProps = {
