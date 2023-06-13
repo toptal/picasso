@@ -15,8 +15,9 @@ import { Container, Typography } from '@toptal/picasso'
 
 import { useTypographyClasses } from './hooks'
 import styles from './styles'
-import type { ChangeHandler } from './types'
+import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
+import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -70,6 +71,10 @@ export type Props = BaseProps & {
    * Callback on text change
    */
   onChange?: ChangeHandler
+  /**
+   * Callback on text length change
+   */
+  onTextLengthChange: TextLengthChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
   /** List of plugins to enable on the editor */
@@ -98,6 +103,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     disabled,
     id,
     onChange = noop,
+    onTextLengthChange = noop,
     // onFocus = noop,
     // onBlur = noop,
     placeholder,
@@ -161,6 +167,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     <LexicalComposer initialConfig={editorConfig}>
       <ToolbarPlugin disabled={disabled} />
       <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
+      <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
       <div className={classes.editorContainer} id={id} ref={ref}>
         <RichTextPlugin
           contentEditable={
@@ -189,6 +196,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
 LexicalEditor.defaultProps = {
   onChange: noop,
+  onTextLengthChange: noop,
+  disabled: false,
 }
 
 LexicalEditor.displayName = 'LexicalEditor'
