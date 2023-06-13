@@ -5,6 +5,8 @@ import { render } from '@toptal/picasso/test-utils'
 import RichTextEditor from './RichTextEditor'
 import type { Props } from './RichTextEditor'
 import LexicalEditor from '../LexicalEditor'
+import { useCounter } from './hooks'
+import InputMultilineAdornment from '../InputMultilineAdornment'
 
 jest.mock('../utils/use-deprecation-warnings', () => ({
   usePropDeprecationWarning: jest.fn(),
@@ -15,10 +17,30 @@ jest.mock('../LexicalEditor', () => {
     default: jest.fn(() => <div>Mocked LexicalEditor</div>),
   }
 })
+jest.mock('../InputMultilineAdornment', () => {
+  return {
+    __esModule: true,
+    default: jest.fn(() => <div>Input Multiline Adornment</div>),
+  }
+})
+
+jest.mock('./hooks', () => {
+  return {
+    __esModule: true,
+    useCounter: jest.fn(() => ({
+      counterMessage: 'COUNTER_MESSAGE+1',
+      counterError: null,
+      handleCounterMessage: jest.fn(),
+    })),
+  }
+})
 
 const mockedLexicalEditor = LexicalEditor as jest.MockedFunction<
   typeof LexicalEditor
 >
+const mockedUseCounter = useCounter as jest.MockedFunction<typeof useCounter>
+const mockedInputMultilineAdornment =
+  InputMultilineAdornment as jest.MockedFunction<typeof InputMultilineAdornment>
 
 const renderRichTextEditor = (props?: Partial<OmitInternalProps<Props>>) =>
   render(
@@ -29,8 +51,20 @@ const renderRichTextEditor = (props?: Partial<OmitInternalProps<Props>>) =>
       {...props}
     />
   )
+const handleCounterMessage = jest.fn()
 
 describe('RichTextEditor', () => {
+  beforeEach(() => {
+    mockedUseCounter.mockReturnValue({
+      counterMessage: 'COUNTER_MESSAGE+1',
+      counterError: false,
+      handleCounterMessage,
+    })
+    mockedInputMultilineAdornment.mockImplementation(() => (
+      <div>Input Multiline Adornment</div>
+    ))
+  })
+
   afterEach(() => {
     jest.clearAllMocks()
   })
@@ -43,6 +77,7 @@ describe('RichTextEditor', () => {
         disabled: false,
         id: 'test-editor',
         onChange: expect.any(Function),
+        onTextLengthChange: handleCounterMessage,
         placeholder: 'placeholder+1',
         testIds: {
           wrapper: 'wrapper-test-id-1',
@@ -50,6 +85,12 @@ describe('RichTextEditor', () => {
       },
       {}
     )
+    expect(mockedUseCounter).toHaveBeenCalledWith({
+      minLength: undefined,
+      maxLength: undefined,
+      minLengthMessage: undefined,
+      maxLengthMessage: undefined,
+    })
   })
 
   describe('when disabled prop is true', () => {
@@ -61,6 +102,7 @@ describe('RichTextEditor', () => {
           disabled: true,
           id: 'test-editor',
           onChange: expect.any(Function),
+          onTextLengthChange: handleCounterMessage,
           placeholder: 'placeholder+1',
           testIds: {
             wrapper: 'wrapper-test-id-1',
@@ -68,6 +110,75 @@ describe('RichTextEditor', () => {
         },
         {}
       )
+    })
+  })
+
+  describe('when minLength, maxLength, minLengthMessage, maxLengthMessage props are passed', () => {
+    const minLengthMessage = () => 'minLengthMessage+1'
+    const maxLengthMessage = () => 'maxLengthMessage+1'
+
+    describe('when counterError is true', () => {
+      it('renders RichTextEditor with counter with error', () => {
+        mockedUseCounter.mockReturnValueOnce({
+          counterMessage: 'COUNTER_MESSAGE+1',
+          counterError: true,
+          handleCounterMessage,
+        })
+
+        renderRichTextEditor({
+          minLength: 1,
+          maxLength: 10,
+          minLengthMessage,
+          maxLengthMessage,
+        })
+
+        expect(mockedUseCounter).toHaveBeenCalledWith({
+          minLength: 1,
+          maxLength: 10,
+          minLengthMessage,
+          maxLengthMessage,
+        })
+
+        expect(mockedInputMultilineAdornment).toHaveBeenCalledWith(
+          {
+            error: true,
+            children: 'COUNTER_MESSAGE+1',
+          },
+          {}
+        )
+      })
+    })
+
+    describe('when counterError is false', () => {
+      it('renders RichTextEditor with counter without error', () => {
+        mockedUseCounter.mockReturnValueOnce({
+          counterMessage: 'COUNTER_MESSAGE+1',
+          counterError: false,
+          handleCounterMessage,
+        })
+
+        renderRichTextEditor({
+          minLength: 1,
+          maxLength: 10,
+          minLengthMessage,
+          maxLengthMessage,
+        })
+
+        expect(mockedUseCounter).toHaveBeenCalledWith({
+          minLength: 1,
+          maxLength: 10,
+          minLengthMessage,
+          maxLengthMessage,
+        })
+
+        expect(mockedInputMultilineAdornment).toHaveBeenCalledWith(
+          {
+            error: false,
+            children: 'COUNTER_MESSAGE+1',
+          },
+          {}
+        )
+      })
     })
   })
 })
