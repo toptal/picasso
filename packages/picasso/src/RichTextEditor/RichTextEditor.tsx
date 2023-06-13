@@ -2,18 +2,21 @@ import React, { forwardRef, useRef, useState, useCallback } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import noop from '../utils/noop'
 // @todo: remove this import once we remove the old QuillEditor
 import type { CustomEmojiGroup, EditorPlugin } from '../QuillEditor'
 import styles from './styles'
+import { useCounter } from './hooks'
 import type { ASTType } from '../RichText'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import type { Status } from '../OutlinedInput'
 import type { CounterMessageSetter } from './types'
 import LexicalEditor from '../LexicalEditor'
 import type { ChangeHandler } from '../LexicalEditor'
+import InputMultilineAdornment from '../InputMultilineAdornment'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -103,17 +106,16 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       onFocus = noop,
       onBlur = noop,
       placeholder,
-      // minLength,
-      // maxLength,
-      // minLengthMessage,
-      // maxLengthMessage,
+      minLength,
+      maxLength,
+      minLengthMessage,
+      maxLengthMessage,
       style,
       // status,
       testIds,
       // hiddenInputId,
-      // setHasMultilineCounter,
-      // @todo don't know what to do with NAME prop
-      // name,
+      setHasMultilineCounter,
+      name,
       // highlight,
       // customEmojis,
     } = props
@@ -142,6 +144,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       setFocus(false)
       onBlur()
     }, [onBlur])
+
+    const { counterMessage, counterError, handleCounterMessage } = useCounter({
+      minLength,
+      maxLength,
+      minLengthMessage,
+      maxLengthMessage,
+    })
+
+    useHasMultilineCounter(name, !!counterMessage, setHasMultilineCounter)
 
     return (
       <>
@@ -172,11 +183,16 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             id={id}
             onChange={onChange}
             placeholder={placeholder}
+            onTextLengthChange={handleCounterMessage}
             testIds={testIds}
             disabled={disabled}
           />
         </div>
-        {/* counter should be here */}
+        {counterMessage && (
+          <InputMultilineAdornment error={counterError}>
+            {counterMessage}
+          </InputMultilineAdornment>
+        )}
       </>
     )
   }
