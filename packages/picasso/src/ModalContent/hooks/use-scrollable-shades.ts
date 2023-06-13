@@ -19,7 +19,7 @@ const useScrollableShades = (ref: React.RefObject<HTMLDivElement>) => {
       }
 
       setTop(el.scrollTop > 0)
-      setBottom(Math.round(el.scrollTop) + el.clientHeight < el.scrollHeight)
+      setBottom(Math.ceil(el.scrollTop) + el.clientHeight < el.scrollHeight)
     }, 20)
 
     updateShades()
