@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useCallback } from 'react'
+import React, { forwardRef, useMemo, useCallback, useRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,6 +7,7 @@ import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { InitialConfigType } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { $generateHtmlFromNodes } from '@lexical/html'
@@ -15,13 +16,11 @@ import { $isRootTextContentEmpty } from '@lexical/text'
 import noop from '../utils/noop'
 import Container from '../Container'
 import Typography from '../Typography'
-import { useTypographyClasses } from './hooks'
+import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
 import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
-import LexicalOnFocusPlugin from '../LexicalOnFocusPlugin/LexicalOnFocusPlugin'
-import LexicalOnBlurPlugin from '../LexicalOnBlurPlugin/LexicalOnBlurPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -81,7 +80,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 ) {
   const {
     // plugins,
-    // autoFocus = false,
+    autoFocus = false,
     // defaultValue,
     disabled = false,
     id,
@@ -107,16 +106,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const classes = useStyles()
 
-  // const toolbarRef = useRef<HTMLDivElement | null>(null)
-  // @todo don't know what to do with this, maybe for future needs
-  // const editorRef = useRef<HTMLDivElement | null>(null)
+  const toolbarRef = useRef<HTMLDivElement | null>(null)
+  // const editorRef = useRef<HTMLDivElement | null>(ref)
   // Possibly use useRef for synchronous updates but no re-rendering effect
-  // const [hasFocus, setFocus] = useState(false)
-
-  // const handleFocus = useCallback(() => {
-  //   setFocus(true)
-  //   onFocus()
-  // }, [onFocus])
 
   const typographyClassNames = useTypographyClasses({
     variant: 'body',
@@ -157,34 +149,45 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [onChange]
   )
 
+  const { isFocused, handleFocus, handleBlur } = useOnFocus({
+    onFocus,
+    onBlur,
+    internalRefs: [toolbarRef],
+  })
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
-      <ToolbarPlugin disabled={disabled} />
-      <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
-      <LexicalOnFocusPlugin onFocus={onFocus} />
-      <LexicalOnBlurPlugin onBlur={onBlur} />
-      <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
-      <div className={classes.editorContainer} id={id} ref={ref}>
-        <RichTextPlugin
-          contentEditable={
-            <ContentEditable
-              className={classes.contentEditable}
-              data-testid={testIds?.editor}
-            />
-          }
-          placeholder={
-            <Container
-              left='xsmall'
-              top='small'
-              className={classes.placeholder}
-            >
-              <Typography size='medium' color='grey-main-2'>
-                {placeholder}
-              </Typography>
-            </Container>
-          }
-          ErrorBoundary={LexicalErrorBoundary}
+      <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1}>
+        <ToolbarPlugin
+          disabled={disabled || !isFocused}
+          toolbarRef={toolbarRef}
         />
+        <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
+        {autoFocus && <AutoFocusPlugin />}
+
+        <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
+        <div className={classes.editorContainer} id={id} ref={ref}>
+          <RichTextPlugin
+            contentEditable={
+              <ContentEditable
+                className={classes.contentEditable}
+                data-testid={testIds?.editor}
+              />
+            }
+            placeholder={
+              <Container
+                left='xsmall'
+                top='small'
+                className={classes.placeholder}
+              >
+                <Typography size='medium' color='grey-main-2'>
+                  {placeholder}
+                </Typography>
+              </Container>
+            }
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+        </div>
       </div>
     </LexicalComposer>
   )

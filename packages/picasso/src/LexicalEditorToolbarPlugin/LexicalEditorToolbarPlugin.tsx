@@ -13,9 +13,13 @@ import RichTextEditorToolbar from '../RichTextEditorToolbar'
 
 type Props = {
   disabled?: boolean
+  toolbarRef: React.RefObject<HTMLDivElement>
 }
 
-const LexicalEditorToolbarPlugin = ({ disabled = false }: Props) => {
+const LexicalEditorToolbarPlugin = ({
+  disabled = false,
+  toolbarRef,
+}: Props) => {
   const [editor] = useLexicalComposerContext()
   const [{ isBold, isItalic, isEditable, activeEditor }, dispatch] = useReducer(
     toolbarStateReducer,
@@ -72,6 +76,7 @@ const LexicalEditorToolbarPlugin = ({ disabled = false }: Props) => {
       onHeaderChange={noop}
       disabled={!isEditable || disabled}
       onInsertEmoji={noop}
+      ref={toolbarRef}
     />
   )
 }
