@@ -9,10 +9,10 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
+import { HeadingNode } from '@lexical/rich-text'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { ListItemNode, ListNode } from '@lexical/list'
 import { $isRootTextContentEmpty } from '@lexical/text'
-import { ListItemNode, ListNode } from '@lexical/list'
 
 import { createLexicalTheme } from './utils'
 import noop from '../utils/noop'
@@ -134,7 +134,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
-      nodes: [ListNode, ListItemNode],
+      nodes: [ListNode, ListItemNode, HeadingNode],
       editable: !disabled,
     }),
     [theme, disabled]
