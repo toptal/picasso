@@ -111,12 +111,12 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       minLengthMessage,
       maxLengthMessage,
       style,
-      // status,
+      status,
       testIds,
-      // hiddenInputId,
+      hiddenInputId,
       setHasMultilineCounter,
       name,
-      // highlight,
+      highlight,
       // customEmojis,
     } = props
 
@@ -162,6 +162,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             {
               [classes.disabled]: disabled,
               [classes.focused]: hasFocus,
+              [classes.error]: status === 'error',
+              [classes.highlightAutofill]: highlight === 'autofill',
             },
             className
           )}
@@ -187,6 +189,14 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             testIds={testIds}
             disabled={disabled}
           />
+          {hiddenInputId && (
+            // Native `for` attribute on label does not work for div target
+            <input
+              type='text'
+              id={hiddenInputId}
+              style={{ position: 'absolute', opacity: 0, zIndex: -1 }}
+            />
+          )}
         </div>
         {counterMessage && (
           <InputMultilineAdornment error={counterError}>
