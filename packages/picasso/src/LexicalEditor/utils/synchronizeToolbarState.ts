@@ -2,6 +2,7 @@ import type { LexicalEditor } from 'lexical'
 import { $getSelection, $isRangeSelection } from 'lexical'
 import { $isListNode, ListNode } from '@lexical/list'
 import { $getNearestNodeOfType } from '@lexical/utils'
+import { $isHeadingNode } from '@lexical/rich-text'
 
 import { getLexicalNode } from './getLexicalNode'
 import type { ToolbarAction, ToolbarState } from './toolbarState'
@@ -17,6 +18,8 @@ export const synchronizeToolbarState = (
 
   let currentListType: ToolbarState['list'] = false
 
+  let isHeading = false
+
   if ($isRangeSelection(selection)) {
     const { node, anchorNode, elementDOM } = getLexicalNode(selection, editor)
 
@@ -29,6 +32,8 @@ export const synchronizeToolbarState = (
         // while Lexical stores them as 'number' and 'bullet'
         currentListType = type === 'number' ? 'ordered' : 'bullet'
       }
+
+      isHeading = $isHeadingNode(node)
     }
 
     dispatch({
@@ -37,6 +42,7 @@ export const synchronizeToolbarState = (
         bold: selection.hasFormat('bold'),
         italic: selection.hasFormat('italic'),
         list: currentListType,
+        header: isHeading ? '3' : '',
       },
     })
   }

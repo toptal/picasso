@@ -1,11 +1,19 @@
 import React, { useEffect, useReducer } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { FORMAT_TEXT_COMMAND } from 'lexical'
 import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
   REMOVE_LIST_COMMAND,
 } from '@lexical/list'
+import type { ChangeEvent } from 'react'
+import {
+  $createParagraphNode,
+  $getSelection,
+  $isRangeSelection,
+  FORMAT_TEXT_COMMAND,
+} from 'lexical'
+import { $createHeadingNode } from '@lexical/rich-text'
+import { $setBlocksType } from '@lexical/selection'
 
 import {
   registerLexicalEvents,
@@ -13,6 +21,7 @@ import {
   toolbarStateReducer,
 } from '../LexicalEditor/utils'
 import { noop } from '../utils'
+import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar from '../RichTextEditorToolbar'
 
 type Props = {
@@ -25,13 +34,16 @@ const LexicalEditorToolbarPlugin = ({
   toolbarRef,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
-  const [{ bold, italic, list }, dispatch] = useReducer(toolbarStateReducer, {
-    bold: false,
-    italic: false,
-    list: false,
-    header: '',
-    link: '',
-  })
+  const [{ bold, italic, list, header }, dispatch] = useReducer(
+    toolbarStateReducer,
+    {
+      bold: false,
+      italic: false,
+      list: false,
+      header: '',
+      link: '',
+    }
+  )
 
   useEffect(() => {
     return registerLexicalEvents({
@@ -59,13 +71,45 @@ const LexicalEditorToolbarPlugin = ({
     )
   }
 
+  const formatNormal = () => {
+    editor.update(() => {
+      const selection = $getSelection()
+
+      if ($isRangeSelection(selection)) {
+        $setBlocksType(selection, () => $createParagraphNode())
+      }
+    })
+  }
+
+  const formatHeading = () => {
+    editor.update(() => {
+      const selection = $getSelection()
+
+      if ($isRangeSelection(selection)) {
+        $setBlocksType(selection, () => $createHeadingNode('h3'))
+      }
+    })
+  }
+
+  const handleHeaderClick = ({
+    target: { value },
+  }: ChangeEvent<{
+    value: HeaderValue
+  }>) => {
+    if (value === '3') {
+      formatHeading()
+    } else {
+      formatNormal()
+    }
+  }
+
   return (
     <RichTextEditorToolbar
       format={{
         bold,
         italic,
         list,
-        header: '',
+        header,
         link: '',
       }}
       id='toolbar'
@@ -74,7 +118,7 @@ const LexicalEditorToolbarPlugin = ({
       onBoldClick={handleBoldClick}
       onItalicClick={handleItalicClick}
       onLinkClick={noop}
-      onHeaderChange={noop}
+      onHeaderChange={handleHeaderClick}
       disabled={disabled}
       onInsertEmoji={noop}
       ref={toolbarRef}
