@@ -2,44 +2,52 @@ import React, { useEffect } from 'react'
 import type { ModalProps } from '@toptal/picasso'
 import { Modal, Form, Input, Select, Checkbox, Button } from '@toptal/picasso'
 
-const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => (
-  <Modal {...props} open>
-    <Modal.Title>Edit address details</Modal.Title>
-    <Modal.Content>
-      <Form.Field>
-        <Input width='full' placeholder='City' value='Alabaster' />
-      </Form.Field>
-      <Form.Field>
-        <Input width='full' placeholder='Street' value='John Fruit' />
-      </Form.Field>
-      <Form.Field>
-        <Select
-          placeholder='State'
-          options={[
-            {
-              text: 'Alabama',
-              value: 'Alabama',
-            },
-            {
-              text: 'Utah',
-              value: 'Utah',
-            },
-          ]}
-          value='Alabama'
-        />
-      </Form.Field>
-      <Form.Field>
-        <Checkbox label='Use shipping address for billing' />
-      </Form.Field>
-    </Modal.Content>
-    <Modal.Actions>
-      <Button variant='secondary'>Cancel</Button>
-      <Button data-testid='close' variant='positive'>
-        Update
-      </Button>
-    </Modal.Actions>
-  </Modal>
-)
+const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => {
+  const [isOpen, setOpen] = React.useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
+  return (
+    <Modal {...props} open={isOpen}>
+      <Modal.Title>Edit address details</Modal.Title>
+      <Modal.Content>
+        <Form.Field>
+          <Input width='full' placeholder='City' value='Alabaster' />
+        </Form.Field>
+        <Form.Field>
+          <Input width='full' placeholder='Street' value='John Fruit' />
+        </Form.Field>
+        <Form.Field>
+          <Select
+            placeholder='State'
+            options={[
+              {
+                text: 'Alabama',
+                value: 'Alabama',
+              },
+              {
+                text: 'Utah',
+                value: 'Utah',
+              },
+            ]}
+            value='Alabama'
+          />
+        </Form.Field>
+        <Form.Field>
+          <Checkbox label='Use shipping address for billing' />
+        </Form.Field>
+      </Modal.Content>
+      <Modal.Actions>
+        <Button variant='secondary'>Cancel</Button>
+        <Button data-testid='close' variant='positive'>
+          Update
+        </Button>
+      </Modal.Actions>
+    </Modal>
+  )
+}
 
 const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
   const [isOpen, setOpen] = React.useState(false)

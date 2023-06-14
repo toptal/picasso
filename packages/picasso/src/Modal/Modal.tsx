@@ -179,7 +179,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     return () => {
       document.removeEventListener('focus', handleDocumentFocus, true)
     }
-  }, [open, modalRef])
+  }, [open, modalRef, rootRef])
 
   useEffect(() => {
     const currentModalId = modalId.current
