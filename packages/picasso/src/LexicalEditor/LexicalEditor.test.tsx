@@ -7,10 +7,20 @@ import LexicalEditor from './LexicalEditor'
 import type { Props } from './LexicalEditor'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
+import LexicalListPlugin from '../LexicalListPlugin'
 
 jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalEditorToolbarPlugin</div>),
+}))
+jest.mock('../LexicalListPlugin', () => ({
+  __esModule: true,
+  default: jest.fn(() => <div>LexicalListPlugin</div>),
+}))
+
+jest.mock('@lexical/react/LexicalComposerContext', () => ({
+  __esModule: true,
+  useLexicalComposerContext: jest.fn(() => [{}]),
 }))
 
 jest.mock('@lexical/react/LexicalRichTextPlugin', () => ({
@@ -35,8 +45,12 @@ jest.mock('../LexicalTextLengthPlugin', () => ({
 
 const mockedLexicalTextLengthPlugin =
   LexicalTextLengthPlugin as jest.MockedFunction<typeof LexicalTextLengthPlugin>
+
 const mockedToolbarPlugin = ToolbarPlugin as jest.MockedFunction<
   typeof ToolbarPlugin
+>
+const mockedLexicalListPlugin = LexicalListPlugin as jest.MockedFunction<
+  typeof LexicalListPlugin
 >
 const mockedOnChangePlugin = OnChangePlugin as jest.MockedFunction<
   typeof OnChangePlugin
@@ -57,6 +71,7 @@ describe('LexicalEditor', () => {
       <div>LexicalEditorToolbarPlugin</div>
     ))
     mockedOnChangePlugin.mockImplementation(() => null)
+    mockedLexicalListPlugin.mockImplementation(() => <div />)
   })
 
   afterEach(() => {
@@ -64,7 +79,7 @@ describe('LexicalEditor', () => {
   })
 
   describe('when LexicalEditor is rendered', () => {
-    it('displays Editor core parts', () => {
+    it('displays Editor core parts', async () => {
       const { getByText } = renderLexicalEditor()
 
       expect(getByText('RichTextPlugin')).toBeInTheDocument()
