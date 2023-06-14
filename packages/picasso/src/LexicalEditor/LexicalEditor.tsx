@@ -42,35 +42,8 @@ export type Props = BaseProps & {
   disabled?: boolean
   /** unique identifier */
   id: string
-  /**
-   * @deprecated Use the `status` prop instead to both support success and error states
-   * Indicate whether `RichTextEditor` is in error state
-   */
-  //   error?: boolean
-  /** Indicate `RichTextEditor` is in `error` or `default` state */
-  //   status?: Extract<Status, 'error' | 'default'>
-  /** Used inside Form with combination of Label to enable forHtml functionality */
-  //   hiddenInputId?: string
-  /**
-   * The maximum number of characters that the user can enter.
-   * If this value isn't specified, the user can enter an unlimited
-   * number of characters.
-   */
-  //   maxLength?: number
-  /**
-   * The minimum number of characters required that the user should enter.
-   */
-  //   minLength?: number
   /** Name attribute of the input element */
   //   name?: string
-  /**
-   * Custom counter message for minLength
-   */
-  //   minLengthMessage?: CounterMessageSetter
-  /**
-   * Custom counter message for maxLength
-   */
-  //   maxLengthMessage?: CounterMessageSetter
   /**
    * Callback on text change
    */
@@ -91,7 +64,6 @@ export type Props = BaseProps & {
   placeholder?: string
   /** List of plugins to enable on the editor */
   //   plugins?: EditorPlugin[]
-  //   setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
   testIds?: {
     editor?: string
     // headerSelect?: string
@@ -100,7 +72,6 @@ export type Props = BaseProps & {
     // unorderedListButton?: string
     // orderedListButton?: string
   }
-  //   highlight?: 'autofill'
   //   customEmojis?: CustomEmojiGroup[]
 }
 
