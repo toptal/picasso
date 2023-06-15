@@ -1,4 +1,4 @@
-import React, { forwardRef, useMemo, useCallback } from 'react'
+import React, { forwardRef, useMemo, useCallback, useRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,6 +7,7 @@ import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { InitialConfigType } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
+import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { $generateHtmlFromNodes } from '@lexical/html'
@@ -15,7 +16,7 @@ import { $isRootTextContentEmpty } from '@lexical/text'
 import noop from '../utils/noop'
 import Container from '../Container'
 import Typography from '../Typography'
-import { useTypographyClasses } from './hooks'
+import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
 import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
@@ -40,39 +41,20 @@ export type Props = BaseProps & {
   disabled?: boolean
   /** unique identifier */
   id: string
-  /**
-   * @deprecated Use the `status` prop instead to both support success and error states
-   * Indicate whether `RichTextEditor` is in error state
-   */
-  //   error?: boolean
-  /** Indicate `RichTextEditor` is in `error` or `default` state */
-  //   status?: Extract<Status, 'error' | 'default'>
-  /** Used inside Form with combination of Label to enable forHtml functionality */
-  //   hiddenInputId?: string
-  /**
-   * The maximum number of characters that the user can enter.
-   * If this value isn't specified, the user can enter an unlimited
-   * number of characters.
-   */
-  //   maxLength?: number
-  /**
-   * The minimum number of characters required that the user should enter.
-   */
-  //   minLength?: number
   /** Name attribute of the input element */
   //   name?: string
-  /**
-   * Custom counter message for minLength
-   */
-  //   minLengthMessage?: CounterMessageSetter
-  /**
-   * Custom counter message for maxLength
-   */
-  //   maxLengthMessage?: CounterMessageSetter
   /**
    * Callback on text change
    */
   onChange?: ChangeHandler
+  /**
+   * Callback for blur event
+   */
+  onBlur?: () => void
+  /**
+   * Callback for focus event
+   */
+  onFocus?: () => void
   /**
    * Callback on text length change
    */
@@ -81,7 +63,6 @@ export type Props = BaseProps & {
   placeholder?: string
   /** List of plugins to enable on the editor */
   //   plugins?: EditorPlugin[]
-  //   setHasMultilineCounter?: (name: string, hasCounter: boolean) => void
   testIds?: {
     editor?: string
     // headerSelect?: string
@@ -90,7 +71,6 @@ export type Props = BaseProps & {
     // unorderedListButton?: string
     // orderedListButton?: string
   }
-  //   highlight?: 'autofill'
   //   customEmojis?: CustomEmojiGroup[]
 }
 
@@ -100,14 +80,14 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 ) {
   const {
     // plugins,
-    // autoFocus = false,
+    autoFocus = false,
     // defaultValue,
-    disabled,
+    disabled = false,
     id,
     onChange = noop,
     onTextLengthChange = noop,
-    // onFocus = noop,
-    // onBlur = noop,
+    onFocus = noop,
+    onBlur = noop,
     placeholder,
     // minLength,
     // maxLength,
@@ -126,9 +106,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const classes = useStyles()
 
-  // const toolbarRef = useRef<HTMLDivElement | null>(null)
-  // @todo don't know what to do with this, maybe for future needs
-  // const editorRef = useRef<HTMLDivElement | null>(null)
+  const toolbarRef = useRef<HTMLDivElement | null>(null)
+  // const editorRef = useRef<HTMLDivElement | null>(ref)
+  // Possibly use useRef for synchronous updates but no re-rendering effect
 
   const typographyClassNames = useTypographyClasses({
     variant: 'body',
@@ -169,42 +149,49 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [onChange]
   )
 
+  const { isFocused, handleFocus, handleBlur } = useOnFocus({
+    onFocus,
+    onBlur,
+    internalRefs: [toolbarRef],
+  })
+
   return (
     <LexicalComposer initialConfig={editorConfig}>
-      <ToolbarPlugin disabled={disabled} />
-      <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
-      <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
-      <div className={classes.editorContainer} id={id} ref={ref}>
-        <RichTextPlugin
-          contentEditable={
-            <ContentEditable
-              className={classes.contentEditable}
-              data-testid={testIds?.editor}
-            />
-          }
-          placeholder={
-            <Container
-              left='xsmall'
-              top='small'
-              className={classes.placeholder}
-            >
-              <Typography size='medium' color='grey-main-2'>
-                {placeholder}
-              </Typography>
-            </Container>
-          }
-          ErrorBoundary={LexicalErrorBoundary}
+      <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1}>
+        <ToolbarPlugin
+          disabled={disabled || !isFocused}
+          toolbarRef={toolbarRef}
         />
+        <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
+        {autoFocus && <AutoFocusPlugin />}
+
+        <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
+        <div className={classes.editorContainer} id={id} ref={ref}>
+          <RichTextPlugin
+            contentEditable={
+              <ContentEditable
+                className={classes.contentEditable}
+                data-testid={testIds?.editor}
+              />
+            }
+            placeholder={
+              <Container
+                left='xsmall'
+                top='small'
+                className={classes.placeholder}
+              >
+                <Typography size='medium' color='grey-main-2'>
+                  {placeholder}
+                </Typography>
+              </Container>
+            }
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+        </div>
       </div>
     </LexicalComposer>
   )
 })
-
-LexicalEditor.defaultProps = {
-  onChange: noop,
-  onTextLengthChange: noop,
-  disabled: false,
-}
 
 LexicalEditor.displayName = 'LexicalEditor'
 

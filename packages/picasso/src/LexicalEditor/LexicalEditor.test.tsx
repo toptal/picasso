@@ -100,7 +100,10 @@ describe('LexicalEditor', () => {
 
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
-          disabled: false,
+          disabled: true,
+          toolbarRef: {
+            current: null,
+          },
         },
         {}
       )
@@ -114,6 +117,9 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
+          toolbarRef: {
+            current: null,
+          },
         },
         {}
       )
