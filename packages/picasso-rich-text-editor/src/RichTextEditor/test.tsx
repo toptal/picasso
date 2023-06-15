@@ -77,11 +77,14 @@ describe('RichTextEditor', () => {
         disabled: false,
         id: 'test-editor',
         onChange: expect.any(Function),
+        onFocus: expect.any(Function),
+        onBlur: expect.any(Function),
         onTextLengthChange: handleCounterMessage,
         placeholder: 'placeholder+1',
         testIds: {
           wrapper: 'wrapper-test-id-1',
         },
+        autoFocus: false,
       },
       {}
     )
@@ -102,11 +105,14 @@ describe('RichTextEditor', () => {
           disabled: true,
           id: 'test-editor',
           onChange: expect.any(Function),
+          onFocus: expect.any(Function),
+          onBlur: expect.any(Function),
           onTextLengthChange: handleCounterMessage,
           placeholder: 'placeholder+1',
           testIds: {
             wrapper: 'wrapper-test-id-1',
           },
+          autoFocus: false,
         },
         {}
       )
