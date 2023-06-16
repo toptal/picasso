@@ -38,6 +38,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   actionItems?: ReactNode
   /** Color variant */
   variant?: VariantType
+  /** Test identifiers */
+  testIds?: {
+    hamburger?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -59,6 +63,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     rightContent,
     actionItems,
     variant = 'dark',
+    testIds,
     ...rest
   } = props
   const classes = useStyles()
@@ -125,7 +130,10 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
           {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
           <div className={classes.left}>
             <Container flex alignItems='center' gap='small'>
-              <PageHamburger id={hamburgerId} />
+              <PageHamburger
+                id={hamburgerId}
+                data-testid={testIds?.hamburger}
+              />
               {logoLink
                 ? React.cloneElement(logoLink, {}, logoComponent)
                 : logoComponent}
