@@ -1797,6 +1797,11 @@
   resolved "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.7.5.tgz"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
+"@emotion/use-insertion-effect-with-fallbacks@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@emotion/use-insertion-effect-with-fallbacks/-/use-insertion-effect-with-fallbacks-1.0.1.tgz#08de79f54eb3406f9daaf77c76e35313da963963"
+  integrity sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==
+
 "@emotion/utils@0.11.3":
   version "0.11.3"
   resolved "https://registry.npmjs.org/@emotion/utils/-/utils-0.11.3.tgz"
@@ -3870,6 +3875,13 @@
     core-js "^3.8.2"
     global "^4.4.0"
 
+"@storybook/client-logger@7.0.21":
+  version "7.0.21"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-7.0.21.tgz#7bce1acb100d8ea8b8fe02f3f89d8f34d108ee53"
+  integrity sha512-ENoBDuVr3RPepm6cBp61GGtGGUuogBzqMUaN4Rti+wYx9sKJlmDA8SR/fMk+GxeiJ5NOnYoa1Q1kCaF8/VFD9A==
+  dependencies:
+    "@storybook/global" "^5.0.0"
+
 "@storybook/components@5.3.18":
   version "5.3.18"
   resolved "https://registry.npmjs.org/@storybook/components/-/components-5.3.18.tgz"
@@ -4216,6 +4228,11 @@
     doctrine "^3.0.0"
     lodash "^4.17.21"
     regenerator-runtime "^0.13.7"
+
+"@storybook/global@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/global/-/global-5.0.0.tgz#b793d34b94f572c1d7d9e0f44fac4e0dbc9572ed"
+  integrity sha512-FcOqPAXACP0I3oJ/ws6/rrPT9WGhu915Cg8D02a9YxLo0DE9zI+a9A5gRGvmQ09fiWPukqI8ZAEoQEdWUKMQdQ==
 
 "@storybook/manager-webpack4@6.5.15":
   version "6.5.15"
@@ -4584,7 +4601,7 @@
     memoizerific "^1.11.3"
     regenerator-runtime "^0.13.7"
 
-"@storybook/theming@6.5.16", "@storybook/theming@^6.5.15":
+"@storybook/theming@6.5.16":
   version "6.5.16"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.5.16.tgz#b999bdb98945b605b93b9dfdf7408535b701e2aa"
   integrity sha512-hNLctkjaYLRdk1+xYTkC1mg4dYz2wSv6SqbLpcKMbkPHTE0ElhddGPHQqB362md/w9emYXNkt1LSMD8Xk9JzVQ==
@@ -4593,6 +4610,16 @@
     core-js "^3.8.2"
     memoizerific "^1.11.3"
     regenerator-runtime "^0.13.7"
+
+"@storybook/theming@^7.0.21":
+  version "7.0.21"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-7.0.21.tgz#81c5cfd32e1cf2be5894eed87dbf434afc55de96"
+  integrity sha512-tgWoT0IdyPQIg+s/JMnP+MGTsAvNm6FJuiuKPebngids6rdYQ3EA5uQjBVV7De650JLhBFTFocS2Puj4Lti2bw==
+  dependencies:
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.0"
+    "@storybook/client-logger" "7.0.21"
+    "@storybook/global" "^5.0.0"
+    memoizerific "^1.11.3"
 
 "@storybook/ui@6.5.15":
   version "6.5.15"
