@@ -1,5 +1,15 @@
 # Change Log
 
+## 35.2.0
+
+### Minor Changes
+
+- [#3628](https://github.com/toptal/picasso/pull/3628) [`818174975`](https://github.com/toptal/picasso/commit/818174975abadb967b581d890af6317b98b50e5a) Thanks [@sashuk](https://github.com/sashuk)!
+
+### PageHamburger
+
+- add test identifier to hamburger button
+
 ## 35.1.0
 
 ### Minor Changes
