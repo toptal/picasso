@@ -7,10 +7,6 @@ export default ({ palette }: Theme) =>
       fontSize: '1.875rem',
       verticalAlign: 'baseline',
     },
-    rootEmblem: {
-      fontSize: '1.875rem',
-      verticalAlign: 'baseline',
-    },
     default: {
       color: palette.blue.main,
       '--logo-text-color': palette.common.black,

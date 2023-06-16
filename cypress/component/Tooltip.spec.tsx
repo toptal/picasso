@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import type { TooltipProps } from '@toptal/picasso'
 import {
   Autocomplete,
@@ -39,29 +39,43 @@ const BasicTooltipExample = () => {
   )
 }
 
-const SnapshotTooltipExample = (props?: Partial<TooltipProps>) => (
-  <Tooltip content='Content' open {...props}>
-    <Button>Button</Button>
-  </Tooltip>
-)
+const SnapshotTooltipExample = (props?: Partial<TooltipProps>) => {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
+  return (
+    <Tooltip content='Content' open={open} {...props}>
+      <Button>Button</Button>
+    </Tooltip>
+  )
+}
 
 const PlacementTooltipExample = () => {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
   return (
     <Container style={{ padding: '200px' }}>
       <Container>
         <Grid direction='row'>
           <Grid.Item sm={4}>
-            <Tooltip placement='top-start' content='Content' open>
+            <Tooltip placement='top-start' content='Content' open={open}>
               <Button fullWidth>top-start</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4}>
-            <Tooltip placement='top' content='Content' open>
+            <Tooltip placement='top' content='Content' open={open}>
               <Button fullWidth>top</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4}>
-            <Tooltip placement='top-end' content='Content' open>
+            <Tooltip placement='top-end' content='Content' open={open}>
               <Button fullWidth>top-end</Button>
             </Tooltip>
           </Grid.Item>
@@ -70,13 +84,13 @@ const PlacementTooltipExample = () => {
       <Container bottom='small'>
         <Grid direction='row'>
           <Grid.Item sm={4}>
-            <Tooltip placement='left-start' content='Content' open>
+            <Tooltip placement='left-start' content='Content' open={open}>
               <Button fullWidth>left-start</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4} />
           <Grid.Item sm={4}>
-            <Tooltip placement='right-start' content='Content' open>
+            <Tooltip placement='right-start' content='Content' open={open}>
               <Button fullWidth>right-start</Button>
             </Tooltip>
           </Grid.Item>
@@ -85,13 +99,13 @@ const PlacementTooltipExample = () => {
       <Container bottom='small'>
         <Grid direction='row'>
           <Grid.Item sm={4}>
-            <Tooltip placement='left' content='Content' open>
+            <Tooltip placement='left' content='Content' open={open}>
               <Button fullWidth>left</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4} />
           <Grid.Item sm={4}>
-            <Tooltip placement='right' content='Content' open>
+            <Tooltip placement='right' content='Content' open={open}>
               <Button fullWidth>right</Button>
             </Tooltip>
           </Grid.Item>
@@ -100,13 +114,13 @@ const PlacementTooltipExample = () => {
       <Container bottom='small'>
         <Grid direction='row'>
           <Grid.Item sm={4}>
-            <Tooltip placement='left-end' content='Content' open>
+            <Tooltip placement='left-end' content='Content' open={open}>
               <Button fullWidth>left-end</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4} />
           <Grid.Item sm={4}>
-            <Tooltip placement='right-end' content='Content' open>
+            <Tooltip placement='right-end' content='Content' open={open}>
               <Button fullWidth>right-end</Button>
             </Tooltip>
           </Grid.Item>
@@ -115,17 +129,17 @@ const PlacementTooltipExample = () => {
       <Container bottom='small'>
         <Grid direction='row'>
           <Grid.Item sm={4}>
-            <Tooltip placement='bottom-start' content='Content' open>
+            <Tooltip placement='bottom-start' content='Content' open={open}>
               <Button fullWidth>bottom-start</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4}>
-            <Tooltip placement='bottom' content='Content' open>
+            <Tooltip placement='bottom' content='Content' open={open}>
               <Button fullWidth>bottom</Button>
             </Tooltip>
           </Grid.Item>
           <Grid.Item sm={4}>
-            <Tooltip placement='bottom-end' content='Content' open>
+            <Tooltip placement='bottom-end' content='Content' open={open}>
               <Button fullWidth>bottom-end</Button>
             </Tooltip>
           </Grid.Item>
@@ -136,15 +150,21 @@ const PlacementTooltipExample = () => {
 }
 
 const ModalTooltipExample = () => {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(true)
+  }, [])
+
   return (
     <>
-      <Tooltip content='Content' open>
+      <Tooltip content='Content' open={open}>
         <Button>Button</Button>
       </Tooltip>
-      <Modal open transitionDuration={0} size='full-screen'>
+      <Modal open={open} transitionDuration={0} size='full-screen'>
         <Modal.Title>Title</Modal.Title>
         <Modal.Actions>
-          <Tooltip content='Content' open>
+          <Tooltip content='Content' open={open}>
             <Button>Button</Button>
           </Tooltip>
         </Modal.Actions>

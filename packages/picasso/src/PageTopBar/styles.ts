@@ -81,4 +81,22 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     dividerBlue: {
       backgroundColor: palette.blue.darker,
     },
+    logo: {
+      display: 'none',
+      [screens('md', 'lg', 'xl')]: {
+        display: 'inline',
+      },
+    },
+    logoEmblem: {
+      display: 'inline',
+      [screens('md', 'lg', 'xl')]: {
+        display: 'none',
+      },
+    },
+    title: {
+      display: 'none',
+      [screens('lg', 'xl')]: {
+        display: 'flex',
+      },
+    },
   })
