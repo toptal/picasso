@@ -11,13 +11,14 @@ import styles from './styles'
 
 interface Props {
   id: string
+  'data-testid'?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PageHamburger',
 })
 
-const PageHamburger = ({ id }: Props) => {
+const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
   const { isHamburgerVisible, hamburgerRef } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
@@ -56,6 +57,7 @@ const PageHamburger = ({ id }: Props) => {
             <Overview24 className={classes.hamburger} />
           )
         }
+        data-testid={dataTestId}
         variant='transparent'
       />
     </Dropdown>
