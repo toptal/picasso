@@ -1,7 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 
-import { Paper, Container, Typography } from '@toptal/picasso'
-import { useBreakpoint } from '@toptal/picasso-provider'
+import { Paper, Container } from '@toptal/picasso'
 
 import TabsSectionHeader from './TabsSectionHeader'
 
