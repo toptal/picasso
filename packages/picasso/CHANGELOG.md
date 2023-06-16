@@ -1,5 +1,23 @@
 # Change Log
 
+## 35.1.0
+
+### Minor Changes
+
+- [#3604](https://github.com/toptal/picasso/pull/3604) [`c7e22ccda`](https://github.com/toptal/picasso/commit/c7e22ccda1ebee0f2aa40903e06afa5834e3b696) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### SkeletonLoader
+
+- add `uniqueKey` prop, to disable the default random unique id to make it compatible with SSR
+
+### Patch Changes
+
+- [#3604](https://github.com/toptal/picasso/pull/3604) [`c7e22ccda`](https://github.com/toptal/picasso/commit/c7e22ccda1ebee0f2aa40903e06afa5834e3b696) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Page.TopBar
+
+- stop rendering components conditionaly with JS to fix SSR
+
 ## 35.0.3
 
 ### Patch Changes
