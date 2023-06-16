@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.2
+
+### Patch Changes
+
+- [#3604](https://github.com/toptal/picasso/pull/3604) [`c7e22ccda`](https://github.com/toptal/picasso/commit/c7e22ccda1ebee0f2aa40903e06afa5834e3b696) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert Root component render guard to fix rendering on SSR
+
 ## 3.1.1
 
 ### Patch Changes
