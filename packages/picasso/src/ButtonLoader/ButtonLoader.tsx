@@ -7,6 +7,9 @@ import type { ButtonProps } from '../Button'
 
 export interface Props extends BaseProps, Pick<ButtonProps, 'size'> {
   circular?: boolean
+
+  /** Default to random unique id, you can set your own unique id to fix SSR */
+  uniqueKey?: string
 }
 
 const BORDER_RADIUS = 4
@@ -29,6 +32,7 @@ export const ButtonLoader = ({
   className,
   size = 'medium',
   circular = false,
+  uniqueKey,
 }: Props) => {
   const borderRadius = circular ? '50%' : BORDER_RADIUS
   const height = BUTTON_SIZES[size]
@@ -43,6 +47,7 @@ export const ButtonLoader = ({
       width={width}
       height={height}
       style={style}
+      uniqueKey={uniqueKey}
     >
       <rect
         x='0'

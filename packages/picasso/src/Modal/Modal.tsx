@@ -1,5 +1,11 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { forwardRef, useEffect, useRef, useCallback } from 'react'
+import React, {
+  forwardRef,
+  useEffect,
+  useRef,
+  useCallback,
+  useContext,
+} from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Dialog } from '@material-ui/core'
@@ -10,7 +16,11 @@ import type {
   SizeType,
   TransitionProps,
 } from '@toptal/picasso-shared'
-import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
+import {
+  usePicassoRoot,
+  useBreakpoint,
+  RootContext,
+} from '@toptal/picasso-provider'
 
 import { CloseMinor16 } from '../Icon'
 import useCombinedRefs from '../utils/use-combined-refs'
@@ -129,20 +139,27 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   } = props
   const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
-  const rootRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const modalRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const modalId = useRef(generateKey())
+  const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
     const handleDocumentFocus = () => {
+      if (!rootRef?.current) {
+        console.warn(
+          'Modal is not rendered inside PicassoRoot, some things might not work as expected. Please open the Modal on mount using useEffect.'
+        )
+      }
+
       if (!defaultManager.isTopModal(modalId.current)) {
         return
       }
 
-      if (!rootRef || !rootRef.current) {
+      if (!modalRef || !modalRef.current) {
         return
       }
 
-      if (isFocusInsideModal(rootRef.current)) {
+      if (isFocusInsideModal(modalRef.current)) {
         return
       }
 
@@ -150,7 +167,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
         return
       }
 
-      focusFirstFocusableElement(rootRef.current)
+      focusFirstFocusableElement(modalRef.current)
     }
 
     if (!open) {
@@ -162,7 +179,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     return () => {
       document.removeEventListener('focus', handleDocumentFocus, true)
     }
-  }, [open, rootRef])
+  }, [open, modalRef, rootRef])
 
   useEffect(() => {
     const currentModalId = modalId.current
@@ -200,7 +217,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
   return (
     <Dialog
       {...rest}
-      ref={rootRef}
+      ref={modalRef}
       classes={{
         root: classes.root,
         container: classes.container,

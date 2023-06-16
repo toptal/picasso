@@ -8,6 +8,8 @@ import { loaderPalette } from '../utils'
 export interface Props extends BaseProps {
   /** Specify the amount of rows */
   rows?: number
+  /** Default to random unique id, you can set your own unique id to fix SSR */
+  uniqueKey?: string
 }
 
 const WIDTH = '100%'
@@ -16,13 +18,14 @@ const CONTAINER_HEIGHT = HEIGHT * 2
 const VERTICAL_OFFSET = HEIGHT / 2
 const BORDER_RADIUS = HEIGHT / 2
 
-const Paragraph = ({ className, style = {} }: BaseProps) => (
+const Paragraph = ({ className, style = {}, uniqueKey }: Props) => (
   <ContentLoader
     className={className}
     foregroundColor={loaderPalette.foreground}
     backgroundColor={loaderPalette.background}
     height={CONTAINER_HEIGHT}
     style={{ width: WIDTH, ...style }}
+    uniqueKey={uniqueKey}
   >
     <rect
       x='0'
@@ -35,10 +38,20 @@ const Paragraph = ({ className, style = {} }: BaseProps) => (
   </ContentLoader>
 )
 
-export const TypographyLoader = ({ className, rows = 1, style }: Props) => (
+export const TypographyLoader = ({
+  className,
+  rows = 1,
+  style,
+  uniqueKey,
+}: Props) => (
   <>
     {Array.from({ length: rows }).map((_, index) => (
-      <Paragraph className={className} key={index} style={style} />
+      <Paragraph
+        className={className}
+        key={index}
+        style={style}
+        uniqueKey={uniqueKey}
+      />
     ))}
   </>
 )

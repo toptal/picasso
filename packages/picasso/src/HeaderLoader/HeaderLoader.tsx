@@ -10,9 +10,12 @@ const CONTAINER_HEIGHT = HEIGHT * 2
 const VERTICAL_OFFSET = HEIGHT / 2
 const BORDER_RADIUS = HEIGHT / 2
 
-export type Props = BaseProps
+export interface Props extends BaseProps {
+  /** Default to random unique id, you can set your own unique id to fix SSR */
+  uniqueKey?: string
+}
 
-export const HeaderLoader = ({ className, style }: Props) => {
+export const HeaderLoader = ({ className, style, uniqueKey }: Props) => {
   return (
     <ContentLoader
       className={className}
@@ -21,6 +24,7 @@ export const HeaderLoader = ({ className, style }: Props) => {
       width={WIDTH}
       height={CONTAINER_HEIGHT}
       style={style}
+      uniqueKey={uniqueKey}
     >
       <rect
         x='0'
