@@ -48,7 +48,6 @@ export { default as loaderPalette } from './loader-palette'
 export { default as unsafeErrorLog } from './unsafe-error-log'
 export { default as useBoolean } from './useBoolean/use-boolean'
 export { default as sum } from './sum'
-export { default as htmlToHast, hastSanitizeSchema } from './html-to-hast'
 export type { ReferenceObject } from './use-width-of'
 
 export const Transitions = TransitionUtils

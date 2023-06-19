@@ -93,11 +93,6 @@ export type { PromptModalProps } from './PromptModal'
 export { RadioCompound as Radio } from './RadioCompound'
 export type { RadioProps } from './Radio'
 export type { RadioGroupProps } from './RadioGroup'
-export { default as RichTextEditor } from './RichTextEditor'
-export type {
-  RichTextEditorProps,
-  RichTextEditorChangeHandler,
-} from './RichTextEditor'
 export { default as Select } from './Select'
 export type { SelectProps } from './Select'
 export type {
@@ -195,8 +190,6 @@ export { NoteCompound as Note } from './NoteCompound'
 export type { NoteProps } from './Note'
 export { default as Timeline } from './Timeline'
 export type { TimelineProps } from './Timeline'
-export { default as RichText } from './RichText'
-export type { RichTextProps, ASTType } from './RichText'
 export { default as PasswordInput } from './PasswordInput'
 export type { PasswordInputProps } from './PasswordInput'
 export { default as FieldRequirements } from './FieldRequirements'
