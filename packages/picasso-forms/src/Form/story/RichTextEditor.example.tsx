@@ -1,5 +1,5 @@
 import React from 'react'
-import type { ASTType } from '@toptal/picasso'
+import type { ASTType } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
 import {
   FormNonCompound,

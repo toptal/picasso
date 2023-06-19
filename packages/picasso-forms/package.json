@@ -25,6 +25,7 @@
   "peerDependencies": {
     "@toptal/picasso": "^35.0.0",
     "@toptal/picasso-shared": "^12.0.0",
+    "@toptal/picasso-rich-text-editor": "^1.0.0",
     "react": ">=16.12.0 < 19.0.0",
     "react-dom": ">=16.12.0 < 19.0.0",
     "typescript": "~4.7.0"
@@ -44,7 +45,8 @@
     "@types/classnames": "^2.3.1",
     "@types/react-final-form-listeners": "^1.0.0",
     "storybook-readme": "^5.0.9",
-    "type-fest": "^3.9.0"
+    "type-fest": "^3.9.0",
+    "@toptal/picasso-rich-text-editor": "1.0.1-alpha-fx-4053-create-separate-package-for-rte-ce7a047c8.3640+ce7a047c8"
   },
   "sideEffects": false
 }
