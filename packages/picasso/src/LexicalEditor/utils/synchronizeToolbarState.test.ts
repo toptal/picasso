@@ -81,8 +81,8 @@ describe('synchronizeToolbarState', () => {
       expect(dispatchMock).toHaveBeenCalledWith({
         type: ToolbarActions.UPDATE_VISUAL_STATE,
         value: {
-          isBold: true,
-          isItalic: true,
+          bold: true,
+          italic: true,
           list: false,
         },
       })
@@ -110,7 +110,7 @@ describe('synchronizeToolbarState', () => {
   })
 
   describe('when range selection has a list node', () => {
-    it('should dispatch an action with the correct values', () => {
+    it('should dispatch an action with the ordered list', () => {
       const editorMock = {
         getElementByKey: jest.fn(),
       } as unknown as LexicalEditor
@@ -132,7 +132,6 @@ describe('synchronizeToolbarState', () => {
 
       mockedIsListNode.mockReturnValueOnce(true)
       const mockedGetOrderedListType = jest.fn().mockReturnValueOnce('number')
-      const mockedGetBulletListType = jest.fn().mockReturnValueOnce('bullet')
 
       mockedGetNearestNodeOfType.mockReturnValueOnce({
         getListType: mockedGetOrderedListType,
@@ -144,11 +143,35 @@ describe('synchronizeToolbarState', () => {
       expect(dispatchMock).toHaveBeenCalledWith({
         type: ToolbarActions.UPDATE_VISUAL_STATE,
         value: {
-          isBold: false,
-          isItalic: false,
+          bold: false,
+          italic: false,
           list: 'ordered',
         },
       })
+    })
+
+    it('should dispatch an action with the bullet list', () => {
+      const editorMock = {
+        getElementByKey: jest.fn(),
+      } as unknown as LexicalEditor
+      const dispatchMock = jest.fn()
+      const hasFormatMock = jest
+        .fn()
+        .mockReturnValueOnce(false)
+        .mockReturnValueOnce(false)
+
+      mockedGetSelection.mockReturnValueOnce({
+        hasFormat: hasFormatMock,
+      } as unknown as RangeSelection)
+      mockedIsRangeSelection.mockReturnValueOnce(true)
+      mockedGetLexicalNode.mockReturnValueOnce({
+        elementDOM: true as unknown as HTMLElement,
+        node: {} as unknown as LexicalNode,
+        anchorNode: {} as unknown as TextNode,
+      })
+
+      mockedIsListNode.mockReturnValueOnce(true)
+      const mockedGetBulletListType = jest.fn().mockReturnValueOnce('bullet')
 
       mockedGetNearestNodeOfType.mockReturnValueOnce({
         getListType: mockedGetBulletListType,
@@ -156,12 +179,12 @@ describe('synchronizeToolbarState', () => {
 
       synchronizeToolbarState(dispatchMock, editorMock)
 
-      expect(dispatchMock).toHaveBeenCalledTimes(2)
+      expect(dispatchMock).toHaveBeenCalledTimes(1)
       expect(dispatchMock).toHaveBeenCalledWith({
         type: ToolbarActions.UPDATE_VISUAL_STATE,
         value: {
-          isBold: false,
-          isItalic: false,
+          bold: false,
+          italic: false,
           list: 'bullet',
         },
       })
