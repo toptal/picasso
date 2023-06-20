@@ -5,6 +5,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { noop, usePropDeprecationWarning } from '@toptal/picasso/utils'
+import { InputMultilineAdornment } from '@toptal/picasso'
 import type { OutlinedInputStatus } from '@toptal/picasso'
 
 // @todo: remove this import once we remove the old QuillEditor
@@ -15,7 +16,6 @@ import type { ASTType } from '../RichText'
 import type { CounterMessageSetter } from './types'
 import LexicalEditor from '../LexicalEditor'
 import type { ChangeHandler } from '../LexicalEditor'
-import InputMultilineAdornment from '../InputMultilineAdornment'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */

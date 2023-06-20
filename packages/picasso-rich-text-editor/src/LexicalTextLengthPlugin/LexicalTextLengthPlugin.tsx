@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { RootNode } from 'lexical'
-
-import noop from '../utils/noop'
+import { noop } from '@toptal/picasso/utils'
 
 export type TextLengthChangeHandler = (length: number) => void
 

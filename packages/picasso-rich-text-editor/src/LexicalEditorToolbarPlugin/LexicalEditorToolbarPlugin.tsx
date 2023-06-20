@@ -1,14 +1,18 @@
-import React, { useCallback, useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { FORMAT_TEXT_COMMAND } from 'lexical'
 import { noop } from '@toptal/picasso/utils'
+import {
+  INSERT_ORDERED_LIST_COMMAND,
+  INSERT_UNORDERED_LIST_COMMAND,
+  REMOVE_LIST_COMMAND,
+} from '@lexical/list'
 
 import {
   registerLexicalEvents,
   synchronizeToolbarState,
   toolbarStateReducer,
 } from '../LexicalEditor/utils'
-import type { FormatType } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar from '../RichTextEditorToolbar'
 
 type Props = {
@@ -21,60 +25,57 @@ const LexicalEditorToolbarPlugin = ({
   toolbarRef,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
-  const [{ isBold, isItalic, isEditable, activeEditor }, dispatch] = useReducer(
-    toolbarStateReducer,
-    {
-      isBold: false,
-      isItalic: false,
-      isEditable: editor.isEditable(),
-      list: false,
-      header: '',
-      link: '',
-      activeEditor: editor,
-    }
-  )
-
-  const updateToolbar = useCallback(
-    () => synchronizeToolbarState(dispatch),
-    [activeEditor]
-  )
+  const [{ bold, italic, list }, dispatch] = useReducer(toolbarStateReducer, {
+    bold: false,
+    italic: false,
+    list: false,
+    header: '',
+    link: '',
+  })
 
   useEffect(() => {
     return registerLexicalEvents({
       editor,
-      activeEditor,
-      updateToolbar,
-      dispatch,
+      updateToolbar: () => synchronizeToolbarState(dispatch, editor),
     })
-  }, [updateToolbar, activeEditor, editor])
+  }, [dispatch, editor])
 
   const handleBoldClick = () => {
-    activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
+    editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
   }
   const handleItalicClick = () => {
-    activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
+    editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
   }
-
-  // Convert toolbar state to format that is compatible with old RichTextEditorToolbar
-  const format: FormatType = {
-    bold: isBold,
-    italic: isItalic,
-    list: false,
-    header: '',
-    link: '',
+  const handleUnorderedClick = () => {
+    editor.dispatchCommand(
+      list === 'bullet' ? REMOVE_LIST_COMMAND : INSERT_UNORDERED_LIST_COMMAND,
+      undefined
+    )
+  }
+  const handleOrderedClick = () => {
+    editor.dispatchCommand(
+      list === 'ordered' ? REMOVE_LIST_COMMAND : INSERT_ORDERED_LIST_COMMAND,
+      undefined
+    )
   }
 
   return (
     <RichTextEditorToolbar
-      format={format}
+      format={{
+        bold,
+        italic,
+        list,
+        header: '',
+        link: '',
+      }}
       id='toolbar'
-      onUnorderedClick={noop}
-      onOrderedClick={noop}
+      onUnorderedClick={handleUnorderedClick}
+      onOrderedClick={handleOrderedClick}
       onBoldClick={handleBoldClick}
       onItalicClick={handleItalicClick}
       onLinkClick={noop}
       onHeaderChange={noop}
-      disabled={!isEditable || disabled}
+      disabled={disabled}
       onInsertEmoji={noop}
       ref={toolbarRef}
     />
