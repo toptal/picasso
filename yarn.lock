@@ -2384,7 +2384,7 @@
   dependencies:
     "@lexical/utils" "0.9.2"
 
-"@lexical/list@0.9.2":
+"@lexical/list@0.9.2", "@lexical/list@^0.9.1":
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/@lexical/list/-/list-0.9.2.tgz#f78f56d2e7bc809ac6a80c2f6a3b192961f5f1b9"
   integrity sha512-c95uu6bOqemtqZXfT3fnl/KKP17faK06b5RR6/aC/cODUgU7gM4RrwdRvrLh5FnzEVaqvngtc8M7bsTE2sCKhA==

@@ -8,11 +8,15 @@ jest.mock('@lexical/utils', () => ({
   mergeRegister: jest.fn(),
 }))
 
-const mockDispatch = jest.fn()
+jest.mock('@lexical/react/LexicalComposerContext', () => ({
+  useLexicalComposerContext: jest.fn().mockReturnValue([]),
+}))
+
 const mockUpdateToolbar = jest.fn()
 const mockMergeRegister = mergeRegister as jest.MockedFunction<
   typeof mergeRegister
 >
+
 const mockedEditorListenerCleanup = jest.fn()
 const mockedEditorCommandsCleanup = jest.fn()
 
@@ -23,7 +27,6 @@ describe('registerLexicalEvents', () => {
 
   it('registers listeners and commands correctly and return a cleanup function', () => {
     const mockEditor = {
-      registerEditableListener: jest.fn().mockReturnValueOnce(() => {}),
       registerUpdateListener: jest.fn().mockReturnValueOnce(() => {}),
       registerCommand: jest
         .fn()
@@ -35,24 +38,20 @@ describe('registerLexicalEvents', () => {
 
     mockMergeRegister
       .mockImplementation(() => () => {
-        mockEditor.registerEditableListener()
         mockActiveEditor.registerUpdateListener()
       })
       .mockReturnValueOnce(mockedEditorListenerCleanup)
 
     const params = {
       editor: mockEditor,
-      activeEditor: mockActiveEditor,
       updateToolbar: mockUpdateToolbar,
-      dispatch: mockDispatch,
     }
 
     const cleanup = registerLexicalEvents(
       params as unknown as LexicalRegisterParams
     )
 
-    expect(mockEditor.registerEditableListener).toHaveBeenCalledTimes(1)
-    expect(mockActiveEditor.registerUpdateListener).toHaveBeenCalledTimes(1)
+    expect(mockEditor.registerUpdateListener).toHaveBeenCalledTimes(1)
     expect(mockEditor.registerCommand).toHaveBeenCalledTimes(1)
     expect(mockEditor.registerCommand).toHaveBeenCalledWith(
       SELECTION_CHANGE_COMMAND,
