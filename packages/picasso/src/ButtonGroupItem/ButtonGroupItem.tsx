@@ -21,6 +21,7 @@ const ButtonGroupItem = (props: Props) => {
       {...props}
       className={cx(props.className, classes.root, classes.group, {
         [classes.active]: props.active,
+        [classes.disabled]: props.disabled,
       })}
       variant='secondary'
     />
