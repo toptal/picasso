@@ -2,7 +2,6 @@ import React, { forwardRef, useMemo, useCallback, useRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { InitialConfigType } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
@@ -14,12 +13,15 @@ import { $generateHtmlFromNodes } from '@lexical/html'
 import { noop } from '@toptal/picasso/utils'
 import { Container, Typography } from '@toptal/picasso'
 import { $isRootTextContentEmpty } from '@lexical/text'
+import { ListItemNode, ListNode } from '@lexical/list'
 
+import { createLexicalTheme } from './utils'
 import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
 import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
+import LexicalListPlugin from '../LexicalListPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -115,9 +117,11 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   })
 
   const theme = useMemo(
-    () => ({
-      paragraph: cx(typographyClassNames, classes.paragraph),
-    }),
+    () =>
+      createLexicalTheme({
+        typographyClassNames,
+        classes,
+      }),
     [typographyClassNames, classes.paragraph]
   )
 
@@ -128,6 +132,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
+      nodes: [ListNode, ListItemNode],
       editable: !disabled,
     }),
     [theme, disabled]
@@ -165,6 +170,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         {autoFocus && <AutoFocusPlugin />}
 
         <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
+        <LexicalListPlugin />
+
         <div className={classes.editorContainer} id={id} ref={ref}>
           <RichTextPlugin
             contentEditable={
