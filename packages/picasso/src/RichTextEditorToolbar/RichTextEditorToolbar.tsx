@@ -100,14 +100,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<Bold16 />}
             onClick={onBoldClick}
-            active={isHeadingFormat || disabled ? false : format.bold}
+            active={isHeadingFormat ? false : format.bold}
             disabled={isHeadingFormat || disabled}
             data-testid={testIds?.boldButton}
           />
           <TextEditorButton
             icon={<Italic16 />}
             onClick={onItalicClick}
-            active={isHeadingFormat || disabled ? false : format.italic}
+            active={isHeadingFormat ? false : format.italic}
             disabled={isHeadingFormat || disabled}
             data-testid={testIds?.italicButton}
           />
@@ -116,14 +116,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<ListUnordered16 />}
             onClick={onUnorderedClick}
-            active={disabled ? false : format.list === 'bullet'}
+            active={format.list === 'bullet'}
             disabled={disabled}
             data-testid={testIds?.unorderedListButton}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
             onClick={onOrderedClick}
-            active={disabled ? false : format.list === 'ordered'}
+            active={format.list === 'ordered'}
             disabled={disabled}
             data-testid={testIds?.orderedListButton}
           />
@@ -133,7 +133,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             <TextEditorButton
               icon={<Link16 />}
               onClick={onLinkClick}
-              active={disabled ? false : !!format.link}
+              active={!!format.link}
               disabled={disabled}
               data-testid={testIds?.linkButton}
             />
