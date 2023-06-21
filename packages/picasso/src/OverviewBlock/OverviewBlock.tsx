@@ -15,7 +15,7 @@ import styles from './styles'
 import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
 import Container from '../Container'
 import Typography from '../Typography'
-import { toTitleCase } from '../utils'
+import { toTitleCase, isString } from '../utils'
 
 type VariantColorType = Extract<ColorType, 'red' | 'green' | 'yellow'>
 
@@ -32,7 +32,7 @@ export type Props = BaseProps &
     /** Counter value  */
     value: ReactNode
     /** Counter title  */
-    label: string
+    label: ReactNode
     /** The color variant  */
     variant?: Variant
     /** Component used for the root node. Either a string to use a DOM element or a component. */
@@ -97,9 +97,13 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
       onClick={onClick}
     >
       <Container align='left'>
-        <Typography size='xxsmall' weight='semibold' color={color.label}>
-          {titleCase ? toTitleCase(label) : label}
-        </Typography>
+        {isString(label) ? (
+          <Typography size='xxsmall' weight='semibold' color={color.label}>
+            {titleCase ? toTitleCase(label) : label}
+          </Typography>
+        ) : (
+          label
+        )}
         <Typography size='large' weight='semibold' color={color.value}>
           {value}
         </Typography>
