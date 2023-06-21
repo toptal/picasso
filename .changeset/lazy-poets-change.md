@@ -2,4 +2,10 @@
 '@toptal/picasso': patch
 ---
 
-- add disabled appearance to ButtonGroup
+### ButtonGroup
+
+- add disabled appearance
+
+### PaginationButton
+
+- add disabled appearance
