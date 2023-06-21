@@ -51,6 +51,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
+  // eslint-disable-next-line complexity
   function RichTextEditorToolbar(props: Props, ref) {
     const {
       disabled,
@@ -83,7 +84,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         >
           <Select
             onChange={onHeaderChange}
-            value={format.header}
+            value={disabled ? '' : format.header}
             options={[
               { value: '3', text: 'heading' },
               { value: '', text: 'normal' },
@@ -99,14 +100,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<Bold16 />}
             onClick={onBoldClick}
-            active={isHeadingFormat ? false : format.bold}
+            active={isHeadingFormat || disabled ? false : format.bold}
             disabled={isHeadingFormat || disabled}
             data-testid={testIds?.boldButton}
           />
           <TextEditorButton
             icon={<Italic16 />}
             onClick={onItalicClick}
-            active={isHeadingFormat ? false : format.italic}
+            active={isHeadingFormat || disabled ? false : format.italic}
             disabled={isHeadingFormat || disabled}
             data-testid={testIds?.italicButton}
           />
@@ -115,14 +116,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<ListUnordered16 />}
             onClick={onUnorderedClick}
-            active={format.list === 'bullet'}
+            active={disabled ? false : format.list === 'bullet'}
             disabled={disabled}
             data-testid={testIds?.unorderedListButton}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
             onClick={onOrderedClick}
-            active={format.list === 'ordered'}
+            active={disabled ? false : format.list === 'ordered'}
             disabled={disabled}
             data-testid={testIds?.orderedListButton}
           />
@@ -132,7 +133,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             <TextEditorButton
               icon={<Link16 />}
               onClick={onLinkClick}
-              active={!!format.link}
+              active={disabled ? false : !!format.link}
               disabled={disabled}
               data-testid={testIds?.linkButton}
             />
