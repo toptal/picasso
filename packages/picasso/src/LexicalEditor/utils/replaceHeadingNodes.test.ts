@@ -6,8 +6,8 @@ import replaceHeadingNodes from './replaceHeadingNodes'
 
 jest.mock('lexical', () => ({
   __esModule: true,
-  $createParagraphNode: jest.fn(),
   $createTextNode: jest.fn(),
+  $createParagraphNode: jest.fn(),
 }))
 
 const mockedCreateParagraphNode = $createParagraphNode as jest.MockedFunction<
