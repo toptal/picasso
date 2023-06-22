@@ -30,6 +30,12 @@ export const activeGroup = ({ palette }: Theme) => ({
   color: palette.common.white,
 })
 
+export const disabledGroup = ({ palette }: Theme) => ({
+  color: palette.grey.main,
+  cursor: 'not-allowed',
+  pointerEvents: 'all',
+})
+
 export const createVariant = (mainColor: string, { palette }: Theme) => ({
   border: 'none',
   color: palette.common.white,
