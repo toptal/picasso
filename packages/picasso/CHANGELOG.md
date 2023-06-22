@@ -1,5 +1,19 @@
 # Change Log
 
+## 35.2.1
+
+### Patch Changes
+
+- [#3639](https://github.com/toptal/picasso/pull/3639) [`91a45a0a6`](https://github.com/toptal/picasso/commit/91a45a0a611b08aabf88c95a0f49cc78bb4041ac) Thanks [@pedromonad](https://github.com/pedromonad)!
+
+### ButtonGroup
+
+- add disabled appearance
+
+### PaginationButton
+
+- add disabled appearance
+
 ## 35.2.0
 
 ### Minor Changes
