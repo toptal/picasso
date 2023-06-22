@@ -155,7 +155,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       converted.forEach((node, i) => {
         if ($isElementNode(node) || $isDecoratorNode(node)) {
           console.log('@@@ pasted node', node)
-          //root.append(node)
+          root.append(node)
         } else {
           console.log('@@@ not pasted node', node)
         }
