@@ -120,8 +120,11 @@ const ast: ASTType = {
 const Example = () => {
   const [value, setValue] = useState<string | undefined>()
 
-  const handleChange: RichTextEditorChangeHandler = newValue =>
+  const handleChange: RichTextEditorChangeHandler = (newValue) => {
+    console.log('@@@ handleChange', newValue)
     setValue(newValue)
+
+  }
 
   return (
     <>

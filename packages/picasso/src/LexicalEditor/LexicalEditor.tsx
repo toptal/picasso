@@ -10,9 +10,11 @@ import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { HeadingNode } from '@lexical/rich-text'
-import { $generateHtmlFromNodes } from '@lexical/html'
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from '@lexical/html'
 import { ListItemNode, ListNode } from '@lexical/list'
 import { $isRootTextContentEmpty } from '@lexical/text'
+import type { HastNode } from 'hast-util-to-dom/lib'
+import toHtml from 'hast-util-to-html'
 
 import { createLexicalTheme } from './utils'
 import noop from '../utils/noop'
@@ -24,6 +26,10 @@ import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
+import { ASTType } from '../RichText'
+import { $getRoot, $isDecoratorNode, $isElementNode, DecoratorNode, LexicalEditor as LexicalEditorType, PASTE_COMMAND, PasteCommandType, RootNode } from 'lexical'
+
+//import { EditorState, createEmptyEditorState } from 'lexical/LexicalEditorState'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -37,7 +43,7 @@ export type Props = BaseProps & {
   /** Indicates that an element is to be focused on page load */
   autoFocus?: boolean
   /** Default value in [HAST](https://github.com/syntax-tree/hast) format */
-  //   defaultValue?: ASTType
+  defaultValue?: ASTType
   /**
    * This Boolean attribute indicates that the user cannot interact with the control.
    */
@@ -84,7 +90,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   const {
     // plugins,
     autoFocus = false,
-    // defaultValue,
+    defaultValue,
     disabled = false,
     id,
     onChange = noop,
@@ -127,8 +133,40 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [typographyClassNames, classes.paragraph]
   )
 
+  const setEditorState = (editor: LexicalEditorType) => {
+    if (!defaultValue) {
+      return
+    }
+
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(toHtml(defaultValue as HastNode), 'text/html');
+
+    const converted = $generateNodesFromDOM(editor, dom)
+    const state = editor.getEditorState()
+
+    editor.update(() => {
+      const root = $getRoot()
+      const converted = $generateNodesFromDOM(editor, dom)
+
+      console.log('@@@ converted', converted)
+      //const someNode = new RootNode()
+      //someNode.append(...converted)
+
+      converted.forEach((node, i) => {
+        if ($isElementNode(node) || $isDecoratorNode(node)) {
+          console.log('@@@ pasted node', node)
+          //root.append(node)
+        } else {
+          console.log('@@@ not pasted node', node)
+        }
+      })
+      //root.replace(someNode)
+    })
+  }
+
   const editorConfig: InitialConfigType = useMemo(
     () => ({
+      editorState: setEditorState,
       theme,
       onError(error: Error) {
         throw error

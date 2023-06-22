@@ -53,6 +53,7 @@
     "emoji-mart": "^5.5.2",
     "glider-js": "^1.7.8",
     "hast-to-hyperscript": "^9.0.1",
+    "hast-util-to-dom": "^3.1.1",
     "hast-util-from-dom": "^3.0.0",
     "hast-util-sanitize": "^3.0.2",
     "hast-util-to-html": "^7.1.3",
