@@ -240,6 +240,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               cell: classes.cell,
               vhidden: classes.vhidden,
             }}
+            // Keeping the legacy classname as it is heavily used as a locator in tests
+            className='calendar-month'
           />
         </CalendarContainer>
       </CalendarContext.Provider>
