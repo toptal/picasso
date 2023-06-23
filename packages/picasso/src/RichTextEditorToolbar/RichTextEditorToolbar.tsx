@@ -50,6 +50,8 @@ const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'RichTextEditorToolbar',
 })
 
+export const ALLOWED_HEADER_TYPE = '3'
+
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
   // eslint-disable-next-line complexity
   function RichTextEditorToolbar(props: Props, ref) {
@@ -70,7 +72,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     } = props
 
     const classes = useStyles(props)
-    const isHeadingFormat = format.header === '3'
+    const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
 
     const allowLinks = plugins?.includes('link')
     const allowEmojis = plugins?.includes('emoji')

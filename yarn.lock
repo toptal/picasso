@@ -2449,12 +2449,12 @@
     "@lexical/yjs" "0.9.2"
     react-error-boundary "^3.1.4"
 
-"@lexical/rich-text@0.9.2":
+"@lexical/rich-text@0.9.2", "@lexical/rich-text@^0.9.2":
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/@lexical/rich-text/-/rich-text-0.9.2.tgz#9609a31931c172eb34a54121aec5bcea83aed072"
   integrity sha512-5FZQ387MWeb2rOpjkpyQYzsNAggMuo/TimZbPmIotnzXsZ6amjXrWJq2PbsPqXDIOwBVMl9hSf4HHNtJjOsUqw==
 
-"@lexical/selection@0.9.2":
+"@lexical/selection@0.9.2", "@lexical/selection@^0.9.2":
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/@lexical/selection/-/selection-0.9.2.tgz#7681ddd1fb57f7fe47d642a48ce621a7dcf66ff5"
   integrity sha512-3bet1UwwQzpyKTlyotz8vjZyfSFmzMerkHoCA1XtI4eywJX7nUGhhdduA5V3pRU2fRKlXQOUjgtmOKarQbpIVw==

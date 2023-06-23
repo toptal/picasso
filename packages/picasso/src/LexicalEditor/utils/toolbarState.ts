@@ -1,4 +1,4 @@
-import type { FormatType } from '../../RichTextEditorToolbar'
+import type { FormatType, HeaderValue } from '../../RichTextEditorToolbar'
 
 export type ToolbarState = FormatType
 
@@ -13,6 +13,7 @@ type ToolbarVisualStateUpdateAction = {
     bold: boolean
     italic: boolean
     list: ToolbarState['list']
+    header: HeaderValue
   }
 }
 
@@ -31,6 +32,7 @@ export const toolbarStateReducer = (
         bold: action.value.bold,
         italic: action.value.italic,
         list: action.value.list,
+        header: action.value.header,
       }
     default:
       return state
