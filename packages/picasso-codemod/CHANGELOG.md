@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.4.1
+
+### Patch Changes
+
+- [#3634](https://github.com/toptal/picasso/pull/3634) [`601cb08da`](https://github.com/toptal/picasso/commit/601cb08daf623e85acd114b852d26e2e4f1b4cca) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- updated dependencies (`globby`)
+
 ## 5.4.0
 
 ### Minor Changes
