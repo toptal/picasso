@@ -165,6 +165,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <ToolbarPlugin
           disabled={disabled || !isFocused}
           toolbarRef={toolbarRef}
+          // remount Toolbar when disabled
+          key={`${disabled || !isFocused}`}
         />
         <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
         {autoFocus && <AutoFocusPlugin />}
