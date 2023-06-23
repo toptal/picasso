@@ -2,10 +2,12 @@ import type { LexicalEditor } from 'lexical'
 import { $getSelection, $isRangeSelection } from 'lexical'
 import { $isListNode, ListNode } from '@lexical/list'
 import { $getNearestNodeOfType } from '@lexical/utils'
+import { $isHeadingNode } from '@lexical/rich-text'
 
 import { getLexicalNode } from './getLexicalNode'
 import type { ToolbarAction, ToolbarState } from './toolbarState'
 import { ToolbarActions } from './toolbarState'
+import { ALLOWED_HEADER_TYPE } from '../../RichTextEditorToolbar'
 
 // Transfers updated Lexical selection state to the toolbar state
 // This takes care of highlighting the necessary buttons depending on the selection contents
@@ -16,6 +18,8 @@ export const synchronizeToolbarState = (
   const selection = $getSelection()
 
   let currentListType: ToolbarState['list'] = false
+
+  let isHeading = false
 
   if ($isRangeSelection(selection)) {
     const { node, anchorNode, elementDOM } = getLexicalNode(selection, editor)
@@ -29,6 +33,8 @@ export const synchronizeToolbarState = (
         // while Lexical stores them as 'number' and 'bullet'
         currentListType = type === 'number' ? 'ordered' : 'bullet'
       }
+
+      isHeading = $isHeadingNode(node)
     }
 
     dispatch({
@@ -37,6 +43,7 @@ export const synchronizeToolbarState = (
         bold: selection.hasFormat('bold'),
         italic: selection.hasFormat('italic'),
         list: currentListType,
+        header: isHeading ? ALLOWED_HEADER_TYPE : '',
       },
     })
   }
