@@ -1,5 +1,15 @@
 # Change Log
 
+## 35.2.2
+
+### Patch Changes
+
+- [#3647](https://github.com/toptal/picasso/pull/3647) [`41ca9853e`](https://github.com/toptal/picasso/commit/41ca9853eca606e1dfd3309188f3aac73796d73a) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Calendar
+
+- add legacy classname (`.calendar-month`) to ease migration
+
 ## 35.2.1
 
 ### Patch Changes
