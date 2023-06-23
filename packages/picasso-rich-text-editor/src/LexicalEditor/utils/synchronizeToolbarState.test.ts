@@ -8,6 +8,7 @@ import type {
 import { $getSelection, $isRangeSelection } from 'lexical'
 import { $isListNode } from '@lexical/list'
 import { $getNearestNodeOfType } from '@lexical/utils'
+import { $isHeadingNode } from '@lexical/rich-text'
 
 import { ToolbarActions } from './toolbarState'
 import { synchronizeToolbarState } from './synchronizeToolbarState'
@@ -26,6 +27,11 @@ jest.mock('@lexical/utils', () => ({
 jest.mock('@lexical/list', () => ({
   __esModule: true,
   $isListNode: jest.fn(),
+}))
+
+jest.mock('@lexical/rich-text', () => ({
+  __esModule: true,
+  $isHeadingNode: jest.fn(),
 }))
 
 jest.mock('./getLexicalNode', () => ({
@@ -49,13 +55,17 @@ const mockedGetLexicalNode = getLexicalNode as jest.MockedFunction<
 >
 const mockedIsListNode = $isListNode as jest.MockedFunction<typeof $isListNode>
 
+const mockedIsHeadingNode = $isHeadingNode as jest.MockedFunction<
+  typeof $isHeadingNode
+>
+
 describe('synchronizeToolbarState', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
 
   describe('when range selection has bold and italic format', () => {
-    it('should dispatch an action with the correct values', () => {
+    it('dispatches an action with the correct values', () => {
       const editorMock = {
         getElementByKey: jest.fn(),
       } as unknown as LexicalEditor
@@ -83,6 +93,7 @@ describe('synchronizeToolbarState', () => {
         value: {
           bold: true,
           italic: true,
+          header: '',
           list: false,
         },
       })
@@ -94,23 +105,25 @@ describe('synchronizeToolbarState', () => {
     })
   })
 
-  it('should not dispatch any action when selection is not a range selection', () => {
-    const dispatchMock = jest.fn()
-    const editorMock = {
-      getElementByKey: jest.fn(),
-    } as unknown as LexicalEditor
+  describe('when selection is not a range selection', () => {
+    it('does not dispatch any action', () => {
+      const dispatchMock = jest.fn()
+      const editorMock = {
+        getElementByKey: jest.fn(),
+      } as unknown as LexicalEditor
 
-    mockedIsRangeSelection.mockReturnValueOnce(false)
+      mockedIsRangeSelection.mockReturnValueOnce(false)
 
-    synchronizeToolbarState(dispatchMock, editorMock)
+      synchronizeToolbarState(dispatchMock, editorMock)
 
-    expect(dispatchMock).not.toHaveBeenCalled()
-    expect(mockedGetSelection).toHaveBeenCalledTimes(1)
-    expect(mockedIsRangeSelection).toHaveBeenCalledTimes(1)
+      expect(dispatchMock).not.toHaveBeenCalled()
+      expect(mockedGetSelection).toHaveBeenCalledTimes(1)
+      expect(mockedIsRangeSelection).toHaveBeenCalledTimes(1)
+    })
   })
 
   describe('when range selection has a list node', () => {
-    it('should dispatch an action with the ordered list', () => {
+    it('dispatches an action with the ordered list', () => {
       const editorMock = {
         getElementByKey: jest.fn(),
       } as unknown as LexicalEditor
@@ -145,12 +158,13 @@ describe('synchronizeToolbarState', () => {
         value: {
           bold: false,
           italic: false,
+          header: '',
           list: 'ordered',
         },
       })
     })
 
-    it('should dispatch an action with the bullet list', () => {
+    it('dispatches an action with the bullet list', () => {
       const editorMock = {
         getElementByKey: jest.fn(),
       } as unknown as LexicalEditor
@@ -185,9 +199,52 @@ describe('synchronizeToolbarState', () => {
         value: {
           bold: false,
           italic: false,
+          header: '',
           list: 'bullet',
         },
       })
+    })
+  })
+
+  describe('when range selection is heading', () => {
+    it('dispatches an action with the correct values', () => {
+      const editorMock = {
+        getElementByKey: jest.fn(),
+      } as unknown as LexicalEditor
+      const dispatchMock = jest.fn()
+      const hasFormatMock = jest
+        .fn()
+        .mockReturnValueOnce(true)
+        .mockReturnValueOnce(true)
+
+      mockedGetSelection.mockReturnValueOnce({
+        hasFormat: hasFormatMock,
+      } as unknown as RangeSelection)
+      mockedIsRangeSelection.mockReturnValueOnce(true)
+      mockedGetLexicalNode.mockReturnValueOnce({
+        elementDOM: null,
+        node: {} as unknown as LexicalNode,
+        anchorNode: {} as unknown as TextNode,
+      })
+      mockedIsHeadingNode.mockReturnValueOnce(true)
+
+      synchronizeToolbarState(dispatchMock, editorMock)
+
+      expect(dispatchMock).toHaveBeenCalledTimes(1)
+      expect(dispatchMock).toHaveBeenCalledWith({
+        type: ToolbarActions.UPDATE_VISUAL_STATE,
+        value: {
+          bold: true,
+          italic: true,
+          header: '',
+          list: false,
+        },
+      })
+      expect(mockedGetSelection).toHaveBeenCalledTimes(1)
+      expect(mockedIsRangeSelection).toHaveBeenCalledTimes(1)
+      expect(hasFormatMock).toHaveBeenCalledTimes(2)
+      expect(hasFormatMock).toHaveBeenCalledWith('bold')
+      expect(hasFormatMock).toHaveBeenCalledWith('italic')
     })
   })
 })

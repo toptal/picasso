@@ -1,5 +1,8 @@
 import type { LexicalEditor } from 'lexical'
+import { HeadingNode } from '@lexical/rich-text'
 import { COMMAND_PRIORITY_CRITICAL, SELECTION_CHANGE_COMMAND } from 'lexical'
+
+import { replaceHeadingNodes } from './replaceHeadingNodes'
 
 export type LexicalRegisterParams = {
   editor: LexicalEditor
@@ -28,9 +31,15 @@ export const registerLexicalEvents = ({
     COMMAND_PRIORITY_CRITICAL
   )
 
+  const headingListener = editor.registerNodeTransform(
+    HeadingNode,
+    replaceHeadingNodes
+  )
+
   // Cleanup is necessary to avoid listeners piling up with useEffect
   return () => {
     editorListenerCleanup()
     editorCommandsCleanup()
+    headingListener()
   }
 }

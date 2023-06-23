@@ -1,3 +1,4 @@
+import { ALLOWED_HEADER_TYPE } from '../../RichTextEditorToolbar'
 import type {
   FormatType as EditorFormatType,
   BoldValue as EditorBoldValue,
@@ -18,7 +19,7 @@ export const convertItalicFromEditorValue = (italic: EditorItalicValue) =>
 export const convertListFromEditorValue = (list: EditorListValue) =>
   list || false
 export const convertHeaderFromEditorValue = (header: EditorHeaderValue) =>
-  header ? '3' : ''
+  header ? ALLOWED_HEADER_TYPE : ''
 export const convertLinkFromEditorValue = (link: EditorLinkValue) => link || ''
 
 export const getToolbarFormatFromEditorFormat = (
