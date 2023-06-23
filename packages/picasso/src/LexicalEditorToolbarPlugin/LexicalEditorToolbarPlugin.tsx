@@ -22,7 +22,9 @@ import {
 } from '../LexicalEditor/utils'
 import { noop } from '../utils'
 import type { HeaderValue } from '../RichTextEditorToolbar'
-import RichTextEditorToolbar from '../RichTextEditorToolbar'
+import RichTextEditorToolbar, {
+  ALLOWED_HEADER_TYPE,
+} from '../RichTextEditorToolbar'
 
 type Props = {
   disabled?: boolean
@@ -71,36 +73,22 @@ const LexicalEditorToolbarPlugin = ({
     )
   }
 
-  const formatNormal = () => {
-    editor.update(() => {
-      const selection = $getSelection()
-
-      if ($isRangeSelection(selection)) {
-        $setBlocksType(selection, () => $createParagraphNode())
-      }
-    })
-  }
-
-  const formatHeading = () => {
-    editor.update(() => {
-      const selection = $getSelection()
-
-      if ($isRangeSelection(selection)) {
-        $setBlocksType(selection, () => $createHeadingNode('h3'))
-      }
-    })
-  }
-
   const handleHeaderClick = ({
     target: { value },
   }: ChangeEvent<{
     value: HeaderValue
   }>) => {
-    if (value === '3') {
-      formatHeading()
-    } else {
-      formatNormal()
-    }
+    editor.update(() => {
+      const selection = $getSelection()
+
+      if ($isRangeSelection(selection)) {
+        if (value === ALLOWED_HEADER_TYPE) {
+          $setBlocksType(selection, () => $createHeadingNode('h3'))
+        } else {
+          $setBlocksType(selection, () => $createParagraphNode())
+        }
+      }
+    })
   }
 
   return (

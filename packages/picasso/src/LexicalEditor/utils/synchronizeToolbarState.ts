@@ -7,6 +7,7 @@ import { $isHeadingNode } from '@lexical/rich-text'
 import { getLexicalNode } from './getLexicalNode'
 import type { ToolbarAction, ToolbarState } from './toolbarState'
 import { ToolbarActions } from './toolbarState'
+import { ALLOWED_HEADER_TYPE } from '../../RichTextEditorToolbar'
 
 // Transfers updated Lexical selection state to the toolbar state
 // This takes care of highlighting the necessary buttons depending on the selection contents
@@ -42,7 +43,7 @@ export const synchronizeToolbarState = (
         bold: selection.hasFormat('bold'),
         italic: selection.hasFormat('italic'),
         list: currentListType,
-        header: isHeading ? '3' : '',
+        header: isHeading ? ALLOWED_HEADER_TYPE : '',
       },
     })
   }
