@@ -12,7 +12,7 @@ exports[`Calendar renders 1`] = `
         class="PicassoCalendarContainer-root"
       >
         <div
-          class="rdp"
+          class="rdp calendar-month"
         >
           <div>
             <div
