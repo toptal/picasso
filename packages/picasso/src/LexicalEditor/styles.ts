@@ -1,4 +1,5 @@
 import { createStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core/styles'
 import type { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { rem } from '@toptal/picasso-shared'
 
@@ -78,7 +79,7 @@ const listStyles = {
   ...indentStyles,
 }
 
-export default () => {
+export default ({ typography }: Theme) => {
   return createStyles({
     editorContainer: {
       height: '12.5em',
@@ -145,6 +146,12 @@ export default () => {
           width: '1rem',
         },
       },
+    },
+    bold: {
+      fontWeight: typography.fontWeights.semibold,
+    },
+    italic: {
+      fontStyle: 'italic',
     },
   })
 }

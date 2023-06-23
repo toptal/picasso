@@ -51,6 +51,7 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
+  // eslint-disable-next-line complexity
   function RichTextEditorToolbar(props: Props, ref) {
     const {
       disabled,
@@ -83,7 +84,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         >
           <Select
             onChange={onHeaderChange}
-            value={format.header}
+            value={disabled ? '' : format.header}
             options={[
               { value: '3', text: 'heading' },
               { value: '', text: 'normal' },

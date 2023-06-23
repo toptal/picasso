@@ -19,6 +19,11 @@ export const createLexicalTheme = ({
   const theme: EditorThemeClasses = {
     root: typographyClassNames,
     paragraph: classes.paragraph,
+    text: {
+      italic: classes.italic,
+      bold: classes.bold,
+    },
+
     list: {
       listitem: classes.listItem,
       nested: {
