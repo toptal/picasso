@@ -52,11 +52,13 @@ describe('replaceHeadingNodes', () => {
       )
 
       const appendMock = jest.fn()
+      const selectMock = jest.fn()
 
       mockedCreateParagraphNode.mockImplementation(
         () =>
           ({
             append: appendMock,
+            select: selectMock,
           } as unknown as ParagraphNode)
       )
 
@@ -67,8 +69,12 @@ describe('replaceHeadingNodes', () => {
 
       expect(setFormatMock).toHaveBeenCalledWith('bold')
       expect(appendMock).toHaveBeenCalledWith({ setFormat: setFormatMock })
+      expect(selectMock).toHaveBeenCalled()
 
-      expect(node.replace).toHaveBeenCalledWith({ append: appendMock })
+      expect(node.replace).toHaveBeenCalledWith({
+        append: appendMock,
+        select: selectMock,
+      })
     })
   })
 })
