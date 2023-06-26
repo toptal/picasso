@@ -150,6 +150,14 @@ module.exports = {
             __dirname,
             '../packages/picasso-pictograms/src'
           ),
+          '@toptal/picasso-rich-text-editor': path.resolve(
+            __dirname,
+            '../packages/picasso-rich-text-editor/src'
+          ),
+          '@toptal/picasso-rich-text-editor/utils': path.resolve(
+            __dirname,
+            '../packages/picasso-rich-text-editor/src/utils'
+          ),
         },
       },
     }
