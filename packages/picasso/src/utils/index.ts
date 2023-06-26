@@ -61,3 +61,8 @@ export { formatAmount, DEFAULT_CURRENCY, DEFAULT_LOCALE } from './Formatters'
 
 export type { FormatAmount } from './Formatters'
 export * from './get-react-node-text-content'
+
+export {
+  useDeprecationWarning,
+  usePropDeprecationWarning,
+} from './use-deprecation-warnings'

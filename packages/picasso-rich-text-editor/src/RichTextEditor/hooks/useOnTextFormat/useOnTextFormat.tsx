@@ -1,0 +1,60 @@
+import type { Dispatch } from 'react'
+import { useCallback } from 'react'
+
+import type { ActionsType } from '../../store'
+import { actions as toolbarActions } from '../../store/toolbar'
+import type { TextFormatHandlerEvent } from '../../../QuillEditor'
+import {
+  convertBoldFromEditorValue,
+  convertItalicFromEditorValue,
+  convertListFromEditorValue,
+  convertHeaderFromEditorValue,
+  convertLinkFromEditorValue,
+} from '../../utils/convertFormat'
+
+type Props = {
+  dispatch: Dispatch<ActionsType>
+}
+
+const useOnTextFormat = ({ dispatch }: Props) => {
+  const handleTextFormat = useCallback(
+    (e: TextFormatHandlerEvent) => {
+      switch (e.formatName) {
+        case 'bold': {
+          const boldValue = convertBoldFromEditorValue(e.value)
+
+          return toolbarActions.setBold(dispatch)(boldValue)
+        }
+        case 'italic': {
+          const italicValue = convertItalicFromEditorValue(e.value)
+
+          return toolbarActions.setItalic(dispatch)(italicValue)
+        }
+        case 'list': {
+          const listValue = convertListFromEditorValue(e.value)
+
+          return toolbarActions.setList(dispatch)(listValue)
+        }
+        case 'header': {
+          const headerValue = convertHeaderFromEditorValue(e.value)
+
+          return toolbarActions.setHeader(dispatch)(headerValue)
+        }
+        case 'link': {
+          const linkValue = convertLinkFromEditorValue(e.value)
+
+          return toolbarActions.setLink(dispatch)(linkValue)
+        }
+        default:
+          throw Error(
+            `TextEditor - useOnTextFormat is not implemented for ${e}`
+          )
+      }
+    },
+    [dispatch]
+  )
+
+  return { handleTextFormat }
+}
+
+export default useOnTextFormat
