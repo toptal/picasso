@@ -4,9 +4,8 @@
 /* eslint-disable max-nested-callbacks */
 /* eslint-disable max-lines-per-function */
 import React from 'react'
-import type { RichTextEditorProps } from '@toptal/picasso-rich-text-editor'
-import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
-import { Container } from '@toptal/picasso'
+import type { RichTextEditorProps } from '@toptal/picasso'
+import { RichTextEditor, Container, Container } from '@toptal/picasso'
 import { Form } from '@toptal/picasso-forms'
 import { isOn } from '@cypress/skip-test'
 

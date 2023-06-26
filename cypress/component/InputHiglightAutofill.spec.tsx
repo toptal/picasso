@@ -8,12 +8,12 @@ import {
   MonthSelect,
   NumberInput,
   PasswordInput,
+  RichTextEditor,
   Select,
   TagSelector,
   TimePicker,
   YearSelect,
 } from '@toptal/picasso'
-import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
 const component = 'HiglightAutofill'
 
