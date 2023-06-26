@@ -1,0 +1,14 @@
+{
+  "name": "somemodule",
+  "description": "test",
+  "version": "0.0.3",
+  "author": "Toptal",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@toptal/picasso": "35.0.2",
+    "@toptal/picasso-forms": "57.0.0"
+  },
+  "private": true,
+  "sideEffects": false
+}
