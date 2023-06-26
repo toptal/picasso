@@ -64,6 +64,12 @@
       "@toptal/picasso-pictograms": [
         "packages/picasso-pictograms/src"
       ],
+      "@toptal/picasso-rich-text-editor": [
+        "packages/picasso-rich-text-editor/src"
+      ],
+      "@toptal/picasso-rich-text-editor/*": [
+        "packages/picasso-rich-text-editor/src/*"
+      ],
       "*": [
         "@types/*"
       ],
