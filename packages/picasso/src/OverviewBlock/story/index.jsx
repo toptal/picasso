@@ -6,7 +6,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Components').createPage(
   'OverviewBlock',
   `Allows displaying counters.
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -38,5 +38,6 @@ page
   .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
   .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
   .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
+  .addExample('OverviewBlock/story/CustomLabel.example.tsx', 'Custom label')
 
 page.connect(overviewBlockGroupStory.chapter)
