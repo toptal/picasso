@@ -89,6 +89,9 @@ describe('TypographyOverflow', () => {
       variant: 'default/after-hovered-static-width',
     })
 
+    cy.get('body').click(0, 0)
+    cy.getByRole('tooltip').should('not.exist')
+
     cy.getByTestId('ellipsed-text-dynamic-width').click()
     cy.get('body').happoScreenshot({
       component,
