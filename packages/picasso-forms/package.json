@@ -45,8 +45,7 @@
     "@types/classnames": "^2.3.1",
     "@types/react-final-form-listeners": "^1.0.0",
     "storybook-readme": "^5.0.9",
-    "type-fest": "^3.9.0",
-    "@toptal/picasso-rich-text-editor": "1.0.1-alpha-fx-4053-create-separate-package-for-rte-ce7a047c8.3640+ce7a047c8"
+    "type-fest": "^3.9.0"
   },
   "sideEffects": false
 }
