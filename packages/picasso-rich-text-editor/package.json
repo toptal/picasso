@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Picasso rich text editor",
   "author": "Toptal",
-  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-rich-text-editor#readme",
   "license": "MIT",
   "main": "index.js",
   "module": "index.js",
