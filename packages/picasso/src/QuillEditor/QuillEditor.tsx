@@ -1,8 +1,8 @@
 import React, { forwardRef, useRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 
-import { useCombinedRefs } from '../utils'
 import QuillEditorView from '../QuillEditorView'
+import { useCombinedRefs } from '../utils'
 import useQuillInstance from './hooks/useQuillInstance'
 import {
   useFocus,

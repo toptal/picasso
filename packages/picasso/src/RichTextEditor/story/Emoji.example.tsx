@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Container } from '@toptal/picasso'
-import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
+import type { RichTextEditorChangeHandler } from '@toptal/picasso'
+import { RichTextEditor, Container } from '@toptal/picasso'
 
-import type { RichTextEditorChangeHandler, CustomEmojiGroup } from '../types'
+import type { CustomEmojiGroup } from '../types'
 
 const customEmojis = [
   {
