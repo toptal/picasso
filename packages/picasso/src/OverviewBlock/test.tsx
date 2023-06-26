@@ -53,15 +53,17 @@ describe('overview-block', () => {
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
 
-  it('renders custom label', () => {
-    const customLabel = <div data-testid='custom-label'>Custom Label</div>
+  describe('when label is a ReactNode', () => {
+    it('renders custom label', () => {
+      const customLabel = <div data-testid='custom-label'>Custom Label</div>
 
-    const { getByTestId } = renderOverviewBlock({
-      value: 'abc dk9',
-      label: customLabel,
+      const { getByTestId } = renderOverviewBlock({
+        value: 'abc dk9',
+        label: customLabel,
+      })
+
+      expect(getByTestId('custom-label')).toBeInTheDocument()
     })
-
-    expect(getByTestId('custom-label')).toBeInTheDocument()
   })
 
   describe('when OnClick function is defined', () => {
