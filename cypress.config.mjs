@@ -80,6 +80,10 @@ export default defineConfig({
               process.cwd(),
               './packages/picasso-pictograms/dist-package'
             ),
+            '@toptal/picasso-rich-text-editor': path.resolve(
+              process.cwd(),
+              './packages/picasso-rich-text-editor/dist-package'
+            ),
             '@topkit/analytics-charts': path.resolve(
               process.cwd(),
               './packages/topkit-analytics-charts/dist-package'
