@@ -3,4 +3,3 @@ build
 node_modules
 !.changeset
 .changeset/README.md
-packages/picasso-codemod/**/__testfixtures__/
