@@ -6,6 +6,7 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import LexicalEditor from './LexicalEditor'
 import type { Props } from './LexicalEditor'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
+import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
 
@@ -43,8 +44,18 @@ jest.mock('../LexicalTextLengthPlugin', () => ({
   default: jest.fn(() => <div>LexicalTextLengthPlugin</div>),
 }))
 
+jest.mock('../LexicalHeadingsReplacementPlugin', () => ({
+  __esModule: true,
+  default: jest.fn(() => <div>LexicalHeadingsReplacementPlugin</div>),
+}))
+
 const mockedLexicalTextLengthPlugin =
   LexicalTextLengthPlugin as jest.MockedFunction<typeof LexicalTextLengthPlugin>
+
+const mockedLexicalHeadingsReplacementPlugin =
+  LexicalHeadingsReplacementPlugin as jest.MockedFunction<
+    typeof LexicalHeadingsReplacementPlugin
+  >
 
 const mockedToolbarPlugin = ToolbarPlugin as jest.MockedFunction<
   typeof ToolbarPlugin
@@ -67,6 +78,7 @@ const renderLexicalEditor = (props: Partial<OmitInternalProps<Props>> = {}) => {
 describe('LexicalEditor', () => {
   beforeEach(() => {
     mockedLexicalTextLengthPlugin.mockImplementation(() => null)
+    mockedLexicalHeadingsReplacementPlugin.mockImplementation(() => null)
     mockedToolbarPlugin.mockImplementation(() => (
       <div>LexicalEditorToolbarPlugin</div>
     ))
@@ -95,6 +107,14 @@ describe('LexicalEditor', () => {
           },
           {}
         )
+      )
+    })
+
+    it('renders LexicalHeadingsReplacementPlugin', async () => {
+      renderLexicalEditor()
+
+      await waitFor(() =>
+        expect(mockedLexicalHeadingsReplacementPlugin).toHaveBeenCalled()
       )
     })
 

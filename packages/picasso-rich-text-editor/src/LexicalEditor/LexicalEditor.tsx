@@ -23,6 +23,7 @@ import type { ChangeHandler, TextLengthChangeHandler } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
+import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -172,6 +173,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
         {autoFocus && <AutoFocusPlugin />}
 
+        <LexicalHeadingsReplacementPlugin />
         <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
         <LexicalListPlugin />
 
