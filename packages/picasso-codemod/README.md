@@ -41,6 +41,14 @@ Codemods do not guarantee the code format preservation. Therefore be sure to run
 
 ## Included Scripts
 
+### v36.0.0
+
+Replaces all imports of RichTextEditor related components to `@toptal/picasso-rich-text-editor` and updates package.json with a new version of `@toptal/picasso`, `@toptal/picasso-rich-text-editor` and `@toptal/picasso-forms`
+
+```sh
+npx @toptal/picasso-codemod v36.0.0 --run-in-band
+```
+
 ### v52.2.0
 
 Replaces compound `Form` with `FormNonCompound` and adjusts all the compound components to be directly imported from `picasso-forms`.
