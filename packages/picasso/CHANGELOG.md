@@ -1,5 +1,15 @@
 # Change Log
 
+## 35.3.0
+
+### Minor Changes
+
+- [#3650](https://github.com/toptal/picasso/pull/3650) [`7989e5fea`](https://github.com/toptal/picasso/commit/7989e5fea33f3b88540c55fa1d54238d61c4f014) Thanks [@mateusbzerra](https://github.com/mateusbzerra)!
+
+### OverviewBlock
+
+- it allows to use custom labels on `OverviewBlock`
+
 ## 35.2.3
 
 ### Patch Changes
