@@ -146,7 +146,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       nodes: [ListNode, ListItemNode, HeadingNode],
       editable: !disabled,
     }),
-    [theme, disabled]
+    [defaultValue, theme, disabled]
   )
 
   const handleChange = useCallback(
