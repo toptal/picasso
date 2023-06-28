@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.5.0
+
+### Minor Changes
+
+- [#3637](https://github.com/toptal/picasso/pull/3637) [`d4795a8a5`](https://github.com/toptal/picasso/commit/d4795a8a5fb9f36ae724c0cddf80822701e753cc) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+---
+
+- add codemod for replacing RichTextEditor imports
+
 ## 5.4.1
 
 ### Patch Changes

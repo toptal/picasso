@@ -1,5 +1,15 @@
 # Change Log
 
+## 36.0.0
+
+### Major Changes
+
+- [#3637](https://github.com/toptal/picasso/pull/3637) [`d4795a8a5`](https://github.com/toptal/picasso/commit/d4795a8a5fb9f36ae724c0cddf80822701e753cc) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### RichTextEditor
+
+- remove Rich Text Editor from picasso package. Now, this is a separate package: @toptal/picasso-rich-text-editor. Use `npx @toptal/picasso-codemod v36.0.0 --run-in-band` to adopt a new RichTextEditor to `@toptal/picasso` and `@toptal/picasso-forms`
+
 ## 35.3.0
 
 ### Minor Changes
