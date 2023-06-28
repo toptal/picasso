@@ -1,5 +1,21 @@
 # Change Log
 
+## 58.0.0
+
+### Major Changes
+
+- [#3637](https://github.com/toptal/picasso/pull/3637) [`d4795a8a5`](https://github.com/toptal/picasso/commit/d4795a8a5fb9f36ae724c0cddf80822701e753cc) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### RichTextEditor
+
+- the @toptal/picasso-rich-text-editor is now considered a peer dependency for this package. This implies that users will need to install it manually. This change provides more control over the versioning of dependencies.
+
+### Patch Changes
+
+- Updated dependencies [[`d4795a8a5`](https://github.com/toptal/picasso/commit/d4795a8a5fb9f36ae724c0cddf80822701e753cc)]:
+  - @toptal/picasso@36.0.0
+  - @toptal/picasso-rich-text-editor@2.0.0
+
 ## 57.0.0
 
 ### Patch Changes
