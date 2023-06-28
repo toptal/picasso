@@ -1,8 +1,7 @@
 ---
-'@toptal/picasso-rich-text-editor': patch
 '@toptal/picasso-forms': major
 ---
 
 ### RichTextEditor
 
-- create `Rich Text Editor` package. `@toptal/picasso-forms` now expects `@toptal/picasso-rich-text-editor` to be installed separately.
+- the @toptal/picasso-rich-text-editor is now considered a peer dependency for this package. This implies that users will need to install it manually. This change provides more control over the versioning of dependencies.
