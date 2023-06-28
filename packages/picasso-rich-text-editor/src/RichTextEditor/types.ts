@@ -5,7 +5,11 @@ export type CounterMessageSetter = (
   isError: boolean
 ) => string
 
-export type { ChangeHandler, TextLengthChangeHandler } from '../LexicalEditor'
+export type {
+  ChangeHandler,
+  ChangeHandler as RichTextEditorChangeHandler,
+  TextLengthChangeHandler,
+} from '../LexicalEditor'
 
 // @todo: remove this when we remove the old editor
 export type { CustomEmojiGroup, CustomEmoji } from '../QuillEditor'
