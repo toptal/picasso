@@ -1,12 +1,12 @@
 import React from 'react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso/test-utils'
+import { InputMultilineAdornment } from '@toptal/picasso'
 
 import RichTextEditor from './RichTextEditor'
 import type { Props } from './RichTextEditor'
 import LexicalEditor from '../LexicalEditor'
 import { useCounter } from './hooks'
-import InputMultilineAdornment from '../InputMultilineAdornment'
 
 jest.mock('../utils/use-deprecation-warnings', () => ({
   usePropDeprecationWarning: jest.fn(),
