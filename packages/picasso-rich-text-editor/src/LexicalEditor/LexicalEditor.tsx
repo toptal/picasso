@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import type { InitialConfigType } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
-import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
@@ -15,8 +14,11 @@ import { noop } from '@toptal/picasso/utils'
 import { Container, Typography } from '@toptal/picasso'
 import { ListItemNode, ListNode } from '@lexical/list'
 import { $isRootTextContentEmpty } from '@lexical/text'
+import type { LexicalEditor as LexicalEditorType } from 'lexical'
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 
-import { createLexicalTheme } from './utils'
+import { TriggerInitialOnChangePlugin } from './plugins'
+import { createLexicalTheme, setEditorValue } from './utils'
 import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
 import type { ChangeHandler, TextLengthChangeHandler } from './types'
@@ -24,6 +26,7 @@ import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
 import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
+import type { ASTType } from '../RichText'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -37,7 +40,7 @@ export type Props = BaseProps & {
   /** Indicates that an element is to be focused on page load */
   autoFocus?: boolean
   /** Default value in [HAST](https://github.com/syntax-tree/hast) format */
-  //   defaultValue?: ASTType
+  defaultValue?: ASTType
   /**
    * This Boolean attribute indicates that the user cannot interact with the control.
    */
@@ -84,7 +87,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   const {
     // plugins,
     autoFocus = false,
-    // defaultValue,
+    defaultValue,
     disabled = false,
     id,
     onChange = noop,
@@ -129,6 +132,11 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const editorConfig: InitialConfigType = useMemo(
     () => ({
+      editorState: (editor: LexicalEditorType) => {
+        if (defaultValue) {
+          setEditorValue(editor, defaultValue)
+        }
+      },
       theme,
       onError(error: Error) {
         throw error
@@ -137,7 +145,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       nodes: [ListNode, ListItemNode, HeadingNode],
       editable: !disabled,
     }),
-    [theme, disabled]
+    [defaultValue, theme, disabled]
   )
 
   const handleChange = useCallback(
@@ -170,6 +178,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           // remount Toolbar when disabled
           key={`${disabled || !isFocused}`}
         />
+        {defaultValue ? (
+          <TriggerInitialOnChangePlugin onChange={handleChange} />
+        ) : null}
         <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
         {autoFocus && <AutoFocusPlugin />}
 

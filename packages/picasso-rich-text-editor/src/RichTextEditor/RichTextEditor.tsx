@@ -98,7 +98,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       // plugins,
       autoFocus = false,
       className,
-      // defaultValue,
+      defaultValue,
       disabled,
       id,
       onChange = noop,
@@ -187,6 +187,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             testIds={testIds}
             disabled={disabled}
             autoFocus={autoFocus}
+            defaultValue={defaultValue}
           />
           {hiddenInputId && (
             // Native `for` attribute on label does not work for div target
