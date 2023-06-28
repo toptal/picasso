@@ -13,7 +13,7 @@ const specificModules = [
 ]
 const picassoVersion = '36.0.0'
 const picassoFormsVersion = '58.0.0'
-const picassoRichTextEditorVersion = '1.0.2'
+const picassoRichTextEditorVersion = '1.0.1'
 
 // Get current execution directory
 const execDir = process.cwd()
