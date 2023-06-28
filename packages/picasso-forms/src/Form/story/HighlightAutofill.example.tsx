@@ -15,7 +15,7 @@ import {
   TagSelector,
   TimePicker,
 } from '@toptal/picasso-forms'
-import { htmlToHast } from '@toptal/picasso/utils'
+import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
 
 const formConfig: FormConfigProps = {
   highlightAutofill: true,

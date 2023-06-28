@@ -14,7 +14,7 @@ const require = createRequire(import.meta.url)
 const codemodsDirectory = path.join(__dirname, '../', 'src')
 const jscodeshift = require.resolve('.bin/jscodeshift')
 const paths = {
-  spa: 'src/**/*.tsx',
+  spa: 'src/**/*.ts*',
   monorepo: {
     libs: '*libs/*/src/*',
     hosts: '*hosts/*/src/*',
@@ -28,7 +28,7 @@ const findFilesInMonorepo = () =>
   execaSync('find', [
     '.',
     '-name',
-    '*.tsx',
+    '*.ts*',
     '(',
     ...['-path', paths.monorepo.libs],
     ...['-or', '-path', paths.monorepo.apps],
@@ -51,7 +51,7 @@ const findCodemodPath = codemod =>
     .map(ext => path.join(codemodsDirectory, `${codemod}/index.${ext}`))
     .find(fs.existsSync)
 
-const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
+const runTransform = async ({ codemod, inputFiles, parserConfig, runInBand }) => {
   const codemodPath = findCodemodPath(codemod)
   const isMonorepo = await checkIsMonorepo()
 
@@ -60,6 +60,7 @@ const runTransform = async ({ codemod, inputFiles, parserConfig }) => {
 
   args = args.concat(['--parser', 'tsx'])
   args = args.concat(['--transform', codemodPath])
+  args = args.concat(['--run-in-band', runInBand])
 
   if (parserConfig) {
     args.push(`--parser-config=${parserConfig}`)
@@ -105,6 +106,7 @@ export const run = () => {
       
       Options
         --parser-config  Add parser config
+        --run-in-band    Run serially in the current process (default: false)
 
       Examples
         $ npx @toptal/picasso-codemod v17.0.0/typography-sizes
@@ -124,10 +126,12 @@ export const run = () => {
   const codemod = cli.input[0]
   const inputFiles = cli.input.slice(1)
   const parserConfig = cli.flags.parserConfig
+  const runInBand = cli.flags.runInBand
 
   return runTransform({
     codemod,
     inputFiles,
     parserConfig,
+    runInBand,
   })
 }
