@@ -26,6 +26,9 @@ const QuillEditorView = forwardRef<HTMLDivElement, QuillEditorViewProps>(
         size='medium'
         className={classes.root}
         data-testid={dataTestId}
+        data-gramm_editor='false'
+        data-enable-grammarly='false'
+        data-gramm='false'
         id={id}
         ref={ref}
       />
