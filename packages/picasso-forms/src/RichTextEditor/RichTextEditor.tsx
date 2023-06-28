@@ -10,6 +10,7 @@ import { useForm } from 'react-final-form'
 import type { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
+import { useEnforceHighlightAutofill } from './hooks'
 
 type OverriddenProps = {
   defaultValue?: ASTType
@@ -24,7 +25,10 @@ export type Props = RichTextEditorProps &
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
-  const { onChange, defaultValue, label, titleCase, ...rest } = props
+  const { onChange, onFocus, defaultValue, label, titleCase, ...rest } = props
+
+  const { enforceHighlightAutofill, registerChangeOrFocus } =
+    useEnforceHighlightAutofill()
   const [value, setValue] = useState('')
   const {
     mutators: { setHasMultilineCounter },
@@ -34,17 +38,26 @@ export const RichTextEditor = (props: Props) => {
   // as an compatibility layer between final-form
   const handleOnChange = useCallback(
     (newVal: string) => {
+      registerChangeOrFocus()
       setValue(newVal)
       onChange?.(newVal)
     },
-    [onChange, setValue]
+    [onChange, setValue, registerChangeOrFocus]
   )
+
+  const handleOnFocus = useCallback(() => {
+    registerChangeOrFocus()
+
+    onFocus?.()
+  }, [onFocus, registerChangeOrFocus])
+
   const hiddenInputId = `${props.id}-hidden-input`
 
   return (
     <InputField<InternalProps>
       value={value}
       onChange={handleOnChange}
+      onFocus={handleOnFocus}
       label={
         label ? (
           <FieldLabel
@@ -62,6 +75,7 @@ export const RichTextEditor = (props: Props) => {
         <PicassoRichTextEditor
           defaultValue={defaultValue}
           hiddenInputId={hiddenInputId}
+          highlight={enforceHighlightAutofill ? 'autofill' : undefined}
           {...inputProps}
         />
       )}
