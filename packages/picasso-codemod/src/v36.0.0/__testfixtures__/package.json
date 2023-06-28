@@ -1,0 +1,15 @@
+{
+  "name": "somemodule",
+  "description": "test",
+  "version": "0.0.3",
+  "author": "Toptal",
+  "license": "ISC",
+  "main": "./src/index.ts",
+  "dependencies": {
+    "@toptal/picasso": "36.0.0",
+    "@toptal/picasso-forms": "58.0.0",
+    "@toptal/picasso-rich-text-editor": "1.0.2"
+  },
+  "private": true,
+  "sideEffects": false
+}
