@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.5.1
+
+### Patch Changes
+
+- [#3664](https://github.com/toptal/picasso/pull/3664) [`fa984a82b`](https://github.com/toptal/picasso/commit/fa984a82bd3ca1a0357523b80a395c00bbd02acb) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+---
+
+- fix version in RichTextEditor codemod
+
 ## 5.5.0
 
 ### Minor Changes
