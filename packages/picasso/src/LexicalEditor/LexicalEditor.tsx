@@ -14,10 +14,9 @@ import { ListItemNode, ListNode } from '@lexical/list'
 import { $isRootTextContentEmpty } from '@lexical/text'
 import type { LexicalEditor as LexicalEditorType } from 'lexical'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
-import { TextNode } from 'lexical'
 
 import { TriggerInitialOnChangePlugin } from './plugins'
-import { createLexicalTheme, setEditorValue } from './utils'
+import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
 import noop from '../utils/noop'
 import Container from '../Container'
 import Typography from '../Typography'
@@ -29,42 +28,13 @@ import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
 import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
 import type { ASTType } from '../RichText'
-import { PicassoTextNode } from './nodes'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
 })
 
 const removeAttributesFromString = (htmlString: string) => {
-  return htmlString.replace(/\s(class|dir|value|style)="[^"]*"/g, '')
-}
-
-// Courtesy of ChatGPT
-const removeTagsAndKeepContent = (html: string, tagsToRemove: string[]) => {
-  const parser = new DOMParser()
-  const htmlDoc = parser.parseFromString(html, 'text/html')
-
-  tagsToRemove.forEach(function (tag) {
-    const elements = htmlDoc.getElementsByTagName(tag)
-
-    for (let counter = elements.length - 1; counter >= 0; counter--) {
-      const parent = elements[counter].parentNode
-
-      if (parent) {
-        while (elements[counter].firstChild) {
-          if (elements[counter].firstChild) {
-            parent.insertBefore(
-              elements[counter].firstChild as Node,
-              elements[counter]
-            )
-          }
-        }
-        parent.removeChild(elements[counter])
-      }
-    }
-  })
-
-  return htmlDoc.body.innerHTML
+  return htmlString.replace(/\s(class|dir|value)="[^"]*"/g, '')
 }
 
 export type Props = BaseProps & {
@@ -173,20 +143,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
-      nodes: [
-        ListNode,
-        ListItemNode,
-        HeadingNode,
-        PicassoTextNode,
-        // {
-        //   replace: TextNode,
-        //   with: (node: TextNode) => {
-        //     console.log('@@@ create new PicassoTextNode')
-
-        //     return new PicassoTextNode(node.getTextContent(), node.getKey())
-        //   },
-        // },
-      ],
+      nodes: [ListNode, ListItemNode, HeadingNode],
       editable: !disabled,
     }),
     [defaultValue, theme, disabled]
@@ -201,13 +158,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           ? ''
           : removeAttributesFromString($generateHtmlFromNodes(editor, null))
 
-        // const cleanedHtmlValue = removeTagsAndKeepContent(htmlValue, [
-        //   'b',
-        //   'i',
-        //   'span',
-        // ])
+        const cleanedHtmlValue = cleanupHtmlOutput(htmlValue)
 
-        onChange(htmlValue)
+        onChange(cleanedHtmlValue)
       })
     },
     [onChange]
