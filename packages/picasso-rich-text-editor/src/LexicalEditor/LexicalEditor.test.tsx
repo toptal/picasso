@@ -2,6 +2,7 @@ import React from 'react'
 import { render, waitFor } from '@toptal/picasso/test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
+import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 
 import LexicalEditor from './LexicalEditor'
 import type { Props } from './LexicalEditor'
@@ -27,6 +28,10 @@ jest.mock('../LexicalEmojiPlugin', () => ({
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
   __esModule: true,
   useLexicalComposerContext: jest.fn(() => [{}]),
+}))
+jest.mock('@lexical/react/LexicalHistoryPlugin', () => ({
+  __esModule: true,
+  HistoryPlugin: jest.fn(() => [{}]),
 }))
 
 jest.mock('@lexical/react/LexicalRichTextPlugin', () => ({
@@ -56,6 +61,10 @@ jest.mock('../LexicalHeadingsReplacementPlugin', () => ({
 
 const mockedLexicalTextLengthPlugin =
   LexicalTextLengthPlugin as jest.MockedFunction<typeof LexicalTextLengthPlugin>
+
+const mockedHistoryPlugin = HistoryPlugin as jest.MockedFunction<
+  typeof HistoryPlugin
+>
 
 const mockedLexicalHeadingsReplacementPlugin =
   LexicalHeadingsReplacementPlugin as jest.MockedFunction<
@@ -121,6 +130,12 @@ describe('LexicalEditor', () => {
       await waitFor(() =>
         expect(mockedLexicalHeadingsReplacementPlugin).toHaveBeenCalled()
       )
+    })
+
+    it('renders HistoryPlugin', async () => {
+      renderLexicalEditor()
+
+      await waitFor(() => expect(mockedHistoryPlugin).toHaveBeenCalled())
     })
 
     it('renders OnChangePlugin with correct props', () => {

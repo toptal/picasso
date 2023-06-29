@@ -40,6 +40,15 @@ type Props = {
   disabled?: boolean
   toolbarRef: React.RefObject<HTMLDivElement>
   plugins?: EditorPlugin[]
+  testIds?: {
+    wrapper?: string
+    editor?: string
+    headerSelect?: string
+    boldButton?: string
+    italicButton?: string
+    unorderedListButton?: string
+    orderedListButton?: string
+  }
 }
 
 const LexicalEditorToolbarPlugin = ({
@@ -47,6 +56,7 @@ const LexicalEditorToolbarPlugin = ({
   toolbarRef,
   customEmojis,
   plugins,
+  testIds,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(
@@ -143,6 +153,7 @@ const LexicalEditorToolbarPlugin = ({
       ref={toolbarRef}
       customEmojis={customEmojis}
       plugins={plugins}
+      testIds={testIds}
     />
   )
 }

@@ -87,6 +87,31 @@ const setAliases = () => {
 }
 
 describe('RichTextEditor', () => {
+  describe('when shortcuts for undo/redo are used', () => {
+    it('correctly uses editor history', () => {
+      cy.mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.get('@editor').type('f')
+
+      if (isOn('mac')) {
+        cy.get('@editor').type('{cmd}z')
+      } else {
+        cy.get('@editor').type('{ctrl}z')
+      }
+
+      cy.contains('f').should('not.exist')
+
+      if (isOn('mac')) {
+        cy.get('@editor').type('{cmd}{shift}z')
+      } else {
+        cy.get('@editor').type('{ctrl}{shift}z')
+      }
+
+      cy.contains('f').should('exist')
+    })
+  })
+
   it('focuses the editor', () => {
     cy.mount(renderEditor(defaultProps))
     setAliases()
