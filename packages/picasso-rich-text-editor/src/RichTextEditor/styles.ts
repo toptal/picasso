@@ -37,6 +37,12 @@ export default (theme: Theme) => {
       ...outline(palette.primary.main),
     },
 
+    hiddenInput: {
+      position: 'absolute',
+      opacity: 0,
+      zIndex: -1,
+    },
+
     ...highlightAutofillStyles(theme),
   })
 }

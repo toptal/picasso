@@ -34,6 +34,7 @@ export const createLexicalTheme = ({
       ul: classes.ul,
       ol: classes.ol,
     },
+    customEmoji: classes.customEmoji,
   }
 
   return theme
