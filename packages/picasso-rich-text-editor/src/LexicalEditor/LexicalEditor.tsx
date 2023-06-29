@@ -189,6 +189,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           key={`${disabled || !isFocused}`}
           customEmojis={customEmojis}
           plugins={plugins}
+          testIds={testIds}
         />
         {defaultValue ? (
           <TriggerInitialOnChangePlugin onChange={handleChange} />
