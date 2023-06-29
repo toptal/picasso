@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 2.0.1
+
+### Patch Changes
+
+- [#3665](https://github.com/toptal/picasso/pull/3665) [`2e8a86f30`](https://github.com/toptal/picasso/commit/2e8a86f30a7b165d7767775685c6180b83f3a91d) Thanks [@sashuk](https://github.com/sashuk)!
+- properties were added to block Grammarly from accessing rich text editor fields
+
 ## 2.0.0
 
 ### Patch Changes
