@@ -84,6 +84,7 @@ const setAliases = () => {
   cy.getByTestId(olButton).as('olButton')
   cy.getByTestId(ulButton).as('ulButton')
   cy.getByTestId(wrapper).as('wrapper')
+  cy.contains('placeholder').as('placeholder')
 }
 
 describe('RichTextEditor', () => {
@@ -133,7 +134,7 @@ describe('RichTextEditor', () => {
 
     const content = {
       bold: 'b',
-      italic: 'b',
+      italic: 'it',
       bold_italic: 'bi',
     }
 
@@ -157,11 +158,17 @@ describe('RichTextEditor', () => {
     buttonShouldBeActive(cy.get('@italicButton'))
 
     cy.get('@editor').type(content.bold_italic)
-    cy.contains(content.bold_italic)
-      .parent()
-      .should('include.html', 'em')
-      .parent()
-      .should('include.html', 'strong')
+    cy.contains(content.bold_italic).then($el => {
+      const element = $el?.[0] as unknown as HTMLElement
+
+      const hasItalicClass = Array.from(element.classList).some(className =>
+        className.includes('italic')
+      )
+
+      expect($el).to.have.length(1)
+      expect(element.tagName).to.equal('STRONG')
+      expect(hasItalicClass).to.equal(true)
+    })
 
     // test italic
     if (isOn('mac')) {
@@ -183,10 +190,10 @@ describe('RichTextEditor', () => {
 
     // resize the editor
     cy.window().then(() => {
-      const editor = document.getElementById(defaultProps.id)
+      const localEditor = document.getElementById(defaultProps.id)
 
-      if (editor) {
-        editor.style.height = '40em'
+      if (localEditor) {
+        localEditor.style.height = '40em'
       }
     })
 
@@ -237,7 +244,7 @@ describe('RichTextEditor', () => {
 
       // remove all
       cy.get('@editor').type('{selectall}{del}')
-      cy.get('.ql-blank').should('exist')
+      cy.get('@placeholder').should('be.visible')
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
     })
 
@@ -256,7 +263,7 @@ describe('RichTextEditor', () => {
       // remove all
       cy.get('@editor').type('{selectall}{del}')
 
-      cy.get('.ql-blank').should('exist')
+      cy.get('@placeholder').should('be.visible')
       buttonShouldNotBeActive(cy.get('@olButton'))
       buttonShouldNotBeActive(cy.get('@boldButton'))
     })
@@ -346,8 +353,8 @@ describe('RichTextEditor', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
 
-      cy.get('@editor').realClick()
-      cy.get('@boldButton').realClick()
+      cy.get('@editor').click()
+      cy.get('@boldButton').click()
 
       buttonShouldBeActive(cy.get('@boldButton'))
       cy.get('@editor').type('b')
