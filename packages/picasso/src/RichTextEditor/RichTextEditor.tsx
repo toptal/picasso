@@ -6,8 +6,6 @@ import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import noop from '../utils/noop'
-// @todo: remove this import once we remove the old QuillEditor
-import type { CustomEmojiGroup, EditorPlugin } from '../QuillEditor'
 import styles from './styles'
 import { useCounter } from './hooks'
 import type { ASTType } from '../RichText'
@@ -15,7 +13,11 @@ import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import type { Status } from '../OutlinedInput'
 import type { CounterMessageSetter } from './types'
 import LexicalEditor from '../LexicalEditor'
-import type { ChangeHandler } from '../LexicalEditor'
+import type {
+  ChangeHandler,
+  CustomEmojiGroup,
+  EditorPlugin,
+} from '../LexicalEditor'
 import InputMultilineAdornment from '../InputMultilineAdornment'
 
 export interface Props extends BaseProps {
@@ -96,7 +98,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
   function RichTextEditor(props, ref) {
     const {
       'data-testid': dataTestId,
-      // plugins,
+      plugins,
       autoFocus = false,
       className,
       defaultValue,
@@ -117,7 +119,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       setHasMultilineCounter,
       name,
       highlight,
-      // customEmojis,
+      customEmojis,
     } = props
 
     const classes = useStyles()
@@ -189,13 +191,15 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             disabled={disabled}
             autoFocus={autoFocus}
             defaultValue={defaultValue}
+            plugins={plugins}
+            customEmojis={customEmojis}
           />
           {hiddenInputId && (
             // Native `for` attribute on label does not work for div target
             <input
               type='text'
               id={hiddenInputId}
-              style={{ position: 'absolute', opacity: 0, zIndex: -1 }}
+              className={classes.hiddenInput}
             />
           )}
         </div>

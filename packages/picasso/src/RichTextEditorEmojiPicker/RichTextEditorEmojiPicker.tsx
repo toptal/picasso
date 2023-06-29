@@ -8,12 +8,13 @@ import cx from 'classnames'
 
 import Container from '../Container'
 import TextEditorButton from '../RichTextEditorButton'
-import type { CustomEmojiGroup } from '../QuillEditor'
+import type { CustomEmojiGroup, Emoji } from '../LexicalEditor'
 
 interface Props {
   richEditorId: string
   customEmojis?: CustomEmojiGroup[]
-  onInsertEmoji: (emoji: string) => void
+  onInsertEmoji: (emoji: Emoji) => void
+  disabled?: boolean
 }
 
 const TRIGGER_EMOJI_PICKER_ID = 'trigger-emoji-picker'
@@ -48,6 +49,7 @@ export const RichtTextEditorEmojiPicker = ({
   richEditorId,
   customEmojis,
   onInsertEmoji,
+  disabled,
 }: Props) => {
   const [showEmojiPicker, setShowEmojiPicker] = React.useState(false)
 
@@ -61,7 +63,7 @@ export const RichtTextEditorEmojiPicker = ({
     setShowEmojiPicker(false)
   }
 
-  const handleEmojiInsert = (emoji: string) => {
+  const handleEmojiInsert = (emoji: Emoji) => {
     onInsertEmoji(emoji)
     setShowEmojiPicker(false)
   }
@@ -88,6 +90,7 @@ export const RichtTextEditorEmojiPicker = ({
         onClick={handleEmojiPickerClick}
         icon={<Container style={{ pointerEvents: 'none' }}>🙂</Container>}
         id={TRIGGER_EMOJI_PICKER_ID}
+        disabled={disabled}
       />
       <Container
         className={cx(

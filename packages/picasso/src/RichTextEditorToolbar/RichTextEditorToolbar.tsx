@@ -19,7 +19,7 @@ import type {
   SelectOnChangeHandler,
   FormatType,
 } from './types'
-import type { CustomEmojiGroup, EditorPlugin } from '../QuillEditor'
+import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
 import { RichtTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
 
 type Props = {
@@ -38,7 +38,7 @@ type Props = {
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
   onLinkClick: ButtonHandlerType
-  onInsertEmoji: (emoji: string) => void
+  onInsertEmoji: (emoji: Emoji) => void
   onHeaderChange: SelectOnChangeHandler
   onUnorderedClick: ButtonHandlerType
   onOrderedClick: ButtonHandlerType
@@ -146,6 +146,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             richEditorId={id}
             customEmojis={customEmojis}
             onInsertEmoji={onInsertEmoji}
+            disabled={disabled}
           />
         )}
       </Container>

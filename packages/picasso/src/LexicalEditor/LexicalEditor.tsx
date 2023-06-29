@@ -8,12 +8,12 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
-import { HeadingNode } from '@lexical/rich-text'
 import { $generateHtmlFromNodes } from '@lexical/html'
-import { ListItemNode, ListNode } from '@lexical/list'
 import { $isRootTextContentEmpty } from '@lexical/text'
 import type { LexicalEditor as LexicalEditorType } from 'lexical'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
+import { ListItemNode, ListNode } from '@lexical/list'
+import { HeadingNode } from '@lexical/rich-text'
 
 import { TriggerInitialOnChangePlugin } from './plugins'
 import { createLexicalTheme, setEditorValue } from './utils'
@@ -22,12 +22,19 @@ import Container from '../Container'
 import Typography from '../Typography'
 import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
-import type { ChangeHandler, TextLengthChangeHandler } from './types'
+import type {
+  ChangeHandler,
+  EditorPlugin,
+  TextLengthChangeHandler,
+  CustomEmojiGroup,
+} from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
 import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
 import type { ASTType } from '../RichText'
+import { CustomEmojiNode } from '../LexicalEmojiPlugin/nodes/CustomEmojiNode'
+import LexicalEmojiPlugin from '../LexicalEmojiPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -68,8 +75,7 @@ export type Props = BaseProps & {
   onTextLengthChange: TextLengthChangeHandler
   /** The placeholder attribute specifies a short hint that describes the expected value of a text editor. */
   placeholder?: string
-  /** List of plugins to enable on the editor */
-  //   plugins?: EditorPlugin[]
+
   testIds?: {
     editor?: string
     // headerSelect?: string
@@ -78,7 +84,9 @@ export type Props = BaseProps & {
     // unorderedListButton?: string
     // orderedListButton?: string
   }
-  //   customEmojis?: CustomEmojiGroup[]
+  customEmojis?: CustomEmojiGroup[]
+  /** List of plugins to enable on the editor */
+  plugins?: EditorPlugin[]
 }
 
 const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
@@ -86,7 +94,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   ref
 ) {
   const {
-    // plugins,
+    plugins = [],
     autoFocus = false,
     defaultValue,
     disabled = false,
@@ -108,7 +116,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     // @todo don't know what to do with NAME prop
     // name,
     // highlight,
-    // customEmojis,
+    customEmojis,
   } = props
 
   const classes = useStyles()
@@ -128,7 +136,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         typographyClassNames,
         classes,
       }),
-    [typographyClassNames, classes.paragraph]
+    [typographyClassNames, classes]
   )
 
   const editorConfig: InitialConfigType = useMemo(
@@ -143,7 +151,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
-      nodes: [ListNode, ListItemNode, HeadingNode],
+      nodes: [CustomEmojiNode, ListNode, ListItemNode, HeadingNode],
       editable: !disabled,
     }),
     [defaultValue, theme, disabled]
@@ -178,6 +186,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           toolbarRef={toolbarRef}
           // remount Toolbar when disabled
           key={`${disabled || !isFocused}`}
+          customEmojis={customEmojis}
+          plugins={plugins}
         />
         {defaultValue ? (
           <TriggerInitialOnChangePlugin onChange={handleChange} />
@@ -188,6 +198,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <LexicalHeadingsReplacementPlugin />
         <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
         <LexicalListPlugin />
+        <LexicalEmojiPlugin />
 
         <div className={classes.editorContainer} id={id} ref={ref}>
           <RichTextPlugin
