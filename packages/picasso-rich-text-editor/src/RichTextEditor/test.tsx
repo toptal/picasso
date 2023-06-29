@@ -8,8 +8,9 @@ import type { Props } from './RichTextEditor'
 import LexicalEditor from '../LexicalEditor'
 import { useCounter } from './hooks'
 
-jest.mock('../utils/use-deprecation-warnings', () => ({
+jest.mock('@toptal/picasso/utils', () => ({
   usePropDeprecationWarning: jest.fn(),
+  noop: jest.fn(),
 }))
 jest.mock('../LexicalEditor', () => {
   return {
@@ -17,10 +18,12 @@ jest.mock('../LexicalEditor', () => {
     default: jest.fn(() => <div>Mocked LexicalEditor</div>),
   }
 })
-jest.mock('../InputMultilineAdornment', () => {
+jest.mock('@toptal/picasso', () => {
   return {
     __esModule: true,
-    default: jest.fn(() => <div>Input Multiline Adornment</div>),
+    InputMultilineAdornment: jest.fn(() => (
+      <div>Input Multiline Adornment</div>
+    )),
   }
 })
 
