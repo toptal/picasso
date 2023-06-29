@@ -10,20 +10,30 @@ import { $generateNodesFromDOM } from '@lexical/html'
 import type { ASTType } from '../../RichText'
 import { getDomValue } from './getDomValue'
 
-export const setEditorValue = (editor: LexicalEditorType, value: ASTType) => {
-  const domValue = getDomValue(value)
-
+export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
   const root = $getRoot()
-  const lexicalValueNodes = $generateNodesFromDOM(editor, domValue)
 
-  lexicalValueNodes.forEach(node => {
-    if ($isElementNode(node) || $isDecoratorNode(node)) {
-      root.append(node)
-    } else {
+  if (value) {
+    const domValue = getDomValue(value)
+    const lexicalValueNodes = $generateNodesFromDOM(editor, domValue)
+
+    lexicalValueNodes.forEach(node => {
+      if ($isElementNode(node) || $isDecoratorNode(node)) {
+        root.append(node)
+      } else {
+        const paragraphNode = $createParagraphNode()
+
+        paragraphNode.append(node)
+        root.append(paragraphNode)
+      }
+    })
+  } else {
+    if (root.isEmpty()) {
       const paragraphNode = $createParagraphNode()
 
-      paragraphNode.append(node)
       root.append(paragraphNode)
     }
-  })
+
+    root.getLastChild()?.select()
+  }
 }
