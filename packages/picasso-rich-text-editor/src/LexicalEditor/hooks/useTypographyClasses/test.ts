@@ -4,18 +4,21 @@ import type { TypographyOptions } from '@toptal/picasso'
 
 import useTypographyClasses from './useTypographyClasses'
 
-jest.mock('../../../Typography/styles', () => ({
+jest.mock('@toptal/picasso', () => ({
   __esModule: true,
-  default: { root: 'TEST_CLASS_NAME' },
+  typographyStyles: { root: 'TEST_CLASS_NAME' },
+  getTypographyClassName: jest.fn(() => 'TEST_CLASS_NAME'),
 }))
 
 jest.mock('@material-ui/core/styles', () => ({
   makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' })),
 }))
 
-jest.mock(
-  '../../../Typography/utils/get-typography-class-name/get-typography-class-name'
-)
+jest.mock('@toptal/picasso', () => ({
+  __esModule: true,
+  typographyStyles: { root: 'TEST_CLASS_NAME' },
+  getTypographyClassName: jest.fn(() => 'TEST_CLASS_NAME'),
+}))
 
 const mockedGetTypographyClassName =
   getTypographyClassName as jest.MockedFunction<typeof getTypographyClassName>
