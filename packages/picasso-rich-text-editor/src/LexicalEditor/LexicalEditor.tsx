@@ -78,11 +78,11 @@ export type Props = BaseProps & {
 
   testIds?: {
     editor?: string
-    // headerSelect?: string
-    // boldButton?: string
-    // italicButton?: string
-    // unorderedListButton?: string
-    // orderedListButton?: string
+    headerSelect?: string
+    boldButton?: string
+    italicButton?: string
+    unorderedListButton?: string
+    orderedListButton?: string
   }
   customEmojis?: CustomEmojiGroup[]
   /** List of plugins to enable on the editor */
@@ -184,6 +184,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <ToolbarPlugin
           disabled={disabled || !isFocused}
           toolbarRef={toolbarRef}
+          testIds={testIds}
           // remount Toolbar when disabled
           key={`${disabled || !isFocused}`}
           customEmojis={customEmojis}
