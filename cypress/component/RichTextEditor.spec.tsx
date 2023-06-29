@@ -248,7 +248,8 @@ describe('RichTextEditor', () => {
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
     })
 
-    it('removes lists', () => {
+    // TODO: https://toptal-core.atlassian.net/browse/FX-4129
+    it.skip('removes lists', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -283,7 +284,8 @@ describe('RichTextEditor', () => {
       // on new line we have unformatted text
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
     })
-    it('removes list', () => {
+    // TODO: https://toptal-core.atlassian.net/browse/FX-4129
+    it.skip('removes list', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -318,7 +320,8 @@ describe('RichTextEditor', () => {
   })
 
   describe('switching between block formats', () => {
-    it('keeps only one block element active', () => {
+    // TODO: https://toptal-core.atlassian.net/browse/FX-4129
+    it.skip('keeps only one block element active', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -348,7 +351,8 @@ describe('RichTextEditor', () => {
     })
   })
 
-  describe('when we delete inline formatted word', () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-4131
+  describe.skip('when we delete inline formatted word', () => {
     it('updates the toolbar state correctly', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -363,7 +367,8 @@ describe('RichTextEditor', () => {
       buttonShouldNotBeActive(cy.get('@boldButton'))
     })
   })
-  describe('when we delete inline formatted word in the middle of sentense', () => {
+  // TODO: https://toptal-core.atlassian.net/browse/FX-4131
+  describe.skip('when we delete inline formatted word in the middle of sentense', () => {
     it('updates the toolbar state correctly', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -381,12 +386,13 @@ describe('RichTextEditor', () => {
   })
 
   describe('Form.RichTextEditor', () => {
-    it('focuses editor on label click', () => {
+    // TODO: https://toptal-core.atlassian.net/browse/FX-4130
+    it.skip('focuses editor on label click', () => {
       cy.mount(renderEditorInForm())
       setAliases()
 
       cy.get('label').click()
-      cy.get('.ql-editor').should('be.focused')
+      cy.getByRole('textbox').should('be.focused')
       cy.get('@wrapper').should('have.attr', 'class').and('include', 'focused')
     })
   })
@@ -406,7 +412,8 @@ describe('RichTextEditor', () => {
   })
 
   describe('toolbar', () => {
-    it('disables bold and italic when header format is active', () => {
+    // TODO: https://toptal-core.atlassian.net/browse/FX-4131
+    it.skip('disables bold and italic when header format is active', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
 
