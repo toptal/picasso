@@ -153,5 +153,12 @@ export default ({ typography }: Theme) => {
     italic: {
       fontStyle: 'italic',
     },
+    customEmoji: {
+      '& > img': {
+        verticalAlign: 'bottom',
+        width: '22px',
+        height: '22px',
+      },
+    },
   })
 }

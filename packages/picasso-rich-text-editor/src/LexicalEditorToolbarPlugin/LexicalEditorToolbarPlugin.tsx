@@ -21,19 +21,32 @@ import {
   synchronizeToolbarState,
   toolbarStateReducer,
 } from '../LexicalEditor/utils'
+import type {
+  CustomEmojiGroup,
+  EditorPlugin,
+  Emoji,
+} from '../LexicalEditor/types'
+import {
+  INSERT_CUSTOM_EMOJI_COMMAND,
+  INSERT_EMOJI_COMMAND,
+} from '../LexicalEmojiPlugin/commands'
 import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar, {
   ALLOWED_HEADER_TYPE,
 } from '../RichTextEditorToolbar'
 
 type Props = {
+  customEmojis?: CustomEmojiGroup[]
   disabled?: boolean
   toolbarRef: React.RefObject<HTMLDivElement>
+  plugins?: EditorPlugin[]
 }
 
 const LexicalEditorToolbarPlugin = ({
   disabled = false,
   toolbarRef,
+  customEmojis,
+  plugins,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(
@@ -73,6 +86,24 @@ const LexicalEditorToolbarPlugin = ({
     )
   }
 
+  const handleInsertEmoji = (emoji: Emoji) => {
+    const isNativeEmoji = emoji.native
+    const isCustomEmoji = emoji.src
+
+    if (isNativeEmoji) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      editor.dispatchCommand(INSERT_EMOJI_COMMAND, emoji.native!)
+    }
+
+    if (isCustomEmoji) {
+      editor.dispatchCommand(INSERT_CUSTOM_EMOJI_COMMAND, {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        src: emoji.src!,
+        id: emoji.id,
+      })
+    }
+  }
+
   const handleHeaderClick = ({
     target: { value },
   }: ChangeEvent<{
@@ -108,8 +139,10 @@ const LexicalEditorToolbarPlugin = ({
       onLinkClick={noop}
       onHeaderChange={handleHeaderClick}
       disabled={disabled}
-      onInsertEmoji={noop}
+      onInsertEmoji={handleInsertEmoji}
       ref={toolbarRef}
+      customEmojis={customEmojis}
+      plugins={plugins}
     />
   )
 }

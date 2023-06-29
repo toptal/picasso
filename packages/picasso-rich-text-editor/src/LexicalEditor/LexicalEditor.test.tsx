@@ -9,6 +9,7 @@ import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
 import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
+import type { CustomEmojiGroup } from './types'
 
 jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
@@ -17,6 +18,10 @@ jest.mock('../LexicalEditorToolbarPlugin', () => ({
 jest.mock('../LexicalListPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalListPlugin</div>),
+}))
+jest.mock('../LexicalEmojiPlugin', () => ({
+  __esModule: true,
+  default: jest.fn(() => <div>LexicalEmojiPlugin</div>),
 }))
 
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
@@ -136,6 +141,8 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
+          customEmojis: undefined,
+          plugins: [],
           toolbarRef: {
             current: null,
           },
@@ -152,6 +159,30 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
+          customEmojis: undefined,
+          plugins: [],
+          toolbarRef: {
+            current: null,
+          },
+        },
+        {}
+      )
+    })
+  })
+
+  describe('when customEmojis and plugins prop is passed', () => {
+    it('renders ToolbarPlugin with correct props', () => {
+      renderLexicalEditor({
+        disabled: true,
+        customEmojis: ['foo' as unknown as CustomEmojiGroup],
+        plugins: ['link'],
+      })
+
+      expect(mockedToolbarPlugin).toHaveBeenCalledWith(
+        {
+          disabled: true,
+          customEmojis: ['foo'],
+          plugins: ['link'],
           toolbarRef: {
             current: null,
           },
