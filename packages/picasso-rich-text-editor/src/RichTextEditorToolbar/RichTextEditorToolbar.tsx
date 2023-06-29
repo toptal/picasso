@@ -5,7 +5,6 @@ import cx from 'classnames'
 import {
   Bold16,
   Italic16,
-  Link16,
   ListOrdered16,
   ListUnordered16,
   Container,
@@ -21,6 +20,7 @@ import type {
 } from './types'
 import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
 import { RichtTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
+import { LexicalLinksPluginButton } from '../LexicalLinksPlugin/LexicalLinksPluginButton'
 
 type Props = {
   disabled: boolean
@@ -37,7 +37,6 @@ type Props = {
   }
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
-  onLinkClick: ButtonHandlerType
   onInsertEmoji: (emoji: Emoji) => void
   onHeaderChange: SelectOnChangeHandler
   onUnorderedClick: ButtonHandlerType
@@ -61,7 +60,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       format,
       onBoldClick,
       onItalicClick,
-      onLinkClick,
       onInsertEmoji,
       onHeaderChange,
       onUnorderedClick,
@@ -132,10 +130,8 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         </Container>
         {allowLinks && (
           <Container className={classes.group}>
-            <TextEditorButton
-              icon={<Link16 />}
-              onClick={onLinkClick}
-              active={!!format.link}
+            <LexicalLinksPluginButton
+              active={format.link}
               disabled={disabled}
               data-testid={testIds?.linkButton}
             />
@@ -161,7 +157,7 @@ RichTextEditorToolbar.defaultProps = {
     italic: false,
     list: false,
     header: '',
-    link: '',
+    link: false,
   },
   onBoldClick: () => {},
   onItalicClick: () => {},

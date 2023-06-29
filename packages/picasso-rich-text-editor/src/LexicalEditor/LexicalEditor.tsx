@@ -9,6 +9,7 @@ import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import { LinkNode } from '@lexical/link'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { noop } from '@toptal/picasso/utils'
 import { Container, Typography } from '@toptal/picasso'
@@ -35,6 +36,7 @@ import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugi
 import type { ASTType } from '../RichText'
 import { CustomEmojiNode } from '../LexicalEmojiPlugin/nodes/CustomEmojiNode'
 import LexicalEmojiPlugin from '../LexicalEmojiPlugin'
+import { LexicalLinksPlugin } from '../LexicalLinksPlugin/LexicalLinksPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -151,7 +153,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
-      nodes: [CustomEmojiNode, ListNode, ListItemNode, HeadingNode],
+      nodes: [CustomEmojiNode, ListNode, ListItemNode, HeadingNode, LinkNode],
       editable: !disabled,
     }),
     [defaultValue, theme, disabled]
@@ -201,6 +203,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <LexicalListPlugin />
         <LexicalEmojiPlugin />
         <HistoryPlugin />
+        <LexicalLinksPlugin />
 
         <div className={classes.editorContainer} id={id} ref={ref}>
           <RichTextPlugin
