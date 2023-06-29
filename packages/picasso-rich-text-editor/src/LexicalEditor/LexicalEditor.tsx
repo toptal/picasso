@@ -184,7 +184,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <ToolbarPlugin
           disabled={disabled || !isFocused}
           toolbarRef={toolbarRef}
-          testIds={testIds}
           // remount Toolbar when disabled
           key={`${disabled || !isFocused}`}
           customEmojis={customEmojis}
