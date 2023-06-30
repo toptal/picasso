@@ -13,8 +13,10 @@ import { $isHeadingNode } from '@lexical/rich-text'
 import { ToolbarActions } from './toolbarState'
 import { synchronizeToolbarState } from './synchronizeToolbarState'
 import { getLexicalNode } from './getLexicalNode'
+import { getSelectedNode } from './getSelectedNode'
 
 jest.mock('lexical', () => ({
+  ...jest.requireActual('lexical'),
   $getSelection: jest.fn(),
   $isRangeSelection: jest.fn(),
 }))
@@ -39,6 +41,11 @@ jest.mock('./getLexicalNode', () => ({
   getLexicalNode: jest.fn(),
 }))
 
+jest.mock('./getSelectedNode', () => ({
+  __esModule: true,
+  getSelectedNode: jest.fn(),
+}))
+
 const mockedGetSelection = $getSelection as jest.MockedFunction<
   typeof $getSelection
 >
@@ -59,9 +66,16 @@ const mockedIsHeadingNode = $isHeadingNode as jest.MockedFunction<
   typeof $isHeadingNode
 >
 
+const mockedGetSelectedNode = getSelectedNode as jest.MockedFunction<
+  typeof getSelectedNode
+>
+
 describe('synchronizeToolbarState', () => {
   beforeEach(() => {
     jest.clearAllMocks()
+    mockedGetSelectedNode.mockImplementation(
+      () => ({ getParent: jest.fn() } as any)
+    )
   })
 
   describe('when range selection has bold and italic format', () => {
@@ -95,6 +109,7 @@ describe('synchronizeToolbarState', () => {
           italic: true,
           header: '',
           list: false,
+          link: false,
         },
       })
       expect(mockedGetSelection).toHaveBeenCalledTimes(1)
@@ -160,6 +175,7 @@ describe('synchronizeToolbarState', () => {
           italic: false,
           header: '',
           list: 'ordered',
+          link: false,
         },
       })
     })
@@ -201,6 +217,7 @@ describe('synchronizeToolbarState', () => {
           italic: false,
           header: '',
           list: 'bullet',
+          link: false,
         },
       })
     })
@@ -237,6 +254,7 @@ describe('synchronizeToolbarState', () => {
           bold: true,
           italic: true,
           header: '',
+          link: false,
           list: false,
         },
       })
