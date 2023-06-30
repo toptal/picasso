@@ -11,6 +11,7 @@ import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugi
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import LexicalListPlugin from '../LexicalListPlugin'
 import type { CustomEmojiGroup } from './types'
+import { LexicalLinkPlugin } from '../LexicalLinkPlugin'
 
 jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
@@ -59,6 +60,11 @@ jest.mock('../LexicalHeadingsReplacementPlugin', () => ({
   default: jest.fn(() => <div>LexicalHeadingsReplacementPlugin</div>),
 }))
 
+jest.mock('../LexicalLinkPlugin', () => ({
+  __esModule: true,
+  LexicalLinkPlugin: jest.fn(() => <div>LexicalLinkPlugin</div>),
+}))
+
 const mockedLexicalTextLengthPlugin =
   LexicalTextLengthPlugin as jest.MockedFunction<typeof LexicalTextLengthPlugin>
 
@@ -70,6 +76,10 @@ const mockedLexicalHeadingsReplacementPlugin =
   LexicalHeadingsReplacementPlugin as jest.MockedFunction<
     typeof LexicalHeadingsReplacementPlugin
   >
+
+const mockedLexicalLinkPlugin = LexicalLinkPlugin as jest.MockedFunction<
+  typeof LexicalLinkPlugin
+>
 
 const mockedToolbarPlugin = ToolbarPlugin as jest.MockedFunction<
   typeof ToolbarPlugin
@@ -98,6 +108,7 @@ describe('LexicalEditor', () => {
     ))
     mockedOnChangePlugin.mockImplementation(() => null)
     mockedLexicalListPlugin.mockImplementation(() => <div />)
+    mockedLexicalLinkPlugin.mockImplementation(() => <div />)
   })
 
   afterEach(() => {
