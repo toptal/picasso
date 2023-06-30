@@ -44,4 +44,30 @@ describe('cleanupHtmlOutput', () => {
       '<p><em>test </em><em><strong>test</strong></em> test</p>'
     )
   })
+
+  it('hoists nested lists to previous sibling', () => {
+    const result = cleanupHtmlOutput(`
+      <ul>
+        <li>first</li>
+        <li>
+          <ul>
+            <li>second</li>
+          </ul>
+        </li>
+      </ul>
+    `).replace(/\s/g, '')
+
+    const expected = `
+      <ul>
+        <li>
+          first
+          <ul>
+            <li>second</li>
+          </ul>
+        </li>
+      </ul>
+    `.replace(/\s/g, '')
+
+    expect(result).toBe(expected)
+  })
 })

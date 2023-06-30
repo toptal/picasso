@@ -27,6 +27,7 @@ import {
   TextLengthPlugin,
   HeadingsReplacementPlugin,
   TriggerInitialOnChangePlugin,
+  FocusOnLabelClickPlugin,
 } from '../plugins'
 import type { ASTType } from '../RichText'
 import { useOnFocus, useTypographyClasses } from './hooks'
@@ -91,6 +92,7 @@ export type Props = BaseProps & {
   customEmojis?: CustomEmojiGroup[]
   /** List of plugins to enable on the editor */
   plugins?: EditorPlugin[]
+  hiddenInputId?: string
 }
 
 const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
@@ -108,26 +110,14 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     onFocus = noop,
     onBlur = noop,
     placeholder,
-    // minLength,
-    // maxLength,
-    // minLengthMessage,
-    // maxLengthMessage,
-
-    // status,
     testIds,
-    // hiddenInputId,
-    // setHasMultilineCounter,
-    // @todo don't know what to do with NAME prop
-    // name,
-    // highlight,
     customEmojis,
+    hiddenInputId,
   } = props
 
   const classes = useStyles()
 
   const toolbarRef = useRef<HTMLDivElement | null>(null)
-  // const editorRef = useRef<HTMLDivElement | null>(ref)
-  // Possibly use useRef for synchronous updates but no re-rendering effect
 
   const typographyClassNames = useTypographyClasses({
     variant: 'body',
@@ -220,6 +210,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           <ListPlugin />
           <EmojiPlugin />
           <HistoryPlugin />
+          {hiddenInputId && (
+            <FocusOnLabelClickPlugin hiddenInputId={hiddenInputId} />
+          )}
 
           {componentPlugins}
 
