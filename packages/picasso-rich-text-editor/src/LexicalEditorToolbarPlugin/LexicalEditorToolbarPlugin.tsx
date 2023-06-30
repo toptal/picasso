@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { noop } from '@toptal/picasso/utils'
 import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,

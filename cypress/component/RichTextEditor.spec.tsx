@@ -232,7 +232,7 @@ describe('RichTextEditor', () => {
   })
 
   describe('select all and delete', () => {
-    it('removes header format', () => {
+    const removeHeaderFormat = (removalKey: string) => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -243,13 +243,12 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('Head{enter}')
 
       // remove all
-      cy.get('@editor').type('{selectall}{del}')
+      cy.get('@editor').type(`{selectall}${removalKey}`)
       cy.get('@placeholder').should('be.visible')
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
-    })
+    }
 
-    // TODO: https://toptal-core.atlassian.net/browse/FX-4129
-    it.skip('removes lists', () => {
+    const removeLists = (removalKey: string) => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -262,11 +261,22 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('ol{enter}')
 
       // remove all
-      cy.get('@editor').type('{selectall}{del}')
+      cy.get('@editor').type(`{selectall}${removalKey}`)
 
       cy.get('@placeholder').should('be.visible')
       buttonShouldNotBeActive(cy.get('@olButton'))
       buttonShouldNotBeActive(cy.get('@boldButton'))
+    }
+
+    describe('using delete key', () => {
+      // TODO: restore in https://toptal-core.atlassian.net/browse/FX-4138
+      it.skip('removes header format', () => removeHeaderFormat('{del}'))
+      it('removes lists', () => removeLists('{del}'))
+    })
+
+    describe('using backspace key', () => {
+      it('removes header format', () => removeHeaderFormat('{backspace}'))
+      it('removes lists', () => removeLists('{del}'))
     })
   })
 
@@ -284,8 +294,8 @@ describe('RichTextEditor', () => {
       // on new line we have unformatted text
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
     })
-    // TODO: https://toptal-core.atlassian.net/browse/FX-4129
-    it.skip('removes list', () => {
+
+    it('removes list', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -320,8 +330,7 @@ describe('RichTextEditor', () => {
   })
 
   describe('switching between block formats', () => {
-    // TODO: https://toptal-core.atlassian.net/browse/FX-4129
-    it.skip('keeps only one block element active', () => {
+    it('keeps only one block element active', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -440,10 +449,23 @@ describe('RichTextEditor', () => {
         expect(error.message).to.include('prevents user mouse interaction')
       })
 
+      // need for editor to loose focus
+      cy.get('body').click(0, 0)
+
       cy.get('@headerSelect').find('input').should('have.attr', 'disabled')
       cy.get('@headerSelect').click({ timeout: 100 })
       // the click should not open select but just simply trigger focus on whole editor
       cy.get('@headerSelect').find('input').should('not.have.attr', 'disabled')
+    })
+
+    it('creates list from scratch', () => {
+      cy.mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.get('@editor').realClick()
+      cy.get('@ulButton').realClick()
+      buttonShouldBeActive(cy.get('@ulButton'))
+      cy.get('body').happoScreenshot({ component, variant: 'focused' })
     })
   })
 })
