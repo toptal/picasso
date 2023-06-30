@@ -143,11 +143,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const editorConfig: InitialConfigType = useMemo(
     () => ({
-      editorState: (editor: LexicalEditorType) => {
-        if (defaultValue) {
-          setEditorValue(editor, defaultValue)
-        }
-      },
+      editorState: (editor: LexicalEditorType) =>
+        setEditorValue(editor, defaultValue),
       theme,
       onError(error: Error) {
         throw error
