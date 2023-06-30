@@ -4,7 +4,7 @@ export type HeaderValue = '3' | ''
 export type BoldValue = boolean
 export type ItalicValue = boolean
 export type ListValue = 'bullet' | 'ordered' | false
-export type LinkValue = string
+export type LinkValue = boolean
 
 export type FormatType = {
   bold: BoldValue
