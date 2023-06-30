@@ -28,7 +28,7 @@ export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
-  children: ReactNode
+  children?: ReactNode
   /** margin-top for the container transformed to `rem` */
   top?: SpacingType
   /** margin-bottom for the container transformed to `rem` */

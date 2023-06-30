@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 
 import { replaceHeadingNodes } from './utils'
 
-const LexicalHeadingsReplacementPlugin = () => {
+const HeadingsReplacementPlugin = () => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
@@ -14,4 +14,4 @@ const LexicalHeadingsReplacementPlugin = () => {
   return null
 }
 
-export default LexicalHeadingsReplacementPlugin
+export default HeadingsReplacementPlugin

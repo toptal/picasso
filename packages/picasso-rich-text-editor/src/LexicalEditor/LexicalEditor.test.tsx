@@ -6,24 +6,27 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 
 import LexicalEditor from './LexicalEditor'
 import type { Props } from './LexicalEditor'
-import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
-import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
+import {
+  TextLengthPlugin,
+  HeadingsReplacementPlugin,
+  ListPlugin,
+  LinkPlugin,
+} from '../plugins'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
-import LexicalListPlugin from '../LexicalListPlugin'
 import type { CustomEmojiGroup } from './types'
-import { LexicalLinkPlugin } from '../LexicalLinkPlugin'
 
 jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalEditorToolbarPlugin</div>),
 }))
-jest.mock('../LexicalListPlugin', () => ({
+
+jest.mock('../plugins', () => ({
   __esModule: true,
-  default: jest.fn(() => <div>LexicalListPlugin</div>),
-}))
-jest.mock('../LexicalEmojiPlugin', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>LexicalEmojiPlugin</div>),
+  ListPlugin: jest.fn(),
+  EmojiPlugin: jest.fn(),
+  TextLengthPlugin: jest.fn(),
+  HeadingsReplacementPlugin: jest.fn(),
+  LinkPlugin: jest.fn(),
 }))
 
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
@@ -50,42 +53,28 @@ jest.mock('@lexical/react/LexicalOnChangePlugin', () => ({
   OnChangePlugin: jest.fn(() => <div>OnChangePlugin</div>),
 }))
 
-jest.mock('../LexicalTextLengthPlugin', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>LexicalTextLengthPlugin</div>),
-}))
-
-jest.mock('../LexicalHeadingsReplacementPlugin', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>LexicalHeadingsReplacementPlugin</div>),
-}))
-
-jest.mock('../LexicalLinkPlugin', () => ({
-  __esModule: true,
-  LexicalLinkPlugin: jest.fn(() => <div>LexicalLinkPlugin</div>),
-}))
-
-const mockedLexicalTextLengthPlugin =
-  LexicalTextLengthPlugin as jest.MockedFunction<typeof LexicalTextLengthPlugin>
+const mockedLexicalTextLengthPlugin = TextLengthPlugin as jest.MockedFunction<
+  typeof TextLengthPlugin
+>
 
 const mockedHistoryPlugin = HistoryPlugin as jest.MockedFunction<
   typeof HistoryPlugin
 >
 
 const mockedLexicalHeadingsReplacementPlugin =
-  LexicalHeadingsReplacementPlugin as jest.MockedFunction<
-    typeof LexicalHeadingsReplacementPlugin
+  HeadingsReplacementPlugin as jest.MockedFunction<
+    typeof HeadingsReplacementPlugin
   >
 
-const mockedLexicalLinkPlugin = LexicalLinkPlugin as jest.MockedFunction<
-  typeof LexicalLinkPlugin
+const mockedLexicalLinkPlugin = LinkPlugin as jest.MockedFunction<
+  typeof LinkPlugin
 >
 
 const mockedToolbarPlugin = ToolbarPlugin as jest.MockedFunction<
   typeof ToolbarPlugin
 >
-const mockedLexicalListPlugin = LexicalListPlugin as jest.MockedFunction<
-  typeof LexicalListPlugin
+const mockedLexicalListPlugin = ListPlugin as jest.MockedFunction<
+  typeof ListPlugin
 >
 const mockedOnChangePlugin = OnChangePlugin as jest.MockedFunction<
   typeof OnChangePlugin
