@@ -20,7 +20,7 @@ import { ListItemNode, ListNode } from '@lexical/list'
 import { HeadingNode } from '@lexical/rich-text'
 
 import { TriggerInitialOnChangePlugin } from './plugins'
-import { createLexicalTheme, setEditorValue } from './utils'
+import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
 import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
 import type {
@@ -161,11 +161,18 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       editorState.read(() => {
         const isEmpty = $isRootTextContentEmpty(editor.isComposing(), false)
 
-        const htmlValue = isEmpty
-          ? ''
-          : removeAttributesFromString($generateHtmlFromNodes(editor, null))
+        if (isEmpty) {
+          onChange('')
 
-        onChange(htmlValue)
+          return
+        }
+
+        const htmlValue = $generateHtmlFromNodes(editor, null)
+        const [cleanedValue] = [htmlValue]
+          .map(removeAttributesFromString)
+          .map(cleanupHtmlOutput)
+
+        onChange(cleanedValue)
       })
     },
     [onChange]
