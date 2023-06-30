@@ -3,6 +3,20 @@ enum NodeTypes {
   Child = 'child',
 }
 
+interface ReplaceCondition {
+  parentTag: string
+  childTag: string
+  nodeToRemove: NodeTypes
+}
+
+const replacementMap: ReplaceCondition[] = [
+  { parentTag: 'i', childTag: 'em', nodeToRemove: NodeTypes.Parent },
+  { parentTag: 'b', childTag: 'strong', nodeToRemove: NodeTypes.Parent },
+  { parentTag: 'p', childTag: 'span', nodeToRemove: NodeTypes.Child },
+  { parentTag: 'h3', childTag: 'span', nodeToRemove: NodeTypes.Child },
+  { parentTag: 'li', childTag: 'span', nodeToRemove: NodeTypes.Child },
+]
+
 const removeParent = (element: Node) => {
   const parent = element.parentNode
 
@@ -23,41 +37,23 @@ const removeChild = (element: Node) => {
 }
 
 const removeExtraTags = (htmlDoc: Document): Document => {
-  const childConditions = [
-    { parent: 'i', child: 'em', nodeToRemove: NodeTypes.Parent },
-    { parent: 'b', child: 'strong', nodeToRemove: NodeTypes.Parent },
-    { parent: ['p', 'h3', 'li'], child: 'span', nodeToRemove: NodeTypes.Child },
-  ]
+  replacementMap.forEach(replacementRule => {
+    const { parentTag, childTag, nodeToRemove } = replacementRule
 
-  childConditions.forEach(({ parent, child, nodeToRemove }) => {
-    const parents = Array.isArray(parent) ? parent : [parent]
+    handleElements(htmlDoc, childTag, element => {
+      const elementParentTag =
+        element.parentElement?.tagName.toLocaleLowerCase()
 
-    parents.forEach(parentTag => {
-      const parentElements = htmlDoc.getElementsByTagName(parentTag)
-
-      for (
-        let parentIndex = 0;
-        parentIndex < parentElements.length;
-        parentIndex++
+      if (
+        element.tagName.toLowerCase() === childTag &&
+        elementParentTag === parentTag
       ) {
-        const parent = parentElements[parentIndex]
+        if (nodeToRemove === NodeTypes.Parent) {
+          removeParent(element)
+        }
 
-        for (
-          let childIndex = 0;
-          childIndex < parent.childElementCount;
-          childIndex++
-        ) {
-          if (parent.children[childIndex].tagName.toLowerCase() === child) {
-            const child = parent.children[childIndex]
-
-            if (nodeToRemove === NodeTypes.Parent) {
-              removeParent(child)
-            }
-
-            if (nodeToRemove === NodeTypes.Child) {
-              removeChild(child)
-            }
-          }
+        if (nodeToRemove === NodeTypes.Child) {
+          removeChild(element)
         }
       }
     })
@@ -66,22 +62,32 @@ const removeExtraTags = (htmlDoc: Document): Document => {
   return htmlDoc
 }
 
+const handleElements = (
+  htmlDoc: Document,
+  tag: string,
+  callback: (element: Element) => void
+): Document => {
+  const elements = Array.from(htmlDoc.getElementsByTagName(tag))
+
+  elements.forEach(callback)
+
+  return htmlDoc
+}
+
 const replaceItalicTag = (htmlDoc: Document): Document => {
-  const oldTag = 'i'
   const newTag = 'em'
 
-  const elements = htmlDoc.getElementsByTagName(oldTag)
-
-  for (let index = 0; index < elements.length; index++) {
-    const oldElement = elements[index]
+  handleElements(htmlDoc, 'i', oldElement => {
     const newElement = htmlDoc.createElement(newTag)
 
     while (oldElement.firstChild) {
       newElement.appendChild(oldElement.firstChild)
     }
 
-    oldElement.parentNode!.replaceChild(newElement, oldElement)
-  }
+    if (oldElement.parentNode) {
+      oldElement.parentNode.replaceChild(newElement, oldElement)
+    }
+  })
 
   return htmlDoc
 }

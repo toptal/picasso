@@ -161,11 +161,16 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       editorState.read(() => {
         const isEmpty = $isRootTextContentEmpty(editor.isComposing(), false)
 
-        const htmlValue = isEmpty
-          ? ''
-          : removeAttributesFromString($generateHtmlFromNodes(editor, null))
+        if (isEmpty) {
+          onChange('')
 
-        const cleanedValue = cleanupHtmlOutput(htmlValue)
+          return
+        }
+
+        const htmlValue = $generateHtmlFromNodes(editor, null)
+        const [cleanedValue] = [htmlValue]
+          .map(removeAttributesFromString)
+          .map(cleanupHtmlOutput)
 
         onChange(cleanedValue)
       })
