@@ -92,11 +92,35 @@ const replaceItalicTag = (htmlDoc: Document): Document => {
   return htmlDoc
 }
 
+const hoistNestedLists = (htmlDoc: Document): Document => {
+  htmlDoc.querySelectorAll('li>ul,li>ol').forEach(list => {
+    const currentLi = list.parentNode as Element
+
+    if (currentLi?.children.length === 1) {
+      const previousLi = currentLi.previousElementSibling
+
+      if (previousLi) {
+        currentLi.removeChild(list)
+        previousLi.appendChild(list)
+        currentLi?.parentNode?.removeChild(currentLi)
+      }
+    }
+  })
+
+  return htmlDoc
+}
+
 export const cleanupHtmlOutput = (html: string): string => {
   const parser = new DOMParser()
-  let htmlDoc = parser.parseFromString(html, 'text/html')
 
-  htmlDoc = replaceItalicTag(removeExtraTags(htmlDoc))
+  const htmlDoc = parser.parseFromString(html, 'text/html')
 
-  return htmlDoc.body.innerHTML
+  const [newHtml] = [htmlDoc]
+    .map(removeExtraTags)
+    .map(replaceItalicTag)
+    .map(hoistNestedLists)
+
+  const result = newHtml.body.innerHTML
+
+  return result
 }
