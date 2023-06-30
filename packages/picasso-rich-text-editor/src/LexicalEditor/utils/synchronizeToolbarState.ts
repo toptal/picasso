@@ -37,6 +37,51 @@ export const synchronizeToolbarState = (
       isHeading = $isHeadingNode(node)
     }
 
+    // Approach of getting previous state of the paragraph node and identifying the situation
+    // when it was actually cleaned up
+
+    // const selectedNode = getSelectedNode(selection)
+    // const parent = selectedNode.getParent()
+    // let emptySelectedLine = false
+
+    // if ($isParagraphNode(selectedNode)) {
+    //   const previousSelection = $getPreviousSelection()
+    //   if ($isRangeSelection(previousSelection)) {
+
+    //     const previouslySelectedNode = getSelectedNode(previousSelection)
+    //     console.log('@@@ previous is range selection', previouslySelectedNode)
+    //   }
+
+    //   emptySelectedLine = selectedNode.getChildrenSize() === 0
+    // }
+
+    // const removeMutationListener = editor.registerMutationListener(
+    //   ParagraphNode,
+    //   (mutatedNodes) => {
+    //     for (let [nodeKey, mutation] of mutatedNodes) {
+    //       if (mutation === 'updated') {
+    //         editor.getEditorState().read(() => {
+    //           const paragraph = $getNodeByKey<ParagraphNode>(nodeKey);
+    //           if (paragraph !== null) {
+    //             console.log('@@@', paragraph, paragraph.isEmpty())
+    //             if (paragraph.isEmpty()) {
+
+    //               dispatch({
+    //                 type: ToolbarActions.UPDATE_VISUAL_STATE,
+    //                 value: {
+    //                   bold: false,
+    //                   italic: false,
+    //                   list: false,
+    //                   header: '',
+    //               }})
+    //             }
+    //           }
+    //         })
+    //       }
+    //     }
+    //   },
+    // );
+
     dispatch({
       type: ToolbarActions.UPDATE_VISUAL_STATE,
       value: {

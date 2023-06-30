@@ -27,6 +27,7 @@ export const toolbarStateReducer = (
     // Update the visual state of the toolbar all at once (bold, italic, etc.)
     // Since this is called when updating toolbar state on selection change, we can do all updates in one action
     case ToolbarActions.UPDATE_VISUAL_STATE:
+      //console.log('@@@ state', state)
       return {
         ...state,
         bold: action.value.bold,
