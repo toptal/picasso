@@ -46,6 +46,7 @@ import {
   RTEPluginContextProvider,
   RTEPluginMeta,
 } from '../RichTextEditor/plugins'
+import { LinkPlugin } from '../LinkPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -105,7 +106,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   ref
 ) {
   const {
-    plugins = [],
+    plugins: propPlugins = [],
     autoFocus = false,
     defaultValue,
     disabled = false,
@@ -149,6 +150,16 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       }),
     [typographyClassNames, classes]
   )
+
+  const plugins: EditorPlugin[] = propPlugins.map(plugin => {
+    switch (plugin) {
+      case 'link':
+        return <LinkPlugin />
+
+      default:
+        return plugin
+    }
+  })
 
   const componentPlugins = plugins.filter(isRTEPluginElement)
 
