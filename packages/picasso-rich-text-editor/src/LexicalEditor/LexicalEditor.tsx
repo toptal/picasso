@@ -1,3 +1,4 @@
+import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { ListItemNode, ListNode } from '@lexical/list'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
@@ -9,14 +10,13 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode } from '@lexical/rich-text'
-import { $isRootTextContentEmpty } from '@lexical/text'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography } from '@toptal/picasso'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso/utils'
 import type { LexicalEditor as LexicalEditorType } from 'lexical'
-import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
+import { $getRoot } from 'lexical'
 
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import { RTEPluginContextProvider } from '../plugins/api'
@@ -159,9 +159,10 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   const handleChange = useCallback(
     (editorState, editor) => {
       editorState.read(() => {
-        const isEmpty = $isRootTextContentEmpty(editor.isComposing(), false)
+        const root = $getRoot()
+        const topLevelChildren = root.getChildren()
 
-        if (isEmpty) {
+        if (topLevelChildren.length === 0) {
           onChange('')
 
           return
