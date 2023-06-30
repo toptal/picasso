@@ -2,8 +2,8 @@ import { LinkNode } from '@lexical/link'
 import { LinkPlugin as LexicalLinkPlugin } from '@lexical/react/LexicalLinkPlugin'
 import React from 'react'
 
-import type { RTEPlugin } from '../RichTextEditor/plugins'
-import { RTEPluginMeta, Toolbar } from '../RichTextEditor/plugins'
+import type { RTEPlugin } from '../../RichTextEditor/plugins'
+import { RTEPluginMeta, Toolbar } from '../../RichTextEditor/plugins'
 import { LinkPluginButton } from './LinkPluginButton'
 
 const PLUGIN_NAME = 'link'

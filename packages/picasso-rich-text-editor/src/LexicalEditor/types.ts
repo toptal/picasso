@@ -4,7 +4,7 @@ import type { RTEPlugin } from '../RichTextEditor/plugins'
 
 export type ChangeHandler = (html: string) => void
 
-export type { TextLengthChangeHandler } from '../LexicalTextLengthPlugin'
+export type { TextLengthChangeHandler } from '../plugins/TextLengthPlugin'
 
 export type EditorPlugin =
   | 'link'

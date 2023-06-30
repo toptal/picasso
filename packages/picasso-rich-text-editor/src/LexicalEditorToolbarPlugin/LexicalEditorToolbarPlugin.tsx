@@ -28,7 +28,7 @@ import type {
 import {
   INSERT_CUSTOM_EMOJI_COMMAND,
   INSERT_EMOJI_COMMAND,
-} from '../LexicalEmojiPlugin/commands'
+} from '../plugins/EmojiPlugin/commands'
 import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar, {
   ALLOWED_HEADER_TYPE,

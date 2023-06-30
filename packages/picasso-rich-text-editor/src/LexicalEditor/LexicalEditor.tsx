@@ -35,18 +35,18 @@ import type {
   CustomEmojiGroup,
 } from './types'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
-import LexicalTextLengthPlugin from '../LexicalTextLengthPlugin'
-import LexicalListPlugin from '../LexicalListPlugin'
-import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugin'
+import TextLengthPlugin from '../plugins/TextLengthPlugin'
+import ListPlugin from '../plugins/ListPlugin'
+import HeadingsReplacementPlugin from '../plugins/HeadingsReplacementPlugin'
 import type { ASTType } from '../RichText'
-import { CustomEmojiNode } from '../LexicalEmojiPlugin/nodes/CustomEmojiNode'
-import LexicalEmojiPlugin from '../LexicalEmojiPlugin'
+import { CustomEmojiNode } from '../plugins/EmojiPlugin/nodes/CustomEmojiNode'
+import EmojiPlugin from '../plugins/EmojiPlugin'
 import {
   isRTEPluginElement,
   RTEPluginContextProvider,
   RTEPluginMeta,
 } from '../RichTextEditor/plugins'
-import { LinkPlugin } from '../LinkPlugin'
+import { LinkPlugin } from '../plugins/LinkPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -237,10 +237,10 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
           {autoFocus && <AutoFocusPlugin />}
 
-          <LexicalHeadingsReplacementPlugin />
-          <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
-          <LexicalListPlugin />
-          <LexicalEmojiPlugin />
+          <HeadingsReplacementPlugin />
+          <TextLengthPlugin onTextLengthChange={onTextLengthChange} />
+          <ListPlugin />
+          <EmojiPlugin />
           <HistoryPlugin />
 
           {componentPlugins.map(el =>

@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import type { BaseProps } from '@toptal/picasso-shared'
 import Typography from '@toptal/picasso/Typography'
 
+import type { BaseProps } from '~/packages/shared/src'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -14,7 +14,7 @@ type LexicalEditorViewProps = BaseProps & {
   id?: string
 }
 
-const LexicalEditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
+const EditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
   function LexicalEditorView({ id, 'data-testid': dataTestId }, ref) {
     const classes = useStyles()
 
@@ -36,4 +36,4 @@ const LexicalEditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
   }
 )
 
-export default LexicalEditorView
+export default EditorView

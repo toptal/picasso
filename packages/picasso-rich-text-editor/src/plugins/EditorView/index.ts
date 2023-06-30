@@ -1,2 +1,2 @@
-export { default } from './LexicalEditorView'
+export { default } from './EditorView'
 export { default as lexicalEditorStyles } from './styles'

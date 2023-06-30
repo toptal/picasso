@@ -1,6 +1,6 @@
 import React, { forwardRef, lazy, Suspense } from 'react'
 
-import QuillEditorView from '../LexicalEditorView'
+import QuillEditorView from '../plugins/EditorView'
 import type { Props } from './QuillEditor'
 
 const QuillEditor = lazy(() => import('./QuillEditor'))

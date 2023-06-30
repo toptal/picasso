@@ -1,3 +1,3 @@
-export { default } from './LexicalEmojiPlugin'
+export { default } from './EmojiPlugin'
 export * from './commands'
 export * from './nodes'

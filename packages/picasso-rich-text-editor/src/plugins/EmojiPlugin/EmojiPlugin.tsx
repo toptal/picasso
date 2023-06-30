@@ -7,7 +7,7 @@ import { INSERT_CUSTOM_EMOJI_COMMAND, INSERT_EMOJI_COMMAND } from './commands'
 import { $createCustomEmojiNode } from './nodes/CustomEmojiNode'
 import type { CustomEmojiPayload } from './types'
 
-const LexicalEmojiPlugin = () => {
+const EmojiPlugin = () => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
@@ -38,4 +38,4 @@ const LexicalEmojiPlugin = () => {
   return null
 }
 
-export default LexicalEmojiPlugin
+export default EmojiPlugin
