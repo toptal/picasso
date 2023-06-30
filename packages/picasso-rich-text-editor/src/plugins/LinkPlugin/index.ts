@@ -1,2 +1,1 @@
-export { LinkPluginButton } from './LinkPluginButton'
-export * from './LinkPlugin'
+export { default, Props } from './LinkPlugin'

@@ -109,7 +109,6 @@ describe('synchronizeToolbarState', () => {
           italic: true,
           header: '',
           list: false,
-          link: false,
         },
       })
       expect(mockedGetSelection).toHaveBeenCalledTimes(1)
@@ -175,7 +174,6 @@ describe('synchronizeToolbarState', () => {
           italic: false,
           header: '',
           list: 'ordered',
-          link: false,
         },
       })
     })
@@ -217,7 +215,6 @@ describe('synchronizeToolbarState', () => {
           italic: false,
           header: '',
           list: 'bullet',
-          link: false,
         },
       })
     })
@@ -254,7 +251,6 @@ describe('synchronizeToolbarState', () => {
           bold: true,
           italic: true,
           header: '',
-          link: false,
           list: false,
         },
       })

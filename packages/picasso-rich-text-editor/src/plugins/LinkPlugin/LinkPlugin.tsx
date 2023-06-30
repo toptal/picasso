@@ -4,7 +4,7 @@ import React from 'react'
 
 import type { RTEPlugin } from '../api'
 import { RTEPluginMeta, Toolbar } from '../api'
-import { LinkPluginButton } from './LinkPluginButton'
+import LinkPluginButton from './LinkPluginButton'
 
 const PLUGIN_NAME = 'link'
 
@@ -12,7 +12,7 @@ export type Props = {
   'data-testid'?: string
 }
 
-export const LinkPlugin: RTEPlugin = ({ 'data-testid': testId }: Props) => {
+const LinkPlugin: RTEPlugin = ({ 'data-testid': testId }: Props) => {
   return (
     <>
       <Toolbar keyName={PLUGIN_NAME}>
@@ -29,3 +29,5 @@ LinkPlugin[RTEPluginMeta] = {
     nodes: [LinkNode],
   },
 }
+
+export default LinkPlugin

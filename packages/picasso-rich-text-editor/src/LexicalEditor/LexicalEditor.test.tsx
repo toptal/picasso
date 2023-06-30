@@ -6,24 +6,27 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 
 import LexicalEditor from './LexicalEditor'
 import type { Props } from './LexicalEditor'
-import TextLengthPlugin from '../plugins/TextLengthPlugin'
-import HeadingsReplacementPlugin from '../plugins/HeadingsReplacementPlugin'
+import {
+  TextLengthPlugin,
+  HeadingsReplacementPlugin,
+  ListPlugin,
+  LinkPlugin,
+} from '../plugins'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
-import ListPlugin from '../plugins/ListPlugin'
 import type { CustomEmojiGroup } from './types'
-import { LinkPlugin } from '../plugins/LinkPlugin'
 
-jest.mock('../plugins/LexicalEditorToolbarPlugin', () => ({
+jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalEditorToolbarPlugin</div>),
 }))
-jest.mock('../plugins/LexicalListPlugin', () => ({
+
+jest.mock('../plugins', () => ({
   __esModule: true,
-  default: jest.fn(() => <div>LexicalListPlugin</div>),
-}))
-jest.mock('../plugins/LexicalEmojiPlugin', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>LexicalEmojiPlugin</div>),
+  ListPlugin: jest.fn(),
+  EmojiPlugin: jest.fn(),
+  TextLengthPlugin: jest.fn(),
+  HeadingsReplacementPlugin: jest.fn(),
+  LinkPlugin: jest.fn(),
 }))
 
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
@@ -48,21 +51,6 @@ jest.mock('@lexical/react/LexicalComposer', () => ({
 jest.mock('@lexical/react/LexicalOnChangePlugin', () => ({
   __esModule: true,
   OnChangePlugin: jest.fn(() => <div>OnChangePlugin</div>),
-}))
-
-jest.mock('../plugins/LexicalTextLengthPlugin', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>LexicalTextLengthPlugin</div>),
-}))
-
-jest.mock('../plugins/LexicalHeadingsReplacementPlugin', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>LexicalHeadingsReplacementPlugin</div>),
-}))
-
-jest.mock('../plugins/LinkPlugin', () => ({
-  __esModule: true,
-  LexicalLinkPlugin: jest.fn(() => <div>LexicalLinkPlugin</div>),
 }))
 
 const mockedLexicalTextLengthPlugin = TextLengthPlugin as jest.MockedFunction<

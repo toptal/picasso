@@ -20,15 +20,17 @@ import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
 
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import { RTEPluginContextProvider } from '../plugins/api'
-import EmojiPlugin from '../plugins/EmojiPlugin'
 import { CustomEmojiNode } from '../plugins/EmojiPlugin/nodes/CustomEmojiNode'
-import HeadingsReplacementPlugin from '../plugins/HeadingsReplacementPlugin'
-import ListPlugin from '../plugins/ListPlugin'
-import TextLengthPlugin from '../plugins/TextLengthPlugin'
+import {
+  EmojiPlugin,
+  ListPlugin,
+  TextLengthPlugin,
+  HeadingsReplacementPlugin,
+  TriggerInitialOnChangePlugin,
+} from '../plugins'
 import type { ASTType } from '../RichText'
 import { useOnFocus, useTypographyClasses } from './hooks'
 import { useComponentPlugins } from './hooks/useComponentPlugins/useComponentPlugins'
-import { TriggerInitialOnChangePlugin } from './plugins'
 import styles from './styles'
 import type {
   ChangeHandler,

@@ -13,7 +13,7 @@ export type Props = {
   'data-testid'?: string
 }
 
-export const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
+const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
   const [active, setActive] = useState(false)
   const [editor] = useLexicalComposerContext()
   const { disabled } = useRTEPluginContext()
@@ -55,3 +55,5 @@ export const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
     />
   )
 }
+
+export default LinkPluginButton

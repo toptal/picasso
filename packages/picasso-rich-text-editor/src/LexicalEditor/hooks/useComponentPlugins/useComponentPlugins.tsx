@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react'
 
 import { isRTEPluginElement, RTEPluginMeta } from '../../../plugins/api'
-import { LinkPlugin } from '../../../plugins/LinkPlugin'
+import { LinkPlugin } from '../../../plugins'
 import type { EditorPlugin } from '../..'
 
 export const useComponentPlugins = (plugins: EditorPlugin[]) => {
