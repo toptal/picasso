@@ -14,7 +14,7 @@ type LexicalEditorViewProps = BaseProps & {
   id?: string
 }
 
-const EditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
+const LexicalEditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
   function LexicalEditorView({ id, 'data-testid': dataTestId }, ref) {
     const classes = useStyles()
 
@@ -36,4 +36,4 @@ const EditorView = forwardRef<HTMLDivElement, LexicalEditorViewProps>(
   }
 )
 
-export default EditorView
+export default LexicalEditorView

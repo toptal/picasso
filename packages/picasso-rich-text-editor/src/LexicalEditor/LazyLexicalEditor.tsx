@@ -1,6 +1,6 @@
 import React, { forwardRef, lazy, Suspense } from 'react'
 
-import EditorView from '../plugins/EditorView'
+import LexicalEditorView from '../LexicalEditorView'
 import type { Props } from './LexicalEditor'
 
 const LexicalEditor = lazy(() => import('./LexicalEditor'))
@@ -8,7 +8,7 @@ const LexicalEditor = lazy(() => import('./LexicalEditor'))
 const LazyLexicalEditor = forwardRef<HTMLDivElement, Props>(
   function LazyLexicalEditor(props, ref) {
     return (
-      <Suspense fallback={<EditorView />}>
+      <Suspense fallback={<LexicalEditorView />}>
         <LexicalEditor {...props} ref={ref} />
       </Suspense>
     )
