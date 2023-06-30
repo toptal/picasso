@@ -97,23 +97,24 @@ generalUsage.addTextSection(
 
 generalUsage.addTextSection(
   `
-RichTextEditor component uses the [Quill](https://github.com/quilljs/quill) package. This package is not SSR compatible.
+RichTextEditor component uses the [Lexical](https://github.com/facebook/lexical) package. This package is not SSR compatible.
 In some SSR dev environments this package might cause your application to crash. A temporary work-around for this might be to stub that package in your Webpack config.
 
 ~~~tsx
-// /stub/quill.js
+// /stub/lexical.js
 module.exports = { import: () => null }
 
 // webpack.js
-const disableQuillForDevelopment = config => { // config is a Webpack config
+const disableLexicalForDevelopment = config => { // config is a Webpack config
   if (process.env.NODE_ENV !== 'development') {
     return
   }
 
-  const QUILL_STUB_PATH = path.join(__dirname, '/stub/quill')
+  const LEXICAL_STUB_PATH = path.join(__dirname, '/stub/lexical')
 
-  config.resolve.alias.quill = QUILL_STUB_PATH
-  config.resolve.alias['quill-paste-smart'] = QUILL_STUB_PATH
+  config.resolve.alias.lexical = LEXICAL_STUB_PATH
+  config.resolve.alias['@lexical/react'] = LEXICAL_STUB_PATH
+  config.resolve.alias['@lexical/html'] = LEXICAL_STUB_PATH
 }
 ~~~
 `,

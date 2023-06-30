@@ -146,7 +146,6 @@
     "node-fetch": "^2.6.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-test-renderer": "^18.2.0",
-    "**/quill-emoji/**/clean-css": "^4"
+    "react-test-renderer": "^18.2.0"
   }
 }
