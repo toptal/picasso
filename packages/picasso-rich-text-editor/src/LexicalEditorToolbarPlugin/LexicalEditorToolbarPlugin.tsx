@@ -59,14 +59,14 @@ const LexicalEditorToolbarPlugin = ({
   testIds,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
-  const [{ bold, italic, list, header }, dispatch] = useReducer(
+  const [{ bold, italic, list, header, link }, dispatch] = useReducer(
     toolbarStateReducer,
     {
       bold: false,
       italic: false,
       list: false,
       header: '',
-      link: '',
+      link: false,
     }
   )
 
@@ -139,14 +139,13 @@ const LexicalEditorToolbarPlugin = ({
         italic,
         list,
         header,
-        link: '',
+        link,
       }}
       id='toolbar'
       onUnorderedClick={handleUnorderedClick}
       onOrderedClick={handleOrderedClick}
       onBoldClick={handleBoldClick}
       onItalicClick={handleItalicClick}
-      onLinkClick={noop}
       onHeaderChange={handleHeaderClick}
       disabled={disabled}
       onInsertEmoji={handleInsertEmoji}
