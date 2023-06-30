@@ -22,7 +22,7 @@ const removeChild = (element: Node) => {
   element.parentNode!.removeChild(element)
 }
 
-export const removeExtraTags = (htmlDoc: Document): Document => {
+const removeExtraTags = (htmlDoc: Document): Document => {
   const childConditions = [
     { parent: 'i', child: 'em', nodeToRemove: NodeTypes.Parent },
     { parent: 'b', child: 'strong', nodeToRemove: NodeTypes.Parent },
@@ -66,11 +66,10 @@ export const removeExtraTags = (htmlDoc: Document): Document => {
   return htmlDoc
 }
 
-const replaceTags = (
-  htmlDoc: Document,
-  oldTag: string,
-  newTag: string
-): Document => {
+const replaceItalicTag = (htmlDoc: Document): Document => {
+  const oldTag = 'i'
+  const newTag = 'em'
+
   const elements = htmlDoc.getElementsByTagName(oldTag)
 
   for (let index = 0; index < elements.length; index++) {
@@ -91,7 +90,7 @@ export const cleanupHtmlOutput = (html: string): string => {
   const parser = new DOMParser()
   let htmlDoc = parser.parseFromString(html, 'text/html')
 
-  htmlDoc = replaceTags(removeExtraTags(htmlDoc), 'i', 'em')
+  htmlDoc = replaceItalicTag(removeExtraTags(htmlDoc))
 
   return htmlDoc.body.innerHTML
 }

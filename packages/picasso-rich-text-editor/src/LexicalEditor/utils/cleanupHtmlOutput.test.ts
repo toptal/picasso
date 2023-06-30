@@ -2,7 +2,7 @@ import { cleanupHtmlOutput } from './cleanupHtmlOutput'
 
 // Test cases structure:
 // removeWhat (string), removeFrom (string), input (string), expected (string)
-const tests = [
+const testCases = [
   [
     '<i>',
     '<i> > <em>',
@@ -26,7 +26,7 @@ const tests = [
 ]
 
 describe('cleanupHtmlOutput', () => {
-  it.each(tests)(
+  it.each(testCases)(
     'removes %s from %s combinations',
     (what, from, input, expected) => {
       const result = cleanupHtmlOutput(input)
