@@ -15,7 +15,6 @@ import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
-import { LinkNode } from '@lexical/link'
 import { $generateHtmlFromNodes } from '@lexical/html'
 import { noop } from '@toptal/picasso/utils'
 import { Container, Typography } from '@toptal/picasso'
@@ -42,7 +41,6 @@ import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugi
 import type { ASTType } from '../RichText'
 import { CustomEmojiNode } from '../LexicalEmojiPlugin/nodes/CustomEmojiNode'
 import LexicalEmojiPlugin from '../LexicalEmojiPlugin'
-import { LexicalLinkPlugin } from '../LexicalLinkPlugin'
 import {
   isRTEPluginElement,
   RTEPluginContextProvider,
@@ -172,7 +170,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         ListNode,
         ListItemNode,
         HeadingNode,
-        LinkNode,
         ...extraNodes,
       ],
       editable: !disabled,
@@ -221,9 +218,11 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
             plugins={plugins}
             testIds={testIds}
           />
+
           {defaultValue ? (
             <TriggerInitialOnChangePlugin onChange={handleChange} />
           ) : null}
+
           <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
           {autoFocus && <AutoFocusPlugin />}
 
@@ -232,7 +231,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           <LexicalListPlugin />
           <LexicalEmojiPlugin />
           <HistoryPlugin />
-          <LexicalLinkPlugin />
 
           {componentPlugins.map(el =>
             cloneElement(el, { key: el.type[RTEPluginMeta]?.name })
