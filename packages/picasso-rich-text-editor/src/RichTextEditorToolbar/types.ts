@@ -11,7 +11,6 @@ export type FormatType = {
   italic: ItalicValue
   list: ListValue
   header: HeaderValue
-  link: LinkValue
 }
 
 export type ButtonHandlerType = MouseEventHandler<HTMLButtonElement>

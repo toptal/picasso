@@ -14,7 +14,6 @@ type ToolbarVisualStateUpdateAction = {
     italic: boolean
     list: ToolbarState['list']
     header: HeaderValue
-    link: boolean
   }
 }
 
@@ -34,7 +33,6 @@ export const toolbarStateReducer = (
         italic: action.value.italic,
         list: action.value.list,
         header: action.value.header,
-        link: action.value.link,
       }
     default:
       return state

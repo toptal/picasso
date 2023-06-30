@@ -19,8 +19,8 @@ import type {
   FormatType,
 } from './types'
 import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
-import { RichtTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
-import { LexicalLinkPluginButton } from '../LexicalLinkPlugin'
+import { RichTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
+import { useToolbarPortalRegister } from '../plugins/api'
 
 type Props = {
   disabled: boolean
@@ -69,10 +69,11 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       customEmojis,
     } = props
 
+    const { setToolbarPortalEl } = useToolbarPortalRegister()
+
     const classes = useStyles(props)
     const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
 
-    const allowLinks = plugins?.includes('link')
     const allowEmojis = plugins?.includes('emoji')
 
     return (
@@ -128,17 +129,9 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             data-testid={testIds?.orderedListButton}
           />
         </Container>
-        {allowLinks && (
-          <Container className={classes.group}>
-            <LexicalLinkPluginButton
-              active={format.link}
-              disabled={disabled}
-              data-testid={testIds?.linkButton}
-            />
-          </Container>
-        )}
+        <Container ref={setToolbarPortalEl} className={classes.group} />
         {allowEmojis && (
-          <RichtTextEditorEmojiPicker
+          <RichTextEditorEmojiPicker
             richEditorId={id}
             customEmojis={customEmojis}
             onInsertEmoji={onInsertEmoji}
@@ -157,7 +150,6 @@ RichTextEditorToolbar.defaultProps = {
     italic: false,
     list: false,
     header: '',
-    link: false,
   },
   onBoldClick: () => {},
   onItalicClick: () => {},
