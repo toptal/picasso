@@ -36,7 +36,7 @@ import LexicalHeadingsReplacementPlugin from '../LexicalHeadingsReplacementPlugi
 import type { ASTType } from '../RichText'
 import { CustomEmojiNode } from '../LexicalEmojiPlugin/nodes/CustomEmojiNode'
 import LexicalEmojiPlugin from '../LexicalEmojiPlugin'
-import { LexicalLinksPlugin } from '../LexicalLinksPlugin/LexicalLinksPlugin'
+import { LexicalLinkPlugin } from '../LexicalLinkPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -203,7 +203,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         <LexicalListPlugin />
         <LexicalEmojiPlugin />
         <HistoryPlugin />
-        <LexicalLinksPlugin />
+        <LexicalLinkPlugin />
 
         <div className={classes.editorContainer} id={id} ref={ref}>
           <RichTextPlugin

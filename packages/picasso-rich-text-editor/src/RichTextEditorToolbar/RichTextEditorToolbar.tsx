@@ -20,7 +20,7 @@ import type {
 } from './types'
 import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
 import { RichtTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
-import { LexicalLinksPluginButton } from '../LexicalLinksPlugin/LexicalLinksPluginButton'
+import { LexicalLinkPluginButton } from '../LexicalLinkPlugin'
 
 type Props = {
   disabled: boolean
@@ -130,7 +130,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
         </Container>
         {allowLinks && (
           <Container className={classes.group}>
-            <LexicalLinksPluginButton
+            <LexicalLinkPluginButton
               active={format.link}
               disabled={disabled}
               data-testid={testIds?.linkButton}

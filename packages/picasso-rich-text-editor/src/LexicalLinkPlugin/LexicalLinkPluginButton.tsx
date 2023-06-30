@@ -12,7 +12,7 @@ export type Props = {
   'data-testid'?: string
 }
 
-export const LexicalLinksPluginButton = ({
+export const LexicalLinkPluginButton = ({
   active = true,
   disabled = false,
   'data-testid': testId,
