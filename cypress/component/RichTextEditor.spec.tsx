@@ -360,8 +360,7 @@ describe('RichTextEditor', () => {
     })
   })
 
-  // TODO: https://toptal-core.atlassian.net/browse/FX-4131
-  describe.skip('when we delete inline formatted word', () => {
+  describe.only('when we delete inline formatted word', () => {
     it('updates the toolbar state correctly', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -376,8 +375,8 @@ describe('RichTextEditor', () => {
       buttonShouldNotBeActive(cy.get('@boldButton'))
     })
   })
-  // TODO: https://toptal-core.atlassian.net/browse/FX-4131
-  describe.skip('when we delete inline formatted word in the middle of sentense', () => {
+
+  describe.only('when we delete inline formatted word in the middle of sentense', () => {
     it('updates the toolbar state correctly', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -420,8 +419,7 @@ describe('RichTextEditor', () => {
   })
 
   describe('toolbar', () => {
-    // TODO: https://toptal-core.atlassian.net/browse/FX-4131
-    it.skip('disables bold and italic when header format is active', () => {
+    it.only('disables bold and italic when header format is active', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
 
