@@ -20,7 +20,7 @@ import type {
 } from './types'
 import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
 import { RichTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
-import { useToolbarPortalRegister } from '../RichTextEditor/plugins'
+import { useToolbarPortalRegister } from '../plugins/api'
 
 type Props = {
   disabled: boolean

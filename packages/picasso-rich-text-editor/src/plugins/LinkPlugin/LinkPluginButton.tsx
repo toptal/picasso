@@ -5,7 +5,7 @@ import { $getSelection, $isRangeSelection } from 'lexical'
 import React, { useCallback, useState } from 'react'
 
 import { getSelectedNode } from '../../LexicalEditor/utils/getSelectedNode'
-import { useRTEPluginContext, useRTEUpdate } from '../../RichTextEditor/plugins'
+import { useRTEPluginContext, useRTEUpdate } from '../api'
 import RichTextEditorButton from '../../RichTextEditorButton'
 import { sanitizeUrl, validateUrl } from './utils/url'
 

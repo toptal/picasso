@@ -45,7 +45,7 @@ import {
   isRTEPluginElement,
   RTEPluginContextProvider,
   RTEPluginMeta,
-} from '../RichTextEditor/plugins'
+} from '../plugins/api'
 import { LinkPlugin } from '../plugins/LinkPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {

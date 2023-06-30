@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 
-import type { RTEPlugin } from '../RichTextEditor/plugins'
+import type { RTEPlugin } from '../plugins/api'
 
 export type ChangeHandler = (html: string) => void
 
