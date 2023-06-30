@@ -1,52 +1,42 @@
-import React, {
-  forwardRef,
-  useMemo,
-  useCallback,
-  useRef,
-  cloneElement,
-} from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { LexicalComposer } from '@lexical/react/LexicalComposer'
-import type { InitialConfigType } from '@lexical/react/LexicalComposer'
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { $generateHtmlFromNodes } from '@lexical/html'
+import { ListItemNode, ListNode } from '@lexical/list'
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
+import type { InitialConfigType } from '@lexical/react/LexicalComposer'
+import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
-import { $generateHtmlFromNodes } from '@lexical/html'
-import { noop } from '@toptal/picasso/utils'
-import { Container, Typography } from '@toptal/picasso'
-import { $isRootTextContentEmpty } from '@lexical/text'
-import type { LexicalEditor as LexicalEditorType } from 'lexical'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
-import { ListItemNode, ListNode } from '@lexical/list'
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode } from '@lexical/rich-text'
+import { $isRootTextContentEmpty } from '@lexical/text'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import { Container, Typography } from '@toptal/picasso'
+import type { BaseProps } from '@toptal/picasso-shared'
+import { noop } from '@toptal/picasso/utils'
+import type { LexicalEditor as LexicalEditorType } from 'lexical'
+import React, { forwardRef, useCallback, useMemo, useRef } from 'react'
 
+import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
+import { RTEPluginContextProvider } from '../plugins/api'
+import EmojiPlugin from '../plugins/EmojiPlugin'
+import { CustomEmojiNode } from '../plugins/EmojiPlugin/nodes/CustomEmojiNode'
+import HeadingsReplacementPlugin from '../plugins/HeadingsReplacementPlugin'
+import ListPlugin from '../plugins/ListPlugin'
+import TextLengthPlugin from '../plugins/TextLengthPlugin'
+import type { ASTType } from '../RichText'
+import { useOnFocus, useTypographyClasses } from './hooks'
+import { useComponentPlugins } from './hooks/useComponentPlugins/useComponentPlugins'
 import { TriggerInitialOnChangePlugin } from './plugins'
-import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
-import { useTypographyClasses, useOnFocus } from './hooks'
 import styles from './styles'
 import type {
   ChangeHandler,
+  CustomEmojiGroup,
   EditorPlugin,
   TextLengthChangeHandler,
-  CustomEmojiGroup,
 } from './types'
-import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
-import TextLengthPlugin from '../plugins/TextLengthPlugin'
-import ListPlugin from '../plugins/ListPlugin'
-import HeadingsReplacementPlugin from '../plugins/HeadingsReplacementPlugin'
-import type { ASTType } from '../RichText'
-import { CustomEmojiNode } from '../plugins/EmojiPlugin/nodes/CustomEmojiNode'
-import EmojiPlugin from '../plugins/EmojiPlugin'
-import {
-  isRTEPluginElement,
-  RTEPluginContextProvider,
-  RTEPluginMeta,
-} from '../plugins/api'
-import { LinkPlugin } from '../plugins/LinkPlugin'
+import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -106,7 +96,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   ref
 ) {
   const {
-    plugins: propPlugins = [],
+    plugins = [],
     autoFocus = false,
     defaultValue,
     disabled = false,
@@ -151,21 +141,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [typographyClassNames, classes]
   )
 
-  const plugins: EditorPlugin[] = propPlugins.map(plugin => {
-    switch (plugin) {
-      case 'link':
-        return <LinkPlugin />
-
-      default:
-        return plugin
-    }
-  })
-
-  const componentPlugins = plugins.filter(isRTEPluginElement)
-
-  const extraNodes = componentPlugins.flatMap(
-    plugin => plugin.type[RTEPluginMeta]?.lexical?.nodes ?? []
-  )
+  const { componentPlugins, lexicalNodes } = useComponentPlugins(plugins)
 
   const editorConfig: InitialConfigType = useMemo(
     () => ({
@@ -181,11 +157,11 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         ListNode,
         ListItemNode,
         HeadingNode,
-        ...extraNodes,
+        ...lexicalNodes,
       ],
       editable: !disabled,
     }),
-    [defaultValue, theme, disabled, extraNodes]
+    [defaultValue, theme, disabled, lexicalNodes]
   )
 
   const handleChange = useCallback(
@@ -243,9 +219,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           <EmojiPlugin />
           <HistoryPlugin />
 
-          {componentPlugins.map(el =>
-            cloneElement(el, { key: el.type[RTEPluginMeta]?.name })
-          )}
+          {componentPlugins}
 
           <div className={classes.editorContainer} id={id} ref={ref}>
             <RichTextPlugin

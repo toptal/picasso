@@ -11,17 +11,17 @@ import HeadingsReplacementPlugin from '../plugins/HeadingsReplacementPlugin'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import ListPlugin from '../plugins/ListPlugin'
 import type { CustomEmojiGroup } from './types'
-import { LexicalLinkPlugin } from '../LexicalLinkPlugin'
+import { LinkPlugin } from '../plugins/LinkPlugin'
 
-jest.mock('../LexicalEditorToolbarPlugin', () => ({
+jest.mock('../plugins/LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalEditorToolbarPlugin</div>),
 }))
-jest.mock('../LexicalListPlugin', () => ({
+jest.mock('../plugins/LexicalListPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalListPlugin</div>),
 }))
-jest.mock('../LexicalEmojiPlugin', () => ({
+jest.mock('../plugins/LexicalEmojiPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalEmojiPlugin</div>),
 }))
@@ -50,17 +50,17 @@ jest.mock('@lexical/react/LexicalOnChangePlugin', () => ({
   OnChangePlugin: jest.fn(() => <div>OnChangePlugin</div>),
 }))
 
-jest.mock('../LexicalTextLengthPlugin', () => ({
+jest.mock('../plugins/LexicalTextLengthPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalTextLengthPlugin</div>),
 }))
 
-jest.mock('../LexicalHeadingsReplacementPlugin', () => ({
+jest.mock('../plugins/LexicalHeadingsReplacementPlugin', () => ({
   __esModule: true,
   default: jest.fn(() => <div>LexicalHeadingsReplacementPlugin</div>),
 }))
 
-jest.mock('../LexicalLinkPlugin', () => ({
+jest.mock('../plugins/LinkPlugin', () => ({
   __esModule: true,
   LexicalLinkPlugin: jest.fn(() => <div>LexicalLinkPlugin</div>),
 }))
@@ -78,8 +78,8 @@ const mockedLexicalHeadingsReplacementPlugin =
     typeof HeadingsReplacementPlugin
   >
 
-const mockedLexicalLinkPlugin = LexicalLinkPlugin as jest.MockedFunction<
-  typeof LexicalLinkPlugin
+const mockedLexicalLinkPlugin = LinkPlugin as jest.MockedFunction<
+  typeof LinkPlugin
 >
 
 const mockedToolbarPlugin = ToolbarPlugin as jest.MockedFunction<
