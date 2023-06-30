@@ -1,7 +1,5 @@
 import React, { useEffect, useReducer } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-// eslint-disable-next-line unused-imports/no-unused-imports, @typescript-eslint/no-unused-vars
-import { noop } from '@toptal/picasso/utils'
 import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,

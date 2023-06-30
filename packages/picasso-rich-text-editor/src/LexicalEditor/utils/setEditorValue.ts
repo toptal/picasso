@@ -18,20 +18,16 @@ export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
     const lexicalValueNodes = $generateNodesFromDOM(editor, domValue)
 
     lexicalValueNodes.forEach(node => {
-      if ($isElementNode(node) || $isDecoratorNode(node)) {
-        root.append(node)
-      } else {
-        const paragraphNode = $createParagraphNode()
+      const nodeToAppend =
+        $isElementNode(node) || $isDecoratorNode(node)
+          ? node
+          : $createParagraphNode().append(node)
 
-        paragraphNode.append(node)
-        root.append(paragraphNode)
-      }
+      root.append(nodeToAppend)
     })
   } else {
     if (root.isEmpty()) {
-      const paragraphNode = $createParagraphNode()
-
-      root.append(paragraphNode)
+      root.append($createParagraphNode())
     }
 
     root.getLastChild()?.select()

@@ -449,6 +449,10 @@ describe('RichTextEditor', () => {
         expect(error.message).to.include('prevents user mouse interaction')
       })
 
+      // need for editor to loose focus
+      cy.get('body').click(0, 0)
+
+      cy.get('@headerSelect').find('input').should('have.attr', 'disabled')
       cy.get('@headerSelect').click({ timeout: 100 })
       // the click should not open select but just simply trigger focus on whole editor
       cy.get('@headerSelect').find('input').should('not.have.attr', 'disabled')
