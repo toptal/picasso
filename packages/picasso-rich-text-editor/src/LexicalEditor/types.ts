@@ -1,10 +1,15 @@
-export type SettingName = 'link' | 'emoji'
+import type { ReactElement } from 'react'
+
+import type { RTEPlugin } from '../RichTextEditor/plugins'
 
 export type ChangeHandler = (html: string) => void
 
 export type { TextLengthChangeHandler } from '../LexicalTextLengthPlugin'
 
-export type EditorPlugin = SettingName
+export type EditorPlugin =
+  | 'link'
+  | 'emoji'
+  | ReactElement<unknown, RTEPlugin<unknown>>
 
 export type CustomEmoji = {
   id: string

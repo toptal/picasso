@@ -1,4 +1,10 @@
-import React, { forwardRef, useMemo, useCallback, useRef } from 'react'
+import React, {
+  forwardRef,
+  useMemo,
+  useCallback,
+  useRef,
+  cloneElement,
+} from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -37,6 +43,11 @@ import type { ASTType } from '../RichText'
 import { CustomEmojiNode } from '../LexicalEmojiPlugin/nodes/CustomEmojiNode'
 import LexicalEmojiPlugin from '../LexicalEmojiPlugin'
 import { LexicalLinkPlugin } from '../LexicalLinkPlugin'
+import {
+  isRTEPluginElement,
+  RTEPluginContextProvider,
+  RTEPluginMeta,
+} from '../RichTextEditor/plugins'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -141,6 +152,12 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [typographyClassNames, classes]
   )
 
+  const componentPlugins = plugins.filter(isRTEPluginElement)
+
+  const extraNodes = componentPlugins.flatMap(
+    plugin => plugin.type[RTEPluginMeta]?.lexical?.nodes ?? []
+  )
+
   const editorConfig: InitialConfigType = useMemo(
     () => ({
       editorState: (editor: LexicalEditorType) =>
@@ -150,10 +167,17 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
-      nodes: [CustomEmojiNode, ListNode, ListItemNode, HeadingNode, LinkNode],
+      nodes: [
+        CustomEmojiNode,
+        ListNode,
+        ListItemNode,
+        HeadingNode,
+        LinkNode,
+        ...extraNodes,
+      ],
       editable: !disabled,
     }),
-    [defaultValue, theme, disabled]
+    [defaultValue, theme, disabled, extraNodes]
   )
 
   const handleChange = useCallback(
@@ -187,50 +211,56 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1}>
-        <ToolbarPlugin
-          disabled={disabled || !isFocused}
-          toolbarRef={toolbarRef}
-          // remount Toolbar when disabled
-          key={`${disabled || !isFocused}`}
-          customEmojis={customEmojis}
-          plugins={plugins}
-          testIds={testIds}
-        />
-        {defaultValue ? (
-          <TriggerInitialOnChangePlugin onChange={handleChange} />
-        ) : null}
-        <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
-        {autoFocus && <AutoFocusPlugin />}
-
-        <LexicalHeadingsReplacementPlugin />
-        <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
-        <LexicalListPlugin />
-        <LexicalEmojiPlugin />
-        <HistoryPlugin />
-        <LexicalLinkPlugin />
-
-        <div className={classes.editorContainer} id={id} ref={ref}>
-          <RichTextPlugin
-            contentEditable={
-              <ContentEditable
-                className={classes.contentEditable}
-                data-testid={testIds?.editor}
-              />
-            }
-            placeholder={
-              <Container
-                left='xsmall'
-                top='small'
-                className={classes.placeholder}
-              >
-                <Typography size='medium' color='grey-main-2'>
-                  {placeholder}
-                </Typography>
-              </Container>
-            }
-            ErrorBoundary={LexicalErrorBoundary}
+        <RTEPluginContextProvider disabled={disabled}>
+          <ToolbarPlugin
+            disabled={disabled || !isFocused}
+            toolbarRef={toolbarRef}
+            // remount Toolbar when disabled
+            key={`${disabled || !isFocused}`}
+            customEmojis={customEmojis}
+            plugins={plugins}
+            testIds={testIds}
           />
-        </div>
+          {defaultValue ? (
+            <TriggerInitialOnChangePlugin onChange={handleChange} />
+          ) : null}
+          <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
+          {autoFocus && <AutoFocusPlugin />}
+
+          <LexicalHeadingsReplacementPlugin />
+          <LexicalTextLengthPlugin onTextLengthChange={onTextLengthChange} />
+          <LexicalListPlugin />
+          <LexicalEmojiPlugin />
+          <HistoryPlugin />
+          <LexicalLinkPlugin />
+
+          {componentPlugins.map(el =>
+            cloneElement(el, { key: el.type[RTEPluginMeta]?.name })
+          )}
+
+          <div className={classes.editorContainer} id={id} ref={ref}>
+            <RichTextPlugin
+              contentEditable={
+                <ContentEditable
+                  className={classes.contentEditable}
+                  data-testid={testIds?.editor}
+                />
+              }
+              placeholder={
+                <Container
+                  left='xsmall'
+                  top='small'
+                  className={classes.placeholder}
+                >
+                  <Typography size='medium' color='grey-main-2'>
+                    {placeholder}
+                  </Typography>
+                </Container>
+              }
+              ErrorBoundary={LexicalErrorBoundary}
+            />
+          </div>
+        </RTEPluginContextProvider>
       </div>
     </LexicalComposer>
   )

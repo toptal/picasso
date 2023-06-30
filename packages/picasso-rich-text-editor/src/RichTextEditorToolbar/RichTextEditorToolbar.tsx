@@ -21,6 +21,7 @@ import type {
 import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
 import { RichtTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
 import { LexicalLinkPluginButton } from '../LexicalLinkPlugin'
+import { useToolbarPortalRegister } from '../RichTextEditor/plugins'
 
 type Props = {
   disabled: boolean
@@ -68,6 +69,8 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       plugins,
       customEmojis,
     } = props
+
+    const { setToolbarPortalEl } = useToolbarPortalRegister()
 
     const classes = useStyles(props)
     const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
@@ -128,15 +131,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             data-testid={testIds?.orderedListButton}
           />
         </Container>
-        {allowLinks && (
-          <Container className={classes.group}>
-            <LexicalLinkPluginButton
-              active={format.link}
-              disabled={disabled}
-              data-testid={testIds?.linkButton}
-            />
-          </Container>
-        )}
+        <Container ref={setToolbarPortalEl} className={classes.group} />
         {allowEmojis && (
           <RichtTextEditorEmojiPicker
             richEditorId={id}
