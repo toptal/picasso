@@ -45,7 +45,7 @@ const handleEmojiPickerEscBehaviour = (
   }
 }
 
-export const RichtTextEditorEmojiPicker = ({
+export const RichTextEditorEmojiPicker = ({
   richEditorId,
   customEmojis,
   onInsertEmoji,

@@ -12,7 +12,7 @@ export type Props = {
   onTextLengthChange: TextLengthChangeHandler
 }
 
-const LexicalTextLengthPlugin = ({ onTextLengthChange = noop }: Props) => {
+const TextLengthPlugin = ({ onTextLengthChange = noop }: Props) => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
@@ -31,6 +31,6 @@ const LexicalTextLengthPlugin = ({ onTextLengthChange = noop }: Props) => {
   return null
 }
 
-LexicalTextLengthPlugin.displayName = 'LexicalTextLengthPlugin'
+TextLengthPlugin.displayName = 'LexicalTextLengthPlugin'
 
-export default LexicalTextLengthPlugin
+export default TextLengthPlugin
