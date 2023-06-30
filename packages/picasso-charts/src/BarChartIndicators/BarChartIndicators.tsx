@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Rectangle, Label, Layer } from 'recharts'
-
-import type { BarIndicatorConfig } from '../types'
 
 const INDICATOR_SIZE = 16
 
 export type BarIndicatorFunction = (params: {
   dataKey: string
   index?: number
-}) => BarIndicatorConfig
+}) => ReactNode
 
 export type Props = {
   getBarChartIndicator: BarIndicatorFunction
@@ -25,9 +23,9 @@ export const BarChartIndicators = ({
     return series.map((item: any, index: number) => {
       const dataKey = item.name
 
-      const barIndicator = getBarChartIndicator({ dataKey, index })
+      const barIndicatorComponent = getBarChartIndicator({ dataKey, index })
 
-      if (!barIndicator) {
+      if (!barIndicatorComponent) {
         return
       }
 
@@ -35,7 +33,7 @@ export const BarChartIndicators = ({
         <BarChartIndicator
           item={item}
           key={`rect-${item.name}`}
-          indicator={barIndicator}
+          indicatorComponent={barIndicatorComponent}
         />
       )
     })
@@ -44,27 +42,25 @@ export const BarChartIndicators = ({
 
 export type BarChartIndicatorProps = {
   item: any
-  indicator: BarIndicatorConfig
+  indicatorComponent: ReactNode | string
 }
 
-const BarChartIndicator = ({ item, indicator }: BarChartIndicatorProps) => (
-  <Layer>
+export const BarChartIndicator = ({ item, indicatorComponent }: BarChartIndicatorProps) => (
+  <svg
+    width={INDICATOR_SIZE}
+    height={INDICATOR_SIZE}
+    x={item.x + item.width / 2}
+    y={item.y + item.height}
+    overflow='visible'
+  >
     <Rectangle
       width={INDICATOR_SIZE}
       height={INDICATOR_SIZE}
-      x={item.x + item.width / 2 - INDICATOR_SIZE / 2}
-      y={item.y + item.height - INDICATOR_SIZE / 2}
-      fill={indicator.color}
+      x={ -INDICATOR_SIZE / 2}
+      y={ -INDICATOR_SIZE / 2}
+      fill='#f00'
       radius={2}
     />
-    <Label
-      value={indicator.label}
-      stroke='#fff'
-      position='center'
-      viewBox={{
-        cx: item.x + item.width / 2,
-        cy: item.y + item.height,
-      }}
-    />
-  </Layer>
+    { indicatorComponent }
+  </svg>
 )

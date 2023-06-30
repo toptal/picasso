@@ -1,6 +1,7 @@
 import React from 'react'
-import { BarChart, BarIndicatorConfig } from '@toptal/picasso-charts'
+import { BarChart } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
+import { Label } from 'recharts'
 
 const CHART_DATA = [
   {
@@ -25,7 +26,7 @@ const CHART_DATA = [
   },
 ]
 
-const INDICATORS:{ [dataKey: string]: BarIndicatorConfig } = {
+const INDICATORS:any = {
   'Google': {color: palette.blue.light, label: 'A'},
   'Amazon': {color: palette.purple.main, label: 'B'},
 }
@@ -35,7 +36,16 @@ const Example = () => (
     <BarChart
       data={CHART_DATA}
       getBarColor={() => palette.blue.main}
-      getBarIndicator={({dataKey}) => INDICATORS[dataKey] as BarIndicatorConfig}
+      getBarIndicator={({dataKey}) => {
+        return <text
+          x={0}
+          y={0}
+          textAnchor='middle'
+          alignmentBaseline='middle'
+          color='#fff'
+          
+        >B</text>
+      }}
       width='100%'
     />
   </div>
