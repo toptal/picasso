@@ -394,14 +394,13 @@ describe('RichTextEditor', () => {
     })
   })
 
-  describe('Form.RichTextEditor', () => {
-    // TODO: https://toptal-core.atlassian.net/browse/FX-4130
-    it.skip('focuses editor on label click', () => {
+  describe.only('Form.RichTextEditor', () => {
+    it('focuses editor on label click', () => {
       cy.mount(renderEditorInForm())
       setAliases()
 
-      cy.get('label').click()
-      cy.getByRole('textbox').should('be.focused')
+      cy.get('label').realClick().type('foo')
+      cy.contains('foo').should('be.visible')
       cy.get('@wrapper').should('have.attr', 'class').and('include', 'focused')
     })
   })

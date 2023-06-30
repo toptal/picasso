@@ -192,15 +192,8 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
             defaultValue={defaultValue}
             plugins={plugins}
             customEmojis={customEmojis}
+            hiddenInputId={hiddenInputId}
           />
-          {hiddenInputId && (
-            // Native `for` attribute on label does not work for div target
-            <input
-              type='text'
-              id={hiddenInputId}
-              className={classes.hiddenInput}
-            />
-          )}
         </div>
         {counterMessage && (
           <InputMultilineAdornment error={counterError}>
