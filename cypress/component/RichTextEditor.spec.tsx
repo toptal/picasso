@@ -394,7 +394,7 @@ describe('RichTextEditor', () => {
     })
   })
 
-  describe.only('Form.RichTextEditor', () => {
+  describe('Form.RichTextEditor', () => {
     it('focuses editor on label click', () => {
       cy.mount(renderEditorInForm())
       setAliases()
