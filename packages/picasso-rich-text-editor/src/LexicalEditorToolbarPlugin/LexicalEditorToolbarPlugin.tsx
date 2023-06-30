@@ -28,7 +28,7 @@ import type {
 import {
   INSERT_CUSTOM_EMOJI_COMMAND,
   INSERT_EMOJI_COMMAND,
-} from '../LexicalEmojiPlugin/commands'
+} from '../plugins/EmojiPlugin/commands'
 import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar, {
   ALLOWED_HEADER_TYPE,
@@ -58,14 +58,13 @@ const LexicalEditorToolbarPlugin = ({
   testIds,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
-  const [{ bold, italic, list, header, link }, dispatch] = useReducer(
+  const [{ bold, italic, list, header }, dispatch] = useReducer(
     toolbarStateReducer,
     {
       bold: false,
       italic: false,
       list: false,
       header: '',
-      link: false,
     }
   )
 
@@ -138,7 +137,6 @@ const LexicalEditorToolbarPlugin = ({
         italic,
         list,
         header,
-        link,
       }}
       id='toolbar'
       onUnorderedClick={handleUnorderedClick}

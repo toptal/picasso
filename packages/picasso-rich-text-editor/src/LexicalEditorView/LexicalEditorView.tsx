@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import type { BaseProps } from '@toptal/picasso-shared'
 import Typography from '@toptal/picasso/Typography'
 
+import type { BaseProps } from '~/packages/shared/src'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
