@@ -8,7 +8,7 @@ export type Props = {
 }
 
 type Result = {
-  isFocused: boolean
+  focused: boolean
   handleFocus: (e: React.FocusEvent<HTMLDivElement>) => void
   handleBlur: (e: React.FocusEvent<HTMLDivElement>) => void
 }
@@ -18,10 +18,10 @@ const useOnFocus = ({
   onBlur = noop,
   internalRefs = [],
 }: Props): Result => {
-  const [isFocused, setIsFocused] = useState(false)
+  const [focused, setFocused] = useState(false)
 
   const handleFocus = useCallback(() => {
-    setIsFocused(true)
+    setFocused(true)
     onFocus()
   }, [onFocus])
 
@@ -36,14 +36,14 @@ const useOnFocus = ({
         return
       }
 
-      setIsFocused(false)
+      setFocused(false)
       onBlur()
     },
     [onBlur]
   )
 
   return {
-    isFocused,
+    focused,
     handleFocus,
     handleBlur,
   }
