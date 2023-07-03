@@ -34,6 +34,7 @@ export const isRTEPluginElement = (plugin: {}): plugin is ReactElement<
 
 type RTEPluginContextValue = {
   disabled: boolean
+  focused: boolean
   toolbarPortalEl?: HTMLElement
   setToolbarPortalEl: (element: HTMLElement | null) => void
 }
@@ -53,22 +54,26 @@ export const useRTEUpdate = (callback: () => void) => {
 
 const RTEPluginContext = createContext<RTEPluginContextValue>({
   disabled: false,
+  focused: false,
   setToolbarPortalEl: () => {},
 })
 
 export type ToolbarPortalProviderProps = {
   children: ReactNode
   disabled: boolean
+  focused: boolean
 }
 
 export const RTEPluginContextProvider = ({
   children,
   disabled,
+  focused,
 }: ToolbarPortalProviderProps) => {
   const [element, setElement] = useState<HTMLElement | null>(null)
 
   const value: RTEPluginContextValue = {
     disabled,
+    focused,
     toolbarPortalEl: element ?? undefined,
     setToolbarPortalEl: setElement,
   }
@@ -89,10 +94,11 @@ export const useToolbarPortalRegister = () => {
 }
 
 export const useRTEPluginContext = () => {
-  const { disabled } = useContext(RTEPluginContext)
+  const { disabled, focused } = useContext(RTEPluginContext)
 
   return {
     disabled,
+    focused,
   }
 }
 
