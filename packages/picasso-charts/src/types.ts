@@ -76,3 +76,13 @@ export type HighlightConfig = {
   to: number
   color: string
 }
+
+export type BarIndicatorConfig = {
+  color: string
+  label: string
+}
+
+export type BarOptions = {
+  dataKey: string
+  index?: number
+}
