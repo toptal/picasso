@@ -1,5 +1,15 @@
 # Change Log
 
+## 50.1.0
+
+### Minor Changes
+
+- [#3673](https://github.com/toptal/picasso/pull/3673) [`141221aaf`](https://github.com/toptal/picasso/commit/141221aaf6dbb5793e02fe3df39383a41676f337) Thanks [@pedromonad](https://github.com/pedromonad)!
+
+### BarChart
+
+- add an option to customize the bar indicators
+
 ## 50.0.0
 
 ### Patch Changes
