@@ -29,7 +29,5 @@ export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
     if (root.isEmpty()) {
       root.append($createParagraphNode())
     }
-
-    root.getLastChild()?.select()
   }
 }
