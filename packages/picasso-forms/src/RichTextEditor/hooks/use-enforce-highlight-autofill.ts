@@ -44,5 +44,6 @@ export const useEnforceHighlightAutofill = () => {
   return {
     enforceHighlightAutofill,
     registerChangeOrFocus,
+    timesChangeOrFocusTriggered,
   }
 }

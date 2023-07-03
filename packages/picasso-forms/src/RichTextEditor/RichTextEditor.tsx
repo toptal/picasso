@@ -38,6 +38,7 @@ export const RichTextEditor = (props: Props) => {
   // as an compatibility layer between final-form
   const handleOnChange = useCallback(
     (newVal: string) => {
+      console.log('@@@ handleOnChange')
       registerChangeOrFocus()
       setValue(newVal)
       onChange?.(newVal)
@@ -46,9 +47,10 @@ export const RichTextEditor = (props: Props) => {
   )
 
   const handleOnFocus = useCallback(() => {
-    registerChangeOrFocus()
+    console.log('@@@ handleOnFocus')
+    //registerChangeOrFocus()
 
-    onFocus?.()
+    //onFocus?.()
   }, [onFocus, registerChangeOrFocus])
 
   const hiddenInputId = `${props.id}-hidden-input`
