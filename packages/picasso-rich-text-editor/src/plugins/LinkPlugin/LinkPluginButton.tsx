@@ -16,7 +16,7 @@ export type Props = {
 const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
   const [active, setActive] = useState(false)
   const [editor] = useLexicalComposerContext()
-  const { disabled } = useRTEPluginContext()
+  const { disabled, isFocused } = useRTEPluginContext()
 
   useRTEUpdate(() => {
     const selection = $getSelection()
@@ -50,7 +50,7 @@ const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
       icon={<Link16 />}
       onClick={onLinkClick}
       active={active}
-      disabled={disabled}
+      disabled={disabled || !isFocused}
       data-testid={testId}
     />
   )

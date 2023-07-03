@@ -192,7 +192,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1}>
-        <RTEPluginContextProvider disabled={disabled}>
+        <RTEPluginContextProvider disabled={disabled} isFocused={isFocused}>
           <ToolbarPlugin
             disabled={disabled || !isFocused}
             toolbarRef={toolbarRef}
