@@ -162,7 +162,11 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         const root = $getRoot()
         const topLevelChildren = root.getChildren()
 
-        if (topLevelChildren.length === 0) {
+        const hasNoChildren = topLevelChildren.length === 0
+        const hasOneEmptyChild =
+          topLevelChildren.length === 1 && topLevelChildren[0].isEmpty()
+
+        if (hasNoChildren || hasOneEmptyChild) {
           onChange('')
 
           return
