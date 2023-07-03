@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import ListItem from '../ListItem'
+import type { Props as ListItemProps } from '../ListItem'
 import styles from './styles'
 import type { ListItemType } from './context'
 import { ListContextProvider, useListContext } from './context'
@@ -27,14 +28,31 @@ const Tags = {
   ordered: 'ol',
 } as const
 
-const getDefaultType = (variant: Props['variant'], level: number) => {
-  if (variant === 'unordered') {
-    const isLevelEven = level % 2 === 0
+const getOrderedStyleType = (level: number): ListItemType => {
+  const levelType = level % 3
 
-    return isLevelEven ? 'disc' : 'circle'
+  switch (levelType) {
+    case 0:
+      return 'numeral'
+    case 1:
+      return 'alpha'
+    case 2:
+      return 'roman'
+    default:
+      throw new Error(`Unknown level type ${levelType}`)
   }
+}
 
-  return undefined
+const getDefaultType = (
+  variant: Props['variant'],
+  level: number
+): ListItemType => {
+  switch (variant) {
+    case 'ordered':
+      return getOrderedStyleType(level)
+    case 'unordered':
+      return level % 2 === 0 ? 'disc' : 'circle'
+  }
 }
 
 export const List = (props: Props) => {
@@ -52,11 +70,11 @@ export const List = (props: Props) => {
   const totalChildElements = React.Children.count(children)
 
   const listItems = React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
+    if (!React.isValidElement<ListItemProps>(child)) {
       return child
     }
 
-    return React.cloneElement(child, {
+    return React.cloneElement<ListItemProps>(child, {
       variant,
       isLastElement: totalChildElements === index + 1,
       index: index + start - 1,
