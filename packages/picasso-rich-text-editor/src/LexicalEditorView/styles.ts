@@ -162,14 +162,6 @@ import { createStyles } from '@material-ui/core/styles'
 //   },
 // }
 
-// const quillSpecificStyles = (theme: Theme) => ({
-//   ...placeholder(theme),
-//   ...editor,
-//   ...hidden,
-//   ...clipboard,
-//   ...emojiIcon,
-// })
-
 export default () => {
   return createStyles({
     root: {
@@ -179,7 +171,6 @@ export default () => {
       position: 'relative',
       // ...listStyles,
       // ...margins,
-      // ...quillSpecificStyles(theme),
     },
   })
 }

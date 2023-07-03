@@ -35,7 +35,7 @@ describe('LazyLexicalEditor', () => {
   })
 
   describe('when LazyLexicalEditor is rendered', () => {
-    it('displays QuillEditorView while LexicalEditor is loading', () => {
+    it('displays LexicalEditorView while LexicalEditor is loading', () => {
       const { getByText, queryByText } = renderLazyLexicalEditor()
 
       expect(getByText('LexicalEditorView')).toBeInTheDocument()
