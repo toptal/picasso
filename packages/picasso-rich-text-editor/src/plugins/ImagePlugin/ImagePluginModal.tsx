@@ -122,12 +122,7 @@ const ImagePluginModal = ({ isOpen, onClose }: Props) => {
         </Form.Field>
       </Modal.Content>
       <Modal.Actions>
-        <Button
-          data-testid='cancel'
-          variant='primary'
-          disabled={disabled}
-          onClick={handleConfirm}
-        >
+        <Button variant='primary' disabled={disabled} onClick={handleConfirm}>
           Confirm
         </Button>
       </Modal.Actions>
