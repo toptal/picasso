@@ -70,8 +70,8 @@ const setSelectValue = (
   select: Cypress.Chainable<JQuery<HTMLButtonElement>>,
   value: string
 ) => {
-  select.realClick()
-  cy.get('span').contains(value).realClick()
+  select.realClick({ scrollBehavior: false })
+  cy.get('li').contains(value).realClick({ scrollBehavior: false })
 }
 
 const component = 'RichTextEditor'
@@ -360,8 +360,8 @@ describe('RichTextEditor', () => {
     })
   })
 
-  describe.only('when we delete inline formatted word', () => {
-    it('updates the toolbar state correctly', () => {
+  describe('when we delete inline formatted word', () => {
+    it('keeps the formatting enabled', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
 
@@ -372,12 +372,12 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('b')
       buttonShouldBeActive(cy.get('@boldButton'))
       cy.get('@editor').type('{backspace}')
-      buttonShouldNotBeActive(cy.get('@boldButton'))
+      buttonShouldBeActive(cy.get('@boldButton'))
     })
   })
 
-  describe.only('when we delete inline formatted word in the middle of sentense', () => {
-    it('updates the toolbar state correctly', () => {
+  describe('when we delete inline formatted word in the middle of sentence', () => {
+    it('keeps the formatting enabled', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
 
@@ -389,7 +389,7 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('b')
       buttonShouldBeActive(cy.get('@boldButton'))
       cy.get('@editor').type('{backspace}')
-      buttonShouldNotBeActive(cy.get('@boldButton'))
+      buttonShouldBeActive(cy.get('@boldButton'))
     })
   })
 
@@ -419,7 +419,7 @@ describe('RichTextEditor', () => {
   })
 
   describe('toolbar', () => {
-    it.only('disables bold and italic when header format is active', () => {
+    it('disables bold and italic when header format is active', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
 
