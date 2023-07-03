@@ -12,4 +12,4 @@ export type {
 } from '../LexicalEditor'
 
 // @todo: remove this when we remove the old editor
-export type { CustomEmojiGroup, CustomEmoji } from '../QuillEditor'
+export type { CustomEmojiGroup, CustomEmoji } from '../LexicalEditor'
