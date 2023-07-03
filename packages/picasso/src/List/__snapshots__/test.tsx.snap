@@ -6,7 +6,7 @@ exports[`List renders ordered list 1`] = `
     class="Picasso-root"
   >
     <ol
-      class="PicassoList-root PicassoList-firstLevel"
+      class="PicassoList-root PicassoList-numeral PicassoList-firstLevel"
       data-testid="ordered-list"
     >
       <li
