@@ -11,9 +11,9 @@ export const hastSanitizeSchema: Schema = {
     li: ['ol', 'ul'],
   },
   attributes: {
-    '*': [],
     a: ['href'],
-    img: ['src', 'data-src', 'data-emoji-name', 'class'],
+    img: ['src', 'data*', 'class'],
+    '*': [],
   },
   tagNames: ['h3', 'p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'img'],
   strip: ['script'],
