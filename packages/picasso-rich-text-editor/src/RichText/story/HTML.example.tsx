@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Grid } from '@toptal/picasso'
 import { RichText, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
+import type { CustomEmojiGroup } from '@toptal/picasso-rich-text-editor/QuillEditor'
 
 import type { ASTType } from '../types'
 
@@ -15,7 +16,8 @@ const Example = () => {
           defaultValue={defaultValue}
           onChange={setHtml}
           id='editor'
-          plugins={['link']}
+          plugins={['link', 'emoji']}
+          customEmojis={customEmojis}
         />
       </Grid.Item>
       <Grid.Item sm={12} lg={6}>
@@ -24,6 +26,25 @@ const Example = () => {
     </Grid>
   )
 }
+
+const customEmojis = [
+  {
+    id: 'talent-community',
+    name: 'Talent Community',
+    emojis: [
+      {
+        id: 'talent-community',
+        name: 'Talent Community',
+        keywords: ['Toptal', 'Talent Community', 'Community'],
+        skins: [
+          {
+            src: 'https://emoji.slack-edge.com/T01HSMSV622/talent-community/3937b2735bdea8c3.png',
+          },
+        ],
+      },
+    ],
+  },
+] as CustomEmojiGroup[]
 
 const defaultValue: ASTType = {
   type: 'root',
@@ -39,16 +60,43 @@ const defaultValue: ASTType = {
       tagName: 'p',
       properties: {},
       children: [
+        { type: 'text', value: 'We’re looking for ' },
         {
-          type: 'text',
-          value:
-            'We’re looking for hardworking, self-starting Designers for our ',
+          type: 'element',
+          tagName: 'em',
+          properties: {},
+          children: [
+            {
+              type: 'element',
+              tagName: 'strong',
+              properties: {},
+              children: [{ type: 'text', value: 'hardworking' }],
+            },
+          ],
+        },
+        { type: 'text', value: ', self-starting ' },
+        {
+          type: 'element',
+          tagName: 'em',
+          properties: {},
+          children: [{ type: 'text', value: 'Designers ' }],
+        },
+        { type: 'text', value: 'for our ' },
+        {
+          type: 'element',
+          tagName: 'img',
+          properties: {
+            src: customEmojis[0].emojis[0].skins[0].src,
+            'data-src': customEmojis[0].emojis[0].skins[0].src,
+            'data-emoji-name': customEmojis[0].emojis[0].id,
+          },
+          children: [],
         },
         {
           type: 'element',
           tagName: 'strong',
           properties: {},
-          children: [{ type: 'text', value: 'Product Design' }],
+          children: [{ type: 'text', value: ' Product Design' }],
         },
         {
           type: 'text',
@@ -57,9 +105,10 @@ const defaultValue: ASTType = {
         {
           type: 'element',
           tagName: 'a',
-          children: [{ type: 'text', value: 'Toptal' }],
           properties: { href: 'https://toptal.com' },
+          children: [{ type: 'text', value: 'Toptal' }],
         },
+        { type: 'text', value: ' 💪' },
       ],
     },
     {
@@ -120,7 +169,6 @@ const defaultValue: ASTType = {
       properties: {},
       children: [{ type: 'text', value: 'Requirements' }],
     },
-
     {
       type: 'element',
       tagName: 'ul',
