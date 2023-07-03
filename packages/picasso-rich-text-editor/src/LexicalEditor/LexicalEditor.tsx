@@ -183,7 +183,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [onChange]
   )
 
-  const { isFocused, handleFocus, handleBlur } = useOnFocus({
+  const { focused, handleFocus, handleBlur } = useOnFocus({
     onFocus,
     onBlur,
     internalRefs: [toolbarRef],
@@ -192,12 +192,12 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   return (
     <LexicalComposer initialConfig={editorConfig}>
       <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1}>
-        <RTEPluginContextProvider disabled={disabled} isFocused={isFocused}>
+        <RTEPluginContextProvider disabled={disabled} focused={focused}>
           <ToolbarPlugin
-            disabled={disabled || !isFocused}
+            disabled={disabled || !focused}
             toolbarRef={toolbarRef}
             // remount Toolbar when disabled
-            key={`${disabled || !isFocused}`}
+            key={`${disabled || !focused}`}
             customEmojis={customEmojis}
             plugins={plugins}
             testIds={testIds}
