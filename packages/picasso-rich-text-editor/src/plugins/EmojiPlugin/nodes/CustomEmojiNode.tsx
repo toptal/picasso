@@ -7,7 +7,7 @@ import type {
   EditorConfig,
   LexicalNode,
   NodeKey,
-  SerializedElementNode,
+  SerializedLexicalNode,
   Spread,
 } from 'lexical'
 
@@ -21,7 +21,7 @@ type SerializedCustomEmojiNode = Spread<
     src: string
     id: string
   },
-  SerializedElementNode
+  SerializedLexicalNode
 >
 
 const convertImageElement = (domNode: Node): null | DOMConversionOutput => {
@@ -114,11 +114,11 @@ export class CustomEmojiNode extends DecoratorNode<JSX.Element> {
       type: 'custom-emoji',
       src: this.src,
       id: this.id,
-      children: [],
-      direction: this.__direction,
-      format: '',
-      indent: this.__indent,
     }
+  }
+
+  isInline() {
+    return true
   }
 
   decorate() {
