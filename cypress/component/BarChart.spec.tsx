@@ -3,7 +3,13 @@ import React from 'react'
 import { Container, Paper, Typography } from '@toptal/picasso'
 import { BarChart } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
+import BarChartIndicator from '@toptal/picasso-charts/BarChartIndicator'
+import type { BarOptions } from '@toptal/picasso-charts/types'
 
+const INDICATORS: any = {
+  Google: { color: palette.blue.light, label: 'A' },
+  Amazon: { color: palette.purple.main, label: 'B' },
+}
 const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length > 0) {
     const { infected, recovered } = payload[0].payload
@@ -93,6 +99,32 @@ describe('BarChart', () => {
 
     hoverOverBar('Milan')
     assertCustomTooltipContent('Infected: 3000Recovered: 1398')
+  })
+
+  it('renders custom chart with customized indicators', () => {
+    cy.mount(
+      <TestBarChart
+        renderBarIndicators={({ dataKey }: BarOptions) => {
+          const indicator = INDICATORS[dataKey]
+
+          if (indicator) {
+            return (
+              <BarChartIndicator
+                label={indicator.label}
+                color={indicator.color}
+              />
+            )
+          }
+
+          return <></>
+        }}
+      />
+    )
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-chart/custom-indicators',
+    })
   })
 
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
