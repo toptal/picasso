@@ -14,7 +14,7 @@ export default ({ palette }: Theme) =>
       position: 'relative',
       pointerEvents: 'unset',
 
-      '&:not(:last-child)::after': {
+      '&:not(:last-child):not(:empty)::after': {
         content: '""',
         height: '1em',
         width: '1px',
