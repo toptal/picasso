@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Grid } from '@toptal/picasso'
 import { RichText, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
-import type { CustomEmojiGroup } from '@toptal/picasso-rich-text-editor/QuillEditor'
+import type { CustomEmojiGroup } from '@toptal/picasso-rich-text-editor/RichTextEditor'
 
 import type { ASTType } from '../types'
 
