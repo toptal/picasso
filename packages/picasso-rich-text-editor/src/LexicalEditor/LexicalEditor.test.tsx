@@ -27,6 +27,7 @@ jest.mock('../plugins', () => ({
   TextLengthPlugin: jest.fn(),
   HeadingsReplacementPlugin: jest.fn(),
   LinkPlugin: jest.fn(),
+  ImagePlugin: jest.fn(),
 }))
 
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
