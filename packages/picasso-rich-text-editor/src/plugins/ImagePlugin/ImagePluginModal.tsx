@@ -97,7 +97,7 @@ const ImagePluginModal = ({ isOpen, onClose }: Props) => {
     onClose()
   }
 
-  const disabled = !files.length || !alt
+  const disabled = !files.length
 
   return (
     <Modal onClose={onClose} open={isOpen} size='small'>
