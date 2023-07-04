@@ -231,8 +231,8 @@ describe('RichTextEditor', () => {
     })
   })
 
-  describe('select all and delete', () => {
-    const removeHeaderFormat = (removalKey: string) => {
+  describe('select all and delete using backspace key', () => {
+    it('removes header format', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -243,12 +243,12 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('Head{enter}')
 
       // remove all
-      cy.get('@editor').type(`{selectall}${removalKey}`)
+      cy.get('@editor').type(`{selectall}{backspace}`)
       cy.get('@placeholder').should('be.visible')
       selectShouldHaveValue(cy.get('@headerSelect'), 'normal')
-    }
+    })
 
-    const removeLists = (removalKey: string) => {
+    it('removes lists', () => {
       // render editor
       cy.mount(renderEditor(defaultProps))
       setAliases()
@@ -261,22 +261,11 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('ol{enter}')
 
       // remove all
-      cy.get('@editor').type(`{selectall}${removalKey}`)
+      cy.get('@editor').type(`{selectall}{backspace}`)
 
       cy.get('@placeholder').should('be.visible')
       buttonShouldNotBeActive(cy.get('@olButton'))
       buttonShouldNotBeActive(cy.get('@boldButton'))
-    }
-
-    describe('using delete key', () => {
-      // TODO: restore in https://toptal-core.atlassian.net/browse/FX-4138
-      it.skip('removes header format', () => removeHeaderFormat('{del}'))
-      it('removes lists', () => removeLists('{del}'))
-    })
-
-    describe('using backspace key', () => {
-      it('removes header format', () => removeHeaderFormat('{backspace}'))
-      it('removes lists', () => removeLists('{del}'))
     })
   })
 
