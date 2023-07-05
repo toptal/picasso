@@ -124,7 +124,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     const classes = useStyles()
     const wrapperRef = useRef<HTMLDivElement | null>(null)
 
-    // @todo I think it should be removed
     usePropDeprecationWarning({
       props,
       name: 'error',
