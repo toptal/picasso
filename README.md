@@ -57,7 +57,7 @@ To add a new icon to `@toptal/picasso` or pictogram to `@toptal/picasso-pictogra
 
 1. Prepare your SVG:
    - Make sure that it has `viewBox` attribute specified
-   - Make sure that `viewBox` size is `0 0 16 16` for icon and `0 0 64 64` for pictogram (be careful this isn't just a simple value set!)
+   - Make sure that `viewBox` sizes are `0 0 16 16` and `0 0 24 24` for icon (there should always be two icon variants) and `0 0 64 64` for pictogram (be careful this isn't just a simple value set!)
    - Make sure all paths are expanded and strokes are not used
 2. Add your SVG file(s) to the Picasso project:
    ```bash
