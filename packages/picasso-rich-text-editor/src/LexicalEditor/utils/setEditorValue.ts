@@ -13,7 +13,7 @@ import { getDomValue } from './getDomValue'
 export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
   const root = $getRoot()
 
-  if (value) {
+  if (value && Object.keys(value).length > 0) {
     const domValue = getDomValue(value)
     const lexicalValueNodes = $generateNodesFromDOM(editor, domValue)
 
