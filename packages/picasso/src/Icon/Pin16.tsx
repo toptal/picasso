@@ -1,8 +1,7 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -33,7 +32,6 @@ const SvgPin16 = forwardRef(function SvgPin16(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -51,6 +49,8 @@ const SvgPin16 = forwardRef(function SvgPin16(
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M8 16C4 11.542 2 8.21 2 6a6 6 0 1 1 12 0c0 2.21-2 5.542-6 10ZM3 6c0 1.754 1.657 4.633 5 8.489 3.343-3.856 5-6.735 5-8.489A5 5 0 0 0 3 6Zm5 2a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM7 6a1 1 0 1 0 2 0 1 1 0 0 0-2 0Z' />
     </svg>

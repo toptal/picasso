@@ -1,12 +1,11 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
-const BASE_SIZE = 24
+const BASE_SIZE = 16
 
 type ScaleType = 1 | 2 | 3 | 4
 export interface Props extends StandardProps {
@@ -33,7 +32,6 @@ const SvgUnavailable24 = forwardRef(function SvgUnavailable24(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -46,11 +44,13 @@ const SvgUnavailable24 = forwardRef(function SvgUnavailable24(
 
   return (
     <svg
-      viewBox='0 0 24 24'
+      viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1Zm7.415 4.29L5.291 19.416A9.963 9.963 0 0 0 12 22c5.523 0 10-4.477 10-10a9.963 9.963 0 0 0-2.585-6.71ZM12 2C6.477 2 2 6.477 2 12c0 2.582.978 4.935 2.585 6.71L18.709 4.584A9.963 9.963 0 0 0 12 2Z' />
     </svg>

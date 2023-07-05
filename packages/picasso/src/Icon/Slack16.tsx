@@ -1,8 +1,7 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -33,7 +32,6 @@ const SvgSlack16 = forwardRef(function SvgSlack16(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -51,6 +49,8 @@ const SvgSlack16 = forwardRef(function SvgSlack16(
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M3.361 10.11c0 .926-.755 1.681-1.68 1.681-.925 0-1.681-.755-1.681-1.68C0 9.186.756 8.43 1.68 8.43h1.681v1.68Zm.848 0c0-.924.755-1.68 1.68-1.68.925 0 1.681.756 1.681 1.68v4.21c0 .924-.756 1.68-1.68 1.68-.926 0-1.681-.756-1.681-1.68v-4.21Zm1.68-6.749c-.925 0-1.68-.755-1.68-1.68C4.209.756 4.964 0 5.889 0 6.814 0 7.57.756 7.57 1.68v1.681H5.89Zm0 .848c.925 0 1.681.755 1.681 1.68 0 .925-.756 1.681-1.68 1.681H1.68C.757 7.57 0 6.814 0 5.89c0-.926.756-1.681 1.68-1.681h4.21Zm6.75 1.68c0-.925.755-1.68 1.68-1.68.925 0 1.681.755 1.681 1.68 0 .925-.756 1.681-1.68 1.681h-1.681V5.89Zm-.848 0c0 .925-.755 1.681-1.68 1.681-.925 0-1.681-.756-1.681-1.68V1.68C8.43.757 9.186 0 10.11 0c.926 0 1.681.756 1.681 1.68v4.21Zm-1.68 6.75c.925 0 1.68.755 1.68 1.68 0 .925-.755 1.681-1.68 1.681-.925 0-1.681-.756-1.681-1.68v-1.681h1.68Zm0-.848c-.925 0-1.681-.755-1.681-1.68 0-.925.756-1.681 1.68-1.681h4.21c.924 0 1.68.756 1.68 1.68 0 .926-.756 1.681-1.68 1.681h-4.21Z' />
     </svg>

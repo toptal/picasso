@@ -1,8 +1,7 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -33,7 +32,6 @@ const SvgHeartbeat16 = forwardRef(function SvgHeartbeat16(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -51,6 +49,8 @@ const SvgHeartbeat16 = forwardRef(function SvgHeartbeat16(
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M4.589 8 6 .95l2.025 10.127 1.946-8.75L11.39 8H16v1h-5.388l-.583-2.325-2.055 9.246L6 6.05 5.41 9H0V8z' />
     </svg>

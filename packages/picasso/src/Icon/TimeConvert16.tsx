@@ -1,8 +1,7 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -33,7 +32,6 @@ const SvgTimeConvert16 = forwardRef(function SvgTimeConvert16(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -51,6 +49,8 @@ const SvgTimeConvert16 = forwardRef(function SvgTimeConvert16(
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M16 12a4 4 0 0 1-7 2.647V16H8v-3h3v1H9.764a3 3 0 0 0 5.23-1.825L15 12h1zM7.5 0a7.5 7.5 0 0 1 7.484 7H13.98A6.5 6.5 0 1 0 7 13.981v1.003A7.5 7.5 0 0 1 7.5 0zM16 8v3h-3v-1h1.236a3 3 0 0 0-5.231 1.824L9 12H8a4 4 0 0 1 7.002-2.645L15 8h1zM8 2v6H4V7h3V2h1z' />
     </svg>

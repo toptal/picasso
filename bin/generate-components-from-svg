@@ -14,11 +14,20 @@ fi
 
 COMPONENTS_FULL_PATH="$BASE_PATH/$COMPONENTS_PATH"
 
-echo "Converting svg into React components ..."
-svgr \
+echo "Converting svg into React components..."
+npx svgr \
 --out-dir $COMPONENTS_PATH \
 --ext tsx \
 --typescript \
+--icon 16 \
+--template $COMPONENTS_PATH/_generatorTemplate.js \
+--expand-props none -- $COMPONENTS_PATH/svg
+
+npx svgr \
+--out-dir $COMPONENTS_PATH \
+--ext tsx \
+--typescript \
+--icon 24 \
 --template $COMPONENTS_PATH/_generatorTemplate.js \
 --expand-props none -- $COMPONENTS_PATH/svg
 

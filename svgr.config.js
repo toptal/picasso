@@ -87,6 +87,8 @@ const removeAttribute = attributeName => attributes => {
 const cleanupAttributes = config => node => {
   updateAttributes(node, removeAttribute('id'))
 
+  console.log('@@@', config)
+
   if (config.removeFill !== false) {
     updateAttributes(node, removeAttribute('fill'))
   } else {
@@ -144,7 +146,7 @@ module.exports = {
         name: 'preset-default',
         params: {
           overrides: {
-            removeViewBox: false,
+            removeViewBox: false
           },
         },
       },

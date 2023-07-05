@@ -1,8 +1,7 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -33,7 +32,6 @@ const SvgPortfolioDesigner16 = forwardRef(function SvgPortfolioDesigner16(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -51,6 +49,8 @@ const SvgPortfolioDesigner16 = forwardRef(function SvgPortfolioDesigner16(
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M0 0h7v7H0V0Zm1 1v5h5V1H1Zm8-1h7v7H9V0Zm1 1v5h5V1h-5ZM0 9h7v7H0V9Zm1 6h5v-5H1v5Zm8-6h7v7H9V9Zm1 6h5v-5h-5v5Z' />
     </svg>

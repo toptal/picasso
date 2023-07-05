@@ -32,20 +32,21 @@ const decorateWithProp = (svgElement, propName, propValue) => {
 
 const BASE_SIZES = [16, 24, 32]
 
-const getBaseSize = (componentName = '') => {
-  for (const size of BASE_SIZES) {
-    if (componentName.includes(size)) {
-      return Number(size)
-    }
-  }
+// const getBaseSize = (componentName = '') => {
+//   for (const size of BASE_SIZES) {
+//     if (componentName.includes(size)) {
+//       return Number(size)
+//     }
+//   }
 
-  return 16
-}
+//   return 16
+// }
 
-const iconTemplate = ({ componentName, jsx }, { tpl }) => {
-  const displayName = `'${componentName}'`
-  const baseSize = `${getBaseSize(displayName)}`
-  const styleName = `Picasso${componentName}`
+const iconTemplate = ({ componentName, jsx }, { tpl, options: { icon } }) => {
+  const baseSize = `${icon}`
+  const fullComponentName = `'${componentName}${icon}'`
+  const displayName = `'${fullComponentName}'`
+  const styleName = `Picasso${fullComponentName}`
 
   const svgElement = jsx.openingElement
 
@@ -58,6 +59,23 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   // add `data-testid={testId} to svg root tag
   decorateWithProp(svgElement, 'data-testid', 'testId')
 
+  //console.log('@@@', svgElement.attributes)
+
+
+  for (let index = 0; index < svgElement.attributes.length; index++) {
+    const attribute = svgElement.attributes[index]
+    if (attribute.name.name === 'viewBox') {
+      svgElement.attributes[index] = {
+        ...svgElement.attributes[index],
+        value: {
+          ...svgElement.attributes[index].value,
+          value: `0 0 ${icon} ${icon}`
+        }
+      }
+    }
+  }
+
+  //throw new Error('aaa')
   return tpl`
     import React, { forwardRef, Ref } from 'react'
     import cx from 'classnames'
@@ -81,7 +99,7 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
     const useStyles = makeStyles(styles, {
       name: '${styleName}'
     })
-    const ${componentName} = forwardRef(function ${componentName}(
+    const ${fullComponentName} = forwardRef(function ${fullComponentName}(
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {

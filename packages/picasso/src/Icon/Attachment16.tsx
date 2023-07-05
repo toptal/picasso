@@ -1,8 +1,7 @@
-import type { Ref } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Ref } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
-import type { StandardProps } from '@toptal/picasso-shared'
+import { StandardProps } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
@@ -33,7 +32,6 @@ const SvgAttachment16 = forwardRef(function SvgAttachment16(
   const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
-
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
   }
@@ -52,6 +50,8 @@ const SvgAttachment16 = forwardRef(function SvgAttachment16(
       style={svgStyle}
       ref={ref}
       data-testid={testId}
+      width={16}
+      height={16}
     >
       <path d='M8.296 5.333a1.676 1.676 0 0 1 2.456 2.279l-.085.092-3.26 3.259-.592-.593 3.26-3.259a.838.838 0 0 0-1.113-1.25l-.073.065-4.445 4.444a2.095 2.095 0 0 0 2.863 3.058l.1-.095 5.037-5.037a3.352 3.352 0 0 0-4.62-4.856l-.12.116-3.852 3.851-.593-.592 3.852-3.852a4.19 4.19 0 0 1 6.052 5.795l-.126.13L8 13.927a2.933 2.933 0 0 1-4.259-4.031l.11-.117 4.445-4.445Z' />
     </svg>
