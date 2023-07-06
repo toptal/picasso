@@ -18,6 +18,7 @@ import { noop } from '@toptal/picasso/utils'
 import type { LexicalEditor as LexicalEditorType } from 'lexical'
 import { $getRoot } from 'lexical'
 
+import { ImageNode } from '../plugins/ImagePlugin/nodes'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import { RTEPluginContextProvider } from '../plugins/api'
 import { CustomEmojiNode } from '../plugins/EmojiPlugin/nodes/CustomEmojiNode'
@@ -146,6 +147,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       },
       namespace: 'editor',
       nodes: [
+        ImageNode,
         CustomEmojiNode,
         ListNode,
         ListItemNode,

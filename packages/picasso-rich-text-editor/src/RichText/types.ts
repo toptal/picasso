@@ -36,6 +36,7 @@ type CustomImageType = {
   tagName: 'img'
   properties: {
     src: string
+    alt?: string
   }
 }
 

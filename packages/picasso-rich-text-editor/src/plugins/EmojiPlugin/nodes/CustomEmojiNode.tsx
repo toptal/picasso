@@ -136,6 +136,5 @@ export const $createCustomEmojiNode = ({
   src,
   id,
 }: CustomEmojiPayload): CustomEmojiNode => {
-  // return new CustomEmojiNode(src, id)
   return $applyNodeReplacement(new CustomEmojiNode(src, id))
 }

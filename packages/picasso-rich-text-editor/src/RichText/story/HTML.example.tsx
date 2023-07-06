@@ -60,6 +60,21 @@ const defaultValue: ASTType = {
       tagName: 'p',
       properties: {},
       children: [
+        {
+          type: 'element',
+          tagName: 'img',
+          properties: {
+            src: './jacqueline/128x88.jpg',
+            alt: 'Jacqueline',
+          },
+        },
+      ],
+    },
+    {
+      type: 'element',
+      tagName: 'p',
+      properties: {},
+      children: [
         { type: 'text', value: 'We’re looking for ' },
         {
           type: 'element',
