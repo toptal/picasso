@@ -147,14 +147,12 @@ describe('TagSelector', () => {
         variant: 'default/after-clicked-combobox',
       })
 
-    cy.get('@combobox-input')
-      .type('{downArrow}')
-      .type('{enter}')
-      .get('body')
-      .happoScreenshot({
-        component,
-        variant: 'default/after-selected-item',
-      })
+    cy.get('@combobox-input').type('{downArrow}')
+    cy.get('@combobox-input').type('{enter}')
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-selected-item',
+    })
 
     cy.get('[aria-label="delete icon"]')
       .realClick()
@@ -164,26 +162,22 @@ describe('TagSelector', () => {
         variant: 'default/after-deleted-item',
       })
 
-    cy.get('@combobox-input')
-      .type('not existing item text')
-      .get('body')
-      .happoScreenshot({
-        component,
-        variant: 'default/after-forced-no-result',
-      })
+    cy.get('@combobox-input').type('not existing item text')
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'default/after-forced-no-result',
+    })
   })
 
   it('renders other option when no result found', () => {
     cy.mount(<TagSelectorExample showOtherOption />)
 
     cy.getByRole('combobox').as('combobox-input').realClick()
-    cy.get('@combobox-input')
-      .type('not existing item text')
-      .get('body')
-      .happoScreenshot({
-        component,
-        variant: 'other-option/after-forced-other-option',
-      })
+    cy.get('@combobox-input').type('not existing item text')
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'other-option/after-forced-other-option',
+    })
 
     cy.getByRole('option').realClick().get('body').happoScreenshot({
       component,
@@ -216,10 +210,9 @@ describe('TagSelector', () => {
         variant: 'custom-label-custom-option/after-clicked-combobox',
       })
 
-    cy.get('@combobox-input')
-      .type('{downArrow}')
-      .type('{downArrow}')
-      .type('{enter}')
+    cy.get('@combobox-input').type('{downArrow}')
+    cy.get('@combobox-input').type('{downArrow}')
+    cy.get('@combobox-input').type('{enter}')
 
     cy.get('a').hoverAndTakeHappoScreenshot({
       component,

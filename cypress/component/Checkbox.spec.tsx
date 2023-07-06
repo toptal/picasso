@@ -31,11 +31,13 @@ describe('Checkbox', () => {
     })
 
     // our data-testid's are not being passed to the input
-    cy.get('input').first().focus().get('body').happoScreenshot({
+    cy.get('input').first().focus()
+    cy.get('body').happoScreenshot({
       component,
       variant: 'default-unchecked/after-focused',
     })
-    cy.get('input').last().focus().get('body').happoScreenshot({
+    cy.get('input').last().focus()
+    cy.get('body').happoScreenshot({
       component,
       variant: 'default-checked/after-focused',
     })
