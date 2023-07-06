@@ -1,5 +1,13 @@
 # @toptal/picasso-rich-text-editor
 
+## 2.1.0
+
+### Minor Changes
+
+- [#3607](https://github.com/toptal/picasso/pull/3607) [`e122dee5d`](https://github.com/toptal/picasso/commit/e122dee5d7ec036d3c24234075ac339ea16d469b) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- replace Quill with Lexical editor (no existing API changes)
+  - add new plugin API
+
 ## 2.0.1
 
 ### Patch Changes
