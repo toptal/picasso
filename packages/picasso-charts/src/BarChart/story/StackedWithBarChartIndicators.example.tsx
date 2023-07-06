@@ -4,24 +4,18 @@ import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
   {
-    name: 'Apple',
-    value: { 'engineers hired': 500 },
-  },
-  {
     name: 'Google',
-    value: { 'engineers hired': 700, isEnterprise: true },
-  },
-  {
-    name: 'Facebook',
-    value: { 'engineers hired': 600 },
+    value: {
+      breakAmount: 2000,
+      spendAmount: 1600,
+    },
   },
   {
     name: 'Amazon',
-    value: { 'engineers hired': 400 },
-  },
-  {
-    name: 'Toptal',
-    value: { 'engineers hired': 1000 },
+    value: {
+      breakAmount: 1752,
+      spendAmount: 1423,
+    },
   },
 ]
 
@@ -30,17 +24,23 @@ const INDICATORS: any = {
   Amazon: { color: palette.purple.main, label: 'E' },
 }
 
+const COLORS_MAPPING: Record<string, string> = {
+  breakAmount: palette.blue.main,
+  spendAmount: palette.grey.dark,
+}
+
 const Example = () => (
   <div style={{ width: 720 }}>
     <BarChart
       width='100%'
       data={CHART_DATA as any}
-      getBarColor={() => palette.blue.main}
+      stackedBars={[['breakAmount', 'spendAmount']]}
+      getBarColor={({ dataKey }) => COLORS_MAPPING[dataKey]}
       renderBarIndicators={({ dataKey, dataItem }) => {
         const indicator = INDICATORS[dataKey]
-        const isEnterprise = dataItem?.value?.isEnterprise
+        const valueKey = dataItem?.tooltipPayload?.[0]?.dataKey
 
-        if (indicator && isEnterprise) {
+        if (indicator && valueKey === 'breakAmount') {
           return (
             <BarChartIndicator
               label={indicator.label}

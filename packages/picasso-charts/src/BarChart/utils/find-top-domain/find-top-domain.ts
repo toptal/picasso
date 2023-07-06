@@ -1,4 +1,4 @@
-type DataItem = { [key: string]: number }
+type DataItem = { [key: string]: any }
 
 const getDataItemMaxValue = (dataItem: DataItem) =>
   Math.max(...Object.values(dataItem))
