@@ -1,5 +1,15 @@
 # Change Log
 
+## 36.1.0
+
+### Minor Changes
+
+- [#3607](https://github.com/toptal/picasso/pull/3607) [`bb53892da`](https://github.com/toptal/picasso/commit/bb53892da329a8de9e300ffe53063b81971a4d17) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### List
+
+- add appropriate list item types for nested lists
+
 ## 36.0.0
 
 ### Major Changes
