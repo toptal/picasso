@@ -37,3 +37,4 @@ page
     title: 'Emojis',
     takeScreenshot: false,
   })
+  .addExample('RichTextEditor/story/ImageUpload.example.tsx', 'Image upload')
