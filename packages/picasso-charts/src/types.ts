@@ -82,7 +82,15 @@ export type BarIndicatorConfig = {
   label: string
 }
 
+export type BarChartDataItem<K extends string | number | symbol> = {
+  name: string
+  value: {
+    [key in K]: string | number | symbol
+  }
+}
+
 export type BarOptions = {
   dataKey: string
+  dataItem?: any
   index?: number
 }

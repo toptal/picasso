@@ -53,6 +53,11 @@ page
       'Bars can be stacked on top of each other by providing `stackedBars`',
     takeScreenshot: false,
   })
+  .addExample('BarChart/story/StackedWithBarChartIndicators.example.tsx', {
+    title: 'Stacked with bar chart indicators',
+    description: 'Bars can have a customized indicator.',
+    takeScreenshot: false,
+  })
   .addExample('BarChart/story/HideBarLabel.example.tsx', {
     title: 'Hide bar label',
     description:
