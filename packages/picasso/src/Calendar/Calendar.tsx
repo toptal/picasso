@@ -50,7 +50,7 @@ export interface Props
   range?: boolean
   /** Selected date or date range */
   value?: DateOrDateRangeType
-  /** Active (visible) month of the calendar that required for manual entering of a single date */
+  /** Active (visible) month of the calendar that is required for manual entering of a single date */
   activeMonth?: Date
   /** Custom root renderer */
   renderRoot?: RenderRoot
