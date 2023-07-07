@@ -1,12 +1,10 @@
 import React from 'react'
 import type { ReactNode } from 'react'
 
-import type { BarOptions } from '../types'
-
 const INDICATOR_SIZE = 16
 
 export type Props = {
-  renderIndicator: (barOption: BarOptions) => ReactNode
+  renderIndicator: (params: any) => ReactNode
   formattedGraphicalItems?: any
 }
 
@@ -19,8 +17,13 @@ export const BarChartIndicators = ({
 
     return series.map((item: any, index: number) => {
       const dataKey = item.name
+      const dataItem = item
 
-      const barIndicatorComponent = renderIndicator({ dataKey, index })
+      const barIndicatorComponent = renderIndicator({
+        dataKey,
+        index,
+        dataItem,
+      })
 
       if (!barIndicatorComponent) {
         return

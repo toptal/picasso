@@ -4,7 +4,6 @@ import { Container, Paper, Typography } from '@toptal/picasso'
 import { BarChart } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
 import BarChartIndicator from '@toptal/picasso-charts/BarChartIndicator'
-import type { BarOptions } from '@toptal/picasso-charts/types'
 
 const INDICATORS: any = {
   Google: { color: palette.blue.light, label: 'A' },
@@ -104,7 +103,7 @@ describe('BarChart', () => {
   it('renders custom chart with customized indicators', () => {
     cy.mount(
       <TestBarChart
-        renderBarIndicators={({ dataKey }: BarOptions) => {
+        renderBarIndicators={({ dataKey }: any) => {
           const indicator = INDICATORS[dataKey]
 
           if (indicator) {
