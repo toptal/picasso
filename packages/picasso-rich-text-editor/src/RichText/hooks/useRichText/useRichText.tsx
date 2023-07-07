@@ -9,7 +9,7 @@ import Link from '@toptal/picasso/Link'
 
 import type { ASTType } from '../../types'
 import { Emoji, Image } from '../../components'
-import { isCustomEmojiComponent } from '../../../utils'
+import { isCustomEmoji } from '../../../utils'
 
 type Props = {
   children?: React.ReactNode
@@ -45,7 +45,7 @@ const Ul = ({ children }: Props) => <List variant='unordered'>{children}</List>
 const Ol = ({ children }: Props) => <List variant='ordered'>{children}</List>
 const A = ({ children, ...props }: Props) => <Link {...props}>{children}</Link>
 const Img = ({ ...props }: Props) =>
-  isCustomEmojiComponent(props) ? <Emoji {...props} /> : <Image {...props} />
+  isCustomEmoji(props) ? <Emoji {...props} /> : <Image {...props} />
 
 const componentMap: Record<string, FC> = {
   p: P,

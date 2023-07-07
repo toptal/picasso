@@ -12,7 +12,7 @@ import type {
 import { $applyNodeReplacement, DecoratorNode } from 'lexical'
 import { Image } from '@toptal/picasso'
 
-import isCustomEmojiDOMNode from '../../../utils/is-custom-emoji-dom-node'
+import { isCustomEmoji } from '../../../utils/'
 
 export interface ImageNodePayload {
   src: string
@@ -103,7 +103,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     return {
       img: (element: HTMLElement) => {
         // Return null to pass the parsing to the custom emoji plugin
-        if (isCustomEmojiDOMNode(element)) {
+        if (isCustomEmoji(element)) {
           return null
         }
 
