@@ -8,10 +8,9 @@ import cx from 'classnames'
 import { Container } from '@toptal/picasso'
 
 import TextEditorButton from '../RichTextEditorButton'
-import type { CustomEmojiGroup, Emoji } from '../LexicalEditor'
+import type { CustomEmojiGroup, Emoji } from '../plugins/EmojiPlugin'
 
 interface Props {
-  richEditorId: string
   customEmojis?: CustomEmojiGroup[]
   onInsertEmoji: (emoji: Emoji) => void
   disabled?: boolean
@@ -46,7 +45,6 @@ const handleEmojiPickerEscBehaviour = (
 }
 
 export const RichTextEditorEmojiPicker = ({
-  richEditorId,
   customEmojis,
   onInsertEmoji,
   disabled,
@@ -100,8 +98,6 @@ export const RichTextEditorEmojiPicker = ({
         )}
       >
         <Picker
-          id={`emoji-picker-${richEditorId}`}
-          key={`emoji-picker-${richEditorId}`}
           data={data}
           custom={customEmojis}
           onEmojiSelect={handleEmojiInsert}

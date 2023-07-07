@@ -1,44 +1,33 @@
-import React, { useEffect, useReducer } from 'react'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
   REMOVE_LIST_COMMAND,
 } from '@lexical/list'
-import type { ChangeEvent } from 'react'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { $createHeadingNode } from '@lexical/rich-text'
+import { $setBlocksType } from '@lexical/selection'
 import {
   $createParagraphNode,
   $getSelection,
   $isRangeSelection,
   FORMAT_TEXT_COMMAND,
 } from 'lexical'
-import { $createHeadingNode } from '@lexical/rich-text'
-import { $setBlocksType } from '@lexical/selection'
+import type { ChangeEvent } from 'react'
+import React, { useEffect, useReducer } from 'react'
 
 import {
   registerLexicalEvents,
   synchronizeToolbarState,
   toolbarStateReducer,
 } from '../LexicalEditor/utils'
-import type {
-  CustomEmojiGroup,
-  EditorPlugin,
-  Emoji,
-} from '../LexicalEditor/types'
-import {
-  INSERT_CUSTOM_EMOJI_COMMAND,
-  INSERT_EMOJI_COMMAND,
-} from '../plugins/EmojiPlugin/commands'
 import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar, {
   ALLOWED_HEADER_TYPE,
 } from '../RichTextEditorToolbar'
 
 type Props = {
-  customEmojis?: CustomEmojiGroup[]
   disabled?: boolean
   toolbarRef: React.RefObject<HTMLDivElement>
-  plugins?: EditorPlugin[]
   testIds?: {
     wrapper?: string
     editor?: string
@@ -53,8 +42,6 @@ type Props = {
 const LexicalEditorToolbarPlugin = ({
   disabled = false,
   toolbarRef,
-  customEmojis,
-  plugins,
   testIds,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
@@ -94,24 +81,6 @@ const LexicalEditorToolbarPlugin = ({
     )
   }
 
-  const handleInsertEmoji = (emoji: Emoji) => {
-    const isNativeEmoji = emoji.native
-    const isCustomEmoji = emoji.src
-
-    if (isNativeEmoji) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      editor.dispatchCommand(INSERT_EMOJI_COMMAND, emoji.native!)
-    }
-
-    if (isCustomEmoji) {
-      editor.dispatchCommand(INSERT_CUSTOM_EMOJI_COMMAND, {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        src: emoji.src!,
-        id: emoji.id,
-      })
-    }
-  }
-
   const handleHeaderClick = ({
     target: { value },
   }: ChangeEvent<{
@@ -138,17 +107,13 @@ const LexicalEditorToolbarPlugin = ({
         list,
         header,
       }}
-      id='toolbar'
       onUnorderedClick={handleUnorderedClick}
       onOrderedClick={handleOrderedClick}
       onBoldClick={handleBoldClick}
       onItalicClick={handleItalicClick}
       onHeaderChange={handleHeaderClick}
       disabled={disabled}
-      onInsertEmoji={handleInsertEmoji}
       ref={toolbarRef}
-      customEmojis={customEmojis}
-      plugins={plugins}
       testIds={testIds}
     />
   )

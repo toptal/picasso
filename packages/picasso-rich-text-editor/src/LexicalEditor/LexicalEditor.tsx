@@ -20,9 +20,7 @@ import { $getRoot } from 'lexical'
 
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
 import { RTEPluginContextProvider } from '../plugins/api'
-import { CustomEmojiNode } from '../plugins/EmojiPlugin/nodes/CustomEmojiNode'
 import {
-  EmojiPlugin,
   ListPlugin,
   TextLengthPlugin,
   HeadingsReplacementPlugin,
@@ -35,11 +33,11 @@ import { useComponentPlugins } from './hooks/useComponentPlugins/useComponentPlu
 import styles from './styles'
 import type {
   ChangeHandler,
-  CustomEmojiGroup,
   EditorPlugin,
   TextLengthChangeHandler,
 } from './types'
 import { cleanupHtmlOutput, createLexicalTheme, setEditorValue } from './utils'
+import type { CustomEmojiGroup } from '../plugins/EmojiPlugin'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'LexicalEditor',
@@ -96,7 +94,7 @@ export type Props = BaseProps & {
 }
 
 const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
-  props,
+  props: Props,
   ref
 ) {
   const {
@@ -133,7 +131,10 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
     [typographyClassNames, classes]
   )
 
-  const { componentPlugins, lexicalNodes } = useComponentPlugins(plugins)
+  const { componentPlugins, lexicalNodes } = useComponentPlugins(
+    plugins,
+    customEmojis
+  )
 
   const editorConfig: InitialConfigType = useMemo(
     () => ({
@@ -144,13 +145,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
         throw error
       },
       namespace: 'editor',
-      nodes: [
-        CustomEmojiNode,
-        ListNode,
-        ListItemNode,
-        HeadingNode,
-        ...lexicalNodes,
-      ],
+      nodes: [ListNode, ListItemNode, HeadingNode, ...lexicalNodes],
       editable: !disabled,
     }),
     [defaultValue, theme, disabled, lexicalNodes]
@@ -198,8 +193,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
             toolbarRef={toolbarRef}
             // remount Toolbar when disabled
             key={`${disabled || !focused}`}
-            customEmojis={customEmojis}
-            plugins={plugins}
             testIds={testIds}
           />
 
@@ -213,7 +206,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           <HeadingsReplacementPlugin />
           <TextLengthPlugin onTextLengthChange={onTextLengthChange} />
           <ListPlugin />
-          <EmojiPlugin />
           <HistoryPlugin />
           {hiddenInputId && (
             <FocusOnLabelClickPlugin hiddenInputId={hiddenInputId} />

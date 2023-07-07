@@ -13,7 +13,6 @@ import {
   LinkPlugin,
 } from '../plugins'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
-import type { CustomEmojiGroup } from './types'
 
 jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
@@ -189,7 +188,7 @@ describe('LexicalEditor', () => {
     it('renders ToolbarPlugin with correct props', () => {
       renderLexicalEditor({
         disabled: true,
-        customEmojis: ['foo' as unknown as CustomEmojiGroup],
+        customEmojis: ['foo' as any],
         plugins: ['link'],
       })
 
