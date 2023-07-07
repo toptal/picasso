@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom'
 import type { LexicalNode, Klass } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 
-import { registerLexicalEvents } from '../LexicalEditor/utils'
+import { registerLexicalEvents } from '../LexicalEditor/utils/registerLexicalEvents'
 
 export const RTEPluginMeta = Symbol('PicassoRTEPluginMeta')
 

@@ -155,8 +155,6 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
-          customEmojis: undefined,
-          plugins: [],
           toolbarRef: {
             current: null,
           },
@@ -173,8 +171,6 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
-          customEmojis: undefined,
-          plugins: [],
           toolbarRef: {
             current: null,
           },
@@ -195,8 +191,6 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
-          customEmojis: ['foo'],
-          plugins: ['link'],
           toolbarRef: {
             current: null,
           },
