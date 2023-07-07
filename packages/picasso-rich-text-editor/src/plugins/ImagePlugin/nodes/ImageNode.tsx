@@ -9,7 +9,7 @@ import type {
   SerializedLexicalNode,
   Spread,
 } from 'lexical'
-import { $applyNodeReplacement, DecoratorNode } from 'lexical'
+import { DecoratorNode } from 'lexical'
 import { Image } from '@toptal/picasso'
 
 import { isCustomEmoji } from '../../../utils/'
@@ -72,7 +72,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
   }
 
   createDOM(config: EditorConfig): HTMLElement {
-    const container = document.createElement('div')
+    const container = document.createElement('span')
 
     const theme = config.theme
     const className = theme.image
@@ -142,5 +142,5 @@ export const $isImageNode = (
 }
 
 export const $createImageNode = ({ src, alt }: ImageNodePayload): ImageNode => {
-  return $applyNodeReplacement(new ImageNode(src, alt))
+  return new ImageNode(src, alt)
 }

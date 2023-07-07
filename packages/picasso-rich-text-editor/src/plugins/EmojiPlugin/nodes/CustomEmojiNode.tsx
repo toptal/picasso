@@ -1,5 +1,5 @@
 import React from 'react'
-import { $applyNodeReplacement, DecoratorNode } from 'lexical'
+import { DecoratorNode } from 'lexical'
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -136,5 +136,5 @@ export const $createCustomEmojiNode = ({
   src,
   id,
 }: CustomEmojiPayload): CustomEmojiNode => {
-  return $applyNodeReplacement(new CustomEmojiNode(src, id))
+  return new CustomEmojiNode(src, id)
 }
