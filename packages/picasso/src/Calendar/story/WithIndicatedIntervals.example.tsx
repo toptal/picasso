@@ -2,7 +2,7 @@ import React from 'react'
 import { Calendar } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 
-const WithTwoMonthsExample = () => {
+const WithIndicatedIntervalsExample = () => {
   return (
     <Calendar
       activeMonth={new Date('2021-07-05')}
@@ -15,4 +15,4 @@ const WithTwoMonthsExample = () => {
   )
 }
 
-export default WithTwoMonthsExample
+export default WithIndicatedIntervalsExample
