@@ -64,7 +64,8 @@ describe('Menu', () => {
     cy.getByTestId('item-b1').click()
     cy.getByTestId('menu-b1').should('be.visible')
     cy.getByTestId('menu-b2').should('not.exist')
-    cy.get('body').click().happoScreenshot({
+    cy.get('body').click()
+    cy.get('body').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
     })
@@ -72,7 +73,8 @@ describe('Menu', () => {
     cy.getByTestId('menu-back').last().click()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').click().happoScreenshot({
+    cy.get('body').click()
+    cy.get('body').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
     })
