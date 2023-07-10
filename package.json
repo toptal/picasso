@@ -10,6 +10,7 @@
     "build:package": "lerna run build:package",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "circularity": "madge --circular packages/*/src",
+    "check:icon-sizes": "node ./bin/check-icon-sizes",
     "generate:component": "davinci-code new component",
     "generate:example": "davinci-code new example",
     "generate:svg-components": "yarn generate:icons && yarn generate:pictograms",
