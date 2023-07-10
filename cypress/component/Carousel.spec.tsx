@@ -117,11 +117,10 @@ describe(component, () => {
           })
 
           // move to last item
-          cy.getByTestId(testIds.next)
-            .click()
-            .click()
-            .click()
-            .should('not.be.disabled')
+          cy.getByTestId(testIds.next).click()
+          cy.getByTestId(testIds.next).click()
+          cy.getByTestId(testIds.next).click()
+          cy.getByTestId(testIds.next).should('not.be.disabled')
 
           cy.get('[data-gslide=4]').should('have.class', 'visible')
 
