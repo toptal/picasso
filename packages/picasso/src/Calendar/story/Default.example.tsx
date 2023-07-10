@@ -3,7 +3,9 @@ import type { DateOrDateRangeType } from '@toptal/picasso'
 import { Calendar } from '@toptal/picasso'
 
 const DefaultExample = () => {
-  const [value, setValue] = useState<DateOrDateRangeType>(new Date())
+  const [value, setValue] = useState<DateOrDateRangeType>(
+    new Date('2021-07-11')
+  )
 
   return <Calendar value={value} onChange={setValue} />
 }
