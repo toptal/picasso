@@ -4,7 +4,7 @@ import { Calendar } from '@toptal/picasso'
 
 const WithSelectableDaysLimitExample = () => {
   const [value, setValue] = useState<DateOrDateRangeType>(
-    new Date('2021-07-11')
+    new Date('2021-07-09')
   )
 
   return (
