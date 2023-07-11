@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import type { OnUploadCallback, UploadedImage } from '../types'
 
-type Props = {
+export type Props = {
   maxSize?: number
   onUpload: OnUploadCallback
 }
