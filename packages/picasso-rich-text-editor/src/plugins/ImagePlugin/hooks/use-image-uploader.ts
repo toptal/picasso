@@ -18,17 +18,14 @@ export const useImageUploader = ({ onUpload, maxSize }: Props) => {
     }
 
     const uploadedFile = event.target.files[0]
-    const invalidFile =
+    const fileSizeIsInvalid =
       (maxSize && uploadedFile.size / 1024 / 1024 > maxSize) || false
 
-    if (invalidFile) {
+    if (fileSizeIsInvalid) {
       setImage({
         file: uploadedFile,
-        uploading: !invalidFile,
-        progress: 0,
-        error: invalidFile
-          ? `File size exceeds the ${maxSize}MB limit.`
-          : undefined,
+        uploading: false,
+        error: `File size exceeds the ${maxSize}MB limit.`,
         url: '',
       })
 
@@ -38,7 +35,6 @@ export const useImageUploader = ({ onUpload, maxSize }: Props) => {
     const uploadedImage = {
       file: uploadedFile,
       uploading: false,
-      progress: 100,
       error: undefined,
       url: '',
     }
