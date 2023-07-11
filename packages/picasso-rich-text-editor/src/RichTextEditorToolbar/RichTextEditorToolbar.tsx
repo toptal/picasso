@@ -1,26 +1,27 @@
-import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import cx from 'classnames'
 import {
   Bold16,
+  Container,
   Italic16,
   ListOrdered16,
   ListUnordered16,
-  Container,
   Select,
 } from '@toptal/picasso'
+import { useMultipleForwardRefs } from '@toptal/picasso/utils'
+import cx from 'classnames'
+import React, { forwardRef } from 'react'
 
-import styles from './styles'
+import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
+import { useToolbarPortalRegister } from '../plugins/api'
 import TextEditorButton from '../RichTextEditorButton'
+import { RichTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
+import styles from './styles'
 import type {
   ButtonHandlerType,
-  SelectOnChangeHandler,
   FormatType,
+  SelectOnChangeHandler,
 } from './types'
-import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
-import { RichTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
-import { useToolbarPortalRegister } from '../plugins/api'
 
 type Props = {
   disabled: boolean
@@ -71,13 +72,19 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 
     const { setToolbarPortalEl } = useToolbarPortalRegister()
 
+    const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
+
     const classes = useStyles(props)
     const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
 
     const allowEmojis = plugins?.includes('emoji')
 
     return (
-      <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
+      <Container
+        id={`${id}toolbar`}
+        ref={toolbarRef}
+        className={classes.toolbar}
+      >
         <Container
           className={cx(classes.group, {
             groupDisabled: disabled,
@@ -129,7 +136,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             data-testid={testIds?.orderedListButton}
           />
         </Container>
-        <Container ref={setToolbarPortalEl} className={classes.group} />
         {allowEmojis && (
           <RichTextEditorEmojiPicker
             richEditorId={id}
