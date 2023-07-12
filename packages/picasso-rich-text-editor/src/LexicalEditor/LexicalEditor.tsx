@@ -26,7 +26,6 @@ import {
   HeadingsReplacementPlugin,
   TriggerInitialOnChangePlugin,
   FocusOnLabelClickPlugin,
-  ImagePlugin,
 } from '../plugins'
 import type { ASTType } from '../RichText'
 import { useOnFocus, useTypographyClasses } from './hooks'
@@ -208,7 +207,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
           <TextLengthPlugin onTextLengthChange={onTextLengthChange} />
           <ListPlugin />
           <HistoryPlugin />
-          <ImagePlugin />
           {hiddenInputId && (
             <FocusOnLabelClickPlugin hiddenInputId={hiddenInputId} />
           )}
