@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react'
 
 import { isRTEPluginElement, RTEPluginMeta } from '../../../plugins/api'
-import { LinkPlugin } from '../../../plugins'
+import { ImagePlugin, LinkPlugin } from '../../../plugins'
 import type { EditorPlugin } from '../..'
 
 export const useComponentPlugins = (plugins: EditorPlugin[]) => {
@@ -9,6 +9,8 @@ export const useComponentPlugins = (plugins: EditorPlugin[]) => {
     switch (plugin) {
       case 'link':
         return <LinkPlugin />
+      case 'image':
+        return <ImagePlugin />
 
       default:
         return plugin

@@ -11,6 +11,8 @@ import type {
   Spread,
 } from 'lexical'
 
+import { isCustomEmoji } from '../../../utils/'
+
 export interface CustomEmojiPayload {
   src: string
   id: string
@@ -101,10 +103,17 @@ export class CustomEmojiNode extends DecoratorNode<JSX.Element> {
 
   static importDOM(): DOMConversionMap | null {
     return {
-      img: () => ({
-        conversion: convertImageElement,
-        priority: 0,
-      }),
+      img: (element: HTMLElement) => {
+        if (isCustomEmoji(element)) {
+          return {
+            conversion: convertImageElement,
+            priority: 1,
+          }
+        }
+
+        // Return null to pass the parsing to other plugins
+        return null
+      },
     }
   }
 

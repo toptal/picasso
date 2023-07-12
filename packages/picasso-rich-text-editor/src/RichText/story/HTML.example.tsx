@@ -16,7 +16,7 @@ const Example = () => {
           defaultValue={defaultValue}
           onChange={setHtml}
           id='editor'
-          plugins={['link', 'emoji']}
+          plugins={['link', 'emoji', 'image']}
           customEmojis={customEmojis}
         />
       </Grid.Item>

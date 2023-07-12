@@ -12,8 +12,6 @@ import type {
 import { DecoratorNode } from 'lexical'
 import { Image } from '@toptal/picasso'
 
-import { isCustomEmoji } from '../../../utils/'
-
 export interface ImageNodePayload {
   src: string
   alt?: string
@@ -101,16 +99,10 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
 
   static importDOM(): DOMConversionMap | null {
     return {
-      img: (element: HTMLElement) => {
-        // Return null to pass the parsing to the custom emoji plugin
-        if (isCustomEmoji(element)) {
-          return null
-        }
-
+      img: () => {
         return {
           conversion: convertImageElement,
-          // Priority is set to 1 to make sure that the image is parsed before the custom emoji
-          priority: 1,
+          priority: 0,
         }
       },
     }
