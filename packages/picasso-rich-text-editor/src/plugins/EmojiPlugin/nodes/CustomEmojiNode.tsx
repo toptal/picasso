@@ -1,5 +1,5 @@
 import React from 'react'
-import { $applyNodeReplacement, DecoratorNode } from 'lexical'
+import { DecoratorNode } from 'lexical'
 import type {
   DOMConversionMap,
   DOMConversionOutput,
@@ -10,6 +10,8 @@ import type {
   SerializedLexicalNode,
   Spread,
 } from 'lexical'
+
+import { isCustomEmoji } from '../../../utils/'
 
 export interface CustomEmojiPayload {
   src: string
@@ -101,10 +103,17 @@ export class CustomEmojiNode extends DecoratorNode<JSX.Element> {
 
   static importDOM(): DOMConversionMap | null {
     return {
-      img: () => ({
-        conversion: convertImageElement,
-        priority: 0,
-      }),
+      img: (element: HTMLElement) => {
+        if (isCustomEmoji(element)) {
+          return {
+            conversion: convertImageElement,
+            priority: 1,
+          }
+        }
+
+        // Return null to pass the parsing to other plugins
+        return null
+      },
     }
   }
 
@@ -136,6 +145,5 @@ export const $createCustomEmojiNode = ({
   src,
   id,
 }: CustomEmojiPayload): CustomEmojiNode => {
-  // return new CustomEmojiNode(src, id)
-  return $applyNodeReplacement(new CustomEmojiNode(src, id))
+  return new CustomEmojiNode(src, id)
 }
