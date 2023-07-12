@@ -45,19 +45,17 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 
 export const Toolbar = (props: Props) => {
   const { children, keyName } = props
-
-  const { portalEl: element } = useContext(Context)
+  const { portalEl } = useContext(Context)
 
   const classes = useStyles(props)
 
-  return (
-    <>
-      {element &&
-        createPortal(
-          <Container className={classes.group}>{children}</Container>,
-          element,
-          keyName
-        )}
-    </>
+  if (!portalEl) {
+    return null
+  }
+
+  return createPortal(
+    <Container className={classes.group}>{children}</Container>,
+    portalEl,
+    keyName
   )
 }
