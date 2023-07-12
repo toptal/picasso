@@ -16,7 +16,7 @@ const Example = () => {
           defaultValue={defaultValue}
           onChange={setHtml}
           id='editor'
-          plugins={['link', 'emoji']}
+          plugins={['link', 'emoji', 'image']}
           customEmojis={customEmojis}
         />
       </Grid.Item>
@@ -54,6 +54,21 @@ const defaultValue: ASTType = {
       tagName: 'h3',
       properties: {},
       children: [{ type: 'text', value: 'Position Description' }],
+    },
+    {
+      type: 'element',
+      tagName: 'p',
+      properties: {},
+      children: [
+        {
+          type: 'element',
+          tagName: 'img',
+          properties: {
+            src: './jacqueline/128x88.jpg',
+            alt: 'Jacqueline',
+          },
+        },
+      ],
     },
     {
       type: 'element',
