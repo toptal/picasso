@@ -6,7 +6,7 @@ Describe the changes and motivations for the pull request.
 
 ### How to test
 
-<!-- Temploy link will be updated automatically -->
+<!-- The temploy link will be automatically updated when the temploy is deployed -->
 - Temploy
 - FIXME: Add the steps describing how to verify your changes
 
