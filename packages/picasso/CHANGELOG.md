@@ -1,5 +1,12 @@
 # Change Log
 
+## 37.0.1
+
+### Patch Changes
+
+- [#3684](https://github.com/toptal/picasso/pull/3684) [`3bddaf34b`](https://github.com/toptal/picasso/commit/3bddaf34b110de4fae22037e8566991019f6529a) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- dependencies update (`date-fns`)
+
 ## 37.0.0
 
 ### Major Changes
