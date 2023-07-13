@@ -1,23 +1,23 @@
-import React, { forwardRef, useRef, useState, useCallback } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import type { OutlinedInputStatus } from '@toptal/picasso'
+import { InputMultilineAdornment } from '@toptal/picasso'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { noop, usePropDeprecationWarning } from '@toptal/picasso/utils'
-import { InputMultilineAdornment } from '@toptal/picasso'
-import type { OutlinedInputStatus } from '@toptal/picasso'
+import cx from 'classnames'
+import React, { forwardRef, useCallback, useRef, useState } from 'react'
 
-import styles from './styles'
-import { useCounter } from './hooks'
-import type { ASTType } from '../RichText'
-import type { CounterMessageSetter } from './types'
-import LexicalEditor from '../LexicalEditor'
 import type {
   ChangeHandler,
-  CustomEmojiGroup,
   EditorPlugin,
+  LexicalEditorProps,
 } from '../LexicalEditor'
+import LexicalEditor from '../LexicalEditor'
+import type { ASTType } from '../RichText'
+import { useCounter } from './hooks'
+import styles from './styles'
+import type { CounterMessageSetter } from './types'
 
 export interface Props extends BaseProps {
   /** Indicates that an element is to be focused on page load */
@@ -86,7 +86,7 @@ export interface Props extends BaseProps {
     orderedListButton?: string
   }
   highlight?: 'autofill'
-  customEmojis?: CustomEmojiGroup[]
+  customEmojis?: LexicalEditorProps['customEmojis']
 }
 
 const useStyles = makeStyles<Theme>(styles, {

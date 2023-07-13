@@ -1,19 +1,45 @@
+import type { ReactElement } from 'react'
 import React, { cloneElement } from 'react'
 
-import { isRTEPluginElement, RTEPluginMeta } from '../../../plugins/api'
-import { LinkPlugin } from '../../../plugins'
 import type { EditorPlugin } from '../..'
+import { LinkPlugin } from '../../../plugins'
+import type { RTEPlugin } from '../../../plugins/api'
+import { isRTEPluginElement, RTEPluginMeta } from '../../../plugins/api'
+import type { CustomEmojiGroup } from '../../../plugins/EmojiPlugin'
+import EmojiPlugin from '../../../plugins/EmojiPlugin'
 
-export const useComponentPlugins = (plugins: EditorPlugin[]) => {
-  const mappedPlugins: EditorPlugin[] = plugins.map(plugin => {
-    switch (plugin) {
-      case 'link':
-        return <LinkPlugin />
+const uniquePlugins = () => {
+  const plugins = new Set()
 
-      default:
-        return plugin
+  return ({ type }: ReactElement<unknown, RTEPlugin<unknown>>): boolean => {
+    if (plugins.has(type)) {
+      return false
     }
-  })
+
+    plugins.add(type)
+
+    return true
+  }
+}
+
+export const useComponentPlugins = (
+  plugins: EditorPlugin[],
+  customEmojis: CustomEmojiGroup[] | undefined
+) => {
+  const mappedPlugins: EditorPlugin[] = plugins
+    .map(plugin => {
+      switch (plugin) {
+        case 'link':
+          return <LinkPlugin />
+
+        case 'emoji':
+          return <EmojiPlugin customEmojis={customEmojis} />
+
+        default:
+          return plugin
+      }
+    })
+    .filter(uniquePlugins())
 
   const componentPlugins = mappedPlugins.filter(isRTEPluginElement)
 

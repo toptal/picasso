@@ -38,7 +38,7 @@ describe('LexicalEmojiPlugin', () => {
   })
 
   it('registers commands on mount', () => {
-    renderHook(() => EmojiPlugin())
+    renderHook(() => EmojiPlugin({}))
 
     expect(mockEditor.registerCommand).toHaveBeenCalledTimes(2)
     expect(mockEditor.registerCommand).toHaveBeenCalledWith(
@@ -54,7 +54,7 @@ describe('LexicalEmojiPlugin', () => {
   })
 
   it('inserts a text node when the native emoji command is called', () => {
-    renderHook(() => EmojiPlugin())
+    renderHook(() => EmojiPlugin({}))
     const nativeEmojiCommand = mockEditor.registerCommand.mock.calls[0][1]
 
     nativeEmojiCommand('😃')
@@ -66,7 +66,7 @@ describe('LexicalEmojiPlugin', () => {
   it('inserts a custom emoji node when the custom emoji command is called', () => {
     const payload = { id: 'custom emoji', src: 'https://example.com/emoji.png' }
 
-    renderHook(() => EmojiPlugin())
+    renderHook(() => EmojiPlugin({}))
     const customEmojiCommand = mockEditor.registerCommand.mock.calls[1][1]
 
     customEmojiCommand(payload)

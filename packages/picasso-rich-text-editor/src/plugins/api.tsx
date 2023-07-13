@@ -3,7 +3,7 @@ import type { Klass, LexicalNode } from 'lexical'
 import type { ReactElement, ReactNode } from 'react'
 import React, { createContext, useContext, useEffect } from 'react'
 
-import { registerLexicalEvents } from '../LexicalEditor/utils'
+import { registerLexicalEvents } from '../LexicalEditor/utils/registerLexicalEvents'
 import { ToolbarProvider } from './Toolbar/Toolbar'
 
 export const RTEPluginMeta = Symbol('PicassoRTEPluginMeta')
@@ -16,14 +16,14 @@ export type RTEPluginMeta = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface RTEPlugin<P = any> {
+export interface RTEPlugin<P> {
   (props: P): ReactElement | null
   [RTEPluginMeta]?: RTEPluginMeta
 }
 
 export const isRTEPluginElement = (plugin: {}): plugin is ReactElement<
   unknown,
-  RTEPlugin
+  RTEPlugin<unknown>
 > => {
   return (
     React.isValidElement(plugin) &&

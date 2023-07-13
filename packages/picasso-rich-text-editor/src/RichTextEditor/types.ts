@@ -9,5 +9,3 @@ export type {
   ChangeHandler as RichTextEditorChangeHandler,
   TextLengthChangeHandler,
 } from '../LexicalEditor'
-
-export type { CustomEmojiGroup, CustomEmoji } from '../LexicalEditor'
