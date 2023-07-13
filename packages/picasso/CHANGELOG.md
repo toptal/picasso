@@ -1,5 +1,23 @@
 # Change Log
 
+## 37.0.1
+
+### Patch Changes
+
+- [#3684](https://github.com/toptal/picasso/pull/3684) [`3bddaf34b`](https://github.com/toptal/picasso/commit/3bddaf34b110de4fae22037e8566991019f6529a) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- dependencies update (`date-fns`)
+
+## 37.0.0
+
+### Major Changes
+
+- [#3702](https://github.com/toptal/picasso/pull/3702) [`7fe284d96`](https://github.com/toptal/picasso/commit/7fe284d96dea180744f4f3eb6c274517b5a24153) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Icon
+
+- the `Resouces24` icon was renamed to `Resources24`, please find and replace its occurences in the code
+- newly added icons have to have both `16` and `24` pixels variants (according to BASE)
+
 ## 36.1.0
 
 ### Minor Changes
