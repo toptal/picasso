@@ -49,6 +49,7 @@ export { default as unsafeErrorLog } from './unsafe-error-log'
 export { default as useBoolean } from './useBoolean/use-boolean'
 export { default as sum } from './sum'
 export type { ReferenceObject } from './use-width-of'
+export { default as useMultipleForwardRefs } from './use-multiple-forward-refs'
 
 export const Transitions = TransitionUtils
 

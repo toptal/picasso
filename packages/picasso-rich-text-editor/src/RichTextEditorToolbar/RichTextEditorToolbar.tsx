@@ -8,6 +8,7 @@ import {
   ListUnordered16,
   Select,
 } from '@toptal/picasso'
+import { useMultipleForwardRefs } from '@toptal/picasso/utils'
 import cx from 'classnames'
 import React, { forwardRef } from 'react'
 
@@ -60,11 +61,13 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 
     const { setToolbarPortalEl } = useToolbarPortalRegister()
 
+    const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
+
     const classes = useStyles(props)
     const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
 
     return (
-      <Container ref={ref} className={classes.toolbar}>
+      <Container ref={toolbarRef} className={classes.toolbar}>
         <Container
           className={cx(classes.group, {
             groupDisabled: disabled,
@@ -116,7 +119,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             data-testid={testIds?.orderedListButton}
           />
         </Container>
-        <Container ref={setToolbarPortalEl} className={classes.group} />
       </Container>
     )
   }
