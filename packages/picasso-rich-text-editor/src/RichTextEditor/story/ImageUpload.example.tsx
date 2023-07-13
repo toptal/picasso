@@ -42,8 +42,8 @@ const Example = () => {
           }}
           value={useSuccessfulUpload}
         >
-          <Radio label='Imitate successful upload' value='true' />
-          <Radio label='Imitate failing upload' value='false' />
+          <Radio label='Simulate successful upload' value='true' />
+          <Radio label='Simulate failing upload' value='false' />
         </Radio.Group>
       </Container>
       <RichTextEditor

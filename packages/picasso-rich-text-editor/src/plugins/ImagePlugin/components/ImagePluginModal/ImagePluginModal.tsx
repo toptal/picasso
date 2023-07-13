@@ -17,7 +17,7 @@ export type Props = {
 const MAX_NUMBER_OF_IMAGES = 1
 
 const ImagePluginModal = ({
-  accept,
+  accept = 'image/png, image/jpeg',
   maxSize,
   isOpen,
   onClose,

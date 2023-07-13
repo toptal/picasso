@@ -54,7 +54,10 @@ const ImagePlugin: RTEPlugin = ({
     )
   }, [editor])
 
-  const onSubmit = (image: UploadedImage, altText: string) => {
+  const onSubmit: ImagePluginModalProps['onSubmit'] = (
+    image: UploadedImage,
+    altText: string
+  ) => {
     editor.update(() => {
       if (image.url) {
         const imageContainer = $createParagraphNode()
