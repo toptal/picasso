@@ -1,8 +1,8 @@
 import { Image16 } from '@toptal/picasso'
 import React from 'react'
 
-import { useRTEPluginContext } from '../api'
-import RichTextEditorButton from '../../RichTextEditorButton'
+import { useRTEPluginContext } from '../../../api'
+import RichTextEditorButton from '../../../../RichTextEditorButton'
 
 export type Props = {
   'data-testid'?: string

@@ -5,3 +5,5 @@ export type {
 } from './RichTextEditor'
 export { default as RichText } from './RichText'
 export type { RichTextProps, ASTType } from './RichText'
+export { ImagePlugin } from './plugins'
+export type { UploadedImage } from './plugins'
