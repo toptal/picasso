@@ -21,7 +21,7 @@ export type Props = {
 
 const EmojiPlugin: RTEPlugin<Props> = ({ customEmojis }: Props) => {
   const [editor] = useLexicalComposerContext()
-  const { disabled } = useRTEPluginContext()
+  const { disabled, focused } = useRTEPluginContext()
 
   const handleInsertEmoji = useCallback(
     (emoji: Emoji) => {
@@ -72,7 +72,7 @@ const EmojiPlugin: RTEPlugin<Props> = ({ customEmojis }: Props) => {
       <RichTextEditorEmojiPicker
         customEmojis={customEmojis}
         onInsertEmoji={handleInsertEmoji}
-        disabled={disabled}
+        disabled={disabled || !focused}
       />
     </Toolbar>
   )
