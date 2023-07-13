@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { Grid } from '@toptal/picasso'
-import { RichText, RichTextEditor } from '@toptal/picasso-rich-text-editor'
+import {
+  ImagePlugin,
+  RichText,
+  RichTextEditor,
+} from '@toptal/picasso-rich-text-editor'
 import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
 import type { CustomEmojiGroup } from '@toptal/picasso-rich-text-editor/RichTextEditor'
 
@@ -16,7 +20,13 @@ const Example = () => {
           defaultValue={defaultValue}
           onChange={setHtml}
           id='editor'
-          plugins={['link', 'emoji', 'image']}
+          plugins={[
+            'link',
+            'emoji',
+            <ImagePlugin
+              onUpload={() => new Promise(resolve => setTimeout(resolve, 2000))}
+            />,
+          ]}
           customEmojis={customEmojis}
         />
       </Grid.Item>
