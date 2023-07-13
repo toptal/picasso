@@ -32,12 +32,12 @@ const P = ({ children }: Props) => (
   <Typography size='medium'>{children}</Typography>
 )
 const Strong = ({ children }: Props) => (
-  <Typography size='medium' as='strong' weight='semibold'>
+  <Typography size='inherit' as='strong' weight='semibold'>
     {children}
   </Typography>
 )
 const Em = ({ children }: Props) => (
-  <Typography size='medium' as='em'>
+  <Typography size='inherit' as='em'>
     {children}
   </Typography>
 )

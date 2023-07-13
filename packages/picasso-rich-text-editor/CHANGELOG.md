@@ -1,5 +1,16 @@
 # @toptal/picasso-rich-text-editor
 
+## 3.0.0
+
+### Patch Changes
+
+- [#3716](https://github.com/toptal/picasso/pull/3716) [`25f9fd26c`](https://github.com/toptal/picasso/commit/25f9fd26cf4492a011bccd6b78021cf11fb65020) Thanks [@mkrl](https://github.com/mkrl)!
+- updated Lexical editor to 0.11.1
+  - fixed extra line breaks appearing when copy/pasting HTML content into the editor
+  - fixed `RichText` preview component to render `strong` + `h3` tags at the same time correctly
+- Updated dependencies [[`7fe284d96`](https://github.com/toptal/picasso/commit/7fe284d96dea180744f4f3eb6c274517b5a24153)]:
+  - @toptal/picasso@37.0.0
+
 ## 2.1.0
 
 ### Minor Changes

@@ -1,5 +1,22 @@
 # Change Log
 
+## 51.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`7fe284d96`](https://github.com/toptal/picasso/commit/7fe284d96dea180744f4f3eb6c274517b5a24153)]:
+  - @toptal/picasso@37.0.0
+
+## 50.2.0
+
+### Minor Changes
+
+- [#3705](https://github.com/toptal/picasso/pull/3705) [`1023bca0e`](https://github.com/toptal/picasso/commit/1023bca0edef22c45759b9d3e0b37fe7a5e47e4e) Thanks [@pedromonad](https://github.com/pedromonad)!
+
+### BarChart
+
+- add entry option to getBarLabelColor and renderBarIndicators
+
 ## 50.1.0
 
 ### Minor Changes

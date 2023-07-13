@@ -10,6 +10,7 @@
     "build:package": "lerna run build:package",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "circularity": "madge --circular packages/*/src",
+    "check:icon-sizes": "node ./bin/check-icon-sizes",
     "generate:component": "davinci-code new component",
     "generate:example": "davinci-code new example",
     "generate:svg-components": "yarn generate:icons && yarn generate:pictograms",
@@ -72,7 +73,7 @@
     "@toptal/davinci-code": "^2.0.6",
     "@toptal/davinci-engine": "^10.3.0",
     "@toptal/davinci-qa": "^15.2.0",
-    "@toptal/davinci-syntax": "^20.0.4",
+    "@toptal/davinci-syntax": "^20.2.1",
     "@types/debounce": "^1.2.1",
     "@types/esprima": "^4.0.3",
     "@types/happo-cypress": "^4.1.0",
@@ -121,7 +122,9 @@
     "typescript": "~4.7.0",
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
-    "yarn-deduplicate": "^3.1.0"
+    "yarn-deduplicate": "^3.1.0",
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
   },
   "lint-staged": {
     "{**/*.{js,jsx,ts,tsx},.changeset/*.md}": [

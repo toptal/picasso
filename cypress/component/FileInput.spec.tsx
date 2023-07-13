@@ -19,9 +19,9 @@ describe('FileInput', () => {
         $input.on('click', openFileDialog)
       })
 
+    cy.get('button').first().click()
     cy.get('button')
       .first()
-      .click()
       .should(() => expect(openFileDialog).to.be.called)
 
     cy.get('body').happoScreenshot({

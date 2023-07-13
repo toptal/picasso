@@ -1,10 +1,12 @@
 import React from 'react'
 import type { LabelProps } from 'recharts'
 
+import type { BarOptions } from '../types'
+
 export type Props = {
   value?: LabelProps['value']
   viewBox?: { width?: number; x?: number; y?: number }
-  getBarLabelColor?: (params: { dataKey: string; index?: number }) => string
+  getBarLabelColor?: (params: BarOptions) => string
   dataKey: string
   index?: number
 }

@@ -16,7 +16,7 @@ import { ticks as getD3Ticks } from 'd3-array'
 
 import BarChartLabel from '../BarChartLabel'
 import { BarChartIndicators } from '../BarChartIndicators'
-import type { BaseChartProps, BarOptions } from '../types'
+import type { BaseChartProps, BarChartDataItem, BarOptions } from '../types'
 import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
 
@@ -32,13 +32,6 @@ const {
   TICK_HEIGHT,
 } = CHART_CONSTANTS
 const TOOLTIP_WRAPPER_STYLE = { outline: 'none' }
-
-export type BarChartDataItem<K extends string | number | symbol> = {
-  name: string
-  value: {
-    [key in K]: number
-  }
-}
 
 type ShowEverytNthTickValue = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
@@ -56,13 +49,14 @@ export interface Props<K extends string | number | symbol>
     dataKey: string
     entry?: {
       name: string
-      value: { [key in K]: number }
+      value: { [key in K]: any }
     }
     index?: number
   }) => string
   /** Maps bar's key with a label color */
-  getBarLabelColor?: (barOptions: BarOptions) => string
-  renderBarIndicators?: (barOptions: BarOptions) => ReactNode
+  getBarLabelColor?: (params: BarOptions) => string
+  /** Customizes the bar indicators */
+  renderBarIndicators?: (params: BarOptions) => ReactNode
   testIds?: {
     tooltip?: string
   }

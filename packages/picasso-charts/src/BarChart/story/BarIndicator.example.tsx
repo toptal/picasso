@@ -1,7 +1,6 @@
 import React from 'react'
 import { BarChart, BarChartIndicator } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso/utils'
-import type { BarOptions } from '@toptal/picasso-charts/types'
 
 const CHART_DATA = [
   {
@@ -10,7 +9,7 @@ const CHART_DATA = [
   },
   {
     name: 'Google',
-    value: { 'engineers hired': 700 },
+    value: { 'engineers hired': 700, isEnterprise: true },
   },
   {
     name: 'Facebook',
@@ -27,20 +26,21 @@ const CHART_DATA = [
 ]
 
 const INDICATORS: any = {
-  Google: { color: palette.blue.light, label: 'A' },
-  Amazon: { color: palette.purple.main, label: 'B' },
+  Google: { color: palette.blue.light, label: 'E' },
+  Amazon: { color: palette.purple.main, label: 'E' },
 }
 
 const Example = () => (
   <div style={{ width: 720 }}>
     <BarChart
       width='100%'
-      data={CHART_DATA}
+      data={CHART_DATA as any}
       getBarColor={() => palette.blue.main}
-      renderBarIndicators={({ dataKey }: BarOptions) => {
+      renderBarIndicators={({ dataKey, dataItem }) => {
         const indicator = INDICATORS[dataKey]
+        const isEnterprise = dataItem?.value?.isEnterprise
 
-        if (indicator) {
+        if (indicator && isEnterprise) {
           return (
             <BarChartIndicator
               label={indicator.label}

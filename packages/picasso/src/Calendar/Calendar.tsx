@@ -38,20 +38,35 @@ export type CalendarMonthsAmount = 1 | 2
 export interface Props
   extends BaseProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onBlur'> {
+  /** Callback invoked when date is selected */
   onChange: (value: DateOrDateRangeType) => void
+  /** Callback invoked when calendar loses focus */
   onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
+  /** Minimum date that can be selected */
   minDate?: Date
+  /** Maximum date that can be selected */
   maxDate?: Date
+  /** Whether to use range mode */
   range?: boolean
+  /** Selected date or date range */
   value?: DateOrDateRangeType
+  /** Active (visible) month of the calendar that is required for manual entering of a single date */
   activeMonth?: Date
+  /** Custom root renderer */
   renderRoot?: RenderRoot
+  /** Custom month header renderer */
   renderMonthHeader?: RenderMonthHeader
+  /** Custom day renderer */
   renderDay?: RenderDay
+  /** Intervals that should be indicated as disabled */
   disabledIntervals?: CalendarDateRange[]
+  /** Intervals that should be indicated with orange dots */
   indicatedIntervals?: CalendarDateRange[]
+  /** First day of the week */
   weekStartsOn?: WeekStart
+  /** Whether to display footer */
   hasFooter?: boolean
+  /** Number of months to display */
   numberOfMonths?: CalendarMonthsAmount
 }
 

@@ -145,7 +145,8 @@ describe('RichTextEditor', () => {
       cy.get('@editor').type('{ctrl}b')
     }
     buttonShouldBeActive(cy.get('@boldButton'))
-    cy.get('@editor').type(content.bold).type('{enter}')
+    cy.get('@editor').type(content.bold)
+    cy.get('@editor').type('{enter}')
     cy.contains(content.bold).parent().should('include.html', 'strong')
 
     // test bold italic

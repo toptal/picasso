@@ -344,7 +344,8 @@ describe('Select', () => {
       cy.get('[role="tooltip"]').find('input').as('searchInput')
 
       cy.get('@searchInput').should('be.visible')
-      cy.get('@searchInput').click().should('have.focus')
+      cy.get('@searchInput').click()
+      cy.get('@searchInput').should('have.focus')
     })
   })
 
@@ -357,7 +358,8 @@ describe('Select', () => {
         />
       )
 
-      cy.getByTestId('select').click().find('input').should('be.focused')
+      cy.getByTestId('select').click()
+      cy.getByTestId('select').find('input').should('be.focused')
 
       cy.get('body').happoScreenshot({
         component,
@@ -365,30 +367,31 @@ describe('Select', () => {
       })
 
       // focuses on the Search input by clicking on the input
-      cy.getByTestId('search-input')
-        .click('center')
-        .find('input')
-        .should('be.focused')
+      cy.getByTestId('search-input').click('center')
+      cy.getByTestId('search-input').find('input').should('be.focused')
 
       // focuses on by click on the input wrapper
+      cy.getByTestId('select').click()
+      cy.getByTestId('select').getByTestId('search-input').click('bottom')
       cy.getByTestId('select')
-        .click()
         .getByTestId('search-input')
-        .click('bottom')
         .find('input')
         .should('be.focused')
 
       // focuses on by click on the search icon
+      cy.getByTestId('select').click()
       cy.getByTestId('select')
-        .click()
         .getByTestId('search-input')
         .closest('[role="menuitem"]')
         .click(20, 20)
+      cy.getByTestId('select')
+        .getByTestId('search-input')
         .find('input')
         .should('be.focused')
 
       // focuses on by typing
-      cy.getByTestId('select').click().type('option')
+      cy.getByTestId('select').click()
+      cy.getByTestId('select').type('option')
       cy.getByTestId('search-input').find('input').should('be.focused')
     })
   })
