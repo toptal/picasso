@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.1.0
+
+### Minor Changes
+
+- [#3708](https://github.com/toptal/picasso/pull/3708) [`f3b2622cd`](https://github.com/toptal/picasso/commit/f3b2622cd7f6ad8cdf53cec3b0dae1b9222558a0) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### utils
+
+- add utility for forwarding a ref to multiple holders
+
 ## 37.0.1
 
 ### Patch Changes
