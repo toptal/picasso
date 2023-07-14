@@ -13,7 +13,6 @@ import {
   LinkPlugin,
 } from '../plugins'
 import ToolbarPlugin from '../LexicalEditorToolbarPlugin'
-import type { CustomEmojiGroup } from './types'
 
 jest.mock('../LexicalEditorToolbarPlugin', () => ({
   __esModule: true,
@@ -156,8 +155,6 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
-          customEmojis: undefined,
-          plugins: [],
           toolbarRef: {
             current: null,
           },
@@ -174,8 +171,6 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
-          customEmojis: undefined,
-          plugins: [],
           toolbarRef: {
             current: null,
           },
@@ -189,15 +184,13 @@ describe('LexicalEditor', () => {
     it('renders ToolbarPlugin with correct props', () => {
       renderLexicalEditor({
         disabled: true,
-        customEmojis: ['foo' as unknown as CustomEmojiGroup],
+        customEmojis: ['foo' as any],
         plugins: ['link'],
       })
 
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
-          customEmojis: ['foo'],
-          plugins: ['link'],
           toolbarRef: {
             current: null,
           },

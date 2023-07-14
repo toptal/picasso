@@ -1,30 +1,28 @@
-import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import cx from 'classnames'
 import {
   Bold16,
+  Container,
   Italic16,
   ListOrdered16,
   ListUnordered16,
-  Container,
   Select,
 } from '@toptal/picasso'
+import { useMultipleForwardRefs } from '@toptal/picasso/utils'
+import cx from 'classnames'
+import React, { forwardRef } from 'react'
 
-import styles from './styles'
+import { useToolbarPortalRegister } from '../plugins/api'
 import TextEditorButton from '../RichTextEditorButton'
+import styles from './styles'
 import type {
   ButtonHandlerType,
-  SelectOnChangeHandler,
   FormatType,
+  SelectOnChangeHandler,
 } from './types'
-import type { CustomEmojiGroup, EditorPlugin, Emoji } from '../LexicalEditor'
-import { RichTextEditorEmojiPicker } from '../RichTextEditorEmojiPicker/RichTextEditorEmojiPicker'
-import { useToolbarPortalRegister } from '../plugins/api'
 
 type Props = {
   disabled: boolean
-  id: string
   format: FormatType
   testIds?: {
     headerSelect?: string
@@ -37,12 +35,9 @@ type Props = {
   }
   onBoldClick: ButtonHandlerType
   onItalicClick: ButtonHandlerType
-  onInsertEmoji: (emoji: Emoji) => void
   onHeaderChange: SelectOnChangeHandler
   onUnorderedClick: ButtonHandlerType
   onOrderedClick: ButtonHandlerType
-  plugins?: EditorPlugin[]
-  customEmojis?: CustomEmojiGroup[]
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -52,32 +47,27 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 export const ALLOWED_HEADER_TYPE = '3'
 
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
-  // eslint-disable-next-line complexity
   function RichTextEditorToolbar(props: Props, ref) {
     const {
       disabled,
-      id,
       format,
       onBoldClick,
       onItalicClick,
-      onInsertEmoji,
       onHeaderChange,
       onUnorderedClick,
       onOrderedClick,
       testIds,
-      plugins,
-      customEmojis,
     } = props
 
     const { setToolbarPortalEl } = useToolbarPortalRegister()
 
+    const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
+
     const classes = useStyles(props)
     const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
 
-    const allowEmojis = plugins?.includes('emoji')
-
     return (
-      <Container id={`${id}toolbar`} ref={ref} className={classes.toolbar}>
+      <Container ref={toolbarRef} className={classes.toolbar}>
         <Container
           className={cx(classes.group, {
             groupDisabled: disabled,
@@ -129,15 +119,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             data-testid={testIds?.orderedListButton}
           />
         </Container>
-        <Container ref={setToolbarPortalEl} className={classes.group} />
-        {allowEmojis && (
-          <RichTextEditorEmojiPicker
-            richEditorId={id}
-            customEmojis={customEmojis}
-            onInsertEmoji={onInsertEmoji}
-            disabled={disabled}
-          />
-        )}
       </Container>
     )
   }

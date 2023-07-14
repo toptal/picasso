@@ -1,10 +1,10 @@
-import React, { createContext, useState, useContext, useEffect } from 'react'
-import type { ReactElement, ReactNode } from 'react'
-import { createPortal } from 'react-dom'
-import type { LexicalNode, Klass } from 'lexical'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import type { Klass, LexicalNode } from 'lexical'
+import type { ReactElement, ReactNode } from 'react'
+import React, { createContext, useContext, useEffect } from 'react'
 
-import { registerLexicalEvents } from '../LexicalEditor/utils'
+import { registerLexicalEvents } from '../LexicalEditor/utils/registerLexicalEvents'
+import { ToolbarProvider } from './Toolbar/Toolbar'
 
 export const RTEPluginMeta = Symbol('PicassoRTEPluginMeta')
 
@@ -16,14 +16,14 @@ export type RTEPluginMeta = {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface RTEPlugin<P = any> {
+export interface RTEPlugin<P> {
   (props: P): ReactElement | null
   [RTEPluginMeta]?: RTEPluginMeta
 }
 
 export const isRTEPluginElement = (plugin: {}): plugin is ReactElement<
   unknown,
-  RTEPlugin
+  RTEPlugin<unknown>
 > => {
   return (
     React.isValidElement(plugin) &&
@@ -35,8 +35,6 @@ export const isRTEPluginElement = (plugin: {}): plugin is ReactElement<
 type RTEPluginContextValue = {
   disabled: boolean
   focused: boolean
-  toolbarPortalEl?: HTMLElement
-  setToolbarPortalEl: (element: HTMLElement | null) => void
 }
 
 export const useRTEUpdate = (callback: () => void) => {
@@ -55,7 +53,6 @@ export const useRTEUpdate = (callback: () => void) => {
 const RTEPluginContext = createContext<RTEPluginContextValue>({
   disabled: false,
   focused: false,
-  setToolbarPortalEl: () => {},
 })
 
 export type ToolbarPortalProviderProps = {
@@ -69,28 +66,18 @@ export const RTEPluginContextProvider = ({
   disabled,
   focused,
 }: ToolbarPortalProviderProps) => {
-  const [element, setElement] = useState<HTMLElement | null>(null)
-
   const value: RTEPluginContextValue = {
     disabled,
     focused,
-    toolbarPortalEl: element ?? undefined,
-    setToolbarPortalEl: setElement,
   }
 
   return (
-    <RTEPluginContext.Provider value={value}>
-      {children}
-    </RTEPluginContext.Provider>
+    <ToolbarProvider>
+      <RTEPluginContext.Provider value={value}>
+        {children}
+      </RTEPluginContext.Provider>
+    </ToolbarProvider>
   )
-}
-
-export const useToolbarPortalRegister = () => {
-  const { setToolbarPortalEl } = useContext(RTEPluginContext)
-
-  return {
-    setToolbarPortalEl,
-  }
 }
 
 export const useRTEPluginContext = () => {
@@ -102,13 +89,8 @@ export const useRTEPluginContext = () => {
   }
 }
 
-export type ToolbarProps = {
-  children: ReactNode
-  keyName: string
-}
-
-export const Toolbar = ({ children, keyName }: ToolbarProps) => {
-  const { toolbarPortalEl: element } = useContext(RTEPluginContext)
-
-  return <>{element && createPortal(children, element, keyName)}</>
-}
+export {
+  Props as ToolbarProps,
+  Toolbar,
+  useToolbarPortalRegister,
+} from './Toolbar/Toolbar'

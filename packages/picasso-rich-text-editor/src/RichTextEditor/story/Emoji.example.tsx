@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
 import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
-import type { RichTextEditorChangeHandler, CustomEmojiGroup } from '../types'
+import type { RichTextEditorChangeHandler } from '../types'
+import type { RichTextEditorProps } from '..'
 
-const customEmojis = [
+const customEmojis: RichTextEditorProps['customEmojis'] = [
   {
     id: 'talent-community',
     name: 'Talent Community',
@@ -21,7 +22,7 @@ const customEmojis = [
       },
     ],
   },
-] as CustomEmojiGroup[]
+]
 
 const Example = () => {
   const [value, setValue] = useState<string | undefined>()

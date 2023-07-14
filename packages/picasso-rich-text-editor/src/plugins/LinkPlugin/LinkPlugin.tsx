@@ -12,7 +12,7 @@ export type Props = {
   'data-testid'?: string
 }
 
-const LinkPlugin: RTEPlugin = ({ 'data-testid': testId }: Props) => {
+const LinkPlugin: RTEPlugin<Props> = ({ 'data-testid': testId }: Props) => {
   return (
     <>
       <Toolbar keyName={PLUGIN_NAME}>
