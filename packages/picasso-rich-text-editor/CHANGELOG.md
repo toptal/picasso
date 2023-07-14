@@ -1,5 +1,23 @@
 # @toptal/picasso-rich-text-editor
 
+## 3.1.0
+
+### Minor Changes
+
+- [#3708](https://github.com/toptal/picasso/pull/3708) [`f3b2622cd`](https://github.com/toptal/picasso/commit/f3b2622cd7f6ad8cdf53cec3b0dae1b9222558a0) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### EmojiPlugin
+
+- implement emoji plugin as a component
+
+### Patch Changes
+
+- [#3708](https://github.com/toptal/picasso/pull/3708) [`f3b2622cd`](https://github.com/toptal/picasso/commit/f3b2622cd7f6ad8cdf53cec3b0dae1b9222558a0) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### RichTextEditorToolbar
+
+- add groups for component plugins using the Toolbar portal automatically
+
 ## 3.0.0
 
 ### Patch Changes
