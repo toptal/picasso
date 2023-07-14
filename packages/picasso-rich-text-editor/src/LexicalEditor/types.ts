@@ -9,5 +9,4 @@ export type { TextLengthChangeHandler } from '../plugins/TextLengthPlugin'
 export type EditorPlugin =
   | 'link'
   | 'emoji'
-  | 'image'
   | ReactElement<unknown, RTEPlugin<unknown>>

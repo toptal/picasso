@@ -11,13 +11,13 @@ import { useImagePlugin } from './hooks'
 const PLUGIN_NAME = 'image'
 
 export type Props = {
-  accept: ImagePluginModalProps['accept']
-  maxSize: ImagePluginModalProps['maxSize']
+  accept?: ImagePluginModalProps['accept']
+  maxSize?: ImagePluginModalProps['maxSize']
   onUpload: OnUploadCallback
   'data-testid'?: string
 }
 
-const ImagePlugin: RTEPlugin = ({
+const ImagePlugin: RTEPlugin<Props> = ({
   accept,
   maxSize,
   onUpload,
