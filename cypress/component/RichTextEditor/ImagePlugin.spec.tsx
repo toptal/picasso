@@ -148,9 +148,9 @@ describe('ImagePlugin', () => {
         { force: true }
       )
 
-      cy.get('p').contains(fileUploadErrorMessage)
+      cy.get('p').contains(fileUploadErrorMessage).should('be.visible')
 
-      cy.get('body').happoScreenshot({
+      cy.get('html').happoScreenshot({
         component,
         variant: 'image-plugin/failed-upload',
       })
