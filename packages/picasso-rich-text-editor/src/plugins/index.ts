@@ -1,5 +1,6 @@
 export { default as EditorMaxIndentLevelPlugin } from './EditorMaxIndentLevelPlugin'
 export { default as EmojiPlugin } from './EmojiPlugin'
+export type { CustomEmoji, CustomEmojiGroup } from './EmojiPlugin'
 export { default as HeadingsReplacementPlugin } from './HeadingsReplacementPlugin'
 export { default as LinkPlugin, Props as ListPluginProps } from './LinkPlugin'
 export { default as ListPlugin } from './ListPlugin'
