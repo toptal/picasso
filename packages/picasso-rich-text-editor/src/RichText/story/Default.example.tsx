@@ -43,6 +43,7 @@ const ast: ASTType = {
           properties: {
             src: './jacqueline/128x88.jpg',
           },
+          children: [],
         },
       ],
     },

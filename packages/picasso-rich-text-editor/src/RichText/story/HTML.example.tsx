@@ -77,6 +77,7 @@ const defaultValue: ASTType = {
             src: './jacqueline/128x88.jpg',
             alt: 'Jacqueline',
           },
+          children: [],
         },
       ],
     },
