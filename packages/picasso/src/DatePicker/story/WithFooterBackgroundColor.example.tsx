@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { DatePicker } from '@toptal/picasso'
+import {
+  Chat16,
+  Container,
+  DatePicker,
+  Link,
+  Typography,
+} from '@toptal/picasso'
+import { palette } from '@toptal/picasso/utils'
 
 const WithFooterBackgroundColorRendering = () => {
   const [datepickerValue, setDatepickerValue] = useState<Date>()
@@ -11,10 +18,20 @@ const WithFooterBackgroundColorRendering = () => {
         onChange={date => {
           setDatepickerValue(date as Date)
         }}
-        footerProps={{
-          render: <FooterComponent />,
-          variant: 'dark',
-        }}
+        footer={
+          <Container flex>
+            <Container right='xsmall'>
+              {' '}
+              <Chat16 />{' '}
+            </Container>
+            <Container>
+              <Typography size='small'>
+                <Link href='#'>Got a question on end date? Talk to us</Link>
+              </Typography>
+            </Container>
+          </Container>
+        }
+        footerBackgroundColor={palette.grey.lighter}
       />
     </div>
   )
