@@ -38,6 +38,7 @@ type CustomImageType = {
     src: string
     alt?: string
   }
+  children: []
 }
 
 export type ASTChildType =
