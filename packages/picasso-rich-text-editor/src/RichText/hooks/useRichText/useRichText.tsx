@@ -1,7 +1,6 @@
 import toH from 'hast-to-hyperscript'
 import type { ReactElement, ReactNode, FC } from 'react'
 import React, { useMemo, createElement, isValidElement } from 'react'
-import { makeStyles } from '@material-ui/core'
 import Typography from '@toptal/picasso/Typography'
 import Container from '@toptal/picasso/Container'
 import List from '@toptal/picasso/List'
@@ -9,6 +8,8 @@ import ListItem from '@toptal/picasso/ListItem'
 import Link from '@toptal/picasso/Link'
 
 import type { ASTType } from '../../types'
+import { Emoji, Image } from '../../components'
+import { isCustomEmoji } from '../../../utils'
 
 type Props = {
   children?: React.ReactNode
@@ -18,14 +19,6 @@ type Props = {
 const Li = ({ children, ...props }: Props) => (
   <ListItem {...props}>{children}</ListItem>
 )
-
-const useStyles = makeStyles({
-  emoji: {
-    width: 24,
-    height: 24,
-    verticalAlign: 'bottom',
-  },
-})
 
 /* eslint-disable id-length */
 const P = ({ children }: Props) => (
@@ -51,11 +44,8 @@ const H3 = ({ children }: Props) => (
 const Ul = ({ children }: Props) => <List variant='unordered'>{children}</List>
 const Ol = ({ children }: Props) => <List variant='ordered'>{children}</List>
 const A = ({ children, ...props }: Props) => <Link {...props}>{children}</Link>
-const Emoji = ({ ...props }: Props) => {
-  const classes = useStyles()
-
-  return <img className={classes.emoji} {...props} />
-}
+const Img = ({ ...props }: Props) =>
+  isCustomEmoji(props) ? <Emoji {...props} /> : <Image {...props} />
 
 const componentMap: Record<string, FC> = {
   p: P,
@@ -66,7 +56,7 @@ const componentMap: Record<string, FC> = {
   ol: Ol,
   ul: Ul,
   a: A,
-  img: Emoji,
+  img: Img,
 } as const
 
 const picassoMapper = (child: ReactNode): ReactNode => {

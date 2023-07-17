@@ -17,7 +17,7 @@ export default defineConfig({
 
       return config
     },
-    specPattern: 'cypress/component/*.spec.tsx',
+    specPattern: 'cypress/component/**/*.spec.tsx',
     devServer: {
       framework: 'react',
       bundler: 'webpack',

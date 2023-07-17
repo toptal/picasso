@@ -1,12 +1,11 @@
 import type { ReactElement } from 'react'
 import React, { cloneElement } from 'react'
 
-import type { EditorPlugin } from '../..'
-import { LinkPlugin } from '../../../plugins'
-import type { RTEPlugin } from '../../../plugins/api'
 import { isRTEPluginElement, RTEPluginMeta } from '../../../plugins/api'
+import type { RTEPlugin } from '../../../plugins/api'
+import { LinkPlugin, EmojiPlugin } from '../../../plugins'
+import type { EditorPlugin } from '../..'
 import type { CustomEmojiGroup } from '../../../plugins/EmojiPlugin'
-import EmojiPlugin from '../../../plugins/EmojiPlugin'
 
 const uniquePlugins = () => {
   const plugins = new Set()
@@ -31,7 +30,6 @@ export const useComponentPlugins = (
       switch (plugin) {
         case 'link':
           return <LinkPlugin />
-
         case 'emoji':
           return <EmojiPlugin customEmojis={customEmojis} />
 
@@ -42,7 +40,6 @@ export const useComponentPlugins = (
     .filter(uniquePlugins())
 
   const componentPlugins = mappedPlugins.filter(isRTEPluginElement)
-
   const lexicalNodes = componentPlugins.flatMap(
     plugin => plugin.type[RTEPluginMeta]?.lexical?.nodes ?? []
   )

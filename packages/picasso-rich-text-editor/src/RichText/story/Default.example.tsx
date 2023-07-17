@@ -37,6 +37,21 @@ const ast: ASTType = {
       tagName: 'p',
       properties: {},
       children: [
+        {
+          type: 'element',
+          tagName: 'img',
+          properties: {
+            src: './jacqueline/128x88.jpg',
+          },
+          children: [],
+        },
+      ],
+    },
+    {
+      type: 'element',
+      tagName: 'p',
+      properties: {},
+      children: [
         { type: 'text', value: 'We’re looking for ' },
         {
           type: 'element',

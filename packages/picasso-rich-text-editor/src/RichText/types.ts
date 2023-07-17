@@ -31,7 +31,21 @@ type CustomEmojiType = {
   children: []
 }
 
-export type ASTChildType = ElementType | TextType | CustomEmojiType
+type CustomImageType = {
+  type: 'element'
+  tagName: 'img'
+  properties: {
+    src: string
+    alt?: string
+  }
+  children: []
+}
+
+export type ASTChildType =
+  | ElementType
+  | TextType
+  | CustomEmojiType
+  | CustomImageType
 
 export type ASTType = {
   type: 'root'
