@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { DateOrDateRangeType } from '@toptal/picasso'
-import { Calendar } from '@toptal/picasso'
+import { Calendar, Container } from '@toptal/picasso'
 
 const WithSelectableDaysLimitExample = () => {
   const [value, setValue] = useState<DateOrDateRangeType>(
@@ -8,12 +8,14 @@ const WithSelectableDaysLimitExample = () => {
   )
 
   return (
-    <Calendar
-      value={value}
-      onChange={setValue}
-      minDate={new Date('2021-07-08')}
-      maxDate={new Date('2021-07-15')}
-    />
+    <Container style={{ maxWidth: '20.5rem' }}>
+      <Calendar
+        value={value}
+        onChange={setValue}
+        minDate={new Date('2021-07-08')}
+        maxDate={new Date('2021-07-15')}
+      />
+    </Container>
   )
 }
 

@@ -30,8 +30,6 @@ import type {
   DateRangeType,
   WeekStart,
 } from './types'
-import type { RenderRoot } from '../CalendarContainer'
-import CalendarContainer from '../CalendarContainer'
 
 export type CalendarMonthsAmount = 1 | 2
 
@@ -52,8 +50,6 @@ export interface Props
   value?: DateOrDateRangeType
   /** Active (visible) month of the calendar that is required for manual entering of a single date */
   activeMonth?: Date
-  /** Custom root renderer */
-  renderRoot?: RenderRoot
   /** Custom month header renderer */
   renderMonthHeader?: RenderMonthHeader
   /** Custom day renderer */
@@ -64,8 +60,6 @@ export interface Props
   indicatedIntervals?: CalendarDateRange[]
   /** First day of the week */
   weekStartsOn?: WeekStart
-  /** Whether to display footer */
-  hasFooter?: boolean
   /** Number of months to display */
   numberOfMonths?: CalendarMonthsAmount
 }
@@ -99,8 +93,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     renderDay,
     renderMonthHeader,
     weekStartsOn = 1,
-    hasFooter = false,
-    renderRoot,
     numberOfMonths = 1,
     ...rest
   } = props
@@ -213,52 +205,46 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
       <CalendarContext.Provider
         value={{
           onDayMouseEnter: handleDayEnter,
-          renderRoot,
           renderDay,
           renderMonthHeader,
         }}
       >
-        <CalendarContainer
-          hasFooter={hasFooter}
-          isFlexible={shouldRenderMultipleMonths}
-        >
-          <DayPicker
-            required
-            showOutsideDays
-            month={navigationMonth || activeMonth}
-            mode={range ? 'range' : 'single'}
-            selected={range ? rangeValue : value}
-            // Moving mode-dependent props to a separate object to satisfy TypeScript breaks
-            // the change detection, so error is ignored
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            onSelect={range ? handleRangeChange : handleSingleDateChange}
-            fromDate={minDate}
-            onMonthChange={month => setNavigationMonth(month)}
-            toDate={maxDate}
-            numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
-            disabled={disabledIntervalsFormatted}
-            weekStartsOn={weekStartsOn}
-            formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
-            modifiers={modifiers}
-            components={{
-              Caption: CalendarMonthHeader,
-              Day: CalendarDay,
-            }}
-            classNames={{
-              months: shouldRenderMultipleMonths ? classes.months : undefined,
-              head: classes.head,
-              table: classes.table,
-              head_row: classes.head_row,
-              head_cell: classes.head_cell,
-              row: classes.row,
-              cell: classes.cell,
-              vhidden: classes.vhidden,
-            }}
-            // Keeping the legacy classname as it is heavily used as a locator in tests
-            className='calendar-month'
-          />
-        </CalendarContainer>
+        <DayPicker
+          required
+          showOutsideDays
+          month={navigationMonth || activeMonth}
+          mode={range ? 'range' : 'single'}
+          selected={range ? rangeValue : value}
+          // Moving mode-dependent props to a separate object to satisfy TypeScript breaks
+          // the change detection, so error is ignored
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          onSelect={range ? handleRangeChange : handleSingleDateChange}
+          fromDate={minDate}
+          onMonthChange={month => setNavigationMonth(month)}
+          toDate={maxDate}
+          numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
+          disabled={disabledIntervalsFormatted}
+          weekStartsOn={weekStartsOn}
+          formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
+          modifiers={modifiers}
+          components={{
+            Caption: CalendarMonthHeader,
+            Day: CalendarDay,
+          }}
+          classNames={{
+            months: shouldRenderMultipleMonths ? classes.months : undefined,
+            head: classes.head,
+            table: classes.table,
+            head_row: classes.head_row,
+            head_cell: classes.head_cell,
+            row: classes.row,
+            cell: classes.cell,
+            vhidden: classes.vhidden,
+          }}
+          // Keeping the legacy classname as it is heavily used as a locator in tests
+          className='calendar-month'
+        />
       </CalendarContext.Provider>
     </div>
   )

@@ -1,14 +1,16 @@
 import React from 'react'
-import { Calendar } from '@toptal/picasso'
+import { Calendar, Container } from '@toptal/picasso'
 import { noop } from '@toptal/picasso/utils'
 
 const RangeExample = () => {
   return (
-    <Calendar
-      value={[new Date('2021-07-11'), new Date('2021-07-18')]}
-      range
-      onChange={noop}
-    />
+    <Container style={{ maxWidth: '20.5rem' }}>
+      <Calendar
+        value={[new Date('2021-07-11'), new Date('2021-07-18')]}
+        range
+        onChange={noop}
+      />
+    </Container>
   )
 }
 

@@ -7,6 +7,7 @@ import formatDate from 'date-fns/format'
 import type PopperJs from 'popper.js'
 import type { KeyboardEvent, ReactNode } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import cx from 'classnames'
 
 import { Calendar16 } from '../Icon'
 import Popper from '../Popper'
@@ -14,7 +15,7 @@ import Container from '../Container'
 import type { InputProps } from '../Input'
 import Input from '../Input'
 import InputAdornment from '../InputAdornment'
-import { noop } from '../utils'
+import { noop, useBreakpoint } from '../utils'
 import type {
   CalendarDateRange,
   DateOrDateRangeType,
@@ -393,6 +394,9 @@ export const DatePicker = (props: Props) => {
       </InputAdornment>
     ) : undefined
 
+  const mobileScreen = useBreakpoint(['xs', 'sm'])
+  const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
+
   return (
     <>
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
@@ -428,24 +432,30 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
           {...popperProps}
         >
-          <Calendar
-            activeMonth={activeMonth}
-            data-testid={testIds?.calendar}
-            ref={calendarRef}
-            range={range}
-            value={calendarValue ?? undefined}
-            minDate={normalizedMinDate}
-            maxDate={normalizedMaxDate}
-            disabledIntervals={disabledIntervals}
-            indicatedIntervals={indicatedIntervals}
-            renderDay={renderDay}
-            onChange={handleCalendarChange}
-            onBlur={handleBlur}
-            className={classes.calendar}
-            hasFooter={Boolean(footer)}
-            weekStartsOn={weekStartsOn}
-            numberOfMonths={numberOfMonths}
-          />
+          <div
+            className={cx(classes.calendarContainer, {
+              [classes.hasFooter]: Boolean(footer),
+              [classes.flexible]: shouldRenderMultipleMonths,
+            })}
+          >
+            <Calendar
+              activeMonth={activeMonth}
+              data-testid={testIds?.calendar}
+              ref={calendarRef}
+              range={range}
+              value={calendarValue ?? undefined}
+              minDate={normalizedMinDate}
+              maxDate={normalizedMaxDate}
+              disabledIntervals={disabledIntervals}
+              indicatedIntervals={indicatedIntervals}
+              renderDay={renderDay}
+              onChange={handleCalendarChange}
+              onBlur={handleBlur}
+              className={classes.calendar}
+              weekStartsOn={weekStartsOn}
+              numberOfMonths={numberOfMonths}
+            />
+          </div>
           {footer && (
             <div
               className={classes.footer}
