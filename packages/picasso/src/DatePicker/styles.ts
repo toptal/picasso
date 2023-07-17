@@ -1,6 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared/styles'
+import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette, shadows, sizes }: Theme) =>
   createStyles({
