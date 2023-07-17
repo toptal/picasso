@@ -1,5 +1,16 @@
 # @toptal/picasso-rich-text-editor
 
+## 4.0.0
+
+### Major Changes
+
+- [#3723](https://github.com/toptal/picasso/pull/3723) [`11d846365`](https://github.com/toptal/picasso/commit/11d846365006281218dcf36a4b322618183963ff) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### RichText
+
+- add support for images ([example](https://picasso.toptal.net/?path=/story/forms-richtexteditor--richtexteditor#image-upload))
+- update peer dependency of Picasso to `37.1.0` (BREAKING CHANGE)
+
 ## 3.1.0
 
 ### Minor Changes
