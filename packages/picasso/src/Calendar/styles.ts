@@ -34,6 +34,9 @@ export default ({ palette }: Theme) =>
     cell: {
       padding: 0,
       flexBasis: '15%',
+      '& > *': {
+        margin: '0 auto',
+      },
     },
     vhidden: {
       display: 'none',
