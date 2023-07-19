@@ -1,5 +1,11 @@
+/** 
+ * In July 2023 we tried to expose the Calendar component. It turned out there was no Calendar designs in BASE.
+ * Since noone needed it at the time, we decided to 1) pospone the work on stand alone Calendar 2) hide it back to discourage its usage.
+ * When the work is resumed - just uncomment the code below and work from there. Also check out PR #3729 where we refactored Calendar to remove its Container and footer.
+ * 
 import { Calendar } from '../Calendar'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+
 
 const page = PicassoBook.section('Components').createPage(
   'Calendar',
@@ -42,3 +48,4 @@ page
     description:
       'Calendars that start on Sunday, which you’ll more often see in the US, use an old-fashioned notation based on Christianity. Which makes the day that Christians go to church the first day of the week.',
   })
+*/
