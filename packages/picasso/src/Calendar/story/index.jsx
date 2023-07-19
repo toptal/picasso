@@ -1,3 +1,9 @@
+/** 
+ * In July 2023 we tried to expose the Calendar component. It turned out there was no Calendar designs in BASE.
+ * Since no one needed it at the time, we decided to 1) postpone the work on stand alone Calendar 2) hide it back to discourage its usage.
+ * When the work is resumed - just uncomment the code below and work from there. Also check out PR #3729 where we refactored Calendar to remove its Container and footer.
+ * Use this search to find Calendar usages: https://github.com/search?q=org%3Atoptal+-repo%3Atoptal%2Fpicasso+++%2Fimport.*Calendar+.*picasso%2F&type=code
+ * 
 import { Calendar } from '../Calendar'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -42,3 +48,4 @@ page
     description:
       'Calendars that start on Sunday, which you’ll more often see in the US, use an old-fashioned notation based on Christianity. Which makes the day that Christians go to church the first day of the week.',
   })
+*/
