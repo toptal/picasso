@@ -27,6 +27,7 @@ import RichTextEditorToolbar, {
 
 type Props = {
   disabled?: boolean
+  id: string
   toolbarRef: React.RefObject<HTMLDivElement>
   testIds?: {
     wrapper?: string
@@ -43,6 +44,7 @@ const LexicalEditorToolbarPlugin = ({
   disabled = false,
   toolbarRef,
   testIds,
+  id,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(
@@ -115,6 +117,7 @@ const LexicalEditorToolbarPlugin = ({
       disabled={disabled}
       ref={toolbarRef}
       testIds={testIds}
+      id={id}
     />
   )
 }
