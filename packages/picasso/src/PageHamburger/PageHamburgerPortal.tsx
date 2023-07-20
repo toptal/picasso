@@ -14,7 +14,6 @@ const PageHamburgerPortal = ({ children }: Props) => {
 
   useEffect(() => {
     setIsMounted(true)
-
     if (hamburgerRef?.current) {
       setContainer(hamburgerRef.current)
     }

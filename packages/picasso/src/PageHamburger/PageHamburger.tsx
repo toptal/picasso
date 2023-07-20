@@ -36,6 +36,8 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
         content: classes.responsiveWrapperContent,
         popper: classes.popper,
       }}
+      offset={{ top: 0.4 }}
+      disablePortal
       popperOptions={{
         modifiers: {
           flip: { enabled: false },

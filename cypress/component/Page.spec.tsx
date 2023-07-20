@@ -8,6 +8,7 @@ const containerHeight = '30rem'
 enum TestIds {
   WRAPPER = 'wrapper',
   SIDEBAR_SCROLLABLE_CONTAINER = 'sidebar-scrollable-container',
+  MENU_CONTAINER = 'menu-container',
 }
 
 const Paragraph = () => (
@@ -35,7 +36,7 @@ const Sidebar = (props: PageSidebarProps) => (
     }}
     {...props}
   >
-    <Page.Sidebar.Menu>
+    <Page.Sidebar.Menu data-testid={TestIds.MENU_CONTAINER}>
       <Page.Sidebar.Item selected>Overview</Page.Sidebar.Item>
       <Page.Sidebar.Item>Jobs</Page.Sidebar.Item>
       <Page.Sidebar.Item>Candidates</Page.Sidebar.Item>
@@ -100,12 +101,12 @@ const Example = ({ sidebarProps }: ExampleProps) => (
     data-testid={TestIds.WRAPPER}
     style={{ height: containerHeight, overflowY: 'scroll' }}
   >
-    <Page hamburgerId='banner-and-sidebar-example'>
-      <Page.TopBar rightContent={<RightContent />} title='Default example' />
-      <Page.Banner>
-        We are now in the process of reviewing your profile. After your profile
-        has been checked, we will reach to you via email about next steps.
-      </Page.Banner>
+    <Page>
+      <Page.TopBar
+        rightContent={<RightContent />}
+        title='Default example'
+        testIds={{ hamburger: 'hamburger-button' }}
+      />
       <Page.Content>
         <Sidebar {...sidebarProps} />
         <Page.Article>
@@ -165,6 +166,59 @@ describe('Page', () => {
       cy.get('body').happoScreenshot({
         component,
         variant: 'default/sidebar-scroll-bottom',
+      })
+    })
+  })
+
+  describe('for screen sizes smaller than 1280px', () => {
+    Cypress._.each([400, 600, 800, 1279], width => {
+      describe(`when page is rendered on a ${width} screen width`, () => {
+        it('renders hamburger menu and hides sidebar', () => {
+          cy.viewport(width, 1000)
+          cy.mount(<Example />)
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-smaller-than-1280/${width}-initial`,
+          })
+
+          cy.getByTestId('hamburger-button').should('be.visible')
+          cy.getByTestId('hamburger-button').realClick()
+
+          cy.getByTestId(TestIds.MENU_CONTAINER).should('be.visible')
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-smaller-than-1280/${width}-opened-menu`,
+          })
+
+          cy.getByTestId('hamburger-button').realClick()
+
+          cy.getByTestId(TestIds.MENU_CONTAINER).should('not.visible')
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-smaller-than-1280/${width}-closed-menu`,
+          })
+        })
+      })
+    })
+  })
+
+  describe('for screen sizes equal or bigger than 1280px', () => {
+    Cypress._.each([1280, 1800], width => {
+      describe(`when page is rendered on a ${width} screen width`, () => {
+        it('does not show hamburger menu button and renders sidebar', () => {
+          cy.viewport(width, 1000)
+          cy.mount(<Example />)
+
+          cy.getByTestId('hamburger-button').should('not.be.visible')
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-bigger-or-equal-than-1280/${width}-default`,
+          })
+        })
       })
     })
   })
