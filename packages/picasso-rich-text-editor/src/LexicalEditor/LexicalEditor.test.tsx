@@ -156,6 +156,7 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
+          id: 'id',
           toolbarRef: {
             current: null,
           },
@@ -172,6 +173,7 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
+          id: 'id',
           toolbarRef: {
             current: null,
           },
@@ -192,6 +194,7 @@ describe('LexicalEditor', () => {
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
           disabled: true,
+          id: 'id',
           toolbarRef: {
             current: null,
           },
