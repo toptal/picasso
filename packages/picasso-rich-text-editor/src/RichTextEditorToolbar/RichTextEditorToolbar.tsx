@@ -23,6 +23,7 @@ import type {
 
 type Props = {
   disabled: boolean
+  id: string
   format: FormatType
   testIds?: {
     headerSelect?: string
@@ -57,6 +58,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       onUnorderedClick,
       onOrderedClick,
       testIds,
+      id,
     } = props
 
     const { setToolbarPortalEl } = useToolbarPortalRegister()
@@ -67,7 +69,11 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
 
     return (
-      <Container ref={toolbarRef} className={classes.toolbar}>
+      <Container
+        ref={toolbarRef}
+        id={`${id}toolbar`}
+        className={classes.toolbar}
+      >
         <Container
           className={cx(classes.group, {
             groupDisabled: disabled,

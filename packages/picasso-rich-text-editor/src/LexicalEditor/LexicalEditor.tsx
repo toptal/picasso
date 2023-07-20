@@ -194,6 +194,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
             // remount Toolbar when disabled
             key={`${disabled || !focused}`}
             testIds={testIds}
+            id={id}
           />
 
           {defaultValue ? (
