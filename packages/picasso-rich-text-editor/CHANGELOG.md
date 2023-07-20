@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 4.0.1
+
+### Patch Changes
+
+- [#3733](https://github.com/toptal/picasso/pull/3733) [`bbea3a6b8`](https://github.com/toptal/picasso/commit/bbea3a6b8a461e7dc33976068dacaeeda5dd665f) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### RichTextEditor
+
+- return `id` to the toolbar for backward compatibility
+
 ## 4.0.0
 
 ### Major Changes
