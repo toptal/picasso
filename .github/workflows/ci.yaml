@@ -1,4 +1,4 @@
-name: Consulting the Oracle
+name: CI
 
 on:
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
 
   static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
-    name: PR Checks
+    name: Static checks
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
