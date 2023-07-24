@@ -3,6 +3,8 @@ import type { Theme } from '@material-ui/core/styles'
 import type { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { rem } from '@toptal/picasso-shared'
 
+import { codeStyles } from '../RichText/components/styles'
+
 const margins = {
   '& p': {
     margin: '0.5rem 0',
@@ -79,7 +81,9 @@ const listStyles = {
   ...indentStyles,
 }
 
-export default ({ typography }: Theme) => {
+export default (theme: Theme) => {
+  const { typography } = theme
+
   return createStyles({
     editorContainer: {
       height: '12.5em',
@@ -160,5 +164,6 @@ export default ({ typography }: Theme) => {
         height: '22px',
       },
     },
+    code: codeStyles(theme),
   })
 }

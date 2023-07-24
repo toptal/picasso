@@ -15,7 +15,19 @@ export const hastSanitizeSchema: Schema = {
     img: ['src', 'data*', 'class'],
     '*': [],
   },
-  tagNames: ['h3', 'p', 'br', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'img'],
+  tagNames: [
+    'h3',
+    'p',
+    'br',
+    'strong',
+    'em',
+    'ul',
+    'ol',
+    'li',
+    'a',
+    'img',
+    'code',
+  ],
   strip: ['script'],
 }
 

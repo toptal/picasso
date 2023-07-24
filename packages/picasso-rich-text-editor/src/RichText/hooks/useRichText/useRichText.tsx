@@ -10,6 +10,7 @@ import Link from '@toptal/picasso/Link'
 import type { ASTType } from '../../types'
 import { Emoji, Image } from '../../components'
 import { isCustomEmoji } from '../../../utils'
+import Code from '../../components/Code'
 
 type Props = {
   children?: React.ReactNode
@@ -57,6 +58,7 @@ const componentMap: Record<string, FC> = {
   ul: Ul,
   a: A,
   img: Img,
+  code: Code,
 } as const
 
 const picassoMapper = (child: ReactNode): ReactNode => {

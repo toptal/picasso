@@ -108,6 +108,20 @@ const ast: ASTType = {
       tagName: 'p',
       properties: {},
       children: [
+        { type: 'text', value: 'Example of inline ' },
+        {
+          type: 'element',
+          tagName: 'code',
+          properties: {},
+          children: [{ type: 'text', value: 'code()' }],
+        },
+      ],
+    },
+    {
+      type: 'element',
+      tagName: 'p',
+      properties: {},
+      children: [
         {
           type: 'text',
           value:

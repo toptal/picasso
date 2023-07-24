@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
-import { LinkPlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
+import { CodePlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
 import type { RichTextEditorChangeHandler } from '../types'
 
@@ -13,10 +13,10 @@ const Example = () => {
   return (
     <>
       <RichTextEditor
-        id='allow-links-editor'
+        id='editor'
         onChange={handleChange}
         placeholder='Write some cool rich text'
-        plugins={[<LinkPlugin />]}
+        plugins={[<CodePlugin />]}
       />
       <Container
         padded='small'
