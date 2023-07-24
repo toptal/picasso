@@ -123,7 +123,7 @@ const api = {
     console.log('Submit with Inline Errors. Form values:', values)
 
     return responseWithDelay({
-      inlineErrorName: 'Unknown first name',
+      'backendCommunication-inlineErrorName': 'Unknown first name',
     })
   },
   submitWithCustomNotificationError: (values: any) => {
