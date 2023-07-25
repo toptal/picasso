@@ -45,8 +45,8 @@ describe('CodePlugin', () => {
         />
       )
 
-      cy.get(editorSelector).as('editor').click().type(normalText)
-
+      cy.get(editorSelector).as('editor').click()
+      cy.get('@editor').type(normalText)
       cy.getByTestId(codeButtonTestId).as('button').click()
       cy.get('@editor').type(codeText)
       cy.get('code').should('exist').should('have.text', codeText)
