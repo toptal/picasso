@@ -1,7 +1,6 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
 import { Container, Menu, Page, Typography } from '@toptal/picasso'
-import { RemoteBrowserTarget } from 'happo.io'
 
 const component = 'Page'
 const containerHeight = '30rem'
@@ -9,10 +8,13 @@ const containerHeight = '30rem'
 const responsiveHappoTargets = [400, 600, 800, 1279, 1280, 1800].reduce<
   Record<string, any>
 >((acc, width) => {
-  acc[`chrome-desktop-width-${width}`] = new RemoteBrowserTarget('chrome', {
+  const name = `chrome-desktop-width-${width}`
+
+  acc[name] = {
+    name,
+    browser: 'chrome',
     viewport: `${width}x1024`,
-    applyPseudoClasses: true,
-  })
+  }
 
   return acc
 }, {})
