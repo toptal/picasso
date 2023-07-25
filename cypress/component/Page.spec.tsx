@@ -1,9 +1,21 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
 import { Container, Menu, Page, Typography } from '@toptal/picasso'
+import { RemoteBrowserTarget } from 'happo.io'
 
 const component = 'Page'
 const containerHeight = '30rem'
+
+const responsiveHappoTargets = [400, 600, 800, 1279, 1280, 1800].reduce<
+  Record<string, any>
+>((acc, width) => {
+  acc[`chrome-desktop-width-${width}`] = new RemoteBrowserTarget('chrome', {
+    viewport: `${width}x1024`,
+    applyPseudoClasses: true,
+  })
+
+  return acc
+}, {})
 
 enum TestIds {
   WRAPPER = 'wrapper',
@@ -184,7 +196,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-initial`,
-            targets: [`chrome-desktop-width-${width}`],
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
           })
 
           cy.getByTestId('hamburger-button').should('be.visible')
@@ -195,7 +207,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-opened-menu`,
-            targets: [`chrome-desktop-width-${width}`],
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
           })
 
           cy.getByTestId('hamburger-button').realClick()
@@ -205,7 +217,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-closed-menu`,
-            targets: [`chrome-desktop-width-${width}`],
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
           })
         })
       })
@@ -224,7 +236,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-bigger-or-equal-than-1280/${width}-default`,
-            targets: [`chrome-desktop-width-${width}`],
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
           })
         })
       })
