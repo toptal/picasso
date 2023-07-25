@@ -4,8 +4,6 @@ import { CodePlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
 
 const editorTestId = 'editor'
-const imageUploadButtonTestId = 'image-upload-button'
-const resultContainerTestId = 'result-container'
 
 const defaultProps = {
   id: 'foo',
@@ -13,7 +11,6 @@ const defaultProps = {
   placeholder: 'placeholder',
   testIds: {
     editor: editorTestId,
-    imageUploadButton: imageUploadButtonTestId,
   },
 }
 
@@ -25,18 +22,16 @@ const Editor = (props: RichTextEditorProps) => {
   return (
     <Container style={{ maxWidth: '600px' }} padded='small'>
       <RichTextEditor {...props} onChange={value => setValue(value)} />
-      <Container padded='small' data-testid={resultContainerTestId}>
-        {value}
-      </Container>
+      <Container padded='small'>{value}</Container>
     </Container>
   )
 }
 
 const component = 'RichTextEditor'
 
-describe('ImagePlugin', () => {
-  describe('when image upload is successful', () => {
-    it('inserts image into rich text editor', () => {
+describe('CodePlugin', () => {
+  describe('when the code button in toolbar is used', () => {
+    it('inserts code tag and activate the button', () => {
       const codeButtonTestId = 'code-button'
       const normalText = 'foo '
       const codeText = 'bar'
