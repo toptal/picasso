@@ -2,7 +2,6 @@ import React from 'react'
 
 import type { RTEPlugin } from '../api'
 import { RTEPluginMeta, Toolbar } from '../api'
-import { CodeNode } from './nodes/CodeNode'
 import CodeButton from './CodeButton'
 
 const PLUGIN_NAME = 'code'
@@ -23,9 +22,6 @@ const EmojiPlugin: RTEPlugin<Props> = ({ testIds }) => {
 
 EmojiPlugin[RTEPluginMeta] = {
   name: PLUGIN_NAME,
-  lexical: {
-    nodes: [CodeNode],
-  },
 }
 
 export default EmojiPlugin
