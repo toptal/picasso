@@ -107,6 +107,10 @@ const Example = ({ sidebarProps }: ExampleProps) => (
         title='Default example'
         testIds={{ hamburger: 'hamburger-button' }}
       />
+      <Page.Banner>
+        We are now in the process of reviewing your profile. After your profile
+        has been checked, we will reach to you via email about next steps.
+      </Page.Banner>
       <Page.Content>
         <Sidebar {...sidebarProps} />
         <Page.Article>
@@ -180,6 +184,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-initial`,
+            targets: [`chrome-desktop-width-${width}`],
           })
 
           cy.getByTestId('hamburger-button').should('be.visible')
@@ -190,6 +195,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-opened-menu`,
+            targets: [`chrome-desktop-width-${width}`],
           })
 
           cy.getByTestId('hamburger-button').realClick()
@@ -199,6 +205,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-closed-menu`,
+            targets: [`chrome-desktop-width-${width}`],
           })
         })
       })
@@ -217,6 +224,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-bigger-or-equal-than-1280/${width}-default`,
+            targets: [`chrome-desktop-width-${width}`],
           })
         })
       })
