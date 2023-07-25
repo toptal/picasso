@@ -221,13 +221,19 @@ export const DatePicker = (props: Props) => {
   // Should not update when input is focused to prevent overriding it's value
   useEffect(() => {
     updateInputValue({ preventUpdateOnFocus: true })
-  }, [value, timezone, updateInputValue])
+  }, [value, timezone])
 
   // Keep the input format in sync with its 'focus' state
   // Updating on input focus state change
   useEffect(() => {
     updateInputValue({ preventUpdateOnFocus: false })
-  }, [isInputFocused, updateInputValue])
+  }, [isInputFocused])
+
+  useEffect(() => {
+    if (disabled) {
+      setIsInputFocused(false)
+    }
+  }, [disabled])
 
   // Keep the calendar in sync with the input value
   useEffect(() => {

@@ -117,7 +117,9 @@ describe('DatePicker', () => {
   })
 
   const TestAsyncExternalUpdateDatePicker = () => {
-    const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>()
+    const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>(
+      new Date(2020, 7, 21)
+    )
     const [disabled, setDisabled] = useState(false)
 
     const handleChange = (value: any) => {
@@ -135,7 +137,7 @@ describe('DatePicker', () => {
           onClick={() => {
             setDisabled(true)
             setTimeout(() => {
-              setDatepickerValue(undefined)
+              setDatepickerValue(null)
               setDisabled(false)
             }, 100)
           }}
@@ -161,6 +163,7 @@ describe('DatePicker', () => {
 
     cy.getByTestId('date-picker-input').focus()
     cy.getByTestId('day-button-15').click()
+    cy.getByTestId('date-picker-input').should('have.value', 'Aug 15, 2020')
     cy.getByTestId('reset-button').click()
 
     cy.getByTestId('date-picker-input').should('have.value', '')
