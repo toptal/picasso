@@ -1,33 +1,10 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
 import { Container, Menu, Page, Typography } from '@toptal/picasso'
-import type { BreakpointKeys } from '@toptal/picasso-provider/Picasso/config'
-import { PicassoBreakpoints } from '@toptal/picasso-provider/Picasso/config'
+import { getCheckpoints } from '@toptal/picasso/test-utils'
 
 const component = 'Page'
 const containerHeight = '30rem'
-
-/**
- * Produces an array of checkpoints – screen size values, needed for covering
- * all existing breakpoints in tests (checkpoints are different from breakpoints
- * by certain offset).
- *
- * @returns {number[]} Array of checkpoints
- */
-const getCheckpoints = () => {
-  const offset = 5
-  const breakpoints = PicassoBreakpoints.breakpoints.values
-  const breakpointKeys = Object.keys(breakpoints)
-
-  return [
-    ...breakpointKeys
-      .filter(breakpointKey => breakpoints[breakpointKey as BreakpointKeys] > 0)
-      .map(
-        breakpointKey => breakpoints[breakpointKey as BreakpointKeys] - offset
-      ),
-    breakpoints[breakpointKeys.slice(-1) as unknown as BreakpointKeys] + offset,
-  ]
-}
 
 const checkpoints = getCheckpoints()
 
