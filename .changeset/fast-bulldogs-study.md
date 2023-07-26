@@ -4,4 +4,4 @@
 
 ### PageHamburger
 
-- fix hamburger menu positioning
+- fix hamburger button and menu position
