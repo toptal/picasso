@@ -36,6 +36,10 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
         content: classes.responsiveWrapperContent,
         popper: classes.popper,
       }}
+      // The "disablePortal" is needed for testing the dropdown hamburger menu in Cypress.
+      // Without it, React fails to create portal inside of portal (via `createPortal()`), so
+      // the problem needs to be further debugged on React code level.
+      disablePortal
       popperOptions={{
         modifiers: {
           flip: { enabled: false },

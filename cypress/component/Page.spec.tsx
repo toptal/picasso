@@ -1,13 +1,43 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
 import { Container, Menu, Page, Typography } from '@toptal/picasso'
+import { getCheckpoints } from '@toptal/picasso/test-utils'
 
 const component = 'Page'
 const containerHeight = '30rem'
 
+const checkpoints = getCheckpoints()
+
+// Sidebar menu has custom breakpoint at 1280px that changes its behavior, so 1280px
+// acts as a divider for "small" and "wide" page checkpoints
+const smallScreenCheckpoints = [
+  ...checkpoints.filter(width => width < 1280),
+  1279,
+]
+const wideScreenCheckpoints = [
+  1280,
+  ...checkpoints.filter(width => width >= 1280),
+]
+
+const responsiveHappoTargets = [
+  ...smallScreenCheckpoints,
+  ...wideScreenCheckpoints,
+].reduce<Record<string, any>>((acc, width) => {
+  const name = `chrome-desktop-width-${width}`
+
+  acc[name] = {
+    name,
+    browser: 'chrome',
+    viewport: `${width}x1024`,
+  }
+
+  return acc
+}, {})
+
 enum TestIds {
   WRAPPER = 'wrapper',
   SIDEBAR_SCROLLABLE_CONTAINER = 'sidebar-scrollable-container',
+  MENU_CONTAINER = 'menu-container',
 }
 
 const Paragraph = () => (
@@ -35,7 +65,7 @@ const Sidebar = (props: PageSidebarProps) => (
     }}
     {...props}
   >
-    <Page.Sidebar.Menu>
+    <Page.Sidebar.Menu data-testid={TestIds.MENU_CONTAINER}>
       <Page.Sidebar.Item selected>Overview</Page.Sidebar.Item>
       <Page.Sidebar.Item>Jobs</Page.Sidebar.Item>
       <Page.Sidebar.Item>Candidates</Page.Sidebar.Item>
@@ -100,8 +130,12 @@ const Example = ({ sidebarProps }: ExampleProps) => (
     data-testid={TestIds.WRAPPER}
     style={{ height: containerHeight, overflowY: 'scroll' }}
   >
-    <Page hamburgerId='banner-and-sidebar-example'>
-      <Page.TopBar rightContent={<RightContent />} title='Default example' />
+    <Page>
+      <Page.TopBar
+        rightContent={<RightContent />}
+        title='Default example'
+        testIds={{ hamburger: 'hamburger-button' }}
+      />
       <Page.Banner>
         We are now in the process of reviewing your profile. After your profile
         has been checked, we will reach to you via email about next steps.
@@ -165,6 +199,63 @@ describe('Page', () => {
       cy.get('body').happoScreenshot({
         component,
         variant: 'default/sidebar-scroll-bottom',
+      })
+    })
+  })
+
+  describe('for screen sizes smaller than 1280px', () => {
+    Cypress._.each(smallScreenCheckpoints, width => {
+      describe(`when page is rendered on a ${width} screen width`, () => {
+        it('renders hamburger menu and hides sidebar', () => {
+          cy.viewport(width, 1000)
+          cy.mount(<Example />)
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-smaller-than-1280/${width}-initial`,
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+          })
+
+          cy.getByTestId('hamburger-button').should('be.visible')
+          cy.getByTestId('hamburger-button').realClick()
+
+          cy.getByTestId(TestIds.MENU_CONTAINER).should('be.visible')
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-smaller-than-1280/${width}-opened-menu`,
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+          })
+
+          cy.getByTestId('hamburger-button').realClick()
+
+          cy.getByTestId(TestIds.MENU_CONTAINER).should('not.visible')
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-smaller-than-1280/${width}-closed-menu`,
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+          })
+        })
+      })
+    })
+  })
+
+  describe('for screen sizes equal or bigger than 1280px', () => {
+    Cypress._.each(wideScreenCheckpoints, width => {
+      describe(`when page is rendered on a ${width} screen width`, () => {
+        it('does not show hamburger menu button and renders sidebar', () => {
+          cy.viewport(width, 1000)
+          cy.mount(<Example />)
+
+          cy.getByTestId('hamburger-button').should('not.be.visible')
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `page-menu-screen-bigger-or-equal-than-1280/${width}-default`,
+            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+          })
+        })
       })
     })
   })

@@ -47,6 +47,24 @@ exports[`Page.TopBar render with custom logo 1`] = `
                     </span>
                   </button>
                 </div>
+                <div
+                  class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
+                  role="navigation"
+                  style="position: fixed; top: 0px; left: 0px; display: none;"
+                >
+                  <div>
+                    <div
+                      class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+                      style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+                    >
+                      <div>
+                        <div
+                          id="hamburger"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div>
                 Custom logo content
@@ -74,24 +92,6 @@ exports[`Page.TopBar render with custom logo 1`] = `
           />
         </div>
       </header>
-    </div>
-    <div
-      class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
-      role="navigation"
-      style="position: fixed; top: 0px; left: 0px; display: none;"
-    >
-      <div>
-        <div
-          class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
-          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
-        >
-          <div>
-            <div
-              id="hamburger"
-            />
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -143,6 +143,24 @@ exports[`Page.TopBar render with link 1`] = `
                       </svg>
                     </span>
                   </button>
+                </div>
+                <div
+                  class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
+                  role="navigation"
+                  style="position: fixed; top: 0px; left: 0px; display: none;"
+                >
+                  <div>
+                    <div
+                      class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+                      style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+                    >
+                      <div>
+                        <div
+                          id="hamburger"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <a
@@ -198,24 +216,6 @@ exports[`Page.TopBar render with link 1`] = `
         </div>
       </header>
     </div>
-    <div
-      class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
-      role="navigation"
-      style="position: fixed; top: 0px; left: 0px; display: none;"
-    >
-      <div>
-        <div
-          class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
-          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
-        >
-          <div>
-            <div
-              id="hamburger"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 `;
@@ -267,6 +267,24 @@ exports[`Page.TopBar renders 1`] = `
                     </span>
                   </button>
                 </div>
+                <div
+                  class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
+                  role="navigation"
+                  style="position: fixed; top: 0px; left: 0px; display: none;"
+                >
+                  <div>
+                    <div
+                      class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+                      style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+                    >
+                      <div>
+                        <div
+                          id="hamburger"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <svg
                 class="PicassoSvgLogoEmblem-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
@@ -315,24 +333,6 @@ exports[`Page.TopBar renders 1`] = `
           />
         </div>
       </header>
-    </div>
-    <div
-      class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
-      role="navigation"
-      style="position: fixed; top: 0px; left: 0px; display: none;"
-    >
-      <div>
-        <div
-          class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
-          style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
-        >
-          <div>
-            <div
-              id="hamburger"
-            />
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
