@@ -7,6 +7,8 @@ import TabChapter from './TabChapter'
 
 const COMPONENTS_SECTION = 'Components'
 
+const DEFAULT_HAPPO_TARGET = 'chrome-desktop'
+
 class Page extends Base {
   type = 'Page'
   title = ''
@@ -20,14 +22,14 @@ class Page extends Base {
     info = null,
     sectionFn = null,
     section = COMPONENTS_SECTION,
-    alwaysOnTop = false
+    alwaysOnTop = false,
   }) {
     super({
       title,
       subtitle,
       info,
       section,
-      sectionFn
+      sectionFn,
     })
 
     this.title = title
@@ -59,7 +61,7 @@ class Page extends Base {
   toStoryBook() {
     return {
       ...this.options,
-      chapters: this.collection.map(chapter => chapter.toStoryBook())
+      chapters: this.collection.map(chapter => chapter.toStoryBook()),
     }
   }
 
@@ -92,7 +94,16 @@ class Page extends Base {
 
       const stories = storiesOf(storyName, module)
       chapter.sections.forEach(section => {
-        const parameters = { happo: section.takeScreenshot }
+        const happoConfig = {}
+
+        if (!section.screenshotBreakpoints) {
+          happoConfig.targets = [DEFAULT_HAPPO_TARGET]
+        }
+
+        const parameters = {
+          happo: section.takeScreenshot && happoConfig,
+        }
+
         stories.add(section.title || section.id, section.sectionFn, parameters)
       })
     })
