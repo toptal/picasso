@@ -8,7 +8,6 @@ import { useHamburgerContext } from './PageHamburgerContext'
 import Dropdown from '../Dropdown'
 import { Close24, Overview24 } from '../Icon'
 import styles from './styles'
-import { useBreakpoint } from '../utils'
 
 interface Props {
   id: string
@@ -24,8 +23,6 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
 
-  const nonXlLayout = useBreakpoint(['xs', 'sm', 'md', 'lg'])
-
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)
 
@@ -35,8 +32,10 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
       className={cx(classes.root, {
         [classes.hidden]: !isHamburgerVisible,
       })}
-      classes={{ content: classes.responsiveWrapperContent }}
-      offset={{ top: nonXlLayout ? 'small' : 'xsmall' }}
+      classes={{
+        content: classes.responsiveWrapperContent,
+        popper: classes.popper,
+      }}
       popperOptions={{
         modifiers: {
           flip: { enabled: false },

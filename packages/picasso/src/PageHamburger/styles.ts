@@ -12,6 +12,9 @@ export default ({ palette }: Theme) => {
         display: 'none',
       },
     },
+    popper: {
+      marginTop: '1rem',
+    },
     hamburger: {
       pointerEvents: 'none',
     },
