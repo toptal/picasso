@@ -8,7 +8,6 @@ export default ({ palette }: Theme) => {
 
   return createStyles({
     root: {
-      display: 'block',
       [headerBreakingPointXL]: {
         display: 'none',
       },
