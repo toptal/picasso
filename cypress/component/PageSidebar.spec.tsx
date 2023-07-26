@@ -186,6 +186,8 @@ describe('Sidebar', () => {
 
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
 
+      cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('not.exist')
+
       cy.get('body').happoScreenshot({
         component,
         variant: 'collapsed sidebar default',
@@ -202,6 +204,8 @@ describe('Sidebar', () => {
       // Expand collapsed sidebar
       cy.getByTestId(TestIds.SIDEBAR_CONTAINER).realHover()
       cy.getByTestId(TestIds.SIDEBAR_COLLAPSE_BUTTON).realClick()
+
+      cy.getByTestId(TestIds.ITEM_TEXT_CONTENT).should('exist')
 
       cy.get('body').happoScreenshot({ component, variant: 'expand sidebar' })
     })
