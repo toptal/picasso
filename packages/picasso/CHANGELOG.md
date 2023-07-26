@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.1.1
+
+### Patch Changes
+
+- [#3737](https://github.com/toptal/picasso/pull/3737) [`dbf87ffed`](https://github.com/toptal/picasso/commit/dbf87ffed2331e5db46b8ea74f47a4c95bbc3bfe) Thanks [@mkrl](https://github.com/mkrl)!
+
+### DatePicker
+
+- fix DatePicker visible input value not reacting to async external changes appropriately
+
 ## 37.1.0
 
 ### Minor Changes
