@@ -1,13 +1,51 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
 import { Container, Menu, Page, Typography } from '@toptal/picasso'
+import type { BreakpointKeys } from '@toptal/picasso-provider/Picasso/config'
+import { PicassoBreakpoints } from '@toptal/picasso-provider/Picasso/config'
 
 const component = 'Page'
 const containerHeight = '30rem'
 
-const responsiveHappoTargets = [400, 600, 800, 1279, 1280, 1800].reduce<
-  Record<string, any>
->((acc, width) => {
+/**
+ * Produces an array of checkpoints – screen size values, needed for covering
+ * all existing breakpoints in tests (checkpoints are different from breakpoints
+ * by certain offset).
+ *
+ * @returns {number[]} Array of checkpoints
+ */
+const getCheckpoints = () => {
+  const offset = 5
+  const breakpoints = PicassoBreakpoints.breakpoints.values
+  const breakpointKeys = Object.keys(breakpoints)
+
+  return [
+    ...breakpointKeys
+      .filter(breakpointKey => breakpoints[breakpointKey as BreakpointKeys] > 0)
+      .map(
+        breakpointKey => breakpoints[breakpointKey as BreakpointKeys] - offset
+      ),
+    breakpoints[breakpointKeys.slice(-1) as unknown as BreakpointKeys] + offset,
+  ]
+}
+
+const checkpoints = getCheckpoints()
+
+// Sidebar menu has custom breakpoint at 1280px that changes its behavior, so 1280px
+// acts as a divider for "small" and "wide" page checkpoints
+const smallScreenCheckpoints = [
+  ...checkpoints.filter(width => width < 1280),
+  1279,
+]
+const wideScreenCheckpoints = [
+  1280,
+  ...checkpoints.filter(width => width >= 1280),
+]
+
+const responsiveHappoTargets = [
+  ...smallScreenCheckpoints,
+  ...wideScreenCheckpoints,
+].reduce<Record<string, any>>((acc, width) => {
   const name = `chrome-desktop-width-${width}`
 
   acc[name] = {
@@ -189,7 +227,7 @@ describe('Page', () => {
   })
 
   describe('for screen sizes smaller than 1280px', () => {
-    Cypress._.each([400, 600, 800, 1279], width => {
+    Cypress._.each(smallScreenCheckpoints, width => {
       describe(`when page is rendered on a ${width} screen width`, () => {
         it('renders hamburger menu and hides sidebar', () => {
           cy.viewport(width, 1000)
@@ -227,7 +265,7 @@ describe('Page', () => {
   })
 
   describe('for screen sizes equal or bigger than 1280px', () => {
-    Cypress._.each([1280, 1800], width => {
+    Cypress._.each(wideScreenCheckpoints, width => {
       describe(`when page is rendered on a ${width} screen width`, () => {
         it('does not show hamburger menu button and renders sidebar', () => {
           cy.viewport(width, 1000)
