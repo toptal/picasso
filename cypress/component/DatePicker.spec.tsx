@@ -1,5 +1,11 @@
-import type { DatePickerProps } from '@toptal/picasso'
-import { Container, DatePicker, Link, Typography } from '@toptal/picasso'
+import type { DatePickerProps, DatePickerValue } from '@toptal/picasso'
+import {
+  Container,
+  DatePicker,
+  Link,
+  Typography,
+  Button,
+} from '@toptal/picasso'
 import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
@@ -108,5 +114,58 @@ describe('DatePicker', () => {
       component,
       variant: 'customized-footer',
     })
+  })
+
+  const TestAsyncExternalUpdateDatePicker = () => {
+    const [datepickerValue, setDatepickerValue] = useState<DatePickerValue>(
+      new Date(2020, 7, 21)
+    )
+    const [disabled, setDisabled] = useState(false)
+
+    const handleChange = (value: any) => {
+      setDisabled(true)
+      setTimeout(() => {
+        setDatepickerValue(value)
+        setDisabled(false)
+      }, 100)
+    }
+
+    return (
+      <Container padded='medium' flex>
+        <Button
+          data-testid='reset-button'
+          onClick={() => {
+            setDisabled(true)
+            setTimeout(() => {
+              setDatepickerValue(null)
+              setDisabled(false)
+            }, 100)
+          }}
+        >
+          Reset
+        </Button>
+        <DatePicker
+          testIds={{
+            input: 'date-picker-input',
+          }}
+          value={datepickerValue}
+          enableReset
+          disabled={disabled}
+          onResetClick={() => setDatepickerValue(null)}
+          onChange={handleChange}
+        />
+      </Container>
+    )
+  }
+
+  it('reacts to external value updates correctly', () => {
+    cy.mount(<TestAsyncExternalUpdateDatePicker />)
+
+    cy.getByTestId('date-picker-input').focus()
+    cy.getByTestId('day-button-15').click()
+    cy.getByTestId('date-picker-input').should('have.value', 'Aug 15, 2020')
+    cy.getByTestId('reset-button').click()
+
+    cy.getByTestId('date-picker-input').should('have.value', '')
   })
 })
