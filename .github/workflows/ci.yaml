@@ -163,7 +163,7 @@ jobs:
         uses: toptal/davinci-github-actions/create-jira-deployment@v9.0.0
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment: staging
-          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
+          environment: temploy
+          environment-url: ${{ steps.temploy.outputs.temployURL }}
           transient-environment: false
           auto-inactive: false
