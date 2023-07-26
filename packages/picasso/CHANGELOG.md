@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.2.0
+
+### Minor Changes
+
+- [#3736](https://github.com/toptal/picasso/pull/3736) [`2f9735aaa`](https://github.com/toptal/picasso/commit/2f9735aaaf3197108523dbbc87412f02d4499f20) Thanks [@sashuk](https://github.com/sashuk)!
+
+### PageHamburgerPortal
+
+- disable portal for page menu dropdown
+
 ## 37.1.2
 
 ### Patch Changes
