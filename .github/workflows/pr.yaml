@@ -162,7 +162,7 @@ jobs:
       - name: Create Jira Deployment
         uses: toptal/davinci-github-actions/create-jira-deployment@fx-4058-update-jira-deployment
         with:
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
           environment: staging
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
           transient-environment: false
