@@ -22,7 +22,7 @@ jobs:
       CLIENT_ID: ${{ secrets.CLIENT_ID }}
       CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
       JIRA_BASE_URL: ${{ secrets.CLOUD_INSTANCE_BASE_URL }}
-      JIRA_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+      JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
       JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
       PROXY: http://${{ secrets.HTTP_PROXY }}
       DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}

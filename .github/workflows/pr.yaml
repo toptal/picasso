@@ -1,0 +1,169 @@
+name: Consulting the Oracle
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master # triggers the flow for every PR to master
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
+
+    types:
+      - synchronize # PR was updated
+      - opened # PR was open
+      - reopened # PR was closed and is now open again
+      - ready_for_review # PR was converted from draft to open
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
+  HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+  HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+  JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+  JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+  PROXY: http://${{ secrets.HTTP_PROXY }}
+
+jobs:
+  build-docker-image:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Build Picasso docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: toptal/davinci-github-actions/build-push-image@v8.0.0
+        env:
+          GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          GCR_ACCOUNT_KEY: ${{ secrets.GCR_ACCOUNT_KEY }}
+        with:
+          sha: ${{ github.event.pull_request.head.sha }}
+          image-name: picasso
+          environment: temploy
+          docker-file: ./Dockerfile
+
+  static-checks:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: PR Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Check missing changeset
+        uses: toptal/davinci-github-actions/report-missing-changeset@v8.0.0
+        with:
+          github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+
+      # This Action will scan dependency manifest files that change as part of a Pull Request,
+      # surfacing known-vulnerable versions of the packages declared or updated in the PR.
+      # Once installed, if the workflow run is marked as required, PRs introducing known-vulnerable
+      # packages will be blocked from merging.
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v3
+
+      - name: Install Dependencies
+        uses: toptal/davinci-github-actions/yarn-install@v8.0.0
+
+      - name: Update PR Body
+        run: node ./.github/actions/update-body.js
+        env:
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+
+      - name: Syncpack check
+        run: yarn syncpack:list
+
+      - name: Circularity Check
+        run: yarn circularity
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Type Check
+        run: yarn typecheck
+
+      - name: Jest Tests
+        run: yarn test:unit:ci
+
+  storybook-visual-tests:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Storybook Visual Tests
+    runs-on: ubuntu-latest
+    needs: [static-checks]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies from cache
+        uses: toptal/davinci-github-actions/yarn-install@v8.0.0
+
+      - name: Visual Tests
+        run: yarn happo:storybook
+        env:
+          HAPPO_PROJECT: Picasso/Storybook
+          HAPPO_API_KEY: ${{ env.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ env.HAPPO_API_SECRET }}
+
+  integration-tests:
+    name: Integration Tests
+    uses: ./.github/workflows/davinci-integration-tests.yml
+    secrets:
+      TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+
+  deploy-docs:
+    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
+    name: Deploy Picasso docs
+    runs-on: ubuntu-latest
+    needs: [build-docker-image]
+
+    steps:
+      - name: Trigger doc deployment job
+        uses: toptal/jenkins-job-trigger-action@1.0.1
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+          PR_ID: ${{ github.event.pull_request.number }}
+        with:
+          jenkins_url: https://jenkins-build.toptal.net/
+          jenkins_user: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          proxy: ${{ env.HTTP_PROXY }}
+          job_name: picasso-docs
+          job_params: |
+            {
+              "BRANCH": "${{ env.BRANCH }}",
+              "PR_ID": "${{ env.PR_ID }}"
+            }
+          job_timeout: '3600'
+
+      - name: Create Jira Deployment
+        uses: toptal/davinci-github-actions/create-jira-deployment@fx-4058-update-jira-deployment
+        with:
+          token: ${{ env.DEVBOT_TOKEN }}
+          environment: staging
+          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
+          transient-environment: false
+          auto-inactive: false
