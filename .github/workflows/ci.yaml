@@ -23,6 +23,9 @@ env:
   HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
   HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
   HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+  JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+  JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+  PROXY: http://${{ secrets.HTTP_PROXY }}
 
 jobs:
   build-docker-image:
@@ -159,7 +162,7 @@ jobs:
       - name: Create Jira Deployment
         uses: toptal/davinci-github-actions/create-jira-deployment@fx-4058-update-jira-deployment
         with:
-          token: ${{ env.DEVBOT_TOKEN }}
+          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: staging
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
           transient-environment: false
