@@ -104,8 +104,12 @@ jobs:
               target_url: process.env.STATUS_TARGET_URL
             })
 
-      - uses: toptal/davinci-github-actions/create-jira-deployment@v8.0.0
+      - uses: toptal/davinci-github-actions/create-jira-deployment@fx-4058-update-jira-deployment
         name: Create Jira deployment
+        env:
+          JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+          JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          PROXY: http://${{ secrets.HTTP_PROXY }}
         with:
           token: ${{ env.GITHUB_TOKEN }}
           environment: alpha-package
