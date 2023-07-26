@@ -76,9 +76,9 @@ exports[`Page.TopBar render with custom logo 1`] = `
       </header>
     </div>
     <div
-      class="PicassoPopper-root PicassoDropdown-popper"
+      class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
       role="navigation"
-      style="position: fixed; top: 0px; left: 0px; display: none; margin-top: 0.4rem;"
+      style="position: fixed; top: 0px; left: 0px; display: none;"
     >
       <div>
         <div
@@ -199,9 +199,9 @@ exports[`Page.TopBar render with link 1`] = `
       </header>
     </div>
     <div
-      class="PicassoPopper-root PicassoDropdown-popper"
+      class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
       role="navigation"
-      style="position: fixed; top: 0px; left: 0px; display: none; margin-top: 0.4rem;"
+      style="position: fixed; top: 0px; left: 0px; display: none;"
     >
       <div>
         <div
@@ -317,9 +317,9 @@ exports[`Page.TopBar renders 1`] = `
       </header>
     </div>
     <div
-      class="PicassoPopper-root PicassoDropdown-popper"
+      class="PicassoPopper-root PicassoDropdown-popper PageHamburger-popper"
       role="navigation"
-      style="position: fixed; top: 0px; left: 0px; display: none; margin-top: 0.4rem;"
+      style="position: fixed; top: 0px; left: 0px; display: none;"
     >
       <div>
         <div

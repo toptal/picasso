@@ -32,8 +32,10 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
       className={cx(classes.root, {
         [classes.hidden]: !isHamburgerVisible,
       })}
-      classes={{ content: classes.responsiveWrapperContent }}
-      offset={{ top: 0.4 }}
+      classes={{
+        content: classes.responsiveWrapperContent,
+        popper: classes.popper,
+      }}
       popperOptions={{
         modifiers: {
           flip: { enabled: false },

@@ -8,10 +8,12 @@ export default ({ palette }: Theme) => {
 
   return createStyles({
     root: {
-      display: 'block',
       [headerBreakingPointXL]: {
         display: 'none',
       },
+    },
+    popper: {
+      marginTop: '1rem',
     },
     hamburger: {
       pointerEvents: 'none',
