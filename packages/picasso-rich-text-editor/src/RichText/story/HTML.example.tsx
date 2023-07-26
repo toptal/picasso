@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid } from '@toptal/picasso'
+import { Grid, Container } from '@toptal/picasso'
 import {
   ImagePlugin,
   RichText,
@@ -14,26 +14,30 @@ const Example = () => {
   const [html, setHtml] = useState('')
 
   return (
-    <Grid>
-      <Grid.Item sm={12} lg={6}>
-        <RichTextEditor
-          defaultValue={defaultValue}
-          onChange={setHtml}
-          id='editor'
-          plugins={[
-            'link',
-            'emoji',
-            <ImagePlugin
-              onUpload={() => new Promise(resolve => setTimeout(resolve, 2000))}
-            />,
-          ]}
-          customEmojis={customEmojis}
-        />
-      </Grid.Item>
-      <Grid.Item sm={12} lg={6}>
-        <RichText value={htmlToHast(html)} />
-      </Grid.Item>
-    </Grid>
+    <Container style={{ minHeight: '800px' }}>
+      <Grid>
+        <Grid.Item sm={12} lg={6}>
+          <RichTextEditor
+            defaultValue={defaultValue}
+            onChange={setHtml}
+            id='editor'
+            plugins={[
+              'link',
+              'emoji',
+              <ImagePlugin
+                onUpload={() =>
+                  new Promise(resolve => setTimeout(resolve, 2000))
+                }
+              />,
+            ]}
+            customEmojis={customEmojis}
+          />
+        </Grid.Item>
+        <Grid.Item sm={12} lg={6}>
+          <RichText value={htmlToHast(html)} />
+        </Grid.Item>
+      </Grid>
+    </Container>
   )
 }
 
