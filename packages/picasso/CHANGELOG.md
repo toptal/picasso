@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.1.2
+
+### Patch Changes
+
+- [#3743](https://github.com/toptal/picasso/pull/3743) [`99d95c6c7`](https://github.com/toptal/picasso/commit/99d95c6c791f04297ea690e984794b92d7028195) Thanks [@sashuk](https://github.com/sashuk)!
+
+### PageHamburger
+
+- fix hamburger button and menu position
+
 ## 37.1.1
 
 ### Patch Changes
