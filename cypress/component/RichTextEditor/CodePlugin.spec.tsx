@@ -31,7 +31,7 @@ const component = 'RichTextEditor'
 
 describe('CodePlugin', () => {
   describe('when the code button in toolbar is used', () => {
-    it('inserts code tag and activate the button', () => {
+    it('inserts code tag and activates the button', () => {
       const codeButtonTestId = 'code-button'
       const normalText = 'foo '
       const codeText = 'bar'

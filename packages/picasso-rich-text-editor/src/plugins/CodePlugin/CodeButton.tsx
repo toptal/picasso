@@ -3,7 +3,6 @@ import { Code16 } from '@toptal/picasso'
 import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND } from 'lexical'
 import React, { useState } from 'react'
 
-// import { TOGGLE_CODE_COMMAND } from './commands'
 import { useRTEPluginContext, useRTEUpdate } from '../api'
 import RichTextEditorButton from '../../RichTextEditorButton'
 
