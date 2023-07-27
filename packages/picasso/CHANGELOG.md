@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.3.0
+
+### Minor Changes
+
+- [#3746](https://github.com/toptal/picasso/pull/3746) [`48236bb28`](https://github.com/toptal/picasso/commit/48236bb28a8c7da8f3c7b6a58f47979376974333) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Icon
+
+- add `CodeBlock16` and `CodeBlock24` icons
+
 ## 37.2.0
 
 ### Minor Changes
