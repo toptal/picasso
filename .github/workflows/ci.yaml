@@ -164,7 +164,7 @@ jobs:
         if: ${{ always() }}
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment: temploy
+          environment: staging
           environment-url: ${{ steps.temploy.outputs.temployURL }}
           transient-environment: false
           auto-inactive: false

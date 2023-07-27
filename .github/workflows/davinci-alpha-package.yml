@@ -112,5 +112,5 @@ jobs:
           PROXY: http://${{ secrets.HTTP_PROXY }}
         with:
           token: ${{ env.GITHUB_TOKEN }}
-          environment: alpha-package
+          environment: development
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
