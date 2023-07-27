@@ -12,7 +12,7 @@ export type Props = {
   }
 }
 
-const EmojiPlugin: RTEPlugin<Props> = ({ testIds }) => {
+const CodePlugin: RTEPlugin<Props> = ({ testIds }) => {
   return (
     <Toolbar keyName={PLUGIN_NAME}>
       <CodeButton data-testid={testIds?.button} />
@@ -20,8 +20,8 @@ const EmojiPlugin: RTEPlugin<Props> = ({ testIds }) => {
   )
 }
 
-EmojiPlugin[RTEPluginMeta] = {
+CodePlugin[RTEPluginMeta] = {
   name: PLUGIN_NAME,
 }
 
-export default EmojiPlugin
+export default CodePlugin
