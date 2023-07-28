@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 4.1.0
+
+### Minor Changes
+
+- [`613c1da99`](https://github.com/toptal/picasso/commit/613c1da99ba9a3b47b3e9e9f96832c6dd29215f2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add support for highlighted inline code
+
 ## 4.0.2
 
 ### Patch Changes
