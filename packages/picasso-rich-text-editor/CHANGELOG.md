@@ -1,5 +1,13 @@
 # @toptal/picasso-rich-text-editor
 
+## 4.0.2
+
+### Patch Changes
+
+- [#3745](https://github.com/toptal/picasso/pull/3745) [`e9c9d76c4`](https://github.com/toptal/picasso/commit/e9c9d76c40949204543035f7cbbb4594739f02e7) Thanks [@mkrl](https://github.com/mkrl)!
+- fix internal Lexical state being initialized without empty paragraph when `{ root: { children: [] } }` is provided as a default value
+  - fix editor crash when empty list is being inserted into the editor with no paragraph
+
 ## 4.0.1
 
 ### Patch Changes
