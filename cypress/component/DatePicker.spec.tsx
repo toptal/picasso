@@ -7,6 +7,8 @@ import {
   Button,
 } from '@toptal/picasso'
 import React, { useState } from 'react'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { PicassoBreakpoints } from '@toptal/picasso-provider'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
   const [value, setValue] = useState<DatePickerProps['value']>(
@@ -167,5 +169,41 @@ describe('DatePicker', () => {
     cy.getByTestId('reset-button').click()
 
     cy.getByTestId('date-picker-input').should('have.value', '')
+  })
+
+  describe('when number of displayed months is more than one', () => {
+    Cypress._.each(HAPPO_TARGETS, happoTarget => {
+      const { width } = happoTarget
+
+      describe(`when screen has ${width}px width`, () => {
+        const isNarrowScreen = width < PicassoBreakpoints.breakpoints.values.md
+
+        it(
+          isNarrowScreen ? 'displays one month' : 'displays two months',
+          () => {
+            cy.viewport(width, 1000)
+
+            cy.mount(
+              <TestDatePicker
+                numberOfMonths={2}
+                testIds={{
+                  input: 'date-picker-input',
+                  calendar: 'date-picker-calendar',
+                }}
+              />
+            )
+
+            cy.getByTestId('date-picker-input').focus()
+            cy.get('.rdp-month').should('have.length', isNarrowScreen ? 1 : 2)
+
+            cy.get('body').happoScreenshot({
+              component,
+              variant: `date-picker/${width}-default`,
+              targets: [happoTarget],
+            })
+          }
+        )
+      })
+    })
   })
 })
