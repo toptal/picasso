@@ -35,6 +35,7 @@ page
   })
   .addExample('PageSidebar/story/Size.example.tsx', {
     title: 'Sizes',
+    screenshotBreakpoints: true,
   })
 
 page.connect(sidebarItemStory.chapter)
