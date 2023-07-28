@@ -12,8 +12,9 @@ import { getDomValue } from './getDomValue'
 
 export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
   const root = $getRoot()
+  const isEmptyRootValue = value?.children?.length === 0
 
-  if (value && Object.keys(value).length > 0) {
+  if (value && Object.keys(value).length > 0 && !isEmptyRootValue) {
     const domValue = getDomValue(value)
     const lexicalValueNodes = $generateNodesFromDOM(editor, domValue)
 
@@ -26,7 +27,7 @@ export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
       root.append(nodeToAppend)
     })
   } else {
-    if (root.isEmpty()) {
+    if (isEmptyRootValue || root.isEmpty()) {
       root.append($createParagraphNode())
     }
   }
