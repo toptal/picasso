@@ -40,7 +40,7 @@ module.exports = {
       viewport: '1280x1024',
       applyPseudoClasses: true,
     }),
-    ...checkpoints,
+    ...process.env.SCREENSHOT_BREAKPOINTS && checkpoints,
   },
   plugins: [
     happoStorybookPlugin({
