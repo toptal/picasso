@@ -7,6 +7,31 @@ import {
   Link,
   Pencil16,
 } from '@toptal/picasso'
+import { getCheckpoints, getHappoTargets } from '@toptal/picasso/test-utils'
+import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
+
+const checkpoints = getCheckpoints()
+const happoTargets = getHappoTargets(checkpoints)
+
+const DefaultExample = () => {
+  const { showInfo } = useNotifications()
+
+  return (
+    <Container padded='medium'>
+      <Button
+        data-testid='trigger-default'
+        variant='secondary'
+        onClick={() =>
+          showInfo(
+            "That's one small step for a man, one giant leap for mankind."
+          )
+        }
+      >
+        Trigger
+      </Button>
+    </Container>
+  )
+}
 
 const VariantsExample = () => {
   const { showInfo, showSuccess, showError } = useNotifications()
@@ -112,6 +137,28 @@ describe('NotificationStream', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'custom-icon',
+    })
+  })
+
+  Cypress._.each(checkpoints, checkpoint => {
+    const isNarrowScreenSize =
+      checkpoint < PicassoBreakpoints.breakpoints.values.lg
+
+    describe(`when page is rendered on a ${checkpoint}px screen width`, () => {
+      it(`notification uses ${
+        isNarrowScreenSize ? 'compact' : 'regular'
+      } layout`, () => {
+        cy.viewport(checkpoint, 1000)
+
+        cy.mount(<DefaultExample />)
+
+        cy.getByTestId('trigger-default').click()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `notification/${checkpoint}-default`,
+          targets: [happoTargets[`chrome-desktop-width-${checkpoint}`]],
+        })
+      })
     })
   })
 })

@@ -1,7 +1,7 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
 import { Container, Menu, Page, Typography } from '@toptal/picasso'
-import { getCheckpoints } from '@toptal/picasso/test-utils'
+import { getCheckpoints, getHappoTargets } from '@toptal/picasso/test-utils'
 
 const component = 'Page'
 const containerHeight = '30rem'
@@ -19,20 +19,10 @@ const wideScreenCheckpoints = [
   ...checkpoints.filter(width => width >= 1280),
 ]
 
-const responsiveHappoTargets = [
+const happoTargets = getHappoTargets([
   ...smallScreenCheckpoints,
   ...wideScreenCheckpoints,
-].reduce<Record<string, any>>((acc, width) => {
-  const name = `chrome-desktop-width-${width}`
-
-  acc[name] = {
-    name,
-    browser: 'chrome',
-    viewport: `${width}x1024`,
-  }
-
-  return acc
-}, {})
+])
 
 enum TestIds {
   WRAPPER = 'wrapper',
@@ -205,7 +195,7 @@ describe('Page', () => {
 
   describe('for screen sizes smaller than 1280px', () => {
     Cypress._.each(smallScreenCheckpoints, width => {
-      describe(`when page is rendered on a ${width} screen width`, () => {
+      describe(`when page is rendered on a ${width}px screen width`, () => {
         it('renders hamburger menu and hides sidebar', () => {
           cy.viewport(width, 1000)
           cy.mount(<Example />)
@@ -213,7 +203,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-initial`,
-            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+            targets: [happoTargets[`chrome-desktop-width-${width}`]],
           })
 
           cy.getByTestId('hamburger-button').should('be.visible')
@@ -224,7 +214,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-opened-menu`,
-            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+            targets: [happoTargets[`chrome-desktop-width-${width}`]],
           })
 
           cy.getByTestId('hamburger-button').realClick()
@@ -234,7 +224,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-smaller-than-1280/${width}-closed-menu`,
-            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+            targets: [happoTargets[`chrome-desktop-width-${width}`]],
           })
         })
       })
@@ -243,7 +233,7 @@ describe('Page', () => {
 
   describe('for screen sizes equal or bigger than 1280px', () => {
     Cypress._.each(wideScreenCheckpoints, width => {
-      describe(`when page is rendered on a ${width} screen width`, () => {
+      describe(`when page is rendered on a ${width}px screen width`, () => {
         it('does not show hamburger menu button and renders sidebar', () => {
           cy.viewport(width, 1000)
           cy.mount(<Example />)
@@ -253,7 +243,7 @@ describe('Page', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `page-menu-screen-bigger-or-equal-than-1280/${width}-default`,
-            targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+            targets: [happoTargets[`chrome-desktop-width-${width}`]],
           })
         })
       })

@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import type { ModalProps } from '@toptal/picasso'
 import { Modal, Form, Input, Select, Checkbox, Button } from '@toptal/picasso'
+import { getCheckpoints, getHappoTargets } from '@toptal/picasso/test-utils'
+
+const checkpoints = getCheckpoints()
+const happoTargets = getHappoTargets(checkpoints)
 
 const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => {
   const [isOpen, setOpen] = React.useState(false)
@@ -209,6 +213,24 @@ describe('Modal', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'overflown',
+    })
+  })
+
+  describe('when screen is extra-small', () => {
+    Cypress._.each(['small', 'medium', 'large', 'full-width'], modalSize => {
+      it(`renders ${modalSize} size modal as a full-screen one`, () => {
+        const xsCheckpoint = checkpoints[0]
+
+        cy.viewport(xsCheckpoint, 1000)
+
+        cy.mount(<TestModalOverflown size={modalSize as ModalProps['size']} />)
+
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `modal-full-screen/${xsCheckpoint}-default`,
+          targets: [happoTargets[`chrome-desktop-width-${xsCheckpoint}`]],
+        })
+      })
     })
   })
 })
