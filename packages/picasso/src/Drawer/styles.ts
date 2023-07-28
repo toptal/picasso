@@ -1,5 +1,6 @@
 import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
+import type { Theme } from '@material-ui/core/styles'
 
 PicassoProvider.override(() => ({
   MuiDrawer: {
@@ -9,7 +10,7 @@ PicassoProvider.override(() => ({
   },
 }))
 
-export default () =>
+export default ({ screens }: Theme) =>
   createStyles({
     container: {
       maxWidth: '100%',
@@ -26,6 +27,10 @@ export default () =>
     },
     narrow: {
       width: '27.5rem',
+      [screens('xs')]: {
+        width: '100vw',
+        maxWidth: '100vw',
+      },
     },
     regular: {
       width: '35rem',
