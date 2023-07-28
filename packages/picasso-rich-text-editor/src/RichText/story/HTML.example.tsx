@@ -4,6 +4,9 @@ import {
   ImagePlugin,
   RichText,
   RichTextEditor,
+  LinkPlugin,
+  EmojiPlugin,
+  CodePlugin,
 } from '@toptal/picasso-rich-text-editor'
 import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
 import type { CustomEmojiGroup } from '@toptal/picasso-rich-text-editor/RichTextEditor'
@@ -22,15 +25,15 @@ const Example = () => {
             onChange={setHtml}
             id='editor'
             plugins={[
-              'link',
-              'emoji',
+              <LinkPlugin />,
+              <EmojiPlugin customEmojis={customEmojis} />,
+              <CodePlugin />,
               <ImagePlugin
                 onUpload={() =>
                   new Promise(resolve => setTimeout(resolve, 2000))
                 }
               />,
             ]}
-            customEmojis={customEmojis}
           />
         </Grid.Item>
         <Grid.Item sm={12} lg={6}>
@@ -139,6 +142,20 @@ const defaultValue: ASTType = {
           children: [{ type: 'text', value: 'Toptal' }],
         },
         { type: 'text', value: ' 💪' },
+      ],
+    },
+    {
+      type: 'element',
+      tagName: 'p',
+      properties: {},
+      children: [
+        { type: 'text', value: 'Example of inline ' },
+        {
+          type: 'element',
+          tagName: 'code',
+          properties: {},
+          children: [{ type: 'text', value: 'code()' }],
+        },
       ],
     },
     {

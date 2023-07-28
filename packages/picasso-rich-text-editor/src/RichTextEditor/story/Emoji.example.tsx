@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
-import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
+import { EmojiPlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
 import type { RichTextEditorChangeHandler } from '../types'
 import type { RichTextEditorProps } from '..'
@@ -36,8 +36,7 @@ const Example = () => {
         id='allow-emojis-editor'
         onChange={handleChange}
         placeholder='Write some cool rich text with emojis!'
-        plugins={['emoji']}
-        customEmojis={customEmojis}
+        plugins={[<EmojiPlugin customEmojis={customEmojis} />]}
       />
       <Container
         padded='small'

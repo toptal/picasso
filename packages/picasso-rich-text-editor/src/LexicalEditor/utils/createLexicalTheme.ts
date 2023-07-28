@@ -22,6 +22,7 @@ export const createLexicalTheme = ({
     text: {
       italic: classes.italic,
       bold: classes.bold,
+      code: classes.code,
     },
 
     list: {
