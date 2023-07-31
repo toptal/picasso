@@ -26,10 +26,11 @@ export default ({ screens }: Theme) =>
       top: '1rem',
     },
     narrow: {
-      width: '27.5rem',
-      [screens('xs')]: {
-        width: '100vw',
-        maxWidth: '100vw',
+      width: '100vw',
+      maxWidth: '100vw',
+      [screens('sm', 'md', 'lg', 'xl')]: {
+        width: '27.5rem',
+        maxWidth: '100%',
       },
     },
     regular: {

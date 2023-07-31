@@ -2,6 +2,6 @@
 '@toptal/picasso': patch
 ---
 
-### Icon
+### Drawer
 
 - use proper width for narrow Drawer in xs screens
