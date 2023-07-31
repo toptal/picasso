@@ -1,7 +1,11 @@
-import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
+import {
+  $isLinkNode,
+  TOGGLE_LINK_COMMAND,
+  $createLinkNode,
+} from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { Link16 } from '@toptal/picasso'
-import { $getSelection, $isRangeSelection } from 'lexical'
+import { $createTextNode, $getSelection, $isRangeSelection } from 'lexical'
 import React, { useCallback, useState } from 'react'
 
 import { getSelectedNode } from '../../LexicalEditor/utils/getSelectedNode'
@@ -34,15 +38,41 @@ const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
       return editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
     }
 
-    const url = window.prompt('URL')
+    editor.update(() => {
+      const selection = $getSelection()
 
-    if (url != null) {
-      if (!validateUrl(url)) {
-        return window.alert('Not valid URL')
+      if ($isRangeSelection(selection)) {
+        const isEmptySelection = selection.anchor.is(selection.focus)
+
+        const url = window.prompt('URL')
+
+        if (url != null) {
+          if (!validateUrl(url)) {
+            return window.alert('Not a valid URL')
+          }
+          const sanitizedUrl = sanitizeUrl(url)
+
+          // When nothing is selected, we create a new Link node without dispatching
+          // any commands to the original Lexical Link plugin
+          if (isEmptySelection) {
+            const linkNode = $createLinkNode(sanitizedUrl, {
+              rel: 'noreferrer',
+            })
+            const textNode = $createTextNode(sanitizedUrl)
+
+            linkNode.append(textNode)
+            const node = getSelectedNode(selection)
+
+            node.append(linkNode)
+            // If we have a selection of any kind, pass the creation of the Link node to the plugin
+          } else {
+            editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
+              url: sanitizedUrl,
+            })
+          }
+        }
       }
-
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: sanitizeUrl(url) })
-    }
+    })
   }, [editor, active])
 
   return (
