@@ -2,10 +2,8 @@ import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
 const maxHeight = 'calc(100% - 6rem)'
-const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
 const maxHeightForExtraSmall = 'calc(100% - 2rem)'
-const maxWidthForExtraSmall = 'calc(100% - 2rem)'
 
 export default ({ screens, sizes }: Theme) =>
   createStyles({
@@ -19,15 +17,27 @@ export default ({ screens, sizes }: Theme) =>
     container: {},
     paper: {
       height: 'auto',
-      maxHeight,
-      maxWidth,
-      borderRadius: sizes.borderRadius.medium,
-      margin: '2rem',
 
-      [screens('xs')]: {
-        maxHeight: maxHeightForExtraSmall,
-        maxWidth: maxWidthForExtraSmall,
-        margin: '1rem',
+      maxHeight: maxHeightForExtraSmall,
+      maxWidth: '20.5rem',
+      margin: '1rem',
+      borderRadius: sizes.borderRadius.medium,
+
+      [screens('sm', 'md', 'lg', 'xl')]: {
+        margin: '2rem',
+        maxHeight,
+      },
+      [screens('sm')]: {
+        maxWidth: '26rem',
+      },
+      [screens('md')]: {
+        maxWidth: '32.5rem',
+      },
+      [screens('lg')]: {
+        maxWidth: '54.5rem',
+      },
+      [screens('xl')]: {
+        maxWidth: '75rem',
       },
     },
     small: {
@@ -40,16 +50,19 @@ export default ({ screens, sizes }: Theme) =>
       width: '50rem',
     },
     'full-screen': {
-      height: maxHeight,
-      width: maxWidth,
+      height: '100%',
+      width: '100%',
+      maxWidth: '100%',
+      maxHeight: '100%',
+      margin: 0,
+      borderRadius: 0,
     },
     topAlignedDialog: {
       position: 'absolute',
       top: 0,
-      maxHeight: maxHeightForTopAligned,
 
-      [screens('xs')]: {
-        maxHeight: maxHeightForExtraSmall,
+      [screens('sm', 'md', 'lg', 'xl')]: {
+        maxHeight: maxHeightForTopAligned,
       },
     },
     closeButton: {
