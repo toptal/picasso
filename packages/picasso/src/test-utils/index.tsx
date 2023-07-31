@@ -31,5 +31,4 @@ const customRender = (
 
 export * from '@testing-library/react'
 export { customRender as render, TestingPicasso }
-export { getCheckpoints } from './get-checkpoints'
-export { getHappoTargets } from './get-happo-targets'
+export { HAPPO_TARGETS, getHappoTargets } from './get-happo-targets'

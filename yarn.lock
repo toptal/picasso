@@ -5927,10 +5927,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/happo-cypress@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@types/happo-cypress/-/happo-cypress-4.1.0.tgz#bd2d76fd0453c4d980d9be85328d77122e506e45"
-  integrity sha512-RwY+ExkWtiItcCH10DIaTGQXwSt/z6r1Yh0XTd4/jtoFRT8ZKMt/Mgaxyoc3LooAIpm7mV1Dq2bpS0NtqsY+EQ==
+"@types/happo-cypress@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/happo-cypress/-/happo-cypress-4.1.1.tgz#1f0192abf129d98ec0adc6bf48816596144e1f1b"
+  integrity sha512-eIRD12nyF8aA3L6Mlvar0RMu9M4FAB34SmTQO8Q/7NjY4r19IQcjgEk1UN5LuVxXj4CrUdBCixzHUYnrkD6rjw==
   dependencies:
     cypress ">=6.4.0"
 

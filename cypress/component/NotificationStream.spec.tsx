@@ -7,11 +7,8 @@ import {
   Link,
   Pencil16,
 } from '@toptal/picasso'
-import { getCheckpoints, getHappoTargets } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
-
-const checkpoints = getCheckpoints()
-const happoTargets = getHappoTargets(checkpoints)
 
 const DefaultExample = () => {
   const { showInfo } = useNotifications()
@@ -140,23 +137,23 @@ describe('NotificationStream', () => {
     })
   })
 
-  Cypress._.each(checkpoints, checkpoint => {
-    const isNarrowScreenSize =
-      checkpoint < PicassoBreakpoints.breakpoints.values.lg
+  Cypress._.each(HAPPO_TARGETS, happoTarget => {
+    const { width } = happoTarget
+    const isNarrowScreenSize = width < PicassoBreakpoints.breakpoints.values.lg
 
-    describe(`when page is rendered on a ${checkpoint}px screen width`, () => {
+    describe(`when screen has ${width}px width`, () => {
       it(`notification uses ${
         isNarrowScreenSize ? 'compact' : 'regular'
       } layout`, () => {
-        cy.viewport(checkpoint, 1000)
+        cy.viewport(width, 1000)
 
         cy.mount(<DefaultExample />)
 
         cy.getByTestId('trigger-default').click()
         cy.get('body').happoScreenshot({
           component,
-          variant: `notification/${checkpoint}-default`,
-          targets: [happoTargets[`chrome-desktop-width-${checkpoint}`]],
+          variant: `notification/${width}-default`,
+          targets: [happoTarget],
         })
       })
     })

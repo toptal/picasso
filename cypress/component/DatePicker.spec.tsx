@@ -7,12 +7,8 @@ import {
   Button,
 } from '@toptal/picasso'
 import React, { useState } from 'react'
-import { getCheckpoints, getHappoTargets } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 import { PicassoBreakpoints } from '@toptal/picasso-provider'
-
-const checkpoints = getCheckpoints()
-
-const responsiveHappoTargets = getHappoTargets(checkpoints)
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
   const [value, setValue] = useState<DatePickerProps['value']>(
@@ -175,9 +171,11 @@ describe('DatePicker', () => {
     cy.getByTestId('date-picker-input').should('have.value', '')
   })
 
-  describe.only('when number of displayed months is explicitly set and is more than one', () => {
-    Cypress._.each(checkpoints, width => {
-      describe(`when page is rendered on a ${width} screen width`, () => {
+  describe('when number of displayed months is more than one', () => {
+    Cypress._.each(HAPPO_TARGETS, happoTarget => {
+      const { width } = happoTarget
+
+      describe(`when screen has ${width}px width`, () => {
         const isNarrowScreen = width < PicassoBreakpoints.breakpoints.values.md
 
         it(
@@ -201,9 +199,7 @@ describe('DatePicker', () => {
             cy.get('body').happoScreenshot({
               component,
               variant: `date-picker/${width}-default`,
-              targets: [
-                responsiveHappoTargets[`chrome-desktop-width-${width}`],
-              ],
+              targets: [happoTarget],
             })
           }
         )

@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@toptal/picasso'
 import { useModal, useNotifications } from '@toptal/picasso/utils'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const DrawerExample = (
   props: Partial<DrawerProps> & { open: boolean; onOpen: () => void }
@@ -146,6 +147,39 @@ describe('Drawer', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'ultra-wide/behind-modal',
+    })
+  })
+
+  const testedDrawerVariants: DrawerProps['width'][] = [
+    'narrow',
+    'regular',
+    'ultra-wide',
+  ]
+
+  Cypress._.each(HAPPO_TARGETS, happoTarget => {
+    const { width } = happoTarget
+
+    describe(`when screen has ${width}px width`, () => {
+      Cypress._.each(testedDrawerVariants, variant => {
+        it(`renders ${variant} drawer`, () => {
+          cy.viewport(width, 1000)
+          cy.mount(
+            <TestDrawer title={`${variant} drawer title`}>
+              <Container>
+                <Typography>${variant} drawer content</Typography>
+              </Container>
+            </TestDrawer>
+          )
+
+          cy.getByTestId('trigger').click()
+          cy.getByRole('presentation').should('be.visible')
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `drawer-${variant}-width/${width}-default`,
+            targets: [happoTarget],
+          })
+        })
+      })
     })
   })
 })
