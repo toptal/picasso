@@ -1,5 +1,12 @@
 # Change Log
 
+## 60.0.1
+
+### Patch Changes
+
+- [#3758](https://github.com/toptal/picasso/pull/3758) [`86bcf22fd`](https://github.com/toptal/picasso/commit/86bcf22fdbf1be6c70ad47bd057f14d592e11b45) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- update dependencies (`final-form-arrays`)
+
 ## 60.0.0
 
 ### Patch Changes
