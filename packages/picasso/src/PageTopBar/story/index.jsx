@@ -21,17 +21,41 @@ page
 
 page
   .createChapter()
-  .addExample('PageTopBar/story/Default.example.tsx', 'Default')
-  .addExample('PageTopBar/story/Variants.example.tsx', 'Variants')
-  .addExample('PageTopBar/story/LeftContent.example.tsx', 'Left content')
-  .addExample('PageTopBar/story/RightContent.example.tsx', 'Right content')
-  .addExample('PageTopBar/story/CenterContent.example.tsx', 'Center content')
-  .addExample(
-    'PageTopBar/story/ExtraMenuContent.example.tsx',
-    'Extra header menu content'
-  )
-  .addExample('PageTopBar/story/Link.example.tsx', 'With link')
-  .addExample('PageTopBar/story/WithoutTitle.example.tsx', 'Without title')
-  .addExample('PageTopBar/story/Logo.example.tsx', 'With custom logo')
+  .addExample('PageTopBar/story/Default.example.tsx', {
+    title: 'Default',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/Variants.example.tsx', {
+    title: 'Variants',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/LeftContent.example.tsx', {
+    title: 'Left content',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/RightContent.example.tsx', {
+    title: 'Right content',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/CenterContent.example.tsx', {
+    title: 'Center content',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/ExtraMenuContent.example.tsx', {
+    title: 'Extra header menu content',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/Link.example.tsx', {
+    title: 'With link',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/WithoutTitle.example.tsx', {
+    title: 'Without title',
+    screenshotBreakpoints: true,
+  })
+  .addExample('PageTopBar/story/Logo.example.tsx', {
+    title: 'With custom logo',
+    screenshotBreakpoints: true,
+  })
 
 page.connect(topBarMenuStory.chapter)

@@ -25,13 +25,23 @@ page
 
 page
   .createChapter()
-  .addExample('Grid/story/Alignment.example.tsx', 'Alignment')
-  .addExample('Grid/story/Direction.example.tsx', 'Direction')
-  .addExample('Grid/story/Wrapping.example.tsx', 'Wrapping')
+  .addExample('Grid/story/Alignment.example.tsx', {
+    title: 'Alignment',
+    screenshotBreakpoints: true,
+  })
+  .addExample('Grid/story/Direction.example.tsx', {
+    title: 'Direction',
+    screenshotBreakpoints: true,
+  })
+  .addExample('Grid/story/Wrapping.example.tsx', {
+    title: 'Wrapping',
+    screenshotBreakpoints: true,
+  })
   .addExample('Grid/story/ResponsiveSpacing.example.tsx', {
     title: 'Responsive spacing',
     description:
       'When `spacing` is not explicitly specified by consumer, grid adjusts it according to the screen size (please see the property description for details). You can try to resize screen, to see how different spacing is applied.',
+    screenshotBreakpoints: true,
   })
 
 page.connect(gridItemStory.chapter)

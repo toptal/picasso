@@ -6,12 +6,18 @@ const componentDocs = PicassoBook.createComponentDocs(PageFooter, 'Page.Footer')
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Page.Footer', 'A Footer component')
-    .addExample('PageFooter/story/Default.example.tsx', 'Default')
-    .addExample('PageFooter/story/RightContent.example.tsx', 'Right content')
-    .addExample(
-      'PageFooter/story/CopyrightContent.example.tsx',
-      'Copyright content'
-    )
+    .addExample('PageFooter/story/Default.example.tsx', {
+      title: 'Default',
+      screenshotBreakpoints: true,
+    })
+    .addExample('PageFooter/story/RightContent.example.tsx', {
+      title: 'Right content',
+      screenshotBreakpoints: true,
+    })
+    .addExample('PageFooter/story/CopyrightContent.example.tsx', {
+      title: 'Copyright content',
+      screenshotBreakpoints: true,
+    })
 )
 
 export default {

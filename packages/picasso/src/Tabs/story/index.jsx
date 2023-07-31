@@ -37,5 +37,6 @@ page
   })
   .addExample('Tabs/story/FullWidth.example.tsx', {
     title: 'Full Width',
+    screenshotBreakpoints: true,
   })
 page.connect(tabStory.chapter)
