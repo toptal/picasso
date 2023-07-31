@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.3.1
+
+### Patch Changes
+
+- [#3755](https://github.com/toptal/picasso/pull/3755) [`d26fd9591`](https://github.com/toptal/picasso/commit/d26fd9591b18034504d86d2c4b6536bbf5cd0efe) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### Drawer
+
+- use proper width for narrow Drawer in xs screens
+
 ## 37.3.0
 
 ### Minor Changes
