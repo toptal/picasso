@@ -5,7 +5,12 @@ import {
 } from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { Link16 } from '@toptal/picasso'
-import { $createTextNode, $getSelection, $isRangeSelection } from 'lexical'
+import {
+  $createTextNode,
+  $getSelection,
+  $isElementNode,
+  $isRangeSelection,
+} from 'lexical'
 import React, { useCallback, useState } from 'react'
 
 import { getSelectedNode } from '../../LexicalEditor/utils/getSelectedNode'
@@ -63,7 +68,9 @@ const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
             linkNode.append(textNode)
             const node = getSelectedNode(selection)
 
-            node.append(linkNode)
+            const targetNode = $isElementNode(node) ? node : node.getParent()
+
+            targetNode?.append(linkNode)
             // If we have a selection of any kind, pass the creation of the Link node to the plugin
           } else {
             editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
