@@ -42,6 +42,7 @@ const ast: ASTType = {
           tagName: 'img',
           properties: {
             src: './jacqueline/128x88.jpg',
+            alt: 'Jacqueline',
           },
           children: [],
         },
@@ -115,6 +116,18 @@ const ast: ASTType = {
           properties: {},
           children: [{ type: 'text', value: 'code()' }],
         },
+      ],
+    },
+    {
+      type: 'element',
+      tagName: 'pre',
+      properties: {},
+      children: [
+        { type: 'text', value: '<CodeBlock' },
+        { type: 'element', tagName: 'br', properties: {}, children: [] },
+        { type: 'text', value: '  {...props}' },
+        { type: 'element', tagName: 'br', properties: {}, children: [] },
+        { type: 'text', value: '/>' },
       ],
     },
     {

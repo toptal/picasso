@@ -3,7 +3,7 @@ import type { Theme } from '@material-ui/core/styles'
 import type { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { rem } from '@toptal/picasso-shared'
 
-import { codeStyles } from '../RichText/components/styles'
+import { codeBlockStyles, codeStyles } from '../RichText/components/styles'
 
 const margins = {
   '& p': {
@@ -165,5 +165,12 @@ export default (theme: Theme) => {
       },
     },
     code: codeStyles(theme),
+    codeBlock: codeBlockStyles(theme),
+    codeBlockText: {
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      color: 'inherit',
+    },
   })
 }
