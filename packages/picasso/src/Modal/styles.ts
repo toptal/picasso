@@ -27,8 +27,8 @@ export default ({ screens, sizes }: Theme) =>
 
       [screens('sm', 'md', 'lg', 'xl')]: {
         margin: '2rem',
-        maxWidth,
         maxHeight,
+        maxWidth,
       },
     },
     small: {
@@ -43,8 +43,8 @@ export default ({ screens, sizes }: Theme) =>
     'full-screen': {
       height: '100%',
       width: '100%',
-      maxWidth: '100%',
       maxHeight: '100%',
+      maxWidth: '100%',
       margin: 0,
       borderRadius: 0,
     },
