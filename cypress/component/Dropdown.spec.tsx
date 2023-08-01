@@ -9,6 +9,7 @@ import {
   Form,
   Input,
 } from '@toptal/picasso'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const LongListExample = () => (
   <Container padded='medium' style={{ height: 900 }}>
@@ -109,6 +110,42 @@ describe('Dropdown', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'custom-content-style/after-clicked',
+    })
+  })
+
+  // Based on screen height, dropdown has different styling
+  // 250px was selected as a height that shrinks the dropdown enough, 586+px is a
+  // breakpoint that disables any extra styling
+  const heights = [250, 586]
+
+  heights.forEach(height => {
+    Cypress._.each(HAPPO_TARGETS, happoTarget => {
+      const { width } = happoTarget
+
+      describe(`when screen has ${width}px width and ${height}px height`, () => {
+        it(`renders dropdown`, () => {
+          cy.viewport(width, height)
+
+          cy.mount(
+            <Dropdown content={menu}>
+              Open menu
+              <Dropdown.Arrow data-testid='trigger' />
+            </Dropdown>
+          )
+
+          cy.getByTestId('trigger').realClick()
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `dropdown/${width}x${height}-default`,
+            targets: [
+              {
+                ...happoTarget,
+                viewport: `${happoTarget.width}x${height}`,
+              },
+            ],
+          })
+        })
+      })
     })
   })
 })
