@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import type { ModalProps } from '@toptal/picasso'
 import { Modal, Form, Input, Select, Checkbox, Button } from '@toptal/picasso'
 import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
-import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
 
 const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => {
   const [isOpen, setOpen] = React.useState(false)
@@ -214,23 +213,23 @@ describe('Modal', () => {
     })
   })
 
-  describe('when screen is extra-small', () => {
-    const happoTarget = HAPPO_TARGETS.filter(
-      ({ width }) => width < PicassoBreakpoints.breakpoints.values.sm
-    )[0]
+  Cypress._.each(HAPPO_TARGETS, happoTarget => {
+    const { width } = happoTarget
 
-    Cypress._.each(['small', 'medium', 'large', 'full-width'], modalSize => {
-      it(`renders ${modalSize} size modal as a full-screen one`, () => {
-        const xsCheckpoint = happoTarget.width
+    describe(`when screen has ${width}px width`, () => {
+      Cypress._.each(['small', 'medium', 'large', 'full-screen'], modalSize => {
+        it(`renders ${modalSize} size modal`, () => {
+          cy.viewport(width, 1000)
 
-        cy.viewport(xsCheckpoint, 1000)
+          cy.mount(
+            <TestModalOverflown size={modalSize as ModalProps['size']} />
+          )
 
-        cy.mount(<TestModalOverflown size={modalSize as ModalProps['size']} />)
-
-        cy.get('body').happoScreenshot({
-          component,
-          variant: `modal-full-screen/${xsCheckpoint}-default`,
-          targets: [happoTarget],
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `modal-${modalSize}-size/${width}-default`,
+            targets: [happoTarget],
+          })
         })
       })
     })
