@@ -406,7 +406,7 @@ describe('Select', () => {
     Cypress._.each(HAPPO_TARGETS, happoTarget => {
       const { width } = happoTarget
 
-      describe.only(`when screen has ${width}px width and ${height}px height`, () => {
+      describe(`when screen has ${width}px width and ${height}px height`, () => {
         it(`renders select`, () => {
           cy.viewport(width, height)
 
