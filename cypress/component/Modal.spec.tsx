@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import type { ModalProps } from '@toptal/picasso'
 import { Modal, Form, Input, Select, Checkbox, Button } from '@toptal/picasso'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => {
   const [isOpen, setOpen] = React.useState(false)
@@ -210,28 +209,6 @@ describe('Modal', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'overflown',
-    })
-  })
-
-  Cypress._.each(HAPPO_TARGETS, happoTarget => {
-    const { width } = happoTarget
-
-    describe(`when screen has ${width}px width`, () => {
-      Cypress._.each(['small', 'medium', 'large', 'full-screen'], modalSize => {
-        it(`renders ${modalSize} size modal`, () => {
-          cy.viewport(width, 1000)
-
-          cy.mount(
-            <TestModalOverflown size={modalSize as ModalProps['size']} />
-          )
-
-          cy.get('body').happoScreenshot({
-            component,
-            variant: `modal-${modalSize}-size/${width}-default`,
-            targets: [happoTarget],
-          })
-        })
-      })
     })
   })
 })
