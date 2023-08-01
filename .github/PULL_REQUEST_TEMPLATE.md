@@ -26,7 +26,7 @@ Describe the changes and motivations for the pull request.
 - [ ] Ensure that deployed demo has expected results and good examples
 - [ ] Ensure the changed/created components have not caused accessibility issues. [How to use accessibility plugin in storybook](https://github.com/toptal/picasso/blob/master/docs/contribution/accessibility.md).
 - [ ] Self reviewed
-- [ ] Covered with tests
+- [ ] Covered with tests ([visual tests](https://github.com/toptal/picasso/blob/master/docs/contribution/visual-testing.md) included)
 
 **Breaking change**
 
