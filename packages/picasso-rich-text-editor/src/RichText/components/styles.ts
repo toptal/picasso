@@ -1,5 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
+import { rem } from '@toptal/picasso-shared/styles'
 
 export const codeStyles = ({ palette, typography }: Theme) => ({
   color: palette.red.main,
@@ -11,7 +12,19 @@ export const codeStyles = ({ palette, typography }: Theme) => ({
   fontFamily: 'monospace',
 })
 
+export const codeBlockStyles = ({ palette, sizes, typography }: Theme) => ({
+  backgroundColor: palette.grey.lighter,
+  borderRadius: sizes.borderRadius.small,
+  padding: '0.25rem 0.5rem',
+  display: 'block',
+  fontFamily: 'monospace',
+  fontSize: typography.fontSizes.xxsmall,
+  lineHeight: rem('18px'),
+  color: palette.common.black,
+})
+
 export default (theme: Theme) =>
   createStyles({
     code: codeStyles(theme),
+    codeBlock: codeBlockStyles(theme),
   })

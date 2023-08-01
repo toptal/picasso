@@ -38,4 +38,4 @@ page
     takeScreenshot: false,
   })
   .addExample('RichTextEditor/story/ImageUpload.example.tsx', 'Image upload')
-  .addExample('RichTextEditor/story/Code.example.tsx', 'Inline code')
+  .addExample('RichTextEditor/story/Code.example.tsx', 'Code')

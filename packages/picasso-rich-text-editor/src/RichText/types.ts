@@ -17,6 +17,7 @@ export type ElementType = {
     | 'a'
     | 'img'
     | 'code'
+    | 'pre'
   properties: {}
   children: ASTChildType[]
 }
