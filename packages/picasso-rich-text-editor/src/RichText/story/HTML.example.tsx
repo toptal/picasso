@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Grid, Container } from '@toptal/picasso'
 import {
   ImagePlugin,
@@ -16,10 +16,6 @@ import type { ASTType } from '../types'
 
 const Example = () => {
   const [html, setHtml] = useState('')
-
-  useEffect(() => {
-    console.log(htmlToHast(html))
-  }, [html])
 
   return (
     <Container style={{ minHeight: '800px' }}>
