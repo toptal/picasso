@@ -5,12 +5,7 @@ import {
 } from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { Link16 } from '@toptal/picasso'
-import {
-  $createTextNode,
-  $getSelection,
-  $isElementNode,
-  $isRangeSelection,
-} from 'lexical'
+import { $createTextNode, $getSelection, $isRangeSelection } from 'lexical'
 import React, { useCallback, useState } from 'react'
 
 import { getSelectedNode } from '../../LexicalEditor/utils/getSelectedNode'
@@ -60,19 +55,22 @@ const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
           // When nothing is selected, we create a new Link node without dispatching
           // any commands to the original Lexical Link plugin
           if (isEmptySelection) {
+            // The only way to reliably insert a link is to first create a dummy text node
+            selection.insertNodes([$createTextNode(sanitizedUrl)])
+            // Once created, node becomes selected
+            const node = getSelectedNode(selection)
+            const text = node.getTextContent()
+
+            // Then we create a target Link node and replace the dummy text node with it
             const linkNode = $createLinkNode(sanitizedUrl, {
               rel: 'noreferrer',
             })
-            const textNode = $createTextNode(sanitizedUrl)
 
-            linkNode.append(textNode)
-            const node = getSelectedNode(selection)
+            linkNode.append($createTextNode(text))
 
-            const targetNode = $isElementNode(node) ? node : node.getParent()
-
-            targetNode?.append(linkNode)
-            // If we have a selection of any kind, pass the creation of the Link node to the plugin
+            node.replace(linkNode)
           } else {
+            // If we have a selection of any kind, pass the creation of the Link node to the plugin
             editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
               url: sanitizedUrl,
             })
