@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.3.2
+
+### Patch Changes
+
+- [#3762](https://github.com/toptal/picasso/pull/3762) [`612fb2753`](https://github.com/toptal/picasso/commit/612fb275319ff1d84d733de6b2d77fc6b6925dec) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### Modal
+
+- adjust full-screen state for Modal component
+
 ## 37.3.1
 
 ### Patch Changes
