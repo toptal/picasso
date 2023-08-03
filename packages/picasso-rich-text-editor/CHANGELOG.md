@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 4.2.0
+
+### Minor Changes
+
+- [#3761](https://github.com/toptal/picasso/pull/3761) [`bc10a745a`](https://github.com/toptal/picasso/commit/bc10a745abcfa32e9b6254b4fea476217c5c9561) Thanks [@mkrl](https://github.com/mkrl)!
+- modify LinkPlugin to be able to insert links as text if nothing is selected in the editor
+
 ## 4.1.0
 
 ### Minor Changes
