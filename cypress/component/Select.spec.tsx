@@ -417,6 +417,7 @@ describe('Select', () => {
           cy.get('body').happoScreenshot({
             component,
             variant: `select/${width}x${height}-default`,
+            includeAllElements: true,
             targets: [
               {
                 ...happoTarget,
