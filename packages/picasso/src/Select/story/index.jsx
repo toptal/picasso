@@ -42,9 +42,7 @@ or\n
       },
     },
     filterOptions: {
-      defaultValue: `(options: Option[], searchValue: string) =>
-        options.filter(option => option.text.toLowerCase().includes(searchValue.trim().toLowerCase())))
-      `,
+      defaultValue: 'optionIncludesSearchCaseInsensitive',
     },
   },
 })
