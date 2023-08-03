@@ -52,29 +52,17 @@ page
 ```
 
 For enabling multiple breakpoints on Cypress tests we need to have tests for
-each breakpoint, for making this job easy, we provide the `getCheckpoints` util
-function. By using `getCheckpoints` you can iterate the test for each case test
-([Example](https://github.com/toptal/picasso/pull/3736/files)):
+each breakpoint, for making this job easy, we provide the `HAPPO_TARGETS` variable.
+By using `HAPPO_TARGETS` you can iterate the test for each case test
+([Example](https://github.com/toptal/picasso/pull/3756/files)):
 
 ```ts
-import { getCheckpoints } from '@toptal/picasso/test-utils'
-
-const checkpoints = getCheckpoints()
-
-const responsiveHappoTargets = checkpoints.reduce<Record<string, any>>((acc, width) => {
-  const name = `chrome-desktop-width-${width}`
-
-  acc[name] = {
-    name,
-    browser: 'chrome',
-    viewport: `${width}x1024`,
-  }
-
-  return acc
-}, {})
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 describe('test 1', () => {
-  Cypress._.each(checkpoints, width => {
+  Cypress._.each(HAPPO_TARGETS, target => {
+    const { width } = target
+
     describe(`when on width ${width}`, () => {
       cy.viewport(width, 1000)
       cy.mount(<Foo />)
@@ -82,7 +70,7 @@ describe('test 1', () => {
       cy.get('body').happoScreenshot({
         component,
         variant: `foo-component/${width}-initial`,
-        targets: [responsiveHappoTargets[`chrome-desktop-width-${width}`]],
+        targets: [target],
       })
     })
   })
