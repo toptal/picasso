@@ -6,9 +6,9 @@ import {
   Typography,
   Button,
 } from '@toptal/picasso'
-import React, { useState } from 'react'
+import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
 import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
-import { PicassoBreakpoints } from '@toptal/picasso-provider'
+import React, { useState } from 'react'
 
 const TestDatePicker = (props: Partial<DatePickerProps>) => {
   const [value, setValue] = useState<DatePickerProps['value']>(
