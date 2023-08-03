@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.3.3
+
+### Patch Changes
+
+- [#3756](https://github.com/toptal/picasso/pull/3756) [`6b65be13e`](https://github.com/toptal/picasso/commit/6b65be13e66b90a10c89971b67897668197dd88e) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Popper
+
+- use compact layout on extra-small screens
+
 ## 37.3.2
 
 ### Patch Changes
