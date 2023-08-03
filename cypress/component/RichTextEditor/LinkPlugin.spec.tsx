@@ -41,7 +41,6 @@ const component = 'RichTextEditor'
 const setAliases = () => {
   cy.get(editorSelector).as('editor')
   cy.getByTestId(linkPluginButton).as('linkPluginButton')
-  cy.getByTestId(linkPluginButton).as('linkPluginButton')
   cy.getByTestId(resultContainerTestId).as('resultContainer')
   cy.contains('placeholder').as('placeholder')
   cy.getByTestId(boldButton).as('boldButton')
