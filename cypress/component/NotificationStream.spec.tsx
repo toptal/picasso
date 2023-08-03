@@ -7,6 +7,28 @@ import {
   Link,
   Pencil16,
 } from '@toptal/picasso'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
+
+const DefaultExample = () => {
+  const { showInfo } = useNotifications()
+
+  return (
+    <Container padded='medium'>
+      <Button
+        data-testid='trigger-default'
+        variant='secondary'
+        onClick={() =>
+          showInfo(
+            "That's one small step for a man, one giant leap for mankind."
+          )
+        }
+      >
+        Trigger
+      </Button>
+    </Container>
+  )
+}
 
 const VariantsExample = () => {
   const { showInfo, showSuccess, showError } = useNotifications()
@@ -112,6 +134,28 @@ describe('NotificationStream', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'custom-icon',
+    })
+  })
+
+  Cypress._.each(HAPPO_TARGETS, happoTarget => {
+    const { width } = happoTarget
+    const isNarrowScreenSize = width < PicassoBreakpoints.breakpoints.values.lg
+
+    describe(`when screen has ${width}px width`, () => {
+      it(`notification uses ${
+        isNarrowScreenSize ? 'compact' : 'regular'
+      } layout`, () => {
+        cy.viewport(width, 1000)
+
+        cy.mount(<DefaultExample />)
+
+        cy.getByTestId('trigger-default').click()
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `notification/${width}-default`,
+          targets: [happoTarget],
+        })
+      })
     })
   })
 })

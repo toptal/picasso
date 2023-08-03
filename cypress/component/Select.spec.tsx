@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import type { SelectValueType, SelectProps } from '@toptal/picasso'
 import { Select, Form, Container, Drawer } from '@toptal/picasso'
 import { noop, palette } from '@toptal/picasso/utils'
+import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const TestSelect = ({
   onChange = noop,
@@ -393,6 +394,38 @@ describe('Select', () => {
       cy.getByTestId('select').click()
       cy.getByTestId('select').type('option')
       cy.getByTestId('search-input').find('input').should('be.focused')
+    })
+  })
+
+  // Based on screen height, select (scroll menu) has different styling
+  // 250px was selected as a height that shrinks the select enough, 586+px is a
+  // breakpoint that disables any extra styling
+  const heights = [250, 586]
+
+  heights.forEach(height => {
+    Cypress._.each(HAPPO_TARGETS, happoTarget => {
+      const { width } = happoTarget
+
+      describe(`when screen has ${width}px width and ${height}px height`, () => {
+        it(`renders select`, () => {
+          cy.viewport(width, height)
+
+          cy.mount(<TestSelect options={MANY_OPTIONS} />)
+
+          openSelect()
+
+          cy.get('body').happoScreenshot({
+            component,
+            variant: `select/${width}x${height}-default`,
+            targets: [
+              {
+                ...happoTarget,
+                viewport: `${happoTarget.width}x${height}`,
+              },
+            ],
+          })
+        })
+      })
     })
   })
 })
