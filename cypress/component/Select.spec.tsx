@@ -420,6 +420,7 @@ describe('Select', () => {
             targets: [
               {
                 ...happoTarget,
+                name: `chrome-desktop-${width}x${height}`,
                 viewport: `${happoTarget.width}x${height}`,
               },
             ],
