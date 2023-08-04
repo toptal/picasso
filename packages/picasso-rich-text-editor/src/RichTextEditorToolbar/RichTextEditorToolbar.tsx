@@ -12,7 +12,7 @@ import { useMultipleForwardRefs } from '@toptal/picasso/utils'
 import cx from 'classnames'
 import React, { forwardRef } from 'react'
 
-import { useToolbarPortalRegister } from '../plugins/api'
+import { useRTEPluginContext, useToolbarPortalRegister } from '../plugins/api'
 import TextEditorButton from '../RichTextEditorButton'
 import styles from './styles'
 import type {
@@ -62,11 +62,13 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     } = props
 
     const { setToolbarPortalEl } = useToolbarPortalRegister()
+    const { disabledFormatting } = useRTEPluginContext()
 
     const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
 
     const classes = useStyles(props)
-    const isHeadingFormat = format.header === ALLOWED_HEADER_TYPE
+
+    const isInlineFormattingDisabled = disabled || disabledFormatting
 
     return (
       <Container
@@ -97,15 +99,15 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
           <TextEditorButton
             icon={<Bold16 />}
             onClick={onBoldClick}
-            active={isHeadingFormat ? false : format.bold}
-            disabled={isHeadingFormat || disabled}
+            active={isInlineFormattingDisabled ? false : format.bold}
+            disabled={isInlineFormattingDisabled}
             data-testid={testIds?.boldButton}
           />
           <TextEditorButton
             icon={<Italic16 />}
             onClick={onItalicClick}
-            active={isHeadingFormat ? false : format.italic}
-            disabled={isHeadingFormat || disabled}
+            active={isInlineFormattingDisabled ? false : format.italic}
+            disabled={isInlineFormattingDisabled}
             data-testid={testIds?.italicButton}
           />
         </Container>

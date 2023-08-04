@@ -10,13 +10,13 @@ export type Props = {
 }
 
 const ImagePluginButton = ({ 'data-testid': testId, onClick }: Props) => {
-  const { disabled, focused } = useRTEPluginContext()
+  const { disabled, focused, disabledFormatting } = useRTEPluginContext()
 
   return (
     <RichTextEditorButton
       icon={<Image16 />}
       onClick={onClick}
-      disabled={disabled || !focused}
+      disabled={disabled || !focused || disabledFormatting}
       data-testid={testId}
     />
   )

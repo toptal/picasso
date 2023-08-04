@@ -1,7 +1,7 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import type { Klass, LexicalNode } from 'lexical'
 import type { ReactElement, ReactNode } from 'react'
-import React, { createContext, useContext, useEffect } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
 import { registerLexicalEvents } from '../LexicalEditor/utils/registerLexicalEvents'
 import { ToolbarProvider } from './Toolbar/Toolbar'
@@ -34,7 +34,9 @@ export const isRTEPluginElement = (plugin: {}): plugin is ReactElement<
 
 type RTEPluginContextValue = {
   disabled: boolean
+  disabledFormatting: boolean
   focused: boolean
+  setDisabledFormatting: (value: boolean) => void
 }
 
 export const useRTEUpdate = (callback: () => void) => {
@@ -52,7 +54,9 @@ export const useRTEUpdate = (callback: () => void) => {
 
 const RTEPluginContext = createContext<RTEPluginContextValue>({
   disabled: false,
+  disabledFormatting: false,
   focused: false,
+  setDisabledFormatting: () => {},
 })
 
 export type ToolbarPortalProviderProps = {
@@ -66,8 +70,12 @@ export const RTEPluginContextProvider = ({
   disabled,
   focused,
 }: ToolbarPortalProviderProps) => {
+  const [disabledFormatting, setDisabledFormatting] = useState(false)
+
   const value: RTEPluginContextValue = {
     disabled,
+    disabledFormatting,
+    setDisabledFormatting,
     focused,
   }
 
@@ -81,11 +89,14 @@ export const RTEPluginContextProvider = ({
 }
 
 export const useRTEPluginContext = () => {
-  const { disabled, focused } = useContext(RTEPluginContext)
+  const { disabled, focused, disabledFormatting, setDisabledFormatting } =
+    useContext(RTEPluginContext)
 
   return {
     disabled,
+    disabledFormatting,
     focused,
+    setDisabledFormatting,
   }
 }
 

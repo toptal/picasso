@@ -4,7 +4,7 @@ import {
   REMOVE_LIST_COMMAND,
 } from '@lexical/list'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { $createHeadingNode } from '@lexical/rich-text'
+import { $createHeadingNode, $isHeadingNode } from '@lexical/rich-text'
 import { $setBlocksType } from '@lexical/selection'
 import {
   $createParagraphNode,
@@ -24,6 +24,8 @@ import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar, {
   ALLOWED_HEADER_TYPE,
 } from '../RichTextEditorToolbar'
+import { useRTEPluginContext, useRTEUpdate } from '../plugins/api'
+import { getSelectedNode } from '../LexicalEditor/utils/getSelectedNode'
 
 type Props = {
   disabled?: boolean
@@ -47,6 +49,7 @@ const LexicalEditorToolbarPlugin = ({
   id,
 }: Props) => {
   const [editor] = useLexicalComposerContext()
+  const { setDisabledFormatting } = useRTEPluginContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(
     toolbarStateReducer,
     {
@@ -63,6 +66,19 @@ const LexicalEditorToolbarPlugin = ({
       updateToolbar: () => synchronizeToolbarState(dispatch, editor),
     })
   }, [dispatch, editor])
+
+  useRTEUpdate(() => {
+    const selection = $getSelection()
+
+    if ($isRangeSelection(selection)) {
+      const node = getSelectedNode(selection)
+      const parent = node.getParent()
+
+      setDisabledFormatting(
+        Boolean($isHeadingNode(node) || $isHeadingNode(parent))
+      )
+    }
+  })
 
   const handleBoldClick = () => {
     editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
