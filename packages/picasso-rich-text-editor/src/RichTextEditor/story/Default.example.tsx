@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
-import {
-  CodeBlockPlugin,
-  RichTextEditor,
-} from '@toptal/picasso-rich-text-editor'
+import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
 import type { RichTextEditorChangeHandler } from '../types'
 
@@ -19,7 +16,6 @@ const Example = () => {
         id='editor'
         onChange={handleChange}
         placeholder='Write some cool rich text'
-        plugins={[<CodeBlockPlugin />]}
       />
       <Container
         padded='small'

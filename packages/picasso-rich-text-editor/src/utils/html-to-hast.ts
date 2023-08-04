@@ -13,7 +13,6 @@ export const hastSanitizeSchema: Schema = {
   attributes: {
     a: ['href'],
     img: ['src', 'data*', 'class'],
-    pre: ['data*'],
     '*': [],
   },
   tagNames: [

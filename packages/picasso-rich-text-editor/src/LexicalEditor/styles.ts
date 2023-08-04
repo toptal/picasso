@@ -6,7 +6,7 @@ import { rem } from '@toptal/picasso-shared'
 import { codeBlockStyles, codeStyles } from '../RichText/components/styles'
 
 const margins = {
-  '& p': {
+  '& p, & code[dir]': {
     margin: '0.5rem 0',
   },
   '& h3': {

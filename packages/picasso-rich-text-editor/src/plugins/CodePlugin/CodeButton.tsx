@@ -13,7 +13,7 @@ export type Props = {
 const CodeButton = ({ 'data-testid': testId }: Props) => {
   const [active, setActive] = useState(false)
   const [editor] = useLexicalComposerContext()
-  const { disabled, focused } = useRTEPluginContext()
+  const { disabled, focused, disabledFormatting } = useRTEPluginContext()
 
   useRTEUpdate(() => {
     const selection = $getSelection()
@@ -27,12 +27,14 @@ const CodeButton = ({ 'data-testid': testId }: Props) => {
     editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code')
   }
 
+  const isDisabled = disabled || !focused || disabledFormatting
+
   return (
     <RichTextEditorButton
       icon={<Code16 />}
       onClick={handleCodeClick}
-      active={active}
-      disabled={disabled || !focused}
+      active={isDisabled ? false : active}
+      disabled={isDisabled}
       data-testid={testId}
     />
   )
