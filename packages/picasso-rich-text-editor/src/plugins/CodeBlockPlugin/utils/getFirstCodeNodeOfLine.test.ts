@@ -2,7 +2,7 @@ import type { LineBreakNode } from 'lexical'
 
 import type { CodeBlockTextNode } from '../nodes'
 import { $isCodeBlockTextNode } from '../nodes'
-import getFirstCodeNodeOfLine from './getFirstCodeNodeOfLine' // Your actual function import path
+import getFirstCodeNodeOfLine from './getFirstCodeNodeOfLine'
 
 jest.mock('../nodes', () => ({
   __esModule: true,
