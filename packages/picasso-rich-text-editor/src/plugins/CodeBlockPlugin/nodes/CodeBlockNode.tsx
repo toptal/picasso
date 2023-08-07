@@ -15,7 +15,6 @@ import {
   $createParagraphNode,
   ElementNode,
 } from 'lexical'
-import { isHTMLElement } from '@lexical/utils'
 
 import type { CodeBlockTextNode } from '../nodes'
 import {
@@ -23,6 +22,7 @@ import {
   $createCodeBlockTextNode,
   $isCodeBlockTextNode,
 } from '../nodes'
+import hasChildDOMNodeTag from '../../../LexicalEditor/utils/hasChildDOMNodeTag'
 
 const getFirstCodeNodeOfLine = (
   anchor: CodeBlockTextNode | LineBreakNode
@@ -36,17 +36,6 @@ const getFirstCodeNodeOfLine = (
   }
 
   return previousNode
-}
-
-const hasChildDOMNodeTag = (node: Node, tagName: string) => {
-  for (const child of Array.from(node.childNodes)) {
-    if (isHTMLElement(child) && child.tagName === tagName) {
-      return true
-    }
-    hasChildDOMNodeTag(child, tagName)
-  }
-
-  return false
 }
 
 const convertPreElement = (): DOMConversionOutput => {
