@@ -3,8 +3,6 @@ import type {
   DOMConversionOutput,
   DOMExportOutput,
   EditorConfig,
-  LexicalNode,
-  LineBreakNode,
   NodeKey,
   ParagraphNode,
   RangeSelection,
@@ -23,20 +21,7 @@ import {
   $isCodeBlockTextNode,
 } from '../nodes'
 import hasChildDOMNodeTag from '../../../LexicalEditor/utils/hasChildDOMNodeTag'
-
-const getFirstCodeNodeOfLine = (
-  anchor: CodeBlockTextNode | LineBreakNode
-): null | CodeBlockTextNode | LineBreakNode => {
-  let previousNode = anchor
-  let node: null | LexicalNode = anchor
-
-  while ($isCodeBlockTextNode(node)) {
-    previousNode = node
-    node = node.getPreviousSibling()
-  }
-
-  return previousNode
-}
+import { getFirstCodeNodeOfLine } from '../utils'
 
 const convertPreElement = (): DOMConversionOutput => {
   return { node: $createCodeBlockNode() }
