@@ -13,11 +13,11 @@ export default ({ layout, palette }: Theme) =>
       height: '100%',
       flexGrow: 1,
       maxWidth: layout.contentWidth,
-      backgroundColor: palette.common.white,
+      backgroundColor: palette.grey.lightest,
       backgroundClip: 'content-box',
     },
     hasSidebar: {
-      background: `linear-gradient(90deg, ${palette.grey.lighter} 50%, ${palette.common.white} 50%)`,
+      background: `linear-gradient(90deg, ${palette.grey.lighter} 50%, ${palette.grey.lightest} 50%)`,
     },
     wide: {
       maxWidth: layout.contentWidthWide,
