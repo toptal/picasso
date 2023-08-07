@@ -89,7 +89,6 @@ const appendTextToCodeBlock = (
 
 const replaceChildrenNodesWithRawText = (selection: RangeSelection) => {
   $setBlocksType(selection, () => $createParagraphNode())
-  // return
   const codeBlock = $createCodeBlockNode()
   const blockNodesInSelection = getBlockNodesInSelection()
 
