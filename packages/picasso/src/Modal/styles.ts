@@ -32,6 +32,9 @@ export default ({ screens, sizes }: Theme) =>
         maxWidth,
       },
     },
+    xsmall: {
+      width: '20.5rem',
+    },
     small: {
       width: '32.5rem',
     },
@@ -40,6 +43,9 @@ export default ({ screens, sizes }: Theme) =>
     },
     large: {
       width: '50rem',
+    },
+    xlarge: {
+      width: '75rem',
     },
     'full-screen': {
       height: '100%',

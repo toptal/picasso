@@ -217,21 +217,24 @@ describe('Modal', () => {
     const { width } = happoTarget
 
     describe(`when screen has ${width}px width`, () => {
-      Cypress._.each(['small', 'medium', 'large', 'full-screen'], modalSize => {
-        it(`renders ${modalSize} size modal`, () => {
-          cy.viewport(width, 1000)
+      Cypress._.each(
+        ['xsmall', 'small', 'medium', 'large', 'xlarge', 'full-screen'],
+        modalSize => {
+          it(`renders ${modalSize} size modal`, () => {
+            cy.viewport(width, 1000)
 
-          cy.mount(
-            <TestModalOverflown size={modalSize as ModalProps['size']} />
-          )
+            cy.mount(
+              <TestModalOverflown size={modalSize as ModalProps['size']} />
+            )
 
-          cy.get('body').happoScreenshot({
-            component,
-            variant: `modal-${modalSize}-size/${width}-default`,
-            targets: [happoTarget],
+            cy.get('body').happoScreenshot({
+              component,
+              variant: `modal-${modalSize}-size/${width}-default`,
+              targets: [happoTarget],
+            })
           })
-        })
-      })
+        }
+      )
     })
   })
 })
