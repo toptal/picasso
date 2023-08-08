@@ -1,5 +1,12 @@
 # Change Log
 
+## 37.3.4
+
+### Patch Changes
+
+- [#3781](https://github.com/toptal/picasso/pull/3781) [`d430b427f`](https://github.com/toptal/picasso/commit/d430b427f73a6f5980d9b4fc0e0344a4109b0669) Thanks [@sashuk](https://github.com/sashuk)!
+- align page background color with BASE design
+
 ## 37.3.3
 
 ### Patch Changes
