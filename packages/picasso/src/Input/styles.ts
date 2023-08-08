@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import highlightAutofillStyles from '../InputBase/highlightStyles'
+import highlightAutofillStyles from '../InputBase/highlight-styles'
 import '../InputBase/styles'
 import '../InputLabel/styles'
 import '../OutlinedInput/styles'

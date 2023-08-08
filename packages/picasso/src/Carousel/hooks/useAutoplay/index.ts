@@ -1,1 +1,1 @@
-export { default } from './useAutoplay'
+export { default } from './use-autoplay'

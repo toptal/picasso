@@ -3,7 +3,7 @@ import { useCallback, useRef } from 'react'
 import type PopperJs from 'popper.js'
 import debounce from 'debounce'
 
-import type { TooltipState } from './useTooltipState'
+import type { TooltipState } from './use-tooltip-state'
 
 interface UseTooltipFollowCursorOptions {
   followCursor: boolean

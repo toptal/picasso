@@ -3,7 +3,7 @@ import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
-import gradientWidth from './utils/gradientWidth'
+import gradientWidth from './utils/gradient-width'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'CarouselGradient' })

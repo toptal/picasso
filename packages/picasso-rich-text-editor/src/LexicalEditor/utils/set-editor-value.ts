@@ -8,7 +8,7 @@ import {
 import { $generateNodesFromDOM } from '@lexical/html'
 
 import type { ASTType } from '../../RichText'
-import { getDomValue } from './getDomValue'
+import { getDomValue } from './get-dom-value'
 
 export const setEditorValue = (editor: LexicalEditorType, value?: ASTType) => {
   const root = $getRoot()

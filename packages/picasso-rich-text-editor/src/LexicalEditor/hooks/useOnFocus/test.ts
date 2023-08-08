@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 
-import useOnFocus from './useOnFocus'
+import useOnFocus from './use-on-focus'
 
 let mockEvent: React.FocusEvent<HTMLDivElement>
 

@@ -1,5 +1,5 @@
 import type { ASTType } from '../../RichText'
-import { getDomValue } from './getDomValue'
+import { getDomValue } from './get-dom-value'
 
 describe('getDomValue', () => {
   it('returns DOM structure from AST', () => {

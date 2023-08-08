@@ -1,7 +1,7 @@
 import type { ChangeEvent, MouseEvent, ReactElement } from 'react'
 import { cloneElement, useState } from 'react'
 
-import type { TooltipState } from './useTooltipState'
+import type { TooltipState } from './use-tooltip-state'
 import type { ChildrenProps } from './types'
 
 interface UseTooltipHandlersOptions {

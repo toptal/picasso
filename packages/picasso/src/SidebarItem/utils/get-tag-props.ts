@@ -1,4 +1,4 @@
-import type { SidebarTagProps } from '../../../SidebarItemContent'
+import type { SidebarTagProps } from '../../SidebarItemContent'
 
 const getTagProps = (tag?: string | SidebarTagProps) => {
   if (typeof tag === 'string') {

@@ -1,5 +1,5 @@
-import type { SidebarTagProps } from '../../../SidebarItemContent'
-import getTagProps from './getTagProps'
+import type { SidebarTagProps } from '../../SidebarItemContent'
+import getTagProps from './get-tag-props'
 
 describe('getTagProps', () => {
   describe('when string value is passed', () => {

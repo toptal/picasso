@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import useAvatarStates from './useAvatarStates'
+import useAvatarStates from './use-avatar-states'
 
 describe('useAvatarStates', () => {
   it('returns hovered state as true', () => {

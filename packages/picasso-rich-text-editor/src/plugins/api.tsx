@@ -3,7 +3,7 @@ import type { Klass, LexicalNode } from 'lexical'
 import type { ReactElement, ReactNode } from 'react'
 import React, { createContext, useContext, useEffect } from 'react'
 
-import { registerLexicalEvents } from '../LexicalEditor/utils/registerLexicalEvents'
+import { registerLexicalEvents } from '../LexicalEditor/utils/register-lexical-events'
 import { ToolbarProvider } from './Toolbar/Toolbar'
 
 export const RTEPluginMeta = Symbol('PicassoRTEPluginMeta')

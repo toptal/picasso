@@ -1,4 +1,4 @@
-import { findExtremeNodes } from './findExtremeNodes'
+import { findExtremeNodes } from './find-extreme-nodes'
 
 describe('findExtremeNodes', () => {
   it('finds top-most and left-most nodes', () => {

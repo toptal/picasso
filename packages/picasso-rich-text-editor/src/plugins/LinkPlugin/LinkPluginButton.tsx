@@ -8,7 +8,7 @@ import { Link16 } from '@toptal/picasso'
 import { $createTextNode, $getSelection, $isRangeSelection } from 'lexical'
 import React, { useCallback, useState } from 'react'
 
-import { getSelectedNode } from '../../LexicalEditor/utils/getSelectedNode'
+import { getSelectedNode } from '../../LexicalEditor/utils/get-selected-node'
 import { useRTEPluginContext, useRTEUpdate } from '../api'
 import RichTextEditorButton from '../../RichTextEditorButton'
 import { sanitizeUrl, validateUrl } from './utils/url'

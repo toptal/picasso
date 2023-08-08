@@ -2,7 +2,7 @@ import type { ParagraphNode, TextNode } from 'lexical'
 import type { HeadingNode } from '@lexical/rich-text'
 import { $createParagraphNode, $createTextNode } from 'lexical'
 
-import { replaceHeadingNodes } from './replaceHeadingNodes'
+import { replaceHeadingNodes } from './replace-heading-nodes'
 
 jest.mock('lexical', () => ({
   __esModule: true,

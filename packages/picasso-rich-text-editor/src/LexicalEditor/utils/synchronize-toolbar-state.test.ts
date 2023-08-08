@@ -10,10 +10,10 @@ import { $isListNode } from '@lexical/list'
 import { $getNearestNodeOfType } from '@lexical/utils'
 import { $isHeadingNode } from '@lexical/rich-text'
 
-import { ToolbarActions } from './toolbarState'
-import { synchronizeToolbarState } from './synchronizeToolbarState'
-import { getLexicalNode } from './getLexicalNode'
-import { getSelectedNode } from './getSelectedNode'
+import { ToolbarActions } from './toolbar-state'
+import { synchronizeToolbarState } from './synchronize-toolbar-state'
+import { getLexicalNode } from './get-lexical-node'
+import { getSelectedNode } from './get-selected-node'
 
 jest.mock('lexical', () => ({
   ...jest.requireActual('lexical'),
@@ -36,12 +36,12 @@ jest.mock('@lexical/rich-text', () => ({
   $isHeadingNode: jest.fn(),
 }))
 
-jest.mock('./getLexicalNode', () => ({
+jest.mock('./get-lexical-node', () => ({
   __esModule: true,
   getLexicalNode: jest.fn(),
 }))
 
-jest.mock('./getSelectedNode', () => ({
+jest.mock('./get-selected-node', () => ({
   __esModule: true,
   getSelectedNode: jest.fn(),
 }))

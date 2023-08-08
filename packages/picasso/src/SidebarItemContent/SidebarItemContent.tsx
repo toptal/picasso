@@ -14,7 +14,7 @@ import { getReactNodeTextContent } from '../utils'
 import styles from './styles'
 import type { Props, SidebarBadgeProps } from './types'
 import Indicator from '../Indicator'
-import useIndicatorOnParentItem from './useIndicatorOnParentItem'
+import useIndicatorOnParentItem from './use-indicator-on-parent-item'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemContent',

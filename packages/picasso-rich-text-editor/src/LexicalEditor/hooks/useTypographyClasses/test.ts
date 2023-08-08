@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-hooks'
 import { getTypographyClassName } from '@toptal/picasso'
 import type { TypographyOptions } from '@toptal/picasso'
 
-import useTypographyClasses from './useTypographyClasses'
+import useTypographyClasses from './use-typography-classes'
 
 jest.mock('@toptal/picasso', () => ({
   __esModule: true,

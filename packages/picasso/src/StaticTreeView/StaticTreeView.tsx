@@ -8,7 +8,7 @@ import {
   TreeViewSvg,
   useFinalMargins,
 } from '../TreeView/shared'
-import { findExtremeNodes } from './utils/findExtremeNodes'
+import { findExtremeNodes } from './utils/find-extreme-nodes'
 
 type SvgMeasurements = {
   width: number

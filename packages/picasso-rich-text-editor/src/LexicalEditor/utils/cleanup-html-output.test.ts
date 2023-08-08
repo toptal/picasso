@@ -1,4 +1,4 @@
-import { cleanupHtmlOutput } from './cleanupHtmlOutput'
+import { cleanupHtmlOutput } from './cleanup-html-output'
 
 // Test cases structure:
 // removeWhat (string), removeFrom (string), input (string), expected (string)

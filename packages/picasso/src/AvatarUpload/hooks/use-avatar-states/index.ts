@@ -1,1 +1,1 @@
-export { default } from './useAvatarStates'
+export { default } from './use-avatar-states'

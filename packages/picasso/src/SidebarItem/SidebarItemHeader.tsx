@@ -8,8 +8,7 @@ import SidebarItemContent from '../SidebarItemContent'
 import styles from './styles'
 import type { Props } from './types'
 import { useSubMenuContext } from './SubMenuContextProvider'
-import getBadgeProps from './utils/getBadgeProps/getBadgeProps'
-import getTagProps from './utils/getTagProps/getTagProps'
+import { getTagProps, getBadgeProps } from './utils'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemHeader',
