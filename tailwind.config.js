@@ -9,6 +9,56 @@ module.exports = {
       'xl-header': '1280px',
       xl: '1440px',
     },
+    borderRadius: {
+      sm: '4px',
+      md: '8px',
+    },
+    borderWidth: {
+      DEFAULT: '1px',
+    },
+    fontFamily: {
+      sans: ['proxima-nova', 'Arial', 'sans-serif'],
+      mono: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        '"Liberation Mono"',
+        '"Courier New"',
+        'monospace',
+      ],
+    },
+    fontWeight: {
+      thin: 100,
+      light: 300,
+      regular: 400,
+      semibold: 600,
+    },
+    fontSize: {
+      '2xs': ['0.75rem', { lineHeight: '1.125rem' }],
+      sm: ['0.8125rem', { lineHeight: '1.25rem' }],
+      md: ['0.875rem', { lineHeight: '1.375rem' }],
+      lg: ['1rem', { lineHeight: '1.5rem' }],
+      xl: ['1.25rem', { lineHeight: '1.875rem' }],
+      '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
+    },
+    boxShadow: {
+      0: 'none',
+      /** notification center, paper */
+      1: '0 0 8px 0 rgba(0,0,0, 0.08)',
+      /** modal */
+      2: '0 4px 8px 0 rgba(0,0,0, 0.08)',
+
+      /** nofication growl */
+      3: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)',
+
+      /** tooltip */
+      4: '0 0 4px 0 rgba(0,0,0, 0.24), 0 0 32px 0 rgba(0,0,0, 0.12)',
+
+      /** scroll menu */
+      5: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 12px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04)',
+    },
     colors: {
       white: '#FFFFFF',
       black: '#000000',
