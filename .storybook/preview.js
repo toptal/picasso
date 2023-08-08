@@ -1,6 +1,7 @@
 import React from 'react'
 import 'github-markdown-css/github-markdown-light.css'
 import 'happo-plugin-storybook/register'
+import '../src/index.css'
 
 import Picasso from '@toptal/picasso-provider'
 
