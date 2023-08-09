@@ -60,6 +60,11 @@ const ModalDialog = ({
 
 const Example = () => {
   const {
+    showModal: showModalExtraSmall,
+    hideModal: hideModalExtraSmall,
+    isOpen: isOpenExtraSmall,
+  } = useModal()
+  const {
     showModal: showModalSmall,
     hideModal: hideModalSmall,
     isOpen: isOpenSmall,
@@ -75,6 +80,11 @@ const Example = () => {
     isOpen: isOpenLarge,
   } = useModal()
   const {
+    showModal: showModalExtraLarge,
+    hideModal: hideModalExtraLarge,
+    isOpen: isOpenExtraLarge,
+  } = useModal()
+  const {
     showModal: showModalFullscreen,
     hideModal: hideModalFullscreen,
     isOpen: isOpenFullscreen,
@@ -82,6 +92,15 @@ const Example = () => {
 
   return (
     <Container flex>
+      <Button onClick={showModalExtraSmall} data-testid='trigger-extra-small'>
+        Open extra-small ("xsmall")
+      </Button>
+      <ModalDialog
+        open={isOpenExtraSmall}
+        onClose={hideModalExtraSmall}
+        size='xsmall'
+      />
+
       <Button onClick={showModalSmall} data-testid='trigger-small'>
         Open small
       </Button>
@@ -100,6 +119,15 @@ const Example = () => {
         Open large
       </Button>
       <ModalDialog open={isOpenLarge} onClose={hideModalLarge} size='large' />
+
+      <Button onClick={showModalExtraLarge} data-testid='trigger-extra-large'>
+        Open extra-large ("xlarge")
+      </Button>
+      <ModalDialog
+        open={isOpenExtraLarge}
+        onClose={hideModalExtraLarge}
+        size='xlarge'
+      />
 
       <Button onClick={showModalFullscreen} data-testid='trigger-full-screen'>
         Open full-screen
