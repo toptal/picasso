@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.5.0
+
+### Minor Changes
+
+- [#3786](https://github.com/toptal/picasso/pull/3786) [`769011c66`](https://github.com/toptal/picasso/commit/769011c661cd2c52c64d217d56d8d5e334bd20ad) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Modal
+
+- add xsmall and xlarge Modal sizes
+
 ## 37.4.0
 
 ### Minor Changes
