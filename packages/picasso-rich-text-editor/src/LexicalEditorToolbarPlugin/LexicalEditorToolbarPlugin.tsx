@@ -19,13 +19,13 @@ import {
   registerLexicalEvents,
   synchronizeToolbarState,
   toolbarStateReducer,
+  getSelectedNode,
 } from '../LexicalEditor/utils'
 import type { HeaderValue } from '../RichTextEditorToolbar'
 import RichTextEditorToolbar, {
   ALLOWED_HEADER_TYPE,
 } from '../RichTextEditorToolbar'
 import { useRTEPluginContext, useRTEUpdate } from '../plugins/api'
-import { getSelectedNode } from '../LexicalEditor/utils/getSelectedNode'
 import { $isCodeBlockNode } from '../plugins/CodeBlockPlugin/nodes'
 
 type Props = {

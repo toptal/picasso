@@ -21,7 +21,7 @@ import {
   $createCodeBlockNode,
   $isCodeBlockNode,
 } from './nodes'
-import { getSelectedNode } from '../../LexicalEditor/utils/getSelectedNode'
+import { getSelectedNode } from '../../LexicalEditor/utils'
 
 export type Props = {
   'data-testid'?: string
