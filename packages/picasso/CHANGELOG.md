@@ -1,5 +1,12 @@
 # Change Log
 
+## 37.3.5
+
+### Patch Changes
+
+- [#3784](https://github.com/toptal/picasso/pull/3784) [`a41d75d34`](https://github.com/toptal/picasso/commit/a41d75d34c2e2680fd078ec373ea9d1a5ec3496c) Thanks [@sashuk](https://github.com/sashuk)!
+- rename files according to guidelines
+
 ## 37.3.4
 
 ### Patch Changes
