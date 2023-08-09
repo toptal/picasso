@@ -79,9 +79,11 @@ const appendTextToCodeBlock = (
   codeBlock: CodeBlockNode,
   isLast: boolean
 ) => {
-  const textNode = $createCodeBlockTextNode(node.getTextContent())
+  const text = node.getTextContent()
 
-  codeBlock.append(textNode)
+  if (text) {
+    codeBlock.append($createCodeBlockTextNode(text))
+  }
   if (!isLast) {
     codeBlock.append($createLineBreakNode())
   }
