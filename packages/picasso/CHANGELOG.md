@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.4.0
+
+### Minor Changes
+
+- [#3788](https://github.com/toptal/picasso/pull/3788) [`036717042`](https://github.com/toptal/picasso/commit/036717042cf28a60f6fc6a733cc6c051699bcc8b) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Icon
+
+- add `ach24` and `creditCard24` icons
+
 ## 37.3.5
 
 ### Patch Changes
