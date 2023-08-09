@@ -1,1 +1,1 @@
-export { default } from './useOnFocus'
+export { default } from './use-on-focus'

@@ -9,7 +9,7 @@ import Tooltip from './Tooltip'
 import {
   mouseMoveDebounceTimeout,
   mouseMoveCloseTooltipDistance,
-} from './useTooltipFollowCursor'
+} from './use-tooltip-follow-cursor'
 
 const TOOLTIP_SHORT_DELAY = 200
 const TOOLTIP_LONG_DELAY = 500

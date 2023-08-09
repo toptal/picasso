@@ -1,4 +1,4 @@
-import gradientWidth from './gradientWidth'
+import gradientWidth from './gradient-width'
 
 describe('gradientWidth', () => {
   it('returns the expected gradient width', () => {

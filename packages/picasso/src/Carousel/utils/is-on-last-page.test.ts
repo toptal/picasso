@@ -1,4 +1,4 @@
-import isOnLastPage from './isOnLastPage'
+import isOnLastPage from './is-on-last-page'
 
 describe('isOnLastPage', () => {
   it('returns expected results', () => {

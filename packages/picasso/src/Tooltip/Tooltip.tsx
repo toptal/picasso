@@ -16,9 +16,9 @@ import { usePicassoRoot } from '@toptal/picasso-provider'
 import Typography from '../Typography'
 import styles from './styles'
 import type { ChildrenProps, ContainerValue } from './types'
-import { useTooltipState } from './useTooltipState'
-import { useTooltipHandlers } from './useTooltipHandlers'
-import { useTooltipFollowCursor } from './useTooltipFollowCursor'
+import { useTooltipState } from './use-tooltip-state'
+import { useTooltipHandlers } from './use-tooltip-handlers'
+import { useTooltipFollowCursor } from './use-tooltip-follow-cursor'
 
 export type DelayType = 'short' | 'long'
 

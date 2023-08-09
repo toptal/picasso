@@ -1,5 +1,5 @@
-import getBadgeProps from './getBadgeProps'
-import type { SidebarBadgeProps } from '../../../SidebarItemContent'
+import getBadgeProps from './get-badge-props'
+import type { SidebarBadgeProps } from '../../SidebarItemContent'
 
 describe('getBadgeProps', () => {
   describe('when number value is passed', () => {
@@ -12,6 +12,7 @@ describe('getBadgeProps', () => {
       }
     )
   })
+
   describe('when falsy input is passed', () => {
     it('returns the same value', () => {
       const value = undefined
@@ -20,6 +21,7 @@ describe('getBadgeProps', () => {
       expect(props).toEqual(value)
     })
   })
+
   describe('when badge props object is passed', () => {
     const values: SidebarBadgeProps[] = [
       { content: 5 },

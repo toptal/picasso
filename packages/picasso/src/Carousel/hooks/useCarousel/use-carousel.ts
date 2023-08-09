@@ -1,7 +1,7 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 import Glider from 'glider-js'
 
-import isOnLastPage from '../../utils/isOnLastPage'
+import isOnLastPage from '../../utils'
 import useAutoplay from '../useAutoplay'
 
 type Props = {

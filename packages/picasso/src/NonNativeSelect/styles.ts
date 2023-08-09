@@ -7,7 +7,7 @@ import '../Input/styles'
 import '../Menu/styles'
 import '../MenuItem/styles'
 import '../Loader/styles'
-import highlightAutofillStyles from '../InputBase/highlightStyles'
+import highlightAutofillStyles from '../InputBase/highlight-styles'
 
 export default (theme: Theme) => {
   const { palette } = theme

@@ -1,1 +1,1 @@
-export { default } from './useAvatarUpload'
+export { default } from './use-avatar-upload'

@@ -1,7 +1,7 @@
 import { COMMAND_PRIORITY_CRITICAL, SELECTION_CHANGE_COMMAND } from 'lexical'
 
-import { registerLexicalEvents } from './registerLexicalEvents'
-import type { LexicalRegisterParams } from './registerLexicalEvents'
+import { registerLexicalEvents } from './register-lexical-events'
+import type { LexicalRegisterParams } from './register-lexical-events'
 
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
   useLexicalComposerContext: jest.fn().mockReturnValue([]),

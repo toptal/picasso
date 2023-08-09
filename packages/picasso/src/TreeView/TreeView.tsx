@@ -9,10 +9,10 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { TreeViewContext } from './TreeViewContainer'
-import { useTree } from './useTree'
+import { useTree } from './use-tree'
 import Zoom from './Zoom'
 import styles from './styles'
-import { useZoom } from './useZoom'
+import { useZoom } from './use-zoom'
 import {
   DEFAULT_SCALE_EXTENT,
   ZERO_VECTOR2,
@@ -20,7 +20,7 @@ import {
 } from './variables'
 import type { TreeViewPropsBase, Vector2 } from './types'
 import { TreeViewSvg } from './TreeViewSvg'
-import { useFinalMargins } from './useFinalMargins'
+import { useFinalMargins } from './use-final-margins'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props extends TreeViewPropsBase {

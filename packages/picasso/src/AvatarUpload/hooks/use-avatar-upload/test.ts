@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import useAvatarUpload from './useAvatarUpload'
+import useAvatarUpload from './use-avatar-upload'
 
 describe('useAvatarUpload', () => {
   describe('when src exist and uploading false', () => {

@@ -1,1 +1,1 @@
-export { replaceHeadingNodes } from './replaceHeadingNodes'
+export { replaceHeadingNodes } from './replace-heading-nodes'

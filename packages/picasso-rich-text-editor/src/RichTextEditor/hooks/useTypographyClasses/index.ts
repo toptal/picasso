@@ -1,1 +1,1 @@
-export { default } from './useTypographyClasses'
+export { default } from './use-typography-classes'

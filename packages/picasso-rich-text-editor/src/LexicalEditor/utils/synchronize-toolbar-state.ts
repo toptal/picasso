@@ -4,9 +4,9 @@ import { $isListNode, ListNode } from '@lexical/list'
 import { $getNearestNodeOfType } from '@lexical/utils'
 import { $isHeadingNode } from '@lexical/rich-text'
 
-import { getLexicalNode } from './getLexicalNode'
-import type { ToolbarAction, ToolbarState } from './toolbarState'
-import { ToolbarActions } from './toolbarState'
+import { getLexicalNode } from './get-lexical-node'
+import type { ToolbarAction, ToolbarState } from './toolbar-state'
+import { ToolbarActions } from './toolbar-state'
 import { ALLOWED_HEADER_TYPE } from '../../RichTextEditorToolbar'
 
 // Transfers updated Lexical selection state to the toolbar state

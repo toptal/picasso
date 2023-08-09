@@ -1,6 +1,6 @@
 import type { Dispatch } from 'react'
 
-import actionTypes from './actionTypes'
+import actionTypes from './action-types'
 import type {
   SetBoldActionType,
   SetHeaderActionType,
