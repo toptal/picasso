@@ -26,6 +26,7 @@ import RichTextEditorToolbar, {
 } from '../RichTextEditorToolbar'
 import { useRTEPluginContext, useRTEUpdate } from '../plugins/api'
 import { getSelectedNode } from '../LexicalEditor/utils/getSelectedNode'
+import { $isCodeBlockNode } from '../plugins/CodeBlockPlugin/nodes'
 
 type Props = {
   disabled?: boolean
@@ -74,9 +75,12 @@ const LexicalEditorToolbarPlugin = ({
       const node = getSelectedNode(selection)
       const parent = node.getParent()
 
-      setDisabledFormatting(
-        Boolean($isHeadingNode(node) || $isHeadingNode(parent))
-      )
+      const isCodeBlockSelected =
+        $isCodeBlockNode(parent) || $isCodeBlockNode(node)
+      const isHeadingSelected = $isHeadingNode(node) || $isHeadingNode(parent)
+
+      // prevent formatting inside
+      setDisabledFormatting(isCodeBlockSelected || isHeadingSelected)
     }
   })
 
