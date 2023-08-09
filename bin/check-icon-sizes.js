@@ -7,8 +7,6 @@ const { execSync } = require('child_process')
  */
 
 const ICON_COMPONENTS_DIRECTORY = 'packages/picasso/src/Icon'
-// TODO: add missing icons and remove ability to ignore icons
-const IGNORED_ICONS = ['Ach', 'CreditCard']
 
 const getIconName = iconFileName => iconFileName.replace(/(16|24).tsx/, '')
 
@@ -45,10 +43,7 @@ const findIncompleteIcons = () => {
   iconFileNames.forEach(iconFileName => {
     const iconName = getIconName(iconFileName)
 
-    if (
-      IGNORED_ICONS.indexOf(iconName) === -1 &&
-      !checkIfIconIsComplete(iconName, iconFileNames)
-    ) {
+    if (!checkIfIconIsComplete(iconName, iconFileNames)) {
       if (incompleteIcons.indexOf(iconFileName)) {
         incompleteIcons.push(iconName)
       }
