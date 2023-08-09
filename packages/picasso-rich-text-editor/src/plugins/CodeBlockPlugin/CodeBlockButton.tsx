@@ -116,7 +116,7 @@ const replaceChildrenNodesWithRawText = (selection: RangeSelection) => {
 const CodeBlockButton = ({ 'data-testid': testId }: Props) => {
   const [isButtonActive, setButtonActive] = useState(false)
   const [editor] = useLexicalComposerContext()
-  const { disabled, focused, setDisabledFormatting } = useRTEPluginContext()
+  const { disabled, focused } = useRTEPluginContext()
 
   const handleClick = useCallback(() => {
     editor.update(() => {
@@ -142,8 +142,6 @@ const CodeBlockButton = ({ 'data-testid': testId }: Props) => {
         $isCodeBlockNode(parent) || $isCodeBlockNode(node)
 
       setButtonActive(isCodeBlockSelected)
-      // prevent formatting inside the code block
-      setDisabledFormatting(isCodeBlockSelected)
     }
   })
 
