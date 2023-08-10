@@ -1,5 +1,12 @@
 # Change Log
 
+## 60.0.2
+
+### Patch Changes
+
+- [#3790](https://github.com/toptal/picasso/pull/3790) [`4d0ec2b97`](https://github.com/toptal/picasso/commit/4d0ec2b9767ff43399888a05b66946bc31de01d1) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update boundary of rich text editor peer dependency
+
 ## 60.0.1
 
 ### Patch Changes
