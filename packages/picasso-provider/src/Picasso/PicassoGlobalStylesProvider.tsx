@@ -46,26 +46,26 @@ const PicassoGlobalStylesProvider = (
     currentBreakpointRange,
     hasTopBar: false,
     setHasTopBar: (hasTopBar: boolean) => {
-      setContextValue({
-        ...contextValue,
+      setContextValue(context => ({
+        ...context,
         hasTopBar,
-      })
+      }))
     },
     environment,
     titleCase,
     hasDrawer: false,
     setHasDrawer: (hasDrawer: boolean) => {
-      setContextValue({
-        ...contextValue,
+      setContextValue(context => ({
+        ...context,
         hasDrawer,
-      })
+      }))
     },
     hasSidebar: false,
     setHasSidebar: (hasSidebar: boolean) => {
-      setContextValue({
-        ...contextValue,
+      setContextValue(context => ({
+        ...context,
         hasSidebar,
-      })
+      }))
     },
     disableTransitions,
   })
