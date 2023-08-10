@@ -42,7 +42,7 @@
     "@lexical/html": "0.11.2",
     "@lexical/react": "0.11.2",
     "classnames": "^2.3.1",
-    "hast-to-hyperscript": "^9.0.1",
+    "hast-to-hyperscript": "^11.0.0",
     "hast-util-from-dom": "^3.0.0",
     "hast-util-sanitize": "^3.0.2",
     "hast-util-to-html": "^7.1.3",

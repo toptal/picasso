@@ -13103,7 +13103,12 @@ hasha@^5.0.0:
     is-stream "^2.0.0"
     type-fest "^0.8.0"
 
-hast-to-hyperscript@^9.0.0, hast-to-hyperscript@^9.0.1:
+hast-to-hyperscript@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/hast-to-hyperscript/-/hast-to-hyperscript-11.0.0.tgz#84844f869f8a10c163e7feabb45614fca4e8df72"
+  integrity sha512-SA5fwEx3oyhT3vseueL4P0l4MolqGFa3JXRxQiWKcu5P8KQBt5cdvZtPv9pz6M/FPCYTz9BfeDbjS4VRwgJoFA==
+
+hast-to-hyperscript@^9.0.0:
   version "9.0.1"
   resolved "https://registry.npmjs.org/hast-to-hyperscript/-/hast-to-hyperscript-9.0.1.tgz"
   integrity sha512-zQgLKqF+O2F72S1aa4y2ivxzSlko3MAvxkwG8ehGmNiqd98BIN3JM1rAJPmplEyLmGLO2QZYJtIneOSZ2YbJuA==
