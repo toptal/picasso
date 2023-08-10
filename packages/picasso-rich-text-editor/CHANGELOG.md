@@ -1,5 +1,13 @@
 # @toptal/picasso-rich-text-editor
 
+## 5.0.0
+
+### Major Changes
+
+- [#3790](https://github.com/toptal/picasso/pull/3790) [`4d0ec2b97`](https://github.com/toptal/picasso/commit/4d0ec2b9767ff43399888a05b66946bc31de01d1) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add support for the code block
+  - the only breaking change is the need of updating Picasso to ^37.3.0
+
 ## 4.2.1
 
 ### Patch Changes
