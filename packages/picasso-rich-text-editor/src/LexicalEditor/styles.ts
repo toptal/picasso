@@ -12,7 +12,7 @@ const margins = {
   '& h3': {
     margin: '1rem 0 0.5rem',
   },
-  '& p:first-child, & h3:first-child': {
+  '& p:first-child, & h3:first-child, & code[dir]:first-child': {
     margin: '0 0 0.5rem',
   },
   '& li:not(:last-child)': {
