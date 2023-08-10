@@ -110,6 +110,10 @@ export class CodeBlockNode extends ElementNode {
     return false
   }
 
+  extractWithChild() {
+    return true
+  }
+
   // eslint-disable-next-line max-statements, complexity
   insertNewAfter(
     selection: RangeSelection,

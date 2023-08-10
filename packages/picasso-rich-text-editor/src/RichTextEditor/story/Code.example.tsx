@@ -11,7 +11,8 @@ import type { RichTextEditorChangeHandler } from '../types'
 
 // we expect defaultValue to be HAST from BE
 const defaultValue = htmlToHast(
-  '<p>foo <code>bar</code> baz</p><p>qux <code>quux</code> quuz</p>'
+  `<p>foo <code>bar</code> baz</p><p>qux <code>quux</code> quuz</p>
+<pre>&lt;CodeBlock<br> {...props}<br>/&gt;</pre>`
 )
 
 const Example = () => {

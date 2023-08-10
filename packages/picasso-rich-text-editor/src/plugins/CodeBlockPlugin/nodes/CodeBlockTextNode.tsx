@@ -1,7 +1,7 @@
 import type { SerializedTextNode, EditorConfig, NodeKey } from 'lexical'
 import { TextNode } from 'lexical'
 
-import { $createCodeBlockNode } from '../nodes'
+import { $createCodeBlockNode, $createCodeBlockTextNode } from '../nodes'
 import type { CodeBlockNode } from '../nodes'
 
 const ELEMENT_TYPE = 'code-block-text'
@@ -17,6 +17,15 @@ export class CodeBlockTextNode extends TextNode {
 
   static clone(node: CodeBlockTextNode): CodeBlockTextNode {
     return new CodeBlockTextNode(node.__text, node.__key)
+  }
+
+  static importJSON(serializedNode: SerializedTextNode): CodeBlockTextNode {
+    console.log('importJSON')
+    const { text } = serializedNode
+
+    const node = $createCodeBlockTextNode(text)
+
+    return node
   }
 
   createDOM(config: EditorConfig): HTMLElement {
