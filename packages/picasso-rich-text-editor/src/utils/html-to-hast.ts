@@ -27,6 +27,7 @@ export const hastSanitizeSchema: Schema = {
     'a',
     'img',
     'code',
+    'pre',
   ],
   strip: ['script'],
 }

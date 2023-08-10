@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Grid, Container } from '@toptal/picasso'
 import {
   ImagePlugin,
+  CodeBlockPlugin,
   RichText,
   RichTextEditor,
   LinkPlugin,
@@ -27,12 +28,13 @@ const Example = () => {
             plugins={[
               <LinkPlugin />,
               <EmojiPlugin customEmojis={customEmojis} />,
-              <CodePlugin />,
               <ImagePlugin
                 onUpload={() =>
                   new Promise(resolve => setTimeout(resolve, 2000))
                 }
               />,
+              <CodePlugin />,
+              <CodeBlockPlugin />,
             ]}
           />
         </Grid.Item>
@@ -156,6 +158,18 @@ const defaultValue: ASTType = {
           properties: {},
           children: [{ type: 'text', value: 'code()' }],
         },
+      ],
+    },
+    {
+      type: 'element',
+      tagName: 'pre',
+      properties: {},
+      children: [
+        { type: 'text', value: '<CodeBlock' },
+        { type: 'element', tagName: 'br', properties: {}, children: [] },
+        { type: 'text', value: '  {...props}' },
+        { type: 'element', tagName: 'br', properties: {}, children: [] },
+        { type: 'text', value: '/>' },
       ],
     },
     {

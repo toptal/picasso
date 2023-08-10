@@ -9,4 +9,5 @@ export { default as TriggerInitialOnChangePlugin } from './TriggerInitialOnChang
 export { default as FocusOnLabelClickPlugin } from './FocusOnLabelClickPlugin'
 export { default as CodePlugin } from './CodePlugin'
 export { default as ImagePlugin } from './ImagePlugin'
+export { default as CodeBlockPlugin } from './CodeBlockPlugin'
 export type { UploadedImage } from './ImagePlugin'

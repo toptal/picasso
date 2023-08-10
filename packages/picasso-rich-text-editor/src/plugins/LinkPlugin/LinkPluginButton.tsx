@@ -20,7 +20,7 @@ export type Props = {
 const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
   const [active, setActive] = useState(false)
   const [editor] = useLexicalComposerContext()
-  const { disabled, focused } = useRTEPluginContext()
+  const { disabled, focused, disabledFormatting } = useRTEPluginContext()
 
   useRTEUpdate(() => {
     const selection = $getSelection()
@@ -80,12 +80,14 @@ const LinkPluginButton = ({ 'data-testid': testId }: Props) => {
     })
   }, [editor, active])
 
+  const isDisabled = disabled || !focused || disabledFormatting
+
   return (
     <RichTextEditorButton
       icon={<Link16 />}
       onClick={onLinkClick}
-      active={active}
-      disabled={disabled || !focused}
+      active={isDisabled ? false : active}
+      disabled={isDisabled}
       data-testid={testId}
     />
   )

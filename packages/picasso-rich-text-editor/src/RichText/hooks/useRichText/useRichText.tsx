@@ -8,9 +8,8 @@ import ListItem from '@toptal/picasso/ListItem'
 import Link from '@toptal/picasso/Link'
 
 import type { ASTType } from '../../types'
-import { Emoji, Image } from '../../components'
+import { Emoji, Image, Code, CodeBlock } from '../../components'
 import { isCustomEmoji } from '../../../utils'
-import Code from '../../components/Code'
 
 type Props = {
   children?: React.ReactNode
@@ -59,6 +58,7 @@ const componentMap: Record<string, FC> = {
   a: A,
   img: Img,
   code: Code,
+  pre: CodeBlock,
 } as const
 
 const picassoMapper = (child: ReactNode): ReactNode => {

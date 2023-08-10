@@ -13,6 +13,8 @@ const replacementMap: ReplaceCondition[] = [
   { parentTag: 'i', childTag: 'em', nodeToRemove: NodeTypes.Parent },
   { parentTag: 'b', childTag: 'strong', nodeToRemove: NodeTypes.Parent },
   { parentTag: 'p', childTag: 'span', nodeToRemove: NodeTypes.Child },
+  { parentTag: 'pre', childTag: 'span', nodeToRemove: NodeTypes.Child },
+  { parentTag: 'code', childTag: 'span', nodeToRemove: NodeTypes.Child },
   { parentTag: 'h3', childTag: 'span', nodeToRemove: NodeTypes.Child },
   { parentTag: 'li', childTag: 'span', nodeToRemove: NodeTypes.Child },
 ]

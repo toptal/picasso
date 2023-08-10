@@ -3,16 +3,16 @@ import type { Theme } from '@material-ui/core/styles'
 import type { CSSProperties } from '@material-ui/core/styles/withStyles'
 import { rem } from '@toptal/picasso-shared'
 
-import { codeStyles } from '../RichText/components/styles'
+import { codeBlockStyles, codeStyles } from '../RichText/components/styles'
 
 const margins = {
-  '& p': {
+  '& p, & code[dir]': {
     margin: '0.5rem 0',
   },
   '& h3': {
     margin: '1rem 0 0.5rem',
   },
-  '& p:first-child, & h3:first-child': {
+  '& p:first-child, & h3:first-child, & code[dir]:first-child': {
     margin: '0 0 0.5rem',
   },
   '& li:not(:last-child)': {
@@ -165,5 +165,12 @@ export default (theme: Theme) => {
       },
     },
     code: codeStyles(theme),
+    codeBlock: codeBlockStyles(theme),
+    codeBlockText: {
+      fontFamily: 'inherit',
+      fontSize: 'inherit',
+      lineHeight: 'inherit',
+      color: 'inherit',
+    },
   })
 }

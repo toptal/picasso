@@ -18,6 +18,18 @@ const testCases = [
   ['<span>', '<h3> > <span>', '<h3><span>test</span></h3>', '<h3>test</h3>'],
   ['<span>', '<p> > <span>', '<p><span>test</span></p>', '<p>test</p>'],
   [
+    '<span>',
+    '<pre> > <span>',
+    '<pre><span>test</span></pre>',
+    '<pre>test</pre>',
+  ],
+  [
+    '<span>',
+    '<code> > <span>',
+    '<code><span>test</span></code>',
+    '<code>test</code>',
+  ],
+  [
     'multiple <span> tags',
     '<p> > <span>',
     '<p><span>italic </span><i><em>text</em></i><span> test</span></p>',
