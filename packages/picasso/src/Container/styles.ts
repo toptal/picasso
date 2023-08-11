@@ -155,14 +155,6 @@ export default ({ palette, sizes: { borderRadius }, breakpoints, props }: Theme,
     // },
 
     customClass: {
-      backgroundColor: (props: any) => {
-        console.log('@@@ LEVEL 2 props', props)
-        return 'red'
-      }
-    },
-
-    // customClass: {
-    TEMPCLASS: {
       [breakpoints.up('md')]: {
       //'@media (max-width: 1000px)': {
         // Not working
