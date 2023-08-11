@@ -23,48 +23,42 @@ exports[`Modal useModal opens and closes modal 1`] = `
         </span>
       </button>
       <div
-        class="MuiDialog-root PicassoModal-root"
+        class="fixed z-[1300] inset-0 flex flex-col text-lg justify-center items-center MuiModal-root"
         role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
         <div
           aria-hidden="true"
-          class="MuiBackdrop-root"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity MuiModal-backdrop fixed -z inset-0 bg-black bg-opacity -webkit-tap-highlight-color"
+          style="transition-duration: 300ms; opacity: 1;"
         />
         <div
-          data-test="sentinelStart"
+          data-testid="sentinelStart"
           tabindex="0"
         />
         <div
-          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity bg-white relative outline-none overflow-y shadow-2 flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          role="dialog"
+          style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
         >
-          <div
-            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-            role="dialog"
+          <p>
+            Modal content
+          </p>
+          <button
+            class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+            data-component-type="button"
+            tabindex="0"
+            type="button"
           >
-            <p>
-              Modal content
-            </p>
-            <button
-              class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
-              data-component-type="button"
-              tabindex="0"
-              type="button"
+            <span
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
             >
-              <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-              >
-                Hide
-              </span>
-            </button>
-          </div>
+              Hide
+            </span>
+          </button>
         </div>
         <div
-          data-test="sentinelEnd"
+          data-testid="sentinelEnd"
           tabindex="0"
         />
       </div>
@@ -136,70 +130,58 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       </button>
       <div
         aria-hidden="true"
-        class="MuiDialog-root PicassoModal-root"
+        class="fixed z-[1300] inset-0 flex flex-col text-lg justify-center items-center MuiModal-root"
         role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
         <div
           aria-hidden="true"
-          class="MuiBackdrop-root"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity MuiModal-backdrop fixed -z inset-0 bg-black bg-opacity -webkit-tap-highlight-color"
+          style="transition-duration: 300ms; opacity: 1;"
         />
         <div
-          data-test="sentinelStart"
+          data-testid="sentinelStart"
           tabindex="0"
         />
         <div
-          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity bg-white relative outline-none overflow-y shadow-2 flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          role="dialog"
+          style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
         >
-          <div
-            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-            role="dialog"
-          >
-            <p>
-              First modal content
-            </p>
-          </div>
+          <p>
+            First modal content
+          </p>
         </div>
         <div
-          data-test="sentinelEnd"
+          data-testid="sentinelEnd"
           tabindex="0"
         />
       </div>
       <div
-        class="MuiDialog-root PicassoModal-root"
+        class="fixed z-[1300] inset-0 flex flex-col text-lg justify-center items-center MuiModal-root"
         role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
         <div
           aria-hidden="true"
-          class="MuiBackdrop-root"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity MuiModal-backdrop fixed -z inset-0 bg-black bg-opacity -webkit-tap-highlight-color"
+          style="transition-duration: 300ms; opacity: 1;"
         />
         <div
-          data-test="sentinelStart"
+          data-testid="sentinelStart"
           tabindex="0"
         />
         <div
-          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity bg-white relative outline-none overflow-y shadow-2 flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          role="dialog"
+          style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
         >
-          <div
-            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-medium MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-            role="dialog"
-          >
-            <p>
-              Second modal content
-            </p>
-          </div>
+          <p>
+            Second modal content
+          </p>
         </div>
         <div
-          data-test="sentinelEnd"
+          data-testid="sentinelEnd"
           tabindex="0"
         />
       </div>
