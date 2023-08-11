@@ -10,6 +10,17 @@ const colorUtils = {
 
 export { colorUtils }
 
+/**
+ * @property {number} 0 - spacing-0 resolves to 0 rem
+ * @property {number} 1 - spacing-1 resolves to 0.25 rem
+ */
+export const spacing = {
+  /** spacing-0 resolves to 0 rem */
+  0: 0,
+  /** spacing-1 resolves to 0.25 rem */
+  1: 0.25,
+}
+
 export {
   breakpointsList as breakpoints,
   screens,

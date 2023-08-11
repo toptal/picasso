@@ -12,14 +12,14 @@ Existing `SpacingType` string constants resolve to numeric values from [BASE des
 
 # Existing approaches
 
-- [Chakra UI](https://chakra-ui.com/docs/styled-system/theme#spacing) exports tokens like `spacing.space['2'] = '0.5rem'`(key to rem)
-- [Caliber](https://github.com/toptal/caliber/blob/9a0b91110f1c82e07d30f684bb42b49e0e34f918/tailwind.preset.design-tokens.js#L2) exports tokens like `theme.spacing['2'] = '8px'` (key to pixel)
+- [Chakra UI](https://chakra-ui.com/docs/styled-system/theme#spacing) exports tokens like `spacing.space['2'] = '0.5rem'`(key to string value in `rem` units)
+- [Caliber](https://github.com/toptal/caliber/blob/9a0b91110f1c82e07d30f684bb42b49e0e34f918/tailwind.preset.design-tokens.js#L2) exports tokens like `theme.spacing['2'] = '8px'` (key to string value in `px` units)
 
 # Proposal
 
 ## Goal
 
-Picasso has to provde full set of BASE desing increments so they are reused when developing Picasso-based applications, at the same time not breaking existing usage of spacing in affected components.
+Picasso has to provde full set of BASE desing increments so they are used when developing Picasso-based applications. Introduced changes do not break existing usage of spacing in related components.
 
 ## Technical implementation
 
@@ -35,32 +35,39 @@ export const spacing = {
 }
 ```
 
-Exported object with increments can be reused by all components with spacing properties
+Exported object with increments are reused by components with spacing properties (`top`, `right`, `bottom` and `left` properties in Container and `offset` property Dropdown)
 
 ```
 import { spacing } from '@toptal/picasso/utils'
 <Container top={spacing[6]}/>
 ```
 
-This can 
+The https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings tutorial is updated to contain guidelines on using new spacing system in the particular example.
 
+# Alternative approaches
 
-# Alternatives 
+- Provide BASE design increments as separate constants
 
+```
+export const spacing0 = 0
+export const spacing1 = 0.25
+...
+export const spacing10 = 2.5
+export const spacing12 = 3
+```
 
+This approach is not consistent with the way `breakpoint` and `color` values are provided (provided as object with key-value pairs, not as a separate constants)
 
+- Provide BASE design increments as object with string values in rem units
 
+```
+export const spacing = {
+  0: `0rem`,
+  1: `0.25rem`,
+  ...
+  10: `2.5rem`,
+  12: `3rem`,
+}
+```
 
-
-
-Problem – we do not have tokens from BASE, existing ones do not correlate to it
-
-Current situation – values are not aligned with BASE
-
-Goal – have tokens in some format that are aligned with BASE, mark the old ones as deprecated and do not break things
-
-Here are alternatives with pros and cons – two different format
-
-Final propposal and steps to achieve it
-
-Let's discuss
+This approach complicates handling of new spacing values in affected components, as they will handle special case of Nrem string besides the existing `SpacingType` without significant advantage to the proposed one.
