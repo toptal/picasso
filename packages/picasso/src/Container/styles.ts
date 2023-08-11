@@ -131,58 +131,111 @@ justifyContentVariants.forEach(variant => {
   }
 })
 
-export default ({ palette, sizes: { borderRadius } }: Theme) =>
-  createStyles({
-    bordered: {
-      border: `1px solid ${palette.grey.lighter2}`,
+export default ({ palette, sizes: { borderRadius }, breakpoints, props }: Theme, componentProps: any) => {
+  // Cannot access component "props" on this level
+  console.log('@@@ LEVEL 1 props', props) // MUI props
+  console.log('@@@ LEVEL 1 componentProps', componentProps) // undefined
+
+  // "createStyles()" does nothing when function is provided
+  return createStyles({
+    // Can access component "props" on this level, but the <style/> tag is not generated
+    // customClass: (props: any) => {
+    //   console.log('@@@ LEVEL 2 props', props)
+    //   return {
+    //     backgroundColor: 'red'
+    //   }
+    // },
+
+    // Can access component "props" on this level, but the <style/> tag is not generated
+    // customClass: {
+    //   backgroundColor: (props: any) => {
+    //     console.log('@@@ LEVEL 2 props', props)
+    //     return 'red'
+    //   }
+    // },
+
+    customClass: {
+      backgroundColor: (props: any) => {
+        console.log('@@@ LEVEL 2 props', props)
+        return 'red'
+      }
     },
 
-    rounded: {
-      borderRadius: borderRadius.medium,
-    },
+    // customClass: {
+    TEMPCLASS: {
+      [breakpoints.up('md')]: {
+      //'@media (max-width: 1000px)': {
+        // Not working
+        // backgroundColor: (props: { top: any}) => {
+        //   if (props.top) {
+        //     console.log('@@@ props.top', props.top)
+        //   }
+        //   return 'red'
+        // }
 
-    flex: {
-      display: 'flex',
-
-      '&$inline': {
-        display: 'inline-flex',
-      },
-    },
-
-    column: {
-      flexDirection: 'column',
-    },
-
-    rowReverse: {
-      flexDirection: 'row-reverse',
-    },
-
-    columnReverse: {
-      flexDirection: 'column-reverse',
-    },
-
-    inline: {
-      display: 'inline-block',
-    },
-
-    whiteVariant: {
-      backgroundColor: palette.common.white,
-    },
-
-    redVariant: colorVariant(palette.red),
-
-    greenVariant: colorVariant(palette.green),
-
-    yellowVariant: colorVariant(palette.yellow),
-
-    blueVariant: colorVariant(palette.blue),
-
-    greyVariant: colorVariant(palette.grey),
-
-    ...paddings,
-    ...margins,
-    ...alignItems,
-    ...justifyContent,
-    ...textAlignItems,
-    ...gaps,
+        // Works
+        backgroundColor: 'red'
+      }
+    }
   })
+}
+
+// export default ({ palette, sizes: { borderRadius } }: Theme) =>
+//   createStyles((props: any) => {
+//     return {
+//     root: {
+//       backgroundColor: 'red',
+//     },
+//     bordered: {
+//       border: `1px solid ${palette.grey.lighter2}`,
+//     },
+
+//     rounded: {
+//       borderRadius: borderRadius.medium,
+//     },
+
+//     flex: {
+//       display: 'flex',
+
+//       '&$inline': {
+//         display: 'inline-flex',
+//       },
+//     },
+
+//     column: {
+//       flexDirection: 'column',
+//     },
+
+//     rowReverse: {
+//       flexDirection: 'row-reverse',
+//     },
+
+//     columnReverse: {
+//       flexDirection: 'column-reverse',
+//     },
+
+//     inline: {
+//       display: 'inline-block',
+//     },
+
+//     whiteVariant: {
+//       backgroundColor: palette.common.white,
+//     },
+
+//     redVariant: colorVariant(palette.red),
+
+//     greenVariant: colorVariant(palette.green),
+
+//     yellowVariant: colorVariant(palette.yellow),
+
+//     blueVariant: colorVariant(palette.blue),
+
+//     greyVariant: colorVariant(palette.grey),
+
+//     ...paddings,
+//     ...margins,
+//     ...alignItems,
+//     ...justifyContent,
+//     ...textAlignItems,
+//     ...gaps,
+//   }})

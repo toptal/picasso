@@ -8,11 +8,13 @@ import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
 import type { StandardProps, SpacingType } from '@toptal/picasso-shared'
 import { spacingToRem } from '@toptal/picasso-shared'
+import {createUseStyles} from 'react-jss'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import { forwardRef, documentable } from '../utils/forward-ref'
+import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
 
 type ContainerType = 'div' | 'span'
 
@@ -20,8 +22,32 @@ type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
+// @ts-ignore
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer',
+})
+
+type ResponsiveSpacing = {
+  xs?: number
+  sm?: number
+  md?: number
+}
+
+// Works
+const useJssStyles = createUseStyles({
+  customJssClass: {
+    [`@media (min-width: ${PicassoBreakpoints.breakpoints.values.md}px)`]: {
+      marginTop: (props: any) => {
+        console.log('@@@ JSS props', props)
+        if (props?.top?.md) {
+          return `${props.top.md}rem`
+        }
+
+        return undefined
+      },
+      backgroundColor: 'red',
+    }
+  },
 })
 
 export interface Props<V extends VariantType = VariantType>
@@ -30,7 +56,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Content of Container */
   children?: ReactNode
   /** margin-top for the container transformed to `rem` */
-  top?: SpacingType
+  top?: SpacingType | ResponsiveSpacing
   /** margin-bottom for the container transformed to `rem` */
   bottom?: SpacingType
   /** margin-left for the container transformed to `rem` */
@@ -99,6 +125,7 @@ export const Container = documentable(
       } = props
 
       const classes = useStyles(props)
+      const jssClasses = useJssStyles(props)
 
       const margins = {
         ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
@@ -114,42 +141,44 @@ export const Container = documentable(
           {...rest}
           ref={ref}
           className={cx(
-            classes[`${variant}Variant`],
-            {
-              [classes[`${padded}Padding`]]: typeof padded === 'string',
-              [classes[`${gap}Gap`]]: typeof gap === 'string',
+            //classes[`${variant}Variant`],
+            //classes['customClass'],
+            jssClasses['customJssClass'],
+            // {
+            //   [classes[`${padded}Padding`]]: typeof padded === 'string',
+            //   [classes[`${gap}Gap`]]: typeof gap === 'string',
 
-              [classes[`top${top}Margin`]]: typeof top === 'string',
-              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-              [classes[`left${left}Margin`]]: typeof left === 'string',
-              [classes[`right${right}Margin`]]: typeof right === 'string',
+            //   [classes[`top${top}Margin`]]: typeof top === 'string',
+            //   [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+            //   [classes[`left${left}Margin`]]: typeof left === 'string',
+            //   [classes[`right${right}Margin`]]: typeof right === 'string',
 
-              [classes[`${align}TextAlign`]]: typeof align === 'string',
+            //   [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-              [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
-                alignItems,
+            //   [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
+            //     alignItems,
 
-              [classes[
-                `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-              ]]: justifyContent,
+            //   [classes[
+            //     `${kebabToCamelCase(justifyContent || '')}JustifyContent`
+            //   ]]: justifyContent,
 
-              [classes.bordered]: bordered,
-              [classes.rounded]: rounded,
-              [classes.flex]: flex,
-              [classes.inline]: inline,
-              [classes[kebabToCamelCase(direction || '')]]:
-                direction && direction !== 'row',
-            },
-            className
+            //   [classes.bordered]: bordered,
+            //   [classes.rounded]: rounded,
+            //   [classes.flex]: flex,
+            //   [classes.inline]: inline,
+            //   [classes[kebabToCamelCase(direction || '')]]:
+            //     direction && direction !== 'row',
+            // },
+            // className
           )}
-          style={{
-            ...margins,
-            ...(typeof padded === 'number' && {
-              padding: spacingToRem(padded),
-            }),
-            ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
-            ...style,
-          }}
+          // style={{
+          //   ...margins,
+          //   ...(typeof padded === 'number' && {
+          //     padding: spacingToRem(padded),
+          //   }),
+          //   ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
+          //   ...style,
+          // }}
         >
           {children}
         </Component>
