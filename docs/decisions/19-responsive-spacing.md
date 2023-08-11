@@ -31,6 +31,10 @@ Can be solved via JSS
 
 ## 1. Export spacing tokens
 
+// Concerns – token as type
+
+// What about spacing1 = ..., spacing2 = ...?
+
 Spacing tokens are exported from `@toptal/picasso/utils`
 
 ```
@@ -45,13 +49,25 @@ export const spacing = {
 
 ## 2. Use spacing tokens in Container spacing properties (`top`, `left`, etc.)
 
+
+// TODO:
+- Tailwind CSS and classes "w-1 sm:w-[2rem]"
+- prohibiting custom spacing in Container ()
+
+
+
 ### Pass spacing tokens (no effort, low risk, low reward)
 
 Container spacing properties allow number value, which are expected to be values in `rem`. The spacing tokens are also provided in `rem`, so they can be just passed to the Container spacing properties
 
 ```
+// consistency!
 import { spacing } from '@toptal/picasso/utils'
 <Container top={spacing[6]}/>
+
+// TODO
+import { spacing-2 } from '@toptal/picasso/utils'
+<Container top={spacing-2}/>
 ```
 
 ### Extend Container spacing properties with responsive values (big effort, high risk, high reward)
