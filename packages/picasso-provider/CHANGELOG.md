@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.1.3
+
+### Patch Changes
+
+- [#3796](https://github.com/toptal/picasso/pull/3796) [`0a00c224b`](https://github.com/toptal/picasso/commit/0a00c224b12958d2cf4adc309d190634b48592c9) Thanks [@mkrl](https://github.com/mkrl)!
+
+### PicassoGlobalStylesProvider
+
+- fixed issue with `PicassoGlobalStylesProvider` setting context value incorrectly, thus causing style mismatch when both sidebar + drawer are used
+
 ## 3.1.2
 
 ### Patch Changes
