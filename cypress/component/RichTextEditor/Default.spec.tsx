@@ -455,4 +455,19 @@ describe('RichTextEditor', () => {
       cy.get('body').happoScreenshot({ component, variant: 'focused' })
     })
   })
+
+  describe('when long placeholder string is provided', () => {
+    it('wraps placeholder', () => {
+      cy.mount(
+        renderEditor({
+          ...defaultProps,
+          ...{
+            placeholder: 'abcdabcdab abcabca abab aa 1 '.repeat(32),
+          },
+        })
+      )
+
+      cy.get('body').happoScreenshot({ component, variant: 'long-placeholder' })
+    })
+  })
 })
