@@ -6135,6 +6135,13 @@
   dependencies:
     "@types/unist" "*"
 
+"@types/hast@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/hast/-/hast-3.0.0.tgz#47ebd2892a623fa7e517ba392834880ff288475e"
+  integrity sha512-SoytUJRuf68HXYqcXicQIhCrLQjqeYU2anikr4G3p3Iz+OZO5QDQpDj++gv+RenHsnUBwNZ2dumBArF8VLSk2Q==
+  dependencies:
+    "@types/unist" "*"
+
 "@types/history@*", "@types/history@^4.7.11":
   version "4.7.11"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.11.tgz#56588b17ae8f50c53983a524fc3cc47437969d64"
@@ -13326,11 +13333,12 @@ hast-util-sanitize@^3.0.2:
   dependencies:
     xtend "^4.0.0"
 
-hast-util-to-dom@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/hast-util-to-dom/-/hast-util-to-dom-3.1.1.tgz#7cd9f925b0cff8ec2c95474ef896b1865fcefd62"
-  integrity sha512-hDiYqOapuWzLPDMADCD5z6re/07OQOpQuT2YO5hxPjaxWTtgcbjqCjlv4KtyMuEQiW4wKTIPoK+japvbZ5zqxg==
+hast-util-to-dom@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/hast-util-to-dom/-/hast-util-to-dom-4.0.0.tgz#85c9835fcac962fc7ca94eb269aa81bd2c128d9f"
+  integrity sha512-oW7RScutPE58LfjuVUNvvH0+6rB89mAm/pkDqD3bdj9g6xKQlMcuW6yBmovbpDKkvYI2apPKmHZMtc9KiZTywA==
   dependencies:
+    "@types/hast" "^3.0.0"
     property-information "^6.0.0"
     web-namespaces "^2.0.0"
 
