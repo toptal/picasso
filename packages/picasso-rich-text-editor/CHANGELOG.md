@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 5.0.1
+
+### Patch Changes
+
+- [#3805](https://github.com/toptal/picasso/pull/3805) [`ee1456aa3`](https://github.com/toptal/picasso/commit/ee1456aa35ded27a7a7fc6dbb7319167f52d9e6a) Thanks [@sashuk](https://github.com/sashuk)!
+
+### RichTextEditor
+
+- fix placeholder wrap
+
 ## 5.0.0
 
 ### Major Changes
