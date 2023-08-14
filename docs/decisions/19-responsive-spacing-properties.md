@@ -6,13 +6,13 @@
 
 The problem is that Container components do not allow defining spacing per screen size, so consumers have to find workarounds like using responsive hooks provided by Picasso (their usage is discouraged as [they do not support Server Side Rendering (SSR)](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/3326443609/Server-Side+Rendering+SSR+and+Creating+SSR-Supported+Components+in+React)) or having a custom implementation of screen size detection.
 
-The scale of the problem is large enough for measures to be taken. According to the research in [Container properties usages section](#container-properties-usage), 8% of the `Container.top` spacing property usages take into account screen size before assigning the value of the property.
+The scale of the problem is large enough for measures to be taken. According to the research in the Container properties usages section, 8% of the `Container.top` spacing property usages take into account screen size before assigning the value of the property.
 
 ## Proposal
 
 `Container` spacing properties have to allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR.
 
-This RFC proposes changes to the `Container` component API and does not propose technical implementation due to the problems described in [technical challenges section](#technical-challenges) and the fact that upcoming Picasso migration to TailwindCSS can potentially solve described technical problems.
+This RFC proposes changes to the `Container` component API and does not propose technical implementation due to the problems described in technical challenges section and the fact that upcoming Picasso migration to TailwindCSS can potentially solve described technical problems.
 
 ### Abandoned ideas
 
@@ -64,7 +64,7 @@ Array syntax requires explicit specification of smaller breakpoint ranges even i
 
 ## Additional information
 
-###[Technical challenges]
+### Technical challenges
 
 In order to maintain compatibility with SSR, existing responsive hooks can not be used due to their reliance on `window` object (please see [Server-Side Rendering (SSR) and Creating SSR-Supported Components in React](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/3326443609/Server-Side+Rendering+SSR+and+Creating+SSR-Supported+Components+in+React) for details) when implementing the proposed component API and functionality.
 
@@ -74,7 +74,7 @@ One of the workarounds is to use CSS in JavaScript ([JSS](https://cssinjs.org/))
 
 Taking into account planned Picasso migration to TailwindCSS and problems that rise in case of using workaround, the technical implementation of API proposal is postponed until TailwindCSS migration is completed.
 
-###[Container properties usage]
+### Container properties usage
 
 Calculation of `Container.top` usage statistics
 
