@@ -110,7 +110,7 @@ export default (theme: Theme) => {
       top: '0px',
       left: '0px',
       userSelect: 'none',
-      whiteSpace: 'nowrap',
+      whiteSpace: 'normal',
       display: 'inline-block',
       pointerEvents: 'none',
     },
