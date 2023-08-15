@@ -64,9 +64,32 @@ export type EnvironmentType<T extends Environments = BaseEnvironments> =
 
 export type SizeType<T extends Sizes> = T
 
+class PicassoSpacing {
+  remValue: number
+
+  constructor(rem: number) {
+    this.remValue = rem
+  }
+
+  valueOf() {
+    return this.remValue
+  }
+
+  toString() {
+    return `${this.valueOf()}rem`
+  }
+}
+
+
+export const picassoSpacings = {
+  6: new PicassoSpacing(1.5),
+  10: new PicassoSpacing(2.5),
+}
+
 export type SpacingType =
   | number
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+  | PicassoSpacing
 
 export enum SpacingEnum {
   xsmall = 0.5,
@@ -77,7 +100,7 @@ export enum SpacingEnum {
 }
 
 export const spacingToRem = (spacing: SpacingType) =>
-  typeof spacing === 'number' ? `${spacing}rem` : `${SpacingEnum[spacing]}rem`
+  typeof spacing === 'number' ? `${spacing}rem` : typeof spacing === 'object' ? `${spacing}rem` : `${SpacingEnum[spacing]}rem`
 
 export type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   ButtonHTMLAttributes<HTMLButtonElement>

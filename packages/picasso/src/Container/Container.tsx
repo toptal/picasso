@@ -8,7 +8,7 @@ import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
 import type { StandardProps, SpacingType } from '@toptal/picasso-shared'
 import { spacingToRem } from '@toptal/picasso-shared'
-import {createUseStyles} from 'react-jss'
+//import {createUseStyles} from 'react-jss'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
@@ -29,27 +29,27 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 })
 
 type ResponsiveSpacing = {
-  xs?: number
-  sm?: number
-  md?: number
+  xs?: SpacingType
+  sm?: SpacingType
+  md?: SpacingType
 }
 
 // Works
-const useJssStyles = createUseStyles({
-  customJssClass: {
-    [`@media (min-width: ${PicassoBreakpoints.breakpoints.values.md}px)`]: {
-      marginTop: (props: any) => {
-        console.log('@@@ JSS props', props)
-        if (props?.top?.md) {
-          return `${props.top.md}rem`
-        }
+// const useJssStyles = createUseStyles({
+//   customJssClass: {
+//     [`@media (min-width: ${PicassoBreakpoints.breakpoints.values.md}px)`]: {
+//       marginTop: (props: any) => {
+//         console.log('@@@ JSS props', props)
+//         if (props?.top?.md) {
+//           return `${props.top.md}rem`
+//         }
 
-        return undefined
-      },
-      backgroundColor: 'red',
-    }
-  },
-})
+//         return undefined
+//       },
+//       backgroundColor: 'red',
+//     }
+//   },
+// })
 
 //spacing[1]
 
@@ -128,7 +128,7 @@ export const Container = documentable(
       } = props
 
       const classes = useStyles(props)
-      const jssClasses = useJssStyles(props)
+      //const jssClasses = useJssStyles(props)
 
       const margins = {
         ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
@@ -146,7 +146,7 @@ export const Container = documentable(
           className={cx(
             //classes[`${variant}Variant`],
             //classes['customClass'],
-            jssClasses['customJssClass'],
+            //jssClasses['customJssClass'],
             // {
             //   [classes[`${padded}Padding`]]: typeof padded === 'string',
             //   [classes[`${gap}Gap`]]: typeof gap === 'string',
