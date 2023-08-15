@@ -9,7 +9,6 @@ export default ({ layout }: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      overflowX: 'hidden',
       ...(layout.contentMinWidth && { minWidth: layout.contentMinWidth }),
 
       '& > footer, & > header': {
@@ -18,9 +17,5 @@ export default ({ layout }: Theme) =>
       '& > header + *': {
         marginTop: headerHeight.default,
       },
-    },
-    subRoot: {
-      width: '100vw',
-      height: '100vh',
     },
   })

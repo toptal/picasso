@@ -50,13 +50,11 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       className={cx(classes.root, className)}
       style={style}
     >
-      <div className={cx(classes.subRoot)}>
-        <PageContext.Provider value={{ width, fullWidth }}>
-          <PageHamburgerContextProvider hamburgerId={hamburgerId}>
-            {children}
-          </PageHamburgerContextProvider>
-        </PageContext.Provider>
-      </div>
+      <PageContext.Provider value={{ width, fullWidth }}>
+        <PageHamburgerContextProvider hamburgerId={hamburgerId}>
+          {children}
+        </PageHamburgerContextProvider>
+      </PageContext.Provider>
     </div>
   )
 })
