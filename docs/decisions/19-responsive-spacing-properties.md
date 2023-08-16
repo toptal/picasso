@@ -14,10 +14,6 @@ The scale of the problem is large enough for measures to be taken. According to 
 
 This RFC proposes changes to the `Container` component API and does not propose technical implementation due to the problems described in [technical challenges section](#technical-challenges) and the fact that upcoming Picasso migration to TailwindCSS can potentially solve described technical problems.
 
-### Abandoned ideas
-
-Responsive spacing tokens with different values depending on the screen size is one of the approaches used on the market (as an example, [Audi Design System](https://react.ui.audi/?path=/docs/brand-identity-design-tokens--page#layout-system)). The responsive spacing tokens idea was abandoned after discussion with the Design Team due to its complexity and unclear benefits.
-
 ### API changes
 
 Currently, spacing properties of the `Container` component take either a number value in `rem` units or a spacing constant that is later resolved to `rem` units. The proposal is to extend spacing properties to accept object with defined spacing for screen size breakpoints (similar approach is used in [ChakraUI](https://chakra-ui.com/docs/styled-system/responsive-styles#the-object-syntax))
