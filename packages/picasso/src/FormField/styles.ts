@@ -44,4 +44,9 @@ export default () =>
     horizontalAdornment: {
       gridArea: 'error',
     },
+
+    // These classes might still be used in selectors
+    hasMultilineCounter: {},
+    hint: {},
+    error: {},
   })
