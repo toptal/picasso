@@ -161,7 +161,7 @@ types supported by picasso-forms.
   .addExample(
     'Form/story/Horizontal.example.tsx',
     {
-      title: 'Default',
+      title: 'Horizontal',
       description: 'Horizontal form with responsive design',
       screenshotBreakpoints: true,
     },
