@@ -118,4 +118,4 @@ This approach complicates handling of new spacing values in related components (
 
 - Discuss the update of [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial with the Design Team, create ticket for the update
 - Discuss the deprecation of existing `SpacingType` string constants with the Design Team, create ticket for deprecation and update of documentation for `Container` and `Dropdown`
-- Create ticket for exposing new `spacing` object from Picasso and announcing the whole change in frontend channels
+- Create ticket for exposing new `spacing` object from Picasso and announcing the whole change in frontend channels (mention that using numbers of spacing constants will be deprecated in the future)
