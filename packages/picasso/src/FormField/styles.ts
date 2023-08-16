@@ -1,5 +1,7 @@
 import { createStyles } from '@material-ui/core/styles'
 
+const HORIZONTAL_COLUMN_WIDTH_PX = 272
+
 export default () =>
   createStyles({
     root: {
@@ -27,9 +29,19 @@ export default () =>
       },
     },
 
-    hasMultilineCounter: {},
+    horizontal: {
+      display: 'grid',
+      gridTemplateColumns: `${HORIZONTAL_COLUMN_WIDTH_PX}px 1fr`,
+      gap: '0 32px', // 0 and lg, respectively
+      gridTemplateRows: 'auto auto',
+      gridTemplateAreas: `
+        "label input"
+        "hint error"
+      `,
+      width: '100%',
+    },
 
-    hint: {},
-
-    error: {},
+    horizontalAdornment: {
+      gridArea: 'error',
+    },
   })

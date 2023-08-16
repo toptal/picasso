@@ -12,6 +12,7 @@ import { useTitleCase } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import toTitleCase from '../utils/to-title-case'
+import { useFormContext } from '../Form/context'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
@@ -60,6 +61,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
+  const { horizontal } = useFormContext()
 
   return (
     <Component
@@ -71,6 +73,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
         {
           [classes.disabled]: disabled,
           [classes.inline]: isInline,
+          [classes.horizontal]: horizontal,
         },
         className
       )}

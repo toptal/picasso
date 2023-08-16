@@ -8,6 +8,7 @@ import type { Props as InputProps } from '../Input/Input'
 import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { useFormContext } from '../Form/context'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagSelectorInput',
@@ -55,6 +56,9 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
     })
 
     const classes = useStyles()
+
+    const { horizontal: horizontalForm } = useFormContext()
+
     let usedEndAdornment = null
 
     if (endAdornment) {
@@ -69,6 +73,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         style={style}
         className={cx(classes.inputBase, {
           [classes.withEndAdornment]: Boolean(endAdornment),
+          [classes.horizontalForm]: horizontalForm,
         })}
         classes={{
           root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),

@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Children } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -9,6 +9,7 @@ import Container from '../Container'
 import FormHint from '../FormHint'
 import FormError from '../FormError'
 import styles from './styles'
+import { useFormContext } from '../Form/context'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
@@ -38,13 +39,32 @@ const FormFieldAdornments = ({
   hasMultilineCounter,
 }: FormFieldAdornmentsProps) => {
   const classes = useStyles()
+  const { horizontal } = useFormContext()
+
+  if (Children.toArray(children).filter(Boolean).length === 0) {
+    return null
+  }
 
   if (!autoSaveIndicator) {
-    return <>{children}</>
+    return (
+      <div
+        className={cx({
+          [classes.horizontalAdornment]: horizontal,
+        })}
+      >
+        {children}
+      </div>
+    )
   }
 
   return (
-    <Container flex direction='column' className={classes.adornment}>
+    <Container
+      flex
+      direction='column'
+      className={cx(classes.adornment, {
+        [classes.horizontalAdornment]: horizontal,
+      })}
+    >
       {children}
       <Container
         className={cx(classes.autoSaveIndicator, {
@@ -75,11 +95,17 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
 
   const classes = useStyles()
 
+  const { horizontal } = useFormContext()
+
   return (
     <div
       {...rest}
       ref={ref}
-      className={cx(classes.root, className)}
+      className={cx(
+        classes.root,
+        { [classes.horizontal]: horizontal },
+        className
+      )}
       style={style}
       data-field-has-error={Boolean(error)}
     >

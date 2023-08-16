@@ -28,4 +28,7 @@ export default ({ sizes: { input, borderWidth }, palette }: Theme) =>
       padding: '0.75rem 1rem',
       borderTop: `${borderWidth} solid ${palette.grey.light}`,
     },
+    horizontalForm: {
+      width: '100%',
+    },
   })

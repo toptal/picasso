@@ -20,5 +20,8 @@ export default (theme: Theme) =>
     inputMultilineResizable: {
       resize: 'vertical',
     },
+    horizontalForm: {
+      width: '100%',
+    },
     ...highlightAutofillStyles(theme),
   })

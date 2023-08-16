@@ -9,6 +9,7 @@ import cx from 'classnames'
 import type { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 import { FormCompound as Form } from '../FormCompound'
+import { useFormContext } from '../Form/context'
 
 export type FormControlLabelAttributesType =
   LabelHTMLAttributes<HTMLLabelElement> &
@@ -50,6 +51,8 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
 
     const classes = useStyles(props)
 
+    const { horizontal: horizontalForm } = useFormContext()
+
     return (
       <label
         {...rest}
@@ -58,6 +61,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
           classes.root,
           {
             [classes.disabled]: disabled,
+            [classes.horizontalForm]: horizontalForm,
           },
           className
         )}
