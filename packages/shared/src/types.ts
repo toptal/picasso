@@ -64,32 +64,33 @@ export type EnvironmentType<T extends Environments = BaseEnvironments> =
 
 export type SizeType<T extends Sizes> = T
 
-class PicassoSpacing {
-  remValue: number
+// class PicassoSpacing {
+//   remValue: number
 
-  constructor(rem: number) {
-    this.remValue = rem
-  }
+//   constructor(rem: number) {
+//     this.remValue = rem
+//   }
 
-  valueOf() {
-    return this.remValue
-  }
+//   valueOf() {
+//     return this.remValue
+//   }
 
-  toString() {
-    return `${this.valueOf()}rem`
-  }
+//   toString() {
+//     return `${this.valueOf()}rem`
+//   }
+// }
+
+
+type PicassoSpacing = 1.5 | 2.5
+
+export const picassoSpacings: Record<number, PicassoSpacing> = {
+  // 6: new PicassoSpacing(1.5),
+  // 10: new PicassoSpacing(2.5),
+  6: 1.5,
+  10: 2.5
 }
 
-
-export const picassoSpacings = {
-  6: new PicassoSpacing(1.5),
-  10: new PicassoSpacing(2.5),
-}
-
-export type SpacingType =
-  | number
-  | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
-  | PicassoSpacing
+export type SpacingType = PicassoSpacing
 
 export enum SpacingEnum {
   xsmall = 0.5,
