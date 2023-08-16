@@ -83,6 +83,11 @@ The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-
 
 ## Alternative approaches
 
+
+- Intoroduce responsive spacing tokens with different values depending on the screen size
+
+This is one of the approaches used on the market (as an example, [Audi Design System](https://react.ui.audi/?path=/docs/brand-identity-design-tokens--page#layout-system)). However, the responsive spacing tokens idea was abandoned after discussion with the Design Team due to its complexity and unclear benefits.
+
 - Provide BASE design spacings as separate constants
 
 ```ts
