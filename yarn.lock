@@ -9801,10 +9801,12 @@ cypress-plugin-tab@^1.0.5:
   dependencies:
     ally.js "^1.4.1"
 
-cypress-real-events@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.8.1.tgz#d00c7fe93124bbe7c0f27296684838614d24a840"
-  integrity sha512-8fFnA8EzS3EVbAmpSEUf3A8yZCmfU3IPOSGUDVFCdE1ke1gYL1A+gvXXV6HKUbTPRuvKKt2vpaMbUwYLpDRswQ==
+cypress-real-events@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.10.0.tgz#6827ae4667561471c2a86bb4be30061fa9b177b8"
+  integrity sha512-ALSdCiG+Rj3Sl6qooqTFeFGBxOIe8QJUcgIuJ6ZVBanTEijXRzqxqstMC2ZKfixqj1TyNjolyZU4zOoN/jtHpg==
+  dependencies:
+    prettier "^3.0.0"
 
 cypress@>=6.4.0, cypress@^12.15.0:
   version "12.15.0"
@@ -19534,7 +19536,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-"prettier@>=2.2.1 <=2.3.0", prettier@^2.5.1, prettier@^2.6.2, prettier@^2.7.1, prettier@^2.8.7:
+"prettier@>=2.2.1 <=2.3.0", prettier@^2.5.1, prettier@^2.6.2, prettier@^2.7.1, prettier@^2.8.7, prettier@^3.0.0:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
