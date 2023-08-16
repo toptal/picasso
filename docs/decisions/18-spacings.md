@@ -62,13 +62,22 @@ Picasso has to provide full set of BASE design spacings to allow consumers to us
 Picasso provides a new object `spacing` that includes proposed spacings in a form of key-value pairs (where the key is the index of the increment and the value is a corresponding value in `rem` unit)
 
 ```ts
-export const spacing = {
+// New internal type
+type PicassoSpacing = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
+
+export const spacing: Record<number, PicassoSpacing> = {
   0: 0,
   1: 0.25,
   ...
   10: 2.5,
   12: 3,
 }
+...
+// SpacingType is extended with 
+export type SpacingType = PicassoSpacing
+  | number
+  | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+  | PicassoSpacing
 ```
 
 Exported `spacing` object with increments is reused by components with spacing properties (`top`, `right`, `bottom` and `left` properties in Container and `offset` property Dropdown)
