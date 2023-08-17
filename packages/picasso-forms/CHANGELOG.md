@@ -1,5 +1,15 @@
 # Change Log
 
+## 60.0.3
+
+### Patch Changes
+
+- [#3810](https://github.com/toptal/picasso/pull/3810) [`cc71c51f9`](https://github.com/toptal/picasso/commit/cc71c51f975e0826b4596c2b220e0693ee19ed70) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### Form
+
+- applied defensive coding to one of the form mutators to try to prevent seldom crashes in production
+
 ## 60.0.2
 
 ### Patch Changes
