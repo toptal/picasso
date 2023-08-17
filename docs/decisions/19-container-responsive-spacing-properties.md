@@ -28,8 +28,8 @@ Currently, spacing properties of the `Container` component take either a number 
  * Range         |   xs   |   sm   |   md   |   lg   |   xl
  * 
  * For screens in "xs" and "sm" breakpoint ranges top padding is 0rem / 0px
- * For screens in "md" breakpoint range top padding is 1rem / 16px
- * For screens in and bigger than "lg" breakpoint range top padding is 'large' that equals to 2rem / 32px
+ * For screens in "md" breakpoint range top padding is spacing[1]
+ * For screens in and bigger than "lg" breakpoint range top padding is spacing[2]
  */
 
 import { spacing } from '@toptal/picasso/utils'
@@ -52,11 +52,11 @@ Another approach is to make spacing properties accept arrays with spacing values
  * Range         |   xs   |   sm   |   md   |   lg   |   xl
  * 
  * For screens in "xs" and "sm" breakpoint ranges top padding is 0rem / 0px (due to "null" value)
- * For screens in "md" breakpoint range top padding is 1rem / 16px
- * For screens in and bigger than "lg" breakpoint range top padding is 'large' that equals to 2rem / 32px
+ * For screens in "md" breakpoint range top padding is spacing[1]
+ * For screens in and bigger than "lg" breakpoint range top padding is spacing[2]
  */
 
-<Container top={[/* xs */ null, /* sm */ null, /* md */ 1, /* lg */ 'large']}/>
+<Container top={[/* xs */ null, /* sm */ null, /* md */ spacing[1], /* lg */ spacing[2]]}/>
 ```
 
 Array syntax requires explicit specification of smaller breakpoint ranges even if spacing is not set for them, which makes it less usable compared to object syntax. Array syntax is not consistent with the way Picasso defines APIs of components, it is not used anywhere else. Array syntax requires remembering of breakpoint ranges to match the index of value in array to the breakpoint range. All three factors make it a less preferable approach compared to object syntax mentioned earlier.
