@@ -21,6 +21,9 @@ export default ({ palette }: Theme) =>
     'light-grey': {
       backgroundColor: palette.grey.lighter2,
     },
+    'light-blue': {
+      backgroundColor: palette.blue.light,
+    },
     green: {
       backgroundColor: palette.green.dark,
     },
@@ -29,7 +32,7 @@ export default ({ palette }: Theme) =>
     },
     innerLabel: {
       fontSize: '11px',
-      lineHeight: '1em',
+      lineHeight: '12px',
       fontWeight: 600,
       color: palette.common.white,
     },
