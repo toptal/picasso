@@ -32,7 +32,7 @@ export default ({ palette }: Theme) =>
     },
     innerLabel: {
       fontSize: '11px',
-      lineHeight: '12px',
+      lineHeight: '0.75rem',
       fontWeight: 600,
       color: palette.common.white,
     },
