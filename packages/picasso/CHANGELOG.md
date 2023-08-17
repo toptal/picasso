@@ -1,5 +1,16 @@
 # Change Log
 
+## 37.6.0
+
+### Minor Changes
+
+- [#3815](https://github.com/toptal/picasso/pull/3815) [`519c98f77`](https://github.com/toptal/picasso/commit/519c98f776c8791586ccc0c21fc7a200e9e6bfed) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### Tag
+
+- add light blue color
+- align line hight of the text with BASE (can break visual tests, accept new snapshots to resolve)
+
 ## 37.5.0
 
 ### Minor Changes
