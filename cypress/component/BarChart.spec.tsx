@@ -103,6 +103,7 @@ describe('BarChart', () => {
   it('renders custom chart with customized indicators', () => {
     cy.mount(
       <TestBarChart
+        tooltip={false}
         renderBarIndicators={({ dataKey }: any) => {
           const indicator = INDICATORS[dataKey]
 
