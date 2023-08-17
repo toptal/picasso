@@ -2,15 +2,15 @@
 
 ## Problem
 
-BASE design defines [rules](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing) on how to use spacing between page elements. Picasso does not provide BASE spacings, so consumers can not implement BASE-compatible designs in their applications.
+Picasso spacings are not aligned with [BASE design guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). This fact complicates implementation of BASE-compatible applications using Picasso.
 
 ## Current situation
 
-Picasso provides a specialised `SpacingType` type that can be either a numeric value of `rem` units or one of the pre-defined string constants (`xsmall`, `small`, etc.) that are resolved to a number of `rem` units.
+Picasso provides a specialised `SpacingType` type that can be either a numeric value of `rem` units or one of the pre-defined string constants (`xsmall`, `small`, etc.) that are resolved to `rem` units.
 
 As an example, the `Container` component has a `top` property that has `SpacingType` type. Based on the statistics of `top` property usage (searching for its occurrences in [this](https://github.com/search?q=org%3Atoptal+%22+top%3D%7B%22&type=code&p=1) GitHub search), Picasso consumers frequently use both numeric values and string constants.
 
-All of the `SpacingType` string constants resolve to numeric values that are present in [BASE design spacings](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing#Base-Increment). Some of the BASE design spacings do not have a counterpart between `SpacingType` string constants. There are 5 `SpacingType` string constants and 12 BASE design spacings – for example, there is no string constant for `spacing-12` spacing.
+All `SpacingType` string constants resolve to numeric values that are present in [BASE design spacings](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing#Base-Increment). Some of the BASE design spacings do not have a counterpart in `SpacingType` string constants. There are 5 `SpacingType` string constants and 12 BASE design spacings – for example, there is no string constant for `spacing-12` spacing.
 
 ## Existing approaches
 
@@ -53,11 +53,11 @@ module.exports = {
 
 ## Proposal
 
-Picasso has to export spacing, compatible with [BASE design](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). The legacy way of specifying spacing (numbers and string constants) has to be gradually deprecated to encourage usage of BASE spacings. The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial has to be updated to contain up-to-date guidelines on using a new spacing system.
+Picasso has to export spacing, aligned with [BASE design](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). The legacy way of specifying spacing (numbers and string constants) has to be gradually deprecated to encourage usage of BASE spacings. The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial has to be updated to contain up-to-date guidelines on using a new spacing system.
 
 ### Technical implementation
 
-Picasso has to provide a new `spacing` object that includes proposed spacings in a form of key-value pairs (where the key is the index of the increment and the value is a corresponding value in `rem` unit)
+Picasso has to provide a new `spacing` object that includes proposed spacings in a form of key-value pairs (where the key is the index of the increment and the value is a corresponding value in `rem` units)
 
 ```ts
 // New internal type
@@ -88,9 +88,9 @@ import { spacing } from '@toptal/picasso/utils'
 
 ### Deprecation of existing approaches
 
-After BASE spacing is introduced, the number and string constants approaches of specifying spacing have to be deprecated (in 3 weeks). The deprecation plan consists of two steps:
+After BASE spacing is introduced, the number and string constants as spacing value have to be deprecated. The deprecation plan has two steps:
 
-- forbid number spacing, throw TypeScript error. For number values, that map to BASE spacing, codemod should be used for replacement. For custom values that do not map to BASE spacing, manual replacement should be applied by owning Teams.
+1. Forbid number spacing, throw TypeScript error if it is used. For number values, that map to BASE spacing, codemod should be used for replacement. For custom values that do not map to BASE spacing, manual replacement should be applied by owning Teams.
 
 ```jsx
 // Maps to BASE spacing
@@ -104,7 +104,7 @@ After BASE spacing is introduced, the number and string constants approaches of 
 
 Statistics: the `org:toptal "top={"` [GitHub search](https://github.com/search?q=org%3Atoptal+%22top%3D%7B%22&type=code) finds 10 occurences of non-BASE values (for example, `0.1`, `-2`. `0.125`, etc.) used in `Container.top` property 
 
-- forbid string constants and replace them with corresponding BASE spacings. Every string constant maps to BASE spacing, so codemod should be used for replacement.
+2. Forbid string constants and replace them with corresponding BASE spacings. Every string constant maps to BASE spacing, so codemod should be used for replacement.
 
 ```jsx
 type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
@@ -126,6 +126,9 @@ export enum SpacingEnum {
 The goal is to remove `number` and `SizeType` from `SpacingType` union type.
 
 ```jsx
+// New internal type
+type PicassoSpacing = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
+
 export type SpacingType = PicassoSpacing
 ```
 
