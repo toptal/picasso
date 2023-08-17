@@ -10,7 +10,7 @@ This document focuses on spacing properties of [Container component](https://pic
 
 `Container` and `Dropdown` spacing properties properties have `SizeType` that can be a spacing constant like `xsmall`, `small`, etc. or a number (which is a spacing in `rem` units). Spacing constants are resolved to `rem` units as well. 
 
-The scale of the problem is large enough for measures to be taken. According to the research in [Container properties usages section](#container-properties-usage), 3% of the `Container.top` spacing property usages retrieve the screen size before calculating the value of the property:
+The scale of the problem is large enough for measures to be taken. According to the research in [Container properties usages section](#container-properties-usage), 4% of the `Container.top` spacing property usages retrieve the screen size before calculating the value of the property:
 
 - `org:toptal "top={" language:TSX` ([GitHub search](https://github.com/search?q=org%3Atoptal+%22top%3D%7B%22+language%3ATSX&type=code), 488 files total) – 15 files out of 100 analysed have `Container.top` property responsive (extrapolated values – 72 out of 488 files)
 - `org:toptal "top=\"" language:TSX` ([GitHub search](https://github.com/search?q=org%3Atoptal+%22top%3D%5C%22%22+language%3ATSX&type=code), 54 files total) and `org:toptal "top='" language:TSX` ([GitHub search](https://github.com/search?q=org%3Atoptal+%22top%3D%27%22+language%3ATSX&type=code), 1800 files total) – 0 files out of 100 analysed have `Container.top` property responsive (extrapolated values – 0 out of 1854 files)
