@@ -2,7 +2,9 @@
 
 ## Problem
 
-[Picasso Container component](https://picasso.toptal.net/?path=/story/layout-container--container) has `top`, `right`, `bottom`, and `left` properties that define spacing on each side of the container (margins). These properties have `SizeType` that can be a spacing constant like `xsmall`, `small`, etc. or a number (which is a spacing in `rem` units). Spacing constants are resolved to `rem` units as well. 
+[Picasso Container component](https://picasso.toptal.net/?path=/story/layout-container--container) has `top`, `right`, `bottom`, and `left` properties that define spacing on each side of the container (margins). `gap` property defines spacing between elements in a flex container and `padded` property defines padding for the container. This document focuses on these 6 spacing properties of the `Container` component.
+
+Mentioned properties have `SizeType` that can be a spacing constant like `xsmall`, `small`, etc. or a number (which is a spacing in `rem` units). Spacing constants are resolved to `rem` units as well. 
 
 The problem is that Container components do not allow defining spacing per screen size, so consumers have to find workarounds like using responsive hooks provided by Picasso (their usage is discouraged as [they do not support Server Side Rendering (SSR)](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/3326443609/Server-Side+Rendering+SSR+and+Creating+SSR-Supported+Components+in+React)) or having a custom implementation of screen size detection.
 
@@ -10,7 +12,7 @@ The scale of the problem is large enough for measures to be taken. According to 
 
 ## Proposal
 
-`Container` spacing properties have to allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR.
+`Container` spacing properties have to allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR. The existing way of specifying spacing properties should work the same, `top={spacing[2]}` sets `spacing[2]` for all screen sizes.
 
 This RFC proposes changes to the `Container` component API and does not propose technical implementation due to the problems described in [technical challenges section](#technical-challenges) and the fact that upcoming Picasso migration to TailwindCSS can potentially solve described technical problems.
 
