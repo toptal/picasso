@@ -53,7 +53,7 @@ module.exports = {
 
 ## Proposal
 
-Picasso has to export spacing, compatible with [BASE design](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). The legacy way of specifying spacing (numbers and string constants) has to be gradually deprecated to encourage usage of BASE spacings. The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial is updated to contain guidelines on using a new spacing system for a particular example.
+Picasso has to export spacing, compatible with [BASE design](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). The legacy way of specifying spacing (numbers and string constants) has to be gradually deprecated to encourage usage of BASE spacings. The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial has to be updated to contain up-to-date guidelines on using a new spacing system.
 
 ### Technical implementation
 
@@ -78,7 +78,7 @@ export type SpacingType =
   | PicassoSpacing
 ```
 
-Exported `spacing` object is reused by components with spacing properties (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties in Container component).
+Exported `spacing` object is reused by components with spacing properties (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties in Container component and `offset` property in Dropdown component).
 
 ```tsx
 import { spacing } from '@toptal/picasso/utils'
