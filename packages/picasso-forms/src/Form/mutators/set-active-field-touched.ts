@@ -8,10 +8,9 @@ export const setActiveFieldTouched = <
   state: MutableState<FormValues, InitialFormValues>
 ) => {
   const activeFieldName = state.formState.active
+  const field = activeFieldName && state.fields[activeFieldName]
 
-  if (activeFieldName) {
-    const field = state.fields[activeFieldName]
-
+  if (field) {
     field.touched = true
   }
 }
