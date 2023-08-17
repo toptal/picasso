@@ -55,7 +55,8 @@ module.exports = {
 
 ### Goal
 
-Picasso has to provide full set of BASE design spacings to allow consumers to use all of them when developing Picasso-based applications. Introduced changes should not break existing usage of spacing in related components mentioned above.
+Picasso has to provide full set of BASE design spacings to allow consumers to use all of them when developing Picasso-based applications. Introduced changes should not break existing usage of spacing in related components mentioned above. The legacy way of specifying spacing (numbers and string constants) has to be gradually deprecated. The upcoming deprecation should be announced and completed in 3 weeks after introduction of BASE spacing.
+
 
 ### Technical implementation
 
@@ -73,8 +74,8 @@ export const spacing: Record<number, PicassoSpacing> = {
   12: 3,
 }
 ...
-// SpacingType is extended with 
-export type SpacingType = PicassoSpacing
+// SpacingType is extended with PicassoSpacing
+export type SpacingType =
   | number
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
   | PicassoSpacing
@@ -90,8 +91,50 @@ import { spacing } from '@toptal/picasso/utils'
 
 The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial is updated to contain guidelines on using a new spacing system for a particular example.
 
-## Alternative approaches
+### Deprecation of existing approaches
 
+After BASE spacing is introduced, the number and string constants approaches of specifying spacing have to be deprecated (in 3 weeks). The deprecation plan consists of two steps:
+
+- forbid number spacing, throw TypeScript error. For number values, that map to BASE spacing, codemod should be used for replacement. For custom values that do not map to BASE spacing, manual replacement should be applied by owning Teams.
+
+```jsx
+// Maps to BASE spacing
+<Container top={1}/>
+// becomes
+<Container top={spacing[4]}/>
+
+// Does not map to BASE spacing, has to be addressed manually, otherwise TypeScript error is thrown
+<Container top={0.1}/>
+```
+
+Statistics: the `org:toptal "top={"` [GitHub search](https://github.com/search?q=org%3Atoptal+%22top%3D%7B%22&type=code) finds 10 occurences of non-BASE values (for example, `0.1`, `-2`. `0.125`, etc.) used in `Container.top` property 
+
+- forbid string constants and replace them with corresponding BASE spacings. Every string constant maps to BASE spacing, so codemod should be used for replacement.
+
+```jsx
+type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+
+export enum SpacingEnum {
+  xsmall = 0.5,  // maps to spacing[2]
+  small = 1,     // maps to spacing[4]
+  medium = 1.5,  // maps to spacing[6]
+  large = 2,     // maps to spacing[8]
+  xlarge = 2.5,  // maps to spacing[10]
+}
+
+// Example of conversion
+<Container top='small'/>
+// becomes
+<Container top={spacing[4]}/>
+```
+
+The goal is to remove `number` and `SizeType` from `SpacingType` union type.
+
+```jsx
+export type SpacingType = PicassoSpacing
+```
+
+## Alternative approaches
 
 - Intoroduce responsive spacing tokens with different values depending on the screen size
 
@@ -127,4 +170,5 @@ This approach complicates handling of new spacing values in related components (
 
 - Discuss the update of [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial with the Design Team, create ticket for the update
 - Discuss the deprecation of existing `SpacingType` string constants with the Design Team, create ticket for deprecation and update of documentation for `Container` and `Dropdown`
-- Create ticket for exposing new `spacing` object from Picasso and announcing the whole change in frontend channels (mention that using numbers of spacing constants will be deprecated in the future)
+- Create ticket for exposing new `spacing` object from Picasso and announcing the whole change in frontend channels (mention that using numbers of spacing constants will be deprecated in 3 weeks) – minor change
+- Create ticket for removing number and string constants in 3 weeks after introduction of BASE spacing – breaking change 
