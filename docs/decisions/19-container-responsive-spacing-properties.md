@@ -18,7 +18,7 @@ This RFC proposes changes to the `Container` component API and does not propose 
 
 ### API changes
 
-Currently, spacing properties of the `Container` component take either a number value in `rem` units or a spacing constant that is later resolved to `rem` units. The proposal is to extend spacing properties to accept object with defined spacing for screen size breakpoints (similar approach is used in [ChakraUI](https://chakra-ui.com/docs/styled-system/responsive-styles#the-object-syntax))
+Currently, spacing properties of the `Container` component take either a number value in `rem` units or a spacing constant that is later resolved to `rem` units. The proposal is to extend spacing properties to accept object with defined spacing for screen size breakpoints (similar approach is used in [ChakraUI](https://chakra-ui.com/docs/styled-system/responsive-styles#the-object-syntax)) and restrict the value to BASE spacings only.
 
 ```jsx
 /**
@@ -32,7 +32,12 @@ Currently, spacing properties of the `Container` component take either a number 
  * For screens in and bigger than "lg" breakpoint range top padding is 'large' that equals to 2rem / 32px
  */
 
-<Container top={{ md: 1, lg: 'large' }}/>
+import { spacing } from '@toptal/picasso/utils'
+...
+// Correct usage
+<Container top={{ md: spacing[1], lg: spacing[2] }}/>
+// Incorrect usage, only BASE spacings can be provided
+<Container top={{ md: 1, lg: 'large' }}/> // throws TypeScript error
 ```
 
 ### Alternative approaches
