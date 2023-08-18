@@ -53,11 +53,11 @@ module.exports = {
 
 ## Proposal
 
-Picasso has to export spacing, aligned with [BASE design](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). The legacy way of specifying spacing (numbers and string constants) has to be gradually deprecated to encourage usage of BASE spacings. The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial has to be updated to contain up-to-date guidelines on using a new spacing system.
+Picasso exports spacing, aligned with [BASE design](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). The legacy way of specifying spacing (numbers and string constants) is gradually deprecated to encourage usage of BASE spacings. The [How to use spacings](https://picasso.toptal.net/?path=/story/tutorials-how-to-use-spacings--how-to-use-spacings) tutorial is updated to contain up-to-date guidelines on using a new spacing system.
 
-### Technical implementation
+### Technical details
 
-Picasso has to provide a new `spacing` object that includes proposed spacings in a form of key-value pairs (where the key is the index of the increment and the value is a corresponding value in `rem` units)
+Picasso provides a new `spacing` object that includes proposed spacings in a form of key-value pairs (where the key is the index of the increment and the value is a corresponding value in `rem` units)
 
 ```ts
 // New internal type
