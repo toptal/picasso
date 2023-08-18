@@ -6,7 +6,7 @@ The `Container` and `Dropdown` component spacing properties are not responsive. 
 
 This document focuses on spacing properties of [Container component](https://picasso.toptal.net/?path=/story/layout-container--container) (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties) and [Dropdown component](https://picasso.toptal.net/?path=/story/components-dropdown--dropdown) (`offset` property) and uses `Container.top` property as an example.
 
-## Current situation
+## Context
 
 `Container` and `Dropdown` spacing properties have `SizeType` that can be a spacing constant like `xsmall`, `small`, etc. or a number (which is a spacing in `rem` units). Spacing constants are resolved to `rem` units as well. 
 
