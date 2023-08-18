@@ -1,4 +1,4 @@
-# RFC Template
+# Bar indicator for BarChart
 
 ## Problem
 

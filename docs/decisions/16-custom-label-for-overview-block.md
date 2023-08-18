@@ -1,4 +1,4 @@
-# RFC Template
+# Custom label for overview block
 
 ## Problem
 
