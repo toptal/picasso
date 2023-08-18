@@ -2,7 +2,7 @@
 
 ## Problem
 
-The `Container` and `Dropdown` component spacing properties are not responsive. Consumers have to use workarounds to make properties to have certain values depending on screen size by using responsive hooks which degrades development experience and [is not supported by Server Side Rendering (SSR)](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/3326443609/Server-Side+Rendering+SSR+and+Creating+SSR-Supported+Components+in+React).
+The `Container` and `Dropdown` component spacing properties are not responsive. Consumers use workarounds to make properties to have certain values depending on screen size by using responsive hooks which degrades development experience and [is not supported by Server Side Rendering (SSR)](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/3326443609/Server-Side+Rendering+SSR+and+Creating+SSR-Supported+Components+in+React).
 
 This document focuses on spacing properties of [Container component](https://picasso.toptal.net/?path=/story/layout-container--container) (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties) and [Dropdown component](https://picasso.toptal.net/?path=/story/components-dropdown--dropdown) (`offset` property) and uses `Container.top` property as an example.
 
@@ -19,7 +19,7 @@ Result – 4% of files with `Container.top` usage (72 out of 2288 files in Topta
 
 ## Proposal
 
-The `Container` and `Dropdown` component spacing properties have to allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR. The existing way of specifying spacing properties should work the same (for example, `top={spacing[2]}` sets `spacing[2]` as a spacing for all screen sizes).
+The `Container` and `Dropdown` component spacing properties allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR. The existing way of specifying spacing properties should work the same (for example, `top={spacing[2]}` sets `spacing[2]` as a spacing for all screen sizes).
 
 ### API changes
 
@@ -68,7 +68,7 @@ import { spacing } from '@toptal/picasso/utils'
 
 ### Alternative approaches
 
-Another approach is to make spacing properties accept arrays with spacing values (similar approach is used in [ChakraUI](https://chakra-ui.com/docs/styled-system/responsive-styles#the-array-syntax)). Arrays have to specify values (if there is no value, then `null` has to be explicitly specified) for all the breakpoints until the biggest one is mentioned.
+Another approach is to make spacing properties accept arrays with spacing values (similar approach is used in [ChakraUI](https://chakra-ui.com/docs/styled-system/responsive-styles#the-array-syntax)). Arrays specify values (if there is no value, then `null` has to be explicitly specified) for all the breakpoints until the biggest one is mentioned.
 
 ```jsx
 /**
