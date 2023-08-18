@@ -4,7 +4,7 @@
 
 Picasso spacings are not aligned with [BASE design guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing). This fact complicates implementation of BASE-compatible applications using Picasso.
 
-## Current situation
+## Context
 
 Picasso provides a specialised `SpacingType` type that can be either a numeric value of `rem` units or one of the pre-defined string constants (`xsmall`, `small`, etc.) that are resolved to `rem` units.
 
