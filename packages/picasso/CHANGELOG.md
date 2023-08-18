@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.6.1
+
+### Patch Changes
+
+- [#3814](https://github.com/toptal/picasso/pull/3814) [`ba78d6f1a`](https://github.com/toptal/picasso/commit/ba78d6f1ad506687dd6b8c8b2d2653b8fcf72913) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Page
+
+- fix background color for pages without sidebar
+
 ## 37.6.0
 
 ### Minor Changes
