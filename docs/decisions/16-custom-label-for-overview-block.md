@@ -1,4 +1,4 @@
-# Custom label for overview block
+# Custom label for OverviewBlock
 
 ## Problem
 
