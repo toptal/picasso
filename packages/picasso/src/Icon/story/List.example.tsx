@@ -6,6 +6,8 @@ import * as icons from '@toptal/picasso/Icon'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Logo, LogoEmblem, DropdownArrows16, ...listIcons } = icons
 
+const nonResponsive = (name: string) => !name.includes('Responsive')
+
 const Example = () => {
   const [filter, setFilter] = React.useState('')
 
@@ -16,9 +18,11 @@ const Example = () => {
     }>
   ) => setFilter(e.target.value)
 
-  const iconList = Object.keys(listIcons).filter(iconName =>
-    iconName.toLocaleLowerCase().includes(filter.toLowerCase())
-  )
+  const iconList = Object.keys(listIcons)
+    .filter(nonResponsive)
+    .filter(iconName =>
+      iconName.toLocaleLowerCase().includes(filter.toLowerCase())
+    )
 
   return (
     <div>

@@ -57,5 +57,11 @@ page
     description:
       'Recommended way is to use `scale` property to adjust the icon scale, you should avoid scaling icons with either `font-size` or `width` and `height` because our icons are pixel perfect and designed for a specific size. When scaling of this icon occurs, it is breaking our visual guidelines',
   })
+  .addExample('Icon/story/Responsive.example.tsx', {
+    title: 'Responsive icons',
+    takeScreenshot: false,
+    description:
+      'For every icon that is used as an interactive element, we suggest to use their responsive counterparts. Responsive icons are set to have 24px size on screens under lg and xl breakpoints (16px otherwise).',
+  })
   .addExample('Icon/story/Color.example.tsx', 'Color')
   .addExample('Icon/story/WithText.example.tsx', 'With text')
