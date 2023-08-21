@@ -61,7 +61,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
 
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
-  const { horizontal } = useFormContext()
+  const { appearance: formAppearance } = useFormContext()
 
   return (
     <Component
@@ -73,7 +73,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
         {
           [classes.disabled]: disabled,
           [classes.inline]: isInline,
-          [classes.horizontal]: horizontal,
+          [classes.horizontalForm]: formAppearance === 'horizontal',
         },
         className
       )}

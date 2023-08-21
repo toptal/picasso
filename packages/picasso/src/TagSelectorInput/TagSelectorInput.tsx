@@ -57,7 +57,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     const classes = useStyles()
 
-    const { horizontal: horizontalForm } = useFormContext()
+    const { appearance: formAppearance } = useFormContext()
 
     let usedEndAdornment = null
 
@@ -73,7 +73,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         style={style}
         className={cx(classes.inputBase, {
           [classes.withEndAdornment]: Boolean(endAdornment),
-          [classes.horizontalForm]: horizontalForm,
+          [classes.horizontalForm]: formAppearance === 'horizontal',
         })}
         classes={{
           root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),

@@ -18,7 +18,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   successSubmitMessage?: ReactNode
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
-  horizontal?: boolean
+  appearance?: 'horizontal' | 'vertical'
   'data-testid'?: string
 }
 
@@ -59,7 +59,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     mutators = {},
     validateOnBlur,
     'data-testid': dataTestId,
-    horizontal,
+    appearance,
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -131,7 +131,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
             onSubmit={handleFormRendererSubmit}
             validateOnBlur={validateOnBlur}
             setActiveFieldTouched={form.mutators.setActiveFieldTouched}
-            horizontal={horizontal}
+            appearance={appearance}
           >
             {children}
           </FormRenderer>

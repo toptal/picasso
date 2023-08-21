@@ -291,7 +291,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       </SelectOptions>
     )
 
-    const { horizontal: horizontalForm } = useFormContext()
+    const { appearance: formAppearance } = useFormContext()
 
     const InputComponent = inputComponent || Input
     const loadingComponent = (
@@ -314,7 +314,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           className,
           classes[`root${capitalize(width)}` as 'rootAuto'],
           {
-            [classes.horizontalForm]: horizontalForm,
+            [classes.horizontalForm]: formAppearance === 'horizontal',
           }
         )}
         style={style}

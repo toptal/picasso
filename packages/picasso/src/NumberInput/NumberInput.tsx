@@ -73,7 +73,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const { horizontal: horizontalForm } = useFormContext()
+    const { appearance: formAppearance } = useFormContext()
 
     const classes = useStyles(props)
 
@@ -105,7 +105,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         classes={{
           root: cx(classes.root, {
             [classes.highlightAutofill]: highlight === 'autofill',
-            [classes.horizontalForm]: horizontalForm,
+            [classes.horizontalForm]: formAppearance === 'horizontal',
           }),
           input: classes.input,
         }}

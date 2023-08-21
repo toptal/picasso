@@ -43,7 +43,7 @@ export default ({ palette }: Theme) =>
       },
     },
 
-    horizontal: {
+    horizontalForm: {
       display: 'flex',
       alignItems: 'center',
       marginBottom: 0,

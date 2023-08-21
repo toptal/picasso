@@ -29,7 +29,7 @@ export default () =>
       },
     },
 
-    horizontal: {
+    horizontalForm: {
       display: 'grid',
       gridTemplateColumns: `${HORIZONTAL_COLUMN_WIDTH_PX}px 1fr`,
       gap: '0 32px', // 0 and lg, respectively
@@ -41,7 +41,7 @@ export default () =>
       width: '100%',
     },
 
-    horizontalAdornment: {
+    horizontalFormAdornment: {
       gridArea: 'error',
     },
 

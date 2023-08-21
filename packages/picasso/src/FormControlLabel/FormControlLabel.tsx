@@ -51,7 +51,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
 
     const classes = useStyles(props)
 
-    const { horizontal: horizontalForm } = useFormContext()
+    const { appearance: formAppearance } = useFormContext()
 
     return (
       <label
@@ -61,7 +61,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
           classes.root,
           {
             [classes.disabled]: disabled,
-            [classes.horizontalForm]: horizontalForm,
+            [classes.horizontalForm]: formAppearance === 'horizontal',
           },
           className
         )}

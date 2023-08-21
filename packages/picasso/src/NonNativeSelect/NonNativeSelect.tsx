@@ -117,7 +117,7 @@ export const NonNativeSelect = documentable(
           selectState,
         })
 
-      const { horizontal: horizontalForm } = useFormContext()
+      const { appearance: formAppearance } = useFormContext()
 
       const searchInput = showSearch ? (
         <MenuItem
@@ -159,7 +159,7 @@ export const NonNativeSelect = documentable(
           <div
             {...rootProps}
             className={cx(classes.inputWrapper, {
-              [classes.horizontalForm]: horizontalForm,
+              [classes.horizontalForm]: formAppearance === 'horizontal',
             })}
           >
             {!enableAutofill && name && (
@@ -187,7 +187,7 @@ export const NonNativeSelect = documentable(
               classes={{
                 root: cx({
                   [classes.highlightAutofill]: highlight === 'autofill',
-                  [classes.horizontalForm]: horizontalForm,
+                  [classes.horizontalForm]: formAppearance === 'horizontal',
                 }),
               }}
               inputProps={{

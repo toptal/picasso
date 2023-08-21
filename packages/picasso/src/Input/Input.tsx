@@ -289,7 +289,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   const classes = useStyles()
 
-  const { horizontal: horizontalForm } = useFormContext()
+  const { appearance: formAppearance } = useFormContext()
 
   const showCounter = !!charsLength && hasCounter({ counter, limit })
 
@@ -306,7 +306,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           root: cx(classes.root, {
             [classes.rootMultiline]: multiline,
             [classes.highlightAutofill]: highlight === 'autofill',
-            [classes.horizontalForm]: horizontalForm,
+            [classes.horizontalForm]: formAppearance === 'horizontal',
           }),
           input: cx(classes.input, {
             [classes.inputMultilineResizable]: multiline && multilineResizable,

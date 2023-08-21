@@ -3,29 +3,29 @@ import React, { createContext, useContext, useMemo } from 'react'
 import { useBreakpoint } from '../utils'
 
 export type FormContextValue = {
-  horizontal: boolean
+  appearance: 'horizontal' | 'vertical'
 }
 
 const FormContext = createContext<FormContextValue>({
-  horizontal: false,
+  appearance: 'vertical',
 })
 
 export type FormContextProviderProps = {
-  horizontal?: boolean
+  appearance?: 'horizontal' | 'vertical'
   children: React.ReactNode
 }
 
 export const FormContextProvider = ({
-  horizontal,
+  appearance = 'vertical',
   children,
 }: FormContextProviderProps) => {
   const isSmallScreen = useBreakpoint(['sm', 'xs'])
 
   const value = useMemo(
     () => ({
-      horizontal: !!horizontal && !isSmallScreen,
+      appearance: isSmallScreen ? 'vertical' : appearance,
     }),
-    [horizontal, isSmallScreen]
+    [appearance, isSmallScreen]
   )
 
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>

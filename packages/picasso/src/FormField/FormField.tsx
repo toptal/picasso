@@ -39,9 +39,9 @@ const FormFieldAdornments = ({
   hasMultilineCounter,
 }: FormFieldAdornmentsProps) => {
   const classes = useStyles()
-  const { horizontal } = useFormContext()
+  const { appearance: formAppearance } = useFormContext()
 
-  if (Children.toArray(children).filter(Boolean).length === 0) {
+  if (Children.toArray(children).length === 0) {
     return null
   }
 
@@ -49,7 +49,7 @@ const FormFieldAdornments = ({
     return (
       <div
         className={cx({
-          [classes.horizontalAdornment]: horizontal,
+          [classes.horizontalFormAdornment]: formAppearance === 'horizontal',
         })}
       >
         {children}
@@ -62,7 +62,7 @@ const FormFieldAdornments = ({
       flex
       direction='column'
       className={cx(classes.adornment, {
-        [classes.horizontalAdornment]: horizontal,
+        [classes.horizontalFormAdornment]: formAppearance === 'horizontal',
       })}
     >
       {children}
@@ -95,7 +95,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
 
   const classes = useStyles()
 
-  const { horizontal } = useFormContext()
+  const { appearance: formAppearance } = useFormContext()
 
   return (
     <div
@@ -103,7 +103,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
       ref={ref}
       className={cx(
         classes.root,
-        { [classes.horizontal]: horizontal },
+        { [classes.horizontalForm]: formAppearance === 'horizontal' },
         className
       )}
       style={style}
