@@ -5,4 +5,4 @@
 
 ### Form
 
-- add horizontal format to Forms
+- add horizontal layout to Forms
