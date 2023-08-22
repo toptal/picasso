@@ -15,6 +15,7 @@ export interface PicassoGlobalStylesProviderProps extends TextLabelProps {
   >
   environment: EnvironmentType<'test' | 'temploy'>
   disableTransitions?: boolean
+  responsive?: boolean
 }
 
 const breakpointKeyByRange: Record<BreakpointKeys, BreakpointKeys> = {
@@ -34,6 +35,7 @@ const PicassoGlobalStylesProvider = (
     environment,
     titleCase,
     disableTransitions,
+    responsive,
   } = props
 
   const rootRef = useRef<HTMLDivElement | null>(null)
@@ -44,6 +46,7 @@ const PicassoGlobalStylesProvider = (
   const [contextValue, setContextValue] = useState<RootContextProps>({
     rootRef,
     currentBreakpointRange,
+    responsive,
     hasTopBar: false,
     setHasTopBar: (hasTopBar: boolean) => {
       setContextValue(context => ({

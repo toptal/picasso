@@ -102,6 +102,7 @@ const Picasso = ({
           RootComponent={RootComponent}
           environment={environment}
           titleCase={titleCase}
+          responsive={responsive}
           disableTransitions={disableTransitions}
         >
           <HelmetProvider disabled={disableHelmet}>

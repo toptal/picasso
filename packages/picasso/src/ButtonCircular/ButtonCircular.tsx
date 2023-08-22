@@ -8,6 +8,7 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
+import { useAppConfig } from '@toptal/picasso-provider'
 
 import Button from '../Button'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -36,6 +37,8 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   variant?: VariantType
   /** HTML Value of Button component */
   value?: string | number
+  /** Adjust button size to be bigger on screens under xl  */
+  responsive?: boolean
 }
 
 // Using { index: -1 } to inject CSS link to the bottom of the head
@@ -57,9 +60,12 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
     focused,
     hovered,
     disabled,
+    responsive,
     ...rest
   } = props
   const classes = useStyles()
+
+  const { responsive: picassoResponsive } = useAppConfig()
 
   const { root: rootClass, focusVisible: focusVisibleClass } = classes
 
@@ -71,6 +77,7 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
       [classes.focused]: focused,
       [classes.hovered]: hovered,
       [classes.disabled]: disabled,
+      [classes.responsive]: responsive ?? picassoResponsive,
     },
     variantClassName,
     rootClass
