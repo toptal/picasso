@@ -306,7 +306,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           root: cx(classes.root, {
             [classes.rootMultiline]: multiline,
             [classes.highlightAutofill]: highlight === 'autofill',
-            [classes.horizontalForm]: layout === 'horizontal',
+            [classes.horizontalLayout]: layout === 'horizontal',
           }),
           input: cx(classes.input, {
             [classes.inputMultilineResizable]: multiline && multilineResizable,
