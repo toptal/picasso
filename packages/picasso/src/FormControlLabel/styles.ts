@@ -49,7 +49,7 @@ export default () =>
       },
     },
     disabled: {},
-    horizontalForm: {
+    horizontalLayout: {
       gridColumn: '1 / span 2',
     },
   })

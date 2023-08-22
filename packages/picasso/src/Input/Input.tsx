@@ -24,7 +24,7 @@ import type { InputIconAdornmentProps } from '../InputIconAdornment'
 import InputIconAdornment from '../InputIconAdornment'
 import Container from '../Container'
 import InputValidIconAdornment from '../InputValidIconAdornment'
-import { useFormContext } from '../Form/context'
+import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends BaseProps,
@@ -289,7 +289,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   const classes = useStyles()
 
-  const { appearance: formAppearance } = useFormContext()
+  const { layout } = useFieldsLayoutContext()
 
   const showCounter = !!charsLength && hasCounter({ counter, limit })
 
@@ -306,7 +306,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           root: cx(classes.root, {
             [classes.rootMultiline]: multiline,
             [classes.highlightAutofill]: highlight === 'autofill',
-            [classes.horizontalForm]: formAppearance === 'horizontal',
+            [classes.horizontalForm]: layout === 'horizontal',
           }),
           input: cx(classes.input, {
             [classes.inputMultilineResizable]: multiline && multilineResizable,

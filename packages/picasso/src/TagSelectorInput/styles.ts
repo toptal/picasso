@@ -39,7 +39,7 @@ export default (theme: Theme) =>
       right: '0.625em',
       height: END_ADORNMENT_HEIGHT,
     },
-    horizontalForm: {
+    horizontalLayout: {
       width: '100%',
     },
   })

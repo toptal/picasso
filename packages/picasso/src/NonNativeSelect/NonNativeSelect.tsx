@@ -28,7 +28,7 @@ import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
 import InputAdornment from '../InputAdornment'
-import { useFormContext } from '../Form/context'
+import { useFieldsLayoutContext } from '../FieldsLayout'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -117,7 +117,7 @@ export const NonNativeSelect = documentable(
           selectState,
         })
 
-      const { appearance: formAppearance } = useFormContext()
+      const { layout } = useFieldsLayoutContext()
 
       const searchInput = showSearch ? (
         <MenuItem
@@ -159,7 +159,7 @@ export const NonNativeSelect = documentable(
           <div
             {...rootProps}
             className={cx(classes.inputWrapper, {
-              [classes.horizontalForm]: formAppearance === 'horizontal',
+              [classes.horizontalLayout]: layout === 'horizontal',
             })}
           >
             {!enableAutofill && name && (

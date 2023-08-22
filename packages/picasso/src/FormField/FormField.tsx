@@ -9,7 +9,7 @@ import Container from '../Container'
 import FormHint from '../FormHint'
 import FormError from '../FormError'
 import styles from './styles'
-import { useFormContext } from '../Form/context'
+import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
@@ -39,7 +39,7 @@ const FormFieldAdornments = ({
   hasMultilineCounter,
 }: FormFieldAdornmentsProps) => {
   const classes = useStyles()
-  const { appearance: formAppearance } = useFormContext()
+  const { layout } = useFieldsLayoutContext()
 
   if (Children.toArray(children).length === 0) {
     return null
@@ -49,7 +49,7 @@ const FormFieldAdornments = ({
     return (
       <div
         className={cx({
-          [classes.horizontalFormAdornment]: formAppearance === 'horizontal',
+          [classes.horizontalLayoutAdornment]: layout === 'horizontal',
         })}
       >
         {children}
@@ -62,7 +62,7 @@ const FormFieldAdornments = ({
       flex
       direction='column'
       className={cx(classes.adornment, {
-        [classes.horizontalFormAdornment]: formAppearance === 'horizontal',
+        [classes.horizontalLayoutAdornment]: layout === 'horizontal',
       })}
     >
       {children}
@@ -95,7 +95,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
 
   const classes = useStyles()
 
-  const { appearance: formAppearance } = useFormContext()
+  const { layout } = useFieldsLayoutContext()
 
   return (
     <div
@@ -103,7 +103,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
       ref={ref}
       className={cx(
         classes.root,
-        { [classes.horizontalForm]: formAppearance === 'horizontal' },
+        { [classes.horizontalLayout]: layout === 'horizontal' },
         className
       )}
       style={style}

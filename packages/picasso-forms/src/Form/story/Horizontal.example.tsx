@@ -78,7 +78,7 @@ const Example = () => {
       autoComplete='off'
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       initialValues={initialValues}
-      appearance='horizontal'
+      layout='horizontal'
     >
       <Input
         enableReset

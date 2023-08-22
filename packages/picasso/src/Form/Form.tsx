@@ -9,13 +9,13 @@ export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   children?: ReactNode
   /** Submit handler */
   onSubmit?: FormEventHandler<HTMLFormElement>
-  /** Form appearance */
-  appearance?: 'horizontal' | 'vertical'
+  /** Form layout */
+  layout?: 'horizontal' | 'vertical'
 }
 
 // eslint-disable-next-line react/display-name
 export const Form = forwardRef<HTMLFormElement, Props>(function Form(
-  { onSubmit, className, style, children, appearance, ...rest },
+  { onSubmit, className, style, children, layout, ...rest },
   ref
 ) {
   return (
@@ -26,9 +26,7 @@ export const Form = forwardRef<HTMLFormElement, Props>(function Form(
       className={className}
       style={style}
     >
-      <FormContextProvider appearance={appearance}>
-        {children}
-      </FormContextProvider>
+      <FormContextProvider layout={layout}>{children}</FormContextProvider>
     </form>
   )
 })
