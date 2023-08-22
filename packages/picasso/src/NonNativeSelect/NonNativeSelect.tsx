@@ -187,7 +187,7 @@ export const NonNativeSelect = documentable(
               classes={{
                 root: cx({
                   [classes.highlightAutofill]: highlight === 'autofill',
-                  [classes.horizontalForm]: formAppearance === 'horizontal',
+                  [classes.horizontalLayout]: layout === 'horizontal',
                 }),
               }}
               inputProps={{
