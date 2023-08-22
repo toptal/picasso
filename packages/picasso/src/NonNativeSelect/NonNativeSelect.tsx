@@ -28,6 +28,7 @@ import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
 import styles from './styles'
 import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
 import InputAdornment from '../InputAdornment'
+import { useFieldsLayoutContext } from '../FieldsLayout'
 
 const useStyles = makeStyles<Theme>(styles)
 
@@ -35,7 +36,7 @@ const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
 export const NonNativeSelect = documentable(
   forwardRef(
-    // eslint-disable-next-line max-lines-per-function
+    // eslint-disable-next-line max-lines-per-function, complexity
     <T extends ValueType, M extends boolean = false>(
       props: SelectProps<T, M>,
       ref: React.Ref<HTMLInputElement> | null
@@ -116,6 +117,8 @@ export const NonNativeSelect = documentable(
           selectState,
         })
 
+      const { layout } = useFieldsLayoutContext()
+
       const searchInput = showSearch ? (
         <MenuItem
           as='div'
@@ -153,7 +156,12 @@ export const NonNativeSelect = documentable(
 
       const selectComponent = (
         <>
-          <div {...rootProps} className={classes.inputWrapper}>
+          <div
+            {...rootProps}
+            className={cx(classes.inputWrapper, {
+              [classes.horizontalLayout]: layout === 'horizontal',
+            })}
+          >
             {!enableAutofill && name && (
               <input type='hidden' value={displayValue} name={name} />
             )}
@@ -179,6 +187,7 @@ export const NonNativeSelect = documentable(
               classes={{
                 root: cx({
                   [classes.highlightAutofill]: highlight === 'autofill',
+                  [classes.horizontalLayout]: layout === 'horizontal',
                 }),
               }}
               inputProps={{

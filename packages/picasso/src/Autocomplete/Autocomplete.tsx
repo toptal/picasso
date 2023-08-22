@@ -36,6 +36,7 @@ import styles from './styles'
 import type { BaseInputProps, Status } from '../OutlinedInput'
 import unsafeErrorLog from '../utils/unsafe-error-log'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends BaseProps,
@@ -290,6 +291,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       </SelectOptions>
     )
 
+    const { layout } = useFieldsLayoutContext()
+
     const InputComponent = inputComponent || Input
     const loadingComponent = (
       <InputAdornment
@@ -309,7 +312,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         className={cx(
           classes.root,
           className,
-          classes[`root${capitalize(width)}` as 'rootAuto']
+          classes[`root${capitalize(width)}` as 'rootAuto'],
+          {
+            [classes.horizontalLayout]: layout === 'horizontal',
+          }
         )}
         style={style}
         role='combobox'

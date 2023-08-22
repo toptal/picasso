@@ -159,6 +159,15 @@ types supported by picasso-forms.
     'picasso-form'
   )
   .addExample(
+    'Form/story/Horizontal.example.tsx',
+    {
+      title: 'Horizontal',
+      description: 'Horizontal form with responsive design',
+      screenshotBreakpoints: true,
+    },
+    'picasso-form'
+  )
+  .addExample(
     'Form/story/CustomValidator.example.tsx',
     {
       title: 'Custom validator',

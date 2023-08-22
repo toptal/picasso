@@ -12,6 +12,7 @@ import { useCombinedRefs } from '../utils'
 import styles from './styles'
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
 import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
+import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends Omit<
@@ -72,6 +73,8 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
+    const { layout } = useFieldsLayoutContext()
+
     const classes = useStyles(props)
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
@@ -102,6 +105,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         classes={{
           root: cx(classes.root, {
             [classes.highlightAutofill]: highlight === 'autofill',
+            [classes.horizontalLayout]: layout === 'horizontal',
           }),
           input: classes.input,
         }}

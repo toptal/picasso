@@ -106,13 +106,17 @@ exports[`Form renders with an error 1`] = `
             </fieldset>
           </div>
           <div
-            class="PicassoFormError-root PicassoFormField-error"
+            class=""
           >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyXxsmall PicassoTypography-red PicassoFormError-error MuiTypography-body1"
+            <div
+              class="PicassoFormError-root PicassoFormField-error"
             >
-              Please complete this field.
-            </p>
+              <p
+                class="MuiTypography-root PicassoTypography-bodyXxsmall PicassoTypography-red PicassoFormError-error MuiTypography-body1"
+              >
+                Please complete this field.
+              </p>
+            </div>
           </div>
         </div>
         <button

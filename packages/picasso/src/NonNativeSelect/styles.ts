@@ -57,6 +57,9 @@ export default (theme: Theme) => {
     placeholder: {
       color: palette.grey.main2,
     },
+    horizontalLayout: {
+      width: '100%',
+    },
     ...highlightAutofillStyles(theme),
   })
 }

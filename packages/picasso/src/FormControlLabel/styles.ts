@@ -49,4 +49,7 @@ export default () =>
       },
     },
     disabled: {},
+    horizontalLayout: {
+      gridColumn: '1 / span 2',
+    },
   })

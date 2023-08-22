@@ -17,5 +17,8 @@ export default (theme: Theme) =>
       },
       '-moz-appearance': 'textfield',
     },
+    horizontalLayout: {
+      width: '100%',
+    },
     ...highlightAutofillStyles(theme),
   })

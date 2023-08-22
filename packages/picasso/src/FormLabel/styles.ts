@@ -42,4 +42,10 @@ export default ({ palette }: Theme) =>
         verticalAlign: 'top',
       },
     },
+
+    horizontalLayout: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: 0,
+    },
   })
