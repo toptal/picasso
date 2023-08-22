@@ -1,4 +1,4 @@
-# RFC Template
+# Value axis formatter for BarChart
 
 ## Problem
 
