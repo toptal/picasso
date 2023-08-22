@@ -1,5 +1,15 @@
 # Change Log
 
+## 60.1.0
+
+### Minor Changes
+
+- [#3812](https://github.com/toptal/picasso/pull/3812) [`3489d8826`](https://github.com/toptal/picasso/commit/3489d88265d330308194f572a4cfaa214fd72eb3) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Form
+
+- add horizontal layout to Forms
+
 ## 60.0.3
 
 ### Patch Changes
