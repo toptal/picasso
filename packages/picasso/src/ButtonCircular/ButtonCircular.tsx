@@ -8,7 +8,6 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
-import { useAppConfig } from '@toptal/picasso-provider'
 
 import Button from '../Button'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
@@ -65,8 +64,6 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
   } = props
   const classes = useStyles()
 
-  const { responsive: picassoResponsive } = useAppConfig()
-
   const { root: rootClass, focusVisible: focusVisibleClass } = classes
 
   const variantClassName = classes[kebabToCamelCase(variant)]
@@ -77,7 +74,7 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
       [classes.focused]: focused,
       [classes.hovered]: hovered,
       [classes.disabled]: disabled,
-      [classes.responsive]: responsive ?? picassoResponsive,
+      [classes.responsive]: responsive,
     },
     variantClassName,
     rootClass

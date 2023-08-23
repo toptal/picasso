@@ -14,7 +14,6 @@ export interface RootContextProps extends TextLabelProps {
   hasDrawer: boolean
   setHasDrawer: (value: boolean) => void
   disableTransitions?: boolean
-  responsive?: boolean
   currentBreakpointRange?: BreakpointKeys
 }
 
@@ -71,7 +70,6 @@ export const useAppConfig = () => {
     environment: context.environment,
     titleCase: context.titleCase,
     disableTransitions: context.disableTransitions,
-    responsive: context.responsive,
   }
 }
 

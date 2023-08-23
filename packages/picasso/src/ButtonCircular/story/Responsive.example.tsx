@@ -11,18 +11,18 @@ const Example = () => (
   <div>
     <Container inline>
       <Typography variant='heading' size='small' align='center'>
-        Default for responsive layouts
+        Responsive
       </Typography>
       <Container padded='small'>
-        <Button.Circular icon={<SettingsResponsive />} />
+        <Button.Circular responsive icon={<SettingsResponsive />} />
       </Container>
     </Container>
     <Container inline left='medium'>
       <Typography variant='heading' size='small' align='center'>
-        Force responsive to false
+        Default
       </Typography>
       <Container padded='small'>
-        <Button.Circular responsive={false} icon={<Settings16 />} />
+        <Button.Circular icon={<Settings16 />} />
       </Container>
     </Container>
   </div>

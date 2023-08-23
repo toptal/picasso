@@ -70,6 +70,7 @@ const ActionItems = () => (
   <Tooltip content='Your Operational Issues'>
     <Button.Circular
       variant='transparent'
+      responsive
       icon={<HeartbeatResponsive color='light-grey' />}
       data-testid='operational-issues-button'
       onClick={() => {}}
