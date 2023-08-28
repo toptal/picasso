@@ -57,19 +57,28 @@ Picasso exports spacing, aligned with [BASE design](https://toptal-core.atlassia
 
 ### Technical details
 
-Picasso provides a new `spacing` object that includes proposed spacings in a form of key-value pairs (where the key is the index of the increment and the value is a corresponding value in `rem` units)
+Picasso provides BASE spacings as constants. The constant name is the spacing identifier according to [guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing) and the constant value is the value in `rem` units.
 
 ```ts
-// New internal type
-type PicassoSpacing = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
+// BASE-aligned spacing values in "rem" units
+type PicassoSpacingValues = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
 
-export const spacing: Record<number, PicassoSpacing> = {
-  0: 0,
-  1: 0.25,
-  ...
-  10: 2.5,
-  12: 3,
+class PicassoSpacing {
+  value: number
+  constructor(value: PicassoSpacingValues) {
+    this.value = value
+  }
+
+  valueOf() {
+    return this.value
+  }
 }
+
+export const spacing0 = new PicassoSpacing(0)
+export const spacing1 = new PicassoSpacing(0.25)
+export const spacing2 = new PicassoSpacing(0.5)
+...
+
 ...
 // SpacingType is extended with PicassoSpacing
 export type SpacingType =
@@ -78,12 +87,12 @@ export type SpacingType =
   | PicassoSpacing
 ```
 
-Exported `spacing` object is reused by components with spacing properties (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties in Container component and `offset` property in Dropdown component).
+Exported `spacing*` constants are reused by components with spacing properties (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties in Container component and `offset` property in Dropdown component).
 
 ```tsx
-import { spacing } from '@toptal/picasso/utils'
+import { spacing2 } from '@toptal/picasso/utils'
 ...
-<Container top={spacing[6]}/>
+<Container top={spacing2}/>
 ```
 
 ### Deprecation of existing approaches
@@ -96,7 +105,7 @@ After BASE spacing is introduced, the number and string constants as spacing val
 // Maps to BASE spacing
 <Container top={1}/>
 // becomes
-<Container top={spacing[4]}/>
+<Container top={spacing4}/>
 
 // Does not map to BASE spacing, has to be addressed manually, otherwise TypeScript error is thrown
 <Container top={0.1}/>
@@ -110,25 +119,22 @@ Statistics: the `org:toptal "top={"` [GitHub search](https://github.com/search?q
 type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
 export enum SpacingEnum {
-  xsmall = 0.5,  // maps to spacing[2]
-  small = 1,     // maps to spacing[4]
-  medium = 1.5,  // maps to spacing[6]
-  large = 2,     // maps to spacing[8]
-  xlarge = 2.5,  // maps to spacing[10]
+  xsmall = 0.5,  // maps to spacing2
+  small = 1,     // maps to spacing4
+  medium = 1.5,  // maps to spacing6
+  large = 2,     // maps to spacing8
+  xlarge = 2.5,  // maps to spacing10
 }
 
 // Example of conversion
 <Container top='small'/>
 // becomes
-<Container top={spacing[4]}/>
+<Container top={spacing4}/>
 ```
 
 The goal is to remove `number` and `SizeType` from `SpacingType` union type.
 
 ```jsx
-// New internal type
-type PicassoSpacing = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
-
 export type SpacingType = PicassoSpacing
 ```
 
@@ -138,17 +144,21 @@ export type SpacingType = PicassoSpacing
 
 This is one of the approaches used on the market (as an example, [Audi Design System](https://react.ui.audi/?path=/docs/brand-identity-design-tokens--page#layout-system)). However, the responsive spacing tokens idea was abandoned after discussion with the Design Team due to its complexity and unclear benefits.
 
-- Provide BASE design spacings as separate constants
+- Provide BASE design spacings as `spacing` object properties
 
 ```ts
-export const spacing0 = 0
-export const spacing1 = 0.25
-...
-export const spacing10 = 2.5
-export const spacing12 = 3
+type PicassoSpacing = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
+
+export const spacing: Record<number, PicassoSpacing> = {
+  0: 0,
+  1: 0.25,
+  ...
+  10: 2.5,
+  12: 3,
+}
 ```
 
-This approach is not consistent with the way `breakpoint` and `color` objects are exposed by Picasso (they are objects with key-value pairs, not as a separate constants)
+This approach allows `number` values to be passed to spacing properties and the notation itself is rejected.
 
 - Provide BASE design spacings as object with string values in `rem` units
 
