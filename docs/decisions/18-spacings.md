@@ -72,6 +72,10 @@ class PicassoSpacing {
   valueOf() {
     return this.value
   }
+
+  toString() {
+    return this.value.toString()
+  }
 }
 
 export const spacing0 = new PicassoSpacing(0)
