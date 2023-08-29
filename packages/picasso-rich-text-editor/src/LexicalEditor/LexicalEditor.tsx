@@ -93,6 +93,32 @@ export type Props = BaseProps & {
   hiddenInputId?: string
 }
 
+const useLexicalTheme = (classes: Record<string, string>) => {
+  const bodyTypographyClassName = useTypographyClasses({
+    variant: 'body',
+    size: 'medium',
+  })
+
+  const headingTypographyClassName = useTypographyClasses({
+    variant: 'heading',
+    size: 'medium',
+  })
+
+  const theme = useMemo(
+    () =>
+      createLexicalTheme({
+        typographyClassNames: {
+          root: bodyTypographyClassName,
+          heading: headingTypographyClassName,
+        },
+        classes,
+      }),
+    [bodyTypographyClassName, headingTypographyClassName, classes]
+  )
+
+  return theme
+}
+
 const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
   props: Props,
   ref
@@ -117,19 +143,7 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const toolbarRef = useRef<HTMLDivElement | null>(null)
 
-  const typographyClassNames = useTypographyClasses({
-    variant: 'body',
-    size: 'medium',
-  })
-
-  const theme = useMemo(
-    () =>
-      createLexicalTheme({
-        typographyClassNames,
-        classes,
-      }),
-    [typographyClassNames, classes]
-  )
+  const theme = useLexicalTheme(classes)
 
   const { componentPlugins, lexicalNodes } = useComponentPlugins(
     plugins,
