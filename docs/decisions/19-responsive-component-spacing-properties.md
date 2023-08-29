@@ -19,7 +19,7 @@ Result – 4% of files with `Container.top` usage (72 out of 2288 files in Topta
 
 ## Proposal
 
-The `Container` and `Dropdown` component spacing properties allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR. The existing way of specifying spacing properties should work the same (for example, `top={spacing2}` sets `spacing2` as a spacing for all screen sizes).
+The `Container` and `Dropdown` component spacing properties allow setting values depending on the screen size without workarounds for consumers. The implementation should follow the mobile-first approach, do not degrade performance, and be compatible with SSR. The existing way of specifying spacing properties should work the same (for example, `top={SPACING_2}` sets `SPACING_2` as a spacing for all screen sizes).
 
 ### API changes
 
@@ -32,8 +32,8 @@ The `Container` and `Dropdown` component spacing properties allow setting values
  * Screen width  |--------|--------|--------|--------|-------->
  * Range         |   xs   |   sm   |   md   |   lg   |   xl
  * 
- * For screens in "xs", "sm", and "md" breakpoint ranges top padding is spacing1
- * For screens in and bigger than "lg" breakpoint range top padding is spacing2
+ * For screens in "xs", "sm", and "md" breakpoint ranges top padding is SPACING_1
+ * For screens in and bigger than "lg" breakpoint range top padding is SPACING_2
  */
 
 /**
@@ -42,7 +42,7 @@ The `Container` and `Dropdown` component spacing properties allow setting values
  * Container.top can be "SpacingType" only
  */
 const mobileScreen = useBreakpoint(['xs', 'sm', 'md'])
-<Container top={mobileScreen ? spacing1 : spacing2}/>
+<Container top={mobileScreen ? SPACING_1 : SPACING_2}/>
 
 /**
  * Proposed approach
@@ -50,18 +50,18 @@ const mobileScreen = useBreakpoint(['xs', 'sm', 'md'])
  * Container.top can be "SpacingType" or "{ xs?: SpacingType, sm?: SpacingType, md?: SpacingType, lg?: SpacingType, xl?: SpacingType }
  */
 <Container top={{
-  xs: spacing1,
-  lg: spacing2
+  xs: SPACING_1,
+  lg: SPACING_2
 }}/>
 ```
 
 - allow only BASE spacings as values in provided object. Currently, spacing properties of the `Container` component take either a number value in `rem` units or a spacing constant that is later resolved to `rem` units, which will be deprecated soon.
 
 ```jsx
-import { spacing1, spacing2 } from '@toptal/picasso/utils'
+import { SPACING_1, SPACING_2 } from '@toptal/picasso/utils'
 ...
 // Correct usage
-<Container top={{ md: spacing1, lg: spacing2 }}/>
+<Container top={{ md: SPACING_1, lg: SPACING_2 }}/>
 // Incorrect usage, only BASE spacings can be provided
 <Container top={{ md: 1, lg: 'large' }}/> // throws TypeScript error
 ```
@@ -78,11 +78,11 @@ Another approach is to make spacing properties accept arrays with spacing values
  * Range         |   xs   |   sm   |   md   |   lg   |   xl
  * 
  * For screens in "xs" and "sm" breakpoint ranges top padding is 0rem / 0px (due to "null" value)
- * For screens in "md" breakpoint range top padding is spacing1
- * For screens in and bigger than "lg" breakpoint range top padding is spacing2
+ * For screens in "md" breakpoint range top padding is SPACING_1
+ * For screens in and bigger than "lg" breakpoint range top padding is SPACING_2
  */
 
-<Container top={[/* xs */ null, /* sm */ null, /* md */ spacing2, /* lg */ spacing2]}/>
+<Container top={[/* xs */ null, /* sm */ null, /* md */ SPACING_1, /* lg */ SPACING_2]}/>
 ```
 
 Array syntax requires explicit specification of smaller breakpoint ranges even if spacing is not set for them, which makes it less usable compared to object syntax. Array syntax is not consistent with the way Picasso defines APIs of components, it is not used anywhere else. Array syntax requires remembering of breakpoint ranges to match the index of value in array to the breakpoint range. All three factors make it a less preferable approach compared to object syntax mentioned earlier.

@@ -78,9 +78,9 @@ class PicassoSpacing {
   }
 }
 
-export const spacing0 = new PicassoSpacing(0)
-export const spacing1 = new PicassoSpacing(0.25)
-export const spacing2 = new PicassoSpacing(0.5)
+export const SPACING_0 = new PicassoSpacing(0)
+export const SPACING_1 = new PicassoSpacing(0.25)
+export const SPACING_2 = new PicassoSpacing(0.5)
 ...
 
 ...
@@ -91,12 +91,12 @@ export type SpacingType =
   | PicassoSpacing
 ```
 
-Exported `spacing*` constants are reused by components with spacing properties (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties in Container component and `offset` property in Dropdown component).
+Exported `SPACING_*` constants are reused by components with spacing properties (`top`, `right`, `bottom`, `left`, `gap`, and `padded` properties in Container component and `offset` property in Dropdown component).
 
 ```tsx
-import { spacing2 } from '@toptal/picasso/utils'
+import { SPACING_2 } from '@toptal/picasso/utils'
 ...
-<Container top={spacing2}/>
+<Container top={SPACING_2}/>
 ```
 
 ### Deprecation of existing approaches
@@ -109,7 +109,7 @@ After BASE spacing is introduced, the number and string constants as spacing val
 // Maps to BASE spacing
 <Container top={1}/>
 // becomes
-<Container top={spacing4}/>
+<Container top={SPACING_4}/>
 
 // Does not map to BASE spacing, has to be addressed manually, otherwise TypeScript error is thrown
 <Container top={0.1}/>
@@ -123,17 +123,17 @@ Statistics: the `org:toptal "top={"` [GitHub search](https://github.com/search?q
 type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 
 export enum SpacingEnum {
-  xsmall = 0.5,  // maps to spacing2
-  small = 1,     // maps to spacing4
-  medium = 1.5,  // maps to spacing6
-  large = 2,     // maps to spacing8
-  xlarge = 2.5,  // maps to spacing10
+  xsmall = 0.5,  // maps to SPACING_2
+  small = 1,     // maps to SPACING_4
+  medium = 1.5,  // maps to SPACING_6
+  large = 2,     // maps to SPACING_8
+  xlarge = 2.5,  // maps to SPACING_10
 }
 
 // Example of conversion
 <Container top='small'/>
 // becomes
-<Container top={spacing4}/>
+<Container top={SPACING_4}/>
 ```
 
 The goal is to remove `number` and `SizeType` from `SpacingType` union type.
