@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 5.0.3
+
+### Patch Changes
+
+- [#3830](https://github.com/toptal/picasso/pull/3830) [`7cc4f93aa`](https://github.com/toptal/picasso/commit/7cc4f93aadf07a3fdd297e6c87e15702d80f49a9) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### RichTextEditor
+
+- set width `auto` to headings select
+
 ## 5.0.2
 
 ### Patch Changes
