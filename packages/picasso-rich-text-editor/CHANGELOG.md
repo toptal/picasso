@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 5.0.2
+
+### Patch Changes
+
+- [#3829](https://github.com/toptal/picasso/pull/3829) [`00b4b159c`](https://github.com/toptal/picasso/commit/00b4b159c11046f747f5a1c97877bd2bb867899a) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### RichTextEditor
+
+- apply Picasso Typography styles to RichTextEditor headings
+
 ## 5.0.1
 
 ### Patch Changes
