@@ -4,4 +4,4 @@
 
 ### Icon
 
-- added responsive icons (24px on xl screens, 16px otherwise)
+- added responsive icons (16px on xl screens, 24px otherwise)
