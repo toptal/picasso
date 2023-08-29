@@ -2,7 +2,10 @@ import type { makeStyles } from '@material-ui/core/styles'
 import type { EditorThemeClasses } from 'lexical'
 
 type Props = {
-  typographyClassNames: string
+  typographyClassNames: {
+    root: string
+    heading: string
+  }
   // ClassNameMap is not exported from @material-ui/core
   classes: ReturnType<ReturnType<typeof makeStyles>>
 }
@@ -17,12 +20,15 @@ export const createLexicalTheme = ({
   )
 
   const theme: EditorThemeClasses = {
-    root: typographyClassNames,
+    root: typographyClassNames.root,
     paragraph: classes.paragraph,
     text: {
       italic: classes.italic,
       bold: classes.bold,
       code: classes.code,
+    },
+    heading: {
+      h3: typographyClassNames.heading,
     },
 
     list: {
