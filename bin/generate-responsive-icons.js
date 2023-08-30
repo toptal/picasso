@@ -1,5 +1,5 @@
 const ts = require('typescript')
-const fs = require('fs')
+const fs = require('fs').promises
 const path = require('path')
 
 const ICON_COMPONENTS_DIRECTORY = 'packages/picasso/src/Icon'
@@ -38,10 +38,10 @@ const removeSize = name => name.replace(/(16|24)/, '')
 const removePrefix = name => name.replace(/\.\//, '')
 
 // Get all exports from index.ts using the TypeScript compiler API
-const getExportsInFile = file => {
+const getExportsInFile = async file => {
   const sourceFile = ts.createSourceFile(
     'index.ts',
-    fs.readFileSync(file, 'utf8'),
+    await fs.readFile(file, 'utf8'),
     ts.ScriptTarget.Latest
   )
 
@@ -64,26 +64,22 @@ const getExportsInFile = file => {
   ]
 }
 
-const generateResponsiveIconFiles = iconNames => {
-  iconNames.forEach(name => {
-    fs.writeFileSync(
+const generateResponsiveIconFiles = async iconNames => {
+  iconNames.forEach(async name => {
+    await fs.writeFile(
       `${ICONS_DIRECTORY_PATH}/${name}Responsive.tsx`,
       template(name)
     )
   })
 }
 
-const insertExports = (iconNames, indexFilePath) => {
+const insertExports = async (iconNames, indexFilePath) => {
   const exportLines = iconNames.map(
     item => `export { default as ${item}Responsive } from './${item}Responsive'`
   )
 
-  fs.readFile(indexFilePath, 'utf-8', (err, data) => {
-    if (err) {
-      console.error('Error reading file:', err)
-
-      return
-    }
+  try {
+    const data = await fs.readFile(indexFilePath, 'utf-8')
 
     const newExportLines = exportLines.filter(line => !data.includes(line))
 
@@ -95,18 +91,19 @@ const insertExports = (iconNames, indexFilePath) => {
 
     const updatedContent = data + '\n' + newExportLines.join('\n')
 
-    fs.writeFile(indexFilePath, updatedContent, 'utf-8', writeErr => {
-      if (writeErr) {
-        console.error('Error writing file:', writeErr)
-      } else {
-        console.log('New responsive exports added successfully.')
-      }
-    })
-  })
+    await fs.writeFile(indexFilePath, updatedContent, 'utf-8')
+    console.log('New responsive exports added successfully.')
+  } catch (err) {
+    console.error('Error writing file:', err)
+  }
 }
 
-const iconNames = getExportsInFile(INDEX_FILE_PATH)
+;(async () => {
+  const iconNames = await getExportsInFile(INDEX_FILE_PATH)
 
-generateResponsiveIconFiles(iconNames)
+  await generateResponsiveIconFiles(iconNames)
 
-insertExports(iconNames, INDEX_FILE_PATH)
+  await insertExports(iconNames, INDEX_FILE_PATH)
+})().catch(err => {
+  console.error(err)
+})
