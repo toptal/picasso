@@ -20,7 +20,8 @@ import FixViewport from './FixViewport'
 import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProvider'
 import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
-import FixScrollbarJump from '../FixScrollbarJump'
+import FixScrollbarJumpVW from '../FixScrollbarJumpVW'
+import FixScrollbarJumpScrollbarGutter from '../FixScrollbarJumpScrollbarGutter'
 
 export interface PicassoProps extends TextLabelProps {
   children?: ReactNode
@@ -37,7 +38,9 @@ export interface PicassoProps extends TextLabelProps {
   /** Whether to load viewport fix or not */
   fixViewport?: boolean
   /** Whether to load scrollbar page jump fix or not */
-  fixScrollbarJump?: boolean
+  fixScrollbarJumpVW?: boolean
+  /** Whether to load scrollbar page jump fix or not */
+  fixScrollbarJumpScrollbarGutter?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
@@ -64,7 +67,8 @@ const Picasso = ({
   responsive,
   environment = 'development',
   children,
-  fixScrollbarJump,
+  fixScrollbarJumpVW,
+  fixScrollbarJumpScrollbarGutter,
   fixViewport,
   notificationContainer,
   RootComponent = PicassoRootNode,
@@ -112,7 +116,10 @@ const Picasso = ({
             {fixViewport && <FixViewport />}
             {loadFonts && <FontsLoader />}
             {reset && <CssBaseline />}
-            {fixScrollbarJump && <FixScrollbarJump />}
+            {fixScrollbarJumpVW && <FixScrollbarJumpVW />}
+            {fixScrollbarJumpScrollbarGutter && (
+              <FixScrollbarJumpScrollbarGutter />
+            )}
             {loadFavicon && <Favicon environment={environment} />}
             <NotificationsProvider container={notificationContainer}>
               {children}
@@ -130,7 +137,6 @@ Picasso.defaultProps = {
   loadFavicon: true,
   responsive: true,
   reset: true,
-  fixScrollbarJump: true,
   fixViewport: true,
   injectFirst: undefined,
   RootComponent: PicassoRootNode,

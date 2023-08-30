@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoFixScrollbarJump',
+  name: 'PicassoFixScrollbarJumpScrollbarGutter',
 })
 
 /**
@@ -15,10 +15,10 @@ const useStyles = makeStyles<Theme>(styles, {
  * Please see the styles.ts – the idea is that "wdith: 100vw" takes into account the width of
  * the page with scrollbars, so it
  */
-const AvoidScrollbarJump = () => {
+const FixScrollbarJumpScrollbarGutter = () => {
   useStyles()
 
   return null
 }
 
-export default AvoidScrollbarJump
+export default FixScrollbarJumpScrollbarGutter
