@@ -4,11 +4,8 @@ export default () =>
   createStyles({
     '@global': {
       html: {
-        width: '100%',
-        overflowX: 'hidden',
-      },
-      body: {
-        width: '100vw',
+        overflow: 'auto',
+        scrollbarGutter: 'stable',
       },
     },
   })
