@@ -16,3 +16,10 @@ export {
 } from './breakpoints'
 export { default as layout } from './layout'
 export { default as shadows } from './shadows'
+export { default as spacings, PicassoSpacing, SpacingEnum } from './spacings'
+export type {
+  PicassoSpacingValues,
+  Sizes,
+  SizeType,
+  SpacingType,
+} from './spacings'
