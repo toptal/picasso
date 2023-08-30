@@ -4,4 +4,4 @@
 
 ### ButtonCircular
 
-- make `ButtonCircular` component responsive. You can now provide a 24x24 px icon for `xl` screens. Button size for screens under `xl` has been increased.
+- make `ButtonCircular` component responsive (opt-in). You can now provide a 24x24 px icon for `xl` screens. Button size for screens under `xl` has been increased.
