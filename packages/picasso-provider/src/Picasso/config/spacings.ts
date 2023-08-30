@@ -1,45 +1,9 @@
+// ============================
+// TYPES
+// ============================
+
 // BASE-aligned spacing values in "rem" units
 export type PicassoSpacingValues = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
-
-export class PicassoSpacing {
-  value: number
-
-  constructor(value: PicassoSpacingValues) {
-    this.value = value
-  }
-
-  valueOf() {
-    console.log('this.value: ', this.value)
-
-    return this.value
-  }
-
-  toString() {
-    return this.value.toString()
-  }
-}
-
-const SPACING_0 = new PicassoSpacing(0)
-const SPACING_1 = new PicassoSpacing(0.25)
-const SPACING_2 = new PicassoSpacing(0.5)
-const SPACING_3 = new PicassoSpacing(0.75)
-const SPACING_4 = new PicassoSpacing(1)
-const SPACING_5 = new PicassoSpacing(1.5)
-const SPACING_6 = new PicassoSpacing(2)
-const SPACING_7 = new PicassoSpacing(2.5)
-const SPACING_8 = new PicassoSpacing(3)
-
-const spacings = {
-  SPACING_0,
-  SPACING_1,
-  SPACING_2,
-  SPACING_3,
-  SPACING_4,
-  SPACING_5,
-  SPACING_6,
-  SPACING_7,
-  SPACING_8,
-}
 
 export type Sizes =
   | 'xxsmall'
@@ -49,6 +13,15 @@ export type Sizes =
   | 'large'
   | 'xlarge'
 
+export type SizeType<T extends Sizes> = T
+
+/** @deprecated **/
+export type DeprecatedSpacingType =
+  | number
+  | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
+
+export type SpacingType = PicassoSpacing | DeprecatedSpacingType
+
 export enum SpacingEnum {
   xsmall = 0.5,
   small = 1,
@@ -57,11 +30,44 @@ export enum SpacingEnum {
   xlarge = 2.5,
 }
 
-export type SizeType<T extends Sizes> = T
+// ============================
+// CLASS DEFINITION
+// ============================
 
-export type SpacingType =
-  | number
-  | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
-  | PicassoSpacing
+export class PicassoSpacing {
+  private value: PicassoSpacingValues
+
+  private constructor(value: PicassoSpacingValues) {
+    this.value = value
+  }
+
+  static create(value: PicassoSpacingValues): PicassoSpacing {
+    return new PicassoSpacing(value)
+  }
+
+  valueOf(): PicassoSpacingValues {
+    return this.value
+  }
+
+  toString(): string {
+    return this.value.toString()
+  }
+}
+
+// ============================
+// SPACING CONSTANTS
+// ============================
+
+const SPACING_VALUES: PicassoSpacingValues[] = [
+  0, 0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3,
+]
+
+const spacings = Object.freeze(
+  SPACING_VALUES.reduce((acc, value, index) => {
+    acc[`SPACING_${index}`] = PicassoSpacing.create(value)
+
+    return acc
+  }, {} as Record<string, PicassoSpacing>)
+)
 
 export default spacings
