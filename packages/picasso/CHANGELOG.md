@@ -1,5 +1,15 @@
 # Change Log
 
+## 37.8.0
+
+### Minor Changes
+
+- [#3823](https://github.com/toptal/picasso/pull/3823) [`b0e558eaa`](https://github.com/toptal/picasso/commit/b0e558eaa2373395c3c800959b4d9cb53b7865a5) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Icon
+
+- added responsive icons (16px on xl screens, 24px otherwise)
+
 ## 37.7.0
 
 ### Minor Changes
