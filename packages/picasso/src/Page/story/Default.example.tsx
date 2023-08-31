@@ -9,7 +9,7 @@ import {
   Globe16,
   Profile16,
   PortfolioDesigner16,
-  Heartbeat16,
+  HeartbeatResponsive,
 } from '@toptal/picasso'
 
 const Example = () => (
@@ -66,18 +66,17 @@ const RightContent = () => (
   </Page.TopBarMenu>
 )
 
-const ActionItems = () => {
-  return (
-    <Tooltip content='Your Operational Issues'>
-      <Button.Circular
-        variant='transparent'
-        icon={<Heartbeat16 color='light-grey' />}
-        data-testid='operational-issues-button'
-        onClick={() => {}}
-      />
-    </Tooltip>
-  )
-}
+const ActionItems = () => (
+  <Tooltip content='Your Operational Issues'>
+    <Button.Circular
+      variant='transparent'
+      responsive
+      icon={<HeartbeatResponsive color='light-grey' />}
+      data-testid='operational-issues-button'
+      onClick={() => {}}
+    />
+  </Tooltip>
+)
 
 const Content = () => (
   <Container top='small' bottom='small'>
