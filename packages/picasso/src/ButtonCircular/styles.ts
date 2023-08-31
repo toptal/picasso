@@ -1,6 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { alpha, outline } from '@toptal/picasso-shared'
+import { screens } from '@toptal/picasso-provider'
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -12,6 +13,15 @@ export default ({ palette }: Theme) =>
     },
 
     primary: {},
+
+    responsive: {
+      width: '2.5em',
+      height: '2.5em',
+      [screens('xl')]: {
+        width: '1.5em',
+        height: '1.5em',
+      },
+    },
 
     flat: {
       color: palette.grey.dark,
