@@ -3,12 +3,13 @@ const path = require('path')
 const { execSync } = require('child_process')
 
 /**
- * Script checks if all icons have 16 and 24 pixels variants.
+ * Script checks if all icons have 16, 24 pixels and responsive variants.
  */
 
 const ICON_COMPONENTS_DIRECTORY = 'packages/picasso/src/Icon'
 
-const getIconName = iconFileName => iconFileName.replace(/(16|24).tsx/, '')
+const getIconName = iconFileName =>
+  iconFileName.replace(/(16|24|Responsive).tsx/, '')
 
 const getChangedFiles = () => {
   const command = `git diff --name-only --cached`
@@ -19,6 +20,7 @@ const getChangedFiles = () => {
 
 const checkIfIconIsComplete = (iconName, icons) =>
   icons.indexOf(`${iconName}16.tsx`) > -1 &&
+  icons.indexOf(`${iconName}Responsive.tsx`) > -1 &&
   icons.indexOf(`${iconName}24.tsx`) > -1
 
 const findIncompleteIcons = () => {
@@ -35,7 +37,8 @@ const findIncompleteIcons = () => {
   const iconFileNames = fs
     .readdirSync(ICON_COMPONENTS_DIRECTORY)
     .filter(
-      file => path.extname(file) === '.tsx' && file.match(/(16|24)\.tsx$/)
+      file =>
+        path.extname(file) === '.tsx' && file.match(/(16|24|Responsive)\.tsx$/)
     )
 
   const incompleteIcons = []
@@ -57,7 +60,7 @@ const incompleteIcons = findIncompleteIcons()
 
 if (incompleteIcons.length > 0) {
   console.error(
-    `The following icons need to have both 16 and 24 pixels variants generated:\n${incompleteIcons.join(
+    `The following icons need to have 16, 24 pixels and responsive variants generated:\n${incompleteIcons.join(
       '\n'
     )}`
   )
