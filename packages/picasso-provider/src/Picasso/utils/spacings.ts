@@ -1,12 +1,13 @@
 import type { SizeType, SpacingType } from '../config/spacings'
-import { SpacingEnum, PicassoSpacing } from '../config/spacings'
+import { SpacingEnum, isPicassoSpacing } from '../config/spacings'
 
-const isNumericSpacing = (spacing?: SpacingType): spacing is number => {
-  if (!spacing) {
-    return false
-  }
+const isNumericSpacing = (
+  spacing: SpacingType | undefined
+): spacing is number | SpacingType => {
+  const isNotNull = spacing != null
+  const isNumber = typeof spacing == 'number'
 
-  return typeof spacing === 'number' || spacing instanceof PicassoSpacing
+  return isNotNull && (isNumber || isPicassoSpacing(spacing))
 }
 
 const spacingToRem = (spacing: SpacingType): string => {

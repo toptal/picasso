@@ -25,16 +25,15 @@ export {
   shadows,
   PicassoBreakpoints,
   BreakpointKeys,
-  PicassoSpacing,
   spacings,
   SpacingEnum,
 } from './Picasso/config'
 
 export type {
-  PicassoSpacingValues,
   Sizes,
   SizeType,
   SpacingType,
+  PicassoSpacing,
 } from './Picasso/config'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'

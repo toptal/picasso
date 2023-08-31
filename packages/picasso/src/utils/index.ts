@@ -67,26 +67,14 @@ export {
   usePropDeprecationWarning,
 } from './use-deprecation-warnings'
 
-const {
+export const {
   SPACING_0,
   SPACING_1,
   SPACING_2,
   SPACING_3,
   SPACING_4,
-  SPACING_5,
   SPACING_6,
-  SPACING_7,
   SPACING_8,
+  SPACING_10,
+  SPACING_12,
 } = spacings
-
-export {
-  SPACING_0,
-  SPACING_1,
-  SPACING_2,
-  SPACING_3,
-  SPACING_4,
-  SPACING_5,
-  SPACING_6,
-  SPACING_7,
-  SPACING_8,
-}

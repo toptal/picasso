@@ -1,9 +1,5 @@
-// ============================
-// TYPES
-// ============================
-
 // BASE-aligned spacing values in "rem" units
-export type PicassoSpacingValues = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
+type PicassoSpacingValues = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
 
 export type Sizes =
   | 'xxsmall'
@@ -16,7 +12,7 @@ export type Sizes =
 export type SizeType<T extends Sizes> = T
 
 /** @deprecated **/
-export type DeprecatedSpacingType =
+type DeprecatedSpacingType =
   | number
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
 
@@ -30,15 +26,11 @@ export enum SpacingEnum {
   xlarge = 2.5,
 }
 
-// ============================
-// CLASS DEFINITION
-// ============================
-
-export class PicassoSpacing {
-  private value: PicassoSpacingValues
+class PicassoSpacing {
+  #value: PicassoSpacingValues
 
   private constructor(value: PicassoSpacingValues) {
-    this.value = value
+    this.#value = value
   }
 
   static create(value: PicassoSpacingValues): PicassoSpacing {
@@ -46,28 +38,38 @@ export class PicassoSpacing {
   }
 
   valueOf(): PicassoSpacingValues {
-    return this.value
+    return this.#value
   }
 
   toString(): string {
-    return this.value.toString()
+    return this.#value.toString()
   }
 }
 
-// ============================
-// SPACING CONSTANTS
-// ============================
+export type { PicassoSpacing }
 
-const SPACING_VALUES: PicassoSpacingValues[] = [
-  0, 0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3,
-]
+export const isPicassoSpacing = (
+  spacing: SpacingType
+): spacing is PicassoSpacing => spacing instanceof PicassoSpacing
 
-const spacings = Object.freeze(
-  SPACING_VALUES.reduce((acc, value, index) => {
-    acc[`SPACING_${index}`] = PicassoSpacing.create(value)
+export const SPACING_0 = PicassoSpacing.create(0)
+export const SPACING_1 = PicassoSpacing.create(0.25)
+export const SPACING_2 = PicassoSpacing.create(0.5)
+export const SPACING_3 = PicassoSpacing.create(0.75)
+export const SPACING_4 = PicassoSpacing.create(1)
+export const SPACING_6 = PicassoSpacing.create(1.5)
+export const SPACING_8 = PicassoSpacing.create(2)
+export const SPACING_10 = PicassoSpacing.create(2.5)
+export const SPACING_12 = PicassoSpacing.create(3)
 
-    return acc
-  }, {} as Record<string, PicassoSpacing>)
-)
-
-export default spacings
+export default {
+  SPACING_0,
+  SPACING_1,
+  SPACING_2,
+  SPACING_3,
+  SPACING_4,
+  SPACING_6,
+  SPACING_8,
+  SPACING_10,
+  SPACING_12,
+}

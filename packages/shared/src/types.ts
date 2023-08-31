@@ -10,17 +10,16 @@ import type { Classes } from './styles'
 
 export {
   spacings,
-  PicassoSpacing,
   SpacingEnum,
   isNumericSpacing,
   spacingToRem,
 } from '@toptal/picasso-provider'
 
 export type {
-  PicassoSpacingValues,
   Sizes,
   SizeType,
   SpacingType,
+  PicassoSpacing,
 } from '@toptal/picasso-provider'
 
 export interface BaseProps {
