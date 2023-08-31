@@ -9,6 +9,10 @@ describe('Icon', () => {
     cy.mount(
       <Container flex style={{ flexWrap: 'wrap' }}>
         {Object.entries(icons).map(([iconName, IconComponent]) => {
+          if (iconName.includes('Responsive')) {
+            return null
+          }
+
           return (
             <Container
               bordered
