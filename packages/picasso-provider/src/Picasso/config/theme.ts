@@ -8,4 +8,6 @@ declare module '@material-ui/core/styles' {
     sizes: Sizes
     screens: (...sizes: BreakpointKeys[]) => string
   }
+
+  interface ThemeOptions extends Partial<Theme> {}
 }
