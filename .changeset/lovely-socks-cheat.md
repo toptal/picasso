@@ -4,4 +4,4 @@
 '@toptal/picasso-shared': minor
 ---
 
-- add new Spacing values to picasso's theme and to `picasso-shared`. See RFC: https://github.com/toptal/picasso/blob/master/docs/decisions/18-spacings.md#technical-details
+- add new spacing values to picasso's theme and to `picasso-shared`. See RFC: https://github.com/toptal/picasso/blob/master/docs/decisions/18-spacings.md
