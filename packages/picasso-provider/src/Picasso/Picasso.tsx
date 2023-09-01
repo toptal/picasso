@@ -6,6 +6,8 @@ import {
 } from '@material-ui/core/styles'
 import type { ReactNode } from 'react'
 import React, { useMemo } from 'react'
+import { type JssOptions, create } from 'jss'
+import { jssPreset } from '@material-ui/core'
 
 import CssBaseline from '../CssBaseline'
 import FontsLoader from './FontsLoader'
@@ -29,6 +31,8 @@ export interface PicassoProps extends TextLabelProps {
   loadFavicon?: boolean
   /** current environment */
   environment?: EnvironmentType<'test' | 'temploy'>
+  /** Options to override default jss */
+  jssOptions?: Partial<JssOptions>
   /** Whether to apply Picasso CSS reset */
   reset?: boolean
   /** Sets a minimum width of the page */
@@ -58,6 +62,7 @@ const Picasso = ({
   loadFonts,
   loadFavicon,
   reset,
+  jssOptions = {},
   responsive,
   environment = 'development',
   children,
@@ -96,6 +101,7 @@ const Picasso = ({
     <StylesProvider
       generateClassName={generateClassName}
       injectFirst={injectFirst}
+      jss={create({ ...jssPreset(), ...jssOptions })}
     >
       <MuiThemeProvider theme={PicassoProvider.theme}>
         <PicassoGlobalStylesProvider
