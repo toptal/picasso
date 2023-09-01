@@ -31,6 +31,7 @@ export const codeBlockStyles = ({
   textWrap: 'wrap',
   wordBreak: 'break-word',
   margin: 0,
+  tabSize: 2,
 })
 
 export default (theme: Theme) =>

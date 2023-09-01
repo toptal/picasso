@@ -20,7 +20,6 @@ export class CodeBlockTextNode extends TextNode {
   }
 
   static importJSON(serializedNode: SerializedTextNode): CodeBlockTextNode {
-    console.log('importJSON')
     const { text } = serializedNode
 
     const node = $createCodeBlockTextNode(text)
