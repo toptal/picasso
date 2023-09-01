@@ -14,7 +14,7 @@ import {
   shadows,
 } from './config'
 
-const picasso = {
+const picasso: ThemeOptions = {
   palette,
   layout,
   transitions,
@@ -23,6 +23,9 @@ const picasso = {
   screens,
   shadows,
   typography,
+  zIndex: {
+    tooltip: 1300,
+  },
   props: {
     MuiButtonBase: {
       disableRipple: true,
