@@ -12,6 +12,7 @@ import {
   typography,
   sizes,
   shadows,
+  spacings,
 } from './config'
 
 const picasso: ThemeOptions = {
@@ -40,6 +41,7 @@ const picasso: ThemeOptions = {
       notched: false,
     },
   },
+  spacings,
 }
 
 class Provider {
