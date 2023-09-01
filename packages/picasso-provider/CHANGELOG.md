@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- [#3838](https://github.com/toptal/picasso/pull/3838) [`9a02bbdb4`](https://github.com/toptal/picasso/commit/9a02bbdb4574cbdac26a2f6e9e4cf9de65609695) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Theme
+
+- set Tooltip's zIndex to be the same as Modal
+
 ## 3.1.3
 
 ### Patch Changes
