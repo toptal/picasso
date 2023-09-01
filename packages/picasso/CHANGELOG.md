@@ -1,5 +1,15 @@
 # Change Log
 
+## 38.0.0
+
+### Major Changes
+
+- [#3838](https://github.com/toptal/picasso/pull/3838) [`9a02bbdb4`](https://github.com/toptal/picasso/commit/9a02bbdb4574cbdac26a2f6e9e4cf9de65609695) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Dependencies
+
+- update picasso-provider
+
 ## 37.9.0
 
 ### Minor Changes
