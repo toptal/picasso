@@ -21,6 +21,7 @@ const config = {
   transformIgnorePatterns: [
     'node_modules/(?!@toptal|@topkit|d3|internmap|robust-predicates|delaunator)',
   ],
+  coverageReporters: ['lcov', 'text-summary'],
 }
 
 export default config

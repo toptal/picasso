@@ -32,7 +32,7 @@
     "test:integration:ci": "yarn happo-e2e -- -- yarn test:setup cypress run --component",
     "test:integration:open": "yarn build:package && yarn test:setup cypress open --browser=electron --component",
     "test:setup": "cross-env TZ=UTC NODE_ENV=development",
-    "test:unit": "davinci-qa unit --config=./jest.spec.mjs",
+    "test:unit": "davinci-qa unit --config=./jest.spec.mjs --collect-coverage",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk yarn test:unit",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:watch": "yarn test:unit --watch",
