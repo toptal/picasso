@@ -4,4 +4,4 @@
 
 ### RichTextEditor
 
-- fix: align tab size in RichText
+- fix: align tab sizes between RichText and RichTextEditor (in CodeBlock)
