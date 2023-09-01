@@ -165,7 +165,12 @@ export default (theme: Theme) => {
       },
     },
     code: codeStyles(theme),
-    codeBlock: codeBlockStyles(theme),
+    codeBlock: {
+      '&': codeBlockStyles(theme),
+      '& > span': {
+        fontFamily: 'monospace',
+      },
+    },
     codeBlockText: {
       fontFamily: 'inherit',
       fontSize: 'inherit',
