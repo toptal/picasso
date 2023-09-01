@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
 import type { StandardProps, SpacingType } from '@toptal/picasso-shared'
-import { spacingToRem } from '@toptal/picasso-shared'
+import { spacingToRem, isNumericSpacing } from '@toptal/picasso-shared'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
@@ -101,12 +101,12 @@ export const Container = documentable(
       const classes = useStyles(props)
 
       const margins = {
-        ...(typeof top === 'number' && { marginTop: spacingToRem(top) }),
-        ...(typeof bottom === 'number' && {
+        ...(isNumericSpacing(top) && { marginTop: spacingToRem(top) }),
+        ...(isNumericSpacing(bottom) && {
           marginBottom: spacingToRem(bottom),
         }),
-        ...(typeof left === 'number' && { marginLeft: spacingToRem(left) }),
-        ...(typeof right === 'number' && { marginRight: spacingToRem(right) }),
+        ...(isNumericSpacing(left) && { marginLeft: spacingToRem(left) }),
+        ...(isNumericSpacing(right) && { marginRight: spacingToRem(right) }),
       }
 
       return (
@@ -144,10 +144,10 @@ export const Container = documentable(
           )}
           style={{
             ...margins,
-            ...(typeof padded === 'number' && {
+            ...(isNumericSpacing(padded) && {
               padding: spacingToRem(padded),
             }),
-            ...(typeof gap === 'number' && { gap: spacingToRem(gap) }),
+            ...(isNumericSpacing(gap) && { gap: spacingToRem(gap) }),
             ...style,
           }}
         >
