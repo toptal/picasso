@@ -8,6 +8,20 @@ import type {
 
 import type { Classes } from './styles'
 
+export {
+  spacings,
+  SpacingEnum,
+  isNumericSpacing,
+  spacingToRem,
+} from '@toptal/picasso-provider'
+
+export type {
+  Sizes,
+  SizeType,
+  SpacingType,
+  PicassoSpacing,
+} from '@toptal/picasso-provider'
+
 export interface BaseProps {
   /** Classnames applied to root element */
   className?: string
@@ -52,8 +66,6 @@ export interface OverridableComponent<P = {}> extends NamedComponent<P> {
   ): JSX.Element | null
 }
 
-type Sizes = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
-
 type BaseEnvironments = 'development' | 'staging' | 'production'
 type Environments = BaseEnvironments | 'temploy' | 'test'
 
@@ -61,23 +73,6 @@ type Environments = BaseEnvironments | 'temploy' | 'test'
 export type EnvironmentType<T extends Environments = BaseEnvironments> =
   | T
   | BaseEnvironments
-
-export type SizeType<T extends Sizes> = T
-
-export type SpacingType =
-  | number
-  | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
-
-export enum SpacingEnum {
-  xsmall = 0.5,
-  small = 1,
-  medium = 1.5,
-  large = 2,
-  xlarge = 2.5,
-}
-
-export const spacingToRem = (spacing: SpacingType) =>
-  typeof spacing === 'number' ? `${spacing}rem` : `${SpacingEnum[spacing]}rem`
 
 export type ButtonOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   ButtonHTMLAttributes<HTMLButtonElement>
