@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 6.0.1
+
+### Patch Changes
+
+- [#3837](https://github.com/toptal/picasso/pull/3837) [`c04fe3733`](https://github.com/toptal/picasso/commit/c04fe37331addd6b894f05990a30eb23c6d70e7d) Thanks [@Gtosta96-Toptal](https://github.com/Gtosta96-Toptal)!
+
+### RichTextEditor
+
+- enable alt prop
+
 ## 6.0.0
 
 ### Patch Changes
