@@ -25,6 +25,15 @@ export {
   shadows,
   PicassoBreakpoints,
   BreakpointKeys,
+  spacings,
+  SpacingEnum,
+} from './Picasso/config'
+
+export type {
+  Sizes,
+  SizeType,
+  SpacingType,
+  PicassoSpacing,
 } from './Picasso/config'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'
@@ -44,6 +53,8 @@ export {
   generateRandomString,
   generateRandomStringOrGetEmptyInTest,
   getServersideStylesheets,
+  isNumericSpacing,
+  spacingToRem,
 } from './Picasso/utils'
 
 export { default as Favicon } from './Favicon'
