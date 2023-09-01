@@ -18,4 +18,10 @@ declare module '@material-ui/core/styles' {
     screens?: (...sizes: BreakpointKeys[]) => string
     spacings?: Record<keyof typeof spacings, PicassoSpacing>
   }
+
+  interface ThemeOptions {
+    layout?: Layout
+    sizes?: Sizes
+    screens?: (...sizes: BreakpointKeys[]) => string
+  }
 }
