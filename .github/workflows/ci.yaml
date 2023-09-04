@@ -102,6 +102,8 @@ jobs:
 
       - name: Report code coverage
         uses: romeovs/lcov-reporter-action@v0.3.1
+        env:
+          GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
         with:
           lcov-file: coverage/lcov.info
           github-token: ${{ env.GITHUB_TOKEN }}
