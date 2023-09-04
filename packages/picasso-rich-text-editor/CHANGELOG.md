@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 6.0.2
+
+### Patch Changes
+
+- [#3842](https://github.com/toptal/picasso/pull/3842) [`8829b263a`](https://github.com/toptal/picasso/commit/8829b263afafc2c361efdd6ad35d1b0e8a942870) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### RichTextEditor
+
+- align tab sizes between RichText and RichTextEditor (in CodeBlock)
+
 ## 6.0.1
 
 ### Patch Changes
