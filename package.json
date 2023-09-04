@@ -35,6 +35,7 @@
     "test:unit": "davinci-qa unit --config=./jest.spec.mjs",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk yarn test:unit",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
+    "test:unit:coverage": "yarn test:unit:ci --collect-coverage --coverage true --collectCoverageFrom packages/**/*.{ts,tsx} --coverageDirectory coverage/jest",
     "test:unit:watch": "yarn test:unit --watch",
     "typecheck": "tsc --noEmit && tsc -p ./cypress/tsconfig.json",
     "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi",
