@@ -100,23 +100,6 @@ jobs:
       - name: Jest Tests
         run: yarn test:unit:ci
 
-      - name: Report code coverage
-        uses: romeovs/lcov-reporter-action@v0.3.1
-        env:
-          GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-        with:
-          lcov-file: coverage/lcov.info
-          github-token: ${{ env.GITHUB_TOKEN }}
-          delete-old-comments: true
-          filter-changed-files: true
-
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: coverage/lcov-report
-          retention-days: 1
-
   storybook-visual-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Visual Tests
