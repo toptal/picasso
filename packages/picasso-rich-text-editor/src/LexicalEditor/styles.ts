@@ -167,7 +167,7 @@ export default (theme: Theme) => {
     code: codeStyles(theme),
     codeBlock: {
       '&': codeBlockStyles(theme),
-      '& > span': {
+      '& *': {
         fontFamily: 'monospace',
       },
     },
