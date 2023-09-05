@@ -2,7 +2,7 @@ import React from 'react'
 import { Page, Logo, Container, Typography, Grid } from '@toptal/picasso'
 import {
   Jobs16,
-  Overview16,
+  Home16,
   Candidates16,
   Team16,
   Participants16,
@@ -20,7 +20,7 @@ const ExampleSidebar = ({ variant }: { variant: 'light' | 'dark' }) => (
       <Logo variant={variant === 'dark' ? 'white' : undefined} />
     </Page.Sidebar.Logo>
     <Page.Sidebar.Menu>
-      <Page.Sidebar.Item icon={<Overview16 />} selected>
+      <Page.Sidebar.Item icon={<Home16 />} selected>
         Overview
       </Page.Sidebar.Item>
       <Page.Sidebar.Item icon={<Jobs16 />}>Jobs</Page.Sidebar.Item>
