@@ -8,7 +8,7 @@ import {
   Button,
   Globe16,
   Profile16,
-  PortfolioDesigner16,
+  Home16,
   HeartbeatResponsive,
 } from '@toptal/picasso'
 
@@ -45,7 +45,7 @@ const CenterContent = () => (
 const SidebarMenu = () => (
   <Page.Sidebar>
     <Page.Sidebar.Menu>
-      <Page.Sidebar.Item selected icon={<PortfolioDesigner16 />}>
+      <Page.Sidebar.Item selected icon={<Home16 />}>
         Home
       </Page.Sidebar.Item>
       <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>

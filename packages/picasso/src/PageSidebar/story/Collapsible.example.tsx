@@ -2,7 +2,7 @@ import React from 'react'
 import { Page, Logo, Typography } from '@toptal/picasso'
 import {
   Jobs16,
-  Overview16,
+  Home16,
   Candidates16,
   Team16,
   Billing16,
@@ -33,7 +33,7 @@ const Example = () => {
           fullLogo={<Logo />}
         />
         <Page.Sidebar.Menu>
-          <Page.Sidebar.Item icon={<Overview16 />} selected>
+          <Page.Sidebar.Item icon={<Home16 />} selected>
             Overview
           </Page.Sidebar.Item>
           <Page.Sidebar.Item icon={<Jobs16 />}>Jobs</Page.Sidebar.Item>
