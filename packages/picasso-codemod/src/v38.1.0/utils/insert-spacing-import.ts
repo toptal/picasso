@@ -14,10 +14,22 @@ export const insertSpacingImport = (
     j.stringLiteral('@toptal/picasso/utils')
   )
 
-  ast
+  const anchorDeclaration = ast
     .find(j.ImportDeclaration)
-    .filter(path => path.node.source.value === '@toptal/picasso')
+    .filter(
+      path =>
+        path.node.source.value === '@toptal/picasso' ||
+        path.node.source.value === '../Container' ||
+        path.node.source.value === '../Dropdown'
+    )
     .at(0)
     .get()
-    .insertAfter(newImport)
+
+  if (!anchorDeclaration) {
+    throw new Error(
+      `Unable to find @toptal/picasso or Container declaration to insert new spacing import`
+    )
+  }
+
+  anchorDeclaration.insertAfter(newImport)
 }
