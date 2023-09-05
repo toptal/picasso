@@ -23,13 +23,12 @@ export const insertSpacingImport = (
         path.node.source.value === '../Dropdown'
     )
     .at(0)
-    .get()
 
-  if (!anchorDeclaration) {
+  if (anchorDeclaration.length === 0) {
     throw new Error(
       `Unable to find @toptal/picasso or Container declaration to insert new spacing import`
     )
   }
 
-  anchorDeclaration.insertAfter(newImport)
+  anchorDeclaration.get().insertAfter(newImport)
 }
