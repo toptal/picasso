@@ -1,8 +1,21 @@
+import type {
+  ConditionalExpression,
+  JSXAttribute,
+  JSXExpressionContainer,
+} from 'jscodeshift'
+
 import type { TransformationOptions } from '../types'
 import { getNodeForNumber } from './get-node-for-number'
 import { getNodeForSizeStringConstant } from './get-node-for-size-string-constant'
 
-export const getUpdatedNode = (node: any, options: TransformationOptions) => {
+type NodeType =
+  | JSXExpressionContainer['expression']
+  | NonNullable<JSXAttribute['value']>
+
+export const getUpdatedNode = (
+  node: NodeType,
+  options: TransformationOptions
+) => {
   const { reportManuallyFixableCase } = options
 
   if (node.type === 'StringLiteral') {
@@ -18,8 +31,14 @@ export const getUpdatedNode = (node: any, options: TransformationOptions) => {
 
     node.properties = updatedProperties
   } else if (node.type === 'ConditionalExpression') {
-    node.consequent = getUpdatedNode(node.consequent, options)
-    node.alternate = getUpdatedNode(node.alternate, options)
+    node.consequent = getUpdatedNode(
+      node.consequent,
+      options
+    ) as ConditionalExpression['consequent']
+    node.alternate = getUpdatedNode(
+      node.alternate,
+      options
+    ) as ConditionalExpression['alternate']
   } else {
     reportManuallyFixableCase()
   }

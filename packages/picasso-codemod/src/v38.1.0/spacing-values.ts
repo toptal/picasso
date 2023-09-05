@@ -88,7 +88,7 @@ const transform: Transform = (file, api) => {
             )
 
             attribute.value.expression = updatedNode
-          } else {
+          } else if (attribute.value) {
             const updatedNode = getUpdatedNode(
               attribute.value,
               transformationOptions
