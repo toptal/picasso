@@ -1,5 +1,15 @@
 # Change Log
 
+## 38.1.0
+
+### Minor Changes
+
+- [#3850](https://github.com/toptal/picasso/pull/3850) [`d333af698`](https://github.com/toptal/picasso/commit/d333af698f34a268f282326e87ec67320bb60843) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Icon
+
+- add Home16 and Home24 icon
+
 ## 38.0.0
 
 ### Major Changes
