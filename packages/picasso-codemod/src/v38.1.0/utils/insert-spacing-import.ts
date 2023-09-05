@@ -17,5 +17,7 @@ export const insertSpacingImport = (
   ast
     .find(j.ImportDeclaration)
     .filter(path => path.node.source.value === '@toptal/picasso')
+    .at(0)
+    .get()
     .insertAfter(newImport)
 }
