@@ -1,13 +1,14 @@
 /* eslint-disable complexity */
 
-import type { ReactNode, HTMLAttributes, Ref } from 'react'
+import type { ReactNode, HTMLAttributes, Ref, ReactElement } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
-import type { StandardProps, SpacingType } from '@toptal/picasso-shared'
+import type { StandardProps, PicassoSpacing } from '@toptal/picasso-shared'
 import { spacingToRem, isNumericSpacing } from '@toptal/picasso-shared'
+import type { DeprecatedSpacingType } from '@toptal/picasso-provider/Picasso/config/spacings'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
@@ -20,25 +21,99 @@ type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<
+  Theme,
+  CustomContainerTypeNormal | CustomContainerTypeDeprecated
+>(styles, {
   name: 'PicassoContainer',
 })
 
-export interface Props<V extends VariantType = VariantType>
+// interface InternalProps <V extends VariantType = VariantType> extends StandardProps,
+//   HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
+//   /** Content of Container */
+//   children?: ReactNode
+
+//   /** Whether container should act as inline element `display: inline-block` */
+//   inline?: boolean
+//   /** Use flexbox */
+//   flex?: boolean
+//   /** Set flex direction */
+//   direction?: DirectionType
+//   /** Defines the align-items style property */
+//   alignItems?: AlignItemsType
+//   /** Defines the justify-content style property */
+//   justifyContent?: JustifyContentType
+//   /** Whether (`white`, `transparent`) container has border or not */
+//   bordered?: V extends BorderableType ? boolean : never
+//   /** Whether container has 8px border-radius applied or not */
+//   rounded?: boolean
+//   /** Style variant of Notification */
+//   variant?: V
+//   /** Component used for the root node */
+//   as?: ContainerType
+//   /** Text align of the inner text */
+//   align?: PropTypes.Alignment
+// }
+
+// interface CustomContainerTypeNormal<V extends VariantType = VariantType> extends InternalProps<V> {
+//   /** margin-top for the container transformed to `rem` */
+//   top?: PicassoSpacing
+//   /** margin-bottom for the container transformed to `rem` */
+//   bottom?: PicassoSpacing
+//   /** margin-left for the container transformed to `rem` */
+//   left?: PicassoSpacing
+//   /** margin-right for the container transformed to `rem` */
+//   right?: PicassoSpacing
+//   /** padding for the container transformed to `rem` */
+//   padded?: PicassoSpacing
+//   /** Gap between elements for a flex container */
+//   gap?: PicassoSpacing
+// }
+
+// /** @deprecated */
+// interface CustomContainerTypeDeprecated<V extends VariantType = VariantType> extends InternalProps<V> {
+//   /** margin-top for the container transformed to `rem` */
+//   /** @deprecated */
+//   top?: DeprecatedSpacingType
+//   /** @deprecated */
+//   bottom?: DeprecatedSpacingType
+//   /** margin-left for the container transformed to `rem` */
+//   /** @deprecated */
+//   left?: DeprecatedSpacingType
+//   /** margin-right for the container transformed to `rem` */
+//   /** @deprecated */
+//   right?: DeprecatedSpacingType
+//   /** padding for the container transformed to `rem` */
+//   /** @deprecated */
+//   padded?: DeprecatedSpacingType
+//   /** Gap between elements for a flex container */
+//   /** @deprecated */
+//   gap?: DeprecatedSpacingType
+// }
+
+// export interface Props<V extends VariantType = VariantType> {
+//   (props: InternalProps<V> & CustomContainerTypeNormal, ref: Ref<HTMLDivElement> | null): ReactElement
+//   (props: InternalProps<V> & CustomContainerTypeDeprecated, ref: Ref<HTMLDivElement> | null): ReactElement
+// }
+
+// export const TempContainer: Props = (props, ref) => {
+//   const { top } = props
+//   return <div/>
+// }
+
+// const App = () => {
+//   if (true) {
+//     <TempContainer top={SPACING_0}/>
+//   }
+//   return <TempContainer top='small'/>
+// }
+
+interface InternalProps<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
-  /** margin-top for the container transformed to `rem` */
-  top?: SpacingType
-  /** margin-bottom for the container transformed to `rem` */
-  bottom?: SpacingType
-  /** margin-left for the container transformed to `rem` */
-  left?: SpacingType
-  /** margin-right for the container transformed to `rem` */
-  right?: SpacingType
-  /** padding for the container transformed to `rem` */
-  padded?: SpacingType
+
   /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
   /** Use flexbox */
@@ -55,21 +130,89 @@ export interface Props<V extends VariantType = VariantType>
   rounded?: boolean
   /** Style variant of Notification */
   variant?: V
-  /** Gap between elements for a flex container */
-  gap?: SpacingType
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
   align?: PropTypes.Alignment
 }
 
+type CustomContainerTypeNormal<V extends VariantType = VariantType> =
+  InternalProps<V> & {
+    /** margin-top for the container transformed to `rem` */
+    top?: PicassoSpacing
+    /** margin-bottom for the container transformed to `rem` */
+    bottom?: PicassoSpacing
+    /** margin-left for the container transformed to `rem` */
+    left?: PicassoSpacing
+    /** margin-right for the container transformed to `rem` */
+    right?: PicassoSpacing
+    /** padding for the container transformed to `rem` */
+    padded?: PicassoSpacing
+    /** Gap between elements for a flex container */
+    gap?: PicassoSpacing
+  }
+
+/** @deprecated */
+type CustomContainerTypeDeprecated<V extends VariantType = VariantType> =
+  InternalProps<V> & {
+    /** margin-top for the container transformed to `rem` */
+    /** @deprecated */
+    top?: DeprecatedSpacingType
+    /** @deprecated */
+    bottom?: DeprecatedSpacingType
+    /** margin-left for the container transformed to `rem` */
+    /** @deprecated */
+    left?: DeprecatedSpacingType
+    /** margin-right for the container transformed to `rem` */
+    /** @deprecated */
+    right?: DeprecatedSpacingType
+    /** padding for the container transformed to `rem` */
+    /** @deprecated */
+    padded?: DeprecatedSpacingType
+    /** Gap between elements for a flex container */
+    /** @deprecated */
+    gap?: DeprecatedSpacingType
+  }
+
+// @deprecated is not supported by TypeScript highlighting
+// type PropsType<V extends VariantType> = CustomContainerTypeNormal<V> | CustomContainerTypeDeprecated<V>
+
+export interface ComponentProps {
+  <V extends VariantType = VariantType>(
+    props: CustomContainerTypeNormal<V>,
+    ref: Ref<HTMLDivElement> | null
+  ): ReactElement
+  <V extends VariantType = VariantType>(
+    props: CustomContainerTypeDeprecated<V>,
+    ref: Ref<HTMLDivElement> | null
+  ): ReactElement
+  displayName?: string
+  defaultProps?: Partial<CustomContainerTypeNormal<VariantType>>
+}
+
+// export const TempContainer: ComponentProps = forwardRef((props, ref) => {
+// //export const TempContainer: ComponentProps<VariantType> = (props, ref) => {
+//   const { top } = props
+//   return <div/>
+// }) as ComponentProps
+
+// const App = () => {
+//   if (true) {
+//     <TempContainer top={SPACING_0}/>
+//   }
+//   return <TempContainer top='small' bottom={1}/>
+// }
+
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = documentable(
-  forwardRef(
+export const Container: ComponentProps = documentable(
+  forwardRef<
+    CustomContainerTypeNormal | CustomContainerTypeDeprecated,
+    HTMLDivElement
+  >(
     <V extends VariantType>(
-      props: Props<V>,
+      props: CustomContainerTypeNormal<V> | CustomContainerTypeDeprecated<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {
@@ -155,7 +298,7 @@ export const Container = documentable(
         </Component>
       )
     }
-  )
+  ) as ComponentProps
 )
 
 Container.displayName = 'Container'
