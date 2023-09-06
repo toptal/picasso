@@ -23,7 +23,7 @@ type BorderableType = 'transparent' | 'white'
 
 const useStyles = makeStyles<
   Theme,
-  CustomContainerTypeNormal | CustomContainerTypeDeprecated
+  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
 >(styles, {
   name: 'PicassoContainer',
 })
@@ -56,7 +56,7 @@ interface InternalProps<V extends VariantType = VariantType>
   align?: PropTypes.Alignment
 }
 
-type CustomContainerTypeNormal<V extends VariantType = VariantType> =
+type PropsWithBaseSpacing<V extends VariantType = VariantType> =
   InternalProps<V> & {
     /** margin-top for the container transformed to `rem` */
     top?: PicassoSpacing
@@ -73,7 +73,7 @@ type CustomContainerTypeNormal<V extends VariantType = VariantType> =
   }
 
 /** @deprecated */
-type CustomContainerTypeDeprecated<V extends VariantType = VariantType> =
+type PropsWithDeprecatedSpacing<V extends VariantType = VariantType> =
   InternalProps<V> & {
     /** margin-top for the container transformed to `rem` */
     /** @deprecated */
@@ -96,31 +96,28 @@ type CustomContainerTypeDeprecated<V extends VariantType = VariantType> =
 
 type ContainerProps = {
   <V extends VariantType = VariantType>(
-    props: CustomContainerTypeNormal<V> & { ref?: Ref<HTMLDivElement> | null }
+    props: PropsWithBaseSpacing<V> & { ref?: Ref<HTMLDivElement> | null }
   ): ReactElement
   <V extends VariantType = VariantType>(
-    props: CustomContainerTypeDeprecated<V> & {
+    props: PropsWithDeprecatedSpacing<V> & {
       ref?: Ref<HTMLDivElement> | null
     }
   ): ReactElement
   displayName?: string
-  defaultProps?: Partial<CustomContainerTypeNormal<VariantType>>
+  defaultProps?: Partial<PropsWithBaseSpacing<VariantType>>
 }
 
 export type Props<V extends VariantType = VariantType> =
-  | CustomContainerTypeNormal<V>
-  | CustomContainerTypeDeprecated<V>
+  | PropsWithBaseSpacing<V>
+  | PropsWithDeprecatedSpacing<V>
 
 /**
  * Container component used for spacing 2 elements
  */
 export const Container: ContainerProps = documentable(
-  forwardRef<
-    CustomContainerTypeNormal | CustomContainerTypeDeprecated,
-    HTMLDivElement
-  >(
+  forwardRef<PropsWithBaseSpacing | PropsWithDeprecatedSpacing, HTMLDivElement>(
     <V extends VariantType>(
-      props: CustomContainerTypeNormal<V> | CustomContainerTypeDeprecated<V>,
+      props: PropsWithBaseSpacing<V> | PropsWithDeprecatedSpacing<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {

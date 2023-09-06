@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useMemo, useRef, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
@@ -7,8 +7,9 @@ import type { PopperOptions } from 'popper.js'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import type { SpacingType, StandardProps } from '@toptal/picasso-shared'
+import type { PicassoSpacing, StandardProps } from '@toptal/picasso-shared'
 import { spacingToRem } from '@toptal/picasso-shared'
+import type { DeprecatedSpacingType } from '@toptal/picasso-provider/Picasso/config/spacings'
 
 import Popper from '../Popper'
 import Paper from '../Paper'
@@ -18,7 +19,7 @@ import noop from '../utils/noop'
 
 type ContentOverflowType = 'scroll' | 'visible'
 
-export interface Props
+interface InternalProps
   extends StandardProps,
     HTMLAttributes<HTMLDivElement>,
     StyleProps {
@@ -26,13 +27,6 @@ export interface Props
   children: ReactNode
   /** Content element that opens when anchor is clicked */
   content: ReactNode
-  /** Offset of content element relative to anchor element */
-  offset?: {
-    top?: SpacingType
-    bottom?: SpacingType
-    left?: SpacingType
-    right?: SpacingType
-  }
   /** The placement of the content element relative to anchor element. */
   placement?: PopperPlacementType
   /** Disable auto focus of first item in list or item */
@@ -54,6 +48,31 @@ export interface Props
   popperContainer?: HTMLElement
 }
 
+type PropsWithBaseSpacing = InternalProps & {
+  /** Offset of content element relative to anchor element */
+  offset?: {
+    top?: PicassoSpacing
+    bottom?: PicassoSpacing
+    left?: PicassoSpacing
+    right?: PicassoSpacing
+  }
+}
+
+type PropsWithDeprecatedSpacing = InternalProps & {
+  /** Offset of content element relative to anchor element */
+  /** @deprecated */
+  offset?: {
+    /** @deprecated */
+    top?: DeprecatedSpacingType
+    /** @deprecated */
+    bottom?: DeprecatedSpacingType
+    /** @deprecated */
+    left?: DeprecatedSpacingType
+    /** @deprecated */
+    right?: DeprecatedSpacingType
+  }
+}
+
 export interface ContextProps {
   close: () => void
 }
@@ -72,15 +91,31 @@ export const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<
+  Theme,
+  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+>(styles, {
   name: 'PicassoDropdown',
 })
 
+export type DropdownProps = {
+  (
+    props: PropsWithBaseSpacing & { ref?: Ref<HTMLDivElement> | null }
+  ): ReactElement
+  (
+    props: PropsWithDeprecatedSpacing & { ref?: Ref<HTMLDivElement> | null }
+  ): ReactElement
+  displayName?: string
+  defaultProps?: Partial<PropsWithBaseSpacing>
+}
+
+export type Props = PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+
 // eslint-disable-next-line react/display-name
-export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
-  props,
-  ref
-) {
+export const Dropdown: DropdownProps = forwardRef<
+  HTMLDivElement,
+  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+>(function Dropdown(props, ref) {
   const {
     className,
     style,
@@ -271,7 +306,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       )}
     </div>
   )
-})
+}) as DropdownProps
 
 Dropdown.defaultProps = {
   disableAutoClose: false,
