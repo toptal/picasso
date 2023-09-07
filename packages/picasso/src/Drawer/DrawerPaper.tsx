@@ -17,6 +17,7 @@ const DrawerPaper = forwardRef(
       <div
         style={style}
         ref={ref}
+        tabIndex={-1}
         className={cx(
           className,
           'top-0 h-full flex outline-0 z-drawer bg-white shadow-6',
