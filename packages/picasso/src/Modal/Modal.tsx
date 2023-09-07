@@ -74,11 +74,17 @@ const focusFirstFocusableElement = (node: Element) => {
   // Convert NodeList to Array
   const focusableElements = Array.prototype.slice.call(elements)
 
-  focusableElements[0].focus()
+  console.log(focusableElements)
+  // if (focusableElements.length > 0) {
+  //   focusableElements[0].focus()
+  // }
 }
 
 const isFocusInsideModal = (modalNode: Element) => {
   const modalContainsFocusedElement = modalNode.contains(document.activeElement)
+
+  console.log(modalContainsFocusedElement)
+  console.log(document.activeElement)
 
   if (modalContainsFocusedElement) {
     return true
@@ -224,7 +230,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       ref={modalRef}
       className={cx(
         className,
-        'fixed z-[1300] inset-0 flex flex-col text-lg justify-center items-center'
+        'fixed z-modal inset-0 flex flex-col text-lg justify-center items-center'
       )}
       slots={{
         backdrop: Backdrop,

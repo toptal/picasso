@@ -58,6 +58,9 @@ module.exports = {
 
       /** scroll menu */
       5: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 12px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04)',
+
+      /** drawer */
+      6: '0px 8px 10px -5px rgba(0,0,0,0.2), 0px 16px 24px 2px rgba(0,0,0,0.14), 0px 6px 30px 5px rgba(0,0,0,0.12)',
     },
     colors: {
       white: '#FFFFFF',
@@ -101,7 +104,12 @@ module.exports = {
         500: '#6727CF',
       },
     },
-    extend: {},
+    extend: {
+      zIndex: {
+        drawer: 1200,
+        modal: 1300,
+      },
+    },
   },
   plugins: [],
 }
