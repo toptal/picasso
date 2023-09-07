@@ -1,15 +1,12 @@
 FROM node:16-alpine
 
 ENV PATH="${PATH}:/app/node_modules/.bin" \
-  # Defines version of dependencies for apk add
-  APK_BRANCH=3.10 \
   # Installs Chromium (77) package.
   CHROME_BIN=/usr/bin/chromium-browser \
   # We don't pass real value here, workaround to bypass npm check on from .npmrc
   NPM_TOKEN=''
 
-RUN printf "http://nl.alpinelinux.org/alpine/v$APK_BRANCH/%s\n" community main > /etc/apk/repositories && \
-  apk add --no-cache \
+RUN apk add --no-cache \
   harfbuzz \
   nss \
   git \
