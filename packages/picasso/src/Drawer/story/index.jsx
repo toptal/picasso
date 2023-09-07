@@ -1,4 +1,5 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import Drawer from '../Drawer'
 
 const page = PicassoBook.section('Components').createPage(
   'Drawer',
@@ -13,36 +14,38 @@ const page = PicassoBook.section('Components').createPage(
   `
 )
 
-// page.createTabChapter('Props').addComponentDocs({
-//   component: Drawer,
-//   name: 'Drawer',
-// })
-
-page.createChapter().addExample('Drawer/story/Default.example.tsx', {
-  title: 'Default',
-  takeScreenshot: false,
+page.createTabChapter('Props').addComponentDocs({
+  component: Drawer,
+  name: 'Drawer',
 })
-// .addExample('Drawer/story/WithBodyScrollLock.example.tsx', {
-//   title: 'With body scroll lock',
-//   takeScreenshot: false,
-// })
-// .addExample('Drawer/story/WithoutTitle.example.tsx', {
-//   title: 'Without Title',
-//   takeScreenshot: false,
-// })
-// .addExample('Drawer/story/CustomTitle.example.tsx', {
-//   title: 'Custom Title',
-//   takeScreenshot: false,
-// })
-// .addExample('Drawer/story/Widths.example.tsx', {
-//   title: 'Width',
-//   takeScreenshot: false,
-// })
-// .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
-//   title: 'With notification',
-//   takeScreenshot: false,
-// })
-// .addExample('Drawer/story/WithTransparentBackdrop.example.tsx', {
-//   title: 'With transparent backdrop',
-//   takeScreenshot: false,
-// })
+
+page
+  .createChapter()
+  .addExample('Drawer/story/Default.example.tsx', {
+    title: 'Default',
+    takeScreenshot: false,
+  })
+  .addExample('Drawer/story/WithBodyScrollLock.example.tsx', {
+    title: 'With body scroll lock',
+    takeScreenshot: false,
+  })
+  .addExample('Drawer/story/WithoutTitle.example.tsx', {
+    title: 'Without Title',
+    takeScreenshot: false,
+  })
+  .addExample('Drawer/story/CustomTitle.example.tsx', {
+    title: 'Custom Title',
+    takeScreenshot: false,
+  })
+  .addExample('Drawer/story/Widths.example.tsx', {
+    title: 'Width',
+    takeScreenshot: false,
+  })
+  .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
+    title: 'With notification',
+    takeScreenshot: false,
+  })
+  .addExample('Drawer/story/WithTransparentBackdrop.example.tsx', {
+    title: 'With transparent backdrop',
+    takeScreenshot: false,
+  })

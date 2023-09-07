@@ -86,28 +86,14 @@ const ModalDialog = ({
 
 const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()
-  const [open, setOpen] = useState(false)
 
   return (
-    <div>
-      <Button data-testid='trigger' onClick={() => setOpen(!open)}>
-        Show drawer
+    <>
+      <Button data-testid='open' onClick={showModal}>
+        Open
       </Button>
-      <Modal
-        title='My Operational Issues'
-        open={open}
-        onClose={() => setOpen(false)}
-      >
-        <Modal.Content>
-          <>
-            <Button data-testid='open' onClick={showModal}>
-              Open
-            </Button>
-            <ModalDialog open={isOpen} onClose={hideModal} />
-          </>
-        </Modal.Content>
-      </Modal>
-    </div>
+      <ModalDialog open={isOpen} onClose={hideModal} />
+    </>
   )
 }
 
