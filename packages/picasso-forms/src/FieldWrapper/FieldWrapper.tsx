@@ -8,7 +8,7 @@ import InputField from '../InputField'
 export type Props<TWrappedComponentProps, TInputValue> = Omit<
   FieldProps<TWrappedComponentProps, TInputValue>,
   'label'
-> & { label?: string }
+> & { label?: React.ReactNode }
 
 const FieldWrapper = <
   TWrappedComponentProps extends IFormComponentProps,
