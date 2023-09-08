@@ -160,7 +160,7 @@ jobs:
           job_timeout: '3600'
 
       - name: Create Jira Deployment
-        uses: toptal/davinci-github-actions/create-jira-deployment@v9.1.0
+        uses: toptal/davinci-github-actions/create-jira-deployment@v10.0.0
         if: ${{ always() }}
         with:
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
