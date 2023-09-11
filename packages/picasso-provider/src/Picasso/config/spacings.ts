@@ -12,7 +12,7 @@ export type Sizes =
 export type SizeType<T extends Sizes> = T
 
 /** @deprecated **/
-type DeprecatedSpacingType =
+export type DeprecatedSpacingType =
   | number
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
 
