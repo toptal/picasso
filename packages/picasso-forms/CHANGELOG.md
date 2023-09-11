@@ -1,5 +1,12 @@
 # Change Log
 
+## 61.1.1
+
+### Patch Changes
+
+- [#3861](https://github.com/toptal/picasso/pull/3861) [`4d0b682ae`](https://github.com/toptal/picasso/commit/4d0b682ae99427c476112621032bd3447e0b92d2) Thanks [@sashuk](https://github.com/sashuk)!
+- revert dependency update due to https://github.com/final-form/final-form-arrays/issues/95 (`final-form-arrays`)
+
 ## 61.1.0
 
 ### Minor Changes
