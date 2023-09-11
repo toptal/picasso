@@ -1,13 +1,14 @@
 /* eslint-disable complexity */
 
-import type { ReactNode, HTMLAttributes, Ref } from 'react'
+import type { ReactNode, HTMLAttributes, Ref, ReactElement } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
-import type { StandardProps, SpacingType } from '@toptal/picasso-shared'
+import type { StandardProps, PicassoSpacing } from '@toptal/picasso-shared'
 import { spacingToRem, isNumericSpacing } from '@toptal/picasso-shared'
+import type { DeprecatedSpacingType } from '@toptal/picasso-provider/Picasso/config/spacings'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
@@ -20,25 +21,19 @@ type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<
+  Theme,
+  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+>(styles, {
   name: 'PicassoContainer',
 })
 
-export interface Props<V extends VariantType = VariantType>
+interface InternalProps<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
-  /** margin-top for the container transformed to `rem` */
-  top?: SpacingType
-  /** margin-bottom for the container transformed to `rem` */
-  bottom?: SpacingType
-  /** margin-left for the container transformed to `rem` */
-  left?: SpacingType
-  /** margin-right for the container transformed to `rem` */
-  right?: SpacingType
-  /** padding for the container transformed to `rem` */
-  padded?: SpacingType
+
   /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
   /** Use flexbox */
@@ -55,21 +50,74 @@ export interface Props<V extends VariantType = VariantType>
   rounded?: boolean
   /** Style variant of Notification */
   variant?: V
-  /** Gap between elements for a flex container */
-  gap?: SpacingType
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
   align?: PropTypes.Alignment
 }
 
+type PropsWithBaseSpacing<V extends VariantType = VariantType> =
+  InternalProps<V> & {
+    /** margin-top for the container transformed to `rem` */
+    top?: PicassoSpacing
+    /** margin-bottom for the container transformed to `rem` */
+    bottom?: PicassoSpacing
+    /** margin-left for the container transformed to `rem` */
+    left?: PicassoSpacing
+    /** margin-right for the container transformed to `rem` */
+    right?: PicassoSpacing
+    /** padding for the container transformed to `rem` */
+    padded?: PicassoSpacing
+    /** Gap between elements for a flex container */
+    gap?: PicassoSpacing
+  }
+
+/** @deprecated */
+type PropsWithDeprecatedSpacing<V extends VariantType = VariantType> =
+  InternalProps<V> & {
+    /** margin-top for the container transformed to `rem` */
+    /** @deprecated */
+    top?: DeprecatedSpacingType
+    /** @deprecated */
+    bottom?: DeprecatedSpacingType
+    /** margin-left for the container transformed to `rem` */
+    /** @deprecated */
+    left?: DeprecatedSpacingType
+    /** margin-right for the container transformed to `rem` */
+    /** @deprecated */
+    right?: DeprecatedSpacingType
+    /** padding for the container transformed to `rem` */
+    /** @deprecated */
+    padded?: DeprecatedSpacingType
+    /** Gap between elements for a flex container */
+    /** @deprecated */
+    gap?: DeprecatedSpacingType
+  }
+
+type ContainerProps = {
+  <V extends VariantType = VariantType>(
+    props: PropsWithBaseSpacing<V> & { ref?: Ref<HTMLDivElement> | null }
+  ): ReactElement
+  <V extends VariantType = VariantType>(
+    props: PropsWithDeprecatedSpacing<V> & {
+      ref?: Ref<HTMLDivElement> | null
+    }
+  ): ReactElement
+  displayName?: string
+  defaultProps?: Partial<PropsWithBaseSpacing<VariantType>>
+}
+
+export type Props<V extends VariantType = VariantType> =
+  | PropsWithBaseSpacing<V>
+  | PropsWithDeprecatedSpacing<V>
+
 /**
  * Container component used for spacing 2 elements
  */
-export const Container = documentable(
-  forwardRef(
+export const Container: ContainerProps = documentable(
+  forwardRef<PropsWithBaseSpacing | PropsWithDeprecatedSpacing, HTMLDivElement>(
     <V extends VariantType>(
-      props: Props<V>,
+      props: PropsWithBaseSpacing<V> | PropsWithDeprecatedSpacing<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {
@@ -155,7 +203,7 @@ export const Container = documentable(
         </Component>
       )
     }
-  )
+  ) as ContainerProps
 )
 
 Container.displayName = 'Container'
