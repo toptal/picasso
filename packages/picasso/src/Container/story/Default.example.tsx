@@ -1,11 +1,10 @@
-// TODO: revert before the merge
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Container bottom='small'>Some text</Container>
+    <Container bottom={SPACING_8}>Some text</Container>
     <Container left={SPACING_4}>Some more text with a small margin</Container>
   </div>
 )
