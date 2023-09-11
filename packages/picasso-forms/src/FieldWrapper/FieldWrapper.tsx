@@ -5,10 +5,10 @@ import type { ValueType, IFormComponentProps } from '../FieldBase'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
-export type Props<TWrappedComponentProps, TInputValue> = Omit<
-  FieldProps<TWrappedComponentProps, TInputValue>,
-  'label'
-> & { label?: string }
+export type Props<TWrappedComponentProps, TInputValue> = FieldProps<
+  TWrappedComponentProps,
+  TInputValue
+>
 
 const FieldWrapper = <
   TWrappedComponentProps extends IFormComponentProps,
