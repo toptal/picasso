@@ -1,5 +1,15 @@
 # Change Log
 
+## 61.1.0
+
+### Minor Changes
+
+- [#3856](https://github.com/toptal/picasso/pull/3856) [`0f68c184a`](https://github.com/toptal/picasso/commit/0f68c184a42362dd99c78bc051bbddcc62d6ab44) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### FieldWrapper
+
+- change the type of label from string to ReactNode which allows you to have complex labels
+
 ## 61.0.2
 
 ### Patch Changes
