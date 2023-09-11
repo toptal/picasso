@@ -63,7 +63,7 @@
     "popper.js": "^1.16.1",
     "react-router-dom": "^5.3.4",
     "storybook-readme": "^5.0.9",
-    "styled-components": "^5.3.5"
+    "styled-components": "^6.0.7"
   },
   "resolutions": {
     "js-yaml": "^3.13.1",
