@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-
 import type { ReactNode, HTMLAttributes, Ref, ReactElement } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -7,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import type { PropTypes } from '@material-ui/core'
 import cx from 'classnames'
 import type { StandardProps, PicassoSpacing } from '@toptal/picasso-shared'
-import { spacingToRem, isNumericSpacing } from '@toptal/picasso-shared'
 import type { DeprecatedSpacingType } from '@toptal/picasso-provider/Picasso/config/spacings'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
@@ -123,11 +120,6 @@ export const Container: ContainerProps = documentable(
       const {
         children,
         className,
-        top,
-        bottom,
-        left,
-        right,
-        padded,
         inline,
         flex,
         direction,
@@ -138,24 +130,21 @@ export const Container: ContainerProps = documentable(
         rounded = false,
         variant,
         align,
-        gap,
         as: Component = inline ? 'span' : 'div',
         // Avoid passing external classes inside the rest props
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        /* eslint-disable @typescript-eslint/no-unused-vars */
         classes: externalClasses,
+        top,
+        bottom,
+        left,
+        right,
+        padded,
+        gap,
+        /* eslint-enable */
         ...rest
       } = props
 
       const classes = useStyles(props)
-
-      const margins = {
-        ...(isNumericSpacing(top) && { marginTop: spacingToRem(top) }),
-        ...(isNumericSpacing(bottom) && {
-          marginBottom: spacingToRem(bottom),
-        }),
-        ...(isNumericSpacing(left) && { marginLeft: spacingToRem(left) }),
-        ...(isNumericSpacing(right) && { marginRight: spacingToRem(right) }),
-      }
 
       return (
         <Component
@@ -164,14 +153,6 @@ export const Container: ContainerProps = documentable(
           className={cx(
             classes[`${variant}Variant`],
             {
-              [classes[`${padded}Padding`]]: typeof padded === 'string',
-              [classes[`${gap}Gap`]]: typeof gap === 'string',
-
-              [classes[`top${top}Margin`]]: typeof top === 'string',
-              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-              [classes[`left${left}Margin`]]: typeof left === 'string',
-              [classes[`right${right}Margin`]]: typeof right === 'string',
-
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
               [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
@@ -190,14 +171,7 @@ export const Container: ContainerProps = documentable(
             },
             className
           )}
-          style={{
-            ...margins,
-            ...(isNumericSpacing(padded) && {
-              padding: spacingToRem(padded),
-            }),
-            ...(isNumericSpacing(gap) && { gap: spacingToRem(gap) }),
-            ...style,
-          }}
+          style={{ ...style }}
         >
           {children}
         </Component>
