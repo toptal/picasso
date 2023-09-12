@@ -26,18 +26,19 @@ export type FieldProps<TInputValue> = FinalFieldProps<
 export type Props<
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue
-> = Omit<TWrappedComponentProps & FieldProps<TInputValue>, 'children'> & {
-  name: string
-  type?: string
-  label?: React.ReactNode
-  status?: OutlinedInputStatus
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children: (props: any) => React.ReactNode
-  renderFieldRequirements?: (props: {
-    value?: TInputValue
-    error?: boolean
-  }) => React.ReactNode
-}
+> = TWrappedComponentProps &
+  FieldProps<TInputValue> & {
+    name: string
+    type?: string
+    label?: React.ReactNode
+    status?: OutlinedInputStatus
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children: (props: any) => React.ReactNode
+    renderFieldRequirements?: (props: {
+      value?: TInputValue
+      error?: boolean
+    }) => React.ReactNode
+  }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getValidators = (required: boolean, validate?: any) => {
