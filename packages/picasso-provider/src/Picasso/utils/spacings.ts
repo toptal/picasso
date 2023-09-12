@@ -1,4 +1,4 @@
-import type { SizeType, SpacingType } from '../config/spacings'
+import type { ResponsiveSpacingType, SpacingType } from '../config/spacings'
 import { SpacingEnum, isPicassoSpacing } from '../config/spacings'
 
 const isNumericSpacing = (
@@ -10,10 +10,14 @@ const isNumericSpacing = (
   return isNotNull && (isNumber || isPicassoSpacing(spacing))
 }
 
-const spacingToRem = (spacing: SpacingType): string => {
-  return isNumericSpacing(spacing)
-    ? `${spacing}rem`
-    : `${SpacingEnum[spacing as SizeType<any>]}rem`
+const spacingToRem = (
+  spacing: Exclude<SpacingType, ResponsiveSpacingType>
+): string => {
+  if (typeof spacing == 'number' || isPicassoSpacing(spacing)) {
+    return `${spacing.valueOf()}rem`
+  }
+
+  return `${SpacingEnum[spacing]}rem`
 }
 
 export { isNumericSpacing, spacingToRem }

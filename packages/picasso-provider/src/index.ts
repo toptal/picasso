@@ -27,12 +27,15 @@ export {
   BreakpointKeys,
   spacings,
   SpacingEnum,
+  isResponsiveSpacing,
 } from './Picasso/config'
 
 export type {
   Sizes,
   SizeType,
   SpacingType,
+  ResponsiveSpacingType,
+  DeprecatedSpacingType,
   PicassoSpacing,
 } from './Picasso/config'
 
@@ -48,12 +51,6 @@ export {
   RootContext,
 } from './Picasso/RootContext'
 
-export {
-  generateRandomString,
-  generateRandomStringOrGetEmptyInTest,
-  getServersideStylesheets,
-  isNumericSpacing,
-  spacingToRem,
-} from './Picasso/utils'
+export * from './Picasso/utils'
 
 export { default as Favicon } from './Favicon'
