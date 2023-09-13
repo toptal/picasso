@@ -1,5 +1,15 @@
 # Change Log
 
+## 38.2.0
+
+### Minor Changes
+
+- [#3863](https://github.com/toptal/picasso/pull/3863) [`8d27c7475`](https://github.com/toptal/picasso/commit/8d27c7475cb096b325c1c8f972b4b3882e8bf619) Thanks [@alisanad007](https://github.com/alisanad007)!
+
+### Icon
+
+- update Twitter16 and Twitter24 icons
+
 ## 38.1.0
 
 ### Minor Changes
