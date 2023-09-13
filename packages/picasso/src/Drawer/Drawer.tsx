@@ -53,7 +53,7 @@ export const Drawer = (props: Props) => {
     title,
     width = 'regular',
     transitionProps,
-    maintainBodyScrollLock,
+    maintainBodyScrollLock = true,
     transparentBackdrop,
     ...rest
   } = props
@@ -88,6 +88,7 @@ export const Drawer = (props: Props) => {
       BackdropProps={{ invisible: transparentBackdrop }}
       disablePortal={disablePortal}
       container={container}
+      disableScrollLock
       ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}
       SlideProps={transitionProps}
     >
