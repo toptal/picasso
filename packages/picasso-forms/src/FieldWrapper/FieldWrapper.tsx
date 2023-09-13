@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import React from 'react'
 
 import type { Props as FieldProps } from '../Field'
@@ -5,10 +6,12 @@ import type { ValueType, IFormComponentProps } from '../FieldBase'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
-export type Props<TWrappedComponentProps, TInputValue> = FieldProps<
-  TWrappedComponentProps,
-  TInputValue
->
+export type Props<TWrappedComponentProps, TInputValue> = Omit<
+  FieldProps<TWrappedComponentProps, TInputValue>,
+  'label'
+> & {
+  label?: ReactNode
+}
 
 const FieldWrapper = <
   TWrappedComponentProps extends IFormComponentProps,
