@@ -20,8 +20,7 @@ import FixViewport from './FixViewport'
 import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProvider'
 import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
-import FixScrollbarJumpVW from '../FixScrollbarJumpVW'
-import FixScrollbarJumpScrollbarGutter from '../FixScrollbarJumpScrollbarGutter'
+import FixScrollbarJump from '../FixScrollbarJump'
 
 export interface PicassoProps extends TextLabelProps {
   children?: ReactNode
@@ -38,9 +37,7 @@ export interface PicassoProps extends TextLabelProps {
   /** Whether to load viewport fix or not */
   fixViewport?: boolean
   /** Whether to load scrollbar page jump fix or not */
-  fixScrollbarJumpVW?: boolean
-  /** Whether to load scrollbar page jump fix or not */
-  fixScrollbarJumpScrollbarGutter?: boolean
+  fixScrollbarJump?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
@@ -67,8 +64,7 @@ const Picasso = ({
   responsive,
   environment = 'development',
   children,
-  fixScrollbarJumpVW,
-  fixScrollbarJumpScrollbarGutter,
+  fixScrollbarJump,
   fixViewport,
   notificationContainer,
   RootComponent = PicassoRootNode,
@@ -116,10 +112,7 @@ const Picasso = ({
             {fixViewport && <FixViewport />}
             {loadFonts && <FontsLoader />}
             {reset && <CssBaseline />}
-            {fixScrollbarJumpVW && <FixScrollbarJumpVW />}
-            {fixScrollbarJumpScrollbarGutter && (
-              <FixScrollbarJumpScrollbarGutter />
-            )}
+            {fixScrollbarJump && <FixScrollbarJump />}
             {loadFavicon && <Favicon environment={environment} />}
             <NotificationsProvider container={notificationContainer}>
               {children}

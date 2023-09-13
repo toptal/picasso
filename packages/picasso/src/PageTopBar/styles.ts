@@ -13,6 +13,9 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       left: 0,
       right: 0,
       zIndex: zIndex.appBar,
+      [screens('xl')]: {
+        width: '100vw',
+      },
     },
     light: {
       backgroundColor: palette.common.white,
