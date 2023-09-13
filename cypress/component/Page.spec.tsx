@@ -1,6 +1,13 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
-import { Container, Menu, Page, Typography } from '@toptal/picasso'
+import {
+  Button,
+  Container,
+  Drawer,
+  Menu,
+  Page,
+  Typography,
+} from '@toptal/picasso'
 import { HAPPO_TARGETS, getHappoTargets } from '@toptal/picasso/test-utils'
 
 const component = 'Page'
@@ -10,6 +17,8 @@ enum TestIds {
   WRAPPER = 'wrapper',
   SIDEBAR_SCROLLABLE_CONTAINER = 'sidebar-scrollable-container',
   MENU_CONTAINER = 'menu-container',
+  DRAWER_BUTTON = 'drawer-button',
+  MENU_ITEM = 'menu_item',
 }
 
 const Paragraph = () => (
@@ -90,8 +99,50 @@ const Content = () => (
     <Paragraph />
     <Paragraph />
     <Paragraph />
+    <Paragraph />
+    <Paragraph />
+    <Paragraph />
   </Container>
 )
+
+const DrawerContent = () => {
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <Page data-testid={TestIds.WRAPPER}>
+      <Page.TopBar />
+      <Page.Content data-testid={TestIds.MENU_CONTAINER}>
+        <Page.Sidebar
+          wrapperMaxHeight={`calc(800px - 3.5rem)`}
+          style={{ height: 'unset' }}
+        >
+          <Page.Sidebar.Menu>
+            <Page.Sidebar.Item selected testIds={{ header: TestIds.MENU_ITEM }}>
+              Overview
+            </Page.Sidebar.Item>
+            <Page.Sidebar.Item>Jobs</Page.Sidebar.Item>
+          </Page.Sidebar.Menu>
+
+          <Page.Sidebar.Menu bottom>
+            <Page.Sidebar.Item>Help</Page.Sidebar.Item>
+          </Page.Sidebar.Menu>
+        </Page.Sidebar>
+        <Page.Article>
+          <Content />
+          <Drawer onClose={() => setOpen(false)} open={open}>
+            Drawer Content
+          </Drawer>
+          <Button
+            data-testid={TestIds.DRAWER_BUTTON}
+            onClick={() => setOpen(!open)}
+          >
+            Open drawer
+          </Button>
+        </Page.Article>
+      </Page.Content>
+    </Page>
+  )
+}
 
 type ExampleProps = {
   sidebarProps?: PageSidebarProps
@@ -149,6 +200,21 @@ describe('Page', () => {
       cy.get('body').happoScreenshot({
         component,
         variant: 'default/sticky-sidebar-scroll-bottom',
+      })
+    })
+    it('retains sticky position when Drawer is open', () => {
+      cy.viewport(1280, 800)
+      cy.mount(<DrawerContent />)
+
+      cy.getByTestId(TestIds.MENU_CONTAINER)
+        .getByTestId(TestIds.MENU_ITEM)
+        .should('be.visible')
+      cy.scrollTo('bottom')
+      cy.getByTestId(TestIds.DRAWER_BUTTON).click()
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'default/sticky-sidebar-scroll-bottom-with-drawer',
       })
     })
   })
