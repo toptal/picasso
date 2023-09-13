@@ -2,6 +2,6 @@
 '@toptal/picasso-forms': patch
 ---
 
-### Field
+### FieldWrapper
 
-- fix typing for form field component
+- fix typing for form field wrapper component
