@@ -107,7 +107,7 @@ const Picasso = ({
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
-          fixScrollbarJump={fixScrollbarJump}
+          fixScrollbarJump={!(fixScrollbarJump === false)}
         >
           <HelmetProvider disabled={disableHelmet}>
             {fixViewport && <FixViewport />}
