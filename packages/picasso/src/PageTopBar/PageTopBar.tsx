@@ -6,6 +6,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { usePageTopBar } from '@toptal/picasso-provider'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import { useFixScrollbarJump } from '@toptal/picasso-provider/Picasso/RootContext'
 
 import Logo from '../Logo'
 import Container from '../Container'
@@ -69,6 +70,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const classes = useStyles()
 
   const { setHasTopBar } = usePageTopBar()
+  const { fixScrollbarJump } = useFixScrollbarJump()
   const { setHasTopBar: setHasTopBarHamburger, hasTopBar } =
     useHamburgerContext()
 
@@ -114,6 +116,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     {
       [classes.fullWidth]: fullWidth || width === 'full',
       [classes.wide]: width === 'wide',
+      [classes.fixScrollbarJump]: fixScrollbarJump,
     },
     classes.content
   )

@@ -15,6 +15,7 @@ export interface RootContextProps extends TextLabelProps {
   setHasDrawer: (value: boolean) => void
   disableTransitions?: boolean
   currentBreakpointRange?: BreakpointKeys
+  fixScrollbarJump?: boolean
 }
 
 export const RootContext = React.createContext<RootContextProps>({
@@ -78,5 +79,13 @@ export const useCurrentBreakpointRange = () => {
 
   return {
     currentBreakpointRange: context.currentBreakpointRange,
+  }
+}
+
+export const useFixScrollbarJump = () => {
+  const context = useContext(RootContext)
+
+  return {
+    fixScrollbarJump: context.fixScrollbarJump,
   }
 }

@@ -4,7 +4,7 @@ import { createStyles } from '@material-ui/core/styles'
 export default ({ screens }: Theme) =>
   createStyles({
     '@global': {
-      [screens('xl')]: {
+      [screens('md', 'lg', 'xl')]: {
         html: {
           width: '100%',
           overflowX: 'hidden',

@@ -13,9 +13,6 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       left: 0,
       right: 0,
       zIndex: zIndex.appBar,
-      [screens('xl')]: {
-        width: '100vw',
-      },
     },
     light: {
       backgroundColor: palette.common.white,
@@ -36,9 +33,13 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       maxWidth: layout.contentWidth,
       padding: `0 ${layout.contentMobilePaddingHorizontal}`,
       height: headerHeight.default,
-
       [screens('md', 'lg', 'xl')]: {
         padding: `0 ${layout.contentPaddingHorizontal}`,
+      },
+    },
+    fixScrollbarJump: {
+      [screens('md', 'lg', 'xl')]: {
+        width: '100vw',
       },
     },
     wrapper: {
