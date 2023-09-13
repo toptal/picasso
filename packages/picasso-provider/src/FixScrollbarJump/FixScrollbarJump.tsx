@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoFixScrollbarJumpVW',
+  name: 'PicassoFixScrollbarJump',
 })
 
 /**

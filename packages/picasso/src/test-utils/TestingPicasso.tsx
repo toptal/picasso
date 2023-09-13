@@ -13,6 +13,7 @@ export const TestingPicasso = ({ children, titleCase }: Props) => {
       loadFonts={false}
       fixViewport={false}
       titleCase={titleCase}
+      fixScrollbarJump={false}
       disableTransitions
     >
       {children}

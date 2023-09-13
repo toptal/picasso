@@ -178,7 +178,12 @@ const CodeExample = (props: Props) => {
    */
   if (TEST_ENV === 'visual') {
     const renderInTestPicasso = (element: ReactNode) => (
-      <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
+      <Picasso
+        loadFonts={false}
+        fixViewport={false}
+        loadFavicon={false}
+        fixScrollbarJump={false}
+      >
         <Purifier>{element}</Purifier>
       </Picasso>
     )
