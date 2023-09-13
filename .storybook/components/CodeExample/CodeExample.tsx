@@ -97,7 +97,7 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
   }
 
   return (
-    <Picasso fixViewport={false} loadFavicon={false}>
+    <Picasso fixViewport={false} loadFavicon={false} fixScrollbarJump={false}>
       <Purifier>{children}</Purifier>
     </Picasso>
   )

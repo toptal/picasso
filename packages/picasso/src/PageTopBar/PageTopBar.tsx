@@ -116,7 +116,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     {
       [classes.fullWidth]: fullWidth || width === 'full',
       [classes.wide]: width === 'wide',
-      [classes.fixScrollbarJump]: fixScrollbarJump,
     },
     classes.content
   )
@@ -126,7 +125,9 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
       <header
         {...rest}
         ref={ref}
-        className={cx('mui-fixed', classes.root, classes[variant], className)}
+        className={cx('mui-fixed', classes.root, classes[variant], className, {
+          [classes.fixScrollbarJump]: fixScrollbarJump,
+        })}
         style={style}
       >
         <div className={innerClassName}>
