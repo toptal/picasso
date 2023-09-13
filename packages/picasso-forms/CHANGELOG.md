@@ -1,5 +1,15 @@
 # Change Log
 
+## 61.1.2
+
+### Patch Changes
+
+- [#3864](https://github.com/toptal/picasso/pull/3864) [`699df1b88`](https://github.com/toptal/picasso/commit/699df1b88a3f9b074171aa0b50db00f8dabedd24) Thanks [@sashuk](https://github.com/sashuk)!
+
+### FieldWrapper
+
+- fix typing for form field wrapper component
+
 ## 61.1.1
 
 ### Patch Changes
