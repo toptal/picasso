@@ -10,7 +10,11 @@ const App = () => (
       <Page.TopBar title='App Page' />
       <Page.Content>
         <Page.Article>
-          <Container top={7} bottom={7} flex justifyContent='center'>
+          <Container
+            flex
+            justifyContent='center'
+            style={{ paddingTop: '7rem', paddingBottom: '7rem' }}
+          >
             Your application goes here
           </Container>
         </Page.Article>

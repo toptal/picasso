@@ -59,13 +59,6 @@ const Example = () => (
           </Paper>
         </Container>
       </Grid.Item>
-      <Grid.Item>
-        <Container top={5} bottom={5} left={5} right={5}>
-          <Paper>
-            <span>custom</span>
-          </Paper>
-        </Container>
-      </Grid.Item>
     </Grid>
 
     <Container bottom={SPACING_4}>Inner spacing</Container>
@@ -95,13 +88,6 @@ const Example = () => (
         <Paper>
           <Container padded={SPACING_8}>
             <span>large</span>
-          </Container>
-        </Paper>
-      </Grid.Item>
-      <Grid.Item>
-        <Paper>
-          <Container padded={5}>
-            <span>custom</span>
           </Container>
         </Paper>
       </Grid.Item>

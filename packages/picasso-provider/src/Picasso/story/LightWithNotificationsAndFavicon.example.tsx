@@ -19,7 +19,11 @@ const App = ({ children }: { children?: ReactNode }) => {
           <Page.TopBar title='Picasso with notifications provider and favicon' />
           <Page.Content>
             <Page.Article>
-              <Container top={7} bottom={7} flex justifyContent='center'>
+              <Container
+                flex
+                justifyContent='center'
+                style={{ paddingTop: '7rem', paddingBottom: '7rem' }}
+              >
                 <Button
                   data-testid='trigger'
                   variant='secondary'

@@ -15,7 +15,11 @@ const App = ({ children }: { children: ReactNode }) => (
       <Page.TopBar title='Picasso with viewport fixing utility and fonts loaded' />
       <Page.Content>
         <Page.Article>
-          <Container top={7} bottom={7} flex justifyContent='center'>
+          <Container
+            flex
+            justifyContent='center'
+            style={{ paddingTop: '7rem', paddingBottom: '7rem' }}
+          >
             {children}
           </Container>
         </Page.Article>
