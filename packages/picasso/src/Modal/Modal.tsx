@@ -74,17 +74,13 @@ const focusFirstFocusableElement = (node: Element) => {
   // Convert NodeList to Array
   const focusableElements = Array.prototype.slice.call(elements)
 
-  console.log(focusableElements)
-  // if (focusableElements.length > 0) {
-  //   focusableElements[0].focus()
-  // }
+  if (focusableElements.length > 0) {
+    focusableElements[0].focus()
+  }
 }
 
 const isFocusInsideModal = (modalNode: Element) => {
   const modalContainsFocusedElement = modalNode.contains(document.activeElement)
-
-  console.log(modalContainsFocusedElement)
-  console.log(document.activeElement)
 
   if (modalContainsFocusedElement) {
     return true
