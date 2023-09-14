@@ -97,7 +97,7 @@ const PicassoSSR: FunctionComponent = ({ children }) => {
   }
 
   return (
-    <Picasso fixViewport={false} loadFavicon={false} fixScrollbarJump={false}>
+    <Picasso fixViewport={false} loadFavicon={false}>
       <Purifier>{children}</Purifier>
     </Picasso>
   )
@@ -178,12 +178,7 @@ const CodeExample = (props: Props) => {
    */
   if (TEST_ENV === 'visual') {
     const renderInTestPicasso = (element: ReactNode) => (
-      <Picasso
-        loadFonts={false}
-        fixViewport={false}
-        loadFavicon={false}
-        fixScrollbarJump={false}
-      >
+      <Picasso loadFonts={false} fixViewport={false} loadFavicon={false}>
         <Purifier>{element}</Purifier>
       </Picasso>
     )

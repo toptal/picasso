@@ -107,7 +107,7 @@ const Picasso = ({
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
-          fixScrollbarJump={!(fixScrollbarJump === false)}
+          fixScrollbarJump={fixScrollbarJump}
         >
           <HelmetProvider disabled={disableHelmet}>
             {fixViewport && <FixViewport />}
@@ -134,7 +134,6 @@ Picasso.defaultProps = {
   fixViewport: true,
   injectFirst: undefined,
   RootComponent: PicassoRootNode,
-  fixScrollbarJump: true,
 }
 
 export default Picasso
