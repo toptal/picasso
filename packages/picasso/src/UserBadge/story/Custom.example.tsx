@@ -1,5 +1,6 @@
 import React from 'react'
 import { UserBadge, Typography, Avatar, Container } from '@toptal/picasso'
+import { SPACING_2 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -17,7 +18,7 @@ const Example = () => (
       <Typography variant='body' size='xsmall'>
         Worked as
       </Typography>
-      <Container left='xsmall'>
+      <Container left={SPACING_2}>
         <Typography size='xsmall'>UI specialist</Typography>
         <Typography size='xsmall'>Painter</Typography>
         <Typography size='xsmall'>Student</Typography>

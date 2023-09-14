@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Select, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const OPTION_GROUPS = {
   'Group 1': [
@@ -37,7 +38,7 @@ const Example = () => {
 
   return (
     <Container flex inline>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Typography variant='heading' size='small'>
           Native
         </Typography>
@@ -50,7 +51,7 @@ const Example = () => {
           native
         />
       </Container>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Typography variant='heading' size='small'>
           Non native
         </Typography>

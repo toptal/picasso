@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   Referrals16,
   Overview16,
@@ -64,7 +65,7 @@ const Menu = () => (
 )
 
 const Example = () => (
-  <Container flex gap='small'>
+  <Container flex gap={SPACING_4}>
     <Page.Sidebar size='large'>
       <Menu />
     </Page.Sidebar>

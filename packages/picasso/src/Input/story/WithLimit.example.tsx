@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Input, Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 type ChangeHandler = (event: React.ChangeEvent<{ value: string }>) => void
 
@@ -27,11 +28,11 @@ const InputWithLimitExample = () => {
 
   return (
     <Container flex direction='column'>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           Remaining chars counter:
         </Typography>
-        <Container top='small' bottom='small'>
+        <Container top={SPACING_4} bottom={SPACING_4}>
           <Input
             limit={10}
             value={inputRemainingValue}
@@ -50,11 +51,11 @@ const InputWithLimitExample = () => {
         </Container>
       </Container>
 
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           Entered chars counter:
         </Typography>
-        <Container top='small' bottom='small'>
+        <Container top={SPACING_4} bottom={SPACING_4}>
           <Input
             counter='entered'
             value={inputEnteredValue}

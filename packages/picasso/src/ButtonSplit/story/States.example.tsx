@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react'
 import React from 'react'
 import { Button, Menu, Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 type ButtonSplitProps = ComponentProps<typeof Button.Split>
 
@@ -92,13 +93,13 @@ const Example = () => {
         Primary (Default)
       </Typography>
 
-      <Container flex top='small' bottom='small'>
+      <Container flex top={SPACING_4} bottom={SPACING_4}>
         {renderStates()}
       </Container>
       <Typography variant='heading' size='small'>
         Secondary
       </Typography>
-      <Container flex top='small'>
+      <Container flex top={SPACING_4}>
         {renderStates({ variant: 'secondary' })}
       </Container>
     </>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Link, Typography } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_8, SPACING_6, palette } from '@toptal/picasso/utils'
 
 const ColorLinkExample = () => (
   <div>
-    <Container inline right='large'>
+    <Container inline right={SPACING_8}>
       <Typography size='medium'>
         <Link href={window.parent.location.href + '#'}>Blue Link</Link>
       </Typography>
@@ -12,7 +12,7 @@ const ColorLinkExample = () => (
     <Container
       inline
       style={{ backgroundColor: palette.grey.darker }}
-      padded='medium'
+      padded={SPACING_6}
     >
       <Typography size='medium'>
         <Link color='white' href={window.parent.location.href + '#'}>

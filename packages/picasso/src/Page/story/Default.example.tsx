@@ -11,6 +11,7 @@ import {
   Home16,
   HeartbeatResponsive,
 } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
@@ -79,8 +80,8 @@ const ActionItems = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small'>
-    <Container bottom='small'>
+  <Container top={SPACING_4} bottom={SPACING_4}>
+    <Container bottom={SPACING_4}>
       <Typography align='center' variant='heading' size='large'>
         Default example
       </Typography>

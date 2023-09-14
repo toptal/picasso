@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -11,13 +12,13 @@ const Example = () => (
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>
-    <Container inline left='small'>
+    <Container inline left={SPACING_4}>
       <Avatar size='medium' name='Jacqueline Roque' />
     </Container>
-    <Container inline left='small'>
+    <Container inline left={SPACING_4}>
       <Avatar size='medium' />
     </Container>
-    <Container inline left='small'>
+    <Container inline left={SPACING_4}>
       <Avatar
         variant='portrait'
         size='medium'
@@ -26,7 +27,7 @@ const Example = () => (
         src='./jacqueline-with-flowers-1954-square.jpg'
       />
     </Container>
-    <Container inline left='small'>
+    <Container inline left={SPACING_4}>
       <Avatar
         variant='landscape'
         size='medium'

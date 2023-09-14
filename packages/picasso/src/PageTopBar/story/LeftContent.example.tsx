@@ -1,5 +1,6 @@
 import React from 'react'
 import type { AutocompleteItem } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import { Page, Container, Button, UserBadge, Typography } from '@toptal/picasso'
 
 const options = [
@@ -23,7 +24,7 @@ const Example = () => (
     <Page.TopBar
       title='Onboarding'
       actionItems={
-        <Container right='medium'>
+        <Container right={SPACING_6}>
           <Button variant='transparent'>Create job</Button>
         </Container>
       }

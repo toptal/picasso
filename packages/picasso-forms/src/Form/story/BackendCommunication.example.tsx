@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { FormNonCompound, Input, SubmitButton } from '@toptal/picasso-forms'
 
 const BackendCommunicationExample = () => {
@@ -43,7 +44,7 @@ const BackendCommunicationExample = () => {
           width='full'
         />
 
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <SubmitButton variant='positive' data-testid='success-submit-button'>
             Login Success
           </SubmitButton>
@@ -69,7 +70,7 @@ const BackendCommunicationExample = () => {
           width='full'
         />
 
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <SubmitButton
             variant='negative'
             data-testid='submit-with-inline-error-button'
@@ -95,7 +96,7 @@ const BackendCommunicationExample = () => {
           width='full'
         />
 
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <SubmitButton
             variant='negative'
             data-testid='submit-with-custom-notification-button'

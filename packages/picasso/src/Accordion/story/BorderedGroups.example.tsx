@@ -1,11 +1,12 @@
 import React from 'react'
 import { Accordion, Container, Grid, Typography } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => {
   return (
     <Grid>
       <Grid.Item sm={4}>
-        <Container bottom='medium'>
+        <Container bottom={SPACING_6}>
           <Typography variant='heading'>All Borders</Typography>
         </Container>
 
@@ -25,7 +26,7 @@ const Example = () => {
       </Grid.Item>
 
       <Grid.Item sm={4}>
-        <Container bottom='medium'>
+        <Container bottom={SPACING_6}>
           <Typography variant='heading'>Middle Borders</Typography>
         </Container>
 
@@ -44,7 +45,7 @@ const Example = () => {
         </Accordion>
       </Grid.Item>
       <Grid.Item sm={4}>
-        <Container bottom='medium'>
+        <Container bottom={SPACING_6}>
           <Typography variant='heading'>No Borders</Typography>
         </Container>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Container, Typography, Badge } from '@toptal/picasso'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <>
@@ -9,7 +10,7 @@ const Example = () => (
       </Typography>
     </Container>
 
-    <Container top='small' flex bottom='medium' gap='small'>
+    <Container top={SPACING_4} flex bottom={SPACING_6} gap={SPACING_4}>
       <Badge content={1} variant='white' size='small'>
         <Avatar name='Jacqueline Roque' />
       </Badge>
@@ -27,7 +28,7 @@ const Example = () => (
       </Typography>
     </Container>
 
-    <Container top='small' flex gap='small'>
+    <Container top={SPACING_4} flex gap={SPACING_4}>
       <Badge content={100} variant='red' size='small'>
         <Avatar name='Adam Jones' />
       </Badge>

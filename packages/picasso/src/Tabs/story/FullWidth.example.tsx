@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_4, palette } from '@toptal/picasso/utils'
 
 const TAB_COUNT = 2
 
@@ -19,7 +19,7 @@ const Example = () => {
           <Tabs.Tab key={index} label='Label' />
         ))}
       </Tabs>
-      <Container padded='small'>Content of tab #{value}</Container>
+      <Container padded={SPACING_4}>Content of tab #{value}</Container>
     </div>
   )
 }

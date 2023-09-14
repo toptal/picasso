@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   FormSpy,
   FormNonCompound,
@@ -30,7 +31,7 @@ const Example = () => (
       )}
     </FormSpy>
 
-    <Container top='small'>
+    <Container top={SPACING_4}>
       <FormSpy>
         {({ pristine, values }) => {
           const isDisabled = pristine || !values?.lastName

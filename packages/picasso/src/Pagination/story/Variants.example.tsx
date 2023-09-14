@@ -1,14 +1,15 @@
 import React from 'react'
 import { Pagination, Container, Typography } from '@toptal/picasso'
+import { SPACING_2, SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <Container flex direction='column' justifyContent='space-between'>
-    <Container bottom='xsmall'>
+    <Container bottom={SPACING_2}>
       <Typography variant='heading' size='small'>
         Default
       </Typography>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Pagination
         activePage={3}
         onPageChange={handlePageChange}
@@ -16,7 +17,7 @@ const Example = () => (
       />
     </Container>
 
-    <Container bottom='xsmall'>
+    <Container bottom={SPACING_2}>
       <Typography variant='heading' size='small'>
         Compact
       </Typography>

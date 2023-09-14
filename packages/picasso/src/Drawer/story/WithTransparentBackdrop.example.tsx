@@ -1,4 +1,5 @@
 import { Button, Typography, Container, Drawer } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import React, { useState } from 'react'
 
 const Example = () => {
@@ -10,7 +11,7 @@ const Example = () => {
         Show drawer
       </Button>
       <Drawer open={open} transparentBackdrop onClose={() => setOpen(false)}>
-        <Container data-testid='content' padded='small'>
+        <Container data-testid='content' padded={SPACING_4}>
           <Typography>
             This is the content. The backdrop doesn't have dark overlay, it is
             transparent.

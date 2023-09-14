@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import { Container, Rating, Typography } from '@toptal/picasso'
+import { SPACING_4, SPACING_6, SPACING_10 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [starsValue, setStarsValue] = useState(1)
@@ -11,8 +12,8 @@ const Example = () => {
   }
 
   return (
-    <Container padded='small'>
-      <Container bottom='medium'>
+    <Container padded={SPACING_4}>
+      <Container bottom={SPACING_6}>
         <Typography size='medium' variant='heading'>
           Stars
         </Typography>
@@ -28,7 +29,7 @@ const Example = () => {
           Thumbs
         </Typography>
         <Container flex>
-          <Container right='xlarge'>
+          <Container right={SPACING_10}>
             <Rating.Thumbs
               onChange={setThumbsValue}
               name='rating-thumbs'

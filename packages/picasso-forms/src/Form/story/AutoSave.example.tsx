@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Container, FormAutoSaveIndicator, Typography } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 import type { ChangedFields } from '@toptal/picasso-forms'
 import {
   FormNonCompound as Form,
@@ -52,7 +53,7 @@ const Example = () => {
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       decorators={[autoSaveDecorator]}
     >
-      <Container flex direction='row' gap='medium'>
+      <Container flex direction='row' gap={SPACING_6}>
         <Container>
           <Input
             required
@@ -95,7 +96,7 @@ const Example = () => {
             }
           />
         </Container>
-        <Container variant='grey' padded='medium'>
+        <Container variant='grey' padded={SPACING_6}>
           <Typography size='small'>
             Values should be updated only after subscribed fields changes.
           </Typography>
@@ -109,7 +110,7 @@ const Example = () => {
         </Container>
       </Container>
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <SubmitButton>Submit</SubmitButton>
       </Container>
     </Form>

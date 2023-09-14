@@ -5,8 +5,9 @@ import {
   Typography,
   Table,
   Helpbox,
-  PageHead
+  PageHead,
 } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Section } from '@toptal/picasso'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
@@ -28,7 +29,7 @@ const MainContent = () => (
       </PageHead.Main>
     </PageHead>
     <Section title='Details'>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           UI/UX Designer
         </Typography>

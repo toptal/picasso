@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const handleEdit = () => {
@@ -7,7 +8,7 @@ const Example = () => {
   }
 
   return (
-    <Container gap='medium' flex>
+    <Container gap={SPACING_6} flex>
       <Avatar name='Jacqueline Roque' onEdit={handleEdit} />
       <Avatar
         alt='Jacqueline Roque. Pablo Picasso, 1954'

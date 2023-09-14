@@ -7,6 +7,7 @@ import {
   Menu,
   Typography,
 } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 const SlideMenu = () => (
   <Menu>
@@ -117,7 +118,7 @@ const DrilldownMenuWithDescIcon = () => (
 
 const Example = () => {
   return (
-    <Container flex gap='medium'>
+    <Container flex gap={SPACING_6}>
       <ExampleContainer title='Slide (default)'>
         <SlideMenu />
       </ExampleContainer>
@@ -145,7 +146,7 @@ const ExampleContainer = ({
   children: React.ReactNode
 }) => {
   return (
-    <Container flex gap='small' direction='column'>
+    <Container flex gap={SPACING_4} direction='column'>
       <Typography variant='heading' size='small'>
         {title}
       </Typography>

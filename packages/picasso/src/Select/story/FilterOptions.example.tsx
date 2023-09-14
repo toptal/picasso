@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState, useCallback } from 'react'
 import type { SelectOption } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Select, Container, Typography } from '@toptal/picasso'
 
 const FilterOptionsExample = () => {
@@ -36,7 +37,7 @@ const FilterOptionsExample = () => {
 
   return (
     <Container flex inline>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Typography variant='heading' size='small'>
           Non grouped
         </Typography>
@@ -51,7 +52,7 @@ const FilterOptionsExample = () => {
           filterOptions={filterOptions}
         />
       </Container>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Typography variant='heading' size='small'>
           Grouped
         </Typography>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_2, palette } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -13,9 +13,9 @@ const Example = () => (
     <Button variant='secondary'>Secondary</Button>
 
     <Container
-      top='small'
-      left='small'
-      padded={0.5}
+      top={SPACING_4}
+      left={SPACING_4}
+      padded={SPACING_2}
       inline
       style={{ backgroundColor: palette.blue.main }}
     >

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import type { FormConfigProps } from '@toptal/picasso-forms'
 import {
   FormNonCompound,
@@ -24,7 +25,7 @@ const Example = () => (
         placeholder='e.g. Bruce'
       />
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <SubmitButton>Submit</SubmitButton>
       </Container>
     </FormNonCompound>

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Grid, Button, Container, Typography } from '@toptal/picasso'
+import { SPACING_8, SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Container bottom='large'>
-      <Container bottom='small'>
+    <Container bottom={SPACING_8}>
+      <Container bottom={SPACING_4}>
         <Typography>Row direction</Typography>
       </Container>
 
@@ -18,7 +19,7 @@ const Example = () => (
       </Grid>
     </Container>
 
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Typography>Column direction</Typography>
     </Container>
 

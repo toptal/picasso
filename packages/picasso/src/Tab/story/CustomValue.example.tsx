@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 type Value = number | string | boolean
 
@@ -18,7 +19,7 @@ const Example = () => {
         <Tabs.Tab value='interviews' label='Interviews' />
       </Tabs>
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         Current <i>value</i> is equal <code>{JSON.stringify(value)}</code>
       </Container>
     </div>

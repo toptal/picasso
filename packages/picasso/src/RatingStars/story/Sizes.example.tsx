@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import { Container, Rating, Typography } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [smallValue, setSmallValue] = useState(1)
@@ -18,17 +19,17 @@ const Example = () => {
 
   return (
     <Container>
-      <Container bottom='medium'>
+      <Container bottom={SPACING_6}>
         <Typography variant='heading' size='medium'>
           Stars
         </Typography>
 
         <Container flex direction='row'>
-          <Container padded='small'>
+          <Container padded={SPACING_4}>
             <Typography variant='heading' size='small'>
               Small (default)
             </Typography>
-            <Container top='small' bottom='small'>
+            <Container top={SPACING_4} bottom={SPACING_4}>
               <Rating.Stars
                 size='small'
                 onChange={onChangeSmall}
@@ -38,11 +39,11 @@ const Example = () => {
             </Container>
           </Container>
 
-          <Container padded='small'>
+          <Container padded={SPACING_4}>
             <Typography variant='heading' size='small'>
               Large
             </Typography>
-            <Container top='small' bottom='small'>
+            <Container top={SPACING_4} bottom={SPACING_4}>
               <Rating.Stars
                 size='large'
                 onChange={onChangeLarge}
@@ -59,11 +60,11 @@ const Example = () => {
           Thumbs
         </Typography>
         <Container flex direction='row'>
-          <Container padded='small'>
+          <Container padded={SPACING_4}>
             <Typography variant='heading' size='small'>
               Small (default)
             </Typography>
-            <Container top='small' bottom='small'>
+            <Container top={SPACING_4} bottom={SPACING_4}>
               <Rating.Thumbs
                 size='small'
                 onChange={setThumbsSmallValue}
@@ -73,11 +74,11 @@ const Example = () => {
             </Container>
           </Container>
 
-          <Container padded='small'>
+          <Container padded={SPACING_4}>
             <Typography variant='heading' size='small'>
               Large
             </Typography>
-            <Container top='small' bottom='small'>
+            <Container top={SPACING_4} bottom={SPACING_4}>
               <Rating.Thumbs
                 size='large'
                 onChange={setThumbsLargeValue}

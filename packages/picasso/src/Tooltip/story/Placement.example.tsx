@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tooltip, Button, Container, Grid } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <Container style={{ padding: 100, width: 600 }}>
@@ -22,7 +23,7 @@ const Example = () => (
         </Grid.Item>
       </Grid>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Grid direction='row'>
         <Grid.Item sm={4}>
           <Tooltip placement='left-start' content='Content' open>
@@ -37,7 +38,7 @@ const Example = () => (
         </Grid.Item>
       </Grid>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Grid direction='row'>
         <Grid.Item sm={4}>
           <Tooltip placement='left' content='Content' open>
@@ -52,7 +53,7 @@ const Example = () => (
         </Grid.Item>
       </Grid>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Grid direction='row'>
         <Grid.Item sm={4}>
           <Tooltip placement='left-end' content='Content' open>
@@ -67,7 +68,7 @@ const Example = () => (
         </Grid.Item>
       </Grid>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Grid direction='row'>
         <Grid.Item sm={4}>
           <Tooltip placement='bottom-start' content='Content' open>
