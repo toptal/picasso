@@ -1,23 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  WaterfallWhite64,
-  WaterfallBlue64,
-} from '@toptal/picasso-pictograms/Pictogram'
-import { Container } from '@toptal/picasso'
+  QueryBuilder,
+  type RuleGroupTypeAny,
+} from '@toptal/picasso-query-builder'
 
-const Example = () => (
-  <Container flex>
-    <Container right='medium'>
-      <Container padded='medium' variant='grey'>
-        <WaterfallWhite64 />
-      </Container>
-    </Container>
-    <Container>
-      <Container padded='medium' variant='grey'>
-        <WaterfallBlue64 />
-      </Container>
-    </Container>
-  </Container>
-)
+const emptyQueryBuilderQuery = {
+  rules: [],
+  combinator: 'and',
+}
+
+const fields = [
+  {
+    name: 'firstName',
+    label: 'First Name',
+    placeholder: 'Enter first name',
+    inputType: 'text',
+  },
+]
+
+const Example = () => {
+  const [query, setQuery] = useState<RuleGroupTypeAny>(emptyQueryBuilderQuery)
+
+  const handleQueryChange = (newQuery: RuleGroupTypeAny) => {
+    setQuery(newQuery)
+  }
+
+  return (
+    <QueryBuilder
+      fields={fields}
+      query={query}
+      onQueryChange={handleQueryChange}
+    />
+  )
+}
 
 export default Example

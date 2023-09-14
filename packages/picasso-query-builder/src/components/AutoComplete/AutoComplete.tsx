@@ -64,7 +64,7 @@ export const AutoComplete = ({
     <Container
       // css={S.root({ fullWidth })}
       // TODO: delete line below
-      style={fullWidth}
+      style={{ background: fullWidth ? 'none' : 'transparent' }}
     >
       <PicassoTagSelector
         width='full'
