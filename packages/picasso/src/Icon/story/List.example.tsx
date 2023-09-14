@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Paper, Typography, Container, Input } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import * as icons from '@toptal/picasso/Icon'
 
 /** We don't want to render internal icons */
@@ -47,7 +48,7 @@ const Example = () => {
                   flex
                   alignItems='center'
                   justifyContent='center'
-                  padded='small'
+                  padded={SPACING_4}
                   style={{
                     paddingBottom: '0.5rem',
                     minWidth: '9rem',

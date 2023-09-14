@@ -1,8 +1,8 @@
 import React from 'react'
 import type { ContainerProps } from '@toptal/picasso'
+import { SPACING_8 } from '@toptal/picasso/utils'
 import { Logo, Container } from '@toptal/picasso'
 import type { PicassoSpacing } from '@toptal/picasso-provider/Picasso/config/spacings'
-import { SPACING_8 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -24,7 +24,7 @@ const Example = () => (
       </LogoContainer>
     </div>
 
-    <Container top='large'>
+    <Container top={SPACING_8}>
       <LogoContainer bgcolor='#ffffff' inline right='small'>
         <Logo emblem />
       </LogoContainer>

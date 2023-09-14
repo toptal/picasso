@@ -1,4 +1,5 @@
 import { Button, Container, List, Drawer, Checkbox } from '@toptal/picasso'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
 import React, { useState } from 'react'
 
 const Example = () => {
@@ -14,7 +15,7 @@ const Example = () => {
         }}
         label='Maintain body scroll lock'
       />
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <Button data-testid='trigger' onClick={() => setOpen(!open)}>
           Show drawer
         </Button>
@@ -25,7 +26,7 @@ const Example = () => {
         onClose={() => setOpen(false)}
         maintainBodyScrollLock={maintainBodyScrollLock}
       >
-        <Container data-testid='content' padded='medium'>
+        <Container data-testid='content' padded={SPACING_6}>
           <List variant='ordered'>
             {Array(100)
               .fill(undefined)

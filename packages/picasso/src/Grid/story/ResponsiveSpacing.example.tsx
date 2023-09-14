@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Grid, Container, Button } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { useScreens } from '@toptal/picasso-provider'
 
 const BorderedContainer = () => {
@@ -13,7 +14,7 @@ const BorderedContainer = () => {
   }) as string
 
   return (
-    <Container padded='small' bordered rounded>
+    <Container padded={SPACING_4} bordered rounded>
       {currentSpacing}
     </Container>
   )
@@ -33,7 +34,7 @@ const Example = () => {
       <Container>
         <Grid>{gridItems}</Grid>
       </Container>
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <Button onClick={() => setGridItems([...gridItems, gridItem])}>
           Add another grid item
         </Button>

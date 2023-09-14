@@ -1,5 +1,6 @@
 import React from 'react'
 import { Dropdown, Menu, UserBadge } from '@toptal/picasso'
+import { SPACING_2 } from '@toptal/picasso/utils'
 
 const handleClick = () => window.alert('Item clicked')
 
@@ -13,7 +14,7 @@ const Example = () => (
           <Menu.Item onClick={handleClick}>Third item</Menu.Item>
         </Menu>
       }
-      offset={{ top: 'xsmall' }}
+      offset={{ top: SPACING_2 }}
     >
       <UserBadge
         name='Jacqueline Roque'

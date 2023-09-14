@@ -3,6 +3,7 @@ import type {
   AvatarUploadFileUpload,
   AvatarUploadFileRejection,
 } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Container } from '@toptal/picasso'
 import {
   FormNonCompound as Form,
@@ -58,7 +59,7 @@ const FormRenderer = () => {
         uploading={uploading}
       />
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <SubmitButton>Submit</SubmitButton>
       </Container>
     </>

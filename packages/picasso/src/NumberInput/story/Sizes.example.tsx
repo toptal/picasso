@@ -1,6 +1,7 @@
 import type { ChangeEventHandler } from 'react'
 import React, { useState } from 'react'
 import { NumberInput, Container, FormLabel } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const SizesExample = () => {
   const [value, setValue] = useState('1')
@@ -11,7 +12,7 @@ const SizesExample = () => {
 
   return (
     <Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <FormLabel htmlFor='small-number-input'>Small</FormLabel>
         <NumberInput
           id='small-number-input'
@@ -24,7 +25,7 @@ const SizesExample = () => {
         />
       </Container>
 
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <FormLabel htmlFor='medium-number-input'>Medium (default)</FormLabel>
         <NumberInput
           id='medium-number-input'
@@ -37,7 +38,7 @@ const SizesExample = () => {
         />
       </Container>
 
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <FormLabel htmlFor='large-number-input'>Large</FormLabel>
         <NumberInput
           id='large-number-input'

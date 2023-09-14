@@ -1,12 +1,13 @@
 import React from 'react'
 import { Page, Menu, Container, Button, Tag } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div style={{ height: '4.5rem' }}>
     <Page.TopBar
       rightContent={<RightContent />}
       actionItems={
-        <Container right='medium'>
+        <Container right={SPACING_6}>
           <Button variant='transparent'>Create job</Button>
         </Container>
       }

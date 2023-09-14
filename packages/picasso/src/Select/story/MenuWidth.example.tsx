@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -10,7 +11,7 @@ const Example = () => {
 
   return (
     <Container flex inline>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Select
           onChange={handleChange}
           options={OPTIONS}

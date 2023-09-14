@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container, Form } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -9,7 +10,7 @@ const Example = () => {
   }
 
   return (
-    <Container flex gap='small'>
+    <Container flex gap={SPACING_4}>
       <Container>
         <Form.Field>
           <Form.Label>Select is disabled</Form.Label>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   FormNonCompound,
   RadioGroup,
@@ -30,7 +31,7 @@ const Example = () => (
       <Radio label='yes' value='true' />
       <Radio label='no' value='false' />
     </RadioGroup>
-    <Container top='small'>
+    <Container top={SPACING_4}>
       <SubmitButton>Submit</SubmitButton>
     </Container>
   </FormNonCompound>

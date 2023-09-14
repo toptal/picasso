@@ -1,4 +1,5 @@
 import { Container, List, Button, Drawer } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import React, { useState } from 'react'
 
 type WidthType = 'narrow' | 'regular' | 'medium' | 'wide' | 'ultra-wide'
@@ -31,7 +32,7 @@ const Example = () => {
         onClose={() => setOpen(false)}
         width={width}
       >
-        <Container data-testid='content' padded='medium'>
+        <Container data-testid='content' padded={SPACING_6}>
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
             <List.Item>Set your age</List.Item>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { breakpoints } from '@toptal/picasso/utils'
+import { breakpoints, SPACING_4 } from '@toptal/picasso/utils'
 import { Grid, Paper, Image, Typography, Container } from '@toptal/picasso'
 
 const breakpointsList = Object.entries(breakpoints)
@@ -31,7 +31,7 @@ const Example = () => (
                   !isLargestBreakpoint &&
                   `${breakpointValue} px ≤ ... < ${nextBreakpointValue} px`}
               </Typography>
-              <Container top={1}>
+              <Container top={SPACING_4}>
                 <Image
                   src={`./ico-breakpoint-${breakpointName}.svg`}
                   alt={`${breakpointName}`}

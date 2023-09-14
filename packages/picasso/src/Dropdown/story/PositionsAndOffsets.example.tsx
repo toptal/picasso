@@ -1,13 +1,14 @@
 import React from 'react'
 import { Dropdown, Menu, Container, Typography } from '@toptal/picasso'
+import { SPACING_2, SPACING_6, SPACING_8 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Container bottom='xsmall'>
+    <Container bottom={SPACING_2}>
       <Typography>Popper placement</Typography>
     </Container>
-    <Container flex inline bottom='medium'>
-      <Container right='large'>
+    <Container flex inline bottom={SPACING_6}>
+      <Container right={SPACING_8}>
         <Dropdown
           content={
             <Menu>
@@ -22,7 +23,7 @@ const Example = () => (
         </Dropdown>
       </Container>
 
-      <Container right='large'>
+      <Container right={SPACING_8}>
         <Dropdown
           content={
             <Menu>
@@ -38,7 +39,7 @@ const Example = () => (
         </Dropdown>
       </Container>
 
-      <Container right='large'>
+      <Container right={SPACING_8}>
         <Dropdown
           content={
             <Menu>
@@ -55,11 +56,11 @@ const Example = () => (
       </Container>
     </Container>
 
-    <Container bottom='xsmall'>
+    <Container bottom={SPACING_2}>
       <Typography>Offsets</Typography>
     </Container>
-    <Container flex inline bottom='medium'>
-      <Container right='large'>
+    <Container flex inline bottom={SPACING_6}>
+      <Container right={SPACING_8}>
         <Dropdown
           content={
             <Menu>
@@ -74,7 +75,7 @@ const Example = () => (
         </Dropdown>
       </Container>
 
-      <Container right='large'>
+      <Container right={SPACING_8}>
         <Dropdown
           content={
             <Menu>
@@ -83,14 +84,14 @@ const Example = () => (
               <Menu.Item>Third item</Menu.Item>
             </Menu>
           }
-          offset={{ top: 'large' }}
+          offset={{ top: SPACING_8 }}
         >
           Large offset - top
           <Dropdown.Arrow />
         </Dropdown>
       </Container>
 
-      <Container right='large'>
+      <Container right={SPACING_8}>
         <Dropdown
           content={
             <Menu>
@@ -99,7 +100,7 @@ const Example = () => (
               <Menu.Item>Third item</Menu.Item>
             </Menu>
           }
-          offset={{ right: 'medium' }}
+          offset={{ right: SPACING_6 }}
         >
           Medium offset - right
           <Dropdown.Arrow />

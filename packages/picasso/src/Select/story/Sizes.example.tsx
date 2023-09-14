@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -11,11 +12,11 @@ const Example = () => {
 
   return (
     <Container flex direction='column'>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           Small
         </Typography>
-        <Container top='small' bottom='small'>
+        <Container top={SPACING_4} bottom={SPACING_4}>
           <Select
             size='small'
             options={OPTIONS}
@@ -26,11 +27,11 @@ const Example = () => {
           />
         </Container>
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           Medium (default)
         </Typography>
-        <Container top='small' bottom='small'>
+        <Container top={SPACING_4} bottom={SPACING_4}>
           <Select
             options={OPTIONS}
             value={value}
@@ -40,11 +41,11 @@ const Example = () => {
           />
         </Container>
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           Large
         </Typography>
-        <Container top='small' bottom='small'>
+        <Container top={SPACING_4} bottom={SPACING_4}>
           <Select
             size='large'
             options={OPTIONS}

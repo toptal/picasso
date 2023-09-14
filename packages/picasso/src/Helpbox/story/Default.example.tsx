@@ -1,9 +1,10 @@
 import React from 'react'
 import { Helpbox, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox>
         <Helpbox.Title>Heading Small</Helpbox.Title>
         <Helpbox.Content>
@@ -17,7 +18,7 @@ const Example = () => (
         </Helpbox.Content>
       </Helpbox>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox variant='red'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
         <Helpbox.Content>
@@ -31,7 +32,7 @@ const Example = () => (
         </Helpbox.Content>
       </Helpbox>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox variant='yellow'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
         <Helpbox.Content>
@@ -45,7 +46,7 @@ const Example = () => (
         </Helpbox.Content>
       </Helpbox>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox variant='green'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
         <Helpbox.Content>
@@ -59,7 +60,7 @@ const Example = () => (
         </Helpbox.Content>
       </Helpbox>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox variant='blue'>
         <Helpbox.Title>Heading Small</Helpbox.Title>
         <Helpbox.Content>
