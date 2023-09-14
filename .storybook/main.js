@@ -158,6 +158,10 @@ module.exports = {
             __dirname,
             '../packages/picasso-rich-text-editor/src/utils'
           ),
+          '@toptal/picasso-query-builder': path.resolve(
+            __dirname,
+            '../packages/picasso-query-builder/src'
+          ),
         },
       },
     }
