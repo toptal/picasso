@@ -1,8 +1,7 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const spacingsPage = PicassoBook.section('Tutorials').createPage(
-  'How to use spacings',
-  'Explain goal of this tutorial'
+  'How to use spacings'
 )
 
 /** Introduction */
@@ -10,8 +9,7 @@ spacingsPage
   .createChapter()
   .addTextSection(
     `
-In this tutorial you will learn how to create simple card component using
-[\`Container\`](..?path=/story/layout-container--container) component from Picasso. 
+This tutorials describes how to create simple card component using [\`Container\`](..?path=/story/layout-container--container) component from Picasso. 
 We will focus on explaning inner and outer spacings and stacking of components using flexbox.
 Card will render info about job position opening and will show status of filling the position
 with list of candidates in a pipeline.
@@ -41,9 +39,22 @@ We will start with defining basic card container by using
 [\`Paper\`](..?path=/story/layout-paper--paper) and [\`Container\`](..?path=/story/layout-container--container)
 component to get elevated item with inner spacing. 
 
-We are using \`padded='medium'\` container's prop to define inner spacing and it is translated to
+We are using \`padded={SPACING_}\` container's prop to define inner spacing and it is translated to
 \`padding: 1.5em\`. You can also pass numeric value that represents \`em\` unit, but we are recommending
 use of size types: \`xsmall, small, medium and large\` to get standard spacings.
+
+
+- SPACING_0 = 0rem,
+- SPACING_1 = 0.25rem,
+- SPACING_2 = 0.5rem,
+- SPACING_3 = 0.75rem,
+- SPACING_4 = 1rem,
+- SPACING_6 = 1.5rem,
+- SPACING_8 = 2rem,
+- SPACING_10 = 2.5rem,
+- SPACING_12 = 3rem
+
+
   `,
     {
       title: 'First step: Define Card container',
