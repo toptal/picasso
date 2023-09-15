@@ -30,7 +30,8 @@ exports[`ApplicationUpdateNotification renders 1`] = `
           Please reload to update.
         </h3>
         <div
-          class="PicassoContainer-topxsmallMargin ApplicationUpdateNotification-positionRelative"
+          class="ApplicationUpdateNotification-positionRelative"
+          style="margin-top: 0.5rem;"
         >
           <p
             class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1"
@@ -39,7 +40,8 @@ exports[`ApplicationUpdateNotification renders 1`] = `
           </p>
         </div>
         <div
-          class="PicassoContainer-topsmallMargin"
+          class=""
+          style="margin-top: 1rem;"
         >
           <button
             class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"

@@ -6,14 +6,16 @@ exports[`Alert renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-yellowVariant PicassoContainer-smallPadding PicassoContainer-spaceBetweenJustifyContent PicassoContainer-rounded PicassoContainer-flex"
+      class="PicassoContainer-yellowVariant PicassoContainer-spaceBetweenJustifyContent PicassoContainer-rounded PicassoContainer-flex"
       role="alert"
+      style="padding: 1rem;"
     >
       <div
         class="PicassoContainer-flex PicassoContainer-inline PicassoAlert-root"
       >
         <div
-          class="PicassoContainer-rightsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoAlert-iconWrapper"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoAlert-iconWrapper"
+          style="margin-right: 1rem;"
         >
           <svg
             class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
