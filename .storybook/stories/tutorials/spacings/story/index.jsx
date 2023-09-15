@@ -39,21 +39,27 @@ We will start with defining basic card container by using
 [\`Paper\`](..?path=/story/layout-paper--paper) and [\`Container\`](..?path=/story/layout-container--container)
 component to get elevated item with inner spacing. 
 
-We are using \`padded={SPACING_}\` container's prop to define inner spacing and it is translated to
-\`padding: 1.5em\`. You can also pass numeric value that represents \`em\` unit, but we are recommending
-use of size types: \`xsmall, small, medium and large\` to get standard spacings.
+We are using \`padded={SPACING_6}\` Container's prop to define inner spacing and it is translated to
+\`padding: 1.5rem\`. Spacing constants are imported from \`@toptal/picasso/utils\`. Spacing can only take values,
+approved by [BASE spacing guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing):
 
+| Spacing name    | Value       |
+| --------------- | ----------- |
+| \`SPACING_0\`   | \`0rem\`    |
+| \`SPACING_1\`   | \`0.25rem\` |
+| \`SPACING_2\`   | \`0.5rem\`  |
+| \`SPACING_3\`   | \`0.75rem\` |
+| \`SPACING_4\`   | \`1rem\`    |
+| \`SPACING_6\`   | \`1.5rem\`  |
+| \`SPACING_8\`   | \`2rem\`    |
+| \`SPACING_10\`  | \`2.5rem\`  |
+| \`SPACING_12\`  | \`3rem\`    |
 
-- SPACING_0 = 0rem,
-- SPACING_1 = 0.25rem,
-- SPACING_2 = 0.5rem,
-- SPACING_3 = 0.75rem,
-- SPACING_4 = 1rem,
-- SPACING_6 = 1.5rem,
-- SPACING_8 = 2rem,
-- SPACING_10 = 2.5rem,
-- SPACING_12 = 3rem
+**Custom non-BASE spacing**
 
+It is prohibitied to use any spacing with pixel units value not being a multiple of 4 (for example, \`55px\` is not allowed).
+If spacing pixel values is a multiple of 4 and is not present in [BASE spacing guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing),
+confirm its usage with Design Team first.
 
   `,
     {
@@ -100,10 +106,11 @@ layouts and spacings.
 Let's add new \`Container\` in a card and define it as a \`flex\` and by
 default get horizontal stacking of items in a row. Each job candidate item is implemented as
 \`JobCandidate\` component and passed as children of the container. We want some spacing between
-them so we will add some right margin using \`right\` container prop.
+them so we will add some right margin using \`right\` container prop. The value of this prop will be
+\`SPACING_6\`.
 
 Card header and candidate list are to close to each other so we will also add a bottom margin to
-header container using \`bottom\` prop.
+header container using \`bottom\` prop, using the same \`SPACING_6\` spacing.
 
 And that's it, we have implemented a simple job position card.
   `,
