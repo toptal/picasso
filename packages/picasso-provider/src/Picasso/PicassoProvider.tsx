@@ -24,6 +24,9 @@ const picasso: ThemeOptions = {
   screens,
   shadows,
   typography,
+  zIndex: {
+    tooltip: 1300,
+  },
   props: {
     MuiButtonBase: {
       disableRipple: true,

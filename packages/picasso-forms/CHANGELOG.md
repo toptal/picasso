@@ -1,5 +1,54 @@
 # Change Log
 
+## 61.1.2
+
+### Patch Changes
+
+- [#3864](https://github.com/toptal/picasso/pull/3864) [`699df1b88`](https://github.com/toptal/picasso/commit/699df1b88a3f9b074171aa0b50db00f8dabedd24) Thanks [@sashuk](https://github.com/sashuk)!
+
+### FieldWrapper
+
+- fix typing for form field wrapper component
+
+## 61.1.1
+
+### Patch Changes
+
+- [#3861](https://github.com/toptal/picasso/pull/3861) [`4d0b682ae`](https://github.com/toptal/picasso/commit/4d0b682ae99427c476112621032bd3447e0b92d2) Thanks [@sashuk](https://github.com/sashuk)!
+- revert dependency update due to https://github.com/final-form/final-form-arrays/issues/95 (`final-form-arrays`)
+
+## 61.1.0
+
+### Minor Changes
+
+- [#3856](https://github.com/toptal/picasso/pull/3856) [`0f68c184a`](https://github.com/toptal/picasso/commit/0f68c184a42362dd99c78bc051bbddcc62d6ab44) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### FieldWrapper
+
+- change the type of label from string to ReactNode which allows you to have complex labels
+
+## 61.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`8829b263a`](https://github.com/toptal/picasso/commit/8829b263afafc2c361efdd6ad35d1b0e8a942870)]:
+  - @toptal/picasso-rich-text-editor@6.0.2
+
+## 61.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`c04fe3733`](https://github.com/toptal/picasso/commit/c04fe37331addd6b894f05990a30eb23c6d70e7d)]:
+  - @toptal/picasso-rich-text-editor@6.0.1
+
+## 61.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`9a02bbdb4`](https://github.com/toptal/picasso/commit/9a02bbdb4574cbdac26a2f6e9e4cf9de65609695)]:
+  - @toptal/picasso@38.0.0
+  - @toptal/picasso-rich-text-editor@6.0.0
+
 ## 60.1.0
 
 ### Minor Changes

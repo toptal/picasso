@@ -8,8 +8,8 @@ import {
   Button,
   Globe16,
   Profile16,
-  PortfolioDesigner16,
-  Heartbeat16,
+  Home16,
+  HeartbeatResponsive,
 } from '@toptal/picasso'
 
 const Example = () => (
@@ -45,7 +45,7 @@ const CenterContent = () => (
 const SidebarMenu = () => (
   <Page.Sidebar>
     <Page.Sidebar.Menu>
-      <Page.Sidebar.Item selected icon={<PortfolioDesigner16 />}>
+      <Page.Sidebar.Item selected icon={<Home16 />}>
         Home
       </Page.Sidebar.Item>
       <Page.Sidebar.Item icon={<Profile16 />}>Contacts</Page.Sidebar.Item>
@@ -66,18 +66,17 @@ const RightContent = () => (
   </Page.TopBarMenu>
 )
 
-const ActionItems = () => {
-  return (
-    <Tooltip content='Your Operational Issues'>
-      <Button.Circular
-        variant='transparent'
-        icon={<Heartbeat16 color='light-grey' />}
-        data-testid='operational-issues-button'
-        onClick={() => {}}
-      />
-    </Tooltip>
-  )
-}
+const ActionItems = () => (
+  <Tooltip content='Your Operational Issues'>
+    <Button.Circular
+      variant='transparent'
+      responsive
+      icon={<HeartbeatResponsive color='light-grey' />}
+      data-testid='operational-issues-button'
+      onClick={() => {}}
+    />
+  </Tooltip>
+)
 
 const Content = () => (
   <Container top='small' bottom='small'>

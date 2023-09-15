@@ -25,6 +25,12 @@ svgr \
 # rename index.tsx --> index.ts because svgr generates index with .tsx extension
 mv $COMPONENTS_FULL_PATH/index.tsx $COMPONENTS_FULL_PATH/index.ts
 
+if [ $1 = 'icon' ]
+then
+  echo "Generating responsive icons"
+  node bin/generate-responsive-icons.js
+fi
+
 # format all generated code with prettier and eslint
 davinci-syntax lint code $COMPONENTS_FULL_PATH
 yarn prettier --write $COMPONENTS_FULL_PATH/*.tsx $COMPONENTS_FULL_PATH/**/*.tsx $COMPONENTS_FULL_PATH/index.ts

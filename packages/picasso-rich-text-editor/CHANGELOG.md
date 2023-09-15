@@ -1,5 +1,32 @@
 # @toptal/picasso-rich-text-editor
 
+## 6.0.2
+
+### Patch Changes
+
+- [#3842](https://github.com/toptal/picasso/pull/3842) [`8829b263a`](https://github.com/toptal/picasso/commit/8829b263afafc2c361efdd6ad35d1b0e8a942870) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### RichTextEditor
+
+- align tab sizes between RichText and RichTextEditor (in CodeBlock)
+
+## 6.0.1
+
+### Patch Changes
+
+- [#3837](https://github.com/toptal/picasso/pull/3837) [`c04fe3733`](https://github.com/toptal/picasso/commit/c04fe37331addd6b894f05990a30eb23c6d70e7d) Thanks [@Gtosta96-Toptal](https://github.com/Gtosta96-Toptal)!
+
+### RichTextEditor
+
+- enable alt prop
+
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`9a02bbdb4`](https://github.com/toptal/picasso/commit/9a02bbdb4574cbdac26a2f6e9e4cf9de65609695)]:
+  - @toptal/picasso@38.0.0
+
 ## 5.0.3
 
 ### Patch Changes

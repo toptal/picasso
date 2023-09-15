@@ -31,6 +31,12 @@ const ModalDialog = ({
               setDate(newDate as Date)
             }}
           />
+          <Tooltip open content='Inner Tooltip' placement='bottom'>
+            <span>
+              Lorem facere corrupti accusantium asperiores magnam Atque
+              doloribus asperiores corrupti!
+            </span>
+          </Tooltip>
         </Form.Field>
       </Modal.Content>
     </Modal>

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import React from 'react'
 
 import type { Props as FieldProps } from '../Field'
@@ -8,7 +9,9 @@ import InputField from '../InputField'
 export type Props<TWrappedComponentProps, TInputValue> = Omit<
   FieldProps<TWrappedComponentProps, TInputValue>,
   'label'
-> & { label?: string }
+> & {
+  label?: ReactNode
+}
 
 const FieldWrapper = <
   TWrappedComponentProps extends IFormComponentProps,

@@ -1,5 +1,55 @@
 # Change Log
 
+## 38.2.0
+
+### Minor Changes
+
+- [#3863](https://github.com/toptal/picasso/pull/3863) [`8d27c7475`](https://github.com/toptal/picasso/commit/8d27c7475cb096b325c1c8f972b4b3882e8bf619) Thanks [@alisanad007](https://github.com/alisanad007)!
+
+### Icon
+
+- update Twitter16 and Twitter24 icons
+
+## 38.1.0
+
+### Minor Changes
+
+- [#3850](https://github.com/toptal/picasso/pull/3850) [`d333af698`](https://github.com/toptal/picasso/commit/d333af698f34a268f282326e87ec67320bb60843) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Icon
+
+- add Home16 and Home24 icon
+
+## 38.0.0
+
+### Major Changes
+
+- [#3838](https://github.com/toptal/picasso/pull/3838) [`9a02bbdb4`](https://github.com/toptal/picasso/commit/9a02bbdb4574cbdac26a2f6e9e4cf9de65609695) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Dependencies
+
+- update picasso-provider
+
+## 37.9.0
+
+### Minor Changes
+
+- [#3785](https://github.com/toptal/picasso/pull/3785) [`680ceb497`](https://github.com/toptal/picasso/commit/680ceb4970baa5a188b731ef9e0c32b8c3de816e) Thanks [@mkrl](https://github.com/mkrl)!
+
+### ButtonCircular
+
+- make `ButtonCircular` component responsive (opt-in). You can now provide a 24x24 px icon for `xl` screens. Button size for screens under `xl` has been increased.
+
+## 37.8.0
+
+### Minor Changes
+
+- [#3823](https://github.com/toptal/picasso/pull/3823) [`b0e558eaa`](https://github.com/toptal/picasso/commit/b0e558eaa2373395c3c800959b4d9cb53b7865a5) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Icon
+
+- added responsive icons (16px on xl screens, 24px otherwise)
+
 ## 37.7.0
 
 ### Minor Changes

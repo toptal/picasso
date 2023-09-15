@@ -8,7 +8,7 @@ import { useFormConfig } from '../FormConfig'
 
 export type Props = {
   name?: string
-  label?: string
+  label?: React.ReactNode
   required?: boolean
 } & TextLabelProps
 
