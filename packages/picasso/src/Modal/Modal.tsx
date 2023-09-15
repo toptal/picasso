@@ -251,6 +251,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
             {children}
             {onClose && (
               <ButtonCircular
+                aria-label='Close'
                 variant='flat'
                 className='absolute top-8 right-8'
                 onClick={onClose}
