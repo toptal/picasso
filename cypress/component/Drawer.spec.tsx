@@ -88,6 +88,9 @@ const TestDrawerBehindModal = (props: Partial<DrawerProps>) => {
 const component = 'Drawer'
 
 describe('Drawer', () => {
+  beforeEach(() => {
+    cy.viewport(1280, 660)
+  })
   it('renders with narrow width and custom title', () => {
     cy.mount(
       <TestDrawer
@@ -162,7 +165,7 @@ describe('Drawer', () => {
     describe(`when screen has ${width}px width`, () => {
       Cypress._.each(testedDrawerVariants, variant => {
         it(`renders ${variant} drawer`, () => {
-          cy.viewport(width, 1000)
+          cy.viewport(width, 660)
           cy.mount(
             <TestDrawer title={`${variant} drawer title`}>
               <Container>
