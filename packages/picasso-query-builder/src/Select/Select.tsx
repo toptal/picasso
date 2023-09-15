@@ -2,9 +2,9 @@ import React from 'react'
 import { Container, Select as PicassoSelect } from '@toptal/picasso'
 import type { VersatileSelectorProps } from 'react-querybuilder'
 
-import { generateSelectOptions } from '../../services/generate-select-options'
-import validateValueEditor from '../../services/validate-value-editor'
-import type { ValueEditorValidationProps } from '../../types/query-builder'
+import { generateSelectOptions } from '../utils/generate-select-options'
+import validateValueEditor from '../utils/validate-value-editor'
+import type { ValueEditorValidationProps } from '../types/query-builder'
 
 interface Props
   extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
@@ -30,6 +30,8 @@ export const Select = ({
   return (
     <Container
       className={className}
+      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+      // Styling will be fixed with styled-components to JSS conversion
       // css={S.root}
     >
       <PicassoSelect

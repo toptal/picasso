@@ -17,6 +17,8 @@ export const CombinatorSelector = ({
       flex
       alignItems='center'
       gap='small'
+      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+      // Styling will be fixed with styled-components to JSS conversion
       // css={S.Container}
       className={className}
     >

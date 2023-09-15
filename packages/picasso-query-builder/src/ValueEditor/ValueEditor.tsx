@@ -6,9 +6,9 @@ import { MultiSelect } from '../MultiSelect/MultiSelect'
 import { AutoComplete } from '../AutoComplete/AutoComplete'
 import RangeInput from '../RangeInput/RangeInput'
 import TextInput from '../TextInput/TextInput'
-import useHandleTouched from '../../services/use-handle-touched'
+import useHandleTouched from '../utils/use-handle-touched'
 import BooleanInput from '../BooleanInput/BooleanInput'
-import type { BaseValueEditorProps } from '../../types/query-builder'
+import type { BaseValueEditorProps } from '../types/query-builder'
 
 type CustomValueEditorType =
   | 'autocomplete'
@@ -44,6 +44,8 @@ export const ValueEditor = ({
     case 'multiselect':
       return (
         <MultiSelect
+          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+          // Styling will be fixed with styled-components to JSS conversion
           // css={S.valueEditor}
           disabled={disabled}
           options={values}
@@ -61,6 +63,8 @@ export const ValueEditor = ({
     case 'select':
       return (
         <Select
+          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+          // Styling will be fixed with styled-components to JSS conversion
           // css={S.valueEditor}
           disabled={disabled}
           options={values}
@@ -76,6 +80,8 @@ export const ValueEditor = ({
     case 'autocomplete':
       return (
         <AutoComplete
+          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+          // Styling will be fixed with styled-components to JSS conversion
           // css={S.valueEditor}
           fullWidth
           disabled={disabled}
@@ -109,6 +115,8 @@ export const ValueEditor = ({
     case 'boolean':
       return (
         <BooleanInput
+          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+          // Styling will be fixed with styled-components to JSS conversion
           // css={S.valueEditor}
           disabled={disabled}
           value={value}
@@ -122,6 +130,8 @@ export const ValueEditor = ({
     default:
       return (
         <TextInput
+          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+          // Styling will be fixed with styled-components to JSS conversion
           // css={S.valueEditor}
           value={value}
           onChange={handleOnChange}

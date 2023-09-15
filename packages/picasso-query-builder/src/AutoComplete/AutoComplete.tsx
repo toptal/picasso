@@ -3,11 +3,11 @@ import { Container, TagSelector as PicassoTagSelector } from '@toptal/picasso'
 import { useDebouncedCallback } from 'use-debounce'
 import type { Item } from '@toptal/picasso/TagSelector'
 
-import validateValueEditor from '../../services/validate-value-editor'
+import validateValueEditor from '../utils/validate-value-editor'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
-} from '../../types/query-builder'
+} from '../types/query-builder'
 
 interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
   fullWidth?: boolean
@@ -63,7 +63,8 @@ export const AutoComplete = ({
   return (
     <Container
       // css={S.root({ fullWidth })}
-      // TODO: delete line below
+      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+      // Styling will be fixed with styled-components to JSS conversion
       style={{ background: fullWidth ? 'none' : 'transparent' }}
     >
       <PicassoTagSelector

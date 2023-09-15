@@ -18,16 +18,16 @@ import { QueryBuilderDnD } from '@react-querybuilder/dnd'
 import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 
-import type { QueryBuilderContext, Field } from '../../types/query-builder'
+import type { QueryBuilderContext, Field } from '../types/query-builder'
 import RunQueryButton from '../RunQueryButton/RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton/ClearQueryButton'
-import { controlClassnames } from '../../services/config'
-import { PicassoContext } from '../../context/PicassoContext'
-import { emptyQueryBuilderQuery } from '../../constants'
+import { PicassoContext } from '../PicassoContext/PicassoContext'
+import { emptyQueryBuilderQuery } from '../constants'
 import { ValueEditor } from '../ValueEditor/ValueEditor'
-import { getQueryDepth } from '../../services/get-query-depth'
-import useQueryBuilderValidator from '../../services/use-query-builder-validator'
 import ValidationErrors from '../ValidationErrors/ValidationErrors'
+import { controlClassnames } from '../utils/config'
+import { getQueryDepth } from '../utils/get-query-depth'
+import useQueryBuilderValidator from '../utils/use-query-builder-validator'
 
 type Props = {
   /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
@@ -180,6 +180,8 @@ const QueryBuilder = ({
   return (
     <PicassoContext>
       <Container
+        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+        // Styling will be fixed with styled-components to JSS conversion
         // css={[reactQueryBuilderStyle, S.root({ maxDepth: maxGroupDepth })]}
         flex
         padded={hideControls ? undefined : 'medium'}

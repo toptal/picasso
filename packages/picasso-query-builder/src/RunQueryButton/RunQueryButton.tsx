@@ -28,6 +28,8 @@ const RunQueryButton = ({
 
   return (
     <Button
+      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+      // Styling will be fixed with styled-components to JSS conversion
       // css={S.runQuery}
       variant='positive'
       loading={loading}

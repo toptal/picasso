@@ -5,7 +5,7 @@ import type { ValidationResult } from 'react-querybuilder'
 import type {
   RangeFieldOptions,
   ValueEditorValidationProps,
-} from '../../types/query-builder'
+} from '../types/query-builder'
 
 export type RangeValue = {
   from?: number
@@ -47,12 +47,16 @@ const RangeInput = ({
     <>
       <Typography
         variant='body'
+        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+        // Styling will be fixed with styled-components to JSS conversion
         // css={S.label}
       >
         From
       </Typography>
       <Container
         flex
+        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+        // Styling will be fixed with styled-components to JSS conversion
         // css={S.input}
       >
         <NumberInput
@@ -82,12 +86,16 @@ const RangeInput = ({
       </Container>
       <Typography
         variant='body'
+        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+        // Styling will be fixed with styled-components to JSS conversion
         // css={S.label}
       >
         To
       </Typography>
       <Container
         flex
+        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
+        // Styling will be fixed with styled-components to JSS conversion
         // css={S.input}
       >
         <NumberInput

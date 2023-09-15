@@ -4,7 +4,7 @@ import {
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 
-const emptyQueryBuilderQuery = {
+const initialQuery = {
   rules: [],
   combinator: 'and',
 }
@@ -19,7 +19,7 @@ const fields = [
 ]
 
 const Example = () => {
-  const [query, setQuery] = useState<RuleGroupTypeAny>(emptyQueryBuilderQuery)
+  const [query, setQuery] = useState<RuleGroupTypeAny>(initialQuery)
 
   const handleQueryChange = (newQuery: RuleGroupTypeAny) => {
     setQuery(newQuery)

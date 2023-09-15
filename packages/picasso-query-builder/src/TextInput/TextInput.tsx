@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Input } from '@toptal/picasso'
 
-import validateValueEditor from '../../services/validate-value-editor'
-import type { ValueEditorValidationProps } from '../../types/query-builder'
+import validateValueEditor from '../utils/validate-value-editor'
+import type { ValueEditorValidationProps } from '../types/query-builder'
 
 type Props = {
   value: string

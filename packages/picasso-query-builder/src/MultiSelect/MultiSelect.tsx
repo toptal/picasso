@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 import { Container, Select } from '@toptal/picasso'
 
-import { generateSelectOptions } from '../../services/generate-select-options'
-import validateValueEditor from '../../services/validate-value-editor'
+import { generateSelectOptions } from '../utils/generate-select-options'
+import validateValueEditor from '../utils/validate-value-editor'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
-} from '../../types/query-builder'
+} from '../types/query-builder'
 
 type Props = BaseVersatileSelectorProps & ValueEditorValidationProps
 
