@@ -58,7 +58,7 @@ approved by [BASE spacing guidelines](https://toptal-core.atlassian.net/wiki/spa
 **Custom non-BASE spacing**
 
 It is prohibitied to use any spacing with pixel units value not being a multiple of 4 (for example, \`55px\` is not allowed).
-If spacing pixel values is a multiple of 4 and is not present in [BASE spacing guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing),
+If spacing pixel value is a multiple of 4 and is not present in [BASE spacing guidelines](https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing),
 confirm its usage with Design Team first.
 
   `,
@@ -110,7 +110,7 @@ them so we will add some right margin using \`right\` container prop. The value 
 \`SPACING_6\`.
 
 Card header and candidate list are to close to each other so we will also add a bottom margin to
-header container using \`bottom\` prop, using the same \`SPACING_6\` spacing.
+header container using \`bottom\` prop, using the same \`SPACING_6\` value.
 
 And that's it, we have implemented a simple job position card.
   `,
