@@ -1,5 +1,16 @@
 # Change Log
 
+## 39.0.0
+
+### Major Changes
+
+- [#3866](https://github.com/toptal/picasso/pull/3866) [`1ab02d0d8`](https://github.com/toptal/picasso/commit/1ab02d0d84d4a9720f5faed6dfeb0195569e00f7) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Drawer
+
+- modified Drawer component to lock the body scroll when opened (previously it was locking the scroll on Picasso root)
+- prop `maintainBodyScrollLock` is now true by default
+
 ## 38.2.0
 
 ### Minor Changes
