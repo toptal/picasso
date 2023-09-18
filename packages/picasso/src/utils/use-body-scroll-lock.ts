@@ -2,9 +2,7 @@ import { isBrowser } from '@toptal/picasso-shared'
 import { useEffect, useMemo } from 'react'
 
 const layers = new Set<number>()
-let scrollLock:
-  | { prevBodyOverflow: string; prevHtmlOverflow: string }
-  | undefined = undefined
+let scrollLock: { prevHtmlOverflow: string } | undefined = undefined
 
 export const useBodyScrollLock = (isLocked: boolean) => {
   const layerId = useMemo(generateLayerId, [])
@@ -47,10 +45,8 @@ const addBodyScrollLock = () => {
 
   if (!scrollLock) {
     scrollLock = {
-      prevBodyOverflow: document.body.style.overflow,
       prevHtmlOverflow: document.getElementsByTagName('html')[0].style.overflow,
     }
-    document.body.style.overflow = 'hidden'
     document.getElementsByTagName('html')[0].style.overflow = 'hidden'
   }
 }
@@ -61,7 +57,6 @@ const removeBodyScrollLock = () => {
   }
 
   if (scrollLock) {
-    document.body.style.overflow = scrollLock.prevBodyOverflow
     document.getElementsByTagName('html')[0].style.overflow =
       scrollLock.prevHtmlOverflow
     scrollLock = undefined
