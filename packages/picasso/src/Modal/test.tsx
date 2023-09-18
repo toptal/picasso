@@ -20,6 +20,10 @@ const testIds = {
   closeButton: 'close-modal',
 }
 
+const getHtmlElement = (document: Document) => {
+  return document.getElementsByTagName('html')[0]
+}
+
 const TestModal = ({ children, open }: OmitInternalProps<ModalProps>) => (
   <Modal open={open} container={modalRoot} onClose={() => {}} testIds={testIds}>
     {children}
@@ -198,19 +202,19 @@ describe('Modal', () => {
   describe('body scroll lock', () => {
     afterEach(() => {
       cleanup()
-      document.body.style.overflow = ''
+      getHtmlElement(document).style.overflow = ''
     })
 
     it('drops scroll lock when initially open modal is mounted', () => {
       render(<Modal open={true}>Hello from modal!</Modal>)
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
     })
 
     it('does not drop scroll lock when closed modal is mounted', () => {
       render(<Modal open={false}>Hello from modal!</Modal>)
 
-      expect(document.body.style.overflow).toBe('')
+      expect(getHtmlElement(document).style.overflow).toBe('')
     })
 
     describe('drops scroll lock as modal opens and lifts it as modal closes', () => {
@@ -236,13 +240,13 @@ describe('Modal', () => {
         }
 
         render(<TestComponent />)
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('close-first'))
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
       it('conditionally mounted modal', () => {
@@ -268,13 +272,13 @@ describe('Modal', () => {
         }
 
         render(<TestComponent />)
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('close-first'))
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
       it('restores prev body overflow value', () => {
@@ -298,16 +302,16 @@ describe('Modal', () => {
           )
         }
 
-        document.body.style.overflow = 'visible'
+        getHtmlElement(document).style.overflow = 'visible'
 
         render(<TestComponent />)
-        expect(document.body.style.overflow).toBe('visible')
+        expect(getHtmlElement(document).style.overflow).toBe('visible')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('close-first'))
-        expect(document.body.style.overflow).toBe('visible')
+        expect(getHtmlElement(document).style.overflow).toBe('visible')
       })
     })
 
@@ -345,19 +349,19 @@ describe('Modal', () => {
         }
 
         render(<TestComponent />)
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('open-second'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('close-first'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('close-second'))
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
       // NOTE: See https://toptal-core.atlassian.net/browse/FX-1069?focusedCommentId=96115 for more details
@@ -397,19 +401,19 @@ describe('Modal', () => {
         }
 
         render(<TestComponent />)
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('mount-second'))
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         fireEvent.click(screen.getByTestId('close-first'))
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('unmount-second'))
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
       })
     })
   })

@@ -4,31 +4,35 @@ import { useBodyScrollLock } from '../use-body-scroll-lock'
 
 let defaultBodyOverflow: string
 
+const getHtmlElement = (document: Document) => {
+  return document.getElementsByTagName('html')[0]
+}
+
 describe('useBodyScrollLock', () => {
   beforeEach(() => {
-    defaultBodyOverflow = document.body.style.overflow
+    defaultBodyOverflow = getHtmlElement(document).style.overflow
   })
 
   afterEach(() => {
-    document.body.style.overflow = defaultBodyOverflow
+    getHtmlElement(document).style.overflow = defaultBodyOverflow
   })
 
   describe('single usage', () => {
     it('drops scroll lock when mounted with true', () => {
       renderHook(() => useBodyScrollLock(true))
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
     })
 
     describe('lifts scroll lock', () => {
       it('when unmounted', () => {
         const { unmount } = renderHook(() => useBodyScrollLock(true))
 
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         unmount()
 
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
       it('when isLocked switches into false', () => {
@@ -37,23 +41,23 @@ describe('useBodyScrollLock', () => {
           { initialProps: true }
         )
 
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         rerender(false)
 
-        expect(document.body.style.overflow).toBe('')
+        expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
       it('restores prev body overflow', () => {
-        document.body.style.overflow = 'grid'
+        getHtmlElement(document).style.overflow = 'grid'
 
         const { unmount } = renderHook(() => useBodyScrollLock(true))
 
-        expect(document.body.style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
         unmount()
 
-        expect(document.body.style.overflow).toBe('grid')
+        expect(getHtmlElement(document).style.overflow).toBe('grid')
       })
     })
   })
@@ -70,20 +74,20 @@ describe('useBodyScrollLock', () => {
         initialProps: false,
       })
 
-      expect(document.body.style.overflow).toBe('')
+      expect(getHtmlElement(document).style.overflow).toBe('')
 
       hook1.rerender(true)
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
       hook2.rerender(true)
       hook3.rerender(true)
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
     })
 
     it('lifts scroll lock once no hook with isLocked=true left mounted', () => {
-      document.body.style.overflow = 'block'
+      getHtmlElement(document).style.overflow = 'block'
 
       const hook1 = renderHook(isLocked => useBodyScrollLock(isLocked), {
         initialProps: true,
@@ -95,19 +99,19 @@ describe('useBodyScrollLock', () => {
         initialProps: true,
       })
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
       hook3.unmount()
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
       hook2.rerender(false)
 
-      expect(document.body.style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
       hook1.rerender(false)
 
-      expect(document.body.style.overflow).toBe('block')
+      expect(getHtmlElement(document).style.overflow).toBe('block')
     })
   })
 })
