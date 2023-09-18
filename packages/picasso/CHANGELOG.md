@@ -1,5 +1,15 @@
 # Change Log
 
+## 39.1.0
+
+### Minor Changes
+
+- [#3873](https://github.com/toptal/picasso/pull/3873) [`f9eb9327a`](https://github.com/toptal/picasso/commit/f9eb9327ab651dc6aad913c43f09d1fb017052d7) Thanks [@diogolessa](https://github.com/diogolessa)!
+
+### Icon
+
+- add Employee16 and Employee24 icons
+
 ## 39.0.0
 
 ### Major Changes
