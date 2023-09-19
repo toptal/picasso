@@ -5,6 +5,7 @@ import React from 'react'
 import { default as Picasso } from '@toptal/picasso-provider'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Page, Container } from '@toptal/picasso'
+import { SPACING_12 } from '@toptal/picasso/utils'
 
 const App = () => (
   <Picasso disableClassNamePrefix>
@@ -15,7 +16,8 @@ const App = () => (
           <Container
             flex
             justifyContent='center'
-            style={{ paddingTop: '7rem', paddingBottom: '7rem' }}
+            top={SPACING_12}
+            style={{ height: '14rem' }}
           >
             Your application goes here
           </Container>

@@ -6,7 +6,7 @@ import {
   NotificationsProvider,
 } from '@toptal/picasso-provider'
 import { Page, Container, Button } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { SPACING_12, useNotifications } from '@toptal/picasso/utils'
 
 const App = ({ children }: { children?: ReactNode }) => {
   const { showInfo } = useNotifications()
@@ -22,7 +22,8 @@ const App = ({ children }: { children?: ReactNode }) => {
               <Container
                 flex
                 justifyContent='center'
-                style={{ paddingTop: '7rem', paddingBottom: '7rem' }}
+                top={SPACING_12}
+                style={{ height: '14rem' }}
               >
                 <Button
                   data-testid='trigger'

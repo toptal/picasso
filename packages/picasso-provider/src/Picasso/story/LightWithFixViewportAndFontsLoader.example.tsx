@@ -6,6 +6,7 @@ import {
   FontsLoader,
 } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
+import { SPACING_12 } from '@toptal/picasso/utils'
 
 const App = ({ children }: { children: ReactNode }) => (
   <PicassoLight>
@@ -18,7 +19,8 @@ const App = ({ children }: { children: ReactNode }) => (
           <Container
             flex
             justifyContent='center'
-            style={{ paddingTop: '7rem', paddingBottom: '7rem' }}
+            top={SPACING_12}
+            style={{ height: '14rem' }}
           >
             {children}
           </Container>
