@@ -15,7 +15,8 @@ exports[`FileListItem renders 1`] = `
           class="PicassoContainer-flex"
         >
           <div
-            class="PicassoContainer-rightxsmallMargin"
+            class=""
+            style="margin-right: 0.5rem;"
           >
             <svg
               class="PicassoSvgAttachment16-root PicassoSvgAttachment16-darkGrey"

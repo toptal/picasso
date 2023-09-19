@@ -1,19 +1,20 @@
-/* eslint-disable complexity */
-
-import type { ReactNode, HTMLAttributes, Ref, ReactElement } from 'react'
-import React from 'react'
+import type { PropTypes } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import type { PropTypes } from '@material-ui/core'
+import type {
+  DeprecatedSpacingType,
+  SpacingType,
+} from '@toptal/picasso-provider'
+import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
+import type { StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import type { StandardProps, PicassoSpacing } from '@toptal/picasso-shared'
-import { spacingToRem, isNumericSpacing } from '@toptal/picasso-shared'
-import type { DeprecatedSpacingType } from '@toptal/picasso-provider/Picasso/config/spacings'
+import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
+import React from 'react'
 
+import { documentable, forwardRef } from '../utils/forward-ref'
+import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
-import { forwardRef, documentable } from '../utils/forward-ref'
 
 type ContainerType = 'div' | 'span'
 
@@ -27,6 +28,18 @@ const useStyles = makeStyles<
 >(styles, {
   name: 'PicassoContainer',
 })
+
+const useResponsiveProps = makeResponsiveSpacingProps(
+  [
+    'margin-top',
+    'margin-bottom',
+    'margin-left',
+    'margin-right',
+    'padding',
+    'gap',
+  ] as const,
+  'PicassoContainer-Responsive'
+)
 
 interface InternalProps<V extends VariantType = VariantType>
   extends StandardProps,
@@ -59,17 +72,17 @@ interface InternalProps<V extends VariantType = VariantType>
 type PropsWithBaseSpacing<V extends VariantType = VariantType> =
   InternalProps<V> & {
     /** margin-top for the container transformed to `rem` */
-    top?: PicassoSpacing
+    top?: Exclude<SpacingType, DeprecatedSpacingType>
     /** margin-bottom for the container transformed to `rem` */
-    bottom?: PicassoSpacing
+    bottom?: Exclude<SpacingType, DeprecatedSpacingType>
     /** margin-left for the container transformed to `rem` */
-    left?: PicassoSpacing
+    left?: Exclude<SpacingType, DeprecatedSpacingType>
     /** margin-right for the container transformed to `rem` */
-    right?: PicassoSpacing
+    right?: Exclude<SpacingType, DeprecatedSpacingType>
     /** padding for the container transformed to `rem` */
-    padded?: PicassoSpacing
+    padded?: Exclude<SpacingType, DeprecatedSpacingType>
     /** Gap between elements for a flex container */
-    gap?: PicassoSpacing
+    gap?: Exclude<SpacingType, DeprecatedSpacingType>
   }
 
 /** @deprecated */
@@ -123,11 +136,6 @@ export const Container: ContainerProps = documentable(
       const {
         children,
         className,
-        top,
-        bottom,
-        left,
-        right,
-        padded,
         inline,
         flex,
         direction,
@@ -138,24 +146,30 @@ export const Container: ContainerProps = documentable(
         rounded = false,
         variant,
         align,
-        gap,
         as: Component = inline ? 'span' : 'div',
+        top,
+        bottom,
+        left,
+        right,
+        padded,
+        gap,
         // Avoid passing external classes inside the rest props
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        /* eslint-disable @typescript-eslint/no-unused-vars */
         classes: externalClasses,
+        /* eslint-enable */
         ...rest
       } = props
 
       const classes = useStyles(props)
-
-      const margins = {
-        ...(isNumericSpacing(top) && { marginTop: spacingToRem(top) }),
-        ...(isNumericSpacing(bottom) && {
-          marginBottom: spacingToRem(bottom),
-        }),
-        ...(isNumericSpacing(left) && { marginLeft: spacingToRem(left) }),
-        ...(isNumericSpacing(right) && { marginRight: spacingToRem(right) }),
-      }
+      const { className: responsiveClasses, style: responsiveStyle } =
+        useResponsiveProps({
+          'margin-top': top,
+          'margin-bottom': bottom,
+          'margin-left': left,
+          'margin-right': right,
+          padding: padded,
+          gap,
+        })
 
       return (
         <Component
@@ -164,14 +178,6 @@ export const Container: ContainerProps = documentable(
           className={cx(
             classes[`${variant}Variant`],
             {
-              [classes[`${padded}Padding`]]: typeof padded === 'string',
-              [classes[`${gap}Gap`]]: typeof gap === 'string',
-
-              [classes[`top${top}Margin`]]: typeof top === 'string',
-              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-              [classes[`left${left}Margin`]]: typeof left === 'string',
-              [classes[`right${right}Margin`]]: typeof right === 'string',
-
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
               [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
@@ -188,16 +194,10 @@ export const Container: ContainerProps = documentable(
               [classes[kebabToCamelCase(direction || '')]]:
                 direction && direction !== 'row',
             },
+            responsiveClasses,
             className
           )}
-          style={{
-            ...margins,
-            ...(isNumericSpacing(padded) && {
-              padding: spacingToRem(padded),
-            }),
-            ...(isNumericSpacing(gap) && { gap: spacingToRem(gap) }),
-            ...style,
-          }}
+          style={{ ...responsiveStyle, ...style }}
         >
           {children}
         </Component>
