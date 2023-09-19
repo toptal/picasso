@@ -18,7 +18,8 @@ exports[`Note renders 1`] = `
         </h4>
       </div>
       <div
-        class="PicassoContainer-bottomsmallMargin"
+        class=""
+        style="margin-bottom: 1rem;"
       >
         <p
           class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey MuiTypography-body1"

@@ -6,10 +6,12 @@ exports[`Helpbox renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-mediumPadding PicassoContainer-bordered PicassoContainer-rounded PicassoHelpbox-root"
+      class="PicassoContainer-bordered PicassoContainer-rounded PicassoHelpbox-root"
+      style="padding: 1.5rem;"
     >
       <div
-        class="PicassoContainer-bottomsmallMargin"
+        class=""
+        style="margin-bottom: 1rem;"
       >
         <h4
           class="MuiTypography-root MuiTypography-h4"

@@ -24,7 +24,8 @@ exports[`NonNativeSelectOption renders 1`] = `
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              style="margin-right: 0.5rem;"
             />
             <span
               class="PicassoMenuItem-stringContent"
@@ -33,8 +34,8 @@ exports[`NonNativeSelectOption renders 1`] = `
             </span>
           </div>
           <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-            style="margin-top: 0.25rem;"
+            class="PicassoMenuItem-description"
+            style="margin-top: 0.25rem; margin-left: 1.5rem;"
           >
             Test description
           </div>
@@ -69,7 +70,8 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              style="margin-right: 0.5rem;"
             >
               <svg
                 class="PicassoSvgCheckMinor16-root"
@@ -88,8 +90,8 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
             </span>
           </div>
           <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-            style="margin-top: 0.25rem;"
+            class="PicassoMenuItem-description"
+            style="margin-top: 0.25rem; margin-left: 1.5rem;"
           >
             Test description
           </div>

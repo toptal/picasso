@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
-import React, { forwardRef, useContext, useMemo, useRef, useState } from 'react'
+import React, { forwardRef, useContext, useRef, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import type { PopperPlacementType } from '@material-ui/core/Popper'
@@ -7,9 +7,12 @@ import type { PopperOptions } from 'popper.js'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import type { PicassoSpacing, StandardProps } from '@toptal/picasso-shared'
-import { spacingToRem } from '@toptal/picasso-shared'
-import type { DeprecatedSpacingType } from '@toptal/picasso-provider/Picasso/config/spacings'
+import type { StandardProps } from '@toptal/picasso-shared'
+import type {
+  DeprecatedSpacingType,
+  SpacingType,
+} from '@toptal/picasso-provider'
+import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 
 import Popper from '../Popper'
 import Paper from '../Paper'
@@ -51,10 +54,10 @@ interface InternalProps
 type PropsWithBaseSpacing = InternalProps & {
   /** Offset of content element relative to anchor element */
   offset?: {
-    top?: PicassoSpacing
-    bottom?: PicassoSpacing
-    left?: PicassoSpacing
-    right?: PicassoSpacing
+    top?: Exclude<SpacingType, DeprecatedSpacingType>
+    bottom?: Exclude<SpacingType, DeprecatedSpacingType>
+    left?: Exclude<SpacingType, DeprecatedSpacingType>
+    right?: Exclude<SpacingType, DeprecatedSpacingType>
   }
 }
 
@@ -97,6 +100,11 @@ const useStyles = makeStyles<
 >(styles, {
   name: 'PicassoDropdown',
 })
+
+const useResponsiveProps = makeResponsiveSpacingProps(
+  ['margin-top', 'margin-bottom', 'margin-left', 'margin-right'] as const,
+  'PicassoDropdown-Responsive'
+)
 
 export type DropdownProps = {
   (
@@ -218,18 +226,14 @@ export const Dropdown: DropdownProps = forwardRef<
     }
   }
 
-  const paperMargins = useMemo(() => {
-    if (offset) {
-      return {
-        ...(offset.top && { marginTop: spacingToRem(offset.top) }),
-        ...(offset.bottom && { marginBottom: spacingToRem(offset.bottom) }),
-        ...(offset.left && { marginLeft: spacingToRem(offset.left) }),
-        ...(offset.right && { marginRight: spacingToRem(offset.right) }),
-      }
-    }
-  }, [offset])
+  const { className: responsiveClasses, style: responsiveStyle } =
+    useResponsiveProps({
+      'margin-top': offset?.top,
+      'margin-right': offset?.right,
+      'margin-bottom': offset?.bottom,
+      'margin-left': offset?.left,
+    })
 
-  // here you can expose other methods, states to child components
   const context = {
     close: () => forceClose(),
   }
@@ -260,7 +264,7 @@ export const Dropdown: DropdownProps = forwardRef<
 
       {(isOpen || keepMounted) && (
         <Popper
-          className={classes.popper}
+          className={cx(classes.popper, responsiveClasses)}
           anchorEl={anchorEl ?? null}
           popperOptions={{
             onCreate: focus,
@@ -273,7 +277,7 @@ export const Dropdown: DropdownProps = forwardRef<
             ...popperOptions,
           }}
           placement={placement}
-          style={paperMargins}
+          style={{ ...responsiveStyle }}
           disablePortal={disablePortal}
           keepMounted={keepMounted}
           autoWidth={false}
