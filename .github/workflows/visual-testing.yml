@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: '16'
 
-      - uses: toptal/davinci-github-actions/yarn-install@v9.1.0
+      - uses: toptal/davinci-github-actions/yarn-install@v10.0.0
 
       - name: Happo Tests
         run: yarn happo:storybook
