@@ -1,4 +1,5 @@
 import { Button, Container, List, Drawer } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import React, { useState } from 'react'
 
 const Example = () => {
@@ -14,7 +15,7 @@ const Example = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <Container data-testid='content' padded='medium'>
+        <Container data-testid='content' padded={SPACING_6}>
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
             <List.Item>Set your age</List.Item>

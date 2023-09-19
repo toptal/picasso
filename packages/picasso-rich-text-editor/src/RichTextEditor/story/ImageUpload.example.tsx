@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Radio } from '@toptal/picasso'
+import { SPACING_6, SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
 import type { UploadedImage } from '@toptal/picasso-rich-text-editor'
 import { ImagePlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
@@ -34,7 +35,7 @@ const Example = () => {
 
   return (
     <>
-      <Container bottom='medium'>
+      <Container bottom={SPACING_6}>
         <Radio.Group
           name='onUploadCase'
           onChange={(event: React.ChangeEvent<{ value: string }>) => {
@@ -61,8 +62,8 @@ const Example = () => {
         ]}
       />
       <Container
-        padded='small'
-        top='large'
+        padded={SPACING_4}
+        top={SPACING_8}
         style={{
           fontFamily: "Consolas, 'Courier New', monospace",
           background: 'lightyellow',

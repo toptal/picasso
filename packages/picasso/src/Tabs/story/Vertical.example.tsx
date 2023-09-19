@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
-import { shadows, sizes, palette } from '@toptal/picasso/utils'
+import { SPACING_4, shadows, sizes, palette } from '@toptal/picasso/utils'
 
 type TabPanelProps = {
   children: React.ReactNode
@@ -23,7 +23,7 @@ const TabsContent = ({ children }: { children: React.ReactNode }) => {
         boxShadow: shadows[1],
         borderRadius: sizes.borderRadius.medium,
       }}
-      padded='small'
+      padded={SPACING_4}
     >
       {children}
     </Container>
@@ -42,7 +42,7 @@ const Example = () => {
       style={{
         backgroundColor: palette.grey.lighter,
       }}
-      padded='small'
+      padded={SPACING_4}
       flex
     >
       <Tabs onChange={handleChange} orientation='vertical' value={value}>

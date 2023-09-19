@@ -1,10 +1,10 @@
 import React from 'react'
-import { gradients } from '@toptal/picasso/utils'
+import { gradients, SPACING_4 } from '@toptal/picasso/utils'
 import { Typography, Container } from '@toptal/picasso'
 
 const Example = () => (
   <>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Typography>
         Use the gradient just directly from Picasso and apply it to any element
         as{' '}

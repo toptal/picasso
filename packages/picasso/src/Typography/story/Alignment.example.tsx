@@ -1,12 +1,13 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Typography align='left'>Left</Typography>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Typography align='center'>Center</Typography>
     </Container>
     <Typography align='right'>Right</Typography>

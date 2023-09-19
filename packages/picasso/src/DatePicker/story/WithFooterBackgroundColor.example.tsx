@@ -6,7 +6,7 @@ import {
   Link,
   Typography,
 } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_2, palette } from '@toptal/picasso/utils'
 
 const WithFooterBackgroundColorRendering = () => {
   const [datepickerValue, setDatepickerValue] = useState<Date>()
@@ -20,7 +20,7 @@ const WithFooterBackgroundColorRendering = () => {
         }}
         footer={
           <Container flex>
-            <Container right='xsmall'>
+            <Container right={SPACING_2}>
               {' '}
               <Chat16 />{' '}
             </Container>

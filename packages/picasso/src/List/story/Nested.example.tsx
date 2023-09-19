@@ -1,8 +1,9 @@
 import React from 'react'
 import { List, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const NestedExample = () => (
-  <Container bottom='medium'>
+  <Container bottom={SPACING_6}>
     <Container>
       <h3>Ordered</h3>
       <Container>

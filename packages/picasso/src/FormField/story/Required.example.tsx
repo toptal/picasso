@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Input, Container, Typography } from '@toptal/picasso'
+import { SPACING_12 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <Container
@@ -10,7 +11,7 @@ const Example = () => (
     }}
   >
     <Form style={{ maxWidth: '350px' }}>
-      <Container bottom={3}>
+      <Container bottom={SPACING_12}>
         <Typography weight='semibold'>Recommended:</Typography>
       </Container>
       <Form.Field>
@@ -27,7 +28,7 @@ const Example = () => (
     </Form>
 
     <Form style={{ maxWidth: '350px' }}>
-      <Container bottom={3}>
+      <Container bottom={SPACING_12}>
         <Typography weight='semibold'>Deprecated:</Typography>
       </Container>
       <Form.Field>

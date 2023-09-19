@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Transitions } from '@toptal/picasso/utils'
+import { Transitions, SPACING_6 } from '@toptal/picasso/utils'
 import { Button, Container } from '@toptal/picasso'
 import { ArrowDownMinor24 } from '@toptal/picasso/Icon'
 
@@ -10,7 +10,7 @@ const Example = () => {
     <>
       <Button onClick={() => setIsRotated(!isRotated)}>Rotate</Button>
 
-      <Container top='medium'>
+      <Container top={SPACING_6}>
         <Transitions.Rotate180 on={isRotated}>
           <ArrowDownMinor24 />
         </Transitions.Rotate180>

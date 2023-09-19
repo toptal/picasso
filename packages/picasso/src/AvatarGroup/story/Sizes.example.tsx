@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
+import { SPACING_8 } from '@toptal/picasso/utils'
 
 const person = {
   alt: 'Jacqueline Roque. Pablo Picasso, 1954',
@@ -27,7 +28,7 @@ const people = [
 ]
 
 const Example = () => (
-  <Container flex direction='column' gap='large'>
+  <Container flex direction='column' gap={SPACING_8}>
     <div>
       xxsmall
       <Avatar.Group items={people} size='xxsmall' />

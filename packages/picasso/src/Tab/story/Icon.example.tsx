@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Tabs, Tooltip } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Exclamation16 } from '@toptal/picasso/Icon'
 
 const Example = () => {
@@ -36,13 +37,13 @@ const Example = () => {
       </Tabs>
 
       {value === 0 && (
-        <Container top='small'>Content of the first tab</Container>
+        <Container top={SPACING_4}>Content of the first tab</Container>
       )}
       {value === 1 && (
-        <Container top='small'>Content of the second tab</Container>
+        <Container top={SPACING_4}>Content of the second tab</Container>
       )}
       {value === 2 && (
-        <Container top='small'>Content of the third tab</Container>
+        <Container top={SPACING_4}>Content of the third tab</Container>
       )}
     </div>
   )

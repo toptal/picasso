@@ -1,5 +1,5 @@
 import React from 'react'
-import { useScreens } from '@toptal/picasso/utils'
+import { useScreens, SPACING_8 } from '@toptal/picasso/utils'
 import type { ButtonVariantType } from '@toptal/picasso'
 import { Typography, Button, Container } from '@toptal/picasso'
 
@@ -9,7 +9,7 @@ const Example = () => {
 
   return (
     <>
-      <Container bottom={2}>
+      <Container bottom={SPACING_8}>
         <Typography variant='heading' size='medium'>
           Current screen breakpoint:{' '}
           {screenTexts({

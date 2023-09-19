@@ -1,5 +1,5 @@
 import React from 'react'
-import { palette } from '@toptal/picasso/utils'
+import { palette, SPACING_2, SPACING_4 } from '@toptal/picasso/utils'
 import { LineChart } from '@toptal/picasso-charts'
 import { Page, Paper, Container, Typography, Indicator } from '@toptal/picasso'
 
@@ -10,10 +10,10 @@ const CustomTooltip = ({ active, payload }: any) => {
 
     return (
       <Paper>
-        <Container padded='xsmall'>
+        <Container padded={SPACING_2}>
           <Typography size='medium'>Date: {x}</Typography>
           <Container>
-            <Container inline right='small'>
+            <Container inline right={SPACING_4}>
               <Indicator color='yellow' />
             </Container>
             <Typography inline size='medium'>
@@ -22,7 +22,7 @@ const CustomTooltip = ({ active, payload }: any) => {
           </Container>
 
           <Container>
-            <Container inline right='small'>
+            <Container inline right={SPACING_4}>
               <Indicator color='red' />
             </Container>
             <Typography inline size='medium'>
@@ -31,7 +31,7 @@ const CustomTooltip = ({ active, payload }: any) => {
           </Container>
 
           <Container>
-            <Container inline right='small'>
+            <Container inline right={SPACING_4}>
               <Indicator color='green' />
             </Container>
             <Typography inline size='medium'>

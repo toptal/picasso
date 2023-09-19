@@ -1,9 +1,10 @@
 import React from 'react'
 import { Helpbox, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox variant='green'>
         <Helpbox.Title>Full width</Helpbox.Title>
         <Helpbox.Content width='full'>
@@ -17,7 +18,7 @@ const Example = () => (
         </Helpbox.Content>
       </Helpbox>
     </Container>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <Helpbox variant='green'>
         <Helpbox.Title>Shrink width</Helpbox.Title>
         <Helpbox.Content width='shrink'>

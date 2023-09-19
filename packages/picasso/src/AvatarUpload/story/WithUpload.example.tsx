@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import type { FileRejection } from '@toptal/picasso/AvatarUpload'
 
 const Example = () => {
@@ -37,7 +38,7 @@ const Example = () => {
   }
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <AvatarUpload
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         onDrop={handleDrop}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 
 const Example = () => (
@@ -17,7 +18,7 @@ const Example = () => (
       placeholder='e.g. 25'
     />
 
-    <Container top='small'>
+    <Container top={SPACING_4}>
       <Form.SubmitButton>Submit</Form.SubmitButton>
     </Container>
   </Form>
