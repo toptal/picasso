@@ -1,8 +1,10 @@
 import React from 'react'
 import { Container, Typography, Paper, Stepper, Avatar } from '@toptal/picasso'
 
+import { SPACING_2, SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
+
 const JobCandidate = () => (
-  <Container right='xsmall'>
+  <Container right={SPACING_2}>
     <Avatar
       alt='Jacqueline Roque. Pablo Picasso, 1954'
       src='./jacqueline-with-flowers-1954-square.jpg'
@@ -13,12 +15,12 @@ const JobCandidate = () => (
 const Example = () => (
   <div style={{ width: '35rem' }}>
     <Paper>
-      <Container padded='medium'>
+      <Container padded={SPACING_6}>
         <Container
           flex
           justifyContent='space-between'
           alignItems='flex-start'
-          bottom='small'
+          bottom={SPACING_4}
         >
           <Container>
             <Typography variant='heading' size='small'>
@@ -33,7 +35,7 @@ const Example = () => (
           />
         </Container>
         <Typography size='small'>Candidates</Typography>
-        <Container top='small' flex>
+        <Container top={SPACING_4} flex>
           <JobCandidate />
           <JobCandidate />
           <JobCandidate />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_6, palette } from '@toptal/picasso/utils'
 import { BarChart } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
   {
@@ -28,7 +28,7 @@ const CHART_DATA = [
 
 const Example = () => (
   <div style={{ width: 720 }}>
-    <Container bottom='medium'>
+    <Container bottom={SPACING_6}>
       <BarChart
         data={CHART_DATA}
         getBarColor={() => palette.blue.main}

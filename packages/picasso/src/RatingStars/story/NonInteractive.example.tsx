@@ -1,12 +1,13 @@
 import React from 'react'
 import { Container, Rating, Typography } from '@toptal/picasso'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const value = 3
 
   return (
-    <Container padded='small'>
-      <Container bottom='medium'>
+    <Container padded={SPACING_4}>
+      <Container bottom={SPACING_6}>
         <Typography size='medium' variant='heading'>
           Stars
         </Typography>

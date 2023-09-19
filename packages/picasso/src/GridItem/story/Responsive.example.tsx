@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette, useBreakpoint } from '@toptal/picasso/utils'
+import { SPACING_4, palette, useBreakpoint } from '@toptal/picasso/utils'
 
 const ScreenSize = () => {
   const isExtraLarge = useBreakpoint('xl')
@@ -23,7 +23,10 @@ const ScreenSize = () => {
 type Props = { children: React.ReactNode }
 
 const ContentContainer = ({ children }: Props) => (
-  <Container padded='small' style={{ backgroundColor: palette.blue.lighter }}>
+  <Container
+    padded={SPACING_4}
+    style={{ backgroundColor: palette.blue.lighter }}
+  >
     <Typography variant='heading' size='small' align='center'>
       {children}
     </Typography>

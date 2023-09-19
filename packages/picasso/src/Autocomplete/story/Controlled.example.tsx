@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Grid, Autocomplete } from '@toptal/picasso'
+import { SPACING_8 } from '@toptal/picasso/utils'
 
 const options = [
   { text: 'Belarus', value: 'BY' },
@@ -28,7 +29,7 @@ const Example = () => {
           setValue(newValue)
         }}
       />
-      <Container top={2}>
+      <Container top={SPACING_8}>
         <Grid>
           <Grid.Item>
             <Button

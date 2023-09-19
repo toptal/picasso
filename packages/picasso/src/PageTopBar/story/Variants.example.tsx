@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Container, Stepper, Button, Menu, Bell16 } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -22,7 +23,7 @@ const Example = () => (
         variant='dark'
         title='Dark'
         actionItems={
-          <Container right='medium'>
+          <Container right={SPACING_6}>
             <Button variant='transparent'>Create job</Button>
           </Container>
         }
@@ -34,7 +35,7 @@ const Example = () => (
         variant='grey'
         title='Grey'
         actionItems={
-          <Container right='medium'>
+          <Container right={SPACING_6}>
             <Button.Circular variant='transparent' icon={<Bell16 />} />
           </Container>
         }

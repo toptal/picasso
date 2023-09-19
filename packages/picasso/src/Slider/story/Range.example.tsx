@@ -1,5 +1,6 @@
 import React from 'react'
 import { Slider, Typography, Container } from '@toptal/picasso'
+import { SPACING_10, SPACING_8 } from '@toptal/picasso/utils'
 
 type Value = number | number[]
 
@@ -23,7 +24,7 @@ const Example = () => {
       <Typography variant='heading' size='small'>
         Time Zone
       </Typography>
-      <Container top='xlarge' right='large' left='large'>
+      <Container top={SPACING_10} right={SPACING_8} left={SPACING_8}>
         <Slider
           value={value}
           min={0}

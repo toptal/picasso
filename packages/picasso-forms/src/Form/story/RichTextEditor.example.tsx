@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ASTType } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   FormNonCompound,
   RichTextEditor,
@@ -14,7 +15,7 @@ const DEFAULT_EXAMPLE: ASTType = {
 
 const RichTextEditorExample = () => (
   <FormNonCompound onSubmit={data => window.alert(JSON.stringify(data))}>
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <RichTextEditor
         required
         defaultValue={DEFAULT_EXAMPLE}

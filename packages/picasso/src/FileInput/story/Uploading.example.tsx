@@ -1,10 +1,11 @@
 import React from 'react'
 import { FileInput, Container, Typography } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Container bottom='medium'>
-      <Container bottom='small'>
+    <Container bottom={SPACING_6}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='medium'>
           Progress:
         </Typography>
@@ -22,8 +23,8 @@ const Example = () => (
       />
     </Container>
 
-    <Container bottom='medium'>
-      <Container bottom='small'>
+    <Container bottom={SPACING_6}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='medium'>
           Undetermined:
         </Typography>

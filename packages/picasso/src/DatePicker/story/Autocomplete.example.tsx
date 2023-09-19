@@ -1,6 +1,7 @@
 import type { FormEvent } from 'react'
 import React, { useState } from 'react'
 import { DatePicker, Form, Button, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const AutocompleteExample = () => {
   const [datepickerValue, setDatepickerValue] = useState<Date>()
@@ -34,7 +35,7 @@ const AutocompleteExample = () => {
           />
         </Form.Field>
 
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <Button type='submit'>
             Submit to include value to the browser autocomplete
           </Button>

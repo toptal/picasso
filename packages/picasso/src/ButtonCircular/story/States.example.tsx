@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
+import { SPACING_4, SPACING_8, SPACING_2, palette } from '@toptal/picasso/utils'
 import { Settings16 } from '@toptal/picasso/Icon'
-import { palette } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
     <Typography variant='heading' size='small'>
       Primary (Default)
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button.Circular icon={<Settings16 />} />
       <Button.Circular hovered icon={<Settings16 />} />
       <Button.Circular focused icon={<Settings16 />} />
@@ -20,7 +20,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Flat
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button.Circular variant='flat' icon={<Settings16 />} />
       <Button.Circular variant='flat' hovered icon={<Settings16 />} />
       <Button.Circular variant='flat' focused icon={<Settings16 />} />
@@ -34,10 +34,10 @@ const Example = () => (
     </Typography>
     <Container
       inline
-      top='small'
-      bottom='large'
+      top={SPACING_4}
+      bottom={SPACING_8}
       style={{ backgroundColor: palette.blue.main }}
-      padded={0.5}
+      padded={SPACING_2}
     >
       <Button.Circular variant='transparent' icon={<Settings16 />} />
       <Button.Circular variant='transparent' hovered icon={<Settings16 />} />

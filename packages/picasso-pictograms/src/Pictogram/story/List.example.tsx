@@ -7,6 +7,7 @@ import {
   Input,
   Search16,
 } from '@toptal/picasso'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
 import * as pictograms from '@toptal/picasso-pictograms/Pictogram'
 
 const Example = () => {
@@ -46,7 +47,7 @@ const Example = () => {
                   flex
                   alignItems='center'
                   justifyContent='center'
-                  padded='small'
+                  padded={SPACING_4}
                   style={{
                     paddingBottom: '0.5rem',
                     minWidth: '9rem',
@@ -54,7 +55,7 @@ const Example = () => {
                 >
                   <Grid alignItems='center' direction='column' spacing={8}>
                     <Grid.Item>
-                      <Container padded='medium' variant='grey'>
+                      <Container padded={SPACING_6} variant='grey'>
                         <Pictogram />
                       </Container>
                     </Grid.Item>

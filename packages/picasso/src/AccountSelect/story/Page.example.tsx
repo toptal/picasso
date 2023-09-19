@@ -7,6 +7,7 @@ import {
   Typography,
   Logo,
 } from '@toptal/picasso'
+import { SPACING_8 } from '@toptal/picasso/utils'
 
 const accounts = [
   {
@@ -40,7 +41,7 @@ const Example = () => (
               Select an Account
             </Typography>
           </Container>
-          <Container top={2}>
+          <Container top={SPACING_8}>
             <AccountSelect
               accounts={accounts}
               onSelect={account => console.log(account)}

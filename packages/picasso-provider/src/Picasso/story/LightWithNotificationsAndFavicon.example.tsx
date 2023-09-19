@@ -6,7 +6,7 @@ import {
   NotificationsProvider,
 } from '@toptal/picasso-provider'
 import { Page, Container, Button } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { SPACING_12, useNotifications } from '@toptal/picasso/utils'
 
 const App = ({ children }: { children?: ReactNode }) => {
   const { showInfo } = useNotifications()
@@ -19,7 +19,12 @@ const App = ({ children }: { children?: ReactNode }) => {
           <Page.TopBar title='Picasso with notifications provider and favicon' />
           <Page.Content>
             <Page.Article>
-              <Container top={7} bottom={7} flex justifyContent='center'>
+              <Container
+                flex
+                justifyContent='center'
+                top={SPACING_12}
+                style={{ height: '14rem' }}
+              >
                 <Button
                   data-testid='trigger'
                   variant='secondary'

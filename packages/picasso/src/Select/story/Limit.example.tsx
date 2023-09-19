@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import { Select, Form, Container, NumberInput } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const SelectSearchBehaviourExample = () => {
   const [value, setValue] = useState<string>('')
@@ -32,7 +33,7 @@ const SelectSearchBehaviourExample = () => {
 
   return (
     <Container flex>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Form.Field>
           <Form.Label>Flat options</Form.Label>
           <Select
@@ -46,7 +47,7 @@ const SelectSearchBehaviourExample = () => {
           />
         </Form.Field>
       </Container>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Form.Field>
           <Form.Label>Grouped options</Form.Label>
           <Select

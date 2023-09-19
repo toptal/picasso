@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { SPACING_4, useNotifications } from '@toptal/picasso/utils'
 
 const Example = () => {
   const { showError, showInfo, showSuccess } = useNotifications()
 
   return (
     <Container flex>
-      <Container right={1}>
+      <Container right={SPACING_4}>
         <Button
           data-testid='error-trigger'
           variant='secondary'
@@ -16,7 +16,7 @@ const Example = () => {
           Show error notification
         </Button>
       </Container>
-      <Container right={1}>
+      <Container right={SPACING_4}>
         <Button
           data-testid='success-trigger'
           variant='secondary'

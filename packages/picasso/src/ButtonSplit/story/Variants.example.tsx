@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Menu, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const handleClick = () => console.info('Item is clicked')
@@ -13,7 +14,7 @@ const Example = () => {
   )
 
   return (
-    <Container flex gap='small'>
+    <Container flex gap={SPACING_4}>
       <Button.Split menu={menu} variant='primary'>
         Primary
       </Button.Split>
