@@ -1,5 +1,4 @@
-import { SPACING_2, SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
-
+import { SPACING_2, SPACING_4, SPACING_6 } from '../../config/spacings'
 import { createVariableValuesJss } from './create-variable-values-jss'
 
 describe('createVariableValuesJss', () => {
