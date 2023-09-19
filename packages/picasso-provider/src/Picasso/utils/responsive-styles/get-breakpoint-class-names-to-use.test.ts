@@ -11,7 +11,7 @@ describe('getBreakpointClassNamesToUse', () => {
         md: SPACING_4,
       },
     }
-    const expectedClassNames = ['sm--margin', 'md--padding']
+    const expectedClassNames = ['sm--padding', 'md--padding']
 
     const result = getBreakpointClassNamesToUse(props, propSizes)
 
