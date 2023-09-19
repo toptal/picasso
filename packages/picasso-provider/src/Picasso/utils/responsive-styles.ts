@@ -9,9 +9,7 @@ import type {
 } from '../config'
 import { isResponsiveSpacing } from '../config'
 import { spacingToRem } from './spacings'
-
-const kebabToCamelCase = (str: string) =>
-  str.replace(/-([a-z])/g, (substring: string) => substring[1].toUpperCase())
+import { kebabToCamelCase } from '../../utils'
 
 type ResponsiveCssProp = string // String for now, we can narrow it to CSS props eventually
 
@@ -74,7 +72,7 @@ const createMediaQueries = (cssProp: ResponsiveCssProp, theme: Theme) => {
   const mediaQueries: Record<string, {}> = {}
 
   for (const breakpoint of [...theme.breakpoints.keys].reverse()) {
-    mediaQueries[theme.breakpoints.down(breakpoint)] =
+    mediaQueries[theme.breakpoints.up(breakpoint)] =
       createJssVariableClassNames(breakpoint, cssProp)
   }
 
