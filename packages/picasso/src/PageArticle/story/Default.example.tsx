@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Typography } from '@toptal/picasso'
+import { SPACING_4, palette } from '@toptal/picasso/utils'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
-import { palette } from '@toptal/picasso/utils'
 
 const RightSidebar = styled(Container)`
   border-left: 1px solid ${palette.grey.lighter};
@@ -36,11 +36,16 @@ const SidebarMenu = () => (
 
 const SidebarTips = () => (
   <RightSidebar>
-    <Container top='small' bottom='small' left='small' right='small'>
+    <Container
+      top={SPACING_4}
+      bottom={SPACING_4}
+      left={SPACING_4}
+      right={SPACING_4}
+    >
       <Typography variant='heading' size='small'>
         Some Tips
       </Typography>
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -51,7 +56,7 @@ const SidebarTips = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small'>
+  <Container top={SPACING_4} bottom={SPACING_4}>
     <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>

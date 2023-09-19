@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4, isSubstring } from '@toptal/picasso/utils'
 import type { Item } from '@toptal/picasso/Autocomplete'
-import { isSubstring } from '@toptal/picasso/utils'
 import {
   FormNonCompound,
   Input,
@@ -184,7 +184,7 @@ const Example = () => {
         width='auto'
       />
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <SubmitButton>Submit</SubmitButton>
       </Container>
     </FormNonCompound>

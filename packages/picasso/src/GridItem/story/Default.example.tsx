@@ -1,11 +1,14 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_4, palette } from '@toptal/picasso/utils'
 
 type Props = { children: React.ReactNode }
 
 const ContentContainer = ({ children }: Props) => (
-  <Container padded='small' style={{ backgroundColor: palette.blue.lighter }}>
+  <Container
+    padded={SPACING_4}
+    style={{ backgroundColor: palette.blue.lighter }}
+  >
     <Typography variant='heading' size='small' align='center'>
       {children}
     </Typography>

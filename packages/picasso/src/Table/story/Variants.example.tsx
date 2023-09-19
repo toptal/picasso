@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import type { TableProps } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Table, Select, Container } from '@toptal/picasso'
 
 const data = [
@@ -50,7 +51,7 @@ const Example = () => {
 
   return (
     <>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Select
           onChange={event => setVariant(event.target.value)}
           options={[

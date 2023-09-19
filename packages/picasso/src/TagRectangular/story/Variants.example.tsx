@@ -1,8 +1,9 @@
 import React from 'react'
 import { Container, Tag } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
-  <Container flex gap='small'>
+  <Container flex gap={SPACING_4}>
     <Tag.Rectangular variant='red'>Red</Tag.Rectangular>
     <Tag.Rectangular variant='yellow'>Yellow</Tag.Rectangular>
     <Tag.Rectangular variant='green'>Green</Tag.Rectangular>

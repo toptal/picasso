@@ -1,6 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import { Container, Form, Select } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')
@@ -16,7 +17,7 @@ const Example = () => {
 
   return (
     <Container flex>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Form.Label>Reset disabled</Form.Label>
         <Select
           native

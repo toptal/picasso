@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, TagSelector, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const value = [
   { value: 'AF', text: 'Afghanistan' },
@@ -10,19 +11,19 @@ const value = [
 const Example = () => {
   return (
     <Container flex direction='column'>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography>Default</Typography>
         <TagSelector placeholder='default' status='default' value={value} />
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography>Error</Typography>
         <TagSelector placeholder='error' status='error' value={value} />
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography>Success with long placeholder</Typography>
         <TagSelector placeholder='Very long placeholder' status='success' />
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography>Success on one line</Typography>
         <TagSelector
           placeholder='success'
@@ -30,7 +31,7 @@ const Example = () => {
           value={value.slice(0, 2)}
         />
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography>Success</Typography>
         <TagSelector placeholder='success' status='success' value={value} />
       </Container>

@@ -1,8 +1,9 @@
 import React from 'react'
 import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
+import { SPACING_6, SPACING_2 } from '@toptal/picasso/utils'
 
 const CarouselDefaultExample = () => (
-  <Container flex direction='column' gap='medium'>
+  <Container flex direction='column' gap={SPACING_6}>
     <Container style={{ maxWidth: 370 }}>
       <Carousel hasArrows>
         <SlideExample>Delivery Manager</SlideExample>
@@ -28,7 +29,7 @@ const SlideExample = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container
       flex
-      gap='xsmall'
+      gap={SPACING_2}
       direction='column'
       alignItems='center'
       style={{ maxWidth: '100%' }}

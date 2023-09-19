@@ -1,5 +1,6 @@
 import React from 'react'
 import { Radio, Container, Typography } from '@toptal/picasso'
+import { SPACING_2, SPACING_6 } from '@toptal/picasso/utils'
 import styled from 'styled-components'
 
 const Label = styled.label`
@@ -16,7 +17,7 @@ const List = styled.ul`
 const CustomRadio = () => {
   return (
     <Container flex alignItems='center'>
-      <Container right='xsmall' flex alignItems='center'>
+      <Container right={SPACING_2} flex alignItems='center'>
         <Radio id='id-1' />
       </Container>
       <Label htmlFor='id-1'>
@@ -61,7 +62,7 @@ const PayoneerPicker = () => {
       flex
       alignItems='center'
       justifyContent='space-between'
-      bottom='xsmall'
+      bottom={SPACING_2}
     >
       <CustomRadio />
       <PayoneerLogo />
@@ -71,7 +72,12 @@ const PayoneerPicker = () => {
 
 const Example = () => (
   <div>
-    <Container rounded padded='medium' variant='blue' style={{ maxWidth: 400 }}>
+    <Container
+      rounded
+      padded={SPACING_6}
+      variant='blue'
+      style={{ maxWidth: 400 }}
+    >
       <PayoneerPicker />
       <Benefits />
     </Container>

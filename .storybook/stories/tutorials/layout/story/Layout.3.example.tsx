@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
 const SidebarMenu = () => (
@@ -19,7 +20,7 @@ const Example = () => (
       <Page.Content>
         <SidebarMenu />
         <Page.Article>
-          <Container top='medium' bottom='medium'>
+          <Container top={SPACING_6} bottom={SPACING_6}>
             Main Content
           </Container>
         </Page.Article>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Container, Menu, Typography, Link } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 const { Banner } = Page
 
 const Example = () => (
@@ -44,8 +45,8 @@ const RightContent = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small'>
-    <Container bottom='small'>
+  <Container top={SPACING_4} bottom={SPACING_4}>
+    <Container bottom={SPACING_4}>
       <Typography align='center' variant='heading' size='large'>
         Compound banner example
       </Typography>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
+import { SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
 import { Link16 } from '@toptal/picasso/Icon'
 
 const Example = () => (
@@ -7,7 +8,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       No icon
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button.Action>Default</Button.Action>
       <Button.Action hovered>Hovered</Button.Action>
       <Button.Action focused>Focused</Button.Action>
@@ -18,7 +19,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Icon on the left
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button.Action icon={<Link16 />}>Default</Button.Action>
       <Button.Action hovered icon={<Link16 />}>
         Hovered
@@ -39,7 +40,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Icon on the right
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button.Action icon={<Link16 />} iconPosition='right'>
         Default
       </Button.Action>

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button, Container } from '@toptal/picasso'
+import { SPACING_4, useNotifications } from '@toptal/picasso/utils'
 import { Pencil16 } from '@toptal/picasso/Icon'
-import { useNotifications } from '@toptal/picasso/utils'
 
 const Example = () => {
   const { showInfo } = useNotifications()
 
   return (
     <Container flex>
-      <Container right={1}>
+      <Container right={SPACING_4}>
         <Button
           variant='secondary'
           onClick={() => showInfo('General information message')}

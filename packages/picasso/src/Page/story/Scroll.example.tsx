@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div style={{ maxHeight: '30rem', overflowY: 'scroll' }}>
@@ -16,8 +17,8 @@ const Example = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small'>
-    <Container bottom='small'>
+  <Container top={SPACING_4} bottom={SPACING_4}>
+    <Container bottom={SPACING_4}>
       <Typography align='center' variant='heading' size='large'>
         Scrollable example
       </Typography>

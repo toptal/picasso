@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { useField } from 'react-final-form'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   FormNonCompound,
   Checkbox,
@@ -66,7 +67,7 @@ const Example = () => {
       >
         <FormContent />
 
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <SubmitButton>Submit</SubmitButton>
         </Container>
       </FormNonCompound>

@@ -8,12 +8,13 @@ import {
   Component16,
   Avatar,
 } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 const handleClick = () => window.alert('Item clicked')
 
 const Example = () => (
-  <Container flex gap='medium'>
-    <Container flex gap='small' direction='column'>
+  <Container flex gap={SPACING_6}>
+    <Container flex gap={SPACING_4} direction='column'>
       <Typography variant='heading' size='small'>
         Regular
       </Typography>
@@ -26,7 +27,7 @@ const Example = () => (
       </Menu>
     </Container>
 
-    <Container flex gap='small' direction='column'>
+    <Container flex gap={SPACING_4} direction='column'>
       <Typography variant='heading' size='small'>
         With Description
       </Typography>
@@ -43,7 +44,7 @@ const Example = () => (
       </Menu>
     </Container>
 
-    <Container flex gap='small' direction='column'>
+    <Container flex gap={SPACING_4} direction='column'>
       <Typography variant='heading' size='small'>
         With Icon
       </Typography>
@@ -60,7 +61,7 @@ const Example = () => (
       </Menu>
     </Container>
 
-    <Container flex gap='small' direction='column'>
+    <Container flex gap={SPACING_4} direction='column'>
       <Typography variant='heading' size='small'>
         With Description and Icon
       </Typography>
@@ -90,7 +91,7 @@ const Example = () => (
       </Menu>
     </Container>
 
-    <Container flex gap='small' direction='column'>
+    <Container flex gap={SPACING_4} direction='column'>
       <Typography variant='heading' size='small'>
         With avatar
       </Typography>

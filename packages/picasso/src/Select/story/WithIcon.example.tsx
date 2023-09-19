@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => {
@@ -11,7 +12,7 @@ const Example = () => {
 
   return (
     <Container flex direction='column'>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Select
           onChange={handleChange}
           options={OPTIONS}
@@ -21,7 +22,7 @@ const Example = () => {
           width='auto'
         />
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Select
           onChange={handleChange}
           options={OPTIONS}
@@ -32,7 +33,7 @@ const Example = () => {
           width='auto'
         />
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Select
           disabled
           onChange={handleChange}

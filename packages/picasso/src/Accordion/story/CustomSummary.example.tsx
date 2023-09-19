@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { Accordion, Typography, Button, Container, Link } from '@toptal/picasso'
 import {
+  SPACING_4,
+  SPACING_6,
+  SPACING_2,
+  palette,
+  Transitions,
+} from '@toptal/picasso/utils'
+import {
   ArrowDownMinor16,
   Drag16,
   Bell16,
   Time16,
   VideoOn16,
 } from '@toptal/picasso/Icon'
-import { palette, Transitions } from '@toptal/picasso/utils'
 
 const Summary = ({
   onClick,
@@ -20,8 +26,8 @@ const Summary = ({
     flex
     alignItems='center'
     justifyContent='space-between'
-    bottom='small'
-    top='small'
+    bottom={SPACING_4}
+    top={SPACING_4}
   >
     <Typography variant='heading' size='medium'>
       Upcoming interviews (1)
@@ -53,7 +59,7 @@ const InterviewCard = () => (
     <Container
       flex
       direction='column'
-      padded='medium'
+      padded={SPACING_6}
       alignItems='center'
       justifyContent='center'
     >
@@ -76,13 +82,13 @@ const InterviewCard = () => (
       }}
     />
 
-    <Container padded='medium' style={{ flex: 1 }}>
-      <Container flex justifyContent='space-between' bottom='xsmall'>
+    <Container padded={SPACING_6} style={{ flex: 1 }}>
+      <Container flex justifyContent='space-between' bottom={SPACING_2}>
         <Container>
           <Typography size='medium' as='span'>
             <Link href='#'>React Front End Developer</Link>
           </Typography>
-          <Container left='xsmall' inline>
+          <Container left={SPACING_2} inline>
             <Typography size='medium' as='span'>
               with Walsh Group
             </Typography>
@@ -91,7 +97,7 @@ const InterviewCard = () => (
 
         <Container>
           <Bell16 />
-          <Container left='xsmall' right='small' inline>
+          <Container left={SPACING_2} right={SPACING_4} inline>
             <Typography size='xsmall' as='span'>
               <Link href='#'>Add to calendar</Link>
             </Typography>
@@ -108,9 +114,9 @@ const InterviewCard = () => (
 
       <Container flex justifyContent='space-between' alignItems='center'>
         <Container>
-          <Container bottom='xsmall'>
+          <Container bottom={SPACING_2}>
             <Time16 />
-            <Container left='small' inline>
+            <Container left={SPACING_4} inline>
               <Typography size='medium' as='span'>
                 07:00 PM – 07:30 PM (UTC+02:00) Europe – Belgrade
               </Typography>
@@ -119,7 +125,7 @@ const InterviewCard = () => (
 
           <Container>
             <VideoOn16 />
-            <Container left='small' right='xsmall' inline>
+            <Container left={SPACING_4} right={SPACING_2} inline>
               <Typography size='medium' as='span'>
                 Bluejeans Conference
               </Typography>

@@ -1,14 +1,15 @@
 import React from 'react'
 import { Input, Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   return (
     <Container flex direction='column'>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           With auto-expand (up to 5 rows)
         </Typography>
-        <Container right='small'>
+        <Container right={SPACING_4}>
           <Input
             multiline
             rows={2}
@@ -17,11 +18,11 @@ const Example = () => {
           />
         </Container>
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
           With auto-expand (up to 5 rows) and manual resize
         </Typography>
-        <Container right='small'>
+        <Container right={SPACING_4}>
           <Input
             multiline
             multilineResizable
