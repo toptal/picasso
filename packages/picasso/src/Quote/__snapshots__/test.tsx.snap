@@ -9,7 +9,8 @@ exports[`Quote renders 1`] = `
       class="PicassoContainer-flex"
     >
       <div
-        class="PicassoContainer-rightsmallMargin"
+        class=""
+        style="margin-right: 1rem;"
       >
         <svg
           class="PicassoQuoteMark-root"

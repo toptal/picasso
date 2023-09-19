@@ -1,10 +1,7 @@
-import capitalize from '@material-ui/core/utils/capitalize'
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import type { Color } from '@material-ui/core'
 import type { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
-import type { SpacingType } from '@toptal/picasso-shared'
-import { spacingToRem } from '@toptal/picasso-shared'
 
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 
@@ -33,16 +30,6 @@ const justifyContentVariants = [
   'space-evenly',
 ] as const
 
-const directionVariants = ['top', 'left', 'bottom', 'right'] as const
-
-const spacingVariants = [
-  'xsmall',
-  'small',
-  'medium',
-  'large',
-  'xlarge',
-] as const
-
 const containerVariants = [
   'transparent',
   'red',
@@ -56,25 +43,7 @@ const containerVariants = [
 export type VariantType = (typeof containerVariants)[number]
 export type AlignItemsType = (typeof alignItemsVariants)[number]
 export type JustifyContentType = (typeof justifyContentVariants)[number]
-type Direction = (typeof directionVariants)[number]
-type Spacing = (typeof spacingVariants)[number]
 type MapOfClasses = Record<string, Record<string, string>>
-
-const paddings = spacingVariants.reduce((acc, variant) => {
-  acc[`${variant}Padding`] = {
-    padding: spacingToRem(variant as SpacingType),
-  }
-
-  return acc
-}, Object.create(null))
-
-const gaps = spacingVariants.reduce((acc, variant) => {
-  acc[`${variant}Gap`] = {
-    gap: spacingToRem(variant as SpacingType),
-  }
-
-  return acc
-}, Object.create(null))
 
 const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   if (!colorOptions) {
@@ -84,27 +53,6 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   return {
     backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
   }
-}
-
-const marginClassDef = (direction: Direction, spacing: Spacing) => ({
-  [`margin${capitalize(direction)}`]: spacingToRem(spacing),
-})
-
-const marginClasses = (direction: Direction) => {
-  return {
-    [`${direction}${'xsmall'}Margin`]: marginClassDef(direction, 'xsmall'),
-    [`${direction}${'small'}Margin`]: marginClassDef(direction, 'small'),
-    [`${direction}${'medium'}Margin`]: marginClassDef(direction, 'medium'),
-    [`${direction}${'large'}Margin`]: marginClassDef(direction, 'large'),
-    [`${direction}${'xlarge'}Margin`]: marginClassDef(direction, 'xlarge'),
-  }
-}
-
-const margins: MapOfClasses = {
-  ...marginClasses('top'),
-  ...marginClasses('left'),
-  ...marginClasses('bottom'),
-  ...marginClasses('right'),
 }
 
 const alignItems: MapOfClasses = {}
@@ -179,10 +127,7 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
 
     greyVariant: colorVariant(palette.grey),
 
-    ...paddings,
-    ...margins,
     ...alignItems,
     ...justifyContent,
     ...textAlignItems,
-    ...gaps,
   })

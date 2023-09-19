@@ -29,7 +29,8 @@ exports[`AccountSelect renders 1`] = `
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  style="padding: 1.5rem;"
                 >
                   <div
                     class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
@@ -101,7 +102,8 @@ exports[`AccountSelect renders 1`] = `
                 href="#"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  style="padding: 1.5rem;"
                 >
                   <div
                     class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
@@ -173,7 +175,8 @@ exports[`AccountSelect renders 1`] = `
                 href="#"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  style="padding: 1.5rem;"
                 >
                   <div
                     class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"

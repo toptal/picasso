@@ -1,4 +1,4 @@
-import { isNumericSpacing, spacingToRem } from './spacings'
+import { spacingToRem } from './spacings'
 import {
   SPACING_0,
   SPACING_1,
@@ -12,33 +12,6 @@ import {
 } from '../config/spacings'
 
 describe('spacingUtils', () => {
-  describe('isNumericSpacing', () => {
-    describe('when spacing is undefined', () => {
-      it('returns false', () => {
-        expect(isNumericSpacing(undefined)).toBe(false)
-      })
-    })
-
-    describe('when spacing is a number', () => {
-      it('returns true', () => {
-        expect(isNumericSpacing(1)).toBe(true)
-        expect(isNumericSpacing(2.5)).toBe(true)
-      })
-    })
-
-    describe('when spacing is a new Picasso spacing', () => {
-      it('returns true', () => {
-        expect(isNumericSpacing(SPACING_0)).toBe(true)
-      })
-    })
-
-    describe('when spacing is a string Picasso spacing', () => {
-      it('returns false', () => {
-        expect(isNumericSpacing('small')).toBe(false)
-      })
-    })
-  })
-
   describe('spacingToRem', () => {
     describe('when spacing is a number', () => {
       it('converts to rem', () => {

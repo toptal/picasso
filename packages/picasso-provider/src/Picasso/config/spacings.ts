@@ -1,3 +1,5 @@
+import type { BreakpointKeys } from './breakpoints'
+
 // BASE-aligned spacing values in "rem" units
 type PicassoSpacingValues = 0 | 0.25 | 0.5 | 0.75 | 1 | 1.5 | 2 | 2.5 | 3
 
@@ -16,7 +18,13 @@ export type DeprecatedSpacingType =
   | number
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
 
-export type SpacingType = PicassoSpacing | DeprecatedSpacingType
+export type ResponsiveSpacingType = {
+  [key in BreakpointKeys]?: PicassoSpacing
+}
+export type SpacingType =
+  | PicassoSpacing
+  | DeprecatedSpacingType
+  | ResponsiveSpacingType
 
 export enum SpacingEnum {
   xsmall = 0.5,
@@ -51,6 +59,11 @@ export type { PicassoSpacing }
 export const isPicassoSpacing = (
   spacing: SpacingType
 ): spacing is PicassoSpacing => spacing instanceof PicassoSpacing
+
+export const isResponsiveSpacing = (
+  spacing: SpacingType
+): spacing is ResponsiveSpacingType =>
+  typeof spacing == 'object' && !isPicassoSpacing(spacing)
 
 export const SPACING_0 = PicassoSpacing.create(0)
 export const SPACING_1 = PicassoSpacing.create(0.25)
