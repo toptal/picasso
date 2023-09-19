@@ -4,8 +4,8 @@
 
 ### Container
 
-- add support for responsive spacing on padding, margin, and gap
+- add support for responsive spacing in `top`, `right`, `bottom`, `left`, `padding`, and `gap` properties
 
 ### Dropdown
 
-- add support for responsive spacing on offset
+- add support for responsive spacing in `offset` property
