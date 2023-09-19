@@ -8,12 +8,7 @@ import type {
 
 import type { Classes } from './styles'
 
-export {
-  spacings,
-  SpacingEnum,
-  isNumericSpacing,
-  spacingToRem,
-} from '@toptal/picasso-provider'
+export { spacings, SpacingEnum, spacingToRem } from '@toptal/picasso-provider'
 
 export type {
   Sizes,

@@ -54,7 +54,8 @@ exports[`MenuItem renders checkmarked 1`] = `
             class="PicassoContainer-centerAlignItems PicassoContainer-flex"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              style="margin-right: 0.5rem;"
             >
               <svg
                 class="PicassoSvgCheckMinor16-root"
@@ -175,7 +176,8 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
               1
             </span>
             <div
-              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+              class="PicassoContainer-flex PicassoContainer-inline"
+              style="margin-left: 0.5rem;"
             >
               <svg
                 class="PicassoSvgChevronMinor16-root"
