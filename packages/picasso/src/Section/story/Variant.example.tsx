@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Table, Typography, Section } from '@toptal/picasso'
+import { SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
 
 const TableDemo = () => (
   <Table>
@@ -33,7 +34,7 @@ const Example = () => {
         <Typography variant='heading' size='small'>
           Bordered
         </Typography>
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <Section
             title='Talents'
             subtitle={`${data.length} people`}
@@ -43,11 +44,11 @@ const Example = () => {
           </Section>
         </Container>
       </Container>
-      <Container top='large'>
+      <Container top={SPACING_8}>
         <Typography variant='heading' size='small'>
           WithHeaderBar
         </Typography>
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <Section
             title='Talents'
             subtitle={`${data.length} people`}

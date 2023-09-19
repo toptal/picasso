@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Tag, Container, Typography, Settings16 } from '@toptal/picasso'
-import { noop } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_2, noop } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [checked, setChecked] = useState<boolean>(false)
 
   return (
-    <Container flex gap='small'>
-      <Container flex direction='column' gap='xsmall'>
+    <Container flex gap={SPACING_4}>
+      <Container flex direction='column' gap={SPACING_2}>
         <Typography>Regular</Typography>
         <div>
           <Tag.Checkable
@@ -21,7 +21,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='xsmall'>
+      <Container flex direction='column' gap={SPACING_2}>
         <Typography>Hovered</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} hovered onChange={noop}>
@@ -29,7 +29,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='xsmall'>
+      <Container flex direction='column' gap={SPACING_2}>
         <Typography>Checked</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} checked onChange={noop}>
@@ -37,7 +37,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='xsmall'>
+      <Container flex direction='column' gap={SPACING_2}>
         <Typography>Hovered on Selected</Typography>
         <div>
           <Tag.Checkable icon={<Settings16 />} hovered checked onChange={noop}>
@@ -45,7 +45,7 @@ const Example = () => {
           </Tag.Checkable>
         </div>
       </Container>
-      <Container flex direction='column' gap='xsmall'>
+      <Container flex direction='column' gap={SPACING_2}>
         <Typography>Disabled</Typography>
         <div>
           <Tag.Checkable

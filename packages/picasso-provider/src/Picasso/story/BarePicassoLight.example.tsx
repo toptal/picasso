@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import React from 'react'
 import { PicassoLight } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
+import { SPACING_12 } from '@toptal/picasso/utils'
 
 const App = ({ children }: { children: ReactNode }) => (
   <PicassoLight>
@@ -9,7 +10,12 @@ const App = ({ children }: { children: ReactNode }) => (
       <Page.TopBar title='Picasso without any dependencies' />
       <Page.Content>
         <Page.Article>
-          <Container top={7} bottom={7} flex justifyContent='center'>
+          <Container
+            flex
+            justifyContent='center'
+            top={SPACING_12}
+            style={{ height: '14rem' }}
+          >
             {children}
           </Container>
         </Page.Article>

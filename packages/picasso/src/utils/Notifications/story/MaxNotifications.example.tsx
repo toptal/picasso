@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NotificationsProvider } from '@toptal/picasso-provider'
 import type { NotificationsProviderProps } from '@toptal/picasso-provider'
 import { Button, Slider, Typography, Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { SPACING_8, useNotifications } from '@toptal/picasso/utils'
 
 const App = () => {
   const { showInfo } = useNotifications()
@@ -30,8 +30,8 @@ const Example = () => {
 
   return (
     <div style={{ width: 500 }}>
-      <Container bottom={2}>
-        <Container bottom={2}>
+      <Container bottom={SPACING_8}>
+        <Container bottom={SPACING_8}>
           <Typography variant='heading' size='small'>
             maxNotifications
           </Typography>

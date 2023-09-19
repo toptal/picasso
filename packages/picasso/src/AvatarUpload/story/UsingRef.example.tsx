@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [src, setSrc] = useState('./jacqueline-with-flowers-1954-square.jpg')
@@ -25,7 +26,7 @@ const Example = () => {
   }
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <AvatarUpload
         ref={avatarUploadRef}
         onEdit={handleEdit}

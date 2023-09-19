@@ -8,6 +8,7 @@ import {
   Button,
   Typography,
 } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 // Autofocus will force scrolling to the bottom of the portal, so we disable portal
 const Example = () => (
@@ -23,8 +24,8 @@ const ComplexContent = () => {
   const { close } = Dropdown.useContext()
 
   return (
-    <Container padded='medium'>
-      <Container bottom='small'>
+    <Container padded={SPACING_6}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='medium'>
           Talent
         </Typography>
@@ -37,7 +38,7 @@ const ComplexContent = () => {
           <Select placeholder='Select talent' options={OPTIONS} />
         </Form.Field>
       </Form>
-      <Container flex top='small' justifyContent='flex-end'>
+      <Container flex top={SPACING_4} justifyContent='flex-end'>
         <Button onClick={close}>Close</Button>
       </Container>
     </Container>

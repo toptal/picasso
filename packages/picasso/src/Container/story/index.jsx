@@ -20,19 +20,17 @@ page
     title: 'Spacing',
     description: 'Creating inner and outer space for component',
     extra: `
-Spacing is based on BASE design enums that gets transformed into **rem** unit in following manner:
+Spacing is aligned with BASE design and gets transformed into **rem** units in following manner:
 
-| Spacing name  | Value   |
-| ------------- | ------- |
-| "SPACING_0"   | 0rem    |
-| "SPACING_1"   | 0.25rem |
-| "SPACING_2"   | 0.5rem  |
-| "SPACING_3"   | 0.75rem |
-| "SPACING_4"   | 1rem    |
-| "SPACING_6"   | 1.5rem  |
-| "SPACING_8"   | 2rem    |
-| "SPACING_10"  | 2.5rem  |
-| "SPACING_12"  | 3rem    |
+- SPACING_0 = 0rem,
+- SPACING_1 = 0.25rem,
+- SPACING_2 = 0.5rem,
+- SPACING_3 = 0.75rem,
+- SPACING_4 = 1rem,
+- SPACING_6 = 1.5rem,
+- SPACING_8 = 2rem,
+- SPACING_10 = 2.5rem,
+- SPACING_12 = 3rem
 
 `,
   })

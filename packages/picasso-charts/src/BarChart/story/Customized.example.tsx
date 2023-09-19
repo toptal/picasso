@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
+import { SPACING_2, palette } from '@toptal/picasso/utils'
 import { BarChart } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
 
 const CHART_DATA = [
   {
@@ -28,7 +28,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
     return (
       <Paper data-testid='tooltip'>
-        <Container padded='xsmall'>
+        <Container padded={SPACING_2}>
           <Typography size='medium' color='red'>
             Infected: {infected}
           </Typography>

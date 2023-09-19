@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Input, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Search16 } from '@toptal/picasso/Icon'
 
 const Example = () => {
@@ -11,10 +12,10 @@ const Example = () => {
 
   return (
     <Container flex direction='column'>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Input icon={<Search16 />} value={value} onChange={handleChange} />
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Input
           disabled
           icon={<Search16 />}
@@ -22,7 +23,7 @@ const Example = () => {
           onChange={handleChange}
         />
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Input
           iconPosition='end'
           icon={<Search16 />}
@@ -30,7 +31,7 @@ const Example = () => {
           onChange={handleChange}
         />
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Input
           iconPosition='end'
           icon={<Search16 />}

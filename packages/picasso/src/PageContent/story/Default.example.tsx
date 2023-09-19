@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>
@@ -10,7 +11,12 @@ const Example = () => (
 )
 
 const Content = () => (
-  <Container top='small' bottom='small' left='small' right='small'>
+  <Container
+    top={SPACING_4}
+    bottom={SPACING_4}
+    left={SPACING_4}
+    right={SPACING_4}
+  >
     <Typography align='center' variant='heading' size='large'>
       Default example
     </Typography>

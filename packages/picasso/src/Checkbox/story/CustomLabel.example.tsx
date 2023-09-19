@@ -1,5 +1,6 @@
 import React from 'react'
 import { Checkbox, Container, Typography } from '@toptal/picasso'
+import { SPACING_2 } from '@toptal/picasso/utils'
 import styled from 'styled-components'
 
 const Label = styled.label`
@@ -9,7 +10,7 @@ const Label = styled.label`
 
 const CustomLabelExample = () => (
   <Container flex alignItems='center'>
-    <Container right='xsmall' flex alignItems='center'>
+    <Container right={SPACING_2} flex alignItems='center'>
       <Checkbox id='id-1' />
     </Container>
     <Label htmlFor='id-1'>

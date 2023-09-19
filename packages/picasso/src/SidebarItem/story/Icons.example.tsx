@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Typography, Grid, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Overview16, Referrals16 } from '@toptal/picasso/Icon'
 
 const sidebarWithIcons = (
@@ -50,7 +51,7 @@ const sidebarWithoutIcons = (
 const Example = () => (
   <Grid spacing={32}>
     <Grid.Item style={{ height: '24rem' }}>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           With icons
         </Typography>
@@ -59,7 +60,7 @@ const Example = () => (
     </Grid.Item>
 
     <Grid.Item style={{ height: '24rem' }}>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Without icons
         </Typography>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { AvatarUpload, Container, Typography } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const HoveredExample = () => (
   <Container flex direction='column' alignItems='center'>
@@ -56,7 +57,7 @@ const ActiveExample = () => (
 )
 
 const Example = () => (
-  <Container flex padded='medium' gap='medium'>
+  <Container flex padded={SPACING_6} gap={SPACING_6}>
     <HoveredExample />
     <FocusedExample />
     <ErrorExample />

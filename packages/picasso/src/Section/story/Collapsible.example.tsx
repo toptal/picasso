@@ -7,6 +7,7 @@ import {
   Section,
   Container,
 } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const content = (
@@ -72,7 +73,7 @@ const Example = () => {
 
       <Grid.Item sm={6}>
         <Typography>Collapsible section with header bar.</Typography>
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <Section title='Details' collapsible variant='withHeaderBar'>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
             dolore, et ipsum eligendi sunt maiores aliquam blanditiis labore
@@ -86,7 +87,7 @@ const Example = () => {
 
       <Grid.Item sm={6}>
         <Typography>Collapsible bordered section.</Typography>
-        <Container top='small'>
+        <Container top={SPACING_4}>
           <Section title='Details' collapsible variant='bordered'>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
             dolore, et ipsum eligendi sunt maiores aliquam blanditiis labore

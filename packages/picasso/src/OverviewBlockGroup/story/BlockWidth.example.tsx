@@ -1,5 +1,6 @@
 import React from 'react'
 import { OverviewBlock, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const BlockWidthExample = () => {
   return (
@@ -14,7 +15,7 @@ const BlockWidthExample = () => {
         </OverviewBlock.Group>
       </Container>
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <OverviewBlock.Group blockWidth='regular'>
           <OverviewBlock value='Regular' label='Width' />
           <OverviewBlock value='Regular' label='Width' />
@@ -23,7 +24,7 @@ const BlockWidthExample = () => {
         </OverviewBlock.Group>
       </Container>
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <OverviewBlock.Group blockWidth='wide'>
           <OverviewBlock value='Wide' label='Width' />
           <OverviewBlock value='Wide' label='Width' />

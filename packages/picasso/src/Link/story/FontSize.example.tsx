@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react'
 import React from 'react'
 import { Link, Container, Typography } from '@toptal/picasso'
+import { SPACING_8 } from '@toptal/picasso/utils'
 
 const FontSizeExample = () => {
   const handleClick = (e: MouseEvent) => {
@@ -10,7 +11,7 @@ const FontSizeExample = () => {
 
   return (
     <div>
-      <Container inline right='large'>
+      <Container inline right={SPACING_8}>
         <Typography>
           Please{' '}
           <Link onClick={handleClick} href='https://toptal.com'>
@@ -19,7 +20,7 @@ const FontSizeExample = () => {
           your email
         </Typography>
       </Container>
-      <Container inline right='large'>
+      <Container inline right={SPACING_8}>
         <Typography variant='heading' size='large'>
           Please{' '}
           <Link onClick={handleClick} href='https://toptal.com'>

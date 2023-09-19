@@ -14,6 +14,7 @@ import {
   Image,
   SkeletonLoader,
 } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const useGetData = (): [boolean, () => void] => {
   const [loading, setLoading] = useState(true)
@@ -114,19 +115,24 @@ const PageLoader = () => (
       flex
       justifyContent='space-between'
       alignItems='center'
-      bottom='small'
+      bottom={SPACING_4}
     >
       <SkeletonLoader.Header />
       <SkeletonLoader.Button />
     </Container>
 
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <SkeletonLoader.Typography rows={4} />
     </Container>
 
     <Grid>
       <Grid.Item sm={6}>
-        <Container flex alignItems='center' bottom='small' direction='column'>
+        <Container
+          flex
+          alignItems='center'
+          bottom={SPACING_4}
+          direction='column'
+        >
           <SkeletonLoader.Header />
 
           <SkeletonLoader.Media variant='image' width='5rem' height='5rem' />
@@ -136,7 +142,7 @@ const PageLoader = () => (
       </Grid.Item>
 
       <Grid.Item sm={6}>
-        <Container flex justifyContent='center' bottom='small'>
+        <Container flex justifyContent='center' bottom={SPACING_4}>
           <SkeletonLoader.Header />
         </Container>
         <SkeletonLoader.Typography rows={8} />
@@ -160,10 +166,10 @@ const PageExample = () => {
           </SidebarMenu>
           <Container
             style={{ flex: 1 }}
-            top='small'
-            bottom='small'
-            left='small'
-            right='small'
+            top={SPACING_4}
+            bottom={SPACING_4}
+            left={SPACING_4}
+            right={SPACING_4}
           >
             {loading ? PageLoader() : <Content />}
           </Container>

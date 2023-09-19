@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [value, setValue] = React.useState(0)
@@ -17,13 +18,13 @@ const Example = () => {
       </Tabs>
 
       {value === 0 && (
-        <Container top='small'>Content of the first tab</Container>
+        <Container top={SPACING_4}>Content of the first tab</Container>
       )}
       {value === 1 && (
-        <Container top='small'>Content of the second tab</Container>
+        <Container top={SPACING_4}>Content of the second tab</Container>
       )}
       {value === 2 && (
-        <Container top='small'>Content of the third tab</Container>
+        <Container top={SPACING_4}>Content of the third tab</Container>
       )}
     </div>
   )

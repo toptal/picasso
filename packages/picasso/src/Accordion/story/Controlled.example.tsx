@@ -6,17 +6,18 @@ import {
   Typography,
   Plus16,
 } from '@toptal/picasso'
+import { SPACING_4, SPACING_8, SPACING_2 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const [expanded, setExpanded] = React.useState(true)
 
   return (
     <Container style={{ width: '500px' }}>
-      <Container bottom={1}>
+      <Container bottom={SPACING_4}>
         <Button onClick={() => setExpanded(!expanded)}>Toggle state</Button>
       </Container>
       <Container flex>
-        <Container right='large'>
+        <Container right={SPACING_8}>
           <Accordion
             content={<DetailsDogDefinitionPanel />}
             expanded={expanded}
@@ -43,7 +44,7 @@ const DetailsDogDefinitionPanel = () => (
 
 const DetailsDogKindPanel = () => (
   <Accordion.Details>
-    <Container top='xsmall' bottom='xsmall'>
+    <Container top={SPACING_2} bottom={SPACING_2}>
       <Typography size='medium' weight='semibold' color='black'>
         Breeds of dogs
       </Typography>

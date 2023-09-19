@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { palette } from '@toptal/picasso/utils'
+import { palette, SPACING_8, SPACING_4 } from '@toptal/picasso/utils'
 import { Grid, Paper, Typography, Container } from '@toptal/picasso'
 
 const colorGroups = Object.entries(palette)
@@ -8,7 +8,7 @@ const Example = () => (
   <>
     {colorGroups.map(([colorGroupName, colorGroup]) => (
       <Fragment key={colorGroupName}>
-        <Container top={2} bottom={1}>
+        <Container top={SPACING_8} bottom={SPACING_4}>
           <Typography variant='heading' size='large'>
             {colorGroupName}
           </Typography>
