@@ -4,18 +4,18 @@ import { useEffect, useMemo } from 'react'
 const layers = new Set<number>()
 let scrollLock: { prevHtmlOverflow: string } | undefined = undefined
 
-export const useBodyScrollLock = (isLocked: boolean) => {
+export const usePageScrollLock = (isLocked: boolean) => {
   const layerId = useMemo(generateLayerId, [])
 
   useEffect(() => {
     if (isLocked) {
       layers.add(layerId)
-      syncBodyScrollLock()
+      syncPageScrollLock()
     }
 
     return () => {
       layers.delete(layerId)
-      syncBodyScrollLock()
+      syncPageScrollLock()
     }
   }, [layerId, isLocked])
 }
@@ -30,15 +30,15 @@ const generateLayerId = (() => {
   }
 })()
 
-const syncBodyScrollLock = () => {
+const syncPageScrollLock = () => {
   if (layers.size > 0) {
-    addBodyScrollLock()
+    addPageScrollLock()
   } else {
-    removeBodyScrollLock()
+    removePageScrollLock()
   }
 }
 
-const addBodyScrollLock = () => {
+const addPageScrollLock = () => {
   if (!isBrowser()) {
     return
   }
@@ -51,7 +51,7 @@ const addBodyScrollLock = () => {
   }
 }
 
-const removeBodyScrollLock = () => {
+const removePageScrollLock = () => {
   if (!isBrowser()) {
     return
   }

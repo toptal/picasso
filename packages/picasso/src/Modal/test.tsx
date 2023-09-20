@@ -199,7 +199,7 @@ describe('Modal', () => {
     expect(baseElement).toMatchSnapshot()
   })
 
-  describe('body scroll lock', () => {
+  describe('page scroll lock', () => {
     afterEach(() => {
       cleanup()
       getHtmlElement(document).style.overflow = ''
@@ -281,7 +281,7 @@ describe('Modal', () => {
         expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
-      it('restores prev body overflow value', () => {
+      it('restores prev page overflow value', () => {
         const TestComponent = () => {
           const modal = useModal()
 
@@ -316,7 +316,7 @@ describe('Modal', () => {
     })
 
     describe('multiple modals', () => {
-      it('properly manages body scroll lock as modals open/close', () => {
+      it('properly manages page scroll lock as modals open/close', () => {
         const TestComponent = () => {
           const modal1 = useModal()
           const modal2 = useModal()
@@ -365,7 +365,7 @@ describe('Modal', () => {
       })
 
       // NOTE: See https://toptal-core.atlassian.net/browse/FX-1069?focusedCommentId=96115 for more details
-      it('properly restores body overflow when closed modal mounts/unmounts', () => {
+      it('properly restores page overflow when closed modal mounts/unmounts', () => {
         const TestComponent = () => {
           const modal1 = useModal()
           const [isModal2Mounted, setModal2Mounted] = useState(false)

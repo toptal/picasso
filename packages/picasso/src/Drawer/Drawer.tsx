@@ -13,7 +13,7 @@ import ButtonCircular from '../ButtonCircular'
 import Container from '../Container'
 import DrawerTitle from '../DrawerTitle'
 import { useIsomorphicLayoutEffect } from '../utils'
-import { useBodyScrollLock } from '../utils/use-body-scroll-lock'
+import { usePageScrollLock } from '../utils/use-page-scroll-lock'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 
@@ -62,7 +62,7 @@ export const Drawer = (props: Props) => {
   const theme = useTheme()
   const container = usePicassoRoot()
 
-  useBodyScrollLock(Boolean(maintainBodyScrollLock && open))
+  usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
   useIsomorphicLayoutEffect(() => {
     setHasDrawer(open)

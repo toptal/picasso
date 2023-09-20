@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks'
 
-import { useBodyScrollLock } from '../use-body-scroll-lock'
+import { usePageScrollLock } from '../use-page-scroll-lock'
 
 let defaultBodyOverflow: string
 
@@ -8,7 +8,7 @@ const getHtmlElement = (document: Document) => {
   return document.getElementsByTagName('html')[0]
 }
 
-describe('useBodyScrollLock', () => {
+describe('usePageScrollLock', () => {
   beforeEach(() => {
     defaultBodyOverflow = getHtmlElement(document).style.overflow
   })
@@ -19,14 +19,14 @@ describe('useBodyScrollLock', () => {
 
   describe('single usage', () => {
     it('drops scroll lock when mounted with true', () => {
-      renderHook(() => useBodyScrollLock(true))
+      renderHook(() => usePageScrollLock(true))
 
       expect(getHtmlElement(document).style.overflow).toBe('hidden')
     })
 
     describe('lifts scroll lock', () => {
       it('when unmounted', () => {
-        const { unmount } = renderHook(() => useBodyScrollLock(true))
+        const { unmount } = renderHook(() => usePageScrollLock(true))
 
         expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
@@ -37,7 +37,7 @@ describe('useBodyScrollLock', () => {
 
       it('when isLocked switches into false', () => {
         const { rerender } = renderHook(
-          isLocked => useBodyScrollLock(isLocked),
+          isLocked => usePageScrollLock(isLocked),
           { initialProps: true }
         )
 
@@ -48,10 +48,10 @@ describe('useBodyScrollLock', () => {
         expect(getHtmlElement(document).style.overflow).toBe('')
       })
 
-      it('restores prev body overflow', () => {
+      it('restores prev page overflow', () => {
         getHtmlElement(document).style.overflow = 'grid'
 
-        const { unmount } = renderHook(() => useBodyScrollLock(true))
+        const { unmount } = renderHook(() => usePageScrollLock(true))
 
         expect(getHtmlElement(document).style.overflow).toBe('hidden')
 
@@ -64,13 +64,13 @@ describe('useBodyScrollLock', () => {
 
   describe('multiple instances usage', () => {
     it('drops scroll lock once any hook gets isLocked=true', () => {
-      const hook1 = renderHook(isLocked => useBodyScrollLock(isLocked), {
+      const hook1 = renderHook(isLocked => usePageScrollLock(isLocked), {
         initialProps: false,
       })
-      const hook2 = renderHook(isLocked => useBodyScrollLock(isLocked), {
+      const hook2 = renderHook(isLocked => usePageScrollLock(isLocked), {
         initialProps: false,
       })
-      const hook3 = renderHook(isLocked => useBodyScrollLock(isLocked), {
+      const hook3 = renderHook(isLocked => usePageScrollLock(isLocked), {
         initialProps: false,
       })
 
@@ -89,13 +89,13 @@ describe('useBodyScrollLock', () => {
     it('lifts scroll lock once no hook with isLocked=true left mounted', () => {
       getHtmlElement(document).style.overflow = 'block'
 
-      const hook1 = renderHook(isLocked => useBodyScrollLock(isLocked), {
+      const hook1 = renderHook(isLocked => usePageScrollLock(isLocked), {
         initialProps: true,
       })
-      const hook2 = renderHook(isLocked => useBodyScrollLock(isLocked), {
+      const hook2 = renderHook(isLocked => usePageScrollLock(isLocked), {
         initialProps: true,
       })
-      const hook3 = renderHook(isLocked => useBodyScrollLock(isLocked), {
+      const hook3 = renderHook(isLocked => usePageScrollLock(isLocked), {
         initialProps: true,
       })
 
