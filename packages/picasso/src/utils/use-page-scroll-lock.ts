@@ -2,20 +2,20 @@ import { isBrowser } from '@toptal/picasso-shared'
 import { useEffect, useMemo } from 'react'
 
 const layers = new Set<number>()
-let scrollLock: { prevBodyOverflow: string } | undefined = undefined
+let scrollLock: { prevHtmlOverflow: string } | undefined = undefined
 
-export const useBodyScrollLock = (isLocked: boolean) => {
+export const usePageScrollLock = (isLocked: boolean) => {
   const layerId = useMemo(generateLayerId, [])
 
   useEffect(() => {
     if (isLocked) {
       layers.add(layerId)
-      syncBodyScrollLock()
+      syncPageScrollLock()
     }
 
     return () => {
       layers.delete(layerId)
-      syncBodyScrollLock()
+      syncPageScrollLock()
     }
   }, [layerId, isLocked])
 }
@@ -30,34 +30,35 @@ const generateLayerId = (() => {
   }
 })()
 
-const syncBodyScrollLock = () => {
+const syncPageScrollLock = () => {
   if (layers.size > 0) {
-    addBodyScrollLock()
+    addPageScrollLock()
   } else {
-    removeBodyScrollLock()
+    removePageScrollLock()
   }
 }
 
-const addBodyScrollLock = () => {
+const addPageScrollLock = () => {
   if (!isBrowser()) {
     return
   }
 
   if (!scrollLock) {
     scrollLock = {
-      prevBodyOverflow: document.body.style.overflow,
+      prevHtmlOverflow: document.getElementsByTagName('html')[0].style.overflow,
     }
-    document.body.style.overflow = 'hidden'
+    document.getElementsByTagName('html')[0].style.overflow = 'hidden'
   }
 }
 
-const removeBodyScrollLock = () => {
+const removePageScrollLock = () => {
   if (!isBrowser()) {
     return
   }
 
   if (scrollLock) {
-    document.body.style.overflow = scrollLock.prevBodyOverflow
+    document.getElementsByTagName('html')[0].style.overflow =
+      scrollLock.prevHtmlOverflow
     scrollLock = undefined
   }
 }

@@ -28,7 +28,7 @@ import { ModalManager } from '../utils/Modal'
 import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import ModalContext from './ModalContext'
-import { useBodyScrollLock } from '../utils/use-body-scroll-lock'
+import { usePageScrollLock } from '../utils/use-page-scroll-lock'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
@@ -195,7 +195,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     }
   }, [open])
 
-  useBodyScrollLock(open)
+  usePageScrollLock(open)
 
   const isExtraSmall = useBreakpoint('xs')
 

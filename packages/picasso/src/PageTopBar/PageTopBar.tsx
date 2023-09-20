@@ -3,7 +3,10 @@ import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef, useEffect } from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { usePageTopBar } from '@toptal/picasso-provider'
+import {
+  usePageTopBar,
+  usePreventPageWidthChangeOnScrollbar,
+} from '@toptal/picasso-provider'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -69,6 +72,8 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const classes = useStyles()
 
   const { setHasTopBar } = usePageTopBar()
+  const { preventPageWidthChangeOnScrollbar } =
+    usePreventPageWidthChangeOnScrollbar()
   const { setHasTopBar: setHasTopBarHamburger, hasTopBar } =
     useHamburgerContext()
 
@@ -123,7 +128,10 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
       <header
         {...rest}
         ref={ref}
-        className={cx('mui-fixed', classes.root, classes[variant], className)}
+        className={cx('mui-fixed', classes.root, classes[variant], className, {
+          [classes.preventPageWidthChangeOnScrollbar]:
+            preventPageWidthChangeOnScrollbar,
+        })}
         style={style}
       >
         <div className={innerClassName}>

@@ -36,6 +36,7 @@ export {
   useDrawer,
   useSidebar,
   useCurrentBreakpointRange,
+  usePreventPageWidthChangeOnScrollbar,
   RootContext,
 } from './Picasso/RootContext'
 

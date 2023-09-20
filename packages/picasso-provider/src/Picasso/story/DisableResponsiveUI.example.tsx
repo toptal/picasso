@@ -77,7 +77,12 @@ const Content = () => (
 
 const Index = () => (
   <div id='root'>
-    <Picasso responsive={false} loadFavicon={false} fixViewport={false}>
+    <Picasso
+      responsive={false}
+      loadFavicon={false}
+      fixViewport={false}
+      preventPageWidthChangeOnScrollbar={false}
+    >
       <Example />
     </Picasso>
   </div>

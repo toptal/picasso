@@ -11,7 +11,11 @@ const Example = () => (
       </Typography>
     </Container>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
-      <EnvironmentBanner environment='development' productName='Picasso' />
+      <EnvironmentBanner
+        environment='development'
+        productName='Picasso'
+        style={{ width: '100%' }}
+      />
     </Container>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
       <Typography variant='heading' size='small'>
@@ -19,7 +23,11 @@ const Example = () => (
       </Typography>
     </Container>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
-      <EnvironmentBanner environment='temploy' productName='Picasso' />
+      <EnvironmentBanner
+        environment='temploy'
+        productName='Picasso'
+        style={{ width: '100%' }}
+      />
     </Container>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
       <Typography variant='heading' size='small'>
@@ -27,7 +35,11 @@ const Example = () => (
       </Typography>
     </Container>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
-      <EnvironmentBanner environment='staging' productName='Picasso' />
+      <EnvironmentBanner
+        environment='staging'
+        productName='Picasso'
+        style={{ width: '100%' }}
+      />
     </Container>
     <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
       <Typography variant='heading' size='small'>

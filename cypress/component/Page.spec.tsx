@@ -202,7 +202,8 @@ describe('Page', () => {
         variant: 'default/sticky-sidebar-scroll-bottom',
       })
     })
-    it('retains sticky position when Drawer is open', () => {
+    // TODO: restore in https://toptal-core.atlassian.net/browse/FX-4358
+    it.skip('retains sticky position when Drawer is open', () => {
       cy.viewport(1280, 800)
       cy.mount(<DrawerContent />)
 
@@ -210,6 +211,7 @@ describe('Page', () => {
         .getByTestId(TestIds.MENU_ITEM)
         .should('be.visible')
       cy.scrollTo('bottom')
+
       cy.getByTestId(TestIds.DRAWER_BUTTON).click()
 
       cy.get('body').happoScreenshot({

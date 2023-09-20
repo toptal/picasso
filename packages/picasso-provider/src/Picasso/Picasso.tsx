@@ -20,6 +20,7 @@ import FixViewport from './FixViewport'
 import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProvider'
 import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
+import PreventPageWidthChangeOnScrollbar from '../PreventPageWidthChangeOnScrollbar'
 
 export interface PicassoProps extends TextLabelProps {
   children?: ReactNode
@@ -35,6 +36,8 @@ export interface PicassoProps extends TextLabelProps {
   responsive?: boolean
   /** Whether to load viewport fix or not */
   fixViewport?: boolean
+  /** Whether to load scrollbar page jump fix or not */
+  preventPageWidthChangeOnScrollbar?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
@@ -61,6 +64,7 @@ const Picasso = ({
   responsive,
   environment = 'development',
   children,
+  preventPageWidthChangeOnScrollbar,
   fixViewport,
   notificationContainer,
   RootComponent = PicassoRootNode,
@@ -103,11 +107,15 @@ const Picasso = ({
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
+          preventPageWidthChangeOnScrollbar={preventPageWidthChangeOnScrollbar}
         >
           <HelmetProvider disabled={disableHelmet}>
             {fixViewport && <FixViewport />}
             {loadFonts && <FontsLoader />}
             {reset && <CssBaseline />}
+            {preventPageWidthChangeOnScrollbar && (
+              <PreventPageWidthChangeOnScrollbar />
+            )}
             {loadFavicon && <Favicon environment={environment} />}
             <NotificationsProvider container={notificationContainer}>
               {children}
@@ -126,6 +134,7 @@ Picasso.defaultProps = {
   responsive: true,
   reset: true,
   fixViewport: true,
+  preventPageWidthChangeOnScrollbar: true,
   injectFirst: undefined,
   RootComponent: PicassoRootNode,
 }

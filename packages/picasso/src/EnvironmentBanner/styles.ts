@@ -10,7 +10,7 @@ export default ({ palette, zIndex, typography }: Theme) =>
       position: 'fixed',
       textAlign: 'center',
       top: 0,
-      width: '100%',
+      width: '100vw',
       zIndex: zIndex.snackbar,
       fontSize: '0.75rem',
       pointerEvents: 'none',

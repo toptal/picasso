@@ -33,9 +33,13 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       maxWidth: layout.contentWidth,
       padding: `0 ${layout.contentMobilePaddingHorizontal}`,
       height: headerHeight.default,
-
       [screens('md', 'lg', 'xl')]: {
         padding: `0 ${layout.contentPaddingHorizontal}`,
+      },
+    },
+    preventPageWidthChangeOnScrollbar: {
+      [screens('md', 'lg', 'xl')]: {
+        width: '100vw',
       },
     },
     wrapper: {
