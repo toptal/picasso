@@ -23,7 +23,7 @@ const useStyles = makeStyles<Theme>(styles, {
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner(props, ref) {
     const { environment: configEnvironment } = useAppConfig()
-    const { environment, productName, ...rest } = props
+    const { environment, productName, style } = props
     const classes = useStyles()
 
     const [isShown, setIsShown] = useState(true)
@@ -46,7 +46,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
           [classes.rootTemploy]: resolvedEnvironment === 'temploy',
           [classes.rootStaging]: resolvedEnvironment === 'staging',
         })}
-        {...rest}
+        style={style}
       >
         <div
           onClick={() => setIsShown(false)}
