@@ -2,12 +2,15 @@ import React, { useCallback, useState } from 'react'
 import { Container, TagSelector as PicassoTagSelector } from '@toptal/picasso'
 import { useDebouncedCallback } from 'use-debounce'
 import type { Item } from '@toptal/picasso/TagSelector'
+import { makeStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import validateValueEditor from '../utils/validate-value-editor'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
 } from '../types/query-builder'
+import styles from './styles'
 
 interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
   fullWidth?: boolean
@@ -15,6 +18,8 @@ interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
 
 const EMPTY_INPUT_VALUE = ''
 const NO_OPTIONS_TEXT = 'No matches found'
+
+const useStyles = makeStyles(styles)
 
 export const AutoComplete = ({
   handleOnChange,
@@ -26,6 +31,8 @@ export const AutoComplete = ({
   touched,
   handleTouched,
 }: Props) => {
+  const classes = useStyles()
+
   const hasError = validateValueEditor({
     validation,
     touched,
@@ -62,9 +69,10 @@ export const AutoComplete = ({
 
   return (
     <Container
-      // css={S.root({ fullWidth })}
-      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-      // Styling will be fixed with styled-components to JSS conversion
+      className={cx({
+        [classes.fullWidth]: fullWidth,
+        [classes.root]: !fullWidth,
+      })}
       style={{ background: fullWidth ? 'none' : 'transparent' }}
     >
       <PicassoTagSelector

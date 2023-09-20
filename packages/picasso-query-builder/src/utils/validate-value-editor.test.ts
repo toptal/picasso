@@ -29,7 +29,7 @@ describe('validateValueEditor', () => {
     })
 
     describe('when validation is a validation result', () => {
-      describe('and valid is true', () => {
+      describe('when valid is true', () => {
         it('returns false', () => {
           expect(
             validateValueEditor({ touched: true, validation: { valid: true } })
@@ -37,7 +37,7 @@ describe('validateValueEditor', () => {
         })
       })
 
-      describe('and valid is false', () => {
+      describe('when valid is false', () => {
         it('returns true', () => {
           expect(
             validateValueEditor({ touched: true, validation: { valid: false } })
@@ -75,7 +75,7 @@ describe('validateValueEditor', () => {
     })
 
     describe('when validation is a validation result', () => {
-      describe('and valid is true', () => {
+      describe('when valid is true', () => {
         it('returns false', () => {
           expect(
             validateValueEditor({ touched: false, validation: { valid: true } })
@@ -83,7 +83,7 @@ describe('validateValueEditor', () => {
         })
       })
 
-      describe('and valid is false', () => {
+      describe('when valid is false', () => {
         it('returns false', () => {
           expect(
             validateValueEditor({

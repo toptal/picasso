@@ -45,7 +45,7 @@ page
   .addExample('QueryBuilder/story/CustomOperators.example.tsx', {
     title: 'Custom Operators',
     description: `
-    Example of the Query Builder with custom operators. We can Override default operators from the fields with some custom values. 
+    Example of the Query Builder with custom operators. We can override default operators from the fields with some custom values. 
 
     In this case we are providing Custom Operators for text and number inputTypes and for the rest we are providing default operators.
     `,

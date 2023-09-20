@@ -1,5 +1,7 @@
 import React from 'react'
 import type { ValueEditorType } from 'react-querybuilder'
+import { makeStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { Select } from '../Select/Select'
 import { MultiSelect } from '../MultiSelect/MultiSelect'
@@ -9,6 +11,7 @@ import TextInput from '../TextInput/TextInput'
 import useHandleTouched from '../utils/use-handle-touched'
 import BooleanInput from '../BooleanInput/BooleanInput'
 import type { BaseValueEditorProps } from '../types/query-builder'
+import styles from './styles'
 
 type CustomValueEditorType =
   | 'autocomplete'
@@ -20,6 +23,8 @@ export interface QueryBuilderValueEditorProps
   extends Omit<BaseValueEditorProps, 'type'> {
   type?: CustomValueEditorType
 }
+
+const useStyles = makeStyles(styles)
 
 export const ValueEditor = ({
   value,
@@ -36,6 +41,8 @@ export const ValueEditor = ({
   validation,
   context = {},
 }: QueryBuilderValueEditorProps) => {
+  const classes = useStyles()
+
   const { touched, handleTouched } = useHandleTouched({
     submitButtonClicked: context?.submitButtonClicked,
   })
@@ -44,14 +51,11 @@ export const ValueEditor = ({
     case 'multiselect':
       return (
         <MultiSelect
-          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-          // Styling will be fixed with styled-components to JSS conversion
-          // css={S.valueEditor}
+          className={cx(className, classes.root)}
           disabled={disabled}
           options={values}
           value={value}
           handleOnChange={handleOnChange}
-          className={className}
           path={path}
           level={level}
           validation={validation}
@@ -63,14 +67,11 @@ export const ValueEditor = ({
     case 'select':
       return (
         <Select
-          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-          // Styling will be fixed with styled-components to JSS conversion
-          // css={S.valueEditor}
+          className={cx(className, classes.root)}
           disabled={disabled}
           options={values}
           value={value}
           handleOnChange={handleOnChange}
-          className={className}
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
@@ -80,15 +81,12 @@ export const ValueEditor = ({
     case 'autocomplete':
       return (
         <AutoComplete
-          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-          // Styling will be fixed with styled-components to JSS conversion
-          // css={S.valueEditor}
+          className={cx(className, classes.root)}
           fullWidth
           disabled={disabled}
           options={values}
           value={value}
           handleOnChange={handleOnChange}
-          className={className}
           path={path}
           level={level}
           field={field}
@@ -115,9 +113,7 @@ export const ValueEditor = ({
     case 'boolean':
       return (
         <BooleanInput
-          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-          // Styling will be fixed with styled-components to JSS conversion
-          // css={S.valueEditor}
+          className={classes.root}
           disabled={disabled}
           value={value}
           handleOnChange={handleOnChange}
@@ -130,12 +126,9 @@ export const ValueEditor = ({
     default:
       return (
         <TextInput
-          // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-          // Styling will be fixed with styled-components to JSS conversion
-          // css={S.valueEditor}
+          className={cx(className, classes.root)}
           value={value}
           onChange={handleOnChange}
-          className={className}
           inputType={inputType || undefined}
           disabled={disabled}
           handleTouched={handleTouched}

@@ -1,5 +1,8 @@
-import { css } from 'styled-components'
+import { createStyles } from '@material-ui/core/styles'
 
-export const root = css`
-  flex: 1 0 200px;
-`
+export default () =>
+  createStyles({
+    root: {
+      flex: '1 0 200px',
+    },
+  })

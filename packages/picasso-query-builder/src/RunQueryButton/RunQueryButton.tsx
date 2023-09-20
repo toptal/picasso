@@ -1,5 +1,8 @@
 import React from 'react'
 import { Button, Container, Loader } from '@toptal/picasso'
+import { makeStyles } from '@material-ui/core/styles'
+
+import styles from './styles'
 
 type Props = {
   loading?: boolean
@@ -8,12 +11,16 @@ type Props = {
   totalCountLoading?: boolean
 }
 
+const useStyles = makeStyles(styles)
+
 const RunQueryButton = ({
   loading,
   onClick,
   totalCount,
   totalCountLoading,
 }: Props) => {
+  const classes = useStyles()
+
   const renderTotalCount = () => {
     if (totalCountLoading) {
       return (
@@ -28,9 +35,7 @@ const RunQueryButton = ({
 
   return (
     <Button
-      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-      // Styling will be fixed with styled-components to JSS conversion
-      // css={S.runQuery}
+      className={classes.root}
       variant='positive'
       loading={loading}
       onClick={onClick}

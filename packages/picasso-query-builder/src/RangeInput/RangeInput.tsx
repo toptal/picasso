@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { Container, NumberInput, Typography } from '@toptal/picasso'
 import type { ValidationResult } from 'react-querybuilder'
+import { makeStyles } from '@material-ui/core/styles'
 
 import type {
   RangeFieldOptions,
   ValueEditorValidationProps,
 } from '../types/query-builder'
+import styles from './styles'
 
 export type RangeValue = {
   from?: number
@@ -20,6 +22,8 @@ type Props = RangeFieldOptions & {
   onChange: (val: RangeValue) => void
 } & ValueEditorValidationProps
 
+const useStyles = makeStyles(styles)
+
 const RangeInput = ({
   value,
   step = 1,
@@ -30,6 +34,8 @@ const RangeInput = ({
   validation,
   handleTouched,
 }: Props) => {
+  const classes = useStyles()
+
   const fromValue = (value as RangeValue).from ?? ''
   const toValue = (value as RangeValue).to ?? ''
 
@@ -45,20 +51,10 @@ const RangeInput = ({
 
   return (
     <>
-      <Typography
-        variant='body'
-        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-        // Styling will be fixed with styled-components to JSS conversion
-        // css={S.label}
-      >
+      <Typography variant='body' className={classes.label}>
         From
       </Typography>
-      <Container
-        flex
-        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-        // Styling will be fixed with styled-components to JSS conversion
-        // css={S.input}
-      >
+      <Container flex className={classes.input}>
         <NumberInput
           hideControls
           enableReset
@@ -84,20 +80,10 @@ const RangeInput = ({
           }}
         />
       </Container>
-      <Typography
-        variant='body'
-        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-        // Styling will be fixed with styled-components to JSS conversion
-        // css={S.label}
-      >
+      <Typography variant='body' className={classes.label}>
         To
       </Typography>
-      <Container
-        flex
-        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-        // Styling will be fixed with styled-components to JSS conversion
-        // css={S.input}
-      >
+      <Container flex className={classes.input}>
         <NumberInput
           hideControls
           enableReset

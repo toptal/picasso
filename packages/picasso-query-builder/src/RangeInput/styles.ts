@@ -1,8 +1,11 @@
-import { css } from 'styled-components'
-export const input = css`
-  flex: 1 0 50px;
-`
+import { createStyles } from '@material-ui/core/styles'
 
-export const label = css`
-  align-self: center;
-`
+export default () =>
+  createStyles({
+    input: {
+      alignSelf: '1 0 50px',
+    },
+    label: {
+      alignSelf: 'center',
+    },
+  })

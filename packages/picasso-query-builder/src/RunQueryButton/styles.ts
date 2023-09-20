@@ -1,5 +1,8 @@
-import { css } from 'styled-components'
+import { createStyles } from '@material-ui/core/styles'
 
-export const runQuery = css`
-  align-self: flex-end;
-`
+export default () =>
+  createStyles({
+    root: {
+      alignSelf: 'flex-end',
+    },
+  })

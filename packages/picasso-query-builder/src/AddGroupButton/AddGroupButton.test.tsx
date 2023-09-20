@@ -77,7 +77,7 @@ describe('AddGroupButton', () => {
   })
 
   describe('when the current level is less than the maxDepth', () => {
-    it('does not render the add group button', () => {
+    it('renders the add group button', () => {
       renderComponent({
         context: {
           maxDepth: 1,

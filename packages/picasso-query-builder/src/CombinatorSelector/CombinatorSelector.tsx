@@ -1,8 +1,13 @@
 import React from 'react'
 import { Container, Radio as PicassoRadio, Typography } from '@toptal/picasso'
 import type { CombinatorSelectorProps } from 'react-querybuilder'
+import { makeStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { RadioOptions } from './RadioOptions'
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 export const CombinatorSelector = ({
   value,
@@ -12,15 +17,14 @@ export const CombinatorSelector = ({
   className,
   level,
 }: Omit<CombinatorSelectorProps, 'schema'>) => {
+  const classes = useStyles()
+
   return (
     <Container
       flex
       alignItems='center'
       gap='small'
-      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-      // Styling will be fixed with styled-components to JSS conversion
-      // css={S.Container}
-      className={className}
+      className={cx(className, classes.root)}
     >
       {level === 0 && <Typography weight='semibold'>Query</Typography>}
       <PicassoRadio.Group

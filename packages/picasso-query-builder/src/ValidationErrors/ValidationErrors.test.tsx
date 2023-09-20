@@ -29,7 +29,7 @@ const ListMock = List as unknown as jest.Mock
 const ListItemMock = List.Item as unknown as jest.Mock
 const FragmentMock = Fragment as unknown as jest.Mock
 
-const invalidValidationResult = {
+const invalidResult = {
   rule1: {
     valid: false,
     reasons: [
@@ -43,7 +43,7 @@ const invalidValidationResult = {
   },
 }
 
-const validValidationResult = {
+const validResult = {
   rule1: {
     valid: true,
   },
@@ -65,10 +65,10 @@ describe('ValidationErrors', () => {
     FragmentMock.mockImplementation(({ children }) => children)
   })
 
-  describe('when called with a valid validationResult', () => {
+  describe('when called with a valid result', () => {
     it('renders nothing', () => {
       renderComponent({
-        validationResult: validValidationResult,
+        validationResult: validResult,
       })
 
       expect(ContainerMock).not.toHaveBeenCalled()
@@ -78,7 +78,7 @@ describe('ValidationErrors', () => {
   describe('when called with an invalid validationResult', () => {
     it('renders the validation errors', () => {
       renderComponent({
-        validationResult: invalidValidationResult,
+        validationResult: invalidResult,
       })
 
       expect(ContainerMock).toHaveBeenCalledTimes(1)

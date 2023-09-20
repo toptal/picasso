@@ -21,7 +21,7 @@ const optionGroup: OptionGroup[] = [
 ]
 
 describe('generateSelectOptions', () => {
-  describe('when options is undefined', () => {
+  describe('when options are undefined', () => {
     it('returns an empty array', () => {
       const response = generateSelectOptions()
 
@@ -30,7 +30,7 @@ describe('generateSelectOptions', () => {
   })
 
   describe('when options are an optionGroupArray', () => {
-    it('returns options properly formatted', () => {
+    it('returns properly formatted options', () => {
       const response = generateSelectOptions(optionGroup)
 
       expect(response).toEqual({
@@ -49,7 +49,7 @@ describe('generateSelectOptions', () => {
   })
 
   describe('when options are not an optionGroupArray', () => {
-    it('returns options properly formatted', () => {
+    it('returns properly formatted options', () => {
       const response = generateSelectOptions(options)
 
       expect(response).toEqual([

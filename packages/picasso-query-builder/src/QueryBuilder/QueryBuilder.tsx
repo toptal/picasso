@@ -17,6 +17,8 @@ import {
 import { QueryBuilderDnD } from '@react-querybuilder/dnd'
 import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
+import { makeStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import type { QueryBuilderContext, Field } from '../types/query-builder'
 import RunQueryButton from '../RunQueryButton/RunQueryButton'
@@ -28,6 +30,7 @@ import ValidationErrors from '../ValidationErrors/ValidationErrors'
 import { controlClassnames } from '../utils/config'
 import { getQueryDepth } from '../utils/get-query-depth'
 import useQueryBuilderValidator from '../utils/use-query-builder-validator'
+import styles from './styles'
 
 type Props = {
   /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
@@ -64,6 +67,8 @@ type Props = {
   totalCountLoading?: boolean
 }
 
+const useStyles = makeStyles(styles)
+
 const QueryBuilder = ({
   fields,
   query,
@@ -82,6 +87,8 @@ const QueryBuilder = ({
   totalCountLoading,
   onQueryReset,
 }: Props) => {
+  const classes = useStyles({ maxGroupDepth })
+
   const [queryBuilderValid, setIsQueryBuilderValid] = useState<
     boolean | undefined
   >()
@@ -180,13 +187,12 @@ const QueryBuilder = ({
   return (
     <PicassoContext>
       <Container
-        // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-        // Styling will be fixed with styled-components to JSS conversion
-        // css={[reactQueryBuilderStyle, S.root({ maxDepth: maxGroupDepth })]}
+        className={cx(classes.global, classes.root)}
         flex
         padded={hideControls ? undefined : 'medium'}
         direction='column'
         gap='small'
+        data-testid='ananas'
       >
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
           <ReactQueryBuilder

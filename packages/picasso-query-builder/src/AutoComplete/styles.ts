@@ -1,16 +1,12 @@
-import { css } from 'styled-components'
+import { createStyles } from '@material-ui/core/styles'
 
-type Props = {
-  fullWidth: boolean
-}
-
-export const root = ({ fullWidth }: Props) => css`
-  ${fullWidth
-    ? `
-      flex-grow: 1;
-    `
-    : `
-      width: 206px;
-      flex-shrink: 0;
-  `}
-`
+export default () =>
+  createStyles({
+    root: {
+      width: '206px',
+      flexShrink: 0,
+    },
+    fullWidth: {
+      flexGrow: 1,
+    },
+  })

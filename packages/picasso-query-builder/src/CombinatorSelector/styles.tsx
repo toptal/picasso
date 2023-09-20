@@ -1,5 +1,8 @@
-import { css } from 'styled-components'
+import { createStyles } from '@material-ui/core/styles'
 
-export const Container = css`
-  margin-right: auto;
-`
+export default () =>
+  createStyles({
+    root: {
+      marginRight: 'auto',
+    },
+  })

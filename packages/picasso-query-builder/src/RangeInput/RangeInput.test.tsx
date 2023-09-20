@@ -27,7 +27,7 @@ describe('RangeInput', () => {
   })
 
   describe('when `value` is set', () => {
-    it('displays the value\\`s `from` and `to` values', () => {
+    it('displays the `from` and `to` values', () => {
       renderComponent({
         value: {
           from: 0,

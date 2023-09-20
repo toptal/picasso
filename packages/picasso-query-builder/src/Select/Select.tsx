@@ -1,14 +1,19 @@
 import React from 'react'
 import { Container, Select as PicassoSelect } from '@toptal/picasso'
 import type { VersatileSelectorProps } from 'react-querybuilder'
+import { makeStyles } from '@material-ui/core/styles'
+import cx from 'classnames'
 
 import { generateSelectOptions } from '../utils/generate-select-options'
 import validateValueEditor from '../utils/validate-value-editor'
 import type { ValueEditorValidationProps } from '../types/query-builder'
+import styles from './styles'
 
 interface Props
   extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
     ValueEditorValidationProps {}
+
+const useStyles = makeStyles(styles)
 
 export const Select = ({
   options,
@@ -21,25 +26,22 @@ export const Select = ({
   className,
   fieldData,
 }: Props) => {
-  const formatedOptions = generateSelectOptions(options)
+  const classes = useStyles()
+
+  const formattedOptions = generateSelectOptions(options)
   const hasError = validateValueEditor({
     validation,
     touched,
   })
 
   return (
-    <Container
-      className={className}
-      // TODO: https://toptal-core.atlassian.net/browse/CPT-993
-      // Styling will be fixed with styled-components to JSS conversion
-      // css={S.root}
-    >
+    <Container className={cx(className, classes.root)}>
       <PicassoSelect
         menuWidth='fit-content'
         disabled={disabled}
         onChange={event => handleOnChange(event.target.value)}
         onClick={fieldData?.onClick}
-        options={formatedOptions}
+        options={formattedOptions}
         value={value}
         loading={fieldData?.loading}
         status={hasError ? 'error' : undefined}
