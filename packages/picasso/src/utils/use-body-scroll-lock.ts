@@ -43,7 +43,6 @@ const addBodyScrollLock = () => {
     return
   }
 
-  //console.log('@@@', document.getElementsByTagName('html')[0])
   if (!scrollLock) {
     scrollLock = {
       prevHtmlOverflow: document.getElementsByTagName('html')[0].style.overflow,
