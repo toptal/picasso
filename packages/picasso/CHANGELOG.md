@@ -1,5 +1,12 @@
 # Change Log
 
+## 39.2.0
+
+### Minor Changes
+
+- [#3811](https://github.com/toptal/picasso/pull/3811) [`5a729ea53`](https://github.com/toptal/picasso/commit/5a729ea53d83939dae0696afe1db8b6fc315764d) Thanks [@sashuk](https://github.com/sashuk)!
+- prevent page width change caused by vertical scrollbar (that appears depending on the page height). The behaviour can be disabled by setting `preventPageWidthChangeOnScrollbar` to `false` in Picasso provider.
+
 ## 39.1.0
 
 ### Minor Changes
