@@ -37,7 +37,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
         padding: `0 ${layout.contentPaddingHorizontal}`,
       },
     },
-    fixScrollbarJump: {
+    preventPageWidthChangeOnScrollbar: {
       [screens('md', 'lg', 'xl')]: {
         width: '100vw',
       },

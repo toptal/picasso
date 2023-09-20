@@ -7,7 +7,7 @@ import { default as Picasso } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
 
 const App = () => (
-  <Picasso disableClassNamePrefix>
+  <Picasso disableClassNamePrefix preventPageWidthChangeOnScrollbar={false}>
     <Page>
       <Page.TopBar title='App Page' />
       <Page.Content>

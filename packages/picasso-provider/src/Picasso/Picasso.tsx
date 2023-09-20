@@ -20,7 +20,7 @@ import FixViewport from './FixViewport'
 import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProvider'
 import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
-import FixScrollbarJump from '../FixScrollbarJump'
+import PreventPageWidthChangeOnScrollbar from '../PreventPageWidthChangeOnScrollbar'
 
 export interface PicassoProps extends TextLabelProps {
   children?: ReactNode
@@ -37,7 +37,7 @@ export interface PicassoProps extends TextLabelProps {
   /** Whether to load viewport fix or not */
   fixViewport?: boolean
   /** Whether to load scrollbar page jump fix or not */
-  fixScrollbarJump?: boolean
+  preventPageWidthChangeOnScrollbar?: boolean
   /** Notification DOMNode for createPortal */
   notificationContainer?: HTMLElement
   /** Component that is used to render root node  */
@@ -64,7 +64,7 @@ const Picasso = ({
   responsive,
   environment = 'development',
   children,
-  fixScrollbarJump,
+  preventPageWidthChangeOnScrollbar,
   fixViewport,
   notificationContainer,
   RootComponent = PicassoRootNode,
@@ -107,13 +107,15 @@ const Picasso = ({
           environment={environment}
           titleCase={titleCase}
           disableTransitions={disableTransitions}
-          fixScrollbarJump={fixScrollbarJump}
+          preventPageWidthChangeOnScrollbar={preventPageWidthChangeOnScrollbar}
         >
           <HelmetProvider disabled={disableHelmet}>
             {fixViewport && <FixViewport />}
             {loadFonts && <FontsLoader />}
             {reset && <CssBaseline />}
-            {fixScrollbarJump && <FixScrollbarJump />}
+            {preventPageWidthChangeOnScrollbar && (
+              <PreventPageWidthChangeOnScrollbar />
+            )}
             {loadFavicon && <Favicon environment={environment} />}
             <NotificationsProvider container={notificationContainer}>
               {children}
@@ -132,6 +134,7 @@ Picasso.defaultProps = {
   responsive: true,
   reset: true,
   fixViewport: true,
+  preventPageWidthChangeOnScrollbar: true,
   injectFirst: undefined,
   RootComponent: PicassoRootNode,
 }

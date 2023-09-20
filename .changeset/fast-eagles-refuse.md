@@ -3,4 +3,4 @@
 '@toptal/picasso': minor
 ---
 
-- prevent page jump caused by vertical scrollbar. The behaviour can be enabled by setting `fixScrollbarJump` to `true` in Picasso provider.
+- prevent page width change caused by vertical scrollbar (that appears depending on the page height). The behaviour can be disabled by setting `preventPageWidthChangeOnScrollbar` to `false` in Picasso provider.
