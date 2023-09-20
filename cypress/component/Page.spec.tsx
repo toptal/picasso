@@ -176,7 +176,7 @@ const Example = ({ sidebarProps }: ExampleProps) => (
 
 describe('Page', () => {
   describe('when the sidebar is sticky', () => {
-    it.only('sticks to TopBar on scroll', () => {
+    it('sticks to TopBar on scroll', () => {
       cy.mount(<Example />)
 
       cy.get('body').happoScreenshot({
@@ -202,10 +202,7 @@ describe('Page', () => {
         variant: 'default/sticky-sidebar-scroll-bottom',
       })
     })
-    it.only('retains sticky position when Drawer is open', () => {
-      // disable viewport
-      // set viewport for Happo
-
+    it('retains sticky position when Drawer is open', () => {
       cy.viewport(1280, 800)
       cy.mount(<DrawerContent />)
 
@@ -214,20 +211,11 @@ describe('Page', () => {
         .should('be.visible')
       cy.scrollTo('bottom')
 
-      // TODO: remove before merge
-      // { force: true } did not work in https://happo.io/a/675/p/848/compare/7d09867b790ccd4ef1de87eaf2a78d4e9febba6a/58fd890fd7375188c7952cd173ecd544d6cd9244
-      cy.getByTestId(TestIds.DRAWER_BUTTON).click({ force: true })
+      cy.getByTestId(TestIds.DRAWER_BUTTON).click()
 
-      // TODO: remove before merge
-      //cy.wait(500) also did not work
       cy.get('body').happoScreenshot({
         component,
         variant: 'default/sticky-sidebar-scroll-bottom-with-drawer',
-        targets: [{
-          name: `custom-chrome-desktop-width-1280x800`,
-          browser: 'chrome',
-          viewport: `1280x800`,
-        }]
       })
     })
   })
