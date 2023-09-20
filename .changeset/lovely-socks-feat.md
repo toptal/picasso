@@ -1,5 +1,6 @@
 ---
 '@toptal/picasso': minor
+'@toptal/picasso-shared': minor
 ---
 
 ### Container
