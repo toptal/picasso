@@ -87,7 +87,7 @@ const QueryBuilder = ({
   totalCountLoading,
   onQueryReset,
 }: Props) => {
-  const classes = useStyles({ maxGroupDepth })
+  const classes = useStyles()
 
   const [queryBuilderValid, setIsQueryBuilderValid] = useState<
     boolean | undefined

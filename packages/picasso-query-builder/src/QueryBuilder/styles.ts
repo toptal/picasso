@@ -12,7 +12,7 @@ const getRuleGroupBackgroundColor = ({ maxGroupDepth, theme }: Root) => {
   return Array.from({ length: maxGroupDepth }, (_, index) => index + 1).reduce(
     (acc, index) => {
       const isOdd = index % 2 !== 0
-      const key = `& .rule-group[data-level='${index}']`
+      const key = `&[data-level='${index}']`
 
       return {
         ...acc,
@@ -32,11 +32,15 @@ export default (theme: Theme) =>
     global: {
       ...queryBuilderGlobalStyles(),
     },
-    root: ({ maxGroupDepth }: { maxGroupDepth: number }) => ({
+    root: {
       borderRadius: '0.5em',
       background: theme.palette.grey.lighter,
 
-      ...getRuleGroupBackgroundColor({ maxGroupDepth, theme }),
+      '& .rule-group': {
+        // getting maxGroupDepth from props caused problems in jss,
+        // so hard coded 10 max group depth which is unlikely to be topped.
+        ...getRuleGroupBackgroundColor({ maxGroupDepth: 10, theme }),
+      },
 
       '& .query-builder-branches': {
         '& .rule-group[data-level="1"], .rule[data-level="1"], .rule[data-level="2"], .rule-group[data-level="2"]':
@@ -95,5 +99,5 @@ export default (theme: Theme) =>
       '& .rule button, .rule-group-header button': {
         margin: 0,
       },
-    }),
+    },
   })
