@@ -1,5 +1,12 @@
 # Change Log
 
+## 53.0.1
+
+### Patch Changes
+
+- [#3875](https://github.com/toptal/picasso/pull/3875) [`ae30a3419`](https://github.com/toptal/picasso/commit/ae30a3419de034469d7297aa71276f2b6f5c75e2) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- update dependencies (`recharts`)
+
 ## 53.0.0
 
 ### Patch Changes
