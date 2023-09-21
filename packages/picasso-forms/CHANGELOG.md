@@ -1,5 +1,15 @@
 # Change Log
 
+## 62.0.1
+
+### Patch Changes
+
+- [#3855](https://github.com/toptal/picasso/pull/3855) [`a892705e8`](https://github.com/toptal/picasso/commit/a892705e8906beffc7f440a427392baa2cd3c67a) Thanks [@sunRock98](https://github.com/sunRock98)!
+
+### FieldLabel
+
+- fix rendering of field label if label is not provided
+
 ## 62.0.0
 
 ### Patch Changes
