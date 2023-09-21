@@ -1,7 +1,8 @@
 ---
 '@toptal/picasso-provider': minor
+'@toptal/picasso-shared': minor
 ---
 
 ### Spacings
 
-- create `ResponsiveSpacingType`, which represents a spacing type with different values for different screen breakpoints, and adds to `SpacingType`
+- add BASE ([RFC](https://github.com/toptal/picasso/blob/master/docs/decisions/18-spacings.md)) and responsive ([RFC](https://github.com/toptal/picasso/blob/master/docs/decisions/19-responsive-component-spacing-properties.md)) spacing to Picasso's theme and to `picasso-shared`
