@@ -1,10 +1,7 @@
 import type { PropTypes } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import type {
-  DeprecatedSpacingType,
-  SpacingType,
-} from '@toptal/picasso-provider'
+import type { SpacingType } from '@toptal/picasso-provider'
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
@@ -26,10 +23,7 @@ type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
-const useStyles = makeStyles<
-  Theme,
-  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
->(styles, {
+const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoContainer',
 })
 
@@ -45,7 +39,7 @@ const useResponsiveProps = makeResponsiveSpacingProps(
   'PicassoContainer-Responsive'
 )
 
-interface InternalProps<V extends VariantType = VariantType>
+export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
@@ -71,70 +65,35 @@ interface InternalProps<V extends VariantType = VariantType>
   as?: ContainerType
   /** Text align of the inner text */
   align?: PropTypes.Alignment
+  /** margin-top for the container transformed to `rem` */
+  top?: SpacingType
+  /** margin-bottom for the container transformed to `rem` */
+  bottom?: SpacingType
+  /** margin-left for the container transformed to `rem` */
+  left?: SpacingType
+  /** margin-right for the container transformed to `rem` */
+  right?: SpacingType
+  /** padding for the container transformed to `rem` */
+  padded?: SpacingType
+  /** Gap between elements for a flex container */
+  gap?: SpacingType
 }
-
-type PropsWithBaseSpacing<V extends VariantType = VariantType> =
-  InternalProps<V> & {
-    /** margin-top for the container transformed to `rem` */
-    top?: Exclude<SpacingType, DeprecatedSpacingType>
-    /** margin-bottom for the container transformed to `rem` */
-    bottom?: Exclude<SpacingType, DeprecatedSpacingType>
-    /** margin-left for the container transformed to `rem` */
-    left?: Exclude<SpacingType, DeprecatedSpacingType>
-    /** margin-right for the container transformed to `rem` */
-    right?: Exclude<SpacingType, DeprecatedSpacingType>
-    /** padding for the container transformed to `rem` */
-    padded?: Exclude<SpacingType, DeprecatedSpacingType>
-    /** Gap between elements for a flex container */
-    gap?: Exclude<SpacingType, DeprecatedSpacingType>
-  }
-
-/** @deprecated */
-type PropsWithDeprecatedSpacing<V extends VariantType = VariantType> =
-  InternalProps<V> & {
-    /** margin-top for the container transformed to `rem` */
-    /** @deprecated */
-    top?: DeprecatedSpacingType
-    /** @deprecated */
-    bottom?: DeprecatedSpacingType
-    /** margin-left for the container transformed to `rem` */
-    /** @deprecated */
-    left?: DeprecatedSpacingType
-    /** margin-right for the container transformed to `rem` */
-    /** @deprecated */
-    right?: DeprecatedSpacingType
-    /** padding for the container transformed to `rem` */
-    /** @deprecated */
-    padded?: DeprecatedSpacingType
-    /** Gap between elements for a flex container */
-    /** @deprecated */
-    gap?: DeprecatedSpacingType
-  }
 
 type ContainerProps = {
   <V extends VariantType = VariantType>(
-    props: PropsWithBaseSpacing<V> & { ref?: Ref<HTMLDivElement> | null }
-  ): ReactElement
-  <V extends VariantType = VariantType>(
-    props: PropsWithDeprecatedSpacing<V> & {
-      ref?: Ref<HTMLDivElement> | null
-    }
+    props: Props<V> & { ref?: Ref<HTMLDivElement> | null }
   ): ReactElement
   displayName?: string
-  defaultProps?: Partial<PropsWithBaseSpacing<VariantType>>
+  defaultProps?: Partial<Props<VariantType>>
 }
-
-export type Props<V extends VariantType = VariantType> =
-  | PropsWithBaseSpacing<V>
-  | PropsWithDeprecatedSpacing<V>
 
 /**
  * Container component used for spacing 2 elements
  */
 export const Container: ContainerProps = documentable(
-  forwardRef<PropsWithBaseSpacing | PropsWithDeprecatedSpacing, HTMLDivElement>(
+  forwardRef<Props, HTMLDivElement>(
     <V extends VariantType>(
-      props: PropsWithBaseSpacing<V> | PropsWithDeprecatedSpacing<V>,
+      props: Props<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {
