@@ -34,6 +34,11 @@ const FieldLabel = (props: Props) => {
   const { label, required, titleCase, name } = props
 
   const formConfig = useFormConfig()
+
+  if (!label) {
+    return null
+  }
+
   const requiredDecoration = getRequiredDecoration(
     required,
     formConfig.requiredVariant
