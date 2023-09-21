@@ -68,7 +68,7 @@ import { SPACING_1, SPACING_2 } from '@toptal/picasso/utils'
 
 ### Questions and answers
 
-This section covers common use cases and questions that may rise during migration.
+This section covers common use cases and questions that may rise during adoption
 
 ---
 
@@ -94,6 +94,11 @@ Q: how to set `SPACING_N` padding for all screens and `SPACING_M` for `md` scree
 
 A: it should be `top={{ xs: SPACING_N, md: SPACING_M, lg: SPACING_N }}`
 
+---
+
+Q: are responsive spacings compatible with Server Side Rendering?
+
+A: yes, mixture of CSS media queries and CSS variables is used under the hood, so there is no need in extra re-renders
 
 ### Alternative approaches
 
