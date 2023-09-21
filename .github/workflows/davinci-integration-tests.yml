@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup node 16
         uses: actions/setup-node@v3
@@ -57,7 +57,7 @@ jobs:
       PARALLEL_GROUPS: ${{ strategy.job-total }}
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup node 16
         uses: actions/setup-node@v3
@@ -88,7 +88,7 @@ jobs:
     needs: [integration-tests]
     steps:
       - name: Checkout project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup node 16
         uses: actions/setup-node@v3
