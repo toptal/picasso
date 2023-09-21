@@ -66,6 +66,35 @@ import { SPACING_1, SPACING_2 } from '@toptal/picasso/utils'
 <Container top={{ md: 1, lg: 'large' }}/> // throws TypeScript error
 ```
 
+### Questions and answers
+
+This section covers common use cases and questions that may rise during migration.
+
+---
+
+Question: what padding is set for `xs` and `sm` screens when `top={{ md: SPACING_N }}` spacing property value is set?
+
+Answer: no padding is set, no styles are applied to `xs` and `sm` screens. All screens above `sm` have `SPACING_N` spacing
+
+---
+
+Q: how to set `SPACING_N` padding only for `lg` screen?
+
+A: it should be `top={{ lg: SPACING_N, xl: SPACING_0 }}`, xl: `SPACING_0` is needed to reset the value for `xl` screens
+
+---
+
+Q: how to set `SPACING_N` padding for all screens?
+
+A: no need to use responsive spacing, having `top={SPACING_N}` is enough
+
+---
+
+Q: how to set `SPACING_N` padding for all screens and `SPACING_M` for `md` screens?
+
+A: it should be `top={{ xs: SPACING_N, md: SPACING_M, lg: SPACING_N }}`
+
+
 ### Alternative approaches
 
 Another approach is to make spacing properties accept arrays with spacing values (similar approach is used in [ChakraUI](https://chakra-ui.com/docs/styled-system/responsive-styles#the-array-syntax)). Arrays specify values (if there is no value, then `null` has to be explicitly specified) for all the breakpoints until the biggest one is mentioned.
