@@ -6,7 +6,7 @@ import {
 } from '@toptal/picasso-query-builder'
 import { Typography } from '@toptal/picasso'
 
-const initialQuery = {
+const initialQuery: RuleGroupTypeAny = {
   rules: [
     {
       field: 'name',
