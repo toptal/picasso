@@ -29,6 +29,9 @@ const useStyles = makeStyles<
   name: 'PicassoContainer',
 })
 
+const filterStringValue = (value?: SpacingType) =>
+  typeof value === 'string' ? undefined : value
+
 const useResponsiveProps = makeResponsiveSpacingProps(
   [
     'margin-top',
@@ -163,12 +166,12 @@ export const Container: ContainerProps = documentable(
       const classes = useStyles(props)
       const { className: responsiveClasses, style: responsiveStyle } =
         useResponsiveProps({
-          'margin-top': top,
-          'margin-bottom': bottom,
-          'margin-left': left,
-          'margin-right': right,
-          padding: padded,
-          gap,
+          'margin-top': filterStringValue(top),
+          'margin-bottom': filterStringValue(bottom),
+          'margin-left': filterStringValue(left),
+          'margin-right': filterStringValue(right),
+          padding: filterStringValue(padded),
+          gap: filterStringValue(gap),
         })
 
       return (
@@ -178,6 +181,14 @@ export const Container: ContainerProps = documentable(
           className={cx(
             classes[`${variant}Variant`],
             {
+              [classes[`${padded}Padding`]]: typeof padded === 'string',
+              [classes[`${gap}Gap`]]: typeof gap === 'string',
+
+              [classes[`top${top}Margin`]]: typeof top === 'string',
+              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+              [classes[`left${left}Margin`]]: typeof left === 'string',
+              [classes[`right${right}Margin`]]: typeof right === 'string',
+
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
               [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
