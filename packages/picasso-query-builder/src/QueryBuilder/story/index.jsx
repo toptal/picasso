@@ -14,6 +14,8 @@ page
   .createChapter()
   .addExample('QueryBuilder/story/Default.example.tsx', 'Default')
 
+  .addExample('QueryBuilder/story/InitialValues.example.tsx', 'Initial Values')
+
   .addExample('QueryBuilder/story/DynamicMultiselect.example.tsx', {
     title: 'ValueEditor with Async Values',
     description: `

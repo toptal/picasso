@@ -7,7 +7,20 @@ import {
 import { Typography } from '@toptal/picasso'
 
 const initialQuery = {
-  rules: [],
+  rules: [
+    {
+      field: 'name',
+      operator: '=',
+      valueSource: 'value',
+      value: '',
+    },
+    {
+      field: 'age',
+      operator: '=',
+      valueSource: 'value',
+      value: '12',
+    },
+  ],
   combinator: 'and',
 }
 

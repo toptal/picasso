@@ -5,10 +5,46 @@ import {
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
 
-const initialQuery = {
-  rules: [],
+const initialQuery: RuleGroupTypeAny = {
+  rules: [
+    {
+      field: 'firstName',
+      operator: '=',
+      valueSource: 'value',
+      value: 'John',
+    },
+    {
+      field: 'lastName',
+      operator: 'beginsWith',
+      valueSource: 'value',
+      value: 'Doe',
+    },
+    {
+      field: 'instrument',
+      operator: '=',
+      valueSource: 'value',
+      value: 'Steelpan',
+    },
+    {
+      rules: [
+        {
+          field: 'alsoPlays',
+          operator: 'contains',
+          valueSource: 'value',
+          value: 'More cowbell,Clapstick,Cowbell',
+        },
+        {
+          field: 'groupedField1',
+          operator: '=',
+          valueSource: 'field',
+          value: 'groupedField2',
+        },
+      ],
+      combinator: 'and',
+      not: false,
+    },
+  ],
   combinator: 'and',
 }
 
@@ -237,14 +273,8 @@ const fields: Field[] = [
 const Example = () => {
   const [query, setQuery] = useState<RuleGroupTypeAny>(initialQuery)
 
-  const { showSuccess } = useNotifications()
-
   const handleQueryChange = (newQuery: RuleGroupTypeAny) => {
     setQuery(newQuery)
-  }
-
-  const handleSubmit = () => {
-    showSuccess('Successfully submitted.')
   }
 
   return (
@@ -253,13 +283,9 @@ const Example = () => {
         fields={fields}
         query={query}
         onQueryChange={handleQueryChange}
-        onSubmit={handleSubmit}
       />
       <Container top='medium'>
-        <Accordion
-          expanded
-          content={<pre>{JSON.stringify(query, null, 2) + '\n'}</pre>}
-        >
+        <Accordion content={<pre>{JSON.stringify(query, null, 2) + '\n'}</pre>}>
           <Accordion.Summary>Query</Accordion.Summary>
         </Accordion>
       </Container>
