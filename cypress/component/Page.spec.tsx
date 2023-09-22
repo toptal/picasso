@@ -91,7 +91,11 @@ const RightContent = () => (
   </Page.TopBarMenu>
 )
 
-const Content = () => {
+const Content = ({
+  showNotificationButton,
+}: {
+  showNotificationButton?: boolean
+}) => {
   const { showInfo } = useNotifications()
 
   return (
@@ -101,22 +105,24 @@ const Content = () => {
           Banner example
         </Typography>
       </Container>
-      <Container>
-        <Button
-          data-testid={TestIds.NOTIFICATION_BUTTON_PAGE}
-          onClick={() =>
-            showInfo(
-              <div data-testid={TestIds.NOTIFICATION_CONTENT}>
-                Test content
-              </div>,
-              undefined,
-              { persist: true }
-            )
-          }
-        >
-          Show notification
-        </Button>
-      </Container>
+      {showNotificationButton && (
+        <Container>
+          <Button
+            data-testid={TestIds.NOTIFICATION_BUTTON_PAGE}
+            onClick={() =>
+              showInfo(
+                <div data-testid={TestIds.NOTIFICATION_CONTENT}>
+                  Test content
+                </div>,
+                undefined,
+                { persist: true }
+              )
+            }
+          >
+            Show notification
+          </Button>
+        </Container>
+      )}
       <Paragraph />
       <Paragraph />
       <Paragraph />
@@ -129,7 +135,11 @@ const Content = () => {
   )
 }
 
-const DrawerContent = () => {
+const DrawerContent = ({
+  showNotificationButton,
+}: {
+  showNotificationButton?: boolean
+}) => {
   const [open, setOpen] = React.useState(false)
   const { showInfo } = useNotifications()
 
@@ -153,24 +163,26 @@ const DrawerContent = () => {
           </Page.Sidebar.Menu>
         </Page.Sidebar>
         <Page.Article>
-          <Content />
+          <Content showNotificationButton />
           <Drawer onClose={() => setOpen(false)} open={open}>
             <Container>Drawer Content</Container>
             <Container>
-              <Button
-                data-testid={TestIds.NOTIFICATION_BUTTON_DRAWER}
-                onClick={() =>
-                  showInfo(
-                    <div data-testid={TestIds.NOTIFICATION_CONTENT}>
-                      Test content
-                    </div>,
-                    undefined,
-                    { persist: true }
-                  )
-                }
-              >
-                Show notification
-              </Button>
+              {showNotificationButton && (
+                <Button
+                  data-testid={TestIds.NOTIFICATION_BUTTON_DRAWER}
+                  onClick={() =>
+                    showInfo(
+                      <div data-testid={TestIds.NOTIFICATION_CONTENT}>
+                        Test content
+                      </div>,
+                      undefined,
+                      { persist: true }
+                    )
+                  }
+                >
+                  Show notification
+                </Button>
+              )}
             </Container>
           </Drawer>
           <Button
@@ -287,7 +299,7 @@ describe('Page', () => {
   describe('when TopBar exists', () => {
     describe('when drawer is open', () => {
       it('renders notifications without extra top padding', () => {
-        cy.mount(<DrawerContent />)
+        cy.mount(<DrawerContent showNotificationButton />)
         cy.getByTestId(TestIds.DRAWER_BUTTON).click()
         cy.getByTestId(TestIds.NOTIFICATION_BUTTON_DRAWER).click()
         cy.getByTestId(TestIds.NOTIFICATION_CONTENT).contains('Test content')
@@ -300,7 +312,7 @@ describe('Page', () => {
 
     describe('when drawer is not open', () => {
       it('renders notifications with extra top padding', () => {
-        cy.mount(<DrawerContent />)
+        cy.mount(<DrawerContent showNotificationButton />)
         cy.getByTestId(TestIds.NOTIFICATION_BUTTON_PAGE).click()
         cy.getByTestId(TestIds.NOTIFICATION_CONTENT).contains('Test content')
         cy.get('body').happoScreenshot({
