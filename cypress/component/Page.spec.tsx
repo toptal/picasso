@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@toptal/picasso'
 import { HAPPO_TARGETS, getHappoTargets } from '@toptal/picasso/test-utils'
+import { useNotifications } from '@toptal/picasso/utils'
 
 const component = 'Page'
 const containerHeight = '30rem'
@@ -19,6 +20,9 @@ enum TestIds {
   MENU_CONTAINER = 'menu-container',
   DRAWER_BUTTON = 'drawer-button',
   MENU_ITEM = 'menu_item',
+  NOTIFICATION_BUTTON_PAGE = 'notification-button-page',
+  NOTIFICATION_BUTTON_DRAWER = 'notification-button-drawer',
+  NOTIFICATION_CONTENT = 'notification-content',
 }
 
 const Paragraph = () => (
@@ -87,26 +91,47 @@ const RightContent = () => (
   </Page.TopBarMenu>
 )
 
-const Content = () => (
-  <Container top='small' bottom='small'>
-    <Container bottom='small'>
-      <Typography align='center' variant='heading' size='large'>
-        Banner example
-      </Typography>
+const Content = () => {
+  const { showInfo } = useNotifications()
+
+  return (
+    <Container top='small' bottom='small'>
+      <Container bottom='small'>
+        <Typography align='center' variant='heading' size='large'>
+          Banner example
+        </Typography>
+      </Container>
+      <Container>
+        <Button
+          data-testid={TestIds.NOTIFICATION_BUTTON_PAGE}
+          onClick={() =>
+            showInfo(
+              <div data-testid={TestIds.NOTIFICATION_CONTENT}>
+                Test content
+              </div>,
+              undefined,
+              { persist: true }
+            )
+          }
+        >
+          Show notification
+        </Button>
+      </Container>
+      <Paragraph />
+      <Paragraph />
+      <Paragraph />
+      <Paragraph />
+      <Paragraph />
+      <Paragraph />
+      <Paragraph />
+      <Paragraph />
     </Container>
-    <Paragraph />
-    <Paragraph />
-    <Paragraph />
-    <Paragraph />
-    <Paragraph />
-    <Paragraph />
-    <Paragraph />
-    <Paragraph />
-  </Container>
-)
+  )
+}
 
 const DrawerContent = () => {
   const [open, setOpen] = React.useState(false)
+  const { showInfo } = useNotifications()
 
   return (
     <Page data-testid={TestIds.WRAPPER}>
@@ -130,7 +155,23 @@ const DrawerContent = () => {
         <Page.Article>
           <Content />
           <Drawer onClose={() => setOpen(false)} open={open}>
-            Drawer Content
+            <Container>Drawer Content</Container>
+            <Container>
+              <Button
+                data-testid={TestIds.NOTIFICATION_BUTTON_DRAWER}
+                onClick={() =>
+                  showInfo(
+                    <div data-testid={TestIds.NOTIFICATION_CONTENT}>
+                      Test content
+                    </div>,
+                    undefined,
+                    { persist: true }
+                  )
+                }
+              >
+                Show notification
+              </Button>
+            </Container>
           </Drawer>
           <Button
             data-testid={TestIds.DRAWER_BUTTON}
@@ -239,6 +280,33 @@ describe('Page', () => {
       cy.get('body').happoScreenshot({
         component,
         variant: 'default/sidebar-scroll-bottom',
+      })
+    })
+  })
+
+  describe.only('when TopBar exists', () => {
+    describe('when drawer is open', () => {
+      it('renders notifications with extra top padding', () => {
+        cy.mount(<DrawerContent />)
+        cy.getByTestId(TestIds.DRAWER_BUTTON).click()
+        cy.getByTestId(TestIds.NOTIFICATION_BUTTON_DRAWER).click()
+        cy.getByTestId(TestIds.NOTIFICATION_CONTENT).contains('Test content')
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `notification-display-with-top-bar-and-drawer`,
+        })
+      })
+    })
+
+    describe('when drawer is not open', () => {
+      it('renders notifications without extra top padding', () => {
+        cy.mount(<DrawerContent />)
+        cy.getByTestId(TestIds.NOTIFICATION_BUTTON_PAGE).click()
+        cy.getByTestId(TestIds.NOTIFICATION_CONTENT).contains('Test content')
+        cy.get('body').happoScreenshot({
+          component,
+          variant: `notification-display-with-top-bar-and-drawer`,
+        })
       })
     })
   })
