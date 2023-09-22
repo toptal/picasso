@@ -90,7 +90,7 @@ A: no need to use responsive spacing, having `top={SPACING_N}` is enough
 
 ---
 
-Q: how to set `SPACING_N` padding for all screens and `SPACING_M` for `md` screens?
+Q: how to set `SPACING_N` padding for all screens and `SPACING_M` only for `md` screens?
 
 A: it should be `top={{ xs: SPACING_N, md: SPACING_M, lg: SPACING_N }}`
 
