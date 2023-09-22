@@ -15,8 +15,7 @@ exports[`Timeline renders 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -27,8 +26,7 @@ exports[`Timeline renders 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #1
           </div>
@@ -37,8 +35,7 @@ exports[`Timeline renders 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -49,8 +46,7 @@ exports[`Timeline renders 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #2
           </div>
@@ -59,8 +55,7 @@ exports[`Timeline renders 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -71,8 +66,7 @@ exports[`Timeline renders 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #3
           </div>
@@ -98,8 +92,7 @@ exports[`Timeline renders with dates 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -109,8 +102,7 @@ exports[`Timeline renders with dates 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-date"
-            style="margin-right: 2rem;"
+            class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
           >
             <p
               class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
@@ -119,8 +111,7 @@ exports[`Timeline renders with dates 1`] = `
             </p>
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #1
           </div>
@@ -129,8 +120,7 @@ exports[`Timeline renders with dates 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -140,8 +130,7 @@ exports[`Timeline renders with dates 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-date"
-            style="margin-right: 2rem;"
+            class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
           >
             <p
               class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
@@ -150,8 +139,7 @@ exports[`Timeline renders with dates 1`] = `
             </p>
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #2
           </div>
@@ -160,8 +148,7 @@ exports[`Timeline renders with dates 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -171,8 +158,7 @@ exports[`Timeline renders with dates 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-date"
-            style="margin-right: 2rem;"
+            class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
           >
             <p
               class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
@@ -181,8 +167,7 @@ exports[`Timeline renders with dates 1`] = `
             </p>
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #3
           </div>
@@ -208,8 +193,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -220,8 +204,7 @@ exports[`Timeline renders with icons 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #1
           </div>
@@ -230,8 +213,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -242,8 +224,7 @@ exports[`Timeline renders with icons 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #2
           </div>
@@ -252,8 +233,7 @@ exports[`Timeline renders with icons 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <span
               class="PicassoTimelineRow-icon"
@@ -264,8 +244,7 @@ exports[`Timeline renders with icons 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #3
           </div>
@@ -291,8 +270,7 @@ exports[`Timeline renders without a connector 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -304,8 +282,7 @@ exports[`Timeline renders without a connector 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #1
           </div>
@@ -314,8 +291,7 @@ exports[`Timeline renders without a connector 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -327,8 +303,7 @@ exports[`Timeline renders without a connector 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #2
           </div>
@@ -337,8 +312,7 @@ exports[`Timeline renders without a connector 1`] = `
           class="PicassoContainer-flex PicassoTimelineRow-root"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
-            style="margin-right: 1.5rem;"
+            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
           >
             <div
               class="PicassoTimelineRow-dot"
@@ -346,8 +320,7 @@ exports[`Timeline renders without a connector 1`] = `
             />
           </div>
           <div
-            class="PicassoTimelineRow-content"
-            style="margin-bottom: 2rem;"
+            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
           >
             Row #3
           </div>
