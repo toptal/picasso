@@ -293,7 +293,7 @@ describe('Page', () => {
         cy.getByTestId(TestIds.NOTIFICATION_CONTENT).contains('Test content')
         cy.get('body').happoScreenshot({
           component,
-          variant: `notification-display-with-top-bar-and-drawer`,
+          variant: `notification-display-with-top-bar`,
         })
       })
     })
