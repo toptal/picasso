@@ -286,7 +286,7 @@ describe('Page', () => {
 
   describe('when TopBar exists', () => {
     describe('when drawer is open', () => {
-      it('renders notifications with extra top padding', () => {
+      it('renders notifications without extra top padding', () => {
         cy.mount(<DrawerContent />)
         cy.getByTestId(TestIds.DRAWER_BUTTON).click()
         cy.getByTestId(TestIds.NOTIFICATION_BUTTON_DRAWER).click()
@@ -299,7 +299,7 @@ describe('Page', () => {
     })
 
     describe('when drawer is not open', () => {
-      it('renders notifications without extra top padding', () => {
+      it('renders notifications with extra top padding', () => {
         cy.mount(<DrawerContent />)
         cy.getByTestId(TestIds.NOTIFICATION_BUTTON_PAGE).click()
         cy.getByTestId(TestIds.NOTIFICATION_CONTENT).contains('Test content')
