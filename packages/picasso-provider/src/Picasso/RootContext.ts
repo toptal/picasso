@@ -46,6 +46,15 @@ export const usePageTopBar = () => {
   }
 }
 
+export const usePageDrawer = () => {
+  const context = useContext(RootContext)
+
+  return {
+    hasDrawer: context.hasDrawer,
+    setHasDrawer: context.setHasDrawer,
+  }
+}
+
 export const useDrawer = () => {
   const context = useContext(RootContext)
 
