@@ -284,7 +284,7 @@ describe('Page', () => {
     })
   })
 
-  describe.only('when TopBar exists', () => {
+  describe('when TopBar exists', () => {
     describe('when drawer is open', () => {
       it('renders notifications with extra top padding', () => {
         cy.mount(<DrawerContent />)
