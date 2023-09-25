@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -10,7 +11,7 @@ const Example = () => (
         style={{ width: '250px', height: '250px' }}
       />
     </Container>
-    <Container left='small' inline>
+    <Container left={SPACING_4} inline>
       <Image
         variant='circular'
         alt='Circular image'

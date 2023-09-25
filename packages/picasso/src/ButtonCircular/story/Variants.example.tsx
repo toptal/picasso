@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
+import { SPACING_4, SPACING_6, palette } from '@toptal/picasso/utils'
 import { Settings16 } from '@toptal/picasso/Icon'
-import { palette } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
@@ -9,28 +9,28 @@ const Example = () => (
       <Typography variant='heading' size='small' align='center'>
         Primary (Default)
       </Typography>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Button.Circular icon={<Settings16 />} />
       </Container>
     </Container>
 
-    <Container inline left='medium'>
+    <Container inline left={SPACING_6}>
       <Typography variant='heading' size='small' align='center'>
         Flat
       </Typography>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Button.Circular variant='flat' icon={<Settings16 />} />
       </Container>
     </Container>
 
-    <Container inline left='medium'>
+    <Container inline left={SPACING_6}>
       <Typography variant='heading' size='small' align='center'>
         Transparent
       </Typography>
       <Container
         style={{ backgroundColor: palette.blue.main }}
         inline
-        padded='small'
+        padded={SPACING_4}
       >
         <Button.Circular variant='transparent' icon={<Settings16 />} />
       </Container>

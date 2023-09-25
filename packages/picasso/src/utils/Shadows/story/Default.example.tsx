@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import { shadows } from '@toptal/picasso/utils'
+import { shadows, SPACING_6, SPACING_8, SPACING_4 } from '@toptal/picasso/utils'
 import { Container, Typography, Grid } from '@toptal/picasso'
 
 const Example = () => (
-  <Container flex direction='column' gap='medium' top='large'>
+  <Container flex direction='column' gap={SPACING_6} top={SPACING_8}>
     <Grid spacing={80}>
       <ShadowBox shadow={shadows[0]} index={0} description={'none'} />
       <ShadowBox
@@ -31,7 +31,7 @@ interface ShadowBoxProps {
 }
 const ShadowBox = ({ index, shadow, description }: ShadowBoxProps) => (
   <Grid.Item sm={4}>
-    <Container padded='small' style={{ boxShadow: shadow }}>
+    <Container padded={SPACING_4} style={{ boxShadow: shadow }}>
       <Typography variant='heading' size='large' align='center'>
         {index}
       </Typography>

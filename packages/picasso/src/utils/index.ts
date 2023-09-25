@@ -1,4 +1,4 @@
-import { alpha, lighten, darken } from '@toptal/picasso-shared'
+import { alpha, lighten, darken, spacings } from '@toptal/picasso-shared'
 
 import * as TransitionUtils from './Transitions'
 
@@ -66,3 +66,17 @@ export {
   useDeprecationWarning,
   usePropDeprecationWarning,
 } from './use-deprecation-warnings'
+
+export { spacings }
+
+export const {
+  SPACING_0,
+  SPACING_1,
+  SPACING_2,
+  SPACING_3,
+  SPACING_4,
+  SPACING_6,
+  SPACING_8,
+  SPACING_10,
+  SPACING_12,
+} = spacings

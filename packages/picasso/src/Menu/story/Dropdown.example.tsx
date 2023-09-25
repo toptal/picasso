@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Dropdown, Form, Menu } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => {
   const menuForItemB1 = (
@@ -39,7 +40,7 @@ const Example = () => {
 
   return (
     <Container flex>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <Form.Label>Default</Form.Label>
         <Dropdown content={sliderMenu}>
           Open Dropdown

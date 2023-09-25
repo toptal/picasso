@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Tabs, Typography } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_8, SPACING_4, palette } from '@toptal/picasso/utils'
 
 const Example = () => {
   return (
-    <Container flex gap='large' padded='small'>
+    <Container flex gap={SPACING_8} padded={SPACING_4}>
       <ExampleDecorator title='With Title'>
         <Tabs value={0} orientation='vertical'>
           <Tabs.Tab label='Label' />

@@ -6,6 +6,7 @@ import {
   FontsLoader,
 } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
+import { SPACING_12 } from '@toptal/picasso/utils'
 
 const App = ({ children }: { children: ReactNode }) => (
   <PicassoLight>
@@ -15,7 +16,12 @@ const App = ({ children }: { children: ReactNode }) => (
       <Page.TopBar title='Picasso with viewport fixing utility and fonts loaded' />
       <Page.Content>
         <Page.Article>
-          <Container top={7} bottom={7} flex justifyContent='center'>
+          <Container
+            flex
+            justifyContent='center'
+            top={SPACING_12}
+            style={{ height: '14rem' }}
+          >
             {children}
           </Container>
         </Page.Article>

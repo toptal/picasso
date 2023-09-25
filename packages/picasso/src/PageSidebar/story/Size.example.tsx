@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Logo, Typography, Container } from '@toptal/picasso'
+import { SPACING_8 } from '@toptal/picasso/utils'
 import {
   Jobs16,
   Home16,
@@ -26,7 +27,7 @@ const Menu = ({ size }: { size: 'small' | 'medium' | 'large' }) => (
 )
 
 const Example = () => (
-  <Container flex gap='large'>
+  <Container flex gap={SPACING_8}>
     <Container>
       <Typography variant='heading' size='xsmall'>
         Small (212px)

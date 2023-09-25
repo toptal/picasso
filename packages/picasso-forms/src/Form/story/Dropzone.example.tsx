@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { FormNonCompound, Dropzone, SubmitButton } from '@toptal/picasso-forms'
 import type { FileUpload } from '@toptal/picasso/FileInput'
 
@@ -31,7 +32,7 @@ const Example = () => {
         dropzoneHint={`Max file size: ${MAX_SIZE}MB.`}
         hint='These documents will be used to analyze and identify your potential.'
       />
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <SubmitButton>Submit</SubmitButton>
       </Container>
     </FormNonCompound>

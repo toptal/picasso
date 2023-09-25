@@ -1,10 +1,11 @@
 import React from 'react'
 import { Container, Typography, Alert } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
-    <Container bottom={1}>
-      <Container bottom={1}>
+    <Container bottom={SPACING_4}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Yellow
         </Typography>
@@ -12,8 +13,8 @@ const Example = () => (
       <Alert.Inline>This is a warning inline alert.</Alert.Inline>
     </Container>
 
-    <Container bottom={1}>
-      <Container bottom={1}>
+    <Container bottom={SPACING_4}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Red
         </Typography>
@@ -23,8 +24,8 @@ const Example = () => (
       </Alert.Inline>
     </Container>
 
-    <Container bottom={1}>
-      <Container bottom={1}>
+    <Container bottom={SPACING_4}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Blue
         </Typography>
@@ -32,8 +33,8 @@ const Example = () => (
       <Alert.Inline variant='blue'>This is a info inline alert.</Alert.Inline>
     </Container>
 
-    <Container bottom={1}>
-      <Container bottom={1}>
+    <Container bottom={SPACING_4}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Green
         </Typography>

@@ -1,5 +1,5 @@
-import type { HTMLAttributes, ReactNode } from 'react'
-import React, { forwardRef, useContext, useMemo, useRef, useState } from 'react'
+import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
+import React, { forwardRef, useContext, useRef, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import type { PopperPlacementType } from '@material-ui/core/Popper'
@@ -7,8 +7,12 @@ import type { PopperOptions } from 'popper.js'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import type { SpacingType, StandardProps } from '@toptal/picasso-shared'
-import { spacingToRem } from '@toptal/picasso-shared'
+import type { StandardProps } from '@toptal/picasso-shared'
+import type {
+  DeprecatedSpacingType,
+  SpacingType,
+} from '@toptal/picasso-provider'
+import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 
 import Popper from '../Popper'
 import Paper from '../Paper'
@@ -18,7 +22,7 @@ import noop from '../utils/noop'
 
 type ContentOverflowType = 'scroll' | 'visible'
 
-export interface Props
+interface InternalProps
   extends StandardProps,
     HTMLAttributes<HTMLDivElement>,
     StyleProps {
@@ -26,13 +30,6 @@ export interface Props
   children: ReactNode
   /** Content element that opens when anchor is clicked */
   content: ReactNode
-  /** Offset of content element relative to anchor element */
-  offset?: {
-    top?: SpacingType
-    bottom?: SpacingType
-    left?: SpacingType
-    right?: SpacingType
-  }
   /** The placement of the content element relative to anchor element. */
   placement?: PopperPlacementType
   /** Disable auto focus of first item in list or item */
@@ -54,6 +51,31 @@ export interface Props
   popperContainer?: HTMLElement
 }
 
+type PropsWithBaseSpacing = InternalProps & {
+  /** Offset of content element relative to anchor element */
+  offset?: {
+    top?: Exclude<SpacingType, DeprecatedSpacingType>
+    bottom?: Exclude<SpacingType, DeprecatedSpacingType>
+    left?: Exclude<SpacingType, DeprecatedSpacingType>
+    right?: Exclude<SpacingType, DeprecatedSpacingType>
+  }
+}
+
+type PropsWithDeprecatedSpacing = InternalProps & {
+  /** Offset of content element relative to anchor element */
+  /** @deprecated */
+  offset?: {
+    /** @deprecated */
+    top?: DeprecatedSpacingType
+    /** @deprecated */
+    bottom?: DeprecatedSpacingType
+    /** @deprecated */
+    left?: DeprecatedSpacingType
+    /** @deprecated */
+    right?: DeprecatedSpacingType
+  }
+}
+
 export interface ContextProps {
   close: () => void
 }
@@ -72,15 +94,36 @@ export const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
+const useStyles = makeStyles<
+  Theme,
+  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+>(styles, {
   name: 'PicassoDropdown',
 })
 
+const useResponsiveProps = makeResponsiveSpacingProps(
+  ['margin-top', 'margin-bottom', 'margin-left', 'margin-right'] as const,
+  'PicassoDropdown-Responsive'
+)
+
+export type DropdownProps = {
+  (
+    props: PropsWithBaseSpacing & { ref?: Ref<HTMLDivElement> | null }
+  ): ReactElement
+  (
+    props: PropsWithDeprecatedSpacing & { ref?: Ref<HTMLDivElement> | null }
+  ): ReactElement
+  displayName?: string
+  defaultProps?: Partial<PropsWithBaseSpacing>
+}
+
+export type Props = PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+
 // eslint-disable-next-line react/display-name
-export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
-  props,
-  ref
-) {
+export const Dropdown: DropdownProps = forwardRef<
+  HTMLDivElement,
+  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+>(function Dropdown(props, ref) {
   const {
     className,
     style,
@@ -183,18 +226,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     }
   }
 
-  const paperMargins = useMemo(() => {
-    if (offset) {
-      return {
-        ...(offset.top && { marginTop: spacingToRem(offset.top) }),
-        ...(offset.bottom && { marginBottom: spacingToRem(offset.bottom) }),
-        ...(offset.left && { marginLeft: spacingToRem(offset.left) }),
-        ...(offset.right && { marginRight: spacingToRem(offset.right) }),
-      }
-    }
-  }, [offset])
+  const { className: responsiveClasses, style: responsiveStyle } =
+    useResponsiveProps({
+      'margin-top': offset?.top,
+      'margin-right': offset?.right,
+      'margin-bottom': offset?.bottom,
+      'margin-left': offset?.left,
+    })
 
-  // here you can expose other methods, states to child components
   const context = {
     close: () => forceClose(),
   }
@@ -225,7 +264,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
       {(isOpen || keepMounted) && (
         <Popper
-          className={classes.popper}
+          className={cx(classes.popper, responsiveClasses)}
           anchorEl={anchorEl ?? null}
           popperOptions={{
             onCreate: focus,
@@ -238,7 +277,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
             ...popperOptions,
           }}
           placement={placement}
-          style={paperMargins}
+          style={{ ...responsiveStyle }}
           disablePortal={disablePortal}
           keepMounted={keepMounted}
           autoWidth={false}
@@ -271,7 +310,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       )}
     </div>
   )
-})
+}) as DropdownProps
 
 Dropdown.defaultProps = {
   disableAutoClose: false,

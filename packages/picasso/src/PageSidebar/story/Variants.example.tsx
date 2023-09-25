@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Logo, Container, Typography, Grid } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   Jobs16,
   Home16,
@@ -68,7 +69,7 @@ const ExampleSidebar = ({ variant }: { variant: 'light' | 'dark' }) => (
 const Example = () => (
   <Grid spacing={32}>
     <Grid.Item style={{ height: '58rem' }}>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Light (default):
         </Typography>
@@ -77,7 +78,7 @@ const Example = () => (
     </Grid.Item>
 
     <Grid.Item style={{ height: '58rem' }}>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='small'>
           Dark:
         </Typography>

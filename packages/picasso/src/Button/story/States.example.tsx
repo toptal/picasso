@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8, SPACING_2, palette } from '@toptal/picasso/utils'
 
 const Example = () => (
   <div>
     <Typography variant='heading' size='small'>
       Primary (Default)
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button>Normal</Button>
       <Button hovered>Hovered</Button>
       <Button focused>Focused</Button>
@@ -19,7 +19,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Negative
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button variant='negative'>Normal</Button>
       <Button hovered variant='negative'>
         Hovered
@@ -41,7 +41,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Positive
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button variant='positive'>Normal</Button>
       <Button hovered variant='positive'>
         Hovered
@@ -63,7 +63,7 @@ const Example = () => (
     <Typography variant='heading' size='small'>
       Secondary
     </Typography>
-    <Container top='small' bottom='large'>
+    <Container top={SPACING_4} bottom={SPACING_8}>
       <Button variant='secondary'>Normal</Button>
       <Button hovered variant='secondary'>
         Hovered
@@ -86,10 +86,10 @@ const Example = () => (
       Transparent
     </Typography>
     <Container
-      top='small'
+      top={SPACING_4}
       inline
       style={{ backgroundColor: palette.blue.main }}
-      padded={0.5}
+      padded={SPACING_2}
     >
       <Button variant='transparent'>Normal</Button>
       <Button hovered variant='transparent'>

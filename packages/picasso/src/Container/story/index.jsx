@@ -16,21 +16,29 @@ page
 page
   .createChapter()
   .addExample('Container/story/Default.example.tsx', 'Default')
-  .addExample('Container/story/Inline.example.tsx', 'Inline')
-  .addExample('Container/story/Bordered.example.tsx', 'With border')
-  .addExample('Container/story/Variant.example.tsx', 'Variants')
   .addExample('Container/story/Spacing.example.tsx', {
     title: 'Spacing',
     description: 'Creating inner and outer space for component',
     extra: `
-Spacing is based on size enum that gets transformed into **rem** unit in following manner:
-- xsmall = 0.5rem,
-- small = 1rem,
-- medium = 1.5rem,
-- large = 2rem
-- xlarge = 2.5rem
+Spacing is aligned with BASE design and gets transformed into **rem** units in following manner:
 
-For other custom  cases use **number** in rem units or **className** to define spacings.
+- SPACING_0 = 0rem,
+- SPACING_1 = 0.25rem,
+- SPACING_2 = 0.5rem,
+- SPACING_3 = 0.75rem,
+- SPACING_4 = 1rem,
+- SPACING_6 = 1.5rem,
+- SPACING_8 = 2rem,
+- SPACING_10 = 2.5rem,
+- SPACING_12 = 3rem
+
 `,
   })
+  .addExample('Container/story/Responsive.example.tsx', {
+    title: 'Responsive Spacing',
+    screenshotBreakpoints: true,
+  })
+  .addExample('Container/story/Inline.example.tsx', 'Inline')
+  .addExample('Container/story/Bordered.example.tsx', 'With border')
+  .addExample('Container/story/Variant.example.tsx', 'Variants')
   .addExample('Container/story/TextAlign.example.tsx', 'TextAlign')

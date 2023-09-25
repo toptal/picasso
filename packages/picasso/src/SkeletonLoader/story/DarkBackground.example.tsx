@@ -1,24 +1,24 @@
 import React from 'react'
 import { Container, Grid, SkeletonLoader } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_4, palette } from '@toptal/picasso/utils'
 
 type Props = {
   backgroundColor: string
 }
 
 const LoaderContent = ({ backgroundColor }: Props) => (
-  <Container style={{ backgroundColor, maxWidth: '32%' }} padded='small'>
+  <Container style={{ backgroundColor, maxWidth: '32%' }} padded={SPACING_4}>
     <Container
       flex
       justifyContent='space-between'
       alignItems='center'
-      bottom='small'
+      bottom={SPACING_4}
     >
       <SkeletonLoader.Header />
       <SkeletonLoader.Button />
     </Container>
 
-    <Container bottom='small'>
+    <Container bottom={SPACING_4}>
       <SkeletonLoader.Typography rows={2} />
     </Container>
 
@@ -28,7 +28,7 @@ const LoaderContent = ({ backgroundColor }: Props) => (
       </Grid.Item>
 
       <Grid.Item sm={6}>
-        <Container flex justifyContent='center' bottom='small'>
+        <Container flex justifyContent='center' bottom={SPACING_4}>
           <SkeletonLoader.Header />
         </Container>
         <SkeletonLoader.Typography rows={2} />
