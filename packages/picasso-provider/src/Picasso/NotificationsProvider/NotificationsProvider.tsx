@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { SnackbarProvider } from 'notistack'
 import React from 'react'
 
-import { usePageTopBar } from '../RootContext'
+import { useDrawer, usePageTopBar } from '../RootContext'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {
@@ -25,11 +25,11 @@ const NotificationsProvider = ({
   maxNotifications = 5,
 }: NotificationsProviderProps) => {
   const { hasTopBar } = usePageTopBar()
+  const { hasDrawer } = useDrawer()
   const classes = useStyles()
 
-  const containerAnchorOriginTop = hasTopBar
-    ? classes.rootWithMargin
-    : undefined
+  const containerAnchorOriginTop =
+    hasTopBar && !hasDrawer ? classes.rootWithMargin : undefined
 
   return (
     <SnackbarProvider
