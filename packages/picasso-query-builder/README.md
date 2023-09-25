@@ -1,6 +1,8 @@
-# React Query Builder
+# @toptal/picasso-query-builder
 
-Toptal wrapper for [React Query Builder](react-querybuilder.js.org).
+[![Picasso NPM package](https://img.shields.io/npm/v/@toptal/picasso-charts?color=green&logo=toptal)](https://www.npmjs.com/package/@toptal/picasso-query-builder)
+
+This package combines easy-to-use API of [React Query Builder](react-querybuilder.js.org) with the amazing UX of Picasso.
 
 Query Builder implementation provides possibility to use variety of searching rules
 in order to improve searching experience by complex Dynamic Queries generation.
@@ -13,19 +15,30 @@ This library allows to:
 - enhance user experience
 
 This library works by providing a user interface for constructing queries
-on the client-side. Generated query can be serialized into a format suitable
+on the client-side. The generated queries can be serialized into a format suitable
 for sending it to the backend.
+
+## Prerequisites
+
+The following peer dependencies are required:
+
+- `@toptal/picasso`
+
+## Setup
+
+- `yarn add @toptal/picasso-query-builder`
+
+## Documentation
+
+Documentation and demos are available at [picasso.toptal.net](https://picasso.toptal.net/).
 
 ## Components
 
 This module exposes following top-level component.
 
-1. `Query Builder` - the Query Builder itself. Currently it is used in
-   `FiltersContent` with QB props that can be passed to it by adding `queryBuilderProps`
-   prop to `Filters` component. It is also can be used outside of the Filters
-   if needed.
+`<QueryBuilder />` - the Query Builder itself. 
 
-   Here are props that are accepted by QB:
+   Props that are accepted by the QueryBuilder:
 
    - `fields` - array of fields to build a query. Each filed is an object with a
    list of properties
@@ -92,14 +105,4 @@ This module exposes following top-level component.
 - `PicassoContext` - context provider that is used as a wrapper to QB and provides
    all needed data.
 
-## Utilities
-
-Besides listed components in order to use QueryBuilder correctly aslo
-was created some services in order to handle or use particular
-parts of QB or its Fields.
-
-## Confluence Documentation
-
-Please see the
-[dedicated Confluence page](https://toptal-core.atlassian.net/wiki/spaces/CP/pages/3021930643/Search+Improvements+Query+Builder)
-for details.
+---
