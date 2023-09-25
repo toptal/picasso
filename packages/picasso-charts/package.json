@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-charts",
-  "version": "53.1.0",
+  "version": "54.0.0",
   "description": "Charts components of Picasso",
   "author": "Toptal",
   "license": "MIT",
@@ -25,8 +25,8 @@
   "peerDependencies": {
     "typescript": "~4.7.0",
     "@material-ui/core": "4.12.4",
-    "@toptal/picasso": "^39.0.0",
-    "@toptal/picasso-shared": "^12.0.0",
+    "@toptal/picasso": "^40.0.0",
+    "@toptal/picasso-shared": "^13.0.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {

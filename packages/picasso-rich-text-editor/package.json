@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-rich-text-editor",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "description": "Picasso rich text editor",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-rich-text-editor#readme",
@@ -23,8 +23,8 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": "^39.0.0",
-    "@toptal/picasso-shared": "^12.0.0",
+    "@toptal/picasso": "^40.0.0",
+    "@toptal/picasso-shared": "^13.0.0",
     "@material-ui/core": "4.12.4",
     "@lexical/utils": "0.11.2",
     "@lexical/text": "0.11.2",
