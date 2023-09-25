@@ -92,8 +92,6 @@ const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
   return acc
 }, Object.create(null))
 
-console.log('@@@ paddings', paddings, basePaddings)
-
 const gaps = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Gap`] = {
     gap: spacingToRem(variant as DeprecatedSpacingType),
