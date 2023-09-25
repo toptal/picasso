@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- [#3886](https://github.com/toptal/picasso/pull/3886) [`d070c4df8`](https://github.com/toptal/picasso/commit/d070c4df877e7668c027d0e36a872eed2c9e770d) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Notifications
+
+- fix notifications display when drawer is opened
+
 ## 3.3.0
 
 ### Minor Changes
