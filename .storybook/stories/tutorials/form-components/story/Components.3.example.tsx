@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const Example = () => (
   <Form onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}>
