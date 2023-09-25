@@ -1,5 +1,12 @@
 # Change Log
 
+## 53.1.0
+
+### Minor Changes
+
+- [#3890](https://github.com/toptal/picasso/pull/3890) [`17e25b470`](https://github.com/toptal/picasso/commit/17e25b47007948ee31781d35e94644137707c1c8) Thanks [@sashuk](https://github.com/sashuk)!
+- use new BASE spacings
+
 ## 53.0.1
 
 ### Patch Changes
