@@ -31,8 +31,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-                style="margin-right: 0.5rem;"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -62,8 +61,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-                style="margin-right: 0.5rem;"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -93,8 +91,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-                style="margin-right: 0.5rem;"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -124,8 +121,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-                style="margin-right: 0.5rem;"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -155,8 +151,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
-                style="margin-right: 0.5rem;"
+                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"

@@ -67,6 +67,8 @@ export {
   usePropDeprecationWarning,
 } from './use-deprecation-warnings'
 
+export { spacings }
+
 export const {
   SPACING_0,
   SPACING_1,

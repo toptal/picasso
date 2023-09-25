@@ -19,8 +19,7 @@ exports[`Calendar renders 1`] = `
               class="rdp-month rdp-caption_start rdp-caption_end"
             >
               <div
-                class="PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
-                style="margin-bottom: 1.5rem;"
+                class="PicassoContainer-bottommediumMargin PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
               >
                 <button
                   aria-label="Previous month"

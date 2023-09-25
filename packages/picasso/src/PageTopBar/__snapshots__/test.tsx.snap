@@ -18,8 +18,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              style="gap: 1rem;"
+              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
                 class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
@@ -77,8 +76,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                   class="PicassoTopBar-divider"
                 />
                 <div
-                  class=""
-                  style="margin-left: 1rem;"
+                  class="PicassoContainer-leftsmallMargin"
                 >
                   <p
                     class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
@@ -117,8 +115,7 @@ exports[`Page.TopBar render with link 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              style="gap: 1rem;"
+              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
                 class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
@@ -202,8 +199,7 @@ exports[`Page.TopBar render with link 1`] = `
                   class="PicassoTopBar-divider"
                 />
                 <div
-                  class=""
-                  style="margin-left: 1rem;"
+                  class="PicassoContainer-leftsmallMargin"
                 >
                   <p
                     class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
@@ -242,8 +238,7 @@ exports[`Page.TopBar renders 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
-              style="gap: 1rem;"
+              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
             >
               <div
                 class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
@@ -322,8 +317,7 @@ exports[`Page.TopBar renders 1`] = `
                   class="PicassoTopBar-divider"
                 />
                 <div
-                  class=""
-                  style="margin-left: 1rem;"
+                  class="PicassoContainer-leftsmallMargin"
                 >
                   <p
                     class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"

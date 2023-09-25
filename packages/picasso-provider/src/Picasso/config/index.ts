@@ -20,6 +20,7 @@ export {
   default as spacings,
   SpacingEnum,
   isResponsiveSpacing,
+  isPicassoSpacing,
 } from './spacings'
 export type {
   Sizes,

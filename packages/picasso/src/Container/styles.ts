@@ -1,9 +1,17 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import type { Color } from '@material-ui/core'
+import { capitalize, type Color } from '@material-ui/core'
 import type { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
-
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import {
+  spacingToRem,
+  type DeprecatedSpacingType,
+  type PicassoSpacing,
+  spacings,
+} from '@toptal/picasso-provider/index'
+import {
+  kebabToCamelCase,
+  snakeToCamelCase,
+} from '@toptal/picasso-provider/utils'
 
 const textAlignVariants = [
   'inherit',
@@ -53,6 +61,89 @@ const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
   return {
     backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
   }
+}
+
+const directionVariants = ['top', 'left', 'bottom', 'right'] as const
+
+const spacingVariants = [
+  'xsmall',
+  'small',
+  'medium',
+  'large',
+  'xlarge',
+] as const
+
+type Direction = (typeof directionVariants)[number]
+type Spacing = (typeof spacingVariants)[number]
+
+const paddings = spacingVariants.reduce((acc, variant) => {
+  acc[`${variant}Padding`] = {
+    padding: spacingToRem(variant as DeprecatedSpacingType),
+  }
+
+  return acc
+}, Object.create(null))
+
+const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
+  acc[`${snakeToCamelCase(spacingKey)}Padding`] = {
+    padding: spacingToRem(spacings[spacingKey] as PicassoSpacing),
+  }
+
+  return acc
+}, Object.create(null))
+
+const gaps = spacingVariants.reduce((acc, variant) => {
+  acc[`${variant}Gap`] = {
+    gap: spacingToRem(variant as DeprecatedSpacingType),
+  }
+
+  return acc
+}, Object.create(null))
+
+const baseGaps = Object.keys(spacings).reduce((acc, spacingKey) => {
+  acc[`${snakeToCamelCase(spacingKey)}Gap`] = {
+    gap: spacingToRem(spacings[spacingKey] as PicassoSpacing),
+  }
+
+  return acc
+}, Object.create(null))
+
+const marginClassDef = (direction: Direction, spacing: Spacing) => ({
+  [`margin${capitalize(direction)}`]: spacingToRem(spacing),
+})
+
+const marginClasses = (direction: Direction) => {
+  return {
+    [`${direction}${'xsmall'}Margin`]: marginClassDef(direction, 'xsmall'),
+    [`${direction}${'small'}Margin`]: marginClassDef(direction, 'small'),
+    [`${direction}${'medium'}Margin`]: marginClassDef(direction, 'medium'),
+    [`${direction}${'large'}Margin`]: marginClassDef(direction, 'large'),
+    [`${direction}${'xlarge'}Margin`]: marginClassDef(direction, 'xlarge'),
+  }
+}
+
+const baseMarginClasses = (direction: Direction) => {
+  return Object.keys(spacings).reduce((acc, spacingKey) => {
+    acc[`${direction}${snakeToCamelCase(spacingKey, true)}Margin`] = {
+      [`margin${capitalize(direction)}`]: spacingToRem(spacings[spacingKey]),
+    }
+
+    return acc
+  }, Object.create(null))
+}
+
+const margins: MapOfClasses = {
+  ...marginClasses('top'),
+  ...marginClasses('left'),
+  ...marginClasses('bottom'),
+  ...marginClasses('right'),
+}
+
+const baseMargins: MapOfClasses = {
+  ...baseMarginClasses('top'),
+  ...baseMarginClasses('left'),
+  ...baseMarginClasses('bottom'),
+  ...baseMarginClasses('right'),
 }
 
 const alignItems: MapOfClasses = {}
@@ -127,7 +218,13 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
 
     greyVariant: colorVariant(palette.grey),
 
+    ...paddings,
+    ...basePaddings,
+    ...margins,
+    ...baseMargins,
     ...alignItems,
     ...justifyContent,
     ...textAlignItems,
+    ...gaps,
+    ...baseGaps,
   })
