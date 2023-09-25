@@ -15,6 +15,10 @@ import { documentable, forwardRef } from '../utils/forward-ref'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
+import {
+  filterOutStringAndPicassoSpacing,
+  getBaseSpacingClasses,
+} from './utils'
 
 type ContainerType = 'div' | 'span'
 
@@ -163,13 +167,18 @@ export const Container: ContainerProps = documentable(
       const classes = useStyles(props)
       const { className: responsiveClasses, style: responsiveStyle } =
         useResponsiveProps({
-          'margin-top': top,
-          'margin-bottom': bottom,
-          'margin-left': left,
-          'margin-right': right,
-          padding: padded,
-          gap,
+          'margin-top': filterOutStringAndPicassoSpacing(top),
+          'margin-bottom': filterOutStringAndPicassoSpacing(bottom),
+          'margin-left': filterOutStringAndPicassoSpacing(left),
+          'margin-right': filterOutStringAndPicassoSpacing(right),
+          padding: filterOutStringAndPicassoSpacing(padded),
+          gap: filterOutStringAndPicassoSpacing(gap),
         })
+
+      const baseSpacingClasses = getBaseSpacingClasses(
+        { top, left, bottom, right, gap, padded },
+        classes
+      )
 
       return (
         <Component
@@ -178,6 +187,14 @@ export const Container: ContainerProps = documentable(
           className={cx(
             classes[`${variant}Variant`],
             {
+              [classes[`${padded}Padding`]]: typeof padded === 'string',
+              [classes[`${gap}Gap`]]: typeof gap === 'string',
+
+              [classes[`top${top}Margin`]]: typeof top === 'string',
+              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+              [classes[`left${left}Margin`]]: typeof left === 'string',
+              [classes[`right${right}Margin`]]: typeof right === 'string',
+
               [classes[`${align}TextAlign`]]: typeof align === 'string',
 
               [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
@@ -194,6 +211,7 @@ export const Container: ContainerProps = documentable(
               [classes[kebabToCamelCase(direction || '')]]:
                 direction && direction !== 'row',
             },
+            baseSpacingClasses,
             responsiveClasses,
             className
           )}
