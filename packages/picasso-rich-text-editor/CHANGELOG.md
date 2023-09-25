@@ -1,5 +1,13 @@
 # @toptal/picasso-rich-text-editor
 
+## 8.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`a9f5c85b6`](https://github.com/toptal/picasso/commit/a9f5c85b65b123826d4420acae4b3f897101e814)]:
+  - @toptal/picasso@40.0.0
+  - @toptal/picasso-shared@13.0.0
+
 ## 7.1.0
 
 ### Minor Changes
