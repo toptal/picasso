@@ -2,10 +2,16 @@ import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { capitalize, type Color } from '@material-ui/core'
 import type { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
-import { spacingToRem } from '@toptal/picasso-shared'
-import type { DeprecatedSpacingType } from '@toptal/picasso-provider/index'
-
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
+import {
+  spacingToRem,
+  type DeprecatedSpacingType,
+  type PicassoSpacing,
+  spacings,
+} from '@toptal/picasso-provider/index'
+import {
+  kebabToCamelCase,
+  snakeToCamelCase,
+} from '@toptal/picasso-provider/utils'
 
 const textAlignVariants = [
   'inherit',
@@ -78,9 +84,27 @@ const paddings = spacingVariants.reduce((acc, variant) => {
   return acc
 }, Object.create(null))
 
+const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
+  acc[`${snakeToCamelCase(spacingKey)}Padding`] = {
+    padding: spacingToRem(spacings[spacingKey] as PicassoSpacing),
+  }
+
+  return acc
+}, Object.create(null))
+
+console.log('@@@ paddings', paddings, basePaddings)
+
 const gaps = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Gap`] = {
     gap: spacingToRem(variant as DeprecatedSpacingType),
+  }
+
+  return acc
+}, Object.create(null))
+
+const baseGaps = Object.keys(spacings).reduce((acc, spacingKey) => {
+  acc[`${snakeToCamelCase(spacingKey)}Gap`] = {
+    gap: spacingToRem(spacings[spacingKey] as PicassoSpacing),
   }
 
   return acc
@@ -100,11 +124,28 @@ const marginClasses = (direction: Direction) => {
   }
 }
 
+const baseMarginClasses = (direction: Direction) => {
+  return Object.keys(spacings).reduce((acc, spacingKey) => {
+    acc[`${direction}${snakeToCamelCase(spacingKey, true)}Margin`] = {
+      [`margin${capitalize(direction)}`]: spacingToRem(spacings[spacingKey]),
+    }
+
+    return acc
+  }, Object.create(null))
+}
+
 const margins: MapOfClasses = {
   ...marginClasses('top'),
   ...marginClasses('left'),
   ...marginClasses('bottom'),
   ...marginClasses('right'),
+}
+
+const baseMargins: MapOfClasses = {
+  ...baseMarginClasses('top'),
+  ...baseMarginClasses('left'),
+  ...baseMarginClasses('bottom'),
+  ...baseMarginClasses('right'),
 }
 
 const alignItems: MapOfClasses = {}
@@ -180,9 +221,12 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     greyVariant: colorVariant(palette.grey),
 
     ...paddings,
+    ...basePaddings,
     ...margins,
+    ...baseMargins,
     ...alignItems,
     ...justifyContent,
     ...textAlignItems,
     ...gaps,
+    ...baseGaps,
   })

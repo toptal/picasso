@@ -36,13 +36,19 @@ export enum SpacingEnum {
 
 class PicassoSpacing {
   #value: PicassoSpacingValues
+  #index: number
 
-  private constructor(value: PicassoSpacingValues) {
+  private constructor(value: PicassoSpacingValues, index: number) {
     this.#value = value
+    this.#index = index
   }
 
-  static create(value: PicassoSpacingValues): PicassoSpacing {
-    return new PicassoSpacing(value)
+  static create(value: PicassoSpacingValues, index: number): PicassoSpacing {
+    return new PicassoSpacing(value, index)
+  }
+
+  indexOf(): number {
+    return this.#index
   }
 
   valueOf(): PicassoSpacingValues {
@@ -65,15 +71,15 @@ export const isResponsiveSpacing = (
 ): spacing is ResponsiveSpacingType =>
   typeof spacing == 'object' && !isPicassoSpacing(spacing)
 
-export const SPACING_0 = PicassoSpacing.create(0)
-export const SPACING_1 = PicassoSpacing.create(0.25)
-export const SPACING_2 = PicassoSpacing.create(0.5)
-export const SPACING_3 = PicassoSpacing.create(0.75)
-export const SPACING_4 = PicassoSpacing.create(1)
-export const SPACING_6 = PicassoSpacing.create(1.5)
-export const SPACING_8 = PicassoSpacing.create(2)
-export const SPACING_10 = PicassoSpacing.create(2.5)
-export const SPACING_12 = PicassoSpacing.create(3)
+export const SPACING_0 = PicassoSpacing.create(0, 0)
+export const SPACING_1 = PicassoSpacing.create(0.25, 1)
+export const SPACING_2 = PicassoSpacing.create(0.5, 2)
+export const SPACING_3 = PicassoSpacing.create(0.75, 3)
+export const SPACING_4 = PicassoSpacing.create(1, 4)
+export const SPACING_6 = PicassoSpacing.create(1.5, 6)
+export const SPACING_8 = PicassoSpacing.create(2, 8)
+export const SPACING_10 = PicassoSpacing.create(2.5, 10)
+export const SPACING_12 = PicassoSpacing.create(3, 12)
 
 export default {
   SPACING_0,
@@ -85,4 +91,4 @@ export default {
   SPACING_8,
   SPACING_10,
   SPACING_12,
-}
+} as Record<string, PicassoSpacing>

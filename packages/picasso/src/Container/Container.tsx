@@ -15,6 +15,10 @@ import { documentable, forwardRef } from '../utils/forward-ref'
 import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
+import {
+  filterOutStringAndPicassoSpacing,
+  getBaseSpacingClasses,
+} from './utils'
 
 type ContainerType = 'div' | 'span'
 
@@ -28,9 +32,6 @@ const useStyles = makeStyles<
 >(styles, {
   name: 'PicassoContainer',
 })
-
-const filterStringValue = (value?: SpacingType) =>
-  typeof value === 'string' ? undefined : value
 
 const useResponsiveProps = makeResponsiveSpacingProps(
   [
@@ -166,13 +167,18 @@ export const Container: ContainerProps = documentable(
       const classes = useStyles(props)
       const { className: responsiveClasses, style: responsiveStyle } =
         useResponsiveProps({
-          'margin-top': filterStringValue(top),
-          'margin-bottom': filterStringValue(bottom),
-          'margin-left': filterStringValue(left),
-          'margin-right': filterStringValue(right),
-          padding: filterStringValue(padded),
-          gap: filterStringValue(gap),
+          'margin-top': filterOutStringAndPicassoSpacing(top),
+          'margin-bottom': filterOutStringAndPicassoSpacing(bottom),
+          'margin-left': filterOutStringAndPicassoSpacing(left),
+          'margin-right': filterOutStringAndPicassoSpacing(right),
+          padding: filterOutStringAndPicassoSpacing(padded),
+          gap: filterOutStringAndPicassoSpacing(gap),
         })
+
+      const baseSpacingClasses = getBaseSpacingClasses(
+        { top, left, bottom, right, gap, padded },
+        classes
+      )
 
       return (
         <Component
@@ -205,6 +211,7 @@ export const Container: ContainerProps = documentable(
               [classes[kebabToCamelCase(direction || '')]]:
                 direction && direction !== 'row',
             },
+            baseSpacingClasses,
             responsiveClasses,
             className
           )}
