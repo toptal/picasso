@@ -28,18 +28,30 @@
     "symlink": "cross-env ./bin/symlink --link",
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "test": "yarn test:unit && yarn test:integration",
-    "test:integration": "yarn build:package && yarn test:setup cypress run --component",
+    "test:coverage": "yarn test:unit:coverage && yarn test:integration && yarn test:combine",
+    "test:integration": "yarn test:setup cypress run --component",
     "test:integration:ci": "yarn happo-e2e -- -- yarn test:setup cypress run --component",
-    "test:integration:open": "yarn build:package && yarn test:setup cypress open --browser=electron --component",
+    "test:integration:open": "yarn test:setup cypress open --browser=electron --component",
     "test:setup": "cross-env TZ=UTC NODE_ENV=development",
     "test:unit": "davinci-qa unit --config=./jest.spec.mjs",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk yarn test:unit",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:coverage": "yarn test:unit:ci --collect-coverage --coverage true --collectCoverageFrom packages/**/*.{ts,tsx} --coverageDirectory coverage/jest",
+    "test:combine": "yarn istanbul-merge --out coverage/combined/report.json coverage/cypress/coverage-final.json coverage/jest/coverage-final.json && nyc report --temp-dir coverage/combined --report-dir coverage/combined --reporter html",
     "test:unit:watch": "yarn test:unit --watch",
     "typecheck": "tsc --noEmit && tsc -p ./cypress/tsconfig.json",
     "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi",
     "prepare": "husky install"
+  },
+  "nyc": {
+    "report-dir": "coverage/cypress",
+    "reporter": [
+      "json"
+    ],
+    "include": [
+      "packages/**/src/**/*.ts",
+      "packages/**/src/**/*.tsx"
+    ]
   },
   "repository": {
     "type": "git",
@@ -105,6 +117,7 @@
     "happo-e2e": "^2.2.2",
     "happo-plugin-storybook": "^3.3.0",
     "happo.io": "^8.3.1",
+    "istanbul-merge": "^2.0.0",
     "jest-canvas-mock": "^2.5.0",
     "lerna": "^6.6.2",
     "madge": "^6.1.0",
