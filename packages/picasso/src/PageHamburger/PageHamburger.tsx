@@ -19,7 +19,7 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
-  const { isHamburgerVisible, hamburgerRef } = useHamburgerContext()
+  const { showSidebarMenu, hamburgerRef } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
   const classes = useStyles()
 
@@ -30,7 +30,7 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
     <Dropdown
       content={<div id={id} ref={hamburgerRef} />}
       className={cx(classes.root, {
-        [classes.hidden]: !isHamburgerVisible,
+        [classes.hidden]: !showSidebarMenu,
       })}
       classes={{
         content: classes.responsiveWrapperContent,
