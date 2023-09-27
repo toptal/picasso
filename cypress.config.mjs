@@ -25,7 +25,10 @@ export default defineConfig({
         module: {
           rules: [
             {
-              test: /\.jsx|\.tsx?$/,
+              test: /\.jsx|\.tsx|\.mjs|\.ts?$/,
+              resolve: {
+                fullySpecified: false, // disable the behaviour
+              },
               use: [
                 {
                   loader: 'babel-loader',
@@ -37,7 +40,7 @@ export default defineConfig({
                     plugins: [
                       '@babel/plugin-proposal-nullish-coalescing-operator',
                       '@babel/plugin-proposal-optional-chaining',
-                      'babel-plugin-istanbul',
+                      'istanbul'
                     ],
                   },
                 },
@@ -53,43 +56,7 @@ export default defineConfig({
             },
           ],
         },
-        resolve: {
-          mainFields: ['browser', 'main', 'module'],
-          alias: {
-            '@toptal/picasso': path.resolve(
-              process.cwd(),
-              './packages/picasso/dist-package'
-            ),
-            '@toptal/picasso-shared': path.resolve(
-              process.cwd(),
-              './packages/shared/dist-package'
-            ),
-            '@toptal/picasso-forms': path.resolve(
-              process.cwd(),
-              './packages/picasso-forms/dist-package'
-            ),
-            '@toptal/picasso-charts': path.resolve(
-              process.cwd(),
-              './packages/picasso-charts/dist-package'
-            ),
-            '@toptal/picasso-provider': path.resolve(
-              process.cwd(),
-              './packages/picasso-provider/dist-package'
-            ),
-            '@toptal/picasso-pictograms': path.resolve(
-              process.cwd(),
-              './packages/picasso-pictograms/dist-package'
-            ),
-            '@toptal/picasso-rich-text-editor': path.resolve(
-              process.cwd(),
-              './packages/picasso-rich-text-editor/dist-package'
-            ),
-            '@topkit/analytics-charts': path.resolve(
-              process.cwd(),
-              './packages/topkit-analytics-charts/dist-package'
-            ),
-          },
-        },
+        resolve: davinciConfig.component.devServer.webpackConfig.resolve,
       },
     },
   },

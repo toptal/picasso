@@ -19,3 +19,4 @@ cypress/screenshots
 
 coverage
 .nyc_output
+reports
