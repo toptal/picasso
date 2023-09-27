@@ -2,8 +2,7 @@ import React, { useMemo } from 'react'
 import { Container, Select } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { generateSelectOptions } from '../utils/generate-select-options'
-import validateValueEditor from '../utils/validate-value-editor'
+import { generateSelectOptions, validateValueEditor } from '../utils'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
@@ -53,7 +52,6 @@ export const MultiSelect = ({
         multiple
         value={values}
         status={hasError ? 'error' : undefined}
-        data-testid='query-builder-multi-select'
       />
     </Container>
   )

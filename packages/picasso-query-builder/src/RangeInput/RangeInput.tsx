@@ -24,7 +24,7 @@ type Props = RangeFieldOptions & {
 
 const useStyles = makeStyles(styles)
 
-const RangeInput = ({
+export const RangeInput = ({
   value,
   step = 1,
   min,
@@ -111,5 +111,3 @@ const RangeInput = ({
     </>
   )
 }
-
-export default RangeInput

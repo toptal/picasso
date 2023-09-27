@@ -15,15 +15,17 @@ export type {
   BaseVersatileSelectorProps as VersatileSelectorProps,
 } from './types/query-builder'
 
-export type { RangeValue } from './RangeInput/RangeInput'
-export type { QueryBuilderValueEditorProps } from './ValueEditor/ValueEditor'
+export type { RangeValue } from './RangeInput'
+export type { QueryBuilderValueEditorProps } from './ValueEditor'
 
 export { emptyQueryBuilderQuery } from './constants'
 
-export { ValueEditor } from './ValueEditor/ValueEditor'
-export { default as RangeInput } from './RangeInput/RangeInput'
-export { default as QueryBuilder } from './QueryBuilder/QueryBuilder'
+export { ValueEditor } from './ValueEditor'
+export { RangeInput } from './RangeInput'
+export { QueryBuilder } from './QueryBuilder'
 
-export { default as isValueEditorInvalid } from './utils/validate-value-editor'
-export { default as useHandleTouched } from './utils/use-handle-touched'
-export { default as useQueryBuilderValidator } from './utils/use-query-builder-validator'
+export {
+  validateValueEditor as isValueEditorInvalid,
+  useHandleTouched,
+  useQueryBuilderValidator,
+} from './utils'

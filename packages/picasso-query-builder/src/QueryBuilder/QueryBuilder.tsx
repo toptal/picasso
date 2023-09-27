@@ -21,15 +21,17 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import type { QueryBuilderContext, Field } from '../types/query-builder'
-import RunQueryButton from '../RunQueryButton/RunQueryButton'
-import { ClearQueryButton } from '../ClearQueryButton/ClearQueryButton'
-import { PicassoContext } from '../PicassoContext/PicassoContext'
+import { RunQueryButton } from '../RunQueryButton'
+import { ClearQueryButton } from '../ClearQueryButton'
+import { ControlElementsContext } from '../ControlElementsContext'
 import { emptyQueryBuilderQuery } from '../constants'
-import { ValueEditor } from '../ValueEditor/ValueEditor'
-import ValidationErrors from '../ValidationErrors/ValidationErrors'
-import { controlClassnames } from '../utils/config'
-import { getQueryDepth } from '../utils/get-query-depth'
-import useQueryBuilderValidator from '../utils/use-query-builder-validator'
+import { ValueEditor } from '../ValueEditor'
+import { ValidationErrors } from '../ValidationErrors'
+import {
+  controlClassnames,
+  getQueryDepth,
+  useQueryBuilderValidator,
+} from '../utils'
 import styles from './styles'
 
 type Props = {
@@ -65,6 +67,11 @@ type Props = {
   totalCount?: number
   /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
   totalCountLoading?: boolean
+  testIds?: {
+    addRuleButton?: string
+    select?: string
+    multiSelect?: string
+  }
 }
 
 const useStyles = makeStyles(styles)
@@ -86,6 +93,7 @@ const QueryBuilder = ({
   totalCount,
   totalCountLoading,
   onQueryReset,
+  testIds,
 }: Props) => {
   const classes = useStyles()
 
@@ -185,14 +193,13 @@ const QueryBuilder = ({
   }, [queryBuilderValid])
 
   return (
-    <PicassoContext>
+    <ControlElementsContext>
       <Container
         className={cx(classes.global, classes.root)}
         flex
         padded={hideControls ? undefined : 'medium'}
         direction='column'
         gap='small'
-        data-testid='ananas'
       >
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
           <ReactQueryBuilder
@@ -221,6 +228,7 @@ const QueryBuilder = ({
                 submitButtonClicked,
                 resetSubmitButtonClicked,
                 getDisabledFields,
+                testIds,
               } as QueryBuilderContext
             }
             controlElements={{
@@ -241,7 +249,7 @@ const QueryBuilder = ({
           </Container>
         )}
       </Container>
-    </PicassoContext>
+    </ControlElementsContext>
   )
 }
 

@@ -3,7 +3,7 @@ import { Container, NumberInput, Typography } from '@toptal/picasso'
 import { render } from '@toptal/picasso/test-utils'
 import type { ComponentProps } from 'react'
 
-import RangeInput from './RangeInput'
+import { RangeInput } from './'
 
 jest.mock('@toptal/picasso', () => ({
   Container: jest.fn(),

@@ -7,7 +7,7 @@ export const AddRuleButton = ({
   handleOnClick,
   className,
   disabled,
-  context: { resetSubmitButtonClicked },
+  context: { resetSubmitButtonClicked, testIds },
 }: ActionWithRulesProps) => {
   return (
     <Button
@@ -18,7 +18,7 @@ export const AddRuleButton = ({
         handleOnClick(e)
       }}
       className={className}
-      data-testid='query-builder-add-rule-button'
+      data-testid={testIds?.addRuleButton}
     >
       Add Rule
     </Button>

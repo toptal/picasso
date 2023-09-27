@@ -5,7 +5,7 @@ import type { Item } from '@toptal/picasso/TagSelector'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import validateValueEditor from '../utils/validate-value-editor'
+import { validateValueEditor } from '../utils'
 import type {
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,

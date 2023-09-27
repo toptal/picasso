@@ -13,7 +13,7 @@ type Props = {
 
 const useStyles = makeStyles(styles)
 
-const RunQueryButton = ({
+export const RunQueryButton = ({
   loading,
   onClick,
   totalCount,
@@ -44,5 +44,3 @@ const RunQueryButton = ({
     </Button>
   )
 }
-
-export default RunQueryButton

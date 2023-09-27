@@ -3,7 +3,7 @@ import type { ComponentProps } from 'react'
 import { Container, List } from '@toptal/picasso'
 import { render } from '@toptal/picasso/test-utils'
 
-import ValidationErrors from './ValidationErrors'
+import { ValidationErrors } from './'
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),

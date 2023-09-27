@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Input } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
 
-import validateValueEditor from '../utils/validate-value-editor'
+import { validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
 import styles from '../ValueEditor/styles'
 
@@ -16,7 +16,7 @@ type Props = {
 
 const useStyles = makeStyles(styles)
 
-const TextInput = ({
+export const TextInput = ({
   value,
   className,
   inputType,
@@ -48,5 +48,3 @@ const TextInput = ({
     </Container>
   )
 }
-
-export default TextInput

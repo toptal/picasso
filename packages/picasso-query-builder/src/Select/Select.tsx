@@ -4,8 +4,7 @@ import type { VersatileSelectorProps } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import { generateSelectOptions } from '../utils/generate-select-options'
-import validateValueEditor from '../utils/validate-value-editor'
+import { generateSelectOptions, validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
 import styles from './styles'
 
@@ -46,7 +45,6 @@ export const Select = ({
         loading={fieldData?.loading}
         status={hasError ? 'error' : undefined}
         onBlur={() => handleTouched?.(true)}
-        data-testid='query-builder-select'
       />
     </Container>
   )

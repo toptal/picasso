@@ -1,7 +1,7 @@
 import React from 'react'
 import type { ComponentProps } from 'react'
 
-import { Select } from '../Select/Select'
+import { Select } from '../Select'
 
 const OPTIONS: {
   label: string
@@ -19,8 +19,6 @@ const OPTIONS: {
 
 type SelectProps = ComponentProps<typeof Select>
 
-const BooleanInput = (props: Omit<SelectProps, 'options'>) => (
+export const BooleanInput = (props: Omit<SelectProps, 'options'>) => (
   <Select {...props} options={OPTIONS as unknown as SelectProps['options']} />
 )
-
-export default BooleanInput

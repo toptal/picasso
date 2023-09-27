@@ -2,22 +2,24 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import type { OperatorSelectorProps } from 'react-querybuilder'
 
-import { Select } from '../Select/Select'
+import { Select } from '../Select'
 import type { Field } from '../types/query-builder'
 import styles from './styles'
 
 const useStyles = makeStyles(styles)
 
-const OperatorSelector = (props: OperatorSelectorProps) => {
+export const OperatorSelector = ({
+  fieldData,
+  ...rest
+}: OperatorSelectorProps) => {
   const classes = useStyles()
 
-  const fieldData = props.fieldData as Field
-
-  if (fieldData.hideOperator || fieldData.valueEditorType === 'range') {
+  if (
+    fieldData.hideOperator ||
+    (fieldData as Field).valueEditorType === 'range'
+  ) {
     return null
   }
 
-  return <Select {...props} className={classes.root} fieldData={undefined} />
+  return <Select {...rest} className={classes.root} />
 }
-
-export default OperatorSelector

@@ -24,6 +24,36 @@ page
     takeScreenshot: false,
   })
 
+  .addExample('QueryBuilder/story/DragDrop.example.tsx', {
+    title: 'Drag and Drop',
+  })
+
+  .addExample('QueryBuilder/story/HideControls.example.tsx', {
+    title: 'Hide Controls',
+    description: 'Hide buttons used for query reset and submitting',
+  })
+
+  .addExample('QueryBuilder/story/Loading.example.tsx', {
+    title: 'Loading',
+  })
+
+  .addExample('QueryBuilder/story/MaxDepth.example.tsx', {
+    title: 'Maximum Group Depth',
+    description: 'Maximum group depth is set to one',
+  })
+
+  .addExample('QueryBuilder/story/MaxDepth.example.tsx', {
+    title: 'Functional Calbacks',
+    description: 'onQueryChange, onValidationChange, onQueryReset',
+    takeScreenshot: false,
+  })
+
+  .addExample('QueryBuilder/story/TotalCount.example.tsx', {
+    title: 'Total Count',
+    description: 'Total count is set to 15',
+    takeScreenshot: false,
+  })
+
   .addExample('QueryBuilder/story/RuleValidation.example.tsx', {
     title: 'Validation on Rule Level',
     description: `
@@ -40,16 +70,6 @@ page
     We can provide \`Query Level Validation\` to Query Builder. Instead of passing validators in the fields (as in \`Validation on Rule Level\` story) we can have validation function that is passed directly to the QB. 
 
     Here we are validating rules and group, a query is valid if it has non-empty rules.
-    `,
-    takeScreenshot: false,
-  })
-
-  .addExample('QueryBuilder/story/CustomOperators.example.tsx', {
-    title: 'Custom Operators',
-    description: `
-    Example of the Query Builder with custom operators. We can override default operators from the fields with some custom values. 
-
-    In this case we are providing Custom Operators for text and number inputTypes and for the rest we are providing default operators.
     `,
     takeScreenshot: false,
   })

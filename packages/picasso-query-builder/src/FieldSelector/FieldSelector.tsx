@@ -1,9 +1,9 @@
 import React from 'react'
 import type { ComponentProps } from 'react'
 
-import { Select } from '../Select/Select'
+import { Select } from '../Select'
 
-const FieldSelector = ({
+export const FieldSelector = ({
   context: { resetSubmitButtonClicked, getDisabledFields },
   disabled,
   ...props
@@ -25,5 +25,3 @@ const FieldSelector = ({
     />
   )
 }
-
-export default FieldSelector
