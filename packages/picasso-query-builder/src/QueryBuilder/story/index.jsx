@@ -42,7 +42,7 @@ page
     description: 'Maximum group depth is set to one',
   })
 
-  .addExample('QueryBuilder/story/MaxDepth.example.tsx', {
+  .addExample('QueryBuilder/story/Callback.example.tsx', {
     title: 'Functional Calbacks',
     description: 'onQueryChange, onValidationChange, onQueryReset',
     takeScreenshot: false,
