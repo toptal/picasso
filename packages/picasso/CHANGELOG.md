@@ -1,5 +1,15 @@
 # Change Log
 
+## 40.0.1
+
+### Patch Changes
+
+- [#3898](https://github.com/toptal/picasso/pull/3898) [`53ad2d8e3`](https://github.com/toptal/picasso/commit/53ad2d8e3458503240af9d8d8250c0ba01f74c0c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### PageHamburger
+
+- correctly shows and hides when `Sidebar` and `PageTopBar` `centerContent` are being used
+
 ## 40.0.0
 
 ### Major Changes
