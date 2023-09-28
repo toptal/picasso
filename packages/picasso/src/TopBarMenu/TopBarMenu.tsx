@@ -5,7 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Menu from '../Menu'
-import { usePortalToHamburger } from '../PageHamburger'
+import { useRegisterMenu } from '../PageHamburger'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -23,7 +23,7 @@ export const TopBarMenu = forwardRef<HTMLUListElement, Props>(
     // not more than 6 menu items are allowed by BASE design
     const items = React.Children.toArray(children).slice(0, 6)
 
-    usePortalToHamburger()
+    useRegisterMenu()
 
     return (
       <Menu

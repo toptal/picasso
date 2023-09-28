@@ -12,7 +12,7 @@ import { BackMinor16, ChevronRight16 } from '../Icon'
 import {
   PageHamburgerPortal,
   useHamburgerContext,
-  usePortalToHamburger,
+  useRegisterMenu,
 } from '../PageHamburger'
 import SidebarItem from '../SidebarItem'
 import SidebarLogo from '../SidebarLogo'
@@ -89,7 +89,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     }
   }, [setHasSidebar])
 
-  usePortalToHamburger()
+  useRegisterMenu()
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
