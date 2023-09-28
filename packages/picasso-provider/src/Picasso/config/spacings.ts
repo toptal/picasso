@@ -36,19 +36,23 @@ export enum SpacingEnum {
 
 class PicassoSpacing {
   #value: PicassoSpacingValues
-  #index: number
+  index: number
 
   private constructor(value: PicassoSpacingValues, index: number) {
     this.#value = value
-    this.#index = index
+    this.index = index
   }
 
   static create(value: PicassoSpacingValues, index: number): PicassoSpacing {
     return new PicassoSpacing(value, index)
   }
 
+  /**
+   *
+   * @deprecated Use "index" property directly
+   */
   indexOf(): number {
-    return this.#index
+    return this.index
   }
 
   valueOf(): PicassoSpacingValues {
