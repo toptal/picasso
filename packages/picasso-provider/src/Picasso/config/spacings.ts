@@ -48,7 +48,6 @@ class PicassoSpacing {
   }
 
   /**
-   *
    * @deprecated Use "index" property directly
    */
   indexOf(): number {
