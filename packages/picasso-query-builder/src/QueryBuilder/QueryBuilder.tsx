@@ -24,7 +24,7 @@ import type { QueryBuilderContext, Field } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
-import { emptyQueryBuilderQuery } from '../constants'
+import { emptyQueryBuilderQuery } from '../utils/constants'
 import { ValueEditor } from '../ValueEditor'
 import { ValidationErrors } from '../ValidationErrors'
 import {

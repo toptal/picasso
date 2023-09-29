@@ -18,7 +18,7 @@ export type {
 export type { RangeValue } from './RangeInput'
 export type { QueryBuilderValueEditorProps } from './ValueEditor'
 
-export { emptyQueryBuilderQuery } from './constants'
+export { emptyQueryBuilderQuery } from './utils/constants'
 
 export { ValueEditor } from './ValueEditor'
 export { RangeInput } from './RangeInput'

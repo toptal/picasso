@@ -48,6 +48,11 @@ page
     takeScreenshot: false,
   })
 
+  .addExample('QueryBuilder/story/CustomOperators.example.tsx', {
+    title: 'Custom Operators',
+    takeScreenshot: false,
+  })
+
   .addExample('QueryBuilder/story/TotalCount.example.tsx', {
     title: 'Total Count',
     description: 'Total count is set to 15',
