@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.4.1
+
+### Patch Changes
+
+- [#3900](https://github.com/toptal/picasso/pull/3900) [`0054a0933`](https://github.com/toptal/picasso/commit/0054a0933fddb53187e8e3361391431760f7e6f0) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Spacing
+
+- make spacing index field public
+
 ## 3.4.0
 
 ### Minor Changes
