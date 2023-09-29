@@ -36,19 +36,25 @@ export enum SpacingEnum {
 
 class PicassoSpacing {
   #value: PicassoSpacingValues
-  #index: number
+  /**
+   * Corresponds to token index in https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing
+   */
+  baseTokenIndex: number
 
   private constructor(value: PicassoSpacingValues, index: number) {
     this.#value = value
-    this.#index = index
+    this.baseTokenIndex = index
   }
 
   static create(value: PicassoSpacingValues, index: number): PicassoSpacing {
     return new PicassoSpacing(value, index)
   }
 
+  /**
+   * @deprecated Use "index" property directly
+   */
   indexOf(): number {
-    return this.#index
+    return this.baseTokenIndex
   }
 
   valueOf(): PicassoSpacingValues {
