@@ -1,5 +1,14 @@
-import { COMMAND_PRIORITY_CRITICAL, SELECTION_CHANGE_COMMAND } from 'lexical'
+import {
+  $getSelection,
+  $isRangeSelection,
+  COMMAND_PRIORITY_CRITICAL,
+  FORMAT_TEXT_COMMAND,
+  SELECTION_CHANGE_COMMAND,
+} from 'lexical'
 import type { LexicalEditor } from 'lexical'
+import { $isHeadingNode } from '@lexical/rich-text'
+
+import { getSelectedNode } from './get-selected-node'
 
 export type LexicalRegisterParams = {
   editor: LexicalEditor
@@ -18,6 +27,28 @@ export const registerLexicalEvents = ({
       })
     }
   )
+
+  const formatCommandCleanup = editor.registerCommand(
+    FORMAT_TEXT_COMMAND,
+    () => {
+      const selection = $getSelection()
+
+      if ($isRangeSelection(selection)) {
+        const node = getSelectedNode(selection)
+        const parent = node.getParent()
+
+        if ($isHeadingNode(parent) || $isHeadingNode(node)) {
+          console.log('@@@ not formatting')
+
+          return true
+        }
+      }
+
+      return false
+    },
+    COMMAND_PRIORITY_CRITICAL
+  )
+
   const editorCommandsCleanup = editor.registerCommand(
     SELECTION_CHANGE_COMMAND,
     () => {
@@ -32,5 +63,6 @@ export const registerLexicalEvents = ({
   return () => {
     editorListenerCleanup()
     editorCommandsCleanup()
+    formatCommandCleanup()
   }
 }
