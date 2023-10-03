@@ -25,6 +25,7 @@ describe('replaceHeadingNodes', () => {
 
       node.getTag = () => 'h3'
       node.replace = jest.fn()
+      node.getChildren = () => []
 
       replaceHeadingNodes(node)
 

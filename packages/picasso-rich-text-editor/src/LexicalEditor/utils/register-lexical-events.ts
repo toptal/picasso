@@ -38,8 +38,6 @@ export const registerLexicalEvents = ({
         const parent = node.getParent()
 
         if ($isHeadingNode(parent) || $isHeadingNode(node)) {
-          console.log('@@@ not formatting')
-
           return true
         }
       }
