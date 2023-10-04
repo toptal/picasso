@@ -1,15 +1,20 @@
 import toH from 'hast-to-hyperscript'
 import type { ReactElement, ReactNode, FC } from 'react'
+import type { Theme } from '@material-ui/core/styles'
 import React, { useMemo, createElement, isValidElement } from 'react'
 import Typography from '@toptal/picasso/Typography'
 import Container from '@toptal/picasso/Container'
 import List from '@toptal/picasso/List'
 import ListItem from '@toptal/picasso/ListItem'
 import Link from '@toptal/picasso/Link'
+import { makeStyles } from '@material-ui/core'
 
 import type { ASTType } from '../../types'
 import { Emoji, Image, Code, CodeBlock } from '../../components'
 import { isCustomEmoji } from '../../../utils'
+import styles from './styles'
+
+const useStyles = makeStyles<Theme>(styles, { name: 'PicassoRichText' })
 
 type Props = {
   children?: React.ReactNode
@@ -25,15 +30,17 @@ const P = ({ children }: Props) => (
   <Typography size='medium'>{children}</Typography>
 )
 const Strong = ({ children }: Props) => (
-  <Typography size='inherit' as='strong' weight='semibold'>
+  <Typography size='inherit' as='strong' weight='semibold' color='inherit'>
     {children}
   </Typography>
 )
+
 const Em = ({ children }: Props) => (
-  <Typography size='inherit' as='em'>
+  <Typography size='inherit' as='em' color='inherit'>
     {children}
   </Typography>
 )
+
 const H3 = ({ children }: Props) => (
   <Container top='xsmall'>
     <Typography as='h3' variant='heading' size='medium'>
@@ -43,7 +50,16 @@ const H3 = ({ children }: Props) => (
 )
 const Ul = ({ children }: Props) => <List variant='unordered'>{children}</List>
 const Ol = ({ children }: Props) => <List variant='ordered'>{children}</List>
-const A = ({ children, ...props }: Props) => <Link {...props}>{children}</Link>
+const A = ({ children, ...props }: Props) => {
+  const classes = useStyles()
+
+  return (
+    <Link {...props} className={classes.visitedLinkChild}>
+      {children}
+    </Link>
+  )
+}
+
 const Img = ({ ...props }: Props) =>
   isCustomEmoji(props) ? <Emoji {...props} /> : <Image {...props} />
 

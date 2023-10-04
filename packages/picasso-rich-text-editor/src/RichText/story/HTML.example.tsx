@@ -141,7 +141,23 @@ const defaultValue: ASTType = {
           type: 'element',
           tagName: 'a',
           properties: { href: 'https://toptal.com' },
-          children: [{ type: 'text', value: 'Toptal' }],
+          children: [
+            { type: 'text', value: 'Toptal, ' },
+            {
+              type: 'element',
+              tagName: 'strong',
+              properties: {},
+              children: [
+                { type: 'text', value: 'the greatest talent company ' },
+              ],
+            },
+            {
+              type: 'element',
+              tagName: 'em',
+              properties: {},
+              children: [{ type: 'text', value: 'in the world' }],
+            },
+          ],
         },
         { type: 'text', value: ' 💪' },
       ],
