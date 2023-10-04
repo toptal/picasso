@@ -2,6 +2,7 @@ import {
   $getSelection,
   $isRangeSelection,
   COMMAND_PRIORITY_CRITICAL,
+  COMMAND_PRIORITY_NORMAL,
   FORMAT_TEXT_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical'
@@ -44,7 +45,7 @@ export const registerLexicalEvents = ({
 
       return false
     },
-    COMMAND_PRIORITY_CRITICAL
+    COMMAND_PRIORITY_NORMAL
   )
 
   const editorCommandsCleanup = editor.registerCommand(

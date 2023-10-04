@@ -1,5 +1,6 @@
 import {
   COMMAND_PRIORITY_CRITICAL,
+  COMMAND_PRIORITY_NORMAL,
   FORMAT_TEXT_COMMAND,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical'
@@ -38,7 +39,7 @@ describe('registerLexicalEvents', () => {
     expect(mockEditor.registerUpdateListener).toHaveBeenCalledTimes(1)
     expect(mockEditor.registerCommand).toHaveBeenCalledTimes(2)
     expect(mockEditor.registerCommand.mock.calls).toMatchObject([
-      [FORMAT_TEXT_COMMAND, expect.any(Function), COMMAND_PRIORITY_CRITICAL],
+      [FORMAT_TEXT_COMMAND, expect.any(Function), COMMAND_PRIORITY_NORMAL],
       [
         SELECTION_CHANGE_COMMAND,
         expect.any(Function),
