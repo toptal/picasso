@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 8.0.2
+
+### Patch Changes
+
+- [#3906](https://github.com/toptal/picasso/pull/3906) [`3611942ee`](https://github.com/toptal/picasso/commit/3611942ee4452a6ac1bdcbaaff83609956fc3cf8) Thanks [@sashuk](https://github.com/sashuk)!
+
+### RichTextEditor
+
+- remove any tags from headings
+
 ## 8.0.1
 
 ### Patch Changes
