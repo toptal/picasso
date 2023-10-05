@@ -8,6 +8,10 @@ import EmojiPlugin, {
 } from './index'
 import { $createCustomEmojiNode } from './nodes/CustomEmojiNode'
 
+jest.mock('../../LexicalEditor/utils', () => ({
+  getSelectedNode: jest.fn(),
+}))
+
 jest.mock('@lexical/react/LexicalComposerContext', () => ({
   useLexicalComposerContext: jest.fn(() => [{}]),
 }))
@@ -16,10 +20,17 @@ jest.mock('@lexical/utils', () => ({
   mergeRegister: jest.fn(),
 }))
 
+jest.mock('@lexical/rich-text', () => ({
+  $isHeadingNode: jest.fn(),
+}))
+
 jest.mock('lexical', () => ({
   $createTextNode: jest.fn(),
   $insertNodes: jest.fn(),
+  $getSelection: jest.fn(),
+  $isRangeSelection: jest.fn(),
   COMMAND_PRIORITY_EDITOR: jest.fn(),
+  FORMAT_TEXT_COMMAND: jest.fn(),
   createCommand: jest.fn(),
 }))
 

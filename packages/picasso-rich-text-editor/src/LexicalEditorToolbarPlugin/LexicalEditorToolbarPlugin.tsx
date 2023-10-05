@@ -4,7 +4,6 @@ import {
   REMOVE_LIST_COMMAND,
 } from '@lexical/list'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { $createHeadingNode, $isHeadingNode } from '@lexical/rich-text'
 import { $setBlocksType } from '@lexical/selection'
 import {
   $createParagraphNode,
@@ -14,6 +13,7 @@ import {
 } from 'lexical'
 import type { ChangeEvent } from 'react'
 import React, { useEffect, useReducer } from 'react'
+import { $createHeadingNode, $isHeadingNode } from '@lexical/rich-text'
 
 import {
   registerLexicalEvents,

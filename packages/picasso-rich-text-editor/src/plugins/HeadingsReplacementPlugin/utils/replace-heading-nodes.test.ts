@@ -1,6 +1,6 @@
 import type { ParagraphNode, TextNode } from 'lexical'
-import type { HeadingNode } from '@lexical/rich-text'
 import { $createParagraphNode, $createTextNode } from 'lexical'
+import type { HeadingNode } from '@lexical/rich-text'
 
 import { replaceHeadingNodes } from './replace-heading-nodes'
 
@@ -25,6 +25,7 @@ describe('replaceHeadingNodes', () => {
 
       node.getTag = () => 'h3'
       node.replace = jest.fn()
+      node.getChildren = () => []
 
       replaceHeadingNodes(node)
 
