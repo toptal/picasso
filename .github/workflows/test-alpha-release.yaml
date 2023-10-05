@@ -88,15 +88,14 @@ jobs:
           echo "Versions: $VERSIONS"
 
           # Set up git with GitHub token for authentication
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
+          # git config --global user.name "GitHub Action"
+          # git config --global user.email "action@github.com"
 
           # Clone repo Staff Portal with authentication
           REPO="https://github.com/toptal/staff-portal.git"
           TOKEN="${GITHUB_TOKEN}"
           CLONE_URL="https://x-access-token:$TOKEN@${REPO#https://}"
           git clone "$CLONE_URL"
-          # cd REPO_A
 
           # Clone repo Staff Portal
           # git clone https://github.com/toptal/staff-portal.git
@@ -120,6 +119,8 @@ jobs:
 
           # format dependencies 
           npx syncpack format
+
+          npm set "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
 
           # install dependencies
           yarn install
