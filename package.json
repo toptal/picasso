@@ -131,7 +131,7 @@
     "react-source-render": "^3.0.0-5",
     "react-storybook-addon-chapters": "^3.1.7",
     "react-test-renderer": "^18.2.0",
-    "remark-gfm": "^3.0.1",
+    "remark-gfm": "^4.0.0",
     "syncpack": "^10.9.3",
     "thread-loader": "^4.0.2",
     "ts-loader": "^9.4.2",
