@@ -14,9 +14,9 @@ env:
 jobs:
   update-deps:
     runs-on: ubuntu-latest
-    if: >
-      github.event.issue.pull_request &&
-      contains(github.event.comment.body, '@toptal-bot run test:alpha-release')
+    # if: >
+    #   github.event.issue.pull_request &&
+    #   contains(github.event.comment.body, '@toptal-bot run test:alpha-release')
     env:
       STATUS_CHECK_NAME: Create PR with Alpha Package in Staff Portal
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
