@@ -21,13 +21,13 @@ jobs:
       STATUS_CHECK_NAME: Create PR with Alpha Package in Staff Portal
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: Feedback on action started
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ env.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.issue;
-            await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
+      # - name: Feedback on action started
+      #   uses: actions/github-script@v6
+      #   with:
+      #     github-token: ${{ env.GITHUB_TOKEN }}
+      #     script: |
+      #       const { owner, repo } = context.issue;
+      #       await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
 
       - id: branch
         uses: xt0rted/pull-request-comment-branch@v2.0.0
