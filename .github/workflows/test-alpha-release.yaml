@@ -1,18 +1,22 @@
 name: Create PR with Alpha Release in Staff Portal
 
 on:
-  issue_comment:
-    types: [created]
-  push:
+  # issue_comment:
+  #   types: [created]
+  # push:
+  #   branches:
+  #     - create-gh-workflow-to-test-picasso
+  pull_request:
     branches:
-      - create-gh-workflow-to-test-picasso
+      - master
+    types: [opened, synchronize, reopened]
 
 env:
   GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
 
 jobs:
-  update-deps:
+  create-pr-with-alpha-package-in-staff-portal:
     runs-on: ubuntu-latest
     # if: >
     #   github.event.issue.pull_request &&
