@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 8.0.1
+
+### Patch Changes
+
+- [#3907](https://github.com/toptal/picasso/pull/3907) [`932000a4d`](https://github.com/toptal/picasso/commit/932000a4d75b8339d3041b93f7f49e4fd77c5cb0) Thanks [@sashuk](https://github.com/sashuk)!
+
+### RichTextEditor
+
+- fix display of bold and italic text in links
+
 ## 8.0.0
 
 ### Patch Changes
