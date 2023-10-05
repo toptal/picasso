@@ -1,0 +1,145 @@
+name: Create PR with Alpha Release in Staff Portal
+
+on:
+  issue_comment:
+    types: [created]
+  push:
+    branches:
+      - create-gh-workflow-to-test-picasso
+
+env:
+  GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
+
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '@toptal-bot run test:alpha-release')
+    env:
+      STATUS_CHECK_NAME: Create PR with Alpha Package in Staff Portal
+      STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Feedback on action started
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+            await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
+
+      - id: branch
+        uses: xt0rted/pull-request-comment-branch@v2.0.0
+
+      - name: Specify branch
+        id: get-branch
+        run: |
+          echo "branch=${{ steps.branch.outputs.head_ref }}" >> $GITHUB_OUTPUT
+          echo "sha=${{ steps.branch.outputs.head_sha }}" >> $GITHUB_OUTPUT
+
+      - name: Configure git user
+        run: |
+          git config --global user.email "bot@toptal.com"
+          git config --global user.name "toptal-bot"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
+          ref: ${{ steps.get-branch.outputs.branch }}
+          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
+
+      - name: Set status check - pending
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+            await github.rest.repos.createCommitStatus({
+              repo,
+              owner,
+              state: 'pending',
+              sha: "${{ steps.get-branch.outputs.sha }}",
+              context: process.env.STATUS_CHECK_NAME,
+              target_url: process.env.STATUS_TARGET_URL
+            })
+
+      # - name: Trigger alpha package
+      #   id: alpha-package
+      #   uses: toptal/davinci-github-actions/build-publish-alpha-package@v10.0.0
+      #   with:
+      #     npm-token: ${{ env.NPM_TOKEN }}
+      #     branch: ${{ steps.get-branch.outputs.branch }}
+      - name: Temporary Trigger alpha package
+        id: alpha-package
+        run: |
+          echo "versions=@toptal/picasso@38.2.1-alpha-fx-4034-6b0ba2a89.9+6b0ba2a89 @toptal/picasso-charts@52.0.1-alpha-fx-4034-6b0ba2a89.28+6b0ba2a89 @toptal/picasso-forms@61.1.3-alpha-fx-4034-6b0ba2a89.7+6b0ba2a89" >> $GITHUB_OUTPUT
+
+      - name: Execute script to update dependencies in repo A
+        if: ${{ success() }}
+        env:
+          VERSIONS: ${{ steps.alpha-package.outputs.versions }}
+        run: |
+          echo "Versions: $VERSIONS"
+
+          # Clone repo Staff Portal
+          git clone https://github.com/toptal/staff-portal.git
+          cd staff-portal
+
+          # Create a new branch
+          git checkout -b ${{ steps.get-branch.outputs.branch }}
+
+          # Split versions into an array
+          IFS=' ' read -ra PACKAGES <<< "$VERSIONS"
+
+          # Update each package in package.json
+          for pkg in "${PACKAGES[@]}"; do
+              # Extract package name and version
+              pkg_name=$(echo $pkg | cut -d'@' -f2 | cut -d' ' -f1)
+              version=$(echo $pkg | cut -d'@' -f3)
+
+              # Use jq to update the package.json
+              jq --arg pkg_name $pkg_name --arg version $version '.dependencies[$pkg_name] = $version' package.json > temp.json && mv temp.json package.json
+          done
+
+          # format dependencies 
+          npx syncpack format
+
+          # install dependencies
+          yarn install
+
+          # Commit and push the changes
+          git add .
+          git commit -m "Update to alpha dependencies"
+          echo $(git status)
+          # git push origin ${{ steps.get-branch.outputs.branch }}
+
+
+      - name: Set status check - success / failure / error
+        if: ${{ always() }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+
+            const status = "${{ job.status }}";
+            const state = status === 'cancelled' ? 'error' : status;
+
+            await github.rest.repos.createCommitStatus({
+              repo,
+              owner,
+              state,
+              sha: "${{ steps.get-branch.outputs.sha }}",
+              context: process.env.STATUS_CHECK_NAME,
+              target_url: process.env.STATUS_TARGET_URL
+            })
+
+
+      # - name: Execute script to update dependencies in repo A
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     ALPHA_VERSION: "@package/davinci-bootstrap@4.0.24-alpha-fx-4393-bump-jest-to-29-036c45f1.11+036c45f1"
+      #   run: |
+      #     # Your script here to clone repo A, create a branch, update dependencies, and push
