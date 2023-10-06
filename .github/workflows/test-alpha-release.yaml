@@ -81,15 +81,12 @@ jobs:
           echo "VERSIONS=@toptal/picasso@38.2.1-alpha-fx-4034-6b0ba2a89.9+6b0ba2a89 @toptal/picasso-charts@52.0.1-alpha-fx-4034-6b0ba2a89.28+6b0ba2a89 @toptal/picasso-forms@61.1.3-alpha-fx-4034-6b0ba2a89.7+6b0ba2a89" >> $GITHUB_OUTPUT
 
       - name: Trigger SP workflow
-        env:
-          VERSIONS: ${{ steps.alpha-package.outputs.versions }}
-          BRANCH: ${{ steps.get-branch.outputs.branch }}
         run: |
           curl -X POST \
             -H "Authorization: token ${{ env.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.everest-preview+json" \
             "https://api.github.com/repos/toptal/staff-portal/dispatches" \
-            -d '{"event_type": "test-picasso-alpha-packages", "client_payload": {"versions": "$VERSIONS", "branch_name": "$BRANCH"}}'
+            -d '{"event_type": "test-picasso-alpha-packages", "client_payload": {"versions": "${{ steps.alpha-package.outputs.versions }}", "branch_name": "${{ steps.get-branch.outputs.branch }}"}}'
 
       # - name: Execute script to update dependencies in repo A
       #   if: ${{ success() }}
