@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import type {
   RuleGroupTypeAny,
   RuleType,
@@ -10,10 +10,7 @@ import type { Field } from '../types/query-builder'
 
 type Props = {
   fields: Field[]
-  onValidChange?: (isValid: boolean) => void
-  onValidationResultChange?: (
-    validationResult: Record<string, ValidationResult | boolean>
-  ) => void
+  onValidationChange?: (isValid: boolean) => void
 }
 
 const validateRule = (
@@ -75,11 +72,11 @@ const validateQuery = (
   return validateRule(query as RuleType, fieldValidatorMap)
 }
 
-const useQueryBuilderValidator = ({
-  fields,
-  onValidChange,
-  onValidationResultChange,
-}: Props) => {
+const useQueryBuilderValidator = ({ fields, onValidationChange }: Props) => {
+  const validationResult = useRef<Record<string, ValidationResult | boolean>>(
+    {}
+  )
+
   const fieldValidatorMap = useMemo(() => {
     return fields.reduce(
       (acc, field) => ({
@@ -90,21 +87,22 @@ const useQueryBuilderValidator = ({
     )
   }, [fields])
 
-  return useCallback(
+  const validator = useCallback(
     (queryToValidate: RuleGroupTypeAny) => {
-      const validationResult = validateQuery(queryToValidate, fieldValidatorMap)
+      const valResult = validateQuery(queryToValidate, fieldValidatorMap)
 
-      const isValid = !Object.values(validationResult).some(
-        result => result !== true
-      )
+      const isValid = !Object.values(valResult).some(result => result !== true)
 
-      onValidChange?.(isValid)
-      onValidationResultChange?.(validationResult)
+      onValidationChange?.(isValid)
+
+      validationResult.current = valResult
 
       return isValid
     },
-    [fieldValidatorMap, onValidChange, onValidationResultChange]
+    [fieldValidatorMap, onValidationChange]
   )
+
+  return { validator, validationResult: validationResult.current }
 }
 
 export default useQueryBuilderValidator

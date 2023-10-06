@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import type { ComponentType } from 'react'
 import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
@@ -7,7 +7,6 @@ import type {
   Field as QueryBuilderField,
   RuleGroupTypeAny,
   Operator,
-  ValidationResult,
 } from 'react-querybuilder'
 import {
   QueryBuilder as ReactQueryBuilder,
@@ -26,10 +25,10 @@ import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
 import { emptyQueryBuilderQuery } from '../utils/constants'
 import { ValueEditor } from '../ValueEditor'
-import { ValidationErrors } from '../ValidationErrors'
 import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
+import { ValidationErrors } from '../ValidationErrors'
 
 type Props = {
   /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
@@ -50,8 +49,6 @@ type Props = {
   onSubmit?: (query: RuleGroupTypeAny) => void
   /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
   customValueEditor?: ComponentType<ValueEditorProps>
-  /** Defines a function that allows customized validation for the user input in the QB. It helps to provide some custom validation rules to enforce specific constraints. Receives a query as an argument which represents the full query constructed by the user, including any rules and logical operators. */
-  customValidator?: (query: RuleGroupTypeAny) => boolean
   /** Defines the loading state. */
   loading?: boolean
   /** Defines the possibility to display, or not, any of the controls. For example "Add rule" or "Add group" control. */
@@ -83,7 +80,6 @@ const QueryBuilder = ({
   loading = false,
   onSubmit,
   customValueEditor = ValueEditor,
-  customValidator,
   hideControls,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
@@ -94,21 +90,21 @@ const QueryBuilder = ({
 }: Props) => {
   const classes = useStyles()
 
-  const [queryBuilderValid, setIsQueryBuilderValid] = useState<
-    boolean | undefined
-  >()
-  const [validationErrors, setValidationErrors] = useState<
-    Record<string, ValidationResult | boolean>
-  >({})
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
 
   const { showError } = useNotifications()
 
-  const queryBuilderValidator = useQueryBuilderValidator({
-    onValidChange: setIsQueryBuilderValid,
-    fields,
-    onValidationResultChange: setValidationErrors,
+  const { handleQueryChange } = useOnQueryChange({
+    maxGroupDepth,
+    callback: onQueryChange,
   })
+
+  const { validator, validationResult } = useQueryBuilderValidator({
+    fields,
+    onValidationChange,
+  })
+
+  const queryBuilderValid = validator(query)
 
   const resetQuery = useCallback(() => {
     if (onQueryReset) {
@@ -131,7 +127,7 @@ const QueryBuilder = ({
     setSubmitButtonClicked(true)
 
     if (!queryBuilderValid) {
-      showError(<ValidationErrors validationResult={validationErrors} />)
+      showError(<ValidationErrors validationResult={validationResult} />)
 
       return
     }
@@ -139,28 +135,11 @@ const QueryBuilder = ({
     if (onSubmit && query) {
       onSubmit(query)
     }
-  }, [queryBuilderValid, onSubmit, query, showError, validationErrors])
-
-  const { handleQueryChange } = useOnQueryChange({
-    maxGroupDepth,
-    callback: onQueryChange,
-  })
+  }, [queryBuilderValid, onSubmit, query, showError, validationResult])
 
   const resetSubmitButtonClicked = useCallback(() => {
     setSubmitButtonClicked(false)
   }, [])
-
-  const customValidatorHandler = (queryToValidate: RuleGroupTypeAny) => {
-    if (customValidator) {
-      const result = customValidator(queryToValidate)
-
-      setIsQueryBuilderValid(result)
-
-      return result
-    }
-
-    return false
-  }
 
   const getDisabledFields = () => {
     return fields
@@ -171,13 +150,6 @@ const QueryBuilder = ({
       })
       .map(disabledField => disabledField.name)
   }
-
-  useEffect(() => {
-    if (queryBuilderValid !== undefined) {
-      onValidationChange?.(queryBuilderValid)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryBuilderValid])
 
   const getOperators = useCallback(
     (fieldName: string) => {
@@ -206,9 +178,7 @@ const QueryBuilder = ({
             addRuleToNewGroups
             controlClassnames={controlClassnames}
             query={query}
-            validator={
-              customValidator ? customValidatorHandler : queryBuilderValidator
-            }
+            validator={validator}
             onQueryChange={handleQueryChange}
             showCloneButtons
             getOperators={getOperators}

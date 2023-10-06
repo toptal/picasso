@@ -14,6 +14,7 @@ const validateMock1 = (rule: RuleType) => {
 
   return true
 }
+
 const validateMock2 = (rule: RuleType) => {
   if (rule.value !== 'should be this') {
     return {
@@ -63,6 +64,7 @@ const validQuery: RuleGroupTypeAny = {
     },
   ],
 }
+
 const invalidQuery: RuleGroupTypeAny = {
   id: 'rule1',
   combinator: 'and',
@@ -88,29 +90,18 @@ const invalidQuery: RuleGroupTypeAny = {
   ],
 }
 
-const onValidChangeMock = jest.fn()
-const onValidationResultChangeMock = jest.fn()
-
 describe('useQueryBuilderValidator', () => {
   describe('when query is valid', () => {
     it('returns true', () => {
       const { result } = renderHook(() =>
         useQueryBuilderValidator({
           fields,
-          onValidChange: onValidChangeMock,
-          onValidationResultChange: onValidationResultChangeMock,
         })
       )
 
-      const validate = result.current
+      const { validator } = result.current
 
-      expect(validate(validQuery)).toBe(true)
-      expect(onValidChangeMock).toHaveBeenCalledWith(true)
-      expect(onValidationResultChangeMock).toHaveBeenCalledWith({
-        rule1: true,
-        rule2: true,
-        rule3: true,
-      })
+      expect(validator(validQuery)).toBe(true)
     })
   })
 
@@ -119,24 +110,13 @@ describe('useQueryBuilderValidator', () => {
       const { result } = renderHook(() =>
         useQueryBuilderValidator({
           fields,
-          onValidChange: onValidChangeMock,
-          onValidationResultChange: onValidationResultChangeMock,
         })
       )
 
-      const validate = result.current
+      const { validator } = result.current
+      const isValid = validator(invalidQuery)
 
-      expect(validate(invalidQuery)).toBe(false)
-      expect(onValidChangeMock).toHaveBeenCalledWith(false)
-      expect(onValidationResultChangeMock).toHaveBeenCalledWith({
-        rule1: true,
-        rule2: true,
-        rule3: {
-          valid: false,
-          reasons: ['reason1'],
-        },
-        rule4: true,
-      })
+      expect(isValid).toBe(false)
     })
   })
 })

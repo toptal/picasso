@@ -69,16 +69,6 @@ page
     takeScreenshot: false,
   })
 
-  .addExample('QueryBuilder/story/QueryValidation.example.tsx', {
-    title: 'Validation on Query Level',
-    description: `
-    We can provide \`Query Level Validation\` to Query Builder. Instead of passing validators in the fields (as in \`Validation on Rule Level\` story) we can have validation function that is passed directly to the QB. 
-
-    Here we are validating rules and group, a query is valid if it has non-empty rules.
-    `,
-    takeScreenshot: false,
-  })
-
   .addExample('QueryBuilder/story/CustomValueEditor.example.tsx', {
     title: 'Custom Value Editor',
     description: `
