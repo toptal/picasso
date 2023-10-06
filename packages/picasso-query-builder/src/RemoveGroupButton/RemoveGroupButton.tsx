@@ -3,18 +3,12 @@ import type { ActionWithRulesProps } from 'react-querybuilder'
 import { Button, PromptModal } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
-export interface Props extends ActionWithRulesProps {
-  context?: {
-    removeGroup?: (path: number[]) => void
-  }
-}
-
 export const RemoveGroupButton = ({
   className,
   disabled,
   context: { removeGroup } = {},
   path,
-}: Props) => {
+}: ActionWithRulesProps) => {
   const { showModal, hideModal, isOpen } = useModal()
 
   return (

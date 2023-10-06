@@ -27,10 +27,12 @@ const getRuleGroupBackgroundColor = ({ maxGroupDepth, theme }: Root) => {
   )
 }
 
+const globalStyles = queryBuilderGlobalStyles()
+
 export default (theme: Theme) =>
   createStyles({
     global: {
-      ...queryBuilderGlobalStyles(),
+      ...globalStyles,
     },
     root: {
       borderRadius: '0.5em',

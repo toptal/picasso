@@ -218,6 +218,11 @@ const fields: Field[] = [
     inputType: 'text',
   },
   {
+    name: 'boolfield',
+    label: 'Boolean Field',
+    valueEditorType: 'boolean',
+  },
+  {
     name: 'lastName',
     label: 'Last Name',
     placeholder: 'Enter last name',

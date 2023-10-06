@@ -13,9 +13,9 @@ export type {
   Field,
   BaseValueEditorProps as ValueEditorProps,
   BaseVersatileSelectorProps as VersatileSelectorProps,
+  RangeValue,
 } from './types/query-builder'
 
-export type { RangeValue } from './RangeInput'
 export type { QueryBuilderValueEditorProps } from './ValueEditor'
 
 export { emptyQueryBuilderQuery } from './utils/constants'

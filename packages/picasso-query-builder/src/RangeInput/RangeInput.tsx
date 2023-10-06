@@ -5,14 +5,10 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import type {
   RangeFieldOptions,
+  RangeValue,
   ValueEditorValidationProps,
 } from '../types/query-builder'
 import styles from './styles'
-
-export type RangeValue = {
-  from?: number
-  to?: number
-}
 
 type Props = RangeFieldOptions & {
   /**

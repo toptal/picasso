@@ -27,12 +27,9 @@ import { ControlElementsContext } from '../ControlElementsContext'
 import { emptyQueryBuilderQuery } from '../utils/constants'
 import { ValueEditor } from '../ValueEditor'
 import { ValidationErrors } from '../ValidationErrors'
-import {
-  controlClassnames,
-  getQueryDepth,
-  useQueryBuilderValidator,
-} from '../utils'
+import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
+import { useOnQueryChange } from './hooks/useOnQueryChange'
 
 type Props = {
   /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
@@ -81,15 +78,15 @@ const QueryBuilder = ({
   query,
   onQueryChange,
   onValidationChange,
-  getOperators,
+  getOperators: customOperators,
   maxGroupDepth = 3,
   loading = false,
   onSubmit,
-  customValueEditor,
+  customValueEditor = ValueEditor,
   customValidator,
   hideControls,
   enableDragAndDrop = false,
-  resetOnFieldChange,
+  resetOnFieldChange = true,
   totalCount,
   totalCountLoading,
   onQueryReset,
@@ -138,26 +135,16 @@ const QueryBuilder = ({
 
       return
     }
+
     if (onSubmit && query) {
       onSubmit(query)
     }
   }, [queryBuilderValid, onSubmit, query, showError, validationErrors])
 
-  const handleQueryChange = useCallback(
-    (changedQuery: RuleGroupTypeAny) => {
-      // subtract one because we do not count top level query as depth level 1
-      // object depth level is not exactly the query depth level
-      const level = getQueryDepth(changedQuery) - 1
-
-      if (level > maxGroupDepth) {
-        return showError(
-          `Can not exceed maximum group depth (${maxGroupDepth})`
-        )
-      }
-      onQueryChange(changedQuery)
-    },
-    [maxGroupDepth, onQueryChange, showError]
-  )
+  const { handleQueryChange } = useOnQueryChange({
+    maxGroupDepth,
+    callback: onQueryChange,
+  })
 
   const resetSubmitButtonClicked = useCallback(() => {
     setSubmitButtonClicked(false)
@@ -192,6 +179,17 @@ const QueryBuilder = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryBuilderValid])
 
+  const getOperators = useCallback(
+    (fieldName: string) => {
+      if (customOperators) {
+        return customOperators(fields, fieldName)
+      }
+
+      return defaultOperators
+    },
+    [customOperators, fields]
+  )
+
   return (
     <ControlElementsContext>
       <Container
@@ -213,13 +211,7 @@ const QueryBuilder = ({
             }
             onQueryChange={handleQueryChange}
             showCloneButtons
-            getOperators={(fieldName: string) => {
-              if (getOperators) {
-                return getOperators(fields, fieldName)
-              }
-
-              return defaultOperators
-            }}
+            getOperators={getOperators}
             context={
               {
                 removeGroup,
@@ -232,7 +224,7 @@ const QueryBuilder = ({
               } as QueryBuilderContext
             }
             controlElements={{
-              valueEditor: customValueEditor || ValueEditor,
+              valueEditor: customValueEditor,
             }}
             enableDragAndDrop={enableDragAndDrop}
           />

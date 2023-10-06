@@ -13,6 +13,11 @@ export interface RangeFieldOptions {
   icon?: ReactNode
 }
 
+export type RangeValue = {
+  from?: number
+  to?: number
+}
+
 interface BasicField
   extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
   inputType?: 'text' | 'number' | null

@@ -3,6 +3,6 @@ import { createStyles } from '@material-ui/core/styles'
 export default () =>
   createStyles({
     root: {
-      flexBasis: '100px',
+      flexBasis: '6.25rem',
     },
   })
