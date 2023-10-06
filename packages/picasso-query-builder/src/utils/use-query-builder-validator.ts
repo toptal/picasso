@@ -18,26 +18,14 @@ type Props = {
 
 const validateRule = (
   rule: RuleType,
-  fieldValidatorMap: {
-    [key: string]: RuleValidator
-  }
+  fieldValidatorMap: Record<string, RuleValidator>
 ) => {
   const { field, id } = rule
 
-  const fieldValidator: RuleValidator = fieldValidatorMap[field]
-
-  if (fieldValidator) {
-    const result = fieldValidator(rule)
-
-    if (result !== true) {
-      return {
-        [id as string]: result,
-      }
-    }
-  }
+  const fieldValidator = fieldValidatorMap[field]
 
   return {
-    [id as string]: true,
+    [id as string]: fieldValidator ? fieldValidator(rule) : true,
   }
 }
 
