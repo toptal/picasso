@@ -86,7 +86,7 @@ jobs:
           BRANCH: ${{ steps.get-branch.outputs.branch }}
         run: |
           curl -X POST \
-            -H "Authorization: token ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}" \
+            -H "Authorization: token ${{ env.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.everest-preview+json" \
             "https://api.github.com/repos/toptal/staff-portal/dispatches" \
             -d '{"event_type": "test-picasso-alpha-packages", "client_payload": {"versions": "$VERSIONS", "branch_name": "$BRANCH"}}'
