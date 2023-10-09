@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 ENV PATH="${PATH}:/app/node_modules/.bin" \
   # Installs Chromium (77) package.
