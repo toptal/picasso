@@ -150,6 +150,7 @@
     "lodash": "^4.17.21",
     "**/marksy/marked": "^0.6.0",
     "**/find-babel-config/json5": "1",
+    "**/@types/unist": "3.0.0",
     "@storybook/react": "^6.5.15",
     "webpack": "^5.0.0",
     "glob-parent": "^6.0.2",
