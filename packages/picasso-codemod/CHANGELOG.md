@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.6.2
+
+### Patch Changes
+
+- [#3917](https://github.com/toptal/picasso/pull/3917) [`7fe49a8e7`](https://github.com/toptal/picasso/commit/7fe49a8e766099e0f87caf0d76c4ffd982e20140) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- fix eslint issues
+
 ## 5.6.1
 
 ### Patch Changes
