@@ -67,7 +67,7 @@ const getUnsolvableImportDeclarations = (
 const getUnsolvableIdentifierNames = (
   unsolvableImportDeclarations: ASTPath<ImportDeclaration>[]
 ) => {
-  const unsolvableIdentifierNames: Set<string> = new Set()
+  const unsolvableIdentifierNames = new Set<string>()
 
   unsolvableImportDeclarations.forEach(path => {
     path.value.specifiers?.forEach(specifier =>
