@@ -43,10 +43,11 @@ const fields: Field[] = [
     name: 'field3',
     label: 'Name',
     valueEditorType: 'text',
+    validator: validateMock2,
   },
 ]
 
-const validQuery: RuleGroupTypeAny = {
+const query = (field2value = 'should be this'): RuleGroupTypeAny => ({
   id: 'rule1',
   combinator: 'and',
   rules: [
@@ -59,13 +60,13 @@ const validQuery: RuleGroupTypeAny = {
     {
       field: 'field2',
       id: 'rule3',
-      value: 'should be this',
+      value: field2value,
       operator: 'equal',
     },
   ],
-}
+})
 
-const invalidQuery: RuleGroupTypeAny = {
+const groupedQuery = (field2value = 'should be this'): RuleGroupTypeAny => ({
   id: 'rule1',
   combinator: 'and',
   rules: [
@@ -73,50 +74,88 @@ const invalidQuery: RuleGroupTypeAny = {
       field: 'field1',
       id: 'rule2',
       value: 'some value',
-      operator: 'equal',
-    },
-    {
-      field: 'field2',
-      id: 'rule3',
-      value: 'should not be this',
       operator: 'equal',
     },
     {
       field: 'field3',
       id: 'rule4',
-      value: 'some value',
+      value: 'should be this',
       operator: 'equal',
     },
+    {
+      rules: [
+        {
+          field: 'field2',
+          id: 'rule3',
+          value: field2value,
+          operator: 'equal',
+        },
+      ],
+      combinator: 'or',
+    },
   ],
-}
+})
 
 describe('useQueryBuilderValidator', () => {
-  describe('when query is valid', () => {
-    it('returns true', () => {
-      const { result } = renderHook(() =>
-        useQueryBuilderValidator({
-          fields,
-        })
-      )
+  describe('when query has only a single group of rule', () => {
+    describe('when query does not contain an invalid rule', () => {
+      it('returns true', () => {
+        const { result } = renderHook(() =>
+          useQueryBuilderValidator({
+            fields,
+          })
+        )
 
-      const { validator } = result.current
+        const { validator } = result.current
 
-      expect(validator(validQuery)).toBe(true)
+        expect(validator(query())).toBe(true)
+      })
+    })
+
+    describe('when query contains an invalid rule', () => {
+      it('returns false', () => {
+        const { result } = renderHook(() =>
+          useQueryBuilderValidator({
+            fields,
+          })
+        )
+
+        const { validator } = result.current
+
+        const isValid = validator(query('invalid value for field2'))
+
+        expect(isValid).toBe(false)
+      })
     })
   })
 
-  describe('when query is invalid', () => {
-    it('returns false', () => {
-      const { result } = renderHook(() =>
-        useQueryBuilderValidator({
-          fields,
-        })
-      )
+  describe('when query has multiple group of rules', () => {
+    describe('when query does not contain invalid rule', () => {
+      it('returns true', () => {
+        const { result } = renderHook(() =>
+          useQueryBuilderValidator({
+            fields,
+          })
+        )
 
-      const { validator } = result.current
-      const isValid = validator(invalidQuery)
+        const { validator } = result.current
 
-      expect(isValid).toBe(false)
+        expect(validator(groupedQuery())).toBe(true)
+      })
+    })
+
+    describe('when query contains invalid rule', () => {
+      it('returns false', () => {
+        const { result } = renderHook(() =>
+          useQueryBuilderValidator({
+            fields,
+          })
+        )
+
+        const { validator } = result.current
+
+        expect(validator(groupedQuery('invalid rule'))).toBe(false)
+      })
     })
   })
 })

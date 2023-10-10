@@ -5,6 +5,7 @@ import type {
   RuleValidator,
   ValidationResult,
 } from 'react-querybuilder'
+import { isRuleGroup } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'
 
@@ -37,7 +38,7 @@ const validateQuery = (
   /**
    * Existence of rule means the query is a group, otherwise it's a rule
    */
-  if (rules) {
+  if (isRuleGroup(query)) {
     /**
      * ensure the group is not empty and validate each rule in the group
      */
