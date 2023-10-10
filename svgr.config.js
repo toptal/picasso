@@ -32,8 +32,8 @@ const findChildWithName = (node, name) => {
   }
 
   if (node.children) {
-    for (let index = 0; index < node.children.length; index++) {
-      const found = findChildWithName(node.children[index], name)
+    for (const child of node.children) {
+      const found = findChildWithName(child, name)
 
       if (found) {
         return found
@@ -52,8 +52,8 @@ const findAllChildrenWithName = (node, name) => {
   }
 
   if (node.children) {
-    for (let inidex = 0; inidex < node.children.length; inidex++) {
-      const found = findAllChildrenWithName(node.children[inidex], name)
+    for (const child of node.children) {
+      const found = findAllChildrenWithName(child, name)
 
       result = result.concat(found)
     }
@@ -68,8 +68,8 @@ const updateAttributes = (node, attributeModifier) => {
   }
 
   if (node.children) {
-    for (let index = 0; index < node.children.length; index++) {
-      updateAttributes(node.children[index], attributeModifier)
+    for (const child of node.children) {
+      updateAttributes(child, attributeModifier)
     }
   }
 }
