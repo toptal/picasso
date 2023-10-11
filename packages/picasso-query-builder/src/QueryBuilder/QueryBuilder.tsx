@@ -104,8 +104,6 @@ const QueryBuilder = ({
     onValidationChange,
   })
 
-  const queryBuilderValid = validator(query)
-
   const resetQuery = useCallback(() => {
     if (onQueryReset) {
       onQueryReset()
@@ -126,7 +124,7 @@ const QueryBuilder = ({
   const handleSubmit = useCallback(() => {
     setSubmitButtonClicked(true)
 
-    if (!queryBuilderValid) {
+    if (!validator(query)) {
       showError(<ValidationErrors validationResult={validationResult} />)
 
       return
@@ -135,7 +133,7 @@ const QueryBuilder = ({
     if (onSubmit && query) {
       onSubmit(query)
     }
-  }, [queryBuilderValid, onSubmit, query, showError, validationResult])
+  }, [validator, onSubmit, query, showError, validationResult])
 
   const resetSubmitButtonClicked = useCallback(() => {
     setSubmitButtonClicked(false)
@@ -186,7 +184,7 @@ const QueryBuilder = ({
               {
                 removeGroup,
                 maxDepth: maxGroupDepth,
-                queryBuilderValid,
+                queryBuilderValid: validator(query),
                 submitButtonClicked,
                 resetSubmitButtonClicked,
                 getDisabledFields,

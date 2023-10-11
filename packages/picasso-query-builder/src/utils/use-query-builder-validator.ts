@@ -13,11 +13,10 @@ type Props = {
   fields: Field[]
   onValidationChange?: (isValid: boolean) => void
 }
+type ValidatorMap = Record<string, RuleValidator>
+type ValidatorResult = Record<string, ValidationResult | boolean>
 
-const validateRule = (
-  rule: RuleType,
-  fieldValidatorMap: Record<string, RuleValidator>
-) => {
+const validateRule = (rule: RuleType, fieldValidatorMap: ValidatorMap) => {
   const { field, id } = rule
 
   const fieldValidator = fieldValidatorMap[field]
@@ -29,10 +28,8 @@ const validateRule = (
 
 const validateQuery = (
   query: RuleGroupTypeAny | RuleType,
-  fieldValidatorMap: Record<string, RuleValidator>
-): {
-  [key: string]: ValidationResult | boolean
-} => {
+  fieldValidatorMap: ValidatorMap
+): ValidatorResult => {
   const { rules, id } = query as RuleGroupTypeAny
 
   /**
@@ -74,11 +71,9 @@ const validateQuery = (
 }
 
 const useQueryBuilderValidator = ({ fields, onValidationChange }: Props) => {
-  const validationResult = useRef<Record<string, ValidationResult | boolean>>(
-    {}
-  )
+  const validationResult = useRef<ValidatorResult>({})
 
-  const fieldValidatorMap = useMemo(() => {
+  const fieldValidatorMap: ValidatorMap = useMemo(() => {
     return fields.reduce(
       (acc, field) => ({
         ...acc,

@@ -43,7 +43,7 @@ page
   })
 
   .addExample('QueryBuilder/story/Callback.example.tsx', {
-    title: 'Functional Calbacks',
+    title: 'Functional Callbacks',
     description: 'onQueryChange, onValidationChange, onQueryReset',
     takeScreenshot: false,
   })
