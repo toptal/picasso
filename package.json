@@ -84,7 +84,7 @@
     "@svgr/cli": "^8.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@toptal/browserslist-config": "^1.2.0",
-    "@toptal/davinci-ci": "^4.1.5",
+    "@toptal/davinci-ci": "4.1.6-alpha-FX-4373-update-to-node-18-d209d7bd.3+d209d7bd",
     "@toptal/davinci-code": "^2.0.14",
     "@toptal/davinci-engine": "^10.8.9",
     "@toptal/davinci-qa": "16.0.6",
