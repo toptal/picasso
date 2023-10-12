@@ -60,7 +60,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node 16
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -110,7 +110,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup node 16
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
