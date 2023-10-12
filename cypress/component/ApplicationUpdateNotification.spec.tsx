@@ -13,9 +13,13 @@ const ApplicationUpdateNotificationExample = () => {
         showCustom(
           <ApplicationUpdateNotification
             data-testid='application-update-notification'
-            testIds={{
-              updateLaterButton: 'update-later-button',
-            }}
+            actions={onClose => (
+              <ApplicationUpdateNotification.Actions>
+                <Button data-testid='update-later-btn' onClick={onClose}>
+                  Update Later
+                </Button>
+              </ApplicationUpdateNotification.Actions>
+            )}
           />,
           {
             persist: true,
@@ -47,7 +51,7 @@ describe('ApplicationUpdateNotification', () => {
     cy.getByTestId('trigger').click()
     cy.getByTestId('application-update-notification').should('be.visible')
 
-    cy.getByTestId('update-later-button').click()
+    cy.getByTestId('update-later-btn').click()
 
     cy.getByTestId('application-update-notification').should('not.be.visible')
   })
