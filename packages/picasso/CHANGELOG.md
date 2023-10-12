@@ -1,5 +1,19 @@
 # Change Log
 
+## 41.0.0
+
+### Major Changes
+
+- [#3725](https://github.com/toptal/picasso/pull/3725) [`53ab6f695`](https://github.com/toptal/picasso/commit/53ab6f695432a819c4cde7660f10e6e67e0f4401) Thanks [@alexvcasillas](https://github.com/alexvcasillas)!
+
+### ApplicationUpdateNotification
+
+- update the component to meet the new BASE requirements
+- the component now accepts actions as a prop in order to customize it further
+- the component now can justify the actions with a simple prop
+- the component now can be dismissed with a simple prop that calls the onClose prop
+- the component now can have description prop as a ReactNode to further extend the customization
+
 ## 40.0.1
 
 ### Patch Changes
