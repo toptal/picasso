@@ -14,6 +14,17 @@ const Example = () => {
           createElement(ApplicationUpdateNotification, {
             onClose: () => console.log('close click'),
             dismissable: true,
+            actions: () => (
+              <ApplicationUpdateNotification.Actions>
+                <Button
+                  key='btn-update-now'
+                  variant='secondary'
+                  onClick={() => console.log('Update Now')}
+                >
+                  Update Now
+                </Button>
+              </ApplicationUpdateNotification.Actions>
+            ),
           }),
           { persist: true }
         )
