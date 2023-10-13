@@ -28,10 +28,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup node 16
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 18
 
       - uses: toptal/davinci-github-actions/yarn-install@v10.0.0
 
@@ -59,10 +59,10 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: Setup node 16
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 18
 
       - uses: toptal/davinci-github-actions/yarn-install@v10.0.0
 
@@ -90,10 +90,10 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: Setup node 16
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 18
 
       - uses: toptal/davinci-github-actions/yarn-install@v10.0.0
 

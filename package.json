@@ -166,5 +166,8 @@
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",
     "yaml": "2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
