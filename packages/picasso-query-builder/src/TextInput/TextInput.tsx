@@ -8,7 +8,7 @@ import styles from '../ValueEditor/styles'
 
 type Props = {
   value: string
-  onChange: (value: string) => void
+  handleOnChange: (value: string) => void
   className?: string
   inputType?: string
   disabled?: boolean
@@ -20,7 +20,7 @@ export const TextInput = ({
   value,
   className,
   inputType,
-  onChange,
+  handleOnChange,
   disabled,
   validation,
   touched,
@@ -38,7 +38,7 @@ export const TextInput = ({
       <Input
         width='full'
         value={value}
-        onChange={event => onChange(event.target.value)}
+        onChange={event => handleOnChange(event.target.value)}
         className={className}
         type={inputType || undefined}
         disabled={disabled}

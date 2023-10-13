@@ -15,7 +15,7 @@ type Props = RangeFieldOptions & {
    * value either accepts a range value or an empty string by default
    */
   value: RangeValue | ''
-  onChange: (val: RangeValue) => void
+  handleOnChange: (val: RangeValue) => void
 } & ValueEditorValidationProps
 
 const useStyles = makeStyles(styles)
@@ -25,7 +25,7 @@ export const RangeInput = ({
   step = 1,
   min,
   max,
-  onChange,
+  handleOnChange,
   icon,
   validation,
   handleTouched,
@@ -41,9 +41,9 @@ export const RangeInput = ({
 
   useEffect(() => {
     if (!value) {
-      onChange({ from: min, to: max })
+      handleOnChange({ from: min, to: max })
     }
-  }, [max, min, onChange, value])
+  }, [max, min, handleOnChange, value])
 
   return (
     <>
@@ -61,7 +61,7 @@ export const RangeInput = ({
           max={toValue}
           step={step}
           onChange={event => {
-            onChange({
+            handleOnChange({
               from: event.target.value ? +event.target.value : undefined,
               to: (value as RangeValue)?.to,
             })
@@ -69,7 +69,7 @@ export const RangeInput = ({
           onBlur={() => handleTouched?.(true)}
           status={value && fromValueError ? 'error' : 'default'}
           onResetClick={() => {
-            onChange({
+            handleOnChange({
               from: min,
               to: (value as RangeValue)?.to,
             })
@@ -91,13 +91,13 @@ export const RangeInput = ({
           step={step}
           status={value && toValueError ? 'error' : 'default'}
           onChange={event =>
-            onChange({
+            handleOnChange({
               to: event.target.value ? +event.target.value : undefined,
               from: (value as RangeValue)?.from,
             })
           }
           onResetClick={() => {
-            onChange({
+            handleOnChange({
               from: (value as RangeValue)?.from,
               to: max,
             })

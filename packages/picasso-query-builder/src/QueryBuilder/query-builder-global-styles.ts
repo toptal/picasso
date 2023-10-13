@@ -5,11 +5,11 @@
  * related to cdn caching issue causing an error in production.
  * Issue URL: https://toptal-core.atlassian.net/browse/ER-28394
  */
-import { palette } from '@toptal/picasso/utils'
+import { SPACING_2, SPACING_4, SPACING_6, palette } from '@toptal/picasso/utils'
 
 // Basic
-const rqbSpacing = '1.5rem'
-const rqbSmallSpacing = '1rem'
+const rqbSpacing = `${SPACING_6}rem`
+const rqbSmallSpacing = `${SPACING_4}rem`
 const rqbWhiteBackgroundColor = palette.common.white
 const rqbBorderColor = palette.grey.light2
 const rqbBorderStyle = 'solid'
@@ -17,9 +17,9 @@ const rqbBorderRadius = '0.5rem'
 const rqbBorderWidth = '0.0625rem'
 
 // Drag-and-drop
-const rqbDndSpacing = '0.5rem'
-const rqbDndHoverBorderBottomColor = 'rebeccapurple'
-const rqbDndHoverCopyBorderBottomColor = '#669933'
+const rqbDndSpacing = `${SPACING_2}rem`
+const rqbDndHoverBorderBottomColor = palette.purple.main
+const rqbDndHoverCopyBorderBottomColor = palette.green.lighter
 const rqbDndHoverBorderBottomStyle = 'dashed'
 const rqbDndHoverBorderBottomWidth = '0.125rem'
 

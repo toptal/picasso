@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import { Container, List, Typography } from '@toptal/picasso'
 import type { ValidationResult } from 'react-querybuilder'
 
@@ -7,15 +7,19 @@ const ValidationErrors = ({
 }: {
   validationResult: Record<string, ValidationResult | boolean>
 }) => {
-  const validationErrors = Object.keys(validationResult)
-    .map(rule => ({
-      rule,
-      validation: validationResult[rule],
-    }))
-    .filter(
-      result =>
-        typeof result.validation === 'object' && !result.validation.valid
-    )
+  const validationErrors = useMemo(
+    () =>
+      Object.keys(validationResult)
+        .map(rule => ({
+          rule,
+          validation: validationResult[rule],
+        }))
+        .filter(
+          result =>
+            typeof result.validation === 'object' && !result.validation.valid
+        ),
+    [validationResult]
+  )
 
   if (!validationErrors.length) {
     return null

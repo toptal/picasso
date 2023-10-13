@@ -16,8 +16,8 @@ const NumberInputMock = NumberInput as unknown as jest.Mock
 const TypographyMock = Typography as unknown as jest.Mock
 
 const renderComponent = (
-  props: Omit<ComponentProps<typeof RangeInput>, 'onChange'>
-) => render(<RangeInput onChange={jest.fn()} {...props} />)
+  props: Omit<ComponentProps<typeof RangeInput>, 'handleOnChange'>
+) => render(<RangeInput handleOnChange={jest.fn()} {...props} />)
 
 describe('RangeInput', () => {
   beforeEach(() => {

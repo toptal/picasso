@@ -100,7 +100,7 @@ export const ValueEditor = ({
       return (
         <RangeInput
           value={value}
-          onChange={handleOnChange}
+          handleOnChange={handleOnChange}
           min={fieldData.min}
           max={fieldData.max}
           step={fieldData.step}
@@ -128,7 +128,7 @@ export const ValueEditor = ({
         <TextInput
           className={cx(className, classes.root)}
           value={value}
-          onChange={handleOnChange}
+          handleOnChange={handleOnChange}
           inputType={inputType || undefined}
           disabled={disabled}
           handleTouched={handleTouched}

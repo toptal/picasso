@@ -112,7 +112,7 @@ const QueryBuilder = ({
     onQueryChange(emptyQueryBuilderQuery)
   }, [onQueryChange, onQueryReset])
 
-  const removeGroup = useCallback(
+  const handleRemoveGroup = useCallback(
     (path: number[]) => {
       if (query) {
         onQueryChange(remove(query, path))
@@ -182,7 +182,7 @@ const QueryBuilder = ({
             getOperators={getOperators}
             context={
               {
-                removeGroup,
+                removeGroup: handleRemoveGroup,
                 maxDepth: maxGroupDepth,
                 queryBuilderValid: validator(query),
                 submitButtonClicked,
