@@ -63,7 +63,7 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v10.0.0
+        uses: toptal/davinci-github-actions/build-publish-alpha-package@v11.0.0
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
@@ -104,7 +104,7 @@ jobs:
               target_url: process.env.STATUS_TARGET_URL
             })
 
-      - uses: toptal/davinci-github-actions/create-jira-deployment@v10.0.0
+      - uses: toptal/davinci-github-actions/create-jira-deployment@v11.0.0
         name: Create Jira deployment
         env:
           JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
