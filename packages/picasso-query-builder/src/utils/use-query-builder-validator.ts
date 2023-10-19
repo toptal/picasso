@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react'
+import { useCallback, useMemo } from 'react'
 import type {
   RuleGroupTypeAny,
   RuleType,
@@ -9,12 +9,14 @@ import { isRuleGroup } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'
 
+type ValidatorMap = Record<string, RuleValidator>
+export type ValidatorResult = Record<string, ValidationResult | boolean>
+
 type Props = {
   fields: Field[]
-  onValidationChange?: (isValid: boolean) => void
+  onValidChange?: (isValid: boolean) => void
+  onValidationResultChange?: (validationResult: ValidatorResult) => void
 }
-type ValidatorMap = Record<string, RuleValidator>
-type ValidatorResult = Record<string, ValidationResult | boolean>
 
 const validateRule = (rule: RuleType, fieldValidatorMap: ValidatorMap) => {
   const { field, id } = rule
@@ -30,12 +32,12 @@ const validateQuery = (
   query: RuleGroupTypeAny | RuleType,
   fieldValidatorMap: ValidatorMap
 ): ValidatorResult => {
-  const { rules, id } = query as RuleGroupTypeAny
-
   /**
    * Existence of rule means the query is a group, otherwise it's a rule
    */
   if (isRuleGroup(query)) {
+    const { rules, id } = query
+
     /**
      * ensure the group is not empty and validate each rule in the group
      */
@@ -70,9 +72,11 @@ const validateQuery = (
   return validateRule(query as RuleType, fieldValidatorMap)
 }
 
-const useQueryBuilderValidator = ({ fields, onValidationChange }: Props) => {
-  const validationResult = useRef<ValidatorResult>({})
-
+const useQueryBuilderValidator = ({
+  fields,
+  onValidChange,
+  onValidationResultChange,
+}: Props) => {
   const fieldValidatorMap: ValidatorMap = useMemo(() => {
     return fields.reduce(
       (acc, field) => ({
@@ -85,20 +89,23 @@ const useQueryBuilderValidator = ({ fields, onValidationChange }: Props) => {
 
   const validator = useCallback(
     (queryToValidate: RuleGroupTypeAny) => {
+      if (!queryToValidate) {
+        return false
+      }
+
       const valResult = validateQuery(queryToValidate, fieldValidatorMap)
 
       const isValid = !Object.values(valResult).some(result => result !== true)
 
-      onValidationChange?.(isValid)
-
-      validationResult.current = valResult
+      onValidChange?.(isValid)
+      onValidationResultChange?.(valResult)
 
       return isValid
     },
-    [fieldValidatorMap, onValidationChange]
+    [fieldValidatorMap, onValidChange, onValidationResultChange]
   )
 
-  return { validator, validationResult: validationResult.current }
+  return { validator }
 }
 
 export default useQueryBuilderValidator

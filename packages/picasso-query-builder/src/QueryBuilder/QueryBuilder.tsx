@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
 import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
@@ -29,6 +29,7 @@ import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
+import type { ValidatorResult } from '../utils/use-query-builder-validator'
 
 type Props = {
   /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
@@ -91,6 +92,10 @@ const QueryBuilder = ({
   const classes = useStyles()
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
+  const [queryBuilderValid, setIsQueryBuilderValid] = useState<
+    boolean | undefined
+  >()
+  const [validationErrors, setValidationErrors] = useState<ValidatorResult>({})
 
   const { showError } = useNotifications()
 
@@ -99,9 +104,10 @@ const QueryBuilder = ({
     callback: onQueryChange,
   })
 
-  const { validator, validationResult } = useQueryBuilderValidator({
+  const { validator } = useQueryBuilderValidator({
     fields,
-    onValidationChange,
+    onValidChange: setIsQueryBuilderValid,
+    onValidationResultChange: setValidationErrors,
   })
 
   const resetQuery = useCallback(() => {
@@ -124,8 +130,8 @@ const QueryBuilder = ({
   const handleSubmit = useCallback(() => {
     setSubmitButtonClicked(true)
 
-    if (!validator(query)) {
-      showError(<ValidationErrors validationResult={validationResult} />)
+    if (!queryBuilderValid) {
+      showError(<ValidationErrors validationResult={validationErrors} />)
 
       return
     }
@@ -133,7 +139,7 @@ const QueryBuilder = ({
     if (onSubmit && query) {
       onSubmit(query)
     }
-  }, [validator, onSubmit, query, showError, validationResult])
+  }, [queryBuilderValid, onSubmit, query, showError, validationErrors])
 
   const resetSubmitButtonClicked = useCallback(() => {
     setSubmitButtonClicked(false)
@@ -160,6 +166,13 @@ const QueryBuilder = ({
     [customOperators, fields]
   )
 
+  useEffect(() => {
+    if (queryBuilderValid !== undefined) {
+      onValidationChange?.(queryBuilderValid)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryBuilderValid])
+
   return (
     <ControlElementsContext>
       <Container
@@ -184,7 +197,7 @@ const QueryBuilder = ({
               {
                 removeGroup: handleRemoveGroup,
                 maxDepth: maxGroupDepth,
-                queryBuilderValid: validator(query),
+                queryBuilderValid: queryBuilderValid,
                 submitButtonClicked,
                 resetSubmitButtonClicked,
                 getDisabledFields,

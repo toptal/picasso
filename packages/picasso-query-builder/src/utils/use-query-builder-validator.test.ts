@@ -66,28 +66,29 @@ const query = (field2value = 'should be this'): RuleGroupTypeAny => ({
   ],
 })
 
-const groupedQuery = (field2value = 'should be this'): RuleGroupTypeAny => ({
-  id: 'rule1',
+const groupedQuery = (field3value = 'should be this'): RuleGroupTypeAny => ({
+  id: 'group1',
   combinator: 'and',
   rules: [
     {
       field: 'field1',
-      id: 'rule2',
+      id: 'rule1',
       value: 'some value',
       operator: 'equal',
     },
     {
-      field: 'field3',
-      id: 'rule4',
+      field: 'field2',
+      id: 'rule2',
       value: 'should be this',
       operator: 'equal',
     },
     {
+      id: 'group2',
       rules: [
         {
-          field: 'field2',
+          field: 'field3',
           id: 'rule3',
-          value: field2value,
+          value: field3value,
           operator: 'equal',
         },
       ],
@@ -96,6 +97,9 @@ const groupedQuery = (field2value = 'should be this'): RuleGroupTypeAny => ({
   ],
 })
 
+const onValidChangeMock = jest.fn()
+const onValidationResultChangeMock = jest.fn()
+
 describe('useQueryBuilderValidator', () => {
   describe('when query has only a single group of rule', () => {
     describe('when query does not contain an invalid rule', () => {
@@ -103,12 +107,21 @@ describe('useQueryBuilderValidator', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidator({
             fields,
+            onValidChange: onValidChangeMock,
+            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
         expect(validator(query())).toBe(true)
+
+        expect(onValidChangeMock).toHaveBeenCalledWith(true)
+        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+          rule1: true,
+          rule2: true,
+          rule3: true,
+        })
       })
     })
 
@@ -117,6 +130,8 @@ describe('useQueryBuilderValidator', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidator({
             fields,
+            onValidChange: onValidChangeMock,
+            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
@@ -125,6 +140,16 @@ describe('useQueryBuilderValidator', () => {
         const isValid = validator(query('invalid value for field2'))
 
         expect(isValid).toBe(false)
+
+        expect(onValidChangeMock).toHaveBeenCalledWith(false)
+        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+          rule1: true,
+          rule2: true,
+          rule3: {
+            valid: false,
+            reasons: ['reason1'],
+          },
+        })
       })
     })
   })
@@ -135,12 +160,22 @@ describe('useQueryBuilderValidator', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidator({
             fields,
+            onValidChange: onValidChangeMock,
+            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
         expect(validator(groupedQuery())).toBe(true)
+        expect(onValidChangeMock).toHaveBeenCalledWith(true)
+        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+          group1: true,
+          group2: true,
+          rule1: true,
+          rule2: true,
+          rule3: true,
+        })
       })
     })
 
@@ -149,12 +184,25 @@ describe('useQueryBuilderValidator', () => {
         const { result } = renderHook(() =>
           useQueryBuilderValidator({
             fields,
+            onValidChange: onValidChangeMock,
+            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
         expect(validator(groupedQuery('invalid rule'))).toBe(false)
+        expect(onValidChangeMock).toHaveBeenCalledWith(false)
+        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+          group1: true,
+          group2: true,
+          rule1: true,
+          rule2: true,
+          rule3: {
+            valid: false,
+            reasons: ['reason1'],
+          },
+        })
       })
     })
   })
