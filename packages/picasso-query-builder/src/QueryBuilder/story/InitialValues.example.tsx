@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { useState } from 'react'
 import type { Field, OptionGroup } from '@toptal/picasso-query-builder'
 import {
@@ -272,6 +273,14 @@ const fields: Field[] = [
     comparator: 'group',
     group: 'group1',
     valueSources: ['field', 'value'],
+  },
+  {
+    name: 'rangeInput',
+    label: 'Some Range',
+    valueEditorType: 'range',
+    icon: '$',
+    min: 0,
+    step: 10,
   },
 ]
 
