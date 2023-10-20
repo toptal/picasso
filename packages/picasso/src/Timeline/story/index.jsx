@@ -27,3 +27,7 @@ page
     description:
       'You can trim last connector by passing `hasConnector={false}` to the `Timeline.Row` component. It can be useful in situation when you sort date points in the ascending order.',
   })
+  .addExample('Timeline/story/CustomDateColumn.example.tsx', {
+    title: 'Custom styling of the date column',
+    description: 'You can specify custom styling for the date column',
+  })
