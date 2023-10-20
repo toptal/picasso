@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - FX-NULL-add-thanks-message
+
+env:
+  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+  # REPOSITORY_NAME: ${{ github.event.repository.name }}
+  # TOPTAL_BOT_USERNAME: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+  # TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
+  # TOPTAL_JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+  # HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
+
+jobs:
+  release:
+    name: Notify contributors on successful merge
+    runs-on: ubuntu-latest
+    env:
+      DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+
+    steps:
+      - name: Create Release Pull Request or Publish to npm (testing)
+        id: changesets
+        run: > 
+          echo 'publishedPackages=[{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]' >> "$GITHUB_OUTPUT"
+      - name: Generate Notification
+        id: notification
+        if: steps.changesets.outputs.published == 'true'
+        run: message=$(node .github/actions/notify.js '${{ steps.changesets.outputs.publishedPackages }}') && echo ::set-output name=message::${message//$'\n'/'%0A'}
