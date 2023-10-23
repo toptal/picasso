@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-query-builder': patch
+'@toptal/picasso-query-builder': minor
 ---
 
 ### QueryBuilder
