@@ -9,17 +9,12 @@ import styles from './styles'
 import Container from '../Container'
 import Typography from '../Typography'
 
-type TimelineRowClasses = {
-  dateColumn?: string
-}
-
 export interface Props extends BaseProps {
   /** Timeline row content */
   children: ReactNode
   /** Icon for the row between lines */
   icon?: ReactElement
   /** Timeline row date */
-  //date?: ReactNode
   date?: string
   /** Whether to render a connector line after the row */
   hasConnector?: boolean
@@ -27,8 +22,10 @@ export interface Props extends BaseProps {
     dot?: string
     connector?: string
   }
-  /** Optional classes for columns of the component */
-  classes?: TimelineRowClasses
+  /** CSS class names for timeline row columns (only date column class is supported) */
+  classes?: {
+    dateColumn?: string
+  }
 }
 
 const useStyles = makeStyles<Theme>(styles, {
