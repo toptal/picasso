@@ -8,18 +8,10 @@ import cx from 'classnames'
 import styles from './styles'
 import Container from '../Container'
 import Typography from '../Typography'
-import { isString } from '../utils'
 
 type TimelineRowClasses = {
   dateColumn?: string
 }
-
-/**
- * Options:
- * - date as ReactNode (conditional rendering) – loosing the styling of date
- * - pass className to date column – not working in Storybook
- * - date as string | function that accepts ReactNode with proper styling of date (ContainerNode, string) - complicated API
- */
 
 export interface Props extends BaseProps {
   /** Timeline row content */
@@ -27,7 +19,8 @@ export interface Props extends BaseProps {
   /** Icon for the row between lines */
   icon?: ReactElement
   /** Timeline row date */
-  date?: ReactNode
+  //date?: ReactNode
+  date?: string
   /** Whether to render a connector line after the row */
   hasConnector?: boolean
   testIds?: {
@@ -73,9 +66,7 @@ const TimelineRow = ({
         )}
       </Container>
 
-      {date && !isString(date) && date}
-
-      {date && isString(date) && (
+      {date && (
         <Container
           className={cx(classes.date, externalClasses?.dateColumn)}
           right='large'
@@ -89,18 +80,6 @@ const TimelineRow = ({
           </Typography>
         </Container>
       )}
-
-      {/* {date && (
-        <Container className={cx(classes.date, externalClasses?.dateColumn)} right='large'>
-          <Typography
-            className={classes.dateText}
-            weight='semibold'
-            size='medium'
-          >
-            {date}
-          </Typography>
-        </Container>
-      )} */}
 
       <Container className={classes.content} bottom='large'>
         {children}
