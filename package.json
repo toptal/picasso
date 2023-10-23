@@ -112,7 +112,7 @@
     "esprima": "^4.0.1",
     "esprima-walk": "^0.1.0",
     "fs-extra": "^11.1.1",
-    "github-markdown-css": "^5.2.0",
+    "github-markdown-css": "^5.3.0",
     "happo-cypress": "^4.1.1",
     "happo-e2e": "^2.2.2",
     "happo-plugin-storybook": "^3.3.0",
