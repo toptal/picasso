@@ -127,6 +127,34 @@ describe('BarChart', () => {
     })
   })
 
+  it('renders custom chart with customized indicators when values are 0s', () => {
+    cy.mount(
+      <TestBarChart
+        tooltip={false}
+        data={chartDataCustomTooltipZeroValue}
+        renderBarIndicators={({ dataKey }: any) => {
+          const indicator = INDICATORS[dataKey]
+
+          if (indicator) {
+            return (
+              <BarChartIndicator
+                label={indicator.label}
+                color={indicator.color}
+              />
+            )
+          }
+
+          return <></>
+        }}
+      />
+    )
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'custom-chart/custom-indicators-zero-value',
+    })
+  })
+
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
     cy.mount(<TestBarChart showBarLabel={false} tooltip={false} />)
 
@@ -187,5 +215,16 @@ const chartDataCustomTooltip = [
   {
     name: 'Los-Angeles',
     value: { infected: 2780, recovered: 3908 },
+  },
+]
+
+const chartDataCustomTooltipZeroValue = [
+  {
+    name: 'Berlin',
+    value: { infected: 0 },
+  },
+  {
+    name: 'Milan',
+    value: { infected: 0 },
   },
 ]

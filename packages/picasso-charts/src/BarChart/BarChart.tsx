@@ -161,10 +161,14 @@ const BarChart = <T extends string>({
     interval: 0,
     tick: { width: TICK_WIDTH },
   }
+  const valueDomain = [
+    BOTTOM_DOMAIN,
+    ticks.length >= 2 ? ticks[ticks.length - 1] : BOTTOM_DOMAIN + 10,
+  ]
   const valueAxisProps = {
     width: Y_AXIS_WIDTH,
     ticks: ticks,
-    domain: [ticks[0], ticks[ticks.length - 1]],
+    domain: valueDomain,
     tickFormatter: valueAxisTickFormatter,
   }
 
