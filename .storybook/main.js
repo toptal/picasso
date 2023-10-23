@@ -117,6 +117,18 @@ module.exports = {
         alias: {
           ...config.resolve.alias,
           '~': path.resolve(__dirname, '..'),
+          '@material-ui/core': path.resolve(
+            __dirname,
+            '../node_modules/@material-ui/core'
+          ),
+          '@material-ui': path.resolve(
+            __dirname,
+            '../node_modules/@material-ui'
+          ),
+          '@material-ui/core/styles': path.resolve(
+            __dirname,
+            '../node_modules/@material-ui/core/styles'
+          ),
           '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src'),
           '@toptal/picasso-shared': path.resolve(
             __dirname,
