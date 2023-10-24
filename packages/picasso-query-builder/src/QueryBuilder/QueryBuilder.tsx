@@ -3,7 +3,7 @@ import type { ComponentType } from 'react'
 import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 import type {
-  ValueEditorProps,
+  ValueEditorProps as DefaultValueEditorProps,
   Field as QueryBuilderField,
   RuleGroupTypeAny,
   Operator,
@@ -24,12 +24,15 @@ import { RunQueryButton } from '../RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
 import { emptyQueryBuilderQuery } from '../utils/constants'
-import { ValueEditor } from '../ValueEditor'
+import type { QueryBuilderValueEditorProps } from '../ValueEditor'
+import { ValueEditor as DefaultValueEditorComponent } from '../ValueEditor'
 import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
 import type { ValidatorResult } from '../utils/use-query-builder-validator'
+
+type ValueEditorComponentProps = ComponentType<DefaultValueEditorProps>
 
 type Props = {
   /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
@@ -49,7 +52,7 @@ type Props = {
   /** Defines a function that is called when the user submits a query constructed in the QB. This function takes a single argument - constructed query. */
   onSubmit?: (query: RuleGroupTypeAny) => void
   /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
-  customValueEditor?: ComponentType<ValueEditorProps>
+  customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
   /** Defines the possibility to display, or not, any of the controls. For example "Add rule" or "Add group" control. */
@@ -70,6 +73,10 @@ type Props = {
 }
 
 const useStyles = makeStyles(styles)
+
+const ValueEditor = (props: QueryBuilderValueEditorProps) => (
+  <DefaultValueEditorComponent {...props} />
+)
 
 const QueryBuilder = ({
   fields,
