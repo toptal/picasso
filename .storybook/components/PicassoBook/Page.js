@@ -95,6 +95,9 @@ class Page extends Base {
       const stories = storiesOf(storyName, module)
       chapter.sections.forEach(section => {
         const happoConfig = {}
+        if (section.delay) {
+          happoConfig.delay = 500
+        }
 
         if (!section.screenshotBreakpoints) {
           happoConfig.targets = [DEFAULT_HAPPO_TARGET]

@@ -32,4 +32,5 @@ page
   })
   .addExample('RichText/story/HTML.example.tsx', {
     title: 'HTML from FE for live-editing preview',
+    delay: true,
   })
