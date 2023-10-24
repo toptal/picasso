@@ -9,66 +9,90 @@ exports[`Timeline renders 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column"
+        class="PicassoTimeline-root"
       >
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-              data-testid="dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <div
+                class="PicassoTimelineRow-dot"
+                data-testid="dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #1
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #1
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-              data-testid="dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <div
+                class="PicassoTimelineRow-dot"
+                data-testid="dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #2
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #2
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-              data-testid="dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <div
+                class="PicassoTimelineRow-dot"
+                data-testid="dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #3
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #3
+            </div>
           </div>
         </div>
       </div>
@@ -86,90 +110,129 @@ exports[`Timeline renders with dates 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column"
+        class="PicassoTimeline-root"
       >
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-            />
-          </div>
-          <div
-            class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
             >
-              25.06.2021
-            </p>
+              <div
+                class="PicassoTimelineRow-dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
+            style="white-space: nowrap;"
           >
-            Row #1
+            <div
+              class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
+            >
+              <p
+                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+              >
+                25.06.2021
+              </p>
+            </div>
+          </div>
+          <div
+            class="PicassoTimelineRow-tableCell"
+          >
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #1
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-            />
-          </div>
-          <div
-            class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
             >
-              25.06.2022
-            </p>
+              <div
+                class="PicassoTimelineRow-dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
+            style="white-space: nowrap;"
           >
-            Row #2
+            <div
+              class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
+            >
+              <p
+                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+              >
+                25.06.2022
+              </p>
+            </div>
+          </div>
+          <div
+            class="PicassoTimelineRow-tableCell"
+          >
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #2
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-            />
-          </div>
-          <div
-            class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
-          >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
             >
-              25.06.2023
-            </p>
+              <div
+                class="PicassoTimelineRow-dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
+            style="white-space: nowrap;"
           >
-            Row #3
+            <div
+              class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
+            >
+              <p
+                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+              >
+                25.06.2023
+              </p>
+            </div>
+          </div>
+          <div
+            class="PicassoTimelineRow-tableCell"
+          >
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #3
+            </div>
           </div>
         </div>
       </div>
@@ -187,66 +250,90 @@ exports[`Timeline renders with icons 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column"
+        class="PicassoTimeline-root"
       >
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
-            <span
-              class="PicassoTimelineRow-icon"
-              data-testid="icon-1"
-            />
             <div
-              class="PicassoTimelineRow-connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <span
+                class="PicassoTimelineRow-icon"
+                data-testid="icon-1"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #1
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #1
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
-            <span
-              class="PicassoTimelineRow-icon"
-              data-testid="icon-2"
-            />
             <div
-              class="PicassoTimelineRow-connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <span
+                class="PicassoTimelineRow-icon"
+                data-testid="icon-2"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #2
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #2
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
-            <span
-              class="PicassoTimelineRow-icon"
-              data-testid="icon-3"
-            />
             <div
-              class="PicassoTimelineRow-connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <span
+                class="PicassoTimelineRow-icon"
+                data-testid="icon-3"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #3
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #3
+            </div>
           </div>
         </div>
       </div>
@@ -264,65 +351,89 @@ exports[`Timeline renders without a connector 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column"
+        class="PicassoTimeline-root"
       >
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-              data-testid="dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-              data-testid="connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <div
+                class="PicassoTimelineRow-dot"
+                data-testid="dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+                data-testid="connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #1
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #1
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-              data-testid="dot"
-            />
-            <div
-              class="PicassoTimelineRow-connector"
-              data-testid="connector"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <div
+                class="PicassoTimelineRow-dot"
+                data-testid="dot"
+              />
+              <div
+                class="PicassoTimelineRow-connector"
+                data-testid="connector"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #2
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #2
+            </div>
           </div>
         </div>
         <div
-          class="PicassoContainer-flex PicassoTimelineRow-root"
+          class="PicassoContainer-flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
-            class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column"
+            class="PicassoTimelineRow-tableCell"
           >
             <div
-              class="PicassoTimelineRow-dot"
-              data-testid="dot"
-            />
+              class="PicassoContainer-rightmediumMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column PicassoTimelineRow-tableCellContent"
+            >
+              <div
+                class="PicassoTimelineRow-dot"
+                data-testid="dot"
+              />
+            </div>
           </div>
           <div
-            class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            class="PicassoTimelineRow-tableCell"
           >
-            Row #3
+            <div
+              class="PicassoContainer-bottomlargeMargin PicassoTimelineRow-content"
+            >
+              Row #3
+            </div>
           </div>
         </div>
       </div>

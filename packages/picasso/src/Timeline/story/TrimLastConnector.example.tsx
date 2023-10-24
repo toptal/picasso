@@ -13,7 +13,7 @@ const Example = () => (
       </Typography>
     </Timeline.Row>
 
-    <Timeline.Row date='May 23, 9:19 AM' hasConnector={false}>
+    <Timeline.Row date='May 23, 9:19 AM (weekend)' hasConnector={false}>
       <Typography as='div'>
         <Link>Tomas Urban</Link> commented task{' '}
         <Typography weight='semibold'>

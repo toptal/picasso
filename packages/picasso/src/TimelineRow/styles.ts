@@ -53,6 +53,7 @@ export default ({ palette }: Theme) =>
     tableCell: {
       display: 'table-cell',
       verticalAlign: 'top',
+      height: '100%',
     },
     tableCellContent: {
       height: '100%',
