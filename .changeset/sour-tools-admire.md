@@ -1,7 +1,7 @@
 ---
-'@toptal/picasso': minor
+'@toptal/picasso': patch
 ---
 
-### TimelineRow
+### Timeline
 
-- add ability to provide custom classes to date column
+- make Timeline follow table layout (cells width from the same column are aligned)

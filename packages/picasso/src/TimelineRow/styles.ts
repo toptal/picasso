@@ -47,4 +47,14 @@ export default ({ palette }: Theme) =>
       width: 0,
       borderLeft: `1px dashed ${palette.grey.main2}`,
     },
+    tableRow: {
+      display: 'table-row',
+    },
+    tableCell: {
+      display: 'table-cell',
+      verticalAlign: 'top',
+    },
+    tableCellContent: {
+      height: '100%',
+    },
   })
