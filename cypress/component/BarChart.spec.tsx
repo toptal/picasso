@@ -146,6 +146,36 @@ describe('BarChart', () => {
       variant: 'vertical',
     })
   })
+
+  describe('when values are 0s', () => {
+    it('renders custom chart with customized indicators correctly', () => {
+      cy.mount(
+        <TestBarChart
+          tooltip={false}
+          data={chartDataCustomTooltipZeroValue}
+          renderBarIndicators={({ dataKey }: any) => {
+            const indicator = INDICATORS[dataKey]
+
+            if (indicator) {
+              return (
+                <BarChartIndicator
+                  label={indicator.label}
+                  color={indicator.color}
+                />
+              )
+            }
+
+            return <></>
+          }}
+        />
+      )
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'custom-chart/custom-indicators-zero-value',
+      })
+    })
+  })
 })
 
 const chartDataDefault = [
@@ -187,5 +217,16 @@ const chartDataCustomTooltip = [
   {
     name: 'Los-Angeles',
     value: { infected: 2780, recovered: 3908 },
+  },
+]
+
+const chartDataCustomTooltipZeroValue = [
+  {
+    name: 'Berlin',
+    value: { infected: 0 },
+  },
+  {
+    name: 'Milan',
+    value: { infected: 0 },
   },
 ]

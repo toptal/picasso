@@ -41,7 +41,7 @@ const findTopDomain = (data: DataItem[], stackedBars?: string[][]) => {
   const roundedMaxValue = Math.pow(10, base10)
   const topDomain = roundedMaxValue * Math.ceil(maxValue / roundedMaxValue)
 
-  return Math.max(topDomain, 10)
+  return Math.max(topDomain || 0, 10)
 }
 
 export default findTopDomain
