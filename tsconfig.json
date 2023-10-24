@@ -70,6 +70,12 @@
       "@toptal/picasso-rich-text-editor/*": [
         "packages/picasso-rich-text-editor/src/*"
       ],
+      "@toptal/picasso-query-builder": [
+        "packages/picasso-query-builder/src"
+      ],
+      "@toptal/picasso-query-builder/*": [
+        "packages/picasso-query-builder/src/*"
+      ],
       "*": [
         "@types/*"
       ],

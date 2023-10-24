@@ -59,6 +59,7 @@ const imports: Record<string, object> = {
   '@toptal/picasso-pictograms/Pictogram': require('@toptal/picasso-pictograms/Pictogram'),
   '@toptal/picasso-rich-text-editor': require('@toptal/picasso-rich-text-editor'),
   '@toptal/picasso-rich-text-editor/utils': require('@toptal/picasso-rich-text-editor/utils'),
+  '@toptal/picasso-query-builder': require('@toptal/picasso-query-builder'),
 }
 
 const resolver = (path: string) => imports[path]
@@ -147,6 +148,10 @@ const getOriginalSourceCode = ({
 
   try {
     return requireContext(`./picasso-rich-text-editor/src/${src}`).default
+  } catch {}
+
+  try {
+    return requireContext(`./picasso-query-builder/src/${src}`).default
   } catch {}
 
   return require(`!raw-loader!~/.storybook/stories/${src}`).default
