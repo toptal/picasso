@@ -42,36 +42,54 @@ const TimelineRow = ({
   return (
     <Container
       data-testid={dataTestId}
-      className={cx(classes.root, className)}
+      className={cx(classes.root, classes.tableRow, className)}
       flex
     >
-      <Container flex direction='column' alignItems='center' right='medium'>
-        {typeof icon !== 'undefined' ? (
-          React.cloneElement(icon, {
-            className: cx(icon.props.className, classes.icon),
-          })
-        ) : (
-          <div className={classes.dot} data-testid={testIds.dot} />
-        )}
-        {hasConnector && (
-          <div className={classes.connector} data-testid={testIds.connector} />
-        )}
+      <Container className={cx(classes.tableCell)}>
+        <Container
+          flex
+          direction='column'
+          alignItems='center'
+          right='medium'
+          className={classes.tableCellContent}
+        >
+          {typeof icon !== 'undefined' ? (
+            React.cloneElement(icon, {
+              className: cx(icon.props.className, classes.icon),
+            })
+          ) : (
+            <div className={classes.dot} data-testid={testIds.dot} />
+          )}
+          {hasConnector && (
+            <div
+              className={classes.connector}
+              data-testid={testIds.connector}
+            />
+          )}
+        </Container>
       </Container>
 
       {date && (
-        <Container className={classes.date} right='large'>
-          <Typography
-            className={classes.dateText}
-            weight='semibold'
-            size='medium'
-          >
-            {date}
-          </Typography>
+        <Container
+          className={cx(classes.tableCell)}
+          style={{ whiteSpace: 'nowrap' }}
+        >
+          <Container className={classes.date} right='large'>
+            <Typography
+              className={classes.dateText}
+              weight='semibold'
+              size='medium'
+            >
+              {date}
+            </Typography>
+          </Container>
         </Container>
       )}
 
-      <Container className={classes.content} bottom='large'>
-        {children}
+      <Container className={cx(classes.tableCell)}>
+        <Container className={classes.content} bottom='large'>
+          {children}
+        </Container>
       </Container>
     </Container>
   )
