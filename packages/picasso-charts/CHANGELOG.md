@@ -1,5 +1,12 @@
 # Change Log
 
+## 55.0.1
+
+### Patch Changes
+
+- [#3926](https://github.com/toptal/picasso/pull/3926) [`cea91c4ab`](https://github.com/toptal/picasso/commit/cea91c4ab77bebf0a6837e36180effc86e4dd98e) Thanks [@ievgrafov](https://github.com/ievgrafov)!
+- fix BarChart for cases when data given doesn't allow to properly select value axis boundaries
+
 ## 55.0.0
 
 ### Patch Changes
