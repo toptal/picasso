@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.0.1
+
+### Patch Changes
+
+- [#3931](https://github.com/toptal/picasso/pull/3931) [`6dcdf306f`](https://github.com/toptal/picasso/commit/6dcdf306f0601ec685f9826f559e4975e11e5fae) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Timeline
+
+- make Timeline follow table layout (cells from the same column have equal width)
+
 ## 41.0.0
 
 ### Major Changes
