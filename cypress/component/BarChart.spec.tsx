@@ -127,34 +127,6 @@ describe('BarChart', () => {
     })
   })
 
-  it('renders custom chart with customized indicators when values are 0s', () => {
-    cy.mount(
-      <TestBarChart
-        tooltip={false}
-        data={chartDataCustomTooltipZeroValue}
-        renderBarIndicators={({ dataKey }: any) => {
-          const indicator = INDICATORS[dataKey]
-
-          if (indicator) {
-            return (
-              <BarChartIndicator
-                label={indicator.label}
-                color={indicator.color}
-              />
-            )
-          }
-
-          return <></>
-        }}
-      />
-    )
-
-    cy.get('body').happoScreenshot({
-      component,
-      variant: 'custom-chart/custom-indicators-zero-value',
-    })
-  })
-
   it('hides label of each bar via passed `showBarLabel` prop being set to `false`', () => {
     cy.mount(<TestBarChart showBarLabel={false} tooltip={false} />)
 
@@ -172,6 +144,36 @@ describe('BarChart', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'vertical',
+    })
+  })
+
+  describe('when values are 0s', () => {
+    it('renders custom chart with customized indicators correctly', () => {
+      cy.mount(
+        <TestBarChart
+          tooltip={false}
+          data={chartDataCustomTooltipZeroValue}
+          renderBarIndicators={({ dataKey }: any) => {
+            const indicator = INDICATORS[dataKey]
+
+            if (indicator) {
+              return (
+                <BarChartIndicator
+                  label={indicator.label}
+                  color={indicator.color}
+                />
+              )
+            }
+
+            return <></>
+          }}
+        />
+      )
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'custom-chart/custom-indicators-zero-value',
+      })
     })
   })
 })
