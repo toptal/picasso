@@ -21,10 +21,7 @@ export type DeprecatedSpacingType =
 export type ResponsiveSpacingType = {
   [key in BreakpointKeys]?: PicassoSpacing
 }
-export type SpacingType =
-  | PicassoSpacing
-  | DeprecatedSpacingType
-  | ResponsiveSpacingType
+export type SpacingType = PicassoSpacing | ResponsiveSpacingType
 
 export enum SpacingEnum {
   xsmall = 0.5,

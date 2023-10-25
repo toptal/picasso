@@ -6,7 +6,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 
-import { useBreakpoint } from '../utils'
+import { SPACING_0, SPACING_2, useBreakpoint } from '../utils'
 import UserBadge from '../UserBadge'
 import Avatar from '../Avatar'
 import { DropdownCompound as Dropdown } from '../DropdownCompound'
@@ -94,7 +94,8 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         classes={{ content: classes.content }}
         style={style}
         content={content}
-        offset={{ top: isCompactLayout ? 0.8 : 'xsmall' }}
+        // TODO: find proper value, it used to be 0.8 instead of SPACING_0
+        offset={{ top: isCompactLayout ? SPACING_0 : SPACING_2 }}
         popperOptions={{
           modifiers: {
             flip: { enabled: false },

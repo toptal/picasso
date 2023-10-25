@@ -8,10 +8,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { StandardProps } from '@toptal/picasso-shared'
-import type {
-  DeprecatedSpacingType,
-  SpacingType,
-} from '@toptal/picasso-provider'
+import type { SpacingType } from '@toptal/picasso-provider'
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 
 import Popper from '../Popper'
@@ -54,25 +51,10 @@ interface InternalProps
 type PropsWithBaseSpacing = InternalProps & {
   /** Offset of content element relative to anchor element */
   offset?: {
-    top?: Exclude<SpacingType, DeprecatedSpacingType>
-    bottom?: Exclude<SpacingType, DeprecatedSpacingType>
-    left?: Exclude<SpacingType, DeprecatedSpacingType>
-    right?: Exclude<SpacingType, DeprecatedSpacingType>
-  }
-}
-
-type PropsWithDeprecatedSpacing = InternalProps & {
-  /** Offset of content element relative to anchor element */
-  /** @deprecated */
-  offset?: {
-    /** @deprecated */
-    top?: DeprecatedSpacingType
-    /** @deprecated */
-    bottom?: DeprecatedSpacingType
-    /** @deprecated */
-    left?: DeprecatedSpacingType
-    /** @deprecated */
-    right?: DeprecatedSpacingType
+    top?: SpacingType
+    bottom?: SpacingType
+    left?: SpacingType
+    right?: SpacingType
   }
 }
 
@@ -94,10 +76,7 @@ export const useDropdownContext = () => {
   return context
 }
 
-const useStyles = makeStyles<
-  Theme,
-  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
->(styles, {
+const useStyles = makeStyles<Theme, PropsWithBaseSpacing>(styles, {
   name: 'PicassoDropdown',
 })
 
@@ -110,19 +89,16 @@ export type DropdownProps = {
   (
     props: PropsWithBaseSpacing & { ref?: Ref<HTMLDivElement> | null }
   ): ReactElement
-  (
-    props: PropsWithDeprecatedSpacing & { ref?: Ref<HTMLDivElement> | null }
-  ): ReactElement
   displayName?: string
   defaultProps?: Partial<PropsWithBaseSpacing>
 }
 
-export type Props = PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+export type Props = PropsWithBaseSpacing
 
 // eslint-disable-next-line react/display-name
 export const Dropdown: DropdownProps = forwardRef<
   HTMLDivElement,
-  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
+  PropsWithBaseSpacing
 >(function Dropdown(props, ref) {
   const {
     className,

@@ -13,13 +13,6 @@ import {
 
 describe('spacingUtils', () => {
   describe('spacingToRem', () => {
-    describe('when spacing is a number', () => {
-      it('converts to rem', () => {
-        expect(spacingToRem(1)).toBe('1rem')
-        expect(spacingToRem(2.5)).toBe('2.5rem')
-      })
-    })
-
     describe('when spacing is a valid Picasso spacing', () => {
       it('converts to rem', () => {
         expect(spacingToRem(SPACING_0)).toBe('0rem')
@@ -31,16 +24,6 @@ describe('spacingUtils', () => {
         expect(spacingToRem(SPACING_8)).toBe('2rem')
         expect(spacingToRem(SPACING_10)).toBe('2.5rem')
         expect(spacingToRem(SPACING_12)).toBe('3rem')
-      })
-    })
-
-    describe('when spacing is a string Picasso spacing', () => {
-      it('converts to rem', () => {
-        expect(spacingToRem('xsmall')).toBe('0.5rem')
-        expect(spacingToRem('small')).toBe('1rem')
-        expect(spacingToRem('medium')).toBe('1.5rem')
-        expect(spacingToRem('large')).toBe('2rem')
-        expect(spacingToRem('xlarge')).toBe('2.5rem')
       })
     })
   })
