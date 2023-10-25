@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
 import { Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_6, useNotifications } from '@toptal/picasso/utils'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
   Field as QueryBuilderField,
@@ -185,9 +185,9 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls ? undefined : 'medium'}
+        padded={hideControls ? undefined : SPACING_6}
         direction='column'
-        gap='small'
+        gap={SPACING_4}
       >
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
           <ReactQueryBuilder

@@ -10,6 +10,7 @@ import Typography from '../Typography'
 import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
 import styles from './styles'
+import { SPACING_4 } from '../utils'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
@@ -26,7 +27,7 @@ export interface Props extends BaseProps {
 }
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
-  <Container left='small'>
+  <Container left={SPACING_4}>
     <ButtonCircular
       variant='transparent'
       onClick={onClose}
@@ -60,7 +61,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       flex
       justifyContent='space-between'
       rounded
-      padded='small'
+      padded={SPACING_4}
       role='alert'
       ref={ref}
       variant={variant}
@@ -68,7 +69,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
     >
       <Container inline flex ref={ref} className={classes.root}>
         <Container
-          right='small'
+          right={SPACING_4}
           flex
           alignItems='center'
           className={classes.iconWrapper}

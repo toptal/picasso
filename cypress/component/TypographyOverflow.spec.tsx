@@ -6,6 +6,7 @@ import {
   Typography,
   TypographyOverflow,
 } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const DynamicWidthContainer = ({ children }: PropsWithChildren<{}>) => (
   <Container
@@ -23,7 +24,7 @@ const DynamicWidthContainer = ({ children }: PropsWithChildren<{}>) => (
 )
 
 const DefaultExample = () => (
-  <Container padded='medium'>
+  <Container padded={SPACING_6}>
     <div style={{ width: 300, marginTop: 100 }}>
       <TypographyOverflow data-testid='ellipsed-text'>
         This typography is very long and therefore it overflows.
@@ -40,7 +41,7 @@ const DefaultExample = () => (
 const CheckboxLabelExample = () => (
   <Container
     flex
-    padded='medium'
+    padded={SPACING_6}
     style={{ marginTop: 100, maxWidth: '150px', flexBasis: '150px' }}
   >
     <Checkbox
@@ -54,7 +55,7 @@ const CheckboxLabelExample = () => (
 )
 
 const CustomTooltipAndDelayExample = () => (
-  <Container padded='medium' style={{ width: 300, marginTop: 100 }}>
+  <Container padded={SPACING_6} style={{ width: 300, marginTop: 100 }}>
     <TypographyOverflow
       data-testid='custom-tooltip-ellipsed-text'
       tooltipContent={

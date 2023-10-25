@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 import React from 'react'
 import { Calendar, Container } from '@toptal/picasso'
-import { noop } from '@toptal/picasso/utils'
+import { SPACING_8, noop } from '@toptal/picasso/utils'
 
 const TestCalendar = (props: ComponentProps<typeof Calendar>) => (
   <Calendar {...props} />
@@ -34,7 +34,7 @@ describe('Calendar', () => {
           onChange={noop}
           renderMonthHeader={() => null}
           renderRoot={({ children }) => (
-            <Container direction='column' padded={1.875} flex>
+            <Container direction='column' padded={SPACING_8} flex>
               {children}
             </Container>
           )}

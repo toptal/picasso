@@ -4,6 +4,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
+import { SPACING_4, SPACING_2 } from '../utils'
 import Typography from '../Typography'
 import styles from './styles'
 
@@ -35,13 +36,13 @@ export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
         <Container
           alignItems='center'
           justifyContent='center'
-          bottom='small'
+          bottom={SPACING_4}
           flex
         >
           {cloneElement(image, { className: classes.image })}
         </Container>
         {title && (
-          <Container bottom='xsmall'>
+          <Container bottom={SPACING_2}>
             <Typography variant='heading' size='medium'>
               {title}
             </Typography>

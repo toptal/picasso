@@ -8,6 +8,7 @@ import cx from 'classnames'
 import Container from '../Container'
 import Button from '../Button'
 import styles from './styles'
+import { SPACING_2, SPACING_4 } from '../utils'
 
 export interface Props extends BaseProps {
   /** Show the control initially as checked */
@@ -59,7 +60,7 @@ const ButtonControlLabel = ({
 }: Props) => {
   const classes = useStyles()
 
-  const contentLeftSpacing = size === 'large' ? 1 : 0.5
+  const contentLeftSpacing = size === 'large' ? SPACING_4 : SPACING_2
 
   return (
     <Button

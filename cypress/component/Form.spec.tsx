@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useCallback, useState } from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_4, SPACING_8, noop } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
-import { noop } from '@toptal/picasso/utils'
 
 const RESPONSE_TIME = 1000
 const ANIMATION_TIME = 300
@@ -77,7 +77,7 @@ const FormExample = () => {
             width='full'
           />
 
-          <Container top='small'>
+          <Container top={SPACING_4}>
             <Form.SubmitButton
               variant='positive'
               data-testid='success-submit-button'
@@ -103,7 +103,7 @@ const FormExample = () => {
             width='full'
           />
 
-          <Container top='small'>
+          <Container top={SPACING_4}>
             <Form.SubmitButton
               variant='negative'
               data-testid='submit-with-custom-notification-button'
@@ -114,7 +114,7 @@ const FormExample = () => {
         </Form>
       </Container>
 
-      <Container top='large' bottom='large'>
+      <Container top={SPACING_8} bottom={SPACING_8}>
         <Form
           onSubmit={handleSubmitWithInlineError}
           failedSubmitMessage='Login failed! Please try another combination of first and last names.'
@@ -130,7 +130,7 @@ const FormExample = () => {
           />
 
           {Array.from({ length: 10 }).map((_, index) => (
-            <Container top='large' bottom='large' key={index}>
+            <Container top={SPACING_8} bottom={SPACING_8} key={index}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
               assumenda suscipit amet ad libero, explicabo eaque fugiat sapiente
               beatae, earum consequatur enim. Esse aut unde possimus quam illum
@@ -146,7 +146,7 @@ const FormExample = () => {
             width='full'
           />
 
-          <Container top='small'>
+          <Container top={SPACING_4}>
             <Form.SubmitButton
               variant='negative'
               data-testid='submit-with-inline-error-button'
@@ -284,7 +284,7 @@ const DisabledFieldsExample = () => {
         width='auto'
       />
 
-      <Container top='small'>
+      <Container top={SPACING_4}>
         <Form.SubmitButton>Submit</Form.SubmitButton>
       </Container>
     </Form>

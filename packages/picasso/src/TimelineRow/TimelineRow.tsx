@@ -7,6 +7,7 @@ import cx from 'classnames'
 
 import styles from './styles'
 import Container from '../Container'
+import { SPACING_6, SPACING_8 } from '../utils'
 import Typography from '../Typography'
 
 export interface Props extends BaseProps {
@@ -50,7 +51,7 @@ const TimelineRow = ({
           flex
           direction='column'
           alignItems='center'
-          right='medium'
+          right={SPACING_6}
           className={classes.tableCellContent}
         >
           {typeof icon !== 'undefined' ? (
@@ -74,7 +75,7 @@ const TimelineRow = ({
           className={cx(classes.tableCell)}
           style={{ whiteSpace: 'nowrap' }}
         >
-          <Container className={classes.date} right='large'>
+          <Container className={classes.date} right={SPACING_8}>
             <Typography
               className={classes.dateText}
               weight='semibold'
@@ -87,7 +88,7 @@ const TimelineRow = ({
       )}
 
       <Container className={cx(classes.tableCell)}>
-        <Container className={classes.content} bottom='large'>
+        <Container className={classes.content} bottom={SPACING_8}>
           {children}
         </Container>
       </Container>

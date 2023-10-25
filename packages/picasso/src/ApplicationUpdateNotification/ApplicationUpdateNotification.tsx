@@ -9,6 +9,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import Button from '../ButtonCircular'
 import Typography from '../Typography'
 import Container from '../Container'
+import { SPACING_2 } from '../utils'
 import { Close16 } from '../Icon'
 import styles from './styles'
 
@@ -42,7 +43,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
     const classes = useStyles()
 
     const notification = (
-      <Container flex direction='column' gap='xsmall'>
+      <Container flex direction='column' gap={SPACING_2}>
         <svg
           className={classes.icon}
           viewBox='0 0 105 105'

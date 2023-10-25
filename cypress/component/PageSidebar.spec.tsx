@@ -1,5 +1,6 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   Candidates16,
   Container,
@@ -135,7 +136,7 @@ const VariantsExample = () => {
   return (
     <Grid spacing={32}>
       <Grid.Item style={{ height: '58rem' }}>
-        <Container bottom='small'>
+        <Container bottom={SPACING_4}>
           <Typography variant='heading' size='small'>
             Light (default):
           </Typography>
@@ -144,7 +145,7 @@ const VariantsExample = () => {
       </Grid.Item>
 
       <Grid.Item style={{ height: '58rem' }}>
-        <Container bottom='small'>
+        <Container bottom={SPACING_4}>
           <Typography variant='heading' size='small'>
             Dark:
           </Typography>

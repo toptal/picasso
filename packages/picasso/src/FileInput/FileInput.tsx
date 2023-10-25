@@ -6,9 +6,9 @@ import type { BaseProps } from '@toptal/picasso-shared'
 
 import FileList from '../FileList'
 import Container from '../Container'
+import { SPACING_2, useCombinedRefs } from '../utils'
 import Button from '../Button'
 import FormHint from '../FormHint'
-import { useCombinedRefs } from '../utils'
 import type { FileUpload } from './types'
 import styles from './styles'
 
@@ -87,7 +87,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
       />
       {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
       {value && value.length > 0 && (
-        <Container top='xsmall'>
+        <Container top={SPACING_2}>
           <FileList files={value} disabled={disabled} onItemRemove={onRemove} />
         </Container>
       )}

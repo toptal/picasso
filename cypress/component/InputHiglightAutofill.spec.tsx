@@ -13,6 +13,7 @@ import {
   TimePicker,
   YearSelect,
 } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
 
 const component = 'HiglightAutofill'
@@ -21,7 +22,7 @@ describe('Highlight Autofill', () => {
   describe('when highlight prop is true', () => {
     it('renders inputs with correct background color', () => {
       cy.mount(
-        <Container padded='small' gap='small' flex direction='column'>
+        <Container padded={SPACING_4} gap={SPACING_4} flex direction='column'>
           <Container>
             <FormLabel>Autocomplete</FormLabel>
             <Autocomplete value='' highlight='autofill' />

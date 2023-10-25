@@ -1,6 +1,7 @@
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import Container from '@toptal/picasso/Container'
+import { SPACING_2 } from '@toptal/picasso/utils'
 
 import type { ASTType } from './types'
 import useRichText from './hooks/useRichText'
@@ -25,7 +26,7 @@ export const RichText = ({
       style={style}
       data-testid={dataTestId}
       className={className}
-      gap='xsmall'
+      gap={SPACING_2}
       flex
       direction='column'
     >

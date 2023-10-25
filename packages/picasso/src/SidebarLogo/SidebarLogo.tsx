@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 
 import Container from '../Container'
+import { SPACING_2, SPACING_8 } from '../utils'
 import styles from './styles'
 import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
 
@@ -40,8 +41,8 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
         className={cx(classes.root, className)}
         ref={ref}
         flex
-        bottom='xsmall'
-        left='large'
+        bottom={SPACING_2}
+        left={SPACING_8}
         alignItems='center'
       >
         {logo}

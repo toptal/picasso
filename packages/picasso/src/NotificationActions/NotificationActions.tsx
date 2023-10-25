@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import Container from '../Container'
+import { SPACING_2 } from '../utils'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {}
@@ -25,7 +26,7 @@ export const NotificationActions = forwardRef<HTMLDivElement, Props>(
         classes={classes}
         className={className}
         style={style}
-        top='xsmall'
+        top={SPACING_2}
         flex
         ref={ref}
       >

@@ -4,6 +4,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
+import { SPACING_2 } from '../utils'
 import Typography from '../Typography'
 import Tooltip from '../Tooltip'
 import ButtonCircular from '../ButtonCircular'
@@ -69,7 +70,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
       >
         <Container flex direction='row'>
           {!error && (
-            <Container right='xsmall'>
+            <Container right={SPACING_2}>
               <Attachment16 color='darkGrey' />
             </Container>
           )}

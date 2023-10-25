@@ -7,6 +7,7 @@ import React from 'react'
 import type { RichTextEditorProps } from '@toptal/picasso-rich-text-editor'
 import { RichTextEditor } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Form } from '@toptal/picasso-forms'
 import { isOn } from '@cypress/skip-test'
 
@@ -36,7 +37,7 @@ const defaultProps = {
 const editorSelector = `#${defaultProps.id}`
 
 const renderEditor = (props: RichTextEditorProps) => (
-  <Container data-testid='bla' style={{ maxWidth: '600px' }} padded='small'>
+  <Container data-testid='bla' style={{ maxWidth: '600px' }} padded={SPACING_4}>
     <RichTextEditor {...props} />
   </Container>
 )

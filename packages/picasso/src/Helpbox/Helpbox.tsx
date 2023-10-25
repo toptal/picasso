@@ -6,6 +6,7 @@ import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import type { VariantType as ContainerVariantType } from '../Container'
+import { SPACING_6 } from '../utils'
 import Container from '../Container'
 import { CloseMinor16 } from '../Icon'
 import ButtonCircular from '../ButtonCircular'
@@ -42,7 +43,7 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       style={style}
       bordered={!variant || variant === 'white'}
       variant={variant}
-      padded='medium'
+      padded={SPACING_6}
     >
       <HelpboxContext.Provider value={{ closeable: Boolean(onClose) }}>
         {children}

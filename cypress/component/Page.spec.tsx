@@ -1,5 +1,6 @@
 import React from 'react'
 import type { PageSidebarProps } from '@toptal/picasso'
+import { SPACING_4, useNotifications } from '@toptal/picasso/utils'
 import {
   Button,
   Container,
@@ -9,7 +10,6 @@ import {
   Typography,
 } from '@toptal/picasso'
 import { HAPPO_TARGETS, getHappoTargets } from '@toptal/picasso/test-utils'
-import { useNotifications } from '@toptal/picasso/utils'
 
 const component = 'Page'
 const containerHeight = '30rem'
@@ -99,8 +99,8 @@ const Content = ({
   const { showInfo } = useNotifications()
 
   return (
-    <Container top='small' bottom='small'>
-      <Container bottom='small'>
+    <Container top={SPACING_4} bottom={SPACING_4}>
+      <Container bottom={SPACING_4}>
         <Typography align='center' variant='heading' size='large'>
           Banner example
         </Typography>

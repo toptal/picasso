@@ -1,6 +1,12 @@
 import React, { useRef, useState } from 'react'
 import type { DrawerProps } from '@toptal/picasso'
 import {
+  SPACING_6,
+  SPACING_4,
+  useModal,
+  useNotifications,
+} from '@toptal/picasso/utils'
+import {
   Button,
   Modal,
   Drawer,
@@ -8,7 +14,6 @@ import {
   List,
   Typography,
 } from '@toptal/picasso'
-import { useModal, useNotifications } from '@toptal/picasso/utils'
 import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const DrawerExample = (
@@ -22,7 +27,7 @@ const DrawerExample = (
         Show drawer
       </Button>
       <Drawer {...props}>
-        <Container padded='medium'>
+        <Container padded={SPACING_6}>
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
             <List.Item>Set your age</List.Item>
@@ -96,7 +101,7 @@ describe('Drawer', () => {
       <TestDrawer
         width='narrow'
         title={
-          <Container flex alignItems='center' padded='small'>
+          <Container flex alignItems='center' padded={SPACING_4}>
             <Typography>This Drawer has a custom title</Typography>
             <Button size='small'>OK!</Button>
           </Container>

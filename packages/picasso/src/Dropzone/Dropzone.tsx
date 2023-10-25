@@ -9,6 +9,7 @@ import { Upload24 } from '../Icon'
 import FormHint from '../FormHint'
 import FormError from '../FormError'
 import Container from '../Container'
+import { SPACING_2 } from '../utils'
 import FileList from '../FileList'
 import Typography from '../Typography'
 import type { FileUpload, DropzoneOptions } from './types'
@@ -144,7 +145,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           ))}
       </Container>
       {value && value.length > 0 && (
-        <Container top='xsmall'>
+        <Container top={SPACING_2}>
           <FileList files={value} onItemRemove={onRemove} />
         </Container>
       )}

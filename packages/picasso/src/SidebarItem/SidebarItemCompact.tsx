@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import React, { forwardRef } from 'react'
 
 import Container from '../Container'
+import { SPACING_4 } from '../utils'
 import Dropdown from '../Dropdown'
 import { SidebarItemHeader } from './SidebarItemHeader'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
@@ -32,7 +33,7 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
 
     return (
       <ParentItemContextProvider isOpened={isOpened}>
-        <Container left='small' right='small'>
+        <Container left={SPACING_4} right={SPACING_4}>
           <Dropdown
             classes={{ popper: classes.compactDropdown }}
             placement='right-start'

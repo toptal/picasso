@@ -8,9 +8,9 @@ import { makeStyles } from '@material-ui/core'
 import Typography from '../Typography'
 import Tooltip from '../Tooltip'
 import Container from '../Container'
+import { SPACING_4, SPACING_2, getReactNodeTextContent } from '../utils'
 import Badge from '../Badge'
 import TagRectangular from '../TagRectangular'
-import { getReactNodeTextContent } from '../utils'
 import styles from './styles'
 import type { Props, SidebarBadgeProps } from './types'
 import Indicator from '../Indicator'
@@ -64,7 +64,7 @@ const CompactItemContent = (props: Props & { isIndicatorVisible: boolean }) => {
       inline
       flex
       alignItems='center'
-      padded='small'
+      padded={SPACING_4}
     >
       <Tooltip
         compact
@@ -110,7 +110,7 @@ const ExpandedItemContent = (
       inline
       flex
       alignItems='center'
-      gap='xsmall'
+      gap={SPACING_2}
     >
       {!isSubMenu && icon}
 

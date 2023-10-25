@@ -19,11 +19,17 @@ import type {
 import { useTitleCase } from '@toptal/picasso-shared'
 
 import Container from '../Container'
+import {
+  SPACING_2,
+  SPACING_6,
+  SPACING_1,
+  ClickAwayListener,
+  toTitleCase,
+} from '../utils'
 import { ChevronMinor16, CheckMinor16 } from '../Icon'
 import Paper from '../Paper'
 import Popper from '../Popper'
 import Link from '../Link'
-import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
 import type { AvatarProps } from '../Avatar'
@@ -140,7 +146,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           flex
           direction='row'
         >
-          {avatar && <Container right='xsmall'>{avatar}</Container>}
+          {avatar && <Container right={SPACING_2}>{avatar}</Container>}
 
           <Container flex direction='column' className={classes.content}>
             <Container flex alignItems='center'>
@@ -149,7 +155,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
                   className={classes.iconContainer}
                   flex
                   inline
-                  right='xsmall'
+                  right={SPACING_2}
                 >
                   {checkmarked ? <CheckMinor16 /> : icon}
                 </Container>
@@ -167,7 +173,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
                 children
               )}
               {menu && (
-                <Container flex inline left='xsmall'>
+                <Container flex inline left={SPACING_2}>
                   <ChevronMinor16 color='' />
                 </Container>
               )}
@@ -177,8 +183,8 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
                 className={cx(classes.description, {
                   [classes.descriptionDisabled]: disabled,
                 })}
-                left={isIconWrapperVisible ? 'medium' : undefined}
-                top={0.25}
+                left={isIconWrapperVisible ? SPACING_6 : undefined}
+                top={SPACING_1}
               >
                 {description}
               </Container>

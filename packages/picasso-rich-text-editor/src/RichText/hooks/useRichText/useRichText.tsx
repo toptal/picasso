@@ -8,6 +8,7 @@ import List from '@toptal/picasso/List'
 import ListItem from '@toptal/picasso/ListItem'
 import Link from '@toptal/picasso/Link'
 import { makeStyles } from '@material-ui/core'
+import { SPACING_2 } from '@toptal/picasso/utils'
 
 import type { ASTType } from '../../types'
 import { Emoji, Image, Code, CodeBlock } from '../../components'
@@ -42,7 +43,7 @@ const Em = ({ children }: Props) => (
 )
 
 const H3 = ({ children }: Props) => (
-  <Container top='xsmall'>
+  <Container top={SPACING_2}>
     <Typography as='h3' variant='heading' size='medium'>
       {children}
     </Typography>

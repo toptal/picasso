@@ -1,6 +1,7 @@
 import React, { Fragment, useMemo } from 'react'
 import { Container, List, Typography } from '@toptal/picasso'
 import type { ValidationResult } from 'react-querybuilder'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const ValidationErrors = ({
   validationResult,
@@ -26,7 +27,7 @@ const ValidationErrors = ({
   }
 
   return (
-    <Container flex direction='column' gap='small'>
+    <Container flex direction='column' gap={SPACING_4}>
       <Typography>
         Please fix validation errors before running the query
       </Typography>

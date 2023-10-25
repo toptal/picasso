@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import type { TooltipProps } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   Autocomplete,
   Button,
@@ -81,7 +82,7 @@ const PlacementTooltipExample = () => {
           </Grid.Item>
         </Grid>
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Grid direction='row'>
           <Grid.Item sm={4}>
             <Tooltip placement='left-start' content='Content' open={open}>
@@ -96,7 +97,7 @@ const PlacementTooltipExample = () => {
           </Grid.Item>
         </Grid>
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Grid direction='row'>
           <Grid.Item sm={4}>
             <Tooltip placement='left' content='Content' open={open}>
@@ -111,7 +112,7 @@ const PlacementTooltipExample = () => {
           </Grid.Item>
         </Grid>
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Grid direction='row'>
           <Grid.Item sm={4}>
             <Tooltip placement='left-end' content='Content' open={open}>
@@ -126,7 +127,7 @@ const PlacementTooltipExample = () => {
           </Grid.Item>
         </Grid>
       </Container>
-      <Container bottom='small'>
+      <Container bottom={SPACING_4}>
         <Grid direction='row'>
           <Grid.Item sm={4}>
             <Tooltip placement='bottom-start' content='Content' open={open}>

@@ -3,6 +3,7 @@ import { Container, Radio as PicassoRadio, Typography } from '@toptal/picasso'
 import type { CombinatorSelectorProps } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 import { RadioOptions } from './RadioOptions'
 import styles from './styles'
@@ -23,7 +24,7 @@ export const CombinatorSelector = ({
     <Container
       flex
       alignItems='center'
-      gap='small'
+      gap={SPACING_4}
       className={cx(className, classes.root)}
     >
       {level === 0 && <Typography weight='semibold'>Query</Typography>}

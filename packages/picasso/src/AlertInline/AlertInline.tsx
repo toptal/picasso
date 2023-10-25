@@ -5,6 +5,7 @@ import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 
 import type { VariantType as ContainerVariants } from '../Container'
+import { SPACING_2 } from '../utils'
 import Container from '../Container'
 import Typography from '../Typography'
 import { ExclamationSolid16, DoneSolid16, InfoSolid16 } from '../Icon'
@@ -51,7 +52,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   return (
     <Container inline flex ref={ref} className={classes.root}>
       <Container
-        right='xsmall'
+        right={SPACING_2}
         flex
         alignItems='center'
         className={classes.iconWrapper}

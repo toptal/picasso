@@ -5,6 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import Container from '../Container'
+import { SPACING_2 } from '../utils'
 import Typography from '../Typography'
 import styles from './styles'
 
@@ -57,7 +58,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
         </div>
 
         {showPercentage && (
-          <Container left='xsmall'>
+          <Container left={SPACING_2}>
             <Typography
               variant='body'
               size='xsmall'

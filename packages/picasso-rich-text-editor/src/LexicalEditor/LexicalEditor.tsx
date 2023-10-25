@@ -14,7 +14,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography } from '@toptal/picasso'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { noop } from '@toptal/picasso/utils'
+import { SPACING_2, SPACING_4, noop } from '@toptal/picasso/utils'
 import type { LexicalEditor as LexicalEditorType } from 'lexical'
 import { $getRoot } from 'lexical'
 
@@ -238,8 +238,8 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
               }
               placeholder={
                 <Container
-                  left='xsmall'
-                  top='small'
+                  left={SPACING_2}
+                  top={SPACING_4}
                   className={classes.placeholder}
                 >
                   <Typography size='medium' color='grey-main-2'>

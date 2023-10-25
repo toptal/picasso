@@ -5,6 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Container } from '../Container'
+import { SPACING_2 } from '../utils'
 import Avatar from '../Avatar'
 import AvatarWrapper from '../Avatar/AvatarWrapper/AvatarWrapper'
 import TextAvatar from '../Avatar/TextAvatar/TextAvatar'
@@ -66,7 +67,7 @@ const AvatarGroup = ({
       className={cx(classes.root, className)}
       data-testid={testIds?.container}
       flex
-      gap='xsmall'
+      gap={SPACING_2}
       style={style}
     >
       {avatarsToRender.map(

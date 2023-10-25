@@ -1,8 +1,8 @@
 import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import type { SelectValueType, SelectProps } from '@toptal/picasso'
+import { SPACING_6, noop, palette } from '@toptal/picasso/utils'
 import { Select, Form, Container, Drawer } from '@toptal/picasso'
-import { noop, palette } from '@toptal/picasso/utils'
 import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const TestSelect = ({
@@ -26,7 +26,7 @@ const TestSelect = ({
   testIds,
   'data-testid': dataTestId = 'select',
 }: Partial<SelectProps> = {}) => (
-  <Container padded='medium'>
+  <Container padded={SPACING_6}>
     <Select
       data-testid={dataTestId}
       onChange={onChange}

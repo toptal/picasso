@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Container, Loader } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 import styles from './styles'
 
@@ -24,7 +25,7 @@ export const RunQueryButton = ({
   const renderTotalCount = () => {
     if (totalCountLoading) {
       return (
-        <Container left='small'>
+        <Container left={SPACING_4}>
           <Loader size='small' variant='inherit' />
         </Container>
       )

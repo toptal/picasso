@@ -1,9 +1,10 @@
 import React from 'react'
 import type { DropzoneProps } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Container, Dropzone } from '@toptal/picasso'
 
 const renderDropzone = (props?: DropzoneProps) => (
-  <Container padded='small'>
+  <Container padded={SPACING_4}>
     <Dropzone style={{ width: '300px' }} {...props} />
   </Container>
 )

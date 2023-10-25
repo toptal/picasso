@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import { Container } from '../Container'
+import { SPACING_2 } from '../utils'
 import type { AlignItemsType, JustifyContentType } from '../Container/styles'
 
 export interface Props extends BaseProps {
@@ -24,7 +25,7 @@ export const ApplicationUpdateNotificationActions = ({
       direction='row'
       alignItems={alignItems}
       justifyContent={justifyContent}
-      gap='xsmall'
+      gap={SPACING_2}
     >
       {children}
     </Container>

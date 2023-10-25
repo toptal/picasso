@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import Logo from '../Logo'
 import Container from '../Container'
+import { SPACING_4, useIsomorphicLayoutEffect } from '../utils'
 import PageHamburger, {
   PageHamburgerPortal,
   useHamburgerContext,
@@ -19,7 +20,6 @@ import PageHamburger, {
 import Typography from '../Typography'
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page/types'
-import { useIsomorphicLayoutEffect } from '../utils'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light' | 'grey'
@@ -109,7 +109,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
       <div
         className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
       />
-      <Container left='small'>
+      <Container left={SPACING_4}>
         <Typography invert={isDark}>{title}</Typography>
       </Container>
     </Container>
@@ -137,7 +137,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
         <div className={innerClassName}>
           {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
           <div className={classes.left}>
-            <Container flex alignItems='center' gap='small'>
+            <Container flex alignItems='center' gap={SPACING_4}>
               <PageHamburger
                 id={hamburgerId}
                 data-testid={testIds?.hamburger}

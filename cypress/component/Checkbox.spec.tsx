@@ -1,8 +1,9 @@
 import React from 'react'
 import { Checkbox, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const TestCheckbox = () => (
-  <Container padded='medium'>
+  <Container padded={SPACING_6}>
     <Checkbox.Group>
       <Checkbox
         checked={false}

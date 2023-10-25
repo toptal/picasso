@@ -1,5 +1,6 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const component = 'Avatar'
 
@@ -19,7 +20,7 @@ describe('Avatar', () => {
 
     it('renders outline around avatar', () => {
       cy.mount(
-        <Container padded='small' gap='small'>
+        <Container padded={SPACING_4} gap={SPACING_4}>
           <Avatar
             alt='Jacqueline Roque. Pablo Picasso, 1954'
             src={src}

@@ -9,10 +9,11 @@ import {
   Form,
   Input,
 } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
 
 const LongListExample = () => (
-  <Container padded='medium' style={{ height: 900 }}>
+  <Container padded={SPACING_6} style={{ height: 900 }}>
     <Grid direction='row'>
       <Grid.Item>
         <Dropdown content={menu}>
@@ -31,7 +32,7 @@ const LongListExample = () => (
 )
 
 const CustomContentExample = () => (
-  <Container padded='medium'>
+  <Container padded={SPACING_6}>
     <Dropdown content={<ComplexContent />} disableAutoClose disablePortal>
       <Button data-testid='trigger'>Open dropdown</Button>
     </Dropdown>
@@ -39,7 +40,7 @@ const CustomContentExample = () => (
 )
 
 const CustomContentStyleExample = () => (
-  <Container padded='medium'>
+  <Container padded={SPACING_6}>
     <Dropdown
       content={<div>custom content height</div>}
       contentStyle={{
@@ -54,8 +55,8 @@ const CustomContentStyleExample = () => (
 
 const ComplexContent = () => {
   return (
-    <Container padded='medium'>
-      <Container bottom='small'>
+    <Container padded={SPACING_6}>
+      <Container bottom={SPACING_4}>
         <Typography variant='heading' size='medium'>
           Talent
         </Typography>

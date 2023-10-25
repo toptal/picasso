@@ -1,13 +1,14 @@
 import React from 'react'
 import { Container, Input } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 const TestInput = () => {
   return (
-    <Container padded='medium'>
-      <Container padded='small'>
+    <Container padded={SPACING_6}>
+      <Container padded={SPACING_4}>
         <Input value='Text' data-testid='default-input' />
       </Container>
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Input value='Text' data-testid='error-input' status='error' />
       </Container>
     </Container>

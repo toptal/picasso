@@ -4,6 +4,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 
 import QuoteMark from '../QuoteMark'
 import Container from '../Container'
+import { SPACING_4 } from '../utils'
 import Typography from '../Typography'
 
 export interface Props extends BaseProps {
@@ -19,7 +20,7 @@ export const Quote = forwardRef<HTMLDivElement, Props>(function Quote(
 
   return (
     <Container ref={ref} className={className} style={style} flex {...rest}>
-      <Container right='small'>
+      <Container right={SPACING_4}>
         <QuoteMark />
       </Container>
       <Typography size='medium' color='dark-grey'>

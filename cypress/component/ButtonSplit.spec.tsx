@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Container, Menu } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const handleClick = () => {}
 
@@ -16,7 +17,7 @@ const component = 'ButtonSplit'
 describe('Button.Split', () => {
   it('opens dropdown when menu button is clicked', () => {
     cy.mount(
-      <Container padded='small'>
+      <Container padded={SPACING_4}>
         <Button.Split testIds={{ menuButton: 'menu-button' }} menu={menu}>
           Button
         </Button.Split>
