@@ -256,10 +256,7 @@ const Example = () => {
         onSubmit={handleSubmit}
       />
       <Container top='medium'>
-        <Accordion
-          expanded
-          content={<pre>{JSON.stringify(query, null, 2) + '\n'}</pre>}
-        >
+        <Accordion content={<pre>{JSON.stringify(query, null, 2) + '\n'}</pre>}>
           <Accordion.Summary>Query</Accordion.Summary>
         </Accordion>
       </Container>
