@@ -26,7 +26,7 @@ import Calendar from '../Calendar'
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
-  DEFAULT_POPPER_OPTIONS,
+  POPPER_OPTIONS,
 } from './constants'
 import styles from './styles'
 import type { DatePickerValue, DatePickerInputCustomValueParser } from './types'
@@ -430,7 +430,7 @@ export const DatePicker = (props: Props) => {
           autoWidth={false}
           enableCompactMode
           container={popperContainer}
-          popperOptions={DEFAULT_POPPER_OPTIONS}
+          popperOptions={POPPER_OPTIONS}
           ref={popperRef}
           {...popperProps}
         >

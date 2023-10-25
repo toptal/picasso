@@ -1,26 +1,8 @@
 import React, { useState } from 'react'
-import {
-  Modal,
-  Button,
-  Input,
-  Checkbox,
-  Select,
-  Form,
-  DatePicker,
-} from '@toptal/picasso'
+import { Modal, Button, Form, DatePicker } from '@toptal/picasso'
 import { useModal } from '@toptal/picasso/utils'
 
-const STATES = [
-  {
-    text: 'Alabama',
-    value: 'Alabama',
-  },
-  {
-    text: 'Utah',
-    value: 'Utah',
-  },
-]
-
+// TODO: revert to the original file before the merge
 const ModalDialog = ({
   open,
   onClose,
@@ -28,22 +10,12 @@ const ModalDialog = ({
   open: boolean
   onClose: () => void
 }) => {
-  const [isLoading, setLoading] = useState(false)
   const [date, setDate] = useState<Date>()
 
   return (
     <Modal onClose={onClose} open={open}>
       <Modal.Title>Edit address details</Modal.Title>
       <Modal.Content>
-        <Form.Field>
-          <Input width='full' placeholder='City' value='Alabaster' />
-        </Form.Field>
-        <Form.Field>
-          <Input width='full' placeholder='Street' value='John Fruit' />
-        </Form.Field>
-        <Form.Field>
-          <Select placeholder='State' options={STATES} value='Alabama' />
-        </Form.Field>
         <Form.Field>
           <DatePicker
             width='full'
@@ -56,28 +28,10 @@ const ModalDialog = ({
             }}
           />
         </Form.Field>
-        <Form.Field>
-          <Checkbox label='Use shipping address for billing' />
-        </Form.Field>
       </Modal.Content>
       <Modal.Actions>
-        <Button disabled={isLoading} variant='secondary' onClick={onClose}>
+        <Button variant='secondary' onClick={onClose}>
           Cancel
-        </Button>
-        <Button
-          data-testid='close'
-          loading={isLoading}
-          onClick={() => {
-            setLoading(true)
-
-            setTimeout(() => {
-              setLoading(false)
-              onClose()
-            }, 1000)
-          }}
-          variant='positive'
-        >
-          Update
         </Button>
       </Modal.Actions>
     </Modal>
