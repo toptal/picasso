@@ -1,5 +1,12 @@
 # Change Log
 
+## 41.0.2
+
+### Patch Changes
+
+- [#3942](https://github.com/toptal/picasso/pull/3942) [`324c96b56`](https://github.com/toptal/picasso/commit/324c96b56890ac5d2492d9df7c3eab29e5f069f0) Thanks [@sashuk](https://github.com/sashuk)!
+- make date picker calendar popup fit the screen on small screens
+
 ## 41.0.1
 
 ### Patch Changes
