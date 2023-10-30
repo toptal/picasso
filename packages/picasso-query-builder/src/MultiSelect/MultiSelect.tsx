@@ -23,6 +23,7 @@ export const MultiSelect = ({
   disabled,
   className,
   fieldData,
+  testID,
 }: Props) => {
   const classes = useStyles()
 
@@ -39,6 +40,8 @@ export const MultiSelect = ({
     return value?.split(',').filter(Boolean)
   }, [value])
 
+  console.log('test multiselect', testID)
+
   return (
     <Container className={classes.root}>
       <Select
@@ -52,6 +55,7 @@ export const MultiSelect = ({
         multiple
         value={values}
         status={hasError ? 'error' : undefined}
+        data-testid={testID}
       />
     </Container>
   )

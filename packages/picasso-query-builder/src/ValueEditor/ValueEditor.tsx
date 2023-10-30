@@ -40,6 +40,7 @@ export const ValueEditor = ({
   fieldData,
   validation,
   context = {},
+  testID,
 }: QueryBuilderValueEditorProps) => {
   const classes = useStyles()
 
@@ -62,6 +63,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           fieldData={fieldData}
+          testID={testID}
         />
       )
     case 'select':
@@ -76,6 +78,7 @@ export const ValueEditor = ({
           touched={touched}
           validation={validation}
           fieldData={fieldData}
+          testID={testID}
         />
       )
     case 'autocomplete':
@@ -94,6 +97,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
+          testID={testID}
         />
       )
     case 'range':
@@ -108,6 +112,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
+          testID={testID}
         />
       )
     case 'boolean':
@@ -121,6 +126,7 @@ export const ValueEditor = ({
           touched={touched}
           validation={validation}
           fieldData={fieldData}
+          testID={testID}
         />
       )
     default:
@@ -134,6 +140,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
+          testID={testID}
         />
       )
   }

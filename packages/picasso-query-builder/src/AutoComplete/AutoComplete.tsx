@@ -30,6 +30,7 @@ export const AutoComplete = ({
   validation,
   touched,
   handleTouched,
+  testID,
 }: Props) => {
   const classes = useStyles()
 
@@ -95,6 +96,7 @@ export const AutoComplete = ({
         }}
         onBlur={() => handleTouched?.(true)}
         status={hasError ? 'error' : undefined}
+        data-testid={testID}
       />
     </Container>
   )

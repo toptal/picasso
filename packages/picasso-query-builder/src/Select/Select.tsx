@@ -24,6 +24,7 @@ export const Select = ({
   disabled,
   className,
   fieldData,
+  testID,
 }: Props) => {
   const classes = useStyles()
 
@@ -45,6 +46,7 @@ export const Select = ({
         loading={fieldData?.loading}
         status={hasError ? 'error' : undefined}
         onBlur={() => handleTouched?.(true)}
+        data-testid={testID}
       />
     </Container>
   )

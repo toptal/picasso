@@ -68,3 +68,9 @@ export type ValueEditorValidationProps = {
   touched?: boolean
   handleTouched?: (val?: boolean) => void
 }
+export type TestId = {
+  addRuleButton?: string
+  select?: string
+  multiSelect?: string
+  runQueryButton?: string
+}

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { Container, NumberInput, Typography } from '@toptal/picasso'
-import type { ValidationResult } from 'react-querybuilder'
+import type {
+  CommonSubComponentProps,
+  ValidationResult,
+} from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 
 import type {
@@ -16,7 +19,8 @@ type Props = RangeFieldOptions & {
    */
   value: RangeValue | ''
   handleOnChange: (val: RangeValue) => void
-} & ValueEditorValidationProps
+} & ValueEditorValidationProps &
+  Pick<CommonSubComponentProps, 'testID'>
 
 const useStyles = makeStyles(styles)
 
@@ -29,6 +33,7 @@ export const RangeInput = ({
   icon,
   validation,
   handleTouched,
+  testID,
 }: Props) => {
   const classes = useStyles()
 
@@ -74,6 +79,7 @@ export const RangeInput = ({
               to: (value as RangeValue)?.to,
             })
           }}
+          data-testid={testID}
         />
       </Container>
       <Typography variant='body' className={classes.label}>
@@ -102,6 +108,7 @@ export const RangeInput = ({
               to: max,
             })
           }}
+          data-testid={testID}
         />
       </Container>
     </>
