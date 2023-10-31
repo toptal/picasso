@@ -14,6 +14,7 @@ import styles from './styles'
 
 interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
   fullWidth?: boolean
+  valueEditorTestId?: string
 }
 
 const EMPTY_INPUT_VALUE = ''
@@ -30,7 +31,7 @@ export const AutoComplete = ({
   validation,
   touched,
   handleTouched,
-  testID,
+  valueEditorTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -96,7 +97,7 @@ export const AutoComplete = ({
         }}
         onBlur={() => handleTouched?.(true)}
         status={hasError ? 'error' : undefined}
-        data-testid={testID}
+        data-testid={valueEditorTestId}
       />
     </Container>
   )

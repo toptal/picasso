@@ -247,6 +247,15 @@ const Example = () => {
     showSuccess('Successfully submitted.')
   }
 
+  const testIds = {
+    runQueryButton: 'run-query-button',
+    addRuleButton: 'add-rule-button',
+    addGroupButton: 'add-group-button',
+    controls: 'query-builder-controls',
+    valueEditor: 'value-editor',
+    fieldSelector: 'field-selector',
+  }
+
   return (
     <>
       <QueryBuilder
@@ -254,6 +263,7 @@ const Example = () => {
         query={query}
         onQueryChange={handleQueryChange}
         onSubmit={handleSubmit}
+        testIds={testIds}
       />
       <Container top='medium'>
         <Accordion content={<pre>{JSON.stringify(query, null, 2) + '\n'}</pre>}>

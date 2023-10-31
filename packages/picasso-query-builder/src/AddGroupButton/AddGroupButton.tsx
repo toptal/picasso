@@ -3,12 +3,7 @@ import type { ActionWithRulesAndAddersProps } from 'react-querybuilder'
 import { Button } from '@toptal/picasso'
 import type { MouseEvent } from 'react'
 
-export interface Props extends Omit<ActionWithRulesAndAddersProps, 'schema'> {
-  context?: {
-    maxDepth: number
-    resetSubmitButtonClicked?: () => void
-  }
-}
+export type Props = Omit<ActionWithRulesAndAddersProps, 'schema'>
 
 export const AddGroupButton = ({
   handleOnClick,
@@ -16,9 +11,8 @@ export const AddGroupButton = ({
   disabled,
   context,
   level,
-  testID,
 }: Props) => {
-  const { maxDepth, resetSubmitButtonClicked } = context || {}
+  const { maxDepth, resetSubmitButtonClicked, testIds } = context || {}
 
   if (!maxDepth || level >= maxDepth) {
     return null
@@ -34,7 +28,7 @@ export const AddGroupButton = ({
       }}
       className={className}
       disabled={disabled}
-      data-testid={testID}
+      data-testid={testIds?.addGroupButton}
     >
       Add Group
     </Button>

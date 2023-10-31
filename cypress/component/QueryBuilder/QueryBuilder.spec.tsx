@@ -9,13 +9,13 @@ import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 
 const submitSuccessMessage = 'Successfully submitted'
-const firstnameValidationMessage = 'Firstname is required'
-const lastnameValidationMessage = 'Lastname is required'
+const firstNameValidationMessage = 'First Name is required'
+const lastNameValidationMessage = 'Last Name is required'
 
 const checkName = (rule: RuleType): ValidationResult | boolean => {
   return (
     !!rule.value || {
-      reasons: [`${firstnameValidationMessage}`],
+      reasons: [`${firstNameValidationMessage}`],
       valid: false,
     }
   )
@@ -24,7 +24,7 @@ const checkName = (rule: RuleType): ValidationResult | boolean => {
 const checkLastName = (rule: RuleType): ValidationResult | boolean => {
   return (
     !!rule.value || {
-      reasons: [`${lastnameValidationMessage}`],
+      reasons: [`${lastNameValidationMessage}`],
       valid: false,
     }
   )
@@ -33,15 +33,15 @@ const checkLastName = (rule: RuleType): ValidationResult | boolean => {
 const fields: Field[] = [
   {
     name: 'firstName',
-    label: 'Firstname',
-    placeholder: 'Enter firstname',
+    label: 'First Name',
+    placeholder: 'Enter first name',
     inputType: 'text',
     validator: checkName,
   },
   {
     name: 'lastName',
-    label: 'Lastname',
-    placeholder: 'Enter lastname',
+    label: 'Last Name',
+    placeholder: 'Enter last name',
     defaultOperator: 'beginsWith',
     validator: checkLastName,
   },
@@ -55,12 +55,17 @@ const initialQuery = {
 const testIds = {
   runQueryButton: 'run-query-button',
   addRuleButton: 'add-rule-button',
+  addGroupButton: 'add-group-button',
   controls: 'query-builder-controls',
+  valueEditor: 'value-editor',
+  fieldSelector: 'field-selector',
 }
 
 type ExampleProps = {
   maxGroupDepth?: number
 }
+
+const component = 'QueryBuilder'
 
 const QueryBuilderExample = ({ maxGroupDepth }: ExampleProps) => {
   const [query, setQuery] = useState<RuleGroupTypeAny>(initialQuery)
@@ -96,21 +101,26 @@ const getAddGroupButtonByDepth = (depth: number) =>
   getGroupByDepth(depth).find('.rule-group-add-group')
 
 describe('QueryBuilder', () => {
-  describe('when the query builder is valid', () => {
+  describe('when the query builder is ready to be submitted', () => {
     it('submits Query Builder with success result', () => {
       cy.mount(<QueryBuilderExample />)
 
       cy.getByTestId(testIds.addRuleButton).click()
-      cy.getByTestId('value-editor').type('firstname')
+      cy.getByTestId(testIds.valueEditor).type('firstname')
       cy.getByTestId(testIds.runQueryButton).click()
 
       cy.getByRole('alert')
         .should('be.visible')
         .and('contain', submitSuccessMessage)
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'submit-succcess',
+      })
     })
   })
 
-  describe('when query builder is not valid', () => {
+  describe('when query builder is not ready to be submitted', () => {
     it('shows validation error when top level query group is empty', () => {
       cy.mount(<QueryBuilderExample />)
 
@@ -119,9 +129,16 @@ describe('QueryBuilder', () => {
       cy.getByRole('alert')
         .should('be.visible')
         .and('contain', "A group can't be empty")
-    })
 
-    it('shows custom vaidation message for a single invalid rule', () => {
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'validation/error-empty-group',
+      })
+    })
+  })
+
+  describe('when query builder has custom validation checks for rules', () => {
+    it('shows custom validation message for a single invalid rule', () => {
       cy.mount(<QueryBuilderExample />)
 
       cy.getByTestId(testIds.addRuleButton).click()
@@ -129,17 +146,22 @@ describe('QueryBuilder', () => {
 
       cy.getByRole('alert')
         .should('be.visible')
-        .and('contain', firstnameValidationMessage)
+        .and('contain', firstNameValidationMessage)
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'validation/error-single-rule',
+      })
     })
 
-    it('shows custom vaidation message for multiple invalid rules', () => {
+    it('shows custom validation message for multiple invalid rules', () => {
       cy.mount(<QueryBuilderExample />)
 
       cy.getByTestId(testIds.addRuleButton).as('addRuleButton')
       cy.get('@addRuleButton').click()
       cy.get('@addRuleButton').click()
 
-      cy.getByTestId('fields').last().as('lastFieldSelector')
+      cy.getByTestId(testIds.fieldSelector).last().as('lastFieldSelector')
 
       cy.get('@lastFieldSelector').click()
 
@@ -157,8 +179,13 @@ describe('QueryBuilder', () => {
 
       cy.getByRole('alert')
         .should('be.visible')
-        .and('contain', firstnameValidationMessage)
-        .and('contain', lastnameValidationMessage)
+        .and('contain', firstNameValidationMessage)
+        .and('contain', lastNameValidationMessage)
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'validation/error-multiple-rules',
+      })
     })
   })
 
@@ -166,12 +193,17 @@ describe('QueryBuilder', () => {
     it('allows a maximum of `3` level group depth by default', () => {
       cy.mount(<QueryBuilderExample />)
 
-      cy.getByTestId('add-group').click()
+      cy.getByTestId(testIds.addGroupButton).click()
 
       getAddGroupButtonByDepth(1).click()
       getAddGroupButtonByDepth(2).click()
       getGroupByDepth(3).should('be.visible').and('exist')
       getAddGroupButtonByDepth(3).should('not.exist')
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'max-depth/default',
+      })
     })
   })
 
@@ -179,10 +211,15 @@ describe('QueryBuilder', () => {
     it('prevents adding new rule groups more than `maxGroupDepth`', () => {
       cy.mount(<QueryBuilderExample maxGroupDepth={1} />)
 
-      cy.getByTestId('add-group').click()
+      cy.getByTestId(testIds.addGroupButton).click()
 
       getGroupByDepth(1).should('be.visible').and('exist')
       getAddGroupButtonByDepth(1).should('not.exist')
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'max-depth/pre-defined',
+      })
     })
   })
 })

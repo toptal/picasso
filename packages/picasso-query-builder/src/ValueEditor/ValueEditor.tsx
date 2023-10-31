@@ -40,13 +40,16 @@ export const ValueEditor = ({
   fieldData,
   validation,
   context = {},
-  testID,
 }: QueryBuilderValueEditorProps) => {
   const classes = useStyles()
+
+  const valueEditorTestId = context?.testIds?.valueEditor
 
   const { touched, handleTouched } = useHandleTouched({
     submitButtonClicked: context?.submitButtonClicked,
   })
+
+  console.log('konte', context)
 
   switch (type) {
     case 'multiselect':
@@ -63,7 +66,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           fieldData={fieldData}
-          testID={testID}
+          valueEditorTestId={valueEditorTestId}
         />
       )
     case 'select':
@@ -78,7 +81,7 @@ export const ValueEditor = ({
           touched={touched}
           validation={validation}
           fieldData={fieldData}
-          testID={testID}
+          valueEditorTestId={valueEditorTestId}
         />
       )
     case 'autocomplete':
@@ -97,7 +100,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
-          testID={testID}
+          valueEditorTestId={valueEditorTestId}
         />
       )
     case 'range':
@@ -112,7 +115,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
-          testID={testID}
+          valueEditorTestId={valueEditorTestId}
         />
       )
     case 'boolean':
@@ -126,7 +129,7 @@ export const ValueEditor = ({
           touched={touched}
           validation={validation}
           fieldData={fieldData}
-          testID={testID}
+          valueEditorTestId={valueEditorTestId}
         />
       )
     default:
@@ -140,7 +143,7 @@ export const ValueEditor = ({
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}
-          testID={testID}
+          valueEditorTestId={valueEditorTestId}
         />
       )
   }

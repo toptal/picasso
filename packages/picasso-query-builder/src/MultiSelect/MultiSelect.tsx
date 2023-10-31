@@ -9,7 +9,10 @@ import type {
 } from '../types/query-builder'
 import styles from './styles'
 
-type Props = BaseVersatileSelectorProps & ValueEditorValidationProps
+type Props = BaseVersatileSelectorProps &
+  ValueEditorValidationProps & {
+    valueEditorTestId?: string
+  }
 
 const useStyles = makeStyles(styles)
 
@@ -23,7 +26,7 @@ export const MultiSelect = ({
   disabled,
   className,
   fieldData,
-  testID,
+  valueEditorTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -40,8 +43,6 @@ export const MultiSelect = ({
     return value?.split(',').filter(Boolean)
   }, [value])
 
-  console.log('test multiselect', testID)
-
   return (
     <Container className={classes.root}>
       <Select
@@ -55,7 +56,7 @@ export const MultiSelect = ({
         multiple
         value={values}
         status={hasError ? 'error' : undefined}
-        data-testid={testID}
+        data-testid={valueEditorTestId}
       />
     </Container>
   )

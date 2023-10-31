@@ -19,8 +19,9 @@ type Props = RangeFieldOptions & {
    */
   value: RangeValue | ''
   handleOnChange: (val: RangeValue) => void
+  valueEditorTestId?: string
 } & ValueEditorValidationProps &
-  Pick<CommonSubComponentProps, 'testID'>
+  Pick<CommonSubComponentProps, 'context'>
 
 const useStyles = makeStyles(styles)
 
@@ -33,7 +34,7 @@ export const RangeInput = ({
   icon,
   validation,
   handleTouched,
-  testID,
+  valueEditorTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -79,7 +80,7 @@ export const RangeInput = ({
               to: (value as RangeValue)?.to,
             })
           }}
-          data-testid={testID}
+          data-testid={valueEditorTestId}
         />
       </Container>
       <Typography variant='body' className={classes.label}>
@@ -108,7 +109,7 @@ export const RangeInput = ({
               to: max,
             })
           }}
-          data-testid={testID}
+          data-testid={valueEditorTestId}
         />
       </Container>
     </>

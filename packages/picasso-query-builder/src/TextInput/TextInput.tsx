@@ -13,8 +13,9 @@ type Props = {
   className?: string
   inputType?: string
   disabled?: boolean
+  valueEditorTestId?: string
 } & ValueEditorValidationProps &
-  Pick<CommonSubComponentProps, 'testID'>
+  Pick<CommonSubComponentProps, 'context'>
 
 const useStyles = makeStyles(styles)
 
@@ -27,7 +28,7 @@ export const TextInput = ({
   validation,
   touched,
   handleTouched,
-  testID,
+  valueEditorTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -47,7 +48,7 @@ export const TextInput = ({
         disabled={disabled}
         onBlur={() => handleTouched?.(true)}
         status={hasError ? 'error' : undefined}
-        data-testid={testID}
+        data-testid={valueEditorTestId}
       />
     </Container>
   )
