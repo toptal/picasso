@@ -214,7 +214,11 @@ const QueryBuilder = ({
           />
         </QueryBuilderDnD>
         {!hideControls && (
-          <Container flex justifyContent='flex-end'>
+          <Container
+            flex
+            justifyContent='flex-end'
+            data-testid={testIds?.controls}
+          >
             <ClearQueryButton onClick={resetQuery} />
             <RunQueryButton
               onClick={handleSubmit}

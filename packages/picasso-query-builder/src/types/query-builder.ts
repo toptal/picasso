@@ -73,4 +73,5 @@ export type TestId = {
   select?: string
   multiSelect?: string
   runQueryButton?: string
+  controls?: string
 }

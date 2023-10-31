@@ -55,9 +55,14 @@ const initialQuery = {
 const testIds = {
   runQueryButton: 'run-query-button',
   addRuleButton: 'add-rule-button',
+  controls: 'query-builder-controls',
 }
 
-const QueryBuilderExample = () => {
+type ExampleProps = {
+  maxGroupDepth?: number
+}
+
+const QueryBuilderExample = ({ maxGroupDepth }: ExampleProps) => {
   const [query, setQuery] = useState<RuleGroupTypeAny>(initialQuery)
 
   const { showSuccess } = useNotifications()
@@ -78,10 +83,17 @@ const QueryBuilderExample = () => {
         onQueryChange={handleQueryChange}
         onSubmit={handleSubmit}
         testIds={testIds}
+        maxGroupDepth={maxGroupDepth}
       />
     </Container>
   )
 }
+
+const getGroupByDepth = (depth: number) =>
+  cy.get(`.rule-group[data-level=${depth}]`)
+
+const getAddGroupButtonByDepth = (depth: number) =>
+  getGroupByDepth(depth).find('.rule-group-add-group')
 
 describe('QueryBuilder', () => {
   describe('when the query builder is valid', () => {
@@ -147,6 +159,30 @@ describe('QueryBuilder', () => {
         .should('be.visible')
         .and('contain', firstnameValidationMessage)
         .and('contain', lastnameValidationMessage)
+    })
+  })
+
+  describe('when `maxGroupDepth` is not set', () => {
+    it('allows a maximum of `3` level group depth by default', () => {
+      cy.mount(<QueryBuilderExample />)
+
+      cy.getByTestId('add-group').click()
+
+      getAddGroupButtonByDepth(1).click()
+      getAddGroupButtonByDepth(2).click()
+      getGroupByDepth(3).should('be.visible').and('exist')
+      getAddGroupButtonByDepth(3).should('not.exist')
+    })
+  })
+
+  describe('when `maxGroupDepth` is set', () => {
+    it('prevents adding new rule groups more than `maxGroupDepth`', () => {
+      cy.mount(<QueryBuilderExample maxGroupDepth={1} />)
+
+      cy.getByTestId('add-group').click()
+
+      getGroupByDepth(1).should('be.visible').and('exist')
+      getAddGroupButtonByDepth(1).should('not.exist')
     })
   })
 })

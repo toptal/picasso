@@ -16,6 +16,7 @@ export const AddGroupButton = ({
   disabled,
   context,
   level,
+  testID,
 }: Props) => {
   const { maxDepth, resetSubmitButtonClicked } = context || {}
 
@@ -33,6 +34,7 @@ export const AddGroupButton = ({
       }}
       className={className}
       disabled={disabled}
+      data-testid={testID}
     >
       Add Group
     </Button>
