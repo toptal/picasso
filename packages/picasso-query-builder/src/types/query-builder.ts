@@ -62,9 +62,22 @@ export type QueryBuilderContext = {
   removeGroup: (path: number[]) => void
   maxDepth: number
   queryBuilderValid?: boolean
+  submitButtonClicked: boolean
+  getDisabledFields: () => Field[]
+  testIds?: TestId
 }
 export type ValueEditorValidationProps = {
   validation?: ValidationResult | boolean
   touched?: boolean
   handleTouched?: (val?: boolean) => void
+}
+export type TestId = {
+  addRuleButton?: string
+  addGroupButton?: string
+  select?: string
+  multiSelect?: string
+  runQueryButton?: string
+  controls?: string
+  valueEditor?: string
+  fieldSelector?: string
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Input } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
+import type { CommonSubComponentProps } from 'react-querybuilder'
 
 import { validateValueEditor } from '../utils'
 import type { ValueEditorValidationProps } from '../types/query-builder'
@@ -12,7 +13,9 @@ type Props = {
   className?: string
   inputType?: string
   disabled?: boolean
-} & ValueEditorValidationProps
+  valueEditorTestId?: string
+} & ValueEditorValidationProps &
+  Pick<CommonSubComponentProps, 'context'>
 
 const useStyles = makeStyles(styles)
 
@@ -25,6 +28,7 @@ export const TextInput = ({
   validation,
   touched,
   handleTouched,
+  valueEditorTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -44,6 +48,7 @@ export const TextInput = ({
         disabled={disabled}
         onBlur={() => handleTouched?.(true)}
         status={hasError ? 'error' : undefined}
+        data-testid={valueEditorTestId}
       />
     </Container>
   )

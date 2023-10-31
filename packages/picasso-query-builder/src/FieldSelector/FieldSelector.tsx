@@ -4,7 +4,7 @@ import type { ComponentProps } from 'react'
 import { Select } from '../Select'
 
 export const FieldSelector = ({
-  context: { resetSubmitButtonClicked, getDisabledFields },
+  context: { resetSubmitButtonClicked, getDisabledFields, testIds },
   disabled,
   ...props
 }: ComponentProps<typeof Select>) => {
@@ -22,6 +22,7 @@ export const FieldSelector = ({
         props.handleOnChange(value)
       }}
       disabled={disabled || disabledFields.includes(props.value)}
+      valueEditorTestId={testIds?.fieldSelector}
     />
   )
 }

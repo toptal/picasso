@@ -19,7 +19,7 @@ import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import type { QueryBuilderContext, Field } from '../types/query-builder'
+import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
@@ -65,11 +65,7 @@ type Props = {
   totalCount?: number
   /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
   totalCountLoading?: boolean
-  testIds?: {
-    addRuleButton?: string
-    select?: string
-    multiSelect?: string
-  }
+  testIds?: TestId
 }
 
 const useStyles = makeStyles(styles)
@@ -218,13 +214,18 @@ const QueryBuilder = ({
           />
         </QueryBuilderDnD>
         {!hideControls && (
-          <Container flex justifyContent='flex-end'>
+          <Container
+            flex
+            justifyContent='flex-end'
+            data-testid={testIds?.controls}
+          >
             <ClearQueryButton onClick={resetQuery} />
             <RunQueryButton
               onClick={handleSubmit}
               loading={loading}
               totalCount={totalCount}
               totalCountLoading={totalCountLoading}
+              runQueryTestId={testIds?.runQueryButton}
             />
           </Container>
         )}

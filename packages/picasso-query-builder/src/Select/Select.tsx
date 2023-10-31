@@ -10,7 +10,9 @@ import styles from './styles'
 
 interface Props
   extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
-    ValueEditorValidationProps {}
+    ValueEditorValidationProps {
+  valueEditorTestId?: string
+}
 
 const useStyles = makeStyles(styles)
 
@@ -24,6 +26,7 @@ export const Select = ({
   disabled,
   className,
   fieldData,
+  valueEditorTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -45,6 +48,7 @@ export const Select = ({
         loading={fieldData?.loading}
         status={hasError ? 'error' : undefined}
         onBlur={() => handleTouched?.(true)}
+        data-testid={valueEditorTestId}
       />
     </Container>
   )

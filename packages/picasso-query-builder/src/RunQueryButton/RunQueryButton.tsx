@@ -3,12 +3,14 @@ import { Button, Container, Loader } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
+import type { TestId } from '../types/query-builder'
 
 type Props = {
   loading?: boolean
   onClick?: () => void
   totalCount?: number
   totalCountLoading?: boolean
+  runQueryTestId: TestId['runQueryButton']
 }
 
 const useStyles = makeStyles(styles)
@@ -18,6 +20,7 @@ export const RunQueryButton = ({
   onClick,
   totalCount,
   totalCountLoading,
+  runQueryTestId,
 }: Props) => {
   const classes = useStyles()
 
@@ -39,6 +42,7 @@ export const RunQueryButton = ({
       variant='positive'
       loading={loading}
       onClick={onClick}
+      data-testid={runQueryTestId}
     >
       Run Query {renderTotalCount()}
     </Button>
