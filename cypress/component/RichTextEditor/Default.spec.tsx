@@ -440,7 +440,7 @@ describe('RichTextEditor', () => {
       cy.get('body').click(0, 0)
 
       cy.get('@headerSelect').find('input').should('have.attr', 'disabled')
-      cy.get('@headerSelect').click({ timeout: 100 })
+      cy.get('@editor').realClick()
       // the click should not open select but just simply trigger focus on whole editor
       cy.get('@headerSelect').find('input').should('not.have.attr', 'disabled')
     })
@@ -468,6 +468,17 @@ describe('RichTextEditor', () => {
       )
 
       cy.get('body').happoScreenshot({ component, variant: 'long-placeholder' })
+    })
+  })
+
+  describe('when enter the editor by clickint the toolbar area', () => {
+    it('focuses the editor, but the toolbar is disabled', () => {
+      cy.mount(renderEditor(defaultProps))
+      setAliases()
+
+      cy.get('#footoolbar').click()
+      cy.get('@headerSelect').find('input').should('have.attr', 'disabled')
+      cy.get('@boldButton').should('have.attr', 'disabled')
     })
   })
 })
