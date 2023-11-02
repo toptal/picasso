@@ -86,7 +86,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   const renderSubtitle = () =>
     subtitle ? (
       <Typography
-        as={isString(title) ? undefined : 'div'}
+        as={isString(subtitle) ? undefined : 'div'}
         className={classes.subtitle}
         data-testid={testIds?.subtitle}
         size='medium'
