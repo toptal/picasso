@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.0.3
+
+### Patch Changes
+
+- [#3948](https://github.com/toptal/picasso/pull/3948) [`fdeaf1ba8`](https://github.com/toptal/picasso/commit/fdeaf1ba83b8506f96faeb9c8a3ff277f28bbd6e) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Section
+
+- fixed invalid DOM nesting when non-string `subtitle` is provided
+
 ## 41.0.2
 
 ### Patch Changes
