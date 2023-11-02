@@ -1,5 +1,5 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import type { Klass, LexicalNode } from 'lexical'
+import { $getSelection, type Klass, type LexicalNode } from 'lexical'
 import type { ReactElement, ReactNode } from 'react'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
@@ -72,8 +72,27 @@ export const RTEPluginContextProvider = ({
 }: ToolbarPortalProviderProps) => {
   const [disabledFormatting, setDisabledFormatting] = useState(false)
 
+  /**
+   * When the editor renders, the selection is null.
+   * As soon as we focus the lexical editor (we can see the blinking "I"), the selection is not null.
+   * When the user focuses the editor for first time by clicking into the toolbar area,
+   * the selection is still null and this functionality is covering this edge case.
+   * When the lexical editor has no selection, we disable the toolbar buttons.
+   **/
+  const [toolbarDisabled, setToolbarDisabled] = useState(true)
+
+  useRTEUpdate(() => {
+    const selection = $getSelection()
+
+    if (selection === null) {
+      setToolbarDisabled(true)
+    } else {
+      setToolbarDisabled(false)
+    }
+  })
+
   const value: RTEPluginContextValue = {
-    disabled,
+    disabled: toolbarDisabled || disabled,
     disabledFormatting,
     setDisabledFormatting,
     focused,
