@@ -203,7 +203,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
       <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1}>
         <RTEPluginContextProvider disabled={disabled} focused={focused}>
           <ToolbarPlugin
-            disabled={disabled || !focused}
             toolbarRef={toolbarRef}
             // remount Toolbar when disabled
             key={`${disabled || !focused}`}

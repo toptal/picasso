@@ -29,7 +29,6 @@ import { useRTEPluginContext, useRTEUpdate } from '../plugins/api'
 import { $isCodeBlockNode } from '../plugins/CodeBlockPlugin/nodes'
 
 type Props = {
-  disabled?: boolean
   id: string
   toolbarRef: React.RefObject<HTMLDivElement>
   testIds?: {
@@ -43,12 +42,7 @@ type Props = {
   }
 }
 
-const LexicalEditorToolbarPlugin = ({
-  disabled = false,
-  toolbarRef,
-  testIds,
-  id,
-}: Props) => {
+const LexicalEditorToolbarPlugin = ({ toolbarRef, testIds, id }: Props) => {
   const [editor] = useLexicalComposerContext()
   const { setDisabledFormatting } = useRTEPluginContext()
   const [{ bold, italic, list, header }, dispatch] = useReducer(
@@ -134,7 +128,6 @@ const LexicalEditorToolbarPlugin = ({
       onBoldClick={handleBoldClick}
       onItalicClick={handleItalicClick}
       onHeaderChange={handleHeaderClick}
-      disabled={disabled}
       ref={toolbarRef}
       testIds={testIds}
       id={id}

@@ -22,7 +22,6 @@ import type {
 } from './types'
 
 type Props = {
-  disabled: boolean
   id: string
   format: FormatType
   testIds?: {
@@ -50,7 +49,6 @@ export const ALLOWED_HEADER_TYPE = '3'
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
   function RichTextEditorToolbar(props: Props, ref) {
     const {
-      disabled,
       format,
       onBoldClick,
       onItalicClick,
@@ -62,13 +60,15 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     } = props
 
     const { setToolbarPortalEl } = useToolbarPortalRegister()
-    const { disabledFormatting } = useRTEPluginContext()
+    const { disabledFormatting, disabled, focused } = useRTEPluginContext()
 
     const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
 
     const classes = useStyles(props)
 
-    const isInlineFormattingDisabled = disabled || disabledFormatting
+    const isInlineFormattingDisabled =
+      disabled || disabledFormatting || !focused
+    const isBlockFormattingDisabled = disabled || !focused
 
     return (
       <Container
@@ -78,7 +78,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       >
         <Container
           className={cx(classes.group, {
-            groupDisabled: disabled,
+            groupDisabled: isBlockFormattingDisabled,
           })}
         >
           <Select
@@ -91,7 +91,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             size='small'
             menuWidth='auto'
             className={classes.select}
-            disabled={disabled}
+            disabled={isBlockFormattingDisabled}
             data-testid={testIds?.headerSelect}
           />
         </Container>
@@ -116,14 +116,14 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             icon={<ListUnordered16 />}
             onClick={onUnorderedClick}
             active={format.list === 'bullet'}
-            disabled={disabled}
+            disabled={isBlockFormattingDisabled}
             data-testid={testIds?.unorderedListButton}
           />
           <TextEditorButton
             icon={<ListOrdered16 />}
             onClick={onOrderedClick}
             active={format.list === 'ordered'}
-            disabled={disabled}
+            disabled={isBlockFormattingDisabled}
             data-testid={testIds?.orderedListButton}
           />
         </Container>
@@ -133,7 +133,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
 )
 
 RichTextEditorToolbar.defaultProps = {
-  disabled: false,
   format: {
     bold: false,
     italic: false,
