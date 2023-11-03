@@ -7,11 +7,7 @@ import DocumentationGenerator, {
   PropDocumentationMap,
   Documentable,
 } from '~/.storybook/utils/documentation-generator'
-import {
-  generateUrl,
-  getHost,
-  normalize,
-} from '../../../src/utils/url-generator'
+import { generateUrl, getHost, normalize } from '../../utils/url-generator'
 import { Typography } from '@toptal/picasso'
 
 import Base from './Base'
