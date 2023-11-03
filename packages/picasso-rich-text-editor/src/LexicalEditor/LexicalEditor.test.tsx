@@ -3,6 +3,8 @@ import { render, waitFor } from '@toptal/picasso/test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
+import type { LexicalComposerContextWithEditor } from '@lexical/react/LexicalComposerContext'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 
 import LexicalEditor from './LexicalEditor'
 import type { Props } from './LexicalEditor'
@@ -19,6 +21,10 @@ jest.mock('../LexicalEditorToolbarPlugin', () => ({
   default: jest.fn(() => <div>LexicalEditorToolbarPlugin</div>),
 }))
 
+jest.mock('@lexical/react/LexicalComposerContext', () => ({
+  __esModule: true,
+  useLexicalComposerContext: jest.fn(() => [{}]),
+}))
 jest.mock('../plugins', () => ({
   __esModule: true,
   ListPlugin: jest.fn(),
@@ -29,10 +35,6 @@ jest.mock('../plugins', () => ({
   ImagePlugin: jest.fn(),
 }))
 
-jest.mock('@lexical/react/LexicalComposerContext', () => ({
-  __esModule: true,
-  useLexicalComposerContext: jest.fn(() => [{}]),
-}))
 jest.mock('@lexical/react/LexicalHistoryPlugin', () => ({
   __esModule: true,
   HistoryPlugin: jest.fn(() => [{}]),
@@ -52,6 +54,11 @@ jest.mock('@lexical/react/LexicalOnChangePlugin', () => ({
   __esModule: true,
   OnChangePlugin: jest.fn(() => <div>OnChangePlugin</div>),
 }))
+
+const mockedUseLexicalComposerContext =
+  useLexicalComposerContext as jest.MockedFunction<
+    typeof useLexicalComposerContext
+  >
 
 const mockedLexicalTextLengthPlugin = TextLengthPlugin as jest.MockedFunction<
   typeof TextLengthPlugin
@@ -98,6 +105,15 @@ describe('LexicalEditor', () => {
     mockedOnChangePlugin.mockImplementation(() => null)
     mockedLexicalListPlugin.mockImplementation(() => <div />)
     mockedLexicalLinkPlugin.mockImplementation(() => <div />)
+    mockedUseLexicalComposerContext.mockImplementation(
+      () =>
+        [
+          {
+            registerUpdateListener: jest.fn(() => () => {}),
+            registerCommand: jest.fn(() => () => {}),
+          },
+        ] as unknown as LexicalComposerContextWithEditor
+    )
   })
 
   afterEach(() => {
@@ -155,24 +171,6 @@ describe('LexicalEditor', () => {
 
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
-          disabled: true,
-          id: 'id',
-          toolbarRef: {
-            current: null,
-          },
-        },
-        {}
-      )
-    })
-  })
-
-  describe('when disabled prop is passed', () => {
-    it('renders ToolbarPlugin with disabled prop', () => {
-      renderLexicalEditor({ disabled: true })
-
-      expect(mockedToolbarPlugin).toHaveBeenCalledWith(
-        {
-          disabled: true,
           id: 'id',
           toolbarRef: {
             current: null,
@@ -186,14 +184,12 @@ describe('LexicalEditor', () => {
   describe('when customEmojis and plugins prop is passed', () => {
     it('renders ToolbarPlugin with correct props', () => {
       renderLexicalEditor({
-        disabled: true,
         customEmojis: ['foo' as any],
         plugins: ['link'],
       })
 
       expect(mockedToolbarPlugin).toHaveBeenCalledWith(
         {
-          disabled: true,
           id: 'id',
           toolbarRef: {
             current: null,
