@@ -14014,10 +14014,10 @@ imagetracerjs@^1.2.5:
   resolved "https://registry.npmjs.org/imagetracerjs/-/imagetracerjs-1.2.6.tgz"
   integrity sha512-LKJlnKmXFzDdh6IZtXTyBxXcCLTAkwgKYS+NMiPXiXVnlTLjQC8fq7U89laUSgHtypJB3TdMMDK4ecG5NI/Cgw==
 
-immer@^10.0.1:
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-10.0.2.tgz#11636c5b77acf529e059582d76faf338beb56141"
-  integrity sha512-Rx3CqeqQ19sxUtYV9CU911Vhy8/721wRFnJv3REVGWUmoAcIwzifTsdmJte/MV+0/XpM35LZdQMBGkRIoLPwQA==
+immer@^10.0.2:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-10.0.3.tgz#a8de42065e964aa3edf6afc282dfc7f7f34ae3c9"
+  integrity sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==
 
 immer@^9.0.7:
   version "9.0.21"
@@ -20446,13 +20446,13 @@ react-popper@^1.3.7:
     typed-styles "^0.0.7"
     warning "^4.0.2"
 
-react-querybuilder@6.4.1:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/react-querybuilder/-/react-querybuilder-6.4.1.tgz#979ed0733c2867bd8eb18dd2f59d22a6f0521961"
-  integrity sha512-c0dgYeN3Qc1OwMFgv1tIluqDczEpv+QQrBoaC0fwgGt1gSf9WFZk6KjMUlRGS5hWpr6FuuNlw+9dUK7sevqYKw==
+react-querybuilder@6.5.3:
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/react-querybuilder/-/react-querybuilder-6.5.3.tgz#a052bba7814fa44ab55aaeae6b1f8f20490f45a5"
+  integrity sha512-4vhyJa3i5YzDMYmUrYfid++wp/EEKzc/hlS+7kvgX5IrT9Wa6LmIC/RafabjZqubnjysaSJ61AEmwUrleexCxA==
   dependencies:
     clsx "^1.2.1"
-    immer "^10.0.1"
+    immer "^10.0.2"
 
 react-refresh@^0.11.0:
   version "0.11.0"
@@ -25085,9 +25085,9 @@ yallist@^4.0.0:
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
 yaml@2, yaml@2.3.1, yaml@^1.10.0, yaml@^1.7.2:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.3.tgz#01f6d18ef036446340007db8e016810e5d64aad9"
-  integrity sha512-zw0VAJxgeZ6+++/su5AFoqBbZbrEakwu+X0M5HmcwUiBL7AzcuPKjj5we4xfQLp78LkEMpD0cOnUhmgOVy3KdQ==
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.4.tgz#53fc1d514be80aabf386dc6001eb29bf3b7523b2"
+  integrity sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==
 
 yargs-parser@20.2.4:
   version "20.2.4"
