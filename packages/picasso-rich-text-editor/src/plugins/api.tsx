@@ -74,7 +74,8 @@ export const RTEPluginContextProvider = ({
 
   /**
    * When the editor renders, the selection is null.
-   * As soon as we focus the lexical editor (we can see the blinking "I"), the selection is not null.
+   * As soon as we focus the lexical editor (we can see the blinking text edit cursor),
+   * the selection is not null.
    * When the user focuses the editor for first time by clicking into the toolbar area,
    * the selection is still null and this functionality is covering this edge case.
    * When the lexical editor has no selection, we disable the toolbar buttons.
