@@ -471,7 +471,7 @@ describe('RichTextEditor', () => {
     })
   })
 
-  describe('when enter the editor by clickint the toolbar area', () => {
+  describe('when enter the editor by clicking the toolbar area', () => {
     it('focuses the editor, but the toolbar is disabled', () => {
       cy.mount(renderEditor(defaultProps))
       setAliases()
