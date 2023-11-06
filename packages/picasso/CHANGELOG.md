@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.0.4
+
+### Patch Changes
+
+- [#3951](https://github.com/toptal/picasso/pull/3951) [`dec04b5d8`](https://github.com/toptal/picasso/commit/dec04b5d866e845d6952e447b607f4b28a7c0503) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### DatePicker
+
+- make datepickers work inside drawers
+
 ## 41.0.3
 
 ### Patch Changes
