@@ -6077,10 +6077,10 @@
     "@types/d3-transition" "*"
     "@types/d3-zoom" "*"
 
-"@types/debounce@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@types/debounce/-/debounce-1.2.1.tgz#79b65710bc8b6d44094d286aecf38e44f9627852"
-  integrity sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==
+"@types/debounce@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/debounce/-/debounce-3.0.0.tgz#ea4290f6e2d7ab99464c93b4a69b843d0993b181"
+  integrity sha512-SbehVj+zL0QFTufW3HP/Xvwr/kFWw1sFMLCvmyJdp5Xegbo81sqA2tByWlyeryvSwWBrY4drpLOtGPh0fkxjCQ==
 
 "@types/debug@^4.0.0":
   version "4.1.7"
