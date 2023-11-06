@@ -92,7 +92,6 @@
     "@types/debounce": "^1.2.1",
     "@types/esprima": "^4.0.3",
     "@types/happo-cypress": "^4.1.1",
-    "@types/jest-image-snapshot": "^3.1.0",
     "@types/react-truncate": "^2.3.4",
     "babel-loader": "^9.1.2",
     "brace": "^0.11.1",
