@@ -4,8 +4,8 @@ import type {
 } from '@toptal/picasso-rich-text-editor'
 
 // @ts-ignore 
-import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
-import React, { useCallback, useState } from 'react'
+//import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
+import React, { useCallback, useEffect, useState } from 'react'
 import type { Except } from 'type-fest'
 import { useForm } from 'react-final-form'
 
@@ -27,7 +27,22 @@ export type Props = RichTextEditorProps &
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
+  const [PicassoRichTextEditor, setPicassoRichTextEditor] = useState<any>(null);
+  useEffect(() => {
+    async function getModule() {
+      const picassoRichTextEditor = await import('@toptal/picasso-rich-text-editor')
+
+      setPicassoRichTextEditor(picassoRichTextEditor)
+    }
+
+    if (!PicassoRichTextEditor) {
+      getModule()
+    }
+  }, []);
+
+
   console.log('@@@ PicassoRichTextEditor', PicassoRichTextEditor)
+
 
   const { onChange, onFocus, defaultValue, label, titleCase, ...rest } = props
 
