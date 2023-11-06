@@ -25,6 +25,8 @@ export type Props = RichTextEditorProps &
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
+  console.log('@@@ PicassoRichTextEditor', PicassoRichTextEditor)
+
   const { onChange, onFocus, defaultValue, label, titleCase, ...rest } = props
 
   const { enforceHighlightAutofill, registerChangeOrFocus } =
