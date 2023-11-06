@@ -34,7 +34,7 @@
     "classnames": "^2.3.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
-    "react-querybuilder": "6.4.1",
+    "react-querybuilder": "6.5.4",
     "use-debounce": "^9.0.2"
   },
   "devDependencies": {
