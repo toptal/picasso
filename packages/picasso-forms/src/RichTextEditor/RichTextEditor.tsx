@@ -2,6 +2,8 @@ import type {
   ASTType,
   RichTextEditorProps,
 } from '@toptal/picasso-rich-text-editor'
+
+// @ts-ignore 
 import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
 import React, { useCallback, useState } from 'react'
 import type { Except } from 'type-fest'
