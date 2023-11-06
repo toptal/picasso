@@ -174,7 +174,11 @@ export const Container: ContainerProps = documentable(
             responsiveClasses,
             className
           )}
-          style={{ ...responsiveStyle, ...style }}
+          style={{
+            ...responsiveStyle,
+            ...style,
+            ...{ backgroundColor: 'red' },
+          }}
         >
           {children}
         </Component>
