@@ -28,6 +28,10 @@ page
     title: 'Range Mode',
     takeScreenshot: false,
   })
+  .addExample('DatePicker/story/Drawer.example.tsx', {
+    title: 'Drawer',
+    takeScreenshot: false,
+  })
   .addExample('DatePicker/story/WithOnBlurHandler.example.tsx', {
     title: 'With onBlur handler',
     description: 'Fire onBlur handler on click outside or navigate with tab',

@@ -5,6 +5,7 @@ import {
   Link,
   Typography,
   Button,
+  Drawer,
 } from '@toptal/picasso'
 import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
 import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
@@ -169,6 +170,41 @@ describe('DatePicker', () => {
     cy.getByTestId('reset-button').click()
 
     cy.getByTestId('date-picker-input').should('have.value', '')
+  })
+
+  it('works inside drawer', () => {
+    const DATEPICKER_INPUT_TESTID = 'datepicker-input'
+
+    const DrawerExample = () => {
+      const [val, setVal] = useState<Date>()
+
+      return (
+        <Drawer open>
+          <div style={{ height: '50vh' }}>
+            <DatePicker
+              testIds={{
+                input: DATEPICKER_INPUT_TESTID,
+              }}
+              value={val}
+              onChange={date => {
+                setVal(date as Date)
+              }}
+            />
+          </div>
+        </Drawer>
+      )
+    }
+
+    cy.mount(<DrawerExample />)
+
+    cy.getByTestId(DATEPICKER_INPUT_TESTID).as('input').click()
+    cy.getByTestId('day-button-15').click()
+
+    cy.get('@input')
+      .should('have.attr', 'value')
+      .and('match', /\d{1,2}-15-\d{4}/)
+
+    cy.get('body').happoScreenshot()
   })
 
   describe('when number of displayed months is more than one', () => {

@@ -14,7 +14,7 @@ import Container from '../Container'
 import type { InputProps } from '../Input'
 import Input from '../Input'
 import InputAdornment from '../InputAdornment'
-import { noop } from '../utils'
+import { ClickAwayListener, noop } from '../utils'
 import type {
   CalendarDateRange,
   DateOrDateRangeType,
@@ -253,7 +253,7 @@ export const DatePicker = (props: Props) => {
     )
   }
 
-  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+  const handleInputBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     const isFocusedInsideDatePicker = isInsideDatePicker(
       (event.relatedTarget || document.activeElement) as Node
     )
@@ -266,6 +266,15 @@ export const DatePicker = (props: Props) => {
     onBlur()
 
     setIsInputFocused(false)
+  }
+
+  const handleCalendarClickOutside = (
+    event: React.MouseEvent<unknown, unknown>
+  ) => {
+    if (!isInsideDatePicker(event.target as Node)) {
+      hideCalendar()
+      setIsInputFocused(false)
+    }
   }
 
   const handleInputChange = (
@@ -410,7 +419,7 @@ export const DatePicker = (props: Props) => {
           onKeyDown={handleInputKeydown}
           onClick={handleClick}
           onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={handleInputBlur}
           onResetClick={handleResetClick}
           value={inputValue}
           onChange={handleInputChange}
@@ -434,32 +443,35 @@ export const DatePicker = (props: Props) => {
           ref={popperRef}
           {...popperProps}
         >
-          <Calendar
-            activeMonth={activeMonth}
-            data-testid={testIds?.calendar}
-            ref={calendarRef}
-            range={range}
-            value={calendarValue ?? undefined}
-            minDate={normalizedMinDate}
-            maxDate={normalizedMaxDate}
-            disabledIntervals={disabledIntervals}
-            indicatedIntervals={indicatedIntervals}
-            renderDay={renderDay}
-            onChange={handleCalendarChange}
-            onBlur={handleBlur}
-            className={classes.calendar}
-            hasFooter={Boolean(footer)}
-            weekStartsOn={weekStartsOn}
-            numberOfMonths={numberOfMonths}
-          />
-          {footer && (
-            <div
-              className={classes.footer}
-              style={{ backgroundColor: footerBackgroundColor }}
-            >
-              {footer}
+          <ClickAwayListener onClickAway={handleCalendarClickOutside}>
+            <div>
+              <Calendar
+                activeMonth={activeMonth}
+                data-testid={testIds?.calendar}
+                ref={calendarRef}
+                range={range}
+                value={calendarValue ?? undefined}
+                minDate={normalizedMinDate}
+                maxDate={normalizedMaxDate}
+                disabledIntervals={disabledIntervals}
+                indicatedIntervals={indicatedIntervals}
+                renderDay={renderDay}
+                onChange={handleCalendarChange}
+                className={classes.calendar}
+                hasFooter={Boolean(footer)}
+                weekStartsOn={weekStartsOn}
+                numberOfMonths={numberOfMonths}
+              />
+              {footer && (
+                <div
+                  className={classes.footer}
+                  style={{ backgroundColor: footerBackgroundColor }}
+                >
+                  {footer}
+                </div>
+              )}
             </div>
-          )}
+          </ClickAwayListener>
         </Popper>
       )}
     </>
