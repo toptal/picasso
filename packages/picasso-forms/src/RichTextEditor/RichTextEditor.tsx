@@ -30,7 +30,12 @@ export const RichTextEditor = (props: Props) => {
   const [PicassoRichTextEditor, setPicassoRichTextEditor] = useState<any>(null);
   useEffect(() => {
     async function getModule() {
-      const picassoRichTextEditor = await import('@toptal/picasso-rich-text-editor')
+      let picassoRichTextEditor
+      try {
+        picassoRichTextEditor = await import('@toptal/picasso-rich-text-editor')
+      } catch (e) {
+        console.error('@@@ error occured', e) 
+      }
 
       setPicassoRichTextEditor(picassoRichTextEditor)
     }
