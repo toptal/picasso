@@ -84,7 +84,7 @@ export const RichTextEditor = (props: Props) => {
   }
 
   console.log('@@@ here 1', attemptedToLoadRichTextEditor, PicassoRichTextEditor)
-  if (attemptedToLoadRichTextEditor && PicassoRichTextEditor === null) {
+  if (attemptedToLoadRichTextEditor && PicassoRichTextEditor === undefined) {
     return <div>Please install RTE as a dependency</div>
   }
 
