@@ -34,7 +34,7 @@ export const RichTextEditor = (props: Props) => {
       let picassoRichTextEditor
       try {
         console.log('@@@ here 0')
-        picassoRichTextEditor = await import(/* webpackMode: 'weak' */ '@toptal/picasso-rich-text-editor')
+        picassoRichTextEditor = await import(/* webpackPrefetch: 1 */ '@toptal/picasso-rich-text-editor')
       } catch (e) {
         console.error('@@@ error occured', e) 
       }
