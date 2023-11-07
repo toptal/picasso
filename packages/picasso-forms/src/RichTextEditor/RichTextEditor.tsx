@@ -34,7 +34,12 @@ export const RichTextEditor = (props: Props) => {
       let picassoRichTextEditor
       try {
         console.log('@@@ here 0')
-        picassoRichTextEditor = await import(/* webpackPrefetch: 1 */ '@toptal/picasso-rich-text-editor')
+        /**
+         * webpackIgnore: true – fails in any case, as the path to module is not resolved from browser
+         * webpackPrefetch: 1 – fails when there is no module as webpack tries to preload it
+         * 
+         */
+        picassoRichTextEditor = await import(/* webpackMode: 'eager' */ '@toptal/picasso-rich-text-editor')
       } catch (e) {
         console.error('@@@ error occured', e) 
       }
