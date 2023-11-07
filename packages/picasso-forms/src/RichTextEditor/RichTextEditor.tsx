@@ -28,6 +28,7 @@ type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
   const [PicassoRichTextEditor, setPicassoRichTextEditor] = useState<any>(null);
+  const [attemptedToLoadRichTextEditor, setAttemptedToLoadRichTextEditor] = useState(false)
   useEffect(() => {
     async function getModule() {
       let picassoRichTextEditor
@@ -38,6 +39,7 @@ export const RichTextEditor = (props: Props) => {
       }
 
       setPicassoRichTextEditor(picassoRichTextEditor)
+      setAttemptedToLoadRichTextEditor(true)
     }
 
     if (!PicassoRichTextEditor) {
@@ -76,6 +78,15 @@ export const RichTextEditor = (props: Props) => {
   }, [onFocus, registerChangeOrFocus])
 
   const hiddenInputId = `${props.id}-hidden-input`
+
+  if (!attemptedToLoadRichTextEditor) {
+    return null
+  }
+
+  console.log('@@@ here 1', attemptedToLoadRichTextEditor, PicassoRichTextEditor)
+  if (attemptedToLoadRichTextEditor && PicassoRichTextEditor === null) {
+    return <div>Please install RTE as a dependency</div>
+  }
 
   return (
     <InputField<InternalProps>
