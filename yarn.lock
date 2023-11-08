@@ -5722,6 +5722,36 @@
     requireindex "^1.2.0"
     resolve-ts-aliases "^1.0.1"
 
+"@toptal/picasso-shared@12.1.0":
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/@toptal/picasso-shared/-/picasso-shared-12.1.0.tgz#40a1585e50476cdb0d28ed793277de7659e8cf91"
+  integrity sha512-8wIZ1RXayo2lHxoFACdgUJR3QVTWZHSEsXtdenddpVgS74/BxIZBn7U6JAPSMWXAf6gM7+u//ciVDIqoGd+aNA==
+  dependencies:
+    classnames "^2.3.1"
+    color "^4.2.3"
+
+"@toptal/picasso@^39.0.0":
+  version "39.3.0"
+  resolved "https://registry.yarnpkg.com/@toptal/picasso/-/picasso-39.3.0.tgz#d95feafbe1f1827aade3cae9722c1a85cea32614"
+  integrity sha512-z8C2bADwvWKSo3fGeDFF/fQk7KFmpuDFsIBUEOBB/kHtEdkO7vVuGhTg9dIRbP8eOBYc4hp3GkobV/NPfgMCWg==
+  dependencies:
+    "@toptal/picasso-shared" "12.1.0"
+    ap-style-title-case "^1.1.2"
+    classnames "^2.3.1"
+    d3 "^7.8.2"
+    d3-hierarchy "^3.1.2"
+    d3-zoom "^3"
+    date-fns "^2.30.0"
+    date-fns-tz "^2.0.0"
+    debounce "^1.2.1"
+    detect-browser "^5.3.0"
+    glider-js "^1.7.8"
+    react-content-loader "^6.2.1"
+    react-day-picker "^8.8.0"
+    react-dropzone "^14.2.3"
+    react-input-mask "^3.0.0-alpha.2"
+    react-truncate "^2.4.0"
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"
