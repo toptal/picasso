@@ -3,21 +3,10 @@ import type {
   RichTextEditorProps,
 } from '@toptal/picasso-rich-text-editor'
 
-// @ts-ignore 
-//import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
+import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
 import React, { useCallback, useEffect, useState } from 'react'
 import type { Except } from 'type-fest'
 import { useForm } from 'react-final-form'
-
-
-/*
-
-@toptal/picasso-rich-text-editor (includes form) depends @toptal/picasso-forms (remove upper boundary of dependency)
-+ testing
-
-syncpack and pd
-
-*/
 
 import type { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
@@ -30,16 +19,6 @@ type OverriddenProps = {
   initialValue?: never
 }
 
-// let picassoRichTextEditor
-
-// try {
-//   picassoRichTextEditor = await import('@toptal/picasso-rich-text-editor')
-// } catch {
-//   picassoRichTextEditor = () => {
-//     throw Error()
-//   }
-// }
-
 export type Props = RichTextEditorProps &
   Except<FieldProps<string>, keyof OverriddenProps> &
   OverriddenProps
@@ -47,28 +26,29 @@ export type Props = RichTextEditorProps &
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
-  const [PicassoRichTextEditor, setPicassoRichTextEditor] = useState<any>(null);
-  const [attemptedToLoadRichTextEditor, setAttemptedToLoadRichTextEditor] = useState(false)
-  useEffect(() => {
-    async function getModule() {
-      let picassoRichTextEditor
-      try {
-        console.log('@@@ here 0')
-        // webpackIgnore: true – fails in any case, as the path to module is not resolved from browser
-        // webpackPrefetch: 1 – fails when there is no module as webpack tries to preload it
-        picassoRichTextEditor = await import(/* webpackPrefetch: 1 */ '@toptal/picasso-rich-text-editor')
-      } catch (e) {
-        console.error('@@@ error occured', e) 
-      }
 
-      setPicassoRichTextEditor(picassoRichTextEditor)
-      setAttemptedToLoadRichTextEditor(true)
-    }
+  // const [PicassoRichTextEditor, setPicassoRichTextEditor] = useState<any>(null);
+  // const [attemptedToLoadRichTextEditor, setAttemptedToLoadRichTextEditor] = useState(false)
+  // useEffect(() => {
+  //   async function getModule() {
+  //     let picassoRichTextEditor
+  //     try {
+  //       console.log('@@@ here 0')
+  //       // webpackIgnore: true – fails in any case, as the path to module is not resolved from browser
+  //       // webpackPrefetch: 1 – fails when there is no module as webpack tries to preload it
+  //       picassoRichTextEditor = await import('@toptal/picasso-rich-text-editor')
+  //     } catch (e) {
+  //       console.error('@@@ error occured', e) 
+  //     }
 
-    if (!PicassoRichTextEditor) {
-      getModule()
-    }
-  }, []);
+  //     setPicassoRichTextEditor(picassoRichTextEditor)
+  //     setAttemptedToLoadRichTextEditor(true)
+  //   }
+
+  //   if (!PicassoRichTextEditor) {
+  //     getModule()
+  //   }
+  // }, []);
 
 
   console.log('@@@ PicassoRichTextEditor', PicassoRichTextEditor)
@@ -102,14 +82,14 @@ export const RichTextEditor = (props: Props) => {
 
   const hiddenInputId = `${props.id}-hidden-input`
 
-  if (!attemptedToLoadRichTextEditor) {
-    return null
-  }
+  // if (!attemptedToLoadRichTextEditor) {
+  //   return null
+  // }
 
-  console.log('@@@ here 1', attemptedToLoadRichTextEditor, PicassoRichTextEditor)
-  if (attemptedToLoadRichTextEditor && PicassoRichTextEditor === undefined) {
-    return <div>Please install RTE as a dependency</div>
-  }
+  // console.log('@@@ here 1', attemptedToLoadRichTextEditor, PicassoRichTextEditor)
+  // if (attemptedToLoadRichTextEditor && PicassoRichTextEditor === undefined) {
+  //   return <div>Please install RTE as a dependency</div>
+  // }
 
   return (
     <InputField<InternalProps>
