@@ -23,7 +23,7 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso": ">=39.0.0 < 40.0.0",
+    "@toptal/picasso": "^41.0.0",
     "@toptal/picasso-shared": "^13.0.0",
     "@material-ui/core": "4.12.4",
     "@lexical/utils": "0.11.2",
