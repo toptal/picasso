@@ -1,5 +1,15 @@
 # Change Log
 
+## 55.1.0
+
+### Minor Changes
+
+- [#3961](https://github.com/toptal/picasso/pull/3961) [`96d4e97b7`](https://github.com/toptal/picasso/commit/96d4e97b71966d67353f03c86364513a8259de6c) Thanks [@mkrl](https://github.com/mkrl)!
+
+### BarChart, LineChart
+
+- legend and bar indicators are now able to overflow beyond the container when required
+
 ## 55.0.1
 
 ### Patch Changes
