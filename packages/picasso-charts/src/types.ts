@@ -94,3 +94,10 @@ export type BarOptions = {
   dataItem?: any
   index?: number
 }
+
+// Private type for a prop not exported by recharts
+declare module 'recharts/types/chart/generateCategoricalChart' {
+  interface CategoricalChartProps {
+    overflow?: string
+  }
+}
