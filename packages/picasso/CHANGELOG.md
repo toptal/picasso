@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.0.5
+
+### Patch Changes
+
+- [#3962](https://github.com/toptal/picasso/pull/3962) [`043a09483`](https://github.com/toptal/picasso/commit/043a09483d994a4db714a7121dd84f29c6d36429) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Modal
+
+- remove MUI container scroll lock as we already use body scroll lock when open
+
 ## 41.0.4
 
 ### Patch Changes
