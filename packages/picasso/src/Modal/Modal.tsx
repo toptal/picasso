@@ -240,6 +240,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       maxWidth={false}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
       TransitionProps={transitionProps}
+      disableScrollLock
     >
       <ModalContext.Provider value>{children}</ModalContext.Provider>
 
