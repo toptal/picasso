@@ -3,7 +3,6 @@
 exports[`Modal renders 1`] = `
 <div
   id="modal-root"
-  style="overflow: hidden;"
 >
   <div
     aria-hidden="true"
@@ -115,7 +114,6 @@ exports[`Modal useModal opens and closes modal 1`] = `
   <div>
     <div
       class="Picasso-root"
-      style="overflow: hidden;"
     >
       <button
         aria-hidden="true"
@@ -186,7 +184,6 @@ exports[`Modal useModal opens and closes modal 2`] = `
   <div>
     <div
       class="Picasso-root"
-      style=""
     >
       <button
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
@@ -210,7 +207,6 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
   <div>
     <div
       class="Picasso-root"
-      style="overflow: hidden;"
     >
       <button
         aria-hidden="true"

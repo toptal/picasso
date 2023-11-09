@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PromptModal renders 1`] = `
-<body
-  style="padding-right: 0px; overflow: hidden;"
->
+<body>
   <div
     aria-hidden="true"
   >
@@ -96,9 +94,7 @@ exports[`PromptModal renders 1`] = `
 `;
 
 exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
-<body
-  style=""
->
+<body>
   <div>
     <div
       class="Picasso-root"
@@ -121,13 +117,10 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
 `;
 
 exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
-<body
-  style=""
->
+<body>
   <div>
     <div
       class="Picasso-root"
-      style="overflow: hidden;"
     >
       <button
         aria-hidden="true"
@@ -229,13 +222,10 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
 `;
 
 exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
-<body
-  style=""
->
+<body>
   <div>
     <div
       class="Picasso-root"
-      style=""
     >
       <button
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
@@ -255,13 +245,10 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
 `;
 
 exports[`PromptModal showPrompt with input returns result on Submit action 1`] = `
-<body
-  style=""
->
+<body>
   <div>
     <div
       class="Picasso-root"
-      style=""
     >
       <button
         class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
