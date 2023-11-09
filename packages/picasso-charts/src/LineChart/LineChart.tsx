@@ -230,6 +230,7 @@ export const LineChart = (props: Props) => {
           className={cx({
             [classes.hideBottomYAxisLabel]: !showBottomYAxisLabel,
           })}
+          overflow='visible'
         >
           <CartesianGrid stroke={palette.grey.lighter2} />
 
