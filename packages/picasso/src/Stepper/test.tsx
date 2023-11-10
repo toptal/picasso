@@ -80,4 +80,19 @@ describe('Stepper', () => {
 
     expect(spiedOnTitleCase).toHaveBeenCalledTimes(0)
   })
+
+  describe('when steps are custom nodes', () => {
+    it('renders', () => {
+      const steps = [
+        { key: '1', content: <span>Step 1</span> },
+        { key: '2', content: <span>Step 2</span> },
+        { key: '3', content: <span>Step 3</span> },
+        { key: '4', content: <span>Step 4</span> },
+      ]
+      const activeStep = 2
+      const { container } = renderStepper({ steps, active: activeStep })
+
+      expect(container).toMatchSnapshot()
+    })
+  })
 })

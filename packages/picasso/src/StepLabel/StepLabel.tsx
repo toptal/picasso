@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 import React from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
@@ -17,7 +17,7 @@ export interface Props
     TextLabelProps,
     HTMLAttributes<HTMLDivElement> {
   hideLabel: boolean
-  children: string
+  children: ReactNode
   active?: boolean
   completed?: boolean
   overflowEllipsis?: boolean
