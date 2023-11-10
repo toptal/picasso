@@ -255,9 +255,7 @@ describe('Page', () => {
         variant: 'default/sticky-sidebar-scroll-bottom',
       })
     })
-    // TODO: restore in https://toptal-core.atlassian.net/browse/FX-4358
-    it.skip('retains sticky position when Drawer is open', () => {
-      cy.viewport(1280, 800)
+    it('retains sticky position when Drawer is open', () => {
       cy.mount(<DrawerContent />)
 
       cy.getByTestId(TestIds.MENU_CONTAINER)
