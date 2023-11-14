@@ -1,19 +1,31 @@
 {
   "namedInputs": {
-    "default": ["{projectRoot}/**/*"]
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "production": [
+      "default"
+    ]
   },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build:package"]
+        "cacheableOperations": [
+          "build:package"
+        ]
       }
     }
   },
   "targetDefaults": {
     "build:package": {
-      "outputs": ["{projectRoot}/dist-package"],
-      "inputs": ["default"]
+      "outputs": [
+        "{projectRoot}/dist-package"
+      ],
+      "inputs": [
+        "default"
+      ]
     }
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
