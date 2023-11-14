@@ -1,0 +1,3 @@
+#!/bin/sh
+
+yarn davinci-ci danger --local
