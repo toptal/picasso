@@ -98,7 +98,7 @@
     "cache-loader": "^4.1.0",
     "chalk": "^4.1.0",
     "copy-to-clipboard": "^3.3.2",
-    "core-js": "^3.32.2",
+    "core-js": "^3.33.2",
     "cross-env": "^7.0.3",
     "cypress": "^12.15.0",
     "cypress-plugin-tab": "^1.0.5",
