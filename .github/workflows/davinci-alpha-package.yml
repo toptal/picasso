@@ -2,7 +2,7 @@ name: Release Alpha Package
 
 on:
   issue_comment:
-    types: [ created ]
+    types: [created]
 
 jobs:
   triggerPrWorkflow:
@@ -11,12 +11,40 @@ jobs:
       github.event.issue.pull_request &&
       github.event.comment.body == '@toptal-bot run package:alpha-release'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+      issues: write
+      pull-requests: write
     env:
-      GITHUB_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
       STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
+      - name: GSM Secrets
+        id: secrets_manager
+        uses: toptal/davinci-github-actions/gsm-secrets@master
+        with:
+          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+          service_account: ${{ secrets.SA_IDENTITY_POOL }}
+          secrets_name: |-
+            HTTP_PROXY:toptal-ci/HTTP_PROXY
+            NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
+            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+            TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
+            TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
+
+      - name: Parse secrets
+        id: parse_secrets
+        uses: toptal/davinci-github-actions/expose-json-outputs@ci-add-gsm-actions-to-public-repos
+        with:
+          json: ${{ steps.secrets_manager.outputs.secrets }}
+
+      - name: Set ENV Variables
+        run: |-
+          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN_PUBLISH }}" >> $GITHUB_ENV
+
       - name: Feedback on action started
         uses: actions/github-script@v6
         with:
@@ -107,9 +135,9 @@ jobs:
       - uses: toptal/davinci-github-actions/create-jira-deployment@v12.0.0
         name: Create Jira deployment
         env:
-          JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
-          JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-          PROXY: http://${{ secrets.HTTP_PROXY }}
+          JENKINS_USER: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          JENKINS_BUILD_TOKEN: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          PROXY: http://${{ steps.parse_secrets.outputs.HTTP_PROXY }}
         with:
           token: ${{ env.GITHUB_TOKEN }}
           environment: development

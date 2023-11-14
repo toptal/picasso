@@ -10,16 +10,39 @@ on:
 env:
   PR_NUMBER: ${{ github.event.number }}
   PR_BODY: ${{ github.event.pull_request.body }}
-  DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-
 jobs:
   merge-release-pr:
     if: ${{ github.event.pull_request.head.ref == 'changeset-release/master' }}
     name: Merge release PR
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+      issues: write
+      pull-requests: write
     timeout-minutes: 1
 
     steps:
+      - name: GSM Secrets
+        id: secrets_manager
+        uses: toptal/davinci-github-actions/gsm-secrets@master
+        with:
+          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+          service_account: ${{ secrets.SA_IDENTITY_POOL }}
+          secrets_name: |-
+            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+
+      - name: Parse secrets
+        id: parse_secrets
+        uses: toptal/davinci-github-actions/expose-json-outputs@master
+        with:
+          json: ${{ steps.secrets_manager.outputs.secrets }}
+
+      - name: Set ENV Variables
+        run: |-
+          echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+
       - name: Merge pull request if the release is not major
         uses: actions/github-script@v6
         with:
