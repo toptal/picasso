@@ -118,7 +118,7 @@
     "happo.io": "^8.3.1",
     "istanbul-merge": "^2.0.0",
     "jest-canvas-mock": "^2.5.0",
-    "lerna": "^6.6.2",
+    "lerna": "^7.4.2",
     "madge": "^6.1.0",
     "raw-loader": "^4.0.2",
     "react": "^18.2.0",
