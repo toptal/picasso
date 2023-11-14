@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.1.0
+
+### Minor Changes
+
+- [#3966](https://github.com/toptal/picasso/pull/3966) [`386c7f484`](https://github.com/toptal/picasso/commit/386c7f484204cb416bb35fbffe990991165a5c8d) Thanks [@Gtosta96-Toptal](https://github.com/Gtosta96-Toptal)!
+
+### Stepper
+
+- implement custom stepper content
+
 ## 41.0.5
 
 ### Patch Changes
