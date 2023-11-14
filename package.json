@@ -100,7 +100,7 @@
     "copy-to-clipboard": "^3.3.2",
     "core-js": "^3.33.2",
     "cross-env": "^7.0.3",
-    "cypress": "^12.15.0",
+    "cypress": "^13.5.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-real-events": "^1.10.0",
     "date-fns": "^2.30.0",
