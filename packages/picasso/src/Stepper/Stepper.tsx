@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, Key, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
@@ -19,8 +19,8 @@ export interface StepperBaseProps
   /** The index of the active step */
   active?: number
   /** Array of the step labels */
-  steps: string[]
-  /** Enable overflow ellipsis for labels */
+  steps: string[] | { key: Key; content: ReactNode }[]
+  /** Enable overflow ellipsis for labels (it will not work when custom block-level `steps.content` element is provided (for example, steps={[{ key: 'foo', content: <div>Longstring</div> }]}) */
   overflowEllipsis?: boolean
 }
 
@@ -56,18 +56,35 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
       style={style}
       orientation={direction}
     >
-      {steps.map((label, stepIndex) => (
-        <Step key={label}>
-          <StepLabel
-            active={stepIndex === active}
-            hideLabel={hideLabels}
-            titleCase={titleCase}
-            overflowEllipsis={overflowEllipsis}
-          >
-            {label}
-          </StepLabel>
-        </Step>
-      ))}
+      {steps.map((step, stepIndex) => {
+        if (typeof step === 'string') {
+          return (
+            <Step key={step}>
+              <StepLabel
+                active={stepIndex === active}
+                hideLabel={hideLabels}
+                titleCase={titleCase}
+                overflowEllipsis={overflowEllipsis}
+              >
+                {step}
+              </StepLabel>
+            </Step>
+          )
+        }
+
+        return (
+          <Step key={step.key}>
+            <StepLabel
+              active={stepIndex === active}
+              hideLabel={hideLabels}
+              titleCase={titleCase}
+              overflowEllipsis={overflowEllipsis}
+            >
+              {step.content}
+            </StepLabel>
+          </Step>
+        )
+      })}
     </MUIStepper>
   )
 })
