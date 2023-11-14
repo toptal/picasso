@@ -50,12 +50,12 @@ jobs:
         if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
         run: |
           yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional
+          yarn install --frozen-lockfile
       - name: Install Dependencies (from cache)
         if: ${{ steps.yarn-cache.outputs.cache-hit == 'true' }}
         run: |
           yarn policies set-version
-          yarn install --frozen-lockfile --ignore-optional --offline
+          yarn install --frozen-lockfile --offline
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
