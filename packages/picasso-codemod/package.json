@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "execa": "^7.1.1",
-    "globby": "^13.2.0",
+    "globby": "^14.0.0",
     "jscodeshift": "^0.13.1",
     "meow": "^10.1.3"
   }
