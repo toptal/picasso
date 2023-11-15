@@ -13,7 +13,7 @@ import type {
   SizeType,
   TransitionProps,
 } from '@toptal/picasso-shared'
-import { usePicassoRoot, useBreakpoint, RootContext } from '@toptal/picasso-provider'
+import { usePicassoRoot, RootContext } from '@toptal/picasso-provider'
 // import { Fade } from '@material-ui/core'
 
 import { CloseMinor16 } from '../Icon'
@@ -197,8 +197,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
 
   usePageScrollLock(open)
 
-  const isExtraSmall = useBreakpoint('xs')
-
   const handleClose = useCallback(
     (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
       if (reason === 'escapeKeyDown' && onClose) {
@@ -215,8 +213,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     },
     [disableBackdropClick, onBackdropClick, onClose]
   )
-
-  useBodyScrollLock(open)
 
   const duration = transitionProps?.timeout || transitionDuration
 
