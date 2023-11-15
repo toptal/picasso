@@ -59,7 +59,6 @@
     "@types/glider-js": "^1.7.8",
     "@types/react-input-mask": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.25",
     "popper.js": "^1.16.1",
     "react-router-dom": "^5.3.4",
     "storybook-readme": "^5.0.9",
