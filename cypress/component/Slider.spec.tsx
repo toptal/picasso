@@ -1,5 +1,6 @@
 import React from 'react'
 import type { SliderProps } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import { Slider, Typography, Container } from '@toptal/picasso'
 
 const TestSlider = ({
@@ -7,7 +8,7 @@ const TestSlider = ({
   onChange,
   tooltipFormat,
 }: Partial<SliderProps> = {}) => (
-  <Container style={{ width: '600px' }} padded='medium'>
+  <Container style={{ width: '600px' }} padded={SPACING_6}>
     <Slider
       data-testid='slider'
       value={value}

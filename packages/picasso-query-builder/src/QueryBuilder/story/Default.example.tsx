@@ -5,7 +5,7 @@ import {
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { SPACING_6, useNotifications } from '@toptal/picasso/utils'
 
 const initialQuery = {
   rules: [],
@@ -265,7 +265,7 @@ const Example = () => {
         onSubmit={handleSubmit}
         testIds={testIds}
       />
-      <Container top='medium'>
+      <Container top={SPACING_6}>
         <Accordion content={<pre>{JSON.stringify(query, null, 2) + '\n'}</pre>}>
           <Accordion.Summary>Query</Accordion.Summary>
         </Accordion>

@@ -6,6 +6,7 @@ import {
   Container,
   Check16,
 } from '@toptal/picasso'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
 
 const Summary = ({
   onClick,
@@ -18,8 +19,8 @@ const Summary = ({
     flex
     alignItems='center'
     justifyContent='space-between'
-    bottom='small'
-    top='small'
+    bottom={SPACING_4}
+    top={SPACING_4}
   >
     <Typography variant='heading' size='medium'>
       Upcoming interviews
@@ -37,7 +38,7 @@ const Content = () => (
     bordered
     flex
     justifyContent='space-around'
-    padded='medium'
+    padded={SPACING_6}
     data-testid='content'
   >
     <Button

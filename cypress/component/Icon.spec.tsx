@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import * as icons from '@toptal/picasso/Icon'
 
 const component = 'Icon'
@@ -16,7 +17,7 @@ describe('Icon', () => {
           return (
             <Container
               bordered
-              padded='small'
+              padded={SPACING_4}
               style={{
                 overflow: 'hidden',
                 textAlign: 'center',

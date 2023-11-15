@@ -1,5 +1,6 @@
 import React from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const component = 'AvatarUpload'
 
@@ -18,7 +19,7 @@ describe('AvatarUpload', () => {
 
     it('renders upload icon over image avatar', () => {
       cy.mount(
-        <Container padded='small' gap='small'>
+        <Container padded={SPACING_4} gap={SPACING_4}>
           <AvatarUpload src={src} alt='avatar' />
           <AvatarUpload src={src} alt='avatar' size='large' />
         </Container>

@@ -1,5 +1,6 @@
 import React from 'react'
 import type { CarouselProps } from '@toptal/picasso'
+import { SPACING_2 } from '@toptal/picasso/utils'
 import { Carousel, Container, Settings16, Typography } from '@toptal/picasso'
 
 type SlideExampleProps = {
@@ -11,7 +12,7 @@ const SlideExample = ({ children, dataTestid }: SlideExampleProps) => {
     <div>
       <Container
         flex
-        gap='xsmall'
+        gap={SPACING_2}
         direction='column'
         alignItems='center'
         style={{ maxWidth: '100%' }}

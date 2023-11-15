@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import type { TableProps } from '@toptal/picasso'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
 import {
   Button,
   Calendar16,
@@ -172,7 +173,7 @@ const SelectableExample = (props: Omit<TableProps, 'children'> = {}) => {
 }
 
 const ExpandableContent = () => (
-  <Container padded='small'>
+  <Container padded={SPACING_4}>
     <Tabs value={1}>
       <Tabs.Tab label='Job' />
       <Tabs.Tab label='Company' />
@@ -184,8 +185,8 @@ const ExpandableContent = () => (
       direction='row'
       alignItems='center'
       justifyContent='space-between'
-      top='medium'
-      bottom='medium'
+      top={SPACING_6}
+      bottom={SPACING_6}
     >
       <UserBadge name='Jacqueline Roque'>
         <Typography data-testid='job' size='xsmall'>
@@ -205,7 +206,7 @@ const ExpandableContent = () => (
       </Container>
     </Container>
 
-    <Container top='small'>
+    <Container top={SPACING_4}>
       <Tag>$2k Design Credit</Tag>
     </Container>
   </Container>

@@ -1,4 +1,5 @@
 import type { DatePickerProps, DatePickerValue } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 import {
   Container,
   DatePicker,
@@ -17,7 +18,7 @@ const TestDatePicker = (props: Partial<DatePickerProps>) => {
   )
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <DatePicker {...props} onChange={setValue} value={value} />
     </Container>
   )
@@ -134,7 +135,7 @@ describe('DatePicker', () => {
     }
 
     return (
-      <Container padded='medium' flex>
+      <Container padded={SPACING_6} flex>
         <Button
           data-testid='reset-button'
           onClick={() => {

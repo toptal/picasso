@@ -7,6 +7,7 @@ import {
   UserBadge,
   ChevronRight16,
 } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const PURPLE_MAIN = 'rgb(103, 39, 207)'
 const GREY = 'rgb(196, 198, 202)'
@@ -17,7 +18,7 @@ const TestUserBadgeLink = () => {
       <Menu.Item disableGutters>
         <Link href='/' style={{ width: '100%' }} noUnderline>
           <Container
-            padded='medium'
+            padded={SPACING_6}
             flex
             direction='row'
             alignItems='center'

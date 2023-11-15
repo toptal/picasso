@@ -5,6 +5,7 @@ import type {
 } from '@toptal/picasso-rich-text-editor'
 import { ImagePlugin, RichTextEditor } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 
 const editorTestId = 'editor'
 const imageUploadButtonTestId = 'image-upload-button'
@@ -26,9 +27,9 @@ const Editor = (props: RichTextEditorProps) => {
   const [value, setValue] = useState('')
 
   return (
-    <Container style={{ maxWidth: '600px' }} padded='small'>
+    <Container style={{ maxWidth: '600px' }} padded={SPACING_4}>
       <RichTextEditor {...props} onChange={value => setValue(value)} />
-      <Container padded='small' data-testid={resultContainerTestId}>
+      <Container padded={SPACING_4} data-testid={resultContainerTestId}>
         {value}
       </Container>
     </Container>

@@ -7,6 +7,7 @@ import ButtonCircular from '../ButtonCircular'
 import Typography from '../Typography'
 import { ChevronMinor24, BackMinor24 } from '../Icon'
 import Container from '../Container'
+import { SPACING_6 } from '../utils'
 import { useCalendar } from '../CalendarContext'
 
 interface RenderMonthHeaderProps {
@@ -82,7 +83,7 @@ const CalendarMonthHeader = (props: RenderMonthHeaderProps) => {
   }
 
   const defaultComponent = (
-    <Container flex justifyContent='space-between' bottom='medium'>
+    <Container flex justifyContent='space-between' bottom={SPACING_6}>
       {hidePrevious ? (
         <div />
       ) : (

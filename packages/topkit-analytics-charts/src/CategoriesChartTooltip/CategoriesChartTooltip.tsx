@@ -1,5 +1,6 @@
 import React from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
+import { SPACING_2 } from '@toptal/picasso/utils'
 
 import type { DataItem, TooltipMap } from '../CategoriesChart/types'
 import { getDisplayTexts } from './utils'
@@ -38,7 +39,7 @@ const CategoriesChartTooltip = ({
 
     return (
       <Paper data-testid={testIds?.paper}>
-        <Container padded='xsmall'>
+        <Container padded={SPACING_2}>
           {teamTexts.map(({ key, label, value, color }) => (
             <Typography size='medium' style={{ color }} key={key}>
               {label}: {value}

@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import { Search16 as Search } from '../Icon'
 import Container from '../Container'
+import { SPACING_2 } from '../utils'
 import Typography from '../Typography'
 import styles from './styles'
 
@@ -37,7 +38,7 @@ export const EmptyStateCollection = forwardRef<HTMLDivElement, Props>(
           alignItems='center'
           className={classes.iconWrapper}
           flex
-          right='xsmall'
+          right={SPACING_2}
         >
           {iconElement}
         </Container>

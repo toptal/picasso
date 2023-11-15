@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications, SPACING_6 } from '@toptal/picasso/utils'
 import {
   Button,
   Container,
@@ -14,7 +14,7 @@ const DefaultExample = () => {
   const { showInfo } = useNotifications()
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Button
         data-testid='trigger-default'
         variant='secondary'
@@ -34,7 +34,7 @@ const VariantsExample = () => {
   const { showInfo, showSuccess, showError } = useNotifications()
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Button
         data-testid='trigger-success'
         variant='secondary'
@@ -89,7 +89,7 @@ const CustomContentExample = () => {
   )
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Button
         data-testid='trigger-custom-content'
         variant='secondary'

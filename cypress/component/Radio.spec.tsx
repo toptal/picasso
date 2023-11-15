@@ -1,9 +1,10 @@
 import React from 'react'
 import { Container, Radio, Tooltip } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso/utils'
 
 const RadioExample = () => {
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Radio label='Radio 1' value='radio1' data-testid='trigger' />
     </Container>
   )
@@ -13,7 +14,7 @@ const RadioWithTooltipExample = () => {
   const tooltipContent = <span data-testid='tooltip-content'>Content</span>
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Tooltip content={tooltipContent}>
         <Radio label='Radio 1' value='radio1' data-testid='trigger' />
       </Tooltip>
@@ -25,7 +26,7 @@ const DisabledRadioWithTooltipExample = () => {
   const tooltipContent = <span data-testid='tooltip-content'>Content</span>
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Tooltip content={tooltipContent}>
         <Container as='span'>
           <Radio

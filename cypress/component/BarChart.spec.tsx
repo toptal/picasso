@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import { Container, Paper, Typography } from '@toptal/picasso'
+import { SPACING_2, palette } from '@toptal/picasso/utils'
 import { BarChart } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
 import BarChartIndicator from '@toptal/picasso-charts/BarChartIndicator'
 
 const INDICATORS: any = {
@@ -15,7 +15,7 @@ const CustomTooltip = ({ active, payload }: any) => {
 
     return (
       <Paper data-testid='tooltip'>
-        <Container padded='xsmall'>
+        <Container padded={SPACING_2}>
           <Typography size='medium' color='red'>
             Infected: {infected}
           </Typography>

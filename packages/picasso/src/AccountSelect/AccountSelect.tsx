@@ -12,6 +12,7 @@ import Link from '../Link'
 import Container from '../Container'
 import { ChevronRight16 } from '../Icon'
 import styles from './styles'
+import { SPACING_6 } from '../utils'
 
 type Account = {
   /** User's id */
@@ -64,7 +65,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
               noUnderline
             >
               <Container
-                padded='medium'
+                padded={SPACING_6}
                 flex
                 direction='row'
                 alignItems='center'

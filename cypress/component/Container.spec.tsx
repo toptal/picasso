@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
 
 const component = 'Container'
 
@@ -7,13 +8,18 @@ describe('Container', () => {
   it('renders white and transparent variants with grey background', () => {
     cy.mount(
       <div style={{ padding: '1.5rem', backgroundColor: 'grey' }}>
-        <Container padded='medium' bottom='small' top='small' variant='white'>
+        <Container
+          padded={SPACING_6}
+          bottom={SPACING_4}
+          top={SPACING_4}
+          variant='white'
+        >
           White variant
         </Container>
         <Container
-          padded='medium'
-          bottom='small'
-          top='small'
+          padded={SPACING_6}
+          bottom={SPACING_4}
+          top={SPACING_4}
           variant='transparent'
         >
           Transparent variant
@@ -31,18 +37,18 @@ describe('Container', () => {
     cy.mount(
       <div style={{ padding: '1.5rem' }}>
         <Container
-          padded='medium'
-          bottom='small'
-          top='small'
+          padded={SPACING_6}
+          bottom={SPACING_4}
+          top={SPACING_4}
           variant='white'
           bordered
         >
           White variant
         </Container>
         <Container
-          padded='medium'
-          bottom='small'
-          top='small'
+          padded={SPACING_6}
+          bottom={SPACING_4}
+          top={SPACING_4}
           variant='transparent'
           bordered
         >

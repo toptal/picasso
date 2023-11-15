@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes } from 'react'
 import React, { useState } from 'react'
 import { Form } from '@toptal/picasso-forms'
-import { isSubstring, noop } from '@toptal/picasso/utils'
+import { isSubstring, noop, SPACING_6 } from '@toptal/picasso/utils'
 import type {
   AutocompleteItem,
   TagProps,
@@ -44,7 +44,7 @@ const TagSelectorExample = ({
   }
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <TagSelector
         {...props}
         placeholder='Start typing...'
@@ -67,7 +67,7 @@ const InitiallySelectedOptionExample = () => {
   }
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <Form onSubmit={noop} initialValues={initialValues}>
         <Form.TagSelector
           name='options'
@@ -89,7 +89,7 @@ const TagSelectorCustomLabelOptionRendererExample = () => {
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   return (
-    <Container padded='medium'>
+    <Container padded={SPACING_6}>
       <TagSelector
         options={options}
         placeholder='Start typing...'

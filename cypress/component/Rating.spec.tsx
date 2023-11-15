@@ -1,5 +1,6 @@
 import React from 'react'
 import type { RatingStarsProps } from '@toptal/picasso'
+import { SPACING_4 } from '@toptal/picasso/utils'
 import { Container, Pin16, PinSolid16, Rating } from '@toptal/picasso'
 import RatingIcon from '@toptal/picasso/RatingIcon'
 
@@ -10,7 +11,7 @@ const defaultProps: RatingStarsProps = {
 }
 
 const renderRating = (props = defaultProps) => (
-  <Container padded='small'>
+  <Container padded={SPACING_4}>
     <Rating.Stars {...props} />
   </Container>
 )

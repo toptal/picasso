@@ -6,6 +6,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'
 import Container from '../Container'
+import { SPACING_4 } from '../utils'
 import Typography from '../Typography'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -30,7 +31,7 @@ export const HelpboxTitle = forwardRef<HTMLDivElement, Props>(
         classes={classes}
         className={className}
         style={style}
-        bottom='small'
+        bottom={SPACING_4}
       >
         <Typography variant='heading' size='small'>
           {children}

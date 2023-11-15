@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import debounce from 'debounce'
 import type { AutocompleteProps } from '@toptal/picasso'
+import { SPACING_6, isSubstring } from '@toptal/picasso/utils'
 import { Autocomplete, Globe16, Check16, Container } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
 
 const MIN_CHARS_TO_LOAD = 2
 
@@ -112,7 +112,7 @@ const testIds = {
 }
 
 const TestAutocomplete = (props: Partial<AutocompleteProps>) => (
-  <Container padded='medium'>
+  <Container padded={SPACING_6}>
     <Autocomplete value='' options={OPTIONS} testIds={testIds} {...props} />
   </Container>
 )
