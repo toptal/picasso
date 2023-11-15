@@ -23,6 +23,12 @@ module.exports = {
 
     './addons/anchor-link-handler/register',
     './addons/document-title/register',
+    {
+      name: '@storybook/addon-styling',
+      options: {
+        postCss: true,
+      },
+    },
   ],
   staticDirs: ['./public'],
   stories: [path.join(__dirname, './load-stories.js')],
