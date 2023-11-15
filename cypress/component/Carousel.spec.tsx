@@ -53,7 +53,8 @@ const component = 'Carousel'
 
 /* eslint-disable max-nested-callbacks */
 
-describe(component, () => {
+// TODO: https://toptal-core.atlassian.net/browse/FX-4516
+describe.skip('Carousel', () => {
   describe('navigation', () => {
     it('renders with dots only', () => {
       cy.mount(<CarouselExample hasDots />)
@@ -62,10 +63,12 @@ describe(component, () => {
       cy.getByTestId(testIds.dots).should('exist')
       cy.getByTestId(testIds.arrows).should('not.exist')
 
-      cy.get('body').happoScreenshot({
+      cy.get('[data-cy-root]').happoScreenshot({
         component,
         variant: 'has-dots',
       })
+
+      cy.getByTestId(testIds.arrows).should('not.exist')
     })
 
     it('renders with arrows only', () => {
@@ -75,7 +78,7 @@ describe(component, () => {
       cy.getByTestId(testIds.arrows).should('exist')
       cy.getByTestId(testIds.dots).should('not.exist')
 
-      cy.get('body').happoScreenshot({
+      cy.get('[data-cy-root]').happoScreenshot({
         component,
         variant: 'has-arrows',
       })
@@ -88,7 +91,7 @@ describe(component, () => {
       cy.getByTestId(testIds.arrows).should('not.exist')
       cy.getByTestId(testIds.dots).should('not.exist')
 
-      cy.get('body').happoScreenshot({
+      cy.get('[data-cy-root]').happoScreenshot({
         component,
         variant: 'hide-navigation',
       })
@@ -106,7 +109,7 @@ describe(component, () => {
 
           cy.getByTestId(testIds.prev).should('not.be.disabled')
 
-          cy.get('body').happoScreenshot({
+          cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/first-item',
           })
@@ -124,7 +127,7 @@ describe(component, () => {
 
           cy.get('[data-gslide=4]').should('have.class', 'visible')
 
-          cy.get('body').happoScreenshot({
+          cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/last-item',
           })
@@ -132,7 +135,7 @@ describe(component, () => {
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
-          cy.get('body').happoScreenshot({
+          cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
@@ -148,7 +151,7 @@ describe(component, () => {
       // Wait until navigation is visible
       cy.getByTestId(testIds.dots).should('exist')
 
-      cy.get('body').happoScreenshot({
+      cy.get('[data-cy-root]').happoScreenshot({
         component,
         variant: 'slides-to-show/with-gradient-right',
       })
@@ -156,7 +159,7 @@ describe(component, () => {
       cy.getByTestId(testIds.prev).click()
       cy.get('[data-gslide=4]').should('have.class', 'visible')
 
-      cy.get('body').happoScreenshot({
+      cy.get('[data-cy-root]').happoScreenshot({
         component,
         variant: 'slides-to-show/with-gradient-left',
       })

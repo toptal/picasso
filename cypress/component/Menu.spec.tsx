@@ -48,7 +48,7 @@ describe('Menu', () => {
     cy.mount(<MenuExample />)
     cy.getByTestId('menu-b').should('not.exist')
     cy.getByTestId('menu-back').should('not.exist')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu',
     })
@@ -56,7 +56,7 @@ describe('Menu', () => {
     cy.getByTestId('item-b').click()
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-sub-menu',
     })
@@ -65,7 +65,7 @@ describe('Menu', () => {
     cy.getByTestId('menu-b1').should('be.visible')
     cy.getByTestId('menu-b2').should('not.exist')
     cy.get('body').click()
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-item-to-open-another-sub-menu',
     })
@@ -74,7 +74,7 @@ describe('Menu', () => {
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
     cy.get('body').click()
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-prev-sub-menu',
     })
@@ -82,7 +82,7 @@ describe('Menu', () => {
     cy.getByTestId('menu-back').click()
     cy.getByTestId('menu-b').should('not.exist')
     cy.getByTestId('menu-back').should('not.exist')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'slide-menu/after-clicked-back-to-original-menu',
     })
@@ -92,7 +92,7 @@ describe('Menu', () => {
     cy.mount(<MenuExample variant='drilldown' />)
     cy.getByTestId('spacer').trigger('mouseover')
     cy.getByTestId('menu-b').should('not.exist')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/before-mouseover-item',
     })
@@ -100,7 +100,7 @@ describe('Menu', () => {
     cy.getByTestId('item-b').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseover-item',
     })
@@ -108,7 +108,7 @@ describe('Menu', () => {
     cy.getByTestId('item-b1').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('be.visible')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseover-subitem',
     })
@@ -117,7 +117,7 @@ describe('Menu', () => {
     cy.getByTestId('item-b').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
-    cy.get('body').happoScreenshot({
+    cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseout-subitem',
     })
