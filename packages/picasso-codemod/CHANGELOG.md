@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.6.3
+
+### Patch Changes
+
+- [#3968](https://github.com/toptal/picasso/pull/3968) [`d7be9d7b5`](https://github.com/toptal/picasso/commit/d7be9d7b5a2481872c6a254ee1733ef905da5a7a) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- update dependencies (`globby`)
+
 ## 5.6.2
 
 ### Patch Changes
