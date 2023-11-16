@@ -4,17 +4,28 @@ import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 
+import type { ButtonProps } from '../Button'
 import type { VariantType as ContainerVariants } from '../Container'
 import Container from '../Container'
 import Typography from '../Typography'
 import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
 import styles from './styles'
+import { Button } from '../Button'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
   ContainerVariants
 >
+
+type ButtonAction = Omit<ButtonProps, 'size' | 'variant' | 'children'> & {
+  label: string
+}
+
+type Actions = {
+  primary?: ButtonAction
+  secondary?: ButtonAction
+}
 
 export interface Props extends BaseProps {
   /** Main content of the Alert */
@@ -23,6 +34,8 @@ export interface Props extends BaseProps {
   variant?: VariantType
   /** Callback invoked when close is clicked */
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
+  /** Optional button actions */
+  actions?: Actions
 }
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
@@ -52,7 +65,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   ref
 ) {
   const classes = useStyles()
-  const { children, variant, onClose, className } = props
+  const { children, variant, onClose, className, actions } = props
   const icon = icons[variant!]
 
   return (
@@ -79,7 +92,19 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
           {children}
         </Typography>
       </Container>
-      {onClose && renderAlertCloseButton({ onClose })}
+      <Container inline flex>
+        {actions?.primary && (
+          <Button {...actions?.primary} variant='primary' size='small'>
+            {actions?.primary?.label}
+          </Button>
+        )}
+        {actions?.secondary && (
+          <Button {...actions?.secondary} variant='secondary' size='small'>
+            {actions?.secondary?.label}
+          </Button>
+        )}
+        {onClose && renderAlertCloseButton({ onClose })}
+      </Container>
     </Container>
   )
 })

@@ -3,6 +3,7 @@ import React from 'react'
 import { render, fireEvent } from '@toptal/picasso/test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
+import { noop } from '../utils'
 import type { Props } from './Alert'
 import Alert from './Alert'
 
@@ -10,14 +11,28 @@ const renderAlert = (
   children: ReactNode,
   props: OmitInternalProps<Props, 'children'>
 ) => {
-  const { onClose } = props
+  const { onClose, actions } = props
 
-  return render(<Alert onClose={onClose}>{children}</Alert>)
+  return render(
+    <Alert onClose={onClose} actions={actions}>
+      {children}
+    </Alert>
+  )
 }
 
 describe('Alert', () => {
   it('renders', () => {
-    const { container } = renderAlert('test example string', {})
+    const actions = {
+      primary: {
+        onClick: noop,
+        label: 'Primary',
+      },
+      secondary: {
+        onClick: noop,
+        label: 'Secondary',
+      },
+    }
+    const { container } = renderAlert('test example string', { actions })
 
     expect(container).toMatchSnapshot()
   })
