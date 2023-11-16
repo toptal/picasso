@@ -193,7 +193,7 @@ jobs:
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
-      - name: Set ENV Variables
+      - name: Set ENV Variables (tmp text)
         run: |-
           echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
