@@ -29,7 +29,6 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | --------------------------- | ----------------------------------------------------------------------------------- |
 | **build:package**           | Build the packages                                                                  |
 | **build:storybook**         | Build Storybook as static website                                                   |
-| **commit**                  | Interactive conventional commits                                                    |
 | **generate:component**      | Generate a new component template                                                   |
 | **generate:example**        | Generate a new component component code example                                     |
 | **generate:svg-components** | [Generate JSX components from SVGs](#adding-icons-and-pictograms)                   |
@@ -110,7 +109,6 @@ After Picasso will be released with your changes you can start using your icons 
    # Change Log
 
    All notable changes to this project will be documented in this file.
-   See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
    ```
 
 2. Add the new package to:
