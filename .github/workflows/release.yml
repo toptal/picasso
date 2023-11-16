@@ -7,19 +7,17 @@ on:
       - master
 
 env:
-  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
   REPOSITORY_NAME: ${{ github.event.repository.name }}
-  TOPTAL_BOT_USERNAME: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
-  TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
-  TOPTAL_JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-  HTTP_PROXY: http://${{ secrets.HTTP_PROXY }}
-
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    env:
-      DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+      issues: write
+      pull-requests: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -28,6 +26,37 @@ jobs:
           fetch-depth: 0
           # This forces changesets to use git user, provided by GITHUB_TOKEN env var
           persist-credentials: false
+
+      - name: GSM Secrets
+        id: secrets_manager
+        uses: toptal/davinci-github-actions/gsm-secrets@master
+        with:
+          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+          service_account: ${{ secrets.SA_IDENTITY_POOL }}
+          secrets_name: |-
+            HTTP_PROXY:toptal-ci/HTTP_PROXY
+            NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
+            SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
+            TOPTAL_BUILD_BOT_TOKEN:toptal-ci/TOPTAL_BUILD_BOT_TOKEN
+            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+            TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
+            TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN
+            TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
+
+      - name: Parse secrets
+        id: parse_secrets
+        uses: toptal/davinci-github-actions/expose-json-outputs@master
+        with:
+          json: ${{ steps.secrets_manager.outputs.secrets }}
+
+      - name: Set ENV Variables
+        run: |-
+          echo "SLACK_BOT_TOKEN=${{ steps.parse_secrets.outputs.SLACK_BOT_TOKEN }}" >> $GITHUB_ENV
+          echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
+          echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
+          echo "TOPTAL_JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
+          echo "HTTP_PROXY=${{ steps.parse_secrets.outputs.HTTP_PROXY }}" >> $GITHUB_ENV
+          echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -63,8 +92,8 @@ jobs:
         with:
           publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.TOPTAL_BUILD_BOT_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLISH }}
+          GITHUB_TOKEN: ${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_TOKEN }}
+          NPM_TOKEN: ${{ steps.parse_secrets.outputs.NPM_TOKEN_PUBLISH }}
 
       - name: Edit "Version Package" PR
         if: ${{ steps.changesets.outputs.published != 'true' }}
@@ -112,7 +141,7 @@ jobs:
         id: trigger-build
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
-          JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
+          JENKINS_USER: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
         with:
           jenkins_url: https://jenkins-build.toptal.net/
           jenkins_user: ${{ env.JENKINS_USER }}
@@ -125,7 +154,7 @@ jobs:
               "VERSION": "${{ github.sha }}",
               "IMAGE_NAME": "${{ env.REPOSITORY_NAME }}"
             }
-          job_timeout: '3600'
+          job_timeout: "3600"
 
       - name: Trigger deployment job
         id: trigger-deploy
@@ -142,7 +171,7 @@ jobs:
             {
               "COMMIT_ID": "${{ github.sha }}"
             }
-          job_timeout: '3600'
+          job_timeout: "3600"
 
       - name: Send a Slack notification on failure
         if: ${{ failure() }}
@@ -152,23 +181,23 @@ jobs:
           FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
           FALLBACK_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true
         with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: ':x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>.'
+          channel-id: "-frontend-exp-team-notifications"
+          slack-message: ":x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>."
 
       - name: Send a Slack notification on success release
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: 'Current master version of Picasso successfully released :green_heart:'
+          channel-id: "-frontend-exp-team-notifications"
+          slack-message: "Current master version of Picasso successfully released :green_heart:"
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       - name: Send a Slack notification on success PR merge
         if: ${{ success() && steps.changesets.outputs.published != 'true'}}
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: '-frontend-exp-team-notifications'
-          slack-message: 'A new PR was merged to Picasso :parrotspin:'
+          channel-id: "-frontend-exp-team-notifications"
+          slack-message: "A new PR was merged to Picasso :parrotspin:"
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
 
@@ -176,9 +205,9 @@ jobs:
         name: Create Jira deployment
         if: ${{ steps.changesets.outputs.published == 'true' }}
         env:
-          JENKINS_USER: ${{ secrets.TOPTAL_TRIGGERBOT_USERNAME }}
-          JENKINS_BUILD_TOKEN: ${{ secrets.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-          PROXY: http://${{ secrets.HTTP_PROXY }}
+          JENKINS_USER: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          JENKINS_BUILD_TOKEN: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          PROXY: http://${{ steps.parse_secrets.outputs.HTTP_PROXY }}
         with:
           token: ${{ env.DEVBOT_TOKEN }}
           environment: production
@@ -188,7 +217,5 @@ jobs:
     name: Integration Tests
     uses: ./.github/workflows/davinci-integration-tests.yml
     secrets:
-      TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+      IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
+      SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}

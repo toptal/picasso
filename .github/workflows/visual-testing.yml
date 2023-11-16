@@ -14,23 +14,47 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     uses: ./.github/workflows/davinci-integration-tests.yml
     secrets:
-      TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
+      IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
+      SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}
 
   storybook-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+      issues: write
+      pull-requests: write
     env:
       HAPPO_PROJECT: Picasso/Storybook
-      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
-      TOPTAL_DEVBOT_TOKEN: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
+
+      - name: GSM Secrets
+        id: secrets_manager
+        uses: toptal/davinci-github-actions/gsm-secrets@master
+        with:
+          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+          service_account: ${{ secrets.SA_IDENTITY_POOL }}
+          secrets_name: |-
+            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
+            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
+            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+
+      - name: Parse secrets
+        id: parse_secrets
+        uses: toptal/davinci-github-actions/expose-json-outputs@master
+        with:
+          json: ${{ steps.secrets_manager.outputs.secrets }}
+
+      - name: Set ENV Variables
+        run: |-
+          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
+          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
+          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

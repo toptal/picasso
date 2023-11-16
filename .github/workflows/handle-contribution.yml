@@ -10,12 +10,33 @@ jobs:
   call-notify-jira-about-contribution:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+      issues: write
+      pull-requests: write
     name: Call notify jira about contribution
     steps:
+      - name: GSM Secrets
+        id: secrets_manager
+        uses: toptal/davinci-github-actions/gsm-secrets@master
+        with:
+          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+          service_account: ${{ secrets.SA_IDENTITY_POOL }}
+          secrets_name: |-
+            PICASSO_JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION:toptal-ci/PICASSO_JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION
+            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+
+      - name: Parse secrets
+        id: parse_secrets
+        uses: toptal/davinci-github-actions/expose-json-outputs@master
+        with:
+          json: ${{ steps.secrets_manager.outputs.secrets }}
       - uses: toptal/davinci-github-actions/notify-jira-about-contribution@v12.0.0
         with:
           team: frontend-experience-eng
           repo: ${{ github.event.repository.name }}
           pull-number: ${{ github.event.pull_request.number}}
-          jira-hook: ${{ secrets.JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
-          github-token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
+          jira-hook: ${{ steps.parse_secrets.outputs.PICASSO_JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
+          github-token: ${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}

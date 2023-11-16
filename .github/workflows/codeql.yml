@@ -1,15 +1,15 @@
-name: 'CodeQL'
+name: "CodeQL"
 
 env:
   LANGUAGE: javascript
 
 on:
   push:
-    branches: ['master']
+    branches: ["master"]
   pull_request:
-    branches: ['master']
+    branches: ["master"]
     paths-ignore:
-      - '**/*.md'
+      - "**/*.md"
 
 jobs:
   analyze:
