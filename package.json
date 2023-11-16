@@ -147,7 +147,7 @@
   },
   "resolutions": {
     "lodash": "^4.17.21",
-    "**/marksy/marked": "^0.6.0",
+    "**/marksy/marked": "^0.7.0",
     "**/find-babel-config/json5": "1",
     "postcss": "^8.4.31",
     "**/default-browser-id/meow/trim-newlines": "^3",

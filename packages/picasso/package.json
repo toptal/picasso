@@ -66,8 +66,7 @@
   },
   "resolutions": {
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.21",
-    "**/marksy/marked": "^0.6.0"
+    "lodash": "^4.17.21"
   },
   "sideEffects": [
     "**/styles.ts",
