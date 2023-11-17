@@ -19,6 +19,8 @@ export type VariantType = Extract<
 >
 
 type ButtonAction = Omit<ButtonProps, 'size' | 'variant' | 'children'> & {
+  // Button content is restricted to string instead of ReactNode
+  // because we specifically don't want to allow any custom content
   label: string
 }
 
