@@ -76,10 +76,7 @@ jobs:
           image-name: picasso
           environment: temploy
           docker-file: ./Dockerfile
-          node-version: 2000000000
-
-      - name: Check version
-        run: yarn node --version
+          node-version: 20
 
   static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
