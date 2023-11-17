@@ -49,6 +49,15 @@ const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
   </Container>
 )
 
+const renderActionButton = (
+  variant: ButtonProps['variant'],
+  props: ButtonAction
+) => (
+  <Button {...props} variant={variant} size='small'>
+    {props.label}
+  </Button>
+)
+
 const icons = {
   red: <Exclamation16 color='red' />,
   green: <Done16 color='dark-green' />,
@@ -93,16 +102,9 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
         </Typography>
       </Container>
       <Container inline flex>
-        {actions?.primary && (
-          <Button {...actions?.primary} variant='primary' size='small'>
-            {actions?.primary?.label}
-          </Button>
-        )}
-        {actions?.secondary && (
-          <Button {...actions?.secondary} variant='secondary' size='small'>
-            {actions?.secondary?.label}
-          </Button>
-        )}
+        {actions?.primary && renderActionButton('primary', actions.primary)}
+        {actions?.secondary &&
+          renderActionButton('secondary', actions.secondary)}
         {onClose && renderAlertCloseButton({ onClose })}
       </Container>
     </Container>
