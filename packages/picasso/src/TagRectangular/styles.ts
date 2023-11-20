@@ -4,6 +4,7 @@ import { createStyles } from '@material-ui/core/styles'
 export default ({ palette }: Theme) =>
   createStyles({
     root: {
+      transition: 'none',
       fontSize: '1rem',
       borderRadius: '0.25rem',
       height: '1rem',
