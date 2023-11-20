@@ -55,7 +55,6 @@ jobs:
           echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
-          echo "HTTP_PROXY=http://${{ steps.parse_secrets.outputs.HTTP_PROXY }}" >> $GITHUB_ENV
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
