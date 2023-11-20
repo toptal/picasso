@@ -2,6 +2,6 @@
 '@toptal/picasso': patch
 ---
 
-### Tag, Tag.Reactangular
+### Tag, Tag.Rectangular
 
-- removed unwanted transitions for background-color and box-shadow
+- remove unwanted transitions for background-color and box-shadow
