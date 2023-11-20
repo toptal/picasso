@@ -1,5 +1,23 @@
 # Change Log
 
+## 41.2.0
+
+### Minor Changes
+
+- [#3990](https://github.com/toptal/picasso/pull/3990) [`4a4497354`](https://github.com/toptal/picasso/commit/4a4497354c6e64f2b3c53fd6583e41d8b9225f4d) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Alert
+
+- add `actions` prop that allows passing `primary` and `secondary` action buttons
+
+### Patch Changes
+
+- [#4002](https://github.com/toptal/picasso/pull/4002) [`6233bd14b`](https://github.com/toptal/picasso/commit/6233bd14bbb1de3fcf76501ecd07dd9dfecd4ad0) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Tag, Tag.Rectangular
+
+- remove unwanted transitions for background-color and box-shadow
+
 ## 41.1.0
 
 ### Minor Changes

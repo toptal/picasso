@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 1.1.2
+
+### Patch Changes
+
+- [#3998](https://github.com/toptal/picasso/pull/3998) [`ec2feaab1`](https://github.com/toptal/picasso/commit/ec2feaab145a32980a970eb0001c16315b2e3097) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- update dependencies (`@react-querybuilder/dnd`)
+
 ## 1.1.1
 
 ### Patch Changes
