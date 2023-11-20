@@ -201,7 +201,7 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
 
-      - uses: toptal/davinci-github-actions/create-jira-deployment@v12.0.0
+      - uses: toptal/davinci-github-actions/create-jira-deployment@v12.2.0
         name: Create Jira deployment
         if: ${{ steps.changesets.outputs.published == 'true' }}
         env:
