@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss'
+
+const config: Partial<Config> = {
   theme: {
     screens: {
       xs: '0px',
@@ -29,10 +30,10 @@ module.exports = {
       ],
     },
     fontWeight: {
-      thin: 100,
-      light: 300,
-      regular: 400,
-      semibold: 600,
+      thin: '100',
+      light: '300',
+      regular: '400',
+      semibold: '600',
     },
     fontSize: {
       '2xs': ['0.75rem', { lineHeight: '1.125rem' }],
@@ -105,3 +106,5 @@ module.exports = {
     extend: {},
   },
 }
+
+export default config

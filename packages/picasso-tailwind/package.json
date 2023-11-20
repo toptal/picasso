@@ -5,13 +5,10 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-tailwind#readme",
   "license": "MIT",
-  "type": "module",
-  "main": "index.cjs",
-  "module": "index.js",
+  "main": "src/index.js",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./index.cjs"
+      "require": "./src/index.js"
     }
   },
   "publishConfig": {
@@ -24,9 +21,15 @@
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
   },
-  "dependencies": {
-    "tailwindcss": "3.3.5"
+  "scripts": {
+    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
+    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.3.5"
   },
   "sideEffects": false
 }
-
