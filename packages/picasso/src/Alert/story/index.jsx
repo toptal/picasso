@@ -27,5 +27,6 @@ page
   .createChapter()
   .addExample('Alert/story/Default.example.tsx', 'Default')
   .addExample('Alert/story/Close.example.tsx', 'Closable alert')
+  .addExample('Alert/story/Actions.example.tsx', 'Alert with actions')
 
 page.connect(alertInlineStory.chapter)
