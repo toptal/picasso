@@ -28,7 +28,7 @@
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso": "41.1.0",
+    "@toptal/picasso": "41.2.0",
     "storybook-readme": "^5.0.9",
     "@babel/types": "^7.20.7"
   },
