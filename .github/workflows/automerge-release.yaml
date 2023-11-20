@@ -44,7 +44,7 @@ jobs:
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Merge pull request if the release is not major
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           github-token: ${{ env.DEVBOT_TOKEN }}
           script: |
