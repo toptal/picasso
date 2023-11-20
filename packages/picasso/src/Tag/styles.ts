@@ -8,6 +8,7 @@ export default ({ palette, transitions }: Theme) =>
     root: {
       fontSize: '1rem',
       maxWidth: '100%',
+      transition: 'none',
     },
     blue: {
       color: palette.blue.main,
