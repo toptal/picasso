@@ -35,6 +35,11 @@ jobs:
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
           secrets_name: |-
             HTTP_PROXY:toptal-ci/HTTP_PROXY
+            JENKINS_BUILD_URL:toptal-ci/JENKINS_BUILD_URL
+            JENKINS_BUILD_CLIENT_ID:toptal-ci/JENKINS_BUILD_CLIENT_ID
+            JENKINS_DEPLOYMENT_URL:toptal-ci/JENKINS_DEPLOYMENT_URL
+            JENKINS_DEPLOYMENT_CLIENT_ID:toptal-ci/JENKINS_DEPLOYMENT_CLIENT_ID
+            JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
             TOPTAL_BUILD_BOT_TOKEN:toptal-ci/TOPTAL_BUILD_BOT_TOKEN
@@ -55,7 +60,6 @@ jobs:
           echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
-          echo "HTTP_PROXY=${{ steps.parse_secrets.outputs.HTTP_PROXY }}" >> $GITHUB_ENV
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
@@ -137,16 +141,17 @@ jobs:
             }
 
       - name: Trigger build image job
-        uses: toptal/jenkins-job-trigger-action@1.0.1
+        uses: toptal/actions/trigger-jenkins-job@main
         id: trigger-build
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
           JENKINS_USER: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
         with:
-          jenkins_url: https://jenkins-build.toptal.net/
-          jenkins_user: ${{ env.JENKINS_USER }}
-          jenkins_token: ${{ env.TOPTAL_JENKINS_BUILD_TOKEN }}
-          proxy: ${{ env.HTTP_PROXY }}
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
+          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
             {
@@ -158,14 +163,15 @@ jobs:
 
       - name: Trigger deployment job
         id: trigger-deploy
-        uses: toptal/jenkins-job-trigger-action@1.0.1
+        uses: toptal/actions/trigger-jenkins-job@main
         env:
           JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
         with:
-          jenkins_url: https://jenkins-deployment.toptal.net/
-          jenkins_user: ${{ env.TOPTAL_BOT_USERNAME }}
-          jenkins_token: ${{ env.TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN }}
-          proxy: ${{ env.HTTP_PROXY }}
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_URL }}
+          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
             {
