@@ -49,8 +49,6 @@ export const ValueEditor = ({
     submitButtonClicked: context?.submitButtonClicked,
   })
 
-  console.log('konte', context)
-
   switch (type) {
     case 'multiselect':
       return (
