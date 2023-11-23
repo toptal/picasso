@@ -18,7 +18,7 @@ export default defineConfig({
       return config
     },
         // TODO: revert before merge
-    specPattern: ['cypress/component/**/*.spec.tsx'],
+    specPattern: ['cypress/component/*.spec.tsx'],
     //specPattern: 'cypress/component/**/*.spec.tsx',
     devServer: {
       framework: 'react',
