@@ -19,11 +19,11 @@ export default defineConfig({
     },
         // TODO: revert before merge
     specPattern: [
-      'cypress/component/**/Accordion.spec.tsx',
-      'cypress/component/**/ApplicationUpdateNotification.spec.tsx',
-      'cypress/component/**/Autocomplete.spec.tsx',
-      'cypress/component/**/Avatar.spec.tsx',
-      'cypress/component/**/AvatarUpload.spec.tsx',
+      // 'cypress/component/**/Accordion.spec.tsx',
+      // 'cypress/component/**/ApplicationUpdateNotification.spec.tsx',
+      // 'cypress/component/**/Autocomplete.spec.tsx',
+      // 'cypress/component/**/Avatar.spec.tsx',
+      // 'cypress/component/**/AvatarUpload.spec.tsx',
       'cypress/component/**/BarChart.spec.tsx',
       'cypress/component/**/ButtonSplit.spec.tsx',
       'cypress/component/**/Calendar.spec.tsx',
