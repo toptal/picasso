@@ -1,5 +1,15 @@
 # Change Log
 
+## 65.1.0
+
+### Minor Changes
+
+- [#4012](https://github.com/toptal/picasso/pull/4012) [`b95ad3eaf`](https://github.com/toptal/picasso/commit/b95ad3eafeb748651b80c6310484275c5caa90a1) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### picasso-forms
+
+- change @toptal/picasso-rich-text-editor dependency from `peerDependency` to direct dependency
+
 ## 65.0.1
 
 ### Patch Changes
