@@ -18,8 +18,8 @@ export default defineConfig({
       return config
     },
         // TODO: revert before merge
-        //specPattern: ['cypress/component/**/Carousel.spec.tsx', 'cypress/component/**/Calendar.spec.tsx'],
-    specPattern: 'cypress/component/**/*.spec.tsx',
+    specPattern: ['cypress/component/**/*.spec.tsx'],
+    //specPattern: 'cypress/component/**/*.spec.tsx',
     devServer: {
       framework: 'react',
       bundler: 'webpack',
