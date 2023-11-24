@@ -4,10 +4,53 @@ import 'happo-plugin-storybook/register'
 
 import Picasso from '@toptal/picasso-provider'
 
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
+
+const PICASSO_VIEWPORTS = {
+  'extra-small': {
+    name: 'extra-small',
+    styles: {
+      height: '600px',
+      width: '479px',
+    },
+  },
+  small: {
+    name: 'small',
+    styles: {
+      height: '800px',
+      width: '767px',
+    },
+  },
+  medium: {
+    name: 'medium',
+    styles: {
+      height: '1000px',
+      width: '1023px',
+    },
+  },
+  large: {
+    name: 'large',
+    styles: {
+      height: '1200px',
+      width: '1439px',
+    },
+  },
+  'extra-large': {
+    name: 'extra-large',
+    styles: {
+      height: '1400px',
+      width: '1600px',
+    },
+  },
+}
+
 export const parameters = {
   layout: 'padded',
   a11y: {
     element: '.component-section-container',
+  },
+  viewport: {
+    viewports: PICASSO_VIEWPORTS,
   },
 }
 
