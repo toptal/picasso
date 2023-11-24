@@ -4,8 +4,6 @@ import 'happo-plugin-storybook/register'
 
 import Picasso from '@toptal/picasso-provider'
 
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-
 const PICASSO_VIEWPORTS = {
   'extra-small': {
     name: 'extra-small',
