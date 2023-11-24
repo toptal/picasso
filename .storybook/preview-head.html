@@ -8,7 +8,9 @@
     flex-direction: column;
   }
   .story {
-    padding: 20px;
+    @media only screen and (min-width: 768px) {
+      padding: 20px;
+    }
   }
   .markdown-body pre {
     padding: 1rem !important;
@@ -30,10 +32,12 @@
     line-height: '1.5em';
   }
   .section-container {
-    margin-bottom: -1rem !important;
-    margin-left: -1rem;
-    margin-right: -1rem;
-    padding: 1rem;
+    @media only screen and (min-width: 768px) {
+      margin-bottom: -1rem !important;
+      margin-left: -1rem;
+      margin-right: -1rem;
+      padding: 1rem;
+    }
     background-color: white;
     border-radius: 0.5rem;
   }
