@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.3.0
+
+### Minor Changes
+
+- [#4016](https://github.com/toptal/picasso/pull/4016) [`0591c1312`](https://github.com/toptal/picasso/commit/0591c1312a3fb05e733244815fdbe9682f07c203) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### TagSelector
+
+- add a possibility to show an error status on tags
+
 ## 41.2.0
 
 ### Minor Changes
