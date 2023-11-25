@@ -24,6 +24,7 @@ import type { Status } from '../OutlinedInput'
 
 export interface Item extends AutocompleteItem {
   value?: string
+  status?: 'error'
 }
 
 const EMPTY_INPUT_VALUE = ''
@@ -209,6 +210,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     const renderLabel = (item: Item) => {
       const displayValue = getDisplayValue(item)
       const handleItemDelete = () => handleDelete(item)
+      const hasError = item.status === 'error'
 
       if (customRenderLabel) {
         return customRenderLabel({
@@ -220,7 +222,11 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       }
 
       return (
-        <TagSelectorLabel disabled={disabled} onDelete={handleItemDelete}>
+        <TagSelectorLabel
+          variant={hasError ? 'red' : undefined}
+          disabled={disabled}
+          onDelete={handleItemDelete}
+        >
           {displayValue}
         </TagSelectorLabel>
       )

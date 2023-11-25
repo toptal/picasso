@@ -17,7 +17,17 @@ const Example = () => {
       </Container>
       <Container padded={SPACING_4}>
         <Typography>Error</Typography>
-        <TagSelector placeholder='error' status='error' value={value} />
+        <Container flex gap={'small'}>
+          <TagSelector placeholder='error' status='error' value={value} />
+          <TagSelector
+            placeholder='error'
+            status='error'
+            value={[
+              ...value,
+              { value: 'CZE', text: 'Czech Republic', status: 'error' },
+            ]}
+          />
+        </Container>
       </Container>
       <Container padded={SPACING_4}>
         <Typography>Success with long placeholder</Typography>
