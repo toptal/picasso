@@ -99,7 +99,7 @@ describe('Carousel', () => {
 
     describe('arrows', () => {
       describe('when rewind is enabled', () => {
-        it.only('moves back to first slide', () => {
+        it('moves back to first slide', () => {
           cy.mount(
             <CarouselExample rewind hasArrows hasDots slidesToShow={2} />
           )
@@ -129,14 +129,12 @@ describe('Carousel', () => {
 
           // eslint-disable-next-line cypress/no-unnecessary-waiting
           cy.wait(500)
+
           cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/last-item',
-            //variant: 'rewind-enabled/last-item',
           })
 
-          /*
-          // break higher
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
@@ -144,7 +142,6 @@ describe('Carousel', () => {
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
-          */
         })
       })
     })
