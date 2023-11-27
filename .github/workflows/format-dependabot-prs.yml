@@ -1,7 +1,11 @@
 name: Format dependabot PR title to Toptal's commit format
 on:
   pull_request:
-    types: [opened]
+    types:
+      - synchronize # PR was updated
+      - opened # PR was open
+      - reopened # PR was closed and is now open again
+      - ready_for_review # PR was converted from draft to open
     branches: [master]
 
 jobs:
