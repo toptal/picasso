@@ -7,6 +7,7 @@ on:
 jobs:
   format_title:
     name: Format title
+    permissions: write-all
     if: startsWith(github.head_ref, 'dependabot-')
     runs-on: ubuntu-latest
     steps:
