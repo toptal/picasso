@@ -12938,10 +12938,10 @@ happo-cypress@^4.1.1:
   resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.1.1.tgz#d10f064fad72a6a733a22f2baa234518e582b6bc"
   integrity sha512-qMSjOOlCGjGis+i/VTzcL8/2te73I2jrNcQkx+rJgcbgYV7x13tiEVVo/MrR5lCg7kHtXiNNXAXgw7XUxNh3pQ==
 
-happo-e2e@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.2.2.tgz#ef03896f5fea67628f9572e37c37c2a1236e09c1"
-  integrity sha512-wqY+Gqj7XilH4IEN6SbFPiZX/Xmxn10+LaAF7kGJxd/pdnklAaXozB4RRd6Q+63kIhzzfkJCGu9nNaz9omwCnw==
+happo-e2e@^2.2.2, happo-e2e@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.3.0.tgz#fa1e82976e938ed90ce9e65da24afd93c6d4d631"
+  integrity sha512-Bpz2pkJ0x8m6gK+NSN1FzxzSxPxw+Wvx1HXgYWL7RKLkITYBP7/G+wXE7LomP3XKi6SKP8xJyp+O4Q0zJ8OEuA==
   dependencies:
     archiver "^5.3.0"
     base64-stream "^1.0.0"
@@ -12952,6 +12952,7 @@ happo-e2e@^2.2.2:
     node-fetch "^2.0.0"
     parse-srcset "^1.0.2"
     string.prototype.replaceall "^1.0.6"
+    yargs "^17.7.2"
 
 happo-plugin-storybook@^3.2.3, happo-plugin-storybook@^3.4.0:
   version "3.4.0"
