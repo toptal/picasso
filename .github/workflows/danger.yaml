@@ -48,6 +48,6 @@ jobs:
         with:
           node-version: 18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v12.2.0
+      - uses: toptal/davinci-github-actions/yarn-install@v12.5.1
 
-      - uses: toptal/davinci-github-actions/danger@v12.2.0
+      - uses: toptal/davinci-github-actions/danger@v12.5.1
