@@ -221,7 +221,7 @@ jobs:
     name: Deploy Picasso docs
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
     needs: [build-docker-image]
 
@@ -235,11 +235,14 @@ jobs:
           secrets_name: |-
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            HTTP_PROXY:toptal-ci/HTTP_PROXY
             NPM_TOKEN:toptal-ci/NPM_TOKEN
             TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
+            JENKINS_BUILD_URL:toptal-ci/JENKINS_BUILD_URL
+            JENKINS_BUILD_CLIENT_ID:toptal-ci/JENKINS_BUILD_CLIENT_ID
+            JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
+            TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
 
       - name: Parse secrets
         id: parse_secrets
@@ -256,16 +259,29 @@ jobs:
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
 
+      - name: Get toptal/actions
+        uses: actions/checkout@v4
+        with:
+          repository: toptal/actions
+          token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
+          path: ./.github/actions/
+      
+      - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
+        run: |
+          sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
+        shell: bash
+
       - name: Trigger doc deployment job
-        uses: toptal/jenkins-job-trigger-action@1.0.1
+        uses: ./.github/actions/trigger-jenkins-job/
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}
         with:
-          jenkins_url: https://jenkins-build.toptal.net/
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-          proxy: http://${{ steps.parse_secrets.outputs.HTTP_PROXY }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           job_name: picasso-docs
           job_params: |
             {
