@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.4.0
+
+### Minor Changes
+
+- [#4025](https://github.com/toptal/picasso/pull/4025) [`1709730ec`](https://github.com/toptal/picasso/commit/1709730ecf4fb7369b778e23ac909aa7d2459d78) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Alert
+
+- add support for split buttons to `Alert` actions
+
 ## 41.3.0
 
 ### Minor Changes
