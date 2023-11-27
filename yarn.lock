@@ -12953,10 +12953,10 @@ happo-e2e@^2.2.2:
     parse-srcset "^1.0.2"
     string.prototype.replaceall "^1.0.6"
 
-happo-plugin-storybook@^3.2.3, happo-plugin-storybook@^3.3.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/happo-plugin-storybook/-/happo-plugin-storybook-3.3.1.tgz#c33641e648494349fab922124963f821c0846e09"
-  integrity sha512-fLGv86FwQHZSJqttrQ9Irk7NIHOCA1N+zhY+6tg5QPaNDCykZ6RPIdIowRmSKOENjev3mojLzaa4Sow+hNWDXA==
+happo-plugin-storybook@^3.2.3, happo-plugin-storybook@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/happo-plugin-storybook/-/happo-plugin-storybook-3.4.0.tgz#b0fcdbe55307382d20a5717cd89ce96d30611b1a"
+  integrity sha512-mukLBvUwW4OhMAq2G7ph8cJqvsQpAqjxhvIJ+3eEoFe5AYlJAHkl24xMNKQvFR7cyhQsDdCC6QeFGy5dAiq8pQ==
   dependencies:
     "@babel/runtime" ">=7.0.0"
     archiver "^3.0.0"
