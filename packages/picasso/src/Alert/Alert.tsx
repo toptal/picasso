@@ -4,14 +4,17 @@ import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 
+import { SPACING_4 } from '../utils'
 import type { ButtonProps } from '../Button'
+import type { ButtonSplitProps } from '../ButtonSplit'
 import type { VariantType as ContainerVariants } from '../Container'
 import Container from '../Container'
 import Typography from '../Typography'
 import ButtonCircular from '../ButtonCircular'
 import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
 import styles from './styles'
-import { Button } from '../Button'
+import Button from '../Button'
+import ButtonSplit from '../ButtonSplit'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
@@ -22,6 +25,7 @@ type ButtonAction = Omit<ButtonProps, 'size' | 'variant' | 'children'> & {
   // Button content is restricted to string instead of ReactNode
   // because we specifically don't want to allow any custom content
   label: string
+  menu?: ButtonSplitProps['menu']
 }
 
 type Actions = {
@@ -52,13 +56,41 @@ const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
 )
 
 const renderActionButton = (
-  variant: ButtonProps['variant'],
+  variant: ButtonSplitProps['variant'],
   props: ButtonAction
-) => (
-  <Button {...props} variant={variant} size='small'>
-    {props.label}
-  </Button>
-)
+) => {
+  const { label, menu, ...rest } = props
+
+  if (menu) {
+    return (
+      <Container inline>
+        <ButtonSplit
+          menu={menu}
+          variant={variant}
+          size='small'
+          onClick={rest.onClick}
+          actionButtonProps={{ ...rest }}
+          data-testid='action-button'
+        >
+          {label}
+        </ButtonSplit>
+      </Container>
+    )
+  }
+
+  return (
+    <Container inline>
+      <Button
+        {...rest}
+        variant={variant}
+        size='small'
+        data-testid='action-button'
+      >
+        {label}
+      </Button>
+    </Container>
+  )
+}
 
 const icons = {
   red: <Exclamation16 color='red' />,
@@ -104,9 +136,11 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
         </Typography>
       </Container>
       <Container inline flex>
-        {actions?.primary && renderActionButton('primary', actions.primary)}
-        {actions?.secondary &&
-          renderActionButton('secondary', actions.secondary)}
+        <Container inline flex gap={SPACING_4}>
+          {actions?.primary && renderActionButton('primary', actions.primary)}
+          {actions?.secondary &&
+            renderActionButton('secondary', actions.secondary)}
+        </Container>
         {onClose && renderAlertCloseButton({ onClose })}
       </Container>
     </Container>

@@ -34,32 +34,44 @@ exports[`Alert renders 1`] = `
       <div
         class="PicassoContainer-flex PicassoContainer-inline"
       >
-        <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root"
-          data-component-type="button"
-          label="Primary"
-          tabindex="0"
-          type="button"
+        <div
+          class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-spacing4Gap"
         >
-          <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          <div
+            class="PicassoContainer-inline"
           >
-            Primary
-          </span>
-        </button>
-        <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
-          data-component-type="button"
-          label="Secondary"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root"
+              data-component-type="button"
+              data-testid="action-button"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              >
+                Primary
+              </span>
+            </button>
+          </div>
+          <div
+            class="PicassoContainer-inline"
           >
-            Secondary
-          </span>
-        </button>
+            <button
+              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+              data-component-type="button"
+              data-testid="action-button"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              >
+                Secondary
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
