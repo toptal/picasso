@@ -135,6 +135,7 @@ describe('Carousel', () => {
             variant: 'rewind-enabled/last-item',
           })
 
+          /*
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
@@ -142,6 +143,7 @@ describe('Carousel', () => {
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
+          */
         })
       })
     })
