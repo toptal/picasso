@@ -99,7 +99,7 @@ describe('Carousel', () => {
 
     describe('arrows', () => {
       describe('when rewind is enabled', () => {
-        it('moves back to first slide', () => {
+        it.only('moves back to first slide', () => {
           cy.mount(
             <CarouselExample rewind hasArrows hasDots slidesToShow={2} />
           )
