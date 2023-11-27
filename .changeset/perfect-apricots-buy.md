@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso': patch
+'@toptal/picasso': minor
 ---
 
 ### Alert
