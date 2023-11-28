@@ -170,5 +170,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "patch-package": "^8.0.0"
   }
 }

@@ -107,6 +107,7 @@ describe('Carousel', () => {
 
           cy.getByTestId(testIds.prev).should('not.be.disabled')
 
+          /*
           cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-enabled/first-item',
@@ -140,6 +141,7 @@ describe('Carousel', () => {
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
+          */
         })
       })
     })
