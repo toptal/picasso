@@ -127,7 +127,7 @@ describe('Carousel', () => {
           cy.get('[data-gslide=4]').should('have.class', 'visible')
 
           // eslint-disable-next-line cypress/no-unnecessary-waiting
-          //cy.wait(500)
+          // cy.wait(500)
 
           cy.get('body').happoScreenshot({
             component,
