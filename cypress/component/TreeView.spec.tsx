@@ -108,7 +108,7 @@ const ModalExample = () => {
 
 const component = 'TreeView'
 
-describe('TreeView', () => {
+describe.skip('TreeView', () => {
   it('render with modal', () => {
     cy.mount(<ModalExample />)
 

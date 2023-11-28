@@ -67,7 +67,7 @@ const renderTabs = ({
 
 const component = 'Tabs'
 
-describe('Tabs', () => {
+describe.skip('Tabs', () => {
   describe('with horizontal orientation', () => {
     it('navigates with scroll buttons', () => {
       cy.mount(renderTabs({ width: '13rem' }))

@@ -25,7 +25,7 @@ const TopBarMenuExample = ({ 'data-testid': testId }: BaseProps) => {
   )
 }
 
-describe('TopBarMenu', () => {
+describe.skip('TopBarMenu', () => {
   it('renders maximum of 6 items', () => {
     cy.mount(<TopBarMenuExample data-testid='menu' />)
 

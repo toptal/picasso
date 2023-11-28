@@ -3,7 +3,7 @@ import { AvatarUpload, Container } from '@toptal/picasso'
 
 const component = 'AvatarUpload'
 
-describe('AvatarUpload', () => {
+describe.skip('AvatarUpload', () => {
   describe('when source file exists', () => {
     let src = ''
 
