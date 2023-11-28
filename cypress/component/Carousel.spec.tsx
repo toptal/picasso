@@ -99,7 +99,6 @@ describe('Carousel', () => {
     describe('arrows', () => {
       describe('when rewind is enabled', () => {
         it('moves back to first slide', () => {
-          /*
           cy.mount(
             <CarouselExample rewind hasArrows hasDots slidesToShow={2} />
           )
@@ -127,6 +126,7 @@ describe('Carousel', () => {
 
           cy.get('[data-gslide=4]').should('have.class', 'visible')
 
+          /*
           // eslint-disable-next-line cypress/no-unnecessary-waiting
           cy.wait(500)
 
