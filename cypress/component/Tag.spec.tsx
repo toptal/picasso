@@ -3,7 +3,7 @@ import { Container, Tag, TypographyOverflow } from '@toptal/picasso'
 
 const component = 'Tag'
 
-describe.skip('Tag', () => {
+describe('Tag', () => {
   it('allows to overflow with ellipsis', () => {
     cy.mount(
       <Container style={{ width: '500px' }}>

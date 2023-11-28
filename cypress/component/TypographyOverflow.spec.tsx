@@ -79,7 +79,7 @@ const CustomTooltipAndDelayExample = () => (
 
 const component = 'TypographyOverflow'
 
-describe.skip('TypographyOverflow', () => {
+describe('TypographyOverflow', () => {
   it('renders', () => {
     cy.mount(<DefaultExample />)
 

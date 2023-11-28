@@ -134,7 +134,7 @@ const TagSelectorCustomLabelOptionRendererExample = () => {
 
 const component = 'TagSelector'
 
-describe.skip('TagSelector', () => {
+describe('TagSelector', () => {
   it('renders', () => {
     cy.mount(<TagSelectorExample />)
 

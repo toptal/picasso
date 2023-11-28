@@ -261,7 +261,7 @@ const DropdownTooltipExample = () => {
 
 const component = 'Tooltip'
 
-describe.skip('Tooltip', () => {
+describe('Tooltip', () => {
   it('renders by default', () => {
     cy.mount(<SnapshotTooltipExample />)
     cy.get('body').happoScreenshot({
