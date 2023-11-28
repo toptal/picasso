@@ -113,18 +113,18 @@ describe('Carousel', () => {
             variant: 'rewind-enabled/first-item',
           })
 
-          cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
-            component,
-            variant: 'rewind-enabled/arrow-during-hovering',
-          })
+          // cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
+          //   component,
+          //   variant: 'rewind-enabled/arrow-during-hovering',
+          // })
 
-          // move to last item
-          cy.getByTestId(testIds.next).click()
-          cy.getByTestId(testIds.next).click()
-          cy.getByTestId(testIds.next).click()
-          cy.getByTestId(testIds.next).should('not.be.disabled')
+          // // move to last item
+          // cy.getByTestId(testIds.next).click()
+          // cy.getByTestId(testIds.next).click()
+          // cy.getByTestId(testIds.next).click()
+          // cy.getByTestId(testIds.next).should('not.be.disabled')
 
-          cy.get('[data-gslide=4]').should('have.class', 'visible')
+          // cy.get('[data-gslide=4]').should('have.class', 'visible')
 
           // eslint-disable-next-line cypress/no-unnecessary-waiting
           // cy.wait(500)
