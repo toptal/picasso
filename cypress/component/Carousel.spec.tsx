@@ -108,7 +108,7 @@ describe('Carousel', () => {
 
           cy.getByTestId(testIds.prev).should('not.be.disabled')
 
-          cy.get('[data-cy-root]').happoScreenshot({
+          cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-enabled/first-item',
           })
@@ -129,7 +129,7 @@ describe('Carousel', () => {
           // eslint-disable-next-line cypress/no-unnecessary-waiting
           //cy.wait(500)
 
-          cy.get('[data-cy-root]').happoScreenshot({
+          cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-enabled/last-item',
           })
@@ -137,7 +137,7 @@ describe('Carousel', () => {
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
-          cy.get('[data-cy-root]').happoScreenshot({
+          cy.get('body').happoScreenshot({
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
