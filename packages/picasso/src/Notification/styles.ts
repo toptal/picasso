@@ -1,9 +1,12 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { PicassoProvider } from '@toptal/picasso-provider'
+import {
+  breakpointsList as breakpoints,
+  PicassoProvider,
+} from '@toptal/picasso-provider'
 import { rem } from '@toptal/picasso-shared'
 
-PicassoProvider.override(({ layout }: Theme) => ({
+PicassoProvider.override(({ layout, breakpoints: { down } }: Theme) => ({
   MuiSnackbarContent: {
     message: {
       display: 'flex',
@@ -12,7 +15,9 @@ PicassoProvider.override(({ layout }: Theme) => ({
       width: '100%',
       minWidth: 0,
       margin: '0 auto',
-
+      [down(breakpoints.xl)]: {
+        maxWidth: 'unset',
+      },
       '& > div': {
         width: '100%',
       },
@@ -23,6 +28,7 @@ PicassoProvider.override(({ layout }: Theme) => ({
 export default ({
   palette: { red, green, yellow, common, text },
   shadows,
+  breakpoints: { down },
   sizes: { borderRadius },
 }: Theme) =>
   createStyles({
@@ -55,6 +61,12 @@ export default ({
     notificationYellow: {
       background: yellow.lighter,
       padding: `1.5em ${rem('130px')}`,
+      [down(breakpoints.lg)]: {
+        padding: '1.5em',
+      },
+      [down(breakpoints.sm)]: {
+        padding: '1.5em 1em',
+      },
     },
 
     // Content
