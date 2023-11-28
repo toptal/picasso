@@ -54,7 +54,6 @@ const component = 'Carousel'
 /* eslint-disable max-nested-callbacks */
 describe('Carousel', () => {
   describe('navigation', () => {
-    // if only this test, then it works fine
     it('renders with dots only', () => {
       cy.mount(<CarouselExample hasDots />)
 
@@ -99,7 +98,8 @@ describe('Carousel', () => {
 
     describe('arrows', () => {
       describe('when rewind is enabled', () => {
-        it.only('moves back to first slide', () => {
+        it('moves back to first slide', () => {
+          /*
           cy.mount(
             <CarouselExample rewind hasArrows hasDots slidesToShow={2} />
           )
@@ -135,7 +135,7 @@ describe('Carousel', () => {
             variant: 'rewind-enabled/last-item',
           })
 
-          /*
+          
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
