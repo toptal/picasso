@@ -12934,10 +12934,10 @@ handlebars@4.7.7, handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.1.1.tgz#d10f064fad72a6a733a22f2baa234518e582b6bc"
-  integrity sha512-qMSjOOlCGjGis+i/VTzcL8/2te73I2jrNcQkx+rJgcbgYV7x13tiEVVo/MrR5lCg7kHtXiNNXAXgw7XUxNh3pQ==
+happo-cypress@^4.1.1, happo-cypress@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.1.2.tgz#dae626b1210a969b21bfdf5b77fa9d966e7c83db"
+  integrity sha512-ZL+Y0EXEjk/SGGANTXzAN+sYB1qo+q2A8o4EnS4GE48Q3/pOO4j6WzjQxvFEyH8jhoNY3RRhd8uaGVUgH3XAmw==
 
 happo-e2e@^2.2.2, happo-e2e@^2.3.0:
   version "2.3.0"
