@@ -129,10 +129,10 @@ describe('Carousel', () => {
           // eslint-disable-next-line cypress/no-unnecessary-waiting
           // cy.wait(500)
 
-          cy.get('body').happoScreenshot({
-            component,
-            variant: 'rewind-enabled/last-item',
-          })
+          // cy.get('body').happoScreenshot({
+          //   component,
+          //   variant: 'rewind-enabled/last-item',
+          // })
 
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
