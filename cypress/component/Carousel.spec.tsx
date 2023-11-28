@@ -57,7 +57,7 @@ describe('Carousel', () => {
     it('renders with dots only', () => {
       cy.mount(<CarouselExample hasDots />)
 
-      // Wait until navigation is visible test
+      // Wait until navigation is visible
       cy.getByTestId(testIds.dots).should('exist')
       cy.getByTestId(testIds.arrows).should('not.exist')
 
@@ -69,7 +69,6 @@ describe('Carousel', () => {
       cy.getByTestId(testIds.arrows).should('not.exist')
     })
 
-    // also worked
     it('renders with arrows only', () => {
       cy.mount(<CarouselExample hasArrows />)
 
