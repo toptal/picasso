@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.4.1
+
+### Patch Changes
+
+- [#4028](https://github.com/toptal/picasso/pull/4028) [`a177c79e1`](https://github.com/toptal/picasso/commit/a177c79e14cd9e85c90c17c058ce59e851b522ba) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Select
+
+- restore option for `large` size
+
 ## 41.4.0
 
 ### Minor Changes
