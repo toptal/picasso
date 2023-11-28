@@ -135,7 +135,7 @@ export const NonNativeSelect = documentable(
               </InputAdornment>
             }
             placeholder={searchPlaceholder}
-            size={size === 'large' ? 'medium' : size}
+            size={size}
             value={filterOptionsValue}
             testIds={testIds}
             aria-autocomplete='list'
@@ -193,7 +193,7 @@ export const NonNativeSelect = documentable(
               inputProps={{
                 size: 1, // let input to have smallest width by default for width:'shrink'
               }}
-              size={size === 'large' ? 'medium' : size}
+              size={size}
               role='textbox'
               enableReset={enableReset ? selection.isSelected() : false}
               autoComplete={
