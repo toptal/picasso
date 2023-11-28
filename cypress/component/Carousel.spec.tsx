@@ -113,10 +113,10 @@ describe('Carousel', () => {
             variant: 'rewind-enabled/first-item',
           })
 
-          cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
-            component,
-            variant: 'rewind-enabled/arrow-during-hovering',
-          })
+          // cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
+          //   component,
+          //   variant: 'rewind-enabled/arrow-during-hovering',
+          // })
 
           // move to last item
           cy.getByTestId(testIds.next).click()
@@ -126,16 +126,14 @@ describe('Carousel', () => {
 
           cy.get('[data-gslide=4]').should('have.class', 'visible')
 
-          /*
           // eslint-disable-next-line cypress/no-unnecessary-waiting
-          cy.wait(500)
+          //cy.wait(500)
 
           cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/last-item',
           })
 
-          
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
@@ -143,7 +141,6 @@ describe('Carousel', () => {
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
-          */
         })
       })
     })
