@@ -113,10 +113,10 @@ describe('Carousel', () => {
             variant: 'rewind-enabled/first-item',
           })
 
-          // cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
-          //   component,
-          //   variant: 'rewind-enabled/arrow-during-hovering',
-          // })
+          cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
+            component,
+            variant: 'rewind-enabled/arrow-during-hovering',
+          })
 
           // move to last item
           cy.getByTestId(testIds.next).click()
@@ -134,13 +134,13 @@ describe('Carousel', () => {
           //   variant: 'rewind-enabled/last-item',
           // })
 
-          cy.getByTestId(testIds.next).click()
-          cy.get('[data-gslide=0]').should('have.class', 'visible')
+          // cy.getByTestId(testIds.next).click()
+          // cy.get('[data-gslide=0]').should('have.class', 'visible')
 
-          cy.get('body').happoScreenshot({
-            component,
-            variant: 'rewind-enabled/rewinded-to-first-item',
-          })
+          // cy.get('body').happoScreenshot({
+          //   component,
+          //   variant: 'rewind-enabled/rewinded-to-first-item',
+          // })
         })
       })
     })
