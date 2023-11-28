@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -48,8 +48,8 @@ export interface Props
 
 export const TimePicker = (props: Props) => {
   const {
-    onChange,
-    value,
+    onChange: externalOnChange,
+    value: initialValue,
     width,
     className,
     error,
@@ -57,6 +57,29 @@ export const TimePicker = (props: Props) => {
     highlight,
     ...rest
   } = props
+
+  const [value, setValue] = useState(initialValue)
+
+  const onChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const newValue = event.target.value
+
+    setValue(newValue)
+
+    console.log('@@@ newValue', newValue)
+
+    const regExp = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
+
+    if (newValue && regExp.test(newValue)) {
+      console.log('@@@ matches')
+      externalOnChange?.(event)
+    } else {
+      externalOnChange?.({ ...event, target: { ...event.target, value: '' } })
+    }
+  }
 
   usePropDeprecationWarning({
     props,
