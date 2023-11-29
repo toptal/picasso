@@ -1,5 +1,15 @@
 # Change Log
 
+## 41.4.2
+
+### Patch Changes
+
+- [#4029](https://github.com/toptal/picasso/pull/4029) [`a7e202a56`](https://github.com/toptal/picasso/commit/a7e202a566f097a186af09bc530cc8160dc06486) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Notification
+
+- fix banner-type `Notification` padding for responbsible screen sizes
+
 ## 41.4.1
 
 ### Patch Changes
