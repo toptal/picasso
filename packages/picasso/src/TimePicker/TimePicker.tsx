@@ -46,6 +46,8 @@ export interface Props
   status?: Extract<Status, 'error' | 'default'>
 }
 
+const VALID_TIME_REGEX = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
+
 export const TimePicker = (props: Props) => {
   const {
     onChange: externalOnChange,
@@ -69,15 +71,11 @@ export const TimePicker = (props: Props) => {
 
     setValue(newValue)
 
-    console.log('@@@ newValue', newValue)
-
-    const regExp = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
-
-    if (newValue && regExp.test(newValue)) {
-      console.log('@@@ matches')
+    if (newValue && VALID_TIME_REGEX.test(newValue)) {
       externalOnChange?.(event)
     } else {
-      externalOnChange?.({ ...event, target: { ...event.target, value: '' } })
+      event.target.value = ''
+      externalOnChange?.(event)
     }
   }
 
