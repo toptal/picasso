@@ -12934,15 +12934,15 @@ handlebars@4.7.7, handlebars@^4.7.7:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-happo-cypress@^4.1.1, happo-cypress@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.1.2.tgz#dae626b1210a969b21bfdf5b77fa9d966e7c83db"
-  integrity sha512-ZL+Y0EXEjk/SGGANTXzAN+sYB1qo+q2A8o4EnS4GE48Q3/pOO4j6WzjQxvFEyH8jhoNY3RRhd8uaGVUgH3XAmw==
+happo-cypress@^4.1.1, happo-cypress@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/happo-cypress/-/happo-cypress-4.1.3.tgz#e731acc3bdc85734c3829e3ff81c822b54407133"
+  integrity sha512-xo+TJUAbIT6TZkFmLyX67IfcXsoPHtzaTs1jP78YsqRxY+xyRyHJ2EhDv72BM2wjn/HeeRBmH/VfC9GYED0Ucg==
 
-happo-e2e@^2.2.2, happo-e2e@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.3.0.tgz#fa1e82976e938ed90ce9e65da24afd93c6d4d631"
-  integrity sha512-Bpz2pkJ0x8m6gK+NSN1FzxzSxPxw+Wvx1HXgYWL7RKLkITYBP7/G+wXE7LomP3XKi6SKP8xJyp+O4Q0zJ8OEuA==
+happo-e2e@^2.2.2, happo-e2e@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/happo-e2e/-/happo-e2e-2.4.0.tgz#0d42c9ad1caf6bc392d20c009545c751a67354d0"
+  integrity sha512-1x6H9dP33ugn4HeH9HTK7h4L8D49ymTCCQO3gJ0tOaxoOFkVd5UVbL07RpyzyrDAsaJfXb1oOx3oRBsjUpYPxQ==
   dependencies:
     archiver "^5.3.0"
     base64-stream "^1.0.0"
