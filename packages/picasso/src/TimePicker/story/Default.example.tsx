@@ -4,15 +4,7 @@ import { TimePicker } from '@toptal/picasso'
 const DefaultExample = () => {
   const [timepickerValue, setTimepickerValue] = useState<string>('18:00')
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setTimepickerValue(e.target.value)
-  }
-
-  return <TimePicker onChange={handleChange} value={timepickerValue} />
+  return <TimePicker onChange={setTimepickerValue} value={timepickerValue} />
 }
 
 export default DefaultExample

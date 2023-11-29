@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,6 +24,7 @@ export interface Props
       | 'id'
       | 'value'
       | 'onSelect'
+      | 'onChange'
       | 'type'
       | 'multiline'
       | 'rows'
@@ -44,12 +45,16 @@ export interface Props
   value?: string
   /** Indicate whether `TimePicker` is in `error` or `default` state */
   status?: Extract<Status, 'error' | 'default'>
+  /** Called on input change */
+  onChange?: (value: string) => void
 }
+
+const VALID_TIME_REGEX = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
 
 export const TimePicker = (props: Props) => {
   const {
-    onChange,
-    value,
+    onChange: externalOnChange,
+    value: externalValue,
     width,
     className,
     error,
@@ -57,6 +62,31 @@ export const TimePicker = (props: Props) => {
     highlight,
     ...rest
   } = props
+
+  const [value, setValue] = useState(externalValue)
+
+  useEffect(() => {
+    // Set internal value based on the provided one if the later is correct
+    if (externalValue && VALID_TIME_REGEX.test(externalValue)) {
+      setValue(externalValue)
+    }
+  }, [externalValue])
+
+  const onChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const newValue = event.target.value
+
+    setValue(newValue)
+
+    if (newValue && VALID_TIME_REGEX.test(newValue)) {
+      externalOnChange?.(newValue)
+    } else {
+      externalOnChange?.('')
+    }
+  }
 
   usePropDeprecationWarning({
     props,

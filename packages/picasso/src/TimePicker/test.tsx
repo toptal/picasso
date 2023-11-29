@@ -29,4 +29,26 @@ describe('TimePicker', () => {
 
     expect(handleChange).toHaveBeenCalledTimes(1)
   })
+
+  describe('when invalid time is entered', () => {
+    it('calls onChange with empty value', () => {
+      const time = '09:00'
+      const handleChange = jest.fn()
+      const { getByDisplayValue } = render(
+        <TimePicker value={time} onChange={handleChange} />
+      )
+
+      const input = getByDisplayValue(time)
+
+      fireEvent.change(input, { target: { value: '12:--' } })
+      expect(handleChange).toHaveBeenCalledTimes(1)
+      expect(handleChange).toHaveBeenCalledWith('')
+
+      const newTime = '12:12'
+
+      fireEvent.change(input, { target: { value: newTime } })
+      expect(handleChange).toHaveBeenCalledTimes(2)
+      expect(handleChange).toHaveBeenCalledWith(newTime)
+    })
+  })
 })
