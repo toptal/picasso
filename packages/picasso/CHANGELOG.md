@@ -1,5 +1,16 @@
 # Change Log
 
+## 42.0.0
+
+### Major Changes
+
+- [#4031](https://github.com/toptal/picasso/pull/4031) [`a450d3a56`](https://github.com/toptal/picasso/commit/a450d3a56526b4418b72788ae80d4c7b6927f722) Thanks [@sashuk](https://github.com/sashuk)!
+
+### TimePicker
+
+- change the signature of `onChange` handler to accept `string` instead of event object. In order to migrate, please replace usage of `event.target.value` with `value` in your `onChange` handler
+- do not emit incorrect time values, e.g. `12:--` or `60:00`. When input has incorrect value, the `onChange` handler will be called with empty string value
+
 ## 41.4.2
 
 ### Patch Changes
