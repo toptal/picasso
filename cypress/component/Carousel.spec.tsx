@@ -52,9 +52,7 @@ const CarouselExample = (props: Partial<CarouselProps>) => (
 const component = 'Carousel'
 
 /* eslint-disable max-nested-callbacks */
-
-// TODO: https://toptal-core.atlassian.net/browse/FX-4516
-describe.skip('Carousel', () => {
+describe('Carousel', () => {
   describe('navigation', () => {
     it('renders with dots only', () => {
       cy.mount(<CarouselExample hasDots />)
