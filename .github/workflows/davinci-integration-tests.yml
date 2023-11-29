@@ -11,7 +11,6 @@ on:
 env:
   HAPPO_PROJECT: Picasso/Cypress
   HAPPO_NONCE: ${{ github.run_id }}
-  VERBOSE: true
 
 jobs:
   build-packages:
@@ -82,7 +81,6 @@ jobs:
     env:
       GROUP_INDEX: ${{ matrix.index }}
       PARALLEL_GROUPS: ${{ strategy.job-total }}
-
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
@@ -177,5 +175,6 @@ jobs:
           node-version: 18
 
       - uses: toptal/davinci-github-actions/yarn-install@v12.5.1
+
       - name: Finalize Happo
-        run: VERBOSE=true HAPPO_DEBUG=true npx happo-e2e finalize
+        run: npx happo-e2e finalize

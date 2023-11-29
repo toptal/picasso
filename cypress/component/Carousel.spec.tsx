@@ -107,14 +107,14 @@ describe('Carousel', () => {
 
           cy.getByTestId(testIds.prev).should('not.be.disabled')
 
-          cy.get('body').happoScreenshot({
+          cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/first-item',
           })
 
           cy.getByTestId(testIds.next).hoverAndTakeHappoScreenshot({
             component,
-            variant: 'rewind-enabled/arrow-during-hovering',
+            variant: 'arrow/during-hovering',
           })
 
           // move to last item
@@ -125,7 +125,7 @@ describe('Carousel', () => {
 
           cy.get('[data-gslide=4]').should('have.class', 'visible')
 
-          cy.get('body').happoScreenshot({
+          cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/last-item',
           })
@@ -133,7 +133,7 @@ describe('Carousel', () => {
           cy.getByTestId(testIds.next).click()
           cy.get('[data-gslide=0]').should('have.class', 'visible')
 
-          cy.get('body').happoScreenshot({
+          cy.get('[data-cy-root]').happoScreenshot({
             component,
             variant: 'rewind-enabled/rewinded-to-first-item',
           })
