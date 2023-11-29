@@ -42,21 +42,13 @@ describe('TimePicker', () => {
 
       fireEvent.change(input, { target: { value: '12:--' } })
       expect(handleChange).toHaveBeenCalledTimes(1)
-      expect(handleChange).toHaveBeenCalledWith(
-        expect.objectContaining({
-          target: expect.objectContaining({ value: '' }),
-        })
-      )
+      expect(handleChange).toHaveBeenCalledWith('')
 
       const newTime = '12:12'
 
       fireEvent.change(input, { target: { value: newTime } })
       expect(handleChange).toHaveBeenCalledTimes(2)
-      expect(handleChange).toHaveBeenCalledWith(
-        expect.objectContaining({
-          target: expect.objectContaining({ value: newTime }),
-        })
-      )
+      expect(handleChange).toHaveBeenCalledWith(newTime)
     })
   })
 })
