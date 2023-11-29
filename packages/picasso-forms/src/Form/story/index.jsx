@@ -163,7 +163,7 @@ types supported by picasso-forms.
     {
       title: 'Horizontal',
       description:
-        'Horizontal form with responsive design. Use `useFieldsLayoutContext()` hook to get access to the current layout depending on the screen size.',
+        'Horizontal form with responsive design. Use "useFieldsLayoutContext()" hook from "@toptal/picasso" to get access to the current layout depending on the screen size.',
       screenshotBreakpoints: true,
     },
     'picasso-form'
