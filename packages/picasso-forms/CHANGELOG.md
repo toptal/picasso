@@ -1,5 +1,12 @@
 # Change Log
 
+## 66.1.0
+
+### Minor Changes
+
+- [#4033](https://github.com/toptal/picasso/pull/4033) [`090c79414`](https://github.com/toptal/picasso/commit/090c79414505c1bac46078a587b7099012b8f6ea) Thanks [@sashuk](https://github.com/sashuk)!
+- mention `useFieldsLayoutContext` hook in forms documentation
+
 ## 66.0.0
 
 ### Patch Changes
