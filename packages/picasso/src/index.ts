@@ -211,6 +211,7 @@ export type {
   FileRejection as AvatarUploadFileRejection,
   DropEvent as AvatarUploadDropEvent,
 } from './AvatarUpload'
+export * from './FieldsLayout'
 
 export { default as Carousel } from './Carousel'
 export type { CarouselProps } from './Carousel'
