@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import MenuItem from '@toptal/picasso-menu-item'
 
-import MenuItem from '../MenuItem'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)

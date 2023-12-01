@@ -1,0 +1,19 @@
+{
+  "name": "@toptal/picasso-autocomplete",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-input": "^1.0.0",
+    "@toptal/picasso-menu-compound": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-loader": "^1.0.0",
+    "@toptal/picasso-select-options": "^1.0.0",
+    "@toptal/picasso-popper": "^1.0.0",
+    "@toptal/picasso-input-adornment": "^1.0.0",
+    "@toptal/picasso-outlined-input": "^1.0.0",
+    "@toptal/picasso-utils/unsafe-error-log": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@toptal/picasso-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-outlined-input": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-utils/disable-unsupported-props": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-input-limit-adornment": "^1.0.0",
+    "@toptal/picasso-input-icon-adornment": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-input-valid-icon-adornment": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0",
+    "@toptal/picasso-input-base/highlight-styles": "^1.0.0"
+  }
+}

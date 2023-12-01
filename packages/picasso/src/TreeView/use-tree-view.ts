@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useContext } from 'react'
 
 import { TreeViewContext } from './TreeViewContainer'

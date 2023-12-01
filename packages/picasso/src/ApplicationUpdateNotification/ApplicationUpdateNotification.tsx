@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
@@ -5,11 +6,11 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { SnackbarContent } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Button from '@toptal/picasso-button-circular'
+import Typography from '@toptal/picasso-typography'
+import Container from '@toptal/picasso-container'
+import { Close16 } from '@toptal/picasso-icon'
 
-import Button from '../ButtonCircular'
-import Typography from '../Typography'
-import Container from '../Container'
-import { Close16 } from '../Icon'
 import styles from './styles'
 
 export interface Props extends BaseProps {

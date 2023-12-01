@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import Container from '../Container'
-import Typography from '../Typography'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
 
 export interface Props extends BaseProps {
   children: ReactNode

@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-menu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-menu-item": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0"
+  }
+}

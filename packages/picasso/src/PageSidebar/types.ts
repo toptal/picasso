@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export type VariantType = 'light' | 'dark'
 
 export interface SidebarContextProps {

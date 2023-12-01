@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-non-native-select-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-loader": "^1.0.0",
+    "@toptal/picasso-select-options": "^1.0.0"
+  }
+}

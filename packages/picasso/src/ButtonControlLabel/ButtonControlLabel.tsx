@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
+import Container from '@toptal/picasso-container'
+import Button from '@toptal/picasso-button'
 
-import Container from '../Container'
-import Button from '../Button'
 import styles from './styles'
 
 export interface Props extends BaseProps {

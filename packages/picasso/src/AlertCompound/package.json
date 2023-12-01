@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-alert-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-alert": "^1.0.0",
+    "@toptal/picasso-alert-inline": "^1.0.0"
+  }
+}

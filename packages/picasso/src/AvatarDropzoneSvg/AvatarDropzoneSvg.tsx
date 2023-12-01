@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core'
 import { capitalize, makeStyles } from '@material-ui/core'

@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-page-banner",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-notification": "^1.0.0",
+    "@toptal/picasso-notification-actions": "^1.0.0"
+  }
+}

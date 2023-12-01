@@ -1,15 +1,16 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { SizeType, BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import { ArrowDownMinor24, ArrowDownMinor16 } from '@toptal/picasso-icon'
+import type { ButtonProps } from '@toptal/picasso-button'
+import Button from '@toptal/picasso-button'
+import ButtonGroup from '@toptal/picasso-button-group'
+import Dropdown from '@toptal/picasso-dropdown'
 
-import { ArrowDownMinor24, ArrowDownMinor16 } from '../Icon'
-import type { ButtonProps } from '../Button'
-import Button from '../Button'
-import ButtonGroup from '../ButtonGroup'
-import Dropdown from '../Dropdown'
 import styles from './styles'
 
 export interface Props

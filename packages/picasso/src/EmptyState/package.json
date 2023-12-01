@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-empty-state",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-empty-state-page": "^1.0.0",
+    "@toptal/picasso-empty-state-collection": "^1.0.0"
+  }
+}

@@ -1,8 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
-
-import type { Option, OptionGroups, ItemProps, Selection } from '../SelectBase'
-import { isOptionsType } from '../SelectBase'
+import type {
+  Option,
+  OptionGroups,
+  ItemProps,
+  Selection,
+} from '@toptal/picasso-select-base'
+import { isOptionsType } from '@toptal/picasso-select-base'
 
 export interface Props {
   options: Option[] | OptionGroups

@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-rating-stars",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-rating-icon": "^1.0.0"
+  }
+}

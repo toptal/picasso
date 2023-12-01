@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Ref } from 'react'
 import { useEffect, useRef } from 'react'
 import type { TabsActions } from '@material-ui/core'

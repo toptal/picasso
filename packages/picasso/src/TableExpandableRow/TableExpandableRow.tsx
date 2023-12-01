@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useRef, useEffect } from 'react'
 import cx from 'classnames'
@@ -5,9 +6,9 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Collapse as MUICollapse } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import TableRow from '@toptal/picasso-table-row'
+import TableCell from '@toptal/picasso-table-cell'
 
-import TableRow from '../TableRow'
-import TableCell from '../TableCell'
 import styles from './styles'
 
 const MAX_COL_SPAN = 100

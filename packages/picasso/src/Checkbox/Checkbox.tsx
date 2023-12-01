@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Checkbox as MUICheckbox } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,10 +10,10 @@ import type {
 import cx from 'classnames'
 import type { ComponentProps, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
+import type { RequiredDecoration } from '@toptal/picasso-form-label'
+import Container from '@toptal/picasso-container'
+import FormControlLabel from '@toptal/picasso-form-control-label'
 
-import type { RequiredDecoration } from '../FormLabel'
-import Container from '../Container'
-import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })

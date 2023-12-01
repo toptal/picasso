@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-form-label",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils/to-title-case": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0"
+  }
+}

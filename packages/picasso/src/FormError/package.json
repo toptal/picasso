@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-form-error",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-typography": "^1.0.0"
+  }
+}

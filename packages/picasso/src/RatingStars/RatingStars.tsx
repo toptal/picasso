@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import Container from '@toptal/picasso-container'
+import RatingIcon from '@toptal/picasso-rating-icon'
 
-import Container from '../Container'
-import RatingIcon from '../RatingIcon'
 import styles from './styles'
 
 export interface Props extends BaseProps {

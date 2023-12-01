@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ChangeEvent, ComponentProps } from 'react'
 import React, { forwardRef, useRef, useMemo } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -5,11 +6,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import type { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core'
 import { Slider as MUISlider } from '@material-ui/core'
 import cx from 'classnames'
+import type { ValueLabelProps } from '@toptal/picasso-slider-value-label'
+import SliderValueLabel from '@toptal/picasso-slider-value-label'
+import useCombinedRefs from '@toptal/picasso-utils/use-combined-refs'
 
-import type { ValueLabelProps } from '../SliderValueLabel'
-import SliderValueLabel from '../SliderValueLabel'
 import { SliderContextProvider } from './SliderContext'
-import useCombinedRefs from '../utils/use-combined-refs'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable complexity */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
@@ -5,10 +6,10 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { StandardProps, SizeType } from '@toptal/picasso-shared'
+import Avatar from '@toptal/picasso-avatar'
+import Typography from '@toptal/picasso-typography'
+import Container from '@toptal/picasso-container'
 
-import Avatar from '../Avatar'
-import Typography from '../Typography'
-import Container from '../Container'
 import styles from './styles'
 
 type AlignmentType = boolean | 'auto'

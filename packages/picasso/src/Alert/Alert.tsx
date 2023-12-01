@@ -1,20 +1,26 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { MouseEvent, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { SPACING_4 } from '@toptal/picasso-utils'
+import type { ButtonProps } from '@toptal/picasso-button'
+import type { ButtonSplitProps } from '@toptal/picasso-button-split'
+import type { VariantType as ContainerVariants } from '@toptal/picasso-container'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import {
+  CloseMinor16,
+  Exclamation16,
+  Done16,
+  Info16,
+} from '@toptal/picasso-icon'
+import Button from '@toptal/picasso-button'
+import ButtonSplit from '@toptal/picasso-button-split'
 
-import { SPACING_4 } from '../utils'
-import type { ButtonProps } from '../Button'
-import type { ButtonSplitProps } from '../ButtonSplit'
-import type { VariantType as ContainerVariants } from '../Container'
-import Container from '../Container'
-import Typography from '../Typography'
-import ButtonCircular from '../ButtonCircular'
-import { CloseMinor16, Exclamation16, Done16, Info16 } from '../Icon'
 import styles from './styles'
-import Button from '../Button'
-import ButtonSplit from '../ButtonSplit'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',

@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-modal-content",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils": "^1.0.0"
+  }
+}

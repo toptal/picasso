@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
@@ -13,12 +14,12 @@ import type {
   SpacingType,
 } from '@toptal/picasso-provider'
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
+import Popper from '@toptal/picasso-popper'
+import Paper from '@toptal/picasso-paper'
+import noop from '@toptal/picasso-utils/noop'
 
-import Popper from '../Popper'
-import Paper from '../Paper'
 import type { StyleProps } from './styles'
 import styles from './styles'
-import noop from '../utils/noop'
 
 type ContentOverflowType = 'scroll' | 'visible'
 

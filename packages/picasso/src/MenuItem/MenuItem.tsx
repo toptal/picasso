@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   ReactNode,
   LiHTMLAttributes,
@@ -17,17 +18,17 @@ import type {
   OverridableComponent,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
+import Container from '@toptal/picasso-container'
+import { ChevronMinor16, CheckMinor16 } from '@toptal/picasso-icon'
+import Paper from '@toptal/picasso-paper'
+import Popper from '@toptal/picasso-popper'
+import Link from '@toptal/picasso-link'
+import { ClickAwayListener, toTitleCase } from '@toptal/picasso-utils'
+import type { AvatarProps } from '@toptal/picasso-avatar'
+import type Avatar from '@toptal/picasso-avatar'
 
-import Container from '../Container'
-import { ChevronMinor16, CheckMinor16 } from '../Icon'
-import Paper from '../Paper'
-import Popper from '../Popper'
-import Link from '../Link'
-import { ClickAwayListener, toTitleCase } from '../utils'
 import { useMenuItem } from './hooks'
 import styles from './styles'
-import type { AvatarProps } from '../Avatar'
-import type Avatar from '../Avatar'
 
 export type VariantType = 'light' | 'dark'
 

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * @deprecated Use kebabToCamelCase() from @toptal/picasso-provider package
  */

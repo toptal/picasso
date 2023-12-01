@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-carousel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-carousel-gradient": "^1.0.0",
+    "@toptal/picasso-carousel-navigation": "^1.0.0"
+  }
+}

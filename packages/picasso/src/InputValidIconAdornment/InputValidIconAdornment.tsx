@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import { CheckMinor24, CheckMinor16 } from '../Icon'
-import InputAdornment from '../InputAdornment'
+import { CheckMinor24, CheckMinor16 } from '@toptal/picasso-icon'
+import InputAdornment from '@toptal/picasso-input-adornment'
 
 export interface Props {
   'data-testid'?: string

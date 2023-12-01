@@ -1,15 +1,16 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, Children } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Container from '@toptal/picasso-container'
+import FormHint from '@toptal/picasso-form-hint'
+import FormError from '@toptal/picasso-form-error'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
-import Container from '../Container'
-import FormHint from '../FormHint'
-import FormError from '../FormError'
 import styles from './styles'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */

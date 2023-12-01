@@ -1,19 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import NativeSelect from '../NativeSelect'
-import NonNativeSelect from '../NonNativeSelect'
-import type { FeatureOptions } from '../utils/disable-unsupported-props'
-import disableUnsupportedProps from '../utils/disable-unsupported-props'
-import noop from '../utils/noop'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { SelectProps, ValueType } from '../SelectBase'
+import NativeSelect from '@toptal/picasso-native-select'
+import NonNativeSelect from '@toptal/picasso-non-native-select'
+import type { FeatureOptions } from '@toptal/picasso-utils/disable-unsupported-props'
+import disableUnsupportedProps from '@toptal/picasso-utils/disable-unsupported-props'
+import noop from '@toptal/picasso-utils/noop'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import type { SelectProps, ValueType } from '@toptal/picasso-select-base'
 import {
   DEFAULT_LIMIT,
   DEFAULT_SEARCH_THRESHOLD,
   getOptionText,
   renderOption,
-} from '../SelectBase'
-import { documentable, forwardRef } from '../utils'
+} from '@toptal/picasso-select-base'
+import { documentable, forwardRef } from '@toptal/picasso-utils'
 
 const purifyProps = (
   props: SelectProps<any, any>

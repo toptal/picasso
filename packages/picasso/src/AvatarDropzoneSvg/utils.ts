@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * Returns the shape of the Avatar component in SVG path's format.
  * SVG's "path" works for the function like this:

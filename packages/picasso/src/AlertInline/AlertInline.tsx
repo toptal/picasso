@@ -1,13 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, ColorType } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
+import type { VariantType as ContainerVariants } from '@toptal/picasso-container'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import {
+  ExclamationSolid16,
+  DoneSolid16,
+  InfoSolid16,
+} from '@toptal/picasso-icon'
 
-import type { VariantType as ContainerVariants } from '../Container'
-import Container from '../Container'
-import Typography from '../Typography'
-import { ExclamationSolid16, DoneSolid16, InfoSolid16 } from '../Icon'
 import styles from './styles'
 
 export type VariantType = Extract<

@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Menu from '@toptal/picasso-menu'
+import { useRegisterMenu } from '@toptal/picasso-page-hamburger'
 
-import Menu from '../Menu'
-import { useRegisterMenu } from '../PageHamburger'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {

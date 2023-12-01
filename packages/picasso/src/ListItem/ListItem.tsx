@@ -1,17 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import type { ListItemType } from '@toptal/picasso-list/context'
+import { useListContext } from '@toptal/picasso-list/context'
+import { ArrowLongRight16, Check16 } from '@toptal/picasso-icon'
 
-import Container from '../Container'
-import Typography from '../Typography'
 import styles from './styles'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { ListItemType } from '../List/context'
-import { useListContext } from '../List/context'
-import { ArrowLongRight16, Check16 } from '../Icon'
 
 export type Props = BaseProps & {
   children: ReactNode

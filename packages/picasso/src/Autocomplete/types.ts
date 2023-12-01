@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export type Item = {
   text?: string
   description?: string

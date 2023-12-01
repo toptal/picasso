@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, MouseEvent, ReactElement, HTMLAttributes } from 'react'
 import React, { forwardRef, cloneElement } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -6,18 +7,18 @@ import { SnackbarContent } from '@material-ui/core'
 import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
 import type { StandardProps } from '@toptal/picasso-shared'
-
 import {
   CloseMinor16,
   ExclamationSolid16,
   ExclamationSolid24,
   CheckSolid24,
   Info24,
-} from '../Icon'
-import Container from '../Container'
-import ButtonCircular from '../ButtonCircular'
+} from '@toptal/picasso-icon'
+import Container from '@toptal/picasso-container'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Typography from '@toptal/picasso-typography'
+
 import styles from './styles'
-import Typography from '../Typography'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 

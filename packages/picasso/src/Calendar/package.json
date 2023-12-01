@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-calendar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-calendar-day": "^1.0.0",
+    "@toptal/picasso-calendar-month-header": "^1.0.0",
+    "@toptal/picasso-calendar-context": "^1.0.0",
+    "@toptal/picasso-calendar-container": "^1.0.0"
+  }
+}

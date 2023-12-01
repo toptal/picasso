@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement, ReactNode, LabelHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
@@ -5,11 +6,11 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import type { RequiredDecoration } from '@toptal/picasso-form-label'
+import { FormCompound as Form } from '@toptal/picasso-form-compound'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
-import type { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
-import { FormCompound as Form } from '../FormCompound'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export type FormControlLabelAttributesType =
   LabelHTMLAttributes<HTMLLabelElement> &

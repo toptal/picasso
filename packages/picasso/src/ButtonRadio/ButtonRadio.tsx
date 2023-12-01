@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import Radio from '../Radio'
-import type { ButtonControlLabelProps } from '../ButtonControlLabel'
-import ButtonControlLabel from '../ButtonControlLabel'
+import Radio from '@toptal/picasso-radio'
+import type { ButtonControlLabelProps } from '@toptal/picasso-button-control-label'
+import ButtonControlLabel from '@toptal/picasso-button-control-label'
 
 export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   testIds?: {

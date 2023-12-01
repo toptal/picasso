@@ -1,14 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef, useCallback, useEffect } from 'react'
+import Menu from '@toptal/picasso-menu'
+import { useSidebarContext } from '@toptal/picasso-page-sidebar/-sidebar-context-provider'
+import type { SidebarItemProps } from '@toptal/picasso-sidebar-item'
+import { useSubMenuContext } from '@toptal/picasso-sidebar-item'
 
-import Menu from '../Menu'
-import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
-import type { SidebarItemProps } from '../SidebarItem'
-import { useSubMenuContext } from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {

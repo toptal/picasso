@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
@@ -8,9 +9,9 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
+import Button from '@toptal/picasso-button'
+import kebabToCamelCase from '@toptal/picasso-utils/kebab-to-camel-case'
 
-import Button from '../Button'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 
 export type VariantType = 'primary' | 'flat' | 'transparent'

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { MouseEvent } from 'react'
 import { useCallback, useRef } from 'react'
 import type PopperJs from 'popper.js'

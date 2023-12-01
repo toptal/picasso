@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-native-select",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-outlined-input": "^1.0.0",
+    "@toptal/picasso-select-caret": "^1.0.0",
+    "@toptal/picasso-select-base": "^1.0.0",
+    "@toptal/picasso-native-select-options": "^1.0.0",
+    "@toptal/picasso-native-select-placeholder": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-input-base/highlight-styles": "^1.0.0"
+  }
+}

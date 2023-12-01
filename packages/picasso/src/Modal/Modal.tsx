@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, {
   forwardRef,
@@ -21,14 +22,14 @@ import {
   useBreakpoint,
   RootContext,
 } from '@toptal/picasso-provider'
+import { CloseMinor16 } from '@toptal/picasso-icon'
+import useCombinedRefs from '@toptal/picasso-utils/use-combined-refs'
+import { ModalManager } from '@toptal/picasso-utils/-modal'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import { usePageScrollLock } from '@toptal/picasso-utils/use-page-scroll-lock'
 
-import { CloseMinor16 } from '../Icon'
-import useCombinedRefs from '../utils/use-combined-refs'
-import { ModalManager } from '../utils/Modal'
-import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import ModalContext from './ModalContext'
-import { usePageScrollLock } from '../utils/use-page-scroll-lock'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'

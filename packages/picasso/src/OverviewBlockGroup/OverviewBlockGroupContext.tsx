@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createContext, useContext } from 'react'
 
 import type { Alignment, BlockWidth } from './settings'

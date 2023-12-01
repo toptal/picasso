@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-user-badge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-avatar": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0"
+  }
+}

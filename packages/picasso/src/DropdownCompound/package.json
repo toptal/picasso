@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-dropdown-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-dropdown": "^1.0.0",
+    "@toptal/picasso-dropdown/-dropdown": "^1.0.0",
+    "@toptal/picasso-dropdown-arrow": "^1.0.0"
+  }
+}

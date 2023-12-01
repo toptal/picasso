@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createRef, useEffect, useMemo, useRef, useState } from 'react'
 import type { HierarchyPointNode } from 'd3-hierarchy'
 

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useState } from 'react'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 

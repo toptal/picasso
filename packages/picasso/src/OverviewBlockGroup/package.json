@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-overview-block-group",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-overview-block-row": "^1.0.0"
+  }
+}

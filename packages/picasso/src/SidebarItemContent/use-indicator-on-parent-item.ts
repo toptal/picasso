@@ -1,6 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useEffect } from 'react'
-
-import { useParentItemContext } from '../SidebarItem/ParentItemContextProvider'
+import { useParentItemContext } from '@toptal/picasso-sidebar-item/-parent-item-context-provider'
 
 type HookProps = {
   isSubMenu?: boolean

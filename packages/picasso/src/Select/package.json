@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-select",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-native-select": "^1.0.0",
+    "@toptal/picasso-non-native-select": "^1.0.0",
+    "@toptal/picasso-utils/disable-unsupported-props": "^1.0.0",
+    "@toptal/picasso-utils/noop": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-select-base": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0"
+  }
+}

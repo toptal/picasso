@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-button-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-button": "^1.0.0",
+    "@toptal/picasso-button-group": "^1.0.0",
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-button-action": "^1.0.0",
+    "@toptal/picasso-button-split": "^1.0.0",
+    "@toptal/picasso-button-checkbox": "^1.0.0",
+    "@toptal/picasso-button-radio": "^1.0.0"
+  }
+}

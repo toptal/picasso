@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-carousel-navigation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-icon/-chevron-right24": "^1.0.0"
+  }
+}

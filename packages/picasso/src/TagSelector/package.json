@@ -1,0 +1,15 @@
+{
+  "name": "@toptal/picasso-tag-selector",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-autocomplete": "^1.0.0",
+    "@toptal/picasso-tag-selector-input": "^1.0.0",
+    "@toptal/picasso-input": "^1.0.0",
+    "@toptal/picasso-tag-selector-label": "^1.0.0",
+    "@toptal/picasso-utils/unsafe-error-log": "^1.0.0",
+    "@toptal/picasso-utils/noop": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-outlined-input": "^1.0.0"
+  }
+}

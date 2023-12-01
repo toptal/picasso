@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import unsafeErrorLog from './unsafe-error-log'
 
 type PIndex = { [index: string]: unknown }

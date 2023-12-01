@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ForwardedRef } from 'react'
 import { useCallback } from 'react'
 

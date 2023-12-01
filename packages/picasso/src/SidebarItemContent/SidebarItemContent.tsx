@@ -1,19 +1,20 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
+import Typography from '@toptal/picasso-typography'
+import Tooltip from '@toptal/picasso-tooltip'
+import Container from '@toptal/picasso-container'
+import Badge from '@toptal/picasso-badge'
+import TagRectangular from '@toptal/picasso-tag-rectangular'
+import { getReactNodeTextContent } from '@toptal/picasso-utils'
+import Indicator from '@toptal/picasso-indicator'
 
-import Typography from '../Typography'
-import Tooltip from '../Tooltip'
-import Container from '../Container'
-import Badge from '../Badge'
-import TagRectangular from '../TagRectangular'
-import { getReactNodeTextContent } from '../utils'
 import styles from './styles'
 import type { Props, SidebarBadgeProps } from './types'
-import Indicator from '../Indicator'
 import useIndicatorOnParentItem from './use-indicator-on-parent-item'
 
 const useStyles = makeStyles<Theme>(styles, {

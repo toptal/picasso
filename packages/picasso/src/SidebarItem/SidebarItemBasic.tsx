@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 
 import { SidebarItemHeader } from './SidebarItemHeader'

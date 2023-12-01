@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
@@ -12,12 +13,12 @@ import type {
 import { useTitleCase } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core'
 import { makeStyles, ButtonBase } from '@material-ui/core'
+import Loader from '@toptal/picasso-loader'
+import Container from '@toptal/picasso-container'
+import noop from '@toptal/picasso-utils/noop'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
 
 import styles from './styles'
-import Loader from '../Loader'
-import Container from '../Container'
-import noop from '../utils/noop'
-import toTitleCase from '../utils/to-title-case'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoButton',

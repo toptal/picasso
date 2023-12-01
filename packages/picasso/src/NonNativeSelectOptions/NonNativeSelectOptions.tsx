@@ -1,12 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { useMemo } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-
-import MenuItem from '../MenuItem'
-import NonNativeSelectOption from '../NonNativeSelectOption'
-import SelectOptions from '../SelectOptions'
+import MenuItem from '@toptal/picasso-menu-item'
+import NonNativeSelectOption from '@toptal/picasso-non-native-select-option'
+import SelectOptions from '@toptal/picasso-select-options'
 import type {
   FocusEventType,
   ItemProps,
@@ -14,9 +14,10 @@ import type {
   OptionGroups,
   SelectProps,
   Selection,
-} from '../SelectBase'
-import { flattenOptions, isOptionsType } from '../SelectBase'
-import Typography from '../Typography'
+} from '@toptal/picasso-select-base'
+import { flattenOptions, isOptionsType } from '@toptal/picasso-select-base'
+import Typography from '@toptal/picasso-typography'
+
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)

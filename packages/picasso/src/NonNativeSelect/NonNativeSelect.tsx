@@ -1,17 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useRef } from 'react'
 import type PopperJs from 'popper.js'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-
-import { Search16 } from '../Icon'
-import OutlinedInput from '../OutlinedInput'
-import Popper from '../Popper'
-import MenuItem from '../MenuItem'
-import SelectCaret from '../SelectCaret'
-import NonNativeSelectLoader from '../NonNativeSelectLoader'
-import type { ValueType, SelectProps } from '../SelectBase'
+import { Search16 } from '@toptal/picasso-icon'
+import OutlinedInput from '@toptal/picasso-outlined-input'
+import Popper from '@toptal/picasso-popper'
+import MenuItem from '@toptal/picasso-menu-item'
+import SelectCaret from '@toptal/picasso-select-caret'
+import NonNativeSelectLoader from '@toptal/picasso-non-native-select-loader'
+import type { ValueType, SelectProps } from '@toptal/picasso-select-base'
 import {
   useAdornments,
   useSelectState,
@@ -22,13 +22,19 @@ import {
   DEFAULT_SEARCH_THRESHOLD,
   countOptions,
   filterFlatOptions as defaultFilterOptions,
-} from '../SelectBase'
-import NonNativeSelectOptions from '../NonNativeSelectOptions'
-import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
+} from '@toptal/picasso-select-base'
+import NonNativeSelectOptions from '@toptal/picasso-non-native-select-options'
+import {
+  documentable,
+  forwardRef,
+  noop,
+  useCombinedRefs,
+} from '@toptal/picasso-utils'
+import NonNativeSelectLimitFooter from '@toptal/picasso-non-native-select-limit-footer'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
+
 import styles from './styles'
-import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
-import InputAdornment from '../InputAdornment'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 const useStyles = makeStyles<Theme>(styles)
 

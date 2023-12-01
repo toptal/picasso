@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { StyleRules } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 import { rem } from '@toptal/picasso-shared'
-
-import type { ListItemType } from '../List/context'
+import type { ListItemType } from '@toptal/picasso-list/context'
 
 PicassoProvider.override(() => ({
   MuiListItem: {

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -10,9 +11,9 @@ import type {
   TextLabelProps,
   SizeType,
 } from '@toptal/picasso-shared'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
 
 import styles from './styles'
-import toTitleCase from '../utils/to-title-case'
 import toMuiVariant from './utils/to-mui-variant'
 import getTypographyClassName from './utils/get-typography-class-name'
 

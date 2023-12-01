@@ -1,13 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import { useDayPicker, useNavigation } from 'react-day-picker'
 import isSameMonth from 'date-fns/isSameMonth'
-
-import ButtonCircular from '../ButtonCircular'
-import Typography from '../Typography'
-import { ChevronMinor24, BackMinor24 } from '../Icon'
-import Container from '../Container'
-import { useCalendar } from '../CalendarContext'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Typography from '@toptal/picasso-typography'
+import { ChevronMinor24, BackMinor24 } from '@toptal/picasso-icon'
+import Container from '@toptal/picasso-container'
+import { useCalendar } from '@toptal/picasso-calendar-context'
 
 interface RenderMonthHeaderProps {
   /** Unique key */

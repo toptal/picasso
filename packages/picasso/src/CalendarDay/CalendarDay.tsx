@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
@@ -13,11 +14,11 @@ import {
   isBefore,
   startOfMonth,
 } from 'date-fns'
+import { CalendarIndicators } from '@toptal/picasso-calendar-indicators'
+import { useCalendar } from '@toptal/picasso-calendar-context'
+import type { DayProps as RenderDayProps } from '@toptal/picasso-calendar'
 
 import styles from './styles'
-import { CalendarIndicators } from '../CalendarIndicators'
-import { useCalendar } from '../CalendarContext'
-import type { DayProps as RenderDayProps } from '../Calendar'
 
 export type RenderDay = (args: RenderDayProps) => ReactNode
 

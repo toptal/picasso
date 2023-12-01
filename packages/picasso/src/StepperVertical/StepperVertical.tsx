@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
-
-import type { StepperBaseProps } from '../Stepper'
-import Stepper from '../Stepper'
+import type { StepperBaseProps } from '@toptal/picasso-stepper'
+import Stepper from '@toptal/picasso-stepper'
 
 export type Props = StepperBaseProps
 

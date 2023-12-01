@@ -1,13 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
+import Container from '@toptal/picasso-container'
+import { useSidebarContext } from '@toptal/picasso-page-sidebar/-sidebar-context-provider'
 
-import Container from '../Container'
 import styles from './styles'
-import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
 
 export interface Props
   extends BaseProps,

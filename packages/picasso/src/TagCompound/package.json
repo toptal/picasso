@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-tag-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-tag": "^1.0.0",
+    "@toptal/picasso-tag-group": "^1.0.0",
+    "@toptal/picasso-tag-rectangular": "^1.0.0",
+    "@toptal/picasso-tag-connection": "^1.0.0",
+    "@toptal/picasso-tag-checkable": "^1.0.0"
+  }
+}

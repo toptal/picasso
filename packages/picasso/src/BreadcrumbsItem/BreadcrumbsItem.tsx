@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ElementType, HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type {
@@ -9,9 +10,9 @@ import { useTitleCase } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import Typography from '@toptal/picasso-typography'
+import { toTitleCase } from '@toptal/picasso-utils'
 
-import Typography from '../Typography'
-import { toTitleCase } from '../utils'
 import styles from './styles'
 
 export interface Props

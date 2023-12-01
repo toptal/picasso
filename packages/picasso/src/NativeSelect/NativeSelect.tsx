@@ -1,23 +1,29 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useRef } from 'react'
 import cx from 'classnames'
 import { NativeSelect as MUINativeSelect } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
-
-import OutlinedInput from '../OutlinedInput'
-import SelectCaret from '../SelectCaret'
-import type { ValueType, SelectProps } from '../SelectBase'
+import OutlinedInput from '@toptal/picasso-outlined-input'
+import SelectCaret from '@toptal/picasso-select-caret'
+import type { ValueType, SelectProps } from '@toptal/picasso-select-base'
 import {
   getOptionText,
   useAdornments,
   useSelectState,
   useSelectProps,
   renderOption as defaultRenderOption,
-} from '../SelectBase'
-import NativeSelectOptions from '../NativeSelectOptions'
-import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
-import { documentable, forwardRef, noop, useCombinedRefs } from '../utils'
+} from '@toptal/picasso-select-base'
+import NativeSelectOptions from '@toptal/picasso-native-select-options'
+import NativeSelectPlaceholder from '@toptal/picasso-native-select-placeholder'
+import {
+  documentable,
+  forwardRef,
+  noop,
+  useCombinedRefs,
+} from '@toptal/picasso-utils'
+
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles)

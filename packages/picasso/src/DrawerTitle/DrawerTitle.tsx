@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@toptal/picasso-typography'
+import Container from '@toptal/picasso-container'
 
 import styles from './styles'
-import Typography from '../Typography'
-import Container from '../Container'
 
 export interface Props extends BaseProps {
   title?: ReactNode

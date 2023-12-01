@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useRef } from 'react'
 import type { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core/Slider'
-
-import Tooltip from '../Tooltip'
-import { useSliderContext } from '../Slider/SliderContext'
+import Tooltip from '@toptal/picasso-tooltip'
+import { useSliderContext } from '@toptal/picasso-slider/-slider-context'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 

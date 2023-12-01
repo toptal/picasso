@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-table-section-head",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-table": "^1.0.0",
+    "@toptal/picasso-table-cell": "^1.0.0",
+    "@toptal/picasso-table-row": "^1.0.0",
+    "@toptal/picasso-table-body": "^1.0.0"
+  }
+}

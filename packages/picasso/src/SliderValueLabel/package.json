@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-slider-value-label",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-tooltip": "^1.0.0",
+    "@toptal/picasso-slider/-slider-context": "^1.0.0"
+  }
+}

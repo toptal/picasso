@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { JssProps } from '@toptal/picasso-shared'
 import React from 'react'
-
-import { Container } from '../Container'
+import { Container } from '@toptal/picasso-container'
 
 /**
  * "You may not resize or modify these logos in any way." by the Google Policies

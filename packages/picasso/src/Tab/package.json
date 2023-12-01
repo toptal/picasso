@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-tab",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-user-badge": "^1.0.0",
+    "@toptal/picasso-tabs/-tabs": "^1.0.0",
+    "@toptal/picasso-tab-label": "^1.0.0",
+    "@toptal/picasso-tab-description": "^1.0.0"
+  }
+}

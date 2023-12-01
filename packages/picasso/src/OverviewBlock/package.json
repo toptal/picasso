@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-overview-block",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-overview-block-group/-overview-block-group-context": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0"
+  }
+}

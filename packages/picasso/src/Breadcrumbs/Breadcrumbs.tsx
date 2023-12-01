@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Breadcrumbs as MuiBreadcrumbs } from '@material-ui/core'
-
-import { ChevronRight16 } from '../Icon'
+import { ChevronRight16 } from '@toptal/picasso-icon'
 import './styles'
 
 export interface Props extends BaseProps {

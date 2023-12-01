@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-lines */
 /* eslint-disable complexity, max-statements, max-lines-per-function */ // Squiggly lines makes code difficult to work with
 
@@ -18,25 +19,25 @@ import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { isForwardRef } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
+import type { InputProps } from '@toptal/picasso-input'
+import Input from '@toptal/picasso-input'
+import { MenuCompound as Menu } from '@toptal/picasso-menu-compound'
+import Container from '@toptal/picasso-container'
+import Loader from '@toptal/picasso-loader'
+import SelectOptions from '@toptal/picasso-select-options'
+import Popper from '@toptal/picasso-popper'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
+import unsafeErrorLog from '@toptal/picasso-utils/unsafe-error-log'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
-import type { InputProps } from '../Input'
-import Input from '../Input'
-import { MenuCompound as Menu } from '../MenuCompound'
-import Container from '../Container'
-import Loader from '../Loader'
-import SelectOptions from '../SelectOptions'
-import Popper from '../Popper'
-import InputAdornment from '../InputAdornment'
 import PoweredByGoogle from './PoweredByGoogle'
 import NoOptionsMenuItem from './NoOptionsMenuItem'
 import OtherOptionMenuItem from './OtherOptionMenuItem'
 import type { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
-import type { BaseInputProps, Status } from '../OutlinedInput'
-import unsafeErrorLog from '../utils/unsafe-error-log'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends BaseProps,

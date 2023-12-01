@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { FormEventHandler, ReactNode, FormHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import { FieldsLayoutContextProvider } from '../FieldsLayout'
+import { FieldsLayoutContextProvider } from '@toptal/picasso-fields-layout'
 
 export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */

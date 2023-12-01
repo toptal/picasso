@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
-
-import { loaderPalette } from '../utils'
+import { loaderPalette } from '@toptal/picasso-utils'
 
 const HEIGHT = 10
 const WIDTH = 200

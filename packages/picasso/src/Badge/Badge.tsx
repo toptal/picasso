@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { Children, forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'

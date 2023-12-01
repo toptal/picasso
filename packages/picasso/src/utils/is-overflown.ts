@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * Pixel value of font render space correction.
  * It's individual for different fonts, so it won't work for 100% cases,

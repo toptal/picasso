@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createStyles } from '@material-ui/core'
 import { rem } from '@toptal/picasso-shared'
 

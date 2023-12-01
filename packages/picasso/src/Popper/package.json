@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-popper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-modal/-modal-context": "^1.0.0",
+    "@toptal/picasso-utils/use-width-of": "^1.0.0"
+  }
+}

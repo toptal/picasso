@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-menu-item",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-paper": "^1.0.0",
+    "@toptal/picasso-popper": "^1.0.0",
+    "@toptal/picasso-link": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-avatar": "^1.0.0"
+  }
+}

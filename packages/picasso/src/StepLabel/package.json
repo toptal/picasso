@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-step-label",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-step-icon": "^1.0.0",
+    "@toptal/picasso-utils/to-title-case": "^1.0.0",
+    "@toptal/picasso-typography-overflow": "^1.0.0"
+  }
+}

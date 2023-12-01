@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-sidebar-menu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-menu": "^1.0.0",
+    "@toptal/picasso-page-sidebar/-sidebar-context-provider": "^1.0.0",
+    "@toptal/picasso-sidebar-item": "^1.0.0"
+  }
+}

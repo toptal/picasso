@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React, { useCallback } from 'react'
 import type { StandardProps, SizeType } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import { AVATAR_INITIALS_LIMIT } from '@toptal/picasso-utils/constants'
+import getNameInitials from '@toptal/picasso-utils/get-name-initials'
 
-import { AVATAR_INITIALS_LIMIT } from '../utils/constants'
-import getNameInitials from '../utils/get-name-initials'
 import ImageAvatar from './ImageAvatar/ImageAvatar'
 import TextAvatar from './TextAvatar/TextAvatar'
 import IconAvatar from './IconAvatar/IconAvatar'

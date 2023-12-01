@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes, ReactElement } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -6,12 +7,12 @@ import type { TabProps } from '@material-ui/core'
 import { Tab as MUITab } from '@material-ui/core'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
+import UserBadge from '@toptal/picasso-user-badge'
+import { TabsOrientationContext } from '@toptal/picasso-tabs/-tabs'
+import TabLabel from '@toptal/picasso-tab-label'
+import TabDescription from '@toptal/picasso-tab-description'
 
-import UserBadge from '../UserBadge'
 import styles from './styles'
-import { TabsOrientationContext } from '../Tabs/Tabs'
-import TabLabel from '../TabLabel'
-import TabDescription from '../TabDescription'
 
 export interface Props
   extends BaseProps,

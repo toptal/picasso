@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-breadcrumbs-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-breadcrumbs": "^1.0.0",
+    "@toptal/picasso-breadcrumbs-item": "^1.0.0"
+  }
+}

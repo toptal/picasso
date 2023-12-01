@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   ChangeEventHandler,
   ReactType,
@@ -13,14 +14,14 @@ import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
 import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
 import type { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import { CloseMinor16 } from '@toptal/picasso-icon'
+import noop from '@toptal/picasso-utils/noop'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import InputValidIconAdornment from '@toptal/picasso-input-valid-icon-adornment'
 
-import InputAdornment from '../InputAdornment'
-import ButtonCircular from '../ButtonCircular'
-import { CloseMinor16 } from '../Icon'
 import styles from './styles'
-import noop from '../utils/noop'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import InputValidIconAdornment from '../InputValidIconAdornment'
 
 type ValueType =
   | (string | number | boolean | object)[]

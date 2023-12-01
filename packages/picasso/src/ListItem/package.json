@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-list-item",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-list/context": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0"
+  }
+}

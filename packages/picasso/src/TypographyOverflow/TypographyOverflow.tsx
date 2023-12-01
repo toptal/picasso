@@ -1,16 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import cx from 'classnames'
 import type { ReactNode } from 'react'
 import React, { useCallback, useState } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Tooltip from '@toptal/picasso-tooltip'
+import type { TypographyProps } from '@toptal/picasso-typography'
+import Typography from '@toptal/picasso-typography'
+import { isOverflown } from '@toptal/picasso-utils'
+import type { DelayType } from '@toptal/picasso-tooltip/-tooltip'
 
 import styles from './styles'
-import Tooltip from '../Tooltip'
-import type { TypographyProps } from '../Typography'
-import Typography from '../Typography'
-import { isOverflown } from '../utils'
-import type { DelayType } from '../Tooltip/Tooltip'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */

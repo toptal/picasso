@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-input-limit-adornment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-input-multiline-adornment": "^1.0.0"
+  }
+}

@@ -1,15 +1,16 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import React, { forwardRef } from 'react'
+import Container from '@toptal/picasso-container'
+import Dropdown from '@toptal/picasso-dropdown'
+import useOpen from '@toptal/picasso-utils/use-boolean'
 
-import Container from '../Container'
-import Dropdown from '../Dropdown'
 import { SidebarItemHeader } from './SidebarItemHeader'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import type { Props } from './types'
 import styles from './styles'
 import { ParentItemContextProvider } from './ParentItemContextProvider'
-import useOpen from '../utils/useBoolean'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoSidebarItemCompact',

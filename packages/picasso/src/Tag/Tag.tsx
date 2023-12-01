@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   ReactNode,
   ReactElement,
@@ -12,11 +13,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
+import Chip from '@toptal/picasso-chip'
+import { CloseMinor16 } from '@toptal/picasso-icon'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
 
-import Chip from '../Chip'
-import { CloseMinor16 } from '../Icon'
 import styles from './styles'
-import toTitleCase from '../utils/to-title-case'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { useState } from 'react'
 import { zoomTransform, select } from 'd3'

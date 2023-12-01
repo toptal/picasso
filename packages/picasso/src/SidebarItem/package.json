@@ -1,0 +1,17 @@
+{
+  "name": "@toptal/picasso-sidebar-item",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils/noop": "^1.0.0",
+    "@toptal/picasso-accordion": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-dropdown": "^1.0.0",
+    "@toptal/picasso-utils/use-boolean": "^1.0.0",
+    "@toptal/picasso-menu-item": "^1.0.0",
+    "@toptal/picasso-sidebar-item-content": "^1.0.0",
+    "@toptal/picasso-page-sidebar/types": "^1.0.0",
+    "@toptal/picasso-sidebar-item-content/types": "^1.0.0"
+  }
+}

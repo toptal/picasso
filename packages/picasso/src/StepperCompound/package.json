@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-stepper-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-stepper": "^1.0.0",
+    "@toptal/picasso-stepper-vertical": "^1.0.0"
+  }
+}

@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
+import Accordion from '@toptal/picasso-accordion'
+import { ArrowDownMinor16 } from '@toptal/picasso-icon'
 
-import Accordion from '../Accordion'
-import { ArrowDownMinor16 } from '../Icon'
 import styles from './styles'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { ParentItemContextProvider } from './ParentItemContextProvider'

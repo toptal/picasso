@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 

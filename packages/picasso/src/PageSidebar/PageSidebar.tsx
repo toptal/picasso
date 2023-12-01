@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSidebar } from '@toptal/picasso-provider'
@@ -5,19 +6,19 @@ import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { ReactNode } from 'react'
 import React, { forwardRef, useCallback, useEffect, useState } from 'react'
-
-import ButtonCircular from '../ButtonCircular'
-import Container from '../Container'
-import { BackMinor16, ChevronRight16 } from '../Icon'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Container from '@toptal/picasso-container'
+import { BackMinor16, ChevronRight16 } from '@toptal/picasso-icon'
 import {
   PageHamburgerPortal,
   useHamburgerContext,
   useRegisterMenu,
-} from '../PageHamburger'
-import SidebarItem from '../SidebarItem'
-import SidebarLogo from '../SidebarLogo'
-import SidebarMenu from '../SidebarMenu'
-import { noop } from '../utils'
+} from '@toptal/picasso-page-hamburger'
+import SidebarItem from '@toptal/picasso-sidebar-item'
+import SidebarLogo from '@toptal/picasso-sidebar-logo'
+import SidebarMenu from '@toptal/picasso-sidebar-menu'
+import { noop } from '@toptal/picasso-utils'
+
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import type { VariantType } from './types'

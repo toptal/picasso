@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, RefObject } from 'react'
 import React, { useRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import Menu from '@toptal/picasso-menu'
 
-import { useIsomorphicLayoutEffect } from '../utils'
-import Menu from '../Menu'
 import styles from './styles'
 
 export interface Props extends BaseProps {

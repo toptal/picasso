@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-table-row",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-table": "^1.0.0"
+  }
+}

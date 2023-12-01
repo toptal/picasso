@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ImgHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'

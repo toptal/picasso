@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-input-valid-icon-adornment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-input-adornment": "^1.0.0"
+  }
+}

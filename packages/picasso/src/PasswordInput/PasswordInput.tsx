@@ -1,18 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useState, useCallback } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
+import OutlinedInput from '@toptal/picasso-outlined-input'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import SvgEye16 from '@toptal/picasso-icon/-eye16'
+import SvgEyeHidden16 from '@toptal/picasso-icon/-eye-hidden16'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
 
-import type { Props as OutlinedInputProps } from '../OutlinedInput'
-import OutlinedInput from '../OutlinedInput'
-import InputAdornment from '../InputAdornment'
 import styles from './styles'
-import SvgEye16 from '../Icon/Eye16'
-import SvgEyeHidden16 from '../Icon/EyeHidden16'
-import ButtonCircular from '../ButtonCircular'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props
   extends Omit<

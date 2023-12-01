@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { TableHead as MUITableHead } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { TableSectionContext, TableSection } from '@toptal/picasso-table'
 
 import styles from './styles'
-import { TableSectionContext, TableSection } from '../Table'
 
 export interface Props
   extends BaseProps,

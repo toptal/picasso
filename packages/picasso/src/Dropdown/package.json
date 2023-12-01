@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-dropdown",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-popper": "^1.0.0",
+    "@toptal/picasso-paper": "^1.0.0",
+    "@toptal/picasso-utils/noop": "^1.0.0"
+  }
+}

@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
+import type { ButtonProps } from '@toptal/picasso-button'
+import Button from '@toptal/picasso-button'
 
-import type { ButtonProps } from '../Button'
-import Button from '../Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

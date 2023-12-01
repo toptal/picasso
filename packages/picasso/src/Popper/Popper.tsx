@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import cx from 'classnames'
@@ -9,9 +10,9 @@ import type PopperJs from 'popper.js'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
+import ModalContext from '@toptal/picasso-modal/-modal-context'
+import useWidthOf from '@toptal/picasso-utils/use-width-of'
 
-import ModalContext from '../Modal/ModalContext'
-import useWidthOf from '../utils/use-width-of'
 import styles from './styles'
 
 export type PopperPlacementType =

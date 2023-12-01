@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import React, { forwardRef, useCallback } from 'react'
+import MenuItem from '@toptal/picasso-menu-item'
+import SidebarItemContent from '@toptal/picasso-sidebar-item-content'
 
-import MenuItem from '../MenuItem'
-import SidebarItemContent from '../SidebarItemContent'
 import styles from './styles'
 import type { Props } from './types'
 import { useSubMenuContext } from './SubMenuContextProvider'

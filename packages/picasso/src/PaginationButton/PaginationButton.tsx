@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
+import Button from '@toptal/picasso-button'
 
-import Button from '../Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

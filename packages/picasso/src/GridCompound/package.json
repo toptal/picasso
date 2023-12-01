@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-grid-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-grid": "^1.0.0",
+    "@toptal/picasso-grid-item": "^1.0.0"
+  }
+}

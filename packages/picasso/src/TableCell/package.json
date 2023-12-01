@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-table-cell",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils/to-title-case": "^1.0.0",
+    "@toptal/picasso-table": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0"
+  }
+}

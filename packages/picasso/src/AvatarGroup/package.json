@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-avatar-group",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-avatar": "^1.0.0",
+    "@toptal/picasso-avatar/-avatar-wrapper/-avatar-wrapper": "^1.0.0",
+    "@toptal/picasso-avatar/-text-avatar/-text-avatar": "^1.0.0"
+  }
+}

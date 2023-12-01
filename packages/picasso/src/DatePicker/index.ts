@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export { default } from './DatePicker'
 export type { Props as DatePickerProps } from './DatePicker'
 export type {

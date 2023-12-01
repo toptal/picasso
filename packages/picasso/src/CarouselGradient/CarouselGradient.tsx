@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useMemo } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'

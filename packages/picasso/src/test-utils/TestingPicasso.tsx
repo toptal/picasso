@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import Picasso from '@toptal/picasso-provider'
 import type { TextLabelProps } from '@toptal/picasso-shared'

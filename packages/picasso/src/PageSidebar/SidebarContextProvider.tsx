@@ -1,7 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { useContext } from 'react'
+import { noop } from '@toptal/picasso-utils'
 
-import { noop } from '../utils'
 import type { SidebarContextProps, VariantType } from './types'
 
 const SidebarContext = React.createContext<SidebarContextProps>({

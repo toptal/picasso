@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-modal-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-modal": "^1.0.0",
+    "@toptal/picasso-modal-actions": "^1.0.0",
+    "@toptal/picasso-modal-content": "^1.0.0",
+    "@toptal/picasso-modal-title": "^1.0.0"
+  }
+}

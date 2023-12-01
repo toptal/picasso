@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, {
   createContext,
@@ -6,8 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-
-import { noop } from '../utils'
+import { noop } from '@toptal/picasso-utils'
 
 const SliderContext = createContext<{
   registerValueLabel: (

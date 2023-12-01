@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-application-update-notification",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0"
+  }
+}

@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import ContentLoader from 'react-content-loader'
-
-import { loaderPalette } from '../utils'
+import { loaderPalette } from '@toptal/picasso-utils'
 
 export interface Props extends BaseProps {
   /** Specify the amount of rows */

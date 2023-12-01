@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Ref } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps } from '@toptal/picasso-shared'
+import kebabToCamelCase from '@toptal/picasso-utils/kebab-to-camel-case'
 
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 32
 

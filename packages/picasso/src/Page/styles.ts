@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
-import { headerHeight } from '../PageTopBar/constants'
+import { headerHeight } from '@toptal/picasso-page-top-bar/constants'
 
 export default ({ layout, palette }: Theme) =>
   createStyles({

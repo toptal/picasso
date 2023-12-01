@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-button-split",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-button": "^1.0.0",
+    "@toptal/picasso-button-group": "^1.0.0",
+    "@toptal/picasso-dropdown": "^1.0.0"
+  }
+}

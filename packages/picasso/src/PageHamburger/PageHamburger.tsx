@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Dropdown from '@toptal/picasso-dropdown'
+import { Close24, Overview24 } from '@toptal/picasso-icon'
 
-import ButtonCircular from '../ButtonCircular'
 import { useHamburgerContext } from './PageHamburgerContext'
-import Dropdown from '../Dropdown'
-import { Close24, Overview24 } from '../Icon'
 import styles from './styles'
 
 interface Props {

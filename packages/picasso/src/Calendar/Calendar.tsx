@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, {
   forwardRef,
   useCallback,
@@ -17,21 +18,21 @@ import { DayPicker } from 'react-day-picker'
 import isWeekend from 'date-fns/isWeekend'
 import { format, isEqual } from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
+import type { RenderDay } from '@toptal/picasso-calendar-day'
+import CalendarDay from '@toptal/picasso-calendar-day'
+import type { RenderMonthHeader } from '@toptal/picasso-calendar-month-header'
+import CalendarMonthHeader from '@toptal/picasso-calendar-month-header'
+import CalendarContext from '@toptal/picasso-calendar-context'
+import type { RenderRoot } from '@toptal/picasso-calendar-container'
+import CalendarContainer from '@toptal/picasso-calendar-container'
 
-import styles from './styles'
-import type { RenderDay } from '../CalendarDay'
-import CalendarDay from '../CalendarDay'
-import type { RenderMonthHeader } from '../CalendarMonthHeader'
-import CalendarMonthHeader from '../CalendarMonthHeader'
-import CalendarContext from '../CalendarContext'
 import type {
   CalendarDateRange,
   DateOrDateRangeType,
   DateRangeType,
   WeekStart,
 } from './types'
-import type { RenderRoot } from '../CalendarContainer'
-import CalendarContainer from '../CalendarContainer'
+import styles from './styles'
 
 export type CalendarMonthsAmount = 1 | 2
 

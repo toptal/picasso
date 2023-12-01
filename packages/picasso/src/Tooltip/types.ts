@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { MouseEvent } from 'react'
 
 export type ChildrenProps = {

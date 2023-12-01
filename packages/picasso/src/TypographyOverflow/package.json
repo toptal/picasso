@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-typography-overflow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-tooltip": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-tooltip/-tooltip": "^1.0.0"
+  }
+}

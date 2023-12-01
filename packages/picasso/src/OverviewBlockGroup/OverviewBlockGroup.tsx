@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, ReactNode, ReactComponentElement } from 'react'
 import React from 'react'
+import OverviewBlockRow from '@toptal/picasso-overview-block-row'
 
 import type { Alignment, BlockWidth } from './settings'
 import { OverviewBlockGroupContext } from './OverviewBlockGroupContext'
-import OverviewBlockRow from '../OverviewBlockRow'
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   /** Value and label alignment for blocks. By default content is aligned to the left. */

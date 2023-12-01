@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react'
 import debounce from 'debounce'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import Typography from '@toptal/picasso-typography'
+import Container from '@toptal/picasso-container'
 
 import styles from './styles'
-import Typography from '../Typography'
-import Container from '../Container'
 
 export interface Props {
   /** Indicates that form values are being saved */

@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
-
-import MenuItem from '../MenuItem'
-import type { ItemProps, Option, ValueType } from '../SelectBase'
+import MenuItem from '@toptal/picasso-menu-item'
+import type { ItemProps, Option, ValueType } from '@toptal/picasso-select-base'
 
 export interface Props<T extends ValueType> extends ItemProps {
   children?: ReactNode

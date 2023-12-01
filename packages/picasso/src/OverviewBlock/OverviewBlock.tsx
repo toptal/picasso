@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ElementType, HTMLAttributes, MouseEvent, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -10,12 +11,12 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
+import { useOverviewBlockGroupContext } from '@toptal/picasso-overview-block-group/-overview-block-group-context'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import { toTitleCase, isString } from '@toptal/picasso-utils'
 
 import styles from './styles'
-import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
-import Container from '../Container'
-import Typography from '../Typography'
-import { toTitleCase, isString } from '../utils'
 
 type VariantColorType = Extract<ColorType, 'red' | 'green' | 'yellow'>
 

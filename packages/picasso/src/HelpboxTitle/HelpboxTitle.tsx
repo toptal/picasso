@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
 
 import styles from './styles'
-import Container from '../Container'
-import Typography from '../Typography'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Title of Helpbox */

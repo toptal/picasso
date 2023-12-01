@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { RefObject, Ref } from 'react'
 import { useRef, useEffect } from 'react'
 

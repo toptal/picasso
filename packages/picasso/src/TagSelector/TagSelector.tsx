@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   KeyboardEvent,
   ComponentType,
@@ -8,19 +9,18 @@ import type {
 import React, { forwardRef, Fragment } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
-
 import type {
   AutocompleteProps,
   Item as AutocompleteItem,
-} from '../Autocomplete'
-import Autocomplete from '../Autocomplete'
-import TagSelectorInput from '../TagSelectorInput'
-import type { Props as InputProps } from '../Input'
-import TagSelectorLabel from '../TagSelectorLabel'
-import unsafeErrorLog from '../utils/unsafe-error-log'
-import noop from '../utils/noop'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { Status } from '../OutlinedInput'
+} from '@toptal/picasso-autocomplete'
+import Autocomplete from '@toptal/picasso-autocomplete'
+import TagSelectorInput from '@toptal/picasso-tag-selector-input'
+import type { Props as InputProps } from '@toptal/picasso-input'
+import TagSelectorLabel from '@toptal/picasso-tag-selector-label'
+import unsafeErrorLog from '@toptal/picasso-utils/unsafe-error-log'
+import noop from '@toptal/picasso-utils/noop'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import type { Status } from '@toptal/picasso-outlined-input'
 
 export interface Item extends AutocompleteItem {
   value?: string

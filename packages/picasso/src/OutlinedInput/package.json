@@ -1,0 +1,13 @@
+{
+  "name": "@toptal/picasso-outlined-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-input-adornment": "^1.0.0",
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-utils/noop": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-input-valid-icon-adornment": "^1.0.0"
+  }
+}

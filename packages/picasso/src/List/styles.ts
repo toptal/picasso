@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
-
-import { listStyleTypes } from '../ListItem/styles'
-import { palette } from '../utils'
+import { listStyleTypes } from '@toptal/picasso-list-item/styles'
+import { palette } from '@toptal/picasso-utils'
 
 export default ({ typography }: Theme) =>
   createStyles({

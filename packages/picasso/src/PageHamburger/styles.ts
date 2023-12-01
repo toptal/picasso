@@ -1,7 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
-import { headerHeight, headerBreakingPointXL } from '../PageTopBar/constants'
+import {
+  headerHeight,
+  headerBreakingPointXL,
+} from '@toptal/picasso-page-top-bar/constants'
 
 export default ({ palette }: Theme) => {
   const wrapperBoxShadow = `inset -1px 0px 0px 0px ${palette.grey.lighter2}`

@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { PageHamburgerContextProvider } from '@toptal/picasso-page-hamburger'
 
-import { PageHamburgerContextProvider } from '../PageHamburger'
 import type { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 

@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { useTitleCase } from '@toptal/picasso-shared'
+import Indicator from '@toptal/picasso-indicator'
+import Chip from '@toptal/picasso-chip'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
 
-import Indicator from '../Indicator'
-import Chip from '../Chip'
-import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
 import type { Props } from './types'
 

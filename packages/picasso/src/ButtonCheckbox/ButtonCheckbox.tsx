@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import Checkbox from '../Checkbox'
-import type { ButtonControlLabelProps } from '../ButtonControlLabel'
-import ButtonControlLabel from '../ButtonControlLabel'
+import Checkbox from '@toptal/picasso-checkbox'
+import type { ButtonControlLabelProps } from '@toptal/picasso-button-control-label'
+import ButtonControlLabel from '@toptal/picasso-button-control-label'
 
 export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   testIds?: {

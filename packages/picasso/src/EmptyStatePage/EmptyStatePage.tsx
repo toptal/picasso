@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, ReactElement } from 'react'
 import React, { forwardRef, cloneElement } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
 
-import Container from '../Container'
-import Typography from '../Typography'
 import styles from './styles'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {

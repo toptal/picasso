@@ -1,12 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import type { TypographyProps } from '../Typography'
-import Typography from '../Typography'
+import type { TypographyProps } from '@toptal/picasso-typography'
+import Typography from '@toptal/picasso-typography'
 import {
   formatAmount,
   DEFAULT_LOCALE,
   DEFAULT_CURRENCY,
-} from '../utils/Formatters'
+} from '@toptal/picasso-utils/-formatters'
 
 export interface Props extends TypographyProps {
   /** The amount to be formatted */

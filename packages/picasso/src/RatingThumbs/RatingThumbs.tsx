@@ -1,12 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import classNames from 'classnames'
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback, useState } from 'react'
+import { Container } from '@toptal/picasso-container'
+import {
+  ThumbsDown16,
+  ThumbsDown24,
+  ThumbsUp16,
+  ThumbsUp24,
+} from '@toptal/picasso-icon'
 
-import { Container } from '../Container'
-import { ThumbsDown16, ThumbsDown24, ThumbsUp16, ThumbsUp24 } from '../Icon'
 import styles from './styles'
 
 type Size = SizeType<'small' | 'large'>

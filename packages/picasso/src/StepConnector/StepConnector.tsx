@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import { ChevronRight16 as ChevronRightIcon } from '@toptal/picasso-icon'
 
-import { ChevronRight16 as ChevronRightIcon } from '../Icon'
 import styles from './styles'
 
 export type Props = { direction: 'vertical' | 'horizontal' }

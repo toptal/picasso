@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 

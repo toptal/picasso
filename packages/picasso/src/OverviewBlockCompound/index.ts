@@ -1,6 +1,7 @@
-import OverviewBlock from '../OverviewBlock'
-import OverviewBlockGroup from '../OverviewBlockGroup'
-import OverviewBlockRow from '../OverviewBlockRow'
+/* eslint-disable import/no-extraneous-dependencies */
+import OverviewBlock from '@toptal/picasso-overview-block'
+import OverviewBlockGroup from '@toptal/picasso-overview-block-group'
+import OverviewBlockRow from '@toptal/picasso-overview-block-row'
 
 export const OverviewBlockCompound = Object.assign(OverviewBlock, {
   Group: OverviewBlockGroup,

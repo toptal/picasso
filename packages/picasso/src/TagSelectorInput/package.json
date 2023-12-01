@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-tag-selector-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-input/-input": "^1.0.0",
+    "@toptal/picasso-outlined-input": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0",
+    "@toptal/picasso-input-base/highlight-styles": "^1.0.0"
+  }
+}

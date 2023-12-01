@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Drawer as MUIDrawer } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
@@ -6,14 +7,14 @@ import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import type { ReactNode } from 'react'
 import React from 'react'
+import { CloseMinor16 } from '@toptal/picasso-icon'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Container from '@toptal/picasso-container'
+import DrawerTitle from '@toptal/picasso-drawer-title'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { usePageScrollLock } from '@toptal/picasso-utils/use-page-scroll-lock'
 
-import { CloseMinor16 } from '../Icon'
 import styles from './styles'
-import ButtonCircular from '../ButtonCircular'
-import Container from '../Container'
-import DrawerTitle from '../DrawerTitle'
-import { useIsomorphicLayoutEffect } from '../utils'
-import { usePageScrollLock } from '../utils/use-page-scroll-lock'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'
 

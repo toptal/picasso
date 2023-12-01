@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-button",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-loader": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-utils/noop": "^1.0.0",
+    "@toptal/picasso-utils/to-title-case": "^1.0.0"
+  }
+}

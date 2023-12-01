@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   BaseProps,
   TextLabelProps,
@@ -9,9 +10,9 @@ import type { MenuItemProps } from '@material-ui/core/MenuItem'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import SidebarItem from '@toptal/picasso-sidebar-item'
+import { noop } from '@toptal/picasso-utils'
 
-import SidebarItem from '../SidebarItem'
-import { noop } from '../utils'
 import styles from './styles'
 
 export interface Props extends BaseProps, TextLabelProps {

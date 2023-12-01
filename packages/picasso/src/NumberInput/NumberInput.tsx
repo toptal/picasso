@@ -1,18 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef, useRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
+import OutlinedInput from '@toptal/picasso-outlined-input'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import { useCombinedRefs } from '@toptal/picasso-utils'
+import { NumberInputEndAdornment } from '@toptal/picasso-number-input-end-adornment'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
-import type { Props as OutlinedInputProps } from '../OutlinedInput'
-import OutlinedInput from '../OutlinedInput'
-import InputAdornment from '../InputAdornment'
-import { useCombinedRefs } from '../utils'
 import styles from './styles'
-import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends Omit<

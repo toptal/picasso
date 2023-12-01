@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import ListItem from '@toptal/picasso-list-item'
+import type { Props as ListItemProps } from '@toptal/picasso-list-item'
 
-import ListItem from '../ListItem'
-import type { Props as ListItemProps } from '../ListItem'
 import styles from './styles'
 import type { ListItemType } from './context'
 import { ListContextProvider, useListContext } from './context'

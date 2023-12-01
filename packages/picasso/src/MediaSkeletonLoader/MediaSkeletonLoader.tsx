@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useMemo } from 'react'
 import ContentLoader from 'react-content-loader'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { pxFromRem } from '@toptal/picasso-shared'
-
-import { loaderPalette } from '../utils'
+import { loaderPalette } from '@toptal/picasso-utils'
 
 interface MediaSkeletonBase extends BaseProps {
   /** Default to random unique id, you can set your own unique id to fix SSR */

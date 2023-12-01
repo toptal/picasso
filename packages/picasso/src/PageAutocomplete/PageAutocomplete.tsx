@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import type { AutocompleteProps } from '../Autocomplete'
-import Autocomplete from '../Autocomplete'
+import type { AutocompleteProps } from '@toptal/picasso-autocomplete'
+import Autocomplete from '@toptal/picasso-autocomplete'
 
 export interface Props extends AutocompleteProps {
   /** The variant to use */

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export default () => ({
   root: {
     marginRight: '-0.5em',

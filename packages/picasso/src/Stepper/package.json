@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-stepper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-step": "^1.0.0",
+    "@toptal/picasso-step-label": "^1.0.0",
+    "@toptal/picasso-step-connector": "^1.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-page-top-bar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-logo": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-page-hamburger": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-page": "^1.0.0",
+    "@toptal/picasso-page/types": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0"
+  }
+}

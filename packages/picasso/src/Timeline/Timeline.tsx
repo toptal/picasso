@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
+import TimelineRow from '@toptal/picasso-timeline-row'
+import Container from '@toptal/picasso-container'
 
-import TimelineRow from '../TimelineRow'
-import Container from '../Container'
 import styles from './styles'
 
 export type Props = BaseProps & {

@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { CheckSolid24 as TickIcon } from '@toptal/picasso-icon'
 
-import { CheckSolid24 as TickIcon } from '../Icon'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, AnchorHTMLAttributes } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-
-import type { IndicatorProps } from '../Indicator'
+import type { IndicatorProps } from '@toptal/picasso-indicator'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>

@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-avatar-upload",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-avatar": "^1.0.0",
+    "@toptal/picasso-avatar-dropzone-svg": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-loader": "^1.0.0",
+    "@toptal/picasso-outlined-input": "^1.0.0"
+  }
+}

@@ -1,10 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-
-import { Link16 } from '../Icon'
-import Typography from '../Typography'
-import styles from '../Tag/styles'
+import { Link16 } from '@toptal/picasso-icon'
+import Typography from '@toptal/picasso-typography'
+import styles from '@toptal/picasso-tag/styles'
 
 export type Props = {
   /**

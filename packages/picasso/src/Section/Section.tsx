@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import cx from 'classnames'
 import type { ReactNode } from 'react'
 import React, { forwardRef, useState } from 'react'
@@ -5,14 +6,14 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
 import type { SizeType, BaseProps } from '@toptal/picasso-shared'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import { isString } from '@toptal/picasso-utils'
+import { Rotate180 } from '@toptal/picasso-utils/-transitions'
+import { ArrowDownMinor16 } from '@toptal/picasso-icon'
 
 import styles from './styles'
-import ButtonCircular from '../ButtonCircular'
-import Container from '../Container'
-import Typography from '../Typography'
-import { isString } from '../utils'
-import { Rotate180 } from '../utils/Transitions'
-import { ArrowDownMinor16 } from '../Icon'
 
 type VariantType = 'bordered' | 'default' | 'withHeaderBar'
 

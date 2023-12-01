@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-alert",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-button": "^1.0.0",
+    "@toptal/picasso-button-split": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0"
+  }
+}

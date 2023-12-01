@@ -1,16 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import type { Props as ModalProps } from '@toptal/picasso-modal'
+import { ModalCompound as Modal } from '@toptal/picasso-modal-compound'
+import type { VariantType as ButtonVariantType } from '@toptal/picasso-button'
+import Button from '@toptal/picasso-button'
+import { noop, useSafeState } from '@toptal/picasso-utils'
 
-import Container from '../Container'
-import Typography from '../Typography'
-import type { Props as ModalProps } from '../Modal'
-import { ModalCompound as Modal } from '../ModalCompound'
-import type { VariantType as ButtonVariantType } from '../Button'
-import Button from '../Button'
 import styles from './styles'
-import { noop, useSafeState } from '../utils'
 
 export type VariantType = 'positive' | 'negative'
 

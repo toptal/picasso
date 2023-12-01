@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-slider",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-slider-value-label": "^1.0.0",
+    "@toptal/picasso-utils/use-combined-refs": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0"
+  }
+}

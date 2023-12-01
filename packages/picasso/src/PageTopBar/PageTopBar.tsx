@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable complexity */
 import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef, useEffect } from 'react'
@@ -9,17 +10,17 @@ import {
 } from '@toptal/picasso-provider'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-
-import Logo from '../Logo'
-import Container from '../Container'
+import Logo from '@toptal/picasso-logo'
+import Container from '@toptal/picasso-container'
 import PageHamburger, {
   PageHamburgerPortal,
   useHamburgerContext,
-} from '../PageHamburger'
-import Typography from '../Typography'
-import { PageContext } from '../Page'
-import type { PageContextProps } from '../Page/types'
-import { useIsomorphicLayoutEffect } from '../utils'
+} from '@toptal/picasso-page-hamburger'
+import Typography from '@toptal/picasso-typography'
+import { PageContext } from '@toptal/picasso-page'
+import type { PageContextProps } from '@toptal/picasso-page/types'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+
 import styles from './styles'
 
 type VariantType = 'dark' | 'light' | 'grey'

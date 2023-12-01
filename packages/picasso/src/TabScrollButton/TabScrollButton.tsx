@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import cx from 'classnames'
 import React, { forwardRef } from 'react'
 import { ButtonBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { Container } from '@toptal/picasso-container'
+import { BackMinor16, ChevronMinor16 } from '@toptal/picasso-icon'
 
-import { Container } from '../Container'
-import { BackMinor16, ChevronMinor16 } from '../Icon'
 import styles from './styles'
 
 type DirectionType = 'left' | 'right'

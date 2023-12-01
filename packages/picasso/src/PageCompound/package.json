@@ -1,0 +1,17 @@
+{
+  "name": "@toptal/picasso-page-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-page": "^1.0.0",
+    "@toptal/picasso-page-helmet": "^1.0.0",
+    "@toptal/picasso-page-top-bar-compound": "^1.0.0",
+    "@toptal/picasso-page-top-bar-menu": "^1.0.0",
+    "@toptal/picasso-page-footer": "^1.0.0",
+    "@toptal/picasso-page-content": "^1.0.0",
+    "@toptal/picasso-page-banner": "^1.0.0",
+    "@toptal/picasso-page-autocomplete": "^1.0.0",
+    "@toptal/picasso-page-article": "^1.0.0",
+    "@toptal/picasso-page-sidebar": "^1.0.0"
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -11,11 +12,15 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
+import {
+  TableContext,
+  TableSectionContext,
+  TableSection,
+} from '@toptal/picasso-table'
+import Typography from '@toptal/picasso-typography'
 
-import toTitleCase from '../utils/to-title-case'
 import styles from './styles'
-import { TableContext, TableSectionContext, TableSection } from '../Table'
-import Typography from '../Typography'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
 

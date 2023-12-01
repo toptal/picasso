@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-tag-connection",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-tag/styles": "^1.0.0"
+  }
+}

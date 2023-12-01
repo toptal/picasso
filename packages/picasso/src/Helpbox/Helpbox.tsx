@@ -1,14 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import type { VariantType as ContainerVariantType } from '@toptal/picasso-container'
+import Container from '@toptal/picasso-container'
+import { CloseMinor16 } from '@toptal/picasso-icon'
+import ButtonCircular from '@toptal/picasso-button-circular'
 
-import type { VariantType as ContainerVariantType } from '../Container'
-import Container from '../Container'
-import { CloseMinor16 } from '../Icon'
-import ButtonCircular from '../ButtonCircular'
 import styles from './styles'
 import HelpboxContext from './HelpboxContext'
 

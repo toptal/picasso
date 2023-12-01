@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { JssProps } from '@toptal/picasso-shared'
 import type { ReactNode } from 'react'
 import React from 'react'
-
-import { MenuCompound as Menu } from '../MenuCompound'
-import Typography from '../Typography'
+import { MenuCompound as Menu } from '@toptal/picasso-menu-compound'
+import Typography from '@toptal/picasso-typography'
 
 const OtherOptionMenuItem = ({
   value,

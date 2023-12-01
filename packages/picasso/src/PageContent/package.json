@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-page-content",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-page": "^1.0.0",
+    "@toptal/picasso-page/types": "^1.0.0"
+  }
+}

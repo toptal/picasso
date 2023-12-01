@@ -1,13 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@toptal/picasso-container'
+import FileListItem from '@toptal/picasso-file-list-item'
+import type { FileUpload } from '@toptal/picasso-file-input/types'
 
-import Container from '../Container'
-import FileListItem from '../FileListItem'
-import type { FileUpload } from '../FileInput/types'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

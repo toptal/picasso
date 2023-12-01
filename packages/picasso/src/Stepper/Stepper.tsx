@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, Key, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
@@ -5,11 +6,11 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Stepper as MUIStepper } from '@material-ui/core'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import Step from '@toptal/picasso-step'
+import StepLabel from '@toptal/picasso-step-label'
+import '@toptal/picasso-step-icon'
+import StepConnector from '@toptal/picasso-step-connector'
 
-import Step from '../Step'
-import StepLabel from '../StepLabel'
-import '../StepIcon'
-import StepConnector from '../StepConnector'
 import styles from './styles'
 
 export interface StepperBaseProps

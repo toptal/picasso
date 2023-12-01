@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-lines */
 import type {
   ReactNode,
@@ -11,20 +12,20 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
+import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
+import OutlinedInput from '@toptal/picasso-outlined-input'
+import { disableUnsupportedProps } from '@toptal/picasso-utils'
+import type { FeatureOptions } from '@toptal/picasso-utils/disable-unsupported-props'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import type { InputLimitAdornmentProps } from '@toptal/picasso-input-limit-adornment'
+import InputLimitAdornment from '@toptal/picasso-input-limit-adornment'
+import type { InputIconAdornmentProps } from '@toptal/picasso-input-icon-adornment'
+import InputIconAdornment from '@toptal/picasso-input-icon-adornment'
+import Container from '@toptal/picasso-container'
+import InputValidIconAdornment from '@toptal/picasso-input-valid-icon-adornment'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
-import type { BaseInputProps, Status } from '../OutlinedInput'
-import OutlinedInput from '../OutlinedInput'
-import { disableUnsupportedProps } from '../utils'
-import type { FeatureOptions } from '../utils/disable-unsupported-props'
 import styles from './styles'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { InputLimitAdornmentProps } from '../InputLimitAdornment'
-import InputLimitAdornment from '../InputLimitAdornment'
-import type { InputIconAdornmentProps } from '../InputIconAdornment'
-import InputIconAdornment from '../InputIconAdornment'
-import Container from '../Container'
-import InputValidIconAdornment from '../InputValidIconAdornment'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends BaseProps,

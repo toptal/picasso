@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-skeleton-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-header-loader": "^1.0.0",
+    "@toptal/picasso-typography-loader": "^1.0.0",
+    "@toptal/picasso-button-loader": "^1.0.0",
+    "@toptal/picasso-media-skeleton-loader": "^1.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-amount",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-utils/-formatters": "^1.0.0"
+  }
+}

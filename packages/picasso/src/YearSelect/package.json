@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-year-select",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-select": "^1.0.0",
+    "@toptal/picasso-utils/forward-ref": "^1.0.0"
+  }
+}

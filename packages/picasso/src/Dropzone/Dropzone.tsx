@@ -1,18 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { Upload24 } from '@toptal/picasso-icon'
+import FormHint from '@toptal/picasso-form-hint'
+import FormError from '@toptal/picasso-form-error'
+import Container from '@toptal/picasso-container'
+import FileList from '@toptal/picasso-file-list'
+import Typography from '@toptal/picasso-typography'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
 
-import { Upload24 } from '../Icon'
-import FormHint from '../FormHint'
-import FormError from '../FormError'
-import Container from '../Container'
-import FileList from '../FileList'
-import Typography from '../Typography'
 import type { FileUpload, DropzoneOptions } from './types'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 import styles from './styles'
 
 export interface Props extends BaseProps {

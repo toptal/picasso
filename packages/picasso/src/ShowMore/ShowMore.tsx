@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef, useMemo, useCallback, useState } from 'react'
 import cx from 'classnames'
@@ -5,11 +6,11 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
 import type { BaseProps } from '@toptal/picasso-shared'
+import ChevronRightIcon16 from '@toptal/picasso-icon/-chevron-right16'
+import Typography from '@toptal/picasso-typography'
+import ButtonAction from '@toptal/picasso-button-action'
 
-import ChevronRightIcon16 from '../Icon/ChevronRight16'
-import Typography from '../Typography'
 import styles from './styles'
-import ButtonAction from '../ButtonAction'
 import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {

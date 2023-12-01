@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export { default } from './SliderValueLabel'
 export type {
   Props as SliderValueLabelProps,

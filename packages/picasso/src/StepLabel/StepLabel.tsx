@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, ReactNode } from 'react'
 import React from 'react'
 import cx from 'classnames'
@@ -6,11 +7,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import MUIStepLabel from '@material-ui/core/StepLabel'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
+import StepIcon from '@toptal/picasso-step-icon'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
+import TypographyOverflow from '@toptal/picasso-typography-overflow'
 
-import StepIcon from '../StepIcon'
 import styles from './styles'
-import toTitleCase from '../utils/to-title-case'
-import TypographyOverflow from '../TypographyOverflow'
 
 export interface Props
   extends BaseProps,

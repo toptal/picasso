@@ -1,0 +1,13 @@
+{
+  "name": "@toptal/picasso-page-top-bar-menu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-user-badge": "^1.0.0",
+    "@toptal/picasso-avatar": "^1.0.0",
+    "@toptal/picasso-dropdown-compound": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-page-top-bar/constants": "^1.0.0"
+  }
+}

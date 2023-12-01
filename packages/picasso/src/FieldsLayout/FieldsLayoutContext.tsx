@@ -1,6 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { createContext, useContext, useMemo } from 'react'
-
-import { useBreakpoint } from '../utils'
+import { useBreakpoint } from '@toptal/picasso-utils'
 
 export type FieldsLayoutContextValue = {
   layout: 'horizontal' | 'vertical'

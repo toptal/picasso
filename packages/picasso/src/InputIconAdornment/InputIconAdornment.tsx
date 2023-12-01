@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import InputAdornment from '@toptal/picasso-input-adornment'
 
 import styles from './styles'
-import InputAdornment from '../InputAdornment'
 
 type IconPosition = 'start' | 'end'
 

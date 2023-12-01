@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { MutableRefObject } from 'react'
 import { useRef, useState } from 'react'
-
-import isPointerDevice from '../utils/is-pointer-device'
+import isPointerDevice from '@toptal/picasso-utils/is-pointer-device'
 
 interface UseTooltipStateOptions {
   externalOpen?: boolean

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement } from 'react'
 import React from 'react'
 import type { RenderOptions, RenderResult } from '@testing-library/react'

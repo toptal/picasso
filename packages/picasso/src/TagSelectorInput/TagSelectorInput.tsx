@@ -1,14 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import type { Props as InputProps } from '@toptal/picasso-input/-input'
+import OutlinedInput from '@toptal/picasso-outlined-input'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
-import type { Props as InputProps } from '../Input/Input'
-import OutlinedInput from '../OutlinedInput'
 import styles from './styles'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagSelectorInput',

@@ -1,7 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import '../Chip/styles'
+import '@toptal/picasso-chip/styles'
 
 export default ({ palette, transitions }: Theme) =>
   createStyles({

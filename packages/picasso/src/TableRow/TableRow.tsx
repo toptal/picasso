@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import cx from 'classnames'
@@ -5,9 +6,9 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { TableRow as MUITableRow } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { TableContext } from '@toptal/picasso-table'
 
 import styles from './styles'
-import { TableContext } from '../Table'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */

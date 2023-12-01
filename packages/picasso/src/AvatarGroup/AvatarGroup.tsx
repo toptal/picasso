@@ -1,13 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import React, { useMemo } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import { Container } from '@toptal/picasso-container'
+import Avatar from '@toptal/picasso-avatar'
+import AvatarWrapper from '@toptal/picasso-avatar/-avatar-wrapper/-avatar-wrapper'
+import TextAvatar from '@toptal/picasso-avatar/-text-avatar/-text-avatar'
 
-import { Container } from '../Container'
-import Avatar from '../Avatar'
-import AvatarWrapper from '../Avatar/AvatarWrapper/AvatarWrapper'
-import TextAvatar from '../Avatar/TextAvatar/TextAvatar'
 import styles from './styles'
 
 type ItemType = {

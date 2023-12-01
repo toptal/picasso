@@ -1,16 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/no-array-index-key */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Button from '@toptal/picasso-button'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import PaginationButton from '@toptal/picasso-pagination-button'
 
-import Button from '../Button'
-import Container from '../Container'
-import Typography from '../Typography'
 import { getRange, ELLIPSIS } from './utils'
 import styles from './styles'
-import PaginationButton from '../PaginationButton'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPagination',

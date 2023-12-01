@@ -1,10 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import cx from 'classnames'
 import type { ReactElement, MouseEventHandler } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-
-import Tag from '../Tag'
-import { useStyles } from '../Tag/Tag'
+import Tag from '@toptal/picasso-tag'
+import { useStyles } from '@toptal/picasso-tag/-tag'
 
 type ClickType = MouseEventHandler<HTMLElement>
 

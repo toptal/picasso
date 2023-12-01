@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-show-more",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon/-chevron-right16": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-button-action": "^1.0.0"
+  }
+}

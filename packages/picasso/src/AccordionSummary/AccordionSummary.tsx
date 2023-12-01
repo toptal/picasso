@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, FunctionComponent } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { AccordionSummary as MUIAccordionSummary } from '@material-ui/core'

@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-page-top-bar-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-page-top-bar": "^1.0.0",
+    "@toptal/picasso-top-bar-menu": "^1.0.0",
+    "@toptal/picasso-top-bar-item": "^1.0.0"
+  }
+}

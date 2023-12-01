@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Switch as MUISwitch } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
+import FormControlLabel from '@toptal/picasso-form-control-label'
 
-import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoSwitch' })

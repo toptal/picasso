@@ -1,16 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import UserBadge from '@toptal/picasso-user-badge'
+import Typography from '@toptal/picasso-typography'
+import { MenuCompound as Menu } from '@toptal/picasso-menu-compound'
+import Link from '@toptal/picasso-link'
+import Container from '@toptal/picasso-container'
+import { ChevronRight16 } from '@toptal/picasso-icon'
 
-import UserBadge from '../UserBadge'
-import Typography from '../Typography'
-import { MenuCompound as Menu } from '../MenuCompound'
-import Link from '../Link'
-import Container from '../Container'
-import { ChevronRight16 } from '../Icon'
 import styles from './styles'
 
 type Account = {

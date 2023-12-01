@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Props } from './ButtonRadio'
 
 export { default } from './ButtonRadio'

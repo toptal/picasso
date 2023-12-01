@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-accordion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-accordion-summary": "^1.0.0",
+    "@toptal/picasso-accordion-details": "^1.0.0",
+    "@toptal/picasso-button-action": "^1.0.0"
+  }
+}

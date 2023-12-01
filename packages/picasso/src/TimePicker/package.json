@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-time-picker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-input": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-outlined-input": "^1.0.0"
+  }
+}

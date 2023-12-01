@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ComponentProps, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { Radio as MUIRadio } from '@material-ui/core'
@@ -9,8 +10,8 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import FormControlLabel from '@toptal/picasso-form-control-label'
 
-import FormControlLabel from '../FormControlLabel'
 import styles from './styles'
 
 export interface Props

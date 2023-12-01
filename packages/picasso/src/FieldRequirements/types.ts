@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export interface FieldRequirement<TValueType> {
   message: string
   validator: (value: TValueType) => boolean

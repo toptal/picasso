@@ -1,13 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
 
 import styles from './styles'
-import Container from '../Container'
-import Typography from '../Typography'
 
 export interface Props extends BaseProps {
   /** Timeline row content */

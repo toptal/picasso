@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import Typography from '../Typography'
+import Typography from '@toptal/picasso-typography'
 
 export interface Props extends BaseProps {
   children: ReactNode

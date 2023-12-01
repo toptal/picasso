@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { alpha } from '@toptal/picasso-shared'
 import { colors } from '@toptal/picasso-provider'
 

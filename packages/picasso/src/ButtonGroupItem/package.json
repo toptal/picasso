@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-button-group-item",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-button": "^1.0.0",
+    "@toptal/picasso-button/styles": "^1.0.0"
+  }
+}

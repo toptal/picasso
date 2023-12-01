@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useMemo } from 'react'
 import type { HierarchyPointNode } from 'd3'
 import { hierarchy, tree } from 'd3'

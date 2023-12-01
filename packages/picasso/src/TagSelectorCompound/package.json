@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-tag-selector-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-tag-selector": "^1.0.0",
+    "@toptal/picasso-tag-selector-label": "^1.0.0"
+  }
+}

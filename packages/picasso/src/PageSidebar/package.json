@@ -1,0 +1,16 @@
+{
+  "name": "@toptal/picasso-page-sidebar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-page-hamburger": "^1.0.0",
+    "@toptal/picasso-sidebar-item": "^1.0.0",
+    "@toptal/picasso-sidebar-logo": "^1.0.0",
+    "@toptal/picasso-sidebar-menu": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-page-top-bar/constants": "^1.0.0"
+  }
+}

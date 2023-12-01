@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-container",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-utils/forward-ref": "^1.0.0",
+    "@toptal/picasso-utils/kebab-to-camel-case": "^1.0.0"
+  }
+}

@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { useCalendar } from '@toptal/picasso-calendar-context'
 
 import styles from './styles'
-import { useCalendar } from '../CalendarContext'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoCalendarContainer',

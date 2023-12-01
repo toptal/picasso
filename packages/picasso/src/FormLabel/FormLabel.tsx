@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -9,10 +10,10 @@ import type {
   SizeType,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
+import { useFieldsLayoutContext } from '@toptal/picasso-fields-layout'
 
 import styles from './styles'
-import toTitleCase from '../utils/to-title-case'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'

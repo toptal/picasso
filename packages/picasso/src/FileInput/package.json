@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-file-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-file-list": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-button": "^1.0.0",
+    "@toptal/picasso-form-hint": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0"
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { PropTypes } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -7,9 +8,9 @@ import type { StandardProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
+import { documentable, forwardRef } from '@toptal/picasso-utils/forward-ref'
+import kebabToCamelCase from '@toptal/picasso-utils/kebab-to-camel-case'
 
-import { documentable, forwardRef } from '../utils/forward-ref'
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import styles from './styles'
 import {

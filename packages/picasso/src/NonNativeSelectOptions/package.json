@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-non-native-select-options",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-menu-item": "^1.0.0",
+    "@toptal/picasso-non-native-select-option": "^1.0.0",
+    "@toptal/picasso-select-options": "^1.0.0",
+    "@toptal/picasso-select-base": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0"
+  }
+}

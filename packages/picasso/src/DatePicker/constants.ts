@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { PopperOptions } from 'popper.js'
 
 export const DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT = 'MM-dd-yyyy'

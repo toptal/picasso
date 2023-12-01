@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
 
-import Container from '../Container'
-import Typography from '../Typography'
 import styles from './styles'
 
 const MIN_VALUE = 0

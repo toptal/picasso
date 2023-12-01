@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-form-field",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-form-hint": "^1.0.0",
+    "@toptal/picasso-form-error": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0"
+  }
+}

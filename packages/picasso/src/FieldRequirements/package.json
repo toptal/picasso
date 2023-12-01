@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-field-requirements",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-grid-compound": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-grid": "^1.0.0"
+  }
+}

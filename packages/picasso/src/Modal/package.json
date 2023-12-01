@@ -1,0 +1,12 @@
+{
+  "name": "@toptal/picasso-modal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-utils/use-combined-refs": "^1.0.0",
+    "@toptal/picasso-utils/-modal": "^1.0.0",
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-utils/use-page-scroll-lock": "^1.0.0"
+  }
+}

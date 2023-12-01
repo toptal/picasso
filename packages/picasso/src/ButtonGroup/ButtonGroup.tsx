@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes, ElementType } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -5,9 +6,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps, Classes } from '@toptal/picasso-shared'
 import { addClassesToChildren } from '@toptal/picasso-shared'
+import Button from '@toptal/picasso-button'
+import ButtonGroupItem from '@toptal/picasso-button-group-item'
 
-import Button from '../Button'
-import ButtonGroupItem from '../ButtonGroupItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-password-input",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-outlined-input": "^1.0.0",
+    "@toptal/picasso-input-adornment": "^1.0.0",
+    "@toptal/picasso-icon/-eye16": "^1.0.0",
+    "@toptal/picasso-icon/-eye-hidden16": "^1.0.0",
+    "@toptal/picasso-button-circular": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0",
+    "@toptal/picasso-input-base/highlight-styles": "^1.0.0"
+  }
+}

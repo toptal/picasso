@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createStyles } from '@material-ui/core/styles'
 
 const HORIZONTAL_COLUMN_WIDTH_PX = 272

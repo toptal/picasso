@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { RefObject } from 'react'
 import React from 'react'
@@ -7,15 +8,15 @@ import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { isBrowser } from '@toptal/picasso-shared'
 import { ButtonBase } from '@material-ui/core'
 import cx from 'classnames'
-
-import InputAdornment from '../InputAdornment'
-import Container from '../Container'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import Container from '@toptal/picasso-container'
 import {
   ArrowDownMinor16,
   ArrowUpMinor16,
   ArrowDownMinor24,
   ArrowUpMinor24,
-} from '../Icon'
+} from '@toptal/picasso-icon'
+
 import styles from './styles'
 
 export interface Props extends BaseProps {

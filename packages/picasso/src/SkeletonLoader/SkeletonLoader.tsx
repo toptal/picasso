@@ -1,7 +1,8 @@
-import HeaderLoader from '../HeaderLoader'
-import TypographyLoader from '../TypographyLoader'
-import ButtonLoader from '../ButtonLoader'
-import MediaSkeletonLoader from '../MediaSkeletonLoader'
+/* eslint-disable import/no-extraneous-dependencies */
+import HeaderLoader from '@toptal/picasso-header-loader'
+import TypographyLoader from '@toptal/picasso-typography-loader'
+import ButtonLoader from '@toptal/picasso-button-loader'
+import MediaSkeletonLoader from '@toptal/picasso-media-skeleton-loader'
 
 export default {
   Header: HeaderLoader,

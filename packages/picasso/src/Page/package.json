@@ -1,0 +1,9 @@
+{
+  "name": "@toptal/picasso-page",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-page-hamburger": "^1.0.0",
+    "@toptal/picasso-page-top-bar/constants": "^1.0.0"
+  }
+}

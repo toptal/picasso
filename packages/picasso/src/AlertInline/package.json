@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-alert-inline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-icon": "^1.0.0"
+  }
+}

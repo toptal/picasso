@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, ElementType, AnchorHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import { Link as MUILink } from '@material-ui/core'

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ChangeEvent, MouseEvent, ReactElement } from 'react'
 import { cloneElement, useState } from 'react'
 

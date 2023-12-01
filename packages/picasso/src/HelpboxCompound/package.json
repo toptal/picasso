@@ -1,0 +1,11 @@
+{
+  "name": "@toptal/picasso-helpbox-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-helpbox": "^1.0.0",
+    "@toptal/picasso-helpbox-actions": "^1.0.0",
+    "@toptal/picasso-helpbox-content": "^1.0.0",
+    "@toptal/picasso-helpbox-title": "^1.0.0"
+  }
+}

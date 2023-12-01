@@ -1,10 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import {
+  Logo as LogoIcon,
+  LogoEmblem as LogoEmblemIcon,
+} from '@toptal/picasso-icon'
 
-import { Logo as LogoIcon, LogoEmblem as LogoEmblemIcon } from '../Icon'
 import styles from './styles'
 
 type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'

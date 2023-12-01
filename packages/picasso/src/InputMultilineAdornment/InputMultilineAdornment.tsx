@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import Container from '@toptal/picasso-container'
 
-import Container from '../Container'
 import styles from './styles'
 
 export interface Props {

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createStyles } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { alpha } from '@toptal/picasso-shared'

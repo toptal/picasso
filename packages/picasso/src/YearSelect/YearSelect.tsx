@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Ref } from 'react'
 import React, { useMemo } from 'react'
-
-import type { SelectProps } from '../Select'
-import Select from '../Select'
-import { forwardRef, documentable } from '../utils/forward-ref'
+import type { SelectProps } from '@toptal/picasso-select'
+import Select from '@toptal/picasso-select'
+import { forwardRef, documentable } from '@toptal/picasso-utils/forward-ref'
 
 type AdjustedSelectProps<M extends boolean> = Omit<
   SelectProps<number, M>,

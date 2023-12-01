@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-circular-progress": "^1.0.0"
+  }
+}

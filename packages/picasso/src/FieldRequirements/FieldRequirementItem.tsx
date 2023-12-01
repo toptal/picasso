@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { PropsWithChildren } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@toptal/picasso-typography'
+import { GridCompound as Grid } from '@toptal/picasso-grid-compound'
+import { Bullet16, CheckMinor16, CloseMinor16 } from '@toptal/picasso-icon'
 
-import Typography from '../Typography'
-import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
-import { Bullet16, CheckMinor16, CloseMinor16 } from '../Icon'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'FieldRequirementItem',

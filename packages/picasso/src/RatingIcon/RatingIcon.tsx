@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { forwardRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { SizeType } from '@toptal/picasso-shared'
+import { Star16, StarSolid16, Star24, StarSolid24 } from '@toptal/picasso-icon'
 
-import { Star16, StarSolid16, Star24, StarSolid24 } from '../Icon'
 import styles from './styles'
 
 export interface Props {

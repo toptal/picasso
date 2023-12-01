@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { isBrowser } from '@toptal/picasso-shared'
 import { useEffect, useMemo } from 'react'
 

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   ReactNode,
   ChangeEvent,
@@ -10,12 +11,12 @@ import { Accordion as MUIAccordion } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps, TransitionProps } from '@toptal/picasso-shared'
+import { ArrowDownMinor16 } from '@toptal/picasso-icon'
+import AccordionSummary from '@toptal/picasso-accordion-summary'
+import AccordionDetails from '@toptal/picasso-accordion-details'
+import ButtonAction from '@toptal/picasso-button-action'
 
-import { ArrowDownMinor16 } from '../Icon'
-import AccordionSummary from '../AccordionSummary'
-import AccordionDetails from '../AccordionDetails'
 import styles from './styles'
-import ButtonAction from '../ButtonAction'
 
 export type Borders = 'all' | 'middle' | 'none'
 

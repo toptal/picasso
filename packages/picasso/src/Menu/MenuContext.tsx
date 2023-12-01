@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement } from 'react'
 import type React from 'react'
 import { createContext } from 'react'

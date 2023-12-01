@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { isBrowser } from '@toptal/picasso-shared'
 
 const isPointerDevice = (): boolean | undefined => {

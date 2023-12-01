@@ -1,0 +1,14 @@
+{
+  "name": "@toptal/picasso-dropzone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-form-hint": "^1.0.0",
+    "@toptal/picasso-form-error": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-file-list": "^1.0.0",
+    "@toptal/picasso-typography": "^1.0.0",
+    "@toptal/picasso-utils/use-deprecation-warnings": "^1.0.0"
+  }
+}

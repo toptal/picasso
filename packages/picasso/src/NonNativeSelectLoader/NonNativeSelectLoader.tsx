@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import Container from '../Container'
-import Loader from '../Loader'
-import SelectOptions from '../SelectOptions'
+import Container from '@toptal/picasso-container'
+import Loader from '@toptal/picasso-loader'
+import SelectOptions from '@toptal/picasso-select-options'
 
 interface Props extends BaseProps {}
 

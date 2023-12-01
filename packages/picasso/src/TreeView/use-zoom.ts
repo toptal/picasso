@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ZoomBehavior, ZoomedElementBaseType } from 'd3-zoom'
 import type { RefObject } from 'react'
 import { useEffect, useMemo, useState } from 'react'

@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
-
-import TypographyOverflow from '../TypographyOverflow'
-import Typography from '../Typography'
-import toTitleCase from '../utils/to-title-case'
+import TypographyOverflow from '@toptal/picasso-typography-overflow'
+import Typography from '@toptal/picasso-typography'
+import toTitleCase from '@toptal/picasso-utils/to-title-case'
 
 interface Props {
   label?: React.ReactNode

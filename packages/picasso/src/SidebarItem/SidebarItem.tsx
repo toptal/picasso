@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { OverridableComponent } from '@toptal/picasso-shared'
 import type { ReactElement } from 'react'
 import React, { forwardRef, memo } from 'react'
+import noop from '@toptal/picasso-utils/noop'
 
-import noop from '../utils/noop'
 import { SidebarItemBasic } from './SidebarItemBasic'
 import { SidebarItemCompact } from './SidebarItemCompact'
 import { SidebarItemAccordion } from './SidebarItemAccordion'

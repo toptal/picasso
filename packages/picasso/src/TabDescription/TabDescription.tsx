@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import TypographyOverflow from '@toptal/picasso-typography-overflow'
 
-import TypographyOverflow from '../TypographyOverflow'
 import styles from './styles'
 
 interface Props {

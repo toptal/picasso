@@ -1,14 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Container from '@toptal/picasso-container'
+import type { HelpboxContextProps } from '@toptal/picasso-helpbox/types'
+import HelpboxContext from '@toptal/picasso-helpbox/-helpbox-context'
 
-import Container from '../Container'
 import styles from './styles'
-import type { HelpboxContextProps } from '../Helpbox/types'
-import HelpboxContext from '../Helpbox/HelpboxContext'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Actions part of Helpbox */

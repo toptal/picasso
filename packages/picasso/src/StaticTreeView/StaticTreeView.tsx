@@ -1,13 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState, useMemo, useRef } from 'react'
-
-import { useIsomorphicLayoutEffect } from '../utils'
-import type { TreeViewPropsBase } from '../TreeView/shared'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import type { TreeViewPropsBase } from '@toptal/picasso-tree-view/shared'
 import {
   useTree,
   TreeViewPropsDefaults,
   TreeViewSvg,
   useFinalMargins,
-} from '../TreeView/shared'
+} from '@toptal/picasso-tree-view/shared'
+
 import { findExtremeNodes } from './utils/find-extreme-nodes'
 
 type SvgMeasurements = {

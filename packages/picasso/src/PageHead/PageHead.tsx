@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
 
-import Container from '../Container'
-import Typography from '../Typography'
 import styles from './styles'
 
 export interface Props extends BaseProps {

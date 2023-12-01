@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, TableHTMLAttributes } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import type { Theme } from '@material-ui/core/styles'

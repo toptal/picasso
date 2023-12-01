@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
@@ -8,11 +9,11 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
+import type { IconPositionType } from '@toptal/picasso-button'
+import Button from '@toptal/picasso-button'
+import Loader from '@toptal/picasso-loader'
 
-import type { IconPositionType } from '../Button'
-import Button from '../Button'
 import styles from './styles'
-import Loader from '../Loader'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */

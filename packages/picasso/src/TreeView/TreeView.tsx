@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, {
   createRef,
   useContext,
@@ -7,6 +8,7 @@ import React, {
 } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
 
 import { TreeViewContext } from './TreeViewContainer'
 import { useTree } from './use-tree'
@@ -21,7 +23,6 @@ import {
 import type { TreeViewPropsBase, Vector2 } from './types'
 import { TreeViewSvg } from './TreeViewSvg'
 import { useFinalMargins } from './use-final-margins'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
 
 export interface Props extends TreeViewPropsBase {
   /** Set the scale extent to the specified array of numbers [k0, k1] where k0 is the minimum allowed scale factor and k1 is the maximum allowed scale factor */

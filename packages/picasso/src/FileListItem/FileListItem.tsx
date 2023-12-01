@@ -1,18 +1,19 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@toptal/picasso-container'
+import Typography from '@toptal/picasso-typography'
+import Tooltip from '@toptal/picasso-tooltip'
+import ButtonCircular from '@toptal/picasso-button-circular'
+import Loader from '@toptal/picasso-loader'
+import ProgressBar from '@toptal/picasso-progress-bar'
+import { Attachment16, Trash16, CloseMinor16 } from '@toptal/picasso-icon'
+import type { FileUpload } from '@toptal/picasso-file-input/types'
+import TypographyOverflow from '@toptal/picasso-typography-overflow'
 
-import Container from '../Container'
-import Typography from '../Typography'
-import Tooltip from '../Tooltip'
-import ButtonCircular from '../ButtonCircular'
-import Loader from '../Loader'
-import ProgressBar from '../ProgressBar'
-import { Attachment16, Trash16, CloseMinor16 } from '../Icon'
-import type { FileUpload } from '../FileInput/types'
 import styles from './styles'
-import TypographyOverflow from '../TypographyOverflow'
 
 export interface Props {
   file: FileUpload

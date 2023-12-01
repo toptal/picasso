@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 export { default as Bold16 } from './Bold16'
 export { default as CheckSolid16 } from './CheckSolid16'
 export { default as CheckSolid24 } from './CheckSolid24'

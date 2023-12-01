@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-checkbox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-form-label": "^1.0.0",
+    "@toptal/picasso-container": "^1.0.0",
+    "@toptal/picasso-form-control-label": "^1.0.0"
+  }
+}

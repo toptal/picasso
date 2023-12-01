@@ -1,12 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import '../InputLabel/styles'
-import '../InputBase/styles'
-import '../Input/styles'
-import '../Menu/styles'
-import '../MenuItem/styles'
-import '../Loader/styles'
+import '@toptal/picasso-input-label/styles'
+import '@toptal/picasso-input-base/styles'
+import '@toptal/picasso-input/styles'
+import '@toptal/picasso-menu/styles'
+import '@toptal/picasso-menu-item/styles'
+import '@toptal/picasso-loader/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({

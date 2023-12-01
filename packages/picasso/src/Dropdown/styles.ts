@@ -1,6 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import '../Popover/styles'
+import '@toptal/picasso-popover/styles'
 
 export type StyleProps = {
   /** Control content element style */

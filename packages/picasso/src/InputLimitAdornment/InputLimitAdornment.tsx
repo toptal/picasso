@@ -1,11 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { InputAdornment } from '@material-ui/core'
+import InputMultilineAdornment from '@toptal/picasso-input-multiline-adornment'
 
 import styles from './styles'
-import InputMultilineAdornment from '../InputMultilineAdornment'
 
 type CounterType = 'remaining' | 'entered'
 

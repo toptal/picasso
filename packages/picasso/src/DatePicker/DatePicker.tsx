@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
 import type { Theme } from '@material-ui/core/styles'
@@ -7,22 +8,25 @@ import formatDate from 'date-fns/format'
 import type PopperJs from 'popper.js'
 import type { KeyboardEvent, ReactNode } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
-import { Calendar16 } from '../Icon'
-import Popper from '../Popper'
-import Container from '../Container'
-import type { InputProps } from '../Input'
-import Input from '../Input'
-import InputAdornment from '../InputAdornment'
-import { ClickAwayListener, noop } from '../utils'
+import { Calendar16 } from '@toptal/picasso-icon'
+import Popper from '@toptal/picasso-popper'
+import Container from '@toptal/picasso-container'
+import type { InputProps } from '@toptal/picasso-input'
+import Input from '@toptal/picasso-input'
+import InputAdornment from '@toptal/picasso-input-adornment'
+import { ClickAwayListener, noop } from '@toptal/picasso-utils'
 import type {
   CalendarDateRange,
   DateOrDateRangeType,
   DateRangeType,
   WeekStart,
   CalendarMonthsAmount,
-} from '../Calendar'
-import Calendar from '../Calendar'
+} from '@toptal/picasso-calendar'
+import Calendar from '@toptal/picasso-calendar'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import type { Status } from '@toptal/picasso-outlined-input'
+import type { RenderDay } from '@toptal/picasso-calendar-day'
+
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
@@ -37,9 +41,6 @@ import {
   timezoneFormat,
   getStartOfTheDayDate,
 } from './utils'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { Status } from '../OutlinedInput'
-import type { RenderDay } from '../CalendarDay'
 
 const EMPTY_INPUT_VALUE = ''
 

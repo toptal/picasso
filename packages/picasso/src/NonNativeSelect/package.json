@@ -1,0 +1,20 @@
+{
+  "name": "@toptal/picasso-non-native-select",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-icon": "^1.0.0",
+    "@toptal/picasso-outlined-input": "^1.0.0",
+    "@toptal/picasso-popper": "^1.0.0",
+    "@toptal/picasso-menu-item": "^1.0.0",
+    "@toptal/picasso-select-caret": "^1.0.0",
+    "@toptal/picasso-non-native-select-loader": "^1.0.0",
+    "@toptal/picasso-select-base": "^1.0.0",
+    "@toptal/picasso-non-native-select-options": "^1.0.0",
+    "@toptal/picasso-utils": "^1.0.0",
+    "@toptal/picasso-non-native-select-limit-footer": "^1.0.0",
+    "@toptal/picasso-input-adornment": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0",
+    "@toptal/picasso-input-base/highlight-styles": "^1.0.0"
+  }
+}

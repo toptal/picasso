@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable complexity */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
@@ -5,12 +6,12 @@ import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { useBreakpoint } from '@toptal/picasso-utils'
+import UserBadge from '@toptal/picasso-user-badge'
+import Avatar from '@toptal/picasso-avatar'
+import { DropdownCompound as Dropdown } from '@toptal/picasso-dropdown-compound'
+import Typography from '@toptal/picasso-typography'
 
-import { useBreakpoint } from '../utils'
-import UserBadge from '../UserBadge'
-import Avatar from '../Avatar'
-import { DropdownCompound as Dropdown } from '../DropdownCompound'
-import Typography from '../Typography'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

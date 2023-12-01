@@ -1,0 +1,10 @@
+{
+  "name": "@toptal/picasso-form-control-label",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-form-label": "^1.0.0",
+    "@toptal/picasso-form-compound": "^1.0.0",
+    "@toptal/picasso-fields-layout": "^1.0.0"
+  }
+}

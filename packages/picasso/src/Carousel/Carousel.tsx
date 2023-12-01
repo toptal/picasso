@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -5,12 +6,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import 'glider-js/glider.css'
 import type { BaseProps } from '@toptal/picasso-shared'
+import Container from '@toptal/picasso-container'
+import CarouselGradient from '@toptal/picasso-carousel-gradient'
+import CarouselNavigation from '@toptal/picasso-carousel-navigation'
 
-import styles from './styles'
-import Container from '../Container'
-import CarouselGradient from '../CarouselGradient'
 import useCarousel from './hooks/useCarousel'
-import CarouselNavigation from '../CarouselNavigation'
+import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
@@ -6,8 +7,8 @@ import capitalize from '@material-ui/core/utils/capitalize'
 import cx from 'classnames'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
+import CircularProgress from '@toptal/picasso-circular-progress'
 
-import CircularProgress from '../CircularProgress'
 import styles from './styles'
 
 const DEFAULT_PROGRESS = 35

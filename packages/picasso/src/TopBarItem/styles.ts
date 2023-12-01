@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
-import { headerBreakingPointXL } from '../PageTopBar/constants'
+import { headerBreakingPointXL } from '@toptal/picasso-page-top-bar/constants'
 
 export default ({ spacing, palette, typography }: Theme) => {
   const itemSpacing = spacing(1)

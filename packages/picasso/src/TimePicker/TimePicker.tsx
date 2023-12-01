@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
@@ -5,13 +6,13 @@ import { makeStyles } from '@material-ui/core/styles'
 import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
 import cx from 'classnames'
+import type { InputProps } from '@toptal/picasso-input'
+import Input from '@toptal/picasso-input'
+import { Time16 } from '@toptal/picasso-icon'
+import { usePropDeprecationWarning } from '@toptal/picasso-utils/use-deprecation-warnings'
+import type { Status } from '@toptal/picasso-outlined-input'
 
-import type { InputProps } from '../Input'
-import Input from '../Input'
-import { Time16 } from '../Icon'
 import styles from './styles'
-import { usePropDeprecationWarning } from '../utils/use-deprecation-warnings'
-import type { Status } from '../OutlinedInput'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker',

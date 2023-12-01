@@ -1,0 +1,15 @@
+{
+  "name": "@toptal/picasso-table-compound",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-table": "^1.0.0",
+    "@toptal/picasso-table-cell": "^1.0.0",
+    "@toptal/picasso-table-body": "^1.0.0",
+    "@toptal/picasso-table-row": "^1.0.0",
+    "@toptal/picasso-table-head": "^1.0.0",
+    "@toptal/picasso-table-section-head": "^1.0.0",
+    "@toptal/picasso-table-footer": "^1.0.0",
+    "@toptal/picasso-table-expandable-row": "^1.0.0"
+  }
+}

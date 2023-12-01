@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useScreens } from '@toptal/picasso-provider'
 import React from 'react'
 

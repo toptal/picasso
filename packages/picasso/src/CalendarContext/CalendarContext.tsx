@@ -1,8 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useContext } from 'react'
-
-import type { RenderRoot } from '../CalendarContainer'
-import type { RenderDay } from '../CalendarDay'
-import type { RenderMonthHeader } from '../CalendarMonthHeader'
+import type { RenderRoot } from '@toptal/picasso-calendar-container'
+import type { RenderDay } from '@toptal/picasso-calendar-day'
+import type { RenderMonthHeader } from '@toptal/picasso-calendar-month-header'
 
 /**
  * Context for passing values to underlying components (passing additional

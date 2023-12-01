@@ -1,7 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
-import highlightAutofillStyles from '../InputBase/highlight-styles'
+import highlightAutofillStyles from '@toptal/picasso-input-base/highlight-styles'
 
 export default (theme: Theme) => {
   const { spacing } = theme

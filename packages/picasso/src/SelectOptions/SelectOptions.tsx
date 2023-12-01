@@ -1,10 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
 import cx from 'classnames'
+import type { ScrollMenuProps } from '@toptal/picasso-scroll-menu'
+import ScrollMenu from '@toptal/picasso-scroll-menu'
 
-import type { ScrollMenuProps } from '../ScrollMenu'
-import ScrollMenu from '../ScrollMenu'
 import styles from './styles'
 
 export interface Props extends ScrollMenuProps {}

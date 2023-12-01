@@ -1,0 +1,8 @@
+{
+  "name": "@toptal/picasso-select-options",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@toptal/picasso-scroll-menu": "^1.0.0"
+  }
+}

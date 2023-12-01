@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
@@ -5,10 +6,10 @@ import { MenuList as MUIMenuList } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { BackMinor16 } from '@toptal/picasso-icon'
+import MenuItem from '@toptal/picasso-menu-item'
+import Typography from '@toptal/picasso-typography'
 
-import { BackMinor16 } from '../Icon'
-import MenuItem from '../MenuItem'
-import Typography from '../Typography'
 import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
 import styles from './styles'

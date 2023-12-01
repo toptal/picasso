@@ -1,9 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import type { ReactNode } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import { Container } from '../Container'
-import type { AlignItemsType, JustifyContentType } from '../Container/styles'
+import { Container } from '@toptal/picasso-container'
+import type {
+  AlignItemsType,
+  JustifyContentType,
+} from '@toptal/picasso-container/styles'
 
 export interface Props extends BaseProps {
   /** Defines the align-items style property */

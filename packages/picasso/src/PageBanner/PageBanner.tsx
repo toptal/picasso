@@ -1,9 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import Notification from '../Notification'
-import NotificationActions from '../NotificationActions'
+import Notification from '@toptal/picasso-notification'
+import NotificationActions from '@toptal/picasso-notification-actions'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Children components */

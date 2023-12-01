@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useRef, useState, useCallback, useEffect } from 'react'
 
 const useSafeState = <S>(initState: S | (() => S)) => {

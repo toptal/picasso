@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import type {
   ReactNode,
   ReactElement,
@@ -12,8 +13,8 @@ import { Tooltip as MUITooltip } from '@material-ui/core'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { usePicassoRoot } from '@toptal/picasso-provider'
+import Typography from '@toptal/picasso-typography'
 
-import Typography from '../Typography'
 import styles from './styles'
 import type { ChildrenProps, ContainerValue } from './types'
 import { useTooltipState } from './use-tooltip-state'
