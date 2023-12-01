@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@fx-3861-update-google-cloud-and-docker-gha
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}

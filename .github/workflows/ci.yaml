@@ -36,7 +36,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@fx-3861-update-google-cloud-and-docker-gha
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -64,7 +64,7 @@ jobs:
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v12.5.1
+      - uses: toptal/davinci-github-actions/build-push-image@fx-3861-update-google-cloud-and-docker-gha
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}
@@ -91,7 +91,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@fx-3861-update-google-cloud-and-docker-gha
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -171,7 +171,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@fx-3861-update-google-cloud-and-docker-gha
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -228,7 +228,7 @@ jobs:
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@fx-3861-update-google-cloud-and-docker-gha
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
