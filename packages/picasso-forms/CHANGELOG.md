@@ -1,5 +1,12 @@
 # Change Log
 
+## 66.1.1
+
+### Patch Changes
+
+- [#4042](https://github.com/toptal/picasso/pull/4042) [`0d427d6b7`](https://github.com/toptal/picasso/commit/0d427d6b7dc2c2dee9030d0eee1dd32293e85f13) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump type-fest from 4.3.1 to 4.8.3
+
 ## 66.1.0
 
 ### Minor Changes
