@@ -1,8 +1,7 @@
+import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-const HORIZONTAL_COLUMN_WIDTH_PX = 272
-
-export default () =>
+export default ({ forms }: Theme) =>
   createStyles({
     root: {
       alignItems: 'start',
@@ -32,7 +31,7 @@ export default () =>
 
     horizontalLayout: {
       display: 'grid',
-      gridTemplateColumns: `${HORIZONTAL_COLUMN_WIDTH_PX}px 1fr`,
+      gridTemplateColumns: `${forms.horizontalColumnWidthRem}rem 1fr`,
       gap: '0 32px', // 0 and lg, respectively
       gridTemplateRows: 'auto auto',
       gridTemplateAreas: `
