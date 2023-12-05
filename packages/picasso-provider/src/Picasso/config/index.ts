@@ -15,7 +15,6 @@ export {
   BreakpointKeys,
 } from './breakpoints'
 export { default as layout } from './layout'
-export { default as forms } from './forms'
 export { default as shadows } from './shadows'
 export {
   default as spacings,

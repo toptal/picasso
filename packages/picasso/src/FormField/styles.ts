@@ -1,7 +1,8 @@
-import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export default ({ forms }: Theme) =>
+import { HORIZONTAL_LABEL_COLUMN_WIDTH_REM } from '../FieldsLayout'
+
+export default () =>
   createStyles({
     root: {
       alignItems: 'start',
@@ -31,7 +32,7 @@ export default ({ forms }: Theme) =>
 
     horizontalLayout: {
       display: 'grid',
-      gridTemplateColumns: `${forms.horizontalColumnWidthRem}rem 1fr`,
+      gridTemplateColumns: `${HORIZONTAL_LABEL_COLUMN_WIDTH_REM}rem 1fr`,
       gap: '0 32px', // 0 and lg, respectively
       gridTemplateRows: 'auto auto',
       gridTemplateAreas: `

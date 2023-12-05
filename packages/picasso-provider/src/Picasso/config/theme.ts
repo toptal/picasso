@@ -1,7 +1,6 @@
 import type { BreakpointKeys } from './breakpoints'
 import type { Layout } from './layout'
 import type { Sizes } from './sizes'
-import type { Forms } from './forms'
 import type spacings from './spacings'
 import type { PicassoSpacing } from './spacings'
 
@@ -11,7 +10,6 @@ declare module '@material-ui/core/styles' {
     sizes: Sizes
     screens: (...sizes: BreakpointKeys[]) => string
     spacings: Record<keyof typeof spacings, PicassoSpacing>
-    forms: Forms
   }
 
   interface ThemeOptions {
@@ -19,7 +17,6 @@ declare module '@material-ui/core/styles' {
     sizes?: Sizes
     screens?: (...sizes: BreakpointKeys[]) => string
     spacings?: Record<keyof typeof spacings, PicassoSpacing>
-    forms?: Forms
   }
 
   interface ThemeOptions {
