@@ -80,4 +80,5 @@ export type TestId = {
   controls?: string
   valueEditor?: string
   fieldSelector?: string
+  validationErrors?: string
 }
