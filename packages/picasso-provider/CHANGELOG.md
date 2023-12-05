@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.4.2
+
+### Patch Changes
+
+- [#4040](https://github.com/toptal/picasso/pull/4040) [`fb57b1f5a`](https://github.com/toptal/picasso/commit/fb57b1f5ab531902ab8fdc3309684e09d4805986) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump `react-helmet-async`
+
 ## 3.4.1
 
 ### Patch Changes
