@@ -13,6 +13,7 @@ import {
   sizes,
   shadows,
   spacings,
+  forms,
 } from './config'
 
 const picasso: ThemeOptions = {
@@ -23,6 +24,7 @@ const picasso: ThemeOptions = {
   breakpoints,
   screens,
   shadows,
+  forms,
   typography,
   zIndex: {
     tooltip: 1300,
