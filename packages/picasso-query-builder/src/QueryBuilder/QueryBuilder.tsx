@@ -65,7 +65,6 @@ type Props = {
   totalCount?: number
   /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
   totalCountLoading?: boolean
-  /** Defines the test ids for the different parts component */
   testIds?: TestId
 }
 
@@ -137,7 +136,7 @@ const QueryBuilder = ({
     if (!queryBuilderValid) {
       showError(
         <ValidationErrors
-          data-testid={testIds?.validationErrors}
+          validationErrorsTestId={testIds?.validationErrors}
           validationResult={validationErrors}
         />
       )
