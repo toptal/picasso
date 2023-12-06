@@ -86,15 +86,15 @@ describe('ValidationErrors', () => {
 
       expect(ListItemMock).toHaveBeenCalledTimes(2)
       expect(ListItemMock).toHaveBeenCalledWith(
-        {
+        expect.objectContaining({
           children: 'reason1',
-        },
+        }),
         {}
       )
       expect(ListItemMock).toHaveBeenCalledWith(
-        {
+        expect.objectContaining({
           children: 'reason2',
-        },
+        }),
         {}
       )
     })
