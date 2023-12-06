@@ -4,10 +4,10 @@ import type { ValidationResult } from 'react-querybuilder'
 
 const ValidationErrors = ({
   validationResult,
-  'data-testid': testId,
+  validationErrorsTestId: testId,
 }: {
   validationResult: Record<string, ValidationResult | boolean>
-  'data-testid'?: string
+  validationErrorsTestId?: string
 }) => {
   const validationErrors = useMemo(
     () =>
