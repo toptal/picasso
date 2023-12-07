@@ -41,8 +41,11 @@ const ValidationErrors = ({
           return (
             <Fragment key={rule}>
               {reasons?.map((reason, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <List.Item data-testid={`${testId}-${index}`} key={index}>
+                <List.Item
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  data-testid={testId && `${testId}-${index}`}
+                >
                   {reason.message ?? reason}
                 </List.Item>
               ))}
