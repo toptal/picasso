@@ -5,6 +5,7 @@ const HORIZONTAL_COLUMN_WIDTH_PX = 272
 export default () =>
   createStyles({
     root: {
+      alignItems: 'start',
       fontSize: '1rem',
 
       '& + &': {
