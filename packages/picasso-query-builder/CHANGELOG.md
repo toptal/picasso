@@ -1,5 +1,20 @@
 # @toptal/picasso-query-builder
 
+## 1.2.0
+
+### Minor Changes
+
+- [#4047](https://github.com/toptal/picasso/pull/4047) [`43a6e5ae3`](https://github.com/toptal/picasso/commit/43a6e5ae375549c8a321d385d39e73798eb5b00b) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+
+### QueryBuilder
+
+- update validationErrors to testIds properties
+
+### ValidationErrors
+
+- add validationErrorsTestId property as a test id for its container.
+- property validationErrorsTestId is used to set test id for validation errors messages with their corresponding index.
+
 ## 1.1.2
 
 ### Patch Changes
