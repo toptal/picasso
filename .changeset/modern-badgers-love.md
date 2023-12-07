@@ -2,4 +2,4 @@
 '@toptal/picasso': minor
 ---
 
-- add `FormActionsContainer` component
+- add `FormActionsContainer` component that renders form actions according to BASE design
