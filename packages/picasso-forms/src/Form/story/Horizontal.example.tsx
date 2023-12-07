@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container } from '@toptal/picasso'
+import { FormActionsContainer } from '@toptal/picasso'
 import { SPACING_4, isSubstring } from '@toptal/picasso/utils'
 import type { Item } from '@toptal/picasso/Autocomplete'
 import {
@@ -209,9 +209,9 @@ const Example = () => {
         width='auto'
       />
 
-      <Container top={SPACING_4}>
+      <FormActionsContainer top={SPACING_4}>
         <SubmitButton>Submit</SubmitButton>
-      </Container>
+      </FormActionsContainer>
     </Form>
   )
 }

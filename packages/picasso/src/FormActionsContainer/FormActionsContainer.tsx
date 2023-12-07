@@ -28,7 +28,7 @@ const FormActionsContainer = ({ children, ...rest }: Props) => {
 
   return (
     <Container className={cx(classes.root)} {...rest}>
-      <div></div>
+      <div />
       <div>{children}</div>
     </Container>
   )
