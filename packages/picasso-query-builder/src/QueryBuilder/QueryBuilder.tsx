@@ -134,7 +134,12 @@ const QueryBuilder = ({
     setSubmitButtonClicked(true)
 
     if (!queryBuilderValid) {
-      showError(<ValidationErrors validationResult={validationErrors} />)
+      showError(
+        <ValidationErrors
+          validationErrorsTestId={testIds?.validationErrors}
+          validationResult={validationErrors}
+        />
+      )
 
       return
     }

@@ -4,8 +4,10 @@ import type { ValidationResult } from 'react-querybuilder'
 
 const ValidationErrors = ({
   validationResult,
+  validationErrorsTestId: testId,
 }: {
   validationResult: Record<string, ValidationResult | boolean>
+  validationErrorsTestId?: string
 }) => {
   const validationErrors = useMemo(
     () =>
@@ -26,7 +28,7 @@ const ValidationErrors = ({
   }
 
   return (
-    <Container flex direction='column' gap='small'>
+    <Container data-testid={testId} flex direction='column' gap='small'>
       <Typography>
         Please fix validation errors before running the query
       </Typography>
@@ -39,8 +41,13 @@ const ValidationErrors = ({
           return (
             <Fragment key={rule}>
               {reasons?.map((reason, index) => (
-                // eslint-disable-next-line react/no-array-index-key
-                <List.Item key={index}>{reason.message ?? reason}</List.Item>
+                <List.Item
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  data-testid={testId && `${testId}-${index}`}
+                >
+                  {reason.message ?? reason}
+                </List.Item>
               ))}
             </Fragment>
           )
