@@ -1,5 +1,12 @@
 # Change Log
 
+## 42.1.1
+
+### Patch Changes
+
+- [#4044](https://github.com/toptal/picasso/pull/4044) [`b107dc216`](https://github.com/toptal/picasso/commit/b107dc21677d779804befd4221dfc456b79eb419) Thanks [@sashuk](https://github.com/sashuk)!
+- align form labels to the top of container
+
 ## 42.1.0
 
 ### Minor Changes
