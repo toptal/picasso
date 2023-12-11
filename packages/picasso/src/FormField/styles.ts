@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles'
 
-const HORIZONTAL_COLUMN_WIDTH_PX = 272
+import { horizontalLabelColumnWidth } from '../FieldsLayout'
 
 export default () =>
   createStyles({
@@ -32,7 +32,7 @@ export default () =>
 
     horizontalLayout: {
       display: 'grid',
-      gridTemplateColumns: `${HORIZONTAL_COLUMN_WIDTH_PX}px 1fr`,
+      gridTemplateColumns: `${horizontalLabelColumnWidth} 1fr`,
       gap: '0 32px', // 0 and lg, respectively
       gridTemplateRows: 'auto auto',
       gridTemplateAreas: `

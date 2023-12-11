@@ -2,6 +2,8 @@ import React, { createContext, useContext, useMemo } from 'react'
 
 import { useBreakpoint } from '../utils'
 
+export const horizontalLabelColumnWidth = '17rem'
+
 export type FieldsLayoutContextValue = {
   layout: 'horizontal' | 'vertical'
 }
