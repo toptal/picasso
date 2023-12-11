@@ -1,5 +1,12 @@
 # Change Log
 
+## 42.2.0
+
+### Minor Changes
+
+- [#4045](https://github.com/toptal/picasso/pull/4045) [`2eec5f0a4`](https://github.com/toptal/picasso/commit/2eec5f0a43301eed82733992320f923355cc4344) Thanks [@sashuk](https://github.com/sashuk)!
+- add `FormActionsContainer` component that renders form actions according to BASE design
+
 ## 42.1.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "42.1.1",
+  "version": "42.2.0",
   "description": "Toptal UI components library",
   "publishConfig": {
     "access": "public",
