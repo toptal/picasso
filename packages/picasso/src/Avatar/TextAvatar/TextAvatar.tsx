@@ -25,6 +25,7 @@ const TextAvatar = ({
   'data-testid': dataTestID,
   fontSize,
   size,
+  'data-private': dataPrivate,
 }: Props) => {
   const classes = useStyles()
 
@@ -33,6 +34,7 @@ const TextAvatar = ({
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       className={cx(classes.root, className, classes[size!])}
       style={style}
+      data-private={dataPrivate}
     >
       <Typography
         data-testid={dataTestID}

@@ -95,7 +95,6 @@ export const Avatar = (props: Props) => {
         className={className}
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
         size={size!}
-        data-private={dataPrivate}
       />
     )
   }, [

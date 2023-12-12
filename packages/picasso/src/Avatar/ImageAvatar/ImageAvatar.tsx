@@ -50,6 +50,7 @@ const ImageAvatar = (props: Props) => {
     src,
     style,
     'data-testid': dataTestId,
+    'data-private': dataPrivate,
   } = props
   const classes = useStyles(props)
 
@@ -61,6 +62,7 @@ const ImageAvatar = (props: Props) => {
         src={src}
         style={style}
         data-testid={dataTestId}
+        data-private={dataPrivate}
       />
       <AvatarLogo classes={classes} size={size} />
     </>
