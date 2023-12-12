@@ -1,6 +1,5 @@
-import type { Config } from 'tailwindcss'
-
-const config: Partial<Config> = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   theme: {
     screens: {
       xs: '0px',
@@ -106,5 +105,3 @@ const config: Partial<Config> = {
     extend: {},
   },
 }
-
-export default config
