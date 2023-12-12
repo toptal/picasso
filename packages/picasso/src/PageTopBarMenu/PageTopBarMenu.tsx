@@ -30,7 +30,16 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
   function PageTopBarMenu(props, ref) {
-    const { name, meta, avatar, className, style, children, ...rest } = props
+    const {
+      name,
+      meta,
+      avatar,
+      className,
+      style,
+      children,
+      'data-private': dataPrivate,
+      ...rest
+    } = props
     const classes = useStyles()
 
     const isCompactLayout = useBreakpoint(['xs', 'sm', 'md'])
@@ -41,6 +50,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           className={classes.truncateText}
           invert={!isCompactLayout}
           size='xsmall'
+          data-private={dataPrivate}
         >
           {meta}
         </Typography>
@@ -53,6 +63,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         <UserBadge
           center
           size='xxsmall'
+          data-private={dataPrivate}
           classes={{
             root: classes.contentUserBadge,
             avatar: classes.avatar,
@@ -70,7 +81,12 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
     )
 
     const trigger = isCompactLayout ? (
-      <Avatar size='xxsmall' name={name} src={avatar as string} />
+      <Avatar
+        size='xxsmall'
+        data-private={dataPrivate}
+        name={name}
+        src={avatar as string}
+      />
     ) : (
       <UserBadge
         invert
@@ -80,6 +96,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           name: cx(classes.name, classes.truncateText),
         }}
         name={name}
+        data-private={dataPrivate}
         avatar={avatar}
       >
         {meta && metaContent}

@@ -96,6 +96,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     followCursor = false,
     tooltipRef,
     container,
+    'data-private': dataPrivate,
     ...rest
   } = props
 
@@ -123,7 +124,12 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   })
 
   const title = (
-    <Typography as='div' size='small' color='inherit'>
+    <Typography
+      data-private={dataPrivate}
+      as='div'
+      size='small'
+      color='inherit'
+    >
       {content}
     </Typography>
   )

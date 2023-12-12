@@ -48,6 +48,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       value,
       onChange,
       titleCase,
+      'data-private': dataPrivate,
       ...rest
     } = props
     const classes = useStyles(props)
@@ -96,6 +97,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         }}
         style={style}
         label={label}
+        data-private={dataPrivate}
         disabled={disabled}
         titleCase={titleCase}
       />
