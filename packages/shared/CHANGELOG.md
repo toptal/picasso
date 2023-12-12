@@ -1,5 +1,15 @@
 # Change Log
 
+## 13.1.1
+
+### Patch Changes
+
+- [#4058](https://github.com/toptal/picasso/pull/4058) [`cdd77e055`](https://github.com/toptal/picasso/commit/cdd77e055784258b2a189b6957dd0375c570d967) Thanks [@mkrl](https://github.com/mkrl)!
+
+### picasso-shared types
+
+- fixed `data-private` type to be mistakenly `string` instead of `boolean`
+
 ## 13.1.0
 
 ### Minor Changes
