@@ -1,5 +1,17 @@
 # Change Log
 
+## 42.2.1
+
+### Patch Changes
+
+- [#4056](https://github.com/toptal/picasso/pull/4056) [`d70202b0d`](https://github.com/toptal/picasso/commit/d70202b0d9ad9ab379712009b0882ff30f2473d6) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Radio, Checkbox, Tooltip, Avatar, Page.TopBarMenu
+
+- pass `data-private` to relevant DOM elements
+- Updated dependencies [[`d70202b0d`](https://github.com/toptal/picasso/commit/d70202b0d9ad9ab379712009b0882ff30f2473d6)]:
+  - @toptal/picasso-shared@13.1.0
+
 ## 42.2.0
 
 ### Minor Changes
