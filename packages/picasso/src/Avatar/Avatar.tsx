@@ -50,6 +50,7 @@ export const Avatar = (props: Props) => {
     variant,
     testIds,
     onEdit,
+    'data-private': dataPrivate,
     ...rest
   } = props
 
@@ -65,6 +66,7 @@ export const Avatar = (props: Props) => {
           src={src}
           style={style}
           data-testid={testIds?.image}
+          data-private={dataPrivate}
         />
       )
     }
@@ -80,6 +82,7 @@ export const Avatar = (props: Props) => {
           /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
           size={size!}
           data-testid={testIds?.text}
+          data-private={dataPrivate}
         >
           {initials}
         </TextAvatar>
@@ -92,6 +95,7 @@ export const Avatar = (props: Props) => {
         className={className}
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
         size={size!}
+        data-private={dataPrivate}
       />
     )
   }, [

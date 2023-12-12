@@ -65,7 +65,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       disabled: classes.disabled,
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { color, ...checkboxAttributes } = rest
+    const { color, 'data-private': dataPrivate, ...checkboxAttributes } = rest
 
     const muiCheckbox = (
       <Container as='span' flex inline className={classes.checkboxWrapper}>
@@ -116,6 +116,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         label={label}
         titleCase={titleCase}
         className='picasso-checkbox'
+        data-private={dataPrivate}
       />
     )
   }
