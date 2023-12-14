@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind
 
+## 1.0.1
+
+### Patch Changes
+
+- [#4055](https://github.com/toptal/picasso/pull/4055) [`291c8f812`](https://github.com/toptal/picasso/commit/291c8f812a377d0bcf39b490e316b5ec94f93cfe) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- refactor from typescript to plain javascript
+
 ## 1.0.0
 
 ### Major Changes
