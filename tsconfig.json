@@ -38,6 +38,12 @@
       "@toptal/picasso-rich-text-editor/*": [
         "packages/picasso-rich-text-editor/src/*"
       ],
+      "@toptal/picasso-tailwind": [
+        "packages/picasso-tailwind/src"
+      ],
+      "@toptal/picasso-tailwind/*": [
+        "packages/picasso-tailwind/src/*"
+      ],
       "@toptal/picasso-shared": ["packages/shared/src"],
       "@toptal/picasso-shared/*": ["packages/shared/src/*"],
       "@toptal/picasso/*": ["packages/picasso/src/*"],
