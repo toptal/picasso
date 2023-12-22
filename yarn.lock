@@ -11190,6 +11190,11 @@ eslint-plugin-jest@^26.4.5:
   dependencies:
     "@typescript-eslint/utils" "^5.10.0"
 
+eslint-plugin-local-rules@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-local-rules/-/eslint-plugin-local-rules-2.0.1.tgz#b9245e5def0d4ce698d062fb058fe16571805aa5"
+  integrity sha512-AJhGd+GcI5r2dbjiGPixM8jnBl0XFxqoVbqzwKbYz+nTk+Cj5dNE3+OlhC176bl5r25KsGsIthLi1VqIW5Ga+A==
+
 eslint-plugin-markdownlint@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-markdownlint/-/eslint-plugin-markdownlint-0.4.0.tgz#ee70192efb05d451d5287c1b0454a280e5568f30"

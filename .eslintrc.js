@@ -43,8 +43,22 @@ module.exports = {
     './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc.cjs',
     'plugin:ssr-friendly/recommended',
   ],
-  plugins: ['ssr-friendly'],
+  plugins: ['ssr-friendly', 'eslint-plugin-local-rules'],
   rules: {
+    // When a deprecation warning hook is used, it must be preceded by a comment. Having a ticket
+    // reference in the comment is enforced by the next rule.
+    'local-rules/future-proof-deprecation-warning': 'warn',
+    // When @deprecated is used, it must be followed by a Jira issue either in a short form [ABC-1234] or a full URL
+    'todo-plz/ticket-ref': [
+      'warn',
+      {
+        terms: ['TODO', 'FIXME', '@deprecated'],
+        commentPattern:
+          '(TODO:|FIXME:|@deprecated) ((\\n|.)*(\\[([A-Z]+-\\d+)+]|https:\\/\\/toptal-core\\.atlassian\\.net\\/browse\\/([A-Z]+-\\d+)))+',
+        description:
+          'Please add either a full URL to Jira issue or a short form: [ABC-1234] ',
+      },
+    ],
     '@toptal/davinci/no-private-package-imports': 'off',
     '@toptal/davinci/no-package-self-imports': [
       'error',
