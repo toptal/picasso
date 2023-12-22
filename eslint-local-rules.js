@@ -22,8 +22,8 @@ module.exports = {
 
             const hasTodoComment = commentBefore.some(
               comment =>
-                (comment.type === 'Line' && comment.value.includes('TODO')) ||
-                (comment.type === 'Block' && comment.value.includes('TODO'))
+                comment.value.includes('TODO') ||
+                comment.value.includes('FIXME')
             )
 
             if (!hasTodoComment) {
