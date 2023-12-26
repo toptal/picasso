@@ -7,7 +7,7 @@ module.exports = {
       fixable: null,
       docs: {
         description:
-          'Ensure a deprecation warning is preceded by a TODO comment',
+          'Ensure a deprecation warning is preceded by a TODO comment with a ticket reference',
         category: 'Picasso Best Practices',
         recommended: false,
       },
@@ -29,7 +29,7 @@ module.exports = {
             if (!hasTodoComment) {
               context.report({
                 node,
-                message: `${node.callee.name} must be preceded by a TODO comment `,
+                message: `${node.callee.name} must be preceded by a TODO comment with a ticket reference `,
               })
             }
           }
