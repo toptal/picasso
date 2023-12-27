@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
-import Accordion from '@toptal/picasso-accordion'
+import Accordion from '~/packages/base/packages/Accordion'
 import { ArrowDownMinor16 } from '@toptal/picasso-icon'
 
 import styles from './styles'

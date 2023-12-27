@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/*"],
+  "packages": ["packages/*", "packages/picasso/src/*"],
   "npmClient": "yarn",
   "version": "independent",
   "command": {

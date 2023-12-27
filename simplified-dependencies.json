@@ -1,0 +1,1778 @@
+[
+  {
+    "name": "packages/base/packages/Accordion/",
+    "dependencies": [
+      "packages/base/packages/AccordionDetails/",
+      "packages/base/packages/AccordionSummary/",
+      "packages/base/packages/ButtonAction/",
+      "packages/base/packages/Icon/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AccordionCompound/",
+    "dependencies": ["packages/base/packages/Accordion/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AccordionDetails/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AccordionSummary/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AccountSelect/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Link/",
+      "packages/base/packages/MenuCompound/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/UserBadge/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Alert/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/ButtonSplit/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AlertCompound/",
+    "dependencies": [
+      "packages/base/packages/Alert/",
+      "packages/base/packages/AlertInline/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AlertInline/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Amount/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ApplicationUpdateNotification/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ApplicationUpdateNotificationActions/",
+    "dependencies": ["packages/base/packages/Container/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ApplicationUpdateNotificationCompound/",
+    "dependencies": [
+      "packages/base/packages/ApplicationUpdateNotification/",
+      "packages/base/packages/ApplicationUpdateNotificationActions/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Autocomplete/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/MenuCompound/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/Popper/",
+      "packages/base/packages/SelectOptions/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Avatar/",
+    "dependencies": [
+      "packages/base/packages/utils/",
+      "packages/base/packages/AvatarDropzoneSvg/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Image/",
+      "packages/base/packages/Logo/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AvatarCompound/",
+    "dependencies": [
+      "packages/base/packages/Avatar/",
+      "packages/base/packages/AvatarGroup/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AvatarDropzoneSvg/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AvatarGroup/",
+    "dependencies": [
+      "packages/base/packages/Avatar/",
+      "packages/base/packages/Container/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/AvatarUpload/",
+    "dependencies": [
+      "packages/base/packages/Avatar/",
+      "packages/base/packages/AvatarDropzoneSvg/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/OutlinedInput/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Badge/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Breadcrumbs/",
+    "dependencies": ["packages/base/packages/Icon/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/BreadcrumbsCompound/",
+    "dependencies": [
+      "packages/base/packages/Breadcrumbs/",
+      "packages/base/packages/BreadcrumbsItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/BreadcrumbsItem/",
+    "dependencies": [
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Button/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonAction/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/Loader/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonCheckbox/",
+    "dependencies": [
+      "packages/base/packages/ButtonControlLabel/",
+      "packages/base/packages/Checkbox/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonCircular/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonCompound/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/ButtonAction/",
+      "packages/base/packages/ButtonCheckbox/",
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/ButtonGroup/",
+      "packages/base/packages/ButtonRadio/",
+      "packages/base/packages/ButtonSplit/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonControlLabel/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/Container/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonGroup/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/ButtonGroupItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonGroupItem/",
+    "dependencies": ["packages/base/packages/Button/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonLoader/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonRadio/",
+    "dependencies": [
+      "packages/base/packages/ButtonControlLabel/",
+      "packages/base/packages/Radio/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ButtonSplit/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/ButtonGroup/",
+      "packages/base/packages/Dropdown/",
+      "packages/base/packages/Icon/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Calendar/",
+    "dependencies": [
+      "packages/base/packages/CalendarContainer/",
+      "packages/base/packages/CalendarContext/",
+      "packages/base/packages/CalendarDay/",
+      "packages/base/packages/CalendarMonthHeader/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CalendarContainer/",
+    "dependencies": ["packages/base/packages/CalendarContext/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CalendarContext/",
+    "dependencies": [
+      "packages/base/packages/CalendarContainer/",
+      "packages/base/packages/CalendarDay/",
+      "packages/base/packages/CalendarMonthHeader/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CalendarDay/",
+    "dependencies": [
+      "packages/base/packages/Calendar/",
+      "packages/base/packages/CalendarContext/",
+      "packages/base/packages/CalendarIndicators/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CalendarIndicators/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CalendarMonthHeader/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/CalendarContext/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Carousel/",
+    "dependencies": [
+      "packages/base/packages/CarouselGradient/",
+      "packages/base/packages/CarouselNavigation/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CarouselGradient/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CarouselNavigation/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Checkbox/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/FormControlLabel/",
+      "packages/base/packages/FormLabel/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CheckboxCompound/",
+    "dependencies": [
+      "packages/base/packages/Checkbox/",
+      "packages/base/packages/CheckboxGroup/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CheckboxGroup/",
+    "dependencies": [
+      "packages/base/packages/Grid/",
+      "packages/base/packages/GridCompound/",
+      "packages/base/packages/GridItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Chip/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/CircularProgress/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Container/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/DatePicker/",
+    "dependencies": [
+      "packages/base/packages/Calendar/",
+      "packages/base/packages/CalendarDay/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/Popper/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Drawer/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/DrawerTitle/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/DrawerTitle/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Dropdown/",
+    "dependencies": [
+      "packages/base/packages/Paper/",
+      "packages/base/packages/Popper/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/Popover/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/DropdownArrow/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/DropdownCompound/",
+    "dependencies": [
+      "packages/base/packages/Dropdown/",
+      "packages/base/packages/DropdownArrow/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Dropzone/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/FileList/",
+      "packages/base/packages/FormError/",
+      "packages/base/packages/FormHint/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/EmptyState/",
+    "dependencies": [
+      "packages/base/packages/EmptyStateCollection/",
+      "packages/base/packages/EmptyStatePage/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/EmptyStateCollection/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/EmptyStatePage/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/EnvironmentBanner/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FieldRequirements/",
+    "dependencies": [
+      "packages/base/packages/GridCompound/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/Grid/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FieldsLayout/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FileInput/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/FileList/",
+      "packages/base/packages/FormHint/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FileList/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/FileInput/",
+      "packages/base/packages/FileListItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FileListItem/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/FileInput/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/ProgressBar/",
+      "packages/base/packages/Tooltip/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/TypographyOverflow/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Form/",
+    "dependencies": ["packages/base/packages/FieldsLayout/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormAutoSaveIndicator/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormCompound/",
+    "dependencies": [
+      "packages/base/packages/Form/",
+      "packages/base/packages/FormError/",
+      "packages/base/packages/FormField/",
+      "packages/base/packages/FormHint/",
+      "packages/base/packages/FormLabel/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormControlLabel/",
+    "dependencies": [
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/FormCompound/",
+      "packages/base/packages/FormLabel/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormError/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormField/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/FormError/",
+      "packages/base/packages/FormHint/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormHint/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/FormLabel/",
+    "dependencies": [
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Grid/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/GridCompound/",
+    "dependencies": [
+      "packages/base/packages/Grid/",
+      "packages/base/packages/GridItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/GridItem/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/HeaderLoader/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Helpbox/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/HelpboxActions/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Helpbox/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/HelpboxCompound/",
+    "dependencies": [
+      "packages/base/packages/Helpbox/",
+      "packages/base/packages/HelpboxActions/",
+      "packages/base/packages/HelpboxContent/",
+      "packages/base/packages/HelpboxTitle/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/HelpboxContent/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/HelpboxTitle/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Icon/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Image/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Indicator/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Input/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/InputIconAdornment/",
+      "packages/base/packages/InputLimitAdornment/",
+      "packages/base/packages/InputValidIconAdornment/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/InputBase/",
+      "packages/base/packages/InputLabel/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputAdornment/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputBase/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputIconAdornment/",
+    "dependencies": ["packages/base/packages/InputAdornment/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputLabel/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputLimitAdornment/",
+    "dependencies": ["packages/base/packages/InputMultilineAdornment/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputMultilineAdornment/",
+    "dependencies": ["packages/base/packages/Container/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/InputValidIconAdornment/",
+    "dependencies": [
+      "packages/base/packages/Icon/",
+      "packages/base/packages/InputAdornment/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Link/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/List/",
+    "dependencies": [
+      "packages/base/packages/ListItem/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ListItem/",
+    "dependencies": [
+      "packages/base/packages/List/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Loader/",
+    "dependencies": ["packages/base/packages/CircularProgress/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Logo/",
+    "dependencies": ["packages/base/packages/Icon/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/MediaSkeletonLoader/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Menu/",
+    "dependencies": [
+      "packages/base/packages/Icon/",
+      "packages/base/packages/MenuItem/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/MenuCompound/",
+    "dependencies": [
+      "packages/base/packages/Menu/",
+      "packages/base/packages/MenuItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/MenuItem/",
+    "dependencies": [
+      "packages/base/packages/Avatar/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Link/",
+      "packages/base/packages/Paper/",
+      "packages/base/packages/Popper/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/Menu/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Modal/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ModalActions/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ModalCompound/",
+    "dependencies": [
+      "packages/base/packages/Modal/",
+      "packages/base/packages/ModalActions/",
+      "packages/base/packages/ModalContent/",
+      "packages/base/packages/ModalTitle/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ModalContent/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ModalTitle/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/MonthSelect/",
+    "dependencies": [
+      "packages/base/packages/Select/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NativeSelect/",
+    "dependencies": [
+      "packages/base/packages/NativeSelectOptions/",
+      "packages/base/packages/NativeSelectPlaceholder/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/SelectBase/",
+      "packages/base/packages/SelectCaret/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/InputBase/",
+      "packages/base/packages/InputLabel/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/Loader/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NativeSelectOptions/",
+    "dependencies": ["packages/base/packages/SelectBase/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NativeSelectPlaceholder/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NonNativeSelect/",
+    "dependencies": [
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/MenuItem/",
+      "packages/base/packages/NonNativeSelectLimitFooter/",
+      "packages/base/packages/NonNativeSelectLoader/",
+      "packages/base/packages/NonNativeSelectOptions/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/Popper/",
+      "packages/base/packages/SelectBase/",
+      "packages/base/packages/SelectCaret/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/InputBase/",
+      "packages/base/packages/InputLabel/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/Menu/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NonNativeSelectLimitFooter/",
+    "dependencies": ["packages/base/packages/MenuItem/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NonNativeSelectLoader/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/SelectOptions/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NonNativeSelectOption/",
+    "dependencies": [
+      "packages/base/packages/MenuItem/",
+      "packages/base/packages/SelectBase/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NonNativeSelectOptions/",
+    "dependencies": [
+      "packages/base/packages/MenuItem/",
+      "packages/base/packages/NonNativeSelectOption/",
+      "packages/base/packages/SelectBase/",
+      "packages/base/packages/SelectOptions/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Note/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NoteCompound/",
+    "dependencies": [
+      "packages/base/packages/Note/",
+      "packages/base/packages/NoteContent/",
+      "packages/base/packages/NoteSubtitle/",
+      "packages/base/packages/NoteTitle/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NoteContent/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NoteSubtitle/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NoteTitle/",
+    "dependencies": ["packages/base/packages/Typography/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Notification/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NotificationActions/",
+    "dependencies": ["packages/base/packages/Container/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NotificationCompound/",
+    "dependencies": [
+      "packages/base/packages/Notification/",
+      "packages/base/packages/NotificationActions/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NumberInput/",
+    "dependencies": [
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/NumberInputEndAdornment/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/InputBase/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/NumberInputEndAdornment/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/InputAdornment/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/OutlinedInput/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/InputValidIconAdornment/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/OverviewBlock/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/OverviewBlockCompound/",
+    "dependencies": [
+      "packages/base/packages/OverviewBlock/",
+      "packages/base/packages/OverviewBlockGroup/",
+      "packages/base/packages/OverviewBlockRow/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/OverviewBlockGroup/",
+    "dependencies": ["packages/base/packages/OverviewBlockRow/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/OverviewBlockRow/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Page/",
+    "dependencies": [
+      "packages/base/packages/PageHamburger/",
+      "packages/base/packages/PageTopBar/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageArticle/",
+    "dependencies": ["packages/base/packages/Container/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageAutocomplete/",
+    "dependencies": ["packages/base/packages/Autocomplete/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageBanner/",
+    "dependencies": [
+      "packages/base/packages/Notification/",
+      "packages/base/packages/NotificationActions/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageCompound/",
+    "dependencies": [
+      "packages/base/packages/Page/",
+      "packages/base/packages/PageArticle/",
+      "packages/base/packages/PageAutocomplete/",
+      "packages/base/packages/PageBanner/",
+      "packages/base/packages/PageContent/",
+      "packages/base/packages/PageFooter/",
+      "packages/base/packages/PageHelmet/",
+      "packages/base/packages/PageSidebar/",
+      "packages/base/packages/PageTopBarCompound/",
+      "packages/base/packages/PageTopBarMenu/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageContent/",
+    "dependencies": ["packages/base/packages/Page/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageFooter/",
+    "dependencies": ["packages/base/packages/Page/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageHamburger/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Dropdown/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/PageTopBar/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageHead/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageHelmet/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageSidebar/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/PageHamburger/",
+      "packages/base/packages/SidebarItem/",
+      "packages/base/packages/SidebarLogo/",
+      "packages/base/packages/SidebarMenu/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/PageTopBar/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageTopBar/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Logo/",
+      "packages/base/packages/Page/",
+      "packages/base/packages/PageHamburger/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageTopBarCompound/",
+    "dependencies": [
+      "packages/base/packages/PageTopBar/",
+      "packages/base/packages/TopBarItem/",
+      "packages/base/packages/TopBarMenu/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PageTopBarMenu/",
+    "dependencies": [
+      "packages/base/packages/Avatar/",
+      "packages/base/packages/DropdownCompound/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/UserBadge/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/PageTopBar/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Pagination/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/PaginationButton/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PaginationButton/",
+    "dependencies": ["packages/base/packages/Button/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Paper/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PasswordInput/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/InputBase/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Popover/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Popper/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ProgressBar/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/PromptModal/",
+    "dependencies": [
+      "packages/base/packages/Button/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Modal/",
+      "packages/base/packages/ModalCompound/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Quote/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/QuoteMark/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/QuoteMark/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Radio/",
+    "dependencies": ["packages/base/packages/FormControlLabel/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/RadioCompound/",
+    "dependencies": [
+      "packages/base/packages/Radio/",
+      "packages/base/packages/RadioGroup/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/RadioGroup/",
+    "dependencies": [
+      "packages/base/packages/Grid/",
+      "packages/base/packages/GridCompound/",
+      "packages/base/packages/GridItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Rating/",
+    "dependencies": [
+      "packages/base/packages/RatingStars/",
+      "packages/base/packages/RatingThumbs/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/RatingIcon/",
+    "dependencies": ["packages/base/packages/Icon/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/RatingStars/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/RatingIcon/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/RatingThumbs/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ScrollMenu/",
+    "dependencies": [
+      "packages/base/packages/Menu/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Section/",
+    "dependencies": [
+      "packages/base/packages/ButtonCircular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Select/",
+    "dependencies": [
+      "packages/base/packages/SelectBase/",
+      "packages/base/packages/NativeSelect/",
+      "packages/base/packages/NonNativeSelect/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/InputBase/",
+      "packages/base/packages/InputLabel/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/MenuItem/",
+      "packages/base/packages/Menu/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SelectBase/",
+    "dependencies": [
+      "packages/base/packages/InputAdornment/",
+      "packages/base/packages/Loader/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SelectCaret/",
+    "dependencies": ["packages/base/packages/Icon/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SelectOptions/",
+    "dependencies": ["packages/base/packages/ScrollMenu/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/ShowMore/",
+    "dependencies": [
+      "packages/base/packages/ButtonAction/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SidebarItem/",
+    "dependencies": [
+      "packages/base/packages/utils/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Accordion/",
+      "packages/base/packages/MenuItem/",
+      "packages/base/packages/SidebarItemContent/",
+      "packages/base/packages/PageSidebar/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Dropdown/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SidebarItemContent/",
+    "dependencies": [
+      "packages/base/packages/Badge/",
+      "packages/base/packages/TagRectangular/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Indicator/",
+      "packages/base/packages/Tooltip/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SidebarLogo/",
+    "dependencies": ["packages/base/packages/Container/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SidebarMenu/",
+    "dependencies": [
+      "packages/base/packages/Menu/",
+      "packages/base/packages/SidebarItem/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SkeletonLoader/",
+    "dependencies": [
+      "packages/base/packages/ButtonLoader/",
+      "packages/base/packages/HeaderLoader/",
+      "packages/base/packages/MediaSkeletonLoader/",
+      "packages/base/packages/TypographyLoader/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Slider/",
+    "dependencies": [
+      "packages/base/packages/SliderValueLabel/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/SliderValueLabel/",
+    "dependencies": ["packages/base/packages/Tooltip/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/StaticTreeView/",
+    "dependencies": [
+      "packages/base/packages/TreeView/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Step/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/StepConnector/",
+    "dependencies": ["packages/base/packages/Icon/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/StepIcon/",
+    "dependencies": ["packages/base/packages/Icon/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/StepLabel/",
+    "dependencies": [
+      "packages/base/packages/StepIcon/",
+      "packages/base/packages/TypographyOverflow/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Stepper/",
+    "dependencies": [
+      "packages/base/packages/Step/",
+      "packages/base/packages/StepConnector/",
+      "packages/base/packages/StepIcon/",
+      "packages/base/packages/StepLabel/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/StepperCompound/",
+    "dependencies": [
+      "packages/base/packages/Stepper/",
+      "packages/base/packages/StepperVertical/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/StepperVertical/",
+    "dependencies": ["packages/base/packages/Stepper/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Switch/",
+    "dependencies": ["packages/base/packages/FormControlLabel/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Tab/",
+    "dependencies": [
+      "packages/base/packages/TabDescription/",
+      "packages/base/packages/TabLabel/",
+      "packages/base/packages/UserBadge/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TabDescription/",
+    "dependencies": ["packages/base/packages/TypographyOverflow/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TabLabel/",
+    "dependencies": [
+      "packages/base/packages/Typography/",
+      "packages/base/packages/TypographyOverflow/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TabScrollButton/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Icon/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Table/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableBody/",
+    "dependencies": ["packages/base/packages/Table/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableCell/",
+    "dependencies": [
+      "packages/base/packages/Table/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableCompound/",
+    "dependencies": [
+      "packages/base/packages/Table/",
+      "packages/base/packages/TableBody/",
+      "packages/base/packages/TableCell/",
+      "packages/base/packages/TableExpandableRow/",
+      "packages/base/packages/TableFooter/",
+      "packages/base/packages/TableHead/",
+      "packages/base/packages/TableRow/",
+      "packages/base/packages/TableSectionHead/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableExpandableRow/",
+    "dependencies": [
+      "packages/base/packages/TableCell/",
+      "packages/base/packages/TableRow/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableFooter/",
+    "dependencies": ["packages/base/packages/Table/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableHead/",
+    "dependencies": ["packages/base/packages/Table/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableRow/",
+    "dependencies": ["packages/base/packages/Table/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TableSectionHead/",
+    "dependencies": [
+      "packages/base/packages/Table/",
+      "packages/base/packages/TableBody/",
+      "packages/base/packages/TableCell/",
+      "packages/base/packages/TableRow/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Tabs/",
+    "dependencies": ["packages/base/packages/TabScrollButton/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TabsCompound/",
+    "dependencies": [
+      "packages/base/packages/Tab/",
+      "packages/base/packages/Tabs/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Tag/",
+    "dependencies": [
+      "packages/base/packages/Chip/",
+      "packages/base/packages/Icon/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagCheckable/",
+    "dependencies": ["packages/base/packages/Tag/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagCompound/",
+    "dependencies": [
+      "packages/base/packages/Tag/",
+      "packages/base/packages/TagCheckable/",
+      "packages/base/packages/TagConnection/",
+      "packages/base/packages/TagGroup/",
+      "packages/base/packages/TagRectangular/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagConnection/",
+    "dependencies": [
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Tag/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagGroup/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagRectangular/",
+    "dependencies": [
+      "packages/base/packages/Indicator/",
+      "packages/base/packages/Chip/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagSelector/",
+    "dependencies": [
+      "packages/base/packages/Autocomplete/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/TagSelectorInput/",
+      "packages/base/packages/TagSelectorLabel/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagSelectorCompound/",
+    "dependencies": [
+      "packages/base/packages/TagSelector/",
+      "packages/base/packages/TagSelectorLabel/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagSelectorInput/",
+    "dependencies": [
+      "packages/base/packages/InputBase/",
+      "packages/base/packages/FieldsLayout/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TagSelectorLabel/",
+    "dependencies": ["packages/base/packages/Tag/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TimePicker/",
+    "dependencies": [
+      "packages/base/packages/Icon/",
+      "packages/base/packages/Input/",
+      "packages/base/packages/OutlinedInput/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Timeline/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/TimelineRow/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TimelineRow/",
+    "dependencies": [
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Tooltip/",
+    "dependencies": [
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TopBarItem/",
+    "dependencies": [
+      "packages/base/packages/SidebarItem/",
+      "packages/base/packages/utils/",
+      "packages/base/packages/PageTopBar/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TopBarMenu/",
+    "dependencies": [
+      "packages/base/packages/Menu/",
+      "packages/base/packages/PageHamburger/",
+      "packages/base/packages/PageTopBar/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TreeView/",
+    "dependencies": [
+      "packages/base/packages/utils/",
+      "packages/base/packages/Button/",
+      "packages/base/packages/Container/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/Typography/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TypographyLoader/",
+    "dependencies": ["packages/base/packages/utils/"],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/TypographyOverflow/",
+    "dependencies": [
+      "packages/base/packages/Tooltip/",
+      "packages/base/packages/Typography/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/UserBadge/",
+    "dependencies": [
+      "packages/base/packages/Avatar/",
+      "packages/base/packages/Container/",
+      "packages/base/packages/Typography/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/YearSelect/",
+    "dependencies": [
+      "packages/base/packages/Select/",
+      "packages/base/packages/utils/"
+    ],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/test-utils/",
+    "dependencies": [],
+    "dependents": []
+  },
+  {
+    "name": "packages/base/packages/utils/",
+    "dependencies": ["packages/base/packages/Notification/"],
+    "dependents": []
+  }
+]

@@ -1,0 +1,1477 @@
+{
+    "0": {
+        "group_name": "Group 0",
+        "group_dependencies": [
+            "packages/base/packages/ButtonAction/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/AccordionSummary/",
+            "packages/base/packages/AccordionDetails/",
+            "packages/base/packages/Accordion/"
+        ],
+        "components": [
+            "packages/base/packages/AccordionCompound/",
+            "packages/base/packages/Accordion/",
+            "packages/base/packages/AccordionDetails/",
+            "packages/base/packages/AccordionSummary/"
+        ],
+        "instability": 2,
+        "responsibility": 1,
+        "accumulative_instability": 16,
+        "accumulative_responsibility": 3
+    },
+    "1": {
+        "group_name": "Group 1",
+        "group_dependencies": [
+            "packages/base/packages/ButtonAction/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/ShowMore/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 10,
+        "accumulative_responsibility": 0
+    },
+    "2": {
+        "group_name": "Group 2",
+        "group_dependencies": [
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/Icon/"
+        ],
+        "instability": 1,
+        "responsibility": 33,
+        "accumulative_instability": 2,
+        "accumulative_responsibility": 117
+    },
+    "3": {
+        "group_name": "Group 3",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/UserBadge/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Link/",
+            "packages/base/packages/MenuCompound/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/AccountSelect/"
+        ],
+        "instability": 6,
+        "responsibility": 0,
+        "accumulative_instability": 20,
+        "accumulative_responsibility": 0
+    },
+    "4.1": {
+        "group_name": "Group 4.1",
+        "group_dependencies": [],
+        "components": [
+            "packages/base/packages/Link/"
+        ],
+        "instability": 0,
+        "responsibility": 2,
+        "accumulative_instability": 0,
+        "accumulative_responsibility": 9
+    },
+    "4": {
+        "group_name": "Group 4",
+        "group_dependencies": [
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/Container/"
+        ],
+        "instability": 1,
+        "responsibility": 39,
+        "accumulative_instability": 2,
+        "accumulative_responsibility": 120
+    },
+    "5": {
+        "group_name": "Group 5",
+        "group_dependencies": [
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/Typography/"
+        ],
+        "instability": 1,
+        "responsibility": 38,
+        "accumulative_instability": 2,
+        "accumulative_responsibility": 101
+    },
+    "5.1": {
+        "group_name": "Group 5.1",
+        "group_dependencies": [
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/Amount/"
+        ],
+        "instability": 1,
+        "responsibility": 0,
+        "accumulative_instability": 2,
+        "accumulative_responsibility": 0
+    },
+    "6": {
+        "group_name": "Group 6",
+        "group_dependencies": [
+            "packages/base/packages/Avatar/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/UserBadge/"
+        ],
+        "instability": 3,
+        "responsibility": 3,
+        "accumulative_instability": 10,
+        "accumulative_responsibility": 9
+    },
+    "8": {
+        "group_name": "Group 8",
+        "group_dependencies": [
+            "packages/base/packages/ButtonGroup/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Radio/",
+            "packages/base/packages/ButtonCheckbox/",
+            "packages/base/packages/ButtonAction/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/ButtonSplit/",
+            "packages/base/packages/Checkbox/",
+            "packages/base/packages/Dropdown/",
+            "packages/base/packages/Loader/",
+            "packages/base/packages/ButtonGroupItem/",
+            "packages/base/packages/ButtonControlLabel/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/ButtonRadio/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/ButtonCompound/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/ButtonGroup/",
+            "packages/base/packages/ButtonGroupItem/",
+            "packages/base/packages/ButtonSplit/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/ButtonAction/",
+            "packages/base/packages/ButtonCheckbox/",
+            "packages/base/packages/ButtonControlLabel/",
+            "packages/base/packages/ButtonRadio/"
+        ],
+        "instability": 7,
+        "responsibility": 23,
+        "accumulative_instability": 86,
+        "accumulative_responsibility": 50
+    },
+    "10": {
+        "group_name": "Group 10",
+        "group_dependencies": [
+            "packages/base/packages/Notification/"
+        ],
+        "components": [
+            "packages/base/packages/utils/"
+        ],
+        "instability": 1,
+        "responsibility": 42,
+        "accumulative_instability": 5,
+        "accumulative_responsibility": 262
+    },
+    "11": {
+        "group_name": "Group 11",
+        "group_dependencies": [
+            "packages/base/packages/Alert/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/ButtonSplit/",
+            "packages/base/packages/AlertInline/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/AlertCompound/",
+            "packages/base/packages/AlertInline/",
+            "packages/base/packages/Alert/"
+        ],
+        "instability": 7,
+        "responsibility": 0,
+        "accumulative_instability": 46,
+        "accumulative_responsibility": 0
+    },
+    "12": {
+        "group_name": "Group 12",
+        "group_dependencies": [
+            "packages/base/packages/ApplicationUpdateNotification/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/ApplicationUpdateNotificationActions/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/ApplicationUpdateNotification/",
+            "packages/base/packages/ApplicationUpdateNotificationActions/",
+            "packages/base/packages/ApplicationUpdateNotificationCompound/"
+        ],
+        "instability": 4,
+        "responsibility": 0,
+        "accumulative_instability": 22,
+        "accumulative_responsibility": 0
+    },
+    "13": {
+        "group_name": "Group 13",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/Popper/",
+            "packages/base/packages/FieldsLayout/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/Input/",
+            "packages/base/packages/Loader/",
+            "packages/base/packages/MenuCompound/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/SelectOptions/"
+        ],
+        "components": [
+            "packages/base/packages/Autocomplete/"
+        ],
+        "instability": 11,
+        "responsibility": 2,
+        "accumulative_instability": 55,
+        "accumulative_responsibility": 3
+    },
+    "17": {
+        "group_name": "Group 17",
+        "group_dependencies": [
+            "packages/base/packages/CircularProgress/"
+        ],
+        "components": [
+            "packages/base/packages/Loader/",
+            "packages/base/packages/CircularProgress/"
+        ],
+        "instability": 0,
+        "responsibility": 5,
+        "accumulative_instability": 0,
+        "accumulative_responsibility": 33
+    },
+    "19.1": {
+        "group_name": "Group 19.1",
+        "group_dependencies": [
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/Popper/"
+        ],
+        "instability": 1,
+        "responsibility": 5,
+        "accumulative_instability": 2,
+        "accumulative_responsibility": 20
+    },
+    "21": {
+        "group_name": "Group 21",
+        "group_dependencies": [
+            "packages/base/packages/AvatarDropzoneSvg/",
+            "packages/base/packages/Logo/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/AvatarGroup/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Image/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Avatar/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/AvatarCompound/",
+            "packages/base/packages/Avatar/",
+            "packages/base/packages/AvatarGroup/",
+            "packages/base/packages/AvatarDropzoneSvg/",
+            "packages/base/packages/Image/"
+        ],
+        "instability": 5,
+        "responsibility": 5,
+        "accumulative_instability": 30,
+        "accumulative_responsibility": 21
+    },
+    "21.1": {
+        "group_name": "Group 21.1",
+        "group_dependencies": [
+            "packages/base/packages/Icon/"
+        ],
+        "components": [
+            "packages/base/packages/Logo/"
+        ],
+        "instability": 1,
+        "responsibility": 2,
+        "accumulative_instability": 2,
+        "accumulative_responsibility": 13
+    },
+    "22": {
+        "group_name": "Group 22",
+        "group_dependencies": [
+            "packages/base/packages/AvatarDropzoneSvg/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Loader/",
+            "packages/base/packages/Avatar/"
+        ],
+        "components": [
+            "packages/base/packages/AvatarUpload/"
+        ],
+        "instability": 5,
+        "responsibility": 0,
+        "accumulative_instability": 21,
+        "accumulative_responsibility": 0
+    },
+    "23.1": {
+        "group_name": "Group 23.1",
+        "group_dependencies": [],
+        "components": [
+            "packages/base/packages/Badge/"
+        ],
+        "instability": 0,
+        "responsibility": 1,
+        "accumulative_instability": 0,
+        "accumulative_responsibility": 3
+    },
+    "24": {
+        "group_name": "Group 24",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Breadcrumbs/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/BreadcrumbsItem/"
+        ],
+        "components": [
+            "packages/base/packages/Breadcrumbs/",
+            "packages/base/packages/BreadcrumbsCompound/",
+            "packages/base/packages/BreadcrumbsItem/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 12,
+        "accumulative_responsibility": 0
+    },
+    "27": {
+        "group_name": "Group 27",
+        "group_dependencies": [
+            "packages/base/packages/FormControlLabel/",
+            "packages/base/packages/CheckboxGroup/",
+            "packages/base/packages/Grid/",
+            "packages/base/packages/Checkbox/",
+            "packages/base/packages/GridItem/",
+            "packages/base/packages/GridCompound/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/FormLabel/"
+        ],
+        "components": [
+            "packages/base/packages/CheckboxCompound/",
+            "packages/base/packages/Checkbox/",
+            "packages/base/packages/CheckboxGroup/"
+        ],
+        "instability": 6,
+        "responsibility": 1,
+        "accumulative_instability": 31,
+        "accumulative_responsibility": 24
+    },
+    "27.1": {
+        "group_name": "Group 27.1",
+        "group_dependencies": [
+            "packages/base/packages/FormControlLabel/"
+        ],
+        "components": [
+            "packages/base/packages/Switch/"
+        ],
+        "instability": 1,
+        "responsibility": 0,
+        "accumulative_instability": 4,
+        "accumulative_responsibility": 0
+    },
+    "28": {
+        "group_name": "Group 28",
+        "group_dependencies": [
+            "packages/base/packages/MediaSkeletonLoader/",
+            "packages/base/packages/HeaderLoader/",
+            "packages/base/packages/ButtonLoader/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/TypographyLoader/",
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/SkeletonLoader/",
+            "packages/base/packages/ButtonLoader/",
+            "packages/base/packages/HeaderLoader/",
+            "packages/base/packages/MediaSkeletonLoader/",
+            "packages/base/packages/TypographyLoader/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 18,
+        "accumulative_responsibility": 0
+    },
+    "29": {
+        "group_name": "Group 29",
+        "group_dependencies": [
+            "packages/base/packages/Radio/",
+            "packages/base/packages/FormControlLabel/",
+            "packages/base/packages/Grid/",
+            "packages/base/packages/GridItem/",
+            "packages/base/packages/GridCompound/",
+            "packages/base/packages/RadioGroup/"
+        ],
+        "components": [
+            "packages/base/packages/RadioCompound/",
+            "packages/base/packages/Radio/",
+            "packages/base/packages/RadioGroup/"
+        ],
+        "instability": 4,
+        "responsibility": 1,
+        "accumulative_instability": 21,
+        "accumulative_responsibility": 24
+    },
+    "30": {
+        "group_name": "Group 30",
+        "group_dependencies": [
+            "packages/base/packages/Popover/",
+            "packages/base/packages/Popper/",
+            "packages/base/packages/DropdownArrow/",
+            "packages/base/packages/Paper/",
+            "packages/base/packages/Dropdown/",
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/DropdownCompound/",
+            "packages/base/packages/Dropdown/",
+            "packages/base/packages/DropdownArrow/",
+            "packages/base/packages/Popover/"
+        ],
+        "instability": 3,
+        "responsibility": 4,
+        "accumulative_instability": 14,
+        "accumulative_responsibility": 41
+    },
+    "30.1": {
+        "group_name": "Group 30.1",
+        "group_dependencies": [],
+        "components": [
+            "packages/base/packages/Paper/"
+        ],
+        "instability": 0,
+        "responsibility": 2,
+        "accumulative_instability": 0,
+        "accumulative_responsibility": 13
+    },
+    "31": {
+        "group_name": "Group 31",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/CalendarIndicators/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/CalendarContext/",
+            "packages/base/packages/CalendarContainer/",
+            "packages/base/packages/CalendarMonthHeader/",
+            "packages/base/packages/Calendar/",
+            "packages/base/packages/CalendarDay/"
+        ],
+        "components": [
+            "packages/base/packages/Calendar/",
+            "packages/base/packages/CalendarContainer/",
+            "packages/base/packages/CalendarContext/",
+            "packages/base/packages/CalendarDay/",
+            "packages/base/packages/CalendarMonthHeader/",
+            "packages/base/packages/CalendarIndicators/"
+        ],
+        "instability": 4,
+        "responsibility": 2,
+        "accumulative_instability": 38,
+        "accumulative_responsibility": 2
+    },
+    "19": {
+        "group_name": "Group 19",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/Popper/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Input/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Calendar/",
+            "packages/base/packages/CalendarDay/"
+        ],
+        "components": [
+            "packages/base/packages/DatePicker/"
+        ],
+        "instability": 9,
+        "responsibility": 0,
+        "accumulative_instability": 36,
+        "accumulative_responsibility": 0
+    },
+    "32": {
+        "group_name": "Group 32",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/CarouselGradient/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/CarouselNavigation/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Carousel/",
+            "packages/base/packages/CarouselGradient/",
+            "packages/base/packages/CarouselNavigation/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 18,
+        "accumulative_responsibility": 0
+    },
+    "33": {
+        "group_name": "Group 33",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Grid/",
+            "packages/base/packages/GridItem/",
+            "packages/base/packages/GridCompound/"
+        ],
+        "components": [
+            "packages/base/packages/Grid/",
+            "packages/base/packages/GridCompound/",
+            "packages/base/packages/GridItem/",
+            "packages/base/packages/FieldRequirements/"
+        ],
+        "instability": 2,
+        "responsibility": 6,
+        "accumulative_instability": 10,
+        "accumulative_responsibility": 12
+    },
+    "35": {
+        "group_name": "Group 35",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/DrawerTitle/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Drawer/",
+            "packages/base/packages/DrawerTitle/"
+        ],
+        "instability": 5,
+        "responsibility": 0,
+        "accumulative_instability": 21,
+        "accumulative_responsibility": 0
+    },
+    "37": {
+        "group_name": "Group 37",
+        "group_dependencies": [
+            "packages/base/packages/FormError/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/FileList/",
+            "packages/base/packages/FormHint/"
+        ],
+        "components": [
+            "packages/base/packages/Dropzone/"
+        ],
+        "instability": 7,
+        "responsibility": 0,
+        "accumulative_instability": 27,
+        "accumulative_responsibility": 0
+    },
+    "39": {
+        "group_name": "Group 39",
+        "group_dependencies": [
+            "packages/base/packages/FormError/",
+            "packages/base/packages/FieldsLayout/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/FormHint/",
+            "packages/base/packages/Form/",
+            "packages/base/packages/FormField/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/FormLabel/",
+            "packages/base/packages/FormCompound/"
+        ],
+        "components": [
+            "packages/base/packages/FormCompound/",
+            "packages/base/packages/Form/",
+            "packages/base/packages/FormError/",
+            "packages/base/packages/FormHint/",
+            "packages/base/packages/FormField/",
+            "packages/base/packages/FormControlLabel/",
+            "packages/base/packages/FormLabel/",
+            "packages/base/packages/FieldsLayout/"
+        ],
+        "instability": 3,
+        "responsibility": 12,
+        "accumulative_instability": 27,
+        "accumulative_responsibility": 30
+    },
+    "40": {
+        "group_name": "Group 40",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/EmptyStateCollection/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/EmptyStatePage/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/EmptyState/",
+            "packages/base/packages/EmptyStateCollection/",
+            "packages/base/packages/EmptyStatePage/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 12,
+        "accumulative_responsibility": 0
+    },
+    "41": {
+        "group_name": "Group 41",
+        "group_dependencies": [],
+        "components": [
+            "packages/base/packages/EnvironmentBanner/"
+        ],
+        "instability": 0,
+        "responsibility": 0,
+        "accumulative_instability": 0,
+        "accumulative_responsibility": 0
+    },
+    "38": {
+        "group_name": "Group 38",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Tooltip/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/FileListItem/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/ProgressBar/",
+            "packages/base/packages/TypographyOverflow/",
+            "packages/base/packages/Loader/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/FileInput/",
+            "packages/base/packages/FileList/",
+            "packages/base/packages/FormHint/"
+        ],
+        "components": [
+            "packages/base/packages/FileInput/",
+            "packages/base/packages/FileList/",
+            "packages/base/packages/FileListItem/",
+            "packages/base/packages/ProgressBar/"
+        ],
+        "instability": 10,
+        "responsibility": 1,
+        "accumulative_instability": 76,
+        "accumulative_responsibility": 1
+    },
+    "43": {
+        "group_name": "Group 43",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/Tooltip/"
+        ],
+        "instability": 2,
+        "responsibility": 4,
+        "accumulative_instability": 4,
+        "accumulative_responsibility": 10
+    },
+    "43.1": {
+        "group_name": "Group 43.1",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/Tooltip/",
+            "packages/base/packages/SliderValueLabel/"
+        ],
+        "components": [
+            "packages/base/packages/Slider/",
+            "packages/base/packages/SliderValueLabel/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 7,
+        "accumulative_responsibility": 0
+    },
+    "44": {
+        "group_name": "Group 44",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/Tooltip/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/TypographyOverflow/"
+        ],
+        "instability": 3,
+        "responsibility": 3,
+        "accumulative_instability": 7,
+        "accumulative_responsibility": 4
+    },
+    "45": {
+        "group_name": "Group 45",
+        "group_dependencies": [
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/FormAutoSaveIndicator/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 4,
+        "accumulative_responsibility": 0
+    },
+    "46": {
+        "group_name": "Group 46",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/HelpboxActions/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Helpbox/",
+            "packages/base/packages/HelpboxTitle/",
+            "packages/base/packages/HelpboxContent/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Helpbox/",
+            "packages/base/packages/HelpboxCompound/",
+            "packages/base/packages/HelpboxActions/",
+            "packages/base/packages/HelpboxContent/",
+            "packages/base/packages/HelpboxTitle/"
+        ],
+        "instability": 4,
+        "responsibility": 0,
+        "accumulative_instability": 30,
+        "accumulative_responsibility": 0
+    },
+    "18": {
+        "group_name": "Group 18",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/InputValidIconAdornment/"
+        ],
+        "components": [
+            "packages/base/packages/OutlinedInput/"
+        ],
+        "instability": 5,
+        "responsibility": 9,
+        "accumulative_instability": 18,
+        "accumulative_responsibility": 23
+    },
+    "48": {
+        "group_name": "Group 48",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/InputIconAdornment/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/FieldsLayout/",
+            "packages/base/packages/InputLabel/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/InputValidIconAdornment/",
+            "packages/base/packages/InputLimitAdornment/",
+            "packages/base/packages/InputBase/"
+        ],
+        "components": [
+            "packages/base/packages/InputBase/",
+            "packages/base/packages/Input/",
+            "packages/base/packages/InputLabel/"
+        ],
+        "instability": 8,
+        "responsibility": 10,
+        "accumulative_instability": 41,
+        "accumulative_responsibility": 18
+    },
+    "16": {
+        "group_name": "Group 16",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Icon/"
+        ],
+        "components": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/InputIconAdornment/",
+            "packages/base/packages/InputValidIconAdornment/"
+        ],
+        "instability": 2,
+        "responsibility": 10,
+        "accumulative_instability": 6,
+        "accumulative_responsibility": 62
+    },
+    "47": {
+        "group_name": "Group 47",
+        "group_dependencies": [
+            "packages/base/packages/InputMultilineAdornment/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/InputLimitAdornment/",
+            "packages/base/packages/InputMultilineAdornment/"
+        ],
+        "instability": 1,
+        "responsibility": 1,
+        "accumulative_instability": 3,
+        "accumulative_responsibility": 11
+    },
+    "48.1": {
+        "group_name": "Group 48.1",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/InputBase/"
+        ],
+        "components": [
+            "packages/base/packages/PasswordInput/"
+        ],
+        "instability": 5,
+        "responsibility": 0,
+        "accumulative_instability": 28,
+        "accumulative_responsibility": 0
+    },
+    "50": {
+        "group_name": "Group 50",
+        "group_dependencies": [
+            "packages/base/packages/ListItem/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/List/"
+        ],
+        "components": [
+            "packages/base/packages/List/",
+            "packages/base/packages/ListItem/"
+        ],
+        "instability": 4,
+        "responsibility": 0,
+        "accumulative_instability": 16,
+        "accumulative_responsibility": 0
+    },
+    "51": {
+        "group_name": "Group 51",
+        "group_dependencies": [
+            "packages/base/packages/Popper/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Menu/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Link/",
+            "packages/base/packages/MenuItem/",
+            "packages/base/packages/Paper/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Avatar/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/MenuCompound/",
+            "packages/base/packages/Menu/",
+            "packages/base/packages/MenuItem/"
+        ],
+        "instability": 8,
+        "responsibility": 7,
+        "accumulative_instability": 34,
+        "accumulative_responsibility": 23
+    },
+    "54": {
+        "group_name": "Group 54",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Modal/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/ModalActions/",
+            "packages/base/packages/ModalContent/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/ModalTitle/"
+        ],
+        "components": [
+            "packages/base/packages/Modal/",
+            "packages/base/packages/ModalCompound/",
+            "packages/base/packages/ModalActions/",
+            "packages/base/packages/ModalContent/",
+            "packages/base/packages/ModalTitle/"
+        ],
+        "instability": 4,
+        "responsibility": 2,
+        "accumulative_instability": 30,
+        "accumulative_responsibility": 2
+    },
+    "54.1": {
+        "group_name": "Group 54.1",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Modal/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/ModalCompound/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/PromptModal/"
+        ],
+        "instability": 6,
+        "responsibility": 0,
+        "accumulative_instability": 24,
+        "accumulative_responsibility": 0
+    },
+    "55": {
+        "group_name": "Group 55",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/Select/"
+        ],
+        "components": [
+            "packages/base/packages/MonthSelect/",
+            "packages/base/packages/YearSelect/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 17,
+        "accumulative_responsibility": 0
+    },
+    "58": {
+        "group_name": "Group 58",
+        "group_dependencies": [
+            "packages/base/packages/NativeSelectOptions/",
+            "packages/base/packages/NonNativeSelectLimitFooter/",
+            "packages/base/packages/NativeSelect/",
+            "packages/base/packages/InputLabel/",
+            "packages/base/packages/Menu/",
+            "packages/base/packages/SelectCaret/",
+            "packages/base/packages/NonNativeSelect/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/NonNativeSelectOption/",
+            "packages/base/packages/ScrollMenu/",
+            "packages/base/packages/NonNativeSelectOptions/",
+            "packages/base/packages/InputBase/",
+            "packages/base/packages/NonNativeSelectLoader/",
+            "packages/base/packages/Popper/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/Input/",
+            "packages/base/packages/SelectOptions/",
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/NativeSelectPlaceholder/",
+            "packages/base/packages/SelectBase/",
+            "packages/base/packages/FieldsLayout/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/MenuItem/",
+            "packages/base/packages/Loader/",
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/Select/",
+            "packages/base/packages/SelectBase/",
+            "packages/base/packages/SelectCaret/",
+            "packages/base/packages/SelectOptions/",
+            "packages/base/packages/ScrollMenu/",
+            "packages/base/packages/NativeSelect/",
+            "packages/base/packages/NativeSelectPlaceholder/",
+            "packages/base/packages/NativeSelectOptions/",
+            "packages/base/packages/NonNativeSelect/",
+            "packages/base/packages/NonNativeSelectOptions/",
+            "packages/base/packages/NonNativeSelectOption/",
+            "packages/base/packages/NonNativeSelectLimitFooter/",
+            "packages/base/packages/NonNativeSelectLoader/"
+        ],
+        "instability": 14,
+        "responsibility": 2,
+        "accumulative_instability": 237,
+        "accumulative_responsibility": 4
+    },
+    "59": {
+        "group_name": "Group 59",
+        "group_dependencies": [
+            "packages/base/packages/NoteTitle/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/NoteSubtitle/",
+            "packages/base/packages/Note/",
+            "packages/base/packages/NoteContent/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Note/",
+            "packages/base/packages/NoteCompound/",
+            "packages/base/packages/NoteContent/",
+            "packages/base/packages/NoteSubtitle/",
+            "packages/base/packages/NoteTitle/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 12,
+        "accumulative_responsibility": 0
+    },
+    "60": {
+        "group_name": "Group 60",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Notification/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/NotificationActions/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Notification/",
+            "packages/base/packages/NotificationActions/",
+            "packages/base/packages/NotificationCompound/"
+        ],
+        "instability": 4,
+        "responsibility": 3,
+        "accumulative_instability": 22,
+        "accumulative_responsibility": 47
+    },
+    "61": {
+        "group_name": "Group 61",
+        "group_dependencies": [
+            "packages/base/packages/InputAdornment/",
+            "packages/base/packages/FieldsLayout/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/NumberInputEndAdornment/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/InputBase/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/NumberInput/",
+            "packages/base/packages/NumberInputEndAdornment/"
+        ],
+        "instability": 7,
+        "responsibility": 0,
+        "accumulative_instability": 35,
+        "accumulative_responsibility": 0
+    },
+    "62": {
+        "group_name": "Group 62",
+        "group_dependencies": [
+            "packages/base/packages/OverviewBlock/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/OverviewBlockRow/",
+            "packages/base/packages/OverviewBlockGroup/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/OverviewBlock/",
+            "packages/base/packages/OverviewBlockCompound/",
+            "packages/base/packages/OverviewBlockGroup/",
+            "packages/base/packages/OverviewBlockRow/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 15,
+        "accumulative_responsibility": 0
+    },
+    "66": {
+        "group_name": "Group 66",
+        "group_dependencies": [
+            "packages/base/packages/PageArticle/",
+            "packages/base/packages/Notification/",
+            "packages/base/packages/PageContent/",
+            "packages/base/packages/PageTopBarCompound/",
+            "packages/base/packages/PageFooter/",
+            "packages/base/packages/NotificationActions/",
+            "packages/base/packages/PageSidebar/",
+            "packages/base/packages/Autocomplete/",
+            "packages/base/packages/PageHelmet/",
+            "packages/base/packages/PageTopBarMenu/",
+            "packages/base/packages/PageBanner/",
+            "packages/base/packages/PageTopBar/",
+            "packages/base/packages/Page/",
+            "packages/base/packages/PageAutocomplete/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/PageHamburger/"
+        ],
+        "components": [
+            "packages/base/packages/Page/",
+            "packages/base/packages/PageArticle/",
+            "packages/base/packages/PageAutocomplete/",
+            "packages/base/packages/PageCompound/",
+            "packages/base/packages/PageContent/",
+            "packages/base/packages/PageFooter/",
+            "packages/base/packages/PageHelmet/",
+            "packages/base/packages/PageBanner/"
+        ],
+        "instability": 9,
+        "responsibility": 1,
+        "accumulative_instability": 159,
+        "accumulative_responsibility": 7
+    },
+    "65": {
+        "group_name": "Group 65",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/TopBarItem/",
+            "packages/base/packages/TopBarMenu/",
+            "packages/base/packages/DropdownCompound/",
+            "packages/base/packages/Logo/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/UserBadge/",
+            "packages/base/packages/Menu/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/SidebarItem/",
+            "packages/base/packages/Dropdown/",
+            "packages/base/packages/PageTopBar/",
+            "packages/base/packages/Page/",
+            "packages/base/packages/Avatar/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/PageHamburger/"
+        ],
+        "components": [
+            "packages/base/packages/PageTopBar/",
+            "packages/base/packages/PageTopBarCompound/",
+            "packages/base/packages/PageTopBarMenu/",
+            "packages/base/packages/TopBarItem/",
+            "packages/base/packages/TopBarMenu/",
+            "packages/base/packages/PageHamburger/"
+        ],
+        "instability": 13,
+        "responsibility": 6,
+        "accumulative_instability": 123,
+        "accumulative_responsibility": 14
+    },
+    "67": {
+        "group_name": "Group 67",
+        "group_dependencies": [
+            "packages/base/packages/Tooltip/",
+            "packages/base/packages/Menu/",
+            "packages/base/packages/PageSidebar/",
+            "packages/base/packages/Badge/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/PageHamburger/",
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/SidebarItemContent/",
+            "packages/base/packages/Indicator/",
+            "packages/base/packages/Accordion/",
+            "packages/base/packages/Dropdown/",
+            "packages/base/packages/SidebarMenu/",
+            "packages/base/packages/TagRectangular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/MenuItem/",
+            "packages/base/packages/SidebarItem/",
+            "packages/base/packages/PageTopBar/",
+            "packages/base/packages/SidebarLogo/",
+            "packages/base/packages/utils/"
+        ],
+        "components": [
+            "packages/base/packages/PageSidebar/",
+            "packages/base/packages/SidebarLogo/",
+            "packages/base/packages/SidebarItem/",
+            "packages/base/packages/SidebarMenu/",
+            "packages/base/packages/SidebarItemContent/"
+        ],
+        "instability": 15,
+        "responsibility": 2,
+        "accumulative_instability": 156,
+        "accumulative_responsibility": 9
+    },
+    "68": {
+        "group_name": "Group 68",
+        "group_dependencies": [
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/PageHead/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 4,
+        "accumulative_responsibility": 0
+    },
+    "70": {
+        "group_name": "Group 70",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/PaginationButton/"
+        ],
+        "components": [
+            "packages/base/packages/Pagination/",
+            "packages/base/packages/PaginationButton/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 15,
+        "accumulative_responsibility": 0
+    },
+    "71": {
+        "group_name": "Group 71",
+        "group_dependencies": [
+            "packages/base/packages/QuoteMark/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/Quote/",
+            "packages/base/packages/QuoteMark/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 6,
+        "accumulative_responsibility": 0
+    },
+    "73": {
+        "group_name": "Group 73",
+        "group_dependencies": [
+            "packages/base/packages/RatingStars/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/RatingIcon/",
+            "packages/base/packages/RatingThumbs/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Rating/",
+            "packages/base/packages/RatingStars/",
+            "packages/base/packages/RatingThumbs/",
+            "packages/base/packages/RatingIcon/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 10,
+        "accumulative_responsibility": 0
+    },
+    "74": {
+        "group_name": "Group 74",
+        "group_dependencies": [
+            "packages/base/packages/ButtonCircular/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/Section/"
+        ],
+        "instability": 5,
+        "responsibility": 0,
+        "accumulative_instability": 16,
+        "accumulative_responsibility": 0
+    },
+    "75": {
+        "group_name": "Group 75",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Button/",
+            "packages/base/packages/TreeView/"
+        ],
+        "components": [
+            "packages/base/packages/StaticTreeView/",
+            "packages/base/packages/TreeView/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 15,
+        "accumulative_responsibility": 0
+    },
+    "76": {
+        "group_name": "Group 76",
+        "group_dependencies": [
+            "packages/base/packages/StepIcon/",
+            "packages/base/packages/Stepper/",
+            "packages/base/packages/StepConnector/",
+            "packages/base/packages/Step/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/TypographyOverflow/",
+            "packages/base/packages/StepperVertical/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/StepLabel/"
+        ],
+        "components": [
+            "packages/base/packages/Step/",
+            "packages/base/packages/StepConnector/",
+            "packages/base/packages/StepIcon/",
+            "packages/base/packages/StepLabel/",
+            "packages/base/packages/Stepper/",
+            "packages/base/packages/StepperCompound/",
+            "packages/base/packages/StepperVertical/"
+        ],
+        "instability": 3,
+        "responsibility": 0,
+        "accumulative_instability": 26,
+        "accumulative_responsibility": 0
+    },
+    "34": {
+        "group_name": "Group 34",
+        "group_dependencies": [
+            "packages/base/packages/TabScrollButton/",
+            "packages/base/packages/Tabs/",
+            "packages/base/packages/UserBadge/",
+            "packages/base/packages/Tab/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/TabDescription/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/TypographyOverflow/",
+            "packages/base/packages/TabLabel/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/Container/"
+        ],
+        "components": [
+            "packages/base/packages/TabScrollButton/",
+            "packages/base/packages/Tabs/",
+            "packages/base/packages/Tab/",
+            "packages/base/packages/TabDescription/",
+            "packages/base/packages/TabsCompound/",
+            "packages/base/packages/TabLabel/"
+        ],
+        "instability": 6,
+        "responsibility": 0,
+        "accumulative_instability": 46,
+        "accumulative_responsibility": 0
+    },
+    "72": {
+        "group_name": "Group 72",
+        "group_dependencies": [
+            "packages/base/packages/Typography/",
+            "packages/base/packages/TableSectionHead/",
+            "packages/base/packages/TableExpandableRow/",
+            "packages/base/packages/TableCell/",
+            "packages/base/packages/Table/",
+            "packages/base/packages/TableHead/",
+            "packages/base/packages/TableBody/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/TableRow/",
+            "packages/base/packages/TableFooter/"
+        ],
+        "components": [
+            "packages/base/packages/Table/",
+            "packages/base/packages/TableBody/",
+            "packages/base/packages/TableCell/",
+            "packages/base/packages/TableCompound/",
+            "packages/base/packages/TableExpandableRow/",
+            "packages/base/packages/TableFooter/",
+            "packages/base/packages/TableHead/",
+            "packages/base/packages/TableRow/",
+            "packages/base/packages/TableSectionHead/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 20,
+        "accumulative_responsibility": 0
+    },
+    "77": {
+        "group_name": "Group 77",
+        "group_dependencies": [
+            "packages/base/packages/TagConnection/",
+            "packages/base/packages/Typography/",
+            "packages/base/packages/TagGroup/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Chip/",
+            "packages/base/packages/Indicator/",
+            "packages/base/packages/Tag/",
+            "packages/base/packages/utils/",
+            "packages/base/packages/TagCheckable/",
+            "packages/base/packages/TagRectangular/"
+        ],
+        "components": [
+            "packages/base/packages/Tag/",
+            "packages/base/packages/TagCheckable/",
+            "packages/base/packages/TagCompound/",
+            "packages/base/packages/TagConnection/",
+            "packages/base/packages/TagGroup/",
+            "packages/base/packages/TagRectangular/",
+            "packages/base/packages/Chip/",
+            "packages/base/packages/Indicator/"
+        ],
+        "instability": 3,
+        "responsibility": 3,
+        "accumulative_instability": 27,
+        "accumulative_responsibility": 7
+    },
+    "78": {
+        "group_name": "Group 78",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/FieldsLayout/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/TagSelector/",
+            "packages/base/packages/Input/",
+            "packages/base/packages/Autocomplete/",
+            "packages/base/packages/TagSelectorLabel/",
+            "packages/base/packages/Tag/",
+            "packages/base/packages/TagSelectorInput/",
+            "packages/base/packages/InputBase/"
+        ],
+        "components": [
+            "packages/base/packages/TagSelector/",
+            "packages/base/packages/TagSelectorLabel/",
+            "packages/base/packages/TagSelectorCompound/",
+            "packages/base/packages/TagSelectorInput/"
+        ],
+        "instability": 7,
+        "responsibility": 0,
+        "accumulative_instability": 67,
+        "accumulative_responsibility": 0
+    },
+    "56": {
+        "group_name": "Group 56",
+        "group_dependencies": [
+            "packages/base/packages/utils/",
+            "packages/base/packages/OutlinedInput/",
+            "packages/base/packages/Icon/",
+            "packages/base/packages/Input/"
+        ],
+        "components": [
+            "packages/base/packages/TimePicker/"
+        ],
+        "instability": 4,
+        "responsibility": 0,
+        "accumulative_instability": 19,
+        "accumulative_responsibility": 0
+    },
+    "25": {
+        "group_name": "Group 25",
+        "group_dependencies": [
+            "packages/base/packages/TimelineRow/",
+            "packages/base/packages/Container/",
+            "packages/base/packages/Typography/"
+        ],
+        "components": [
+            "packages/base/packages/Timeline/",
+            "packages/base/packages/TimelineRow/"
+        ],
+        "instability": 2,
+        "responsibility": 0,
+        "accumulative_instability": 6,
+        "accumulative_responsibility": 0
+    },
+    "63": {
+        "group_name": "Group 63",
+        "group_dependencies": [],
+        "components": [
+            "packages/base/packages/test-utils/"
+        ],
+        "instability": 0,
+        "responsibility": 0,
+        "accumulative_instability": 0,
+        "accumulative_responsibility": 0
+    }
+}

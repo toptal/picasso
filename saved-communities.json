@@ -1,0 +1,446 @@
+{
+    "0": [
+        "packages/base/packages/AccordionCompound/",
+        "packages/base/packages/Accordion/",
+        "packages/base/packages/AccordionDetails/",
+        "packages/base/packages/AccordionSummary/"
+    ],
+
+    "1": [
+        "packages/base/packages/ShowMore/"
+    ],
+
+    "2": [
+        "packages/base/packages/Icon/"
+    ],
+    
+    "3": [
+        "packages/base/packages/AccountSelect/"
+    ],
+
+    "4.1": [
+        "packages/base/packages/Link/"
+    ],
+
+    "4": [
+        "packages/base/packages/Container/"
+    ],
+
+    "5": [
+        "packages/base/packages/Typography/"
+    ],
+
+    "5.1": [
+        "packages/base/packages/Amount/"
+    ],
+
+    "6": [
+        "packages/base/packages/UserBadge/"
+    ],
+
+    "8": [
+        "packages/base/packages/ButtonCompound/",
+        "packages/base/packages/Button/",
+        "packages/base/packages/ButtonGroup/",
+        "packages/base/packages/ButtonGroupItem/",
+        "packages/base/packages/ButtonSplit/",
+        "packages/base/packages/ButtonCircular/",
+        "packages/base/packages/ButtonAction/",
+        "packages/base/packages/ButtonCheckbox/",
+        "packages/base/packages/ButtonControlLabel/",
+        "packages/base/packages/ButtonRadio/"
+    ],
+
+    "10": [
+        "packages/base/packages/utils/"
+    ],
+
+    "11": [
+        "packages/base/packages/AlertCompound/",
+        "packages/base/packages/AlertInline/",
+        "packages/base/packages/Alert/"
+    ],
+
+    "12": [
+        "packages/base/packages/ApplicationUpdateNotification/",
+        "packages/base/packages/ApplicationUpdateNotificationActions/",
+        "packages/base/packages/ApplicationUpdateNotificationCompound/"
+    ],
+
+    "13": [
+        "packages/base/packages/Autocomplete/"
+    ],
+    
+    "17": [
+        "packages/base/packages/Loader/",
+        "packages/base/packages/CircularProgress/"
+    ],
+    
+    
+    "19.1": [
+        "packages/base/packages/Popper/"
+    ],
+
+    "21": [
+        "packages/base/packages/AvatarCompound/",
+        "packages/base/packages/Avatar/",
+        "packages/base/packages/AvatarGroup/",
+        "packages/base/packages/AvatarDropzoneSvg/",
+        "packages/base/packages/Image/"
+        
+    ],
+    "21.1": [
+        "packages/base/packages/Logo/"
+    ],
+
+    "22": [
+        "packages/base/packages/AvatarUpload/"
+    ],
+
+    "23.1": [
+        "packages/base/packages/Badge/"
+    ],
+    
+    "24": [
+        "packages/base/packages/Breadcrumbs/",
+        "packages/base/packages/BreadcrumbsCompound/",
+        "packages/base/packages/BreadcrumbsItem/"
+    ],
+    
+    "27": [
+        "packages/base/packages/CheckboxCompound/",
+        "packages/base/packages/Checkbox/",
+        "packages/base/packages/CheckboxGroup/"
+    ],
+
+    "27.1": [
+        "packages/base/packages/Switch/"
+    ],
+
+    "28": [
+        "packages/base/packages/SkeletonLoader/",
+        "packages/base/packages/ButtonLoader/",
+        "packages/base/packages/HeaderLoader/",
+        "packages/base/packages/MediaSkeletonLoader/",
+        "packages/base/packages/TypographyLoader/"
+    ],
+
+    "29": [
+        "packages/base/packages/RadioCompound/",
+        "packages/base/packages/Radio/",
+        "packages/base/packages/RadioGroup/"
+    ],
+
+    "30": [
+        "packages/base/packages/DropdownCompound/",
+        "packages/base/packages/Dropdown/",
+        "packages/base/packages/DropdownArrow/",
+        "packages/base/packages/Popover/"
+    ],
+
+    "30.1": [
+        "packages/base/packages/Paper/"
+    ],
+
+    "31": [
+        "packages/base/packages/Calendar/",
+        "packages/base/packages/CalendarContainer/",
+        "packages/base/packages/CalendarContext/",
+        "packages/base/packages/CalendarDay/",
+        "packages/base/packages/CalendarMonthHeader/",
+        "packages/base/packages/CalendarIndicators/"
+    ],
+
+    "19": [
+        "packages/base/packages/DatePicker/"
+    ],
+
+    "32": [
+        "packages/base/packages/Carousel/",
+        "packages/base/packages/CarouselGradient/",
+        "packages/base/packages/CarouselNavigation/"
+    ],
+
+    "33": [
+        "packages/base/packages/Grid/",
+        "packages/base/packages/GridCompound/",
+        "packages/base/packages/GridItem/",
+        "packages/base/packages/FieldRequirements/"
+    ],
+
+    "35": [
+        "packages/base/packages/Drawer/",
+        "packages/base/packages/DrawerTitle/"
+    ],
+    
+    "37": [
+        "packages/base/packages/Dropzone/"
+    ],
+    
+    "39": [
+        "packages/base/packages/FormCompound/",
+        "packages/base/packages/Form/",
+        "packages/base/packages/FormError/",
+        "packages/base/packages/FormHint/",
+        "packages/base/packages/FormField/",
+        "packages/base/packages/FormControlLabel/",
+        "packages/base/packages/FormLabel/",
+        "packages/base/packages/FieldsLayout/"
+    ],
+
+    "40": [
+        "packages/base/packages/EmptyState/",
+        "packages/base/packages/EmptyStateCollection/",
+        "packages/base/packages/EmptyStatePage/"
+    ],
+
+    "41": [
+        "packages/base/packages/EnvironmentBanner/"
+    ],
+
+    "38": [
+        "packages/base/packages/FileInput/",
+        "packages/base/packages/FileList/",
+        "packages/base/packages/FileListItem/",
+        "packages/base/packages/ProgressBar/"
+    ],
+    "43": [
+        "packages/base/packages/Tooltip/"
+    ],
+
+    "43.1": [
+        "packages/base/packages/Slider/",
+        "packages/base/packages/SliderValueLabel/"
+    ],
+
+    "44": [
+        "packages/base/packages/TypographyOverflow/"  
+    ],
+    
+    "45": [
+        "packages/base/packages/FormAutoSaveIndicator/"
+    ],
+
+    "46": [
+        "packages/base/packages/Helpbox/",
+        "packages/base/packages/HelpboxCompound/",
+        "packages/base/packages/HelpboxActions/",
+        "packages/base/packages/HelpboxContent/",
+        "packages/base/packages/HelpboxTitle/"
+    ],
+
+    "18": [
+        "packages/base/packages/OutlinedInput/"
+    ],
+
+    "48": [
+        "packages/base/packages/InputBase/",
+        "packages/base/packages/Input/",
+        "packages/base/packages/InputLabel/"
+    ],
+
+    "16": [
+        "packages/base/packages/InputAdornment/",
+        "packages/base/packages/InputIconAdornment/",
+        "packages/base/packages/InputValidIconAdornment/"
+    ],
+
+    "47": [
+        "packages/base/packages/InputLimitAdornment/",
+        "packages/base/packages/InputMultilineAdornment/"
+    ],
+
+    "48.1": [
+        "packages/base/packages/PasswordInput/"
+    ],
+
+    "50": [
+        "packages/base/packages/List/",
+        "packages/base/packages/ListItem/"
+    ],
+
+    "51": [
+        "packages/base/packages/MenuCompound/",
+        "packages/base/packages/Menu/",
+        "packages/base/packages/MenuItem/"
+    ],
+
+    "54": [
+        "packages/base/packages/Modal/",
+        "packages/base/packages/ModalCompound/",
+        "packages/base/packages/ModalActions/",
+        "packages/base/packages/ModalContent/",
+        "packages/base/packages/ModalTitle/"
+    ],
+
+    "54.1": [
+        "packages/base/packages/PromptModal/"
+    ],
+
+    "55": [
+        "packages/base/packages/MonthSelect/",
+        "packages/base/packages/YearSelect/"
+    ],
+
+    "58": [
+        "packages/base/packages/Select/",
+        "packages/base/packages/SelectBase/",
+        "packages/base/packages/SelectCaret/",
+        "packages/base/packages/SelectOptions/",
+        "packages/base/packages/ScrollMenu/",
+        "packages/base/packages/NativeSelect/",
+        "packages/base/packages/NativeSelectPlaceholder/",
+        "packages/base/packages/NativeSelectOptions/",
+        "packages/base/packages/NonNativeSelect/",
+        "packages/base/packages/NonNativeSelectOptions/",
+        "packages/base/packages/NonNativeSelectOption/",
+        "packages/base/packages/NonNativeSelectLimitFooter/",
+        "packages/base/packages/NonNativeSelectLoader/"
+    ],
+
+    "59": [
+        "packages/base/packages/Note/",
+        "packages/base/packages/NoteCompound/",
+        "packages/base/packages/NoteContent/",
+        "packages/base/packages/NoteSubtitle/",
+        "packages/base/packages/NoteTitle/"
+    ],
+
+    "60": [
+        "packages/base/packages/Notification/",
+        "packages/base/packages/NotificationActions/",
+        "packages/base/packages/NotificationCompound/"
+    ],
+
+    "61": [
+        "packages/base/packages/NumberInput/",
+        "packages/base/packages/NumberInputEndAdornment/"
+    ],
+
+    "62": [
+        "packages/base/packages/OverviewBlock/",
+        "packages/base/packages/OverviewBlockCompound/",
+        "packages/base/packages/OverviewBlockGroup/",
+        "packages/base/packages/OverviewBlockRow/"
+    ],
+    "66": [
+        "packages/base/packages/Page/",
+        "packages/base/packages/PageArticle/",
+        "packages/base/packages/PageAutocomplete/",
+        "packages/base/packages/PageCompound/",
+        "packages/base/packages/PageContent/",
+        "packages/base/packages/PageFooter/",
+        "packages/base/packages/PageHelmet/",
+        "packages/base/packages/PageBanner/"
+    ],
+    
+    "65": [
+        "packages/base/packages/PageTopBar/",
+        "packages/base/packages/PageTopBarCompound/",
+        "packages/base/packages/PageTopBarMenu/",
+        "packages/base/packages/TopBarItem/",
+        "packages/base/packages/TopBarMenu/",
+        "packages/base/packages/PageHamburger/"
+        
+    ],
+
+    "67": [
+        "packages/base/packages/PageSidebar/",
+        "packages/base/packages/SidebarLogo/",
+        "packages/base/packages/SidebarItem/",
+        "packages/base/packages/SidebarMenu/",
+        "packages/base/packages/SidebarItemContent/"
+    ],
+
+    "68": [
+        "packages/base/packages/PageHead/"
+    ],
+
+    "70": [
+        "packages/base/packages/Pagination/",
+        "packages/base/packages/PaginationButton/"
+    ],
+
+    "71": [
+        "packages/base/packages/Quote/",
+        "packages/base/packages/QuoteMark/"
+    ],
+
+    "73": [
+        "packages/base/packages/Rating/",
+        "packages/base/packages/RatingStars/",
+        "packages/base/packages/RatingThumbs/",
+        "packages/base/packages/RatingIcon/"
+    ],
+
+    "74": [
+        "packages/base/packages/Section/"
+    ],
+
+    "75": [
+        "packages/base/packages/StaticTreeView/",
+        "packages/base/packages/TreeView/"
+    ],
+
+    "76": [
+        "packages/base/packages/Step/",
+        "packages/base/packages/StepConnector/",
+        "packages/base/packages/StepIcon/",
+        "packages/base/packages/StepLabel/",
+        "packages/base/packages/Stepper/",
+        "packages/base/packages/StepperCompound/",
+        "packages/base/packages/StepperVertical/"
+    ],
+
+    "34": [
+        "packages/base/packages/TabScrollButton/",
+        "packages/base/packages/Tabs/",
+        "packages/base/packages/Tab/",
+        "packages/base/packages/TabDescription/",
+        "packages/base/packages/TabsCompound/",
+        "packages/base/packages/TabLabel/"
+    ],
+
+    "72": [
+        "packages/base/packages/Table/",
+        "packages/base/packages/TableBody/",
+        "packages/base/packages/TableCell/",
+        "packages/base/packages/TableCompound/",
+        "packages/base/packages/TableExpandableRow/",
+        "packages/base/packages/TableFooter/",
+        "packages/base/packages/TableHead/",
+        "packages/base/packages/TableRow/",
+        "packages/base/packages/TableSectionHead/"
+    ],
+
+    "77": [
+        "packages/base/packages/Tag/",
+        "packages/base/packages/TagCheckable/",
+        "packages/base/packages/TagCompound/",
+        "packages/base/packages/TagConnection/",
+        "packages/base/packages/TagGroup/",
+        "packages/base/packages/TagRectangular/",
+        "packages/base/packages/Chip/",
+        "packages/base/packages/Indicator/"
+    ],
+
+    "78": [
+        "packages/base/packages/TagSelector/",
+        "packages/base/packages/TagSelectorLabel/",
+        "packages/base/packages/TagSelectorCompound/",
+        "packages/base/packages/TagSelectorInput/"
+    ],
+
+    "56": [
+        "packages/base/packages/TimePicker/"
+    ],
+
+    "25": [
+        "packages/base/packages/Timeline/",
+        "packages/base/packages/TimelineRow/"
+    ],
+
+    "63": [
+        "packages/base/packages/test-utils/"
+    ]
+}

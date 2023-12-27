@@ -1,0 +1,742 @@
+[
+    {
+        "Group_ID": 0.0,
+        "Group_Name": "Group 0",
+        "Instability": 2,
+        "Responsibility": 1,
+        "Accumulative_Instability": 16,
+        "Accumulative_Responsibility": 3,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 1.0,
+        "Group_Name": "Group 1",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 10,
+        "Accumulative_Responsibility": 0,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 2.0,
+        "Group_Name": "Group 2",
+        "Instability": 1,
+        "Responsibility": 33,
+        "Accumulative_Instability": 2,
+        "Accumulative_Responsibility": 117,
+        "Layer": "Components",
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 3.0,
+        "Group_Name": "Group 3",
+        "Instability": 6,
+        "Responsibility": 0,
+        "Accumulative_Instability": 20,
+        "Accumulative_Responsibility": 0,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 4.1,
+        "Group_Name": "Group 4.1",
+        "Instability": 0,
+        "Responsibility": 2,
+        "Accumulative_Instability": 0,
+        "Accumulative_Responsibility": 9,
+        "Layer": "Components",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 4.0,
+        "Group_Name": "Group 4",
+        "Instability": 1,
+        "Responsibility": 39,
+        "Accumulative_Instability": 2,
+        "Accumulative_Responsibility": 120,
+        "Layer": "Components",
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 5.0,
+        "Group_Name": "Group 5",
+        "Instability": 1,
+        "Responsibility": 38,
+        "Accumulative_Instability": 2,
+        "Accumulative_Responsibility": 101,
+        "Layer": "Components",
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 5.1,
+        "Group_Name": "Group 5.1",
+        "Instability": 1,
+        "Responsibility": 0,
+        "Accumulative_Instability": 2,
+        "Accumulative_Responsibility": 0,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 6.0,
+        "Group_Name": "Group 6",
+        "Instability": 3,
+        "Responsibility": 3,
+        "Accumulative_Instability": 10,
+        "Accumulative_Responsibility": 9,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 8.0,
+        "Group_Name": "Group 8",
+        "Instability": 7,
+        "Responsibility": 23,
+        "Accumulative_Instability": 86,
+        "Accumulative_Responsibility": 50,
+        "Layer": "Components",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 10.0,
+        "Group_Name": "Group 10",
+        "Instability": 1,
+        "Responsibility": 42,
+        "Accumulative_Instability": 5,
+        "Accumulative_Responsibility": 262,
+        "Layer": "Foundation",
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 11.0,
+        "Group_Name": "Group 11",
+        "Instability": 7,
+        "Responsibility": 0,
+        "Accumulative_Instability": 46,
+        "Accumulative_Responsibility": 0,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 12.0,
+        "Group_Name": "Group 12",
+        "Instability": 4,
+        "Responsibility": 0,
+        "Accumulative_Instability": 22,
+        "Accumulative_Responsibility": 0,
+        "Layer": "Templates",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 13.0,
+        "Group_Name": "Group 13",
+        "Instability": 11,
+        "Responsibility": 2,
+        "Accumulative_Instability": 55,
+        "Accumulative_Responsibility": 3,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 17.0,
+        "Group_Name": "Group 17",
+        "Instability": 0,
+        "Responsibility": 5,
+        "Accumulative_Instability": 0,
+        "Accumulative_Responsibility": 33,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 19.1,
+        "Group_Name": "Group 19.1",
+        "Instability": 1,
+        "Responsibility": 5,
+        "Accumulative_Instability": 2,
+        "Accumulative_Responsibility": 20,
+        "Layer": "Components",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 21.0,
+        "Group_Name": "Group 21",
+        "Instability": 5,
+        "Responsibility": 5,
+        "Accumulative_Instability": 30,
+        "Accumulative_Responsibility": 21,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 21.1,
+        "Group_Name": "Group 21.1",
+        "Instability": 1,
+        "Responsibility": 2,
+        "Accumulative_Instability": 2,
+        "Accumulative_Responsibility": 13,
+        "Layer": "Patterns",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 22.0,
+        "Group_Name": "Group 22",
+        "Instability": 5,
+        "Responsibility": 0,
+        "Accumulative_Instability": 21,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 23.1,
+        "Group_Name": "Group 23.1",
+        "Instability": 0,
+        "Responsibility": 1,
+        "Accumulative_Instability": 0,
+        "Accumulative_Responsibility": 3,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 24.0,
+        "Group_Name": "Group 24",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 12,
+        "Accumulative_Responsibility": 0,
+        "Layer": "Templates",
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 27.0,
+        "Group_Name": "Group 27",
+        "Instability": 6,
+        "Responsibility": 1,
+        "Accumulative_Instability": 31,
+        "Accumulative_Responsibility": 24,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 27.1,
+        "Group_Name": "Group 27.1",
+        "Instability": 1,
+        "Responsibility": 0,
+        "Accumulative_Instability": 4,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 28.0,
+        "Group_Name": "Group 28",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 18,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 29.0,
+        "Group_Name": "Group 29",
+        "Instability": 4,
+        "Responsibility": 1,
+        "Accumulative_Instability": 21,
+        "Accumulative_Responsibility": 24,
+        "Layer": null,
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 30.0,
+        "Group_Name": "Group 30",
+        "Instability": 3,
+        "Responsibility": 4,
+        "Accumulative_Instability": 14,
+        "Accumulative_Responsibility": 41,
+        "Layer": null,
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 30.1,
+        "Group_Name": "Group 30.1",
+        "Instability": 0,
+        "Responsibility": 2,
+        "Accumulative_Instability": 0,
+        "Accumulative_Responsibility": 13,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 31.0,
+        "Group_Name": "Group 31",
+        "Instability": 4,
+        "Responsibility": 2,
+        "Accumulative_Instability": 38,
+        "Accumulative_Responsibility": 2,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 19.0,
+        "Group_Name": "Group 19",
+        "Instability": 9,
+        "Responsibility": 0,
+        "Accumulative_Instability": 36,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 32.0,
+        "Group_Name": "Group 32",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 18,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 33.0,
+        "Group_Name": "Group 33",
+        "Instability": 2,
+        "Responsibility": 6,
+        "Accumulative_Instability": 10,
+        "Accumulative_Responsibility": 12,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 35.0,
+        "Group_Name": "Group 35",
+        "Instability": 5,
+        "Responsibility": 0,
+        "Accumulative_Instability": 21,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 37.0,
+        "Group_Name": "Group 37",
+        "Instability": 7,
+        "Responsibility": 0,
+        "Accumulative_Instability": 27,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 39.0,
+        "Group_Name": "Group 39",
+        "Instability": 3,
+        "Responsibility": 12,
+        "Accumulative_Instability": 27,
+        "Accumulative_Responsibility": 30,
+        "Layer": null,
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 40.0,
+        "Group_Name": "Group 40",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 12,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 41.0,
+        "Group_Name": "Group 41",
+        "Instability": 0,
+        "Responsibility": 0,
+        "Accumulative_Instability": 0,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 38.0,
+        "Group_Name": "Group 38",
+        "Instability": 10,
+        "Responsibility": 1,
+        "Accumulative_Instability": 76,
+        "Accumulative_Responsibility": 1,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 43.0,
+        "Group_Name": "Group 43",
+        "Instability": 2,
+        "Responsibility": 4,
+        "Accumulative_Instability": 4,
+        "Accumulative_Responsibility": 10,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 43.1,
+        "Group_Name": "Group 43.1",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 7,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 44.0,
+        "Group_Name": "Group 44",
+        "Instability": 3,
+        "Responsibility": 3,
+        "Accumulative_Instability": 7,
+        "Accumulative_Responsibility": 4,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 45.0,
+        "Group_Name": "Group 45",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 4,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 46.0,
+        "Group_Name": "Group 46",
+        "Instability": 4,
+        "Responsibility": 0,
+        "Accumulative_Instability": 30,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 18.0,
+        "Group_Name": "Group 18",
+        "Instability": 5,
+        "Responsibility": 9,
+        "Accumulative_Instability": 18,
+        "Accumulative_Responsibility": 23,
+        "Layer": null,
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 48.0,
+        "Group_Name": "Group 48",
+        "Instability": 8,
+        "Responsibility": 10,
+        "Accumulative_Instability": 41,
+        "Accumulative_Responsibility": 18,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 16.0,
+        "Group_Name": "Group 16",
+        "Instability": 2,
+        "Responsibility": 10,
+        "Accumulative_Instability": 6,
+        "Accumulative_Responsibility": 62,
+        "Layer": null,
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 47.0,
+        "Group_Name": "Group 47",
+        "Instability": 1,
+        "Responsibility": 1,
+        "Accumulative_Instability": 3,
+        "Accumulative_Responsibility": 11,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 48.1,
+        "Group_Name": "Group 48.1",
+        "Instability": 5,
+        "Responsibility": 0,
+        "Accumulative_Instability": 28,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 50.0,
+        "Group_Name": "Group 50",
+        "Instability": 4,
+        "Responsibility": 0,
+        "Accumulative_Instability": 16,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 51.0,
+        "Group_Name": "Group 51",
+        "Instability": 8,
+        "Responsibility": 7,
+        "Accumulative_Instability": 34,
+        "Accumulative_Responsibility": 23,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 54.0,
+        "Group_Name": "Group 54",
+        "Instability": 4,
+        "Responsibility": 2,
+        "Accumulative_Instability": 30,
+        "Accumulative_Responsibility": 2,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 54.1,
+        "Group_Name": "Group 54.1",
+        "Instability": 6,
+        "Responsibility": 0,
+        "Accumulative_Instability": 24,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 55.0,
+        "Group_Name": "Group 55",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 17,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 58.0,
+        "Group_Name": "Group 58",
+        "Instability": 14,
+        "Responsibility": 2,
+        "Accumulative_Instability": 237,
+        "Accumulative_Responsibility": 4,
+        "Layer": null,
+        "Predicted_Layer": "Templates"
+    },
+    {
+        "Group_ID": 59.0,
+        "Group_Name": "Group 59",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 12,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 60.0,
+        "Group_Name": "Group 60",
+        "Instability": 4,
+        "Responsibility": 3,
+        "Accumulative_Instability": 22,
+        "Accumulative_Responsibility": 47,
+        "Layer": null,
+        "Predicted_Layer": "Components"
+    },
+    {
+        "Group_ID": 61.0,
+        "Group_Name": "Group 61",
+        "Instability": 7,
+        "Responsibility": 0,
+        "Accumulative_Instability": 35,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 62.0,
+        "Group_Name": "Group 62",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 15,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 66.0,
+        "Group_Name": "Group 66",
+        "Instability": 9,
+        "Responsibility": 1,
+        "Accumulative_Instability": 159,
+        "Accumulative_Responsibility": 7,
+        "Layer": "Templates",
+        "Predicted_Layer": "Templates"
+    },
+    {
+        "Group_ID": 65.0,
+        "Group_Name": "Group 65",
+        "Instability": 13,
+        "Responsibility": 6,
+        "Accumulative_Instability": 123,
+        "Accumulative_Responsibility": 14,
+        "Layer": "Templates",
+        "Predicted_Layer": "Templates"
+    },
+    {
+        "Group_ID": 67.0,
+        "Group_Name": "Group 67",
+        "Instability": 15,
+        "Responsibility": 2,
+        "Accumulative_Instability": 156,
+        "Accumulative_Responsibility": 9,
+        "Layer": null,
+        "Predicted_Layer": "Templates"
+    },
+    {
+        "Group_ID": 68.0,
+        "Group_Name": "Group 68",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 4,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 70.0,
+        "Group_Name": "Group 70",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 15,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 71.0,
+        "Group_Name": "Group 71",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 6,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 73.0,
+        "Group_Name": "Group 73",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 10,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 74.0,
+        "Group_Name": "Group 74",
+        "Instability": 5,
+        "Responsibility": 0,
+        "Accumulative_Instability": 16,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 75.0,
+        "Group_Name": "Group 75",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 15,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 76.0,
+        "Group_Name": "Group 76",
+        "Instability": 3,
+        "Responsibility": 0,
+        "Accumulative_Instability": 26,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 34.0,
+        "Group_Name": "Group 34",
+        "Instability": 6,
+        "Responsibility": 0,
+        "Accumulative_Instability": 46,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 72.0,
+        "Group_Name": "Group 72",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 20,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 77.0,
+        "Group_Name": "Group 77",
+        "Instability": 3,
+        "Responsibility": 3,
+        "Accumulative_Instability": 27,
+        "Accumulative_Responsibility": 7,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 78.0,
+        "Group_Name": "Group 78",
+        "Instability": 7,
+        "Responsibility": 0,
+        "Accumulative_Instability": 67,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 56.0,
+        "Group_Name": "Group 56",
+        "Instability": 4,
+        "Responsibility": 0,
+        "Accumulative_Instability": 19,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 25.0,
+        "Group_Name": "Group 25",
+        "Instability": 2,
+        "Responsibility": 0,
+        "Accumulative_Instability": 6,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    },
+    {
+        "Group_ID": 63.0,
+        "Group_Name": "Group 63",
+        "Instability": 0,
+        "Responsibility": 0,
+        "Accumulative_Instability": 0,
+        "Accumulative_Responsibility": 0,
+        "Layer": null,
+        "Predicted_Layer": "Patterns"
+    }
+]

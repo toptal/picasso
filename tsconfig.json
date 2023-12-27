@@ -32,7 +32,7 @@
         "packages/topkit-analytics-charts/src/*"
       ],
       "@toptal/picasso": [
-        "packages/picasso/src"
+        "packages/base/packages"
       ],
       "@toptal/picasso-charts": [
         "packages/picasso-charts/src"
@@ -77,1354 +77,1354 @@
         "packages/shared/src/*"
       ],
       "@toptal/picasso/*": [
-        "packages/picasso/src/*"
+        "packages/base/packages/*"
       ],
       "~/*": [
         "./*"
       ],
       "@toptal/picasso-accordion": [
-        "packages/picasso/src/Accordion"
+        "packages/base/packages/Accordion"
       ],
       "@toptal/picasso-accordion/*": [
-        "packages/picasso/src/Accordion/*"
+        "packages/base/packages/Accordion/*"
       ],
       "@toptal/picasso-accordion-compound": [
-        "packages/picasso/src/AccordionCompound"
+        "packages/base/packages/AccordionCompound"
       ],
       "@toptal/picasso-accordion-compound/*": [
-        "packages/picasso/src/AccordionCompound/*"
+        "packages/base/packages/AccordionCompound/*"
       ],
       "@toptal/picasso-accordion-details": [
-        "packages/picasso/src/AccordionDetails"
+        "packages/base/packages/AccordionDetails"
       ],
       "@toptal/picasso-accordion-details/*": [
-        "packages/picasso/src/AccordionDetails/*"
+        "packages/base/packages/AccordionDetails/*"
       ],
       "@toptal/picasso-accordion-summary": [
-        "packages/picasso/src/AccordionSummary"
+        "packages/base/packages/AccordionSummary"
       ],
       "@toptal/picasso-accordion-summary/*": [
-        "packages/picasso/src/AccordionSummary/*"
+        "packages/base/packages/AccordionSummary/*"
       ],
       "@toptal/picasso-account-select": [
-        "packages/picasso/src/AccountSelect"
+        "packages/base/packages/AccountSelect"
       ],
       "@toptal/picasso-account-select/*": [
-        "packages/picasso/src/AccountSelect/*"
+        "packages/base/packages/AccountSelect/*"
       ],
       "@toptal/picasso-alert": [
-        "packages/picasso/src/Alert"
+        "packages/base/packages/Alert"
       ],
       "@toptal/picasso-alert/*": [
-        "packages/picasso/src/Alert/*"
+        "packages/base/packages/Alert/*"
       ],
       "@toptal/picasso-alert-compound": [
-        "packages/picasso/src/AlertCompound"
+        "packages/base/packages/AlertCompound"
       ],
       "@toptal/picasso-alert-compound/*": [
-        "packages/picasso/src/AlertCompound/*"
+        "packages/base/packages/AlertCompound/*"
       ],
       "@toptal/picasso-alert-inline": [
-        "packages/picasso/src/AlertInline"
+        "packages/base/packages/AlertInline"
       ],
       "@toptal/picasso-alert-inline/*": [
-        "packages/picasso/src/AlertInline/*"
+        "packages/base/packages/AlertInline/*"
       ],
       "@toptal/picasso-amount": [
-        "packages/picasso/src/Amount"
+        "packages/base/packages/Amount"
       ],
       "@toptal/picasso-amount/*": [
-        "packages/picasso/src/Amount/*"
+        "packages/base/packages/Amount/*"
       ],
       "@toptal/picasso-application-update-notification": [
-        "packages/picasso/src/ApplicationUpdateNotification"
+        "packages/base/packages/ApplicationUpdateNotification"
       ],
       "@toptal/picasso-application-update-notification/*": [
-        "packages/picasso/src/ApplicationUpdateNotification/*"
+        "packages/base/packages/ApplicationUpdateNotification/*"
       ],
       "@toptal/picasso-application-update-notification-actions": [
-        "packages/picasso/src/ApplicationUpdateNotificationActions"
+        "packages/base/packages/ApplicationUpdateNotificationActions"
       ],
       "@toptal/picasso-application-update-notification-actions/*": [
-        "packages/picasso/src/ApplicationUpdateNotificationActions/*"
+        "packages/base/packages/ApplicationUpdateNotificationActions/*"
       ],
       "@toptal/picasso-application-update-notification-compound": [
-        "packages/picasso/src/ApplicationUpdateNotificationCompound"
+        "packages/base/packages/ApplicationUpdateNotificationCompound"
       ],
       "@toptal/picasso-application-update-notification-compound/*": [
-        "packages/picasso/src/ApplicationUpdateNotificationCompound/*"
+        "packages/base/packages/ApplicationUpdateNotificationCompound/*"
       ],
       "@toptal/picasso-autocomplete": [
-        "packages/picasso/src/Autocomplete"
+        "packages/base/packages/Autocomplete"
       ],
       "@toptal/picasso-autocomplete/*": [
-        "packages/picasso/src/Autocomplete/*"
+        "packages/base/packages/Autocomplete/*"
       ],
       "@toptal/picasso-avatar": [
-        "packages/picasso/src/Avatar"
+        "packages/base/packages/Avatar"
       ],
       "@toptal/picasso-avatar/*": [
-        "packages/picasso/src/Avatar/*"
+        "packages/base/packages/Avatar/*"
       ],
       "@toptal/picasso-avatar-compound": [
-        "packages/picasso/src/AvatarCompound"
+        "packages/base/packages/AvatarCompound"
       ],
       "@toptal/picasso-avatar-compound/*": [
-        "packages/picasso/src/AvatarCompound/*"
+        "packages/base/packages/AvatarCompound/*"
       ],
       "@toptal/picasso-avatar-dropzone-svg": [
-        "packages/picasso/src/AvatarDropzoneSvg"
+        "packages/base/packages/AvatarDropzoneSvg"
       ],
       "@toptal/picasso-avatar-dropzone-svg/*": [
-        "packages/picasso/src/AvatarDropzoneSvg/*"
+        "packages/base/packages/AvatarDropzoneSvg/*"
       ],
       "@toptal/picasso-avatar-group": [
-        "packages/picasso/src/AvatarGroup"
+        "packages/base/packages/AvatarGroup"
       ],
       "@toptal/picasso-avatar-group/*": [
-        "packages/picasso/src/AvatarGroup/*"
+        "packages/base/packages/AvatarGroup/*"
       ],
       "@toptal/picasso-avatar-upload": [
-        "packages/picasso/src/AvatarUpload"
+        "packages/base/packages/AvatarUpload"
       ],
       "@toptal/picasso-avatar-upload/*": [
-        "packages/picasso/src/AvatarUpload/*"
+        "packages/base/packages/AvatarUpload/*"
       ],
       "@toptal/picasso-badge": [
-        "packages/picasso/src/Badge"
+        "packages/base/packages/Badge"
       ],
       "@toptal/picasso-badge/*": [
-        "packages/picasso/src/Badge/*"
+        "packages/base/packages/Badge/*"
       ],
       "@toptal/picasso-breadcrumbs": [
-        "packages/picasso/src/Breadcrumbs"
+        "packages/base/packages/Breadcrumbs"
       ],
       "@toptal/picasso-breadcrumbs/*": [
-        "packages/picasso/src/Breadcrumbs/*"
+        "packages/base/packages/Breadcrumbs/*"
       ],
       "@toptal/picasso-breadcrumbs-compound": [
-        "packages/picasso/src/BreadcrumbsCompound"
+        "packages/base/packages/BreadcrumbsCompound"
       ],
       "@toptal/picasso-breadcrumbs-compound/*": [
-        "packages/picasso/src/BreadcrumbsCompound/*"
+        "packages/base/packages/BreadcrumbsCompound/*"
       ],
       "@toptal/picasso-breadcrumbs-item": [
-        "packages/picasso/src/BreadcrumbsItem"
+        "packages/base/packages/BreadcrumbsItem"
       ],
       "@toptal/picasso-breadcrumbs-item/*": [
-        "packages/picasso/src/BreadcrumbsItem/*"
+        "packages/base/packages/BreadcrumbsItem/*"
       ],
       "@toptal/picasso-button": [
-        "packages/picasso/src/Button"
+        "packages/base/packages/Button"
       ],
       "@toptal/picasso-button/*": [
-        "packages/picasso/src/Button/*"
+        "packages/base/packages/Button/*"
       ],
       "@toptal/picasso-button-action": [
-        "packages/picasso/src/ButtonAction"
+        "packages/base/packages/ButtonAction"
       ],
       "@toptal/picasso-button-action/*": [
-        "packages/picasso/src/ButtonAction/*"
+        "packages/base/packages/ButtonAction/*"
       ],
       "@toptal/picasso-button-checkbox": [
-        "packages/picasso/src/ButtonCheckbox"
+        "packages/base/packages/ButtonCheckbox"
       ],
       "@toptal/picasso-button-checkbox/*": [
-        "packages/picasso/src/ButtonCheckbox/*"
+        "packages/base/packages/ButtonCheckbox/*"
       ],
       "@toptal/picasso-button-circular": [
-        "packages/picasso/src/ButtonCircular"
+        "packages/base/packages/ButtonCircular"
       ],
       "@toptal/picasso-button-circular/*": [
-        "packages/picasso/src/ButtonCircular/*"
+        "packages/base/packages/ButtonCircular/*"
       ],
       "@toptal/picasso-button-compound": [
-        "packages/picasso/src/ButtonCompound"
+        "packages/base/packages/ButtonCompound"
       ],
       "@toptal/picasso-button-compound/*": [
-        "packages/picasso/src/ButtonCompound/*"
+        "packages/base/packages/ButtonCompound/*"
       ],
       "@toptal/picasso-button-control-label": [
-        "packages/picasso/src/ButtonControlLabel"
+        "packages/base/packages/ButtonControlLabel"
       ],
       "@toptal/picasso-button-control-label/*": [
-        "packages/picasso/src/ButtonControlLabel/*"
+        "packages/base/packages/ButtonControlLabel/*"
       ],
       "@toptal/picasso-button-group": [
-        "packages/picasso/src/ButtonGroup"
+        "packages/base/packages/ButtonGroup"
       ],
       "@toptal/picasso-button-group/*": [
-        "packages/picasso/src/ButtonGroup/*"
+        "packages/base/packages/ButtonGroup/*"
       ],
       "@toptal/picasso-button-group-item": [
-        "packages/picasso/src/ButtonGroupItem"
+        "packages/base/packages/ButtonGroupItem"
       ],
       "@toptal/picasso-button-group-item/*": [
-        "packages/picasso/src/ButtonGroupItem/*"
+        "packages/base/packages/ButtonGroupItem/*"
       ],
       "@toptal/picasso-button-loader": [
-        "packages/picasso/src/ButtonLoader"
+        "packages/base/packages/ButtonLoader"
       ],
       "@toptal/picasso-button-loader/*": [
-        "packages/picasso/src/ButtonLoader/*"
+        "packages/base/packages/ButtonLoader/*"
       ],
       "@toptal/picasso-button-radio": [
-        "packages/picasso/src/ButtonRadio"
+        "packages/base/packages/ButtonRadio"
       ],
       "@toptal/picasso-button-radio/*": [
-        "packages/picasso/src/ButtonRadio/*"
+        "packages/base/packages/ButtonRadio/*"
       ],
       "@toptal/picasso-button-split": [
-        "packages/picasso/src/ButtonSplit"
+        "packages/base/packages/ButtonSplit"
       ],
       "@toptal/picasso-button-split/*": [
-        "packages/picasso/src/ButtonSplit/*"
+        "packages/base/packages/ButtonSplit/*"
       ],
       "@toptal/picasso-calendar": [
-        "packages/picasso/src/Calendar"
+        "packages/base/packages/Calendar"
       ],
       "@toptal/picasso-calendar/*": [
-        "packages/picasso/src/Calendar/*"
+        "packages/base/packages/Calendar/*"
       ],
       "@toptal/picasso-calendar-container": [
-        "packages/picasso/src/CalendarContainer"
+        "packages/base/packages/CalendarContainer"
       ],
       "@toptal/picasso-calendar-container/*": [
-        "packages/picasso/src/CalendarContainer/*"
+        "packages/base/packages/CalendarContainer/*"
       ],
       "@toptal/picasso-calendar-context": [
-        "packages/picasso/src/CalendarContext"
+        "packages/base/packages/CalendarContext"
       ],
       "@toptal/picasso-calendar-context/*": [
-        "packages/picasso/src/CalendarContext/*"
+        "packages/base/packages/CalendarContext/*"
       ],
       "@toptal/picasso-calendar-day": [
-        "packages/picasso/src/CalendarDay"
+        "packages/base/packages/CalendarDay"
       ],
       "@toptal/picasso-calendar-day/*": [
-        "packages/picasso/src/CalendarDay/*"
+        "packages/base/packages/CalendarDay/*"
       ],
       "@toptal/picasso-calendar-indicators": [
-        "packages/picasso/src/CalendarIndicators"
+        "packages/base/packages/CalendarIndicators"
       ],
       "@toptal/picasso-calendar-indicators/*": [
-        "packages/picasso/src/CalendarIndicators/*"
+        "packages/base/packages/CalendarIndicators/*"
       ],
       "@toptal/picasso-calendar-month-header": [
-        "packages/picasso/src/CalendarMonthHeader"
+        "packages/base/packages/CalendarMonthHeader"
       ],
       "@toptal/picasso-calendar-month-header/*": [
-        "packages/picasso/src/CalendarMonthHeader/*"
+        "packages/base/packages/CalendarMonthHeader/*"
       ],
       "@toptal/picasso-carousel": [
-        "packages/picasso/src/Carousel"
+        "packages/base/packages/Carousel"
       ],
       "@toptal/picasso-carousel/*": [
-        "packages/picasso/src/Carousel/*"
+        "packages/base/packages/Carousel/*"
       ],
       "@toptal/picasso-carousel-gradient": [
-        "packages/picasso/src/CarouselGradient"
+        "packages/base/packages/CarouselGradient"
       ],
       "@toptal/picasso-carousel-gradient/*": [
-        "packages/picasso/src/CarouselGradient/*"
+        "packages/base/packages/CarouselGradient/*"
       ],
       "@toptal/picasso-carousel-navigation": [
-        "packages/picasso/src/CarouselNavigation"
+        "packages/base/packages/CarouselNavigation"
       ],
       "@toptal/picasso-carousel-navigation/*": [
-        "packages/picasso/src/CarouselNavigation/*"
+        "packages/base/packages/CarouselNavigation/*"
       ],
       "@toptal/picasso-checkbox": [
-        "packages/picasso/src/Checkbox"
+        "packages/base/packages/Checkbox"
       ],
       "@toptal/picasso-checkbox/*": [
-        "packages/picasso/src/Checkbox/*"
+        "packages/base/packages/Checkbox/*"
       ],
       "@toptal/picasso-checkbox-compound": [
-        "packages/picasso/src/CheckboxCompound"
+        "packages/base/packages/CheckboxCompound"
       ],
       "@toptal/picasso-checkbox-compound/*": [
-        "packages/picasso/src/CheckboxCompound/*"
+        "packages/base/packages/CheckboxCompound/*"
       ],
       "@toptal/picasso-checkbox-group": [
-        "packages/picasso/src/CheckboxGroup"
+        "packages/base/packages/CheckboxGroup"
       ],
       "@toptal/picasso-checkbox-group/*": [
-        "packages/picasso/src/CheckboxGroup/*"
+        "packages/base/packages/CheckboxGroup/*"
       ],
       "@toptal/picasso-chip": [
-        "packages/picasso/src/Chip"
+        "packages/base/packages/Chip"
       ],
       "@toptal/picasso-chip/*": [
-        "packages/picasso/src/Chip/*"
+        "packages/base/packages/Chip/*"
       ],
       "@toptal/picasso-circular-progress": [
-        "packages/picasso/src/CircularProgress"
+        "packages/base/packages/CircularProgress"
       ],
       "@toptal/picasso-circular-progress/*": [
-        "packages/picasso/src/CircularProgress/*"
+        "packages/base/packages/CircularProgress/*"
       ],
       "@toptal/picasso-container": [
-        "packages/picasso/src/Container"
+        "packages/base/packages/Container"
       ],
       "@toptal/picasso-container/*": [
-        "packages/picasso/src/Container/*"
+        "packages/base/packages/Container/*"
       ],
       "@toptal/picasso-date-picker": [
-        "packages/picasso/src/DatePicker"
+        "packages/base/packages/DatePicker"
       ],
       "@toptal/picasso-date-picker/*": [
-        "packages/picasso/src/DatePicker/*"
+        "packages/base/packages/DatePicker/*"
       ],
       "@toptal/picasso-drawer": [
-        "packages/picasso/src/Drawer"
+        "packages/base/packages/Drawer"
       ],
       "@toptal/picasso-drawer/*": [
-        "packages/picasso/src/Drawer/*"
+        "packages/base/packages/Drawer/*"
       ],
       "@toptal/picasso-drawer-title": [
-        "packages/picasso/src/DrawerTitle"
+        "packages/base/packages/DrawerTitle"
       ],
       "@toptal/picasso-drawer-title/*": [
-        "packages/picasso/src/DrawerTitle/*"
+        "packages/base/packages/DrawerTitle/*"
       ],
       "@toptal/picasso-dropdown": [
-        "packages/picasso/src/Dropdown"
+        "packages/base/packages/Dropdown"
       ],
       "@toptal/picasso-dropdown/*": [
-        "packages/picasso/src/Dropdown/*"
+        "packages/base/packages/Dropdown/*"
       ],
       "@toptal/picasso-dropdown-arrow": [
-        "packages/picasso/src/DropdownArrow"
+        "packages/base/packages/DropdownArrow"
       ],
       "@toptal/picasso-dropdown-arrow/*": [
-        "packages/picasso/src/DropdownArrow/*"
+        "packages/base/packages/DropdownArrow/*"
       ],
       "@toptal/picasso-dropdown-compound": [
-        "packages/picasso/src/DropdownCompound"
+        "packages/base/packages/DropdownCompound"
       ],
       "@toptal/picasso-dropdown-compound/*": [
-        "packages/picasso/src/DropdownCompound/*"
+        "packages/base/packages/DropdownCompound/*"
       ],
       "@toptal/picasso-dropzone": [
-        "packages/picasso/src/Dropzone"
+        "packages/base/packages/Dropzone"
       ],
       "@toptal/picasso-dropzone/*": [
-        "packages/picasso/src/Dropzone/*"
+        "packages/base/packages/Dropzone/*"
       ],
       "@toptal/picasso-empty-state": [
-        "packages/picasso/src/EmptyState"
+        "packages/base/packages/EmptyState"
       ],
       "@toptal/picasso-empty-state/*": [
-        "packages/picasso/src/EmptyState/*"
+        "packages/base/packages/EmptyState/*"
       ],
       "@toptal/picasso-empty-state-collection": [
-        "packages/picasso/src/EmptyStateCollection"
+        "packages/base/packages/EmptyStateCollection"
       ],
       "@toptal/picasso-empty-state-collection/*": [
-        "packages/picasso/src/EmptyStateCollection/*"
+        "packages/base/packages/EmptyStateCollection/*"
       ],
       "@toptal/picasso-empty-state-page": [
-        "packages/picasso/src/EmptyStatePage"
+        "packages/base/packages/EmptyStatePage"
       ],
       "@toptal/picasso-empty-state-page/*": [
-        "packages/picasso/src/EmptyStatePage/*"
+        "packages/base/packages/EmptyStatePage/*"
       ],
       "@toptal/picasso-environment-banner": [
-        "packages/picasso/src/EnvironmentBanner"
+        "packages/base/packages/EnvironmentBanner"
       ],
       "@toptal/picasso-environment-banner/*": [
-        "packages/picasso/src/EnvironmentBanner/*"
+        "packages/base/packages/EnvironmentBanner/*"
       ],
       "@toptal/picasso-field-requirements": [
-        "packages/picasso/src/FieldRequirements"
+        "packages/base/packages/FieldRequirements"
       ],
       "@toptal/picasso-field-requirements/*": [
-        "packages/picasso/src/FieldRequirements/*"
+        "packages/base/packages/FieldRequirements/*"
       ],
       "@toptal/picasso-fields-layout": [
-        "packages/picasso/src/FieldsLayout"
+        "packages/base/packages/FieldsLayout"
       ],
       "@toptal/picasso-fields-layout/*": [
-        "packages/picasso/src/FieldsLayout/*"
+        "packages/base/packages/FieldsLayout/*"
       ],
       "@toptal/picasso-file-input": [
-        "packages/picasso/src/FileInput"
+        "packages/base/packages/FileInput"
       ],
       "@toptal/picasso-file-input/*": [
-        "packages/picasso/src/FileInput/*"
+        "packages/base/packages/FileInput/*"
       ],
       "@toptal/picasso-file-list": [
-        "packages/picasso/src/FileList"
+        "packages/base/packages/FileList"
       ],
       "@toptal/picasso-file-list/*": [
-        "packages/picasso/src/FileList/*"
+        "packages/base/packages/FileList/*"
       ],
       "@toptal/picasso-file-list-item": [
-        "packages/picasso/src/FileListItem"
+        "packages/base/packages/FileListItem"
       ],
       "@toptal/picasso-file-list-item/*": [
-        "packages/picasso/src/FileListItem/*"
+        "packages/base/packages/FileListItem/*"
       ],
       "@toptal/picasso-form": [
-        "packages/picasso/src/Form"
+        "packages/base/packages/Form"
       ],
       "@toptal/picasso-form/*": [
-        "packages/picasso/src/Form/*"
+        "packages/base/packages/Form/*"
       ],
       "@toptal/picasso-form-auto-save-indicator": [
-        "packages/picasso/src/FormAutoSaveIndicator"
+        "packages/base/packages/FormAutoSaveIndicator"
       ],
       "@toptal/picasso-form-auto-save-indicator/*": [
-        "packages/picasso/src/FormAutoSaveIndicator/*"
+        "packages/base/packages/FormAutoSaveIndicator/*"
       ],
       "@toptal/picasso-form-compound": [
-        "packages/picasso/src/FormCompound"
+        "packages/base/packages/FormCompound"
       ],
       "@toptal/picasso-form-compound/*": [
-        "packages/picasso/src/FormCompound/*"
+        "packages/base/packages/FormCompound/*"
       ],
       "@toptal/picasso-form-control-label": [
-        "packages/picasso/src/FormControlLabel"
+        "packages/base/packages/FormControlLabel"
       ],
       "@toptal/picasso-form-control-label/*": [
-        "packages/picasso/src/FormControlLabel/*"
+        "packages/base/packages/FormControlLabel/*"
       ],
       "@toptal/picasso-form-error": [
-        "packages/picasso/src/FormError"
+        "packages/base/packages/FormError"
       ],
       "@toptal/picasso-form-error/*": [
-        "packages/picasso/src/FormError/*"
+        "packages/base/packages/FormError/*"
       ],
       "@toptal/picasso-form-field": [
-        "packages/picasso/src/FormField"
+        "packages/base/packages/FormField"
       ],
       "@toptal/picasso-form-field/*": [
-        "packages/picasso/src/FormField/*"
+        "packages/base/packages/FormField/*"
       ],
       "@toptal/picasso-form-hint": [
-        "packages/picasso/src/FormHint"
+        "packages/base/packages/FormHint"
       ],
       "@toptal/picasso-form-hint/*": [
-        "packages/picasso/src/FormHint/*"
+        "packages/base/packages/FormHint/*"
       ],
       "@toptal/picasso-form-label": [
-        "packages/picasso/src/FormLabel"
+        "packages/base/packages/FormLabel"
       ],
       "@toptal/picasso-form-label/*": [
-        "packages/picasso/src/FormLabel/*"
+        "packages/base/packages/FormLabel/*"
       ],
       "@toptal/picasso-grid": [
-        "packages/picasso/src/Grid"
+        "packages/base/packages/Grid"
       ],
       "@toptal/picasso-grid/*": [
-        "packages/picasso/src/Grid/*"
+        "packages/base/packages/Grid/*"
       ],
       "@toptal/picasso-grid-compound": [
-        "packages/picasso/src/GridCompound"
+        "packages/base/packages/GridCompound"
       ],
       "@toptal/picasso-grid-compound/*": [
-        "packages/picasso/src/GridCompound/*"
+        "packages/base/packages/GridCompound/*"
       ],
       "@toptal/picasso-grid-item": [
-        "packages/picasso/src/GridItem"
+        "packages/base/packages/GridItem"
       ],
       "@toptal/picasso-grid-item/*": [
-        "packages/picasso/src/GridItem/*"
+        "packages/base/packages/GridItem/*"
       ],
       "@toptal/picasso-header-loader": [
-        "packages/picasso/src/HeaderLoader"
+        "packages/base/packages/HeaderLoader"
       ],
       "@toptal/picasso-header-loader/*": [
-        "packages/picasso/src/HeaderLoader/*"
+        "packages/base/packages/HeaderLoader/*"
       ],
       "@toptal/picasso-helpbox": [
-        "packages/picasso/src/Helpbox"
+        "packages/base/packages/Helpbox"
       ],
       "@toptal/picasso-helpbox/*": [
-        "packages/picasso/src/Helpbox/*"
+        "packages/base/packages/Helpbox/*"
       ],
       "@toptal/picasso-helpbox-actions": [
-        "packages/picasso/src/HelpboxActions"
+        "packages/base/packages/HelpboxActions"
       ],
       "@toptal/picasso-helpbox-actions/*": [
-        "packages/picasso/src/HelpboxActions/*"
+        "packages/base/packages/HelpboxActions/*"
       ],
       "@toptal/picasso-helpbox-compound": [
-        "packages/picasso/src/HelpboxCompound"
+        "packages/base/packages/HelpboxCompound"
       ],
       "@toptal/picasso-helpbox-compound/*": [
-        "packages/picasso/src/HelpboxCompound/*"
+        "packages/base/packages/HelpboxCompound/*"
       ],
       "@toptal/picasso-helpbox-content": [
-        "packages/picasso/src/HelpboxContent"
+        "packages/base/packages/HelpboxContent"
       ],
       "@toptal/picasso-helpbox-content/*": [
-        "packages/picasso/src/HelpboxContent/*"
+        "packages/base/packages/HelpboxContent/*"
       ],
       "@toptal/picasso-helpbox-title": [
-        "packages/picasso/src/HelpboxTitle"
+        "packages/base/packages/HelpboxTitle"
       ],
       "@toptal/picasso-helpbox-title/*": [
-        "packages/picasso/src/HelpboxTitle/*"
+        "packages/base/packages/HelpboxTitle/*"
       ],
       "@toptal/picasso-icon": [
-        "packages/picasso/src/Icon"
+        "packages/base/packages/Icon"
       ],
       "@toptal/picasso-icon/*": [
-        "packages/picasso/src/Icon/*"
+        "packages/base/packages/Icon/*"
       ],
       "@toptal/picasso-image": [
-        "packages/picasso/src/Image"
+        "packages/base/packages/Image"
       ],
       "@toptal/picasso-image/*": [
-        "packages/picasso/src/Image/*"
+        "packages/base/packages/Image/*"
       ],
       "@toptal/picasso-indicator": [
-        "packages/picasso/src/Indicator"
+        "packages/base/packages/Indicator"
       ],
       "@toptal/picasso-indicator/*": [
-        "packages/picasso/src/Indicator/*"
+        "packages/base/packages/Indicator/*"
       ],
       "@toptal/picasso-input": [
-        "packages/picasso/src/Input"
+        "packages/base/packages/Input"
       ],
       "@toptal/picasso-input/*": [
-        "packages/picasso/src/Input/*"
+        "packages/base/packages/Input/*"
       ],
       "@toptal/picasso-input-adornment": [
-        "packages/picasso/src/InputAdornment"
+        "packages/base/packages/InputAdornment"
       ],
       "@toptal/picasso-input-adornment/*": [
-        "packages/picasso/src/InputAdornment/*"
+        "packages/base/packages/InputAdornment/*"
       ],
       "@toptal/picasso-input-base": [
-        "packages/picasso/src/InputBase"
+        "packages/base/packages/InputBase"
       ],
       "@toptal/picasso-input-base/*": [
-        "packages/picasso/src/InputBase/*"
+        "packages/base/packages/InputBase/*"
       ],
       "@toptal/picasso-input-icon-adornment": [
-        "packages/picasso/src/InputIconAdornment"
+        "packages/base/packages/InputIconAdornment"
       ],
       "@toptal/picasso-input-icon-adornment/*": [
-        "packages/picasso/src/InputIconAdornment/*"
+        "packages/base/packages/InputIconAdornment/*"
       ],
       "@toptal/picasso-input-label": [
-        "packages/picasso/src/InputLabel"
+        "packages/base/packages/InputLabel"
       ],
       "@toptal/picasso-input-label/*": [
-        "packages/picasso/src/InputLabel/*"
+        "packages/base/packages/InputLabel/*"
       ],
       "@toptal/picasso-input-limit-adornment": [
-        "packages/picasso/src/InputLimitAdornment"
+        "packages/base/packages/InputLimitAdornment"
       ],
       "@toptal/picasso-input-limit-adornment/*": [
-        "packages/picasso/src/InputLimitAdornment/*"
+        "packages/base/packages/InputLimitAdornment/*"
       ],
       "@toptal/picasso-input-multiline-adornment": [
-        "packages/picasso/src/InputMultilineAdornment"
+        "packages/base/packages/InputMultilineAdornment"
       ],
       "@toptal/picasso-input-multiline-adornment/*": [
-        "packages/picasso/src/InputMultilineAdornment/*"
+        "packages/base/packages/InputMultilineAdornment/*"
       ],
       "@toptal/picasso-input-valid-icon-adornment": [
-        "packages/picasso/src/InputValidIconAdornment"
+        "packages/base/packages/InputValidIconAdornment"
       ],
       "@toptal/picasso-input-valid-icon-adornment/*": [
-        "packages/picasso/src/InputValidIconAdornment/*"
+        "packages/base/packages/InputValidIconAdornment/*"
       ],
       "@toptal/picasso-lexical-editor": [
-        "packages/picasso/src/LexicalEditor"
+        "packages/base/packages/LexicalEditor"
       ],
       "@toptal/picasso-lexical-editor/*": [
-        "packages/picasso/src/LexicalEditor/*"
+        "packages/base/packages/LexicalEditor/*"
       ],
       "@toptal/picasso-link": [
-        "packages/picasso/src/Link"
+        "packages/base/packages/Link"
       ],
       "@toptal/picasso-link/*": [
-        "packages/picasso/src/Link/*"
+        "packages/base/packages/Link/*"
       ],
       "@toptal/picasso-list": [
-        "packages/picasso/src/List"
+        "packages/base/packages/List"
       ],
       "@toptal/picasso-list/*": [
-        "packages/picasso/src/List/*"
+        "packages/base/packages/List/*"
       ],
       "@toptal/picasso-list-item": [
-        "packages/picasso/src/ListItem"
+        "packages/base/packages/ListItem"
       ],
       "@toptal/picasso-list-item/*": [
-        "packages/picasso/src/ListItem/*"
+        "packages/base/packages/ListItem/*"
       ],
       "@toptal/picasso-loader": [
-        "packages/picasso/src/Loader"
+        "packages/base/packages/Loader"
       ],
       "@toptal/picasso-loader/*": [
-        "packages/picasso/src/Loader/*"
+        "packages/base/packages/Loader/*"
       ],
       "@toptal/picasso-logo": [
-        "packages/picasso/src/Logo"
+        "packages/base/packages/Logo"
       ],
       "@toptal/picasso-logo/*": [
-        "packages/picasso/src/Logo/*"
+        "packages/base/packages/Logo/*"
       ],
       "@toptal/picasso-media-skeleton-loader": [
-        "packages/picasso/src/MediaSkeletonLoader"
+        "packages/base/packages/MediaSkeletonLoader"
       ],
       "@toptal/picasso-media-skeleton-loader/*": [
-        "packages/picasso/src/MediaSkeletonLoader/*"
+        "packages/base/packages/MediaSkeletonLoader/*"
       ],
       "@toptal/picasso-menu": [
-        "packages/picasso/src/Menu"
+        "packages/base/packages/Menu"
       ],
       "@toptal/picasso-menu/*": [
-        "packages/picasso/src/Menu/*"
+        "packages/base/packages/Menu/*"
       ],
       "@toptal/picasso-menu-compound": [
-        "packages/picasso/src/MenuCompound"
+        "packages/base/packages/MenuCompound"
       ],
       "@toptal/picasso-menu-compound/*": [
-        "packages/picasso/src/MenuCompound/*"
+        "packages/base/packages/MenuCompound/*"
       ],
       "@toptal/picasso-menu-item": [
-        "packages/picasso/src/MenuItem"
+        "packages/base/packages/MenuItem"
       ],
       "@toptal/picasso-menu-item/*": [
-        "packages/picasso/src/MenuItem/*"
+        "packages/base/packages/MenuItem/*"
       ],
       "@toptal/picasso-modal": [
-        "packages/picasso/src/Modal"
+        "packages/base/packages/Modal"
       ],
       "@toptal/picasso-modal/*": [
-        "packages/picasso/src/Modal/*"
+        "packages/base/packages/Modal/*"
       ],
       "@toptal/picasso-modal-actions": [
-        "packages/picasso/src/ModalActions"
+        "packages/base/packages/ModalActions"
       ],
       "@toptal/picasso-modal-actions/*": [
-        "packages/picasso/src/ModalActions/*"
+        "packages/base/packages/ModalActions/*"
       ],
       "@toptal/picasso-modal-compound": [
-        "packages/picasso/src/ModalCompound"
+        "packages/base/packages/ModalCompound"
       ],
       "@toptal/picasso-modal-compound/*": [
-        "packages/picasso/src/ModalCompound/*"
+        "packages/base/packages/ModalCompound/*"
       ],
       "@toptal/picasso-modal-content": [
-        "packages/picasso/src/ModalContent"
+        "packages/base/packages/ModalContent"
       ],
       "@toptal/picasso-modal-content/*": [
-        "packages/picasso/src/ModalContent/*"
+        "packages/base/packages/ModalContent/*"
       ],
       "@toptal/picasso-modal-title": [
-        "packages/picasso/src/ModalTitle"
+        "packages/base/packages/ModalTitle"
       ],
       "@toptal/picasso-modal-title/*": [
-        "packages/picasso/src/ModalTitle/*"
+        "packages/base/packages/ModalTitle/*"
       ],
       "@toptal/picasso-month-select": [
-        "packages/picasso/src/MonthSelect"
+        "packages/base/packages/MonthSelect"
       ],
       "@toptal/picasso-month-select/*": [
-        "packages/picasso/src/MonthSelect/*"
+        "packages/base/packages/MonthSelect/*"
       ],
       "@toptal/picasso-native-select": [
-        "packages/picasso/src/NativeSelect"
+        "packages/base/packages/NativeSelect"
       ],
       "@toptal/picasso-native-select/*": [
-        "packages/picasso/src/NativeSelect/*"
+        "packages/base/packages/NativeSelect/*"
       ],
       "@toptal/picasso-native-select-options": [
-        "packages/picasso/src/NativeSelectOptions"
+        "packages/base/packages/NativeSelectOptions"
       ],
       "@toptal/picasso-native-select-options/*": [
-        "packages/picasso/src/NativeSelectOptions/*"
+        "packages/base/packages/NativeSelectOptions/*"
       ],
       "@toptal/picasso-native-select-placeholder": [
-        "packages/picasso/src/NativeSelectPlaceholder"
+        "packages/base/packages/NativeSelectPlaceholder"
       ],
       "@toptal/picasso-native-select-placeholder/*": [
-        "packages/picasso/src/NativeSelectPlaceholder/*"
+        "packages/base/packages/NativeSelectPlaceholder/*"
       ],
       "@toptal/picasso-non-native-select": [
-        "packages/picasso/src/NonNativeSelect"
+        "packages/base/packages/NonNativeSelect"
       ],
       "@toptal/picasso-non-native-select/*": [
-        "packages/picasso/src/NonNativeSelect/*"
+        "packages/base/packages/NonNativeSelect/*"
       ],
       "@toptal/picasso-non-native-select-limit-footer": [
-        "packages/picasso/src/NonNativeSelectLimitFooter"
+        "packages/base/packages/NonNativeSelectLimitFooter"
       ],
       "@toptal/picasso-non-native-select-limit-footer/*": [
-        "packages/picasso/src/NonNativeSelectLimitFooter/*"
+        "packages/base/packages/NonNativeSelectLimitFooter/*"
       ],
       "@toptal/picasso-non-native-select-loader": [
-        "packages/picasso/src/NonNativeSelectLoader"
+        "packages/base/packages/NonNativeSelectLoader"
       ],
       "@toptal/picasso-non-native-select-loader/*": [
-        "packages/picasso/src/NonNativeSelectLoader/*"
+        "packages/base/packages/NonNativeSelectLoader/*"
       ],
       "@toptal/picasso-non-native-select-option": [
-        "packages/picasso/src/NonNativeSelectOption"
+        "packages/base/packages/NonNativeSelectOption"
       ],
       "@toptal/picasso-non-native-select-option/*": [
-        "packages/picasso/src/NonNativeSelectOption/*"
+        "packages/base/packages/NonNativeSelectOption/*"
       ],
       "@toptal/picasso-non-native-select-options": [
-        "packages/picasso/src/NonNativeSelectOptions"
+        "packages/base/packages/NonNativeSelectOptions"
       ],
       "@toptal/picasso-non-native-select-options/*": [
-        "packages/picasso/src/NonNativeSelectOptions/*"
+        "packages/base/packages/NonNativeSelectOptions/*"
       ],
       "@toptal/picasso-note": [
-        "packages/picasso/src/Note"
+        "packages/base/packages/Note"
       ],
       "@toptal/picasso-note/*": [
-        "packages/picasso/src/Note/*"
+        "packages/base/packages/Note/*"
       ],
       "@toptal/picasso-note-compound": [
-        "packages/picasso/src/NoteCompound"
+        "packages/base/packages/NoteCompound"
       ],
       "@toptal/picasso-note-compound/*": [
-        "packages/picasso/src/NoteCompound/*"
+        "packages/base/packages/NoteCompound/*"
       ],
       "@toptal/picasso-note-content": [
-        "packages/picasso/src/NoteContent"
+        "packages/base/packages/NoteContent"
       ],
       "@toptal/picasso-note-content/*": [
-        "packages/picasso/src/NoteContent/*"
+        "packages/base/packages/NoteContent/*"
       ],
       "@toptal/picasso-note-subtitle": [
-        "packages/picasso/src/NoteSubtitle"
+        "packages/base/packages/NoteSubtitle"
       ],
       "@toptal/picasso-note-subtitle/*": [
-        "packages/picasso/src/NoteSubtitle/*"
+        "packages/base/packages/NoteSubtitle/*"
       ],
       "@toptal/picasso-note-title": [
-        "packages/picasso/src/NoteTitle"
+        "packages/base/packages/NoteTitle"
       ],
       "@toptal/picasso-note-title/*": [
-        "packages/picasso/src/NoteTitle/*"
+        "packages/base/packages/NoteTitle/*"
       ],
       "@toptal/picasso-notification": [
-        "packages/picasso/src/Notification"
+        "packages/base/packages/Notification"
       ],
       "@toptal/picasso-notification/*": [
-        "packages/picasso/src/Notification/*"
+        "packages/base/packages/Notification/*"
       ],
       "@toptal/picasso-notification-actions": [
-        "packages/picasso/src/NotificationActions"
+        "packages/base/packages/NotificationActions"
       ],
       "@toptal/picasso-notification-actions/*": [
-        "packages/picasso/src/NotificationActions/*"
+        "packages/base/packages/NotificationActions/*"
       ],
       "@toptal/picasso-notification-compound": [
-        "packages/picasso/src/NotificationCompound"
+        "packages/base/packages/NotificationCompound"
       ],
       "@toptal/picasso-notification-compound/*": [
-        "packages/picasso/src/NotificationCompound/*"
+        "packages/base/packages/NotificationCompound/*"
       ],
       "@toptal/picasso-number-input": [
-        "packages/picasso/src/NumberInput"
+        "packages/base/packages/NumberInput"
       ],
       "@toptal/picasso-number-input/*": [
-        "packages/picasso/src/NumberInput/*"
+        "packages/base/packages/NumberInput/*"
       ],
       "@toptal/picasso-number-input-end-adornment": [
-        "packages/picasso/src/NumberInputEndAdornment"
+        "packages/base/packages/NumberInputEndAdornment"
       ],
       "@toptal/picasso-number-input-end-adornment/*": [
-        "packages/picasso/src/NumberInputEndAdornment/*"
+        "packages/base/packages/NumberInputEndAdornment/*"
       ],
       "@toptal/picasso-outlined-input": [
-        "packages/picasso/src/OutlinedInput"
+        "packages/base/packages/OutlinedInput"
       ],
       "@toptal/picasso-outlined-input/*": [
-        "packages/picasso/src/OutlinedInput/*"
+        "packages/base/packages/OutlinedInput/*"
       ],
       "@toptal/picasso-overview-block": [
-        "packages/picasso/src/OverviewBlock"
+        "packages/base/packages/OverviewBlock"
       ],
       "@toptal/picasso-overview-block/*": [
-        "packages/picasso/src/OverviewBlock/*"
+        "packages/base/packages/OverviewBlock/*"
       ],
       "@toptal/picasso-overview-block-compound": [
-        "packages/picasso/src/OverviewBlockCompound"
+        "packages/base/packages/OverviewBlockCompound"
       ],
       "@toptal/picasso-overview-block-compound/*": [
-        "packages/picasso/src/OverviewBlockCompound/*"
+        "packages/base/packages/OverviewBlockCompound/*"
       ],
       "@toptal/picasso-overview-block-group": [
-        "packages/picasso/src/OverviewBlockGroup"
+        "packages/base/packages/OverviewBlockGroup"
       ],
       "@toptal/picasso-overview-block-group/*": [
-        "packages/picasso/src/OverviewBlockGroup/*"
+        "packages/base/packages/OverviewBlockGroup/*"
       ],
       "@toptal/picasso-overview-block-row": [
-        "packages/picasso/src/OverviewBlockRow"
+        "packages/base/packages/OverviewBlockRow"
       ],
       "@toptal/picasso-overview-block-row/*": [
-        "packages/picasso/src/OverviewBlockRow/*"
+        "packages/base/packages/OverviewBlockRow/*"
       ],
       "@toptal/picasso-page": [
-        "packages/picasso/src/Page"
+        "packages/base/packages/Page"
       ],
       "@toptal/picasso-page/*": [
-        "packages/picasso/src/Page/*"
+        "packages/base/packages/Page/*"
       ],
       "@toptal/picasso-page-article": [
-        "packages/picasso/src/PageArticle"
+        "packages/base/packages/PageArticle"
       ],
       "@toptal/picasso-page-article/*": [
-        "packages/picasso/src/PageArticle/*"
+        "packages/base/packages/PageArticle/*"
       ],
       "@toptal/picasso-page-autocomplete": [
-        "packages/picasso/src/PageAutocomplete"
+        "packages/base/packages/PageAutocomplete"
       ],
       "@toptal/picasso-page-autocomplete/*": [
-        "packages/picasso/src/PageAutocomplete/*"
+        "packages/base/packages/PageAutocomplete/*"
       ],
       "@toptal/picasso-page-banner": [
-        "packages/picasso/src/PageBanner"
+        "packages/base/packages/PageBanner"
       ],
       "@toptal/picasso-page-banner/*": [
-        "packages/picasso/src/PageBanner/*"
+        "packages/base/packages/PageBanner/*"
       ],
       "@toptal/picasso-page-compound": [
-        "packages/picasso/src/PageCompound"
+        "packages/base/packages/PageCompound"
       ],
       "@toptal/picasso-page-compound/*": [
-        "packages/picasso/src/PageCompound/*"
+        "packages/base/packages/PageCompound/*"
       ],
       "@toptal/picasso-page-content": [
-        "packages/picasso/src/PageContent"
+        "packages/base/packages/PageContent"
       ],
       "@toptal/picasso-page-content/*": [
-        "packages/picasso/src/PageContent/*"
+        "packages/base/packages/PageContent/*"
       ],
       "@toptal/picasso-page-footer": [
-        "packages/picasso/src/PageFooter"
+        "packages/base/packages/PageFooter"
       ],
       "@toptal/picasso-page-footer/*": [
-        "packages/picasso/src/PageFooter/*"
+        "packages/base/packages/PageFooter/*"
       ],
       "@toptal/picasso-page-hamburger": [
-        "packages/picasso/src/PageHamburger"
+        "packages/base/packages/PageHamburger"
       ],
       "@toptal/picasso-page-hamburger/*": [
-        "packages/picasso/src/PageHamburger/*"
+        "packages/base/packages/PageHamburger/*"
       ],
       "@toptal/picasso-page-head": [
-        "packages/picasso/src/PageHead"
+        "packages/base/packages/PageHead"
       ],
       "@toptal/picasso-page-head/*": [
-        "packages/picasso/src/PageHead/*"
+        "packages/base/packages/PageHead/*"
       ],
       "@toptal/picasso-page-helmet": [
-        "packages/picasso/src/PageHelmet"
+        "packages/base/packages/PageHelmet"
       ],
       "@toptal/picasso-page-helmet/*": [
-        "packages/picasso/src/PageHelmet/*"
+        "packages/base/packages/PageHelmet/*"
       ],
       "@toptal/picasso-page-sidebar": [
-        "packages/picasso/src/PageSidebar"
+        "packages/base/packages/PageSidebar"
       ],
       "@toptal/picasso-page-sidebar/*": [
-        "packages/picasso/src/PageSidebar/*"
+        "packages/base/packages/PageSidebar/*"
       ],
       "@toptal/picasso-page-top-bar": [
-        "packages/picasso/src/PageTopBar"
+        "packages/base/packages/PageTopBar"
       ],
       "@toptal/picasso-page-top-bar/*": [
-        "packages/picasso/src/PageTopBar/*"
+        "packages/base/packages/PageTopBar/*"
       ],
       "@toptal/picasso-page-top-bar-compound": [
-        "packages/picasso/src/PageTopBarCompound"
+        "packages/base/packages/PageTopBarCompound"
       ],
       "@toptal/picasso-page-top-bar-compound/*": [
-        "packages/picasso/src/PageTopBarCompound/*"
+        "packages/base/packages/PageTopBarCompound/*"
       ],
       "@toptal/picasso-page-top-bar-menu": [
-        "packages/picasso/src/PageTopBarMenu"
+        "packages/base/packages/PageTopBarMenu"
       ],
       "@toptal/picasso-page-top-bar-menu/*": [
-        "packages/picasso/src/PageTopBarMenu/*"
+        "packages/base/packages/PageTopBarMenu/*"
       ],
       "@toptal/picasso-pagination": [
-        "packages/picasso/src/Pagination"
+        "packages/base/packages/Pagination"
       ],
       "@toptal/picasso-pagination/*": [
-        "packages/picasso/src/Pagination/*"
+        "packages/base/packages/Pagination/*"
       ],
       "@toptal/picasso-pagination-button": [
-        "packages/picasso/src/PaginationButton"
+        "packages/base/packages/PaginationButton"
       ],
       "@toptal/picasso-pagination-button/*": [
-        "packages/picasso/src/PaginationButton/*"
+        "packages/base/packages/PaginationButton/*"
       ],
       "@toptal/picasso-paper": [
-        "packages/picasso/src/Paper"
+        "packages/base/packages/Paper"
       ],
       "@toptal/picasso-paper/*": [
-        "packages/picasso/src/Paper/*"
+        "packages/base/packages/Paper/*"
       ],
       "@toptal/picasso-password-input": [
-        "packages/picasso/src/PasswordInput"
+        "packages/base/packages/PasswordInput"
       ],
       "@toptal/picasso-password-input/*": [
-        "packages/picasso/src/PasswordInput/*"
+        "packages/base/packages/PasswordInput/*"
       ],
       "@toptal/picasso-popover": [
-        "packages/picasso/src/Popover"
+        "packages/base/packages/Popover"
       ],
       "@toptal/picasso-popover/*": [
-        "packages/picasso/src/Popover/*"
+        "packages/base/packages/Popover/*"
       ],
       "@toptal/picasso-popper": [
-        "packages/picasso/src/Popper"
+        "packages/base/packages/Popper"
       ],
       "@toptal/picasso-popper/*": [
-        "packages/picasso/src/Popper/*"
+        "packages/base/packages/Popper/*"
       ],
       "@toptal/picasso-progress-bar": [
-        "packages/picasso/src/ProgressBar"
+        "packages/base/packages/ProgressBar"
       ],
       "@toptal/picasso-progress-bar/*": [
-        "packages/picasso/src/ProgressBar/*"
+        "packages/base/packages/ProgressBar/*"
       ],
       "@toptal/picasso-prompt-modal": [
-        "packages/picasso/src/PromptModal"
+        "packages/base/packages/PromptModal"
       ],
       "@toptal/picasso-prompt-modal/*": [
-        "packages/picasso/src/PromptModal/*"
+        "packages/base/packages/PromptModal/*"
       ],
       "@toptal/picasso-quote": [
-        "packages/picasso/src/Quote"
+        "packages/base/packages/Quote"
       ],
       "@toptal/picasso-quote/*": [
-        "packages/picasso/src/Quote/*"
+        "packages/base/packages/Quote/*"
       ],
       "@toptal/picasso-quote-mark": [
-        "packages/picasso/src/QuoteMark"
+        "packages/base/packages/QuoteMark"
       ],
       "@toptal/picasso-quote-mark/*": [
-        "packages/picasso/src/QuoteMark/*"
+        "packages/base/packages/QuoteMark/*"
       ],
       "@toptal/picasso-radio": [
-        "packages/picasso/src/Radio"
+        "packages/base/packages/Radio"
       ],
       "@toptal/picasso-radio/*": [
-        "packages/picasso/src/Radio/*"
+        "packages/base/packages/Radio/*"
       ],
       "@toptal/picasso-radio-compound": [
-        "packages/picasso/src/RadioCompound"
+        "packages/base/packages/RadioCompound"
       ],
       "@toptal/picasso-radio-compound/*": [
-        "packages/picasso/src/RadioCompound/*"
+        "packages/base/packages/RadioCompound/*"
       ],
       "@toptal/picasso-radio-group": [
-        "packages/picasso/src/RadioGroup"
+        "packages/base/packages/RadioGroup"
       ],
       "@toptal/picasso-radio-group/*": [
-        "packages/picasso/src/RadioGroup/*"
+        "packages/base/packages/RadioGroup/*"
       ],
       "@toptal/picasso-rating": [
-        "packages/picasso/src/Rating"
+        "packages/base/packages/Rating"
       ],
       "@toptal/picasso-rating/*": [
-        "packages/picasso/src/Rating/*"
+        "packages/base/packages/Rating/*"
       ],
       "@toptal/picasso-rating-icon": [
-        "packages/picasso/src/RatingIcon"
+        "packages/base/packages/RatingIcon"
       ],
       "@toptal/picasso-rating-icon/*": [
-        "packages/picasso/src/RatingIcon/*"
+        "packages/base/packages/RatingIcon/*"
       ],
       "@toptal/picasso-rating-stars": [
-        "packages/picasso/src/RatingStars"
+        "packages/base/packages/RatingStars"
       ],
       "@toptal/picasso-rating-stars/*": [
-        "packages/picasso/src/RatingStars/*"
+        "packages/base/packages/RatingStars/*"
       ],
       "@toptal/picasso-rating-thumbs": [
-        "packages/picasso/src/RatingThumbs"
+        "packages/base/packages/RatingThumbs"
       ],
       "@toptal/picasso-rating-thumbs/*": [
-        "packages/picasso/src/RatingThumbs/*"
+        "packages/base/packages/RatingThumbs/*"
       ],
       "@toptal/picasso-scroll-menu": [
-        "packages/picasso/src/ScrollMenu"
+        "packages/base/packages/ScrollMenu"
       ],
       "@toptal/picasso-scroll-menu/*": [
-        "packages/picasso/src/ScrollMenu/*"
+        "packages/base/packages/ScrollMenu/*"
       ],
       "@toptal/picasso-section": [
-        "packages/picasso/src/Section"
+        "packages/base/packages/Section"
       ],
       "@toptal/picasso-section/*": [
-        "packages/picasso/src/Section/*"
+        "packages/base/packages/Section/*"
       ],
       "@toptal/picasso-select": [
-        "packages/picasso/src/Select"
+        "packages/base/packages/Select"
       ],
       "@toptal/picasso-select/*": [
-        "packages/picasso/src/Select/*"
+        "packages/base/packages/Select/*"
       ],
       "@toptal/picasso-select-base": [
-        "packages/picasso/src/SelectBase"
+        "packages/base/packages/SelectBase"
       ],
       "@toptal/picasso-select-base/*": [
-        "packages/picasso/src/SelectBase/*"
+        "packages/base/packages/SelectBase/*"
       ],
       "@toptal/picasso-select-caret": [
-        "packages/picasso/src/SelectCaret"
+        "packages/base/packages/SelectCaret"
       ],
       "@toptal/picasso-select-caret/*": [
-        "packages/picasso/src/SelectCaret/*"
+        "packages/base/packages/SelectCaret/*"
       ],
       "@toptal/picasso-select-options": [
-        "packages/picasso/src/SelectOptions"
+        "packages/base/packages/SelectOptions"
       ],
       "@toptal/picasso-select-options/*": [
-        "packages/picasso/src/SelectOptions/*"
+        "packages/base/packages/SelectOptions/*"
       ],
       "@toptal/picasso-show-more": [
-        "packages/picasso/src/ShowMore"
+        "packages/base/packages/ShowMore"
       ],
       "@toptal/picasso-show-more/*": [
-        "packages/picasso/src/ShowMore/*"
+        "packages/base/packages/ShowMore/*"
       ],
       "@toptal/picasso-sidebar-item": [
-        "packages/picasso/src/SidebarItem"
+        "packages/base/packages/SidebarItem"
       ],
       "@toptal/picasso-sidebar-item/*": [
-        "packages/picasso/src/SidebarItem/*"
+        "packages/base/packages/SidebarItem/*"
       ],
       "@toptal/picasso-sidebar-item-content": [
-        "packages/picasso/src/SidebarItemContent"
+        "packages/base/packages/SidebarItemContent"
       ],
       "@toptal/picasso-sidebar-item-content/*": [
-        "packages/picasso/src/SidebarItemContent/*"
+        "packages/base/packages/SidebarItemContent/*"
       ],
       "@toptal/picasso-sidebar-logo": [
-        "packages/picasso/src/SidebarLogo"
+        "packages/base/packages/SidebarLogo"
       ],
       "@toptal/picasso-sidebar-logo/*": [
-        "packages/picasso/src/SidebarLogo/*"
+        "packages/base/packages/SidebarLogo/*"
       ],
       "@toptal/picasso-sidebar-menu": [
-        "packages/picasso/src/SidebarMenu"
+        "packages/base/packages/SidebarMenu"
       ],
       "@toptal/picasso-sidebar-menu/*": [
-        "packages/picasso/src/SidebarMenu/*"
+        "packages/base/packages/SidebarMenu/*"
       ],
       "@toptal/picasso-skeleton-loader": [
-        "packages/picasso/src/SkeletonLoader"
+        "packages/base/packages/SkeletonLoader"
       ],
       "@toptal/picasso-skeleton-loader/*": [
-        "packages/picasso/src/SkeletonLoader/*"
+        "packages/base/packages/SkeletonLoader/*"
       ],
       "@toptal/picasso-slider": [
-        "packages/picasso/src/Slider"
+        "packages/base/packages/Slider"
       ],
       "@toptal/picasso-slider/*": [
-        "packages/picasso/src/Slider/*"
+        "packages/base/packages/Slider/*"
       ],
       "@toptal/picasso-slider-value-label": [
-        "packages/picasso/src/SliderValueLabel"
+        "packages/base/packages/SliderValueLabel"
       ],
       "@toptal/picasso-slider-value-label/*": [
-        "packages/picasso/src/SliderValueLabel/*"
+        "packages/base/packages/SliderValueLabel/*"
       ],
       "@toptal/picasso-static-tree-view": [
-        "packages/picasso/src/StaticTreeView"
+        "packages/base/packages/StaticTreeView"
       ],
       "@toptal/picasso-static-tree-view/*": [
-        "packages/picasso/src/StaticTreeView/*"
+        "packages/base/packages/StaticTreeView/*"
       ],
       "@toptal/picasso-step": [
-        "packages/picasso/src/Step"
+        "packages/base/packages/Step"
       ],
       "@toptal/picasso-step/*": [
-        "packages/picasso/src/Step/*"
+        "packages/base/packages/Step/*"
       ],
       "@toptal/picasso-step-connector": [
-        "packages/picasso/src/StepConnector"
+        "packages/base/packages/StepConnector"
       ],
       "@toptal/picasso-step-connector/*": [
-        "packages/picasso/src/StepConnector/*"
+        "packages/base/packages/StepConnector/*"
       ],
       "@toptal/picasso-step-icon": [
-        "packages/picasso/src/StepIcon"
+        "packages/base/packages/StepIcon"
       ],
       "@toptal/picasso-step-icon/*": [
-        "packages/picasso/src/StepIcon/*"
+        "packages/base/packages/StepIcon/*"
       ],
       "@toptal/picasso-step-label": [
-        "packages/picasso/src/StepLabel"
+        "packages/base/packages/StepLabel"
       ],
       "@toptal/picasso-step-label/*": [
-        "packages/picasso/src/StepLabel/*"
+        "packages/base/packages/StepLabel/*"
       ],
       "@toptal/picasso-stepper": [
-        "packages/picasso/src/Stepper"
+        "packages/base/packages/Stepper"
       ],
       "@toptal/picasso-stepper/*": [
-        "packages/picasso/src/Stepper/*"
+        "packages/base/packages/Stepper/*"
       ],
       "@toptal/picasso-stepper-compound": [
-        "packages/picasso/src/StepperCompound"
+        "packages/base/packages/StepperCompound"
       ],
       "@toptal/picasso-stepper-compound/*": [
-        "packages/picasso/src/StepperCompound/*"
+        "packages/base/packages/StepperCompound/*"
       ],
       "@toptal/picasso-stepper-vertical": [
-        "packages/picasso/src/StepperVertical"
+        "packages/base/packages/StepperVertical"
       ],
       "@toptal/picasso-stepper-vertical/*": [
-        "packages/picasso/src/StepperVertical/*"
+        "packages/base/packages/StepperVertical/*"
       ],
       "@toptal/picasso-switch": [
-        "packages/picasso/src/Switch"
+        "packages/base/packages/Switch"
       ],
       "@toptal/picasso-switch/*": [
-        "packages/picasso/src/Switch/*"
+        "packages/base/packages/Switch/*"
       ],
       "@toptal/picasso-tab": [
-        "packages/picasso/src/Tab"
+        "packages/base/packages/Tab"
       ],
       "@toptal/picasso-tab/*": [
-        "packages/picasso/src/Tab/*"
+        "packages/base/packages/Tab/*"
       ],
       "@toptal/picasso-tab-description": [
-        "packages/picasso/src/TabDescription"
+        "packages/base/packages/TabDescription"
       ],
       "@toptal/picasso-tab-description/*": [
-        "packages/picasso/src/TabDescription/*"
+        "packages/base/packages/TabDescription/*"
       ],
       "@toptal/picasso-tab-label": [
-        "packages/picasso/src/TabLabel"
+        "packages/base/packages/TabLabel"
       ],
       "@toptal/picasso-tab-label/*": [
-        "packages/picasso/src/TabLabel/*"
+        "packages/base/packages/TabLabel/*"
       ],
       "@toptal/picasso-tab-scroll-button": [
-        "packages/picasso/src/TabScrollButton"
+        "packages/base/packages/TabScrollButton"
       ],
       "@toptal/picasso-tab-scroll-button/*": [
-        "packages/picasso/src/TabScrollButton/*"
+        "packages/base/packages/TabScrollButton/*"
       ],
       "@toptal/picasso-table": [
-        "packages/picasso/src/Table"
+        "packages/base/packages/Table"
       ],
       "@toptal/picasso-table/*": [
-        "packages/picasso/src/Table/*"
+        "packages/base/packages/Table/*"
       ],
       "@toptal/picasso-table-body": [
-        "packages/picasso/src/TableBody"
+        "packages/base/packages/TableBody"
       ],
       "@toptal/picasso-table-body/*": [
-        "packages/picasso/src/TableBody/*"
+        "packages/base/packages/TableBody/*"
       ],
       "@toptal/picasso-table-cell": [
-        "packages/picasso/src/TableCell"
+        "packages/base/packages/TableCell"
       ],
       "@toptal/picasso-table-cell/*": [
-        "packages/picasso/src/TableCell/*"
+        "packages/base/packages/TableCell/*"
       ],
       "@toptal/picasso-table-compound": [
-        "packages/picasso/src/TableCompound"
+        "packages/base/packages/TableCompound"
       ],
       "@toptal/picasso-table-compound/*": [
-        "packages/picasso/src/TableCompound/*"
+        "packages/base/packages/TableCompound/*"
       ],
       "@toptal/picasso-table-expandable-row": [
-        "packages/picasso/src/TableExpandableRow"
+        "packages/base/packages/TableExpandableRow"
       ],
       "@toptal/picasso-table-expandable-row/*": [
-        "packages/picasso/src/TableExpandableRow/*"
+        "packages/base/packages/TableExpandableRow/*"
       ],
       "@toptal/picasso-table-footer": [
-        "packages/picasso/src/TableFooter"
+        "packages/base/packages/TableFooter"
       ],
       "@toptal/picasso-table-footer/*": [
-        "packages/picasso/src/TableFooter/*"
+        "packages/base/packages/TableFooter/*"
       ],
       "@toptal/picasso-table-head": [
-        "packages/picasso/src/TableHead"
+        "packages/base/packages/TableHead"
       ],
       "@toptal/picasso-table-head/*": [
-        "packages/picasso/src/TableHead/*"
+        "packages/base/packages/TableHead/*"
       ],
       "@toptal/picasso-table-row": [
-        "packages/picasso/src/TableRow"
+        "packages/base/packages/TableRow"
       ],
       "@toptal/picasso-table-row/*": [
-        "packages/picasso/src/TableRow/*"
+        "packages/base/packages/TableRow/*"
       ],
       "@toptal/picasso-table-section-head": [
-        "packages/picasso/src/TableSectionHead"
+        "packages/base/packages/TableSectionHead"
       ],
       "@toptal/picasso-table-section-head/*": [
-        "packages/picasso/src/TableSectionHead/*"
+        "packages/base/packages/TableSectionHead/*"
       ],
       "@toptal/picasso-tabs": [
-        "packages/picasso/src/Tabs"
+        "packages/base/packages/Tabs"
       ],
       "@toptal/picasso-tabs/*": [
-        "packages/picasso/src/Tabs/*"
+        "packages/base/packages/Tabs/*"
       ],
       "@toptal/picasso-tabs-compound": [
-        "packages/picasso/src/TabsCompound"
+        "packages/base/packages/TabsCompound"
       ],
       "@toptal/picasso-tabs-compound/*": [
-        "packages/picasso/src/TabsCompound/*"
+        "packages/base/packages/TabsCompound/*"
       ],
       "@toptal/picasso-tag": [
-        "packages/picasso/src/Tag"
+        "packages/base/packages/Tag"
       ],
       "@toptal/picasso-tag/*": [
-        "packages/picasso/src/Tag/*"
+        "packages/base/packages/Tag/*"
       ],
       "@toptal/picasso-tag-checkable": [
-        "packages/picasso/src/TagCheckable"
+        "packages/base/packages/TagCheckable"
       ],
       "@toptal/picasso-tag-checkable/*": [
-        "packages/picasso/src/TagCheckable/*"
+        "packages/base/packages/TagCheckable/*"
       ],
       "@toptal/picasso-tag-compound": [
-        "packages/picasso/src/TagCompound"
+        "packages/base/packages/TagCompound"
       ],
       "@toptal/picasso-tag-compound/*": [
-        "packages/picasso/src/TagCompound/*"
+        "packages/base/packages/TagCompound/*"
       ],
       "@toptal/picasso-tag-connection": [
-        "packages/picasso/src/TagConnection"
+        "packages/base/packages/TagConnection"
       ],
       "@toptal/picasso-tag-connection/*": [
-        "packages/picasso/src/TagConnection/*"
+        "packages/base/packages/TagConnection/*"
       ],
       "@toptal/picasso-tag-group": [
-        "packages/picasso/src/TagGroup"
+        "packages/base/packages/TagGroup"
       ],
       "@toptal/picasso-tag-group/*": [
-        "packages/picasso/src/TagGroup/*"
+        "packages/base/packages/TagGroup/*"
       ],
       "@toptal/picasso-tag-rectangular": [
-        "packages/picasso/src/TagRectangular"
+        "packages/base/packages/TagRectangular"
       ],
       "@toptal/picasso-tag-rectangular/*": [
-        "packages/picasso/src/TagRectangular/*"
+        "packages/base/packages/TagRectangular/*"
       ],
       "@toptal/picasso-tag-selector": [
-        "packages/picasso/src/TagSelector"
+        "packages/base/packages/TagSelector"
       ],
       "@toptal/picasso-tag-selector/*": [
-        "packages/picasso/src/TagSelector/*"
+        "packages/base/packages/TagSelector/*"
       ],
       "@toptal/picasso-tag-selector-compound": [
-        "packages/picasso/src/TagSelectorCompound"
+        "packages/base/packages/TagSelectorCompound"
       ],
       "@toptal/picasso-tag-selector-compound/*": [
-        "packages/picasso/src/TagSelectorCompound/*"
+        "packages/base/packages/TagSelectorCompound/*"
       ],
       "@toptal/picasso-tag-selector-input": [
-        "packages/picasso/src/TagSelectorInput"
+        "packages/base/packages/TagSelectorInput"
       ],
       "@toptal/picasso-tag-selector-input/*": [
-        "packages/picasso/src/TagSelectorInput/*"
+        "packages/base/packages/TagSelectorInput/*"
       ],
       "@toptal/picasso-tag-selector-label": [
-        "packages/picasso/src/TagSelectorLabel"
+        "packages/base/packages/TagSelectorLabel"
       ],
       "@toptal/picasso-tag-selector-label/*": [
-        "packages/picasso/src/TagSelectorLabel/*"
+        "packages/base/packages/TagSelectorLabel/*"
       ],
       "@toptal/picasso-time-picker": [
-        "packages/picasso/src/TimePicker"
+        "packages/base/packages/TimePicker"
       ],
       "@toptal/picasso-time-picker/*": [
-        "packages/picasso/src/TimePicker/*"
+        "packages/base/packages/TimePicker/*"
       ],
       "@toptal/picasso-timeline": [
-        "packages/picasso/src/Timeline"
+        "packages/base/packages/Timeline"
       ],
       "@toptal/picasso-timeline/*": [
-        "packages/picasso/src/Timeline/*"
+        "packages/base/packages/Timeline/*"
       ],
       "@toptal/picasso-timeline-row": [
-        "packages/picasso/src/TimelineRow"
+        "packages/base/packages/TimelineRow"
       ],
       "@toptal/picasso-timeline-row/*": [
-        "packages/picasso/src/TimelineRow/*"
+        "packages/base/packages/TimelineRow/*"
       ],
       "@toptal/picasso-tooltip": [
-        "packages/picasso/src/Tooltip"
+        "packages/base/packages/Tooltip"
       ],
       "@toptal/picasso-tooltip/*": [
-        "packages/picasso/src/Tooltip/*"
+        "packages/base/packages/Tooltip/*"
       ],
       "@toptal/picasso-top-bar-item": [
-        "packages/picasso/src/TopBarItem"
+        "packages/base/packages/TopBarItem"
       ],
       "@toptal/picasso-top-bar-item/*": [
-        "packages/picasso/src/TopBarItem/*"
+        "packages/base/packages/TopBarItem/*"
       ],
       "@toptal/picasso-top-bar-menu": [
-        "packages/picasso/src/TopBarMenu"
+        "packages/base/packages/TopBarMenu"
       ],
       "@toptal/picasso-top-bar-menu/*": [
-        "packages/picasso/src/TopBarMenu/*"
+        "packages/base/packages/TopBarMenu/*"
       ],
       "@toptal/picasso-tree-view": [
-        "packages/picasso/src/TreeView"
+        "packages/base/packages/TreeView"
       ],
       "@toptal/picasso-tree-view/*": [
-        "packages/picasso/src/TreeView/*"
+        "packages/base/packages/TreeView/*"
       ],
       "@toptal/picasso-typography": [
-        "packages/picasso/src/Typography"
+        "packages/base/packages/Typography"
       ],
       "@toptal/picasso-typography/*": [
-        "packages/picasso/src/Typography/*"
+        "packages/base/packages/Typography/*"
       ],
       "@toptal/picasso-typography-loader": [
-        "packages/picasso/src/TypographyLoader"
+        "packages/base/packages/TypographyLoader"
       ],
       "@toptal/picasso-typography-loader/*": [
-        "packages/picasso/src/TypographyLoader/*"
+        "packages/base/packages/TypographyLoader/*"
       ],
       "@toptal/picasso-typography-overflow": [
-        "packages/picasso/src/TypographyOverflow"
+        "packages/base/packages/TypographyOverflow"
       ],
       "@toptal/picasso-typography-overflow/*": [
-        "packages/picasso/src/TypographyOverflow/*"
+        "packages/base/packages/TypographyOverflow/*"
       ],
       "@toptal/picasso-user-badge": [
-        "packages/picasso/src/UserBadge"
+        "packages/base/packages/UserBadge"
       ],
       "@toptal/picasso-user-badge/*": [
-        "packages/picasso/src/UserBadge/*"
+        "packages/base/packages/UserBadge/*"
       ],
       "@toptal/picasso-year-select": [
-        "packages/picasso/src/YearSelect"
+        "packages/base/packages/YearSelect"
       ],
       "@toptal/picasso-year-select/*": [
-        "packages/picasso/src/YearSelect/*"
+        "packages/base/packages/YearSelect/*"
       ],
       "@toptal/picasso-test-utils": [
-        "packages/picasso/src/test-utils"
+        "packages/base/packages/test-utils"
       ],
       "@toptal/picasso-test-utils/*": [
-        "packages/picasso/src/test-utils/*"
+        "packages/base/packages/test-utils/*"
       ],
       "@toptal/picasso-utils": [
-        "packages/picasso/src/utils"
+        "packages/base/packages/utils"
       ],
       "@toptal/picasso-utils/*": [
-        "packages/picasso/src/utils/*"
+        "packages/base/packages/utils/*"
       ]
     },
     "types": [
@@ -1435,7 +1435,7 @@
   },
   "include": [
     "packages/*/src"
-  ],
+, "packages/base/packages/Accordion", "packages/base/packages/AccordionCompound", "packages/base/packages/AccordionDetails", "packages/base/packages/AccordionSummary", "packages/base/packages/AccountSelect", "packages/base/packages/Alert", "packages/base/packages/AlertCompound", "packages/base/packages/AlertInline", "packages/base/packages/Amount", "packages/base/packages/ApplicationUpdateNotification", "packages/base/packages/ApplicationUpdateNotificationActions", "packages/base/packages/ApplicationUpdateNotificationCompound", "packages/base/packages/Autocomplete", "packages/base/packages/Avatar", "packages/base/packages/AvatarCompound", "packages/base/packages/AvatarDropzoneSvg", "packages/base/packages/AvatarGroup", "packages/base/packages/AvatarUpload", "packages/base/packages/Badge", "packages/base/packages/Breadcrumbs", "packages/base/packages/BreadcrumbsCompound", "packages/base/packages/Button", "packages/base/packages/ButtonAction", "packages/base/packages/ButtonCheckbox", "packages/base/packages/ButtonCircular", "packages/base/packages/ButtonCompound", "packages/base/packages/ButtonControlLabel", "packages/base/packages/ButtonGroup", "packages/base/packages/ButtonGroupItem", "packages/base/packages/ButtonLoader", "packages/base/packages/ButtonRadio", "packages/base/packages/ButtonSplit", "packages/base/packages/BreadcrumbsItem"  ],
   "exclude": [
     "packages/*/dist-package",
     "**/__testfixtures__"

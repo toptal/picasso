@@ -9,7 +9,7 @@ import Tooltip from '@toptal/picasso-tooltip'
 import type { TypographyProps } from '@toptal/picasso-typography'
 import Typography from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
-import type { DelayType } from '@toptal/picasso-tooltip/-tooltip'
+import type { DelayType } from '@toptal/picasso-tooltip'
 
 import styles from './styles'
 
