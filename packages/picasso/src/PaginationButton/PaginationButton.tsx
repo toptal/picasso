@@ -26,7 +26,7 @@ const PaginationButton = (props: Props) => {
   return (
     <Button
       className={cx(classes.root, { [classes.active]: isActive }, className)}
-      aria-current={isActive ? true : undefined}
+      aria-current={isActive}
       active={isActive}
       disabled={disabled}
       onClick={() => onClick(page)}
