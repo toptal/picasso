@@ -8,7 +8,7 @@ import React, { forwardRef, useCallback, useEffect } from 'react'
 import Menu from '../Menu'
 import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
 import type { SidebarItemProps } from '../SidebarItem'
-import { useSubMenuContext } from '../SidebarItem'
+import SidebarItem, { useSubMenuContext } from '../SidebarItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -50,7 +50,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     }, [parentSidebarItemIndex, setExpandedItemKey, children])
 
     const items = React.Children.map(children, (child, index) => {
-      if (React.isValidElement(child)) {
+      if (React.isValidElement(child) && child.type === SidebarItem) {
         const itemProps: Partial<SidebarItemProps> = {
           variant,
           isSubMenu,
