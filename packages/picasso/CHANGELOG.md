@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.2.3
+
+### Patch Changes
+
+- [#4064](https://github.com/toptal/picasso/pull/4064) [`7f3c15998`](https://github.com/toptal/picasso/commit/7f3c159988913752c5f410552fa077156218e7a3) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### Pagination
+
+- add aria-current to buttons
+
 ## 42.2.2
 
 ### Patch Changes
