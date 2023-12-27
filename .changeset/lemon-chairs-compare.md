@@ -2,4 +2,6 @@
 '@toptal/picasso': patch
 ---
 
-- add aria-current to Pagination buttons
+### Pagination
+
+- add aria-current to buttons
