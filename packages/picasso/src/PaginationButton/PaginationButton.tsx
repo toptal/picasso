@@ -20,17 +20,14 @@ export interface Props extends StandardProps {
 
 const PaginationButton = (props: Props) => {
   const { page, activePage, disabled, onClick, className } = props
-
   const classes = useStyles()
+  const isActive = page === activePage
 
   return (
     <Button
-      className={cx(
-        classes.root,
-        { [classes.active]: page === activePage },
-        className
-      )}
-      active={activePage === page}
+      className={cx(classes.root, { [classes.active]: isActive }, className)}
+      aria-current={isActive}
+      active={isActive}
       disabled={disabled}
       onClick={() => onClick(page)}
       variant='secondary'
