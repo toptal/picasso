@@ -21,7 +21,6 @@ import type { PicassoGlobalStylesProviderProps } from './PicassoGlobalStylesProv
 import PicassoGlobalStylesProvider from './PicassoGlobalStylesProvider'
 import PicassoRootNode from './PicassoRootNode'
 import PreventPageWidthChangeOnScrollbar from '../PreventPageWidthChangeOnScrollbar'
-import './styles.css'
 
 export interface PicassoProps extends TextLabelProps {
   children?: ReactNode
