@@ -1,5 +1,15 @@
 # Change Log
 
+## 13.1.2
+
+### Patch Changes
+
+- [#4067](https://github.com/toptal/picasso/pull/4067) [`60d622ed4`](https://github.com/toptal/picasso/commit/60d622ed47c1c908304464877cfd474bf84863f2) Thanks [@iatanas0v](https://github.com/iatanas0v)!
+
+### picasso-shared types
+
+- fixed `data-private` type to allow `lipsum` value as well
+
 ## 13.1.1
 
 ### Patch Changes
