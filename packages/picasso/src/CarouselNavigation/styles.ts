@@ -15,6 +15,7 @@ export default ({ palette, transitions }: Theme) =>
         backgroundColor: palette.blue.main,
         opacity: 0.2,
         '&.active': {
+          backgroundColor: palette.blue.main,
           opacity: 1,
         },
         '&:hover:not(.active)': {
