@@ -73,6 +73,7 @@ PicassoProvider.override(
       },
       error: {
         backgroundColor: 'transparent',
+        color: palette.common.black,
         '&$focused': {
           '& $notchedOutline': {
             borderWidth: '1px',
