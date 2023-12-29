@@ -9,8 +9,82 @@ Picasso is Toptal's component library, based on Toptal's design system - BASE. U
 ## Installation instructions
 
 ```js
-yarn add @toptal/picasso @toptal/picasso-provider
+yarn add @toptal/picasso @toptal/picasso-provider @toptal/picasso-tailwind
+ tailwindcss postcss autoprefixer
 ```
+
+## Create `tailwind.config.js` in the root of the project
+
+```js
+const path = require('path')
+
+const projectRoot = __dirname
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    path.join(projectRoot, 'node_modules/@toptal/picasso/**/*.js'),
+    path.join(projectRoot, 'node_modules/@toptal/picasso-*/**/*.js'),
+    // adjust for your project infrastructure
+    path.join(projectRoot, '{hosts,libs,namespaces}/**/src/**/*.{ts,tsx}'),
+  ],
+  presets: [require('@toptal/picasso-tailwind')],
+}
+```
+
+## Add Tailwind CSS directives to your CSS source files
+
+```css
+/* index.css */
+@tailwind components;
+@tailwind utilities;
+```
+
+## Setup webpack to use PostCSS loader with tailwindcss plugin
+
+> If you are reusing webpack configuration from `@toptal/davinci-engine` you can skip this step as it is setup automatically if `tailwind.config.js` is in the repository.
+>
+> Make sure to check all webpack configuration, Application (start/build), Storybook, Cypress
+
+```js
+// webpack.config.js
+
+...
+{
+  test: /\.css$/i,
+  use: [
+    'style-loader',
+    'css-loader',
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          config: false,
+          plugins: {
+            tailwindcss: {
+              config: require.resolve(
+                // update with actual path to tailwind config
+                './tailwind.config.js'
+              ),
+            },
+            autoprefixer: {},
+          },
+        },
+      },
+    },
+  ],
+},
+
+...
+```
+
+When using **Vite** or **NextJS**, adding tailwind config with correct `content` should be sufficient in most cases, depending on your configuration.
+
+For more info, you can check out the official Tailwind docs:
+
+[Install Tailwind CSS with Vite](https://tailwindcss.com/docs/guides/vite)
+
+[Install Tailwind CSS with Next.js](https://tailwindcss.com/docs/guides/nextjs)
 
 ## Start using the library
 
@@ -21,7 +95,7 @@ import { Button } from '@toptal/picasso'
 
 render () {
   return (
-    <Picasso>
+    <Picasso injectFirst>
       <Button>Hello world!</Button>
     </Picasso>
   )
