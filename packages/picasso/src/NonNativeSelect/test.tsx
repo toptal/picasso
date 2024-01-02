@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable max-lines */
 import React from 'react'
 import type { PicassoConfig } from '@toptal/picasso/test-utils'
@@ -167,6 +168,33 @@ describe('NonNativeSelect', () => {
 
     expect(queryAllByRole('option')).toHaveLength(0)
     expect(queryByTestId('loader')).toBeInTheDocument()
+  })
+
+  it('renders reset icon when `enableResetSearch` is set to true', () => {
+    const placeholder = 'Choose an option...'
+    const searchPlaceholder = 'Search for an option'
+
+    const { getByPlaceholderText, queryByTestId } = renderSelect({
+      options: OPTIONS,
+      placeholder,
+      searchPlaceholder,
+      searchThreshold: -1,
+      enableResetSearch: true,
+      testIds: {
+        resetButton: 'reset-search-input',
+      },
+    })
+
+    const selectInput = getByPlaceholderText(placeholder)
+
+    fireEvent.click(selectInput)
+
+    const searchInput = getByPlaceholderText(searchPlaceholder)
+
+    fireEvent.focus(searchInput)
+    fireEvent.change(searchInput, { target: { value: '3' } })
+
+    expect(queryByTestId('reset-search-input')).toBeInTheDocument()
   })
 
   it('filters options based on entered value to the input field', () => {

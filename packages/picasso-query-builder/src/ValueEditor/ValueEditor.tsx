@@ -65,6 +65,7 @@ export const ValueEditor = ({
           touched={touched}
           fieldData={fieldData}
           valueEditorTestId={valueEditorTestId}
+          enableResetSearch={fieldData.enableResetSearch}
         />
       )
     case 'select':
