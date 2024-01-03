@@ -93,7 +93,7 @@ export interface Props
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
   /**
-   * @deprecated Use the `status` prop instead to both support success and error states
+   * @deprecated [@@AUTO_COMPLETE_ERROR] Use the `status` prop instead to both support success and error states
    * Indicate whether `Autocomplete` is in error state
    */
   error?: boolean
@@ -195,6 +195,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       )
     }
 
+    // TODO: [@@AUTO_COMPLETE_ERROR]
     usePropDeprecationWarning({
       props,
       name: 'error',

@@ -47,6 +47,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       ...rest
     } = props
 
+    // TODO: [@@INPUT_ERROR]
     usePropDeprecationWarning({
       props,
       name: 'error',

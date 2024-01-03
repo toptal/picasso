@@ -63,15 +63,15 @@ type PropsWithBaseSpacing = InternalProps & {
 
 type PropsWithDeprecatedSpacing = InternalProps & {
   /** Offset of content element relative to anchor element */
-  /** @deprecated */
+  /** @deprecated [@@LEGACY_PICASSO_SPACING] use {@link @toptal/picasso-provider#PicassoSpacing} instead */
   offset?: {
-    /** @deprecated */
+    /** @deprecated [@@LEGACY_PICASSO_SPACING] */
     top?: DeprecatedSpacingType
-    /** @deprecated */
+    /** @deprecated [@@LEGACY_PICASSO_SPACING] */
     bottom?: DeprecatedSpacingType
-    /** @deprecated */
+    /** @deprecated [@@LEGACY_PICASSO_SPACING] */
     left?: DeprecatedSpacingType
-    /** @deprecated */
+    /** @deprecated [@@LEGACY_PICASSO_SPACING] */
     right?: DeprecatedSpacingType
   }
 }

@@ -65,6 +65,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       ...rest
     } = props
 
+    // TODO: [@@OUTLINED_INPUT_ERROR]
     usePropDeprecationWarning({
       props,
       name: 'error',

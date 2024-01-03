@@ -13,7 +13,9 @@ export type Sizes =
 
 export type SizeType<T extends Sizes> = T
 
-/** @deprecated **/
+/**
+ * @deprecated [@@LEGACY_PICASSO_SPACING] Use {@link PicassoSpacing} or {@link ResponsiveSpacingType} instead
+ **/
 export type DeprecatedSpacingType =
   | number
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
@@ -51,7 +53,7 @@ class PicassoSpacing {
   }
 
   /**
-   * @deprecated Use "index" property directly
+   * @deprecated [@@PICASSO_SPACING_INDEX_OF] Use "baseTokenIndex" property directly
    */
   indexOf(): number {
     return this.baseTokenIndex

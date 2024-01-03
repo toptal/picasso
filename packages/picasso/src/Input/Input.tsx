@@ -40,7 +40,7 @@ export interface Props
   /** Placeholder for value */
   placeholder?: string
   /**
-   * @deprecated Use the `status` prop instead to both support success and error states
+   * @deprecated [@@INPUT_ERROR] Use the `status` prop instead to both support success and error states
    * Indicate whether `Input` is in error state
    */
   error?: boolean
@@ -277,6 +277,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     ...rest
   } = purifyProps(props)
 
+  // TODO: [@@INPUT_ERROR]
   usePropDeprecationWarning({
     props,
     name: 'error',

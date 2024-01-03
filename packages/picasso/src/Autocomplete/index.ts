@@ -4,5 +4,5 @@ import type { Props as OuterProps } from './Autocomplete'
 export { default } from './Autocomplete'
 export * from './types'
 export type AutocompleteProps = OmitInternalProps<OuterProps>
-/** @deprecated Use AutocompleteProps instead */
+/** @deprecated [@@BARE_PROPS_EXPORTS] Use AutocompleteProps instead */
 export type Props = AutocompleteProps

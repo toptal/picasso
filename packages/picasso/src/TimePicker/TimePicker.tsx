@@ -88,6 +88,7 @@ export const TimePicker = (props: Props) => {
     }
   }
 
+  // TODO: [@@INPUT_ERROR]
   usePropDeprecationWarning({
     props,
     name: 'error',

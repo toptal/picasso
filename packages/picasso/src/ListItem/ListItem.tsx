@@ -17,7 +17,9 @@ export type Props = BaseProps & {
   children: ReactNode
   variant?: 'ordered' | 'unordered'
   index?: number
-  /** @deprecated if you need a custom icon that is not available on the prop `type`, please contact the BASE team to add it to the theme */
+  /**
+   * @deprecated [@@LIST_ITEM_CUSTOM_ICONS] if you need a custom icon that is not available on the prop `type`, please contact the BASE team to add it to the theme
+   **/
   icon?: ReactNode
   /** Style of the bullet/ordinal */
   type?: ListItemType
@@ -48,6 +50,7 @@ export const ListItem = (props: Props) => {
     'data-testid': testId,
   } = props
 
+  // TODO: [@@LIST_ITEM_CUSTOM_ICONS]
   usePropDeprecationWarning({
     props,
     componentName: ListItem.name,

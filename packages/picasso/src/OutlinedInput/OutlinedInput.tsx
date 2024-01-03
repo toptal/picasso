@@ -58,7 +58,7 @@ export interface Props
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
   /**
-   * @deprecated Use the `status` prop instead to both support success and error states
+   * @deprecated [@@OUTLINED_INPUT_ERROR] Use the `status` prop instead to both support success and error states
    * Indicate whether input is in error state
    */
   error?: boolean
@@ -152,6 +152,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     ...rest
   } = props
 
+  // TODO: [@@OUTLINED_INPUT_ERROR]
   usePropDeprecationWarning({
     props,
     name: 'error',
