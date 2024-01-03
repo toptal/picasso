@@ -12,7 +12,6 @@ import styles from './styles'
 type Props = BaseVersatileSelectorProps &
   ValueEditorValidationProps & {
     valueEditorTestId?: string
-    enableResetSearch?: boolean
   }
 
 const useStyles = makeStyles(styles)
@@ -28,7 +27,6 @@ export const MultiSelect = ({
   className,
   fieldData,
   valueEditorTestId,
-  enableResetSearch,
 }: Props) => {
   const classes = useStyles()
 
@@ -59,7 +57,7 @@ export const MultiSelect = ({
         value={values}
         status={hasError ? 'error' : undefined}
         data-testid={valueEditorTestId}
-        enableResetSearch={enableResetSearch}
+        enableResetSearch={fieldData?.enableResetSearch}
       />
     </Container>
   )
