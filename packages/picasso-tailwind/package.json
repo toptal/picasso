@@ -27,7 +27,7 @@
     "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
   },
   "devDependencies": {
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.3.6"
   },
   "peerDependencies": {
     "tailwindcss": "^3.3.5"

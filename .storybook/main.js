@@ -60,6 +60,26 @@ module.exports = {
 
     const { reactDocgen, reactDocgenTypescriptOptions } = typescriptOptions
 
+    const cssRule = config.module.rules.find(
+      rule => rule.test && rule.test.toString().includes('.css')
+    )
+
+    // Use the 'postcss-loader' to process TailwindCSS
+    cssRule.use.push({
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: {
+          config: false,
+          plugins: {
+            tailwindcss: {
+              config: require.resolve('../tailwind.config.js'),
+            },
+            autoprefixer: {},
+          },
+        },
+      },
+    })
+
     return {
       ...config,
       module: {
@@ -161,6 +181,10 @@ module.exports = {
           '@toptal/picasso-query-builder': path.resolve(
             __dirname,
             '../packages/picasso-query-builder/src'
+          ),
+          '@toptal/picasso-tailwind': path.resolve(
+            __dirname,
+            '../packages/picasso-tailwind/src'
           ),
         },
       },

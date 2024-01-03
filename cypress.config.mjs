@@ -40,7 +40,7 @@ export default defineConfig({
                     plugins: [
                       '@babel/plugin-proposal-nullish-coalescing-operator',
                       '@babel/plugin-proposal-optional-chaining',
-                      'istanbul'
+                      'istanbul',
                     ],
                   },
                 },
@@ -52,7 +52,20 @@ export default defineConfig({
             },
             {
               test: /\.css$/i,
-              use: ['style-loader', 'css-loader'],
+              use: ['style-loader', 'css-loader', {
+                loader: 'postcss-loader',
+                options: {
+                  postcssOptions: {
+                    config: false,
+                    plugins: {
+                      tailwindcss: {
+                        config: './tailwind.config.js',
+                      },
+                      autoprefixer: {},
+                    },
+                  },
+                },
+              }],
             },
           ],
         },

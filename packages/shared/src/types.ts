@@ -23,7 +23,7 @@ export interface BaseProps {
   /** Style applied to root element */
   style?: CSSProperties
   'data-testid'?: string
-  'data-private'?: boolean
+  'data-private'?: boolean | 'lipsum'
 }
 
 export interface JssProps {
