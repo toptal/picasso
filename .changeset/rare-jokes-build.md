@@ -1,6 +1,5 @@
 ---
-'@toptal/picasso-query-builder': minor
 '@toptal/picasso': minor
 ---
 
-- add `enableResetSearch` prop to `Select` component and provide it to `QueryBuilder` `Multiselect` field
+- add `enableResetSearch` prop to `Select` component to render reset icon which clears search input
