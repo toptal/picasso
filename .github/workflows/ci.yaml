@@ -29,7 +29,6 @@ jobs:
       issues: write
       pull-requests: write
     timeout-minutes: 45
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -164,7 +163,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     needs: [static-checks]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -224,7 +222,6 @@ jobs:
       contents: write
       id-token: write
     needs: [build-docker-image]
-
     steps:
       - name: GSM Secrets
         id: secrets_manager
@@ -265,11 +262,12 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-      
+
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
+        shell: bash
         run: |
           sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-        shell: bash
+          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
@@ -291,9 +289,14 @@ jobs:
           job_timeout: "3600"
 
       - name: Create Jira Deployment
-        uses: toptal/davinci-github-actions/create-jira-deployment@v12.5.1
+        uses: ./.github/actions/create-jira-deployment/
         if: ${{ always() }}
         with:
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
+          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: staging
           environment-url: ${{ steps.temploy.outputs.temployURL }}
