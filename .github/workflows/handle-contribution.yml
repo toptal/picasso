@@ -33,7 +33,7 @@ jobs:
         uses: toptal/davinci-github-actions/expose-json-outputs@master
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
-      - uses: toptal/davinci-github-actions/notify-jira-about-contribution@v12.5.1
+      - uses: toptal/davinci-github-actions/notify-jira-about-contribution@v12.6.1
         with:
           team: frontend-experience-eng
           repo: ${{ github.event.repository.name }}
