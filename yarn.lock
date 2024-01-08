@@ -5310,10 +5310,10 @@
     ramda "^0.28.0"
     "true-case-path" "^1.0.3"
 
-"@toptal/davinci-qa@^16.2.4":
-  version "16.2.4"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-16.2.4.tgz#9336d385d8d7775508dc3e66235d1e800a8b8427"
-  integrity sha512-15m3C0cv4TY6H9Oh22E9alPu48FBAoJYFnB5P+/5+Jbf5S7iaPW2iRu+ggSHXEKrG02KK0n1CP8GHOgvIQQKvQ==
+"@toptal/davinci-qa@^16.3.0":
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-qa/-/davinci-qa-16.3.0.tgz#9d9c4027d4d88446c0d74bdf160fc00428b0b28a"
+  integrity sha512-9p0/0/0UxYPyS/RsC5J389dsGWe01wXIKz9Jlg30EaEsEHuN80lhCZhTLs0ixheMccKBJG6fSfpsSjf2nson6w==
   dependencies:
     "@babel/core" "^7.23.3"
     "@babel/preset-env" "^7.21.4"
@@ -5337,7 +5337,7 @@
     happo.io "^8.3.2"
     jest "^29.7.0"
     jest-environment-jsdom "^29.7.0"
-    jest-html-reporters "^3.0.10"
+    jest-html-reporters "^3.1.4"
     jest-junit "^13.1.0"
     jest-silent-reporter "^0.5.0"
     jest-styled-components "^7.0.8"
@@ -14878,12 +14878,12 @@ jest-haste-map@^29.7.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
-jest-html-reporters@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/jest-html-reporters/-/jest-html-reporters-3.0.10.tgz#a521afccf98e66d7deffb374fce9d50d22a4013f"
-  integrity sha512-tkLqYadTi0wGwiFkAUv3cV+IcmdE1YeJC/+BOzutVNeudRZk34GFPGYAKBFVYN6HyJGLaEG0TTf5WCySxwAB5g==
+jest-html-reporters@^3.1.4:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/jest-html-reporters/-/jest-html-reporters-3.1.7.tgz#d8cb6f5d15fd518e601841f90165f37765e7ff34"
+  integrity sha512-GTmjqK6muQ0S0Mnksf9QkL9X9z2FGIpNSxC52E0PHDzjPQ1XDu2+XTI3B3FS43ZiUzD1f354/5FfwbNIBzT7ew==
   dependencies:
-    fs-extra "^9.0.1"
+    fs-extra "^10.0.0"
     open "^8.0.3"
 
 jest-junit@^13.1.0:
@@ -15428,14 +15428,14 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   resolved "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
   integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
 
-json5@1, json5@^1.0.1:
+json5@1, json5@^1.0.1, json5@^2.1.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.2.tgz#63d98d60f21b313b77c4d6da18bfa69d80e1d593"
   integrity sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==
   dependencies:
     minimist "^1.2.0"
 
-json5@2.2.3, json5@^2.1.0, json5@^2.1.1, json5@^2.1.2, json5@^2.2.0, json5@^2.2.2, json5@^2.2.3, json5@^2.x:
+json5@2.2.3, json5@^2.1.0, json5@^2.1.2, json5@^2.2.0, json5@^2.2.2, json5@^2.2.3, json5@^2.x:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
