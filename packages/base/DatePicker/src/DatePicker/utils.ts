@@ -6,9 +6,12 @@ import isEqual from 'date-fns/isEqual'
 import isBefore from 'date-fns/isBefore'
 import isAfter from 'date-fns/isAfter'
 import { utcToZonedTime, format as tzFormat, toDate } from 'date-fns-tz'
+import type {
+  DateOrDateRangeType,
+  DateRangeType,
+} from '@toptal/picasso-calendar'
 
 import type { DatePickerInputValueParserParameters } from './types'
-import type { DateOrDateRangeType, DateRangeType } from '../Calendar'
 
 // Convert date to given timezone. If timezone is undefined, return given date as is.
 export const timezoneConvert = (

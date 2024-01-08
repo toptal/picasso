@@ -1,8 +1,10 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
-
-import { headerHeight, headerBreakingPointXL } from '../PageTopBar/constants'
+import {
+  headerHeight,
+  headerBreakingPointXL,
+} from '@toptal/picasso-page-top-bar'
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =

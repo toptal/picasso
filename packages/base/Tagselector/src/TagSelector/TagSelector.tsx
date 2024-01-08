@@ -9,16 +9,20 @@ import React, { forwardRef, Fragment } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
 import { Autocomplete } from '@toptal/picasso-autocomplete'
-import { unsafeErrorLog , noop , usePropDeprecationWarning } from '@toptal/picasso-utils'
-
+import {
+  unsafeErrorLog,
+  noop,
+  usePropDeprecationWarning,
+} from '@toptal/picasso-utils'
 import type {
   AutocompleteProps,
   Item as AutocompleteItem,
-} from '../Autocomplete'
-import TagSelectorInput from '../TagSelectorInput'
-import type { Props as InputProps } from '../Input'
-import TagSelectorLabel from '../TagSelectorLabel'
-import type { Status } from '../OutlinedInput'
+} from '@toptal/picasso-autocomplete'
+import type { Props as InputProps } from '@toptal/picasso-input'
+import type { Status } from '@toptal/picasso-outlined-input'
+
+import { TagSelectorInput } from '../TagSelectorInput'
+import { TagSelectorLabel } from '../TagSelectorLabel'
 
 export interface Item extends AutocompleteItem {
   value?: string

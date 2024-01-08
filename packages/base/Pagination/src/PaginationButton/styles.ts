@@ -1,11 +1,10 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
 import {
   createOutlineCommons,
   activeGroup,
   disabledGroup,
-} from '../Button/styles'
+} from '@toptal/picasso-button'
 
 export default (theme: Theme) =>
   createStyles({

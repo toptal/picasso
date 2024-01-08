@@ -1,7 +1,7 @@
 import React from 'react'
 import { CheckMinor24, CheckMinor16 } from '@toptal/picasso-icons'
 
-import InputAdornment from '../InputAdornment'
+import { InputAdornment } from '../InputAdornment'
 
 export interface Props {
   'data-testid'?: string

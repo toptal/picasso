@@ -5,7 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
-import ListItem from '../ListItem'
+import { ListItem } from '../ListItem'
 import type { Props as ListItemProps } from '../ListItem'
 import styles from './styles'
 import type { ListItemType } from './context'

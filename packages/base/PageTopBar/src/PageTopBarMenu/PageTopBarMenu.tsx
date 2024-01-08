@@ -9,8 +9,8 @@ import { useBreakpoint } from '@toptal/picasso-utils'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { Avatar } from '@toptal/picasso-avatar'
 import { Typography } from '@toptal/picasso-typography'
+import { DropdownCompound as Dropdown } from '@toptal/picasso-dropdown'
 
-import { DropdownCompound as Dropdown } from '../DropdownCompound'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

@@ -8,8 +8,8 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
 import { Close16 } from '@toptal/picasso-icons'
+import { ButtonCircular } from '@toptal/picasso-button'
 
-import Button from '../ButtonCircular'
 import styles from './styles'
 
 export interface Props extends BaseProps {
@@ -67,7 +67,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
             {title}
           </Typography>
           {dismissable && (
-            <Button
+            <ButtonCircular
               data-testid='btn-dismiss'
               className={classes.closeAction}
               variant='transparent'

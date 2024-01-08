@@ -6,8 +6,8 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 
-import FileListItem from '../FileListItem'
-import type { FileUpload } from '../FileInput/types'
+import { FileListItem } from '../FileListItem'
+import type { FileUpload } from '../FileInput'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

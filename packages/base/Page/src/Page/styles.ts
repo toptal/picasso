@@ -1,7 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
-import { headerHeight } from '../PageTopBar/constants'
+import { headerHeight } from '@toptal/picasso-page-top-bar'
 
 export default ({ layout, palette }: Theme) =>
   createStyles({

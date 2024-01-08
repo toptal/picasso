@@ -1,4 +1,5 @@
-import { isSubstring } from '../../../utils'
+import { isSubstring } from '@toptal/picasso-utils'
+
 import type { Option, OptionGroups } from '../../types'
 import isOptionsType from '../../utils/is-options-type'
 import getOptionText from '../get-option-text'

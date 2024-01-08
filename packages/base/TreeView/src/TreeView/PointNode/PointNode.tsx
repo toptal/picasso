@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef, useMemo, useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 
-import { useIsomorphicLayoutEffect } from '../../utils'
 import type { DynamicPointNode } from '../types'
 import { NodeContent } from './NodeContent'
 

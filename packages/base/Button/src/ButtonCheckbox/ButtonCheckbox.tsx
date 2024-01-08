@@ -2,7 +2,7 @@ import React from 'react'
 import { Checkbox } from '@toptal/picasso-checkbox'
 
 import type { ButtonControlLabelProps } from '../ButtonControlLabel'
-import ButtonControlLabel from '../ButtonControlLabel'
+import { ButtonControlLabel } from '../ButtonControlLabel'
 
 export interface Props extends Omit<ButtonControlLabelProps, 'control'> {
   testIds?: {

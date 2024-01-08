@@ -3,7 +3,7 @@ import type { ReactElement, MouseEventHandler } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
-import Tag from '../Tag'
+import { Tag } from '../Tag'
 import { useStyles } from '../Tag/Tag'
 
 type ClickType = MouseEventHandler<HTMLElement>

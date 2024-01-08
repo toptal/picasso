@@ -10,8 +10,8 @@ import { UserBadge } from '@toptal/picasso-user-badge'
 
 import styles from './styles'
 import { TabsOrientationContext } from '../Tabs/Tabs'
-import TabLabel from '../TabLabel'
-import TabDescription from '../TabDescription'
+import { TabLabel } from '../TabLabel'
+import { TabDescription } from '../TabDescription'
 
 export interface Props
   extends BaseProps,

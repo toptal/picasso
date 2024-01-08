@@ -11,8 +11,8 @@ import type { ComponentProps, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { FormControlLabel } from '@toptal/picasso-form'
+import type { RequiredDecoration } from '@toptal/picasso-form'
 
-import type { RequiredDecoration } from '../FormLabel'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCheckbox' })

@@ -4,12 +4,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
+import { Grid } from '@toptal/picasso-grid'
 
 import styles from './styles'
 import type { FieldRequirementItemStatus } from './FieldRequirementItem'
 import FieldRequirementItem from './FieldRequirementItem'
 import type { FieldRequirement } from './types'
-import Grid from '../Grid'
 
 export interface Props<TValueType> extends BaseProps {
   /** A string that defines the title of the requirement list */

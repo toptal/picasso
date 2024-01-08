@@ -27,6 +27,7 @@
     "@toptal/picasso-utils": "1.0.0",
     "@toptal/picasso-container": "1.0.0",
     "classnames": "^2.3.1",
+    "debounce": "^1.2.1",
     "ap-style-title-case": "^1.1.2"
   },
   "sideEffects": [

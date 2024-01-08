@@ -6,8 +6,8 @@ import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 
-import FormHint from '../FormHint'
-import FormError from '../FormError'
+import { FormHint } from '../FormHint'
+import { FormError } from '../FormError'
 import styles from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 

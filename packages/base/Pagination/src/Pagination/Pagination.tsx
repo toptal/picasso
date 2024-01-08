@@ -10,7 +10,7 @@ import { Typography } from '@toptal/picasso-typography'
 
 import { getRange, ELLIPSIS } from './utils'
 import styles from './styles'
-import PaginationButton from '../PaginationButton'
+import { PaginationButton } from '../PaginationButton'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoPagination',

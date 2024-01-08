@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 
-import Button from '../Button'
+import { Button } from '../Button'
 import styles from './styles'
 
 export interface Props extends BaseProps {

@@ -13,8 +13,8 @@ import type { StandardProps, TransitionProps } from '@toptal/picasso-shared'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { ButtonAction } from '@toptal/picasso-button'
 
-import AccordionSummary from '../AccordionSummary'
-import AccordionDetails from '../AccordionDetails'
+import { AccordionSummary } from '../AccordionSummary'
+import { AccordionDetails } from '../AccordionDetails'
 import styles from './styles'
 
 export type Borders = 'all' | 'middle' | 'none'

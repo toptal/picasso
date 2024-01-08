@@ -1,2 +1,2 @@
 export { default as NumberInputEndAdornment } from './NumberInputEndAdornment'
-export * from './NumberInputEndAdornment'
+export type { Props as NumberInputEndAdornmentProps } from './NumberInputEndAdornment'

@@ -8,11 +8,17 @@ import { Search16 } from '@toptal/picasso-icons'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { Popper } from '@toptal/picasso-popper'
 import { MenuItem } from '@toptal/picasso-menu'
-import { documentable, forwardRef, noop, useCombinedRefs } from '@toptal/picasso-utils'
+import {
+  documentable,
+  forwardRef,
+  noop,
+  useCombinedRefs,
+} from '@toptal/picasso-utils'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import SelectCaret from '../SelectCaret'
-import NonNativeSelectLoader from '../NonNativeSelectLoader'
+import { NonNativeSelectLoader } from '../NonNativeSelectLoader'
 import type { ValueType, SelectProps } from '../SelectBase'
 import {
   useAdornments,
@@ -25,11 +31,9 @@ import {
   countOptions,
   filterFlatOptions as defaultFilterOptions,
 } from '../SelectBase'
-import NonNativeSelectOptions from '../NonNativeSelectOptions'
+import { NonNativeSelectOptions } from '../NonNativeSelectOptions'
 import styles from './styles'
-import NonNativeSelectLimitFooter from '../NonNativeSelectLimitFooter'
-import { useFieldsLayoutContext } from '../FieldsLayout'
-
+import { NonNativeSelectLimitFooter } from '../NonNativeSelectLimitFooter'
 const useStyles = makeStyles<Theme>(styles)
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []

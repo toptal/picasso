@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 
-import type { TreeViewPropsBase } from '../TreeView/shared'
+import type { TreeViewPropsBase } from '../TreeView/types'
 import {
   useTree,
   TreeViewPropsDefaults,

@@ -5,7 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Logo } from '@toptal/picasso-logo'
 
-import Image from '../../Image'
+import { Image } from '../../Image'
 import styles from './styles'
 
 export interface Props extends BaseProps {

@@ -10,10 +10,9 @@ import { Loader } from '@toptal/picasso-loader'
 import { Attachment16, Trash16, CloseMinor16 } from '@toptal/picasso-icons'
 import { TypographyOverflow } from '@toptal/picasso-typography-overflow'
 
-import ProgressBar from '../ProgressBar'
-import type { FileUpload } from '../FileInput/types'
+import { ProgressBar } from '../ProgressBar'
+import type { FileUpload } from '../FileInput'
 import styles from './styles'
-
 
 export interface Props {
   file: FileUpload

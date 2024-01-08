@@ -7,7 +7,7 @@ import cx from 'classnames'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
 
-import CircularProgress from '../CircularProgress'
+import { CircularProgress } from '../CircularProgress'
 import styles from './styles'
 
 const DEFAULT_PROGRESS = 35

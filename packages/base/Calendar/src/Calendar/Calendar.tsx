@@ -20,9 +20,9 @@ import { useBreakpoint } from '@toptal/picasso-provider'
 
 import styles from './styles'
 import type { RenderDay } from '../CalendarDay'
-import CalendarDay from '../CalendarDay'
+import { CalendarDay } from '../CalendarDay'
 import type { RenderMonthHeader } from '../CalendarMonthHeader'
-import CalendarMonthHeader from '../CalendarMonthHeader'
+import { CalendarMonthHeader } from '../CalendarMonthHeader'
 import CalendarContext from '../CalendarContext'
 import type {
   CalendarDateRange,
@@ -31,7 +31,7 @@ import type {
   WeekStart,
 } from './types'
 import type { RenderRoot } from '../CalendarContainer'
-import CalendarContainer from '../CalendarContainer'
+import { CalendarContainer } from '../CalendarContainer'
 
 export type CalendarMonthsAmount = 1 | 2
 

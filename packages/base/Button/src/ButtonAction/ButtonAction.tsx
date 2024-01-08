@@ -11,7 +11,7 @@ import type {
 import { Loader } from '@toptal/picasso-loader'
 
 import type { IconPositionType } from '../Button'
-import Button from '../Button'
+import { Button } from '../Button'
 import styles from './styles'
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {

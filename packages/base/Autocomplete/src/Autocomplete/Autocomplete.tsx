@@ -24,18 +24,21 @@ import { Loader } from '@toptal/picasso-loader'
 import { SelectOptions } from '@toptal/picasso-select'
 import { Popper } from '@toptal/picasso-popper'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import { unsafeErrorLog , usePropDeprecationWarning } from '@toptal/picasso-utils'
+import {
+  unsafeErrorLog,
+  usePropDeprecationWarning,
+} from '@toptal/picasso-utils'
+import type { InputProps } from '@toptal/picasso-input'
+import { MenuCompound as Menu } from '@toptal/picasso-menu'
+import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
-import type { InputProps } from '../Input'
-import { MenuCompound as Menu } from '../MenuCompound'
 import PoweredByGoogle from './PoweredByGoogle'
 import NoOptionsMenuItem from './NoOptionsMenuItem'
 import OtherOptionMenuItem from './OtherOptionMenuItem'
 import type { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import styles from './styles'
-import type { BaseInputProps, Status } from '../OutlinedInput'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends BaseProps,

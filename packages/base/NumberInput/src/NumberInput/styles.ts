@@ -1,7 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-
-import highlightAutofillStyles from '../InputBase/highlight-styles'
+import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export default (theme: Theme) =>
   createStyles({

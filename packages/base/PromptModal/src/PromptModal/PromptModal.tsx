@@ -6,12 +6,11 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { Button } from '@toptal/picasso-button'
 import { noop, useSafeState } from '@toptal/picasso-utils'
+import type { Props as ModalProps } from '@toptal/picasso-modal'
+import { ModalCompound as Modal } from '@toptal/picasso-modal'
+import type { VariantType as ButtonVariantType } from '@toptal/picasso-button'
 
-import type { Props as ModalProps } from '../Modal'
-import { ModalCompound as Modal } from '../ModalCompound'
-import type { VariantType as ButtonVariantType } from '../Button'
 import styles from './styles'
-
 
 export type VariantType = 'positive' | 'negative'
 

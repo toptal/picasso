@@ -1,5 +1,5 @@
 {
-  "name": "@toptal/picasso-test--utils",
+  "name": "@toptal/picasso-test-utils",
   "version": "1.0.0",
   "description": "Toptal UI components library - Test-Utils",
   "publishConfig": {
@@ -23,6 +23,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {},
+  "devDependencies": {
+    "@testing-library/react": "^14.1.2"
+  },
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"

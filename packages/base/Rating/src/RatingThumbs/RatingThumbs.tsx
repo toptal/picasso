@@ -4,9 +4,14 @@ import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import classNames from 'classnames'
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback, useState } from 'react'
-import { ThumbsDown16, ThumbsDown24, ThumbsUp16, ThumbsUp24 } from '@toptal/picasso-icons'
+import {
+  ThumbsDown16,
+  ThumbsDown24,
+  ThumbsUp16,
+  ThumbsUp24,
+} from '@toptal/picasso-icons'
+import { Container } from '@toptal/picasso-container'
 
-import { Container } from '../Container'
 import styles from './styles'
 
 type Size = SizeType<'small' | 'large'>

@@ -15,9 +15,8 @@ import { useTitleCase } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { toTitleCase } from '@toptal/picasso-utils'
 
-import Chip from '../Chip'
+import { Chip } from '../Chip'
 import styles from './styles'
-
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>

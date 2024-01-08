@@ -4,8 +4,8 @@ import { ButtonBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16, ChevronMinor16 } from '@toptal/picasso-icons'
+import { Container } from '@toptal/picasso-container'
 
-import { Container } from '../Container'
 import styles from './styles'
 
 type DirectionType = 'left' | 'right'

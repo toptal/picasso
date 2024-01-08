@@ -6,8 +6,8 @@ import cx from 'classnames'
 import type { BaseProps, Classes } from '@toptal/picasso-shared'
 import { addClassesToChildren } from '@toptal/picasso-shared'
 
-import Button from '../Button'
-import ButtonGroupItem from '../ButtonGroupItem'
+import { Button } from '../Button'
+import { ButtonGroupItem } from '../ButtonGroupItem'
 import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {

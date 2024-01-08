@@ -6,7 +6,7 @@ import type { TabsProps } from '@material-ui/core'
 import { Tabs as MUITabs } from '@material-ui/core'
 import type { ButtonOrAnchorProps, BaseProps } from '@toptal/picasso-shared'
 
-import TabScrollButton from '../TabScrollButton'
+import { TabScrollButton } from '../TabScrollButton'
 import styles from './styles'
 import useTabAction from './use-tab-action'
 

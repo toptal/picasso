@@ -5,9 +5,13 @@ import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { ExclamationSolid16, DoneSolid16, InfoSolid16 } from '@toptal/picasso-icons'
+import {
+  ExclamationSolid16,
+  DoneSolid16,
+  InfoSolid16,
+} from '@toptal/picasso-icons'
+import type { VariantType as ContainerVariants } from '@toptal/picasso-container'
 
-import type { VariantType as ContainerVariants } from '../Container'
 import styles from './styles'
 
 export type VariantType = Extract<

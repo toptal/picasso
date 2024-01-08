@@ -23,11 +23,10 @@ import { Paper } from '@toptal/picasso-paper'
 import { Popper } from '@toptal/picasso-popper'
 import { Link } from '@toptal/picasso-link'
 import { ClickAwayListener, toTitleCase } from '@toptal/picasso-utils'
+import type { AvatarProps, Avatar } from '@toptal/picasso-avatar'
 
 import { useMenuItem } from './hooks'
 import styles from './styles'
-import type { AvatarProps } from '../Avatar'
-import type Avatar from '../Avatar'
 
 export type VariantType = 'light' | 'dark'
 

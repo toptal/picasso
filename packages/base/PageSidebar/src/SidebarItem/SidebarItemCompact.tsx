@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import React, { forwardRef } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Dropdown } from '@toptal/picasso-dropdown'
-import { useOpen } from '@toptal/picasso-utils'
+import { useBoolean as useOpen } from '@toptal/picasso-utils'
 
 import { SidebarItemHeader } from './SidebarItemHeader'
 import { SubMenuContextProvider } from './SubMenuContextProvider'

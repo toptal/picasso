@@ -9,8 +9,8 @@ import { Typography } from '@toptal/picasso-typography'
 import { Link } from '@toptal/picasso-link'
 import { Container } from '@toptal/picasso-container'
 import { ChevronRight16 } from '@toptal/picasso-icons'
+import { MenuCompound as Menu } from '@toptal/picasso-menu'
 
-import { MenuCompound as Menu } from '../MenuCompound'
 import styles from './styles'
 
 type Account = {

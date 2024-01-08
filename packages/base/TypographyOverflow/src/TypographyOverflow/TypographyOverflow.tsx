@@ -7,10 +7,10 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
+import type { TypographyProps } from '@toptal/picasso-typography'
+import type { DelayType } from '@toptal/picasso-tooltip'
 
-import type { TypographyProps } from '../Typography'
 import styles from './styles'
-import type { DelayType } from '../Tooltip/Tooltip'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */

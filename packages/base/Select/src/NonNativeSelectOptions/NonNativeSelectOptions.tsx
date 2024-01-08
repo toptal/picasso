@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { MenuItem } from '@toptal/picasso-menu'
 import { Typography } from '@toptal/picasso-typography'
 
-import NonNativeSelectOption from '../NonNativeSelectOption'
-import SelectOptions from '../SelectOptions'
+import { NonNativeSelectOption } from '../NonNativeSelectOption'
+import { SelectOptions } from '../SelectOptions'
 import type {
   FocusEventType,
   ItemProps,

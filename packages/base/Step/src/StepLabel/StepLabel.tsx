@@ -9,7 +9,7 @@ import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
 import { TypographyOverflow } from '@toptal/picasso-typography-overflow'
 
-import StepIcon from '../StepIcon'
+import { StepIcon } from '../StepIcon'
 import styles from './styles'
 
 export interface Props

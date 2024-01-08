@@ -7,9 +7,9 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { SnackbarOrigin } from '@material-ui/core/Snackbar'
 import type { BaseProps } from '@toptal/picasso-shared'
+import type { VariantType } from '@toptal/picasso-notification'
+import { Notification as PicassoNotification } from '@toptal/picasso-notification'
 
-import type { VariantType } from '../../Notification'
-import { Notification as PicassoNotification } from '../../Notification'
 import styles from './styles'
 
 const defaultPosition: SnackbarOrigin = {

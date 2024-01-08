@@ -51,7 +51,9 @@
     ],
     "include": [
       "packages/**/src/**/*.ts",
-      "packages/**/src/**/*.tsx"
+      "packages/**/src/**/*.tsx",
+      "packages/base/src/**/*.ts",
+      "packages/base/src/**/*.tsx"
     ]
   },
   "repository": {

@@ -4,7 +4,7 @@ import cx from 'classnames'
 import React, { forwardRef, useCallback } from 'react'
 import { MenuItem } from '@toptal/picasso-menu'
 
-import SidebarItemContent from '../SidebarItemContent'
+import { SidebarItemContent } from '../SidebarItemContent'
 import styles from './styles'
 import type { Props } from './types'
 import { useSubMenuContext } from './SubMenuContextProvider'

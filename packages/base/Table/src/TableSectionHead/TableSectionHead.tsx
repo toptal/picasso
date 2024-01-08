@@ -5,9 +5,9 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { TableSection, TableSectionContext } from '../Table'
-import TableCell from '../TableCell'
-import TableRow from '../TableRow'
-import TableBody from '../TableBody'
+import { TableCell } from '../TableCell'
+import { TableRow } from '../TableRow'
+import { TableBody } from '../TableBody'
 import styles from './styles'
 
 const MAX_COL_SPAN = 100

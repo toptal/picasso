@@ -1,6 +1,12 @@
 import React from 'react'
 import type { FeatureOptions } from '@toptal/picasso-utils'
-import { disableUnsupportedProps , noop , usePropDeprecationWarning , documentable, forwardRef } from '@toptal/picasso-utils'
+import {
+  disableUnsupportedProps,
+  noop,
+  usePropDeprecationWarning,
+  documentable,
+  forwardRef,
+} from '@toptal/picasso-utils'
 
 import type { SelectProps, ValueType } from '../SelectBase'
 import {
@@ -9,8 +15,8 @@ import {
   getOptionText,
   renderOption,
 } from '../SelectBase'
-import NonNativeSelect from '../NonNativeSelect'
-import NativeSelect from '../NativeSelect'
+import { NonNativeSelect } from '../NonNativeSelect'
+import { NativeSelect } from '../NativeSelect'
 
 const purifyProps = (
   props: SelectProps<any, any>

@@ -4,7 +4,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
-import InputAdornment from '../InputAdornment'
+import { InputAdornment } from '../InputAdornment'
 
 type IconPosition = 'start' | 'end'
 

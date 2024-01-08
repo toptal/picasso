@@ -1,4 +1,5 @@
-import { SPACING_12 } from '../../utils'
+import { SPACING_12 } from '@toptal/picasso-utils'
+
 import filterOutStringAndPicassoSpacing from './filter-out-strings-and-picasso-spacings'
 
 describe('filterOutStringAndPicassoSpacing', () => {

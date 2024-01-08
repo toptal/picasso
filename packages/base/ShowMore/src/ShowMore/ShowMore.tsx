@@ -5,7 +5,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import Truncate from 'react-truncate'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { ChevronRightIcon16 } from '@toptal/picasso-icons'
+import { ChevronRight16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { ButtonAction } from '@toptal/picasso-button'
 
@@ -100,7 +100,7 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
           className={classes.toggleText}
           icon={
             <div className={classes.iconWrapper}>
-              <ChevronRightIcon16
+              <ChevronRight16
                 className={cx(classes.icon, {
                   [classes.expandedIcon]: shownMore,
                 })}

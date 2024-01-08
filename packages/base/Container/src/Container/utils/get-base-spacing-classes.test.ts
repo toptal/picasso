@@ -5,7 +5,8 @@ import {
   SPACING_4,
   SPACING_6,
   SPACING_8,
-} from '../../utils'
+} from '@toptal/picasso-utils'
+
 import getBaseSpacingClasses from './get-base-spacing-classes'
 
 describe('getBaseSpacingClasses', () => {

@@ -5,10 +5,10 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
+import type { Props as InputProps } from '@toptal/picasso-input'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
-import type { Props as InputProps } from '../Input/Input'
 import styles from './styles'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTagSelectorInput',

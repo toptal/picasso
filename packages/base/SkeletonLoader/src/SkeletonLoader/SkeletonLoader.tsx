@@ -1,7 +1,7 @@
-import HeaderLoader from '../HeaderLoader'
-import TypographyLoader from '../TypographyLoader'
-import ButtonLoader from '../ButtonLoader'
-import MediaSkeletonLoader from '../MediaSkeletonLoader'
+import { HeaderLoader } from '../HeaderLoader'
+import { ButtonLoader } from '../ButtonLoader'
+import { TypographyLoader } from '../TypographyLoader'
+import { MediaSkeletonLoader } from '../MediaSkeletonLoader'
 
 export default {
   Header: HeaderLoader,

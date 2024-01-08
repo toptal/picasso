@@ -1,7 +1,6 @@
 import type { ReactElement, ReactNode } from 'react'
-
-import type { BadgeProps } from '../Badge'
-import type { VariantOnlyProps } from '../TagRectangular/types'
+import type { BadgeProps } from '@toptal/picasso-badge'
+import type { VariantOnlyProps } from '@toptal/picasso-tag'
 
 /** Render Tag.Rectangular */
 export interface SidebarTagProps extends VariantOnlyProps {

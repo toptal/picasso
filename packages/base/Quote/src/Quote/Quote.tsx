@@ -4,7 +4,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 
-import QuoteMark from '../QuoteMark'
+import { QuoteMark } from '../QuoteMark'
 
 export interface Props extends BaseProps {
   /** Main content of the Quote */

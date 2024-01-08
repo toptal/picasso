@@ -1,1 +1,1 @@
-export { default } from './EmptyStatePage'
+export { default as EmptyStatePage } from './EmptyStatePage'

@@ -8,7 +8,7 @@ import cx from 'classnames'
 import { useCombinedRefs } from '@toptal/picasso-utils'
 
 import type { ValueLabelProps } from '../SliderValueLabel'
-import SliderValueLabel from '../SliderValueLabel'
+import { SliderValueLabel } from '../SliderValueLabel'
 import { SliderContextProvider } from './SliderContext'
 import styles from './styles'
 

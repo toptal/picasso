@@ -8,7 +8,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 
-import MenuItem from '../MenuItem'
+import { MenuItem } from '../MenuItem'
 import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
 import styles from './styles'

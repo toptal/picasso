@@ -3,9 +3,9 @@ import type { Theme } from '@material-ui/core'
 import { capitalize, makeStyles } from '@material-ui/core'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import cx from 'classnames'
+import { Pencil16, Pencil24 } from '@toptal/picasso-icons'
 
 import styles from './styles'
-import { Pencil16, Pencil24 } from '../../Icon'
 import { AVATAR_DROPZONE_SVG_SHAPES } from '../../AvatarDropzoneSvg'
 
 export interface Props extends BaseProps {

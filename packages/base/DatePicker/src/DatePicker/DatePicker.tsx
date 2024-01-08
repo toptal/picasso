@@ -12,17 +12,23 @@ import { Popper } from '@toptal/picasso-popper'
 import { Container } from '@toptal/picasso-container'
 import { Input } from '@toptal/picasso-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import { ClickAwayListener, noop , usePropDeprecationWarning } from '@toptal/picasso-utils'
+import {
+  ClickAwayListener,
+  noop,
+  usePropDeprecationWarning,
+} from '@toptal/picasso-utils'
 import { Calendar } from '@toptal/picasso-calendar'
-
 import type {
   CalendarDateRange,
   DateOrDateRangeType,
   DateRangeType,
   WeekStart,
   CalendarMonthsAmount,
-} from '../Calendar'
-import type { InputProps } from '../Input'
+  RenderDay,
+} from '@toptal/picasso-calendar'
+import type { InputProps } from '@toptal/picasso-input'
+import type { Status } from '@toptal/picasso-outlined-input'
+
 import {
   DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
@@ -37,8 +43,6 @@ import {
   timezoneFormat,
   getStartOfTheDayDate,
 } from './utils'
-import type { Status } from '../OutlinedInput'
-import type { RenderDay } from '../CalendarDay'
 
 const EMPTY_INPUT_VALUE = ''
 

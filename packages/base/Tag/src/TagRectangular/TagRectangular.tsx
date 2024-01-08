@@ -5,8 +5,8 @@ import cx from 'classnames'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
 
-import Indicator from '../Indicator'
-import Chip from '../Chip'
+import { Indicator } from '../Indicator'
+import { Chip } from '../Chip'
 import styles from './styles'
 import type { Props } from './types'
 

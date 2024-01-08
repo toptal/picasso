@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Collapse as MUICollapse } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 
-import TableRow from '../TableRow'
-import TableCell from '../TableCell'
+import { TableRow } from '../TableRow'
+import { TableCell } from '../TableCell'
 import styles from './styles'
 
 const MAX_COL_SPAN = 100

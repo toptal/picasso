@@ -10,9 +10,8 @@ import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import { ArrowLongRight16, Check16 } from '@toptal/picasso-icons'
 
 import styles from './styles'
-import type { ListItemType } from '../List/context'
-import { useListContext } from '../List/context'
-
+import type { ListItemType } from '../List'
+import { useListContext } from '../List'
 
 export type Props = BaseProps & {
   children: ReactNode

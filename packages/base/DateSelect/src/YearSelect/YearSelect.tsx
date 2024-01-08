@@ -2,8 +2,7 @@ import type { Ref } from 'react'
 import React, { useMemo } from 'react'
 import { Select } from '@toptal/picasso-select'
 import { forwardRef, documentable } from '@toptal/picasso-utils'
-
-import type { SelectProps } from '../Select'
+import type { SelectProps } from '@toptal/picasso-select'
 
 type AdjustedSelectProps<M extends boolean> = Omit<
   SelectProps<number, M>,

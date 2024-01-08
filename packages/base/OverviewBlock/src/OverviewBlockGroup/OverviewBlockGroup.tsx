@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { Alignment, BlockWidth } from './settings'
 import { OverviewBlockGroupContext } from './OverviewBlockGroupContext'
-import OverviewBlockRow from '../OverviewBlockRow'
+import { OverviewBlockRow } from '../OverviewBlockRow'
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   /** Value and label alignment for blocks. By default content is aligned to the left. */

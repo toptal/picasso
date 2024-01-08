@@ -8,7 +8,7 @@ import { Button } from '@toptal/picasso-button'
 import { FormHint } from '@toptal/picasso-form'
 import { useCombinedRefs } from '@toptal/picasso-utils'
 
-import FileList from '../FileList'
+import { FileList } from '../FileList'
 import type { FileUpload } from './types'
 import styles from './styles'
 

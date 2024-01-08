@@ -3,8 +3,8 @@ import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
+import { Profile16 } from '@toptal/picasso-icons'
 
-import { Profile16 } from '../../Icon'
 import styles from './styles'
 
 interface Props extends BaseProps {

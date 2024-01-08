@@ -1,16 +1,16 @@
-import Button from '../Button'
-import Group from '../ButtonGroup'
-import Circular from '../ButtonCircular'
-import Action from '../ButtonAction'
-import Split from '../ButtonSplit'
-import Checkbox from '../ButtonCheckbox'
-import Radio from '../ButtonRadio'
+import { Button } from '../Button'
+import { ButtonGroup } from '../ButtonGroup'
+import { ButtonCircular } from '../ButtonCircular'
+import { ButtonAction } from '../ButtonAction'
+import { ButtonSplit } from '../ButtonSplit'
+import { ButtonCheckbox } from '../ButtonCheckbox'
+import { ButtonRadio } from '../ButtonRadio'
 
 export const ButtonCompound = Object.assign(Button, {
-  Group,
-  Circular,
-  Action,
-  Split,
-  Checkbox,
-  Radio,
+  Group: ButtonGroup,
+  Circular: ButtonCircular,
+  Action: ButtonAction,
+  Split: ButtonSplit,
+  Checkbox: ButtonCheckbox,
+  Radio: ButtonRadio,
 })

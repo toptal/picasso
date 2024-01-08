@@ -6,10 +6,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Stepper as MUIStepper } from '@material-ui/core'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
-import Step from '../Step'
-import StepLabel from '../StepLabel'
+import { Step } from '../Step'
+import { StepLabel } from '../StepLabel'
 import '../StepIcon'
-import StepConnector from '../StepConnector'
+import { StepConnector } from '../StepConnector'
 import styles from './styles'
 
 export interface StepperBaseProps

@@ -5,10 +5,9 @@ import { FormGroup } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
+import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
+import { GridCompound as Grid } from '@toptal/picasso-grid'
 
-import type { GridSizeProps } from '../GridItem'
-import type { GridProps } from '../Grid'
-import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
 
 type GridSpacing = GridProps['spacing']

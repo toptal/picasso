@@ -6,13 +6,17 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { SPACING_4 } from '@toptal/picasso-utils'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { ButtonCircular , Button , ButtonSplit } from '@toptal/picasso-button'
-import { CloseMinor16, Exclamation16, Done16, Info16 } from '@toptal/picasso-icons'
+import { ButtonCircular, Button, ButtonSplit } from '@toptal/picasso-button'
+import {
+  CloseMinor16,
+  Exclamation16,
+  Done16,
+  Info16,
+} from '@toptal/picasso-icons'
+import type { VariantType as ContainerVariants } from '@toptal/picasso-container'
+import type { ButtonSplitProps, ButtonProps } from '@toptal/picasso-button'
 
 import styles from './styles'
-import type { VariantType as ContainerVariants } from '../Container'
-import type { ButtonSplitProps } from '../ButtonSplit'
-import type { ButtonProps } from '../Button'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',

@@ -1,7 +1,6 @@
 import cx from 'classnames'
 import type { SizeType, ColorType } from '@toptal/picasso-shared'
-
-import kebabToCamelCase from '../../../utils/kebab-to-camel-case'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
 
 export type TypographyOptions = {
   variant: 'heading' | 'body'

@@ -4,8 +4,8 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@toptal/picasso-typography'
 import { Bullet16, CheckMinor16, CloseMinor16 } from '@toptal/picasso-icons'
+import { GridCompound as Grid } from '@toptal/picasso-grid'
 
-import { GridCompound as Grid } from '../GridCompound'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

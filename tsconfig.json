@@ -328,12 +328,6 @@
       "@toptal/picasso-typography-overflow/*": [
         "packages/base/TypographyOverflow/src/*"
       ],
-      "@toptal/picasso-form-auto-save-indicator": [
-        "packages/base/FormAutoSaveIndicator/src"
-      ],
-      "@toptal/picasso-form-auto-save-indicator/*": [
-        "packages/base/FormAutoSaveIndicator/src/*"
-      ],
       "@toptal/picasso-helpbox": [
         "packages/base/Helpbox/src"
       ],
@@ -520,12 +514,18 @@
       "@toptal/picasso-timeline/*": [
         "packages/base/Timeline/src/*"
       ],
-      "@toptal/picasso-test--utils": [
+      "@toptal/picasso-test-utils": [
         "packages/base/Test-Utils/src"
       ],
-      "@toptal/picasso-test--utils/*": [
+      "@toptal/picasso-test-utils/*": [
         "packages/base/Test-Utils/src/*"
-      ]
+      ],
+      "@toptal/picasso-image": [
+        "packages/base/Image/src"
+      ],
+      "@toptal/picasso-image/*": [
+        "packages/base/Image/src/*"
+      ],
     },
     "types": [
       "node",
@@ -534,7 +534,8 @@
     ]
   },
   "include": [
-    "packages/*/src"
+    "packages/*/src",
+    "packages/base/*/src"
   ],
   "exclude": [
     "packages/*/dist-package",

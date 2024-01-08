@@ -29,6 +29,7 @@ export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListene
 
 export { capitalize } from './capitalize'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
+export { type FeatureOptions } from './disable-unsupported-props'
 export { forwardRef, documentable } from './forward-ref'
 export { default as getNameInitials } from './get-name-initials'
 export { default as isBoolean } from './is-boolean'
@@ -47,9 +48,14 @@ export { default as useWidthOf } from './use-width-of'
 export { default as loaderPalette } from './loader-palette'
 export { default as unsafeErrorLog } from './unsafe-error-log'
 export { default as useBoolean } from './useBoolean/use-boolean'
+export { default as useInterval } from './useInterval'
+export { default as useOnScreen } from './useOnScreen'
+export { default as useMouseEnter } from './useMouseEnter'
 export { default as sum } from './sum'
 export type { ReferenceObject } from './use-width-of'
 export { default as useMultipleForwardRefs } from './use-multiple-forward-refs'
+export { usePageScrollLock } from './use-page-scroll-lock'
+export { AVATAR_INITIALS_LIMIT } from './constants'
 
 export const Transitions = TransitionUtils
 
@@ -61,6 +67,13 @@ export { formatAmount, DEFAULT_CURRENCY, DEFAULT_LOCALE } from './Formatters'
 
 export type { FormatAmount } from './Formatters'
 export * from './get-react-node-text-content'
+
+export * from './Colors'
+export * from './Formatters'
+export * from './Gradients'
+export * from './Modal'
+export * from './Notifications'
+export * from './Transitions'
 
 export {
   useDeprecationWarning,

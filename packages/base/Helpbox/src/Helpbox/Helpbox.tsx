@@ -7,8 +7,8 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
+import type { VariantType as ContainerVariantType } from '@toptal/picasso-container'
 
-import type { VariantType as ContainerVariantType } from '../Container'
 import styles from './styles'
 import HelpboxContext from './HelpboxContext'
 

@@ -5,8 +5,7 @@ import {
   DEFAULT_LOCALE,
   DEFAULT_CURRENCY,
 } from '@toptal/picasso-utils'
-
-import type { TypographyProps } from '../Typography'
+import type { TypographyProps } from '@toptal/picasso-typography'
 
 export interface Props extends TypographyProps {
   /** The amount to be formatted */

@@ -1,1 +1,1 @@
-export { default } from './EmptyStateCollection'
+export { default as EmptyStateCollection } from './EmptyStateCollection'

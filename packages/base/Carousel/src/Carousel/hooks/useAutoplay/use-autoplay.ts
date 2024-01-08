@@ -1,6 +1,4 @@
-import useInterval from '../../../utils/useInterval'
-import useOnScreen from '../../../utils/useOnScreen'
-import useMouseEnter from '../../../utils/useMouseEnter'
+import { useInterval, useOnScreen, useMouseEnter } from '@toptal/picasso-utils'
 
 type Props = {
   wrapperRef: React.RefObject<HTMLDivElement>

@@ -12,16 +12,25 @@ import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
-import { disableUnsupportedProps , usePropDeprecationWarning } from '@toptal/picasso-utils'
+import {
+  disableUnsupportedProps,
+  usePropDeprecationWarning,
+} from '@toptal/picasso-utils'
 import type { FeatureOptions } from '@toptal/picasso-utils'
-import { InputLimitAdornment , InputIconAdornment , InputValidIconAdornment } from '@toptal/picasso-input-adornment'
+import {
+  InputLimitAdornment,
+  InputIconAdornment,
+  InputValidIconAdornment,
+} from '@toptal/picasso-input-adornment'
 import { Container } from '@toptal/picasso-container'
+import type {
+  InputLimitAdornmentProps,
+  InputIconAdornmentProps,
+} from '@toptal/picasso-input-adornment'
+import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import styles from './styles'
-import type { InputLimitAdornmentProps } from '../InputLimitAdornment'
-import type { InputIconAdornmentProps } from '../InputIconAdornment'
-import type { BaseInputProps, Status } from '../OutlinedInput'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends BaseProps,

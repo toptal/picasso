@@ -9,9 +9,12 @@ import React from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
-import { useIsomorphicLayoutEffect , usePageScrollLock } from '@toptal/picasso-utils'
+import {
+  useIsomorphicLayoutEffect,
+  usePageScrollLock,
+} from '@toptal/picasso-utils'
 
-import DrawerTitle from '../DrawerTitle'
+import { DrawerTitle } from '../DrawerTitle'
 import styles from './styles'
 
 type AnchorType = 'bottom' | 'left' | 'right' | 'top'

@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
 import { Tag } from '@toptal/picasso-tag'
-
-import type { Props as TagProps } from '../Tag/Tag'
+import type { TagProps } from '@toptal/picasso-tag'
 
 export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(
   function TagSelectorLabel(props, ref) {

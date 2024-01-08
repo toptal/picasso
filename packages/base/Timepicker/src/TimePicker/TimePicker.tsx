@@ -8,10 +8,10 @@ import cx from 'classnames'
 import { Input } from '@toptal/picasso-input'
 import { Time16 } from '@toptal/picasso-icons'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
+import type { InputProps } from '@toptal/picasso-input'
+import type { Status } from '@toptal/picasso-outlined-input'
 
 import styles from './styles'
-import type { InputProps } from '../Input'
-import type { Status } from '../OutlinedInput'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTimePicker',

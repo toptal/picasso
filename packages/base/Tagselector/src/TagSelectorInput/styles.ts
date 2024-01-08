@@ -1,8 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
-
-import highlightAutofillStyles from '../InputBase/highlight-styles'
+import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export const TAG_SELECTOR_INPUT_GUTTER_SIZE = rem('4px')
 const END_ADORNMENT_PADDING = '0.625em'

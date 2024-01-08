@@ -8,9 +8,9 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 
 import styles from './styles'
-import CarouselGradient from '../CarouselGradient'
+import { CarouselGradient } from '../CarouselGradient'
 import useCarousel from './hooks/useCarousel'
-import CarouselNavigation from '../CarouselNavigation'
+import { CarouselNavigation } from '../CarouselNavigation'
 
 const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 

@@ -6,8 +6,7 @@ import type {
 } from 'react'
 import type PopperJs from 'popper.js'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-
-import type { OutlinedInputProps, Status } from '../OutlinedInput'
+import type { OutlinedInputProps, Status } from '@toptal/picasso-outlined-input'
 
 /**
  * Select props are generalized over possible values in the component and whether

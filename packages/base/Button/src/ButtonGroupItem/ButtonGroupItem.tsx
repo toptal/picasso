@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 
 import type { ButtonProps } from '../Button'
-import Button from '../Button'
+import { Button } from '../Button'
 import styles from './styles'
 
 const useStyles = makeStyles<Theme>(styles, {

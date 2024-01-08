@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 
-import TimelineRow from '../TimelineRow'
+import { TimelineRow } from '../TimelineRow'
 import styles from './styles'
 
 export type Props = BaseProps & {

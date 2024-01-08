@@ -1,1 +1,1 @@
-export { default } from './TableSectionHead'
+export { default as TableSectionHead } from './TableSectionHead'

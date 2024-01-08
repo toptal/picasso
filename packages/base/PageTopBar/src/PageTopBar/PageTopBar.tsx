@@ -13,13 +13,14 @@ import { Logo } from '@toptal/picasso-logo'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { PageContext } from '@toptal/picasso-page'
+import type { PageContextProps } from '@toptal/picasso-page'
 
-import PageHamburger, {
+import {
+  PageHamburger,
   PageHamburgerPortal,
   useHamburgerContext,
 } from '../PageHamburger'
-import { PageContext } from '../Page'
-import type { PageContextProps } from '../Page/types'
 import styles from './styles'
 
 type VariantType = 'dark' | 'light' | 'grey'

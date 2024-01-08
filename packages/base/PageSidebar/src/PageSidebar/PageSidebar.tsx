@@ -9,15 +9,15 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
 import { BackMinor16, ChevronRight16 } from '@toptal/picasso-icons'
 import { noop } from '@toptal/picasso-utils'
-
 import {
   PageHamburgerPortal,
   useHamburgerContext,
   useRegisterMenu,
-} from '../PageHamburger'
-import SidebarItem from '../SidebarItem'
-import SidebarLogo from '../SidebarLogo'
-import SidebarMenu from '../SidebarMenu'
+} from '@toptal/picasso-page-top-bar'
+
+import { SidebarItem } from '../SidebarItem'
+import { SidebarLogo } from '../SidebarLogo'
+import { SidebarMenu } from '../SidebarMenu'
 import { SidebarContextProvider } from './SidebarContextProvider'
 import styles from './styles'
 import type { VariantType } from './types'

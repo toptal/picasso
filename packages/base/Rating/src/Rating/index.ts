@@ -1,10 +1,10 @@
-import Stars from '../RatingStars'
-import Thumbs from '../RatingThumbs'
+import { RatingStars as Stars } from '../RatingStars'
+import { RatingThumbs as Thumbs } from '../RatingThumbs'
 
 export type { RatingStarsProps } from '../RatingStars'
 export type { RatingThumbsProps } from '../RatingThumbs'
 
-export default {
+export const Rating = {
   Stars,
   Thumbs,
 }

@@ -6,12 +6,12 @@ import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import { SvgEye16 , SvgEyeHidden16 } from '@toptal/picasso-icons'
+import { Eye16, EyeHidden16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
+import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
 
 import styles from './styles'
-import type { Props as OutlinedInputProps } from '../OutlinedInput'
 
 export interface Props
   extends Omit<
@@ -80,7 +80,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         <ButtonCircular
           className={classes.toggle}
           variant='flat'
-          icon={showPassword ? <SvgEye16 /> : <SvgEyeHidden16 />}
+          icon={showPassword ? <Eye16 /> : <EyeHidden16 />}
           onClick={handleToggleVisibilityClick}
           data-testid={testIds?.toggle}
           disabled={disabled}

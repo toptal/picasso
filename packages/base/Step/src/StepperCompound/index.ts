@@ -1,5 +1,5 @@
-import Stepper from '../Stepper'
-import StepperVertical from '../StepperVertical'
+import { Stepper } from '../Stepper'
+import { StepperVertical } from '../StepperVertical'
 
 export const StepperCompound = Object.assign(Stepper, {
   Vertical: StepperVertical,

@@ -1,7 +1,7 @@
 {
-  "name": "@toptal/picasso-form-auto-save-indicator",
+  "name": "@toptal/picasso-image",
   "version": "1.0.0",
-  "description": "Toptal UI components library - FormAutoSaveIndicator",
+  "description": "Toptal UI components library - Image",
   "publishConfig": {
     "access": "public",
     "directory": "dist-package"
@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-container": "1.0.0",
-    "@toptal/picasso-typography": "1.0.0",
-    "debounce": "^1.2.1",
     "classnames": "^2.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.1.2"
   },
   "sideEffects": [
     "**/styles.ts",

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 
-import RatingIcon from '../RatingIcon'
+import { RatingIcon } from '../RatingIcon'
 import styles from './styles'
 
 export interface Props extends BaseProps {

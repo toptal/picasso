@@ -6,12 +6,15 @@ import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import { useCombinedRefs , usePropDeprecationWarning } from '@toptal/picasso-utils'
+import {
+  useCombinedRefs,
+  usePropDeprecationWarning,
+} from '@toptal/picasso-utils'
+import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import styles from './styles'
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
-import type { Props as OutlinedInputProps } from '../OutlinedInput'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props
   extends Omit<

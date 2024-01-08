@@ -5,7 +5,7 @@ import cx from 'classnames'
 import { InputAdornment } from '@material-ui/core'
 
 import styles from './styles'
-import InputMultilineAdornment from '../InputMultilineAdornment'
+import { InputMultilineAdornment } from '../InputMultilineAdornment'
 
 type CounterType = 'remaining' | 'entered'
 

@@ -3,7 +3,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Loader } from '@toptal/picasso-loader'
 
-import SelectOptions from '../SelectOptions'
+import { SelectOptions } from '../SelectOptions'
 
 interface Props extends BaseProps {}
 

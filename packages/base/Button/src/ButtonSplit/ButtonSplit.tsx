@@ -8,8 +8,8 @@ import { ArrowDownMinor24, ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { Dropdown } from '@toptal/picasso-dropdown'
 
 import type { ButtonProps } from '../Button'
-import Button from '../Button'
-import ButtonGroup from '../ButtonGroup'
+import { Button } from '../Button'
+import { ButtonGroup } from '../ButtonGroup'
 import styles from './styles'
 
 export interface Props

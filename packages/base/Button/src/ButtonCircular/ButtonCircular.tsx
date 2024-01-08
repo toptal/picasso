@@ -10,7 +10,7 @@ import type {
 } from '@toptal/picasso-shared'
 import { kebabToCamelCase } from '@toptal/picasso-utils'
 
-import Button from '../Button'
+import { Button } from '../Button'
 import styles from './styles'
 
 export type VariantType = 'primary' | 'flat' | 'transparent'

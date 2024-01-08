@@ -1,11 +1,12 @@
 import type { Theme } from '@material-ui/core/styles'
+// eslint-disable-next-line import/order
 import { createStyles } from '@material-ui/core/styles'
 
 import '../InputLabel/styles'
 import '../InputBase/styles'
 import '../Input/styles'
 import '../Loader/styles'
-import highlightAutofillStyles from '../InputBase/highlight-styles'
+import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export default (theme: Theme) => {
   const { palette } = theme

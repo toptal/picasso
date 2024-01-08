@@ -1,4 +1,4 @@
-import type { DateOrDateRangeType } from '../Calendar'
+import type { DateOrDateRangeType } from '@toptal/picasso-calendar'
 
 export type DatePickerValue = DateOrDateRangeType | null
 

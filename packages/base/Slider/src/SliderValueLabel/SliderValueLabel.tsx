@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import type { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core/Slider'
 import { Tooltip } from '@toptal/picasso-tooltip'
 
-import { useSliderContext } from '../Slider/SliderContext'
+import { useSliderContext } from '../Slider'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
