@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagSelector disabled render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="PicassoContainer-flex"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        >
+          <div
+            aria-disabled="true"
+            class="MuiChip-root PicassoLabel-root PicassoLabel-disabled MuiChip-deletable"
+            role="button"
+            tabindex="0"
+          >
+            <span
+              class="MuiChip-label PicassoLabel-label"
+            >
+              <span
+                class="PicassoLabel-innerLabel"
+              >
+                Afghanistan
+              </span>
+            </span>
+            <span
+              aria-label="delete icon"
+              class="PicassoLabel-deleteIcon MuiChip-deleteIcon"
+              role="button"
+            >
+              <svg
+                class="PicassoSvgCloseMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
+                />
+              </svg>
+            </span>
+          </div>
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            disabled=""
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TagSelector preselected value 1`] = `
+<body>
+  <div>
+    <div
+      class="Picasso-root"
+    >
+      <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+        role="combobox"
+      >
+        <div
+          class="PicassoContainer-flex"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          >
+            <div
+              class="MuiChip-root PicassoLabel-root MuiChip-deletable"
+              role="button"
+              tabindex="0"
+            >
+              <span
+                class="MuiChip-label PicassoLabel-label"
+              >
+                <span
+                  class="PicassoLabel-innerLabel"
+                >
+                  Afghanistan
+                </span>
+              </span>
+              <span
+                aria-label="delete icon"
+                class="PicassoLabel-deleteIcon MuiChip-deleteIcon"
+                role="button"
+              >
+                <svg
+                  class="PicassoSvgCloseMinor16-root"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
+                  />
+                </svg>
+              </span>
+            </div>
+            <input
+              aria-autocomplete="list"
+              aria-invalid="false"
+              autocomplete="off"
+              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
+              style="padding-left: 8px;"
+            >
+              <legend
+                class="PrivateNotchedOutline-legend"
+                style="width: 0.01px;"
+              >
+                <span>
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div
+          role="listbox"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`TagSelector renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+      role="combobox"
+    >
+      <div
+        class="PicassoContainer-flex"
+      >
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+        >
+          <input
+            aria-autocomplete="list"
+            aria-invalid="false"
+            autocomplete="off"
+            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            placeholder="Please select..."
+            type="text"
+            value=""
+          />
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
+            style="padding-left: 8px;"
+          >
+            <legend
+              class="PrivateNotchedOutline-legend"
+              style="width: 0.01px;"
+            >
+              <span>
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        role="listbox"
+      />
+    </div>
+  </div>
+</div>
+`;

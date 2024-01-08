@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Misc / 16 / Multi</title>
+    <defs>
+        <path d="M12,7 L15.4641016,9 L15.4641016,13 L12,15 L8.53589838,13 L8.53589838,9 L12,7 Z M4,7 L7.46410162,9 L7.46410162,13 L4,15 L0.535898385,13 L0.535898385,9 L4,7 Z M12,8.155 L9.535,9.577 L9.535,12.422 L12,13.844 L14.464,12.422 L14.464,9.577 L12,8.155 Z M4,8.155 L1.535,9.577 L1.535,12.422 L4,13.844 L6.464,12.422 L6.464,9.577 L4,8.155 Z M8,0 L11.4641016,2 L11.4641016,6 L8,8 L4.53589838,6 L4.53589838,2 L8,0 Z M8,1.155 L5.535,2.577 L5.535,5.422 L8,6.844 L10.464,5.422 L10.464,2.577 L8,1.155 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons-/-Misc-/-16-/-Multi" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#979797" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="Colors-/-305-Dark-Gray" mask="url(#mask-2)" fill="#455065">
+            <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+        </g>
+    </g>
+</svg>

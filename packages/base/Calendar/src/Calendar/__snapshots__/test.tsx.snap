@@ -1,0 +1,763 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calendar renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      tabindex="0"
+    >
+      <div
+        class="PicassoCalendarContainer-root"
+      >
+        <div
+          class="rdp calendar-month"
+        >
+          <div>
+            <div
+              class="rdp-month rdp-caption_start rdp-caption_end"
+            >
+              <div
+                class="PicassoContainer-bottommediumMargin PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+              >
+                <button
+                  aria-label="Previous month"
+                  class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+                  data-component-type="button"
+                  tabindex="0"
+                  title="Previous month"
+                  type="button"
+                >
+                  <span
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                  >
+                    <svg
+                      class="PicassoSvgBackMinor24-root PicassoButton-icon"
+                      style="min-width: 24px; min-height: 24px;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="m14.997 5.29.707.707-6 6 6 6-.707.707-6.707-6.707.707-.707 6-6Z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+                <h3
+                  aria-atomic="true"
+                  aria-live="polite"
+                  class="MuiTypography-root PicassoTypography-headingMedium MuiTypography-h3"
+                >
+                  December 2019
+                </h3>
+                <button
+                  aria-label="Next month"
+                  class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+                  data-component-type="button"
+                  tabindex="0"
+                  title="Next month"
+                  type="button"
+                >
+                  <span
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                  >
+                    <svg
+                      class="PicassoSvgChevronMinor24-root PicassoButton-icon"
+                      style="min-width: 24px; min-height: 24px;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="m8.997 5.29 6.707 6.707-.707.707-6 6-.707-.707 6-6-6-6 .707-.707Z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <table
+                aria-labelledby="react-day-picker-1"
+                class="PicassoCalendar-table"
+                role="grid"
+              >
+                <thead
+                  class="PicassoCalendar-head"
+                >
+                  <tr
+                    class="PicassoCalendar-head_row-5"
+                  >
+                    <th
+                      aria-label="Monday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Mon
+                    </th>
+                    <th
+                      aria-label="Tuesday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Tue
+                    </th>
+                    <th
+                      aria-label="Wednesday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Wed
+                    </th>
+                    <th
+                      aria-label="Thursday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Thu
+                    </th>
+                    <th
+                      aria-label="Friday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Fri
+                    </th>
+                    <th
+                      aria-label="Saturday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Sat
+                    </th>
+                    <th
+                      aria-label="Sunday"
+                      class="PicassoCalendar-head_cell-6"
+                      scope="col"
+                    >
+                      Sun
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="rdp-tbody"
+                  role="rowgroup"
+                >
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-25"
+                        data-testid="day-button-25"
+                        type="button"
+                        value="Mon Nov 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        25
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-26"
+                        data-testid="day-button-26"
+                        type="button"
+                        value="Tue Nov 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        26
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-27"
+                        data-testid="day-button-27"
+                        type="button"
+                        value="Wed Nov 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        27
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-28"
+                        data-testid="day-button-28"
+                        type="button"
+                        value="Thu Nov 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        28
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-29"
+                        data-testid="day-button-29"
+                        type="button"
+                        value="Fri Nov 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        29
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
+                        data-calendar-day="2019-11-30"
+                        data-testid="day-button-30"
+                        type="button"
+                        value="Sat Nov 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        30
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-01"
+                        data-testid="day-button-1"
+                        type="button"
+                        value="Sun Dec 01 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        1
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-02"
+                        data-testid="day-button-2"
+                        type="button"
+                        value="Mon Dec 02 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        2
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-03"
+                        data-testid="day-button-3"
+                        type="button"
+                        value="Tue Dec 03 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        3
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-04"
+                        data-testid="day-button-4"
+                        type="button"
+                        value="Wed Dec 04 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        4
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-05"
+                        data-testid="day-button-5"
+                        type="button"
+                        value="Thu Dec 05 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        5
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-06"
+                        data-testid="day-button-6"
+                        type="button"
+                        value="Fri Dec 06 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        6
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-07"
+                        data-testid="day-button-7"
+                        type="button"
+                        value="Sat Dec 07 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        7
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-08"
+                        data-testid="day-button-8"
+                        type="button"
+                        value="Sun Dec 08 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        8
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-09"
+                        data-testid="day-button-9"
+                        type="button"
+                        value="Mon Dec 09 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        9
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-10"
+                        data-testid="day-button-10"
+                        type="button"
+                        value="Tue Dec 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        10
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-11"
+                        data-testid="day-button-11"
+                        type="button"
+                        value="Wed Dec 11 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        11
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-selected"
+                        data-calendar-day="2019-12-12"
+                        data-testid="day-button-selected"
+                        type="button"
+                        value="Thu Dec 12 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        12
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-13"
+                        data-testid="day-button-13"
+                        type="button"
+                        value="Fri Dec 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        13
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-14"
+                        data-testid="day-button-14"
+                        type="button"
+                        value="Sat Dec 14 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        14
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-15"
+                        data-testid="day-button-15"
+                        type="button"
+                        value="Sun Dec 15 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        15
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-16"
+                        data-testid="day-button-16"
+                        type="button"
+                        value="Mon Dec 16 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        16
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-17"
+                        data-testid="day-button-17"
+                        type="button"
+                        value="Tue Dec 17 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        17
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-18"
+                        data-testid="day-button-18"
+                        type="button"
+                        value="Wed Dec 18 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        18
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-19"
+                        data-testid="day-button-19"
+                        type="button"
+                        value="Thu Dec 19 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        19
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-20"
+                        data-testid="day-button-20"
+                        type="button"
+                        value="Fri Dec 20 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        20
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-21"
+                        data-testid="day-button-21"
+                        type="button"
+                        value="Sat Dec 21 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        21
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-22"
+                        data-testid="day-button-22"
+                        type="button"
+                        value="Sun Dec 22 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        22
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-23"
+                        data-testid="day-button-23"
+                        type="button"
+                        value="Mon Dec 23 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        23
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-24"
+                        data-testid="day-button-24"
+                        type="button"
+                        value="Tue Dec 24 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        24
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-25"
+                        data-testid="day-button-25"
+                        type="button"
+                        value="Wed Dec 25 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        25
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-26"
+                        data-testid="day-button-26"
+                        type="button"
+                        value="Thu Dec 26 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        26
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-27"
+                        data-testid="day-button-27"
+                        type="button"
+                        value="Fri Dec 27 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        27
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-28"
+                        data-testid="day-button-28"
+                        type="button"
+                        value="Sat Dec 28 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        28
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend"
+                        data-calendar-day="2019-12-29"
+                        data-testid="day-button-29"
+                        type="button"
+                        value="Sun Dec 29 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        29
+                      </button>
+                    </td>
+                  </tr>
+                  <tr
+                    class="PicassoCalendar-row"
+                  >
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-30"
+                        data-testid="day-button-30"
+                        type="button"
+                        value="Mon Dec 30 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        30
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day"
+                        data-calendar-day="2019-12-31"
+                        data-testid="day-button-31"
+                        type="button"
+                        value="Tue Dec 31 2019 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        31
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-01"
+                        data-testid="day-button-1"
+                        type="button"
+                        value="Wed Jan 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        1
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-02"
+                        data-testid="day-button-2"
+                        type="button"
+                        value="Thu Jan 02 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        2
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-03"
+                        data-testid="day-button-3"
+                        type="button"
+                        value="Fri Jan 03 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        3
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-04"
+                        data-testid="day-button-4"
+                        type="button"
+                        value="Sat Jan 04 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        4
+                      </button>
+                    </td>
+                    <td
+                      class="PicassoCalendar-cell"
+                      role="presentation"
+                    >
+                      <button
+                        class="PicassoCalendar-day PicassoCalendar-weekend PicassoCalendar-grayed"
+                        data-calendar-day="2020-01-05"
+                        data-testid="day-button-5"
+                        type="button"
+                        value="Sun Jan 05 2020 00:00:00 GMT+0000 (Coordinated Universal Time)"
+                      >
+                        5
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

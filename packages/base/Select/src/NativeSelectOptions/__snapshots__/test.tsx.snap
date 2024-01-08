@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NativeSelectOptions renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <option
+      value="1"
+    >
+      One
+    </option>
+    <option
+      value="2"
+    >
+      Two
+    </option>
+    <option
+      value="3"
+    >
+      Three
+    </option>
+  </div>
+</div>
+`;

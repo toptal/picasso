@@ -1,0 +1,371 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Radio Radio.Group renders radio in a grid group 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiFormGroup-root"
+      role="radiogroup"
+    >
+      <div
+        class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
+      >
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+1"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+1
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+2"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+2
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+3"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+3
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+4"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+4
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+5"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+5
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+6"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+6
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio Radio.Group renders radio in group 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiFormGroup-root"
+      role="radiogroup"
+    >
+      <div
+        class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
+      >
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+1"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+1
+              </span>
+            </span>
+          </label>
+        </div>
+        <div
+          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
+        >
+          <label
+            class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+          >
+            <span
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root Radio-withLabel"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <input
+                  class="PrivateSwitchBase-input"
+                  name="my-group"
+                  type="radio"
+                  value="VALUE+2"
+                />
+                <div
+                  class="Radio-uncheckedIcon"
+                />
+              </span>
+            </span>
+            <span
+              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+            >
+              <span
+                class="PicassoFormLabel-medium"
+              >
+                LABEL+2
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Radio disabled radio button renders disabled version 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="true"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root PrivateSwitchBase-disabled Mui-disabled Radio-disabled Mui-disabled Mui-disabled"
+      tabindex="-1"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input"
+          disabled=""
+          type="radio"
+          value=""
+        />
+        <div
+          class="Radio-uncheckedIcon"
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Radio radio button renders default radio button 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiRadio-root Radio-root"
+    >
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input"
+          type="radio"
+          value=""
+        />
+        <div
+          class="Radio-uncheckedIcon"
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useAdornments returns end adornment 1`] = `
+<InputAdornment
+  disablePointerEvents={true}
+  position="end"
+>
+  test
+</InputAdornment>
+`;
+
+exports[`useAdornments returns loading adornment 1`] = `
+<InputAdornment
+  disablePointerEvents={true}
+  position="end"
+>
+  <Loader
+    inline={false}
+    size="small"
+    variant="blue"
+  />
+</InputAdornment>
+`;
+
+exports[`useAdornments returns start adornment 1`] = `
+<InputAdornment
+  disablePointerEvents={true}
+  position="start"
+>
+  test
+</InputAdornment>
+`;
+
+exports[`useAdornments returns start adornment when loading 1`] = `
+Array [
+  <InputAdornment
+    disablePointerEvents={true}
+    position="start"
+  >
+    test
+  </InputAdornment>,
+  <InputAdornment
+    disablePointerEvents={true}
+    position="end"
+  >
+    <Loader
+      inline={false}
+      size="small"
+      variant="blue"
+    />
+  </InputAdornment>,
+]
+`;

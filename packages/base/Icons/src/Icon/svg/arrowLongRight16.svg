@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Icons / Arrows / 16 / Arrow Long Right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10.5,12.2071068 L9.79289322,11.5 L12.293,8.99989322 L2,9 L2,8 L12.293,7.99989322 L9.79289322,5.5 L10.5,4.79289322 L14.2071068,8.5 L10.5,12.2071068 Z" id="path-1"></path>
+    </defs>
+    <g id="Icons-/-Arrows-/-16-/-Arrow-Long-Right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#455065" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="Colors-/-305-Dark-Gray" mask="url(#mask-2)" fill="#455065">
+            <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+        </g>
+    </g>
+</svg>

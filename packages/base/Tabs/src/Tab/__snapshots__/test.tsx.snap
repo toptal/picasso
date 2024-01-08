@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab Tab disabled tab 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit Mui-disabled Mui-disabled"
+      disabled=""
+      role="tab"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="MuiTab-wrapper PicassoTab-wrapper"
+      >
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+        >
+          Tab Label
+        </div>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Tab Tab renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
+      role="tab"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiTab-wrapper PicassoTab-wrapper"
+      >
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+        >
+          Tab Label
+        </div>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Tab Tab tab with icon 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit MuiTab-labelIcon"
+      role="tab"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiTab-wrapper PicassoTab-wrapper"
+      >
+        <div
+          id="Icon"
+        />
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-inherit PicassoTypography-semibold MuiTypography-body1"
+        >
+          Tab Label
+        </div>
+      </span>
+    </button>
+  </div>
+</div>
+`;

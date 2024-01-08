@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 57.1 (101010) - https://sketch.com -->
+    <title>1816660f-e5b2-4af8-bd87-fd4f7983e11e@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M18.0071068,8.3 L18.7142136,9.00710678 L12.7142136,15.0071068 L12.0071068,15.7142136 L11.3,15.0071068 L5.3,9.00710678 L6.00710678,8.3 L12.007,14.3 L18.0071068,8.3 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-General-/-24-/-Arrow-Down-Minor">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-305-Dark-Grey" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

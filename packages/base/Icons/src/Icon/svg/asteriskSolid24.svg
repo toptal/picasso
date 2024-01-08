@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>E14908F8-B04C-409D-9EF5-57C29359BF92@1x</title>
+    <defs>
+        <path d="M14,1 L13.9997206,8.535 L20.5262794,4.76794919 L22.5262794,8.23205081 L16.0007206,11.999 L22.5262794,15.7679492 L20.5262794,19.2320508 L13.9997206,15.464 L14,23 L10,23 L9.99972056,15.464 L3.47372056,19.2320508 L1.47372056,15.7679492 L7.99872056,12 L1.47372056,8.23205081 L3.47372056,4.76794919 L9.99972056,8.535 L10,1 L14,1 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Misc-/-24-/-Asterisk-Solid">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#D8D8D8" xlink:href="#path-1"></use>
+            <g id="Group" mask="url(#mask-2)" fill="#455065">
+                <g id="Colors-/-307-Gray-Dark">
+                    <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

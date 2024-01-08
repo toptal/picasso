@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormField renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoFormField-root"
+      data-field-has-error="false"
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;

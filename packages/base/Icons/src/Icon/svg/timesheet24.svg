@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons / Documents / 24 / Timesheet</title>
+    <defs>
+        <path d="M5,6 L5,7 L1,7 L1,23 L22,23 L22,7 L18,7 L18,6 L23,6 L23,24 L0,24 L0,6 L5,6 Z M14,18 L14,19 L5,19 L5,18 L14,18 Z M18,18 L18,19 L16,19 L16,18 L18,18 Z M14,14 L14,15 L5,15 L5,14 L14,14 Z M18,14 L18,15 L16,15 L16,14 L18,14 Z M11.5,0 C14.5375661,0 17,2.46243388 17,5.5 C17,8.53756612 14.5375661,11 11.5,11 C8.46243388,11 6,8.53756612 6,5.5 C6,2.46243388 8.46243388,0 11.5,0 Z M11.5,1 C9.01471863,1 7,3.01471863 7,5.5 C7,7.98528137 9.01471863,10 11.5,10 C13.9852814,10 16,7.98528137 16,5.5 C16,3.01471863 13.9852814,1 11.5,1 Z M12,2 L12,6 L9,6 L9,5 L11,5 L11,2 L12,2 Z" id="path-1"></path>
+    </defs>
+    <g id="Onboarding-Plan" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Job-Updates" transform="translate(-332.000000, -211.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="1440" height="1054"></rect>
+            <g id="Content" transform="translate(332.000000, 208.000000)">
+                <g id="Group" transform="translate(0.000000, 3.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g mask="url(#mask-2)" fill="#455065" id="Colors-/-305-Gray-Dark">
+                        <g>
+                            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

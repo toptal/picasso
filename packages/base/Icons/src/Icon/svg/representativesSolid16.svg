@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Icons / Documents / 16 / Bookmark / Filled</title>
+  <defs>
+    <polygon id="path-1" points="2 0 2 16 8 11.9953613 14 16 14 0"></polygon>
+  </defs>
+  <g id="[1-stage]--No-calendar-preview" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="2.0-–-Topscheduler-Settings-–-2-Cal-Connected" transform="translate(-757.000000, -872.000000)">
+      <g id="Icons-/-Documents-/-16-/-Bookmark-/-Filled" transform="translate(757.000000, 872.000000)">
+        <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+        <mask id="mask-2" fill="white">
+          <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="Group" mask="url(#mask-2)" fill="#455065">
+          <g id="Colors-/-307-Gray-Dark">
+            <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

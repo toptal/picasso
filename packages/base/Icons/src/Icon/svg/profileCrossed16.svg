@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 64 (101010) - https://sketch.com -->
+    <title>c2d557a1-becd-44ec-9881-9a854b3001a9@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M12.9968932,5.126 L13,5 C13,6.90796618 11.9313214,8.56632908 10.3598925,9.40916034 C12.9827192,10.3467262 14.8820014,12.8067646 14.994701,15.7250962 L15,16 L14,16 C14,12.7269732 11.3792617,10.0660526 8.12175757,10.0012108 L9.36352571,8.76158353 C10.4757824,8.3583202 11.3583202,7.47578239 11.7615835,6.36352571 L12.9968932,5.126 Z M14.5,0.792893219 L15.2071068,1.5 L1.5,15.2071068 L0.792893219,14.5 L14.5,0.792893219 Z M8,0 C9.60548942,0 11.0342433,0.756694674 11.949074,1.93289626 L11.2353709,2.6474218 C10.5080831,1.64894102 9.32982569,1 8,1 C5.790861,1 4,2.790861 4,5 C4,6.32982569 4.64894102,7.50808308 5.6474218,8.2353709 L4.93367465,8.94868958 C3.75696973,8.03476263 3,6.60578119 3,5 C3,2.23857625 5.23857625,0 8,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-People-/-16-/-Removed-User">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-305-Dark-Gray" mask="url(#mask-2)" fill="#455065">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

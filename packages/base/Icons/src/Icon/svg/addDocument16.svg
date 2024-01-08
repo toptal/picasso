@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>FB168ABF-E777-444B-B0A9-5C25BBCD26E5@1x</title>
+  <defs>
+    <path d="M13,0 L13,8 L12,8 L12,1 L1,1 L1,15 L8,15 L8,16 L0,16 L0,0 L13,0 Z M13,11 L13,13 L15,13 L15,14 L13,14 L13,16 L12,16 L12,14 L10,14 L10,13 L12,13 L12,11 L13,11 Z M6,8 L6,9 L3,9 L3,8 L6,8 Z M10,6 L10,7 L3,7 L3,6 L10,6 Z M10,4 L10,5 L3,5 L3,4 L10,4 Z" id="path-1"></path>
+  </defs>
+  <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icons-/-Documents-/-16-/-Add-Document">
+      <mask id="mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+      </mask>
+      <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+      <g id="Group" mask="url(#mask-2)" fill="#455065">
+        <g id="Colors-/-307-Gray-Dark">
+          <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

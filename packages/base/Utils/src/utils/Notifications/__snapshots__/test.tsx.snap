@@ -1,0 +1,358 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useNotifications error notification render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Error
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Info
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Success
+      </span>
+    </button>
+    <div
+      class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
+    >
+      <div
+        class="MuiCollapse-root MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              class="SnackbarItem-root SnackbarItem-wrappedRoot SnackbarItem-anchorOriginTopRight"
+            >
+              <div
+                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-roundedBorders Notification-notification PicassoNotification-formNotification MuiPaper-elevation6"
+                role="alert"
+                style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
+              >
+                <div
+                  class="MuiSnackbarContent-message"
+                >
+                  <div
+                    class="PicassoContainer-flex"
+                  >
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                    >
+                      <svg
+                        class="PicassoSvgExclamationSolid24-root PicassoSvgExclamationSolid24-red"
+                        style="min-width: 24px; min-height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-10a1 1 0 0 0-1 1v7a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1Z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
+                    >
+                      Error message
+                    </div>
+                    <button
+                      class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
+                      data-component-type="button"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <span
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                      >
+                        <svg
+                          class="PicassoSvgCloseMinor16-root PicassoButton-icon Notification-closeIcon"
+                          style="min-width: 16px; min-height: 16px;"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`useNotifications info notification render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Error
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Info
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Success
+      </span>
+    </button>
+    <div
+      class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
+    >
+      <div
+        class="MuiCollapse-root MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              class="SnackbarItem-root SnackbarItem-wrappedRoot SnackbarItem-anchorOriginTopRight"
+            >
+              <div
+                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-roundedBorders Notification-notification PicassoNotification-generalNotification MuiPaper-elevation6"
+                role="alert"
+                style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
+              >
+                <div
+                  class="MuiSnackbarContent-message"
+                >
+                  <div
+                    class="PicassoContainer-flex"
+                  >
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                    >
+                      <svg
+                        class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
+                        fill="none"
+                        style="min-width: 24px; min-height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M11.5 22C17.299 22 22 17.299 22 11.5S17.299 1 11.5 1 1 5.701 1 11.5 5.701 22 11.5 22Zm0-1a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM12 9v7h1v1h-3v-1h1v-6h-1V9h2Zm0-2V6h-1v1h1Z"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
+                    >
+                      Info message
+                    </div>
+                    <button
+                      class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
+                      data-component-type="button"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <span
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                      >
+                        <svg
+                          class="PicassoSvgCloseMinor16-root PicassoButton-icon Notification-closeIcon"
+                          style="min-width: 16px; min-height: 16px;"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`useNotifications success notification render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Error
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Info
+      </span>
+    </button>
+    <button
+      class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+      data-component-type="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+      >
+        Show Success
+      </span>
+    </button>
+    <div
+      class="makeStyles-top makeStyles-right makeStyles-root PicassoNotificationsProvider-root"
+    >
+      <div
+        class="MuiCollapse-root MuiCollapse-entered"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              class="SnackbarItem-root SnackbarItem-wrappedRoot SnackbarItem-anchorOriginTopRight"
+            >
+              <div
+                class="MuiPaper-root MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-roundedBorders Notification-notification PicassoNotification-formNotification MuiPaper-elevation6"
+                role="alert"
+                style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
+              >
+                <div
+                  class="MuiSnackbarContent-message"
+                >
+                  <div
+                    class="PicassoContainer-flex"
+                  >
+                    <div
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                    >
+                      <svg
+                        class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
+                        style="min-width: 24px; min-height: 24px;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="MuiTypography-root PicassoTypography-bodyMedium Notification-content MuiTypography-body1"
+                    >
+                      Success message
+                    </div>
+                    <button
+                      class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-primary PicassoButtonCircular-root Notification-close"
+                      data-component-type="button"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <span
+                        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                      >
+                        <svg
+                          class="PicassoSvgCloseMinor16-root PicassoButton-icon Notification-closeIcon"
+                          style="min-width: 16px; min-height: 16px;"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
+                          />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

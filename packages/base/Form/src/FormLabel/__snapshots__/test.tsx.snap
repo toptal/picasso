@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormLabel disabled 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="PicassoFormField-root"
+        data-field-has-error="false"
+      >
+        <label
+          class="PicassoFormLabel-root PicassoFormLabel-disabled"
+        >
+          <span
+            class="PicassoFormLabel-medium"
+          >
+            Label
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="PicassoFormField-root"
+        data-field-has-error="false"
+      >
+        <label
+          class="PicassoFormLabel-root"
+        >
+          <span
+            class="PicassoFormLabel-medium"
+          >
+            Label
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel required with (optional) 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="PicassoFormField-root"
+        data-field-has-error="false"
+      >
+        <label
+          class="PicassoFormLabel-root"
+        >
+          <span
+            class="PicassoFormLabel-medium"
+          >
+            Label
+             (optional)
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`FormLabel required with asterisk 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form>
+      <div
+        class="PicassoFormField-root"
+        data-field-has-error="false"
+      >
+        <label
+          class="PicassoFormLabel-root"
+        >
+          <span
+            class="PicassoFormLabel-medium"
+          >
+            <span
+              class="PicassoFormLabel-asterisk"
+            >
+              *
+            </span>
+            Label
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;

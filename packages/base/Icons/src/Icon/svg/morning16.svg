@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 54.1 (76490) - https://sketchapp.com -->
+    <title>35b4a7a3-e6f9-48d4-9466-3ff86c7e5c23@1.00x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M4.33681558,12 C4.12084552,11.5453723 4,11.0367986 4,10.5 C4,8.56700338 5.56700338,7 7.5,7 C9.43299662,7 11,8.56700338 11,10.5 C11,11.0367986 10.8791545,11.5453723 10.6631844,12 L9.50018309,12 C9.81402759,11.5821697 10,11.062803 10,10.5 C10,9.11928813 8.88071187,8 7.5,8 C6.11928813,8 5,9.11928813 5,10.5 C5,11.062803 5.18597241,11.5821697 5.49981691,12 L4.33681558,12 Z M7,3 L8,3 L8,6 L7,6 L7,3 Z M12.4497475,4.84314575 L13.1568542,5.55025253 L11.0355339,7.67157288 L10.3284271,6.96446609 L12.4497475,4.84314575 Z M15,10 L15,11 L12,11 L12,10 L15,10 Z M0,11 L-1.8369702e-16,10 L3,10 L3,11 L0,11 Z M1.84314575,5.55025253 L2.55025253,4.84314575 L4.67157288,6.96446609 L3.96446609,7.67157288 L1.84314575,5.55025253 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Top-Scheduler-/-16-/-Morning">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

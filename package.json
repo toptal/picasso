@@ -20,7 +20,7 @@
     "happo": "cross-env SCREENSHOT_BREAKPOINTS=true TEST_ENV=visual HAPPO_PROJECT=Picasso/Storybook happo",
     "happo:storybook": "cross-env SCREENSHOT_BREAKPOINTS=true TEST_ENV=visual HAPPO_IS_ASYNC=false happo-ci-github-actions",
     "lint": "davinci-syntax lint code --check .",
-    "lint:fix": "davinci-syntax lint code .",
+    "lint:fix": "davinci-syntax lint code packages/base",
     "release": "yarn build:package && changeset publish",
     "start": "start-storybook -p 9001 -c .storybook",
     "syncpack": "yarn syncpack:list & yarn syncpack:fix",

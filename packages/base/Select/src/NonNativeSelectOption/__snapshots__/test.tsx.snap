@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NonNativeSelectOption renders 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="false"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-highlighted="false"
+      role="option"
+      tabindex="-1"
+      value=""
+    >
+      <div
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        >
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <div
+              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+            />
+            <span
+              class="PicassoMenuItem-stringContent"
+            >
+              Test
+            </span>
+          </div>
+          <div
+            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+            style="margin-top: 0.25rem;"
+          >
+            Test description
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;
+
+exports[`NonNativeSelectOption sets attributes correctly 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <li
+      aria-disabled="false"
+      aria-selected="true"
+      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      data-highlighted="false"
+      role="option"
+      tabindex="-1"
+      value="option1"
+    >
+      <div
+        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+      >
+        <div
+          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+        >
+          <div
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          >
+            <div
+              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+            >
+              <svg
+                class="PicassoSvgCheckMinor16-root"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m6.5 9.793 4-4 .707.707-4 4-.707.707L3.793 8.5l.707-.707 2 2Z"
+                />
+              </svg>
+            </div>
+            <span
+              class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentSemibold"
+            >
+              Test
+            </span>
+          </div>
+          <div
+            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+            style="margin-top: 0.25rem;"
+          >
+            Test description
+          </div>
+        </div>
+      </div>
+    </li>
+  </div>
+</div>
+`;

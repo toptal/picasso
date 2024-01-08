@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnvironmentBanner development render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoEnvironmentBanner-root PicassoEnvironmentBanner-rootDevelopment"
+    >
+      <div
+        class="PicassoEnvironmentBanner-label PicassoEnvironmentBanner-labelDevelopment"
+      >
+        Picasso development
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EnvironmentBanner production render 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;
+
+exports[`EnvironmentBanner render nothing in test environment 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  />
+</div>
+`;
