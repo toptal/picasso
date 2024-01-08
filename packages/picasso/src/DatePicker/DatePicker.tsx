@@ -85,7 +85,7 @@ export interface Props
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
   /**
-   * @deprecated [@@DATE_PICKER_ERROR] Use the `status` prop instead to both support success and error states
+   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
    * Indicate whether `DatePicker` is in error state
    */
   error?: boolean
@@ -154,7 +154,7 @@ export const DatePicker = (props: Props) => {
   } = props
   const classes = useStyles()
 
-  // TODO: [@@DATE_PICKER_ERROR]
+  // TODO: [FX-4715]
   usePropDeprecationWarning({
     props,
     name: 'error',

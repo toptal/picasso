@@ -88,7 +88,7 @@ export const TimePicker = (props: Props) => {
     }
   }
 
-  // TODO: [@@INPUT_ERROR]
+  // TODO: [FX-4715]
   usePropDeprecationWarning({
     props,
     name: 'error',

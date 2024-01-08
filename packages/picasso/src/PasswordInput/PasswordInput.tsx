@@ -61,7 +61,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       ...rest
     } = props
 
-    // TODO: [@@OUTLINED_INPUT_ERROR]
+    // TODO: [FX-4715]
     usePropDeprecationWarning({
       props,
       name: 'error',

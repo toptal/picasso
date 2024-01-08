@@ -34,12 +34,12 @@ export interface Props extends TreeViewPropsBase {
   scaleCoefficient?: number
   /**
    * Custom center translation vector (happens after zoom center translation on selected node is applied)
-   * @deprecated [@@TREE_VIEW_PROPS] If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView
+   * @deprecated [FX-4718] If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView
    */
   centerTranslation?: Vector2
   /**
    * Transition duration for centering animation in ms
-   * @deprecated [@@TREE_VIEW_PROPS] If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView
+   * @deprecated [FX-4718] If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView
    */
   transitionDuration?: number
 }
@@ -47,7 +47,7 @@ export interface Props extends TreeViewPropsBase {
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
 
 export const TreeView = (props: Props) => {
-  // TODO: [@@TREE_VIEW_PROPS]
+  // TODO: [FX-4718]
   usePropDeprecationWarning({
     props,
     name: 'centerTranslation',
@@ -56,7 +56,7 @@ export const TreeView = (props: Props) => {
       'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView',
   })
 
-  // TODO: [@@TREE_VIEW_PROPS]
+  // TODO: [FX-4718]
   usePropDeprecationWarning({
     props,
     name: 'transitionDuration',

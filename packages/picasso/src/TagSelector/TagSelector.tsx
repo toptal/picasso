@@ -57,7 +57,7 @@ export interface Props
   /** Disables `TagSelector` */
   disabled?: boolean
   /**
-   * @deprecated [@@TAG_SELECTOR_ERROR] Use the `status` prop instead to both support success and error states
+   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
    * Indicate whether `TagSelector` is in error state
    */
   error?: boolean
@@ -146,7 +146,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       ...rest
     } = props
 
-    // TODO: [@@TAG_SELECTOR_ERROR]
+    // TODO: [FX-4715]
     usePropDeprecationWarning({
       props,
       name: 'error',

@@ -45,7 +45,7 @@ export interface Props extends BaseProps {
   /** Value uses the File interface. */
   value?: FileUpload[]
   /**
-   * @deprecated [@@DROPZONE_ERROR_MESSAGE] Use value[n].error instead.
+   * @deprecated [FX-4715] Use value[n].error instead.
    * Provide reasons why files couldn't be dropped into dropzone
    */
   errorMessages?: string[]
@@ -101,7 +101,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
 
   const classes = useStyles()
 
-  // TODO: [@@DROPZONE_ERROR_MESSAGE]
+  // TODO: [FX-4715]
   usePropDeprecationWarning({
     props,
     name: 'errorMessages',
