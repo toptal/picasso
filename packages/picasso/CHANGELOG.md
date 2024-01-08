@@ -1,5 +1,12 @@
 # Change Log
 
+## 42.3.1
+
+### Patch Changes
+
+- [#4079](https://github.com/toptal/picasso/pull/4079) [`96e439aaf6b621ca72937beaefb74a97ce710554`](https://github.com/toptal/picasso/commit/96e439aaf6b621ca72937beaefb74a97ce710554) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump debounce to v2
+
 ## 42.3.0
 
 ### Minor Changes
