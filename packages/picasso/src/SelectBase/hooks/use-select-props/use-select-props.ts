@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import type {
   Option,
   ItemProps,
@@ -20,6 +21,7 @@ import useSearchChangeHandler from './use-search-change-handler'
 import useItemOnMouseDownHandler from './use-item-on-mouse-down-handler'
 import useItemOnMouseEnter from './use-item-on-mouse-enter-handler'
 import useItemOnClick from './use-item-on-click-handler'
+import useSearchResetHandler from './use-search-reset-handler'
 
 const useSelectProps = <T extends ValueType, M extends boolean = false>(
   props: UseSelectProps<T, M>
@@ -39,6 +41,7 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
     ...props,
     handleSelect,
   })
+  const handleSearchReset = useSearchResetHandler(props)
   const handleSearchChange = useSearchChangeHandler(props)
   const handleItemOnMouseDown = useItemOnMouseDownHandler()
   const handleItemOnMouseEnter = useItemOnMouseEnter(props)
@@ -77,6 +80,7 @@ const useSelectProps = <T extends ValueType, M extends boolean = false>(
     onChange: handleSearchChange,
     onKeyDown: handleSearchKeyDown,
     onBlur: handleSearchBlur,
+    onResetClick: handleSearchReset,
   })
 
   return {

@@ -73,6 +73,7 @@ Select.defaultProps = {
   searchPlaceholder: 'Search',
   native: false,
   status: 'default',
+  enableResetSearch: false,
 }
 
 export default Select

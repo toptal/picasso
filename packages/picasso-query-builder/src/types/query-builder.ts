@@ -21,7 +21,7 @@ export type RangeValue = {
 interface BasicField
   extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
   inputType?: 'text' | 'number' | null
-  valueEditorType?: 'text' | 'number' | 'select' | 'multiselect' | null
+  valueEditorType?: 'text' | 'number' | 'select' | null
   hideOperator?: boolean
 }
 interface RangeField
@@ -33,6 +33,14 @@ interface RangeField
 interface BooleanField
   extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType' | 'values'> {
   valueEditorType?: 'boolean'
+}
+interface MultiSelectField
+  extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
+  valueEditorType?: 'multiselect'
+  /**
+   * Allow search input reset
+   */
+  enableResetSearch?: boolean
 }
 
 interface AutoCompleteField
@@ -54,7 +62,12 @@ interface AutoCompleteField
 
 export type BaseValueEditorProps = Omit<ValueEditorProps, 'schema'>
 export type BaseVersatileSelectorProps = Omit<VersatileSelectorProps, 'schema'>
-export type Field = BasicField | RangeField | AutoCompleteField | BooleanField
+export type Field =
+  | BasicField
+  | RangeField
+  | AutoCompleteField
+  | BooleanField
+  | MultiSelectField
 export type QueryBuilderErrors = {
   [key: string]: ValidationResult | true
 }

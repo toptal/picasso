@@ -199,6 +199,7 @@ const fields: Field[] = [
     name: 'alsoPlays',
     label: 'Also plays',
     valueEditorType: 'multiselect',
+    enableResetSearch: true,
     values: musicalInstruments,
     defaultValue: 'More cowbell',
   },
