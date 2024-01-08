@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 1.3.0
+
+### Minor Changes
+
+- [#4075](https://github.com/toptal/picasso/pull/4075) [`2d0c9d45eb9596838b3805aa2e7f25dd109ca455`](https://github.com/toptal/picasso/commit/2d0c9d45eb9596838b3805aa2e7f25dd109ca455) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- add search input clearing functionality for `select` and `multiselect` filter types through filter configuration with `enableResetSearch` property.
+
 ## 1.2.0
 
 ### Minor Changes
