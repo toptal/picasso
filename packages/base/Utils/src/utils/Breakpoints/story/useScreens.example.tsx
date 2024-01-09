@@ -1,5 +1,5 @@
 import React from 'react'
-import { useScreens, SPACING_8 } from '@toptal/picasso/utils'
+import { useScreens, SPACING_8 } from '@toptal/picasso-utils'
 import type { ButtonVariantType } from '@toptal/picasso'
 import { Typography, Button, Container } from '@toptal/picasso'
 

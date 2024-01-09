@@ -6,7 +6,7 @@ import {
   SPACING_2,
   palette,
   Transitions,
-} from '@toptal/picasso/utils'
+} from '@toptal/picasso-utils'
 import {
   ArrowDownMinor16,
   Drag16,

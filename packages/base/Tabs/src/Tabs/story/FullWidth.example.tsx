@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
-import { SPACING_4, palette } from '@toptal/picasso/utils'
+import { SPACING_4, palette } from '@toptal/picasso-utils'
 
 const TAB_COUNT = 2
 

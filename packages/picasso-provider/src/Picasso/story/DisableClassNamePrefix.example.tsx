@@ -5,7 +5,7 @@ import React from 'react'
 import { default as Picasso } from '@toptal/picasso-provider'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Page, Container } from '@toptal/picasso'
-import { SPACING_12 } from '@toptal/picasso/utils'
+import { SPACING_12 } from '@toptal/picasso-utils'
 
 const App = () => (
   <Picasso disableClassNamePrefix preventPageWidthChangeOnScrollbar={false}>

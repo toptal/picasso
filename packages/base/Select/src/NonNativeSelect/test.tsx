@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import React from 'react'
-import type { PicassoConfig } from '@toptal/picasso/test-utils'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import type { PicassoConfig } from '@toptal/picasso-test-utils'
+import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { format, parseISO, addHours } from 'date-fns'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import { AnalyticsChart } from '@topkit/analytics-charts'
 import { Page } from '@toptal/picasso'
 

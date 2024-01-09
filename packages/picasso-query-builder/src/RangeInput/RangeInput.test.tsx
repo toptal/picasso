@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, NumberInput, Typography } from '@toptal/picasso'
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 import type { ComponentProps } from 'react'
 
 import { RangeInput } from './'

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
-import { render, fireEvent, waitFor } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso-test-utils'
 
 import type { Props } from './FileListItem'
 import FileListItem from './FileListItem'

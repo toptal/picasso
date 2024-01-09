@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ContainerProps } from '@toptal/picasso'
-import { SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8 } from '@toptal/picasso-utils'
 import { Logo, Container } from '@toptal/picasso'
 import type { PicassoSpacing } from '@toptal/picasso-provider/Picasso/config/spacings'
 

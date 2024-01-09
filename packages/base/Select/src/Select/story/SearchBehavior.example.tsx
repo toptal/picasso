@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import { Select, Form, Container, NumberInput } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const SelectSearchBehaviourExample = () => {
   const [value, setValue] = useState<string>('')

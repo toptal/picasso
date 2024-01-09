@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Link, Typography } from '@toptal/picasso'
-import { SPACING_8, SPACING_6, palette } from '@toptal/picasso/utils'
+import { SPACING_8, SPACING_6, palette } from '@toptal/picasso-utils'
 
 const ColorLinkExample = () => (
   <div>

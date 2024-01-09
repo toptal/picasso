@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 import React from 'react'
-import type { PicassoConfig } from '@toptal/picasso/test-utils'
-import { render } from '@toptal/picasso/test-utils'
+import type { PicassoConfig } from '@toptal/picasso-test-utils'
+import { render } from '@toptal/picasso-test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 import { Link, MemoryRouter as Router } from 'react-router-dom'
 

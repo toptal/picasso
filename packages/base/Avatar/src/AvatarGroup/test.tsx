@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 
 import AvatarGroup from './AvatarGroup'
 

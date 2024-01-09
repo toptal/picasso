@@ -1,6 +1,6 @@
 import React from 'react'
 import { Typography, Container } from '@toptal/picasso'
-import { SPACING_4, SPACING_2, palette } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_2, palette } from '@toptal/picasso-utils'
 
 const Example = () => (
   <div>

@@ -6,7 +6,7 @@ import {
   Typography,
   Tooltip,
 } from '@toptal/picasso'
-import { SPACING_4, SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_2 } from '@toptal/picasso-utils'
 
 const handleDelete = () => {
   window.alert('You clicked the delete icon.')

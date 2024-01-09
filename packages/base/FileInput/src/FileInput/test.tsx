@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 
 import FileInput from './FileInput'
 import type { FileInputProps } from '.'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { TreeNodeAvatar, Container, Typography } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container>

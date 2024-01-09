@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Button, ProgressBar } from '@toptal/picasso'
-import { SPACING_8, SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_8, SPACING_4 } from '@toptal/picasso-utils'
 
 const AnimatingProgressChange = () => {
   const [percentage, setPercentage] = useState(10)

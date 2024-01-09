@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helpbox, Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container>

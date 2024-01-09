@@ -1,6 +1,6 @@
 import React from 'react'
 import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
-import { SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_2 } from '@toptal/picasso-utils'
 
 const CarouselDefaultExample = () => (
   <Container style={{ maxWidth: 370 }}>

@@ -3,7 +3,7 @@ import {
   fireEvent,
   render,
   waitForElementToBeRemoved,
-} from '@toptal/picasso/test-utils'
+} from '@toptal/picasso-test-utils'
 
 import type { Props } from './Section'
 import Section from './Section'

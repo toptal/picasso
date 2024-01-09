@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import { FormNonCompound, Dropzone, SubmitButton } from '@toptal/picasso-forms'
 import type { FileUpload } from '@toptal/picasso/FileInput'
 

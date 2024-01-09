@@ -2,6 +2,7 @@ import type { Theme, ThemeOptions } from '@material-ui/core/styles'
 import { createTheme } from '@material-ui/core/styles'
 import type { Overrides } from '@material-ui/core/styles/overrides'
 import { deepmerge } from '@material-ui/utils'
+import './config/theme'
 
 import {
   palette,

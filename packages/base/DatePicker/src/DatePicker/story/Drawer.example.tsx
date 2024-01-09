@@ -1,5 +1,5 @@
 import { Container, DatePicker, Drawer } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import React, { useCallback, useState } from 'react'
 
 const DefaultExample = () => {

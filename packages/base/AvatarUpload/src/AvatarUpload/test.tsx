@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, act } from '@toptal/picasso/test-utils'
+import { render, fireEvent, act } from '@toptal/picasso-test-utils'
 
 import type { Props } from './AvatarUpload'
 import AvatarUpload from './AvatarUpload'

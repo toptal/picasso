@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react'
 import React from 'react'
 import { Link, Container, Typography } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 
 const FontSizeExample = () => {
   const handleClick = (e: MouseEvent) => {

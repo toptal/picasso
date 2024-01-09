@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import type { TableProps } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import { Table, Select, Container } from '@toptal/picasso'
 
 const data = [

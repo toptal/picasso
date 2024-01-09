@@ -539,6 +539,7 @@
   ],
   "exclude": [
     "packages/*/dist-package",
+    "packages/base/*/dist-package",
     "**/__testfixtures__"
   ]
 }

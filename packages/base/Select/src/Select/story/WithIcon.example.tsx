@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import { Settings16 } from '@toptal/picasso/Icon'
 
 const Example = () => {

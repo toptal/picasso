@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Tag, Container, Typography, Settings16 } from '@toptal/picasso'
-import { SPACING_4, SPACING_2, noop } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_2, noop } from '@toptal/picasso-utils'
 
 const Example = () => {
   const [checked, setChecked] = useState<boolean>(false)

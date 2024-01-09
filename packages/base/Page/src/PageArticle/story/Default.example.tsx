@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Typography } from '@toptal/picasso'
-import { SPACING_4, palette } from '@toptal/picasso/utils'
+import { SPACING_4, palette } from '@toptal/picasso-utils'
 import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
 
 const RightSidebar = styled(Container)`

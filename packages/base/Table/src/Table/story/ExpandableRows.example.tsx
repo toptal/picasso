@@ -10,7 +10,7 @@ import {
   Tag,
   Container,
 } from '@toptal/picasso'
-import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso-utils'
 import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
 
 type StyledArrowDownMinor16Props = {

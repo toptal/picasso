@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page, Logo, Typography, Container } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 import {
   Jobs16,
   Home16,

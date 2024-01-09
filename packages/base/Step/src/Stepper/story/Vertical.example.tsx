@@ -1,6 +1,6 @@
 import React from 'react'
 import { Stepper, Container } from '@toptal/picasso'
-import { SPACING_6, SPACING_10 } from '@toptal/picasso/utils'
+import { SPACING_6, SPACING_10 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container flex direction='row'>

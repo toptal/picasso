@@ -1,5 +1,5 @@
 import React from 'react'
-import { shadows, SPACING_4 } from '@toptal/picasso/utils'
+import { shadows, SPACING_4 } from '@toptal/picasso-utils'
 import { Container, Typography } from '@toptal/picasso'
 
 const Example = () => (

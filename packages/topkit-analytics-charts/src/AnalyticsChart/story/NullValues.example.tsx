@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Page } from '@toptal/picasso'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import { AnalyticsChart } from '@topkit/analytics-charts'
 
 type Payload = {

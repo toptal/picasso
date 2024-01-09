@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
-import { SPACING_4, shadows, sizes, palette } from '@toptal/picasso/utils'
+import { SPACING_4, shadows, sizes, palette } from '@toptal/picasso-utils'
 
 type TabPanelProps = {
   children: React.ReactNode

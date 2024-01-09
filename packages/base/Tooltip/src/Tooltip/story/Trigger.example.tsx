@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Tooltip, Button, Container } from '@toptal/picasso'
-import { SPACING_8, ClickAwayListener } from '@toptal/picasso/utils'
+import { SPACING_8, ClickAwayListener } from '@toptal/picasso-utils'
 
 const Example = () => {
   const [open, setOpen] = useState(false)

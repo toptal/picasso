@@ -3,7 +3,7 @@ import {
   render,
   fireEvent,
   waitForElementToBeRemoved,
-} from '@toptal/picasso/test-utils'
+} from '@toptal/picasso-test-utils'
 
 import Button from '../../Button'
 import Modal from '../../Modal'

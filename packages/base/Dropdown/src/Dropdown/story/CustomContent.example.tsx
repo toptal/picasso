@@ -8,7 +8,7 @@ import {
   Button,
   Typography,
 } from '@toptal/picasso'
-import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso-utils'
 
 // Autofocus will force scrolling to the bottom of the portal, so we disable portal
 const Example = () => (

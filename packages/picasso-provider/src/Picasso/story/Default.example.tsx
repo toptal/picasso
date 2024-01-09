@@ -3,7 +3,7 @@ import React from 'react'
 // import Picasso from '@toptal/picasso-provider'
 import { default as Picasso } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
-import { SPACING_12 } from '@toptal/picasso/utils'
+import { SPACING_12 } from '@toptal/picasso-utils'
 
 const App = () => (
   <Picasso

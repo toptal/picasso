@@ -1,6 +1,6 @@
 import React from 'react'
 import { Loader, Container } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { SkeletonLoader, Typography, Container } from '@toptal/picasso'
-import { SPACING_6, SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_6, SPACING_2 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <>

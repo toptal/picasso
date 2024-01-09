@@ -1,7 +1,7 @@
 import React from 'react'
 import { Page, Link } from '@toptal/picasso'
 import styled from 'styled-components'
-import { screens } from '@toptal/picasso/utils'
+import { screens } from '@toptal/picasso-utils'
 
 const StyledLink = styled(Link)`
   margin-left: 2.5rem;

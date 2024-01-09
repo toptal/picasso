@@ -1,6 +1,6 @@
 import React from 'react'
-import type { RenderResult } from '@toptal/picasso/test-utils'
-import { render } from '@toptal/picasso/test-utils'
+import type { RenderResult } from '@toptal/picasso-test-utils'
+import { render } from '@toptal/picasso-test-utils'
 
 import Typography from '../Typography'
 import Paper from './'

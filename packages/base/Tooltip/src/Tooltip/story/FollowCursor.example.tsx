@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tooltip, Container } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 
 const longContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
 

@@ -38,8 +38,9 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
   build()
 
   copyPackageJson(packageRootDir)
-  copyReadme(packageRootDir)
-  copyLicense(packageRootDir)
+  // temporary commented out because new packages dont have readme and license
+  // copyReadme(packageRootDir)
+  // copyLicense(packageRootDir)
 
   if (yargs.watch) {
     args.unshift('--watch')

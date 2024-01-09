@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page, Container, Stepper, Button, Menu, Bell16 } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <div>

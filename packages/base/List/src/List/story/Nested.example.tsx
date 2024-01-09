@@ -1,6 +1,6 @@
 import React from 'react'
 import { List, Container } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 const NestedExample = () => (
   <Container bottom={SPACING_6}>

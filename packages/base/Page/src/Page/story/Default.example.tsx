@@ -11,7 +11,7 @@ import {
   Home16,
   HeartbeatResponsive,
 } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Rating, Typography } from '@toptal/picasso'
-import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso-utils'
 
 const Example = () => {
   const value = 3

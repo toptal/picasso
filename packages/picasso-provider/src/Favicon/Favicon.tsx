@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 // we could use Page.Head instead, but it required PicassoProvider to be initialized
 // so it led to cross dependencies and error
 import { Helmet } from 'react-helmet-async'
-import useSafeState from '@toptal/picasso/utils/use-safe-state'
-import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
+import { useSafeState, unsafeErrorLog } from '@toptal/picasso-utils'
 
 import { getIcons } from './icons'
 import type { EnvironmentType } from '../types'

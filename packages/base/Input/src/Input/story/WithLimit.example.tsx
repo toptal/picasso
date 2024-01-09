@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input, Container, Typography } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 type ChangeHandler = (event: React.ChangeEvent<{ value: string }>) => void
 

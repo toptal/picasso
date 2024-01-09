@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 const Example = () => {
   const [src, setSrc] = useState('./jacqueline-with-flowers-1954-square.jpg')

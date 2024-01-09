@@ -1,7 +1,7 @@
 import React from 'react'
 import type { SelectProps, SelectValueType } from '@toptal/picasso'
 import { Select as PicassoSelect } from '@toptal/picasso'
-import { generateRandomStringOrGetEmptyInTest } from '@toptal/picasso/utils'
+import { generateRandomStringOrGetEmptyInTest } from '@toptal/picasso-utils'
 
 import type { FieldProps } from '../Field'
 import InputField from '../InputField'

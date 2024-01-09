@@ -1,4 +1,4 @@
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 import React from 'react'
 
 import Checkbox from '../Checkbox'

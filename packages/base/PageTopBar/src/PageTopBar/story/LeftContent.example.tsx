@@ -1,6 +1,6 @@
 import React from 'react'
 import type { AutocompleteItem } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 import { Page, Container, Button, UserBadge, Typography } from '@toptal/picasso'
 
 const options = [

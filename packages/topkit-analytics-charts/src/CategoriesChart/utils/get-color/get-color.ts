@@ -1,4 +1,4 @@
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 
 const DEFAULT_COLORS = [palette.blue.main, palette.blue.darker]
 

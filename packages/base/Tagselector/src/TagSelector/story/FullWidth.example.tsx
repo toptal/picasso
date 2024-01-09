@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { AutocompleteItem } from '@toptal/picasso'
 import { TagSelector } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso-utils'
 
 const allOptions = [
   { value: 'AF', text: 'Afghanistan' },

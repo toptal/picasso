@@ -1,6 +1,6 @@
 import React from 'react'
 import { Calendar, Tooltip } from '@toptal/picasso'
-import { noop } from '@toptal/picasso/utils'
+import { noop } from '@toptal/picasso-utils'
 
 const WithCustomDayRenderingExample = () => {
   return (

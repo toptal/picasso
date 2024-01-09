@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Button, Typography } from '@toptal/picasso'
-import { useModal } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso-utils'
 
 const ModalDialog = ({
   open,

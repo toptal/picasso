@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dropdown, Menu, UserBadge } from '@toptal/picasso'
-import { SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_2 } from '@toptal/picasso-utils'
 
 const handleClick = () => window.alert('Item clicked')
 

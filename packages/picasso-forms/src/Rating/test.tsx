@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, waitFor, act } from '@toptal/picasso/test-utils'
+import { render, fireEvent, waitFor, act } from '@toptal/picasso-test-utils'
 
 import type { RatingThumbsProps } from './Rating'
 import type { Props as FormProps } from '../Form'

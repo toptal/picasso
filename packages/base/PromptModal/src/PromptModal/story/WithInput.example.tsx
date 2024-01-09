@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Input, PromptModal } from '@toptal/picasso'
-import { useNotifications, useModal } from '@toptal/picasso/utils'
+import { useNotifications, useModal } from '@toptal/picasso-utils'
 
 const PromptModalDefaultExample = () => {
   const { showModal, hideModal, isOpen } = useModal()

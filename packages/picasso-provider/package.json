@@ -28,12 +28,14 @@
   "dependencies": {
     "@material-ui/core": "4.12.4",
     "@material-ui/utils": "4.11.3",
+    "@toptal/picasso-utils": "1.0.0",
     "classnames": "^2.3.1",
     "notistack": "1.0.10",
     "react-helmet-async": "2.0.3"
   },
   "devDependencies": {
     "@types/classnames": "^2.3.1",
+    "@toptal/picasso-test-utils": "1.0.0",
     "shelljs": "^0.8.5"
   }
 }

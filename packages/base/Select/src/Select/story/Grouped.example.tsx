@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Select, Typography } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const OPTION_GROUPS = {
   'Group 1': [

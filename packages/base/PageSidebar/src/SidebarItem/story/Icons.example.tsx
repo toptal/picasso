@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page, Typography, Grid, Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import { Overview16, Referrals16 } from '@toptal/picasso/Icon'
 
 const sidebarWithIcons = (

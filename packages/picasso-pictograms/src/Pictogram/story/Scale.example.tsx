@@ -1,5 +1,5 @@
 import { Container } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 import React from 'react'
 import { WaterfallBlue64 } from '@toptal/picasso-pictograms/Pictogram'
 

@@ -5,7 +5,7 @@ import {
   SPACING_2,
   SPACING_6,
   SPACING_8,
-} from '@toptal/picasso/utils'
+} from '@toptal/picasso-utils'
 
 const Example = () => (
   <div>

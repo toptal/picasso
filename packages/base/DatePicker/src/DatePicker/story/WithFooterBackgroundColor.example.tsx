@@ -6,7 +6,7 @@ import {
   Link,
   Typography,
 } from '@toptal/picasso'
-import { SPACING_2, palette } from '@toptal/picasso/utils'
+import { SPACING_2, palette } from '@toptal/picasso-utils'
 
 const WithFooterBackgroundColorRendering = () => {
   const [datepickerValue, setDatepickerValue] = useState<Date>()

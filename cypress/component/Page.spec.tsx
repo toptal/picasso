@@ -8,7 +8,7 @@ import {
   Page,
   Typography,
 } from '@toptal/picasso'
-import { HAPPO_TARGETS, getHappoTargets } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS, getHappoTargets } from '@toptal/picasso-test-utils'
 import { useNotifications } from '@toptal/picasso/utils'
 
 const component = 'Page'

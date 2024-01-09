@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso-test-utils'
 import React from 'react'
 
 import { MenuCompound as Menu } from '../MenuCompound'

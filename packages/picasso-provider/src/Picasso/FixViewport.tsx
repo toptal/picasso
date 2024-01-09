@@ -1,4 +1,4 @@
-import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
+import { unsafeErrorLog } from '@toptal/picasso-utils'
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 

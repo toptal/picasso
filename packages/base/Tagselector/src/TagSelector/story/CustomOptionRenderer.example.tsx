@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { AutocompleteItem } from '@toptal/picasso'
 import { TagSelector, Typography, Container } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso-utils'
 
 interface Country extends AutocompleteItem {
   country: string

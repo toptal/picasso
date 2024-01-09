@@ -12,6 +12,7 @@
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "circularity": "madge --circular packages/*/src",
     "check:icon-sizes": "node ./bin/check-icon-sizes",
+    "clean": "yarn cache clean && nx reset && find . -type d -name \"node_modules\" -exec rm -rf '{}' +",
     "generate:component": "davinci-code new component",
     "generate:example": "davinci-code new example",
     "generate:svg-components": "yarn generate:icons && yarn generate:pictograms",

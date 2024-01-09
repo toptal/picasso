@@ -57,7 +57,7 @@ By using `HAPPO_TARGETS` you can iterate the test for each case test
 ([Example](https://github.com/toptal/picasso/pull/3756/files)):
 
 ```ts
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 describe('test 1', () => {
   Cypress._.each(HAPPO_TARGETS, target => {

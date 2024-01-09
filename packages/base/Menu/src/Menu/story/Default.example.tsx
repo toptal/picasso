@@ -8,7 +8,7 @@ import {
   Component16,
   Avatar,
 } from '@toptal/picasso'
-import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso-utils'
 
 const handleClick = () => window.alert('Item clicked')
 

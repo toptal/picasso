@@ -9,7 +9,7 @@ import {
   UserBadge,
 } from '@toptal/picasso'
 import type { HierarchyPointNode } from 'd3-hierarchy'
-import { useModal, palette } from '@toptal/picasso/utils'
+import { useModal, palette } from '@toptal/picasso-utils'
 import styled from 'styled-components'
 
 const NodeContainer = styled<typeof Container>(Container)<{

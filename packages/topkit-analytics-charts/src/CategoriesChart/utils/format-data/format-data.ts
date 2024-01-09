@@ -1,4 +1,4 @@
-import { sum } from '@toptal/picasso/utils'
+import { sum } from '@toptal/picasso-utils'
 
 import type { DataItem, LabelMap } from '../../types'
 

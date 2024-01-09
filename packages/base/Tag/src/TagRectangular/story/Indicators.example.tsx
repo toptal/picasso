@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Tag } from '@toptal/picasso'
-import { SPACING_4, SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_2 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container flex>
