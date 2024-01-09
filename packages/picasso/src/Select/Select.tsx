@@ -37,6 +37,7 @@ export const Select = documentable(
       { native, ...props }: SelectProps<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
+      // TODO: [FX-4715]
       usePropDeprecationWarning({
         props,
         name: 'error',

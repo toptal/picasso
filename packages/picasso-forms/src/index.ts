@@ -41,7 +41,7 @@ export {
 export { FieldRequirements } from '@toptal/picasso'
 
 // Picasso Forms exports
-/** @deprecated Use FormNonCompound instead for better tree-shaking */
+/** @deprecated [FX-4712] Use FormNonCompound instead for better tree-shaking */
 export { FormCompound as Form } from './FormCompound'
 
 export { Form as FormNonCompound } from './Form'
