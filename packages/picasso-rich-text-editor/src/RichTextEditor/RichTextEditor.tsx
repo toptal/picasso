@@ -31,7 +31,7 @@ export interface Props extends BaseProps {
   /** unique identifier */
   id: string
   /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
+   * @deprecated [FX-4715] Use the `status` prop instead to support success and error states
    * Indicate whether `RichTextEditor` is in error state
    */
   error?: boolean
