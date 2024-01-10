@@ -16,7 +16,7 @@ export const TestingPicasso = ({ children, titleCase }: Props) => {
       preventPageWidthChangeOnScrollbar={false}
       titleCase={titleCase}
       disableTransitions
-      injectFirst
+      //injectFirst
     >
       {children}
     </Picasso>
