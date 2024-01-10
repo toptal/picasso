@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../Icons" },
+    { "path": "../Input" },
+    { "path": "../OutlinedInput" },
+    { "path": "../Utils" }
+  ]
+}

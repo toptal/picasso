@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 // we could use Page.Head instead, but it required PicassoProvider to be initialized
 // so it led to cross dependencies and error
 import { Helmet } from 'react-helmet-async'
-import { useSafeState, unsafeErrorLog } from '@toptal/picasso-utils'
 
+import { useSafeState } from '../utils'
 import { getIcons } from './icons'
 import type { EnvironmentType } from '../types'
 import { useAppConfig } from '../Picasso/RootContext'
@@ -37,7 +37,7 @@ export const Favicon = ({ environment }: Props) => {
 
         setIcons(loadedIcons)
       } catch {
-        unsafeErrorLog(
+        console.error(
           'favicons were not loaded properly for environment' +
             resolvedEnvironment
         )

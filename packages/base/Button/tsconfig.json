@@ -1,0 +1,16 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../picasso-provider" },
+    { "path": "../../shared" },
+    { "path": "../Checkbox" },
+    { "path": "../Container" },
+    { "path": "../Dropdown" },
+    { "path": "../Icons" },
+    { "path": "../Loader" },
+    { "path": "../Radio" },
+    { "path": "../Utils" }
+  ]
+}

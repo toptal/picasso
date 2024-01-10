@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
 import { Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso-utils'
+import { useNotifications } from '@toptal/picasso-notification'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
   Field as QueryBuilderField,

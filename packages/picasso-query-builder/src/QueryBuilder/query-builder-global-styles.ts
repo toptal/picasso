@@ -5,7 +5,7 @@
  * related to cdn caching issue causing an error in production.
  * Issue URL: https://toptal-core.atlassian.net/browse/ER-28394
  */
-import { SPACING_2, SPACING_4, SPACING_6, palette } from '@toptal/picasso-utils'
+import { SPACING_2, SPACING_4, SPACING_6, palette } from '@toptal/picasso-provider'
 
 // Basic
 const rqbSpacing = `${SPACING_6}rem`

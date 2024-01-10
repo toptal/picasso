@@ -4,9 +4,10 @@ import {
   PicassoLight,
   Favicon,
   NotificationsProvider,
+  SPACING_12,
 } from '@toptal/picasso-provider'
 import { Page, Container, Button } from '@toptal/picasso'
-import { SPACING_12, useNotifications } from '@toptal/picasso-utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 const App = ({ children }: { children?: ReactNode }) => {
   const { showInfo } = useNotifications()

@@ -24,7 +24,7 @@ const addClassesToChildren = ({ classes, children, config }: Arguments) => {
       if (childNode.type === elementType) {
         childResult = React.cloneElement(childNode, {
           classes: configClasses,
-        })
+        } as {})
       }
     })
 

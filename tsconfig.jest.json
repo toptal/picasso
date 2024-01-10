@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["jest", "node", "@testing-library/jest-dom"]
+  },
+  "include": ["**/test.tsx", "**/*.test.tsx", "**/test.ts", "**/*.test.ts"],
+  "exclude": ["packages/picasso-*", "packages/topkit-*", "cypress"],
+  "references": [{ "path": "./tsconfig.pkgsrc.json" }]
+}

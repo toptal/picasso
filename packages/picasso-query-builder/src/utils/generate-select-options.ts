@@ -1,5 +1,5 @@
 import { isOptionGroupArray, type OptionList } from 'react-querybuilder'
-import type { OptionGroups } from '@toptal/picasso/SelectBase'
+import type { OptionGroups } from '@toptal/picasso'
 
 export const generateSelectOptions = (options?: OptionList) => {
   if (isOptionGroupArray(options)) {

@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../picasso-provider" },
+    { "path": "../../shared" },
+    { "path": "../Container" },
+    { "path": "../Form" },
+    { "path": "../Icons" },
+    { "path": "../InputAdornment" },
+    { "path": "../OutlinedInput" },
+    { "path": "../Utils" }
+  ]
+}

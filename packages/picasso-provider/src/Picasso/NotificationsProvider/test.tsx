@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import React from 'react'
 import { render, screen, fireEvent } from '@toptal/picasso-test-utils'
-import { useNotifications } from '@toptal/picasso-utils'
+import { useNotifications } from '@toptal/picasso-notification'
 import { Button } from '@material-ui/core'
 
 import NotificationsProvider from './'

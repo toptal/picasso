@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Container" },
+    { "path": "../Form" },
+    { "path": "../Icons" },
+    { "path": "../Input" },
+    { "path": "../InputAdornment" },
+    { "path": "../OutlinedInput" },
+    { "path": "../Utils" }
+  ]
+}

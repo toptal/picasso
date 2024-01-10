@@ -16,12 +16,8 @@ export {
 } from './breakpoints'
 export { default as layout } from './layout'
 export { default as shadows } from './shadows'
-export {
-  default as spacings,
-  SpacingEnum,
-  isResponsiveSpacing,
-  isPicassoSpacing,
-} from './spacings'
+export * from './spacings'
+export { default as spacings } from './spacings'
 export type {
   Sizes,
   SizeType,

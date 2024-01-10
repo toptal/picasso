@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Autocomplete" },
+    { "path": "../Form" },
+    { "path": "../Input" },
+    { "path": "../OutlinedInput" },
+    { "path": "../Tag" },
+    { "path": "../Utils" }
+  ]
+}

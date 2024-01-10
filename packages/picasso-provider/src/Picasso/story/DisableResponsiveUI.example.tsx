@@ -1,9 +1,8 @@
 import React from 'react'
 // In actual application you can simply do
 // import Picasso from '@toptal/picasso-provider'
-import { default as Picasso } from '@toptal/picasso-provider'
+import { default as Picasso, SPACING_4 } from '@toptal/picasso-provider'
 import { Grid, Page, Container, Menu, Typography } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <div style={{ height: '30rem' }}>

@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Button" },
+    { "path": "../Container" },
+    { "path": "../Icons" },
+    { "path": "../Utils" }
+  ]
+}

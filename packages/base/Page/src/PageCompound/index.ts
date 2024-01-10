@@ -1,9 +1,8 @@
 import {
   PageTopBarCompound as PageTopBar,
   PageTopBarMenu,
-} from '@toptal/picasso-page-top-bar'
-import { PageSidebar } from '@toptal/picasso-page-sidebar'
-
+  PageSidebar,
+} from '..'
 import Page from '../Page'
 import { PageHelmet } from '../PageHelmet'
 import { PageFooter } from '../PageFooter'

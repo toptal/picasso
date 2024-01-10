@@ -1,5 +1,5 @@
 import type { RuleGroupTypeAny } from 'react-querybuilder'
-import { useNotifications } from '@toptal/picasso-utils'
+import { useNotifications } from '@toptal/picasso-notification'
 import { useCallback } from 'react'
 
 import { getQueryDepth } from '../../utils'
