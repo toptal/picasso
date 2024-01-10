@@ -41,6 +41,7 @@ interface MultiSelectField
    * Allow search input reset
    */
   enableResetSearch?: boolean
+  enableReset?: boolean
 }
 
 interface AutoCompleteField
