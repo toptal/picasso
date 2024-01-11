@@ -1,5 +1,12 @@
 # Change Log
 
+## 42.3.2
+
+### Patch Changes
+
+- [#4082](https://github.com/toptal/picasso/pull/4082) [`58ca9e1fb82c0969b1f00d92742ebdbe3f524b50`](https://github.com/toptal/picasso/commit/58ca9e1fb82c0969b1f00d92742ebdbe3f524b50) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump `react-day-picker` version
+
 ## 42.3.1
 
 ### Patch Changes
