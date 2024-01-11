@@ -46,7 +46,7 @@
     "react-dropzone": "^14.2.3",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-truncate": "^2.4.0",
-    "react-day-picker": "^8.8.0"
+    "react-day-picker": "^8.10.0"
   },
   "devDependencies": {
     "@babel/types": "^7.20.7",
