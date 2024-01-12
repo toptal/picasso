@@ -63,6 +63,8 @@ export const NativeSelect = documentable(
         native,
         testIds,
         highlight,
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        enableResetSearch,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest
       } = props
