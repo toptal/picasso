@@ -1,5 +1,12 @@
 # Change Log
 
+## 42.3.3
+
+### Patch Changes
+
+- [#4089](https://github.com/toptal/picasso/pull/4089) [`9b60dd2681821a23eb6dd2d24c67c0c0d961b601`](https://github.com/toptal/picasso/commit/9b60dd2681821a23eb6dd2d24c67c0c0d961b601) Thanks [@sashuk](https://github.com/sashuk)!
+- do not pass `enableResetSearch` property further
+
 ## 42.3.2
 
 ### Patch Changes
