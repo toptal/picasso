@@ -1,4 +1,3 @@
-import type { SelectProps } from '@toptal/picasso'
 import type { ReactNode } from 'react'
 import type {
   Field as QueryBuilderField,
@@ -37,8 +36,9 @@ interface BooleanField
 }
 interface MultiSelectField
   extends Omit<QueryBuilderField, 'inputType' | 'valueEditorType'> {
-  valueEditorType?: 'multiselect' &
-    Pick<SelectProps, 'enableReset' | 'enableResetSearch'>
+  valueEditorType?: 'multiselect'
+  enableReset?: boolean
+  enableResetSearch?: boolean
 }
 
 interface AutoCompleteField
