@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.4.3
+
+### Patch Changes
+
+- [#4083](https://github.com/toptal/picasso/pull/4083) [`147fd703c1b9e70d2446bfb5f41dfaeb16a57381`](https://github.com/toptal/picasso/commit/147fd703c1b9e70d2446bfb5f41dfaeb16a57381) Thanks [@sashuk](https://github.com/sashuk)!
+- bump `notistack` version
+
 ## 3.4.2
 
 ### Patch Changes

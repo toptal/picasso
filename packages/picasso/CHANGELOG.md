@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.3.4
+
+### Patch Changes
+
+- [#4083](https://github.com/toptal/picasso/pull/4083) [`147fd703c1b9e70d2446bfb5f41dfaeb16a57381`](https://github.com/toptal/picasso/commit/147fd703c1b9e70d2446bfb5f41dfaeb16a57381) Thanks [@sashuk](https://github.com/sashuk)!
+- bump `notistack` version
+
+- Updated dependencies [[`147fd703c1b9e70d2446bfb5f41dfaeb16a57381`](https://github.com/toptal/picasso/commit/147fd703c1b9e70d2446bfb5f41dfaeb16a57381)]:
+  - @toptal/picasso-shared@13.1.3
+
 ## 42.3.3
 
 ### Patch Changes
