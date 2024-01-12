@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 1.4.1
+
+### Patch Changes
+
+- [#4093](https://github.com/toptal/picasso/pull/4093) [`06ad5e3db4b8c86d4a86b9a136164739d11f1cec`](https://github.com/toptal/picasso/commit/06ad5e3db4b8c86d4a86b9a136164739d11f1cec) Thanks [@rasitozcan](https://github.com/rasitozcan)!
+- fix type for multiselect field
+
 ## 1.4.0
 
 ### Minor Changes
