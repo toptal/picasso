@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 1.4.0
+
+### Minor Changes
+
+- [#4084](https://github.com/toptal/picasso/pull/4084) [`a1ee7a5453321e660943e75ffd8bc19f0178953f`](https://github.com/toptal/picasso/commit/a1ee7a5453321e660943e75ffd8bc19f0178953f) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- add `enableReset` property for `multiselect` filter type
+
 ## 1.3.0
 
 ### Minor Changes
