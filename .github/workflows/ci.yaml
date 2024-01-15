@@ -63,7 +63,7 @@ jobs:
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v12.6.1
+      - uses: toptal/davinci-github-actions/build-push-image@v12.7.0
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}
@@ -123,7 +123,7 @@ jobs:
           node-version: 18
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v12.6.1
+        uses: toptal/davinci-github-actions/report-missing-changeset@v12.7.0
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -135,7 +135,7 @@ jobs:
         uses: actions/dependency-review-action@v3
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v12.6.1
+        uses: toptal/davinci-github-actions/yarn-install@v12.7.0
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
@@ -198,7 +198,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v12.6.1
+        uses: toptal/davinci-github-actions/yarn-install@v12.7.0
 
       - name: Visual Tests
         run: yarn happo:storybook
