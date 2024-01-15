@@ -82,7 +82,7 @@
     "@storybook/react": "^6.5.15",
     "@storybook/theming": "^6.5.15",
     "@svgr/cli": "^8.1.0",
-    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/jest-dom": "^6.2.0",
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-ci": "6.0.0",
     "@toptal/davinci-code": "^2.0.15",
