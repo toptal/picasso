@@ -2,9 +2,6 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { getUseSelectPropsMock } from '../mocks'
 import useSelectHandler from './use-select-handler'
-import focusRef from '../../../utils/focus-ref'
-
-const mockedFocusRef = focusRef as jest.MockedFunction<typeof focusRef>
 
 jest.mock('../../../utils/focus-ref', () => jest.fn())
 
@@ -15,10 +12,6 @@ const OPTIONS = [
 ]
 
 describe('useSelectHandler', () => {
-  beforeEach(() => {
-    mockedFocusRef.mockClear()
-  })
-
   describe('single mode', () => {
     it('selects option', () => {
       const props = getUseSelectPropsMock()
@@ -37,7 +30,6 @@ describe('useSelectHandler', () => {
         target: { name: undefined, value: OPTIONS[1].value },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
-      expect(focusRef).toHaveBeenCalledWith(props.selectRef)
     })
 
     it('resets value', () => {
@@ -61,7 +53,6 @@ describe('useSelectHandler', () => {
         },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
-      expect(focusRef).toHaveBeenCalledWith(props.selectRef)
     })
   })
 
@@ -87,7 +78,6 @@ describe('useSelectHandler', () => {
         },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
-      expect(focusRef).toHaveBeenCalledWith(props.selectRef)
     })
 
     it('resets value', () => {
@@ -112,7 +102,6 @@ describe('useSelectHandler', () => {
         },
       })
       expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
-      expect(focusRef).toHaveBeenCalledWith(props.selectRef)
     })
   })
 })

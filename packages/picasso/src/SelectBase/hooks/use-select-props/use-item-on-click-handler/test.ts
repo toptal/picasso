@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react-hooks'
 
 import { getUseSelectPropsMock } from '../mocks'
 import useItemOnClickHandler from './use-item-on-click-handler'
+import focusRef from '../../../utils/focus-ref'
 
 describe('useItemOnClickHandler', () => {
   it('closes and handles select', () => {
@@ -35,5 +36,6 @@ describe('useItemOnClickHandler', () => {
 
     expect(handleSelect).toHaveBeenCalledTimes(1)
     expect(handleSelect).toHaveBeenCalledWith(event, item)
+    expect(focusRef).toHaveBeenCalledWith(props.selectRef)
   })
 })
