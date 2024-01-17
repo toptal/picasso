@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import type { Props as InputProps } from '@toptal/picasso-input'
 
-import TagSelectorInput from './TagSelectorInput'
-import type { Props as InputProps } from '../Input/Input'
+import { TagSelectorInput } from './TagSelectorInput'
 
 const renderTagSelectorInput = (props: OmitInternalProps<InputProps>) => {
   return render(<TagSelectorInput {...props} />)

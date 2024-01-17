@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import Calendar from './Calendar'
+import { Calendar } from './Calendar'
 
 describe('Calendar', () => {
   it('renders', () => {

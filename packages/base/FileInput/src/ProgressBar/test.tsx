@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import ProgressBar from './ProgressBar'
+import { ProgressBar } from './ProgressBar'
 
 describe('ProgressBar', () => {
   it('renders', () => {

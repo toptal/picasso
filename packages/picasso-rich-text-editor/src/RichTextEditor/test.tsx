@@ -3,9 +3,9 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso-test-utils'
 import { InputMultilineAdornment } from '@toptal/picasso'
 
-import RichTextEditor from './RichTextEditor'
+import { RichTextEditor } from './RichTextEditor'
 import type { Props } from './RichTextEditor'
-import LexicalEditor from '../LexicalEditor'
+import { LexicalEditor } from '../LexicalEditor'
 import { useCounter } from './hooks'
 
 jest.mock('@toptal/picasso-utils', () => ({

@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 
-import Notification from './Notification'
+import { Notification } from './Notification'
 
 describe('Notification', () => {
   it('renders', () => {

@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks'
 
 import useCounter from './useCounter'
-import RichTextEditor from '../../RichTextEditor'
+import { RichTextEditor } from '../../RichTextEditor'
 
 const minLengthMessage = RichTextEditor.defaultProps?.minLengthMessage
 const maxLengthMessage = RichTextEditor.defaultProps?.maxLengthMessage

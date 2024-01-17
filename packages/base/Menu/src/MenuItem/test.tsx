@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, TestingPicasso } from '@toptal/picasso-test-utils'
 
-import MenuItem from './MenuItem'
+import { MenuItem } from './MenuItem'
 
 describe('MenuItem', () => {
   it('renders', () => {

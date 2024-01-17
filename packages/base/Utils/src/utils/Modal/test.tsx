@@ -4,9 +4,9 @@ import {
   fireEvent,
   waitForElementToBeRemoved,
 } from '@toptal/picasso-test-utils'
+import { Button } from '@toptal/picasso-button'
+import { Modal } from '@toptal/picasso-modal'
 
-import Button from '../../Button'
-import Modal from '../../Modal'
 import { useModal } from './use-modal'
 
 let modalRoot: HTMLElement

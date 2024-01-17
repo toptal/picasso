@@ -3,7 +3,7 @@ import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './List'
-import List from './List'
+import { List } from './List'
 import { generateListItems } from './utils'
 
 const testIds = {

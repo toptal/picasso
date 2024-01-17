@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import Tag from '../Tag'
-import TagGroup from './TagGroup'
+import { Tag } from '../Tag'
+import { TagGroup } from './TagGroup'
 
 const renderTagGroup = () =>
   render(

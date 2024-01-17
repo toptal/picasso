@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@toptal/picasso-test-utils'
+import { MenuCompound as PicassoMenu } from '@toptal/picasso-menu'
 
-import ButtonSplit from './ButtonSplit'
-import { MenuCompound as PicassoMenu } from '../MenuCompound'
+import { ButtonSplit } from './ButtonSplit'
 
 const Menu = () => {
   const handleClick = () => {}

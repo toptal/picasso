@@ -8,8 +8,8 @@ import {
 } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { useModal } from '@toptal/picasso-utils'
+import { Button } from '@toptal/picasso-button'
 
-import Button from '../Button'
 import type { Props as ModalProps } from './Modal'
 import { ModalCompound as Modal } from '../ModalCompound'
 import type { Props as ModalActionsProps } from '../ModalActions/ModalActions'

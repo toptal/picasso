@@ -4,7 +4,7 @@ import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './Switch'
-import Switch from './Switch'
+import { Switch } from './Switch'
 
 const renderSwitch = (
   props: OmitInternalProps<Props>,

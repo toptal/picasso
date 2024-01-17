@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import NonNativeSelectLoader from './NonNativeSelectLoader'
+import { NonNativeSelectLoader } from './NonNativeSelectLoader'
 
 describe('NonNativeSelectLoader', () => {
   it('renders', () => {

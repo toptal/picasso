@@ -4,7 +4,7 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Search16 } from '@toptal/picasso-icons'
 
 import type { Props } from './Input'
-import Input from './Input'
+import { Input } from './Input'
 
 const testIds = {
   inputAdornment: 'limit-adornment-multiline-label',

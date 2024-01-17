@@ -4,7 +4,7 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 
 import type { Props } from './UserBadge'
-import UserBadge from './UserBadge'
+import { UserBadge } from './UserBadge'
 
 const renderUserBadge = (
   children: React.ReactNode,

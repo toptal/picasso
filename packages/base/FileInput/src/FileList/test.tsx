@@ -3,7 +3,7 @@ import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './FileList'
-import FileList from './FileList'
+import { FileList } from './FileList'
 
 const renderFileList = (props: OmitInternalProps<Props>) =>
   render(<FileList {...props} />)

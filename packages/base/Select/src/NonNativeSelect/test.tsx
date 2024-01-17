@@ -6,7 +6,7 @@ import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import NonNativeSelect from './NonNativeSelect'
+import { NonNativeSelect } from './NonNativeSelect'
 import type { SelectProps } from '../SelectBase'
 
 jest.mock('ap-style-title-case')

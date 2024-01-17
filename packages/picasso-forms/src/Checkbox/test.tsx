@@ -3,9 +3,9 @@ import { render } from '@toptal/picasso-test-utils'
 
 import type { FormConfigProps } from '../FormConfig'
 import { FormCompound as Form } from '../FormCompound'
-import CheckboxGroup from '../CheckboxGroup'
+import { CheckboxGroup } from '../CheckboxGroup'
 import type { Props } from './Checkbox'
-import Checkbox from './Checkbox'
+import { Checkbox } from './Checkbox'
 
 const renderCheckbox = (
   { required, titleCase }: Props,

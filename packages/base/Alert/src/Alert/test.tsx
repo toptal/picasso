@@ -5,7 +5,7 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso-utils'
 
 import type { Props } from './Alert'
-import Alert from './Alert'
+import { Alert } from './Alert'
 
 const renderAlert = (
   children: ReactNode,

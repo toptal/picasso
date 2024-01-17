@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import Quote from './Quote'
+import { Quote } from './Quote'
 
 describe('Quote', () => {
   it('renders', () => {

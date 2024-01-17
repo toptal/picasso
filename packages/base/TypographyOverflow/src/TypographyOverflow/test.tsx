@@ -5,7 +5,7 @@ import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
 
-import TypographyOverflow from '.'
+import { TypographyOverflow } from '.'
 
 jest.mock('../Tooltip', () => {
   return {
