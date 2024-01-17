@@ -8,12 +8,12 @@ import type { SelectProps } from './'
 
 jest.mock('../NonNativeSelect', () => ({
   __esModule: true,
-  default: () => <div data-testid='non-native-select' />,
+  NonNativeSelect: () => <div data-testid='non-native-select' />,
 }))
 
 jest.mock('../NativeSelect', () => ({
   __esModule: true,
-  default: () => <div data-testid='native-select' />,
+  NativeSelect: () => <div data-testid='native-select' />,
 }))
 
 const renderSelect = (
