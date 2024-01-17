@@ -7,23 +7,23 @@ import { isOverflown } from '@toptal/picasso-utils'
 
 import { TypographyOverflow } from '.'
 
-jest.mock('../Tooltip', () => {
+jest.mock('@toptal/picasso-tooltip', () => {
   return {
     __esModule: true,
-    default: jest.fn(({ children, ...rest }: { children: ReactNode }) => (
+    Tooltip: jest.fn(({ children, ...rest }: { children: ReactNode }) => (
       <span {...rest}>{children}</span>
     )),
   }
 })
-jest.mock('../Typography', () => {
+jest.mock('@toptal/picasso-typography', () => {
   return {
     __esModule: true,
-    default: jest.fn(({ children }: { children: ReactNode }) => (
+    Typography: jest.fn(({ children }: { children: ReactNode }) => (
       <span>{children}</span>
     )),
   }
 })
-jest.mock('../utils', () => ({
+jest.mock('@toptal/picasso-utils', () => ({
   __esModule: true,
   isOverflown: jest.fn(() => true),
 }))

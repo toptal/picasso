@@ -14,9 +14,9 @@ jest.mock('@toptal/picasso-provider', () => ({
 jest.mock('@material-ui/core/styles', () => ({
   makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' })),
 }))
-jest.mock('../utils/use-width-of', () => ({
+jest.mock('@toptal/picasso-utils', () => ({
   __esModule: true,
-  default: () => '300px',
+  useWidthOf: () => '300px',
 }))
 
 const mockedUsePicassoRoot = usePicassoRoot as jest.Mock<
