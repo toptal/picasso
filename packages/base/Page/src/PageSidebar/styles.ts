@@ -5,7 +5,7 @@ import { rem } from '@toptal/picasso-shared'
 import {
   headerHeight,
   headerBreakingPointXL,
-} from '..'
+} from '../PageTopBar/constants'
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =

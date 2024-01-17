@@ -1,8 +1,6 @@
-import {
-  PageTopBarCompound as PageTopBar,
-  PageTopBarMenu,
-  PageSidebar,
-} from '..'
+import { PageTopBarCompound as PageTopBar } from '../PageTopBarCompound'
+import { PageTopBarMenu } from '../PageTopBarMenu'
+import { PageSidebar } from '../PageSidebar'
 import Page from '../Page'
 import { PageHelmet } from '../PageHelmet'
 import { PageFooter } from '../PageFooter'

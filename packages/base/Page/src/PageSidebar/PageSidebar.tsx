@@ -14,7 +14,7 @@ import {
   PageHamburgerPortal,
   useHamburgerContext,
   useRegisterMenu,
-} from '..'
+} from '../PageHamburger'
 import { SidebarItem } from '../SidebarItem'
 import { SidebarLogo } from '../SidebarLogo'
 import { SidebarMenu } from '../SidebarMenu'
