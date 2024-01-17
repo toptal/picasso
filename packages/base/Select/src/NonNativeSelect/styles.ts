@@ -1,13 +1,10 @@
 import type { Theme } from '@material-ui/core/styles'
 // eslint-disable-next-line import/order
 import { createStyles } from '@material-ui/core/styles'
+import '@toptal/picasso-input/styles'
+import '@toptal/picasso-menu/styles'
+import '@toptal/picasso-loader/styles'
 
-import '../InputLabel/styles'
-import '../InputBase/styles'
-import '../Input/styles'
-import '../Menu/styles'
-import '../MenuItem/styles'
-import '../Loader/styles'
 import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export default (theme: Theme) => {

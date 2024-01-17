@@ -40,7 +40,8 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/src/index.js",
+    "./styles": "./dist/src/styles.js"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "3.4.2"
