@@ -14,8 +14,8 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 
-import { PageContext } from '..'
-import type { PageContextProps } from '..'
+import { PageContext } from '../Page'
+import type { PageContextProps } from '../Page'
 import {
   PageHamburger,
   PageHamburgerPortal,
