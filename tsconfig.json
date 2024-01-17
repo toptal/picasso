@@ -1,7 +1,7 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.pkg-srcs.json" },
+    { "path": "./tsconfig.pkgsrc.json" },
     { "path": "./tsconfig.jest.json" }
   ]
 }
