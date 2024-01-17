@@ -1,5 +1,12 @@
 # Change Log
 
+## 42.3.5
+
+### Patch Changes
+
+- [#4100](https://github.com/toptal/picasso/pull/4100) [`b84a9383257b6b860de912c22d1bff8f740c7c16`](https://github.com/toptal/picasso/commit/b84a9383257b6b860de912c22d1bff8f740c7c16) Thanks [@sashuk](https://github.com/sashuk)!
+- remove injectFirst and styles import from TestingPicasso
+
 ## 42.3.4
 
 ### Patch Changes
