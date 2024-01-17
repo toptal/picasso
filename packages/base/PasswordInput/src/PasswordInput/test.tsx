@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 
 import type { Props as PasswordInputProps } from './PasswordInput'
-import PasswordInput from './PasswordInput'
+import { PasswordInput } from './PasswordInput'
 
 const testProps: PasswordInputProps = {
   value: 'asd',

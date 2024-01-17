@@ -4,7 +4,7 @@ import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './AccountSelect'
-import AccountSelect from './AccountSelect'
+import { AccountSelect } from './AccountSelect'
 
 const renderAccountSelect = (
   children: React.ReactNode,

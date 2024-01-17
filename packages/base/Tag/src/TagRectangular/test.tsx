@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import TagRectangular from './TagRectangular'
+import { TagRectangular } from './TagRectangular'
 import type { Props } from './types'
 
 jest.mock('ap-style-title-case')

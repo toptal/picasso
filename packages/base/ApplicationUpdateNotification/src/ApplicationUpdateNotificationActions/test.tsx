@@ -5,7 +5,6 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './ApplicationUpdateNotificationActions'
 import { ApplicationUpdateNotificationActions } from './ApplicationUpdateNotificationActions'
-import Button from '../Button'
 
 const renderApplicationUpdateNotificationActions = (
   props: OmitInternalProps<Props> = { children: null }
@@ -18,14 +17,13 @@ describe('ApplicationUpdateNotificationActions', () => {
 
       renderApplicationUpdateNotificationActions({
         children: [
-          <Button
+          <button
             key='btn-update-now'
-            variant='secondary'
             data-testid='btn-update-now'
             onClick={() => console.log('Update Now')}
           >
             Update Now
-          </Button>,
+          </button>,
         ],
       })
       expect(screen.getByTestId(updateNowButtonTestId)).toBeInTheDocument()

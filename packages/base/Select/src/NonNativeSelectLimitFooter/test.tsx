@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import NonNativeSelectLimitFooter from './NonNativeSelectLimitFooter'
+import { NonNativeSelectLimitFooter } from './NonNativeSelectLimitFooter'
 
 describe('NonNativeSelectLimitFooter', () => {
   it('renders null when no overflow', () => {

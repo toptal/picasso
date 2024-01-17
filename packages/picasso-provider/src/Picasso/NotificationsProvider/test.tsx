@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from '@toptal/picasso-test-utils'
 import { useNotifications } from '@toptal/picasso-notification'
 import { Button } from '@material-ui/core'
 
-import NotificationsProvider from './'
+import { NotificationsProvider } from './'
 import type { NotificationsProviderProps } from './'
 
 const App = ({ children }: PropsWithChildren<{}>) => {

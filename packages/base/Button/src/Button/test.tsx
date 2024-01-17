@@ -3,10 +3,10 @@ import type { RenderResult, PicassoConfig } from '@toptal/picasso-test-utils'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
+import { Link } from '@toptal/picasso-link'
 
 import type { Props } from './Button'
-import Button from './Button'
-import Link from '../Link'
+import { Button } from './Button'
 
 jest.mock('ap-style-title-case')
 

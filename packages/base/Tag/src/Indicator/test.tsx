@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './Indicator'
-import Indicator from './Indicator'
+import { Indicator } from './Indicator'
 
 const renderIndicator = (
   children: ReactNode,

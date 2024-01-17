@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 import React from 'react'
+import { MenuCompound as Menu } from '@toptal/picasso-menu'
 
-import { MenuCompound as Menu } from '../MenuCompound'
 import ScrollMenu, { scrollToSelection } from './ScrollMenu'
 
 const createRect = (opts: Partial<DOMRect>) => {

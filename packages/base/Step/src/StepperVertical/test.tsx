@@ -3,7 +3,7 @@ import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render } from '@toptal/picasso-test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
-import StepperVertical from './StepperVertical'
+import { StepperVertical } from './StepperVertical'
 import type { StepperVerticalProps } from '.'
 
 jest.mock('ap-style-title-case')

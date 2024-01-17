@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import SkeletonLoader from '../SkeletonLoader'
+import { SkeletonLoader } from '../SkeletonLoader'
 import {
   getAttributes,
   getAvatarAttributes,

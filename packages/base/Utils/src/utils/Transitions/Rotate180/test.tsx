@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import Rotate180 from './Rotate180'
+import { Rotate180 } from './Rotate180'
 
 describe('Rotate180', () => {
   it('render without transformation', () => {

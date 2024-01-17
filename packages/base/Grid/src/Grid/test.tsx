@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import Grid from './Grid'
+import { Grid } from './Grid'
 
 const TestGrid = () => {
   return <Grid />

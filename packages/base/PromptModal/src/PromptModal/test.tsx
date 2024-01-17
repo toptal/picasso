@@ -7,9 +7,9 @@ import {
 } from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 import { useModal, noop } from '@toptal/picasso-utils'
+import { Input } from '@toptal/picasso-input'
 
-import Input from '../Input'
-import PromptModal from '../PromptModal'
+import { PromptModal } from '../PromptModal'
 
 describe('PromptModal', () => {
   beforeEach(() => {

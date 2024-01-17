@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import OverviewBlock from '../OverviewBlock'
+import { OverviewBlock } from '../OverviewBlock'
 import OverviewBlockGroup from './OverviewBlockGroup'
 
 describe('OverlayBlockGroup', () => {

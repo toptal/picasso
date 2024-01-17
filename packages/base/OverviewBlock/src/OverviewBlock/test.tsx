@@ -5,7 +5,7 @@ import { render } from '@toptal/picasso-test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 import { Link, MemoryRouter as Router } from 'react-router-dom'
 
-import OverviewBlock from './OverviewBlock'
+import { OverviewBlock } from './OverviewBlock'
 
 jest.mock('ap-style-title-case')
 
