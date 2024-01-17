@@ -4,6 +4,7 @@
   "references": [
     { "path": "packages/picasso" },
     { "path": "packages/picasso-charts" },
+    { "path": "packages/picasso-codemod" },
     { "path": "packages/picasso-forms" },
     { "path": "packages/picasso-pictograms" },
     { "path": "packages/picasso-provider" },

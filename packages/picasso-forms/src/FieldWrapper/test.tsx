@@ -4,7 +4,7 @@ import { noop } from '@toptal/picasso-utils'
 import React from 'react'
 
 import { FormCompound as Form } from '../FormCompound'
-import { FieldWrapper } from './FieldWrapper'
+import FieldWrapper from './FieldWrapper'
 
 const renderFieldWrapper = () =>
   render(

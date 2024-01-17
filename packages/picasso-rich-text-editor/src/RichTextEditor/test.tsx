@@ -5,7 +5,7 @@ import { InputMultilineAdornment } from '@toptal/picasso'
 
 import { RichTextEditor } from './RichTextEditor'
 import type { Props } from './RichTextEditor'
-import { LexicalEditor } from '../LexicalEditor'
+import LexicalEditor from '../LexicalEditor'
 import { useCounter } from './hooks'
 
 jest.mock('@toptal/picasso-utils', () => ({

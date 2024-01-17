@@ -1,7 +1,7 @@
 import { render } from '@toptal/picasso-test-utils'
 import React from 'react'
 
-import { Radio } from '../Radio'
+import Radio from '../Radio'
 import { Form } from '../Form'
 import type { Props } from './RadioGroup'
 import { RadioGroup } from './RadioGroup'
