@@ -8,7 +8,7 @@ import {
   Form,
   DatePicker,
 } from '@toptal/picasso'
-import { useModal } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso-utils'
 
 const STATES = [
   {

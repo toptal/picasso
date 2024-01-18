@@ -1,5 +1,5 @@
-import type { SpacingType } from '@toptal/picasso-provider/Picasso/config'
-import { isPicassoSpacing } from '@toptal/picasso-provider/Picasso/config'
+import type { SpacingType } from '@toptal/picasso-provider'
+import { isPicassoSpacing } from '@toptal/picasso-provider'
 
 const filterOutStringAndPicassoSpacing = (value?: SpacingType) =>
   typeof value === 'string' || (value && isPicassoSpacing(value))

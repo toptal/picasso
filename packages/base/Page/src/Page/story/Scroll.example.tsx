@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page, Container, Typography } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <div style={{ maxHeight: '30rem', overflowY: 'scroll' }}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Table, Typography, Section } from '@toptal/picasso'
-import { SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8 } from '@toptal/picasso-utils'
 
 const TableDemo = () => (
   <Table>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
-import { SPACING_4, SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8 } from '@toptal/picasso-utils'
 import {
   CodeBlockPlugin,
   CodePlugin,

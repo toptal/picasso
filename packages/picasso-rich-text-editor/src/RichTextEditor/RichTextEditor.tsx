@@ -4,7 +4,7 @@ import type { OutlinedInputStatus } from '@toptal/picasso'
 import { InputMultilineAdornment } from '@toptal/picasso'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
-import { noop, usePropDeprecationWarning } from '@toptal/picasso/utils'
+import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import React, { forwardRef, useCallback, useRef, useState } from 'react'
 

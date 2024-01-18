@@ -4,7 +4,7 @@ import {
   WaterfallBlue64,
 } from '@toptal/picasso-pictograms/Pictogram'
 import { Container } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container flex>

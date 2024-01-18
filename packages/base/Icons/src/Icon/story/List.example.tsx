@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Paper, Typography, Container, Input } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import * as icons from '@toptal/picasso/Icon'
 
 /** We don't want to render internal icons */

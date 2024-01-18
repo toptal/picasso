@@ -1,5 +1,5 @@
 import { Container, List, Button, Drawer } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 import React, { useState } from 'react'
 
 type WidthType = 'narrow' | 'regular' | 'medium' | 'wide' | 'ultra-wide'

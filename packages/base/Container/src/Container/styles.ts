@@ -1,17 +1,16 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { capitalize, type Color } from '@material-ui/core'
+import type { Color } from '@material-ui/core';
+import { capitalize } from '@material-ui/core'
 import type { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
 import {
   spacingToRem,
   type DeprecatedSpacingType,
   type PicassoSpacing,
   spacings,
-} from '@toptal/picasso-provider/index'
-import {
   kebabToCamelCase,
   snakeToCamelCase,
-} from '@toptal/picasso-provider/utils'
+} from '@toptal/picasso-provider'
 
 const textAlignVariants = [
   'inherit',

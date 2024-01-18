@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, Container } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 
 const person = {
   alt: 'Jacqueline Roque. Pablo Picasso, 1954',

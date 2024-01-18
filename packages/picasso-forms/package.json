@@ -5,19 +5,18 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "dist-package"
+    "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
+    "build:package": "tsc -b tsconfig.json",
+    "prepublishOnly": "yarn build:package"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
@@ -31,6 +30,7 @@
   },
   "dependencies": {
     "@toptal/picasso-rich-text-editor": "10.0.0",
+    "@toptal/picasso-utils": "1.0.0",
     "classnames": "^2.3.1",
     "debounce": "^1.2.1",
     "detect-browser": "^5.3.0",
@@ -42,10 +42,15 @@
   },
   "devDependencies": {
     "@testing-library/react-hooks": "^8.0.1",
+    "@toptal/picasso-test-utils": "1.0.0",
     "@types/classnames": "^2.3.1",
     "@types/react-final-form-listeners": "^1.0.0",
     "storybook-readme": "^5.0.9",
     "type-fest": "^4.8.3"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": "./dist/src/index.js"
+  }
 }

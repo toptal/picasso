@@ -1,5 +1,5 @@
 import React from 'react'
-import { useBreakpoint } from '@toptal/picasso/utils'
+import { useBreakpoint } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso'
 
 const Example = () => {

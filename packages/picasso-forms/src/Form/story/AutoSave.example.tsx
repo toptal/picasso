@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Container, FormAutoSaveIndicator, Typography } from '@toptal/picasso'
-import { SPACING_6, SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_6, SPACING_4 } from '@toptal/picasso-utils'
 import type { ChangedFields } from '@toptal/picasso-forms'
 import {
   FormNonCompound as Form,

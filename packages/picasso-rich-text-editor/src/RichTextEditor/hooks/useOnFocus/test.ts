@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { act } from '@toptal/picasso/test-utils'
+import { act } from '@toptal/picasso-test-utils'
 import type React from 'react'
 
 import { actionTypes as toolbarActionTypes } from '../../store/toolbar'

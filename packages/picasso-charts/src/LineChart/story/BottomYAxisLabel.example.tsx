@@ -1,5 +1,5 @@
 import React from 'react'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import { LineChart } from '@toptal/picasso-charts'
 import { Page } from '@toptal/picasso'
 

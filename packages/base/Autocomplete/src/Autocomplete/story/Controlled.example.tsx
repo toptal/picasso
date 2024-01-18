@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Grid, Autocomplete } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 
 const options = [
   { text: 'Belarus', value: 'BY' },

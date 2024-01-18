@@ -14,7 +14,7 @@ import {
   Image,
   SkeletonLoader,
 } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const useGetData = (): [boolean, () => void] => {
   const [loading, setLoading] = useState(true)

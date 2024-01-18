@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso-test-utils'
 
 import { useImageUploader } from './use-image-uploader'
 import type { Props } from './use-image-uploader'

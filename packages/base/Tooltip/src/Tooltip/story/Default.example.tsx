@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tooltip, Button, Container } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container top={SPACING_6} left={SPACING_6}>

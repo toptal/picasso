@@ -1,5 +1,5 @@
 import { Container, Typography } from '@toptal/picasso'
-import { SPACING_4, formatAmount } from '@toptal/picasso/utils'
+import { SPACING_4, formatAmount } from '@toptal/picasso-utils'
 import React from 'react'
 
 const exampleAmount1 = 1575

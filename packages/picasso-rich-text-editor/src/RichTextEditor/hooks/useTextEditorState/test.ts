@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { act } from '@toptal/picasso/test-utils'
+import { act } from '@toptal/picasso-test-utils'
 
 import useTextEditorState from './useTextEditorState'
 import { initialState } from '../../store'

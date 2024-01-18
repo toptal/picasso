@@ -14,7 +14,7 @@ export type Component<T, P> = T & {
  *
  * @param component exotic component returned by `forwardRef`
  */
-export const documentable = <T, P>(component: T): Component<T, P> => component
+export const documentable = <T, P>(component: T): Component<T, P> => component as Component<T, P>
 
 /**
  * Wrapper around React.forwardRef that preserves genericity of the passed `Component`.

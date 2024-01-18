@@ -25,7 +25,7 @@ const stripeRows = (children: React.ReactNode) => {
 
     stripeIndex++
     if (stripeIndex % 2 !== 0) {
-      return React.cloneElement(child, { stripeEven: true })
+      return React.cloneElement(child, { stripeEven: true } as {})
     }
 
     return child

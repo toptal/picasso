@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Carousel, Container, Typography, Settings16 } from '@toptal/picasso'
-import { SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_2 } from '@toptal/picasso-utils'
 
 const CarouselDefaultExample = () => {
   const [currentSlide, setCurrentSlide] = useState(0)

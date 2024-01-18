@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, List, Typography } from '@toptal/picasso'
-import { SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
 import type { ListItemType } from '@toptal/picasso/List'
 
 const ListStyleExample = ({ type }: { type: ListItemType }) => (

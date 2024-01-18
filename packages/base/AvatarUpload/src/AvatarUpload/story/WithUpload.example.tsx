@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AvatarUpload, Container } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 import type { FileRejection } from '@toptal/picasso/AvatarUpload'
 
 const Example = () => {

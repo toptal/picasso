@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Button } from '@toptal/picasso'
-import { useModal } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso-utils'
 
 const Example = () => {
   const { showModal, hideModal, isOpen } = useModal()

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 import { noop } from '@toptal/picasso-utils'
 
 import type { Props } from './NativeSelectOptions'

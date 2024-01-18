@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Slider, Typography } from '@toptal/picasso'
-import { SPACING_4, SPACING_8, SPACING_10 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8, SPACING_10 } from '@toptal/picasso-utils'
 
 const formatLabel = (val: any) => {
   const formattedVal = val.length === 2 ? val : '0' + val

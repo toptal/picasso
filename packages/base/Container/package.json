@@ -2,36 +2,44 @@
   "name": "@toptal/picasso-container",
   "version": "1.0.0",
   "description": "Toptal UI components library - Container",
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist-package"
-  },
-  "main": "index.js",
-  "module": "index.js",
-  "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toptal/picasso.git"
   },
-  "author": "Toptal",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/toptal/picasso/issues"
-  },
-  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
-  "dependencies": {
-    "@toptal/picasso-utils": "1.0.0",
-    "classnames": "^2.3.1"
-  },
+  "author": "Toptal",
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
   ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/src/index.js"
+  },
+  "main": "./dist/src/index.js",
+  "module": "./dist/src/index.js",
+  "scripts": {
+    "build:package": "tsc -b tsconfig.json",
+    "prepublishOnly": "yarn build:package"
+  },
+  "dependencies": {
+    "@toptal/picasso-utils": "1.0.0",
+    "classnames": "^2.3.1"
+  },
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
+    "@toptal/picasso-provider": "3.4.2",
     "react": ">=16.12.0 < 19.0.0"
+  },
+  "devDependencies": {
+    "@toptal/picasso-provider": "3.4.2",
+    "@toptal/picasso-test-utils": "1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

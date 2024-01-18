@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { screens, palette } from '@toptal/picasso/utils'
+import { screens, palette } from '@toptal/picasso-utils'
 
 const StyledBox = styled.div`
   background-color: ${palette.green.main};

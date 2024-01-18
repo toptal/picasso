@@ -5,7 +5,7 @@ import {
   cleanup,
   fireEvent,
   waitForElementToBeRemoved,
-} from '@toptal/picasso/test-utils'
+} from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { useModal } from '@toptal/picasso-utils'
 

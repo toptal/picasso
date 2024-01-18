@@ -1,5 +1,5 @@
-import EmptyStatePage from '../EmptyStatePage'
-import EmptyStateCollection from '../EmptyStateCollection'
+import { EmptyStatePage } from '../EmptyStatePage'
+import { EmptyStateCollection } from '../EmptyStateCollection'
 
 export default {
   Page: EmptyStatePage,

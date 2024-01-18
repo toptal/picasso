@@ -17,7 +17,7 @@ import {
   Help16,
   Logo,
 } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const containerHeight = '30rem'
 

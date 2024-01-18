@@ -8,7 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom'
 import { Container, Logo, Link, Breadcrumbs } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Usa = () => <h2>USA</h2>
 const Software = () => <h2>Software</h2>

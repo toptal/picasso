@@ -41,7 +41,7 @@ export interface Props
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
-  children: ReactNode
+  children?: ReactNode
   focused?: boolean
   /** Take the full width of a container */
   fullWidth?: boolean

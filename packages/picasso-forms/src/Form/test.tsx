@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render, waitFor, act } from '@toptal/picasso/test-utils'
+import { fireEvent, render, waitFor, act } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso'
 

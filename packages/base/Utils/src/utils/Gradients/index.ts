@@ -1,1 +1,2 @@
-export { default } from './story/Default.example'
+// Storybook only
+export {}

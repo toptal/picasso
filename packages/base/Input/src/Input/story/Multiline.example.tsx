@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input, Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => {
   const [value, setValue] = useState('Multiline text')

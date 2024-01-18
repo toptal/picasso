@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 import { Menu, Overview16, Page } from '@toptal/picasso'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 import React, { useCallback, useState } from 'react'
 
 const TOGGLE_SIDEBAR_MENU_BUTTON_ID = 'toggle-sidebar-menu'

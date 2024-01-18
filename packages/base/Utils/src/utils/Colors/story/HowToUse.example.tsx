@@ -1,5 +1,5 @@
 import React from 'react'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso'
 
 const Example = () => (

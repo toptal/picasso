@@ -22,11 +22,15 @@ import {
   RootContext,
 } from '@toptal/picasso-provider'
 import { CloseMinor16 } from '@toptal/picasso-icons'
-import { useCombinedRefs , ModalManager , usePageScrollLock } from '@toptal/picasso-utils'
+import {
+  useCombinedRefs,
+  ModalManager,
+  usePageScrollLock,
+} from '@toptal/picasso-utils'
 import { ButtonCircular } from '@toptal/picasso-button'
+import ModalContext from '@toptal/picasso-modal-context'
 
 import styles from './styles'
-import ModalContext from './ModalContext'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'

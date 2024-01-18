@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Container, Tooltip } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 import type { Props } from '../Input'
 

@@ -6,7 +6,7 @@ import {
   Typography,
   Plus16,
 } from '@toptal/picasso'
-import { SPACING_4, SPACING_8, SPACING_2 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_8, SPACING_2 } from '@toptal/picasso-utils'
 
 const Example = () => {
   const [expanded, setExpanded] = React.useState(true)

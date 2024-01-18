@@ -1,1 +1,0 @@
-export const AVATAR_INITIALS_LIMIT = 3

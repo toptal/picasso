@@ -1,5 +1,5 @@
 import { Button, Container, List, Drawer } from '@toptal/picasso'
-import { SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_6 } from '@toptal/picasso-utils'
 import React, { useState } from 'react'
 
 const Example = () => {

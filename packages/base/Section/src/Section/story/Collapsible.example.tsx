@@ -7,7 +7,7 @@ import {
   Section,
   Container,
 } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => {
   const content = (

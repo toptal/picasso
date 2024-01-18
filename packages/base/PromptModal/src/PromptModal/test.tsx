@@ -4,7 +4,7 @@ import {
   fireEvent,
   waitFor,
   waitForElementToBeRemoved,
-} from '@toptal/picasso/test-utils'
+} from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 import { useModal, noop } from '@toptal/picasso-utils'
 

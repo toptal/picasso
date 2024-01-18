@@ -5,19 +5,22 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-shared#readme",
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
+  "type": "module",
+  "exports": {
+    ".": "./dist/src/index.js"
+  },
   "publishConfig": {
-    "access": "public",
-    "directory": "dist-package"
+    "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "cross-env NODE_ENV=production node ../../bin/build.js --tsConfig=./tsconfig.build.json",
-    "prepublishOnly": "if [ -d dist-package ]; then cp ./package.json ./dist-package/package.json; fi"
+    "build:package": "tsc --build tsconfig.json",
+    "prepublishOnly": "yarn build:package"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"

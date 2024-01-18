@@ -1,7 +1,7 @@
 import type { ComponentProps } from 'react'
 import React from 'react'
 import { Button, Menu, Container, Typography } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 type ButtonSplitProps = ComponentProps<typeof Button.Split>
 

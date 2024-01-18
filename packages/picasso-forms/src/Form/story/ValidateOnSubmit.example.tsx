@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useField } from 'react-final-form'
 import { Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import {
   FormNonCompound,
   Checkbox,

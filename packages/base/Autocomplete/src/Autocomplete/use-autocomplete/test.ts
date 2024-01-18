@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import { act, renderHook } from '@testing-library/react-hooks'
-import { waitFor } from '@toptal/picasso/test-utils'
+import { waitFor } from '@toptal/picasso-test-utils'
 
 import type { Item } from '../types'
 import type { Props } from './use-autocomplete'

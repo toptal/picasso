@@ -3,7 +3,6 @@ import React, { forwardRef } from 'react'
 import type {
   BaseProps,
   TextLabelProps,
-  OverridableComponent,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
@@ -32,7 +31,7 @@ const Active = (props: { children: ReactNode }) => {
   return <Typography weight='semibold' color='black' {...props} />
 }
 
-export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
+export const BreadcrumbsItem = forwardRef<
   HTMLElement,
   Props
 >(function BreadcrumbsItem(props, ref) {

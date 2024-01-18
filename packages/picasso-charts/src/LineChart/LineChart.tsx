@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import React, { useRef } from 'react'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import {
   ComposedChart,

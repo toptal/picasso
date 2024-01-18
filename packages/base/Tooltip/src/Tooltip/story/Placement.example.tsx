@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tooltip, Button, Container, Grid } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container style={{ padding: 100, width: 600 }}>

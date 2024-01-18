@@ -1,6 +1,6 @@
 import React from 'react'
 import { Radio, Container, Typography } from '@toptal/picasso'
-import { SPACING_2, SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_2, SPACING_6 } from '@toptal/picasso-utils'
 import styled from 'styled-components'
 
 const Label = styled.label`

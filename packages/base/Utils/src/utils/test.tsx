@@ -1,4 +1,4 @@
-import { render, act } from '@toptal/picasso/test-utils'
+import { render, act } from '@toptal/picasso-test-utils'
 import type { Ref } from 'react'
 import React, { createRef, useEffect } from 'react'
 

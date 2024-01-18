@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { Item } from '@toptal/picasso/Autocomplete'
 import { Typography, Container, Autocomplete } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso-utils'
 
 const renderOtherOption = (value: string) => (
   <Typography size='medium' color='dark-grey' weight='semibold'>

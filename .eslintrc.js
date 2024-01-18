@@ -64,7 +64,7 @@ module.exports = {
       'error',
       {
         excludeFiles: ['**/*.example.jsx', '**/*.example.tsx'],
-        excludePaths: ['@toptal/picasso/test-utils'],
+        excludePaths: ['@toptal/picasso-test-utils'],
       },
     ],
     ...generateSameSettingRules(ssrFriendlyRuleNames, 'warn'),

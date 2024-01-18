@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { noop } from '@toptal/picasso/utils'
+import { noop } from '@toptal/picasso-utils'
 
 export type Props = {
   internalRefs?: React.RefObject<HTMLDivElement>[]

@@ -7,7 +7,7 @@ import {
   Link,
   Pencil16,
 } from '@toptal/picasso'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
 
 const DefaultExample = () => {

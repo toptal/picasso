@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import { shadows, SPACING_6, SPACING_8, SPACING_4 } from '@toptal/picasso/utils'
+import { shadows, SPACING_6, SPACING_8, SPACING_4 } from '@toptal/picasso-utils'
 import { Container, Typography, Grid } from '@toptal/picasso'
 
 const Example = () => (

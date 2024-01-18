@@ -2,7 +2,7 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
+import { TestingPicasso } from '@toptal/picasso-test-utils'
 
 import type { TabProps } from '../Tab'
 import type { Props } from './Tabs'

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "declaration": true,
+    "jsx": "react",
+    "forceConsistentCasingInFileNames": true,
+    "composite": true,
+    "typeRoots": ["./node_modules/@types", "./@types"],
+    "strict": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "**/test.tsx",
+    "**/*.test.tsx",
+    "**/__testfixtures__",
+    "**/test.ts",
+    "**/*.test.ts",
+    "**/story"
+  ]
+}

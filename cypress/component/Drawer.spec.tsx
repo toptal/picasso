@@ -8,8 +8,9 @@ import {
   List,
   Typography,
 } from '@toptal/picasso'
-import { useModal, useNotifications } from '@toptal/picasso/utils'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { useModal } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 const DrawerExample = (
   props: Partial<DrawerProps> & { open: boolean; onOpen: () => void }

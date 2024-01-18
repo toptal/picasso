@@ -1,6 +1,6 @@
 import React from 'react'
-import type { PicassoConfig } from '@toptal/picasso/test-utils'
-import { render } from '@toptal/picasso/test-utils'
+import type { PicassoConfig } from '@toptal/picasso-test-utils'
+import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import Select from './Select'

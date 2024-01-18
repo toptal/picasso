@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Container, Typography } from '@toptal/picasso'
-import { SPACING_4, palette } from '@toptal/picasso/utils'
+import { SPACING_4, palette } from '@toptal/picasso-utils'
 
 type Props = { children: React.ReactNode }
 

@@ -9,7 +9,7 @@ import {
 } from '@toptal/picasso'
 import type { HierarchyPointNode } from 'd3-hierarchy'
 import styled from 'styled-components'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 
 const NodeContainer = styled<typeof Container>(Container)<{
   selected?: boolean

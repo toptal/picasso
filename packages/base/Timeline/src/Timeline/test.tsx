@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, TestingPicasso } from '@toptal/picasso/test-utils'
+import { render, TestingPicasso } from '@toptal/picasso-test-utils'
 
 import type { Props } from './Timeline'
 import Timeline from './Timeline'

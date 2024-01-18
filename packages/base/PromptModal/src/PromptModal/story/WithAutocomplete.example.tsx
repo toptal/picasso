@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Autocomplete, PromptModal } from '@toptal/picasso'
 import type { Item } from '@toptal/picasso/Autocomplete'
-import { useNotifications, isSubstring, useModal } from '@toptal/picasso/utils'
+import { useNotifications, isSubstring, useModal } from '@toptal/picasso-utils'
 
 const allOptions = [
   { text: 'Belarus', value: 'BY' },

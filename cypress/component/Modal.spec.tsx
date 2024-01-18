@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import type { ModalProps } from '@toptal/picasso'
 import { Modal, Form, Input, Select, Checkbox, Button } from '@toptal/picasso'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => {
   const [isOpen, setOpen] = React.useState(false)

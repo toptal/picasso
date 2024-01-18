@@ -1,6 +1,6 @@
 import React from 'react'
 import { Pagination, Container, Typography } from '@toptal/picasso'
-import { SPACING_2, SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_2, SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => (
   <Container flex direction='column' justifyContent='space-between'>

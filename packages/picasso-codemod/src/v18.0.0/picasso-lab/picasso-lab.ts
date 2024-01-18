@@ -20,8 +20,8 @@
  *  3. combine `@toptal/picasso` (child modules as well) modules respectively
  *  4. insert at the beginning of the file
  *
- *  child modules - `@toptal/picasso/utils`, `@toptal/picasso/Icon`,
- *  `@toptal/picasso/test-utils`
+ *  child modules - `@toptal/picasso-utils`, `@toptal/picasso/Icon`,
+ *  `@toptal/picasso-test-utils`
  *
  *  IMPORTANT: Does not cover edge cases for comments and namespace imports.
  */

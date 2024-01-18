@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { palette, SPACING_8, SPACING_4 } from '@toptal/picasso/utils'
+import { palette, SPACING_8, SPACING_4 } from '@toptal/picasso-utils'
 import { Grid, Paper, Typography, Container } from '@toptal/picasso'
 
 const colorGroups = Object.entries(palette)

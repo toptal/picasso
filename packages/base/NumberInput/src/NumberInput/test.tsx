@@ -1,6 +1,6 @@
 import type { ChangeEventHandler } from 'react'
 import React, { useState } from 'react'
-import { render, fireEvent } from '@toptal/picasso/test-utils'
+import { render, fireEvent } from '@toptal/picasso-test-utils'
 
 import type { Props as NumberInputProps } from './NumberInput'
 import NumberInput from './NumberInput'

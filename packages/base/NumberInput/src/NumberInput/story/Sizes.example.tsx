@@ -1,7 +1,7 @@
 import type { ChangeEventHandler } from 'react'
 import React, { useState } from 'react'
 import { NumberInput, Container, FormLabel } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 
 const SizesExample = () => {
   const [value, setValue] = useState('1')

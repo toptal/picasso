@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import debounce from 'debounce'
 import type { AutocompleteItem } from '@toptal/picasso'
 import { Autocomplete } from '@toptal/picasso'
-import { isSubstring } from '@toptal/picasso/utils'
+import { isSubstring } from '@toptal/picasso-utils'
 
 const remoteOptions = [
   { text: 'Belarus' },

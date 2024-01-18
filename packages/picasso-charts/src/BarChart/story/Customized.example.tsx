@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper, Container, Typography } from '@toptal/picasso'
-import { SPACING_2, palette } from '@toptal/picasso/utils'
+import { SPACING_2, palette } from '@toptal/picasso-utils'
 import { BarChart } from '@toptal/picasso-charts'
 
 const CHART_DATA = [

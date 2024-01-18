@@ -1,6 +1,6 @@
 import React from 'react'
 import { Slider, Typography, Container } from '@toptal/picasso'
-import { SPACING_10, SPACING_8 } from '@toptal/picasso/utils'
+import { SPACING_10, SPACING_8 } from '@toptal/picasso-utils'
 
 type Value = number | number[]
 

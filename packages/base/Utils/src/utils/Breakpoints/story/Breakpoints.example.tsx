@@ -1,5 +1,5 @@
 import React from 'react'
-import { breakpoints, SPACING_4 } from '@toptal/picasso/utils'
+import { breakpoints, SPACING_4 } from '@toptal/picasso-utils'
 import { Grid, Paper, Image, Typography, Container } from '@toptal/picasso'
 
 const breakpointsList = Object.entries(breakpoints)

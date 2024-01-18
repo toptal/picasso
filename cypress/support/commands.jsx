@@ -3,7 +3,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { mount } from 'cypress/react'
 import React from 'react'
-import { TestingPicasso } from '@toptal/picasso/test-utils'
+import { TestingPicasso } from '@toptal/picasso-test-utils'
 
 Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {
   const windowInnerWidth = Cypress.config(`viewportWidth`)

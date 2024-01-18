@@ -10,7 +10,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 import { useWidthOf } from '@toptal/picasso-utils'
-import { ModalContext } from '@toptal/picasso-modal'
+import ModalContext from '@toptal/picasso-modal-context'
 
 import styles from './styles'
 

@@ -8,7 +8,7 @@ import {
   ListUnordered16,
   Select,
 } from '@toptal/picasso'
-import { useMultipleForwardRefs } from '@toptal/picasso/utils'
+import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import React, { forwardRef } from 'react'
 

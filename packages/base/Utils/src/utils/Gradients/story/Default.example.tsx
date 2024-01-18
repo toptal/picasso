@@ -1,5 +1,5 @@
 import React from 'react'
-import { gradients, shadows } from '@toptal/picasso/utils'
+import { gradients, shadows } from '@toptal/picasso-utils'
 import { Typography, Grid, Container } from '@toptal/picasso'
 
 const Example = () => (

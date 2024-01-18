@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react'
 import React, { useState, useCallback } from 'react'
 import type { SelectOption } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import { Select, Container, Typography } from '@toptal/picasso'
 
 const FilterOptionsExample = () => {

@@ -1,0 +1,13 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../picasso-provider" },
+    { "path": "../Button" },
+    { "path": "../Container" },
+    { "path": "../Icons" },
+    { "path": "../Typography" },
+    { "path": "../Utils" }
+  ]
+}

@@ -1,4 +1,4 @@
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 
 import getColor from './get-color'
 
