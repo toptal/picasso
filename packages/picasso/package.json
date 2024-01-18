@@ -39,7 +39,7 @@
     "d3-zoom": "^3",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
-    "debounce": "^2.0.0",
+    "debounce": "^1.2.1",
     "detect-browser": "^5.3.0",
     "glider-js": "^1.7.8",
     "react-content-loader": "^6.2.1",
