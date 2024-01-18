@@ -28,7 +28,9 @@ const useSelectHandler = <T extends ValueType, M extends boolean = false>({
       }
 
       fireOnChangeEvent({ event, value: newValue, name, onChange })
-      setFilterOptionsValue(EMPTY_INPUT_VALUE)
+      if (!multiple) {
+        setFilterOptionsValue(EMPTY_INPUT_VALUE)
+      }
     },
     [name, onChange, emptySelectValue, setFilterOptionsValue, multiple, value]
   )

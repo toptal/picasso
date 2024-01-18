@@ -69,7 +69,7 @@ describe('useSelectHandler', () => {
 
       result.current(event, OPTIONS[1])
 
-      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(1)
+      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(0)
       expect(props.selectProps.onChange).toHaveBeenCalledWith({
         ...event,
         target: {
@@ -77,10 +77,10 @@ describe('useSelectHandler', () => {
           value: [OPTIONS[1].value],
         },
       })
-      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
+      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(0)
     })
 
-    it('resets value', () => {
+    it(`doesn't resets value`, () => {
       const props = getUseSelectPropsMock()
 
       props.selectProps.options = OPTIONS
@@ -93,7 +93,7 @@ describe('useSelectHandler', () => {
 
       result.current(event, OPTIONS[0])
 
-      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(1)
+      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(0)
       expect(props.selectProps.onChange).toHaveBeenCalledWith({
         ...event,
         target: {
@@ -101,7 +101,7 @@ describe('useSelectHandler', () => {
           value: [],
         },
       })
-      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledWith('')
+      expect(props.selectState.setFilterOptionsValue).toHaveBeenCalledTimes(0)
     })
   })
 })
