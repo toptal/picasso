@@ -1,3 +1,3 @@
 export * from './RadioCompound'
 export * from './Radio'
-export * from './RadioGroup'
+export { RadioGroupProps, RadioGroup } from './RadioGroup'
