@@ -132,7 +132,7 @@ jobs:
       # Once installed, if the workflow run is marked as required, PRs introducing known-vulnerable
       # packages will be blocked from merging.
       - name: Dependency Review
-        uses: actions/dependency-review-action@v3
+        uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
         uses: toptal/davinci-github-actions/yarn-install@v12.7.1
