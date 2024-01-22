@@ -19,6 +19,15 @@ This repository is the home for all of Toptal's reusable UI, split up into disti
 
 Please read our documentation [here](./CONTRIBUTING.md)
 
+## Supported browsers
+
+Picasso supports browsers from default configuration of `@toptal/browserslist-config` package. 
+
+Picasso recommends Chrome browser for development.
+
+All testing in Picasso is done in Chrome browser, there is no guarantee that Picasso will work in other browsers (please feel free to report and contribute).
+
+
 ## Running storybook
 
 In order to run storybook you need to execute `yarn start` which will spin up storybook server on <http://localhost:9001>.
