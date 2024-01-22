@@ -25,7 +25,7 @@ Picasso supports browsers specified in `@toptal/browserslist-config` package.
 
 Picasso recommends Chrome browser for development.
 
-All testing in Picasso is done in Chrome browser, there is no guarantee that Picasso will work in other browsers (please report and contribute when problems are encountered).
+Picasso uses only Chrome browser for testing, there is no guarantee that Picasso works in 100% of cases in other browsers (please report and contribute when problems are encountered).
 
 
 ## Running storybook
