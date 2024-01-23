@@ -1,5 +1,13 @@
 # Change Log
 
+## 42.4.0
+
+### Minor Changes
+
+- [#4101](https://github.com/toptal/picasso/pull/4101) [`93132438bf0daef30683f1d75aba01e3a1e2fa30`](https://github.com/toptal/picasso/commit/93132438bf0daef30683f1d75aba01e3a1e2fa30) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- select input no longer closes after searched option is selected (when select works in multiple values mode)
+  - select input no longer resets the search input when an option is selected (when select works in multiple values mode)
+
 ## 42.3.6
 
 ### Patch Changes
