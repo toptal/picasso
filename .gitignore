@@ -4,6 +4,7 @@ yarn-error.log
 dist-package/
 build/
 .swc
+.nx
 
 .envrc
 .DS_Store
