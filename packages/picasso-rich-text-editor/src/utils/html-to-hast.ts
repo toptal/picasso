@@ -1,6 +1,6 @@
 import type { Schema } from 'hast-util-sanitize'
 import hastSanitize from 'hast-util-sanitize'
-import hastFromDom from 'hast-util-from-dom'
+import { fromDom as hastFromDom } from 'hast-util-from-dom'
 
 import type { ASTType, ASTChildType } from '../RichText/types'
 
