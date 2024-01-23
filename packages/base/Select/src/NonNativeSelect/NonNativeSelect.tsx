@@ -68,6 +68,7 @@ export const NonNativeSelect = documentable(
         enableReset,
         popperContainer,
         enableAutofill,
+        enableResetSearch,
         autoComplete,
         searchPlaceholder,
         searchThreshold = DEFAULT_SEARCH_THRESHOLD,
@@ -139,6 +140,7 @@ export const NonNativeSelect = documentable(
               </InputAdornment>
             }
             placeholder={searchPlaceholder}
+            enableReset={enableResetSearch}
             size={size}
             value={filterOptionsValue}
             testIds={testIds}

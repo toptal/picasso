@@ -1,6 +1,6 @@
 import type { AnyObject } from 'final-form'
 import { useCallback, useMemo, useState } from 'react'
-import { debounce } from 'debounce'
+import debounce from 'debounce'
 
 import type { ChangedFields } from '../form-values-change-decorator'
 import createFormValuesChangeDecorator from '../form-values-change-decorator'

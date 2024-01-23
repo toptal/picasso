@@ -4,5 +4,5 @@ import type { Props as OuterProps } from './Autocomplete'
 export { default as Autocomplete } from './Autocomplete'
 export * from './types'
 export type AutocompleteProps = OmitInternalProps<OuterProps>
-/** @deprecated Use AutocompleteProps instead */
+/** @deprecated [FX-4714] Use AutocompleteProps instead */
 export type Props = AutocompleteProps

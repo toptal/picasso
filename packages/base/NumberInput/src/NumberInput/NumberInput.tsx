@@ -67,6 +67,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       ...rest
     } = props
 
+    // TODO: [FX-4715]
     usePropDeprecationWarning({
       props,
       name: 'error',

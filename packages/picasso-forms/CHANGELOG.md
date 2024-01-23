@@ -1,5 +1,19 @@
 # Change Log
 
+## 66.1.3
+
+### Patch Changes
+
+- [#4090](https://github.com/toptal/picasso/pull/4090) [`b024f26f52a48ab0d3629c0fdeabe00d019d19c6`](https://github.com/toptal/picasso/commit/b024f26f52a48ab0d3629c0fdeabe00d019d19c6) Thanks [@sashuk](https://github.com/sashuk)!
+- revert `debounce` update
+
+## 66.1.2
+
+### Patch Changes
+
+- [#4079](https://github.com/toptal/picasso/pull/4079) [`96e439aaf6b621ca72937beaefb74a97ce710554`](https://github.com/toptal/picasso/commit/96e439aaf6b621ca72937beaefb74a97ce710554) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump debounce to v2
+
 ## 66.1.1
 
 ### Patch Changes

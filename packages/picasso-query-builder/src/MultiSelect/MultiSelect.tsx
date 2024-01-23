@@ -57,6 +57,8 @@ export const MultiSelect = ({
         value={values}
         status={hasError ? 'error' : undefined}
         data-testid={valueEditorTestId}
+        enableReset={fieldData?.enableReset}
+        enableResetSearch={fieldData?.enableResetSearch}
       />
     </Container>
   )

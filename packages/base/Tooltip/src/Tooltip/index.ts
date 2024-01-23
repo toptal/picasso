@@ -4,5 +4,5 @@ import type { Props as InternalTooltipProps } from './Tooltip'
 export { default as Tooltip } from './Tooltip'
 export type TooltipProps = OmitInternalProps<InternalTooltipProps>
 export type { DelayType, MaxWidthType, PlacementType } from './Tooltip'
-/** @deprecated Use TooltipProps instead */
+/** @deprecated [FX-4714] Use TooltipProps instead */
 export type Props = TooltipProps

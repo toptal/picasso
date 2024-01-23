@@ -44,7 +44,7 @@
     ".": "./dist/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "3.4.2",
+    "@toptal/picasso-provider": "3.4.3",
     "@toptal/picasso-test-utils": "1.0.0"
   }
 }

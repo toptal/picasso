@@ -23,14 +23,14 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "devDependencies": {
     "@testing-library/react": "^14.1.2",
-    "@toptal/picasso-provider": "3.4.2"
+    "@toptal/picasso-provider": "3.4.3"
   },
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
   ],
   "dependencies": {
-    "@toptal/picasso-shared": "13.1.2"
+    "@toptal/picasso-shared": "13.1.3"
   },
   "peerDependencies": {
     "@toptal/picasso-provider": "3.4.2",

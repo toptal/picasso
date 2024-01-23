@@ -29,7 +29,6 @@ jobs:
       issues: write
       pull-requests: write
     timeout-minutes: 45
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -64,7 +63,7 @@ jobs:
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v12.5.1
+      - uses: toptal/davinci-github-actions/build-push-image@v12.7.1
         env:
           GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           GCR_ACCOUNT_KEY: ${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}
@@ -124,7 +123,7 @@ jobs:
           node-version: 18
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v12.5.1
+        uses: toptal/davinci-github-actions/report-missing-changeset@v12.7.1
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -133,10 +132,10 @@ jobs:
       # Once installed, if the workflow run is marked as required, PRs introducing known-vulnerable
       # packages will be blocked from merging.
       - name: Dependency Review
-        uses: actions/dependency-review-action@v3
+        uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v12.5.1
+        uses: toptal/davinci-github-actions/yarn-install@v12.7.1
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
@@ -164,7 +163,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     needs: [static-checks]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -200,7 +198,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v12.5.1
+        uses: toptal/davinci-github-actions/yarn-install@v12.7.1
 
       - name: Visual Tests
         run: yarn happo:storybook
@@ -224,7 +222,6 @@ jobs:
       contents: write
       id-token: write
     needs: [build-docker-image]
-
     steps:
       - name: GSM Secrets
         id: secrets_manager
@@ -265,11 +262,12 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-      
+
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
+        shell: bash
         run: |
           sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-        shell: bash
+          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
@@ -291,9 +289,14 @@ jobs:
           job_timeout: "3600"
 
       - name: Create Jira Deployment
-        uses: toptal/davinci-github-actions/create-jira-deployment@v12.5.1
+        uses: ./.github/actions/create-jira-deployment/
         if: ${{ always() }}
         with:
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
+          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: staging
           environment-url: ${{ steps.temploy.outputs.temployURL }}

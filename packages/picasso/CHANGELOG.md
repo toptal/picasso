@@ -1,5 +1,57 @@
 # Change Log
 
+## 42.3.6
+
+### Patch Changes
+
+- [#4090](https://github.com/toptal/picasso/pull/4090) [`b024f26f52a48ab0d3629c0fdeabe00d019d19c6`](https://github.com/toptal/picasso/commit/b024f26f52a48ab0d3629c0fdeabe00d019d19c6) Thanks [@sashuk](https://github.com/sashuk)!
+- revert `debounce` update
+
+## 42.3.5
+
+### Patch Changes
+
+- [#4100](https://github.com/toptal/picasso/pull/4100) [`b84a9383257b6b860de912c22d1bff8f740c7c16`](https://github.com/toptal/picasso/commit/b84a9383257b6b860de912c22d1bff8f740c7c16) Thanks [@sashuk](https://github.com/sashuk)!
+- remove injectFirst and styles import from TestingPicasso
+
+## 42.3.4
+
+### Patch Changes
+
+- [#4083](https://github.com/toptal/picasso/pull/4083) [`147fd703c1b9e70d2446bfb5f41dfaeb16a57381`](https://github.com/toptal/picasso/commit/147fd703c1b9e70d2446bfb5f41dfaeb16a57381) Thanks [@sashuk](https://github.com/sashuk)!
+- bump `notistack` version
+
+- Updated dependencies [[`147fd703c1b9e70d2446bfb5f41dfaeb16a57381`](https://github.com/toptal/picasso/commit/147fd703c1b9e70d2446bfb5f41dfaeb16a57381)]:
+  - @toptal/picasso-shared@13.1.3
+
+## 42.3.3
+
+### Patch Changes
+
+- [#4089](https://github.com/toptal/picasso/pull/4089) [`9b60dd2681821a23eb6dd2d24c67c0c0d961b601`](https://github.com/toptal/picasso/commit/9b60dd2681821a23eb6dd2d24c67c0c0d961b601) Thanks [@sashuk](https://github.com/sashuk)!
+- do not pass `enableResetSearch` property further
+
+## 42.3.2
+
+### Patch Changes
+
+- [#4082](https://github.com/toptal/picasso/pull/4082) [`58ca9e1fb82c0969b1f00d92742ebdbe3f524b50`](https://github.com/toptal/picasso/commit/58ca9e1fb82c0969b1f00d92742ebdbe3f524b50) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump `react-day-picker` version
+
+## 42.3.1
+
+### Patch Changes
+
+- [#4079](https://github.com/toptal/picasso/pull/4079) [`96e439aaf6b621ca72937beaefb74a97ce710554`](https://github.com/toptal/picasso/commit/96e439aaf6b621ca72937beaefb74a97ce710554) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump debounce to v2
+
+## 42.3.0
+
+### Minor Changes
+
+- [#4075](https://github.com/toptal/picasso/pull/4075) [`2d0c9d45eb9596838b3805aa2e7f25dd109ca455`](https://github.com/toptal/picasso/commit/2d0c9d45eb9596838b3805aa2e7f25dd109ca455) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- add `enableResetSearch` prop to `Select` component to render reset icon which clears search input
+
 ## 42.2.4
 
 ### Patch Changes

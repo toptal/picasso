@@ -31,7 +31,7 @@ export interface SelectProps<
   disabled?: boolean
   /** Whether to render select options in portal. Should be disabled in Modals */
   disablePortal?: boolean
-  /** @deprecated Indicate whether `Select` is in error state */
+  /** @deprecated [FX-4715] Indicate whether `Select` is in error state */
   error?: boolean
   /** Indicate whether `Select` is in `error` or `default` state */
   status?: Extract<Status, 'error' | 'default'>
@@ -79,6 +79,8 @@ export interface SelectProps<
   size?: SizeType<'small' | 'medium' | 'large'>
   /** Whether to render reset icon which clears selected value */
   enableReset?: boolean
+  /** Whether to render reset icon which clears search input value */
+  enableResetSearch?: boolean
   popperContainer?: HTMLElement
   /** Defines the minimum options number to show the search
    * @default 10

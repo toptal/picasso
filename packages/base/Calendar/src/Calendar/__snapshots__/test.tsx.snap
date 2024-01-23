@@ -137,7 +137,6 @@ exports[`Calendar renders 1`] = `
                 </thead>
                 <tbody
                   class="rdp-tbody"
-                  role="rowgroup"
                 >
                   <tr
                     class="PicassoCalendar-row"
