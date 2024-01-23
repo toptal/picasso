@@ -8,6 +8,7 @@ describe('Favicon', () => {
     render(<Favicon />)
 
     await waitFor(() => {
+      debugger
       expect(document.querySelectorAll('head > link')).not.toHaveLength(0)
     })
 
