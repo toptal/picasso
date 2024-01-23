@@ -22,6 +22,7 @@ describe('CategoriesChart', () => {
 
     // fix flakiness, sometimes the screenshot was taken
     // with mouse over the bar and it triggered tooltip
+    cy.get('svg').realClick()
     cy.get('svg').realHover({ position: 'topLeft' })
 
     cy.get('body').happoScreenshot({
