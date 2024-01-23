@@ -21,11 +21,13 @@ Please read our documentation [here](./CONTRIBUTING.md)
 
 ## Supported browsers
 
-Picasso supports browsers specified in `@toptal/browserslist-config` package. 
+Picasso guarantees to work in Chrome and it supports other browsers specified in `@toptal/browserslist-config` package. 
 
-Picasso recommends Chrome browser for development.
+## Release policy
 
-Picasso uses only Chrome browser for testing, there is no guarantee that Picasso works in 100% of cases in other browsers (please report and contribute when problems are encountered).
+Changes in peer dependencies, breaking changes in component API or behavior, supported NodeJS version, result in major releases.
+
+Changes in dev dependencies and component HTML structure are not considered as breaking changes and result in minor or patch releases.
 
 
 ## Running storybook
