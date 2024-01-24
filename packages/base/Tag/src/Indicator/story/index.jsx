@@ -23,4 +23,4 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Indicator/story/Default.example.tsx', 'Default')
+  .addExample('Indicator/story/Default.example.tsx', 'Default', 'base/Tag')

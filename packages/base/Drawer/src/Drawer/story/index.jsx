@@ -21,31 +21,59 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Drawer/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Drawer/story/WithBodyScrollLock.example.tsx', {
-    title: 'With body scroll lock',
-    takeScreenshot: false,
-  })
-  .addExample('Drawer/story/WithoutTitle.example.tsx', {
-    title: 'Without Title',
-    takeScreenshot: false,
-  })
-  .addExample('Drawer/story/CustomTitle.example.tsx', {
-    title: 'Custom Title',
-    takeScreenshot: false,
-  })
-  .addExample('Drawer/story/Widths.example.tsx', {
-    title: 'Width',
-    takeScreenshot: false,
-  })
-  .addExample('Drawer/story/DrawerAndNotification.example.tsx', {
-    title: 'With notification',
-    takeScreenshot: false,
-  })
-  .addExample('Drawer/story/WithTransparentBackdrop.example.tsx', {
-    title: 'With transparent backdrop',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Drawer/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/WithBodyScrollLock.example.tsx',
+    {
+      title: 'With body scroll lock',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/WithoutTitle.example.tsx',
+    {
+      title: 'Without Title',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/CustomTitle.example.tsx',
+    {
+      title: 'Custom Title',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/Widths.example.tsx',
+    {
+      title: 'Width',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/DrawerAndNotification.example.tsx',
+    {
+      title: 'With notification',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
+  .addExample(
+    'Drawer/story/WithTransparentBackdrop.example.tsx',
+    {
+      title: 'With transparent backdrop',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )

@@ -29,7 +29,23 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Pagination/story/Default.example.tsx', 'Default')
-  .addExample('Pagination/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Pagination/story/Variants.example.tsx', 'Variants')
-  .addExample('Pagination/story/Ellipsis.example.tsx', 'Ellipsis')
+  .addExample(
+    'Pagination/story/Default.example.tsx',
+    'Default',
+    'base/Pagination'
+  )
+  .addExample(
+    'Pagination/story/Disabled.example.tsx',
+    'Disabled',
+    'base/Pagination'
+  )
+  .addExample(
+    'Pagination/story/Variants.example.tsx',
+    'Variants',
+    'base/Pagination'
+  )
+  .addExample(
+    'Pagination/story/Ellipsis.example.tsx',
+    'Ellipsis',
+    'base/Pagination'
+  )

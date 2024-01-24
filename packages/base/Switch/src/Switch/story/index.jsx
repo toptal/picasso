@@ -20,12 +20,20 @@ page
 
 page
   .createChapter()
-  .addExample('Switch/story/Uncontrolled.example.tsx', {
-    title: 'Uncontrolled',
-    description: 'Can control its state by itself',
-  })
-  .addExample('Switch/story/Controlled.example.tsx', {
-    title: 'Controlled',
-    description: 'Stateless Switch, state should be controlled using prop',
-  })
-  .addExample('Switch/story/Disabled.example.tsx', 'Disabled')
+  .addExample(
+    'Switch/story/Uncontrolled.example.tsx',
+    {
+      title: 'Uncontrolled',
+      description: 'Can control its state by itself',
+    },
+    'base/Switch'
+  )
+  .addExample(
+    'Switch/story/Controlled.example.tsx',
+    {
+      title: 'Controlled',
+      description: 'Stateless Switch, state should be controlled using prop',
+    },
+    'base/Switch'
+  )
+  .addExample('Switch/story/Disabled.example.tsx', 'Disabled', 'base/Switch')

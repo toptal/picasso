@@ -11,8 +11,16 @@ const page = PicassoBook.section('Utils').createPage(
 
 page
   .createChapter()
-  .addExample('utils/Gradients/story/HowToUse.example.tsx', {
-    title: 'How to use',
-    takeScreenshot: false,
-  })
-  .addExample('utils/Gradients/story/Default.example.tsx', 'Gradients')
+  .addExample(
+    'utils/Gradients/story/HowToUse.example.tsx',
+    {
+      title: 'How to use',
+      takeScreenshot: false,
+    },
+    'base/Utils'
+  )
+  .addExample(
+    'utils/Gradients/story/Default.example.tsx',
+    'Gradients',
+    'base/Utils'
+  )

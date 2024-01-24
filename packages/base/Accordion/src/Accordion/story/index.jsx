@@ -34,29 +34,49 @@ page
 
 page
   .createChapter()
-  .addExample('Accordion/story/Default.example.tsx', {
-    title: 'Default',
-    description:
-      'Accordion is uncontrolled until the `expanded` prop is specified.',
-  })
-  .addExample('Accordion/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    description:
-      'Accordion ignores pointer events when the `disabled` prop is truthy.',
-    takeScreenshot: false,
-  })
-  .addExample('Accordion/story/BorderedGroups.example.tsx', {
-    title: 'Borders and Groups',
-    description: 'Accordions have configurable borders and can be grouped',
-  })
-  .addExample('Accordion/story/Controlled.example.tsx', {
-    title: 'Controlled',
-    description: 'Accordion can be controlled via the `expanded` prop.',
-    takeScreenshot: false,
-  })
-  .addExample('Accordion/story/CustomSummary.example.tsx', {
-    title: 'Custom Summary',
-    description:
-      "Accordion's summary is customizable. It either can be passed as `children` or be an external custom component.",
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Accordion/story/Default.example.tsx',
+    {
+      title: 'Default',
+      description:
+        'Accordion is uncontrolled until the `expanded` prop is specified.',
+    },
+    'base/Accordion'
+  )
+  .addExample(
+    'Accordion/story/Disabled.example.tsx',
+    {
+      title: 'Disabled',
+      description:
+        'Accordion ignores pointer events when the `disabled` prop is truthy.',
+      takeScreenshot: false,
+    },
+    'base/Accordion'
+  )
+  .addExample(
+    'Accordion/story/BorderedGroups.example.tsx',
+    {
+      title: 'Borders and Groups',
+      description: 'Accordions have configurable borders and can be grouped',
+    },
+    'base/Accordion'
+  )
+  .addExample(
+    'Accordion/story/Controlled.example.tsx',
+    {
+      title: 'Controlled',
+      description: 'Accordion can be controlled via the `expanded` prop.',
+      takeScreenshot: false,
+    },
+    'base/Accordion'
+  )
+  .addExample(
+    'Accordion/story/CustomSummary.example.tsx',
+    {
+      title: 'Custom Summary',
+      description:
+        "Accordion's summary is customizable. It either can be passed as `children` or be an external custom component.",
+      takeScreenshot: false,
+    },
+    'base/Accordion'
+  )

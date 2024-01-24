@@ -10,8 +10,12 @@ const page = PicassoBook.section('Utils').createPage(
 
 page
   .createChapter()
-  .addExample('utils/Colors/story/HowToUse.example.tsx', {
-    title: 'How to use',
-    takeScreenshot: false,
-  })
-  .addExample('utils/Colors/story/Default.example.tsx', 'Colors')
+  .addExample(
+    'utils/Colors/story/HowToUse.example.tsx',
+    {
+      title: 'How to use',
+      takeScreenshot: false,
+    },
+    'base/Utils'
+  )
+  .addExample('utils/Colors/story/Default.example.tsx', 'Colors', 'base/Utils')

@@ -22,5 +22,13 @@ page
 
 page
   .createChapter()
-  .addExample('Breadcrumbs/story/Default.example.tsx', 'Default')
-  .addExample('Breadcrumbs/story/SimpleLinks.example.tsx', 'Simple links')
+  .addExample(
+    'Breadcrumbs/story/Default.example.tsx',
+    'Default',
+    'base/Breadcrumbs'
+  )
+  .addExample(
+    'Breadcrumbs/story/SimpleLinks.example.tsx',
+    'Simple links',
+    'base/Breadcrumbs'
+  )

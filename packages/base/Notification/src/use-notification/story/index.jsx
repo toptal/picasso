@@ -49,34 +49,62 @@ Each of them has this list of props:
         description: 'Options of the single notification.',
       },
     ])
-    .addExample('utils/Notifications/story/Default.example.tsx', {
-      title: 'Default',
-      takeScreenshot: false,
-    })
-    .addExample('utils/Notifications/story/Variants.example.tsx', {
-      title: 'Variants',
-      takeScreenshot: false,
-    })
-    .addExample('utils/Notifications/story/GeneralNotifications.example.tsx', {
-      title: 'General Notifications',
-      takeScreenshot: false,
-    })
-    .addExample('utils/Notifications/story/Options.example.tsx', {
-      title: 'Options',
-      takeScreenshot: false,
-    })
-    .addExample('utils/Notifications/story/Custom.example.tsx', {
-      title: 'Custom',
-      takeScreenshot: false,
-    })
-    .addExample('utils/Notifications/story/CustomPosition.example.tsx', {
-      title: 'Custom Position',
-      takeScreenshot: false,
-    })
-    .addExample('utils/Notifications/story/MaxNotifications.example.tsx', {
-      title: 'MaxNotifications',
-      takeScreenshot: false,
-    })
+    .addExample(
+      'utils/Notifications/story/Default.example.tsx',
+      {
+        title: 'Default',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
+    .addExample(
+      'utils/Notifications/story/Variants.example.tsx',
+      {
+        title: 'Variants',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
+    .addExample(
+      'utils/Notifications/story/GeneralNotifications.example.tsx',
+      {
+        title: 'General Notifications',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
+    .addExample(
+      'utils/Notifications/story/Options.example.tsx',
+      {
+        title: 'Options',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
+    .addExample(
+      'utils/Notifications/story/Custom.example.tsx',
+      {
+        title: 'Custom',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
+    .addExample(
+      'utils/Notifications/story/CustomPosition.example.tsx',
+      {
+        title: 'Custom Position',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
+    .addExample(
+      'utils/Notifications/story/MaxNotifications.example.tsx',
+      {
+        title: 'MaxNotifications',
+        takeScreenshot: false,
+      },
+      'base/Notification'
+    )
 )
 
 export default {

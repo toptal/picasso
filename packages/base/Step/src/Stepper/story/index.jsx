@@ -22,10 +22,18 @@ page
 
 page
   .createChapter()
-  .addExample('Stepper/story/Default.example.tsx', 'Default')
-  .addExample('Stepper/story/WithoutLabels.example.tsx', 'Without Labels')
-  .addExample('Stepper/story/Vertical.example.tsx', 'Vertical')
-  .addExample('Stepper/story/Overflow.example.tsx', {
-    title: 'Overflow',
-    takeScreenshot: false,
-  })
+  .addExample('Stepper/story/Default.example.tsx', 'Default', 'base/Step')
+  .addExample(
+    'Stepper/story/WithoutLabels.example.tsx',
+    'Without Labels',
+    'base/Step'
+  )
+  .addExample('Stepper/story/Vertical.example.tsx', 'Vertical', 'base/Step')
+  .addExample(
+    'Stepper/story/Overflow.example.tsx',
+    {
+      title: 'Overflow',
+      takeScreenshot: false,
+    },
+    'base/Step'
+  )

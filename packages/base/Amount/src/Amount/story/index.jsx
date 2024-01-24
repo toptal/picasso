@@ -17,8 +17,24 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Amount/story/Default.example.tsx', 'Default')
-  .addExample('Amount/story/Currency.example.tsx', 'Currency Variants')
-  .addExample('Amount/story/Variants.example.tsx', 'Typography Variants')
-  .addExample('Amount/story/Locale.example.tsx', 'Locale Variants')
-  .addExample('Amount/story/Decimals.example.tsx', 'Fractional digits')
+  .addExample('Amount/story/Default.example.tsx', 'Default', 'base/Amount')
+  .addExample(
+    'Amount/story/Currency.example.tsx',
+    'Currency Variants',
+    'base/Amount'
+  )
+  .addExample(
+    'Amount/story/Variants.example.tsx',
+    'Typography Variants',
+    'base/Amount'
+  )
+  .addExample(
+    'Amount/story/Locale.example.tsx',
+    'Locale Variants',
+    'base/Amount'
+  )
+  .addExample(
+    'Amount/story/Decimals.example.tsx',
+    'Fractional digits',
+    'base/Amount'
+  )

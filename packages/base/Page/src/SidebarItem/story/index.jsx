@@ -115,28 +115,45 @@ const componentDocs = PicassoBook.createComponentDocs(
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Sidebar Item')
-    .addExample('SidebarItem/story/Links.example.tsx', {
-      title: 'As a Link',
-      description: `
+    .addExample(
+      'SidebarItem/story/Links.example.tsx',
+      {
+        title: 'As a Link',
+        description: `
 Most of the time you would use Sidebar.Item as a router Link. This is how to do it.
 `,
-    })
-    .addExample('SidebarItem/story/Icons.example.tsx', 'Icons')
-    .addExample('SidebarItem/story/Collapsible.example.tsx', {
-      title: 'Collapsible',
-      description:
-        'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
-    })
-    .addExample('SidebarItem/story/DefaultExpanded.example.tsx', {
-      title: 'Expanded by default',
-      description:
-        'When a nested Sidebar.Item is selected, it automatically expands the menu.',
-    })
+      },
+      'base/Page'
+    )
+    .addExample('SidebarItem/story/Icons.example.tsx', 'Icons', 'base/Page')
+    .addExample(
+      'SidebarItem/story/Collapsible.example.tsx',
+      {
+        title: 'Collapsible',
+        description:
+          'Sidebar.Item has capability to render nested Sidebar.Menu with collapsible prop',
+      },
+      'base/Page'
+    )
+    .addExample(
+      'SidebarItem/story/DefaultExpanded.example.tsx',
+      {
+        title: 'Expanded by default',
+        description:
+          'When a nested Sidebar.Item is selected, it automatically expands the menu.',
+      },
+      'base/Page'
+    )
     .addExample(
       'SidebarItem/story/WithBadgeAndTag.example.tsx',
-      'With Badge and Tag'
+      'With Badge and Tag',
+      'base/Page'
     )
-    .addExample('SidebarItem/story/Disabled.example.tsx', 'Disabled')
+    .addExample(
+      'SidebarItem/story/Disabled.example.tsx',
+      'Disabled',
+      'base/Page'
+    )
 )
 
 export default {

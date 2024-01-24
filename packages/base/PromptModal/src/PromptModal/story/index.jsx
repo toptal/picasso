@@ -15,23 +15,43 @@ page
 
 page
   .createChapter()
-  .addExample('PromptModal/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('PromptModal/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
-  .addExample('PromptModal/story/WithInput.example.tsx', {
-    title: 'With Input',
-    takeScreenshot: false,
-  })
-  .addExample('PromptModal/story/WithAutocomplete.example.tsx', {
-    title: 'With Autocomplete',
-    takeScreenshot: false,
-  })
-  .addExample('PromptModal/story/ErrorHandling.example.tsx', {
-    title: 'Error handling',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'PromptModal/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/PromptModal'
+  )
+  .addExample(
+    'PromptModal/story/Variants.example.tsx',
+    {
+      title: 'Variants',
+      takeScreenshot: false,
+    },
+    'base/PromptModal'
+  )
+  .addExample(
+    'PromptModal/story/WithInput.example.tsx',
+    {
+      title: 'With Input',
+      takeScreenshot: false,
+    },
+    'base/PromptModal'
+  )
+  .addExample(
+    'PromptModal/story/WithAutocomplete.example.tsx',
+    {
+      title: 'With Autocomplete',
+      takeScreenshot: false,
+    },
+    'base/PromptModal'
+  )
+  .addExample(
+    'PromptModal/story/ErrorHandling.example.tsx',
+    {
+      title: 'Error handling',
+      takeScreenshot: false,
+    },
+    'base/PromptModal'
+  )

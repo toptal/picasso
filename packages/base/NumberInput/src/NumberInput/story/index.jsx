@@ -15,8 +15,28 @@ page
 
 page
   .createChapter()
-  .addExample('NumberInput/story/Default.example.tsx', 'Default')
-  .addExample('NumberInput/story/Disabled.example.tsx', 'Disabled')
-  .addExample('NumberInput/story/Status.example.tsx', 'Status')
-  .addExample('NumberInput/story/WithIcon.example.tsx', 'With Icon')
-  .addExample('NumberInput/story/Sizes.example.tsx', 'Sizes')
+  .addExample(
+    'NumberInput/story/Default.example.tsx',
+    'Default',
+    'base/NumberInput'
+  )
+  .addExample(
+    'NumberInput/story/Disabled.example.tsx',
+    'Disabled',
+    'base/NumberInput'
+  )
+  .addExample(
+    'NumberInput/story/Status.example.tsx',
+    'Status',
+    'base/NumberInput'
+  )
+  .addExample(
+    'NumberInput/story/WithIcon.example.tsx',
+    'With Icon',
+    'base/NumberInput'
+  )
+  .addExample(
+    'NumberInput/story/Sizes.example.tsx',
+    'Sizes',
+    'base/NumberInput'
+  )

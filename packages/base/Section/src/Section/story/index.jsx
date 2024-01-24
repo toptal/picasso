@@ -25,14 +25,30 @@ page.createTabChapter('Props').addComponentDocs({
   },
 })
 
-page.createChapter().addExample('Section/story/Default.example.tsx', 'Default')
 page
   .createChapter()
-  .addExample('Section/story/Actions.example.tsx', 'With Actions')
+  .addExample('Section/story/Default.example.tsx', 'Default', 'base/Section')
 page
   .createChapter()
-  .addExample('Section/story/Collapsible.example.tsx', 'Collapsible')
-page.createChapter().addExample('Section/story/Variant.example.tsx', 'Variant')
+  .addExample(
+    'Section/story/Actions.example.tsx',
+    'With Actions',
+    'base/Section'
+  )
 page
   .createChapter()
-  .addExample('Section/story/TitleSize.example.tsx', 'Title Size')
+  .addExample(
+    'Section/story/Collapsible.example.tsx',
+    'Collapsible',
+    'base/Section'
+  )
+page
+  .createChapter()
+  .addExample('Section/story/Variant.example.tsx', 'Variant', 'base/Section')
+page
+  .createChapter()
+  .addExample(
+    'Section/story/TitleSize.example.tsx',
+    'Title Size',
+    'base/Section'
+  )

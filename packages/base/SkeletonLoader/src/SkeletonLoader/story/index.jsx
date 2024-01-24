@@ -16,27 +16,33 @@ page
   .addComponentDocs(buttonLoaderStory.componentDocs)
   .addComponentDocs(mediaLoaderStory.componentDocs)
 
-page.createChapter().addExample('SkeletonLoader/story/Default.example.tsx', {
-  title: 'Page Loader',
-  description: `
+page.createChapter().addExample(
+  'SkeletonLoader/story/Default.example.tsx',
+  {
+    title: 'Page Loader',
+    description: `
     SkeletonLoader is a compound component that exposes a few primitive content loaders.
     It's up to the developer to use them to build a loader that mimics the actual UI as close as possible.
     Below is a simple example demonstrating how. If you make a reusable skeleton loader - export it to topkit.
     `,
-  takeScreenshot: false,
-})
+    takeScreenshot: false,
+  },
+  'base/SkeletonLoader'
+)
 
 page.connect(headerLoaderStory.chapter)
 page.connect(typographyLoaderStory.chapter)
 page.connect(buttonLoaderStory.chapter)
 page.connect(mediaLoaderStory.chapter)
 
-page
-  .createChapter()
-  .addExample('SkeletonLoader/story/DarkBackground.example.tsx', {
+page.createChapter().addExample(
+  'SkeletonLoader/story/DarkBackground.example.tsx',
+  {
     title: 'Different background color',
     description: `
     Skeleton loader is designed to be used on a variety of backgrounds.
     `,
     takeScreenshot: false,
-  })
+  },
+  'base/SkeletonLoader'
+)

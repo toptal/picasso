@@ -9,4 +9,8 @@ const page = PicassoBook.section('Utils').createPage(
 
 page
   .createChapter()
-  .addExample('utils/Formatters/story/amount.example.tsx', 'Amount Formatter')
+  .addExample(
+    'utils/Formatters/story/amount.example.tsx',
+    'Amount Formatter',
+    'base/Utils'
+  )

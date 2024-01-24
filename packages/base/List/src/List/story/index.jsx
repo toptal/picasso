@@ -36,11 +36,12 @@ page
 
 page
   .createChapter()
-  .addExample('List/story/Ordered.example.tsx', 'Ordered')
+  .addExample('List/story/Ordered.example.tsx', 'Ordered', 'base/List')
   .addExample(
     'List/story/OrderedWithStart.example.tsx',
-    'Ordered with custom start'
+    'Ordered with custom start',
+    'base/List'
   )
-  .addExample('List/story/Unordered.example.tsx', 'Unordered')
-  .addExample('List/story/Nested.example.tsx', 'Nested')
-  .addExample('List/story/Styles.example.tsx', 'Styles')
+  .addExample('List/story/Unordered.example.tsx', 'Unordered', 'base/List')
+  .addExample('List/story/Nested.example.tsx', 'Nested', 'base/List')
+  .addExample('List/story/Styles.example.tsx', 'Styles', 'base/List')

@@ -13,4 +13,6 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Paper, name: 'Paper' })
 
-page.createChapter().addExample('Paper/story/Default.example.tsx', 'Default')
+page
+  .createChapter()
+  .addExample('Paper/story/Default.example.tsx', 'Default', 'base/Paper')

@@ -8,12 +8,14 @@ const componentDocs = PicassoBook.createComponentDocs(
 )
 
 const chapter = PicassoBook.connectToPage(page =>
-  page
-    .createChapter('Table.Cell', 'Cell for table content')
-    .addExample('TableCell/story/Alignments.example.tsx', {
+  page.createChapter('Table.Cell', 'Cell for table content').addExample(
+    'TableCell/story/Alignments.example.tsx',
+    {
       title: 'Alignments',
       takeScreenshot: false,
-    })
+    },
+    'base/Table'
+  )
 )
 
 export default {

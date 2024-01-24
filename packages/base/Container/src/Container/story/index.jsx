@@ -15,11 +15,17 @@ page
 
 page
   .createChapter()
-  .addExample('Container/story/Default.example.tsx', 'Default')
-  .addExample('Container/story/Spacing.example.tsx', {
-    title: 'Spacing',
-    description: 'Creating inner and outer space for component',
-    extra: `
+  .addExample(
+    'Container/story/Default.example.tsx',
+    'Default',
+    'base/Container'
+  )
+  .addExample(
+    'Container/story/Spacing.example.tsx',
+    {
+      title: 'Spacing',
+      description: 'Creating inner and outer space for component',
+      extra: `
 Spacing is aligned with BASE design and gets transformed into **rem** units in following manner:
 
 - SPACING_0 = 0rem,
@@ -33,12 +39,30 @@ Spacing is aligned with BASE design and gets transformed into **rem** units in f
 - SPACING_12 = 3rem
 
 `,
-  })
-  .addExample('Container/story/Responsive.example.tsx', {
-    title: 'Responsive Spacing',
-    screenshotBreakpoints: true,
-  })
-  .addExample('Container/story/Inline.example.tsx', 'Inline')
-  .addExample('Container/story/Bordered.example.tsx', 'With border')
-  .addExample('Container/story/Variant.example.tsx', 'Variants')
-  .addExample('Container/story/TextAlign.example.tsx', 'TextAlign')
+    },
+    'base/Container'
+  )
+  .addExample(
+    'Container/story/Responsive.example.tsx',
+    {
+      title: 'Responsive Spacing',
+      screenshotBreakpoints: true,
+    },
+    'base/Container'
+  )
+  .addExample('Container/story/Inline.example.tsx', 'Inline', 'base/Container')
+  .addExample(
+    'Container/story/Bordered.example.tsx',
+    'With border',
+    'base/Container'
+  )
+  .addExample(
+    'Container/story/Variant.example.tsx',
+    'Variants',
+    'base/Container'
+  )
+  .addExample(
+    'Container/story/TextAlign.example.tsx',
+    'TextAlign',
+    'base/Container'
+  )
