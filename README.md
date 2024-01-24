@@ -27,7 +27,7 @@ Picasso guarantees to work in Chrome and it supports other browsers specified in
 
 Changes in peer dependencies, breaking changes in component API or behavior, supported NodeJS version, result in major releases.
 
-Changes in dev dependencies and component HTML structure are not considered as breaking changes and result in minor or patch releases.
+Changes in dev dependencies, component HTML structure, or visual changes are not considered as breaking changes and result in minor or patch releases.
 
 
 ## Running storybook
