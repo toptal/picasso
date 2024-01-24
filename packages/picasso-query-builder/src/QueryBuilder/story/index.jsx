@@ -33,6 +33,11 @@ page
     description: 'Hide buttons used for query reset and submitting',
   })
 
+  .addExample('QueryBuilder/story/SupportButton.example.tsx', {
+    title: 'Support Button',
+    description: 'Display support button',
+  })
+
   .addExample('QueryBuilder/story/Loading.example.tsx', {
     title: 'Loading',
   })

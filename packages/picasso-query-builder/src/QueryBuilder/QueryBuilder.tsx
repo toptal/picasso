@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
-import { Container } from '@toptal/picasso'
+import { Container, Button, Link, Help16, Tooltip } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
@@ -59,12 +59,15 @@ type Props = {
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
+  /** Defines the possibility to hide, or not, the support button. */
+  hideSupportButton?: boolean
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
   /** Defines the total number of results, usually used by other components that may need to know the total number of results. */
   totalCount?: number
   /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
   totalCountLoading?: boolean
+  /** Defines the possibility to add test ids to the QB and its controls. */
   testIds?: TestId
 }
 
@@ -85,6 +88,7 @@ const QueryBuilder = ({
   onSubmit,
   customValueEditor = ValueEditor,
   hideControls,
+  hideSupportButton = true,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
   totalCount,
@@ -190,6 +194,15 @@ const QueryBuilder = ({
         direction='column'
         gap='small'
       >
+        {!hideSupportButton && (
+          <Container flex justifyContent='flex-end'>
+            <Tooltip content='Send feedback / Report bugs' placement='top'>
+              <Link target='_blank' href='https://support.toptal.net'>
+                <Button.Circular variant='flat' icon={<Help16 />} />
+              </Link>
+            </Tooltip>
+          </Container>
+        )}
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
           <ReactQueryBuilder
             resetOnFieldChange={resetOnFieldChange}
