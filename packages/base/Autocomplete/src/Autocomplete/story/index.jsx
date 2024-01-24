@@ -47,72 +47,134 @@ if needed.
 \`\`\`
     `
   )
-  .addExample('Autocomplete/story/Default.example.tsx', 'Default')
-  .addExample('Autocomplete/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Autocomplete/story/OtherOption.example.tsx', {
-    title: 'Other option',
-    description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
+  .addExample(
+    'Autocomplete/story/Default.example.tsx',
+    'Default',
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/Disabled.example.tsx',
+    'Disabled',
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/OtherOption.example.tsx',
+    {
+      title: 'Other option',
+      description: `By default Autocomplete allows any entered input value to stay after focus is removed from input,
       you can set \`showOtherOption={true}\` prop to allow also this new item to appear in the suggestions list. Also,
       you can decorate this option with the prefix text by using \`otherOptionText\` or fully customize it with \`renderOtherOption\` and handle selection with
       \`onOtherOptionSelect\` event handler.`,
-    takeScreenshot: false,
-  })
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
   .addExample(
     'Autocomplete/story/InitiallySetValue.example.tsx',
-    'Initially set value'
+    'Initially set value',
+    'base/Autocomplete'
   )
-  .addExample('Autocomplete/story/Controlled.example.tsx', {
-    title: 'Controlled selection',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/FullWidth.example.tsx', {
-    title: 'Full width',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/MenuWidth.example.tsx', {
-    title: 'Menu width',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/Loading.example.tsx', 'Loading')
-  .addExample('Autocomplete/story/Status.example.tsx', 'Status')
-  .addExample('Autocomplete/story/WithIcons.example.tsx', 'With Icon')
+  .addExample(
+    'Autocomplete/story/Controlled.example.tsx',
+    {
+      title: 'Controlled selection',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/FullWidth.example.tsx',
+    {
+      title: 'Full width',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/MenuWidth.example.tsx',
+    {
+      title: 'Menu width',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/Loading.example.tsx',
+    'Loading',
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/Status.example.tsx',
+    'Status',
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/WithIcons.example.tsx',
+    'With Icon',
+    'base/Autocomplete'
+  )
   .addExample(
     'Autocomplete/story/WithAdornments.example.tsx',
-    'With Adornments'
+    'With Adornments',
+    'base/Autocomplete'
   )
-  .addExample('Autocomplete/story/WithDescription.example.tsx', {
-    title: 'With Description',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/CustomOptionRenderer.example.tsx', {
-    title: 'Custom options rendering',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/DynamicOptions.example.tsx', {
-    title: 'Dynamic options',
-    description: `If you need to obtain the list of options dynamically from a server.
+  .addExample(
+    'Autocomplete/story/WithDescription.example.tsx',
+    {
+      title: 'With Description',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/CustomOptionRenderer.example.tsx',
+    {
+      title: 'Custom options rendering',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/DynamicOptions.example.tsx',
+    {
+      title: 'Dynamic options',
+      description: `If you need to obtain the list of options dynamically from a server.
 It is good practice to set debouncing and a minimum number of chars to limit the number of requests you send to the server.
 Start typing "Mongolia" letter by letter to see this example in action.`,
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/Autofill.example.tsx', {
-    title: 'Form auto filling',
-    description: `This example shows how to use component inside the form with several fields
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/Autofill.example.tsx',
+    {
+      title: 'Form auto filling',
+      description: `This example shows how to use component inside the form with several fields
 when it makes sense to have autofill enabled.
     `,
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/PoweredByGoogle.example.tsx', {
-    title: 'Powered By Google label',
-    description:
-      'There are situations when we use options in the Autocomplete component from the Google API and ' +
-      'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
-      'we have to show the "Powered By Google" label.',
-    takeScreenshot: false,
-  })
-  .addExample('Autocomplete/story/WithOnResetClick.example.tsx', {
-    title: 'With onResetClick callback',
-    description:
-      'If you need to trigger a callback after Autocomplete input is cleared',
-    takeScreenshot: false,
-  })
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/PoweredByGoogle.example.tsx',
+    {
+      title: 'Powered By Google label',
+      description:
+        'There are situations when we use options in the Autocomplete component from the Google API and ' +
+        'to meet their requirements https://developers.google.com/places/web-service/policies in such cases ' +
+        'we have to show the "Powered By Google" label.',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
+    'Autocomplete/story/WithOnResetClick.example.tsx',
+    {
+      title: 'With onResetClick callback',
+      description:
+        'If you need to trigger a callback after Autocomplete input is cleared',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )

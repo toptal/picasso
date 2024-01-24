@@ -57,19 +57,31 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('StaticTreeView/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: {
-      beforeScreenshot: async () => {
-        await waitForSvgImagesToRender()
+  .addExample(
+    'StaticTreeView/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: {
+        beforeScreenshot: async () => {
+          await waitForSvgImagesToRender()
+        },
       },
     },
-  })
-  .addExample('StaticTreeView/story/Horizontal.example.tsx', {
-    title: 'Horizontal Direction',
-  })
-  .addExample('StaticTreeView/story/Compact.example.tsx', {
-    title: 'Compact tree',
-    description:
-      'Example of a compact tree - one with only single node on each depth that has children',
-  })
+    'base/TreeView'
+  )
+  .addExample(
+    'StaticTreeView/story/Horizontal.example.tsx',
+    {
+      title: 'Horizontal Direction',
+    },
+    'base/TreeView'
+  )
+  .addExample(
+    'StaticTreeView/story/Compact.example.tsx',
+    {
+      title: 'Compact tree',
+      description:
+        'Example of a compact tree - one with only single node on each depth that has children',
+    },
+    'base/TreeView'
+  )

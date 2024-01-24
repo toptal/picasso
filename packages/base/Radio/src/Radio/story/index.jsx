@@ -29,19 +29,33 @@ page
 
 page
   .createChapter()
-  .addExample('Radio/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Radio/story/Checked.example.tsx', 'Checked')
-  .addExample('Radio/story/Disabled.example.tsx', 'Disabled')
+  .addExample(
+    'Radio/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Radio'
+  )
+  .addExample('Radio/story/Checked.example.tsx', 'Checked', 'base/Radio')
+  .addExample('Radio/story/Disabled.example.tsx', 'Disabled', 'base/Radio')
   .addExample(
     'Radio/story/RadioGroupVertical.example.tsx',
-    'Radio group vertical'
+    'Radio group vertical',
+    'base/Radio'
   )
   .addExample(
     'Radio/story/RadioGroupHorizontal.example.tsx',
-    'Radio group horizontal'
+    'Radio group horizontal',
+    'base/Radio'
   )
-  .addExample('Radio/story/RadioGroupGrid.example.tsx', 'Radio group grid')
-  .addExample('Radio/story/CustomLabel.example.tsx', 'Custom label')
+  .addExample(
+    'Radio/story/RadioGroupGrid.example.tsx',
+    'Radio group grid',
+    'base/Radio'
+  )
+  .addExample(
+    'Radio/story/CustomLabel.example.tsx',
+    'Custom label',
+    'base/Radio'
+  )

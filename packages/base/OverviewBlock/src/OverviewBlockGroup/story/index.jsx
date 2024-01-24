@@ -11,11 +11,13 @@ const chapter = PicassoBook.connectToPage(page =>
     .createChapter('Visual variants of the groups', '')
     .addExample(
       'OverviewBlockGroup/story/CenterAligned.example.tsx',
-      'Center Aligned'
+      'Center Aligned',
+      'base/OverviewBlock'
     )
     .addExample(
       'OverviewBlockGroup/story/BlockWidth.example.tsx',
-      'Block Width'
+      'Block Width',
+      'base/OverviewBlock'
     )
 )
 

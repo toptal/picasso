@@ -33,11 +33,35 @@ page
 
 page
   .createChapter()
-  .addExample('OverviewBlock/story/Default.example.tsx', 'Default')
-  .addExample('OverviewBlock/story/Text.example.tsx', 'Text')
-  .addExample('OverviewBlock/story/Number.example.tsx', 'Number')
-  .addExample('OverviewBlock/story/Multiline.example.tsx', 'Multi-line')
-  .addExample('OverviewBlock/story/Routing.example.tsx', 'Routing')
-  .addExample('OverviewBlock/story/CustomLabel.example.tsx', 'Custom label')
+  .addExample(
+    'OverviewBlock/story/Default.example.tsx',
+    'Default',
+    'base/OverviewBlock'
+  )
+  .addExample(
+    'OverviewBlock/story/Text.example.tsx',
+    'Text',
+    'base/OverviewBlock'
+  )
+  .addExample(
+    'OverviewBlock/story/Number.example.tsx',
+    'Number',
+    'base/OverviewBlock'
+  )
+  .addExample(
+    'OverviewBlock/story/Multiline.example.tsx',
+    'Multi-line',
+    'base/OverviewBlock'
+  )
+  .addExample(
+    'OverviewBlock/story/Routing.example.tsx',
+    'Routing',
+    'base/OverviewBlock'
+  )
+  .addExample(
+    'OverviewBlock/story/CustomLabel.example.tsx',
+    'Custom label',
+    'base/OverviewBlock'
+  )
 
 page.connect(overviewBlockGroupStory.chapter)

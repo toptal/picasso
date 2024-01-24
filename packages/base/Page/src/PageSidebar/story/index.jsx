@@ -21,21 +21,37 @@ page
 
 page
   .createChapter()
-  .addExample('PageSidebar/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('PageSidebar/story/Variants.example.tsx', {
-    title: 'Variants',
-    takeScreenshot: false,
-  })
-  .addExample('PageSidebar/story/Collapsible.example.tsx', {
-    title: 'Collapsible',
-    takeScreenshot: false,
-  })
-  .addExample('PageSidebar/story/Size.example.tsx', {
-    title: 'Sizes',
-    screenshotBreakpoints: true,
-  })
+  .addExample(
+    'PageSidebar/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageSidebar/story/Variants.example.tsx',
+    {
+      title: 'Variants',
+      takeScreenshot: false,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageSidebar/story/Collapsible.example.tsx',
+    {
+      title: 'Collapsible',
+      takeScreenshot: false,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageSidebar/story/Size.example.tsx',
+    {
+      title: 'Sizes',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
 
 page.connect(sidebarItemStory.chapter)

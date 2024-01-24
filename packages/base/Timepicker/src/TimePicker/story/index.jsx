@@ -14,11 +14,19 @@ page
   .addComponentDocs({ component: TimePicker, name: 'TimePicker' })
 page
   .createChapter()
-  .addExample('TimePicker/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('TimePicker/story/Status.example.tsx', {
-    title: 'Status',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'TimePicker/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Timepicker'
+  )
+  .addExample(
+    'TimePicker/story/Status.example.tsx',
+    {
+      title: 'Status',
+      takeScreenshot: false,
+    },
+    'base/Timepicker'
+  )

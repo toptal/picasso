@@ -7,11 +7,13 @@ const componentDocs = PicassoBook.createComponentDocs(
 )
 
 const chapter = PicassoBook.connectToPage(page =>
-  page
-    .createChapter('EmptyState.Collection')
-    .addExample('EmptyStateCollection/story/Default.example.tsx', {
+  page.createChapter('EmptyState.Collection').addExample(
+    'EmptyStateCollection/story/Default.example.tsx',
+    {
       id: 'EmptyStateCollection',
-    })
+    },
+    'base/EmptyState'
+  )
 )
 
 export default {

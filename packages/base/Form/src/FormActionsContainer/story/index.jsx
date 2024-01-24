@@ -11,4 +11,8 @@ const page = PicassoBook.section('Forms').createPage(
 
 page
   .createChapter()
-  .addExample('FormActionsContainer/story/Default.example.tsx', 'Default')
+  .addExample(
+    'FormActionsContainer/story/Default.example.tsx',
+    'Default',
+    'base/Form'
+  )

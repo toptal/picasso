@@ -26,39 +26,67 @@ page
 
 page
   .createChapter()
-  .addExample('Modal/story/Default.example.tsx', {
-    title: 'Default',
-    description: `
+  .addExample(
+    'Modal/story/Default.example.tsx',
+    {
+      title: 'Default',
+      description: `
 To show the 'Modal' component you should use 'useModal' hook. And if you need
 any additional logic inside the 'Modal' component you should create a wrapper 
 component and manage the internal state there.
 `,
-    takeScreenshot: false,
-  })
-  .addExample('Modal/story/Sizes.example.tsx', {
-    title: 'Sizes',
-    takeScreenshot: false,
-  })
-  .addExample('Modal/story/MaxHeight.example.tsx', {
-    title: 'Max Height',
-    takeScreenshot: false,
-  })
-  .addExample('Modal/story/Tooltips.example.tsx', {
-    title: 'Two tooltips on the page',
-    takeScreenshot: false,
-  })
-  .addExample('Modal/story/Alignment.example.tsx', {
-    title: 'Alignment',
-    description: 'Demonstrate how `align` prop works',
-    takeScreenshot: false,
-  })
-  .addExample('Modal/story/DisableBackdropClick.example.tsx', {
-    title: 'Disable backdrop click',
-    description:
-      'Demonstrate how `disableBackdropClick` prop can be used to avoid closing modal on backdrop click',
-    takeScreenshot: false,
-  })
-  .addExample('Modal/story/DynamicContent.example.tsx', {
-    title: 'Dynamic Content',
-    takeScreenshot: false,
-  })
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )
+  .addExample(
+    'Modal/story/Sizes.example.tsx',
+    {
+      title: 'Sizes',
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )
+  .addExample(
+    'Modal/story/MaxHeight.example.tsx',
+    {
+      title: 'Max Height',
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )
+  .addExample(
+    'Modal/story/Tooltips.example.tsx',
+    {
+      title: 'Two tooltips on the page',
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )
+  .addExample(
+    'Modal/story/Alignment.example.tsx',
+    {
+      title: 'Alignment',
+      description: 'Demonstrate how `align` prop works',
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )
+  .addExample(
+    'Modal/story/DisableBackdropClick.example.tsx',
+    {
+      title: 'Disable backdrop click',
+      description:
+        'Demonstrate how `disableBackdropClick` prop can be used to avoid closing modal on backdrop click',
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )
+  .addExample(
+    'Modal/story/DynamicContent.example.tsx',
+    {
+      title: 'Dynamic Content',
+      takeScreenshot: false,
+    },
+    'base/Modal'
+  )

@@ -69,25 +69,39 @@ page
 
 page
   .createChapter()
-  .addExample('Button/story/Default.example.tsx', 'Default')
-  .addExample('Button/story/Variants.example.tsx', 'Variants')
-  .addExample('Button/story/States.example.tsx', 'States')
-  .addExample('Button/story/Disabled.example.tsx', {
-    title: 'Disabled',
-    description: 'The button shows that currently unable to be interacted with',
-  })
-  .addExample('Button/story/Sizes.example.tsx', 'Sizes')
-  .addExample('Button/story/FullWidth.example.tsx', 'Full width')
+  .addExample('Button/story/Default.example.tsx', 'Default', 'base/Button')
+  .addExample('Button/story/Variants.example.tsx', 'Variants', 'base/Button')
+  .addExample('Button/story/States.example.tsx', 'States', 'base/Button')
+  .addExample(
+    'Button/story/Disabled.example.tsx',
+    {
+      title: 'Disabled',
+      description:
+        'The button shows that currently unable to be interacted with',
+    },
+    'base/Button'
+  )
+  .addExample('Button/story/Sizes.example.tsx', 'Sizes', 'base/Button')
+  .addExample('Button/story/FullWidth.example.tsx', 'Full width', 'base/Button')
   .addExample(
     'Button/story/IconButtonsWithText.example.tsx',
-    'Button with text and Icon'
+    'Button with text and Icon',
+    'base/Button'
   )
-  .addExample('Button/story/Loading.example.tsx', 'Button with loading state')
-  .addExample('Button/story/Augmentation.example.tsx', {
-    title: 'Augmentation',
-    description:
-      'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.',
-  })
+  .addExample(
+    'Button/story/Loading.example.tsx',
+    'Button with loading state',
+    'base/Button'
+  )
+  .addExample(
+    'Button/story/Augmentation.example.tsx',
+    {
+      title: 'Augmentation',
+      description:
+        'Example show augmentation with Picasso Link component. You can use Link component from react-router-dom or some other custom component.',
+    },
+    'base/Button'
+  )
 
 page.connect(buttonCircularStory.chapter)
 page.connect(buttonActionStory.chapter)

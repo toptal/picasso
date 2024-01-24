@@ -51,12 +51,14 @@ const componentDocs = {
 }
 
 const chapter = PicassoBook.connectToPage(page =>
-  page
-    .createChapter('SkeletonLoader.Media')
-    .addExample('MediaSkeletonLoader/story/Default.example.tsx', {
+  page.createChapter('SkeletonLoader.Media').addExample(
+    'MediaSkeletonLoader/story/Default.example.tsx',
+    {
       id: 'MediaSkeletonLoader',
       takeScreenshot: false,
-    })
+    },
+    'base/SkeletonLoader'
+  )
 )
 
 export default {

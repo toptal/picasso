@@ -45,41 +45,71 @@ page
 
 page
   .createChapter()
-  .addExample('Table/story/Default.example.tsx', {
-    title: 'Plain table',
-    takeScreenshot: false,
-  })
-  .addExample('Table/story/Variants.example.tsx', {
-    title: 'Appearance variants',
-    takeScreenshot: false,
-  })
-  .addExample('Table/story/Spacings.example.tsx', {
-    title: 'Inner spacing',
-    takeScreenshot: false,
-  })
-  .addExample('Table/story/Alignments.example.tsx', {
-    title: 'Cell alignments',
-    takeScreenshot: false,
-  })
-  .addExample('Table/story/Select.example.tsx', {
-    title: 'Selectable table',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Table/story/Default.example.tsx',
+    {
+      title: 'Plain table',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
+  .addExample(
+    'Table/story/Variants.example.tsx',
+    {
+      title: 'Appearance variants',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
+  .addExample(
+    'Table/story/Spacings.example.tsx',
+    {
+      title: 'Inner spacing',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
+  .addExample(
+    'Table/story/Alignments.example.tsx',
+    {
+      title: 'Cell alignments',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
+  .addExample(
+    'Table/story/Select.example.tsx',
+    {
+      title: 'Selectable table',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
   .addExample(
     'Table/story/SectionHeader.example.tsx',
-    'Table with section header'
+    'Table with section header',
+    'base/Table'
   )
   .addExample(
     'Table/story/MultipleSectionHeader.example.tsx',
-    'Table with multiple sections'
+    'Table with multiple sections',
+    'base/Table'
   )
-  .addExample('Table/story/ExpandableRows.example.tsx', {
-    title: 'Expandable rows',
-    takeScreenshot: false,
-  })
-  .addExample('Table/story/ExpandableRowsDefaultExpanded.example.tsx', {
-    title: 'Expandable rows, expanded by default',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Table/story/ExpandableRows.example.tsx',
+    {
+      title: 'Expandable rows',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
+  .addExample(
+    'Table/story/ExpandableRowsDefaultExpanded.example.tsx',
+    {
+      title: 'Expandable rows, expanded by default',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
 
 page.connect(tableCellStory.chapter)

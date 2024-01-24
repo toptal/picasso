@@ -18,11 +18,16 @@ const chapter = PicassoBook.connectToPage(page =>
       Both TopBarMenu and Sidebar menu items are displayed in hamburger on small screens.
     `
     )
-    .addExample('TopBarMenu/story/Default.example.tsx', 'Default')
-    .addExample('TopBarMenu/story/WithIcons.example.tsx', 'With Icons')
+    .addExample('TopBarMenu/story/Default.example.tsx', 'Default', 'base/Page')
+    .addExample(
+      'TopBarMenu/story/WithIcons.example.tsx',
+      'With Icons',
+      'base/Page'
+    )
     .addExample(
       'TopBarMenu/story/WithSidebar.example.tsx',
-      'TopBar Menu with Sidebar'
+      'TopBar Menu with Sidebar',
+      'base/Page'
     )
 )
 

@@ -15,4 +15,8 @@ page
 
 page
   .createChapter()
-  .addExample('YearSelect/story/Default.example.tsx', 'Default')
+  .addExample(
+    'YearSelect/story/Default.example.tsx',
+    'Default',
+    'base/DateSelect'
+  )

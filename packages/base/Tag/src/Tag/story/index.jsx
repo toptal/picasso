@@ -49,12 +49,16 @@ page
 
 page
   .createChapter()
-  .addExample('Tag/story/Default.example.tsx', 'Default')
-  .addExample('Tag/story/Variants.example.tsx', 'Variants')
-  .addExample('Tag/story/Checkable.example.tsx', {
-    title: 'Checkable',
-    takeScreenshot: false,
-  })
+  .addExample('Tag/story/Default.example.tsx', 'Default', 'base/Tag')
+  .addExample('Tag/story/Variants.example.tsx', 'Variants', 'base/Tag')
+  .addExample(
+    'Tag/story/Checkable.example.tsx',
+    {
+      title: 'Checkable',
+      takeScreenshot: false,
+    },
+    'base/Tag'
+  )
 
 page.connect(tagGroupStory.chapter)
 page.connect(tagRectangularStory.chapter)

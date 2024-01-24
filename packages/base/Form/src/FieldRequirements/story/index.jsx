@@ -15,11 +15,19 @@ page
 
 page
   .createChapter()
-  .addExample('FieldRequirements/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('FieldRequirements/story/Error.example.tsx', {
-    title: 'Error',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'FieldRequirements/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Form'
+  )
+  .addExample(
+    'FieldRequirements/story/Error.example.tsx',
+    {
+      title: 'Error',
+      takeScreenshot: false,
+    },
+    'base/Form'
+  )

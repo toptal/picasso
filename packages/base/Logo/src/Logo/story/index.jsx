@@ -19,6 +19,6 @@ page
 
 page
   .createChapter()
-  .addExample('Logo/story/Default.example.tsx', 'Default')
-  .addExample('Logo/story/Emblem.example.tsx', 'Emblem')
-  .addExample('Logo/story/Variants.example.tsx', 'Variants')
+  .addExample('Logo/story/Default.example.tsx', 'Default', 'base/Logo')
+  .addExample('Logo/story/Emblem.example.tsx', 'Emblem', 'base/Logo')
+  .addExample('Logo/story/Variants.example.tsx', 'Variants', 'base/Logo')

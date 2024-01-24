@@ -18,12 +18,24 @@ page
 
 page
   .createChapter()
-  .addExample('ProgressBar/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('ProgressBar/story/WithPercentage.example.tsx', 'With Percentage')
-  .addExample('ProgressBar/story/AnimatingProgressChange.example.tsx', {
-    title: 'Animating Progress Change',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'ProgressBar/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/FileInput'
+  )
+  .addExample(
+    'ProgressBar/story/WithPercentage.example.tsx',
+    'With Percentage',
+    'base/FileInput'
+  )
+  .addExample(
+    'ProgressBar/story/AnimatingProgressChange.example.tsx',
+    {
+      title: 'Animating Progress Change',
+      takeScreenshot: false,
+    },
+    'base/FileInput'
+  )

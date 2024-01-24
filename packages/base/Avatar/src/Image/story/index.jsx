@@ -15,5 +15,5 @@ page
 
 page
   .createChapter()
-  .addExample('Image/story/Default.example.tsx', 'Default')
-  .addExample('Image/story/Variants.example.tsx', 'Variants')
+  .addExample('Image/story/Default.example.tsx', 'Default', 'base/Avatar')
+  .addExample('Image/story/Variants.example.tsx', 'Variants', 'base/Avatar')
