@@ -6,7 +6,10 @@
   "module": "dist/src/index.js",
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/src/index.js",
+    "./Icon": "./dist/src/Icon/index.js",
+    "./utils": "./dist/src/utils/index.js",
+    "./test-utils": "./dist/src/test-utils/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -102,6 +105,8 @@
     "@toptal/picasso-button": "1.0.0",
     "@toptal/picasso-input": "1.0.0",
     "@toptal/picasso-outlined-input": "1.0.0",
+    "@toptal/picasso-utils": "1.0.0",
+    "@toptal/picasso-test-utils": "1.0.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.3.1",
     "d3": "^7.8.2",

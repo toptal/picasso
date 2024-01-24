@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true,
     "allowJs": true,
@@ -11,5 +11,8 @@
       "@cypress/skip-test"
     ]
   },
-  "include": ["../node_modules/cypress", "./*/*.ts", "./*/*.tsx"]
+  "include": ["../node_modules/cypress", "./*/*.ts", "./*/*.tsx"],
+  "references": [
+    { "path": "../tsconfig.pkgsrc.json" },
+  ]
 }

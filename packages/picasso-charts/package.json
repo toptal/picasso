@@ -42,6 +42,7 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/src/index.js",
+    "./utils": "./dist/src/utils/index.js"
   }
 }

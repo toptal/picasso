@@ -73,6 +73,16 @@ export * from './Gradients'
 export * from './Modal'
 export * from './Transitions'
 
+export { SPACING_0 } from '@toptal/picasso-provider'
+export { SPACING_1 } from '@toptal/picasso-provider'
+export { SPACING_2 } from '@toptal/picasso-provider'
+export { SPACING_3 } from '@toptal/picasso-provider'
+export { SPACING_4 } from '@toptal/picasso-provider'
+export { SPACING_6 } from '@toptal/picasso-provider'
+export { SPACING_8 } from '@toptal/picasso-provider'
+export { SPACING_10 } from '@toptal/picasso-provider'
+export { SPACING_12 } from '@toptal/picasso-provider'
+
 export {
   useDeprecationWarning,
   usePropDeprecationWarning,

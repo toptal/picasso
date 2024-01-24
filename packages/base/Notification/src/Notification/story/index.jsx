@@ -1,4 +1,4 @@
-import notificationsStreamStory from '../../utils/Notifications/story'
+import notificationsStreamStory from '../../use-notification/story'
 import notificationActionStory from '../../NotificationActions/story'
 import Notification from '../Notification'
 import PicassoBook from '~/.storybook/components/PicassoBook'
@@ -23,7 +23,15 @@ page
 
 page
   .createChapter()
-  .addExample('Notification/story/Default.example.tsx', 'Default')
-  .addExample('Notification/story/Actions.example.tsx', 'With Action')
+  .addExample(
+    'Notification/story/Default.example.tsx',
+    'Default',
+    'base/Notification'
+  )
+  .addExample(
+    'Notification/story/Actions.example.tsx',
+    'With Action',
+    'base/Notification'
+  )
 
 page.connect(notificationsStreamStory.chapter)
