@@ -29,7 +29,7 @@ module.exports = {
   staticDirs: ['./public'],
   stories: [path.join(__dirname, './load-stories.js')],
   typescript: {
-    // @TODO: reenable
+    // @TODO: reenable in FX-4688 if needed, otherwise run tsc in watch mode
     check: false,
     checkOptions: {
       typescript: {
