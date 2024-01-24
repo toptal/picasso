@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 import { noop } from '@toptal/picasso-utils'
+import { Logo } from '@toptal/picasso-logo'
 
-import Logo from '../Logo'
 import type { Props } from './SidebarLogo'
-import SidebarLogo from './SidebarLogo'
+import { SidebarLogo } from './SidebarLogo'
 import { SidebarContextProvider } from '../PageSidebar/SidebarContextProvider'
 
 const TestSidebarLogo = ({ children }: Props) => (

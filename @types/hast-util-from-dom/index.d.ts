@@ -7,7 +7,5 @@ declare module 'hast-util-from-dom' {
   type Options = {
     afterTransform: Function
   }
-  const fromDom: (node: Node, options?: Options) => HastNode
-
-  export default fromDom
+  export const fromDom: (node: Node, options?: Options) => HastNode
 }

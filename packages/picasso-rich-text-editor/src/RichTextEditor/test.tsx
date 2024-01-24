@@ -3,12 +3,13 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso-test-utils'
 import { InputMultilineAdornment } from '@toptal/picasso'
 
-import RichTextEditor from './RichTextEditor'
+import { RichTextEditor } from './RichTextEditor'
 import type { Props } from './RichTextEditor'
 import LexicalEditor from '../LexicalEditor'
 import { useCounter } from './hooks'
 
 jest.mock('@toptal/picasso-utils', () => ({
+  ...jest.requireActual('@toptal/picasso-utils'),
   usePropDeprecationWarning: jest.fn(),
   noop: jest.fn(),
 }))
@@ -21,6 +22,7 @@ jest.mock('../LexicalEditor', () => {
 jest.mock('@toptal/picasso', () => {
   return {
     __esModule: true,
+    ...jest.requireActual('@toptal/picasso'),
     InputMultilineAdornment: jest.fn(() => (
       <div>Input Multiline Adornment</div>
     )),

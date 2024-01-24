@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
+import { Link } from '@toptal/picasso-link'
 
-import Link from '../Link'
-import PageTopBar from './PageTopBar'
+import { PageTopBar } from './PageTopBar'
 
 describe('Page.TopBar', () => {
   it('renders', () => {

@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './FieldRequirements'
-import FieldRequirements from './FieldRequirements'
+import { FieldRequirements } from './FieldRequirements'
 import type { FieldRequirement } from './types'
 
 const renderFieldRequirements = function <TInputValue>(

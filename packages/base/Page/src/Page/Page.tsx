@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 
-import { PageHamburgerContextProvider } from '..'
+import { PageHamburgerContextProvider } from '../PageHamburger'
 import type { PageContextProps, ViewportWidthType } from './types'
 import styles from './styles'
 

@@ -4,7 +4,7 @@ import { render } from '@toptal/picasso-test-utils'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import type { Props } from './BreadcrumbsItem'
-import BreadcrumbsItem from './BreadcrumbsItem'
+import { BreadcrumbsItem } from './BreadcrumbsItem'
 
 jest.mock('ap-style-title-case')
 

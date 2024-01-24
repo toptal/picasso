@@ -4,7 +4,7 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import type { Props } from './FormLabel'
-import FormLabel from './FormLabel'
+import { FormLabel } from './FormLabel'
 import { FormCompound as Form } from '../FormCompound'
 
 jest.mock('ap-style-title-case')

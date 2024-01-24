@@ -5,7 +5,7 @@ import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { render } from '@toptal/picasso-test-utils'
 
 import type { Props } from './Tooltip'
-import Tooltip from './Tooltip'
+import { Tooltip } from './Tooltip'
 import {
   mouseMoveDebounceTimeout,
   mouseMoveCloseTooltipDistance,

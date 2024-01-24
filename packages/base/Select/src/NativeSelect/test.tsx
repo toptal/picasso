@@ -5,7 +5,7 @@ import type { PicassoConfig } from '@toptal/picasso-test-utils'
 import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-import NativeSelect from './NativeSelect'
+import { NativeSelect } from './NativeSelect'
 import type { SelectProps } from '../SelectBase'
 
 const renderNativeSelect = (

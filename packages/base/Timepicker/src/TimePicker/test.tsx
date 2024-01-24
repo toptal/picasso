@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
 
-import TimePicker from './TimePicker'
+import { TimePicker } from './TimePicker'
 
 describe('TimePicker', () => {
   it('renders', () => {

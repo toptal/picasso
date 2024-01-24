@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import ButtonGroup from '../ButtonGroup'
+import { ButtonGroup } from '../ButtonGroup'
 
 describe('ButtonGroup', () => {
   it('render', () => {

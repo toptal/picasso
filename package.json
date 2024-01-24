@@ -18,7 +18,7 @@
     "packages/base/*"
   ],
   "scripts": {
-    "build:all": "tsc --build tsconfig.pkgsrc.json",
+    "build:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:storybook": "build-storybook -c .storybook -o build/storybook --quiet",
     "check:icon-sizes": "node ./bin/check-icon-sizes",
@@ -50,7 +50,7 @@
     "test:integration:ci": "yarn happo-e2e -- -- yarn test:setup cypress run --component",
     "test:integration:open": "yarn test:setup cypress open --browser=electron --component",
     "test:setup": "cross-env TZ=UTC NODE_ENV=development",
-    "test:unit": "davinci-qa unit --config=./jest.spec.mjs",
+    "test:unit": "yarn build:all && davinci-qa unit --config=./jest.spec.mjs",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:coverage": "yarn test:unit:ci --collect-coverage --coverage true --collectCoverageFrom packages/**/*.{ts,tsx} --coverageDirectory coverage/jest",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk yarn test:unit",

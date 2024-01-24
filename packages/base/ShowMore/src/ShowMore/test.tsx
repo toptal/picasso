@@ -4,7 +4,7 @@ import { render, fireEvent } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './ShowMore'
-import ShowMore from './ShowMore'
+import { ShowMore } from './ShowMore'
 
 const renderShowMore = (props: OmitInternalProps<Props>) => {
   const {

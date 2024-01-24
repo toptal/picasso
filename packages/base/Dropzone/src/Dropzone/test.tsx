@@ -3,7 +3,7 @@ import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './Dropzone'
-import Dropzone from './Dropzone'
+import { Dropzone } from './Dropzone'
 
 const renderDropzone = (props: OmitInternalProps<Props>) =>
   render(<Dropzone {...props} />)

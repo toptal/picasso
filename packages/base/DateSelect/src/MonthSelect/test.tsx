@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import MonthSelect from './MonthSelect'
+import { MonthSelect } from './MonthSelect'
 
 // Mock console error since toThrow() outputs the error message with stacktrace
 let mockedConsoleError: jest.SpyInstance

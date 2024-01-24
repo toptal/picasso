@@ -4,7 +4,7 @@ import { render, screen } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './Badge'
-import Badge from './Badge'
+import { Badge } from './Badge'
 
 jest.mock('ap-style-title-case')
 

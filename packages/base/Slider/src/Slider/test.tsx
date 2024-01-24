@@ -5,7 +5,7 @@ import { render } from '@testing-library/react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './Slider'
-import Slider from './Slider'
+import { Slider } from './Slider'
 
 const renderSlider = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { value } = props

@@ -1,10 +1,10 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react'
+import { act, fireEvent, render } from '@toptal/picasso-test-utils'
+import { Tooltip } from '@toptal/picasso-tooltip'
 
-import { act, fireEvent, render } from '../test-utils'
 import type { Props } from './DatePicker'
-import DatePicker from './DatePicker'
-import Tooltip from '../Tooltip'
+import { DatePicker } from './DatePicker'
 import type { DatePickerInputCustomValueParser } from './'
 
 const testIds = {

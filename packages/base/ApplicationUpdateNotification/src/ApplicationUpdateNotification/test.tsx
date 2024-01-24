@@ -6,7 +6,7 @@ import { Button } from '@toptal/picasso-button'
 import { ApplicationUpdateNotificationActions } from '@toptal/picasso-application-update-notification'
 
 import type { Props } from './ApplicationUpdateNotification'
-import ApplicationUpdateNotification from './ApplicationUpdateNotification'
+import { ApplicationUpdateNotification } from './ApplicationUpdateNotification'
 
 const renderApplicationUpdateNotification = (
   props: OmitInternalProps<Props> = {}

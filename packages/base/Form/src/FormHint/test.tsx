@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import FormHint from './index'
+import { FormHint } from './index'
 
 const renderFormHint = (text: string) => {
   return render(<FormHint>{text}</FormHint>)

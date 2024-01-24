@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
 import type { Props } from './Loader'
-import Loader from './Loader'
+import { Loader } from './Loader'
 
 const renderLoader = (children: ReactNode, props: OmitInternalProps<Props>) => {
   const { inline, size } = props

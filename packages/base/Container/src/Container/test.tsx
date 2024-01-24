@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import Container from './Container'
+import { Container } from './Container'
 
 describe('Container', () => {
   it('renders default container', () => {

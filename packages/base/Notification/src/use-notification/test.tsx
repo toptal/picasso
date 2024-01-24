@@ -1,8 +1,8 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
+import { Button } from '@toptal/picasso-button'
 
 import { useNotifications } from './use-notifications'
-import Button from '../../Button'
 
 const TestComponent = () => {
   const { showError, showInfo, showSuccess } = useNotifications()

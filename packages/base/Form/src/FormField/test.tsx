@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import FormField from './index'
+import { FormField } from './index'
 
 const renderFormField = () => {
   return render(

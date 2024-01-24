@@ -8,8 +8,7 @@ import { generateRandomString } from '@toptal/picasso-provider'
 import * as titleCaseModule from 'ap-style-title-case'
 
 import type { Props } from './Autocomplete'
-import Autocomplete from './Autocomplete'
-import type { InputProps } from '../Input'
+import { Autocomplete } from './Autocomplete'
 
 jest.mock('ap-style-title-case')
 
@@ -153,9 +152,9 @@ describe('Autocomplete', () => {
     it('with custom input component', async () => {
       const { getByTestId } = renderAutocomplete({
         value: '',
-        inputComponent: forwardRef<HTMLInputElement, InputProps>((_, ref) => (
+        inputComponent: forwardRef<HTMLInputElement, any>((_, ref) => (
           <input ref={ref} data-testid='custom-input' />
-        )),
+        )) as any,
       })
 
       const input = getByTestId('custom-input')

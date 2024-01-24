@@ -6,7 +6,7 @@ import {
 } from '@toptal/picasso-test-utils'
 
 import type { Props } from './Section'
-import Section from './Section'
+import { Section } from './Section'
 
 const DEFAULT_HEADER_TEST_ID = 'header'
 const DEFAULT_TITLE_TEST_ID = 'title'
