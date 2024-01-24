@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { QueryBuilder } from '@toptal/picasso-query-builder'
+import { QueryBuilder, type Field } from '@toptal/picasso-query-builder'
 import type {
   RuleGroupTypeAny,
   RuleType,
   ValidationResult,
 } from '@toptal/picasso-query-builder'
 import { Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 const submitSuccessMessage = 'Successfully submitted'
 const firstNameValidationMessage = 'First Name is required'
