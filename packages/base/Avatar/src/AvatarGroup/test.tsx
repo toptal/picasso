@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 
-import  AvatarGroup  from './AvatarGroup'
+import AvatarGroup from './AvatarGroup'
 
 describe('Avatar.Group', () => {
   it('renders on limit', () => {

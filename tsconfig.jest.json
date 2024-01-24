@@ -9,7 +9,11 @@
     ],
     "types": ["jest", "node", "jest-dom", "ap-style-title-case"]
   },
-  "include": ["packages/**/test.tsx", "packages/**/*.test.tsx", "packages/**/test.ts", "packages/**/*.test.ts"],
-  "exclude": ["packages/base"],
+  "include": [
+    "packages/**/test.tsx",
+    "packages/**/*.test.tsx",
+    "packages/**/test.ts",
+    "packages/**/*.test.ts"
+  ],
   "references": [{ "path": "./tsconfig.pkgsrc.json" }]
 }
