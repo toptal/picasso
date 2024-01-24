@@ -1,13 +1,18 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
     "declaration": false
   },
-  "include": ["../packages", "components"],
+  "include": ["../packages", "components", "utils"],
   "exclude": [
-    "../packages/*/src/**/test.@(tsx|jsx|ts|js)",
-    "../packages/*/dist-package",
+    "../packages/**/test.@(tsx|jsx|ts|js)",
+    "*.test.@(tsx|jsx|ts|js)",
+    "**/test.@(tsx|jsx|ts|js)",
+    "../packages/**/dist",
     "../packages/**/__testfixtures__"
+  ],
+  "references": [
+    { "path": "../tsconfig.pkgsrc.json" },
   ]
 }

@@ -1,19 +1,23 @@
 import type { EnvironmentType } from '../../types'
+import * as Temploy from './temploy'
+import * as Staging from './staging'
+import * as Production from './production'
+import * as Development from './development'
 
-const getIcons = (environment: EnvironmentType<'temploy'>) => {
+const getIcons = async (environment: EnvironmentType<'temploy'>) => {
   if (environment === 'temploy') {
-    return import('./temploy/index.js')
+    return Temploy
   }
 
   if (environment === 'staging') {
-    return import('./staging/index.js')
+    return Staging
   }
 
   if (environment === 'production') {
-    return import('./production/index.js')
+    return Production
   }
 
-  return import('./development/index.js')
+  return Development
 }
 
 export { getIcons }
