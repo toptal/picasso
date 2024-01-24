@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
-import { Container, Button, Link, Help16, Tooltip } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso/utils'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
@@ -31,6 +31,7 @@ import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
 import type { ValidatorResult } from '../utils/use-query-builder-validator'
+import { SupportButton } from '../SupportButton'
 
 type ValueEditorComponentProps = ComponentType<DefaultValueEditorProps>
 
@@ -196,11 +197,7 @@ const QueryBuilder = ({
       >
         {!hideSupportButton && (
           <Container flex justifyContent='flex-end'>
-            <Tooltip content='Send feedback / Report bugs' placement='top'>
-              <Link target='_blank' href='https://support.toptal.net'>
-                <Button.Circular variant='flat' icon={<Help16 />} />
-              </Link>
-            </Tooltip>
+            <SupportButton data-testid={testIds?.supportButton} />
           </Container>
         )}
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
