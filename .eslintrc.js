@@ -112,6 +112,13 @@ module.exports = {
         'max-lines': 'off',
       },
     },
+    // Top-level cypress tests and Stories can have extraneous dependencies
+    {
+      files: ['*.spec.tsx', '*.example.tsx'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
     ...generateConfig(),
   ],
 }

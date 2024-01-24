@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RatingStarsProps } from '@toptal/picasso'
 import { Container, Pin16, PinSolid16, Rating } from '@toptal/picasso'
-import RatingIcon from '@toptal/picasso/RatingIcon'
+import { RatingIcon } from '@toptal/picasso-rating'
 
 const defaultProps: RatingStarsProps = {
   name: 'rating',

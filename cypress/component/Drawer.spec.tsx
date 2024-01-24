@@ -8,7 +8,7 @@ import {
   List,
   Typography,
 } from '@toptal/picasso'
-import { useModal } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso-utils'
 import { useNotifications } from '@toptal/picasso-notification'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 

@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@toptal/picasso'
 import { HAPPO_TARGETS, getHappoTargets } from '@toptal/picasso-test-utils'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 const component = 'Page'
 const containerHeight = '30rem'

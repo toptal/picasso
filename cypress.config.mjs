@@ -47,6 +47,13 @@ export default defineConfig({
               ],
             },
             {
+              test: /\.(js)$/,
+              type: "javascript/auto",
+              resolve: {
+                fullySpecified: false,
+              },
+            },
+            {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: 'url-loader',
             },
