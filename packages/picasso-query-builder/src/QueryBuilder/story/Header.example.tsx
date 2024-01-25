@@ -49,9 +49,10 @@ const Example = () => {
       query={query}
       onQueryChange={handleQueryChange}
       header={
-        <Container flex justifyContent='flex-end' gap='small'>
-          <Button variant='positive'>Option 1</Button>
-          <Button variant='secondary'>Option 2</Button>
+        <Container flex justifyContent='flex-end'>
+          <Button size='small' variant='positive'>
+            Do something
+          </Button>
         </Container>
       }
     />

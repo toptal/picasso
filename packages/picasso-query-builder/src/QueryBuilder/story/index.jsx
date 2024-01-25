@@ -34,8 +34,8 @@ page
   })
 
   .addExample('QueryBuilder/story/Header.example.tsx', {
-    title: 'Support Button',
-    description: 'Display support button',
+    title: 'Header',
+    description: 'Display header',
   })
 
   .addExample('QueryBuilder/story/Loading.example.tsx', {
