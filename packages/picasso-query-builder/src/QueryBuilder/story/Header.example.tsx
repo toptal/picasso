@@ -3,6 +3,7 @@ import {
   QueryBuilder,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
+import { Button, Container } from '@toptal/picasso'
 
 const initialQuery: RuleGroupTypeAny = {
   rules: [
@@ -47,7 +48,12 @@ const Example = () => {
       fields={fields}
       query={query}
       onQueryChange={handleQueryChange}
-      hideSupportButton={false}
+      header={
+        <Container flex justifyContent='flex-end' gap='small'>
+          <Button variant='positive'>Option 1</Button>
+          <Button variant='secondary'>Option 2</Button>
+        </Container>
+      }
     />
   )
 }
