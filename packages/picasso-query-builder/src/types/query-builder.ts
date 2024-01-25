@@ -92,5 +92,5 @@ export type TestId = {
   valueEditor?: string
   fieldSelector?: string
   validationErrors?: string
-  supportButton?: string
+  header?: string
 }

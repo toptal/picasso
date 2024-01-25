@@ -31,7 +31,6 @@ import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
 import type { ValidatorResult } from '../utils/use-query-builder-validator'
-import { SupportButton } from '../SupportButton'
 
 type ValueEditorComponentProps = ComponentType<DefaultValueEditorProps>
 
@@ -61,7 +60,7 @@ type Props = {
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
   /** Defines the possibility to hide, or not, the support button. */
-  hideSupportButton?: boolean
+  headerComponent?: React.ComponentType<unknown>
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
   /** Defines the total number of results, usually used by other components that may need to know the total number of results. */
@@ -89,7 +88,7 @@ const QueryBuilder = ({
   onSubmit,
   customValueEditor = ValueEditor,
   hideControls,
-  hideSupportButton = true,
+  headerComponent: HeaderComponent,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
   totalCount,
@@ -195,9 +194,9 @@ const QueryBuilder = ({
         direction='column'
         gap='small'
       >
-        {!hideSupportButton && (
-          <Container flex justifyContent='flex-end'>
-            <SupportButton data-testid={testIds?.supportButton} />
+        {HeaderComponent && (
+          <Container data-testid={testIds?.header}>
+            <HeaderComponent />
           </Container>
         )}
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
