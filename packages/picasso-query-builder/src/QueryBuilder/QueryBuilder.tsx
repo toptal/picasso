@@ -59,7 +59,7 @@ type Props = {
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
-  /** Defines the possibility to hide, or not, the support button. */
+  /** Defines the header node that will be displayed above the QB. */
   header?: React.ReactNode
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
