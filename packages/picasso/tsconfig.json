@@ -63,6 +63,7 @@
     { "path": "../base/Tabs" },
     { "path": "../base/Tag" },
     { "path": "../base/Tagselector" },
+    { "path": "../base/Test-Utils" },
     { "path": "../base/Timeline" },
     { "path": "../base/Timepicker" },
     { "path": "../base/Tooltip" },
@@ -70,6 +71,7 @@
     { "path": "../base/Typography" },
     { "path": "../base/TypographyOverflow" },
     { "path": "../base/UserBadge" },
+    { "path": "../base/Utils" },
     { "path": "../picasso-provider" },
     { "path": "../shared" }
   ]
