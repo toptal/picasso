@@ -45,6 +45,7 @@ COPY --chown=node:node packages/picasso-pictograms/package.json ./packages/picas
 COPY --chown=node:node packages/picasso-rich-text-editor/package.json ./packages/picasso-rich-text-editor/package.json
 COPY --chown=node:node packages/picasso-query-builder/package.json ./packages/picasso-query-builder/package.json
 COPY --chown=node:node packages/picasso-tailwind/package.json ./packages/picasso-tailwind/package.json
+COPY --chown=node:node packages/base/*/package.json ./packages/base/
 
 
 # Install node_modules
