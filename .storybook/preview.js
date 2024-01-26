@@ -2,7 +2,6 @@ import React from 'react'
 import 'github-markdown-css/github-markdown-light.css'
 import 'happo-plugin-storybook/register'
 import { getCheckpoints } from '../packages/picasso/src/test-utils/get-happo-targets/get-checkpoints.ts'
-import './styles.css'
 
 import Picasso from '@toptal/picasso-provider'
 

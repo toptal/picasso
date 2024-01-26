@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 
+import './styles.css'
 import globalStyles from './styles'
 
 export interface PicassoRootNodeProps {

@@ -130,6 +130,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
           className={classes.iconWrapper}
         >
           {icon}
+          <div className='p-5 bg-red-500' />
         </Container>
         <Typography size='medium' as='div' weight='regular' color='black'>
           {children}
