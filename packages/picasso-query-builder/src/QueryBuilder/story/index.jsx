@@ -33,6 +33,11 @@ page
     description: 'Hide buttons used for query reset and submitting',
   })
 
+  .addExample('QueryBuilder/story/Header.example.tsx', {
+    title: 'Header',
+    description: 'Customized header',
+  })
+
   .addExample('QueryBuilder/story/Loading.example.tsx', {
     title: 'Loading',
   })
