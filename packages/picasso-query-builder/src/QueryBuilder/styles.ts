@@ -1,6 +1,5 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { SPACING_2 } from '@toptal/picasso/utils'
 
 import { queryBuilderGlobalStyles } from './query-builder-global-styles'
 
@@ -102,10 +101,5 @@ export default (theme: Theme) =>
       '& .rule button, .rule-group-header button': {
         margin: 0,
       },
-    },
-    supportButton: {
-      position: 'absolute',
-      top: `${SPACING_2}rem`,
-      right: `${SPACING_2}rem`,
     },
   })

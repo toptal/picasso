@@ -24,8 +24,8 @@ import { RunQueryButton } from '../RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
 import { emptyQueryBuilderQuery } from '../utils/constants'
-import type { QueryBuilderValueEditorProps } from '../ValueEditor'
-import { ValueEditor as DefaultValueEditorComponent } from '../ValueEditor'
+import type { QueryBuilderValueEditorProps as ValEditorProps } from '../ValueEditor'
+import { ValueEditor as DefaultValEditor } from '../ValueEditor'
 import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
@@ -59,7 +59,7 @@ type Props = {
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
-  /** Defines the header node that will be displayed above the QB. */
+  /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
@@ -67,15 +67,12 @@ type Props = {
   totalCount?: number
   /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
   totalCountLoading?: boolean
-  /** Defines the possibility to add test ids to the QB and its controls. */
   testIds?: TestId
 }
 
 const useStyles = makeStyles(styles)
 
-const ValueEditor = (props: QueryBuilderValueEditorProps) => (
-  <DefaultValueEditorComponent {...props} />
-)
+const ValueEditor = (props: ValEditorProps) => <DefaultValEditor {...props} />
 
 const QueryBuilder = ({
   fields,

@@ -35,7 +35,7 @@ page
 
   .addExample('QueryBuilder/story/Header.example.tsx', {
     title: 'Header',
-    description: 'Display header',
+    description: 'Customized header',
   })
 
   .addExample('QueryBuilder/story/Loading.example.tsx', {
