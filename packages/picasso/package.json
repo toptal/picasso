@@ -8,6 +8,7 @@
   "exports": {
     ".": "./dist/src/index.js",
     "./Icon": "./dist/src/Icon/index.js",
+    "./Icon/*": "./dist/src/Icon/*",
     "./utils": "./dist/src/utils/index.js",
     "./test-utils": "./dist/src/test-utils/index.js"
   },

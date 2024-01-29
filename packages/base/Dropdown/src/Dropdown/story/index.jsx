@@ -44,7 +44,7 @@ page
       title: 'Dropdown menu',
       takeScreenshot: false,
     },
-    'base/Dropdown'
+    'base/Menu'
   )
   .addExample(
     'Menu/story/Multilevel.example.tsx',
@@ -52,7 +52,7 @@ page
       title: 'Multilevel menu',
       takeScreenshot: false,
     },
-    'base/Dropdown'
+    'base/Menu'
   )
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.tsx',

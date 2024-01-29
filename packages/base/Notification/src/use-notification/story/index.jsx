@@ -50,7 +50,7 @@ Each of them has this list of props:
       },
     ])
     .addExample(
-      'utils/Notifications/story/Default.example.tsx',
+      'use-notification/story/Default.example.tsx',
       {
         title: 'Default',
         takeScreenshot: false,
@@ -58,7 +58,7 @@ Each of them has this list of props:
       'base/Notification'
     )
     .addExample(
-      'utils/Notifications/story/Variants.example.tsx',
+      'use-notification/story/Variants.example.tsx',
       {
         title: 'Variants',
         takeScreenshot: false,
@@ -66,7 +66,7 @@ Each of them has this list of props:
       'base/Notification'
     )
     .addExample(
-      'utils/Notifications/story/GeneralNotifications.example.tsx',
+      'use-notification/story/GeneralNotifications.example.tsx',
       {
         title: 'General Notifications',
         takeScreenshot: false,
@@ -74,7 +74,7 @@ Each of them has this list of props:
       'base/Notification'
     )
     .addExample(
-      'utils/Notifications/story/Options.example.tsx',
+      'use-notification/story/Options.example.tsx',
       {
         title: 'Options',
         takeScreenshot: false,
@@ -82,7 +82,7 @@ Each of them has this list of props:
       'base/Notification'
     )
     .addExample(
-      'utils/Notifications/story/Custom.example.tsx',
+      'use-notification/story/Custom.example.tsx',
       {
         title: 'Custom',
         takeScreenshot: false,
@@ -90,7 +90,7 @@ Each of them has this list of props:
       'base/Notification'
     )
     .addExample(
-      'utils/Notifications/story/CustomPosition.example.tsx',
+      'use-notification/story/CustomPosition.example.tsx',
       {
         title: 'Custom Position',
         takeScreenshot: false,
@@ -98,7 +98,7 @@ Each of them has this list of props:
       'base/Notification'
     )
     .addExample(
-      'utils/Notifications/story/MaxNotifications.example.tsx',
+      'use-notification/story/MaxNotifications.example.tsx',
       {
         title: 'MaxNotifications',
         takeScreenshot: false,

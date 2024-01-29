@@ -107,14 +107,21 @@ module.exports = {
     },
     // Generated files
     {
-      files: ['packages/picasso/src/Icon/index.ts'],
+      files: ['packages/base/Icons/src/Icon/index.ts'],
       rules: {
         'max-lines': 'off',
       },
     },
     // Top-level cypress tests and Stories can have extraneous dependencies
     {
-      files: ['*.spec.tsx', '*.example.tsx'],
+      files: [
+        '*.spec.tsx',
+        '*.example.tsx',
+        'test.tsx',
+        'test.ts',
+        '*.test.tsx',
+        '*.test.ts',
+      ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
       },

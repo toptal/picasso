@@ -3,6 +3,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { mount } from 'cypress/react'
 import React from 'react'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { TestingPicasso } from '@toptal/picasso-test-utils'
 
 Cypress.Commands.add('isWithinViewport', { prevSubject: true }, subject => {

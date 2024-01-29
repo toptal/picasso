@@ -18,7 +18,7 @@
     "access": "public"
   },
   "scripts": {
-    "build:package": "node bin/build.cjs",
+    "build:package": "tsc -b tsconfig.json && node bin/build.cjs",
     "prepublishOnly": "yarn build:package"
   },
   "bugs": {

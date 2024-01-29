@@ -8,8 +8,8 @@ const yargs = require('yargs').argv
 const {
   log,
   copyPackageJson,
-  copyReadme,
-  copyLicense,
+  // copyReadme,
+  // copyLicense,
   safeExec,
 } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
