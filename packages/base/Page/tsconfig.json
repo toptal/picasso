@@ -5,9 +5,11 @@
   "references": [
     { "path": "../../picasso-provider" },
     { "path": "../../shared" },
+    { "path": "../Accordion" },
     { "path": "../Autocomplete" },
     { "path": "../Avatar" },
     { "path": "../Badge" },
+    { "path": "../Button" },
     { "path": "../Container" },
     { "path": "../Dropdown" },
     { "path": "../Icons" },

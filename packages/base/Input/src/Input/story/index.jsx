@@ -22,30 +22,48 @@ page
       },
     },
   })
-  .addExample('Input/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Input/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Input/story/Status.example.tsx', 'Status')
-  .addExample('Input/story/WithIcon.example.tsx', 'With icon')
-  .addExample('Input/story/Sizes.example.tsx', 'Sizes')
-  .addExample('Input/story/FullWidth.example.tsx', 'Full width')
-  .addExample('Input/story/Multiline.example.tsx', 'Multiline | Textarea')
+  .addExample(
+    'Input/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Input'
+  )
+  .addExample('Input/story/Disabled.example.tsx', 'Disabled', 'base/Input')
+  .addExample('Input/story/Status.example.tsx', 'Status', 'base/Input')
+  .addExample('Input/story/WithIcon.example.tsx', 'With icon', 'base/Input')
+  .addExample('Input/story/Sizes.example.tsx', 'Sizes', 'base/Input')
+  .addExample('Input/story/FullWidth.example.tsx', 'Full width', 'base/Input')
+  .addExample(
+    'Input/story/Multiline.example.tsx',
+    'Multiline | Textarea',
+    'base/Input'
+  )
   .addExample(
     'Input/story/MultilineExpand.example.tsx',
-    'Multiline expand and resize | Textarea'
+    'Multiline expand and resize | Textarea',
+    'base/Input'
   )
   .addExample(
     'Input/story/AutoFill.example.tsx',
-    'AutoComplete defined as email'
+    'AutoComplete defined as email',
+    'base/Input'
   )
-  .addExample('Input/story/WithLimit.example.tsx', 'With Limit')
-  .addExample('Input/story/ResetButton.example.tsx', {
-    title: 'With reset button',
-    takeScreenshot: false,
-  })
-  .addExample('Input/story/Refs.example.tsx', {
-    title: 'Refs',
-    takeScreenshot: false,
-  })
+  .addExample('Input/story/WithLimit.example.tsx', 'With Limit', 'base/Input')
+  .addExample(
+    'Input/story/ResetButton.example.tsx',
+    {
+      title: 'With reset button',
+      takeScreenshot: false,
+    },
+    'base/Input'
+  )
+  .addExample(
+    'Input/story/Refs.example.tsx',
+    {
+      title: 'Refs',
+      takeScreenshot: false,
+    },
+    'base/Input'
+  )

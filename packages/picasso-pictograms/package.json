@@ -37,6 +37,7 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/src/index.js",
+    "./Pictogram": "./dist/src/Pictogram/index.js"
   }
 }

@@ -25,10 +25,14 @@ page
 
 page
   .createChapter()
-  .addExample('Avatar/story/Default.example.tsx', 'Default')
-  .addExample('Avatar/story/Variants.example.tsx', 'Variants')
-  .addExample('Avatar/story/Sizes.example.tsx', 'Sizes')
-  .addExample('Avatar/story/LongName.example.tsx', 'Long Name')
-  .addExample('Avatar/story/Editable.example.tsx', 'Editable state')
+  .addExample('Avatar/story/Default.example.tsx', 'Default', 'base/Avatar')
+  .addExample('Avatar/story/Variants.example.tsx', 'Variants', 'base/Avatar')
+  .addExample('Avatar/story/Sizes.example.tsx', 'Sizes', 'base/Avatar')
+  .addExample('Avatar/story/LongName.example.tsx', 'Long Name', 'base/Avatar')
+  .addExample(
+    'Avatar/story/Editable.example.tsx',
+    'Editable state',
+    'base/Avatar'
+  )
 
 page.connect(AvatarGroupStory.chapter)

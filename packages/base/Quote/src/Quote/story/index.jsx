@@ -18,4 +18,6 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: Quote, name: 'Quote' })
 
-page.createChapter().addExample('Quote/story/Default.example.tsx', 'Default')
+page
+  .createChapter()
+  .addExample('Quote/story/Default.example.tsx', 'Default', 'base/Quote')

@@ -34,47 +34,91 @@ page
 
 page
   .createChapter()
-  .addExample('Tooltip/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/Placement.example.tsx', {
-    title: 'Placement',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/Trigger.example.tsx', {
-    title: 'Trigger',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/Interactive.example.tsx', {
-    title: 'Interactive',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/ControlListeners.example.tsx', {
-    title: 'Control Listeners',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/DisabledElement.example.tsx', {
-    title: 'Tooltip on disabled element',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/Delay.example.tsx', {
-    title: 'Delay',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/Compact.example.tsx', {
-    title: 'Compact',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/MaxWidth.example.tsx', {
-    title: 'Max Width',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/FollowCursor.example.tsx', {
-    title: 'Follow Cursor',
-    takeScreenshot: false,
-  })
-  .addExample('Tooltip/story/Dropdown.example.tsx', {
-    title: 'Inside of a Dropdown',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Tooltip/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/Placement.example.tsx',
+    {
+      title: 'Placement',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/Trigger.example.tsx',
+    {
+      title: 'Trigger',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/Interactive.example.tsx',
+    {
+      title: 'Interactive',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/ControlListeners.example.tsx',
+    {
+      title: 'Control Listeners',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/DisabledElement.example.tsx',
+    {
+      title: 'Tooltip on disabled element',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/Delay.example.tsx',
+    {
+      title: 'Delay',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/Compact.example.tsx',
+    {
+      title: 'Compact',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/MaxWidth.example.tsx',
+    {
+      title: 'Max Width',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/FollowCursor.example.tsx',
+    {
+      title: 'Follow Cursor',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
+  .addExample(
+    'Tooltip/story/Dropdown.example.tsx',
+    {
+      title: 'Inside of a Dropdown',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )

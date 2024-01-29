@@ -15,6 +15,18 @@ page
 
 page
   .createChapter()
-  .addExample('PasswordInput/story/Default.example.tsx', 'Default')
-  .addExample('PasswordInput/story/Disabled.example.tsx', 'Disabled')
-  .addExample('PasswordInput/story/Status.example.tsx', 'Status')
+  .addExample(
+    'PasswordInput/story/Default.example.tsx',
+    'Default',
+    'base/PasswordInput'
+  )
+  .addExample(
+    'PasswordInput/story/Disabled.example.tsx',
+    'Disabled',
+    'base/PasswordInput'
+  )
+  .addExample(
+    'PasswordInput/story/Status.example.tsx',
+    'Status',
+    'base/PasswordInput'
+  )

@@ -3,8 +3,8 @@ import { render } from '@toptal/picasso-test-utils'
 import { screen } from '@testing-library/react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso-button'
-import { ApplicationUpdateNotificationActions } from '@toptal/picasso-application-update-notification'
 
+import { ApplicationUpdateNotificationActions } from '../ApplicationUpdateNotificationActions'
 import type { Props } from './ApplicationUpdateNotification'
 import { ApplicationUpdateNotification } from './ApplicationUpdateNotification'
 

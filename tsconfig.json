@@ -1,5 +1,7 @@
 {
+  "extends": "./tsconfig.base.json",
   "files": [],
+  "exclude": [],
   "references": [
     { "path": "./tsconfig.pkgsrc.json" },
     { "path": "./tsconfig.jest.json" }

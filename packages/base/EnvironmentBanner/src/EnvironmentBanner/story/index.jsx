@@ -18,9 +18,11 @@ page
   .createTabChapter('Props')
   .addComponentDocs({ component: EnvironmentBanner, name: 'EnvironmentBanner' })
 
-page
-  .createChapter()
-  .addExample('EnvironmentBanner/story/Variants.example.tsx', {
+page.createChapter().addExample(
+  'EnvironmentBanner/story/Variants.example.tsx',
+  {
     title: 'Variants',
     description: 'Click to make them disappear',
-  })
+  },
+  'base/EnvironmentBanner'
+)

@@ -29,5 +29,13 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('AccountSelect/story/Default.example.tsx', 'Default')
-  .addExample('AccountSelect/story/Page.example.tsx', 'Select Account Page')
+  .addExample(
+    'AccountSelect/story/Default.example.tsx',
+    'Default',
+    'base/AccountSelect'
+  )
+  .addExample(
+    'AccountSelect/story/Page.example.tsx',
+    'Select Account Page',
+    'base/AccountSelect'
+  )

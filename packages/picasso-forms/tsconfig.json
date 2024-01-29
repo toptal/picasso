@@ -3,6 +3,7 @@
   "compilerOptions": { "outDir": "dist" },
   "include": ["src"],
   "references": [
+    { "path": "../base/Notification" },
     { "path": "../base/Utils" },
     { "path": "../picasso" },
     { "path": "../picasso-rich-text-editor" },

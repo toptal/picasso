@@ -17,16 +17,28 @@ page
 
 page
   .createChapter()
-  .addExample('Menu/story/Default.example.tsx', {
-    title: 'Default',
-  })
-  .addExample('Menu/story/Multilevel.example.tsx', {
-    title: 'Multilevel',
-    takeScreenshot: false,
-  })
-  .addExample('Menu/story/Dropdown.example.tsx', {
-    title: 'Dropdown',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Menu/story/Default.example.tsx',
+    {
+      title: 'Default',
+    },
+    'base/Menu'
+  )
+  .addExample(
+    'Menu/story/Multilevel.example.tsx',
+    {
+      title: 'Multilevel',
+      takeScreenshot: false,
+    },
+    'base/Menu'
+  )
+  .addExample(
+    'Menu/story/Dropdown.example.tsx',
+    {
+      title: 'Dropdown',
+      takeScreenshot: false,
+    },
+    'base/Menu'
+  )
 
 page.connect(menuItemStory.chapter)

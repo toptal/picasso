@@ -27,29 +27,57 @@ page
 
 page
   .createChapter()
-  .addExample('Page/story/Default.example.tsx', {
-    title: 'Default',
-    description:
-      'Page has centered content and restricted width of 1200px or 75rem',
-  })
-  .addExample('Page/story/WideWidth.example.tsx', {
-    title: 'Wide width',
-    description:
-      'Page has centered content and restricted width of 1440px or 90rem',
-  })
-  .addExample('Page/story/FullWidth.example.tsx', {
-    title: 'Full width',
-  })
-  .addExample('Page/story/Scroll.example.tsx', 'Scroll with overflow')
-  .addExample('Page/story/WithBanner.example.tsx', {
-    title: 'With Banner',
-  })
-  .addExample('Page/story/WithCompoundBanner.example.tsx', {
-    title: 'With Compound Banner',
-  })
-  .addExample('Page/story/WithBannerAndSidebar.example.tsx', {
-    title: 'With Banner and Sidebar',
-  })
+  .addExample(
+    'Page/story/Default.example.tsx',
+    {
+      title: 'Default',
+      description:
+        'Page has centered content and restricted width of 1200px or 75rem',
+    },
+    'base/Page'
+  )
+  .addExample(
+    'Page/story/WideWidth.example.tsx',
+    {
+      title: 'Wide width',
+      description:
+        'Page has centered content and restricted width of 1440px or 90rem',
+    },
+    'base/Page'
+  )
+  .addExample(
+    'Page/story/FullWidth.example.tsx',
+    {
+      title: 'Full width',
+    },
+    'base/Page'
+  )
+  .addExample(
+    'Page/story/Scroll.example.tsx',
+    'Scroll with overflow',
+    'base/Page'
+  )
+  .addExample(
+    'Page/story/WithBanner.example.tsx',
+    {
+      title: 'With Banner',
+    },
+    'base/Page'
+  )
+  .addExample(
+    'Page/story/WithCompoundBanner.example.tsx',
+    {
+      title: 'With Compound Banner',
+    },
+    'base/Page'
+  )
+  .addExample(
+    'Page/story/WithBannerAndSidebar.example.tsx',
+    {
+      title: 'With Banner and Sidebar',
+    },
+    'base/Page'
+  )
 
 page.connect(pageHelmetStory.chapter)
 

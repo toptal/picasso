@@ -12,19 +12,9 @@ function copyIcons() {
     sh.cp(
       '-R',
       `src/Favicon/icons/${env}/*.png`,
-      `./dist-package/Favicon/icons/${env}/`
+      `dist/src/Favicon/icons/${env}/`
     )
   })
 }
 
-const cmd =
-  path.resolve(__dirname, '../../../bin/build.js') +
-  ' --tsConfig=./tsconfig.build.json'
-
-function build() {
-  safeExec('node ' + cmd)
-
-  copyIcons()
-}
-
-build()
+copyIcons()

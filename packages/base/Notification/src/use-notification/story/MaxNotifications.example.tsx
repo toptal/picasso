@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { NotificationsProvider } from '@toptal/picasso-provider'
 import type { NotificationsProviderProps } from '@toptal/picasso-provider'
 import { Button, Slider, Typography, Container } from '@toptal/picasso'
-import { SPACING_8, useNotifications } from '@toptal/picasso-utils'
+import { SPACING_8 } from '@toptal/picasso-utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 const App = () => {
   const { showInfo } = useNotifications()

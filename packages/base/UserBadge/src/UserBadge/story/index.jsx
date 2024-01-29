@@ -15,9 +15,21 @@ page
 
 page
   .createChapter()
-  .addExample('UserBadge/story/Default.example.tsx', 'Default')
-  .addExample('UserBadge/story/Sizes.example.tsx', 'Sizes')
-  .addExample('UserBadge/story/Alignment.example.tsx', 'Alignment')
-  .addExample('UserBadge/story/Invert.example.tsx', 'Invert')
-  .addExample('UserBadge/story/Custom.example.tsx', 'Custom')
-  .addExample('UserBadge/story/Title.example.tsx', 'With Title')
+  .addExample(
+    'UserBadge/story/Default.example.tsx',
+    'Default',
+    'base/UserBadge'
+  )
+  .addExample('UserBadge/story/Sizes.example.tsx', 'Sizes', 'base/UserBadge')
+  .addExample(
+    'UserBadge/story/Alignment.example.tsx',
+    'Alignment',
+    'base/UserBadge'
+  )
+  .addExample('UserBadge/story/Invert.example.tsx', 'Invert', 'base/UserBadge')
+  .addExample('UserBadge/story/Custom.example.tsx', 'Custom', 'base/UserBadge')
+  .addExample(
+    'UserBadge/story/Title.example.tsx',
+    'With Title',
+    'base/UserBadge'
+  )

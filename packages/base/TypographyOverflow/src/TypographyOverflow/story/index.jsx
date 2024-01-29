@@ -16,23 +16,43 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('TypographyOverflow/story/Default.example.tsx', {
-    title: 'Default',
-    takeScreenshot: false,
-  })
-  .addExample('TypographyOverflow/story/Multiline.example.tsx', {
-    title: 'Multiline',
-    takeScreenshot: false,
-  })
-  .addExample('TypographyOverflow/story/CheckboxLabel.example.tsx', {
-    title: 'Checkbox label',
-    takeScreenshot: false,
-  })
-  .addExample('TypographyOverflow/story/CustomTooltip.example.tsx', {
-    title: 'Custom tooltip content',
-    takeScreenshot: false,
-  })
-  .addExample('TypographyOverflow/story/Delay.example.tsx', {
-    title: 'Delay',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'TypographyOverflow/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )
+  .addExample(
+    'TypographyOverflow/story/Multiline.example.tsx',
+    {
+      title: 'Multiline',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )
+  .addExample(
+    'TypographyOverflow/story/CheckboxLabel.example.tsx',
+    {
+      title: 'Checkbox label',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )
+  .addExample(
+    'TypographyOverflow/story/CustomTooltip.example.tsx',
+    {
+      title: 'Custom tooltip content',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )
+  .addExample(
+    'TypographyOverflow/story/Delay.example.tsx',
+    {
+      title: 'Delay',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )

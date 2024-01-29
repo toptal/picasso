@@ -21,6 +21,6 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Badge/story/Variants.example.tsx', 'Variants')
-  .addExample('Badge/story/Sizes.example.tsx', 'Sizes')
-  .addExample('Badge/story/Overlay.example.tsx', 'Overlay')
+  .addExample('Badge/story/Variants.example.tsx', 'Variants', 'base/Badge')
+  .addExample('Badge/story/Sizes.example.tsx', 'Sizes', 'base/Badge')
+  .addExample('Badge/story/Overlay.example.tsx', 'Overlay', 'base/Badge')

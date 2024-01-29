@@ -13,6 +13,7 @@
     "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "composite": true,
+    "lib": ["dom", "es2019"],
     "typeRoots": ["./node_modules/@types", "./@types"],
     "strict": true
   },

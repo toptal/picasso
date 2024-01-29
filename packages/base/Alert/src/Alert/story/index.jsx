@@ -25,8 +25,12 @@ page
 
 page
   .createChapter()
-  .addExample('Alert/story/Default.example.tsx', 'Default')
-  .addExample('Alert/story/Close.example.tsx', 'Closable alert')
-  .addExample('Alert/story/Actions.example.tsx', 'Alert with actions')
+  .addExample('Alert/story/Default.example.tsx', 'Default', 'base/Alert')
+  .addExample('Alert/story/Close.example.tsx', 'Closable alert', 'base/Alert')
+  .addExample(
+    'Alert/story/Actions.example.tsx',
+    'Alert with actions',
+    'base/Alert'
+  )
 
 page.connect(alertInlineStory.chapter)

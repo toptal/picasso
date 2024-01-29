@@ -5,9 +5,9 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-tailwind#readme",
   "license": "MIT",
-  "main": "./dist/src/index.js",
+  "main": "./src/index.js",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./src/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -31,5 +31,5 @@
   },
   "sideEffects": false,
   "type": "module",
-  "module": "./dist/src/index.js"
+  "module": "./src/index.js"
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, ApplicationUpdateNotification } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 const ApplicationUpdateNotificationExample = () => {
   const { showCustom } = useNotifications()

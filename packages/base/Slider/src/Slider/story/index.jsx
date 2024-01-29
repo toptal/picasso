@@ -15,33 +15,59 @@ page
 
 page
   .createChapter()
-  .addExample('Slider/story/Default.example.tsx', 'Default')
-  .addExample('Slider/story/InitialValue.example.tsx', 'Initial value')
-  .addExample('Slider/story/Controlled.example.tsx', 'Controlled value')
-  .addExample('Slider/story/ControlledWithLabel.example.tsx', {
-    title: 'Controlled value with label',
-    takeScreenshot: false,
-  })
-  .addExample('Slider/story/MinMaxValueLabel.example.tsx', {
-    title: 'Minimum and Maximum value with label',
-    takeScreenshot: false,
-  })
-  .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip')
-  .addExample('Slider/story/Range.example.tsx', 'Range')
-  .addExample('Slider/story/RangeWithValueLabel.example.tsx', {
-    title: 'Range with value label',
-    takeScreenshot: false,
-  })
-  .addExample('Slider/story/Marks.example.tsx', 'Marks')
-  .addExample('Slider/story/CustomTooltip.example.tsx', {
-    title: 'Custom Tooltip',
-    takeScreenshot: false,
-  })
+  .addExample('Slider/story/Default.example.tsx', 'Default', 'base/Slider')
+  .addExample(
+    'Slider/story/InitialValue.example.tsx',
+    'Initial value',
+    'base/Slider'
+  )
+  .addExample(
+    'Slider/story/Controlled.example.tsx',
+    'Controlled value',
+    'base/Slider'
+  )
+  .addExample(
+    'Slider/story/ControlledWithLabel.example.tsx',
+    {
+      title: 'Controlled value with label',
+      takeScreenshot: false,
+    },
+    'base/Slider'
+  )
+  .addExample(
+    'Slider/story/MinMaxValueLabel.example.tsx',
+    {
+      title: 'Minimum and Maximum value with label',
+      takeScreenshot: false,
+    },
+    'base/Slider'
+  )
+  .addExample('Slider/story/Tooltip.example.tsx', 'Tooltip', 'base/Slider')
+  .addExample('Slider/story/Range.example.tsx', 'Range', 'base/Slider')
+  .addExample(
+    'Slider/story/RangeWithValueLabel.example.tsx',
+    {
+      title: 'Range with value label',
+      takeScreenshot: false,
+    },
+    'base/Slider'
+  )
+  .addExample('Slider/story/Marks.example.tsx', 'Marks', 'base/Slider')
+  .addExample(
+    'Slider/story/CustomTooltip.example.tsx',
+    {
+      title: 'Custom Tooltip',
+      takeScreenshot: false,
+    },
+    'base/Slider'
+  )
   .addExample(
     'Slider/story/HideThumb.example.tsx',
-    'Hide thumb when value is null or undefined'
+    'Hide thumb when value is null or undefined',
+    'base/Slider'
   )
   .addExample(
     'Slider/story/DisableTrackHighlight.example.tsx',
-    'Disable track highlight'
+    'Disable track highlight',
+    'base/Slider'
   )

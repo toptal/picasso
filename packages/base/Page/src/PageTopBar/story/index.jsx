@@ -21,41 +21,77 @@ page
 
 page
   .createChapter()
-  .addExample('PageTopBar/story/Default.example.tsx', {
-    title: 'Default',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/Variants.example.tsx', {
-    title: 'Variants',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/LeftContent.example.tsx', {
-    title: 'Left content',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/RightContent.example.tsx', {
-    title: 'Right content',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/CenterContent.example.tsx', {
-    title: 'Center content',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/ExtraMenuContent.example.tsx', {
-    title: 'Extra header menu content',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/Link.example.tsx', {
-    title: 'With link',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/WithoutTitle.example.tsx', {
-    title: 'Without title',
-    screenshotBreakpoints: true,
-  })
-  .addExample('PageTopBar/story/Logo.example.tsx', {
-    title: 'With custom logo',
-    screenshotBreakpoints: true,
-  })
+  .addExample(
+    'PageTopBar/story/Default.example.tsx',
+    {
+      title: 'Default',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/Variants.example.tsx',
+    {
+      title: 'Variants',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/LeftContent.example.tsx',
+    {
+      title: 'Left content',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/RightContent.example.tsx',
+    {
+      title: 'Right content',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/CenterContent.example.tsx',
+    {
+      title: 'Center content',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/ExtraMenuContent.example.tsx',
+    {
+      title: 'Extra header menu content',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/Link.example.tsx',
+    {
+      title: 'With link',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/WithoutTitle.example.tsx',
+    {
+      title: 'Without title',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
+  .addExample(
+    'PageTopBar/story/Logo.example.tsx',
+    {
+      title: 'With custom logo',
+      screenshotBreakpoints: true,
+    },
+    'base/Page'
+  )
 
 page.connect(topBarMenuStory.chapter)

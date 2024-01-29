@@ -4,10 +4,14 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Page.Article', 'Use as a page content container')
-    .addExample('PageArticle/story/Default.example.tsx', {
-      title: 'Default',
-      screenshotBreakpoints: true,
-    })
+    .addExample(
+      'PageArticle/story/Default.example.tsx',
+      {
+        title: 'Default',
+        screenshotBreakpoints: true,
+      },
+      'base/Page'
+    )
 )
 
 const componentDocs = PicassoBook.createComponentDocs(

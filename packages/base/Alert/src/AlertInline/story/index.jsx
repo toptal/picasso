@@ -9,7 +9,11 @@ const componentDocs = PicassoBook.createComponentDocs(
 const chapter = PicassoBook.connectToPage(page =>
   page
     .createChapter('Alert.Inline')
-    .addExample('AlertInline/story/Default.example.tsx', { id: 'Default' })
+    .addExample(
+      'AlertInline/story/Default.example.tsx',
+      { id: 'Default' },
+      'base/Alert'
+    )
 )
 
 export default {

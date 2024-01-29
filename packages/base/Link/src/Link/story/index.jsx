@@ -113,18 +113,26 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Link/story/Default.example.tsx', 'Default')
-  .addExample('Link/story/Action.example.tsx', 'Action')
-  .addExample('Link/story/FontSize.example.tsx', {
-    title: 'Font size',
-    description:
-      "You can modify Link's font size by wrapping it in `Typography`",
-  })
-  .addExample('Link/story/Color.example.tsx', 'Color')
-  .addExample('Link/story/Disabled.example.tsx', 'Disabled')
-  .addExample('Link/story/Routing.example.tsx', {
-    title: 'Routing',
-    description:
-      'An example how to use `@toptal/picasso` Link with `react-router-dom` Link',
-    takeScreenshot: false,
-  })
+  .addExample('Link/story/Default.example.tsx', 'Default', 'base/Link')
+  .addExample('Link/story/Action.example.tsx', 'Action', 'base/Link')
+  .addExample(
+    'Link/story/FontSize.example.tsx',
+    {
+      title: 'Font size',
+      description:
+        "You can modify Link's font size by wrapping it in `Typography`",
+    },
+    'base/Link'
+  )
+  .addExample('Link/story/Color.example.tsx', 'Color', 'base/Link')
+  .addExample('Link/story/Disabled.example.tsx', 'Disabled', 'base/Link')
+  .addExample(
+    'Link/story/Routing.example.tsx',
+    {
+      title: 'Routing',
+      description:
+        'An example how to use `@toptal/picasso` Link with `react-router-dom` Link',
+      takeScreenshot: false,
+    },
+    'base/Link'
+  )

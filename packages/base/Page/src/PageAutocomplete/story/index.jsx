@@ -14,11 +14,13 @@ const chapter = PicassoBook.connectToPage(page =>
     )
     .addExample(
       'PageAutocomplete/story/Default.example.tsx',
-      'Page.Autocomplete Dark'
+      'Page.Autocomplete Dark',
+      'base/Page'
     )
     .addExample(
       'PageAutocomplete/story/Light.example.tsx',
-      'Page.Autocomplete Light'
+      'Page.Autocomplete Light',
+      'base/Page'
     )
 )
 

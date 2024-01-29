@@ -32,31 +32,64 @@ page
 
 page
   .createChapter()
-  .addExample('Dropdown/story/Default.example.tsx', 'Default')
-  .addExample('Dropdown/story/ButtonDropdown.example.tsx', 'Button Anchor')
-  .addExample('Menu/story/Default.example.tsx', {
-    title: 'Dropdown menu',
-    takeScreenshot: false,
-  })
-  .addExample('Menu/story/Multilevel.example.tsx', {
-    title: 'Multilevel menu',
-    takeScreenshot: false,
-  })
+  .addExample('Dropdown/story/Default.example.tsx', 'Default', 'base/Dropdown')
+  .addExample(
+    'Dropdown/story/ButtonDropdown.example.tsx',
+    'Button Anchor',
+    'base/Dropdown'
+  )
+  .addExample(
+    'Menu/story/Default.example.tsx',
+    {
+      title: 'Dropdown menu',
+      takeScreenshot: false,
+    },
+    'base/Menu'
+  )
+  .addExample(
+    'Menu/story/Multilevel.example.tsx',
+    {
+      title: 'Multilevel menu',
+      takeScreenshot: false,
+    },
+    'base/Menu'
+  )
   .addExample(
     'Dropdown/story/PositionsAndOffsets.example.tsx',
-    'Positions & Offsets'
+    'Positions & Offsets',
+    'base/Dropdown'
   )
-  .addExample('Dropdown/story/CustomTrigger.example.tsx', 'Custom Anchor')
-  .addExample('Dropdown/story/CustomContent.example.tsx', {
-    title: 'Custom Content',
-    takeScreenshot: false,
-  })
-  .addExample('Dropdown/story/SmallArrow.example.tsx', 'Small Arrow Dropdown')
-  .addExample('Dropdown/story/LongMenuList.example.tsx', {
-    title: 'Long Menu List',
-    takeScreenshot: false,
-  })
-  .addExample('Dropdown/story/CustomStyle.example.tsx', {
-    title: 'Custom Style',
-    takeScreenshot: false,
-  })
+  .addExample(
+    'Dropdown/story/CustomTrigger.example.tsx',
+    'Custom Anchor',
+    'base/Dropdown'
+  )
+  .addExample(
+    'Dropdown/story/CustomContent.example.tsx',
+    {
+      title: 'Custom Content',
+      takeScreenshot: false,
+    },
+    'base/Dropdown'
+  )
+  .addExample(
+    'Dropdown/story/SmallArrow.example.tsx',
+    'Small Arrow Dropdown',
+    'base/Dropdown'
+  )
+  .addExample(
+    'Dropdown/story/LongMenuList.example.tsx',
+    {
+      title: 'Long Menu List',
+      takeScreenshot: false,
+    },
+    'base/Dropdown'
+  )
+  .addExample(
+    'Dropdown/story/CustomStyle.example.tsx',
+    {
+      title: 'Custom Style',
+      takeScreenshot: false,
+    },
+    'base/Dropdown'
+  )
