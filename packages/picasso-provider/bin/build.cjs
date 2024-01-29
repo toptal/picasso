@@ -12,13 +12,9 @@ function copyIcons() {
     sh.cp(
       '-R',
       `src/Favicon/icons/${env}/*.png`,
-      `./dist/Favicon/icons/${env}/`
+      `dist/src/Favicon/icons/${env}/`
     )
   })
 }
 
-function build() {
-  copyIcons()
-}
-
-build()
+copyIcons()
