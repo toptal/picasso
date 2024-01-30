@@ -1,6 +1,7 @@
 import { createStyles } from '@material-ui/core/styles'
 
 import { horizontalLabelColumnWidth } from '../FieldsLayout'
+import { FORM_LABEL_WIDTH_CSS_VARIABLE } from '../Form/styles'
 
 export default () =>
   createStyles({
@@ -32,7 +33,9 @@ export default () =>
 
     horizontalLayout: {
       display: 'grid',
-      gridTemplateColumns: `${horizontalLabelColumnWidth} 1fr`,
+      // --form-label-width is passed down from cascading style, in this case from Form
+      '--label-width': `calc(${horizontalLabelColumnWidth} / 4 * var(${FORM_LABEL_WIDTH_CSS_VARIABLE}, 4))`,
+      gridTemplateColumns: `var(--label-width) 1fr`,
       gap: '0 32px', // 0 and lg, respectively
       gridTemplateRows: 'auto auto',
       gridTemplateAreas: `
