@@ -8,8 +8,10 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import Container from '../Container'
 import FormHint from '../FormHint'
 import FormError from '../FormError'
-import styles from './styles'
+import styles, { createLabelWidthStyles } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
+
+export { horizontalLabelColumnWidth } from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
@@ -95,7 +97,11 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
 
   const classes = useStyles()
 
-  const { layout } = useFieldsLayoutContext()
+  const { layout, labelWidth } = useFieldsLayoutContext()
+
+  const labelWidthStyles = createLabelWidthStyles(labelWidth)
+
+  console.log('labelWidthStyles: ', labelWidthStyles)
 
   return (
     <div
@@ -106,7 +112,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
         { [classes.horizontalLayout]: layout === 'horizontal' },
         className
       )}
-      style={style}
+      style={{ ...style, ...labelWidthStyles }}
       data-field-has-error={Boolean(error)}
     >
       {children}

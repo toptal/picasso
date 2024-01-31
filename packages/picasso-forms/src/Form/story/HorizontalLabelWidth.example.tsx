@@ -7,7 +7,7 @@ const Example = () => {
       autoComplete='off'
       onSubmit={values => window.alert(JSON.stringify(values, undefined, 2))}
       layout='horizontal'
-      labelWidth={1}
+      labelWidth={{ md: 4, lg: 3, xl: 2 }}
     >
       <Input
         enableReset

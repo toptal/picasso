@@ -1,9 +1,57 @@
 import { createStyles } from '@material-ui/core/styles'
+import type { BreakpointKeys } from '@toptal/picasso-provider'
+import type { Theme } from '@material-ui/core'
 
-import { horizontalLabelColumnWidth } from '../FieldsLayout'
-import { FORM_LABEL_WIDTH_CSS_VARIABLE } from '../Form/styles'
+import type { LabelSpacing, ResponsiveLabelSpacing } from '../FieldsLayout'
 
-export default () =>
+export const horizontalLabelColumnWidth = '17rem'
+
+export const getLabelWithName = (breakpoint: BreakpointKeys) => {
+  return `--form-label-width--${breakpoint}`
+}
+
+export const FORM_LABEL_WIDTH_CSS_VARIABLE = '--form-label-width'
+
+/**
+ * Generates CSS variables for each breakpoint to set --form-label-width
+ */
+const createBreakpointsForLabelWidth = (theme: Theme) =>
+  [...theme.breakpoints.keys].reduce(
+    (acc, breakpoint) => ({
+      ...acc,
+      [theme.breakpoints.up(breakpoint)]: {
+        [FORM_LABEL_WIDTH_CSS_VARIABLE]: `var(${getLabelWithName(breakpoint)})`,
+      },
+    }),
+    {}
+  )
+
+const isLabelSpacing = (
+  labelWidth: LabelSpacing | ResponsiveLabelSpacing
+): labelWidth is LabelSpacing => {
+  return typeof labelWidth === 'number'
+}
+
+/**
+ * Generates style attribute `--form-label-width--${breakpoint}` for each breakpoint from labelWidth prop
+ */
+export const createLabelWidthStyles = (
+  labelWidth: LabelSpacing | ResponsiveLabelSpacing
+): Record<string, LabelSpacing | BreakpointKeys> => {
+  if (isLabelSpacing(labelWidth)) {
+    return { [FORM_LABEL_WIDTH_CSS_VARIABLE]: labelWidth }
+  }
+
+  return (Object.keys(labelWidth) as BreakpointKeys[]).reduce(
+    (acc, breakpoint) => ({
+      ...acc,
+      [getLabelWithName(breakpoint)]: labelWidth[breakpoint],
+    }),
+    {}
+  )
+}
+
+export default (theme: Theme) =>
   createStyles({
     root: {
       alignItems: 'start',
@@ -43,6 +91,9 @@ export default () =>
         "hint error"
       `,
       width: '100%',
+
+      // create media queries for each breakpoint to set --form-label-width
+      ...createBreakpointsForLabelWidth(theme),
     },
 
     horizontalLayoutAdornment: {

@@ -1,6 +1,6 @@
 import { createStyles } from '@material-ui/core/styles'
 
-import { horizontalLabelColumnWidth } from '../FieldsLayout'
+import { horizontalLabelColumnWidth } from '../FormField'
 
 export default () =>
   createStyles({
