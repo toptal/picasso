@@ -99,6 +99,10 @@ class Page extends Base {
           happoConfig.delay = 500
         }
 
+        if (section.waitFor) {
+          happoConfig.waitFor = section.waitFor
+        }
+
         if (!section.screenshotBreakpoints) {
           happoConfig.targets = [DEFAULT_HAPPO_TARGET]
         }
