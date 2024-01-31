@@ -275,4 +275,5 @@ however, you may need custom validators for more complex types of fields.
   })
   .addExample('Form/story/HighlightAutofill.example.tsx', {
     title: 'Highlight fields with default value',
+    waitFor: () => document.querySelector('#highlight-autofill-submit-button'),
   })

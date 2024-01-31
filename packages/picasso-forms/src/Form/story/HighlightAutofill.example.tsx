@@ -85,7 +85,9 @@ const Example = () => (
       <TimePicker label='timepicker' name='highlight-timepicker' />
 
       <Container top={SPACING_4}>
-        <SubmitButton>Submit</SubmitButton>
+        <SubmitButton id='highlight-autofill-submit-button'>
+          Submit
+        </SubmitButton>
       </Container>
     </FormNonCompound>
   </ConfigProvider>
