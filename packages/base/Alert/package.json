@@ -39,7 +39,10 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/src/index.js",
+    "./Alert/*": "./dist/src/Alert/*",
+    "./AlertInline/*": "./dist/src/AlertInline/*",
+    "./AlertCompound/*": "./dist/src/AlertInline/*"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "3.4.3",
