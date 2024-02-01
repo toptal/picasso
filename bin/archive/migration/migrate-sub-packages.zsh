@@ -13,9 +13,9 @@ migrate() (
 
   npm pkg set \
     type=module \
-    main=./dist/src/index.js \
-    module=./dist/src/index.js \
-    'exports[.]=./dist/src/index.js' \
+    main=./dist-package/src/index.js \
+    module=./dist-package/src/index.js \
+    'exports[.]=./dist-package/src/index.js' \
     scripts.build="tsc -b tsconfig.json" \
     scripts.prepare="yarn build" > /dev/null
 
@@ -28,7 +28,7 @@ migrate() (
   tsconfig='{
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist-package"
   },
   "include": ["src"]
 }'
