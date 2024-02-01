@@ -8,6 +8,7 @@ import styles from './styles'
 import type { ContainerProps } from '../Container'
 import Container from '../Container'
 import { useFieldsLayoutContext } from '../FieldsLayout/FieldsLayoutContext'
+import { createLabelWidthStyles } from '../FormField/styles'
 
 export interface Props extends Omit<ContainerProps, 'children'> {
   /** Content */
@@ -18,16 +19,22 @@ const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoFormActionsContainer',
 })
 
-const FormActionsContainer = ({ children, ...rest }: Props) => {
-  const { layout } = useFieldsLayoutContext()
+const FormActionsContainer = ({ children, style, ...rest }: Props) => {
+  const { layout, labelWidth } = useFieldsLayoutContext()
   const classes = useStyles()
 
   if (layout === 'vertical') {
     return <Container {...rest}>{children}</Container>
   }
 
+  const labelWidthStyles = createLabelWidthStyles(labelWidth)
+
   return (
-    <Container className={cx(classes.root)} {...rest}>
+    <Container
+      className={cx(classes.horizontalLayout)}
+      {...rest}
+      style={{ ...style, ...labelWidthStyles }}
+    >
       <div />
       <div>{children}</div>
     </Container>

@@ -1,12 +1,9 @@
 import { createStyles } from '@material-ui/core/styles'
+import type { Theme } from '@material-ui/core'
 
-import { horizontalLabelColumnWidth } from '../FormField'
+import { createStylesForHorizontalLayout } from '../FormField/styles'
 
-export default () =>
+export default (theme: Theme) =>
   createStyles({
-    root: {
-      display: 'grid',
-      gridTemplate: `"label input" "hint error" / ${horizontalLabelColumnWidth} 1fr`,
-      gap: '0px 32px',
-    },
+    horizontalLayout: createStylesForHorizontalLayout(theme),
   })

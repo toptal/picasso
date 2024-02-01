@@ -4,18 +4,18 @@ import type { Theme } from '@material-ui/core'
 
 import type { LabelSpacing, ResponsiveLabelSpacing } from '../FieldsLayout'
 
-export const horizontalLabelColumnWidth = '17rem'
-
 export const getLabelWithName = (breakpoint: BreakpointKeys) => {
   return `--form-label-width--${breakpoint}`
 }
 
+export const HORISONTAL_LABEL_COLUMN_WIDTH = '17rem'
 export const FORM_LABEL_WIDTH_CSS_VARIABLE = '--form-label-width'
+export const DEFAULT_LABEL_WIDTH_VALUE: LabelSpacing = 3
 
 /**
  * Generates CSS variables for each breakpoint to set --form-label-width
  */
-const createBreakpointsForLabelWidth = (theme: Theme) =>
+export const createBreakpointsForLabelWidth = (theme: Theme) =>
   [...theme.breakpoints.keys].reduce(
     (acc, breakpoint) => ({
       ...acc,
@@ -51,6 +51,25 @@ export const createLabelWidthStyles = (
   )
 }
 
+export const createStylesForHorizontalLayout = (theme: Theme) => {
+  return {
+    display: 'grid',
+    // --form-label-width is passed down from cascading style, in this case from Form
+    '--label-width': `calc(${HORISONTAL_LABEL_COLUMN_WIDTH} / 4 * var(${FORM_LABEL_WIDTH_CSS_VARIABLE}, ${DEFAULT_LABEL_WIDTH_VALUE}))`,
+    gridTemplateColumns: `var(--label-width) 1fr`,
+    gap: '0 32px', // 0 and lg, respectively
+    gridTemplateRows: 'auto auto',
+    gridTemplateAreas: `
+        "label input"
+        "hint error"
+      `,
+    width: '100%',
+
+    // create media queries for each breakpoint to set --form-label-width
+    ...createBreakpointsForLabelWidth(theme),
+  }
+}
+
 export default (theme: Theme) =>
   createStyles({
     root: {
@@ -79,22 +98,7 @@ export default (theme: Theme) =>
       },
     },
 
-    horizontalLayout: {
-      display: 'grid',
-      // --form-label-width is passed down from cascading style, in this case from Form
-      '--label-width': `calc(${horizontalLabelColumnWidth} / 4 * var(${FORM_LABEL_WIDTH_CSS_VARIABLE}, 4))`,
-      gridTemplateColumns: `var(--label-width) 1fr`,
-      gap: '0 32px', // 0 and lg, respectively
-      gridTemplateRows: 'auto auto',
-      gridTemplateAreas: `
-        "label input"
-        "hint error"
-      `,
-      width: '100%',
-
-      // create media queries for each breakpoint to set --form-label-width
-      ...createBreakpointsForLabelWidth(theme),
-    },
+    horizontalLayout: createStylesForHorizontalLayout(theme),
 
     horizontalLayoutAdornment: {
       gridArea: 'error',

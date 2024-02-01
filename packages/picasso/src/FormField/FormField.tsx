@@ -11,8 +11,6 @@ import FormError from '../FormError'
 import styles, { createLabelWidthStyles } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 
-export { horizontalLabelColumnWidth } from './styles'
-
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
   hint?: string
@@ -96,12 +94,9 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
   } = props
 
   const classes = useStyles()
-
   const { layout, labelWidth } = useFieldsLayoutContext()
-
-  const labelWidthStyles = createLabelWidthStyles(labelWidth)
-
-  console.log('labelWidthStyles: ', labelWidthStyles)
+  const labelWidthStyles =
+    layout === 'horizontal' ? createLabelWidthStyles(labelWidth) : {}
 
   return (
     <div
