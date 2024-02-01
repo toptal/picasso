@@ -98,6 +98,7 @@ jobs:
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
+          root-folder: dist
 
       - name: Alpha package — Handle success
         if: ${{ success() }}
