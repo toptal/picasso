@@ -4,7 +4,10 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 
 import { FieldsLayoutContextProvider } from '../FieldsLayout'
-import type { LabelSpacing, ResponsiveLabelSpacing } from '../FieldsLayout'
+import type {
+  LabelColumnSize,
+  ResponsiveLabelColumnSize,
+} from '../FieldsLayout'
 
 export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */
@@ -14,7 +17,7 @@ export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Form layout */
   layout?: 'horizontal' | 'vertical'
   /** Label width */
-  labelWidth?: LabelSpacing | ResponsiveLabelSpacing
+  labelWidth?: LabelColumnSize | ResponsiveLabelColumnSize
 }
 
 export const Form = forwardRef<HTMLFormElement, Props>(function Form(

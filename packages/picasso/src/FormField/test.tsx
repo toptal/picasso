@@ -3,11 +3,14 @@ import { render } from '@toptal/picasso/test-utils'
 
 import FormField from './index'
 import { FieldsLayoutContextProvider } from '../FieldsLayout'
-import type { LabelSpacing, ResponsiveLabelSpacing } from '../FieldsLayout'
+import type {
+  LabelColumnSize,
+  ResponsiveLabelColumnSize,
+} from '../FieldsLayout'
 
 const renderFormField = (
   layout: 'horizontal' | 'vertical' = 'vertical',
-  labelWidth?: LabelSpacing | ResponsiveLabelSpacing
+  labelWidth?: LabelColumnSize | ResponsiveLabelColumnSize
 ) => {
   return render(
     <FieldsLayoutContextProvider layout={layout} labelWidth={labelWidth}>

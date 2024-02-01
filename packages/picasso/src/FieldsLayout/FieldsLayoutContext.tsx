@@ -3,31 +3,33 @@ import React, { createContext, useContext, useMemo } from 'react'
 import { useBreakpoint } from '../utils'
 import type { BreakpointKeys } from '../utils'
 
-export type LabelSpacing = 2 | 3 | 4
+export type LabelColumnSize = 2 | 3 | 4
 
-export type ResponsiveLabelSpacing = {
-  [k in BreakpointKeys]?: LabelSpacing
+export type ResponsiveLabelColumnSize = {
+  [k in BreakpointKeys]?: LabelColumnSize
 }
 
 export type FieldsLayoutContextValue = {
   layout: 'horizontal' | 'vertical'
-  labelWidth: LabelSpacing | ResponsiveLabelSpacing
+  labelWidth: LabelColumnSize | ResponsiveLabelColumnSize
 }
+
+export const DEFAULT_LABEL_WIDTH_SIZE: LabelColumnSize = 3
 
 const FieldsLayoutContext = createContext<FieldsLayoutContextValue>({
   layout: 'vertical',
-  labelWidth: 3,
+  labelWidth: DEFAULT_LABEL_WIDTH_SIZE,
 })
 
 export type FieldsLayoutContextProviderProps = {
   layout?: 'horizontal' | 'vertical'
-  labelWidth?: LabelSpacing | ResponsiveLabelSpacing
+  labelWidth?: LabelColumnSize | ResponsiveLabelColumnSize
   children: React.ReactNode
 }
 
 export const FieldsLayoutContextProvider = ({
   layout = 'vertical',
-  labelWidth = 3,
+  labelWidth = DEFAULT_LABEL_WIDTH_SIZE,
   children,
 }: FieldsLayoutContextProviderProps) => {
   const isSmallScreen = useBreakpoint(['sm', 'xs'])
