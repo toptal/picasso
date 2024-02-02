@@ -2,8 +2,8 @@
   "name": "@toptal/picasso",
   "version": "42.3.6",
   "description": "Toptal UI components library",
-  "main": "dist/src/index.js",
-  "module": "dist/src/index.js",
+  "main": "dist-package/src/index.js",
+  "module": "dist-package/src/index.js",
   "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js",
