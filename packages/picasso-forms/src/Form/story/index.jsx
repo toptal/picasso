@@ -169,6 +169,16 @@ types supported by picasso-forms.
     'picasso-form'
   )
   .addExample(
+    'Form/story/HorizontalLabelWidth.example.tsx',
+    {
+      title: 'Horizontal with custom label width',
+      description:
+        "Customize the label width of your horizontal form, so it doesn't have too much empty space",
+      screenshotBreakpoints: true,
+    },
+    'picasso-form'
+  )
+  .addExample(
     'Form/story/CustomValidator.example.tsx',
     {
       title: 'Custom validator',

@@ -5,7 +5,9 @@ exports[`FormLabel disabled 1`] = `
   <div
     class="Picasso-root"
   >
-    <form>
+    <form
+      class=""
+    >
       <div
         class="PicassoFormField-root"
         data-field-has-error="false"
@@ -30,7 +32,9 @@ exports[`FormLabel renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <form>
+    <form
+      class=""
+    >
       <div
         class="PicassoFormField-root"
         data-field-has-error="false"
@@ -55,7 +59,9 @@ exports[`FormLabel required with (optional) 1`] = `
   <div
     class="Picasso-root"
   >
-    <form>
+    <form
+      class=""
+    >
       <div
         class="PicassoFormField-root"
         data-field-has-error="false"
@@ -81,7 +87,9 @@ exports[`FormLabel required with asterisk 1`] = `
   <div
     class="Picasso-root"
   >
-    <form>
+    <form
+      class=""
+    >
       <div
         class="PicassoFormField-root"
         data-field-has-error="false"

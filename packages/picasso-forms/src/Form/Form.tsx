@@ -9,6 +9,7 @@ import { useNotifications } from '@toptal/picasso/utils'
 import { createScrollToErrorDecorator } from '../utils'
 import type { Validators, FormContextProps } from './FormContext'
 import { FormContext, createFormContext } from './FormContext'
+import type { Props as FormProps } from './FormRenderer'
 import FormRenderer from './FormRenderer'
 import { setActiveFieldTouched, setHasMultilineCounter } from './mutators'
 
@@ -19,6 +20,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   failedSubmitMessage?: ReactNode
   scrollOffsetTop?: number
   layout?: 'horizontal' | 'vertical'
+  labelWidth?: FormProps['labelWidth']
   'data-testid'?: string
 }
 
@@ -60,6 +62,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     validateOnBlur,
     'data-testid': dataTestId,
     layout,
+    labelWidth,
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -131,6 +134,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
             onSubmit={handleFormRendererSubmit}
             validateOnBlur={validateOnBlur}
             setActiveFieldTouched={form.mutators.setActiveFieldTouched}
+            labelWidth={labelWidth}
             layout={layout}
           >
             {children}

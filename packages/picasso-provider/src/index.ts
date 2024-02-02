@@ -24,7 +24,6 @@ export {
   sizes,
   shadows,
   PicassoBreakpoints,
-  BreakpointKeys,
   spacings,
   SpacingEnum,
   isResponsiveSpacing,
@@ -37,6 +36,7 @@ export type {
   ResponsiveSpacingType,
   DeprecatedSpacingType,
   PicassoSpacing,
+  BreakpointKeys,
 } from './Picasso/config'
 
 export { default as PicassoProvider } from './Picasso/PicassoProvider'

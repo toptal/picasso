@@ -5,7 +5,9 @@ exports[`FormError renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <form>
+    <form
+      class=""
+    >
       <div
         class="PicassoFormField-root"
         data-field-has-error="false"
