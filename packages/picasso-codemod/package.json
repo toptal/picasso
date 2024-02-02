@@ -15,7 +15,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "tsc -b tsconfig.json",
+    "build:package": "./bin/build.sh",
     "prepublishOnly": "yarn build:package"
   },
   "bugs": {
