@@ -173,7 +173,7 @@ types supported by picasso-forms.
     {
       title: 'Horizontal with custom label width',
       description:
-        "Customize the label width of your horizontal form, so it doesn't has too much empty space",
+        "Customize the label width of your horizontal form, so it doesn't have too much empty space",
       screenshotBreakpoints: true,
     },
     'picasso-form'
