@@ -45,11 +45,21 @@ export const createLabelWidthStyles = (
     return { [FORM_LABEL_WIDTH_CSS_VARIABLE]: labelWidth }
   }
 
-  return (Object.keys(labelWidth) as BreakpointKeys[]).reduce(
-    (acc, breakpoint) => ({
-      ...acc,
-      [getLabelWithName(breakpoint)]: labelWidth[breakpoint],
-    }),
+  let defaultLabelWidthSize: LabelColumnSize = DEFAULT_LABEL_WIDTH_SIZE
+  const breakpoints = ['md', 'lg', 'xl'] as BreakpointKeys[]
+
+  return breakpoints.reduce<Record<string, LabelColumnSize>>(
+    (acc, breakpoint) => {
+      if (labelWidth[breakpoint] !== undefined) {
+        defaultLabelWidthSize = labelWidth[breakpoint]!
+      }
+
+      return {
+        ...acc,
+        [getLabelWithName(breakpoint)]:
+          labelWidth[breakpoint] ?? defaultLabelWidthSize,
+      }
+    },
     {}
   )
 }
