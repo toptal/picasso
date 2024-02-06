@@ -6,6 +6,7 @@
     { "path": "../../shared" },
     { "path": "../Container" },
     { "path": "../Icons" },
+    { "path": "../Image" },
     { "path": "../Logo" },
     { "path": "../Typography" },
     { "path": "../Utils" }
