@@ -7,9 +7,6 @@
   "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js",
-    "./*": "./dist-package/src/*",
-    "./Icon": "./dist-package/src/Icon/index.js",
-    "./Icon/*": "./dist-package/src/Icon/*",
     "./utils": "./dist-package/src/utils/index.js",
     "./test-utils": "./dist-package/src/test-utils/index.js"
   },
