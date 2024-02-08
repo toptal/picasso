@@ -9,6 +9,9 @@ import Button from '@toptal/picasso/Button/Button'
 import Butt from '@toptal/picasso/Button/Button'
 // Named import from utils
 import { Transitions } from '@toptal/picasso/utils'
+// Import from other Picasso packages remain unchanged
+import Picasso from '@toptal/picasso-provider'
+import { Form } from '@toptal/picasso-forms'
 
 
 import React from 'react'

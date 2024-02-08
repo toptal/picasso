@@ -18,10 +18,6 @@ const replaceImports = (
   // Import path
   const value = path.node.source.value as string
 
-  if (value === PICASSO_PACKAGE) {
-    return
-  }
-
   const isDefaultImport = path.node.specifiers?.some(
     specifier => specifier.type === 'ImportDefaultSpecifier'
   )
@@ -93,7 +89,7 @@ const transform: Transform = (file, api) => {
       return (
         path.node.source &&
         path.node.source.type === 'StringLiteral' &&
-        path.node.source.value.includes(PICASSO_PACKAGE)
+        path.node.source.value.includes(`${PICASSO_PACKAGE}/`)
       )
     })
     .forEach(path => replaceImports(path, j, file.path))
