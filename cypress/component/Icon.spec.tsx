@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Typography } from '@toptal/picasso'
-import * as icons from '@toptal/picasso/Icon'
+import * as icons from '@toptal/picasso-icons'
 
 const component = 'Icon'
 
