@@ -35,7 +35,7 @@ export type {
   EnvironmentTypes as EnvironmentBannerEnvironmentTypes,
 } from './EnvironmentBanner'
 export { default as FileInput } from './FileInput'
-export type { FileInputProps, FileUpload } from './FileInput'
+export type { FileInputProps, FileUpload as FileInputFileUpload } from './FileInput'
 export { default as FileList } from './FileList'
 export type { FileListProps } from './FileList'
 export { FormCompound as Form } from './FormCompound'
@@ -141,7 +141,7 @@ export { TagSelectorCompound as TagSelector } from './TagSelectorCompound'
 export type { TagSelectorProps, Item as TagSelectorItem } from './TagSelector'
 export { default as TagSelectorInput } from './TagSelectorInput'
 export { default as Tooltip } from './Tooltip'
-export type { TooltipProps } from './Tooltip'
+export type { TooltipProps, PlacementType as TooltipPlacementType } from './Tooltip'
 export {
   default as Typography,
   getTypographyClassName,
