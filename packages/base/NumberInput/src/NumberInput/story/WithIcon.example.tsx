@@ -1,7 +1,7 @@
 import type { ChangeEventHandler } from 'react'
 import React, { useState } from 'react'
 import { NumberInput, Container } from '@toptal/picasso'
-import { ReferralBonus16 } from '@toptal/picasso/Icon'
+import { ReferralBonus16 } from '@toptal/picasso-icons'
 
 const WithIconExample = () => {
   const [value, setValue] = useState('1')

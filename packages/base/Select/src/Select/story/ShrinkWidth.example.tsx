@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select, Container } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
-import { Settings16 } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso-icons'
 
 const Example = () => {
   const [value, setValue] = useState<string>('')

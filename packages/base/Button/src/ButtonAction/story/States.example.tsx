@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Container, Typography } from '@toptal/picasso'
 import { SPACING_4, SPACING_8 } from '@toptal/picasso-utils'
-import { Link16 } from '@toptal/picasso/Icon'
+import { Link16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <div>

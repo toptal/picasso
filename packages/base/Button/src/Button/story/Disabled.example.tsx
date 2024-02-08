@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@toptal/picasso'
-import { Settings16 } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <div>

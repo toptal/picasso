@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso-notification'
 import { SPACING_4 } from '@toptal/picasso-utils'
-import { Pencil16 } from '@toptal/picasso/Icon'
+import { Pencil16 } from '@toptal/picasso-icons'
 
 const Example = () => {
   const { showInfo } = useNotifications()

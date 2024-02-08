@@ -13,7 +13,7 @@ import {
   Resources16,
   ReferralBonus16,
   Help16,
-} from '@toptal/picasso/Icon'
+} from '@toptal/picasso-icons'
 
 const ExampleSidebar = ({ variant }: { variant: 'light' | 'dark' }) => (
   <Page.Sidebar variant={variant}>

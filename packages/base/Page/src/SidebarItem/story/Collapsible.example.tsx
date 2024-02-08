@@ -1,6 +1,6 @@
 import React from 'react'
 import { Page } from '@toptal/picasso'
-import { Referrals16 } from '@toptal/picasso/Icon'
+import { Referrals16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <Page.Sidebar>

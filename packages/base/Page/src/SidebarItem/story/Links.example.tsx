@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Link } from 'react-router-dom'
 import { Page } from '@toptal/picasso'
-import { Overview16 } from '@toptal/picasso/Icon'
+import { Overview16 } from '@toptal/picasso-icons'
 
 const SidebarDefaultExample = () => (
   <BrowserRouter>
