@@ -5,3 +5,5 @@ import type { Props, GridSizes } from './GridItem'
 export { default } from './GridItem'
 export type GridItemProps = OmitInternalProps<Props>
 export type GridSizeProps = GridSizes
+
+export type { GridSizeProps as Props }
