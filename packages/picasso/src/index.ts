@@ -9,6 +9,7 @@ export type { AmountProps } from './Amount'
 export { default as Autocomplete } from './Autocomplete'
 export type {
   AutocompleteProps,
+  ChangedOptions as AutocompleteChangedOptions,
   Item as AutocompleteItem,
 } from './Autocomplete'
 export { default as FormAutoSaveIndicator } from './FormAutoSaveIndicator'
@@ -114,6 +115,10 @@ export { default as TableFooter } from './TableFooter'
 export type { TableFooterProps } from './TableFooter'
 export { default as TableCell } from './TableCell'
 export type { TableCellProps } from './TableCell'
+export { default as TableBody } from './TableBody'
+export type { TableBodyProps } from './TableBody'
+export { default as TableHead } from './TableHead'
+export type { TableHeadProps } from './TableHead'
 export { TabsCompound as Tabs } from './TabsCompound'
 export type { TabsProps } from './Tabs'
 export { TagSelectorCompound as TagSelector } from './TagSelectorCompound'
