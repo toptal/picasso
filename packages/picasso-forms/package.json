@@ -5,8 +5,8 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
   "license": "MIT",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -52,7 +52,7 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./utils": "./dist/src/utils/index.js"
+    ".": "./dist-package/src/index.js",
+    "./utils": "./dist-package/src/utils/index.js"
   }
 }

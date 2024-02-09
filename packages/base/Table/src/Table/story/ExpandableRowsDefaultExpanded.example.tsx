@@ -11,7 +11,7 @@ import {
   Container,
 } from '@toptal/picasso'
 import { SPACING_4, SPACING_6 } from '@toptal/picasso-utils'
-import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso/Icon'
+import { Star16, ArrowDownMinor16, More16 } from '@toptal/picasso-icons'
 
 type StyledArrowDownMinor16Props = {
   expanded: boolean

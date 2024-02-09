@@ -4,3 +4,5 @@ export const AccordionCompound = Object.assign(Accordion, {
   Summary,
   Details,
 })
+
+export default AccordionCompound

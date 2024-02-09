@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Transitions, SPACING_6 } from '@toptal/picasso-utils'
 import { Button, Container } from '@toptal/picasso'
-import { ArrowDownMinor24 } from '@toptal/picasso/Icon'
+import { ArrowDownMinor24 } from '@toptal/picasso-icons'
 
 const Example = () => {
   const [isRotated, setIsRotated] = useState(false)

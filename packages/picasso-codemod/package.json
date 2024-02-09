@@ -5,8 +5,8 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-codemod#readme",
   "license": "MIT",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "scripts": {
-    "build:package": "tsc -b tsconfig.json",
+    "build:package": "./bin/build.sh",
     "prepublishOnly": "yarn build:package"
   },
   "bugs": {
@@ -39,6 +39,6 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist-package/src/index.js"
   }
 }

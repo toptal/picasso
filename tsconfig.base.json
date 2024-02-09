@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist",
+    "outDir": "dist-package",
     "module": "ES2020",
     "moduleResolution": "node",
     "target": "es2015",

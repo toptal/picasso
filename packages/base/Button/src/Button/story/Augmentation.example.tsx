@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import type { LinkProps } from '@toptal/picasso'
 import { Button, Link } from '@toptal/picasso'
-import { Settings16 } from '@toptal/picasso/Icon'
+import { Settings16 } from '@toptal/picasso-icons'
 
 // variant & noUnderline are statically set in ActionLink
 type ActionLinkProps = Omit<LinkProps, 'variant' | 'noUnderline'>

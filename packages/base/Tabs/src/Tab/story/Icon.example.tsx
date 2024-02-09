@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Tabs, Tooltip } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
-import { Exclamation16 } from '@toptal/picasso/Icon'
+import { Exclamation16 } from '@toptal/picasso-icons'
 
 const Example = () => {
   const [value, setValue] = React.useState(0)

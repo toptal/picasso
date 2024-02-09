@@ -9,7 +9,7 @@ import {
   Award16,
   BankWire16,
   Bell16,
-} from '@toptal/picasso/Icon'
+} from '@toptal/picasso-icons'
 
 const Menu = () => (
   <Page.Sidebar.Menu>

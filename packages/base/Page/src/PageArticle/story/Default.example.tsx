@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Page, Container, Typography } from '@toptal/picasso'
 import { SPACING_4, palette } from '@toptal/picasso-utils'
-import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
+import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso-icons'
 
 const RightSidebar = styled(Container)`
   border-left: 1px solid ${palette.grey.lighter};

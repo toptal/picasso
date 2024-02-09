@@ -5,8 +5,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
     "prepublishOnly": "yarn build:package"
@@ -24,6 +24,7 @@
   "dependencies": {
     "@toptal/picasso-container": "1.0.0",
     "@toptal/picasso-icons": "1.0.0",
+    "@toptal/picasso-image": "1.0.0",
     "@toptal/picasso-logo": "1.0.0",
     "@toptal/picasso-shared": "13.1.3",
     "@toptal/picasso-typography": "1.0.0",
@@ -40,7 +41,7 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
     "@toptal/picasso-test-utils": "1.0.0"

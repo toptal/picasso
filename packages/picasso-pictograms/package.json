@@ -4,8 +4,8 @@
   "description": "Pictogram components of Picasso",
   "author": "Toptal",
   "license": "MIT",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toptal/picasso.git"
@@ -37,7 +37,7 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./Pictogram": "./dist/src/Pictogram/index.js"
+    ".": "./dist-package/src/index.js",
+    "./Pictogram": "./dist-package/src/Pictogram/index.js"
   }
 }

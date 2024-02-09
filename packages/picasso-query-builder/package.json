@@ -5,8 +5,8 @@
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-query-builder#readme",
   "license": "MIT",
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -48,6 +48,6 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist-package/src/index.js"
   }
 }

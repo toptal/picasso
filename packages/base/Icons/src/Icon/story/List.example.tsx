@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Paper, Typography, Container, Input } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
-import * as icons from '@toptal/picasso/Icon'
+import * as icons from '@toptal/picasso-icons'
 
 /** We don't want to render internal icons */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

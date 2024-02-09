@@ -1,6 +1,6 @@
 import React from 'react'
 import { Timeline, Note, Link, Typography } from '@toptal/picasso'
-import { Tasks16, Pencil16, Email16 } from '@toptal/picasso/Icon'
+import { Tasks16, Pencil16, Email16 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <div style={{ maxWidth: 500 }}>

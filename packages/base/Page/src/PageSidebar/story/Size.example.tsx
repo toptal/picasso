@@ -7,7 +7,7 @@ import {
   Candidates16,
   Team16,
   Participants16,
-} from '@toptal/picasso/Icon'
+} from '@toptal/picasso-icons'
 
 const Menu = ({ size }: { size: 'small' | 'medium' | 'large' }) => (
   <Page.Sidebar size={size}>

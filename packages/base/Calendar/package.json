@@ -5,8 +5,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/src/index.js",
-  "module": "./dist/src/index.js",
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
     "prepublishOnly": "yarn build:package"
@@ -43,7 +43,7 @@
   },
   "type": "module",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "3.4.3",

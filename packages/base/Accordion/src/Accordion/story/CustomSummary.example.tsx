@@ -13,7 +13,7 @@ import {
   Bell16,
   Time16,
   VideoOn16,
-} from '@toptal/picasso/Icon'
+} from '@toptal/picasso-icons'
 
 const Summary = ({
   onClick,

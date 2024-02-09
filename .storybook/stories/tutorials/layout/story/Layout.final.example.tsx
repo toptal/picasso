@@ -9,7 +9,7 @@ import {
 } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso/utils'
 import { Section } from '@toptal/picasso'
-import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso/Icon'
+import { Globe16, Profile16, PortfolioDesigner16 } from '@toptal/picasso-icons'
 
 const SidebarMenu = () => (
   <Page.Sidebar>

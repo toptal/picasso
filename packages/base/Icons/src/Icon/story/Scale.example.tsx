@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
-import { Settings16, Settings24 } from '@toptal/picasso/Icon'
+import { Settings16, Settings24 } from '@toptal/picasso-icons'
 
 const Example = () => (
   <div>

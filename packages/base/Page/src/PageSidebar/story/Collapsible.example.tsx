@@ -12,7 +12,7 @@ import {
   ReferralBonus16,
   Help16,
   Participants16,
-} from '@toptal/picasso/Icon'
+} from '@toptal/picasso-icons'
 
 const Example = () => {
   const handleCollapse = () => {
