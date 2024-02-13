@@ -15,6 +15,7 @@ export { Autocomplete } from '@toptal/picasso-autocomplete'
 export type {
   Item as AutocompleteItem,
   AutocompleteProps,
+  ChangedOptions as AutocompleteChangedOptions,
 } from '@toptal/picasso-autocomplete'
 export { AvatarCompound as Avatar } from '@toptal/picasso-avatar'
 export type { AvatarProps } from '@toptal/picasso-avatar'
@@ -177,6 +178,8 @@ export type {
   PageHeadProps,
   PageProps,
   PageSidebarProps,
+  SidebarItemProps,
+  SidebarMenuProps,
 } from '@toptal/picasso-page'
 export { Pagination } from '@toptal/picasso-pagination'
 export type { PaginationProps } from '@toptal/picasso-pagination'
@@ -201,7 +204,7 @@ export { Select } from '@toptal/picasso-select'
 export type {
   Option as SelectOption,
   SelectProps,
-  OptionGroups,
+  OptionGroups as SelectOptionGroups,
   ValueType as SelectValueType,
 } from '@toptal/picasso-select'
 export { BaseProps } from '@toptal/picasso-shared'
@@ -215,8 +218,21 @@ export { StepperCompound as Stepper } from '@toptal/picasso-step'
 export type { StepperProps, StepperVerticalProps } from '@toptal/picasso-step'
 export { Switch } from '@toptal/picasso-switch'
 export type { SwitchProps } from '@toptal/picasso-switch'
-export { TableCompound as Table, TableFooter } from '@toptal/picasso-table'
-export type { TableFooterProps, TableProps } from '@toptal/picasso-table'
+export {
+  TableCompound as Table,
+  TableFooter,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableHead,
+} from '@toptal/picasso-table'
+export type {
+  TableFooterProps,
+  TableProps,
+  TableCellProps,
+  TableRowProps,
+  TableExpandableRowProps,
+} from '@toptal/picasso-table'
 export { TabsCompound as Tabs } from '@toptal/picasso-tabs'
 export type { TabsProps } from '@toptal/picasso-tabs'
 export { Indicator, TagCompound as Tag } from '@toptal/picasso-tag'

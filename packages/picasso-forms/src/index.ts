@@ -69,6 +69,7 @@ export { default as PasswordInput } from './PasswordInput'
 export { default as RichTextEditor } from './RichTextEditor'
 export { default as AvatarUpload } from './AvatarUpload'
 
+export { default as Field } from './Field'
 export type { FieldProps } from './Field'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'
 export { default as createFormValuesChangeDecorator } from './utils/form-values-change-decorator'

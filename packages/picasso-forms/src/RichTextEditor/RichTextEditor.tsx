@@ -4,7 +4,7 @@ import type {
 } from '@toptal/picasso-rich-text-editor'
 import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
 import React, { useCallback, useState } from 'react'
-import type { Except } from 'type-fest'
+import type { Except } from 'type-fest/source/except'
 import { useForm } from 'react-final-form'
 
 import type { FieldProps } from '../FieldWrapper'

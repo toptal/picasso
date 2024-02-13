@@ -2,3 +2,4 @@
 // to import from "@toptal/picasso/utils"
 // When possible, import directly from "@toptal/picasso-utils"
 export * from '@toptal/picasso-utils'
+export { useNotifications } from '@toptal/picasso-notification'
