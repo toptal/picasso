@@ -242,7 +242,11 @@ export type {
   TagRectangularProps,
   TagRectangularVariantType,
 } from '@toptal/picasso-tag'
-export { TagSelectorCompound as TagSelector } from '@toptal/picasso-tagselector'
+export {
+  TagSelectorCompound as TagSelector,
+  TagSelectorInput,
+  TagSelectorLabel,
+} from '@toptal/picasso-tagselector'
 export type {
   TagSelectorProps,
   Item as TagSelectorItem,
