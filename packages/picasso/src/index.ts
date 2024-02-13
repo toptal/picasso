@@ -46,6 +46,8 @@ export { Calendar } from '@toptal/picasso-calendar'
 export type {
   DateOrDateRangeType,
   DateRangeType,
+  DayProps,
+  WeekStart,
 } from '@toptal/picasso-calendar'
 export { CheckboxCompound as Checkbox } from '@toptal/picasso-checkbox'
 export type {
@@ -94,7 +96,10 @@ export type {
 } from '@toptal/picasso-dropzone'
 export { EmptyState } from '@toptal/picasso-empty-state'
 export { EnvironmentBanner } from '@toptal/picasso-environment-banner'
-export type { EnvironmentBannerProps } from '@toptal/picasso-environment-banner'
+export type {
+  EnvironmentBannerProps,
+  EnvironmentTypes as EnvironmentBannerEnvironmentTypes,
+} from '@toptal/picasso-environment-banner'
 export {
   FileInput,
   FileList,
@@ -105,6 +110,7 @@ export type {
   FileInputProps,
   FileListProps,
   ProgressBarProps,
+  FileUpload as FileInputFileUpload,
 } from '@toptal/picasso-file-input'
 export {
   FieldRequirements,
@@ -131,7 +137,12 @@ export type {
   RequiredDecoration,
 } from '@toptal/picasso-form'
 export { GridCompound as Grid } from '@toptal/picasso-grid'
-export type { GridProps, GridSize } from '@toptal/picasso-grid'
+export type {
+  GridProps,
+  GridSize,
+  GridItemProps,
+  GridSizeProps,
+} from '@toptal/picasso-grid'
 export { HelpboxCompound as Helpbox } from '@toptal/picasso-helpbox'
 export type { HelpboxProps } from '@toptal/picasso-helpbox'
 export { Image } from '@toptal/picasso-image'
@@ -234,7 +245,7 @@ export type {
   TableExpandableRowProps,
 } from '@toptal/picasso-table'
 export { TabsCompound as Tabs } from '@toptal/picasso-tabs'
-export type { TabsProps } from '@toptal/picasso-tabs'
+export type { TabsProps, TabProps } from '@toptal/picasso-tabs'
 export { Indicator, TagCompound as Tag } from '@toptal/picasso-tag'
 export type {
   IndicatorProps,
@@ -256,7 +267,10 @@ export type { TimelineProps } from '@toptal/picasso-timeline'
 export { TimePicker } from '@toptal/picasso-timepicker'
 export type { TimePickerProps } from '@toptal/picasso-timepicker'
 export { Tooltip } from '@toptal/picasso-tooltip'
-export type { TooltipProps } from '@toptal/picasso-tooltip'
+export type {
+  TooltipProps,
+  PlacementType as TooltipPlacementType,
+} from '@toptal/picasso-tooltip'
 export {
   StaticTreeView,
   TreeNodeAvatar,
