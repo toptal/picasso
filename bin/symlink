@@ -47,12 +47,12 @@ const removeLink = function (name, cwd) {
   }
 }
 
-const getPicassoPackages = () => readdirSync(PACKAGES_DIR)
+const getPicassoPackages = () => readdirSync(PACKAGES_DIR).filter(item => item !== "base")
 const getPackageTsConfig = packageName => {
   const tsConfigPath = path.join(
     PACKAGES_DIR,
     packageName,
-    './tsconfig.build.json'
+    './tsconfig.json'
   )
 
   return require(tsConfigPath)
