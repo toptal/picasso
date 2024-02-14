@@ -40,3 +40,4 @@ jobs:
           pull-number: ${{ github.event.pull_request.number}}
           jira-hook: ${{ steps.parse_secrets.outputs.PICASSO_JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
           github-token: ${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}
+          should-notify-about-major-dependency-updates: true
