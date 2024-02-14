@@ -17,6 +17,7 @@ const AvatarUpload = (props: Props) => {
   const {
     label,
     titleCase,
+    size = 'small',
     // dropping 'src' value here out from 'rest'. 'src' value should be provided via form context
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     src,
@@ -40,8 +41,17 @@ const AvatarUpload = (props: Props) => {
     }
   }
 
+  const horizontalLayoutAlignedToTopSizes: AvatarUploadProps['size'][] = [
+    'small',
+    'medium',
+    'large',
+  ]
+  const horizontalLayoutAlignedToTop =
+    horizontalLayoutAlignedToTopSizes.includes(size)
+
   return (
     <InputField<AvatarUploadProps, AvatarUploadFileUpload | undefined>
+      size={size}
       {...rest}
       label={
         label ? (
@@ -50,6 +60,7 @@ const AvatarUpload = (props: Props) => {
             required={props.required}
             label={label}
             titleCase={titleCase}
+            horizontalLayoutAlignedToTop={horizontalLayoutAlignedToTop}
           />
         ) : null
       }

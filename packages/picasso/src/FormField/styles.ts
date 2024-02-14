@@ -86,7 +86,6 @@ export const createStylesForHorizontalLayout = (theme: Theme) => {
 export default (theme: Theme) =>
   createStyles({
     root: {
-      alignItems: 'start',
       fontSize: '1rem',
 
       '& + &': {

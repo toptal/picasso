@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import type { RadioProps, RadioGroupProps } from '@toptal/picasso'
 import { Radio as PicassoRadio } from '@toptal/picasso'
 
@@ -12,6 +12,8 @@ export type Props = RadioGroupProps & FieldProps<RadioProps['value']>
 export const RadioGroup = (props: Props) => {
   const { children, label, titleCase, ...rest } = props
 
+  const horizontalLayoutAlignedToTop = Children.count(children) > 2
+
   return (
     <RadioGroupContext.Provider value={props.name}>
       <PicassoField
@@ -24,6 +26,7 @@ export const RadioGroup = (props: Props) => {
               required={props.required}
               label={label}
               titleCase={titleCase}
+              horizontalLayoutAlignedToTop={horizontalLayoutAlignedToTop}
             />
           ) : null
         }
