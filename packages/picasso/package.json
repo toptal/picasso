@@ -10,7 +10,6 @@
     "./utils": "./dist-package/src/utils/index.js",
     "./test-utils": "./dist-package/src/test-utils/index.js"
   },
-  "types": "./dist-package/src/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -146,5 +145,13 @@
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
+  ],
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo",
+    "utils.d.ts",
+    "utils.js",
+    "test-utils.js",
+    "test-utils.d.ts"
   ]
 }

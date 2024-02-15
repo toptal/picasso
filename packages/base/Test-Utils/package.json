@@ -38,5 +38,9 @@
   "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js"
-  }
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo"
+  ]
 }

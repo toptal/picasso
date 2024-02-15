@@ -31,5 +31,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "module": "./src/index.js"
+  "module": "./src/index.js",
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo"
+  ]
 }
