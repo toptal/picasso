@@ -41,13 +41,12 @@ const AvatarUpload = (props: Props) => {
     }
   }
 
-  const horizontalLayoutAlignedToTopSizes: AvatarUploadProps['size'][] = [
+  const alignmentTopSizes: AvatarUploadProps['size'][] = [
     'small',
     'medium',
     'large',
   ]
-  const horizontalLayoutAlignedToTop =
-    horizontalLayoutAlignedToTopSizes.includes(size)
+  const alignment = alignmentTopSizes.includes(size) ? 'top' : 'middle'
 
   return (
     <InputField<AvatarUploadProps, AvatarUploadFileUpload | undefined>
@@ -60,7 +59,7 @@ const AvatarUpload = (props: Props) => {
             required={props.required}
             label={label}
             titleCase={titleCase}
-            horizontalLayoutAlignedToTop={horizontalLayoutAlignedToTop}
+            alignment={alignment}
           />
         ) : null
       }

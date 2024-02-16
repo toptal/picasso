@@ -40,10 +40,17 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   const { label, titleCase, ...rest } = props
   const { multiline, rows, rowsMax } = props
 
-  const horizontalLayoutAlignedToTop = useMemo(
-    () => multiline && (Number(rows ?? 1) >= 2 || Number(rowsMax ?? 1) >= 2),
-    [multiline, rows, rowsMax]
-  )
+  const alignment = useMemo(() => {
+    if (!multiline) {
+      return 'middle'
+    }
+
+    if (Number(rows ?? 1) >= 2 || Number(rowsMax ?? 1) >= 2) {
+      return 'top'
+    }
+
+    return 'middle'
+  }, [multiline, rows, rowsMax])
 
   return (
     <InputField<FormInputProps>
@@ -56,7 +63,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
             required={props.required}
             label={label}
             titleCase={titleCase}
-            horizontalLayoutAlignedToTop={horizontalLayoutAlignedToTop}
+            alignment={alignment}
           />
         ) : null
       }

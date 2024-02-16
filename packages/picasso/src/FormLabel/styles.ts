@@ -48,7 +48,7 @@ export default ({ palette }: Theme) =>
       alignItems: 'center',
       marginBottom: 0,
     },
-    horizontalLayoutAlignedToTop: {
+    alignmentTop: {
       alignItems: 'start',
       paddingTop: '0.5rem',
     },

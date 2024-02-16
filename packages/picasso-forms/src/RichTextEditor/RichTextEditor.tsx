@@ -65,7 +65,7 @@ export const RichTextEditor = (props: Props) => {
             required={props.required}
             label={label}
             titleCase={titleCase}
-            horizontalLayoutAlignedToTop
+            alignment='top'
           />
         ) : null
       }

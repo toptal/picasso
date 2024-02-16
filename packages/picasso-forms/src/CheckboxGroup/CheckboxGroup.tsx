@@ -14,7 +14,7 @@ export type Props = CheckboxGroupProps & FieldProps<ValueType>
 export const CheckboxGroup = (props: Props) => {
   const { children, titleCase, label, initialValue, ...rest } = props
 
-  const horizontalLayoutAlignedToTop = Children.count(children) > 2
+  const alignment = Children.count(children) > 2 ? 'top' : 'middle'
 
   return (
     <CheckboxGroupContext.Provider value={props.name}>
@@ -29,7 +29,7 @@ export const CheckboxGroup = (props: Props) => {
               required={props.required}
               label={label}
               titleCase={titleCase}
-              horizontalLayoutAlignedToTop={horizontalLayoutAlignedToTop}
+              alignment={alignment}
             />
           ) : null
         }

@@ -12,7 +12,7 @@ export type Props = RadioGroupProps & FieldProps<RadioProps['value']>
 export const RadioGroup = (props: Props) => {
   const { children, label, titleCase, ...rest } = props
 
-  const horizontalLayoutAlignedToTop = Children.count(children) > 2
+  const alignment = Children.count(children) > 2 ? 'top' : 'middle'
 
   return (
     <RadioGroupContext.Provider value={props.name}>
@@ -26,7 +26,7 @@ export const RadioGroup = (props: Props) => {
               required={props.required}
               label={label}
               titleCase={titleCase}
-              horizontalLayoutAlignedToTop={horizontalLayoutAlignedToTop}
+              alignment={alignment}
             />
           ) : null
         }

@@ -63,7 +63,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
           required={props.required}
           label={props.label}
           titleCase={props.titleCase}
-          horizontalLayoutAlignedToTop
+          alignment='top'
         />
       }
     >
