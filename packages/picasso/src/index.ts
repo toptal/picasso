@@ -215,6 +215,7 @@ export { Select } from '@toptal/picasso-select'
 export type {
   Option as SelectOption,
   SelectProps,
+  SelectOptionsProps,
   OptionGroups as SelectOptionGroups,
   ValueType as SelectValueType,
 } from '@toptal/picasso-select'
