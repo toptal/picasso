@@ -1,5 +1,16 @@
 # Change Log
 
+## 42.6.0
+
+### Minor Changes
+
+- [#4141](https://github.com/toptal/picasso/pull/4141) [`841d06000dbf7937687e817806b725bb691f1b97`](https://github.com/toptal/picasso/commit/841d06000dbf7937687e817806b725bb691f1b97) Thanks [@pudek357](https://github.com/pudek357)!
+
+### Forms
+
+- the labels for fields with heights up to 48px are center-aligned with their respective inputs.
+- for larger fields, such as text areas and avatars, which are significantly taller, the labels are aligned to the top of the field.
+
 ## 42.5.0
 
 ### Minor Changes
