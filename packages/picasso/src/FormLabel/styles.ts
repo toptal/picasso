@@ -48,4 +48,8 @@ export default ({ palette }: Theme) =>
       alignItems: 'center',
       marginBottom: 0,
     },
+    alignmentTop: {
+      alignItems: 'start',
+      paddingTop: '0.5rem',
+    },
   })

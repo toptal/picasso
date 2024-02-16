@@ -10,6 +10,7 @@ export type Props = {
   name?: string
   label?: React.ReactNode
   required?: boolean
+  alignment?: 'top' | 'middle'
 } & TextLabelProps
 
 const getRequiredDecoration = (
@@ -31,7 +32,7 @@ const getRequiredDecoration = (
 }
 
 const FieldLabel = (props: Props) => {
-  const { label, required, titleCase, name } = props
+  const { label, required, titleCase, name, alignment } = props
 
   const formConfig = useFormConfig()
 
@@ -49,6 +50,7 @@ const FieldLabel = (props: Props) => {
       requiredDecoration={requiredDecoration}
       htmlFor={name}
       titleCase={titleCase}
+      alignment={alignment}
     >
       {label}
     </PicassoForm.Label>

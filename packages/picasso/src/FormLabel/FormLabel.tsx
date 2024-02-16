@@ -35,6 +35,8 @@ export interface Props
   as?: ComponentType
   /** Component size */
   size?: SizeType<'medium' | 'large'>
+  /** Whether label should be aligned to top of the container or not */
+  alignment?: 'top' | 'middle'
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
@@ -54,6 +56,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     titleCase: propsTitleCase,
     requiredDecoration,
     size = 'medium',
+    alignment = 'middle',
     ...rest
   } = props
 
@@ -74,6 +77,8 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
           [classes.disabled]: disabled,
           [classes.inline]: isInline,
           [classes.horizontalLayout]: layout === 'horizontal',
+          [classes.alignmentTop]:
+            layout === 'horizontal' && alignment === 'top',
         },
         className
       )}
