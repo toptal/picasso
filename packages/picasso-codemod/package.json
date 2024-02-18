@@ -43,6 +43,8 @@
   },
   "files": [
     "dist-package/**",
+    "src/**",
+    "bin/**",
     "!dist-package/tsconfig.tsbuildinfo"
   ]
 }

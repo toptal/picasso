@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container } from '@toptal/picasso'
 import { SPACING_4, isSubstring } from '@toptal/picasso-utils'
-import type { Item } from '@toptal/picasso/Autocomplete'
+import type { AutocompleteItem as Item } from '@toptal/picasso'
 import {
   FormNonCompound,
   Input,
