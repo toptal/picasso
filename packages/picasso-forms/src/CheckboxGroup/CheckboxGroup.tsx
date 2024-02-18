@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react'
+import React, { Children } from 'react'
 import type { CheckboxGroupProps } from '@toptal/picasso'
 import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
 
@@ -14,6 +14,8 @@ export type Props = CheckboxGroupProps & FieldProps<ValueType>
 export const CheckboxGroup = (props: Props) => {
   const { children, titleCase, label, initialValue, ...rest } = props
 
+  const alignment = Children.count(children) > 2 ? 'top' : 'middle'
+
   return (
     <CheckboxGroupContext.Provider value={props.name}>
       <PicassoField
@@ -27,6 +29,7 @@ export const CheckboxGroup = (props: Props) => {
               required={props.required}
               label={label}
               titleCase={titleCase}
+              alignment={alignment}
             />
           ) : null
         }

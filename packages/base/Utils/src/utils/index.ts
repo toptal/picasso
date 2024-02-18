@@ -23,6 +23,7 @@ export {
   generateRandomStringOrGetEmptyInTest,
   sizes,
 } from '@toptal/picasso-provider'
+export type { BreakpointKeys } from '@toptal/picasso-provider'
 export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
 
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'

@@ -5,6 +5,7 @@ dist-package/
 build/
 .swc
 dist/
+.nx
 
 .envrc
 .DS_Store

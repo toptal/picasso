@@ -8,7 +8,9 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
     <div
       class=""
     >
-      <form>
+      <form
+        class=""
+      >
         <div
           class="PicassoFormField-root"
           data-field-has-error="false"
@@ -128,7 +130,9 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
     <div
       class=""
     >
-      <form>
+      <form
+        class=""
+      >
         <div
           class="PicassoFormField-root"
           data-field-has-error="false"
@@ -186,7 +190,9 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
     <div
       class=""
     >
-      <form>
+      <form
+        class=""
+      >
         <div
           class="PicassoFormField-root"
           data-field-has-error="false"

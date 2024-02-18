@@ -8,7 +8,9 @@ exports[`Rating Thumbs renders default Stars 1`] = `
     <div
       class=""
     >
-      <form>
+      <form
+        class=""
+      >
         <div
           class="PicassoFormField-root"
           data-field-has-error="false"
@@ -161,7 +163,9 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
     <div
       class=""
     >
-      <form>
+      <form
+        class=""
+      >
         <div
           class="PicassoFormField-root"
           data-field-has-error="false"

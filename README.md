@@ -19,6 +19,17 @@ This repository is the home for all of Toptal's reusable UI, split up into disti
 
 Please read our documentation [here](./CONTRIBUTING.md)
 
+## Supported browsers
+
+Picasso guarantees to work in Chrome and it supports other browsers specified in `@toptal/browserslist-config` package. 
+
+## Release policy
+
+Changes in peer dependencies, breaking changes in component API or behavior, supported NodeJS version, result in major releases.
+
+Changes in dev dependencies, component HTML structure, or visual changes are not considered as breaking changes and result in minor or patch releases.
+
+
 ## Running storybook
 
 In order to run storybook you need to execute `yarn start` which will spin up storybook server on <http://localhost:9001>.

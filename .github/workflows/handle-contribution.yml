@@ -33,10 +33,11 @@ jobs:
         uses: toptal/davinci-github-actions/expose-json-outputs@master
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
-      - uses: toptal/davinci-github-actions/notify-jira-about-contribution@v12.7.1
+      - uses: toptal/davinci-github-actions/notify-jira-about-contribution@v12.9.4
         with:
           team: frontend-experience-eng
           repo: ${{ github.event.repository.name }}
           pull-number: ${{ github.event.pull_request.number}}
           jira-hook: ${{ steps.parse_secrets.outputs.PICASSO_JIRA_AUTOMATION_HOOK_FOR_NEW_CONTRIBUTION }}
           github-token: ${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}
+          should-notify-about-major-dependency-updates: true

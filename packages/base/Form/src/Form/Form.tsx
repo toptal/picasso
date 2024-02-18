@@ -1,8 +1,13 @@
 import type { FormEventHandler, ReactNode, FormHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
+import cx from 'classnames'
 
 import { FieldsLayoutContextProvider } from '../FieldsLayout'
+import type {
+  LabelColumnSize,
+  ResponsiveLabelColumnSize,
+} from '../FieldsLayout'
 
 export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */
@@ -11,11 +16,12 @@ export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   onSubmit?: FormEventHandler<HTMLFormElement>
   /** Form layout */
   layout?: 'horizontal' | 'vertical'
+  /** Label width */
+  labelWidth?: LabelColumnSize | ResponsiveLabelColumnSize
 }
 
-// eslint-disable-next-line react/display-name
 export const Form = forwardRef<HTMLFormElement, Props>(function Form(
-  { onSubmit, className, style, children, layout, ...rest },
+  { onSubmit, className, style, children, layout, labelWidth, ...rest },
   ref
 ) {
   return (
@@ -23,10 +29,10 @@ export const Form = forwardRef<HTMLFormElement, Props>(function Form(
       {...rest}
       ref={ref}
       onSubmit={onSubmit}
-      className={className}
+      className={cx(className)}
       style={style}
     >
-      <FieldsLayoutContextProvider layout={layout}>
+      <FieldsLayoutContextProvider layout={layout} labelWidth={labelWidth}>
         {children}
       </FieldsLayoutContextProvider>
     </form>

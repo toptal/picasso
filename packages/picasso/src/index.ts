@@ -121,7 +121,6 @@ export {
   FormError,
   FormHint,
   FormLabel,
-  horizontalLabelColumnWidth,
   useFieldsLayoutContext,
 } from '@toptal/picasso-form'
 export type {
@@ -135,6 +134,7 @@ export type {
   FormLabelProps,
   FormProps,
   RequiredDecoration,
+  LabelColumnSize,
 } from '@toptal/picasso-form'
 export { GridCompound as Grid } from '@toptal/picasso-grid'
 export type {

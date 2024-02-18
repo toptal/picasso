@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "42.3.6",
+  "version": "42.6.0",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -127,7 +127,7 @@
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/react-hooks": "^8.0.1",
-    "@toptal/picasso-provider": "3.4.3",
+    "@toptal/picasso-provider": "3.5.0",
     "@types/classnames": "^2.3.1",
     "@types/d3": "^7.4.0",
     "@types/glider-js": "^1.7.8",
