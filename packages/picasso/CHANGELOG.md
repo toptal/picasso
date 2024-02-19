@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.7.0
+
+### Minor Changes
+
+- [#4145](https://github.com/toptal/picasso/pull/4145) [`9b1ec5be553cfce1c78424649d00f4bb9704b7e3`](https://github.com/toptal/picasso/commit/9b1ec5be553cfce1c78424649d00f4bb9704b7e3) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+
+### Icon
+
+- add `Quote16` and `Quote24` icons
+
 ## 42.6.0
 
 ### Minor Changes
