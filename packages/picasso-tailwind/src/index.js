@@ -8,6 +8,7 @@ module.exports = {
       lg: '1024px',
       xl: '1440px',
     },
+    // https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing
     spacing: {
       0: '0',
       1: '0.25rem',

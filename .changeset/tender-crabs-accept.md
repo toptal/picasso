@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-tailwind': minor
+'@toptal/picasso-tailwind': major
 ---
 
-- add BASE spacings to the theme
+- override default Tailwind spacings with BASE spacings
