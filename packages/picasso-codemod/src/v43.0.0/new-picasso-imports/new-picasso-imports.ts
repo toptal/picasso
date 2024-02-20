@@ -176,7 +176,7 @@ const transform: Transform = (file, api) => {
 
   PACKAGES_TO_PROCESS.forEach(pkg => processImportPath(pkg, j, app))
 
-  return app.toSource()
+  return app.toSource({ quote: 'single' })
 }
 
 export default transform
