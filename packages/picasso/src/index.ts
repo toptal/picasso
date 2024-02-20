@@ -236,6 +236,7 @@ export {
   TableBody,
   TableCell,
   TableRow,
+  TableExpandableRow,
   TableHead,
 } from '@toptal/picasso-table'
 export type {
