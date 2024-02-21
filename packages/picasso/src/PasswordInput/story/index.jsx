@@ -18,3 +18,4 @@ page
   .addExample('PasswordInput/story/Default.example.tsx', 'Default')
   .addExample('PasswordInput/story/Disabled.example.tsx', 'Disabled')
   .addExample('PasswordInput/story/Status.example.tsx', 'Status')
+  .addExample('PasswordInput/story/Sizes.example.tsx', 'Sizes')
