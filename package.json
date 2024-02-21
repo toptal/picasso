@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "build:all": "tsc --build tsconfig.pkgsrc.json --verbose",
-    "build:package": "lerna run build:package",
+    "build:package": "lerna run build:package --stream",
     "build:storybook": "yarn build:package && build-storybook -c .storybook -o build/storybook --quiet",
     "check:icon-sizes": "node ./bin/check-icon-sizes",
     "circularity": "madge --circular packages/*/src",
