@@ -45,9 +45,5 @@
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
-  ],
-  "files": [
-    "dist-package/**",
-    "!dist-package/tsconfig.tsbuildinfo"
   ]
 }

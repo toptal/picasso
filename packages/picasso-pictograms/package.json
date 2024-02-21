@@ -39,9 +39,5 @@
   "exports": {
     ".": "./dist-package/src/index.js",
     "./Pictogram": "./dist-package/src/Pictogram/index.js"
-  },
-  "files": [
-    "dist-package/**",
-    "!dist-package/tsconfig.tsbuildinfo"
-  ]
+  }
 }

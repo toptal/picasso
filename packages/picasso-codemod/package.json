@@ -40,11 +40,5 @@
   "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js"
-  },
-  "files": [
-    "dist-package/**",
-    "src/**",
-    "bin/**",
-    "!dist-package/tsconfig.tsbuildinfo"
-  ]
+  }
 }

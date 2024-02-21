@@ -41,9 +41,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "files": [
-    "dist-package/**",
-    "!dist-package/tsconfig.tsbuildinfo"
-  ]
+  }
 }

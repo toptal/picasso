@@ -145,13 +145,5 @@
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
-  ],
-  "files": [
-    "dist-package/**",
-    "!dist-package/tsconfig.tsbuildinfo",
-    "utils.d.ts",
-    "utils.js",
-    "test-utils.js",
-    "test-utils.d.ts"
   ]
 }
