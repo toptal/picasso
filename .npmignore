@@ -29,7 +29,9 @@ gha-creds-*.json
 *~
 
 # TSC incremental build info
-tsconfig.tsbuildinfo
+**/tsconfig.tsbuildinfo
+**/tsconfig.json
+tsconfig.json
 
 # Probably secrets
 .env
