@@ -1,6 +1,5 @@
 ---
 '@toptal/picasso': patch
-'@toptal/picasso-forms': patch
 ---
 
 ### PasswordInput
