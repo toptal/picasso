@@ -38,7 +38,6 @@
   "devDependencies": {
     "styled-components": "^6.1.1"
   },
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js"
   }

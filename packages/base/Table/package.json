@@ -42,7 +42,6 @@
     "@toptal/picasso-test-utils": "1.0.0",
     "styled-components": "^6.1.1"
   },
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js"
   }

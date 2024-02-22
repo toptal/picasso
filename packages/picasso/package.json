@@ -4,7 +4,6 @@
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js",
     "./utils": "./dist-package/src/utils/index.js",

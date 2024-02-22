@@ -44,7 +44,6 @@
   "devDependencies": {
     "popper.js": "^1.16.1"
   },
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js"
   }

@@ -58,7 +58,6 @@
     "storybook-readme": "^5.0.9"
   },
   "sideEffects": false,
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js",
     "./utils": "./dist-package/src/utils/index.js"

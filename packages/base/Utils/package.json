@@ -16,7 +16,6 @@
     "**/styles.ts",
     "**/styles.js"
   ],
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js"
   },

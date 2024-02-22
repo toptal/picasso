@@ -50,7 +50,6 @@
     "type-fest": "^4.8.3"
   },
   "sideEffects": false,
-  "type": "module",
   "exports": {
     ".": "./dist-package/src/index.js",
     "./utils": "./dist-package/src/utils/index.js"
