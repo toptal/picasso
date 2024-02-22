@@ -50,6 +50,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       disabled,
       error,
       status,
+      size,
       width,
       style,
       className,
@@ -101,6 +102,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
           ...rest,
           'data-testid': testIds?.input,
         }}
+        size={size}
         width={width}
         status={error ? 'error' : status}
         inputRef={ref}

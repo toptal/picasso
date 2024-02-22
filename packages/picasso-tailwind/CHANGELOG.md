@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind
 
+## 2.0.0
+
+### Major Changes
+
+- [#4146](https://github.com/toptal/picasso/pull/4146) [`83f24c7fb0f60941fff7388253d5812694ac4eae`](https://github.com/toptal/picasso/commit/83f24c7fb0f60941fff7388253d5812694ac4eae) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- override default Tailwind spacings with BASE spacings
+
 ## 1.0.1
 
 ### Patch Changes
