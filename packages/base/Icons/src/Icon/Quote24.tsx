@@ -3,8 +3,8 @@ import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps } from '@toptal/picasso-shared'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
 
-import kebabToCamelCase from '../utils/kebab-to-camel-case'
 import styles from './styles'
 const BASE_SIZE = 24
 
