@@ -105,6 +105,7 @@
     "@toptal/picasso-outlined-input": "1.0.0",
     "@toptal/picasso-utils": "1.0.0",
     "@toptal/picasso-test-utils": "1.0.0",
+    "@toptal/picasso-popper": "1.0.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.3.1",
     "d3": "^7.8.2",
