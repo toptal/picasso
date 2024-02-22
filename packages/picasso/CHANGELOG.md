@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.7.1
+
+### Patch Changes
+
+- [#4151](https://github.com/toptal/picasso/pull/4151) [`67d14345bc1b9a02b5631275ad2bfe21b5284329`](https://github.com/toptal/picasso/commit/67d14345bc1b9a02b5631275ad2bfe21b5284329) Thanks [@doug2k1](https://github.com/doug2k1)!
+
+### PasswordInput
+
+- fix `size` prop not having effect on component size
+
 ## 42.7.0
 
 ### Minor Changes
