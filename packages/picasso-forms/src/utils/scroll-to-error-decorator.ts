@@ -64,7 +64,12 @@ export default ({ disableScrollOnError }: ScrollToErrorProps = {}) =>
       }
 
       if (result && typeof result.then === 'function') {
-        result.then(scrollOnErrors).catch(() => {})
+        // Catching the rejection on the `result` strips us from
+        // the unhandled promise rejection error.
+        // On the other hand we don't want the scroll to be blocking
+        // for the form submission so we avoid promise chaining here.
+        // eslint-disable-next-line promise/catch-or-return
+        result.then(scrollOnErrors)
       } else {
         scrollOnErrors()
       }
