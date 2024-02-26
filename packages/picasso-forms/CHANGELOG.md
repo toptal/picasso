@@ -1,5 +1,12 @@
 # Change Log
 
+## 66.3.1
+
+### Patch Changes
+
+- [#4155](https://github.com/toptal/picasso/pull/4155) [`20432aeff8abfe62d1795ee7678c2a77f7f9dc0e`](https://github.com/toptal/picasso/commit/20432aeff8abfe62d1795ee7678c2a77f7f9dc0e) Thanks [@ertrzyiks](https://github.com/ertrzyiks)!
+- prevent Form onSubmit rejections from being swallowed
+
 ## 66.3.0
 
 ### Minor Changes
