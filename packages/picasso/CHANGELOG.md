@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.7.2
+
+### Patch Changes
+
+- [#4132](https://github.com/toptal/picasso/pull/4132) [`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump classnames dependency
+
+- Updated dependencies [[`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149)]:
+  - @toptal/picasso-shared@13.1.4
+
 ## 42.7.1
 
 ### Patch Changes
