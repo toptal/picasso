@@ -33,7 +33,7 @@
   "dependencies": {
     "@toptal/picasso-shared": "13.1.3",
     "ap-style-title-case": "^1.1.2",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "d3": "^7.8.2",
     "d3-hierarchy": "^3.1.2",
     "d3-zoom": "^3",
