@@ -60,11 +60,14 @@
   "sideEffects": false,
   "exports": {
     ".": "./dist-package/src/index.js",
-    "./utils": "./dist-package/src/utils/index.js"
+    "./utils": "./dist-package/src/utils/index.js",
+    "./eager": "./dist-package/src/eager.js"
   },
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
-    "src"
+    "src",
+    "eager.js",
+    "eager.d.ts"
   ]
 }
