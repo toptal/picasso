@@ -44,6 +44,7 @@
     "dist-package/**",
     "src/**",
     "bin/**",
-    "!dist-package/tsconfig.tsbuildinfo"
+    "!dist-package/tsconfig.tsbuildinfo",
+    "src"
   ]
 }

@@ -58,6 +58,7 @@
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
     "utils.d.ts",
-    "utils.js"
+    "utils.js",
+    "src"
   ]
 }

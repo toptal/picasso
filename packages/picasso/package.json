@@ -152,6 +152,7 @@
     "utils.d.ts",
     "utils.js",
     "test-utils.js",
-    "test-utils.d.ts"
+    "test-utils.d.ts",
+    "src"
   ]
 }
