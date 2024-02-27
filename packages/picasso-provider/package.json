@@ -28,7 +28,7 @@
   "dependencies": {
     "@material-ui/core": "4.12.4",
     "@material-ui/utils": "4.11.3",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "notistack": "3.0.1",
     "react-helmet-async": "2.0.3"
   },

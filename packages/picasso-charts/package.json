@@ -35,7 +35,7 @@
     "storybook-readme": "^5.0.9"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "d3-array": "^3.2.2",
     "debounce": "^1.2.1",
     "recharts": "^2.10.4"
