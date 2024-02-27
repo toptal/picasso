@@ -61,5 +61,9 @@
   "exports": {
     ".": "./dist-package/src/index.js",
     "./utils": "./dist-package/src/utils/index.js"
-  }
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo"
+  ]
 }

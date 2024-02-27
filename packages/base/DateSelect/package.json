@@ -37,5 +37,9 @@
   },
   "devDependencies": {
     "@toptal/picasso-test-utils": "1.0.0"
-  }
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo"
+  ]
 }

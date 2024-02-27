@@ -39,5 +39,9 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "3.5.0"
-  }
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo"
+  ]
 }

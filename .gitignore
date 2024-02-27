@@ -25,13 +25,3 @@ reports
 
 # Ignore generated credentials from google-github-actions/auth
 gha-creds-*.json
-
-# Editor stuff
-*~
-
-# TSC incremental build info
-tsconfig.tsbuildinfo
-
-# Probably secrets
-.env
-*.env
