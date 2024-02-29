@@ -154,6 +154,7 @@ export type { InputProps } from '@toptal/picasso-input'
 export {
   InputAdornment,
   InputMultilineAdornment,
+  InputIconAdornment,
 } from '@toptal/picasso-input-adornment'
 export type {
   InputAdornmentProps,
@@ -187,6 +188,7 @@ export type {
   Status as OutlinedInputStatus,
   BaseInputProps as OutlinedInputBaseProps,
 } from '@toptal/picasso-outlined-input'
+export { OutlinedInput } from '@toptal/picasso-outlined-input'
 export { OverviewBlockCompound as OverviewBlock } from '@toptal/picasso-overview-block'
 export type { OverviewBlockProps } from '@toptal/picasso-overview-block'
 export { PageCompound as Page, PageHead } from '@toptal/picasso-page'
