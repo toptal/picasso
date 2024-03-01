@@ -7,6 +7,9 @@
       "~/*": ["./*"],
       "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
       "@toptal/picasso-provider/*": ["node_modules/@toptal/picasso-provider/src/*"],
+      "@toptal/picasso-rich-text-editor/*": [
+        "packages/picasso-rich-text-editor/src/*"
+      ],
       "@toptal/*": ["node_modules/@toptal/*/src"]
     }
   },
