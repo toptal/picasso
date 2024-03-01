@@ -24,7 +24,6 @@ import {
   ListPlugin,
   TextLengthPlugin,
   HeadingsReplacementPlugin,
-  TriggerInitialOnChangePlugin,
   FocusOnLabelClickPlugin,
 } from '../plugins'
 import type { ASTType } from '../RichText'
@@ -152,8 +151,9 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
 
   const editorConfig: InitialConfigType = useMemo(
     () => ({
-      editorState: (editor: LexicalEditorType) =>
-        setEditorValue(editor, defaultValue),
+      editorState: (editor: LexicalEditorType) => {
+        return setEditorValue(editor, defaultValue)
+      },
       theme,
       onError(error: Error) {
         throw error
@@ -209,11 +209,6 @@ const LexicalEditor = forwardRef<HTMLDivElement, Props>(function LexicalEditor(
             testIds={testIds}
             id={id}
           />
-
-          {defaultValue ? (
-            <TriggerInitialOnChangePlugin onChange={handleChange} />
-          ) : null}
-
           <OnChangePlugin ignoreSelectionChange onChange={handleChange} />
           {autoFocus && <AutoFocusPlugin />}
 

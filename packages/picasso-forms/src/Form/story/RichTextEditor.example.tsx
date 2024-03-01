@@ -1,32 +1,44 @@
 import React from 'react'
-import type { ASTType } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso/utils'
 import {
   FormNonCompound,
   RichTextEditor,
   SubmitButton,
+  FormSpy,
+  ConfigProvider,
 } from '@toptal/picasso-forms'
 
-const DEFAULT_EXAMPLE: ASTType = {
-  type: 'root',
-  children: [{ type: 'text', value: 'Example of default text' }],
-}
+const initialHTML = '<p>Example of default text</p>'
 
 const RichTextEditorExample = () => (
-  <FormNonCompound onSubmit={data => window.alert(JSON.stringify(data))}>
-    <Container bottom={SPACING_4}>
-      <RichTextEditor
-        required
-        defaultValue={DEFAULT_EXAMPLE}
-        label='Text editor'
-        id='editor'
-        name='richTextEditor-editor'
-      />
-    </Container>
-
-    <SubmitButton>Submit</SubmitButton>
-  </FormNonCompound>
+  <ConfigProvider value={{ highlightAutofill: true }}>
+    <FormNonCompound
+      onSubmit={data => window.alert(JSON.stringify(data))}
+      initialValues={{ 'richTextEditor-editor': initialHTML }}
+    >
+      <Container bottom={SPACING_4}>
+        <RichTextEditor
+          required
+          label='Text editor'
+          id='editor'
+          name='richTextEditor-editor'
+        />
+      </Container>
+      <FormSpy>
+        {({ dirty, values }) => (
+          <>
+            <p>Form dirty: {dirty ? 'Yes' : 'No'}</p>
+            <p>
+              Current HTML value:{' '}
+              {JSON.stringify(values['richTextEditor-editor'])}
+            </p>
+          </>
+        )}
+      </FormSpy>
+      <SubmitButton>Submit</SubmitButton>
+    </FormNonCompound>
+  </ConfigProvider>
 )
 
 export default RichTextEditorExample

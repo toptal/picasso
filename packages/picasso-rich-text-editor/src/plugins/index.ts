@@ -5,7 +5,6 @@ export { default as HeadingsReplacementPlugin } from './HeadingsReplacementPlugi
 export { default as LinkPlugin, Props as ListPluginProps } from './LinkPlugin'
 export { default as ListPlugin } from './ListPlugin'
 export { default as TextLengthPlugin } from './TextLengthPlugin'
-export { default as TriggerInitialOnChangePlugin } from './TriggerInitialOnChangePlugin'
 export { default as FocusOnLabelClickPlugin } from './FocusOnLabelClickPlugin'
 export { default as CodePlugin } from './CodePlugin'
 export { default as ImagePlugin } from './ImagePlugin'

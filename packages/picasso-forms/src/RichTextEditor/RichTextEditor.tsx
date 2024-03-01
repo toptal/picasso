@@ -3,14 +3,14 @@ import type {
   RichTextEditorProps,
 } from '@toptal/picasso-rich-text-editor'
 import { RichTextEditor as PicassoRichTextEditor } from '@toptal/picasso-rich-text-editor'
-import React, { useCallback, useState } from 'react'
+import React, { useMemo } from 'react'
 import type { Except } from 'type-fest'
-import { useForm } from 'react-final-form'
+import { useForm, useField } from 'react-final-form'
+import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
 
 import type { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
-import { useEnforceHighlightAutofill } from './hooks'
 
 type OverriddenProps = {
   defaultValue?: ASTType
@@ -25,39 +25,35 @@ export type Props = RichTextEditorProps &
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
-  const { onChange, onFocus, defaultValue, label, titleCase, ...rest } = props
+  const {
+    name,
+    onChange,
+    onFocus,
+    defaultValue,
+    label,
+    titleCase,
+    highlight,
+    ...rest
+  } = props
 
-  const { enforceHighlightAutofill, registerChangeOrFocus } =
-    useEnforceHighlightAutofill()
-  const [value, setValue] = useState('')
   const {
     mutators: { setHasMultilineCounter },
   } = useForm()
-
-  // Because RichTextEditor doesn't have an value input we need to implement this
-  // as an compatibility layer between final-form
-  const handleOnChange = useCallback(
-    (newVal: string) => {
-      registerChangeOrFocus()
-      setValue(newVal)
-      onChange?.(newVal)
-    },
-    [onChange, setValue, registerChangeOrFocus]
+  const {
+    input: { value },
+  } = useField(name)
+  const initialValue = useMemo(
+    () => defaultValue ?? htmlToHast(value),
+    [defaultValue]
   )
-
-  const handleOnFocus = useCallback(() => {
-    registerChangeOrFocus()
-
-    onFocus?.()
-  }, [onFocus, registerChangeOrFocus])
-
   const hiddenInputId = `${props.id}-hidden-input`
 
   return (
     <InputField<InternalProps>
+      name={name}
       value={value}
-      onChange={handleOnChange}
-      onFocus={handleOnFocus}
+      onChange={onChange}
+      onFocus={onFocus}
       label={
         label ? (
           <FieldLabel
@@ -74,9 +70,9 @@ export const RichTextEditor = (props: Props) => {
     >
       {(inputProps: RichTextEditorProps) => (
         <PicassoRichTextEditor
-          defaultValue={defaultValue}
+          defaultValue={initialValue}
           hiddenInputId={hiddenInputId}
-          highlight={enforceHighlightAutofill ? 'autofill' : undefined}
+          highlight={highlight}
           {...inputProps}
         />
       )}
