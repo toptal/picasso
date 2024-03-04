@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import { Container, Paper, Typography } from '@toptal/picasso'
-import { BarChart } from '@toptal/picasso-charts'
-import { palette } from '@toptal/picasso/utils'
-import BarChartIndicator from '@toptal/picasso-charts/BarChartIndicator'
+import { BarChart, BarChartIndicator } from '@toptal/picasso-charts'
+import { palette } from '@toptal/picasso-utils'
 
 const INDICATORS: any = {
   Google: { color: palette.blue.light, label: 'A' },

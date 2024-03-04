@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../picasso-provider" },
+    { "path": "../../shared" },
+    { "path": "../ModalContext" },
+    { "path": "../Utils" }
+  ]
+}

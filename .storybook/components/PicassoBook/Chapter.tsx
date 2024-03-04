@@ -6,7 +6,7 @@ import DocumentationGenerator, {
   PropDocumentation,
   PropDocumentationMap,
   Documentable,
-} from '~/.storybook/utils/documentation-generator'
+} from '../../utils/documentation-generator'
 import { generateUrl, getHost, normalize } from '../../utils/url-generator'
 import { Typography } from '@toptal/picasso'
 
@@ -101,6 +101,10 @@ class Chapter extends Base {
 
     const { component, name, description, additionalDocs } =
       componentDocumentation
+
+    if (!component) {
+      return this
+    }
 
     if (!component.__docgenInfo && !additionalDocs) {
       return this

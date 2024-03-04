@@ -14,7 +14,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Typography } from '@toptal/picasso'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { noop } from '@toptal/picasso/utils'
+import { noop } from '@toptal/picasso-utils'
 import type { LexicalEditor as LexicalEditorType } from 'lexical'
 import { $getRoot } from 'lexical'
 

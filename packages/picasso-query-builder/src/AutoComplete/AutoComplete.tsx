@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { Container, TagSelector as PicassoTagSelector } from '@toptal/picasso'
 import { useDebouncedCallback } from 'use-debounce'
-import type { Item } from '@toptal/picasso/TagSelector'
+import type { TagSelectorItem as Item } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 

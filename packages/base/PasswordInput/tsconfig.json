@@ -1,0 +1,13 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../Button" },
+    { "path": "../Icons" },
+    { "path": "../Input" },
+    { "path": "../InputAdornment" },
+    { "path": "../OutlinedInput" },
+    { "path": "../Utils" }
+  ]
+}

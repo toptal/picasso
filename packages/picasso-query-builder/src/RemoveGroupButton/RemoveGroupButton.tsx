@@ -1,7 +1,7 @@
 import React from 'react'
 import type { ActionWithRulesProps } from 'react-querybuilder'
 import { Button, PromptModal } from '@toptal/picasso'
-import { useModal } from '@toptal/picasso/utils'
+import { useModal } from '@toptal/picasso-utils'
 
 export const RemoveGroupButton = ({
   className,

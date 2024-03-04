@@ -1,0 +1,25 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../picasso-provider" },
+    { "path": "../../shared" },
+    { "path": "../Accordion" },
+    { "path": "../Autocomplete" },
+    { "path": "../Avatar" },
+    { "path": "../Badge" },
+    { "path": "../Button" },
+    { "path": "../Container" },
+    { "path": "../Dropdown" },
+    { "path": "../Icons" },
+    { "path": "../Logo" },
+    { "path": "../Menu" },
+    { "path": "../Notification" },
+    { "path": "../Tag" },
+    { "path": "../Tooltip" },
+    { "path": "../Typography" },
+    { "path": "../UserBadge" },
+    { "path": "../Utils" }
+  ]
+}

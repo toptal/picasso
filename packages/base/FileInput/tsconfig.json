@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Button" },
+    { "path": "../Container" },
+    { "path": "../Form" },
+    { "path": "../Icons" },
+    { "path": "../Loader" },
+    { "path": "../Tooltip" },
+    { "path": "../Typography" },
+    { "path": "../TypographyOverflow" },
+    { "path": "../Utils" }
+  ]
+}

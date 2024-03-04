@@ -1,7 +1,8 @@
 import type { Theme, ThemeOptions } from '@material-ui/core/styles'
 import { createTheme } from '@material-ui/core/styles'
 import type { Overrides } from '@material-ui/core/styles/overrides'
-import { deepmerge } from '@material-ui/utils'
+import merge from 'lodash/merge'
+import './config/theme'
 
 import {
   palette,
@@ -70,7 +71,7 @@ class Provider {
   }
 
   extendTheme(theme: ThemeOptions) {
-    this.theme = deepmerge(this.theme, theme)
+    this.theme = merge(this.theme, theme)
   }
 }
 

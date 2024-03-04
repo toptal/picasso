@@ -4,9 +4,9 @@ import {
   PicassoLight,
   FixViewport,
   FontsLoader,
+  SPACING_12,
 } from '@toptal/picasso-provider'
 import { Page, Container } from '@toptal/picasso'
-import { SPACING_12 } from '@toptal/picasso/utils'
 
 const App = ({ children }: { children: ReactNode }) => (
   <PicassoLight>

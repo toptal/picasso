@@ -1,7 +1,7 @@
 import React from 'react'
-import { render, waitFor } from '@toptal/picasso/test-utils'
+import { render, waitFor } from '@toptal/picasso-test-utils'
 
-import Favicon from './Favicon'
+import { Favicon } from './Favicon'
 
 describe('Favicon', () => {
   it('renders', async () => {

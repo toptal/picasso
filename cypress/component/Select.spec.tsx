@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import type { SelectValueType, SelectProps } from '@toptal/picasso'
 import { Select, Form, Container, Drawer } from '@toptal/picasso'
 import { noop, palette } from '@toptal/picasso/utils'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 const TestSelect = ({
   onChange = noop,

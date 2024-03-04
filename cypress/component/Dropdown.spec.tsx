@@ -9,7 +9,7 @@ import {
   Form,
   Input,
 } from '@toptal/picasso'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 const LongListExample = () => (
   <Container padded='medium' style={{ height: 900 }}>

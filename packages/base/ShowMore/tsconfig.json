@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../Button" },
+    { "path": "../Icons" },
+    { "path": "../Typography" }
+  ]
+}

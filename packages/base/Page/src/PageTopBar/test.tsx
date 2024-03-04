@@ -1,0 +1,31 @@
+import React from 'react'
+import { render } from '@toptal/picasso-test-utils'
+import { Link } from '@toptal/picasso-link'
+
+import { PageTopBar } from './PageTopBar'
+
+describe('Page.TopBar', () => {
+  it('renders', () => {
+    const { container } = render(<PageTopBar title='Default' />)
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('render with link', () => {
+    const { container } = render(
+      <PageTopBar
+        title='Something'
+        logoLink={<Link href='https://www.toptal.com' />}
+      />
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('render with custom logo', () => {
+    const logo = <div>Custom logo content</div>
+    const { container } = render(<PageTopBar title='Something' logo={logo} />)
+
+    expect(container).toMatchSnapshot()
+  })
+})

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
 import {
   Button,
   Container,
@@ -7,8 +7,8 @@ import {
   Link,
   Pencil16,
 } from '@toptal/picasso'
-import { HAPPO_TARGETS } from '@toptal/picasso/test-utils'
-import { PicassoBreakpoints } from '@toptal/picasso-provider/index'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
+import { PicassoBreakpoints } from '@toptal/picasso-provider'
 
 const DefaultExample = () => {
   const { showInfo } = useNotifications()

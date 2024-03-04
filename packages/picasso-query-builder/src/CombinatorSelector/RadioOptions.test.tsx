@@ -1,6 +1,6 @@
 import React from 'react'
 import { Radio } from '@toptal/picasso'
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 import type { OptionGroup, Option } from 'react-querybuilder'
 
 import { RadioOptions } from './RadioOptions'

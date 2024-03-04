@@ -7,7 +7,7 @@ BASE_PATH=$(pwd)
 
 if [ $1 = 'icon' ]
 then
-  COMPONENTS_PATH="packages/picasso/src/Icon"
+  COMPONENTS_PATH="packages/base/Icons/src/Icon"
 else
   COMPONENTS_PATH="packages/picasso-pictograms/src/Pictogram"
 fi

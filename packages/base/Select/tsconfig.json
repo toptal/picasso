@@ -1,0 +1,19 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Container" },
+    { "path": "../Form" },
+    { "path": "../Icons" },
+    { "path": "../Input" },
+    { "path": "../InputAdornment" },
+    { "path": "../Loader" },
+    { "path": "../Menu" },
+    { "path": "../OutlinedInput" },
+    { "path": "../Popper" },
+    { "path": "../Typography" },
+    { "path": "../Utils" }
+  ]
+}

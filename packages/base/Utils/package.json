@@ -1,0 +1,52 @@
+{
+  "name": "@toptal/picasso-utils",
+  "version": "1.0.0",
+  "description": "Toptal UI components library - Utils",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "license": "MIT",
+  "author": "Toptal",
+  "sideEffects": [
+    "**/styles.ts",
+    "**/styles.js"
+  ],
+  "exports": {
+    ".": "./dist-package/src/index.js"
+  },
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
+  "scripts": {
+    "build:package": "tsc -b tsconfig.json",
+    "prepublishOnly": "yarn build:package"
+  },
+  "dependencies": {
+    "@toptal/picasso-shared": "13.1.4",
+    "ap-style-title-case": "^1.1.2",
+    "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@toptal/picasso-provider": "3.5.1",
+    "@toptal/picasso-test-utils": "1.0.0",
+    "styled-components": "^6.1.1"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "4.12.4",
+    "@toptal/picasso-provider": "*",
+    "notistack": "1.0.10",
+    "react": ">=16.12.0 < 19.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo",
+    "src"
+  ]
+}

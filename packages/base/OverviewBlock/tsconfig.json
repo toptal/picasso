@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Container" },
+    { "path": "../Typography" },
+    { "path": "../Utils" }
+  ]
+}

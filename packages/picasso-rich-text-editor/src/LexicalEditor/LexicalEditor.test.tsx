@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, waitFor } from '@toptal/picasso/test-utils'
+import { render, waitFor } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'

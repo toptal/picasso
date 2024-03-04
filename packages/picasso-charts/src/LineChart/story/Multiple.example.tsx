@@ -1,5 +1,5 @@
 import React from 'react'
-import { palette, SPACING_2, SPACING_4 } from '@toptal/picasso/utils'
+import { palette, SPACING_2, SPACING_4 } from '@toptal/picasso-utils'
 import { LineChart } from '@toptal/picasso-charts'
 import { Page, Paper, Container, Typography, Indicator } from '@toptal/picasso'
 

@@ -1,0 +1,13 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../Container" },
+    { "path": "../FileInput" },
+    { "path": "../Form" },
+    { "path": "../Icons" },
+    { "path": "../Typography" },
+    { "path": "../Utils" }
+  ]
+}

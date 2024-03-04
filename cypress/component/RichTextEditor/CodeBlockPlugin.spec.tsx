@@ -4,8 +4,8 @@ import {
   CodePlugin,
   CodeBlockPlugin,
   RichTextEditor,
+  htmlToHast,
 } from '@toptal/picasso-rich-text-editor'
-import { htmlToHast } from '@toptal/picasso-rich-text-editor/utils'
 import { Container } from '@toptal/picasso'
 
 const editorTestId = 'editor'

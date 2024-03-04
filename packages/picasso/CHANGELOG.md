@@ -4995,7 +4995,7 @@ Every interface language has its updates. Version 2 is just another step in our 
 * for mutliple modals create declare multiple hooks, one per Modal
 
   ```
-  import { useModal } from '@toptal/picasso/utils'
+  import { useModal } from '@toptal/picasso-utils'
 
   ...
 

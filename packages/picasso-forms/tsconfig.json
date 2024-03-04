@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist-package" },
+  "include": ["src"],
+  "references": [
+    { "path": "../base/Notification" },
+    { "path": "../base/Utils" },
+    { "path": "../picasso" },
+    { "path": "../picasso-rich-text-editor" },
+    { "path": "../shared" }
+  ]
+}

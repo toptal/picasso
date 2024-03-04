@@ -1,6 +1,6 @@
 import { Input } from '@toptal/picasso'
-import { act, render, fireEvent } from '@toptal/picasso/test-utils'
-import { noop } from '@toptal/picasso/utils'
+import { act, render, fireEvent } from '@toptal/picasso-test-utils'
+import { noop } from '@toptal/picasso-utils'
 import React from 'react'
 
 import { FormCompound as Form } from '../FormCompound'

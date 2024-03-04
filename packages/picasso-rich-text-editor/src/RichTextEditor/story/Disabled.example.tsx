@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormNonCompound, RichTextEditor } from '@toptal/picasso-forms'
-import { noop } from '@toptal/picasso/utils'
+import { noop } from '@toptal/picasso-utils'
 import type { ASTType } from '@toptal/picasso-rich-text-editor'
 
 const ast: ASTType = {

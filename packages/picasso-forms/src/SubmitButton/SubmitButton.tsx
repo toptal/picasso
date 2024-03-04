@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import type { ButtonProps } from '@toptal/picasso'
+import type { ButtonProps, ButtonCircularProps } from '@toptal/picasso'
 import { Button } from '@toptal/picasso'
 import { useFormState } from 'react-final-form'
-import type { ButtonCircularProps } from '@toptal/picasso/ButtonCircular'
 
 type ButtonTypeProps = {
   buttonType: 'rectangular'

@@ -7,7 +7,7 @@ import {
   Input,
   Search16,
 } from '@toptal/picasso'
-import { SPACING_4, SPACING_6 } from '@toptal/picasso/utils'
+import { SPACING_4, SPACING_6 } from '@toptal/picasso-utils'
 import * as pictograms from '@toptal/picasso-pictograms/Pictogram'
 
 const Example = () => {

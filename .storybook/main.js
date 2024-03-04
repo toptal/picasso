@@ -3,9 +3,11 @@ const path = require('path')
 const { IgnoreNotFoundPlugin } = require('./plugins')
 const ReactDocgenTypescriptPlugin =
   require('@storybook/react-docgen-typescript-plugin').default
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const tsconfigReferencesJson = require('../tsconfig.pkgsrc.json')
 
 const PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP =
-  /packages\/.*\/src\/(.*)\/\1.tsx$/
+  /packages\/(?:base\/)?.*\/src\/(.*)\/\1.tsx$/
 
 const { env } = process
 const isDevelopment = env.NODE_ENV !== 'production' && env.NODE_ENV !== 'test'
@@ -27,7 +29,8 @@ module.exports = {
   staticDirs: ['./public'],
   stories: [path.join(__dirname, './load-stories.js')],
   typescript: {
-    check: isDevelopment,
+    // @TODO: reenable in FX-4688 if needed, otherwise run tsc in watch mode
+    check: false,
     checkOptions: {
       typescript: {
         configFile: tsConfigFile,
@@ -91,6 +94,7 @@ module.exports = {
           ...config.module.rules,
           {
             test: /\.(ts|tsx)$/,
+            exclude: /\.test\.(ts|tsx)$/,
             oneOf: [
               {
                 test: PACKAGES_COMPONENT_DECLARATION_FILE_REGEXP,
@@ -98,6 +102,13 @@ module.exports = {
               },
               { use: threadLoaders },
             ],
+          },
+          {
+            test: /\.(js)$/,
+            type: 'javascript/auto',
+            resolve: {
+              fullySpecified: false,
+            },
           },
         ],
       },
@@ -134,58 +145,15 @@ module.exports = {
         fallback: {
           fs: false,
         },
+        plugins: [
+          new TsconfigPathsPlugin({
+            configFile: './tsconfig.json',
+            references: tsconfigReferencesJson.references.map(r => r.path),
+          }),
+        ],
         alias: {
           ...config.resolve.alias,
           '~': path.resolve(__dirname, '..'),
-          '@toptal/picasso': path.resolve(__dirname, '../packages/picasso/src'),
-          '@toptal/picasso-shared': path.resolve(
-            __dirname,
-            '../packages/shared/src'
-          ),
-          '@toptal/picasso/utils': path.resolve(
-            __dirname,
-            '../packages/picasso/src/utils'
-          ),
-          '@toptal/picasso/Icon': path.resolve(
-            __dirname,
-            '../packages/picasso/src/Icon'
-          ),
-          '@toptal/picasso-forms': path.resolve(
-            __dirname,
-            '../packages/picasso-forms/src'
-          ),
-          '@toptal/picasso-charts': path.resolve(
-            __dirname,
-            '../packages/picasso-charts/src'
-          ),
-          '@topkit/analytics-charts': path.resolve(
-            __dirname,
-            '../packages/topkit-analytics-charts/src'
-          ),
-          '@toptal/picasso-provider': path.resolve(
-            __dirname,
-            '../packages/picasso-provider/src'
-          ),
-          '@toptal/picasso-pictograms': path.resolve(
-            __dirname,
-            '../packages/picasso-pictograms/src'
-          ),
-          '@toptal/picasso-rich-text-editor': path.resolve(
-            __dirname,
-            '../packages/picasso-rich-text-editor/src'
-          ),
-          '@toptal/picasso-rich-text-editor/utils': path.resolve(
-            __dirname,
-            '../packages/picasso-rich-text-editor/src/utils'
-          ),
-          '@toptal/picasso-query-builder': path.resolve(
-            __dirname,
-            '../packages/picasso-query-builder/src'
-          ),
-          '@toptal/picasso-tailwind': path.resolve(
-            __dirname,
-            '../packages/picasso-tailwind/src'
-          ),
         },
       },
     }

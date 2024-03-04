@@ -9,7 +9,7 @@ jobs:
     name: Trigger PR Workflow
     if: >
       github.event.issue.pull_request &&
-      contains(github.event.comment.body, '@toptal-bot run package:alpha-release')
+      github.event.comment.body == '@toptal-bot run package:alpha-release'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,7 +20,6 @@ jobs:
     env:
       STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      ALPHA_ROOT_FOLDER: ${{ fromJSON('["dist-package", "."]')[contains(github.event.comment.body, 'root')] }}
     steps:
       - name: GSM Secrets
         id: secrets_manager
@@ -99,7 +98,7 @@ jobs:
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
-          root-folder: ${{ env.ALPHA_ROOT_FOLDER }}
+          root-folder: "."
 
       - name: Alpha package — Handle success
         if: ${{ success() }}

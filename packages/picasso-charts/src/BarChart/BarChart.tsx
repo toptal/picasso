@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import type { ReactNode } from 'react'
-import { palette } from '@toptal/picasso/utils'
+import { palette } from '@toptal/picasso-utils'
 import {
   BarChart as RechartsBarChart,
   CartesianGrid,

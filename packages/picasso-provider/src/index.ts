@@ -53,5 +53,7 @@ export {
 } from './Picasso/RootContext'
 
 export * from './Picasso/utils'
+export * from './utils'
+export * from './Picasso/config'
 
 export { default as Favicon } from './Favicon'

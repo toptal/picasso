@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./@types",
+      "./node_modules/@testing-library"
+    ],
+    "types": ["jest", "node", "jest-dom", "ap-style-title-case"]
+  },
+  "include": [
+    "packages/**/test.tsx",
+    "packages/**/*.test.tsx",
+    "packages/**/test.ts",
+    "packages/**/*.test.ts"
+  ],
+  "references": [{ "path": "./tsconfig.pkgsrc.json" }]
+}

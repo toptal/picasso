@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import { FormNonCompound, SubmitButton } from '@toptal/picasso-forms'
 
 const onSubmit = () => new Promise(resolve => setTimeout(resolve, 1000))

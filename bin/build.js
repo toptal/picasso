@@ -8,8 +8,8 @@ const yargs = require('yargs').argv
 const {
   log,
   copyPackageJson,
-  copyReadme,
-  copyLicense,
+  // copyReadme,
+  // copyLicense,
   safeExec,
 } = require('./utils')
 const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
@@ -38,8 +38,9 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
   build()
 
   copyPackageJson(packageRootDir)
-  copyReadme(packageRootDir)
-  copyLicense(packageRootDir)
+  // temporary commented out because new packages dont have readme and license
+  // copyReadme(packageRootDir)
+  // copyLicense(packageRootDir)
 
   if (yargs.watch) {
     args.unshift('--watch')

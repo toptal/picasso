@@ -1,0 +1,64 @@
+import type { Ref } from 'react'
+import React, { forwardRef } from 'react'
+import cx from 'classnames'
+import { makeStyles } from '@material-ui/core/styles'
+import type { StandardProps } from '@toptal/picasso-shared'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
+
+import styles from './styles'
+const BASE_SIZE = 16
+
+type ScaleType = 1 | 2 | 3 | 4
+export interface Props extends StandardProps {
+  scale?: ScaleType
+  color?: string
+  base?: number
+}
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgLogoEmblem',
+})
+const SvgLogoEmblem = forwardRef(function SvgLogoEmblem(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId,
+  } = props
+  const classes: Record<string, string> = useStyles(props)
+  const classNames = [classes.root, className]
+  const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
+  const colorClassName = kebabToCamelCase(`${color}`)
+
+  if (classes[colorClassName]) {
+    classNames.push(classes[colorClassName])
+  }
+
+  const svgStyle = {
+    minWidth: `${scaledSize}px`,
+    minHeight: `${scaledSize}px`,
+    ...style,
+  }
+
+  return (
+    <svg
+      viewBox='0 0 21 30'
+      className={cx(...classNames)}
+      style={svgStyle}
+      ref={ref}
+      data-testid={testId}
+    >
+      <path
+        fillRule='evenodd'
+        d='M8.185 0 21 12.958l-9.611 9.646 4.402 4.438L12.856 30 0 17l9.57-9.625-4.361-4.396L8.185 0Zm4.01 10.708c-.066.017-.132.06-.23.152l-.08.078-5.457 5.5c-.165.145-.207.229-.227.312a.597.597 0 0 0 0 .27c.016.067.06.134.15.233l.077.08 1.736 1.75c.145.167.228.209.31.23.104.02.186.02.27 0a.488.488 0 0 0 .242-.156l.067-.074 5.457-5.5c.165-.146.207-.229.227-.312a.597.597 0 0 0 0-.271c-.016-.067-.06-.133-.15-.232l-.077-.08-1.736-1.75c-.145-.167-.228-.209-.31-.23a.584.584 0 0 0-.27 0ZM18.313 0c.744 0 1.385.27 1.902.792.516.52.785 1.166.785 1.916a2.59 2.59 0 0 1-.785 1.896 2.595 2.595 0 0 1-1.902.792c-.744 0-1.364-.25-1.88-.792a2.59 2.59 0 0 1-.786-1.896c0-.75.248-1.375.785-1.916A2.583 2.583 0 0 1 18.313 0Zm.02.438c-.62 0-1.157.229-1.57.666a2.178 2.178 0 0 0-.662 1.604c0 .625.207 1.167.641 1.604.434.438.95.667 1.592.667.62 0 1.157-.229 1.57-.667.435-.437.662-.979.662-1.604 0-.646-.227-1.166-.661-1.604-.435-.437-.951-.667-1.571-.667Zm.187.791c.6 0 .93.354.93.833 0 .417-.31.73-.724.813l.724 1.313h-.496l-.724-1.292h-.475v1.292h-.434V1.228h1.199Zm-.083.396h-.682v.896h.682c.372 0 .579-.146.579-.438 0-.312-.186-.458-.579-.458Z'
+      />
+    </svg>
+  )
+})
+
+SvgLogoEmblem.displayName = 'SvgLogoEmblem'
+export default SvgLogoEmblem

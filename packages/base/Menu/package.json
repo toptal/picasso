@@ -1,0 +1,58 @@
+{
+  "name": "@toptal/picasso-menu",
+  "version": "1.0.0",
+  "description": "Toptal UI components library - Menu",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist-package/src/index.js",
+  "module": "./dist-package/src/index.js",
+  "scripts": {
+    "build:package": "tsc -b tsconfig.json",
+    "prepublishOnly": "yarn build:package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "author": "Toptal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
+  "dependencies": {
+    "@toptal/picasso-avatar": "1.0.0",
+    "@toptal/picasso-container": "1.0.0",
+    "@toptal/picasso-icons": "1.0.0",
+    "@toptal/picasso-link": "1.0.0",
+    "@toptal/picasso-paper": "1.0.0",
+    "@toptal/picasso-popper": "1.0.0",
+    "@toptal/picasso-shared": "13.1.4",
+    "@toptal/picasso-typography": "1.0.0",
+    "@toptal/picasso-utils": "1.0.0",
+    "classnames": "^2.5.1"
+  },
+  "sideEffects": [
+    "**/styles.ts",
+    "**/styles.js"
+  ],
+  "peerDependencies": {
+    "@material-ui/core": "4.12.4",
+    "@toptal/picasso-provider": "*",
+    "react": ">=16.12.0 < 19.0.0"
+  },
+  "exports": {
+    ".": "./dist-package/src/index.js",
+    "./styles": "./dist-package/src/styles.js"
+  },
+  "devDependencies": {
+    "@toptal/picasso-provider": "3.5.1",
+    "@toptal/picasso-test-utils": "1.0.0"
+  },
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo",
+    "src"
+  ]
+}

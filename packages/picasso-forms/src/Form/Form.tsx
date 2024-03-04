@@ -4,7 +4,7 @@ import type { FormProps as FinalFormProps } from 'react-final-form'
 import { Form as FinalForm } from 'react-final-form'
 import type { FormApi, SubmissionErrors, AnyObject } from 'final-form'
 import { getIn, setIn } from 'final-form'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 import { createScrollToErrorDecorator } from '../utils'
 import type { Validators, FormContextProps } from './FormContext'

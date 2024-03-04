@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import type { ComponentProps } from 'react'
 import { Container, List } from '@toptal/picasso'
-import { render } from '@toptal/picasso/test-utils'
+import { render } from '@toptal/picasso-test-utils'
 
 import { ValidationErrors } from './'
 

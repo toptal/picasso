@@ -1,4 +1,3 @@
-import unsafeErrorLog from '@toptal/picasso/utils/unsafe-error-log'
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 
@@ -19,7 +18,7 @@ const FixViewport = () => {
 
   if (nonPicassoViewportTags.length > 0) {
     if (!warned) {
-      unsafeErrorLog(
+      console.error(
         `PICASSO:
         I wanted to add viewport meta tag to your page but failed as it already contains ${nonPicassoViewportTags.length}.
         My viewport meta tag content is "${content}".

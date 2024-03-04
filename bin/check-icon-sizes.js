@@ -6,7 +6,7 @@ const { execSync } = require('child_process')
  * Script checks if all icons have 16, 24 pixels and responsive variants.
  */
 
-const ICON_COMPONENTS_DIRECTORY = 'packages/picasso/src/Icon'
+const ICON_COMPONENTS_DIRECTORY = 'packages/base/Icons/src/Icon'
 
 const getIconName = iconFileName =>
   iconFileName.replace(/(16|24|Responsive).tsx/, '')

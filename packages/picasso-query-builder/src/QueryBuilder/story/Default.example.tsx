@@ -5,7 +5,7 @@ import {
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'
-import { useNotifications } from '@toptal/picasso/utils'
+import { useNotifications } from '@toptal/picasso-notification'
 
 const initialQuery = {
   rules: [],

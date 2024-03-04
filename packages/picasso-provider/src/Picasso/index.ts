@@ -6,3 +6,4 @@ export {
   default as NotificationsProvider,
   NotificationsProviderProps,
 } from './NotificationsProvider'
+export * from './config'

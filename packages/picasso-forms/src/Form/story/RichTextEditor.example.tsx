@@ -1,7 +1,7 @@
 import React from 'react'
 import type { ASTType } from '@toptal/picasso-rich-text-editor'
 import { Container } from '@toptal/picasso'
-import { SPACING_4 } from '@toptal/picasso/utils'
+import { SPACING_4 } from '@toptal/picasso-utils'
 import {
   FormNonCompound,
   RichTextEditor,
