@@ -19,8 +19,8 @@ const config = {
       '<rootDir>/packages/picasso-provider/src/index.ts',      
     '^@toptal/picasso-pictograms$':
       '<rootDir>/packages/picasso-pictograms/src/index.ts',
-    '^@toptal/picasso-rich-text-editor$':
-      '<rootDir>/packages/picasso-rich-text-editor/src/index.ts',
+    '^@toptal/picasso-rich-text-editor$': '<rootDir>/packages/picasso-rich-text-editor/src/index.ts',
+    '^@toptal/picasso-rich-text-editor/utils$': '<rootDir>/packages/picasso-rich-text-editor/src/utils/index.ts',
     '^@toptal/picasso-root/(.*)$': '<rootDir>/$1',
   },
   setupFiles: ['jest-canvas-mock', './jest.setup.js'],
