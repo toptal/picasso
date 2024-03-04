@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-utils": "1.0.0",
-    "classnames": "^2.3.1"
+    "classnames": "^2.5.1"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -38,7 +38,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "3.5.0",
+    "@toptal/picasso-provider": "3.5.1",
     "@babel/types": "^7.20.7"
   },
   "files": [

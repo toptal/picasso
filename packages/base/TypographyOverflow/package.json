@@ -25,7 +25,7 @@
     "@toptal/picasso-tooltip": "1.0.0",
     "@toptal/picasso-typography": "1.0.0",
     "@toptal/picasso-utils": "1.0.0",
-    "classnames": "^2.3.1"
+    "classnames": "^2.5.1"
   },
   "sideEffects": [
     "**/styles.ts",

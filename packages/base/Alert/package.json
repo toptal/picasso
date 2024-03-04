@@ -44,7 +44,7 @@
     "./AlertCompound/*": "./dist-package/src/AlertInline/*"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "3.5.0",
+    "@toptal/picasso-provider": "3.5.1",
     "@toptal/picasso-test-utils": "1.0.0"
   },
   "files": [

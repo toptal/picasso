@@ -28,7 +28,7 @@
     "@toptal/picasso-input-adornment": "1.0.0",
     "@toptal/picasso-outlined-input": "1.0.0",
     "@toptal/picasso-utils": "1.0.0",
-    "classnames": "^2.3.1"
+    "classnames": "^2.5.1"
   },
   "sideEffects": [
     "**/styles.ts",

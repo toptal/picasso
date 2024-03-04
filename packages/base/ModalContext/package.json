@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "classnames": "^2.3.1"
+    "classnames": "^2.5.1"
   },
   "sideEffects": [
     "**/styles.ts",

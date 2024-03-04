@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-rich-text-editor",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "Picasso rich text editor",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-rich-text-editor#readme",
@@ -41,7 +41,7 @@
     "@lexical/html": "0.11.2",
     "@lexical/react": "0.11.2",
     "@toptal/picasso-utils": "1.0.0",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "emoji-mart": "^5.5.2",
     "hast-to-hyperscript": "^9.0.1",
     "hast-util-from-dom": "^3.0.0",

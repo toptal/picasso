@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-charts",
-  "version": "56.0.3",
+  "version": "56.0.4",
   "description": "Charts components of Picasso",
   "author": "Toptal",
   "license": "MIT",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@toptal/picasso-utils": "1.0.0",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "d3-array": "^3.2.2",
     "debounce": "^1.2.1",
     "recharts": "^2.10.4"

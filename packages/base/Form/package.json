@@ -25,11 +25,11 @@
     "@toptal/picasso-container": "1.0.0",
     "@toptal/picasso-grid": "1.0.0",
     "@toptal/picasso-icons": "1.0.0",
-    "@toptal/picasso-shared": "13.1.3",
+    "@toptal/picasso-shared": "13.1.4",
     "@toptal/picasso-typography": "1.0.0",
     "@toptal/picasso-utils": "1.0.0",
     "ap-style-title-case": "^1.1.2",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "debounce": "^1.2.1"
   },
   "sideEffects": [
@@ -45,7 +45,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "3.5.0",
+    "@toptal/picasso-provider": "3.5.1",
     "@toptal/picasso-test-utils": "1.0.0"
   },
   "files": [

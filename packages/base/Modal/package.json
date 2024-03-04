@@ -27,7 +27,7 @@
     "@toptal/picasso-typography": "1.0.0",
     "@toptal/picasso-utils": "1.0.0",
     "@toptal/picasso-modal-context": "1.0.0",
-    "classnames": "^2.3.1",
+    "classnames": "^2.5.1",
     "debounce": "^1.2.1"
   },
   "sideEffects": [
@@ -43,7 +43,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "3.5.0",
+    "@toptal/picasso-provider": "3.5.1",
     "@toptal/picasso-test-utils": "1.0.0"
   },
   "files": [

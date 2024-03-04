@@ -29,7 +29,7 @@
     "**/styles.js"
   ],
   "dependencies": {
-    "@toptal/picasso-shared": "13.1.3"
+    "@toptal/picasso-shared": "13.1.4"
   },
   "peerDependencies": {
     "@toptal/picasso-provider": "*",
