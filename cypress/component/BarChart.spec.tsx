@@ -62,6 +62,8 @@ describe('BarChart', () => {
   it('renders default chart with default tooltip on hover', () => {
     cy.mount(<TestBarChart />)
 
+    // fix flakiness, sometimes it does not respond to hover
+    cy.get('.recharts-surface').realClick()
     hoverOverBar('Apple').get('body').happoScreenshot({
       component,
       variant: 'default-chart/default-tooltip',
@@ -89,6 +91,8 @@ describe('BarChart', () => {
       />
     )
 
+    // fix flakiness, sometimes it does not respond to hover
+    cy.get('.recharts-surface').realClick()
     hoverOverBar('Berlin').get('body').happoScreenshot({
       component,
       variant: 'custom-chart/custom-tooltip',

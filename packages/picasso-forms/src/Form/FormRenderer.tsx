@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import type { FormProps } from '@toptal/picasso'
 import { Form, Container } from '@toptal/picasso'
 
-interface Props extends FormProps {
+export interface Props extends FormProps {
   setActiveFieldTouched: () => void
   validateOnBlur?: boolean
 }

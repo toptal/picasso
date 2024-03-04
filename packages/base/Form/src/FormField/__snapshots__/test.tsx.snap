@@ -1,6 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormField renders 1`] = `
+exports[`FormField when layout is horizontal renders FormField with appropriate for horizontal layout styles and classNames 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoFormField-root PicassoFormField-horizontalLayout"
+      data-field-has-error="false"
+      style="--form-label-width: 3;"
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormField when layout is horizontal when labelWidth is 4 renders FormField with appropriate for horizontal layout styles and classNames 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="PicassoFormField-root PicassoFormField-horizontalLayout"
+      data-field-has-error="false"
+      style="--form-label-width: 4;"
+    >
+      <input />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormField when layout is vertical renders FormField with appropriate for vertical layout styles and classNames 1`] = `
 <div>
   <div
     class="Picasso-root"

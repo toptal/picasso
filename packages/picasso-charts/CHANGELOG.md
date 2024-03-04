@@ -1,5 +1,19 @@
 # Change Log
 
+## 56.0.4
+
+### Patch Changes
+
+- [#4132](https://github.com/toptal/picasso/pull/4132) [`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump classnames dependency
+
+## 56.0.3
+
+### Patch Changes
+
+- [#4107](https://github.com/toptal/picasso/pull/4107) [`755470eeed4bd6f1200405733c92f8b04cb9ba10`](https://github.com/toptal/picasso/commit/755470eeed4bd6f1200405733c92f8b04cb9ba10) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump recharts from 2.9.0 to 2.10.4
+
 ## 56.0.2
 
 ### Patch Changes

@@ -1,5 +1,78 @@
 # Change Log
 
+## 42.7.2
+
+### Patch Changes
+
+- [#4132](https://github.com/toptal/picasso/pull/4132) [`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump classnames dependency
+
+- Updated dependencies [[`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149)]:
+  - @toptal/picasso-shared@13.1.4
+
+## 42.7.1
+
+### Patch Changes
+
+- [#4151](https://github.com/toptal/picasso/pull/4151) [`67d14345bc1b9a02b5631275ad2bfe21b5284329`](https://github.com/toptal/picasso/commit/67d14345bc1b9a02b5631275ad2bfe21b5284329) Thanks [@doug2k1](https://github.com/doug2k1)!
+
+### PasswordInput
+
+- fix `size` prop not having effect on component size
+
+## 42.7.0
+
+### Minor Changes
+
+- [#4145](https://github.com/toptal/picasso/pull/4145) [`9b1ec5be553cfce1c78424649d00f4bb9704b7e3`](https://github.com/toptal/picasso/commit/9b1ec5be553cfce1c78424649d00f4bb9704b7e3) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+
+### Icon
+
+- add `Quote16` and `Quote24` icons
+
+## 42.6.0
+
+### Minor Changes
+
+- [#4141](https://github.com/toptal/picasso/pull/4141) [`841d06000dbf7937687e817806b725bb691f1b97`](https://github.com/toptal/picasso/commit/841d06000dbf7937687e817806b725bb691f1b97) Thanks [@pudek357](https://github.com/pudek357)!
+
+### Forms
+
+- the labels for fields with heights up to 48px are center-aligned with their respective inputs.
+- for larger fields, such as text areas and avatars, which are significantly taller, the labels are aligned to the top of the field.
+
+## 42.5.0
+
+### Minor Changes
+
+- [#4126](https://github.com/toptal/picasso/pull/4126) [`02d69ac79e7dc02bbde3c6a2808793befe67f89c`](https://github.com/toptal/picasso/commit/02d69ac79e7dc02bbde3c6a2808793befe67f89c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+---
+
+### Forms
+
+- enhanced customization in horizontal Form layout: Introducing the `labelWidth` prop for adjusting the width of label columns in horizontal layout forms.
+
+The new `labelWidth` property in the `Form` component significantly increases the flexibility of form design, allowing for more responsive and visually balanced layouts. This property can be set with either a single numeric value (e.g., `2`, `3`, or `4`) for a uniform width across all screen sizes, or an object mapping specific widths to breakpoints (e.g., `{ md: 4, lg: 3, xl: 2 }`).
+
+Example Usage:
+Uniform width setting: `<Form layout="horizontal" labelWidth={3}>...</Form>`
+Responsive width setting: `<Form layout="horizontal" labelWidth={{ md: 4, lg: 3, xl: 2 }}>...</Form>`
+
+- [#4126](https://github.com/toptal/picasso/pull/4126) [`02d69ac79e7dc02bbde3c6a2808793befe67f89c`](https://github.com/toptal/picasso/commit/02d69ac79e7dc02bbde3c6a2808793befe67f89c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Form
+
+- add customizable label width for horizontal forms
+
+## 42.4.0
+
+### Minor Changes
+
+- [#4101](https://github.com/toptal/picasso/pull/4101) [`93132438bf0daef30683f1d75aba01e3a1e2fa30`](https://github.com/toptal/picasso/commit/93132438bf0daef30683f1d75aba01e3a1e2fa30) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- select input no longer closes after searched option is selected (when select works in multiple values mode)
+  - select input no longer resets the search input when an option is selected (when select works in multiple values mode)
+
 ## 42.3.6
 
 ### Patch Changes

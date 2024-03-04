@@ -1,5 +1,30 @@
 # Change Log
 
+## 3.5.1
+
+### Patch Changes
+
+- [#4132](https://github.com/toptal/picasso/pull/4132) [`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump classnames dependency
+
+## 3.5.0
+
+### Minor Changes
+
+- [#4126](https://github.com/toptal/picasso/pull/4126) [`02d69ac79e7dc02bbde3c6a2808793befe67f89c`](https://github.com/toptal/picasso/commit/02d69ac79e7dc02bbde3c6a2808793befe67f89c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+---
+
+### Forms
+
+- enhanced customization in horizontal Form layout: Introducing the `labelWidth` prop for adjusting the width of label columns in horizontal layout forms.
+
+The new `labelWidth` property in the `Form` component significantly increases the flexibility of form design, allowing for more responsive and visually balanced layouts. This property can be set with either a single numeric value (e.g., `2`, `3`, or `4`) for a uniform width across all screen sizes, or an object mapping specific widths to breakpoints (e.g., `{ md: 4, lg: 3, xl: 2 }`).
+
+Example Usage:
+Uniform width setting: `<Form layout="horizontal" labelWidth={3}>...</Form>`
+Responsive width setting: `<Form layout="horizontal" labelWidth={{ md: 4, lg: 3, xl: 2 }}>...</Form>`
+
 ## 3.4.3
 
 ### Patch Changes

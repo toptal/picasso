@@ -23,7 +23,12 @@ export {
   generateRandomStringOrGetEmptyInTest,
   sizes,
 } from '@toptal/picasso-provider'
-export { useIsomorphicLayoutEffect, isBrowser } from '@toptal/picasso-shared'
+export type { BreakpointKeys } from '@toptal/picasso-provider'
+export {
+  useIsomorphicLayoutEffect,
+  isBrowser,
+  type OverridableComponent,
+} from '@toptal/picasso-shared'
 
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 
@@ -31,6 +36,7 @@ export { capitalize } from './capitalize'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
 export { type FeatureOptions } from './disable-unsupported-props'
 export { forwardRef, documentable } from './forward-ref'
+export type { Component } from './forward-ref'
 export { default as getNameInitials } from './get-name-initials'
 export { default as isBoolean } from './is-boolean'
 export { default as isNumber } from './is-number'
@@ -82,6 +88,7 @@ export { SPACING_6 } from '@toptal/picasso-provider'
 export { SPACING_8 } from '@toptal/picasso-provider'
 export { SPACING_10 } from '@toptal/picasso-provider'
 export { SPACING_12 } from '@toptal/picasso-provider'
+export { spacingToRem } from '@toptal/picasso-provider'
 
 export {
   useDeprecationWarning,

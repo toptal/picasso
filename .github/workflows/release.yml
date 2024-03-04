@@ -29,7 +29,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@v12.10.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -50,7 +50,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@master
+        uses: toptal/davinci-github-actions/expose-json-outputs@v12.10.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -196,7 +196,7 @@ jobs:
 
       - name: Send a Slack notification on failure
         if: ${{ failure() }}
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v1.25.0
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
           FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
@@ -207,7 +207,7 @@ jobs:
 
       - name: Send a Slack notification on success release
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v1.25.0
         with:
           channel-id: "-frontend-exp-team-notifications"
           slack-message: "Current master version of Picasso successfully released :green_heart:"
@@ -216,7 +216,7 @@ jobs:
 
       - name: Send a Slack notification on success PR merge
         if: ${{ success() && steps.changesets.outputs.published != 'true'}}
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v1.25.0
         with:
           channel-id: "-frontend-exp-team-notifications"
           slack-message: "A new PR was merged to Picasso :parrotspin:"

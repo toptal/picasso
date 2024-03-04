@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 export { AccordionCompound as Accordion } from '@toptal/picasso-accordion'
 export type { AccordionProps } from '@toptal/picasso-accordion'
 export { AccountSelect } from '@toptal/picasso-account-select'
@@ -15,6 +17,7 @@ export { Autocomplete } from '@toptal/picasso-autocomplete'
 export type {
   Item as AutocompleteItem,
   AutocompleteProps,
+  ChangedOptions as AutocompleteChangedOptions,
 } from '@toptal/picasso-autocomplete'
 export { AvatarCompound as Avatar } from '@toptal/picasso-avatar'
 export type { AvatarProps } from '@toptal/picasso-avatar'
@@ -45,6 +48,8 @@ export { Calendar } from '@toptal/picasso-calendar'
 export type {
   DateOrDateRangeType,
   DateRangeType,
+  DayProps,
+  WeekStart,
 } from '@toptal/picasso-calendar'
 export { CheckboxCompound as Checkbox } from '@toptal/picasso-checkbox'
 export type {
@@ -93,7 +98,10 @@ export type {
 } from '@toptal/picasso-dropzone'
 export { EmptyState } from '@toptal/picasso-empty-state'
 export { EnvironmentBanner } from '@toptal/picasso-environment-banner'
-export type { EnvironmentBannerProps } from '@toptal/picasso-environment-banner'
+export type {
+  EnvironmentBannerProps,
+  EnvironmentTypes as EnvironmentBannerEnvironmentTypes,
+} from '@toptal/picasso-environment-banner'
 export {
   FileInput,
   FileList,
@@ -104,6 +112,7 @@ export type {
   FileInputProps,
   FileListProps,
   ProgressBarProps,
+  FileUpload as FileInputFileUpload,
 } from '@toptal/picasso-file-input'
 export {
   FieldRequirements,
@@ -114,7 +123,6 @@ export {
   FormError,
   FormHint,
   FormLabel,
-  horizontalLabelColumnWidth,
   useFieldsLayoutContext,
 } from '@toptal/picasso-form'
 export type {
@@ -128,9 +136,15 @@ export type {
   FormLabelProps,
   FormProps,
   RequiredDecoration,
+  LabelColumnSize,
 } from '@toptal/picasso-form'
 export { GridCompound as Grid } from '@toptal/picasso-grid'
-export type { GridProps, GridSize } from '@toptal/picasso-grid'
+export type {
+  GridProps,
+  GridSize,
+  GridItemProps,
+  GridSizeProps,
+} from '@toptal/picasso-grid'
 export { HelpboxCompound as Helpbox } from '@toptal/picasso-helpbox'
 export type { HelpboxProps } from '@toptal/picasso-helpbox'
 export { Image } from '@toptal/picasso-image'
@@ -140,6 +154,7 @@ export type { InputProps } from '@toptal/picasso-input'
 export {
   InputAdornment,
   InputMultilineAdornment,
+  InputIconAdornment,
 } from '@toptal/picasso-input-adornment'
 export type {
   InputAdornmentProps,
@@ -169,7 +184,11 @@ export type {
 } from '@toptal/picasso-notification'
 export { NumberInput } from '@toptal/picasso-number-input'
 export type { NumberInputProps } from '@toptal/picasso-number-input'
-export type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
+export type {
+  Status as OutlinedInputStatus,
+  BaseInputProps as OutlinedInputBaseProps,
+} from '@toptal/picasso-outlined-input'
+export { OutlinedInput } from '@toptal/picasso-outlined-input'
 export { OverviewBlockCompound as OverviewBlock } from '@toptal/picasso-overview-block'
 export type { OverviewBlockProps } from '@toptal/picasso-overview-block'
 export { PageCompound as Page, PageHead } from '@toptal/picasso-page'
@@ -177,6 +196,8 @@ export type {
   PageHeadProps,
   PageProps,
   PageSidebarProps,
+  SidebarItemProps,
+  SidebarMenuProps,
 } from '@toptal/picasso-page'
 export { Pagination } from '@toptal/picasso-pagination'
 export type { PaginationProps } from '@toptal/picasso-pagination'
@@ -201,7 +222,8 @@ export { Select } from '@toptal/picasso-select'
 export type {
   Option as SelectOption,
   SelectProps,
-  OptionGroups,
+  SelectOptionsProps,
+  OptionGroups as SelectOptionGroups,
   ValueType as SelectValueType,
 } from '@toptal/picasso-select'
 export { BaseProps } from '@toptal/picasso-shared'
@@ -215,10 +237,24 @@ export { StepperCompound as Stepper } from '@toptal/picasso-step'
 export type { StepperProps, StepperVerticalProps } from '@toptal/picasso-step'
 export { Switch } from '@toptal/picasso-switch'
 export type { SwitchProps } from '@toptal/picasso-switch'
-export { TableCompound as Table, TableFooter } from '@toptal/picasso-table'
-export type { TableFooterProps, TableProps } from '@toptal/picasso-table'
+export {
+  TableCompound as Table,
+  TableFooter,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableExpandableRow,
+  TableHead,
+} from '@toptal/picasso-table'
+export type {
+  TableFooterProps,
+  TableProps,
+  TableCellProps,
+  TableRowProps,
+  TableExpandableRowProps,
+} from '@toptal/picasso-table'
 export { TabsCompound as Tabs } from '@toptal/picasso-tabs'
-export type { TabsProps } from '@toptal/picasso-tabs'
+export type { TabsProps, TabProps } from '@toptal/picasso-tabs'
 export { Indicator, TagCompound as Tag } from '@toptal/picasso-tag'
 export type {
   IndicatorProps,
@@ -226,7 +262,11 @@ export type {
   TagRectangularProps,
   TagRectangularVariantType,
 } from '@toptal/picasso-tag'
-export { TagSelectorCompound as TagSelector } from '@toptal/picasso-tagselector'
+export {
+  TagSelectorCompound as TagSelector,
+  TagSelectorInput,
+  TagSelectorLabel,
+} from '@toptal/picasso-tagselector'
 export type {
   TagSelectorProps,
   Item as TagSelectorItem,
@@ -236,7 +276,10 @@ export type { TimelineProps } from '@toptal/picasso-timeline'
 export { TimePicker } from '@toptal/picasso-timepicker'
 export type { TimePickerProps } from '@toptal/picasso-timepicker'
 export { Tooltip } from '@toptal/picasso-tooltip'
-export type { TooltipProps } from '@toptal/picasso-tooltip'
+export type {
+  TooltipProps,
+  PlacementType as TooltipPlacementType,
+} from '@toptal/picasso-tooltip'
 export {
   StaticTreeView,
   TreeNodeAvatar,
@@ -261,6 +304,8 @@ export type { UserBadgeProps } from '@toptal/picasso-user-badge'
 
 export { Carousel } from '@toptal/picasso-carousel'
 export type { CarouselProps } from '@toptal/picasso-carousel'
+export { Popper } from '@toptal/picasso-popper'
+export type { PopperProps } from '@toptal/picasso-popper'
 
 // hygen code generator inserts export statements above this comment.
 export * from '@toptal/picasso-icons'

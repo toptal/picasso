@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import type { InputProps } from '@toptal/picasso'
 import { Input as PicassoInput } from '@toptal/picasso'
 import { useForm } from 'react-final-form'
@@ -38,6 +38,19 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   } = useForm()
 
   const { label, titleCase, ...rest } = props
+  const { multiline, rows, rowsMax } = props
+
+  const alignment = useMemo(() => {
+    if (!multiline) {
+      return 'middle'
+    }
+
+    if (Number(rows ?? 1) >= 2 || Number(rowsMax ?? 1) >= 2) {
+      return 'top'
+    }
+
+    return 'middle'
+  }, [multiline, rows, rowsMax])
 
   return (
     <InputField<FormInputProps>
@@ -50,6 +63,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
             required={props.required}
             label={label}
             titleCase={titleCase}
+            alignment={alignment}
           />
         ) : null
       }

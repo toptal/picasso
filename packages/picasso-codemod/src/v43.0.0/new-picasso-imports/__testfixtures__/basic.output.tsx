@@ -1,8 +1,6 @@
-import { Check24 } from '@toptal/picasso';
-import { Container } from '@toptal/picasso';
-import { Button } from '@toptal/picasso';
-import { Button as Butt } from '@toptal/picasso';
-import { Transitions } from '@toptal/picasso/utils';
+import { Check24, Container, Button, Button as Butt } from '@toptal/picasso';
+// Named import from utils
+import { Transitions } from '@toptal/picasso/utils'
 // Import from other Picasso packages remain unchanged
 import Picasso from '@toptal/picasso-provider'
 import { Form } from '@toptal/picasso-forms'

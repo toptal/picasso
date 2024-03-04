@@ -23,6 +23,7 @@ import {
   TagSelector,
   Select,
   Switch,
+  RichTextEditor,
 } from '@toptal/picasso-forms'
 
 const countries = [
@@ -62,6 +63,7 @@ const initialValues = {
   'default-gender': 'female',
 }
 
+// eslint-disable-next-line max-lines-per-function
 const Example = () => {
   const [skillInputValue, setSkillInputValue] =
     useState<string>(EMPTY_INPUT_VALUE)
@@ -95,6 +97,56 @@ const Example = () => {
         name='default-lastName'
         label='Last name'
         placeholder='e.g. Wayne'
+        size='small'
+      />
+      <Input
+        required
+        name='default-nickName'
+        label='Nick name'
+        placeholder='e.g. Batman'
+      />
+      <Input
+        required
+        name='default-website'
+        label='Website'
+        placeholder='e.g. google.com'
+        size='large'
+      />
+      <Input name='default-multiline' label='Description' multiline rows={4} />
+      <RichTextEditor
+        name='default-richTextEditorName'
+        id='default-richTextEditorName'
+        label='Rich text editor'
+      />
+      <Dropzone label='Attachments' required name='default-attachments' />
+      <AvatarUpload
+        label='Profile photo xxsmall'
+        required
+        name='default-avatarUpload-xxsmall'
+        size='xxsmall'
+      />
+      <AvatarUpload
+        label='Profile photo xsmall'
+        required
+        name='default-avatarUpload-xsmall'
+        size='xsmall'
+      />
+      <AvatarUpload
+        label='Profile photo'
+        required
+        name='default-avatarUpload-small'
+      />
+      <AvatarUpload
+        label='Profile photo medium'
+        required
+        name='default-avatarUpload-medium'
+        size='medium'
+      />
+      <AvatarUpload
+        label='Profile photo large'
+        required
+        name='default-avatarUpload-large'
+        size='large'
       />
       <NumberInput
         enableReset
@@ -107,10 +159,34 @@ const Example = () => {
         <Radio label='Male' value='male' />
         <Radio label='Female' value='female' />
       </RadioGroup>
+      <RadioGroup name='default-language-radio' label='Languages'>
+        <Radio label='English' value='english' />
+        <Radio label='French' value='french' />
+        <Radio label='German' value='german' />
+      </RadioGroup>
       <RadioGroup name='default-gender' label='Gender' horizontal spacing={8}>
         <ButtonRadio value='male'>Male</ButtonRadio>
         <ButtonRadio value='female'>Female</ButtonRadio>
       </RadioGroup>
+      <CheckboxGroup name='default-hobbies' label='Hobbies'>
+        <Checkbox label='Skiing' value='skiing' />
+        <Checkbox label='Free diving' value='freeDiving' />
+        <Checkbox label='Dancing' value='dancing' />
+      </CheckboxGroup>
+      <CheckboxGroup name='default-language' label='Languages'>
+        <Checkbox label='English' value='english' />
+        <Checkbox label='French' value='french' />
+      </CheckboxGroup>
+      <CheckboxGroup
+        name='default-hobbies-buttons'
+        label='Hobbies'
+        horizontal
+        spacing={8}
+      >
+        <ButtonCheckbox value='skiing'>Skiing</ButtonCheckbox>
+        <ButtonCheckbox value='freeDiving'>Free diving</ButtonCheckbox>
+        <ButtonCheckbox value='dancing'>Dancing</ButtonCheckbox>
+      </CheckboxGroup>
       <DatePicker name='default-dateOfBirth' label='Date of birth' />
       <TimePicker name='default-timeOfBirth' label='Time of birth' />
       <TagSelector
@@ -120,21 +196,13 @@ const Example = () => {
         options={skillOptions}
         onInputChange={setSkillInputValue}
       />
-      <CheckboxGroup name='default-hobbies' label='Hobbies'>
-        <Checkbox label='Skiing' value='skiing' />
-        <Checkbox label='Free diving' value='freeDiving' />
-        <Checkbox label='Dancing' value='dancing' />
-      </CheckboxGroup>
-      <CheckboxGroup
-        name='default-hobbies'
-        label='Hobbies'
-        horizontal
-        spacing={8}
-      >
-        <ButtonCheckbox value='skiing'>Skiing</ButtonCheckbox>
-        <ButtonCheckbox value='freeDiving'>Free diving</ButtonCheckbox>
-        <ButtonCheckbox value='dancing'>Dancing</ButtonCheckbox>
-      </CheckboxGroup>
+      <FileInput
+        name='file'
+        id='file'
+        label='Upload file'
+        buttonLabel='Upload File'
+        hint='Max file size: 25MB'
+      />
       <Select
         enableReset
         required
@@ -183,7 +251,7 @@ const Example = () => {
       />
       <Rating.Thumbs
         name='default-thumbs'
-        label='Would you recommend picasso?'
+        label='Would you recommend Picasso?'
         required
       />
       <FileInput
@@ -191,12 +259,6 @@ const Example = () => {
         name='default-resume'
         label='Resume'
         status='No file selected.'
-      />
-      <Dropzone label='Attachments' required name='default-attachments' />
-      <AvatarUpload
-        label='Profile photo'
-        required
-        name='default-avatarUpload'
       />
       <Checkbox
         required

@@ -1,5 +1,19 @@
 # @toptal/picasso-query-builder
 
+## 1.5.1
+
+### Patch Changes
+
+- [#4132](https://github.com/toptal/picasso/pull/4132) [`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump classnames dependency
+
+## 1.5.0
+
+### Minor Changes
+
+- [#4116](https://github.com/toptal/picasso/pull/4116) [`0743d4164838535eb15774f5b60a31021c888b2d`](https://github.com/toptal/picasso/commit/0743d4164838535eb15774f5b60a31021c888b2d) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- add property to set the Query builder's header
+
 ## 1.4.1
 
 ### Patch Changes

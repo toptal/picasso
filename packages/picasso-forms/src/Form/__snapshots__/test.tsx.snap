@@ -9,6 +9,7 @@ exports[`Form renders 1`] = `
       class=""
     >
       <form
+        class=""
         data-testid="form"
       >
         <div
@@ -71,6 +72,7 @@ exports[`Form renders with an error 1`] = `
       class=""
     >
       <form
+        class=""
         data-testid="form"
       >
         <div

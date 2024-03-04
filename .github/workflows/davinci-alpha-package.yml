@@ -9,7 +9,7 @@ jobs:
     name: Trigger PR Workflow
     if: >
       github.event.issue.pull_request &&
-      github.event.comment.body == '@toptal-bot run package:alpha-release'
+      contains(github.event.comment.body, '@toptal-bot run package:alpha-release')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -20,10 +20,11 @@ jobs:
     env:
       STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      ALPHA_ROOT_FOLDER: ${{ fromJSON('["dist-package", "."]')[contains(github.event.comment.body, 'root')] }}
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@master
+        uses: toptal/davinci-github-actions/gsm-secrets@v12.10.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -39,7 +40,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@master
+        uses: toptal/davinci-github-actions/expose-json-outputs@v12.10.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -94,10 +95,11 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v12.7.1
+        uses: toptal/davinci-github-actions/build-publish-alpha-package@v12.10.0
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
+          root-folder: ${{ env.ALPHA_ROOT_FOLDER }}
 
       - name: Alpha package — Handle success
         if: ${{ success() }}

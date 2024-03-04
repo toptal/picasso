@@ -1,5 +1,57 @@
 # Change Log
 
+## 66.3.2
+
+### Patch Changes
+
+- [#4132](https://github.com/toptal/picasso/pull/4132) [`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump classnames dependency
+
+- Updated dependencies [[`c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149`](https://github.com/toptal/picasso/commit/c76a0d6d0f68e50bb51927d0b6c3ebdd65c60149)]:
+  - @toptal/picasso-rich-text-editor@10.0.1
+
+## 66.3.1
+
+### Patch Changes
+
+- [#4155](https://github.com/toptal/picasso/pull/4155) [`20432aeff8abfe62d1795ee7678c2a77f7f9dc0e`](https://github.com/toptal/picasso/commit/20432aeff8abfe62d1795ee7678c2a77f7f9dc0e) Thanks [@ertrzyiks](https://github.com/ertrzyiks)!
+- prevent Form onSubmit rejections from being swallowed
+
+## 66.3.0
+
+### Minor Changes
+
+- [#4141](https://github.com/toptal/picasso/pull/4141) [`841d06000dbf7937687e817806b725bb691f1b97`](https://github.com/toptal/picasso/commit/841d06000dbf7937687e817806b725bb691f1b97) Thanks [@pudek357](https://github.com/pudek357)!
+
+### Forms
+
+- the labels for fields with heights up to 48px are center-aligned with their respective inputs.
+- for larger fields, such as text areas and avatars, which are significantly taller, the labels are aligned to the top of the field.
+
+## 66.2.0
+
+### Minor Changes
+
+- [#4126](https://github.com/toptal/picasso/pull/4126) [`02d69ac79e7dc02bbde3c6a2808793befe67f89c`](https://github.com/toptal/picasso/commit/02d69ac79e7dc02bbde3c6a2808793befe67f89c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+---
+
+### Forms
+
+- enhanced customization in horizontal Form layout: Introducing the `labelWidth` prop for adjusting the width of label columns in horizontal layout forms.
+
+The new `labelWidth` property in the `Form` component significantly increases the flexibility of form design, allowing for more responsive and visually balanced layouts. This property can be set with either a single numeric value (e.g., `2`, `3`, or `4`) for a uniform width across all screen sizes, or an object mapping specific widths to breakpoints (e.g., `{ md: 4, lg: 3, xl: 2 }`).
+
+Example Usage:
+Uniform width setting: `<Form layout="horizontal" labelWidth={3}>...</Form>`
+Responsive width setting: `<Form layout="horizontal" labelWidth={{ md: 4, lg: 3, xl: 2 }}>...</Form>`
+
+- [#4126](https://github.com/toptal/picasso/pull/4126) [`02d69ac79e7dc02bbde3c6a2808793befe67f89c`](https://github.com/toptal/picasso/commit/02d69ac79e7dc02bbde3c6a2808793befe67f89c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Form
+
+- add customizable label width for horizontal forms
+
 ## 66.1.3
 
 ### Patch Changes
