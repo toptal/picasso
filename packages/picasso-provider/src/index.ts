@@ -27,6 +27,7 @@ export {
   spacings,
   SpacingEnum,
   isResponsiveSpacing,
+  fonts,
 } from './Picasso/config'
 
 export type {
