@@ -30,4 +30,8 @@ page
     'Status',
     'base/PasswordInput'
   )
-  .addExample('PasswordInput/story/Sizes.example.tsx', 'Sizes')
+  .addExample(
+    'PasswordInput/story/Sizes.example.tsx',
+    'Sizes',
+    'base/PasswordInput'
+  )
