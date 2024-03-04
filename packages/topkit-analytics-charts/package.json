@@ -1,6 +1,6 @@
 {
   "name": "@topkit/analytics-charts",
-  "version": "53.0.0",
+  "version": "54.0.0",
   "description": "Charts utilities",
   "author": "Toptal",
   "license": "MIT",
@@ -21,19 +21,19 @@
     "url": "https://github.com/toptal/picasso/issues"
   },
   "peerDependencies": {
-    "@toptal/picasso-charts": "^56.0.0",
-    "@toptal/picasso": "^42.0.0",
+    "@toptal/picasso-charts": "^57.0.0",
+    "@toptal/picasso": "^43.0.0",
     "react": ">=16.12.0 < 19.0.0",
     "typescript": "~4.7.0"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.0.0",
+    "@toptal/picasso-test-utils": "1.0.1",
     "@types/d3": "^7.4.0",
     "@types/d3-array": "3.0.4",
     "date-fns": "^2.30.0"
   },
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.0",
+    "@toptal/picasso-utils": "1.0.1",
     "d3": "^7.8.2",
     "d3-array": "^3.2.2"
   },
