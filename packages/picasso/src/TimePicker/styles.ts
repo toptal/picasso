@@ -17,10 +17,15 @@ export default ({ palette }: Theme) =>
     inputBase: {
       marginRight: '-8px', // override default margin for icon position
 
-      // override styles for native 'clock' icon for type='time'
+      // this workaround is needed to show the picker when we click our own clock icon
+      // eventually, we could "display: none" this native icon and use native showPicker()
+      // but currently not all browsers support the picker (e.g. Safari and Firefox), so for now we
+      // hide the native icon (with its functionality available) behind our icon
       '&::-webkit-calendar-picker-indicator': {
-        outline: 'none',
+        position: 'absolute',
+        right: '0.5rem',
         cursor: 'pointer',
+        background: 'none',
       },
     },
     inputMask: {
