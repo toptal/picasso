@@ -21,6 +21,7 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   scrollOffsetTop?: number
   layout?: 'horizontal' | 'vertical'
   labelWidth?: FormProps['labelWidth']
+  className?: string
   'data-testid'?: string
 }
 
@@ -63,6 +64,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
     'data-testid': dataTestId,
     layout,
     labelWidth,
+    className,
     ...rest
   } = props
   const { showSuccess, showError } = useNotifications()
@@ -136,6 +138,7 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
             setActiveFieldTouched={form.mutators.setActiveFieldTouched}
             labelWidth={labelWidth}
             layout={layout}
+            className={className}
           >
             {children}
           </FormRenderer>

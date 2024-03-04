@@ -7,12 +7,15 @@ import type { FileUpload } from '@toptal/picasso/FileInput'
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 
 type FinalFormOnChangeType = FinalFieldInputProps<
   FileInputProps['value']
 >['onChange']
 
-export type Props = FileInputProps & FieldProps<FileInputProps['value']>
+export type Props = FileInputProps &
+  FieldProps<FileInputProps['value']> &
+  FieldLabelProps
 
 export const FileInput = (props: Props) => {
   const handleChange = (
@@ -54,6 +57,7 @@ export const FileInput = (props: Props) => {
             name={props.name}
             required={props.required}
             label={props.label}
+            labelEndAdornment={props.labelEndAdornment}
             titleCase={props.titleCase}
           />
         ) : null

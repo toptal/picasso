@@ -1,17 +1,16 @@
-import type { ReactNode } from 'react'
 import React from 'react'
 
 import type { Props as FieldProps } from '../Field'
 import type { ValueType, IFormComponentProps } from '../FieldBase'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
 export type Props<TWrappedComponentProps, TInputValue> = Omit<
   FieldProps<TWrappedComponentProps, TInputValue>,
   'label'
-> & {
-  label?: ReactNode
-}
+> &
+  Omit<FieldLabelProps, 'name'>
 
 const FieldWrapper = <
   TWrappedComponentProps extends IFormComponentProps,
@@ -19,7 +18,7 @@ const FieldWrapper = <
 >(
   props: Props<TWrappedComponentProps, TInputValue>
 ) => {
-  const { label, name, titleCase, children, ...rest } = props
+  const { label, labelEndAdornment, name, titleCase, children, ...rest } = props
 
   return (
     <InputField<IFormComponentProps, TInputValue>
@@ -28,9 +27,10 @@ const FieldWrapper = <
       label={
         label ? (
           <FieldLabel
-            name={props.name}
+            name={name}
             required={props.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
           />
         ) : null

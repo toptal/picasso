@@ -82,6 +82,37 @@ exports[`FormLabel required with (optional) 1`] = `
 </div>
 `;
 
+exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <form
+      class=""
+    >
+      <div
+        class="PicassoFormField-root"
+        data-field-has-error="false"
+      >
+        <label
+          class="PicassoFormLabel-root"
+        >
+          <span
+            class="PicassoFormLabel-medium"
+          >
+            Label
+             (optional)
+            <span>
+              label end adornment
+            </span>
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
 exports[`FormLabel required with asterisk 1`] = `
 <div>
   <div

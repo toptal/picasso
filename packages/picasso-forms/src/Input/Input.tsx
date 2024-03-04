@@ -4,6 +4,7 @@ import { Input as PicassoInput } from '@toptal/picasso'
 import { useForm } from 'react-final-form'
 
 import type { FieldProps } from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
@@ -11,7 +12,9 @@ export type FormInputProps = Omit<InputProps, 'onResetClick'> & {
   /** Callback invoked when reset button was clicked */
   onResetClick?: (set: (value: string) => void) => void
 }
-export type Props = FormInputProps & FieldProps<InputProps['value']>
+export type Props = FormInputProps &
+  FieldProps<InputProps['value']> &
+  FieldLabelProps
 
 const warnAutocompleteDisabledInput = (name?: string) => {
   const autocompleteDisabled =
@@ -37,7 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
     mutators: { setHasMultilineCounter },
   } = useForm()
 
-  const { label, titleCase, ...rest } = props
+  const { label, labelEndAdornment, titleCase, ...rest } = props
   const { multiline, rows, rowsMax } = props
 
   const alignment = useMemo(() => {
@@ -62,6 +65,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
             name={props.name}
             required={props.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
             alignment={alignment}
           />

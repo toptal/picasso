@@ -37,6 +37,8 @@ export interface Props
   size?: SizeType<'medium' | 'large'>
   /** Whether label should be aligned to top of the container or not */
   alignment?: 'top' | 'middle'
+  /** Label's end adornment */
+  labelEndAdornment?: ReactNode
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
@@ -57,6 +59,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     requiredDecoration,
     size = 'medium',
     alignment = 'middle',
+    labelEndAdornment,
     ...rest
   } = props
 
@@ -90,7 +93,10 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
         )}
 
         {titleCase ? toTitleCase(children) : children}
+
         {requiredDecoration === 'optional' && ' (optional)'}
+
+        {labelEndAdornment}
       </span>
     </Component>
   )

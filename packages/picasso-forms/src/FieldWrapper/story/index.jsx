@@ -14,8 +14,13 @@ const componentDocs = PicassoBook.createComponentDocs(
     },
     label: {
       name: 'label',
-      type: 'string',
+      type: 'ReactNode',
       description: 'The field label text',
+    },
+    labelEndAdornment: {
+      name: 'labelEndAdornment',
+      type: 'ReactNode',
+      description: "The label's end adornment",
     },
     hint: {
       name: 'hint',

@@ -5,14 +5,22 @@ import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
 
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import CheckboxGroupContext from './CheckboxGroupContext'
 
 type ValueType = string[] | undefined
-export type Props = CheckboxGroupProps & FieldProps<ValueType>
+export type Props = CheckboxGroupProps & FieldProps<ValueType> & FieldLabelProps
 
 export const CheckboxGroup = (props: Props) => {
-  const { children, titleCase, label, initialValue, ...rest } = props
+  const {
+    children,
+    titleCase,
+    label,
+    labelEndAdornment,
+    initialValue,
+    ...rest
+  } = props
 
   const alignment = Children.count(children) > 2 ? 'top' : 'middle'
 
@@ -28,6 +36,7 @@ export const CheckboxGroup = (props: Props) => {
               name={props.name}
               required={props.required}
               label={label}
+              labelEndAdornment={labelEndAdornment}
               titleCase={titleCase}
               alignment={alignment}
             />

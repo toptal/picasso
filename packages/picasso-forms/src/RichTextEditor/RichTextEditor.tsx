@@ -10,6 +10,7 @@ import { useForm } from 'react-final-form'
 import type { FieldProps } from '../FieldWrapper'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import { useEnforceHighlightAutofill } from './hooks'
 
 type OverriddenProps = {
@@ -20,12 +21,21 @@ type OverriddenProps = {
 
 export type Props = RichTextEditorProps &
   Except<FieldProps<string>, keyof OverriddenProps> &
-  OverriddenProps
+  OverriddenProps &
+  FieldLabelProps
 
 type InternalProps = RichTextEditorProps & { value: string }
 
 export const RichTextEditor = (props: Props) => {
-  const { onChange, onFocus, defaultValue, label, titleCase, ...rest } = props
+  const {
+    onChange,
+    onFocus,
+    defaultValue,
+    label,
+    labelEndAdornment,
+    titleCase,
+    ...rest
+  } = props
 
   const { enforceHighlightAutofill, registerChangeOrFocus } =
     useEnforceHighlightAutofill()
@@ -64,6 +74,7 @@ export const RichTextEditor = (props: Props) => {
             name={hiddenInputId}
             required={props.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
             alignment='top'
           />

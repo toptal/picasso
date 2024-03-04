@@ -4,10 +4,13 @@ import { AvatarUpload as PicassoAvatarUpload } from '@toptal/picasso'
 import type { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
 import type { FieldProps } from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
-type Props = AvatarUploadProps & FieldProps<AvatarUploadProps['value']>
+type Props = AvatarUploadProps &
+  FieldProps<AvatarUploadProps['value']> &
+  FieldLabelProps
 
 type FinalFormOnChangeType = FinalFieldInputProps<
   AvatarUploadProps['value']
@@ -16,6 +19,7 @@ type FinalFormOnChangeType = FinalFieldInputProps<
 const AvatarUpload = (props: Props) => {
   const {
     label,
+    labelEndAdornment,
     titleCase,
     size = 'small',
     // dropping 'src' value here out from 'rest'. 'src' value should be provided via form context
@@ -58,6 +62,7 @@ const AvatarUpload = (props: Props) => {
             name={props.name}
             required={props.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
             alignment={alignment}
           />

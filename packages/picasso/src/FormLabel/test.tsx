@@ -16,6 +16,7 @@ const TestFormLabel = ({
   titleCase,
   htmlFor,
   inline,
+  labelEndAdornment,
 }: OmitInternalProps<Props>) => {
   return (
     <Form>
@@ -26,6 +27,7 @@ const TestFormLabel = ({
           titleCase={titleCase}
           htmlFor={htmlFor}
           inline={inline}
+          labelEndAdornment={labelEndAdornment}
         >
           {children}
         </FormLabel>
@@ -59,6 +61,19 @@ describe('FormLabel', () => {
   it('required with (optional)', () => {
     const { container } = render(
       <TestFormLabel requiredDecoration='optional'>Label</TestFormLabel>
+    )
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('required with (optional) and with `labelEndAdornment`', () => {
+    const { container } = render(
+      <TestFormLabel
+        labelEndAdornment={<span>label end adornment</span>}
+        requiredDecoration='optional'
+      >
+        Label
+      </TestFormLabel>
     )
 
     expect(container).toMatchSnapshot()
