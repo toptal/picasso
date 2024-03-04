@@ -1,5 +1,15 @@
 # Change Log
 
+## 42.7.3
+
+### Patch Changes
+
+- [#4158](https://github.com/toptal/picasso/pull/4158) [`3e5486c0e4024d5c2f8ed73ac96eedf323778ed5`](https://github.com/toptal/picasso/commit/3e5486c0e4024d5c2f8ed73ac96eedf323778ed5) Thanks [@isabellymonteiro](https://github.com/isabellymonteiro)!
+
+### TimePicker Icon
+
+- fix `TimePicker` duplicate clock icons
+
 ## 42.7.2
 
 ### Patch Changes
