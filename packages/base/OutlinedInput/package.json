@@ -43,7 +43,7 @@
     "./styles": "./dist-package/src/styles.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.0.0"
+    "@toptal/picasso-provider": "4.1.0"
   },
   "files": [
     "dist-package/**",
