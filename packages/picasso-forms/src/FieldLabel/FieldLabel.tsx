@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import React from 'react'
 import type { RequiredDecoration } from '@toptal/picasso'
 import { Form as PicassoForm } from '@toptal/picasso'
@@ -8,10 +9,16 @@ import { useFormConfig } from '../FormConfig'
 
 export type Props = {
   name?: string
-  label?: React.ReactNode
+  label?: ReactNode
+  /** Label's end adornment */
+  labelEndAdornment?: ReactNode
   required?: boolean
-  alignment?: 'top' | 'middle'
 } & TextLabelProps
+
+type InternalProps = {
+  /** Whether label should be aligned to top of the container or not */
+  alignment?: 'top' | 'middle'
+}
 
 const getRequiredDecoration = (
   required?: boolean,
@@ -31,9 +38,14 @@ const getRequiredDecoration = (
   }
 }
 
-const FieldLabel = (props: Props) => {
-  const { label, required, titleCase, name, alignment } = props
-
+const FieldLabel = ({
+  label,
+  required,
+  titleCase,
+  name,
+  alignment,
+  labelEndAdornment,
+}: Props & InternalProps) => {
   const formConfig = useFormConfig()
 
   if (!label) {
@@ -51,6 +63,7 @@ const FieldLabel = (props: Props) => {
       htmlFor={name}
       titleCase={titleCase}
       alignment={alignment}
+      labelEndAdornment={labelEndAdornment}
     >
       {label}
     </PicassoForm.Label>

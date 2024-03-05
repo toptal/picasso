@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
-import { FormActionsContainer } from '@toptal/picasso'
-import { SPACING_4, isSubstring } from '@toptal/picasso-utils'
+import {
+  Button,
+  Container,
+  FormActionsContainer,
+  Info16,
+  Tooltip,
+} from '@toptal/picasso'
+import { SPACING_4, isSubstring, SPACING_1 } from '@toptal/picasso/utils'
 import type { Item } from '@toptal/picasso/Autocomplete'
 import {
   FormNonCompound as Form,
@@ -60,7 +66,7 @@ const filterOptions = (str = '', options: Item[] = []): Item[] | null => {
 }
 
 const initialValues = {
-  'default-gender': 'female',
+  'horizontal-gender': 'female',
 }
 
 // eslint-disable-next-line max-lines-per-function
@@ -88,97 +94,124 @@ const Example = () => {
           set('')
         }}
         required
-        name='default-firstName'
+        name='horizontal-firstName'
         label='First name'
         placeholder='e.g. Bruce'
       />
       <Input
         required
-        name='default-lastName'
+        name='horizontal-lastName'
         label='Last name'
         placeholder='e.g. Wayne'
         size='small'
       />
       <Input
         required
-        name='default-nickName'
+        name='horizontal-nickName'
         label='Nick name'
         placeholder='e.g. Batman'
       />
       <Input
         required
-        name='default-website'
+        name='horizontal-website'
         label='Website'
         placeholder='e.g. google.com'
         size='large'
       />
-      <Input name='default-multiline' label='Description' multiline rows={4} />
+      <Input
+        name='horizontal-multiline'
+        label='Description'
+        multiline
+        rows={4}
+      />
       <RichTextEditor
-        name='default-richTextEditorName'
-        id='default-richTextEditorName'
+        name='horizontal-richTextEditorName'
+        id='horizontal-richTextEditorName'
         label='Rich text editor'
       />
-      <Dropzone label='Attachments' required name='default-attachments' />
+      <Dropzone label='Attachments' required name='horizontal-attachments' />
       <AvatarUpload
         label='Profile photo xxsmall'
         required
-        name='default-avatarUpload-xxsmall'
+        name='horizontal-avatarUpload-xxsmall'
         size='xxsmall'
       />
       <AvatarUpload
         label='Profile photo xsmall'
         required
-        name='default-avatarUpload-xsmall'
+        name='horizontal-avatarUpload-xsmall'
         size='xsmall'
       />
       <AvatarUpload
         label='Profile photo'
         required
-        name='default-avatarUpload-small'
+        name='horizontal-avatarUpload-small'
       />
       <AvatarUpload
         label='Profile photo medium'
         required
-        name='default-avatarUpload-medium'
+        name='horizontal-avatarUpload-medium'
         size='medium'
       />
       <AvatarUpload
         label='Profile photo large'
         required
-        name='default-avatarUpload-large'
+        name='horizontal-avatarUpload-large'
         size='large'
       />
       <NumberInput
         enableReset
-        required
-        name='default-age'
+        name='horizontal-age'
         label="What's your age?"
         placeholder='e.g. 25'
+        labelEndAdornment={
+          <Container inline left={SPACING_1}>
+            <Tooltip content='Content goes here...' placement='right'>
+              <Button.Circular variant='flat' icon={<Info16 />} />
+            </Tooltip>
+          </Container>
+        }
       />
-      <RadioGroup name='default-gender' label='Gender'>
+      <RadioGroup
+        name='horizontal-gender'
+        label='Gender'
+        required
+        labelEndAdornment={
+          <Container inline left={SPACING_1}>
+            <Tooltip content='Content goes here...' placement='right'>
+              <Button.Circular variant='flat' icon={<Info16 />} />
+            </Tooltip>
+          </Container>
+        }
+      >
         <Radio label='Male' value='male' />
         <Radio label='Female' value='female' />
       </RadioGroup>
-      <RadioGroup name='default-language-radio' label='Languages'>
+      <RadioGroup name='horizontal-language-radio' label='Languages'>
         <Radio label='English' value='english' />
         <Radio label='French' value='french' />
         <Radio label='German' value='german' />
       </RadioGroup>
-      <RadioGroup name='default-gender' label='Gender' horizontal spacing={8}>
+      <RadioGroup
+        name='horizontal-gender-2'
+        label='Gender'
+        horizontal
+        spacing={8}
+      >
         <ButtonRadio value='male'>Male</ButtonRadio>
         <ButtonRadio value='female'>Female</ButtonRadio>
       </RadioGroup>
-      <CheckboxGroup name='default-hobbies' label='Hobbies'>
+      <CheckboxGroup name='horizontal-hobbies' label='Hobbies'>
         <Checkbox label='Skiing' value='skiing' />
         <Checkbox label='Free diving' value='freeDiving' />
         <Checkbox label='Dancing' value='dancing' />
       </CheckboxGroup>
-      <CheckboxGroup name='default-language' label='Languages'>
+      <CheckboxGroup name='horizontal-language' label='Languages'>
         <Checkbox label='English' value='english' />
         <Checkbox label='French' value='french' />
       </CheckboxGroup>
       <CheckboxGroup
-        name='default-hobbies-buttons'
+        name='horizontal-hobbies-buttons'
         label='Hobbies'
         horizontal
         spacing={8}
@@ -187,10 +220,10 @@ const Example = () => {
         <ButtonCheckbox value='freeDiving'>Free diving</ButtonCheckbox>
         <ButtonCheckbox value='dancing'>Dancing</ButtonCheckbox>
       </CheckboxGroup>
-      <DatePicker name='default-dateOfBirth' label='Date of birth' />
-      <TimePicker name='default-timeOfBirth' label='Time of birth' />
+      <DatePicker name='horizontal-dateOfBirth' label='Date of birth' />
+      <TimePicker name='horizontal-timeOfBirth' label='Time of birth' />
       <TagSelector
-        name='default-skills'
+        name='horizontal-skills'
         label='Skills'
         inputValue={skillInputValue}
         options={skillOptions}
@@ -206,7 +239,7 @@ const Example = () => {
       <Select
         enableReset
         required
-        name='default-businessType'
+        name='horizontal-businessType'
         label='Business type'
         width='auto'
         options={[
@@ -215,13 +248,13 @@ const Example = () => {
         ]}
       />
       <Select
-        name='default-origin_country'
+        name='horizontal-origin_country'
         label='Origin country'
         width='auto'
         options={countries}
       />
       <Autocomplete
-        name='default-current_country'
+        name='horizontal-current_country'
         label='Current country'
         placeholder='Start typing country...'
         width='auto'
@@ -245,28 +278,28 @@ const Example = () => {
         getDisplayValue={getAutocompleteDisplayValue}
       />
       <Rating.Stars
-        name='default-rating'
+        name='horizontal-rating'
         label='How much do you love Picasso?'
         required
       />
       <Rating.Thumbs
-        name='default-thumbs'
+        name='horizontal-thumbs'
         label='Would you recommend Picasso?'
         required
       />
       <FileInput
         required
-        name='default-resume'
+        name='horizontal-resume'
         label='Resume'
         status='No file selected.'
       />
       <Checkbox
         required
-        name='default-legal'
+        name='horizontal-legal'
         label='I confirm that I have legal permission from the client to feature this project.'
       />
       <Switch
-        name='default-publicProfile'
+        name='horizontal-publicProfile'
         label='Public Profile'
         width='auto'
       />
