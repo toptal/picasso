@@ -39,7 +39,7 @@ const findFontsLoader = () => {
   return links.find(
     link =>
       link.as === 'style' &&
-      link.href === fonts['proxima-nova'] &&
+      link.href === fonts.PRIMARY &&
       (link.rel === 'stylesheet' || link.rel === 'preload')
   )
 }
@@ -57,7 +57,7 @@ const FontsLoader = () => {
       const link = document.createElement('link')
 
       link.as = 'style'
-      link.href = fonts['proxima-nova']
+      link.href = fonts.PRIMARY
       link.rel = linkSupportsPreload ? 'preload' : 'stylesheet'
       link.addEventListener('load', applyLoadedFont)
 
