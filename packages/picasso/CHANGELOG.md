@@ -1,5 +1,50 @@
 # Change Log
 
+## 43.1.0
+
+### Minor Changes
+
+- [#4161](https://github.com/toptal/picasso/pull/4161) [`8142d393588c8c3cf5193b4273957646258883e2`](https://github.com/toptal/picasso/commit/8142d393588c8c3cf5193b4273957646258883e2) Thanks [@pudek357](https://github.com/pudek357)!
+- introduce `labelEndAdornment` prop for `FormLabel` component.
+
+### Patch Changes
+
+- Updated dependencies [[`8142d393588c8c3cf5193b4273957646258883e2`](https://github.com/toptal/picasso/commit/8142d393588c8c3cf5193b4273957646258883e2)]:
+  - @toptal/picasso-form@1.1.0
+  - @toptal/picasso-autocomplete@1.0.2
+  - @toptal/picasso-checkbox@1.0.2
+  - @toptal/picasso-dropzone@1.0.2
+  - @toptal/picasso-file-input@1.0.2
+  - @toptal/picasso-input@1.0.2
+  - @toptal/picasso-number-input@1.0.2
+  - @toptal/picasso-radio@1.0.2
+  - @toptal/picasso-select@1.0.2
+  - @toptal/picasso-switch@1.0.2
+  - @toptal/picasso-tagselector@1.0.2
+  - @toptal/picasso-page@1.0.2
+  - @toptal/picasso-button@1.0.2
+  - @toptal/picasso-date-picker@1.0.2
+  - @toptal/picasso-password-input@1.0.2
+  - @toptal/picasso-timepicker@1.0.2
+  - @toptal/picasso-date-select@1.0.2
+  - @toptal/picasso-accordion@1.0.2
+  - @toptal/picasso-alert@1.0.2
+  - @toptal/picasso-application-update-notification@1.0.2
+  - @toptal/picasso-calendar@1.0.2
+  - @toptal/picasso-carousel@1.0.2
+  - @toptal/picasso-drawer@1.0.2
+  - @toptal/picasso-helpbox@1.0.2
+  - @toptal/picasso-modal@1.0.2
+  - @toptal/picasso-notification@1.0.2
+  - @toptal/picasso-outlined-input@1.0.2
+  - @toptal/picasso-pagination@1.0.2
+  - @toptal/picasso-prompt-modal@1.0.2
+  - @toptal/picasso-section@1.0.2
+  - @toptal/picasso-show-more@1.0.2
+  - @toptal/picasso-skeleton-loader@1.0.2
+  - @toptal/picasso-tree-view@1.0.2
+  - @toptal/picasso-avatar-upload@1.0.2
+
 ## 43.0.0
 
 ### Major Changes

@@ -1,5 +1,17 @@
 # Change Log
 
+## 67.1.0
+
+### Minor Changes
+
+- [#4161](https://github.com/toptal/picasso/pull/4161) [`8142d393588c8c3cf5193b4273957646258883e2`](https://github.com/toptal/picasso/commit/8142d393588c8c3cf5193b4273957646258883e2) Thanks [@pudek357](https://github.com/pudek357)!
+- introduce `labelEndAdornment` prop for `FormLabel` component.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-notification@1.0.2
+
 ## 67.0.0
 
 ### Major Changes
