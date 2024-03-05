@@ -174,7 +174,7 @@ jobs:
               "VERSION": "${{ github.sha }}",
               "IMAGE_NAME": "${{ env.REPOSITORY_NAME }}"
             }
-          job_timeout: "3600"
+          job_timeout: "7200"
 
       - name: Trigger deployment job
         id: trigger-deploy
@@ -192,7 +192,7 @@ jobs:
             {
               "COMMIT_ID": "${{ github.sha }}"
             }
-          job_timeout: "3600"
+          job_timeout: "7200"
 
       - name: Send a Slack notification on failure
         if: ${{ failure() }}
