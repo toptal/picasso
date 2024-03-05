@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-modal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Toptal UI components library - Modal",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "1.0.1",
+    "@toptal/picasso-button": "1.0.2",
     "@toptal/picasso-icons": "1.0.1",
     "@toptal/picasso-typography": "1.0.1",
     "@toptal/picasso-utils": "1.0.1",

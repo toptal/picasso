@@ -1,5 +1,13 @@
 # @toptal/picasso-dropzone
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`8142d393588c8c3cf5193b4273957646258883e2`](https://github.com/toptal/picasso/commit/8142d393588c8c3cf5193b4273957646258883e2)]:
+  - @toptal/picasso-form@1.1.0
+  - @toptal/picasso-file-input@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
