@@ -39,7 +39,7 @@ const findFontsLoader = () => {
   return links.find(
     link =>
       link.as === 'style' &&
-      link.href === fonts.PRIMARY &&
+      link.href === fonts.sans &&
       (link.rel === 'stylesheet' || link.rel === 'preload')
   )
 }
@@ -57,7 +57,7 @@ const FontsLoader = () => {
       const link = document.createElement('link')
 
       link.as = 'style'
-      link.href = fonts.PRIMARY
+      link.href = fonts.sans
       link.rel = linkSupportsPreload ? 'preload' : 'stylesheet'
       link.addEventListener('load', applyLoadedFont)
 
