@@ -5,10 +5,13 @@ import type { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
 import type { FieldProps } from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
-export type Props = NumberInputProps & FieldProps<NumberInputProps['value']>
+export type Props = NumberInputProps &
+  FieldProps<NumberInputProps['value']> &
+  FieldLabelProps
 
 const MIN = -2147483648
 const MAX = 2147483647
@@ -16,7 +19,15 @@ const MAX = 2147483647
 const { composeValidators } = validators
 
 export const NumberInput = (props: Props) => {
-  const { min = MIN, max = MAX, validate, label, titleCase, ...rest } = props
+  const {
+    min = MIN,
+    max = MAX,
+    validate,
+    label,
+    labelEndAdornment,
+    titleCase,
+    ...rest
+  } = props
 
   const validateNumberLimits: FieldValidator<
     NumberInputProps['value']
@@ -39,6 +50,7 @@ export const NumberInput = (props: Props) => {
             name={props.name}
             required={props.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
           />
         ) : null

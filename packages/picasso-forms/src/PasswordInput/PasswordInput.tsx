@@ -6,13 +6,16 @@ import type { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'
 import type { FieldProps } from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import passwordValidators from './validators'
 import InputField from '../InputField'
 import FieldRenderer from './FieldRenderer'
 
 export type Props = PasswordInputProps &
-  FieldProps<PasswordInputProps['value']> & { hideRequirements?: boolean }
+  FieldProps<PasswordInputProps['value']> & {
+    hideRequirements?: boolean
+  } & FieldLabelProps
 
 const { composeValidators } = validators
 
@@ -121,6 +124,7 @@ export const PasswordInput = ({
             name={rest.name}
             required={rest.required}
             label={rest.label}
+            labelEndAdornment={rest.labelEndAdornment}
             titleCase={rest.titleCase}
           />
         ) : null

@@ -5,12 +5,13 @@ import type { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 
 export type Props = DropzoneProps &
   FieldProps<DropzoneProps['value']> & {
     dropzoneHint?: string
-  }
+  } & FieldLabelProps
 
 type FinalFormOnChangeType = FinalFieldInputProps<
   DropzoneProps['value']
@@ -61,6 +62,7 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
           name={props.name}
           required={props.required}
           label={props.label}
+          labelEndAdornment={props.labelEndAdornment}
           titleCase={props.titleCase}
           alignment='top'
         />

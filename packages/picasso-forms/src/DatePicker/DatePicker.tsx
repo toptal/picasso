@@ -4,15 +4,18 @@ import { DatePicker as PicassoDatePicker } from '@toptal/picasso'
 
 import type { FieldProps } from '../Field'
 import InputField from '../InputField'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 
 export type FormDatePickerProps = Omit<DatePickerProps, 'onChange'> & {
   onChange?: DatePickerProps['onChange']
 }
-export type Props = FormDatePickerProps & FieldProps<DatePickerProps['value']>
+export type Props = FormDatePickerProps &
+  FieldProps<DatePickerProps['value']> &
+  FieldLabelProps
 
 export const DatePicker = (props: Props) => {
-  const { label, titleCase, ...rest } = props
+  const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (
     <InputField<FormDatePickerProps>
@@ -22,6 +25,7 @@ export const DatePicker = (props: Props) => {
           name={props.name}
           required={props.required}
           label={label}
+          labelEndAdornment={labelEndAdornment}
           titleCase={titleCase}
         />
       }

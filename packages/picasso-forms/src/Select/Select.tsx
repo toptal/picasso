@@ -6,16 +6,24 @@ import { generateRandomStringOrGetEmptyInTest } from '@toptal/picasso-utils'
 import type { FieldProps } from '../Field'
 import InputField from '../InputField'
 import FieldLabel from '../FieldLabel'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 
 export type Props<
   T extends SelectValueType,
   M extends boolean = false
-> = SelectProps<T, M> & FieldProps<SelectProps<T, M>['value']>
+> = SelectProps<T, M> & FieldProps<SelectProps<T, M>['value']> & FieldLabelProps
 
 export const Select = <T extends SelectValueType, M extends boolean = false>(
   props: Props<T, M>
 ) => {
-  const { name, id = name, label, titleCase, ...rest } = props
+  const {
+    name,
+    id = name,
+    label,
+    labelEndAdornment,
+    titleCase,
+    ...rest
+  } = props
   const randomizedId = id ? generateRandomStringOrGetEmptyInTest(id) : undefined
 
   return (
@@ -29,6 +37,7 @@ export const Select = <T extends SelectValueType, M extends boolean = false>(
             name={randomizedId}
             required={rest.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
           />
         ) : null

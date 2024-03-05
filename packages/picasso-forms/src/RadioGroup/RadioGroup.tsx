@@ -5,12 +5,15 @@ import { Radio as PicassoRadio } from '@toptal/picasso'
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'
 import FieldLabel from '../FieldLabel'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import RadioGroupContext from './RadioGroupContext'
 
-export type Props = RadioGroupProps & FieldProps<RadioProps['value']>
+export type Props = RadioGroupProps &
+  FieldProps<RadioProps['value']> &
+  FieldLabelProps
 
 export const RadioGroup = (props: Props) => {
-  const { children, label, titleCase, ...rest } = props
+  const { children, label, labelEndAdornment, titleCase, ...rest } = props
 
   const alignment = Children.count(children) > 2 ? 'top' : 'middle'
 
@@ -25,6 +28,7 @@ export const RadioGroup = (props: Props) => {
               name={props.name}
               required={props.required}
               label={label}
+              labelEndAdornment={labelEndAdornment}
               titleCase={titleCase}
               alignment={alignment}
             />

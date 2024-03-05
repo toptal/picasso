@@ -3,13 +3,16 @@ import type { TagSelectorProps } from '@toptal/picasso'
 import { TagSelector as PicassoTagSelector } from '@toptal/picasso'
 
 import type { FieldProps } from '../Field'
+import type { Props as FieldLabelProps } from '../FieldLabel'
 import FieldLabel from '../FieldLabel'
 import InputField from '../InputField'
 
-export type Props = TagSelectorProps & FieldProps<TagSelectorProps['value']>
+export type Props = TagSelectorProps &
+  FieldProps<TagSelectorProps['value']> &
+  FieldLabelProps
 
 export const TagSelector = (props: Props) => {
-  const { label, titleCase, ...rest } = props
+  const { label, labelEndAdornment, titleCase, ...rest } = props
 
   return (
     <InputField<TagSelectorProps>
@@ -20,6 +23,7 @@ export const TagSelector = (props: Props) => {
             name={props.name}
             required={props.required}
             label={label}
+            labelEndAdornment={labelEndAdornment}
             titleCase={titleCase}
           />
         ) : null
