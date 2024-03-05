@@ -26,3 +26,4 @@ export type {
   DeprecatedSpacingType,
   PicassoSpacing,
 } from './spacings'
+export { default as fonts } from './fonts'

@@ -1,6 +1,5 @@
 import { useIsomorphicLayoutEffect } from '../hooks'
-
-const PROXIMA_NOVA_FONT = 'https://use.typekit.net/rlr4crj.css'
+import { fonts } from './config'
 
 // Feature check for rel='preload' as soon it's not supported by FF and IE
 // https://www.w3.org/TR/preload/#link-type-preload
@@ -40,7 +39,7 @@ const findFontsLoader = () => {
   return links.find(
     link =>
       link.as === 'style' &&
-      link.href === PROXIMA_NOVA_FONT &&
+      link.href === fonts.sans &&
       (link.rel === 'stylesheet' || link.rel === 'preload')
   )
 }
@@ -58,7 +57,7 @@ const FontsLoader = () => {
       const link = document.createElement('link')
 
       link.as = 'style'
-      link.href = PROXIMA_NOVA_FONT
+      link.href = fonts.sans
       link.rel = linkSupportsPreload ? 'preload' : 'stylesheet'
       link.addEventListener('load', applyLoadedFont)
 
