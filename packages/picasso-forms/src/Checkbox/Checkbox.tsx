@@ -1,6 +1,9 @@
 import React, { useContext } from 'react'
 import type { CheckboxProps } from '@toptal/picasso'
-import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
+import {
+  useFieldsLayoutContext,
+  Checkbox as PicassoCheckbox,
+} from '@toptal/picasso'
 import type { FieldRenderProps as FinalFormFieldProps } from 'react-final-form'
 import { Field } from 'react-final-form'
 
@@ -28,6 +31,7 @@ export const Checkbox = ({
   defaultValue,
   ...restProps
 }: Props) => {
+  const { layout } = useFieldsLayoutContext()
   const formConfig = useFormConfig()
   const groupName = useContext(CheckboxGroupContext)
   const isCheckboxInGroup = Boolean(groupName)
@@ -63,12 +67,18 @@ export const Checkbox = ({
         highlight,
         ...input
       }: CheckboxProps & { highlight?: 'autofill' }) => (
-        <PicassoCheckbox
-          {...input}
-          label={label}
-          titleCase={restProps.titleCase}
-          requiredDecoration={requiredDecoration}
-        />
+        <>
+          {layout === 'horizontal' && <div />}
+          <PicassoCheckbox
+            {...input}
+            labelStyle={
+              layout === 'horizontal' ? { gridArea: 'input' } : undefined
+            }
+            label={label}
+            titleCase={restProps.titleCase}
+            requiredDecoration={requiredDecoration}
+          />
+        </>
       )}
     </PicassoField>
   )

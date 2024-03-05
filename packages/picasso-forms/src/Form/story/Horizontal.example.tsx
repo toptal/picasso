@@ -193,7 +193,7 @@ const Example = () => {
         <Radio label='German' value='german' />
       </RadioGroup>
       <RadioGroup
-        name='horizontal-gender'
+        name='horizontal-gender-2'
         label='Gender'
         horizontal
         spacing={8}

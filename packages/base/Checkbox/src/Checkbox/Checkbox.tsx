@@ -7,7 +7,7 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import type { ComponentProps, ReactNode } from 'react'
+import type { ComponentProps, CSSProperties, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { FormControlLabel } from '@toptal/picasso-form'
@@ -31,6 +31,8 @@ export interface Props
   label?: ReactNode
   /** The id of the input element */
   id?: string
+  /** Label's style */
+  labelStyle?: CSSProperties
   /** Whether to show asterisk or (optional) postfix for the label as a 'required' decoration */
   requiredDecoration?: RequiredDecoration
   /** Callback invoked when `Checkbox` changed its value */
@@ -49,6 +51,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       id,
       className,
       style,
+      labelStyle,
       disabled,
       requiredDecoration,
       onChange,
@@ -105,6 +108,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     return (
       <FormControlLabel
         {...externalEventListeners}
+        style={labelStyle}
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         classes={{
           ...rootClasses,
