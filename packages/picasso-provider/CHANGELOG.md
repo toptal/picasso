@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#4163](https://github.com/toptal/picasso/pull/4163) [`bd9c2213733168515dbe1581ba63afb191d667ed`](https://github.com/toptal/picasso/commit/bd9c2213733168515dbe1581ba63afb191d667ed) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+
+### Fonts
+
+- make fonts exportable
+
 ## 4.0.0
 
 ### Major Changes
