@@ -29,6 +29,9 @@ module.exports = {
     path.join(projectRoot, '{hosts,libs,namespaces}/**/src/**/*.{ts,tsx}'),
   ],
   presets: [require('@toptal/picasso-tailwind')],
+  corePlugins: {
+    preflight: false,
+  },
 }
 ```
 
@@ -36,6 +39,7 @@ module.exports = {
 
 ```css
 /* index.css */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
