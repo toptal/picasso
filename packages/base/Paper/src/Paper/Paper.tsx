@@ -30,20 +30,30 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   } = props
   const classes = useStyles()
 
+
+  console.log('@@@ here')
+
   return (
-    <MUIPaper
-      {...rest}
-      ref={ref}
-      classes={classes}
-      className={className}
-      style={style}
-      elevation={elevation}
-      data-testid={dataTestId}
-      square
-    >
-      {children}
-    </MUIPaper>
+    <div style={{
+      padding: '10px',
+      backgroundColor: 'red'
+    }}>{children}</div>
   )
+
+  // return (
+  //   <MUIPaper
+  //     {...rest}
+  //     ref={ref}
+  //     classes={classes}
+  //     className={className}
+  //     style={style}
+  //     elevation={elevation}
+  //     data-testid={dataTestId}
+  //     square
+  //   >
+  //     {children}
+  //   </MUIPaper>
+  // )
 })
 
 Paper.defaultProps = {
