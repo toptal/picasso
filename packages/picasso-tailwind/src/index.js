@@ -114,6 +114,11 @@ module.exports = {
         500: '#6727CF',
       },
     },
-    extend: {},
+    extend: {
+      zIndex: {
+        drawer: 1200,
+        modal: 1300,
+      },
+    },
   },
 }
