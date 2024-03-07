@@ -6,4 +6,7 @@ module.exports = {
   // eslint-disable-next-line import/no-extraneous-dependencies
   presets: [require('@toptal/picasso-tailwind')],
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 }
