@@ -8,6 +8,11 @@ page.createTabChapter('Props').addComponentDocs({
   name: 'Fade',
 })
 
-page
-  .createChapter()
-  .addExample('Fade/story/Default.example.tsx', 'Default', 'base/Fade')
+page.createChapter().addExample(
+  'Fade/story/Default.example.tsx',
+  {
+    title: 'Default',
+    takeScreenshot: false,
+  },
+  'base/Fade'
+)

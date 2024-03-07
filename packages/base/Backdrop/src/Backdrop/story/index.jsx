@@ -10,9 +10,19 @@ page.createTabChapter('Props').addComponentDocs({
 
 page
   .createChapter()
-  .addExample('Backdrop/story/Default.example.tsx', 'Default', 'base/Backdrop')
+  .addExample(
+    'Backdrop/story/Default.example.tsx',
+    {
+      title: 'Default',
+      takeScreenshot: false,
+    },
+    'base/Backdrop'
+  )
   .addExample(
     'Backdrop/story/Invisible.example.tsx',
-    'Invisible',
+    {
+      title: 'Invisible',
+      takeScreenshot: false,
+    },
     'base/Backdrop'
   )
