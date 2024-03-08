@@ -38,7 +38,8 @@
     "@toptal/picasso-test-utils": "1.0.1"
   },
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.1"
+    "@toptal/picasso-utils": "1.0.1",
+    "classnames": "^2.5.1"
   },
   "files": [
     "dist-package/**",
