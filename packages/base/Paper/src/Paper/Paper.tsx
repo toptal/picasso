@@ -76,6 +76,8 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
     ...rest
   } = props
 
+  console.log('@@@', style)
+
   return (
     <div
       ref={ref}
