@@ -10,20 +10,24 @@ describe('Backdrop component', () => {
     render(<Backdrop open={true} />)
   })
 
-  it('should render with correct class when invisible prop is true', () => {
-    const { getByTestId } = render(
-      <Backdrop data-testid='backdrop' open={true} invisible={true} />
-    )
+  describe('when invisible prop is true', () => {
+    it('renders with correct class', () => {
+      const { getByTestId } = render(
+        <Backdrop data-testid='backdrop' open={true} invisible={true} />
+      )
 
-    expect(getByTestId('backdrop')).toHaveClass('bg-opacity-0')
+      expect(getByTestId('backdrop')).toHaveClass('bg-opacity-0')
+    })
   })
 
-  it('should render with correct class when invisible prop is false', () => {
-    const { getByTestId } = render(
-      <Backdrop data-testid='backdrop' open={true} />
-    )
+  describe('when invisible prop is false', () => {
+    it('renders with correct class', () => {
+      const { getByTestId } = render(
+        <Backdrop data-testid='backdrop' open={true} />
+      )
 
-    expect(getByTestId('backdrop')).toHaveClass('bg-opacity-50')
+      expect(getByTestId('backdrop')).toHaveClass('bg-opacity-50')
+    })
   })
 
   it('handle ref correctly', () => {
