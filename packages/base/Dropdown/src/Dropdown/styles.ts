@@ -27,7 +27,6 @@ export default ({ screens, shadows, palette }: Theme) =>
 
       maxHeight: '14.75rem', // 6.5 lines of menu to show
       overflowY: 'auto',
-      boxShadow: shadows[0],
 
       // height under which maxHeight menu starts to overflow
       // and needs to reduce height dynamically to avoid overflow

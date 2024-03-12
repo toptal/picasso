@@ -9,4 +9,10 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
+  safelist: [
+    {
+      // Needed for dynamic box shadow classes in the Paper component
+      pattern: /shadow-(12|13|14)/,
+    }
+  ],
 }
