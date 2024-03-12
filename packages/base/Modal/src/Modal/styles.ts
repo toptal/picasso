@@ -1,5 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
+import { PicassoProvider } from '@toptal/picasso-provider'
 
 const maxHeight = 'calc(100% - 6rem)'
 const maxWidth = 'calc(100% - 6rem)'
@@ -7,6 +8,14 @@ const maxWidth = 'calc(100% - 6rem)'
 const maxHeightForTopAligned = 'calc(100% - 4rem)'
 const maxHeightForExtraSmall = 'calc(100% - 2rem)'
 const maxWidthForExtraSmall = 'calc(100% - 2rem)'
+
+PicassoProvider.override(() => ({
+  MuiPaper: {
+    root: {
+      color: 'unset',
+    },
+  },
+}))
 
 export default ({ screens, sizes }: Theme) =>
   createStyles({
