@@ -25,7 +25,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   return (
     <div
       ref={ref}
-      className={cx('bg-white', `shadow-${elevation}`, className)}
+      className={cx('bg-blue-700', `shadow-${elevation}`, className)}
       style={{
         //color: 'unset',
         ...style,
