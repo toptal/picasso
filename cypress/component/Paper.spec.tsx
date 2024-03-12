@@ -9,6 +9,9 @@ describe('Paper', () => {
     cy.mount(
       <Container padded='small' gap='small'>
         <Paper>Test text</Paper>
+        <div className='bg-blue-100 text-xl font-medium text-black'>
+          Test regular div
+        </div>
       </Container>
     )
 
@@ -22,6 +25,9 @@ describe('Paper', () => {
     cy.mount(
       <Container padded='small' gap='small'>
         <Paper elevation={15}>Test text</Paper>
+        <div className='bg-blue-100 text-xl font-medium text-black'>
+          Test regular div
+        </div>
       </Container>
     )
 
