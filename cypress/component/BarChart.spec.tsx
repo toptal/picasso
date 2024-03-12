@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
-import { Container, Paper, Typography } from '@toptal/picasso'
+import { Container, Typography } from '@toptal/picasso'
+import { Paper } from '@toptal/picasso-paper'
 import { BarChart, BarChartIndicator } from '@toptal/picasso-charts'
 import { palette } from '@toptal/picasso-utils'
 
