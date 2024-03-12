@@ -41,6 +41,8 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
       data-testid={dataTestId}
       square
     >
+      {/* TODO: remove before merge */}
+      <div className='bg-green-500 text-xxl'>TEST</div>
       {children}
     </MUIPaper>
   )
