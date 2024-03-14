@@ -28,7 +28,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
       className={cx(
         'bg-white',
         `shadow-${elevation}`,
-        'transition-shadow duration-300 ease-in-out delay-0',
+        'transition-shadow duration-300 delay-0',
         className
       )}
       style={{
