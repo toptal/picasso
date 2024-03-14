@@ -100,6 +100,10 @@ describe('Menu', () => {
     cy.getByTestId('item-b').trigger('mouseover')
     cy.getByTestId('menu-b').should('be.visible')
     cy.getByTestId('menu-b1').should('not.exist')
+
+    // TODO: remove it
+    cy.wait(3000)
+
     cy.get('[data-cy-root]').happoScreenshot({
       component,
       variant: 'drilldown/after-mouseover-item',
