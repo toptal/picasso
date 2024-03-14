@@ -3,6 +3,7 @@ import { createStyles } from '@material-ui/core/styles'
 import { PicassoProvider } from '@toptal/picasso-provider'
 import { rem } from '@toptal/picasso-shared'
 
+// Test comment
 PicassoProvider.override(() => ({
   MuiMenuItem: {
     root: {
