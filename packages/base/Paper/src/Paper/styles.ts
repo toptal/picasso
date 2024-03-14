@@ -5,6 +5,7 @@ PicassoProvider.override(() => ({
   MuiPaper: {
     root: {
       color: 'unset',
+      transitionDuration: '0s',
     },
   },
 }))
