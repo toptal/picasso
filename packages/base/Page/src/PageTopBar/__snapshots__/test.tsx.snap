@@ -54,7 +54,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                 >
                   <div>
                     <div
-                      class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content PageHamburger-responsiveWrapperContent"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
@@ -151,7 +151,7 @@ exports[`Page.TopBar render with link 1`] = `
                 >
                   <div>
                     <div
-                      class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content PageHamburger-responsiveWrapperContent"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
@@ -274,7 +274,7 @@ exports[`Page.TopBar renders 1`] = `
                 >
                   <div>
                     <div
-                      class="MuiPaper-root PicassoDropdown-content PageHamburger-responsiveWrapperContent MuiPaper-elevation2"
+                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content PageHamburger-responsiveWrapperContent"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
