@@ -201,7 +201,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>
-            {/* TODO: elevation={2} should be added below */}
             <Paper className={classes.paper}>{menu}</Paper>
           </ClickAwayListener>
         </Popper>
