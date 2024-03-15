@@ -1,5 +1,15 @@
 # Change Log
 
+## 43.2.0
+
+### Minor Changes
+
+- [#4179](https://github.com/toptal/picasso/pull/4179) [`18b529d89edb26e0bdf43458326012ab3072ee8f`](https://github.com/toptal/picasso/commit/18b529d89edb26e0bdf43458326012ab3072ee8f) Thanks [@yvniTop](https://github.com/yvniTop)!
+
+### FormField
+
+- export `FormField` independently
+
 ## 43.1.0
 
 ### Minor Changes
