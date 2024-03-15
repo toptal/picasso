@@ -56,6 +56,7 @@ module.exports = {
       '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
       xxl: ['1.75rem', { lineHeight: '2.625rem' }],
     },
+    // TODO: [FX-5003] Deprecate legacy shadow classes
     // Shadows 0-5 correspond to BASE design https://www.figma.com/file/9xnyixadrhlHe9UuXBMRlT/Foundations?type=design&node-id=22%3A21&mode=design&t=8d8TKUUuHKWosUtX-1
     // Shadows 0-24 correspond to Material UI v4 shadows @material-ui/core/styles/shadows.js
     boxShadow: {
