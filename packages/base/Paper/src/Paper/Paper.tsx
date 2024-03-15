@@ -26,7 +26,8 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
     <div
       ref={ref}
       className={cx(
-        'bg-white',
+        'bg-blue-500',
+        'shadow-20',
         //`shadow-${elevation}`,
         //'transition-shadow duration-300 delay-0',
         className
