@@ -27,13 +27,13 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
       ref={ref}
       className={cx(
         'bg-white',
-        `shadow-${elevation}`,
+        //`shadow-${elevation}`,
         //'transition-shadow duration-300 delay-0',
         className
       )}
       style={{
         color: 'unset',
-        transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        //transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         ...style,
       }}
       {...rest}
