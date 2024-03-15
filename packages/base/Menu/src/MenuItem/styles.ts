@@ -25,7 +25,7 @@ PicassoProvider.override(() => ({
   },
 }))
 
-export default ({ typography, palette, shadows }: Theme) =>
+export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
       minWidth: rem('144'),
