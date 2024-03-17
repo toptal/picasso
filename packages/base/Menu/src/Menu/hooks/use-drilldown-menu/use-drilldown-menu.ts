@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react'
 import { useCallback, useMemo, useState } from 'react'
 
 import type { MenuContextProps } from '../../MenuContext'
@@ -6,14 +5,9 @@ import type { MenuContextProps } from '../../MenuContext'
 const useDrilldownMenu = () => {
   const [activeItemKey, setActiveItemKey] = useState<string>()
 
-  const handleItemMouseEnter = useCallback(
-    (key: string, menu?: ReactElement) => {
-      if (menu) {
-        setActiveItemKey(key)
-      }
-    },
-    []
-  )
+  const handleItemMouseEnter = useCallback((key: string) => {
+    setActiveItemKey(key)
+  }, [])
 
   const handleMenuMouseLeave = useCallback(() => {
     setActiveItemKey(undefined)
