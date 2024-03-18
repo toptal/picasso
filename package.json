@@ -61,9 +61,6 @@
     "{**/*.{js,jsx,ts,tsx},.changeset/*.md}": [
       "davinci-syntax lint code",
       "prettier --write"
-    ],
-    "**/package.json": [
-      "yarn refresh:tsconfig-references"
     ]
   },
   "nyc": {
