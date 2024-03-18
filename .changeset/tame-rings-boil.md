@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-paper': patch
+'@toptal/picasso-paper': major
 ---
 
 ### Paper

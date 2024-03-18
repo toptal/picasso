@@ -4,6 +4,7 @@ import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+  /** Paper elevation shadow */
   elevation?: number
   children: ReactNode
 }
@@ -31,10 +32,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
         'transition-shadow duration-300 delay-0',
         className
       )}
-      style={{
-        color: 'unset',
-        ...style,
-      }}
+      style={style}
       {...rest}
     >
       {children}
