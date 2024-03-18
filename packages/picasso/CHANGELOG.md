@@ -1,5 +1,24 @@
 # Change Log
 
+## 44.0.0
+
+### Major Changes
+
+- [#4183](https://github.com/toptal/picasso/pull/4183) [`cb9586eefcd4bad2a594d4cf9ddbbc2a65e1b334`](https://github.com/toptal/picasso/commit/cb9586eefcd4bad2a594d4cf9ddbbc2a65e1b334) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add TailwindCSS as a peer dependency
+  - users of Picasso are expected to have TailwindCSS setup in their project
+  - [adoption guide](https://toptal-core.atlassian.net/wiki/spaces/FE/pages/3558866965/Adopting+Tailwind+CSS+in+current+project)
+
+## 43.2.0
+
+### Minor Changes
+
+- [#4179](https://github.com/toptal/picasso/pull/4179) [`18b529d89edb26e0bdf43458326012ab3072ee8f`](https://github.com/toptal/picasso/commit/18b529d89edb26e0bdf43458326012ab3072ee8f) Thanks [@yvniTop](https://github.com/yvniTop)!
+
+### FormField
+
+- export `FormField` independently
+
 ## 43.1.0
 
 ### Minor Changes

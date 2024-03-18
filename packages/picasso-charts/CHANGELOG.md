@@ -1,5 +1,19 @@
 # Change Log
 
+## 58.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`cb9586eefcd4bad2a594d4cf9ddbbc2a65e1b334`](https://github.com/toptal/picasso/commit/cb9586eefcd4bad2a594d4cf9ddbbc2a65e1b334)]:
+  - @toptal/picasso@44.0.0
+
+## 57.0.1
+
+### Patch Changes
+
+- [#4184](https://github.com/toptal/picasso/pull/4184) [`a7c527ceab5d7b2ad0da7fbffd63ee19d0132de8`](https://github.com/toptal/picasso/commit/a7c527ceab5d7b2ad0da7fbffd63ee19d0132de8) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump recharts from 2.10.4 to 2.12.3
+
 ## 57.0.0
 
 ### Patch Changes

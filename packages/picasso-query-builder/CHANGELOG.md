@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`cb9586eefcd4bad2a594d4cf9ddbbc2a65e1b334`](https://github.com/toptal/picasso/commit/cb9586eefcd4bad2a594d4cf9ddbbc2a65e1b334)]:
+  - @toptal/picasso@44.0.0
+
 ## 2.0.1
 
 ### Patch Changes
