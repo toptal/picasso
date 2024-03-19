@@ -48,6 +48,7 @@
     { "path": "../base/Pagination" },
     { "path": "../base/Paper" },
     { "path": "../base/PasswordInput" },
+    { "path": "../base/Popper" },
     { "path": "../base/PromptModal" },
     { "path": "../base/Quote" },
     { "path": "../base/Radio" },
