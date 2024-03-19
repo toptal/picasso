@@ -3,11 +3,5 @@
     "default": ["{projectRoot}/**/*"],
     "production": ["default"]
   },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {}
-    }
-  },
   "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
