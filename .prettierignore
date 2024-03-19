@@ -7,3 +7,4 @@ packages/picasso-codemod/src/v20.0.0/replace-error/__testfixtures__/as-variable.
 packages/picasso-codemod/src/v20.0.0/overlay-badge/__testfixtures__/size-default.output.tsx
 packages/picasso-codemod/**/__testfixtures__/*.input.tsx
 packages/picasso-codemod/**/__testfixtures__/*.output.tsx
+/.nx/cache
