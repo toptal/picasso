@@ -1,4 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
+import { Modal as Dialog } from '@mui/base/Modal'
 import React, {
   forwardRef,
   useEffect,
@@ -6,21 +7,13 @@ import React, {
   useCallback,
   useContext,
 } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Dialog } from '@material-ui/core'
-import type { PaperProps } from '@material-ui/core/Paper'
 import cx from 'classnames'
 import type {
-  StandardProps,
+  BaseProps,
   SizeType,
   TransitionProps,
 } from '@toptal/picasso-shared'
-import {
-  usePicassoRoot,
-  useBreakpoint,
-  RootContext,
-} from '@toptal/picasso-provider'
+import { usePicassoRoot, RootContext } from '@toptal/picasso-provider'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import {
   useCombinedRefs,
@@ -28,14 +21,16 @@ import {
   usePageScrollLock,
 } from '@toptal/picasso-utils'
 import { ButtonCircular } from '@toptal/picasso-button'
+import { Fade } from '@toptal/picasso-fade'
+import { Backdrop } from '@toptal/picasso-backdrop'
 import ModalContext from '@toptal/picasso-modal-context'
 
-import styles from './styles'
+import { ModalPaper } from '../ModalPaper'
 
 type ContainerValue = HTMLElement | (() => HTMLElement)
 type Alignment = 'top' | 'centered'
 
-export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
+export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Content of Modal component */
   children: ReactNode
   /** Whether modal should be displayed */
@@ -61,15 +56,13 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) */
   transitionProps?: TransitionProps
   transitionDuration?: number
-  paperProps?: PaperProps
+  /** used for specifying aria attributes, changing role, or customizing styles */
+  paperProps?: React.HTMLAttributes<HTMLDivElement>
   testIds?: {
     closeButton?: string
   }
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoModal',
-})
 const defaultManager = new ModalManager()
 
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
@@ -83,7 +76,9 @@ const focusFirstFocusableElement = (node: Element) => {
   // Convert NodeList to Array
   const focusableElements = Array.prototype.slice.call(elements)
 
-  focusableElements[0].focus()
+  if (focusableElements.length > 0) {
+    focusableElements[0].focus()
+  }
 }
 
 const isFocusInsideModal = (modalNode: Element) => {
@@ -121,7 +116,10 @@ const generateKey = (() => {
 })()
 
 // eslint-disable-next-line react/display-name
-export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
+export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
+  props,
+  ref
+) {
   const {
     children,
     open,
@@ -141,9 +139,11 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     disableBackdropClick = false,
     ...rest
   } = props
-  const classes = useStyles(props)
   const picassoRootContainer = usePicassoRoot()
-  const modalRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const modalRef = useCombinedRefs<HTMLDivElement>(
+    ref,
+    useRef<HTMLDivElement>(null)
+  )
   const modalId = useRef(generateKey())
   const { rootRef } = useContext(RootContext)
 
@@ -199,8 +199,6 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
 
   usePageScrollLock(open)
 
-  const isExtraSmall = useBreakpoint('xs')
-
   const handleClose = useCallback(
     (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
       if (reason === 'escapeKeyDown' && onClose) {
@@ -218,44 +216,51 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
     [disableBackdropClick, onBackdropClick, onClose]
   )
 
+  const duration = transitionProps?.timeout || transitionDuration
+
   return (
     <Dialog
       {...rest}
       ref={modalRef}
-      classes={{
-        root: classes.root,
-        container: classes.container,
-        paper: cx(classes.paper, classes[size], {
-          [classes.topAlignedDialog]: align === 'top',
-        }),
-      }}
-      className={className}
+      className={cx(
+        className,
+        'fixed z-modal inset-0 flex flex-col text-lg justify-center items-center'
+      )}
       style={style}
-      fullScreen={isExtraSmall}
+      slots={{
+        backdrop: Backdrop,
+      }}
+      closeAfterTransition
+      slotProps={{
+        // @ts-ignore
+        backdrop: { transitionDuration: duration },
+      }}
       container={container || picassoRootContainer}
-      PaperProps={{ ...paperProps, elevation: 2 }}
       hideBackdrop={hideBackdrop}
       onClose={handleClose}
-      onEnter={onOpen}
       open={open}
-      transitionDuration={transitionDuration}
-      maxWidth={false}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
       TransitionProps={transitionProps}
       disableScrollLock
     >
-      <ModalContext.Provider value>{children}</ModalContext.Provider>
-
-      {onClose && (
-        <ButtonCircular
-          variant='flat'
-          className={classes.closeButton}
-          onClick={onClose}
-          data-testid={testIds?.closeButton}
-        >
-          <CloseMinor16 />
-        </ButtonCircular>
-      )}
+      <Fade in={open} onEnter={onOpen} timeout={transitionDuration}>
+        <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
+          <ModalContext.Provider value>
+            {children}
+            {onClose && (
+              <ButtonCircular
+                aria-label='Close'
+                variant='flat'
+                className='absolute top-8 right-8'
+                onClick={onClose}
+                data-testid={testIds?.closeButton}
+              >
+                <CloseMinor16 />
+              </ButtonCircular>
+            )}
+          </ModalContext.Provider>
+        </ModalPaper>
+      </Fade>
     </Dialog>
   )
 })
