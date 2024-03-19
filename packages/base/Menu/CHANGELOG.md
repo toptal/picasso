@@ -1,5 +1,15 @@
 # @toptal/picasso-menu
 
+## 1.0.2
+
+### Patch Changes
+
+- [#4182](https://github.com/toptal/picasso/pull/4182) [`372e152aadc737cfacdf7f35110bc1ce2f35a90f`](https://github.com/toptal/picasso/commit/372e152aadc737cfacdf7f35110bc1ce2f35a90f) Thanks [@sunRock98](https://github.com/sunRock98)!
+
+### Menu
+
+- hide submenu on other menu item focus
+
 ## 1.0.1
 
 ### Patch Changes
