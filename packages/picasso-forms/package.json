@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "68.0.0",
+  "version": "68.0.1",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@toptal/picasso-rich-text-editor": "12.0.0",
     "@toptal/picasso-utils": "1.0.1",
-    "@toptal/picasso-notification": "1.0.2",
+    "@toptal/picasso-notification": "1.0.3",
     "classnames": "^2.5.1",
     "debounce": "^1.2.1",
     "detect-browser": "^5.3.0",

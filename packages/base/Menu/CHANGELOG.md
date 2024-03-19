@@ -1,5 +1,17 @@
 # @toptal/picasso-menu
 
+## 1.0.3
+
+### Patch Changes
+
+- [#4173](https://github.com/toptal/picasso/pull/4173) [`d22bf5d913428b586e2813cf530f4e96d46b622e`](https://github.com/toptal/picasso/commit/d22bf5d913428b586e2813cf530f4e96d46b622e) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Menu
+
+- delete duplicated styles
+- Updated dependencies [[`d22bf5d913428b586e2813cf530f4e96d46b622e`](https://github.com/toptal/picasso/commit/d22bf5d913428b586e2813cf530f4e96d46b622e)]:
+  - @toptal/picasso-paper@2.0.0
+
 ## 1.0.2
 
 ### Patch Changes

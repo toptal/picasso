@@ -1,5 +1,45 @@
 # Change Log
 
+## 44.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`d22bf5d913428b586e2813cf530f4e96d46b622e`](https://github.com/toptal/picasso/commit/d22bf5d913428b586e2813cf530f4e96d46b622e), [`d22bf5d913428b586e2813cf530f4e96d46b622e`](https://github.com/toptal/picasso/commit/d22bf5d913428b586e2813cf530f4e96d46b622e), [`d22bf5d913428b586e2813cf530f4e96d46b622e`](https://github.com/toptal/picasso/commit/d22bf5d913428b586e2813cf530f4e96d46b622e), [`d22bf5d913428b586e2813cf530f4e96d46b622e`](https://github.com/toptal/picasso/commit/d22bf5d913428b586e2813cf530f4e96d46b622e)]:
+  - @toptal/picasso-modal@1.0.3
+  - @toptal/picasso-dropdown@1.0.2
+  - @toptal/picasso-paper@2.0.0
+  - @toptal/picasso-menu@1.0.3
+  - @toptal/picasso-prompt-modal@1.0.3
+  - @toptal/picasso-button@1.0.3
+  - @toptal/picasso-page@1.0.4
+  - @toptal/picasso-account-select@1.0.3
+  - @toptal/picasso-autocomplete@1.0.4
+  - @toptal/picasso-select@1.0.4
+  - @toptal/picasso-accordion@1.0.3
+  - @toptal/picasso-alert@1.0.3
+  - @toptal/picasso-application-update-notification@1.0.3
+  - @toptal/picasso-calendar@1.0.3
+  - @toptal/picasso-carousel@1.0.3
+  - @toptal/picasso-drawer@1.0.3
+  - @toptal/picasso-file-input@1.0.3
+  - @toptal/picasso-helpbox@1.0.3
+  - @toptal/picasso-notification@1.0.3
+  - @toptal/picasso-outlined-input@1.0.3
+  - @toptal/picasso-pagination@1.0.3
+  - @toptal/picasso-password-input@1.0.3
+  - @toptal/picasso-section@1.0.3
+  - @toptal/picasso-show-more@1.0.3
+  - @toptal/picasso-skeleton-loader@1.0.3
+  - @toptal/picasso-tree-view@1.0.3
+  - @toptal/picasso-tagselector@1.0.4
+  - @toptal/picasso-date-select@1.0.4
+  - @toptal/picasso-date-picker@1.0.3
+  - @toptal/picasso-dropzone@1.0.3
+  - @toptal/picasso-avatar-upload@1.0.3
+  - @toptal/picasso-input@1.0.3
+  - @toptal/picasso-number-input@1.0.3
+  - @toptal/picasso-timepicker@1.0.3
+
 ## 44.0.1
 
 ### Patch Changes

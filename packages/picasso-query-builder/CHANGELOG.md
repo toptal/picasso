@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-notification@1.0.3
+
 ## 3.0.0
 
 ### Patch Changes
