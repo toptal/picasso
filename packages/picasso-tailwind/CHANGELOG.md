@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind
 
+## 2.1.0
+
+### Minor Changes
+
+- [#4172](https://github.com/toptal/picasso/pull/4172) [`0ccb256c05520b3a21bca08642bdf1cc47be88a2`](https://github.com/toptal/picasso/commit/0ccb256c05520b3a21bca08642bdf1cc47be88a2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- extend default z-index util classes with z-modal and z-drawer
+
 ## 2.0.1
 
 ### Patch Changes
