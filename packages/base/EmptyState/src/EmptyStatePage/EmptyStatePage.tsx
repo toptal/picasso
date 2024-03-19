@@ -35,7 +35,7 @@ export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
         <Container
           alignItems='center'
           justifyContent='center'
-          bottom='small'
+          bottom='medium'
           flex
         >
           {cloneElement(image, { className: classes.image })}
