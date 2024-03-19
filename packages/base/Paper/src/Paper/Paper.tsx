@@ -1,48 +1,42 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Paper as MUIPaper } from '@material-ui/core'
+import cx from 'classnames'
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 
-import styles from './styles'
-
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
-  /** Content of component */
+  /** Paper elevation shadow */
   elevation?: number
   children: ReactNode
-  'data-testid'?: string
 }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPaper' })
 
 export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   props,
   ref
 ) {
-  const {
-    className,
-    style,
-    elevation,
-    children,
-    'data-testid': dataTestId,
-    ...rest
-  } = props
-  const classes = useStyles()
+  const { className, elevation, style, children, ...rest } = props
 
+  /*
+  TODO: [FX-5003] Deprecate legacy shadow classes
+
+  Use complete class names in comment, so Tailwind includes all of them in the build
+  .shadow-0 .shadow-1 .shadow-2 .shadow-3 .shadow-4 .shadow-5 .shadow-6 .shadow-7 
+  .shadow-8  .shadow-9 .shadow-10 .shadow-11 .shadow-12 .shadow-13 .shadow-14 .shadow-15 
+  .shadow-16 .shadow-17 .shadow-18 .shadow-19 .shadow-20 .shadow-21 .shadow-22 .shadow-23 .shadow-24
+  */
   return (
-    <MUIPaper
-      {...rest}
+    <div
       ref={ref}
-      classes={classes}
-      className={className}
+      className={cx(
+        'bg-white',
+        `shadow-${elevation}`,
+        'transition-shadow duration-300 delay-0',
+        className
+      )}
       style={style}
-      elevation={elevation}
-      data-testid={dataTestId}
-      square
+      {...rest}
     >
       {children}
-    </MUIPaper>
+    </div>
   )
 })
 

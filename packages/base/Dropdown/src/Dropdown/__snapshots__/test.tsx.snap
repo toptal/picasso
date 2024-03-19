@@ -47,7 +47,7 @@ exports[`Dropdown should render menu 1`] = `
       >
         <div>
           <div
-            class="MuiPaper-root PicassoDropdown-content MuiPaper-elevation2"
+            class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content"
             style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <div>
@@ -168,7 +168,7 @@ exports[`Dropdown should render menu with focus 1`] = `
       >
         <div>
           <div
-            class="MuiPaper-root PicassoDropdown-content MuiPaper-elevation2"
+            class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content"
             style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <div>

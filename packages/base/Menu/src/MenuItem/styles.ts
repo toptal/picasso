@@ -25,7 +25,7 @@ PicassoProvider.override(() => ({
   },
 }))
 
-export default ({ typography, palette, shadows }: Theme) =>
+export default ({ typography, palette }: Theme) =>
   createStyles({
     root: {
       minWidth: rem('144'),
@@ -126,10 +126,8 @@ export default ({ typography, palette, shadows }: Theme) =>
       color: 'inherit',
     },
     paper: {
-      background: palette.common.white,
       maxHeight: '14.75rem', // 6.5 lines to show
       overflowY: 'auto',
-      boxShadow: shadows[2],
     },
     disabled: {},
   })

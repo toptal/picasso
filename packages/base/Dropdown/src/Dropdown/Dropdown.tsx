@@ -297,7 +297,7 @@ export const Dropdown: DropdownProps = forwardRef<
                     [classes.contentVisible]: contentOverflow === 'visible',
                   })}
                   onKeyDown={handleContentKeyDown}
-                  elevation={2}
+                  elevation={0}
                 >
                   <DropdownContext.Provider value={context}>
                     <div ref={contentRef}>{content}</div>
