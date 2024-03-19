@@ -13,20 +13,6 @@ const formatFile = async file => {
   await $`yarn -s prettier --write ${file}`
 }
 
-const fileExists = async file => {
-  try {
-    await fs.stat(file)
-
-    return true
-  } catch (e) {
-    if (e.code !== 'ENOENT') {
-      throw e
-    }
-
-    return false
-  }
-}
-
 const readTsconfig = async dir => {
   try {
     return JSON5.parse(await fs.readFile(path.join(dir, 'tsconfig.json')))
