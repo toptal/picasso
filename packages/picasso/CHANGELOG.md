@@ -1,5 +1,18 @@
 # Change Log
 
+## 44.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`372e152aadc737cfacdf7f35110bc1ce2f35a90f`](https://github.com/toptal/picasso/commit/372e152aadc737cfacdf7f35110bc1ce2f35a90f)]:
+  - @toptal/picasso-menu@1.0.2
+  - @toptal/picasso-account-select@1.0.2
+  - @toptal/picasso-autocomplete@1.0.3
+  - @toptal/picasso-page@1.0.3
+  - @toptal/picasso-select@1.0.3
+  - @toptal/picasso-tagselector@1.0.3
+  - @toptal/picasso-date-select@1.0.3
+
 ## 44.0.0
 
 ### Major Changes

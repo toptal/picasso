@@ -1,5 +1,12 @@
 # @toptal/picasso-date-select
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
