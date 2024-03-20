@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-environment-banner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Toptal UI components library - EnvironmentBanner",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-shared": "14.0.0",
+    "@toptal/picasso-shared": "14.0.1",
     "classnames": "^2.5.1"
   },
   "sideEffects": [

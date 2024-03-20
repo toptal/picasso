@@ -1,5 +1,12 @@
 # Change Log
 
+## 58.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@1.0.2
+
 ## 58.0.0
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @toptal/picasso-account-select
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@1.0.4
+  - @toptal/picasso-utils@1.0.2
+  - @toptal/picasso-user-badge@1.0.2
+  - @toptal/picasso-container@1.0.2
+  - @toptal/picasso-link@1.0.2
+  - @toptal/picasso-typography@1.0.2
+  - @toptal/picasso-icons@1.0.2
+
 ## 1.0.3
 
 ### Patch Changes

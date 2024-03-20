@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Toptal UI components library - Table",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-shared": "14.0.0",
-    "@toptal/picasso-typography": "1.0.1",
-    "@toptal/picasso-utils": "1.0.1",
+    "@toptal/picasso-shared": "14.0.1",
+    "@toptal/picasso-typography": "1.0.2",
+    "@toptal/picasso-utils": "1.0.2",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
   },
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "4.1.0",
-    "@toptal/picasso-test-utils": "1.0.1",
+    "@toptal/picasso-test-utils": "1.0.2",
     "styled-components": "^6.1.1"
   },
   "exports": {

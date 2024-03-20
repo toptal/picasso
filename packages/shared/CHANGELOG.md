@@ -1,5 +1,12 @@
 # Change Log
 
+## 14.0.1
+
+### Patch Changes
+
+- [#4196](https://github.com/toptal/picasso/pull/4196) [`a1d523092cc4de6cb376156435b99b1e483f39b9`](https://github.com/toptal/picasso/commit/a1d523092cc4de6cb376156435b99b1e483f39b9) Thanks [@mkrl](https://github.com/mkrl)!
+- move `@types/color` from `devDependencies` to `dependencies`
+
 ## 14.0.0
 
 ### Major Changes
