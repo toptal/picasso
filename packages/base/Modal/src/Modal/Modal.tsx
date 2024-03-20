@@ -240,10 +240,14 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       onClose={handleClose}
       open={open}
       disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      TransitionProps={transitionProps}
       disableScrollLock
     >
-      <Fade in={open} onEnter={onOpen} timeout={transitionDuration}>
+      <Fade
+        in={open}
+        onEnter={onOpen}
+        onExited={transitionProps?.onExited}
+        timeout={transitionDuration}
+      >
         <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
           <ModalContext.Provider value>
             {children}

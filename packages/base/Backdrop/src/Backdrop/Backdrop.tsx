@@ -9,11 +9,21 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   transitionDuration?: number
   /** If true, the backdrop is invisible */
   invisible?: boolean
+  ownerState: {}
 }
 
 export const Backdrop = React.forwardRef<HTMLDivElement, Props>(
   (
-    { transitionDuration = 300, open, className, invisible = false, ...rest },
+    {
+      transitionDuration = 300,
+      open,
+      className,
+      invisible = false,
+      // we want to omit ownerState from spreading to the DOM
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ownerState,
+      ...rest
+    },
     ref
   ) => {
     return (
