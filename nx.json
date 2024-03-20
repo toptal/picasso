@@ -3,5 +3,18 @@
     "default": ["{projectRoot}/**/*"],
     "production": ["default"]
   },
+  "targetDefaults": {
+    "build:package": {
+      "inputs": [
+        "default",
+        "!{projectRoot}/**/*.test.(js|jsx|ts|tsx)",
+        "!{projectRoot}/**/test.(js|jsx|ts|tsx)",
+        "!{projectRoot}/**/story/"
+      ],
+      "outputs": ["{projectRoot}/dist-package/"],
+      "cache": true,
+      "dependsOn": ["^build:package"]
+    }
+  },
   "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }

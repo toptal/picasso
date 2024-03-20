@@ -21,14 +21,13 @@ Please read our documentation [here](./CONTRIBUTING.md)
 
 ## Supported browsers
 
-Picasso guarantees to work in Chrome and it supports other browsers specified in `@toptal/browserslist-config` package. 
+Picasso guarantees to work in Chrome and it supports other browsers specified in `@toptal/browserslist-config` package.
 
 ## Release policy
 
 Changes in peer dependencies, breaking changes in component API or behavior, supported NodeJS version, result in major releases.
 
 Changes in dev dependencies, component HTML structure, or visual changes are not considered as breaking changes and result in minor or patch releases.
-
 
 ## Running storybook
 
@@ -39,6 +38,7 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | Command                     | Description                                                                         |
 | --------------------------- | ----------------------------------------------------------------------------------- |
 | **build:package**           | Build the packages                                                                  |
+| **build:package:watch**     | Build all packages in watch mode                                                    |
 | **build:storybook**         | Build Storybook as static website                                                   |
 | **generate:component**      | Generate a new component template                                                   |
 | **generate:example**        | Generate a new component component code example                                     |
@@ -61,7 +61,7 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 
 In Picasso, we keep icons and pictograms in `svg` format and transform them into React components to make usage in React projects easier. This transformation is processed by the [`svgr`](https://github.com/smooth-code/svgr) tool.
 
-Pictograms are stored in a separate package due to their size and use cases. 
+Pictograms are stored in a separate package due to their size and use cases.
 
 To add a new icon to `@toptal/picasso` or pictogram to `@toptal/picasso-pictograms` please follow these steps:
 
@@ -70,6 +70,7 @@ To add a new icon to `@toptal/picasso` or pictogram to `@toptal/picasso-pictogra
    - Make sure that `viewBox` sizes are `0 0 16 16` and `0 0 24 24` for icon (there should always be two icon variants) and `0 0 64 64` for pictogram (be careful this isn't just a simple value set!)
    - Make sure all paths are expanded and strokes are not used
 2. Add your SVG file(s) to the Picasso project:
+
    ```bash
    packages/picasso/src/Icon/svg/[your_icon_name].svg                       # icons
    packages/picasso-pictograms/src/Pictograms/svg/[your_pictogram_name].svg # pictograms
