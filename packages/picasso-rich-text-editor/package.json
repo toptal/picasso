@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-rich-text-editor",
-  "version": "12.0.0",
+  "version": "12.0.1",
   "description": "Picasso rich text editor",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-rich-text-editor#readme",
@@ -40,7 +40,7 @@
     "@emoji-mart/react": "^1.1.1",
     "@lexical/html": "0.11.2",
     "@lexical/react": "0.11.2",
-    "@toptal/picasso-utils": "1.0.1",
+    "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1",
     "emoji-mart": "^5.5.2",
     "hast-to-hyperscript": "^9.0.1",
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@material-ui/core": "4.12.4",
     "@testing-library/react-hooks": "^8.0.1",
-    "@toptal/picasso-test-utils": "1.0.1",
+    "@toptal/picasso-test-utils": "1.0.2",
     "@types/classnames": "^2.3.1",
     "storybook-readme": "^5.0.9"
   },

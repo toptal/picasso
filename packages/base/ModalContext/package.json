@@ -36,7 +36,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.0.1"
+    "@toptal/picasso-test-utils": "1.0.2"
   },
   "files": [
     "dist-package/**",

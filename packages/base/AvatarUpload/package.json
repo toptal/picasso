@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-avatar-upload",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Toptal UI components library - AvatarUpload",
   "publishConfig": {
     "access": "public"
@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-avatar": "1.0.1",
-    "@toptal/picasso-icons": "1.0.1",
-    "@toptal/picasso-loader": "1.0.1",
-    "@toptal/picasso-outlined-input": "1.0.3",
-    "@toptal/picasso-shared": "14.0.0",
-    "@toptal/picasso-utils": "1.0.1",
+    "@toptal/picasso-avatar": "1.0.2",
+    "@toptal/picasso-icons": "1.0.2",
+    "@toptal/picasso-loader": "1.0.2",
+    "@toptal/picasso-outlined-input": "1.0.4",
+    "@toptal/picasso-shared": "14.0.1",
+    "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1",
     "react-dropzone": "^14.2.3"
   },
@@ -43,7 +43,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.0.1"
+    "@toptal/picasso-test-utils": "1.0.2"
   },
   "files": [
     "dist-package/**",

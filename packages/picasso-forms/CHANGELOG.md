@@ -1,5 +1,14 @@
 # Change Log
 
+## 68.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-notification@1.0.4
+  - @toptal/picasso-utils@1.0.2
+  - @toptal/picasso-rich-text-editor@12.0.1
+
 ## 68.0.1
 
 ### Patch Changes

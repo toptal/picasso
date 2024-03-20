@@ -1,5 +1,20 @@
 # @toptal/picasso-menu
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`a1d523092cc4de6cb376156435b99b1e483f39b9`](https://github.com/toptal/picasso/commit/a1d523092cc4de6cb376156435b99b1e483f39b9)]:
+  - @toptal/picasso-shared@14.0.1
+  - @toptal/picasso-avatar@1.0.2
+  - @toptal/picasso-popper@1.0.2
+  - @toptal/picasso-utils@1.0.2
+  - @toptal/picasso-container@1.0.2
+  - @toptal/picasso-link@1.0.2
+  - @toptal/picasso-paper@2.0.1
+  - @toptal/picasso-typography@1.0.2
+  - @toptal/picasso-icons@1.0.2
+
 ## 1.0.3
 
 ### Patch Changes
