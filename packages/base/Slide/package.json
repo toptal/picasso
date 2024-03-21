@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-slide",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Toptal UI components library - Slide",
   "publishConfig": {
     "access": "public"

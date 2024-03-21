@@ -25,7 +25,7 @@
     "@mui/base": "^5.0.0-beta.40",
     "@toptal/picasso-button": "1.0.4",
     "@toptal/picasso-container": "1.0.2",
-    "@toptal/picasso-slide": "1.0.0",
+    "@toptal/picasso-slide": "0.0.0",
     "@toptal/picasso-backdrop": "1.0.2",
     "@toptal/picasso-paper": "2.0.1",
     "@toptal/picasso-icons": "1.0.2",
