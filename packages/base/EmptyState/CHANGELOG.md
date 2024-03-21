@@ -1,5 +1,12 @@
 # @toptal/picasso-empty-state
 
+## 1.0.3
+
+### Patch Changes
+
+- [#4193](https://github.com/toptal/picasso/pull/4193) [`3f72c27390e390d2b545448677adaefe9f4a486b`](https://github.com/toptal/picasso/commit/3f72c27390e390d2b545448677adaefe9f4a486b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update spacing between Image and Title to match BASE
+
 ## 1.0.2
 
 ### Patch Changes
