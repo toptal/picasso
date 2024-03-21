@@ -48,11 +48,11 @@ const VARIANT_SIZE: Record<
 > = {
   heading: {
     xxsmall: 'font-semibold text-2xs',
-    xsmall: 'text-black font-semibold text-xxs',
-    small: 'text-black font-semibold text-md',
-    medium: 'text-black font-semibold text-lg',
-    large: 'text-black font-semibold text-xl',
-    xlarge: 'text-black font-semibold text-2xl',
+    xsmall: 'font-semibold text-xxs',
+    small: 'font-semibold text-md',
+    medium: 'font-semibold text-lg',
+    large: 'font-semibold text-xl',
+    xlarge: 'font-semibold text-2xl',
     inherit: '',
   },
   body: {
