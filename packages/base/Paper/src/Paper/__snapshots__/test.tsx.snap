@@ -9,7 +9,7 @@ exports[`Paper renders 1`] = `
       class="bg-white shadow-1 transition-shadow duration-300 delay-0"
     >
       <p
-        class="MuiTypography-root PicassoTypography-bodyInherit MuiTypography-body1"
+        class="m-0 font-regular font-inherit leading-[1.5em] text-graphite"
       >
         This is Paper
       </p>

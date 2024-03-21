@@ -121,13 +121,13 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         data-testid="header"
       >
         <h3
-          class="MuiTypography-root PicassoTypography-headingMedium PicassoSection-title MuiTypography-h3"
+          class="m-0 text-black font-semibold text-lg text-black PicassoSection-title"
           data-testid="title"
         >
           Title
         </h3>
         <p
-          class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey PicassoSection-subtitle MuiTypography-body1"
+          class="m-0 font-regular text-md text-graphite PicassoSection-subtitle"
           data-testid="subtitle"
         >
           Subtitle

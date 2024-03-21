@@ -137,7 +137,7 @@ exports[`Timeline renders with dates 1`] = `
               class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+                class="m-0 font-regular text-md text-graphite font-semibold PicassoTimelineRow-dateText"
               >
                 25.06.2021
               </p>
@@ -178,7 +178,7 @@ exports[`Timeline renders with dates 1`] = `
               class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+                class="m-0 font-regular text-md text-graphite font-semibold PicassoTimelineRow-dateText"
               >
                 25.06.2022
               </p>
@@ -219,7 +219,7 @@ exports[`Timeline renders with dates 1`] = `
               class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-semibold PicassoTimelineRow-dateText MuiTypography-body1"
+                class="m-0 font-regular text-md text-graphite font-semibold PicassoTimelineRow-dateText"
               >
                 25.06.2023
               </p>

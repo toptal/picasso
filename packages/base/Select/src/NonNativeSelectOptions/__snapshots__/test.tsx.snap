@@ -157,7 +157,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
                   class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
                   <p
-                    class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                    class="m-0 font-regular text-xxs text-graphite font-semibold"
                   >
                     Group 1
                   </p>
@@ -241,7 +241,7 @@ exports[`NonNativeSelectOptions renders option groups 1`] = `
                   class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                 >
                   <p
-                    class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+                    class="m-0 font-regular text-xxs text-graphite font-semibold"
                   >
                     Group 2
                   </p>

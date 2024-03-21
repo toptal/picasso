@@ -41,7 +41,7 @@ exports[`ProgressBar renders with percentage 1`] = `
         class="PicassoContainer-leftxsmallMargin"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-semibold PicassoProgressBar-percentageValue MuiTypography-body1"
+          class="m-0 font-regular text-xxs text-graphite font-semibold PicassoProgressBar-percentageValue"
         >
           50
           %

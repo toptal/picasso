@@ -12,13 +12,13 @@ exports[`Helpbox renders 1`] = `
         class="PicassoContainer-bottomsmallMargin"
       >
         <h4
-          class="MuiTypography-root MuiTypography-h4"
+          class="m-0 text-black font-semibold text-md text-black"
         >
           Title
         </h4>
       </div>
       <div
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black MuiTypography-body1"
+        class="m-0 font-regular text-md text-black"
       >
         Test
       </div>
