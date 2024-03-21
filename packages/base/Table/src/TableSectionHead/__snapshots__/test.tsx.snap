@@ -19,7 +19,7 @@ exports[`TableSectionHead renders 1`] = `
             colspan="100"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+              class="m-0 font-regular text-xxs text-graphite font-semibold"
             >
               Test
             </div>

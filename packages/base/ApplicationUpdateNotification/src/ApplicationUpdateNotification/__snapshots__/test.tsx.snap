@@ -29,7 +29,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
             class="PicassoContainer-flexStartAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
           >
             <h3
-              class="MuiTypography-root PicassoTypography-headingMedium PicassoTypography-inherit ApplicationUpdateNotification-positionRelative MuiTypography-h3"
+              class="m-0 text-black font-semibold text-lg text-inherit ApplicationUpdateNotification-positionRelative"
             >
               A New Update is Available
             </h3>
@@ -38,7 +38,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
             class="ApplicationUpdateNotification-positionRelative"
           >
             <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-inherit MuiTypography-body1"
+              class="m-0 font-regular text-md text-inherit"
             >
               Get performance improvements and bug fixes with this update. Make sure to save any data on this page before updating.
             </p>

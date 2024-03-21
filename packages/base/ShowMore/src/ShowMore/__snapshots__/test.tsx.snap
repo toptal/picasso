@@ -6,7 +6,7 @@ exports[`ShowMore renders 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       <span
         width="0"
@@ -57,7 +57,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       <span
         width="0"
@@ -108,7 +108,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       <span
         width="0"
@@ -159,7 +159,7 @@ exports[`ShowMore when disableToggle prop is true should render version without 
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       <span
         width="0"
@@ -185,7 +185,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
     </p>
@@ -224,7 +224,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       <span
         width="0"
@@ -275,7 +275,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+      class="m-0 font-regular text-md text-graphite"
     >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
     </p>

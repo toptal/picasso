@@ -12,7 +12,7 @@ exports[`Note renders 1`] = `
         class="makeStyles-root"
       >
         <h4
-          class="MuiTypography-root MuiTypography-h4"
+          class="m-0 text-black font-semibold text-md text-black"
         >
           Title
         </h4>
@@ -21,13 +21,13 @@ exports[`Note renders 1`] = `
         class="PicassoContainer-bottomsmallMargin"
       >
         <p
-          class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey MuiTypography-body1"
+          class="m-0 font-regular text-xxs text-graphite"
         >
           Subtitle
         </p>
       </div>
       <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black MuiTypography-body1"
+        class="m-0 font-regular text-md text-black"
       >
         Content
       </p>
