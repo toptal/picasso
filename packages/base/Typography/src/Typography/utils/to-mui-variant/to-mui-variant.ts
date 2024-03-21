@@ -21,6 +21,7 @@ const variantsMapping = {
   },
 }
 
+// @TODO: [FX-5055] remove this entire folder after Tailwind migration as the function is not used anymore
 const toMuiVariant = <
   V extends 'heading' | 'body',
   S extends
