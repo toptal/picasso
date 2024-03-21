@@ -1,5 +1,12 @@
 # Change Log
 
+## 44.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`3f72c27390e390d2b545448677adaefe9f4a486b`](https://github.com/toptal/picasso/commit/3f72c27390e390d2b545448677adaefe9f4a486b)]:
+  - @toptal/picasso-empty-state@1.0.3
+
 ## 44.0.3
 
 ### Patch Changes
