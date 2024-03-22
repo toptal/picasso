@@ -22,7 +22,7 @@ const DrawerExample = (
       <Button data-testid='trigger' onClick={onOpen}>
         Show drawer
       </Button>
-      <Drawer {...props}>
+      <Drawer onClose={() => {}} {...props}>
         <Container padded='medium'>
           <List variant='ordered'>
             <List.Item>Add at least 10 skills</List.Item>
