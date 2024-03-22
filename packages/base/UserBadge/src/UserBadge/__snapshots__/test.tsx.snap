@@ -28,7 +28,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-black inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-black inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>
@@ -109,7 +109,7 @@ exports[`UserBadge custom title 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-black inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-black inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>
@@ -156,7 +156,7 @@ exports[`UserBadge invert render 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-white inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-white inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>
@@ -200,7 +200,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-black inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-black inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>
@@ -244,7 +244,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-black inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-black inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>
@@ -283,7 +283,7 @@ exports[`UserBadge renders 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-black inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-black inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>
@@ -327,7 +327,7 @@ exports[`UserBadge small size 1`] = `
           class="PicassoContainer-centerAlignItems PicassoContainer-flex"
         >
           <h4
-            class="m-0 text-black font-semibold text-md text-black inline PicassoUserBadge-name"
+            class="m-0 font-semibold text-md text-black inline PicassoUserBadge-name"
           >
             Joe Doe
           </h4>

@@ -121,7 +121,7 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         data-testid="header"
       >
         <h3
-          class="m-0 text-black font-semibold text-lg text-black PicassoSection-title"
+          class="m-0 font-semibold text-lg text-black PicassoSection-title"
           data-testid="title"
         >
           Title
