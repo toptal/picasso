@@ -11,7 +11,7 @@ const TestModalForm = (props: Partial<Omit<ModalProps, 'open'>>) => {
   }, [])
 
   return (
-    <Modal {...props} open={isOpen}>
+    <Modal {...props} open={isOpen} onClose={() => {}}>
       <Modal.Title>Edit address details</Modal.Title>
       <Modal.Content>
         <Form.Field>
@@ -58,7 +58,7 @@ const TestModalOverflown = (props: Partial<Omit<ModalProps, 'open'>>) => {
   }, [])
 
   return (
-    <Modal {...props} open={isOpen}>
+    <Modal {...props} open={isOpen} onClose={() => {}}>
       <Modal.Title>A lot of data</Modal.Title>
       <Modal.Content>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

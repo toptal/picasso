@@ -4,9 +4,14 @@ import type { TextLabelProps } from '@toptal/picasso-shared'
 
 export type Props = TextLabelProps & {
   children: React.ReactNode
+  injectFirst?: boolean
 }
 
-export const TestingPicasso = ({ children, titleCase }: Props) => {
+export const TestingPicasso = ({
+  children,
+  titleCase,
+  injectFirst = false,
+}: Props) => {
   return (
     <Picasso
       loadFavicon={false}
@@ -15,6 +20,7 @@ export const TestingPicasso = ({ children, titleCase }: Props) => {
       preventPageWidthChangeOnScrollbar={false}
       titleCase={titleCase}
       disableTransitions
+      injectFirst={injectFirst}
     >
       {children}
     </Picasso>
