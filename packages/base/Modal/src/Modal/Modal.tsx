@@ -217,6 +217,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   )
 
   const duration = transitionProps?.timeout || transitionDuration
+  const backdropProps = { transitionDuration: duration }
 
   return (
     <Dialog
@@ -232,8 +233,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       }}
       closeAfterTransition
       slotProps={{
-        // @ts-ignore
-        backdrop: { transitionDuration: duration },
+        backdrop: backdropProps,
       }}
       container={container || picassoRootContainer}
       hideBackdrop={hideBackdrop}
