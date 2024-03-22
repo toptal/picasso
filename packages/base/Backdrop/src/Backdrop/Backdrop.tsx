@@ -8,6 +8,7 @@ export interface Props extends ModalBackdropSlotProps {
   transitionDuration?: number
   /** If true, the backdrop is invisible */
   invisible?: boolean
+  className?: string
 }
 
 export const Backdrop = React.forwardRef<HTMLDivElement, Props>(
@@ -16,9 +17,12 @@ export const Backdrop = React.forwardRef<HTMLDivElement, Props>(
       transitionDuration = 300,
       open,
       invisible = false,
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       // we want to omit ownerState from spreading to the DOM
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ownerState,
+      // @mui/base/Modal adds default class wich we don't need .base-Modal-backdrop
+      className,
+      /* eslint-enable */
       ...rest
     },
     ref
