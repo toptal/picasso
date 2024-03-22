@@ -4,9 +4,14 @@
   "include": ["src"],
   "references": [
     { "path": "../../picasso-provider" },
+    { "path": "../../picasso-tailwind" },
+    { "path": "../../shared" },
+    { "path": "../Backdrop" },
     { "path": "../Button" },
+    { "path": "../Fade" },
     { "path": "../Icons" },
     { "path": "../ModalContext" },
+    { "path": "../Paper" },
     { "path": "../Typography" },
     { "path": "../Utils" }
   ]

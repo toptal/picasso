@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { Button } from '@toptal/picasso-button'
@@ -9,8 +7,6 @@ import { noop, useSafeState } from '@toptal/picasso-utils'
 import type { Props as ModalProps } from '@toptal/picasso-modal'
 import { ModalCompound as Modal } from '@toptal/picasso-modal'
 import type { VariantType as ButtonVariantType } from '@toptal/picasso-button'
-
-import styles from './styles'
 
 export type VariantType = 'positive' | 'negative'
 
@@ -22,10 +18,6 @@ export type PromptOptions = {
   setError: (error: boolean) => void
   error: boolean
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPromptModal',
-})
 
 export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   /** Pass input component to allow you get input value from prompt modal */
@@ -54,108 +46,103 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
   }
 }
 
-export const PromptModal = forwardRef<HTMLElement, Props>(function PromptModal(
-  props,
-  ref
-) {
-  const {
-    children,
-    title,
-    message,
-    variant,
-    submitText,
-    cancelText,
-    onSubmit,
-    onAfterSubmit = noop,
-    onCancel = noop,
-    onClose,
-    testIds,
-    ...rest
-  } = props
-  const classes = useStyles()
-  const [result, setResult] = useSafeState<unknown>()
-  const [loading, setLoading] = useSafeState(false)
-  const [error, setError] = useSafeState(false)
+export const PromptModal = forwardRef<HTMLDivElement, Props>(
+  function PromptModal(props, ref) {
+    const {
+      children,
+      title,
+      message,
+      variant,
+      submitText,
+      cancelText,
+      onSubmit,
+      onAfterSubmit = noop,
+      onCancel = noop,
+      onClose,
+      testIds,
+      ...rest
+    } = props
+    const [result, setResult] = useSafeState<unknown>()
+    const [loading, setLoading] = useSafeState(false)
+    const [error, setError] = useSafeState(false)
 
-  const handleSubmit = async () => {
-    try {
-      setLoading(true)
-      setError(false)
+    const handleSubmit = async () => {
+      try {
+        setLoading(true)
+        setError(false)
 
-      await onSubmit(result)
+        await onSubmit(result)
 
-      setLoading(false)
-      handleOnAfterSubmit()
-    } catch (err) {
-      setError(true)
-      setLoading(false)
+        setLoading(false)
+        handleOnAfterSubmit()
+      } catch (err) {
+        setError(true)
+        setLoading(false)
+      }
     }
-  }
 
-  const handleOnAfterSubmit = () => {
-    onAfterSubmit()
-    handleClose()
-  }
-
-  const handleCancel = () => {
-    onCancel()
-    handleClose()
-  }
-
-  const handleClose = () => {
-    setResult(undefined)
-
-    if (onClose) {
-      onClose()
+    const handleOnAfterSubmit = () => {
+      onAfterSubmit()
+      handleClose()
     }
-  }
 
-  return (
-    <Modal
-      ref={ref}
-      onClose={onClose && handleClose}
-      classes={classes}
-      {...rest}
-    >
-      {title && <Modal.Title data-testid={testIds?.title}>{title}</Modal.Title>}
-      <Modal.Content>
-        <Typography size='medium' data-testid={testIds?.message}>
-          {message}
-        </Typography>
-        {children && (
-          <Container top='xsmall'>
-            {children({
-              setResult,
-              result,
-              setLoading,
-              loading,
-              setError,
-              error,
-            })}
-          </Container>
+    const handleCancel = () => {
+      onCancel()
+      handleClose()
+    }
+
+    const handleClose = () => {
+      setResult(undefined)
+
+      if (onClose) {
+        onClose()
+      }
+    }
+
+    return (
+      <Modal ref={ref} onClose={onClose && handleClose} {...rest}>
+        {title && (
+          <Modal.Title data-testid={testIds?.title}>{title}</Modal.Title>
         )}
-      </Modal.Content>
-      <Modal.Actions>
-        <Button
-          disabled={loading}
-          variant='secondary'
-          onClick={handleCancel}
-          data-testid={testIds?.closeButton}
-        >
-          {cancelText}
-        </Button>
-        <Button
-          loading={loading}
-          onClick={handleSubmit}
-          variant={`${variant}` as ButtonVariantType}
-          data-testid={testIds?.submitButton}
-        >
-          {submitText}
-        </Button>
-      </Modal.Actions>
-    </Modal>
-  )
-})
+        <Modal.Content>
+          <Typography size='medium' data-testid={testIds?.message}>
+            {message}
+          </Typography>
+          {children && (
+            <Container top='xsmall'>
+              {children({
+                setResult,
+                result,
+                setLoading,
+                loading,
+                setError,
+                error,
+              })}
+            </Container>
+          )}
+        </Modal.Content>
+        <Modal.Actions>
+          <Button
+            disabled={loading}
+            variant='secondary'
+            onClick={handleCancel}
+            data-testid={testIds?.closeButton}
+          >
+            {cancelText}
+          </Button>
+          <Button
+            loading={loading}
+            onClick={handleSubmit}
+            variant={`${variant}` as ButtonVariantType}
+            data-testid={testIds?.submitButton}
+          >
+            {submitText}
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    )
+  }
+)
 
 PromptModal.defaultProps = {
   cancelText: 'Cancel',
