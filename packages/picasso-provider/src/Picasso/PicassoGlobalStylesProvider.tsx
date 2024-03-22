@@ -1,5 +1,5 @@
 import type { ReactNode, ForwardRefExoticComponent, RefAttributes } from 'react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import type { RootContextProps } from './RootContext'
 import { RootContext } from './RootContext'
@@ -38,11 +38,11 @@ const PicassoGlobalStylesProvider = (
     preventPageWidthChangeOnScrollbar,
   } = props
 
-  const rootRef = useRef<HTMLDivElement | null>(null)
-
   const screens = useScreens<BreakpointKeys>()
   const currentBreakpointRange = screens(breakpointKeyByRange)
 
+  const [picassoRootMounted, setPicassoRootMounted] = useState(false)
+  const rootRef = useRef<HTMLDivElement | null>(null)
   const [contextValue, setContextValue] = useState<RootContextProps>({
     rootRef,
     currentBreakpointRange,
@@ -82,10 +82,18 @@ const PicassoGlobalStylesProvider = (
     }
   }, [currentBreakpointRange])
 
+  const setRootRef = useCallback(
+    (ref: HTMLDivElement) => {
+      rootRef.current = ref
+      setPicassoRootMounted(true)
+    },
+    [setPicassoRootMounted]
+  )
+
   return (
-    <RootComponent ref={rootRef}>
+    <RootComponent ref={setRootRef}>
       <RootContext.Provider value={contextValue}>
-        {children}
+        {picassoRootMounted && children}
       </RootContext.Provider>
     </RootComponent>
   )
