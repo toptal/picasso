@@ -15,13 +15,15 @@ const customRender = (
   picassoConfig?: PicassoConfig
 ): RenderResult => {
   const { rerender, ...rest } = render(
-    <TestingPicasso titleCase={picassoConfig?.titleCase}>{ui}</TestingPicasso>,
+    <TestingPicasso injectFirst titleCase={picassoConfig?.titleCase}>
+      {ui}
+    </TestingPicasso>,
     options
   )
 
   const customRerender: typeof rerender = newUi =>
     rerender(
-      <TestingPicasso titleCase={picassoConfig?.titleCase}>
+      <TestingPicasso injectFirst titleCase={picassoConfig?.titleCase}>
         {newUi}
       </TestingPicasso>
     )

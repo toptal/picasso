@@ -51,7 +51,7 @@ Cypress.Commands.add('mount', (component, options, props = {}) => {
   // Wrap any parent components needed
   // ie: return mount(<MyProvider>{component}</MyProvider>, options)
   return mount(
-    <TestingPicasso injectFirst {...props}>
+    <TestingPicasso {...props} injectFirst>
       {component}
     </TestingPicasso>,
     options
