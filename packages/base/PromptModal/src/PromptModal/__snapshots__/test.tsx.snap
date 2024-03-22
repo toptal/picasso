@@ -37,7 +37,7 @@ exports[`PromptModal renders 1`] = `
           class="PicassoModalTitle-root"
         >
           <h2
-            class="m-0 text-black font-semibold text-xl text-black"
+            class="m-0 font-semibold text-xl text-black"
           >
             Test title
           </h2>
@@ -163,7 +163,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
               class="PicassoModalTitle-root"
             >
               <h2
-                class="m-0 text-black font-semibold text-xl text-black"
+                class="m-0 font-semibold text-xl text-black"
               >
                 Test title
               </h2>

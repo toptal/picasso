@@ -29,7 +29,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
             class="PicassoContainer-flexStartAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
           >
             <h3
-              class="m-0 text-black font-semibold text-lg text-inherit ApplicationUpdateNotification-positionRelative"
+              class="m-0 font-semibold text-lg text-inherit ApplicationUpdateNotification-positionRelative"
             >
               A New Update is Available
             </h3>

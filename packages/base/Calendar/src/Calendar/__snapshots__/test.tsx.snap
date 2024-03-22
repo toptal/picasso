@@ -46,7 +46,7 @@ exports[`Calendar renders 1`] = `
                 <h3
                   aria-atomic="true"
                   aria-live="polite"
-                  class="m-0 text-black font-semibold text-lg text-black"
+                  class="m-0 font-semibold text-lg text-black"
                 >
                   December 2019
                 </h3>
