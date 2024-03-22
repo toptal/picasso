@@ -8,7 +8,6 @@ export interface Props extends ModalBackdropSlotProps {
   transitionDuration?: number
   /** If true, the backdrop is invisible */
   invisible?: boolean
-  ownerState: {}
 }
 
 export const Backdrop = React.forwardRef<HTMLDivElement, Props>(

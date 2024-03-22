@@ -95,6 +95,8 @@ export const Drawer = (props: Props) => {
     }
   }
 
+  const backdropProps = { invisible: transparentBackdrop }
+
   return (
     <Modal
       open={open}
@@ -104,8 +106,7 @@ export const Drawer = (props: Props) => {
         backdrop: Backdrop,
       }}
       slotProps={{
-        // @ts-ignore
-        backdrop: { invisible: transparentBackdrop },
+        backdrop: backdropProps,
       }}
       data-testid={testId}
       data-private={dataPrivate}
