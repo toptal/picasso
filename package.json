@@ -112,7 +112,7 @@
     "@changesets/cli": "^2.27.1",
     "@changesets/get-github-info": "^0.5.1",
     "@cypress/skip-test": "^2.6.1",
-    "@storybook/addon-a11y": "^6.5.15",
+    "@storybook/addon-a11y": "^8.0.4",
     "@storybook/addon-viewport": "^6.5.15",
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.15",
