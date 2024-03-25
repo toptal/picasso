@@ -1,4 +1,4 @@
-import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import type { ReactNode, ReactElement, MouseEvent } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type {
@@ -11,12 +11,13 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core'
-import { makeStyles, ButtonBase } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
+import { Button as ButtonBase } from '@mui/base/Button';
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop , toTitleCase } from '@toptal/picasso-utils'
 
-import styles from './styles'
+import styles, { createVariant, createCoreClassNames } from './styles'
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoButton',
@@ -37,7 +38,7 @@ export interface Props
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
-  as?: ElementType
+  as?: keyof HTMLElementTagNameMap
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
@@ -124,10 +125,10 @@ export const Button: OverridableComponent<Props> = forwardRef<
   const classes = useStyles(props)
 
   const {
-    root: rootClass,
+    // root: rootClass,
     hidden: hiddenClass,
     loader: loaderClass,
-    content: contentClass,
+    // content: contentClass,
   } = classes
 
   const titleCase = useTitleCase(propsTitleCase)
@@ -144,38 +145,79 @@ export const Button: OverridableComponent<Props> = forwardRef<
     }
   }
 
-  const variantClassName = classes[variant]
-  const sizeClassName = classes[size]
+  // const variantClassName = classes[variant]
+  // const sizeClassName = classes[size]
 
-  const rootClassName = cx(
-    {
-      [classes.fullWidth]: fullWidth,
-      [classes.active]: active,
-      [classes.focused]: focused,
-      [classes.hovered]: hovered,
-      [classes.disabled]: disabled,
-    },
-    sizeClassName,
-    variantClassName,
-    rootClass
+  // const rootClassName = cx(
+  //   {
+  //     [classes.fullWidth]: fullWidth,
+  //     [classes.active]: active,
+  //     [classes.focused]: focused,
+  //     [classes.hovered]: hovered,
+  //     [classes.disabled]: disabled,
+  //   },
+  //   // sizeClassName,
+  //   // variantClassName,
+  //   rootClass
+  // )
+
+  const coreClassNames = createCoreClassNames({ disabled, focused, hovered, active })
+
+  const variantClassNames: Record<VariantType, string[]> = {
+    primary: createVariant('primary', { disabled, focused, hovered, active }),
+    negative: createVariant('negative', { disabled, focused, hovered, active }),
+    positive: createVariant('positive', { disabled, focused, hovered, active }),
+    
+    secondary: createVariant('secondary', { disabled, focused, hovered, active }),
+    transparent: createVariant('transparent', { disabled, focused, hovered, active }),
+  }
+
+  const sizeClassNames: Record<SizeType<'small' | 'medium' | 'large'>, string[]> = {
+    small: ['min-w-12', 'h-6', 'py-0', 'px-3'],
+    medium: ['min-w-16', 'h-8', 'py-0', 'px-4'],
+    large: ['min-w-24', 'h-12', 'py-0', 'px-8'],
+  }
+
+  const variantClassName = variantClassNames[variant]
+  const sizeClassName = sizeClassNames[size]
+
+  const finalClassName = cx(
+    coreClassNames.join(' '),
+    variantClassName.join(' '),
+    sizeClassName.join(' '),
+    className,
+    fullWidth ? 'todo' : 'no-todo',
+  )
+
+  const contentSizeClassNames: Record<SizeType<'small' | 'medium' | 'large'>, string[]> = {
+    small: ['text-button-small'],
+    medium: ['text-button-medium'],
+    large: ['text-button-large'],
+  }
+
+  const contentClassName = cx(
+    'font-semibold whitespace-nowrap ',
+    // "leading-6" is not needed, because it is overwritten with line-height from sizeClassNames
+    contentSizeClassNames[size].join(' ')
   )
 
   return (
     <ButtonBase
       {...rest}
       ref={ref}
-      classes={{
-        root: rootClassName,
-        focusVisible: cx(classes.focusVisible),
-      }}
+      // classes={{
+      //   root: rootClassName,
+      //   focusVisible: cx(classes.focusVisible),
+      // }}
+      
       onClick={getClickHandler(loading, onClick)}
-      className={className}
+      className={finalClassName}
       style={style}
       disabled={disabled}
       title={title}
       value={value}
       type={type}
-      component={as}
+      rootElementName={as}
       data-component-type='button'
     >
       <Container
@@ -184,7 +226,10 @@ export const Button: OverridableComponent<Props> = forwardRef<
         flex
         direction='row'
         alignItems='center'
-        className={cx({ [hiddenClass]: loading }, contentClass)}
+        className={cx(
+          { [hiddenClass]: loading }, 
+          contentClassName,
+        )}
       >
         {finalChildren}
       </Container>

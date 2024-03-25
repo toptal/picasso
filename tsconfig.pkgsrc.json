@@ -2,14 +2,8 @@
   "files": [],
   "compilerOptions": { "composite": true },
   "references": [
-    { "path": "packages/picasso" },
-    { "path": "packages/picasso-charts" },
-    { "path": "packages/picasso-codemod" },
-    { "path": "packages/picasso-forms" },
-    { "path": "packages/picasso-pictograms" },
+    
     { "path": "packages/picasso-provider" },
-    { "path": "packages/picasso-query-builder" },
-    { "path": "packages/picasso-rich-text-editor" },
     { "path": "packages/picasso-tailwind" },
     { "path": "packages/shared" },
     { "path": "packages/topkit-analytics-charts" },
