@@ -2,7 +2,6 @@
   "files": [],
   "compilerOptions": { "composite": true },
   "references": [
-    
     { "path": "packages/picasso-provider" },
     { "path": "packages/picasso-tailwind" },
     { "path": "packages/shared" },

@@ -1,4 +1,4 @@
-import type { ReactNode, ReactElement, MouseEvent } from 'react'
+import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type {
@@ -7,21 +7,19 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
   TextLabelProps,
-  Classes,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
-import { Button as ButtonBase } from '@mui/base/Button';
+import { Button as ButtonBase } from '@mui/base/Button'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
-import { noop , toTitleCase } from '@toptal/picasso-utils'
+import { noop, toTitleCase } from '@toptal/picasso-utils'
 
-import styles, { createVariant, createCoreClassNames } from './styles'
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoButton',
-})
+import {
+  createVariantClassNames,
+  createCoreClassNames,
+  createSizeClassNames,
+  createIconClassNames,
+} from './styles'
 
 export type VariantType =
   | 'primary'
@@ -38,7 +36,7 @@ export interface Props
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
-  as?: keyof HTMLElementTagNameMap
+  as?: ElementType
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
@@ -71,27 +69,28 @@ export interface Props
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
   loading ? noop : handler
 
-const getIcon = (
-  classes: Classes,
-  children: ReactNode,
-  icon?: ReactElement,
+const getIcon = ({
+  children,
+  icon,
+  iconPosition,
+  size,
+}: {
+  children: ReactNode
+  icon?: ReactElement
   iconPosition?: IconPositionType
-) => {
+  size: SizeType<'small' | 'medium' | 'large'>
+}) => {
   if (!icon) {
     return null
   }
 
-  const {
-    icon: iconClass,
-    iconLeft: iconLeftClass,
-    iconRight: iconRightClass,
-  } = classes
+  const iconClassNames = createIconClassNames({
+    size,
+    iconPosition: children && iconPosition ? iconPosition : undefined,
+  })
 
   return React.cloneElement(icon, {
-    className: cx(iconClass, icon.props.className, {
-      [iconLeftClass]: children && iconPosition === 'left',
-      [iconRightClass]: children && iconPosition === 'right',
-    }),
+    className: cx(iconClassNames.join(' '), icon.props.className),
     key: 'button-icon',
   })
 }
@@ -122,21 +121,13 @@ export const Button: OverridableComponent<Props> = forwardRef<
     titleCase: propsTitleCase,
     ...rest
   } = props
-  const classes = useStyles(props)
-
-  const {
-    // root: rootClass,
-    hidden: hiddenClass,
-    loader: loaderClass,
-    // content: contentClass,
-  } = classes
 
   const titleCase = useTitleCase(propsTitleCase)
 
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
-    const iconComponent = getIcon(classes, children, icon, iconPosition)
+    const iconComponent = getIcon({ children, icon, iconPosition, size })
 
     if (iconPosition === 'left') {
       finalChildren.unshift(iconComponent)
@@ -145,71 +136,47 @@ export const Button: OverridableComponent<Props> = forwardRef<
     }
   }
 
-  // const variantClassName = classes[variant]
-  // const sizeClassName = classes[size]
-
-  // const rootClassName = cx(
-  //   {
-  //     [classes.fullWidth]: fullWidth,
-  //     [classes.active]: active,
-  //     [classes.focused]: focused,
-  //     [classes.hovered]: hovered,
-  //     [classes.disabled]: disabled,
-  //   },
-  //   // sizeClassName,
-  //   // variantClassName,
-  //   rootClass
-  // )
-
-  const coreClassNames = createCoreClassNames({ disabled, focused, hovered, active })
-
-  const variantClassNames: Record<VariantType, string[]> = {
-    primary: createVariant('primary', { disabled, focused, hovered, active }),
-    negative: createVariant('negative', { disabled, focused, hovered, active }),
-    positive: createVariant('positive', { disabled, focused, hovered, active }),
-    
-    secondary: createVariant('secondary', { disabled, focused, hovered, active }),
-    transparent: createVariant('transparent', { disabled, focused, hovered, active }),
-  }
-
-  const sizeClassNames: Record<SizeType<'small' | 'medium' | 'large'>, string[]> = {
-    small: ['min-w-12', 'h-6', 'py-0', 'px-3'],
-    medium: ['min-w-16', 'h-8', 'py-0', 'px-4'],
-    large: ['min-w-24', 'h-12', 'py-0', 'px-8'],
-  }
-
-  const variantClassName = variantClassNames[variant]
-  const sizeClassName = sizeClassNames[size]
+  const coreClassNames = createCoreClassNames({
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
+  const variantClassNames = createVariantClassNames(variant, {
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
+  const sizeClassNames = createSizeClassNames(size)
 
   const finalClassName = cx(
     coreClassNames.join(' '),
-    variantClassName.join(' '),
-    sizeClassName.join(' '),
-    className,
-    fullWidth ? 'todo' : 'no-todo',
+    variantClassNames.join(' '),
+    sizeClassNames.join(' '),
+    fullWidth ? 'w-full' : '',
+    className
   )
 
-  const contentSizeClassNames: Record<SizeType<'small' | 'medium' | 'large'>, string[]> = {
+  const contentSizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string[]
+  > = {
     small: ['text-button-small'],
     medium: ['text-button-medium'],
     large: ['text-button-large'],
   }
 
   const contentClassName = cx(
-    'font-semibold whitespace-nowrap ',
-    // "leading-6" is not needed, because it is overwritten with line-height from sizeClassNames
-    contentSizeClassNames[size].join(' ')
+    'font-semibold whitespace-nowrap',
+    contentSizeClassNames[size].join(' '),
+    loading ? 'opacity-0' : ''
   )
 
   return (
     <ButtonBase
       {...rest}
       ref={ref}
-      // classes={{
-      //   root: rootClassName,
-      //   focusVisible: cx(classes.focusVisible),
-      // }}
-      
       onClick={getClickHandler(loading, onClick)}
       className={finalClassName}
       style={style}
@@ -217,8 +184,8 @@ export const Button: OverridableComponent<Props> = forwardRef<
       title={title}
       value={value}
       type={type}
-      rootElementName={as}
       data-component-type='button'
+      slots={{ root: as }}
     >
       <Container
         as='span'
@@ -226,16 +193,18 @@ export const Button: OverridableComponent<Props> = forwardRef<
         flex
         direction='row'
         alignItems='center'
-        className={cx(
-          { [hiddenClass]: loading }, 
-          contentClassName,
-        )}
+        className={contentClassName}
       >
         {finalChildren}
       </Container>
 
       {loading && (
-        <Loader variant='inherit' className={loaderClass} inline size='small' />
+        <Loader
+          variant='inherit'
+          className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'
+          inline
+          size='small'
+        />
       )}
     </ButtonBase>
   )
