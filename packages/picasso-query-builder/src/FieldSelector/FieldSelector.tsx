@@ -33,7 +33,6 @@ export const FieldSelector = ({
         if (option.tooltip) {
           return (
             <Tooltip
-              open
               popperClassName={classes.tooltip}
               compact
               interactive
