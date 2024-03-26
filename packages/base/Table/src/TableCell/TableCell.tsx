@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -29,6 +29,7 @@ export interface Props
   colSpan?: number
   /** Indicates for how many rows the cell extends */
   rowSpan?: number
+  adornment?: ReactNode
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
@@ -73,6 +74,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       colSpan,
       rowSpan,
       titleCase: propsTitleCase,
+      adornment,
       ...rest
     } = props
 
@@ -89,6 +91,21 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
     const renderChildren = () =>
       isHead && titleCase ? toTitleCase(children) : children
 
+    const CellContent = () => {
+      return adornment ? (
+        <div className='flex items-center'>
+          <Typography as='div' {...getTypographySettings(tableSection)}>
+            {renderChildren()}
+          </Typography>
+          {adornment}
+        </div>
+      ) : (
+        <Typography as='div' {...getTypographySettings(tableSection)}>
+          {renderChildren()}
+        </Typography>
+      )
+    }
+
     return (
       <MUITableCell
         {...rest}
@@ -103,9 +120,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         colSpan={colSpan}
         rowSpan={rowSpan}
       >
-        <Typography as='div' {...getTypographySettings(tableSection)}>
-          {renderChildren()}
-        </Typography>
+        <CellContent />
       </MUITableCell>
     )
   }
