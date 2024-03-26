@@ -8,7 +8,6 @@ export default ({ palette, transitions }: Theme) =>
       transform: 'rotate(180deg)',
     },
     dots: {
-      margin: 0,
       '& .glider-dot': {
         width: 10,
         height: 10,

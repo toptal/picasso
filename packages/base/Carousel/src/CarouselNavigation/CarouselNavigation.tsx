@@ -48,6 +48,8 @@ const CarouselNavigation = ({
 }: Props) => {
   const classes = useStyles()
 
+  console.log({ hasArrows, hasDots })
+
   return (
     <Container
       className={classes.navigation}
@@ -56,11 +58,18 @@ const CarouselNavigation = ({
       data-testid={testIds.navigation}
     >
       {hasDots && (
-        <div
-          {...getDotsProps()}
-          data-testid={testIds.dots}
-          className={classes.dots}
-        />
+        /*
+         default slider css ads margin: 0 auto; to the dots container
+         so we need to wrap it in a div to avoid the margin.
+         Could be removed when we migrate all styles to TailwindCSS
+        */
+        <div>
+          <div
+            {...getDotsProps()}
+            data-testid={testIds.dots}
+            className={classes.dots}
+          />
+        </div>
       )}
       {hasArrows && (
         <Container data-testid={testIds.arrows}>
