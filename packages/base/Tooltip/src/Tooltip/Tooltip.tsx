@@ -70,6 +70,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   tooltipRef?: React.Ref<HTMLDivElement>
   /** A node, or a function that returns node. The container will have the portal children appended to it. */
   container?: ContainerValue
+  /** Allows customizing the tooltip popper style */
+  popperClassName?: string
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
@@ -81,6 +83,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     placement,
     interactive,
     className,
+    popperClassName,
     style,
     open,
     onOpen,
@@ -168,6 +171,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
           [classes.compact]: compact,
           [classes.noMaxWidth]: maxWidth === 'none',
         }),
+        popper: popperClassName,
       }}
       className={className}
       style={style}
