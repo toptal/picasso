@@ -19,6 +19,7 @@ export const generateSelectOptions = (options?: OptionList) => {
     return options.map(option => ({
       value: option.name,
       text: option.label,
+      tooltip: option.tooltip,
     }))
   }
 
