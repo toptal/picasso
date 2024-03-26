@@ -38,6 +38,11 @@ page
     description: 'Customized header',
   })
 
+  .addExample('QueryBuilder/story/FieldDescription.example.tsx', {
+    title: 'Field Description',
+    description: 'Display field description in a tooltip',
+  })
+
   .addExample('QueryBuilder/story/Loading.example.tsx', {
     title: 'Loading',
   })
