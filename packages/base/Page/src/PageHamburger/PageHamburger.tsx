@@ -7,6 +7,7 @@ import { Dropdown } from '@toptal/picasso-dropdown'
 import { Close24, Overview24 } from '@toptal/picasso-icons'
 
 import { useHamburgerContext } from './PageHamburgerContext'
+import { headerHeight } from '../PageTopBar/constants'
 import styles from './styles'
 
 interface Props {
@@ -33,7 +34,7 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
         [classes.hidden]: !showSidebarMenu,
       })}
       classes={{
-        content: classes.responsiveWrapperContent,
+        content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-${headerHeight.default})] !bg-gray-100`,
         popper: classes.popper,
       }}
       // The "disablePortal" is needed for testing the dropdown hamburger menu in Cypress.

@@ -1,11 +1,8 @@
-import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import { headerHeight, headerBreakingPointXL } from '../PageTopBar/constants'
+import { headerBreakingPointXL } from '../PageTopBar/constants'
 
-export default ({ palette }: Theme) => {
-  const wrapperBoxShadow = `inset -1px 0px 0px 0px ${palette.grey.lighter2}`
-
+export default () => {
   return createStyles({
     root: {
       [headerBreakingPointXL]: {
@@ -20,11 +17,6 @@ export default ({ palette }: Theme) => {
     },
     hidden: {
       display: 'none',
-    },
-    responsiveWrapperContent: {
-      backgroundColor: palette.grey.lighter,
-      boxShadow: wrapperBoxShadow,
-      maxHeight: `calc(100vh - ${headerHeight.default})`, // viewport minus header height: ;
     },
   })
 }
