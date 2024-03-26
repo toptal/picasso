@@ -48,8 +48,6 @@ const CarouselNavigation = ({
 }: Props) => {
   const classes = useStyles()
 
-  console.log({ hasArrows, hasDots })
-
   return (
     <Container
       className={classes.navigation}
