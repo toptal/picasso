@@ -1,5 +1,12 @@
 # @toptal/picasso-table
 
+## 1.1.0
+
+### Minor Changes
+
+- [#4203](https://github.com/toptal/picasso/pull/4203) [`77481cdea0de49a2a296831b38fb6e368d4a6b2f`](https://github.com/toptal/picasso/commit/77481cdea0de49a2a296831b38fb6e368d4a6b2f) Thanks [@mkrl](https://github.com/mkrl)!
+- added TableSortableCell, enabling the ability to sort table columns
+
 ## 1.0.2
 
 ### Patch Changes
