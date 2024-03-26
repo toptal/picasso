@@ -15,6 +15,7 @@ export type Props = {
 export const TableSortableCell = ({
   sortDirection,
   onSortClick,
+
   ...rest
 }: Props) => {
   const Icon = sortDirection === 'desc' ? ArrowLongDown16 : ArrowLongUp16

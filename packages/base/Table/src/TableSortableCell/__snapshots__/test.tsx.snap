@@ -1,91 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TableCell renders 1`] = `
+exports[`TableCell sort direction is asc renders with a sort button in the right direction 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
-    <table
-      class="MuiTable-root"
+    <td
+      class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
     >
-      <tbody
-        class="MuiTableBody-root"
+      <div
+        class="flex items-center"
       >
-        <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
         >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
+          Cell
+        </div>
+        <button
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
+          data-component-type="button"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
-            <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+            <svg
+              class="PicassoSvgArrowLongUp16-root PicassoButton-icon"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
-              Cell
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <path
+                d="M7.5 1.793 11.207 5.5l-.707.707-2.5-2.5V14H7V3.707l-2.5 2.5-.707-.707 3-3 .707-.707Z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </td>
   </div>
 </div>
 `;
 
-exports[`TableCell renders compact 1`] = `
+exports[`TableCell sort direction is desc renders with a sort button in the right direction 1`] = `
 <div>
   <div
     class="Picasso-root"
   >
-    <table
-      class="MuiTable-root"
+    <td
+      class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
     >
-      <tbody
-        class="MuiTableBody-root"
+      <div
+        class="flex items-center"
       >
-        <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+        <div
+          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+        />
+        <button
+          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
+          data-component-type="button"
+          tabindex="0"
+          type="button"
         >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
-            <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+            <svg
+              class="PicassoSvgArrowLongDown16-root PicassoButton-icon"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
             >
-              Cell
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-`;
-
-exports[`TableCell renders narrow 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <table
-      class="MuiTable-root"
-    >
-      <tbody
-        class="MuiTableBody-root"
-      >
-        <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
-        >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
-          >
-            <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
-            >
-              Cell
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <path
+                d="M8 2v10.293l2.5-2.5.707.707L7.5 14.207 3.793 10.5l.707-.707 2.5 2.5V2h1Z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </td>
   </div>
 </div>
 `;

@@ -1,89 +1,54 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
+import { noop } from '@toptal/picasso-utils'
 
-import type { TableConfig } from '../Table'
-import { TableContext } from '../Table'
-import { TableCompound as Table } from '../TableCompound'
+import { TableSortableCell } from '../TableSortableCell'
 import type { Props } from './TableSortableCell'
 
 const renderTableCell = (
-  { children = 'Cell', ...rest }: Partial<Props> = {},
-  { spacing = 'regular', variant = 'bordered' }: Partial<TableConfig> = {}
+  { children, sortDirection, onSortClick }: Props = {
+    children: 'Cell',
+    sortDirection: 'asc',
+    onSortClick: noop,
+  }
 ) => {
   return render(
-    <TableContext.Provider value={{ spacing, variant }}>
-      <Table>
-        <Table.Body>
-          <Table.Row>
-            <Table.Cell {...rest}>{children}</Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
-    </TableContext.Provider>
+    <TableSortableCell sortDirection={sortDirection} onSortClick={onSortClick}>
+      {children}
+    </TableSortableCell>
   )
 }
 
 describe('TableCell', () => {
-  it('renders', () => {
-    const { container } = renderTableCell()
+  describe('sort direction is asc', () => {
+    it('renders with a sort button in the right direction', () => {
+      const { container, getByRole } = renderTableCell()
+      const button = getByRole('button')
 
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders compact', () => {
-    const { container } = renderTableCell({}, { spacing: 'compact' })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('renders narrow', () => {
-    const { container } = renderTableCell({}, { spacing: 'narrow' })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('sets attribuites correctly', () => {
-    const { getByTestId } = renderTableCell({
-      'data-testid': 'cell',
-      rowSpan: 10,
-      colSpan: 2,
-      style: { background: 'red' },
+      expect(button).toContainHTML('PicassoSvgArrowLongUp16')
+      expect(container).toMatchSnapshot()
     })
+  })
+  describe('sort direction is desc', () => {
+    it('renders with a sort button in the right direction', () => {
+      const { container, getByRole } = renderTableCell({
+        sortDirection: 'desc',
+      })
+      const button = getByRole('button')
 
-    const cell = getByTestId('cell')
-
-    expect(cell).toHaveAttribute('rowspan', '10')
-    expect(cell).toHaveAttribute('colspan', '2')
-    expect(cell).toHaveAttribute('style', 'background: red;')
+      expect(button).toContainHTML('PicassoSvgArrowLongDown16')
+      expect(container).toMatchSnapshot()
+    })
   })
 
-  it('capitalizes in head if titleCase is truthy', () => {
-    const { getByTestId } = render(
-      <Table>
-        <Table.Head>
-          <Table.Row>
-            <Table.Cell data-testid='head-cell'>head</Table.Cell>
-          </Table.Row>
-        </Table.Head>
-      </Table>,
-      undefined,
-      { titleCase: true }
-    )
+  it('executes the callback when clicked', () => {
+    const mockOnClick = jest.fn()
 
-    expect(getByTestId('head-cell')).toHaveTextContent('Head')
-  })
+    const { getByRole } = renderTableCell({ onSortClick: mockOnClick })
 
-  it('does not capitalize in head if titleCase is falsy', () => {
-    const { getByTestId } = render(
-      <Table>
-        <Table.Head>
-          <Table.Row>
-            <Table.Cell data-testid='head-cell'>head</Table.Cell>
-          </Table.Row>
-        </Table.Head>
-      </Table>
-    )
+    const button = getByRole('button')
 
-    expect(getByTestId('head-cell')).toHaveTextContent('head')
+    button.click()
+    expect(mockOnClick).toHaveBeenCalled()
   })
 })
