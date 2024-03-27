@@ -4,6 +4,9 @@ import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
+    wrapper: {
+      boxSizing: 'border-box',
+    },
     head: {
       display: 'block',
     },
