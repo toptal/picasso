@@ -32,7 +32,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
       padding: `0 ${layout.contentMobilePaddingHorizontal}`,
-      height: 'var(--header-height)',
+      height: 'var(--header-height, 3.5rem)',
       [screens('md', 'lg', 'xl')]: {
         padding: `0 ${layout.contentPaddingHorizontal}`,
       },
@@ -44,8 +44,8 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     wrapper: {
       position: 'relative',
-      height: 'var(--header-height)',
-      minHeight: 'var(--header-height)',
+      height: 'var(--header-height, 3.5rem)',
+      minHeight: 'var(--header-height, 3.5rem)',
     },
     wide: {
       maxWidth: layout.contentWidthWide,

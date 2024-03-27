@@ -15,7 +15,7 @@ export default ({ screens }: Theme) =>
       },
     },
     content: {
-      maxHeight: `calc(100vh - var(--header-height))`, // viewport minus header height
+      maxHeight: `calc(100vh - var(--header-height, 3.5rem))`, // viewport minus header height
       width: '15em',
       [screens('xs', 'sm')]: {
         width: '100vw',

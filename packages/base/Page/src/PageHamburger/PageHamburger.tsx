@@ -33,7 +33,7 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
         [classes.hidden]: !showSidebarMenu,
       })}
       classes={{
-        content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-var(--header-height))] !bg-gray-100`,
+        content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-var(--header-height, 3.5rem))] !bg-gray-100`,
         popper: classes.popper,
       }}
       // The "disablePortal" is needed for testing the dropdown hamburger menu in Cypress.
