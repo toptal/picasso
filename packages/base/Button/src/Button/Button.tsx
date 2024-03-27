@@ -96,7 +96,7 @@ const getIcon = ({
   })
 
   return React.cloneElement(icon, {
-    className: cx(iconClassNames.join(' '), icon.props.className),
+    className: cx(iconClassNames, icon.props.className),
     key: 'button-icon',
   })
 }
@@ -140,9 +140,8 @@ export const Button: OverridableComponent<Props> = forwardRef<
   let RootElement: ElementType | FC = as
 
   if (isReactComponent(RootElement)) {
-    console.log('RootElement: ', RootElement, isReactComponent(RootElement))
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     RootElement = forwardRef(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ({ ownerState, ...restProps }: { ownerState: object }, rootRef) => {
         const Root = as
 
@@ -179,9 +178,9 @@ export const Button: OverridableComponent<Props> = forwardRef<
   const sizeClassNames = createSizeClassNames(size)
 
   const finalClassName = cx(
-    coreClassNames.join(' '),
-    variantClassNames.join(' '),
-    sizeClassNames.join(' '),
+    coreClassNames,
+    variantClassNames,
+    sizeClassNames,
     fullWidth ? 'w-full' : '',
     className
   )
@@ -197,7 +196,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
 
   const contentClassName = cx(
     'font-semibold whitespace-nowrap',
-    contentSizeClassNames[size].join(' '),
+    contentSizeClassNames[size],
     loading ? 'opacity-0' : ''
   )
 

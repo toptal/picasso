@@ -1,14 +1,6 @@
 import type { Typography } from '@material-ui/core/styles/createTypography'
 
 export interface AdditionalTypography {
-  buttons: {
-    fontSizeSmall: string
-    lineHeightSmall: string
-    fontSizeMedium: string
-    lineHeightMedium: string
-    fontSizeLarge: string
-    lineHeightLarge: string
-  }
   fontWeights: {
     thin: number
     light: number
@@ -42,14 +34,6 @@ const typography: AdditionalTypography & Partial<Typography> = {
     semibold: 600,
   },
   inputSize: '18px',
-  buttons: {
-    fontSizeSmall: '12px',
-    lineHeightSmall: '15px',
-    fontSizeMedium: '13px',
-    lineHeightMedium: '16px',
-    fontSizeLarge: '15px',
-    lineHeightLarge: '18px',
-  },
   fontSizes: {
     xxsmall: '11px',
     xsmall: '12px',
