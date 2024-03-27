@@ -41,7 +41,7 @@ export default ({ palette, screens, transitions }: Theme) =>
     wrapper: {
       height: '100%',
       '&$sticky': {
-        maxHeight: `calc(100vh - var(--header-height, 3.5rem))`,
+        maxHeight: `calc(100vh - var(--header-height,3.5rem))`,
         position: 'sticky',
         top: 'var(--header-height, 3.5rem)',
       },
