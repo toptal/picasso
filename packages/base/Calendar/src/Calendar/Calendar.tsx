@@ -209,7 +209,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
 
   return (
-    <div ref={ref} {...rest} tabIndex={0}>
+    <div ref={ref} {...rest} tabIndex={0} className='box-border'>
       <CalendarContext.Provider
         value={{
           onDayMouseEnter: handleDayEnter,
