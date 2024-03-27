@@ -54,7 +54,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                 >
                   <div>
                     <div
-                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh !bg-gray"
+                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
@@ -151,7 +151,7 @@ exports[`Page.TopBar render with link 1`] = `
                 >
                   <div>
                     <div
-                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh !bg-gray"
+                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
@@ -274,7 +274,7 @@ exports[`Page.TopBar renders 1`] = `
                 >
                   <div>
                     <div
-                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh !bg-gray"
+                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
