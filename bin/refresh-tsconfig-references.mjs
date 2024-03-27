@@ -136,7 +136,7 @@ const main = async () => {
 
   // Find packages by their package.json location
   const args = argv._.map(
-    arg => workspaceByPath[path.resolve(arg)]?.pkg.name ?? arg
+    arg => workspaceByPath[path.dirname(path.resolve(arg))]?.pkg.name ?? arg
   )
 
   const targets = args.length ? args : Object.keys(workspace)
