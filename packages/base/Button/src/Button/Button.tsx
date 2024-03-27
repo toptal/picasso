@@ -1,4 +1,10 @@
-import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import type {
+  ReactNode,
+  ReactElement,
+  MouseEvent,
+  ElementType,
+  FC,
+} from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type {
@@ -95,6 +101,15 @@ const getIcon = ({
   })
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isReactComponent = (component: any) => {
+  return (
+    component &&
+    (component.$$typeof === Symbol.for('react.forward_ref') ||
+      typeof component === 'function')
+  )
+}
+
 export const Button: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
@@ -122,8 +137,21 @@ export const Button: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
 
-  const titleCase = useTitleCase(propsTitleCase)
+  let RootElement: ElementType | FC = as
 
+  if (isReactComponent(RootElement)) {
+    console.log('RootElement: ', RootElement, isReactComponent(RootElement))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    RootElement = forwardRef(
+      ({ ownerState, ...restProps }: { ownerState: object }, rootRef) => {
+        const Root = as
+
+        return <Root ref={rootRef} {...restProps} />
+      }
+    )
+  }
+
+  const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
@@ -185,7 +213,8 @@ export const Button: OverridableComponent<Props> = forwardRef<
       value={value}
       type={type}
       data-component-type='button'
-      slots={{ root: as }}
+      tabIndex={disabled ? -1 : 0}
+      slots={{ root: RootElement }}
     >
       <Container
         as='span'

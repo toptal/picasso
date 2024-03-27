@@ -7,13 +7,14 @@ exports[`Button disabled button as link renders disabled version 1`] = `
   >
     <a
       aria-disabled="true"
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root MuiButtonBase-root PicassoButton-disabled PicassoButton-medium PicassoButton-primary PicassoButton-root Mui-disabled PicassoLink-blue MuiTypography-colorPrimary"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button base- inline-flex items-center justify-center select-none appearance-none no-underline m-0 relative normal-case rounded-sm align-middle border border-gray transition-colors duration-350 ease-out shadow-none shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4 PicassoLink-blue MuiTypography-colorPrimary"
       data-component-type="button"
-      role="button"
+      href="URL"
       tabindex="-1"
+      type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
       >
         Click me!
       </span>
@@ -28,14 +29,14 @@ exports[`Button disabled button renders disabled version 1`] = `
     class="Picasso-root"
   >
     <button
-      class="MuiButtonBase-root PicassoButton-disabled PicassoButton-medium PicassoButton-primary PicassoButton-root Mui-disabled"
+      class="base-Button base- inline-flex items-center justify-center select-none appearance-none no-underline m-0 relative normal-case rounded-sm align-middle border border-gray transition-colors duration-350 ease-out shadow-none shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"
       data-component-type="button"
       disabled=""
       tabindex="-1"
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
       >
         Click me!
       </span>
