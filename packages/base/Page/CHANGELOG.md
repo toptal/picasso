@@ -1,5 +1,13 @@
 # @toptal/picasso-page
 
+## 1.0.6
+
+### Patch Changes
+
+- [#4204](https://github.com/toptal/picasso/pull/4204) [`ae69e0e985c48542e7cc1df401d82ca91aa474ad`](https://github.com/toptal/picasso/commit/ae69e0e985c48542e7cc1df401d82ca91aa474ad) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix Paper styles of the Hamburger menu on smaller screens
+  after we changed the order of styles
+
 ## 1.0.5
 
 ### Patch Changes

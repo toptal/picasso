@@ -1,22 +1,14 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
-
-import styles from './styles'
 
 export interface Props extends BaseProps {
   title?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawerTitle' })
-
 export const DrawerTitle = ({ title }: Props) => {
-  const classes = useStyles()
-
   if (!title) {
     return null
   }
@@ -26,8 +18,12 @@ export const DrawerTitle = ({ title }: Props) => {
   }
 
   return (
-    <Container flex alignItems='center' className={classes.header}>
-      <Typography variant='heading' size='medium' className={classes.title}>
+    <Container
+      flex
+      alignItems='center'
+      className='border-gray-100 border-[0] border-solid border-b py-4 pr-[4rem] pl-6'
+    >
+      <Typography variant='heading' size='medium' className='flex-grow'>
         {title}
       </Typography>
     </Container>

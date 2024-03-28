@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-page",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Toptal UI components library - Page",
   "publishConfig": {
     "access": "public"
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "4.1.0",
-    "@toptal/picasso-test-utils": "1.0.2",
+    "@toptal/picasso-test-utils": "1.1.0",
     "styled-components": "^6.1.1"
   },
   "exports": {

@@ -1,25 +1,22 @@
-import { Drawer as MUIDrawer } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import React, { useRef } from 'react'
+import { Modal } from '@mui/base/Modal'
 import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import type { ReactNode } from 'react'
-import React from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
+import { Slide } from '@toptal/picasso-slide'
+import { Backdrop } from '@toptal/picasso-backdrop'
 import { Container } from '@toptal/picasso-container'
 import {
   useIsomorphicLayoutEffect,
   usePageScrollLock,
 } from '@toptal/picasso-utils'
 
+import type { AnchorType, WidthType } from '../types'
 import { DrawerTitle } from '../DrawerTitle'
-import styles from './styles'
-
-type AnchorType = 'bottom' | 'left' | 'right' | 'top'
-
-type WidthType = 'narrow' | 'regular' | 'medium' | 'wide' | 'ultra-wide'
+import { DrawerPaper } from '../DrawerPaper'
 
 export interface Props extends BaseProps {
   /** Side from which the drawer will appear.  */
@@ -44,7 +41,20 @@ export interface Props extends BaseProps {
   transparentBackdrop?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
+const widthClassName: Record<WidthType, string> = {
+  'ultra-wide': 'w-[73.75rem]',
+  narrow: 'w-[100vw] max-w-[100vw] sm:w-[27.5rem] sm:max-w-full',
+  regular: 'w-[35rem]',
+  medium: 'w-[40rem]',
+  wide: 'w-[60rem]',
+}
+
+const oppositeDirection = {
+  left: 'right',
+  right: 'left',
+  top: 'down',
+  bottom: 'up',
+} as const
 
 export const Drawer = (props: Props) => {
   const {
@@ -57,12 +67,15 @@ export const Drawer = (props: Props) => {
     transitionProps,
     maintainBodyScrollLock = true,
     transparentBackdrop,
-    ...rest
+    anchor = 'right',
+    className,
+    style,
+    'data-testid': testId,
+    'data-private': dataPrivate,
   } = props
-  const classes = useStyles()
   const { setHasDrawer } = useDrawer()
-  const theme = useTheme()
   const container = usePicassoRoot()
+  const ref = useRef<HTMLDivElement>(null)
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
@@ -82,36 +95,56 @@ export const Drawer = (props: Props) => {
     }
   }
 
+  const backdropProps = { invisible: transparentBackdrop }
+
   return (
-    <MUIDrawer
-      {...rest}
+    <Modal
       open={open}
+      ref={ref}
+      className={cx(className, 'fixed z-drawer inset-0')}
+      slots={{
+        backdrop: Backdrop,
+      }}
+      slotProps={{
+        backdrop: backdropProps,
+      }}
+      data-testid={testId}
+      data-private={dataPrivate}
+      style={style}
+      closeAfterTransition
       onClose={handleOnClose}
-      BackdropProps={{ invisible: transparentBackdrop }}
       disablePortal={disablePortal}
       container={container}
       disableScrollLock
-      ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}
-      SlideProps={transitionProps}
+      disableEscapeKeyDown={false}
     >
-      <Container
-        flex
-        direction='column'
-        className={cx(classes.container, classes[width])}
+      <Slide
+        in={open}
+        direction={oppositeDirection[anchor]}
+        timeout={transitionProps?.timeout}
+        onExited={transitionProps?.onExited}
       >
-        <DrawerTitle title={title} />
-        <Container flex className={classes.content}>
-          {children}
-        </Container>
-        <ButtonCircular
-          variant='flat'
-          icon={<CloseMinor16 />}
-          onClick={handleOnClose}
-          className={classes.closeButton}
-          aria-label='Close drawer'
-        />
-      </Container>
-    </MUIDrawer>
+        <DrawerPaper anchor={anchor}>
+          <Container
+            flex
+            direction='column'
+            className={cx('max-w-full relative flex-1', widthClassName[width])}
+          >
+            <DrawerTitle title={title} />
+            <Container flex className='flex-1'>
+              {children}
+            </Container>
+            <ButtonCircular
+              variant='flat'
+              icon={<CloseMinor16 />}
+              onClick={handleOnClose}
+              className='absolute right-6 top-4'
+              aria-label='Close drawer'
+            />
+          </Container>
+        </DrawerPaper>
+      </Slide>
+    </Modal>
   )
 }
 

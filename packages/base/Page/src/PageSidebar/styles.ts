@@ -2,10 +2,7 @@ import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
 
-import {
-  headerHeight,
-  headerBreakingPointXL,
-} from '../PageTopBar/constants'
+import { headerBreakingPointXL } from '../PageTopBar/constants'
 
 // decided to use a custom shadow for the sidebar's collapse button
 const COLLAPSE_BUTTON_SHADOW =
@@ -44,9 +41,9 @@ export default ({ palette, screens, transitions }: Theme) =>
     wrapper: {
       height: '100%',
       '&$sticky': {
-        maxHeight: `calc(100vh - ${headerHeight.default})`,
+        maxHeight: `calc(100vh - var(--header-height,3.5rem))`,
         position: 'sticky',
-        top: headerHeight.default,
+        top: 'var(--header-height, 3.5rem)',
       },
     },
     scrollableContent: {

@@ -1,5 +1,21 @@
 # Change Log
 
+## 44.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`ae69e0e`](https://github.com/toptal/picasso/commit/ae69e0e985c48542e7cc1df401d82ca91aa474ad), [`ae69e0e`](https://github.com/toptal/picasso/commit/ae69e0e985c48542e7cc1df401d82ca91aa474ad), [`ae69e0e`](https://github.com/toptal/picasso/commit/ae69e0e985c48542e7cc1df401d82ca91aa474ad)]:
+  - @toptal/picasso-test-utils@1.1.0
+  - @toptal/picasso-page@1.0.6
+  - @toptal/picasso-carousel@1.0.5
+
+## 44.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`77481cdea0de49a2a296831b38fb6e368d4a6b2f`](https://github.com/toptal/picasso/commit/77481cdea0de49a2a296831b38fb6e368d4a6b2f)]:
+  - @toptal/picasso-table@1.1.0
+
 ## 44.0.4
 
 ### Patch Changes
