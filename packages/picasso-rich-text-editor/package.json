@@ -53,7 +53,7 @@
   "devDependencies": {
     "@material-ui/core": "4.12.4",
     "@testing-library/react-hooks": "^8.0.1",
-    "@toptal/picasso-test-utils": "1.0.2",
+    "@toptal/picasso-test-utils": "1.1.0",
     "@types/classnames": "^2.3.1",
     "storybook-readme": "^5.0.9"
   },
