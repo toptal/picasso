@@ -2,6 +2,7 @@ import React from 'react'
 import type { ComponentProps } from 'react'
 import { Tooltip, Typography } from '@toptal/picasso'
 import { makeStyles } from '@material-ui/core/styles'
+import { SPACING_4 } from '@toptal/picasso-provider'
 
 import { Select } from '../Select'
 import styles from './styles'
@@ -33,11 +34,13 @@ export const FieldSelector = ({
         if (option.tooltip) {
           return (
             <Tooltip
-              popperClassName={classes.tooltip}
               compact
               interactive
               content={option.tooltip}
               placement='right'
+              offset={{
+                left: SPACING_4,
+              }}
             >
               <Typography
                 className={classes.tooltipOptionText}
