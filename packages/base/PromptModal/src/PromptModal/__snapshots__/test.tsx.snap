@@ -10,83 +10,77 @@ exports[`PromptModal renders 1`] = `
     />
   </div>
   <div
-    class="MuiDialog-root PicassoModal-root"
+    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
     role="presentation"
-    style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
   >
     <div
       aria-hidden="true"
-      class="MuiBackdrop-root"
-      style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+      style="transition-duration: 300ms; opacity: 1;"
     />
     <div
-      data-test="sentinelStart"
+      data-testid="sentinelStart"
       tabindex="0"
     />
     <div
-      class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-      role="none presentation"
-      style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      class="bg-white shadow-2 transition-shadow duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+      role="dialog"
+      style="transition-duration: 300ms; opacity: 1;"
       tabindex="-1"
     >
       <div
-        class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-small MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-        role="dialog"
+        class="pr-6 mt-8 mx-8 mb-0"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h2"
+        >
+          Test title
+        </h2>
+      </div>
+      <div
+        class="flex relative flex-auto overflow-y"
       >
         <div
-          class="PicassoModalTitle-root"
+          class="pt-6 px-8 pb-8 overflow-auto flex-auto"
         >
-          <h2
-            class="MuiTypography-root MuiTypography-h2"
+          <p
+            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
           >
-            Test title
-          </h2>
+            Test message
+          </p>
         </div>
-        <div
-          class="PicassoModalContent-wrapper"
+      </div>
+      <div
+        class="mt-0 mx-8 mb-8 text-right"
+      >
+        <button
+          class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+          data-component-type="button"
+          tabindex="0"
+          type="button"
         >
-          <div
-            class="PicassoModalContent-modalContent"
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
-            <p
-              class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-            >
-              Test message
-            </p>
-          </div>
-        </div>
-        <div
-          class="PicassoModalAction-root"
+            Cancel
+          </span>
+        </button>
+        <button
+          class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+          data-component-type="button"
+          tabindex="0"
+          type="button"
         >
-          <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
-            data-component-type="button"
-            tabindex="0"
-            type="button"
+          <span
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
           >
-            <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-            >
-              Cancel
-            </span>
-          </button>
-          <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
-            data-component-type="button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-            >
-              Submit
-            </span>
-          </button>
-        </div>
+            Submit
+          </span>
+        </button>
       </div>
     </div>
     <div
-      data-test="sentinelEnd"
+      data-testid="sentinelEnd"
       tabindex="0"
     />
   </div>
@@ -136,83 +130,77 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         </span>
       </button>
       <div
-        class="MuiDialog-root PicassoModal-root"
+        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
         role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
         <div
           aria-hidden="true"
-          class="MuiBackdrop-root"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          style="transition-duration: 300ms; opacity: 1;"
         />
         <div
-          data-test="sentinelStart"
+          data-testid="sentinelStart"
           tabindex="0"
         />
         <div
-          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="bg-white shadow-2 transition-shadow duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          role="dialog"
+          style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-small MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-            role="dialog"
+            class="pr-6 mt-8 mx-8 mb-0"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-h2"
+            >
+              Test title
+            </h2>
+          </div>
+          <div
+            class="flex relative flex-auto overflow-y"
           >
             <div
-              class="PicassoModalTitle-root"
+              class="pt-6 px-8 pb-8 overflow-auto flex-auto"
             >
-              <h2
-                class="MuiTypography-root MuiTypography-h2"
+              <p
+                class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
               >
-                Test title
-              </h2>
+                Test message
+              </p>
             </div>
-            <div
-              class="PicassoModalContent-wrapper"
+          </div>
+          <div
+            class="mt-0 mx-8 mb-8 text-right"
+          >
+            <button
+              class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
             >
-              <div
-                class="PicassoModalContent-modalContent"
+              <span
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
-                <p
-                  class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
-                >
-                  Test message
-                </p>
-              </div>
-            </div>
-            <div
-              class="PicassoModalAction-root"
+                Cancel
+              </span>
+            </button>
+            <button
+              class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+              data-component-type="button"
+              tabindex="0"
+              type="button"
             >
-              <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
-                data-component-type="button"
-                tabindex="0"
-                type="button"
+              <span
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
               >
-                <span
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-                >
-                  Cancel
-                </span>
-              </button>
-              <button
-                class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
-                data-component-type="button"
-                tabindex="0"
-                type="button"
-              >
-                <span
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
-                >
-                  Submit
-                </span>
-              </button>
-            </div>
+                Submit
+              </span>
+            </button>
           </div>
         </div>
         <div
-          data-test="sentinelEnd"
+          data-testid="sentinelEnd"
           tabindex="0"
         />
       </div>

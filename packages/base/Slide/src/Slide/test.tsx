@@ -1,7 +1,7 @@
 import React from 'react'
 import { act, cleanup, render } from '@toptal/picasso-test-utils'
 
-import Fade from './Fade'
+import Slide from './Slide'
 
 const SomeChildComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
   <div ref={ref} data-testid='child-div' {...props}>
@@ -9,7 +9,7 @@ const SomeChildComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
   </div>
 ))
 
-describe('Fade', () => {
+describe('Slide', () => {
   beforeEach(() => {
     jest.useFakeTimers()
   })
@@ -21,9 +21,9 @@ describe('Fade', () => {
 
   it('renders without errors', () => {
     const { getByTestId } = render(
-      <Fade in={true}>
+      <Slide direction='left' in={true}>
         <SomeChildComponent />
-      </Fade>
+      </Slide>
     )
 
     expect(getByTestId('child-div')).toBeInTheDocument()
@@ -31,18 +31,18 @@ describe('Fade', () => {
 
   it('transitions based on the `in` prop', () => {
     const { getByTestId, rerender } = render(
-      <Fade in={false}>
+      <Slide direction='left' in={false}>
         <SomeChildComponent />
-      </Fade>
+      </Slide>
     )
 
     expect(getByTestId('child-div')).toHaveStyle('visibility: hidden')
 
     act(() => {
       rerender(
-        <Fade in={true}>
+        <Slide direction='left' in={true}>
           <SomeChildComponent />
-        </Fade>
+        </Slide>
       )
       jest.runAllTimers()
     })
@@ -53,9 +53,9 @@ describe('Fade', () => {
   it('forwards the ref', () => {
     const ref = React.createRef<HTMLDivElement>()
     const { getByTestId } = render(
-      <Fade in={true} ref={ref}>
+      <Slide direction='left' in={true} ref={ref}>
         <SomeChildComponent />
-      </Fade>
+      </Slide>
     )
 
     expect(ref.current).toBe(getByTestId('child-div'))
@@ -64,9 +64,9 @@ describe('Fade', () => {
   it('applies transition duration style', () => {
     const timeout = 500
     const { getByTestId } = render(
-      <Fade in={true} timeout={timeout}>
+      <Slide direction='left' in={true} timeout={timeout}>
         <SomeChildComponent />
-      </Fade>
+      </Slide>
     )
 
     expect(getByTestId('child-div')).toHaveStyle({
