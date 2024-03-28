@@ -1,4 +1,10 @@
-import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import type {
+  ReactNode,
+  ReactElement,
+  MouseEvent,
+  ElementType,
+  FC,
+} from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type {
@@ -7,11 +13,9 @@ import type {
   ButtonOrAnchorProps,
   OverridableComponent,
   TextLabelProps,
-  Classes,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core'
-import { makeStyles, ButtonBase } from '@material-ui/core'
+import { Button as ButtonBase } from '@mui/base/Button'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
@@ -19,14 +23,15 @@ import { noop, toTitleCase } from '@toptal/picasso-utils'
 // TODO: [FX-4614] To be removed when Link component is migrated to tailwind
 import { Link } from '@toptal/picasso-link'
 
-import styles from './styles'
+import {
+  createVariantClassNames,
+  createCoreClassNames,
+  createSizeClassNames,
+  createIconClassNames,
+} from './styles'
 
 // HACK: This statement is only used to prevent webpack from tree shaking the import
 void Link
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoButton',
-})
 
 export type VariantType =
   | 'primary'
@@ -76,29 +81,39 @@ export interface Props
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
   loading ? noop : handler
 
-const getIcon = (
-  classes: Classes,
-  children: ReactNode,
-  icon?: ReactElement,
+const getIcon = ({
+  children,
+  icon,
+  iconPosition,
+  size,
+}: {
+  children: ReactNode
+  icon?: ReactElement
   iconPosition?: IconPositionType
-) => {
+  size: SizeType<'small' | 'medium' | 'large'>
+}) => {
   if (!icon) {
     return null
   }
 
-  const {
-    icon: iconClass,
-    iconLeft: iconLeftClass,
-    iconRight: iconRightClass,
-  } = classes
+  const iconClassNames = createIconClassNames({
+    size,
+    iconPosition: children && iconPosition ? iconPosition : undefined,
+  })
 
   return React.cloneElement(icon, {
-    className: cx(iconClass, icon.props.className, {
-      [iconLeftClass]: children && iconPosition === 'left',
-      [iconRightClass]: children && iconPosition === 'right',
-    }),
+    className: cx(iconClassNames, icon.props.className),
     key: 'button-icon',
   })
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isReactComponent = (component: any) => {
+  return (
+    component &&
+    (component.$$typeof === Symbol.for('react.forward_ref') ||
+      typeof component === 'function')
+  )
 }
 
 export const Button: OverridableComponent<Props> = forwardRef<
@@ -127,21 +142,26 @@ export const Button: OverridableComponent<Props> = forwardRef<
     titleCase: propsTitleCase,
     ...rest
   } = props
-  const classes = useStyles(props)
 
-  const {
-    root: rootClass,
-    hidden: hiddenClass,
-    loader: loaderClass,
-    content: contentClass,
-  } = classes
+  let RootElement: ElementType | FC = as
+
+  if (isReactComponent(RootElement)) {
+    RootElement = forwardRef(
+      // We don't need to pass ownerState to the root component
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ ownerState, ...restProps }: { ownerState: object }, rootRef) => {
+        const Root = as
+
+        return <Root ref={rootRef} {...restProps} />
+      }
+    )
+  }
 
   const titleCase = useTitleCase(propsTitleCase)
-
   const finalChildren = [titleCase ? toTitleCase(children) : children]
 
   if (icon) {
-    const iconComponent = getIcon(classes, children, icon, iconPosition)
+    const iconComponent = getIcon({ children, icon, iconPosition, size })
 
     if (iconPosition === 'left') {
       finalChildren.unshift(iconComponent)
@@ -150,39 +170,57 @@ export const Button: OverridableComponent<Props> = forwardRef<
     }
   }
 
-  const variantClassName = classes[variant]
-  const sizeClassName = classes[size]
+  const coreClassNames = createCoreClassNames({
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
+  const variantClassNames = createVariantClassNames(variant, {
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
+  const sizeClassNames = createSizeClassNames(size)
 
-  const rootClassName = cx(
-    {
-      [classes.fullWidth]: fullWidth,
-      [classes.active]: active,
-      [classes.focused]: focused,
-      [classes.hovered]: hovered,
-      [classes.disabled]: disabled,
-    },
-    sizeClassName,
-    variantClassName,
-    rootClass
+  const finalClassName = cx(
+    coreClassNames,
+    variantClassNames,
+    sizeClassNames,
+    fullWidth ? 'w-full' : '',
+    className
+  )
+
+  const contentSizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string[]
+  > = {
+    small: ['text-button-small'],
+    medium: ['text-button-medium'],
+    large: ['text-button-large'],
+  }
+
+  const contentClassName = cx(
+    'font-semibold whitespace-nowrap',
+    contentSizeClassNames[size],
+    loading ? 'opacity-0' : ''
   )
 
   return (
     <ButtonBase
       {...rest}
       ref={ref}
-      classes={{
-        root: rootClassName,
-        focusVisible: cx(classes.focusVisible),
-      }}
       onClick={getClickHandler(loading, onClick)}
-      className={className}
+      className={finalClassName}
       style={style}
       disabled={disabled}
       title={title}
       value={value}
       type={type}
-      component={as}
       data-component-type='button'
+      tabIndex={disabled ? -1 : 0}
+      slots={{ root: RootElement }}
     >
       <Container
         as='span'
@@ -190,13 +228,18 @@ export const Button: OverridableComponent<Props> = forwardRef<
         flex
         direction='row'
         alignItems='center'
-        className={cx({ [hiddenClass]: loading }, contentClass)}
+        className={contentClassName}
       >
         {finalChildren}
       </Container>
 
       {loading && (
-        <Loader variant='inherit' className={loaderClass} inline size='small' />
+        <Loader
+          variant='inherit'
+          className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'
+          inline
+          size='small'
+        />
       )}
     </ButtonBase>
   )
