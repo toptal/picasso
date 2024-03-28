@@ -36,7 +36,7 @@
     "react-helmet-async": "2.0.3"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.0.2",
+    "@toptal/picasso-test-utils": "1.1.0",
     "@types/classnames": "^2.3.1",
     "shelljs": "^0.8.5"
   },
