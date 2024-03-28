@@ -5646,6 +5646,13 @@
     requireindex "^1.2.0"
     resolve-ts-aliases "^1.0.1"
 
+"@toptal/picasso-test-utils@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@toptal/picasso-test-utils/-/picasso-test-utils-1.0.2.tgz#9e3a98ca1ca32bdbdd675df4ade6fa0d3bf7b9e1"
+  integrity sha512-CCgKeStVRnoyC/vCT2zW/xuVhV7plOKZGt3YfogNeUGE7FX2bKAW013SbIh9wG/0q9RF4FfpvNxJepKtRQpcKg==
+  dependencies:
+    "@toptal/picasso-shared" "14.0.1"
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"
