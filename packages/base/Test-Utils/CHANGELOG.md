@@ -1,5 +1,12 @@
 # @toptal/picasso-test-utils
 
+## 1.1.0
+
+### Minor Changes
+
+- [#4204](https://github.com/toptal/picasso/pull/4204) [`ae69e0e985c48542e7cc1df401d82ca91aa474ad`](https://github.com/toptal/picasso/commit/ae69e0e985c48542e7cc1df401d82ca91aa474ad) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add posibility to pass injectFirst property to TestingPicasso
+
 ## 1.0.2
 
 ### Patch Changes

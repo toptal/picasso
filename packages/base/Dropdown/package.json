@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "4.1.0",
-    "@toptal/picasso-test-utils": "1.0.2",
+    "@toptal/picasso-test-utils": "1.1.0",
     "popper.js": "^1.16.1"
   },
   "exports": {
