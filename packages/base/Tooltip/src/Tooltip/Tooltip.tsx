@@ -53,7 +53,7 @@ const getOffset = (
   const isVertical =
     placement.startsWith('top') || placement.startsWith('bottom')
 
-  return !isVertical ? result.reverse().join(',') : result.join(',')
+  return (isVertical ? result : result.reverse()).join(',')
 }
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
