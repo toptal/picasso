@@ -40,7 +40,7 @@ page
 
   .addExample('QueryBuilder/story/FieldDescription.example.tsx', {
     title: 'Field Description',
-    description: 'Display field description in a tooltip',
+    description: `Hover over 'specificFieldName' to display field description in a tooltip`,
   })
 
   .addExample('QueryBuilder/story/Loading.example.tsx', {
