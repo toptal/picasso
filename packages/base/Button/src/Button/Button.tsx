@@ -141,6 +141,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
 
   if (isReactComponent(RootElement)) {
     RootElement = forwardRef(
+      // We don't need to pass ownerState to the root component
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ({ ownerState, ...restProps }: { ownerState: object }, rootRef) => {
         const Root = as
