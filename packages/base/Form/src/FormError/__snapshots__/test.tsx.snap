@@ -50,7 +50,7 @@ exports[`FormError renders 1`] = `
           class="PicassoFormError-root"
         >
           <p
-            class="MuiTypography-root PicassoTypography-bodyXxsmall PicassoTypography-red PicassoFormError-error MuiTypography-body1"
+            class="m-0 font-regular text-2xs text-red PicassoFormError-error"
           >
             My Error
           </p>
@@ -59,7 +59,7 @@ exports[`FormError renders 1`] = `
           class="FormHint-root"
         >
           <p
-            class="MuiTypography-root PicassoTypography-bodyXxsmall MuiTypography-body1"
+            class="m-0 font-regular text-2xs text-graphite"
           >
             This is a hint
           </p>
