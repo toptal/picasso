@@ -157,6 +157,7 @@ export const createVariantClassNames = (
           variantClassNames.push('bg-gray-200')
         } else {
           variantClassNames.push('bg-white')
+          variantClassNames.push('border-gray-400')
         }
       }
 
@@ -221,7 +222,6 @@ export const createCoreClassNames = ({
     'rounded-sm',
     'align-middle',
     'border',
-    'border-gray-400',
     'transition-colors',
     'duration-350',
     'ease-out',
