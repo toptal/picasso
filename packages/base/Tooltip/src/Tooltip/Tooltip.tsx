@@ -11,7 +11,7 @@ import type { TooltipProps } from '@material-ui/core'
 import { Tooltip as MUITooltip } from '@material-ui/core'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { remToNumber, spacingToRem } from '@toptal/picasso-shared'
+import { pxFromRem, spacingToRem } from '@toptal/picasso-shared'
 import type { PicassoSpacing } from '@toptal/picasso-provider'
 import { SPACING_0, usePicassoRoot } from '@toptal/picasso-provider'
 import { Typography } from '@toptal/picasso-typography'
@@ -42,20 +42,13 @@ const getDelayDuration = (delay: DelayType, isTouchDevice: boolean) => {
   return isTouchDevice ? 0 : delayDurations[delay]
 }
 
-const convertRemToPixels = (rem: number) => {
-  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
-}
-
 const getOffset = (
   placement: PlacementType = 'top',
   offset: OffsetType
 ): string => {
   const { left = SPACING_0, top = SPACING_0 } = offset
 
-  const result = [
-    convertRemToPixels(remToNumber(spacingToRem(left))),
-    convertRemToPixels(remToNumber(spacingToRem(top))),
-  ]
+  const result = [pxFromRem(spacingToRem(left)), pxFromRem(spacingToRem(top))]
 
   const isVertical =
     placement.startsWith('top') || placement.startsWith('bottom')
