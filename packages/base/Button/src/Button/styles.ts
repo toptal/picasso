@@ -1,9 +1,11 @@
 import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { alpha, outline, mix } from '@toptal/picasso-shared'
+import type { SizeType } from '@toptal/picasso-shared'
 
-const ICON_SPACING = '0.5em'
+import type { IconPositionType, VariantType } from './Button'
 
+// const ICON_SPACING = '0.5em'
+
+// @todo: remove in the next tickets
 export const createOutlineCommons = ({ palette }: Theme) => ({
   color: palette.common.black,
   backgroundColor: palette.common.white,
@@ -24,199 +26,251 @@ export const createOutlineCommons = ({ palette }: Theme) => ({
   },
 })
 
+// @todo: in the next tickets
 export const activeGroup = ({ palette }: Theme) => ({
   backgroundColor: palette.grey.dark,
   borderColor: palette.grey.dark,
   color: palette.common.white,
 })
 
+// @todo: in the next tickets
 export const disabledGroup = ({ palette }: Theme) => ({
   color: palette.grey.main,
   cursor: 'not-allowed',
   pointerEvents: 'all',
 })
 
-export const createVariant = (mainColor: string, { palette }: Theme) => ({
-  border: 'none',
-  color: palette.common.white,
-  backgroundColor: mainColor,
+export const createSizeClassNames = (
+  size: 'small' | 'medium' | 'large'
+): string[] => {
+  const sizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string[]
+  > = {
+    small: ['min-w-14', 'h-6', 'py-0', 'px-3'],
+    medium: ['min-w-16', 'h-8', 'py-0', 'px-4'],
+    large: ['min-w-24', 'h-12', 'py-0', 'px-8'],
+  }
 
-  '&:hover, &$hovered': {
-    backgroundColor: mix(mainColor, palette.common.white, 0.152),
-  },
+  return sizeClassNames[size]
+}
 
-  '&:active, &$active': {
-    backgroundColor: mix(mainColor, palette.common.black, 0.172),
-  },
+export const createVariantClassNames = (
+  variant: VariantType,
+  {
+    disabled,
+    focused,
+    hovered,
+    active,
+  }: {
+    disabled?: boolean
+    focused?: boolean
+    hovered?: boolean
+    active?: boolean
+  }
+): string[] => {
+  const variantClassNames = []
 
-  // when we use <Button as={Link} />
-  '&&&:visited': {
-    color: palette.common.white,
-  },
-  '&$disabled': {
-    backgroundColor: palette.grey.light2,
-  },
-})
+  switch (variant) {
+    case 'primary':
+      variantClassNames.push('border-none')
+      variantClassNames.push('text-white')
+      variantClassNames.push('visited:text-white')
 
-export default (theme: Theme) => {
-  const { palette, sizes, transitions, typography } = theme
+      if (disabled) {
+        variantClassNames.push('bg-gray-400')
+      } else {
+        variantClassNames.push('hover:bg-[#4269D6]')
+        variantClassNames.push('active:bg-[#1A41AB]')
 
-  return createStyles({
-    root: {
-      position: 'relative',
-      textTransform: 'none',
-      borderRadius: sizes.borderRadius.small,
-      border: `solid ${sizes.borderWidth} ${palette.grey.light2}`,
-      fontSize: '1rem',
-      transitionDuration: `${transitions.duration.short}ms`,
-      transitionTimingFunction: transitions.easing.easeOut,
-      transitionProperty: 'border, color, background',
-      boxShadow: 'none',
-      flexShrink: 0,
+        if (hovered) {
+          variantClassNames.push('bg-[#4269D6]')
+        } else if (active) {
+          variantClassNames.push('bg-[#1A41AB]')
+        } else {
+          variantClassNames.push('bg-blue-500')
+        }
+      }
 
-      '&$focusVisible, &$focused': {
-        ...outline(palette.primary.main),
-      },
+      break
+    case 'negative':
+      variantClassNames.push('border-none')
+      variantClassNames.push('text-white')
+      variantClassNames.push('visited:text-white')
 
-      '&+&': {
-        marginLeft: '1rem',
-      },
-    },
-    content: {
-      lineHeight: '1.5em',
-      fontWeight: typography.fontWeights.semibold,
-      whiteSpace: 'nowrap',
-    },
-    loader: {
-      position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
+      if (disabled) {
+        variantClassNames.push('bg-gray-400')
+      } else {
+        variantClassNames.push('hover:bg-[#DB466B]')
+        variantClassNames.push('active:bg-[#B01F43]')
 
-    // sizes
-    small: {
-      minWidth: '3.5em',
-      height: '1.5em',
-      padding: '0 0.75em',
+        if (hovered) {
+          variantClassNames.push('bg-[#DB466B]')
+        } else if (active) {
+          variantClassNames.push('bg-[#B01F43]')
+        } else {
+          variantClassNames.push('bg-red-500')
+        }
+      }
+      break
+    case 'positive':
+      variantClassNames.push('border-none')
+      variantClassNames.push('text-white')
+      variantClassNames.push('visited:text-white')
 
-      '& $content': {
-        fontSize: typography.buttons.fontSizeSmall,
-        lineHeight: typography.buttons.lineHeightSmall,
-      },
+      if (disabled) {
+        variantClassNames.push('bg-gray-400')
+      } else {
+        variantClassNames.push('hover:bg-[#27D496]')
+        variantClassNames.push('active:bg-[#00A96C]')
 
-      '& $iconLeft': {
-        marginLeft: '-0.125em',
-      },
+        if (hovered) {
+          variantClassNames.push('bg-[#27D496]')
+        } else if (active) {
+          variantClassNames.push('bg-[#00A96C]')
+        } else {
+          variantClassNames.push('bg-green-500')
+        }
+      }
+      break
+    case 'secondary':
+      variantClassNames.push('border-solid')
 
-      '& $iconRight': {
-        marginRight: '-0.125em',
-      },
-    },
-    medium: {
-      minWidth: '4em',
-      height: '2em',
-      padding: '0 1em',
+      if (disabled) {
+        variantClassNames.push('text-gray-500')
+        variantClassNames.push('border-gray-500')
+        variantClassNames.push('bg-white')
+      } else {
+        variantClassNames.push('text-black')
 
-      '& $content': {
-        fontSize: typography.buttons.fontSizeMedium,
-        lineHeight: typography.buttons.lineHeightMedium,
-      },
+        variantClassNames.push('hover:border-black')
+        variantClassNames.push('visited:text-black')
 
-      '& $iconLeft': {
-        marginLeft: '-0.25em',
-      },
+        variantClassNames.push('active:bg-gray-200')
+        variantClassNames.push('active:border-black')
 
-      '& $iconRight': {
-        marginRight: '-0.25em',
-      },
-    },
-    large: {
-      minWidth: '6em',
-      height: '3em',
-      padding: '0 2em',
+        if (hovered) {
+          variantClassNames.push('border-black')
+          variantClassNames.push('bg-white')
+        } else if (active) {
+          variantClassNames.push('border-black')
+          variantClassNames.push('bg-gray-200')
+        } else {
+          variantClassNames.push('bg-white')
+          variantClassNames.push('border-gray-400')
+        }
+      }
 
-      '& $content': {
-        fontSize: typography.buttons.fontSizeLarge,
-        lineHeight: typography.buttons.lineHeightLarge,
-      },
+      break
+    case 'transparent':
+      if (disabled) {
+        variantClassNames.push('text-white/[0.32]')
+        variantClassNames.push('border-white/[0.32]')
+        variantClassNames.push('bg-transparent')
+      } else {
+        variantClassNames.push('text-white')
+        variantClassNames.push('visited:text-white')
+        variantClassNames.push('border-solid')
 
-      '& $iconLeft': {
-        marginLeft: '-0.5em',
-      },
+        variantClassNames.push('hover:border-white')
+        variantClassNames.push('active:border-white')
+        variantClassNames.push('active:bg-white/[.16]')
+        variantClassNames.push('focus:shadow-button-transparent')
+        variantClassNames.push('focus-visible:shadow-button-transparent')
 
-      '& $iconRight': {
-        marginRight: '-0.5em',
-      },
-    },
+        if (hovered) {
+          variantClassNames.push('border-white')
+          variantClassNames.push('bg-transparent')
+        } else if (active) {
+          variantClassNames.push('border-white')
+          variantClassNames.push('bg-white/[.16]')
+        } else {
+          variantClassNames.push('border-white/[0.32]')
+          variantClassNames.push('bg-transparent')
+        }
 
-    // variants
-    primary: createVariant(palette.primary.main, theme),
-    negative: createVariant(palette.red.main, theme),
-    positive: createVariant(palette.green.main, theme),
+        if (focused) {
+          variantClassNames.push('shadow-button-transparent')
+        }
+      }
+      break
+  }
 
-    secondary: {
-      ...createOutlineCommons(theme),
-      '&:active, &$active': {
-        backgroundColor: palette.grey.lighter2,
-        borderColor: palette.common.black,
-      },
-    },
+  return variantClassNames
+}
 
-    transparent: {
-      color: palette.common.white,
-      border: `solid ${sizes.borderWidth} ${alpha(palette.common.white, 0.32)}`,
+export const createCoreClassNames = ({
+  disabled,
+  focused,
+  active,
+}: {
+  disabled?: boolean
+  focused?: boolean
+  hovered?: boolean
+  active?: boolean
+}): string[] => {
+  const classNames = [
+    'inline-flex',
+    'items-center',
+    'justify-center',
+    'select-none',
+    'appearance-none',
+    'no-underline',
+    'm-0',
+    'relative',
+    'normal-case',
+    'rounded-sm',
+    'align-middle',
+    'border',
+    'transition-colors',
+    'duration-350',
+    'ease-out',
+    'shadow-none',
+    'shrink-0',
+    'outline-none',
+    '[&:not(:first-of-type)]:ml-4',
+  ]
 
-      // when we use <Button as={Link} />
-      '&&&:visited': {
-        color: palette.common.white,
-      },
+  if (!disabled) {
+    classNames.push('cursor-pointer')
+    classNames.push('focus:shadow-button')
+    classNames.push('focus-visible:shadow-button')
 
-      '&$focusVisible, &$focused': {
-        ...outline(palette.common.white),
-      },
+    if (focused) {
+      classNames.push('shadow-button')
+    }
 
-      '&:hover, &$hovered': {
-        borderColor: palette.common.white,
-      },
+    if (active) {
+      classNames.push('shadow-none')
+    }
+  } else {
+    classNames.push('cursor-default')
+    classNames.push('pointer-events-none')
+  }
 
-      '&:active, &$active': {
-        backgroundColor: alpha(palette.common.white, 0.16),
-        borderColor: palette.common.white,
-      },
+  return classNames
+}
 
-      '&$disabled': {
-        color: alpha(palette.common.white, 0.32),
-        borderColor: alpha(palette.common.white, 0.32),
-        backgroundColor: 'initial',
-      },
-    },
+export const createIconClassNames = ({
+  iconPosition,
+  size,
+}: {
+  iconPosition?: IconPositionType
+  size: SizeType<'small' | 'medium' | 'large'>
+}): string[] => {
+  const sizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string[]
+  > = {
+    small: [iconPosition === 'left' ? 'ml-[-0.125em]' : 'mr-[-0.125em]'],
+    medium: [iconPosition === 'left' ? 'ml-[-0.25em]' : 'mr-[-0.25em]'],
+    large: [iconPosition === 'left' ? 'ml-[-0.5em]' : 'mr-[-0.5em]'],
+  }
 
-    // Other props
-    fullWidth: {
-      width: '100%',
-    },
-    hovered: {},
-    focused: {},
-    active: {
-      boxShadow: 'none',
-    },
-    disabled: {},
-    focusVisible: {},
-
-    // Child elements
-    icon: {
-      fontSize: '1.2em !important',
-      flex: '1 1 0%', // IE11 fix
-    },
-    iconLeft: {
-      marginRight: ICON_SPACING,
-    },
-    iconRight: {
-      marginLeft: ICON_SPACING,
-    },
-    hidden: {
-      opacity: 0,
-    },
-  })
+  return [
+    'text-[1.2em]',
+    sizeClassNames[size].join(' '),
+    iconPosition === 'left' ? 'mr-[0.5em]' : '',
+    iconPosition === 'right' ? 'ml-[0.5em]' : '',
+  ]
 }
