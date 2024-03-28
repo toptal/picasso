@@ -7,16 +7,16 @@ import {
 const initialQuery: RuleGroupTypeAny = {
   rules: [
     {
-      field: 'name',
+      field: 'field1',
       operator: '=',
       valueSource: 'value',
       value: 'John',
     },
     {
-      field: 'age',
+      field: 'field2',
       operator: '=',
       valueSource: 'value',
-      value: '21',
+      value: 'John',
     },
   ],
   combinator: 'and',
