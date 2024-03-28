@@ -3,5 +3,5 @@
 '@toptal/picasso-tooltip': minor
 ---
 
-- add `tooltipPopperClassName` to override the material UI tooltip popper styles.
+- add Tooltip `offset` property to shift tooltip position from the left and the top.
 - add tooltip support to the query builder fields using the `tooltip` property in the fields' configuration.
