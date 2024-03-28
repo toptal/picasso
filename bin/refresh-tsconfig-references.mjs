@@ -4,7 +4,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import url from 'node:url'
 import { globbyStream } from 'globby'
-import { $ } from 'zx'
+import { $, argv, echo, chalk } from 'zx'
 import JSON5 from 'json5'
 
 const ALL_PROJECTS_TSCONFIG = 'tsconfig.pkgsrc.json'
@@ -52,10 +52,11 @@ const buildWorkspace = async rootPath => {
   )
 
   const metaPromises = []
-
-  for await (const dir of globbyStream(rootPkgJson.workspaces, {
+  const packagesDirectoriesStream = globbyStream(rootPkgJson.workspaces, {
     onlyDirectories: true,
-  })) {
+  })
+
+  for await (const dir of packagesDirectoriesStream) {
     metaPromises.push(resolvePkgMeta(dir))
   }
 
@@ -127,7 +128,26 @@ const main = async () => {
 
   const refreshingPromises = []
 
-  for (const pkgMeta of Object.values(workspace)) {
+  const workspaceByPath = Object.values(workspace).reduce((acc, pkgMeta) => {
+    acc[pkgMeta.dir] = pkgMeta
+
+    return acc
+  }, {})
+
+  // Find packages by their package.json location
+  const args = argv._.map(
+    arg => workspaceByPath[path.dirname(path.resolve(arg))]?.pkg.name ?? arg
+  )
+
+  const targets = args.length ? args : Object.keys(workspace)
+
+  echo(
+    `Refreshing tsconfig references for packages: ${chalk.green(
+      `${targets.join(', ')}`
+    )}`
+  )
+
+  for (const pkgMeta of targets.map(name => workspace[name]).filter(Boolean)) {
     if (pkgMeta.tsconfig) {
       allProjects.push(pkgMeta.dir)
     }
@@ -138,9 +158,11 @@ const main = async () => {
   await Promise.all(refreshingPromises)
 
   const allTsconfigLoc = path.join(rootPath, ALL_PROJECTS_TSCONFIG)
-  const allReferences = allProjects.map(dir => ({
-    path: path.relative(rootPath, dir),
-  }))
+  const allReferences = Object.values(workspace)
+    .filter(pkg => pkg.tsconfig)
+    .map(pkg => ({
+      path: path.relative(rootPath, pkg.dir),
+    }))
 
   await replaceReferenceOfTsconfigFile(allTsconfigLoc, allReferences)
 }
