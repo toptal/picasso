@@ -55,6 +55,9 @@ module.exports = {
       xl: ['1.25rem', { lineHeight: '1.875rem' }],
       '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
       xxl: ['1.75rem', { lineHeight: '2.625rem' }],
+      'button-small': ['12px', { lineHeight: '15px' }],
+      'button-medium': ['13px', { lineHeight: '16px' }],
+      'button-large': ['15px', { lineHeight: '18px' }],
     },
     // TODO: [FX-5003] Deprecate legacy shadow classes
     // Shadows 0-5 correspond to BASE design https://www.figma.com/file/9xnyixadrhlHe9UuXBMRlT/Foundations?type=design&node-id=22%3A21&mode=design&t=8d8TKUUuHKWosUtX-1
@@ -167,11 +170,6 @@ module.exports = {
       maxHeight: ({ theme }) => ({
         ...theme('spacing'),
       }),
-      fontSize: {
-        'button-small': ['12px', { lineHeight: '15px' }],
-        'button-medium': ['13px', { lineHeight: '16px' }],
-        'button-large': ['15px', { lineHeight: '18px' }],
-      },
     },
   },
 }

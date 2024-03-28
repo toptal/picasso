@@ -162,7 +162,7 @@ jobs:
     name: Storybook Visual Tests
     runs-on: ubuntu-latest
     permissions: write-all
-    # needs: [static-checks]
+    needs: [static-checks]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -1,7 +1,5 @@
 ---
-'@toptal/picasso-provider': major
-'@toptal/picasso-tailwind': minor
-'@toptal/picasso-button': minor
+'@toptal/picasso-button': major
 ---
 
 - migrate Button component to TailwindCSS
