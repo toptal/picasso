@@ -66,6 +66,9 @@ module.exports = {
       xl: ['1.25rem', { lineHeight: '1.875rem' }],
       '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
       xxl: ['1.75rem', { lineHeight: '2.625rem' }],
+      'button-small': ['12px', { lineHeight: '15px' }],
+      'button-medium': ['13px', { lineHeight: '16px' }],
+      'button-large': ['15px', { lineHeight: '18px' }],
     },
     // TODO: [FX-5003] Deprecate legacy shadow classes
     // Shadows 0-5 correspond to BASE design https://www.figma.com/file/9xnyixadrhlHe9UuXBMRlT/Foundations?type=design&node-id=22%3A21&mode=design&t=8d8TKUUuHKWosUtX-1
@@ -106,10 +109,13 @@ module.exports = {
       22: '0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)',
       23: '0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)',
       24: '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
+      button: '0 0 0 3px rgba(32, 78, 207, 0.48)',
+      'button-transparent': '0 0 0 3px rgba(255, 255, 255, 0.48)',
     },
     colors: {
       white: '#FFFFFF',
       black: '#000000',
+      transparent: 'transparent',
       blue: {
         100: '#EDF1FD',
         400: '#25A9EF',
@@ -154,6 +160,27 @@ module.exports = {
         drawer: 1200,
         modal: 1300,
       },
+      transitionDuration: {
+        350: '350ms',
+      },
+      boxShadow: {
+        outline: '0 0 0 3px rgba(0, 0, 0, 0.48)',
+      },
+      minWidth: ({ theme }) => ({
+        ...theme('spacing'),
+        14: '3.5rem',
+        16: '4rem',
+        24: '6rem',
+      }),
+      maxWidth: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
+      minHeight: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
+      maxHeight: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
     },
   },
 }
