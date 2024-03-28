@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-import { headerHeight, headerBreakingPointXL } from './constants'
+import { headerBreakingPointXL } from './constants'
 
 export default ({ palette, layout, zIndex, screens }: Theme) =>
   createStyles({
@@ -32,7 +32,7 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
       justifyContent: 'space-between',
       maxWidth: layout.contentWidth,
       padding: `0 ${layout.contentMobilePaddingHorizontal}`,
-      height: headerHeight.default,
+      height: 'var(--header-height, 3.5rem)',
       [screens('md', 'lg', 'xl')]: {
         padding: `0 ${layout.contentPaddingHorizontal}`,
       },
@@ -44,8 +44,8 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     },
     wrapper: {
       position: 'relative',
-      height: headerHeight.default,
-      minHeight: headerHeight.default,
+      height: 'var(--header-height, 3.5rem)',
+      minHeight: 'var(--header-height, 3.5rem)',
     },
     wide: {
       maxWidth: layout.contentWidthWide,

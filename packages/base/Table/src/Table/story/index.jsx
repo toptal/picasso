@@ -5,6 +5,7 @@ import tableHeadStory from '../../TableHead/story'
 import tableSectionHeadStory from '../../TableSectionHead/story'
 import tableRowStory from '../../TableRow/story'
 import tableExpandableRowStory from '../../TableExpandableRow/story'
+import tableSortableCellStory from '../../TableSortableCell/story'
 import { Table } from '../Table'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -42,6 +43,7 @@ page
   .addComponentDocs(tableRowStory.componentDocs)
   .addComponentDocs(tableCellStory.componentDocs)
   .addComponentDocs(tableExpandableRowStory.componentDocs)
+  .addComponentDocs(tableSortableCellStory.componentDocs)
 
 page
   .createChapter()
@@ -107,6 +109,16 @@ page
     'Table/story/ExpandableRowsDefaultExpanded.example.tsx',
     {
       title: 'Expandable rows, expanded by default',
+      takeScreenshot: false,
+    },
+    'base/Table'
+  )
+  .addExample(
+    'Table/story/Sortable.example.tsx',
+    {
+      title: 'Sortable table',
+      description:
+        'Use TableSortableCell instead of TableCell in TableHead to sort columns',
       takeScreenshot: false,
     },
     'base/Table'

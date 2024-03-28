@@ -244,6 +244,7 @@ export {
   TableFooter,
   TableBody,
   TableCell,
+  TableSortableCell,
   TableRow,
   TableExpandableRow,
   TableHead,
@@ -254,6 +255,7 @@ export type {
   TableCellProps,
   TableRowProps,
   TableExpandableRowProps,
+  TableSortableCellProps,
 } from '@toptal/picasso-table'
 export { TabsCompound as Tabs } from '@toptal/picasso-tabs'
 export type { TabsProps, TabProps } from '@toptal/picasso-tabs'

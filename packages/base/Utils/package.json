@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "4.1.0",
-    "@toptal/picasso-test-utils": "1.0.2",
+    "@toptal/picasso-test-utils": "1.1.0",
     "styled-components": "^6.1.1"
   },
   "peerDependencies": {

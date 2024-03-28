@@ -1,6 +1,7 @@
 export * from './Table'
 export * from './TableBody'
 export * from './TableCell'
+export * from './TableSortableCell'
 export * from './TableCompound'
 export * from './TableExpandableRow'
 export * from './TableFooter'
