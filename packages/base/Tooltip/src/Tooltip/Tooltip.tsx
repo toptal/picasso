@@ -11,7 +11,9 @@ import type { TooltipProps } from '@material-ui/core'
 import { Tooltip as MUITooltip } from '@material-ui/core'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { usePicassoRoot } from '@toptal/picasso-provider'
+import { remToNumber, spacingToRem } from '@toptal/picasso-shared'
+import type { PicassoSpacing } from '@toptal/picasso-provider'
+import { SPACING_0, usePicassoRoot } from '@toptal/picasso-provider'
 import { Typography } from '@toptal/picasso-typography'
 
 import styles from './styles'
@@ -26,6 +28,11 @@ export type MaxWidthType = 'none' | 'default'
 
 export type PlacementType = TooltipProps['placement']
 
+export type OffsetType = {
+  left?: PicassoSpacing
+  top?: PicassoSpacing
+}
+
 const delayDurations: { [k in DelayType]: number } = {
   short: 200,
   long: 500,
@@ -33,6 +40,27 @@ const delayDurations: { [k in DelayType]: number } = {
 
 const getDelayDuration = (delay: DelayType, isTouchDevice: boolean) => {
   return isTouchDevice ? 0 : delayDurations[delay]
+}
+
+const convertRemToPixels = (rem: number) => {
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+}
+
+const getOffset = (
+  placement: PlacementType = 'top',
+  offset: OffsetType
+): string => {
+  const { left = SPACING_0, top = SPACING_0 } = offset
+
+  const result = [
+    convertRemToPixels(remToNumber(spacingToRem(left))),
+    convertRemToPixels(remToNumber(spacingToRem(top))),
+  ]
+
+  const isVertical =
+    placement.startsWith('top') || placement.startsWith('bottom')
+
+  return !isVertical ? result.reverse().join(',') : result.join(',')
 }
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -70,8 +98,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   tooltipRef?: React.Ref<HTMLDivElement>
   /** A node, or a function that returns node. The container will have the portal children appended to it. */
   container?: ContainerValue
-  /** Allows customizing the tooltip popper style */
-  popperClassName?: string
+  /** Offset to allow shifting tooltip's position from left and top. */
+  offset?: OffsetType
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
@@ -83,7 +111,10 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     placement,
     interactive,
     className,
-    popperClassName,
+    offset = {
+      left: SPACING_0,
+      top: SPACING_0,
+    },
     style,
     open,
     onOpen,
@@ -155,6 +186,9 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
             hide: {
               enabled: preventOverflow,
             },
+            offset: {
+              offset: getOffset(placement, offset),
+            },
           },
         },
         ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
@@ -171,7 +205,6 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
           [classes.compact]: compact,
           [classes.noMaxWidth]: maxWidth === 'none',
         }),
-        popper: popperClassName,
       }}
       className={className}
       style={style}

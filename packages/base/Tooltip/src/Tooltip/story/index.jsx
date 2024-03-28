@@ -122,3 +122,11 @@ page
     },
     'base/Tooltip'
   )
+  .addExample(
+    'Tooltip/story/Offset.example.tsx',
+    {
+      title: 'Tooltip with offset modifier',
+      takeScreenshot: false,
+    },
+    'base/Tooltip'
+  )
