@@ -159,10 +159,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
       icon={iconComponent}
       iconPosition={iconPosition}
       loading={loading}
-      focused={focused}
-      hovered={hovered}
       disabled={disabled}
-      active={active}
     />
   )
 })

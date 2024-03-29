@@ -173,7 +173,9 @@ export const createVariantClassNames = (
         variantClassNames.push('hover:border-white')
         variantClassNames.push('active:border-white')
         variantClassNames.push('active:bg-white/[.16]')
-        variantClassNames.push('focus-visible:shadow-button-transparent')
+        variantClassNames.push(
+          'focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)]'
+        )
 
         if (hovered) {
           variantClassNames.push('border-white')
@@ -187,7 +189,7 @@ export const createVariantClassNames = (
         }
 
         if (focused) {
-          variantClassNames.push('shadow-button-transparent')
+          variantClassNames.push('shadow-[0_0_0_3px_rgba(255,255,255,0.48)]')
         }
       }
       break
@@ -209,10 +211,10 @@ export const createCoreClassNames = ({
   const classNames = ['no-underline', 'rounded-sm', 'border', 'shadow-none']
 
   if (!disabled) {
-    classNames.push('focus-visible:shadow-button')
+    classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
 
     if (focused) {
-      classNames.push('shadow-button')
+      classNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
     }
 
     if (active) {
