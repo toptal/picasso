@@ -57,7 +57,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
                             >
                               <p
-                                class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                                class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                               >
                                 Test item
                               </p>
@@ -121,7 +121,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
                                     >
                                       <p
-                                        class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                                        class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                                       >
                                         Menu item
                                       </p>
@@ -203,7 +203,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
                             >
                               <p
-                                class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                                class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                               >
                                 Test item
                               </p>
@@ -267,7 +267,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
                                     >
                                       <p
-                                        class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                                        class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                                       >
                                         Menu item
                                       </p>
@@ -328,7 +328,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                 class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
               >
                 <p
-                  class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                  class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>
@@ -366,7 +366,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                     class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
                   >
                     <p
-                      class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                      class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                     >
                       Menu item
                     </p>
@@ -418,7 +418,7 @@ exports[`SidebarItem is selected 1`] = `
                 class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
               >
                 <p
-                  class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                  class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>
@@ -459,7 +459,7 @@ exports[`SidebarItem renders 1`] = `
                 class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
               >
                 <p
-                  class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                  class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>
@@ -522,7 +522,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
                     >
                       <p
-                        class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                        class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                       >
                         Test item
                       </p>
@@ -586,7 +586,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
                             >
                               <p
-                                class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                                class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                               >
                                 Menu item
                               </p>
@@ -643,7 +643,7 @@ exports[`SidebarItem with icon 1`] = `
                 class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
               >
                 <p
-                  class="m-0 font-regular text-md text-inherit whitespace-nowrap"
+                  class="m-0 font-regular text-md text-inherit whitespace-nowrap overflow-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>

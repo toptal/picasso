@@ -50,7 +50,7 @@ exports[`FormError renders 1`] = `
           class="PicassoFormError-root"
         >
           <p
-            class="m-0 font-regular text-2xs text-red PicassoFormError-error"
+            class="m-0 font-regular text-2xs text-red cursor-default"
           >
             My Error
           </p>

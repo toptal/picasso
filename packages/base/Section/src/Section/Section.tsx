@@ -8,7 +8,7 @@ import type { SizeType, BaseProps } from '@toptal/picasso-shared'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { isString , Rotate180 } from '@toptal/picasso-utils'
+import { isString, Rotate180 } from '@toptal/picasso-utils'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 
 import styles from './styles'
@@ -73,7 +73,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     title ? (
       <Typography
         as={isString(title) ? undefined : 'div'}
-        className={classes.title}
+        className='!mr-4 min-w-0'
         data-testid={testIds?.title}
         variant='heading'
         size={titleSize}
@@ -86,7 +86,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     subtitle ? (
       <Typography
         as={isString(subtitle) ? undefined : 'div'}
-        className={classes.subtitle}
+        className='self-center !mr-4 min-w-0'
         data-testid={testIds?.subtitle}
         size='medium'
         color='dark-grey'

@@ -29,7 +29,7 @@ exports[`NotificationActions renders 1`] = `
             </svg>
           </div>
           <div
-            class="m-0 font-regular text-sm text-graphite Notification-content Notification-contentYellow"
+            class="m-0 font-regular text-sm text-black break-words min-w !mt-0"
           >
             The time zone in your profile is set to (UTC -08:00) America - Los
             <div

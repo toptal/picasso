@@ -48,12 +48,12 @@ const VARIANT_SIZE: Record<
 > = {
   heading: {
     xxsmall: 'font-semibold text-2xs',
-    xsmall: 'font-semibold text-xxs',
+    xsmall: 'font-regular text-md',
     small: 'font-semibold text-md',
     medium: 'font-semibold text-lg',
     large: 'font-semibold text-xl',
     xlarge: 'font-semibold text-2xl',
-    inherit: '',
+    inherit: 'font-regular text-md',
   },
   body: {
     xxsmall: 'font-regular text-2xs',
@@ -71,12 +71,12 @@ const VARIANT_COLOR: Record<
 > = {
   heading: {
     xxsmall: 'text-black',
-    xsmall: 'text-black',
+    xsmall: 'text-graphite-700',
     small: 'text-black',
     medium: 'text-black',
     large: 'text-black',
     xlarge: 'text-black',
-    inherit: '',
+    inherit: 'text-graphite-700',
   },
   body: {
     xxsmall: 'text-graphite-700',
@@ -174,7 +174,9 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
         weight ? WEIGHTS[weight] : undefined,
         align ? ALIGN[align] : undefined,
         underline ? UNDERLINE[underline] : undefined,
-        noWrap ? 'whitespace-nowrap' : undefined,
+        noWrap
+          ? 'whitespace-nowrap overflow-ellipsis overflow-hidden'
+          : undefined,
         lineThrough ? 'line-through' : undefined,
         inline ? 'inline' : undefined,
         className

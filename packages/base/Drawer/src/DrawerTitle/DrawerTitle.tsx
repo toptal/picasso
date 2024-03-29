@@ -27,7 +27,7 @@ export const DrawerTitle = ({ title }: Props) => {
 
   return (
     <Container flex alignItems='center' className={classes.header}>
-      <Typography variant='heading' size='medium' className={classes.title}>
+      <Typography variant='heading' size='medium' className='grow'>
         {title}
       </Typography>
     </Container>

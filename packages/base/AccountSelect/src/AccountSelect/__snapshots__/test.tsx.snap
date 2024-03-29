@@ -41,7 +41,7 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
                       >
                         <p
-                          class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+                          class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
                         >
                           PL
                         </p>
@@ -113,7 +113,7 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
                       >
                         <p
-                          class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+                          class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
                         >
                           PL
                         </p>

@@ -1,5 +1,6 @@
 ---
 '@toptal/picasso-typography': major
+'@toptal/picasso-typography-overflow': major
 '@toptal/picasso-provider': minor
 '@toptal/picasso-tailwind': minor
 ---

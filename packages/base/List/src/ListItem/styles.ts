@@ -41,9 +41,6 @@ export const listStyleTypes: StyleRules<ListItemType> = {
 
 export default () =>
   createStyles({
-    content: {
-      paddingLeft: rem(8),
-    },
     listContainer: {
       marginTop: rem(4),
     },

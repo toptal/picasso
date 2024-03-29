@@ -15,7 +15,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -54,7 +54,7 @@ exports[`UserBadge custom name 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -96,7 +96,7 @@ exports[`UserBadge custom title 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -143,7 +143,7 @@ exports[`UserBadge invert render 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -187,7 +187,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -231,7 +231,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -270,7 +270,7 @@ exports[`UserBadge renders 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>
@@ -314,7 +314,7 @@ exports[`UserBadge small size 1`] = `
           class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-small"
         >
           <p
-            class="m-0 font-regular font-inherit leading-[1.5em] text-white PicassoTextAvatar-largeFont"
+            class="m-0 font-regular font-inherit leading-[1.5em] text-white !text-[1em]"
           >
             JD
           </p>

@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export default ({ palette, spacing, sizes: { input } }: Theme) =>
+export default ({ palette, sizes: { input } }: Theme) =>
   createStyles({
     root: {
       display: 'flex',
@@ -14,8 +14,5 @@ export default ({ palette, spacing, sizes: { input } }: Theme) =>
       display: 'flex',
       alignItems: 'center',
       color: palette.grey.main2,
-    },
-    fieldRequirementItemMessage: {
-      marginLeft: spacing(1),
     },
   })
