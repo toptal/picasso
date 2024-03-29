@@ -15,7 +15,7 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
               class="flex items-center"
             >
               <div
-                class="m-0 font-regular text-sm text-graphite font-inherit"
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
               >
                 Cell
               </div>
@@ -63,7 +63,7 @@ exports[`TableCell sort direction is desc renders with a sort button in the righ
               class="flex items-center"
             >
               <div
-                class="m-0 font-regular text-sm text-graphite font-inherit"
+                class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
               />
               <button
                 class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
