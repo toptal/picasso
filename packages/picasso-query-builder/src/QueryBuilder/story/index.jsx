@@ -38,6 +38,11 @@ page
     description: 'Customized header',
   })
 
+  .addExample('QueryBuilder/story/FieldDescription.example.tsx', {
+    title: 'Field Description',
+    description: `Hover over 'First  name' field in the field selector dropdown to display field description in a tooltip`,
+  })
+
   .addExample('QueryBuilder/story/Loading.example.tsx', {
     title: 'Loading',
   })

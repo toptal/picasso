@@ -1,4 +1,5 @@
-import React from 'react'
+import type { ComponentProps } from 'react'
+import React, { useMemo } from 'react'
 import { Container, Select as PicassoSelect } from '@toptal/picasso'
 import type { VersatileSelectorProps } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
@@ -10,6 +11,7 @@ import styles from './styles'
 
 interface Props
   extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
+    Pick<ComponentProps<typeof PicassoSelect>, 'renderOption'>,
     ValueEditorValidationProps {
   valueEditorTestId?: string
 }
@@ -27,10 +29,15 @@ export const Select = ({
   className,
   fieldData,
   valueEditorTestId,
+  renderOption,
 }: Props) => {
   const classes = useStyles()
 
-  const formattedOptions = generateSelectOptions(options)
+  const formattedOptions = useMemo(
+    () => generateSelectOptions(options),
+    [options]
+  )
+
   const hasError = validateValueEditor({
     validation,
     touched,
@@ -49,6 +56,7 @@ export const Select = ({
         status={hasError ? 'error' : undefined}
         onBlur={() => handleTouched?.(true)}
         data-testid={valueEditorTestId}
+        renderOption={renderOption}
       />
     </Container>
   )
