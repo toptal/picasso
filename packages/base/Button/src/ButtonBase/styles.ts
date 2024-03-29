@@ -9,6 +9,7 @@ export const createCoreClassNames = ({
   loading?: boolean
 }): string[] => {
   const classNames = [
+    'text-lg',
     'inline-flex',
     'items-center',
     'justify-center',

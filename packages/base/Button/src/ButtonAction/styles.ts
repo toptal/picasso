@@ -13,7 +13,7 @@ export const createRootClassNames = ({
   active?: boolean
   loading?: boolean
 }) => {
-  const classNames = ['border-none', 'px-0', 'bg-transparent']
+  const classNames = ['border-none', 'px-0', 'bg-transparent', 'h-[1.5em]']
 
   if (disabled) {
     classNames.push('opacity-[.48]')
