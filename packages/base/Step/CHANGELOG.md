@@ -1,5 +1,12 @@
 # @toptal/picasso-step
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-typography-overflow@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`977da66`](https://github.com/toptal/picasso/commit/977da669eaa4ee5aefbe2acda773e3621e5981c4)]:
+  - @toptal/picasso-tooltip@1.1.0
+
 ## 1.0.6
 
 ### Patch Changes

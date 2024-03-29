@@ -1,5 +1,19 @@
 # Change Log
 
+## 44.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`977da66`](https://github.com/toptal/picasso/commit/977da669eaa4ee5aefbe2acda773e3621e5981c4)]:
+  - @toptal/picasso-tooltip@1.1.0
+  - @toptal/picasso-file-input@1.0.5
+  - @toptal/picasso-page@1.0.7
+  - @toptal/picasso-slider@1.0.3
+  - @toptal/picasso-typography-overflow@1.0.3
+  - @toptal/picasso-dropzone@1.0.5
+  - @toptal/picasso-step@1.0.3
+  - @toptal/picasso-tabs@1.0.3
+
 ## 44.0.6
 
 ### Patch Changes

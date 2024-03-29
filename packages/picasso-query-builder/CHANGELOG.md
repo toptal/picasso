@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 3.1.0
+
+### Minor Changes
+
+- [#4208](https://github.com/toptal/picasso/pull/4208) [`977da669eaa4ee5aefbe2acda773e3621e5981c4`](https://github.com/toptal/picasso/commit/977da669eaa4ee5aefbe2acda773e3621e5981c4) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- add tooltip support to the query builder fields using the `tooltip` property in the fields' configuration.
+
 ## 3.0.2
 
 ### Patch Changes
