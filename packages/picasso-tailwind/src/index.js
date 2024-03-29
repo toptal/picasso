@@ -152,9 +152,6 @@ module.exports = {
       transitionDuration: {
         350: '350ms',
       },
-      boxShadow: {
-        outline: '0 0 0 3px rgba(0, 0, 0, 0.48)',
-      },
       minWidth: ({ theme }) => ({
         ...theme('spacing'),
         14: '3.5rem',
