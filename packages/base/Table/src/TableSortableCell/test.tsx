@@ -13,9 +13,18 @@ const renderTableCell = (
   }
 ) => {
   return render(
-    <TableSortableCell sortDirection={sortDirection} onSortClick={onSortClick}>
-      {children}
-    </TableSortableCell>
+    <table>
+      <tbody>
+        <tr>
+          <TableSortableCell
+            sortDirection={sortDirection}
+            onSortClick={onSortClick}
+          >
+            {children}
+          </TableSortableCell>
+        </tr>
+      </tbody>
+    </table>
   )
 }
 
