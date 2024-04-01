@@ -7,9 +7,6 @@ export default ({ palette, sizes: { input } }: Theme) =>
       display: 'flex',
       width: input.width,
     },
-    description: {
-      marginTop: '0.4rem',
-    },
     fieldRequirementItem: {
       display: 'flex',
       alignItems: 'center',

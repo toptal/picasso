@@ -49,7 +49,7 @@ const FieldRequirementItem = ({ children, status, testIds }: Props) => {
       data-testid={testIds?.root}
     >
       <IconComponent color={colorMap[status]} data-testid={iconTestId} />
-      <Typography color={colorMap[status]} className='!ml-1' size='xxsmall'>
+      <Typography color={colorMap[status]} className='!ml-[8px]' size='xxsmall'>
         {children}
       </Typography>
     </Grid.Item>
