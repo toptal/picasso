@@ -3,8 +3,6 @@ import type { SizeType } from '@toptal/picasso-shared'
 
 import type { IconPositionType, VariantType } from './Button'
 
-// const ICON_SPACING = '0.5em'
-
 // @todo: remove in the next tickets
 export const createOutlineCommons = ({ palette }: Theme) => ({
   color: palette.common.black,
@@ -175,8 +173,9 @@ export const createVariantClassNames = (
         variantClassNames.push('hover:border-white')
         variantClassNames.push('active:border-white')
         variantClassNames.push('active:bg-white/[.16]')
-        variantClassNames.push('focus:shadow-button-transparent')
-        variantClassNames.push('focus-visible:shadow-button-transparent')
+        variantClassNames.push(
+          'focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)]'
+        )
 
         if (hovered) {
           variantClassNames.push('border-white')
@@ -190,7 +189,7 @@ export const createVariantClassNames = (
         }
 
         if (focused) {
-          variantClassNames.push('shadow-button-transparent')
+          variantClassNames.push('shadow-[0_0_0_3px_rgba(255,255,255,0.48)]')
         }
       }
       break
@@ -209,43 +208,18 @@ export const createCoreClassNames = ({
   hovered?: boolean
   active?: boolean
 }): string[] => {
-  const classNames = [
-    'inline-flex',
-    'items-center',
-    'justify-center',
-    'select-none',
-    'appearance-none',
-    'no-underline',
-    'm-0',
-    'relative',
-    'normal-case',
-    'rounded-sm',
-    'align-middle',
-    'border',
-    'transition-colors',
-    'duration-350',
-    'ease-out',
-    'shadow-none',
-    'shrink-0',
-    'outline-none',
-    '[&:not(:first-of-type)]:ml-4',
-  ]
+  const classNames = ['no-underline', 'rounded-sm', 'border', 'shadow-none']
 
   if (!disabled) {
-    classNames.push('cursor-pointer')
-    classNames.push('focus:shadow-button')
-    classNames.push('focus-visible:shadow-button')
+    classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
 
     if (focused) {
-      classNames.push('shadow-button')
+      classNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
     }
 
     if (active) {
       classNames.push('shadow-none')
     }
-  } else {
-    classNames.push('cursor-default')
-    classNames.push('pointer-events-none')
   }
 
   return classNames
