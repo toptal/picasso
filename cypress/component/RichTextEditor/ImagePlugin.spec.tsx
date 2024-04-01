@@ -137,6 +137,9 @@ describe('ImagePlugin', () => {
       )
       setAliases()
 
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100)
+
       cy.get('@editor').click()
       cy.get('@imageUploadButton').click()
 
