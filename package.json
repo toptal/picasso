@@ -117,7 +117,7 @@
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.15",
     "@storybook/react": "^6.5.15",
-    "@storybook/theming": "^6.5.15",
+    "@storybook/theming": "^8.0.5",
     "@svgr/cli": "^8.1.0",
     "@testing-library/jest-dom": "^6.2.0",
     "@toptal/browserslist-config": "^1.2.0",
