@@ -1,58 +1,58 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import type { IconPositionType } from '../ButtonBase'
 
-export default ({ palette, typography }: Theme) =>
-  createStyles({
-    root: {
-      border: 'none',
-      minWidth: 'unset',
-      paddingLeft: '0',
-      paddingRight: '0',
-      backgroundColor: 'transparent',
-      '&:active, &$active, &:hover, &$hovered': {
-        backgroundColor: 'transparent',
-        color: palette.blue.main,
-        textDecoration: 'underline',
-      },
-      '&$loading': {
-        textDecoration: 'none',
-        cursor: 'default',
-      },
-      '&$disabled': {
-        backgroundColor: 'transparent',
-        opacity: 0.48,
-      },
-    },
-    content: {
-      fontWeight: typography.fontWeights.semibold,
-      color: palette.blue.main,
-    },
-    small: {
-      '& $content': {
-        fontSize: '0.875rem',
-        lineHeight: '1.375rem',
-      },
-      '& $iconLeft': {
-        marginLeft: 0,
-      },
-      '& $iconRight': {
-        marginRight: 0,
-      },
-    },
-    icon: {
-      width: '1rem',
-      height: '1rem',
-      color: palette.grey.dark,
-    },
-    iconLeft: {
-      marginRight: '0.5rem',
-    },
-    iconRight: {
-      marginLeft: '0.5rem',
-    },
-    active: {},
-    disabled: {},
-    hovered: {},
-    focused: {},
-    loading: {},
-  })
+export const createRootClassNames = ({
+  disabled,
+  focused,
+  hovered,
+  active,
+  loading,
+}: {
+  disabled?: boolean
+  focused?: boolean
+  hovered?: boolean
+  active?: boolean
+  loading?: boolean
+}) => {
+  const classNames = ['border-none', 'px-0', 'bg-transparent', 'h-[1.5em]']
+
+  if (disabled) {
+    classNames.push('opacity-[.48]')
+  } else if (loading) {
+    classNames.push('no-underline')
+    classNames.push('!cursor-default')
+  } else {
+    classNames.push('hover:text-blue-500')
+    classNames.push('hover:underline')
+    classNames.push('active:text-blue-500')
+    classNames.push('active:underline')
+
+    if (hovered || active) {
+      classNames.push('text-blue-500')
+      classNames.push('underline')
+    }
+
+    classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+    classNames.push('focus-visible:rounded-sm')
+
+    if (focused) {
+      classNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+      classNames.push('rounded-sm')
+    }
+  }
+
+  return classNames
+}
+
+export const createIconClassNames = ({
+  iconPosition,
+}: {
+  iconPosition?: IconPositionType
+}): string[] => {
+  return [
+    'w-4',
+    'h-4',
+    'text-graphite-700',
+    iconPosition === 'left' ? 'mr-[0.5rem]' : '',
+    iconPosition === 'right' ? 'ml-[0.5rem]' : '',
+  ]
+}
