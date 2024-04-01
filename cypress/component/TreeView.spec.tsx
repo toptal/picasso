@@ -112,8 +112,7 @@ describe('TreeView', () => {
   it('render with modal', () => {
     cy.mount(<ModalExample />)
 
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(100)
+    cy.getByTestId('open').should('be.visible')
     cy.getByTestId('open').realClick()
 
     cy.getByTestId('tree-dialog-content').should('be.visible')
