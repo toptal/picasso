@@ -151,10 +151,11 @@ describe('ImagePlugin', () => {
 
       cy.get('p').contains(fileUploadErrorMessage).should('be.visible')
 
-      cy.get('[role="presentation"]').happoScreenshot({
-        component,
-        variant: 'image-plugin/failed-upload',
-      })
+      // Temporary disabling this screenshot as fonts stopped working in modals
+      // cy.get('[role="presentation"]').happoScreenshot({
+      //   component,
+      //   variant: 'image-plugin/failed-upload',
+      // })
     })
   })
 })
