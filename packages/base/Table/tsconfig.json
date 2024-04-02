@@ -5,6 +5,8 @@
   "references": [
     { "path": "../../picasso-provider" },
     { "path": "../../shared" },
+    { "path": "../Button" },
+    { "path": "../Icons" },
     { "path": "../Typography" },
     { "path": "../Utils" }
   ]
