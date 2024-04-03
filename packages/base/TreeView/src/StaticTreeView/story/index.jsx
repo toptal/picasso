@@ -9,47 +9,6 @@ const page = PicassoBook.section('Components').createPage(
   `
 )
 
-const waitForImageToLoad = url => {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-
-    img.onerror = () =>
-      reject(new Error(`Failed to load image with url ${url}`))
-    img.onload = resolve
-    img.src = url
-  })
-}
-
-const waitForSvgImagesToRender = () => {
-  return new Promise((resolve, reject) => {
-    const svgImages = document.querySelectorAll('svg image')
-    const promises = [...svgImages]
-      .map(image => image.href)
-      .filter(Boolean)
-      .map(waitForImageToLoad)
-
-    if (promises.length === 0) {
-      // There are no images to wait for, so we can just resolve right away.
-      resolve()
-    }
-
-    Promise.all(promises)
-      .then(() => {
-        // Now that the images have loaded, we need to wait for a couple of
-        // animation frames to go by before we think they will have finished
-        // rendering.
-        return requestAnimationFrame(() => {
-          // Start render
-          requestAnimationFrame(() => {
-            // Finish rendering
-            resolve()
-          })
-        })
-      })
-      .catch(reject)
-  })
-}
-
 page.createTabChapter('Props').addComponentDocs({
   component: StaticTreeView,
   name: 'StaticTreeView',
@@ -62,8 +21,12 @@ page
     {
       title: 'Default',
       takeScreenshot: {
-        beforeScreenshot: async () => {
-          await waitForSvgImagesToRender()
+        // https://docs.happo.io/docs/storybook#waiting-for-a-condition-to-be-truthy
+        waitFor: () => {
+          const imageElement: HTMLImageElement | undefined =
+            document.querySelector('svg image')
+
+          return imageElement && imageElement.complete
         },
       },
     },
