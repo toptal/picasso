@@ -37,7 +37,7 @@ exports[`Pagination renders 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="m-0 font-regular text-xxs text-black font-semibold"
+          class="m-0 text-xxs text-black font-semibold"
         >
           ...
         </p>
@@ -111,7 +111,7 @@ exports[`Pagination renders 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="m-0 font-regular text-xxs text-black font-semibold"
+          class="m-0 text-xxs text-black font-semibold"
         >
           ...
         </p>
@@ -185,7 +185,7 @@ exports[`Pagination renders disabled 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="m-0 font-regular text-xxs text-black font-semibold"
+          class="m-0 text-xxs text-black font-semibold"
         >
           ...
         </p>
@@ -264,7 +264,7 @@ exports[`Pagination renders disabled 1`] = `
         class="PicassoPagination-ellipsis"
       >
         <p
-          class="m-0 font-regular text-xxs text-black font-semibold"
+          class="m-0 text-xxs text-black font-semibold"
         >
           ...
         </p>

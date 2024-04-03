@@ -29,7 +29,7 @@ exports[`Dropzone renders 1`] = `
           />
         </svg>
         <p
-          class="m-0 font-regular text-md text-black font-semibold"
+          class="m-0 text-md text-black font-semibold"
         >
           Click or drag to upload
         </p>

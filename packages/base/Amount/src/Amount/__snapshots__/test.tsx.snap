@@ -6,7 +6,7 @@ exports[`Amount renders 1`] = `
     class="Picasso-root"
   >
     <span
-      class="m-0 font-regular font-inherit leading-[1.5em] text-green inline"
+      class="m-0 font-inherit leading-[1.5em] text-green font-regular inline"
     >
       €1,500.00
     </span>

@@ -18,7 +18,7 @@ exports[`TableRow renders 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
             <div
-              class="m-0 font-regular text-sm text-graphite font-inherit"
+              class="m-0 text-sm text-graphite font-inherit"
             >
               Row test
             </div>

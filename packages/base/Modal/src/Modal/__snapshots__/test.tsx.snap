@@ -36,7 +36,7 @@ exports[`Modal renders 1`] = `
           class="PicassoModalTitle-root"
         >
           <h2
-            class="m-0 font-semibold text-xl text-black"
+            class="m-0 text-xl text-black font-semibold"
           >
             Title
           </h2>

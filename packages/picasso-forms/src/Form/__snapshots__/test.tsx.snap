@@ -114,7 +114,7 @@ exports[`Form renders with an error 1`] = `
               class="PicassoFormError-root PicassoFormField-error"
             >
               <p
-                class="m-0 font-regular text-2xs text-red cursor-default"
+                class="m-0 text-2xs text-red font-regular cursor-default"
               >
                 Please complete this field.
               </p>

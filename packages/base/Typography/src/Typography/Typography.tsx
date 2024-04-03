@@ -42,27 +42,51 @@ const UNDERLINE: Record<NonNullable<Props['underline']>, string> = {
   dashed: 'underline decoration-dashed',
 }
 
+const VARIANT_WEIGHT: Record<
+  NonNullable<Props['variant']>,
+  Record<NonNullable<Props['size']>, string>
+> = {
+  heading: {
+    xxsmall: 'font-semibold',
+    xsmall: 'font-regular',
+    small: 'font-semibold',
+    medium: 'font-semibold',
+    large: 'font-semibold',
+    xlarge: 'font-semibold',
+    inherit: 'font-regular',
+  },
+  body: {
+    xxsmall: 'font-regular',
+    xsmall: 'font-regular',
+    small: 'font-regular',
+    medium: 'font-regular',
+    large: 'font-regular',
+    xlarge: 'font-regular',
+    inherit: 'font-regular',
+  },
+}
+
 const VARIANT_SIZE: Record<
   NonNullable<Props['variant']>,
   Record<NonNullable<Props['size']>, string>
 > = {
   heading: {
-    xxsmall: 'font-semibold text-2xs',
-    xsmall: 'font-regular text-md',
-    small: 'font-semibold text-md',
-    medium: 'font-semibold text-lg',
-    large: 'font-semibold text-xl',
-    xlarge: 'font-semibold text-2xl',
-    inherit: 'font-regular text-md',
+    xxsmall: 'text-2xs',
+    xsmall: 'text-md',
+    small: 'text-md',
+    medium: 'text-lg',
+    large: 'text-xl',
+    xlarge: 'text-2xl',
+    inherit: 'text-md',
   },
   body: {
-    xxsmall: 'font-regular text-2xs',
-    xsmall: 'font-regular text-xxs',
-    small: 'font-regular text-sm',
-    medium: 'font-regular text-md',
-    large: 'font-regular text-lg',
-    xlarge: 'font-regular text-xl',
-    inherit: 'font-regular font-inherit-size leading-[1.5em]',
+    xxsmall: 'text-2xs',
+    xsmall: 'text-xxs',
+    small: 'text-sm',
+    medium: 'text-md',
+    large: 'text-lg',
+    xlarge: 'text-md',
+    inherit: 'font-inherit-size leading-[1.5em]',
   },
 }
 const VARIANT_COLOR: Record<
@@ -84,7 +108,7 @@ const VARIANT_COLOR: Record<
     small: 'text-graphite-700',
     medium: 'text-graphite-700',
     large: 'text-black',
-    xlarge: 'text-black',
+    xlarge: 'text-graphite-700',
     inherit: 'text-graphite-700',
   },
 }
@@ -171,7 +195,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
         'm-0',
         VARIANT_SIZE[variant][size],
         getColor(),
-        weight ? WEIGHTS[weight] : undefined,
+        weight ? WEIGHTS[weight] : VARIANT_WEIGHT[variant][size],
         align ? ALIGN[align] : undefined,
         underline ? UNDERLINE[underline] : undefined,
         noWrap

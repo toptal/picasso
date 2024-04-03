@@ -137,7 +137,7 @@ exports[`Timeline renders with dates 1`] = `
               class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
             >
               <p
-                class="m-0 font-regular text-md text-graphite font-semibold !leading-6"
+                class="m-0 text-md text-graphite font-semibold !leading-6"
               >
                 25.06.2021
               </p>
@@ -178,7 +178,7 @@ exports[`Timeline renders with dates 1`] = `
               class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
             >
               <p
-                class="m-0 font-regular text-md text-graphite font-semibold !leading-6"
+                class="m-0 text-md text-graphite font-semibold !leading-6"
               >
                 25.06.2022
               </p>
@@ -219,7 +219,7 @@ exports[`Timeline renders with dates 1`] = `
               class="PicassoContainer-rightlargeMargin PicassoTimelineRow-date"
             >
               <p
-                class="m-0 font-regular text-md text-graphite font-semibold !leading-6"
+                class="m-0 text-md text-graphite font-semibold !leading-6"
               >
                 25.06.2023
               </p>

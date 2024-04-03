@@ -19,7 +19,7 @@ exports[`TableHead renders 1`] = `
             scope="col"
           >
             <div
-              class="m-0 font-regular text-xxs text-graphite font-semibold"
+              class="m-0 text-xxs text-graphite font-semibold"
             >
               Head test
             </div>

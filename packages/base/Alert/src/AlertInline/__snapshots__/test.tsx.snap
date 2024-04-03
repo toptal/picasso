@@ -22,7 +22,7 @@ exports[`Alert renders 1`] = `
         </svg>
       </div>
       <div
-        class="m-0 font-regular text-sm text-yellow font-semibold"
+        class="m-0 text-sm text-yellow font-semibold"
       >
         test example string
       </div>

@@ -29,7 +29,7 @@ exports[`Notification renders 1`] = `
             </svg>
           </div>
           <div
-            class="m-0 font-regular text-sm text-black break-words min-w !mt-0"
+            class="m-0 text-sm text-black font-regular break-words min-w !mt-0"
           >
             test example string
           </div>

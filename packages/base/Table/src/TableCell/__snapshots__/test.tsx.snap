@@ -18,7 +18,7 @@ exports[`TableCell renders 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
             <div
-              class="m-0 font-regular text-sm text-graphite font-inherit"
+              class="m-0 text-sm text-graphite font-inherit"
             >
               Cell
             </div>
@@ -48,7 +48,7 @@ exports[`TableCell renders compact 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
             <div
-              class="m-0 font-regular text-sm text-graphite font-inherit"
+              class="m-0 text-sm text-graphite font-inherit"
             >
               Cell
             </div>
@@ -78,7 +78,7 @@ exports[`TableCell renders narrow 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
             <div
-              class="m-0 font-regular text-sm text-graphite font-inherit"
+              class="m-0 text-sm text-graphite font-inherit"
             >
               Cell
             </div>

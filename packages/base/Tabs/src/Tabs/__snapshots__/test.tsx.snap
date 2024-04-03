@@ -32,7 +32,7 @@ exports[`Tabs renders 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 1
               </div>
@@ -50,7 +50,7 @@ exports[`Tabs renders 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 2
               </div>
@@ -95,7 +95,7 @@ exports[`Tabs renders in full width 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 1
               </div>
@@ -113,7 +113,7 @@ exports[`Tabs renders in full width 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 2
               </div>
@@ -162,7 +162,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
               >
                 Tab 1
               </div>
@@ -180,7 +180,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
               >
                 Tab 2
               </div>
@@ -229,7 +229,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 1
               </div>
@@ -247,7 +247,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 2
               </div>
@@ -303,7 +303,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 1
               </div>
@@ -321,7 +321,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 font-regular text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab 2
               </div>

@@ -4,7 +4,7 @@ export default () =>
   createStyles({
     multiLine: {
       display: '-webkit-box',
-      whiteSpace: 'initial',
+      whiteSpace: 'initial !important' as 'initial',
       wordBreak: 'break-word',
     },
     wrapper: {

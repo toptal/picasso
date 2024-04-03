@@ -24,7 +24,7 @@ exports[`Quote renders 1`] = `
         </svg>
       </div>
       <p
-        class="m-0 font-regular text-md text-graphite"
+        class="m-0 text-md text-graphite font-regular"
       >
         test example string
       </p>
