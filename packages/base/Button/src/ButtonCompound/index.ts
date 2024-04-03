@@ -6,7 +6,16 @@ import { ButtonSplit } from '../ButtonSplit'
 import { ButtonCheckbox } from '../ButtonCheckbox'
 import { ButtonRadio } from '../ButtonRadio'
 
-export const ButtonCompound = Object.assign(Button, {
+type ButtonCompoundType = typeof Button & {
+  Group: typeof ButtonGroup
+  Circular: typeof ButtonCircular
+  Action: typeof ButtonAction
+  Split: typeof ButtonSplit
+  Checkbox: typeof ButtonCheckbox
+  Radio: typeof ButtonRadio
+}
+
+export const ButtonCompound: ButtonCompoundType = Object.assign(Button, {
   Group: ButtonGroup,
   Circular: ButtonCircular,
   Action: ButtonAction,

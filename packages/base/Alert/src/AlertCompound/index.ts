@@ -1,6 +1,10 @@
 import { Alert } from '../Alert'
 import { AlertInline } from '../AlertInline'
 
-export const AlertCompound = Object.assign(Alert, {
+type AlertCompoundType = typeof Alert & {
+  Inline: typeof AlertInline
+}
+
+export const AlertCompound: AlertCompoundType = Object.assign(Alert, {
   Inline: AlertInline,
 })

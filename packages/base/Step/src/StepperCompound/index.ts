@@ -1,6 +1,10 @@
 import { Stepper } from '../Stepper'
 import { StepperVertical } from '../StepperVertical'
 
-export const StepperCompound = Object.assign(Stepper, {
+type StepperCompoundType = typeof Stepper & {
+  Vertical: typeof StepperVertical
+}
+
+export const StepperCompound: StepperCompoundType = Object.assign(Stepper, {
   Vertical: StepperVertical,
 })
