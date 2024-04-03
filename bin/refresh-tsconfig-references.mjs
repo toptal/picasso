@@ -4,14 +4,11 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import url from 'node:url'
 import { globbyStream } from 'globby'
-import { $ } from 'zx'
+import { $, argv, echo, chalk } from 'zx'
 import JSON5 from 'json5'
+import * as prettier from 'prettier'
 
 const ALL_PROJECTS_TSCONFIG = 'tsconfig.pkgsrc.json'
-
-const formatFile = async file => {
-  await $`yarn -s prettier --write ${file}`
-}
 
 const readTsconfig = async dir => {
   try {
@@ -52,10 +49,11 @@ const buildWorkspace = async rootPath => {
   )
 
   const metaPromises = []
-
-  for await (const dir of globbyStream(rootPkgJson.workspaces, {
+  const packagesDirectoriesStream = globbyStream(rootPkgJson.workspaces, {
     onlyDirectories: true,
-  })) {
+  })
+
+  for await (const dir of packagesDirectoriesStream) {
     metaPromises.push(resolvePkgMeta(dir))
   }
 
@@ -88,18 +86,27 @@ const referencesFor = ({ dir, pkg }, workspace) => {
 }
 
 const replaceReferenceOfTsconfigFile = async (tsconfigLocation, references) => {
-  const tsconfig = JSON5.parse(await fs.readFile(tsconfigLocation, 'utf8'))
+  const originalTsconfigContent = await fs.readFile(tsconfigLocation, 'utf8')
+  const tsconfig = JSON5.parse(originalTsconfigContent)
 
   const newTsconfig = {
     ...tsconfig,
     references,
   }
 
-  await fs.writeFile(tsconfigLocation, JSON5.stringify(newTsconfig) + '\n')
+  const newTsconfigContent = await prettier.format(
+    JSON.stringify(newTsconfig),
+    {
+      parser: 'json',
+    }
+  )
 
-  await formatFile(tsconfigLocation)
+  await fs.writeFile(tsconfigLocation, newTsconfigContent, 'utf8')
 
-  return newTsconfig
+  return {
+    changed: originalTsconfigContent !== newTsconfigContent,
+    newTsconfig,
+  }
 }
 
 const refreshReferencesOfPackage = async (pkgMeta, workspace) => {
@@ -120,29 +127,54 @@ const refreshReferencesOfPackage = async (pkgMeta, workspace) => {
   }
 }
 
-const main = async () => {
+const main = async (files, options) => {
+  const { addToGit } = options
   const rootPath = url.fileURLToPath(new URL('..', import.meta.url))
   const workspace = await buildWorkspace(rootPath)
-  const allProjects = []
 
-  const refreshingPromises = []
+  const workspaceByPath = Object.values(workspace).reduce((acc, pkgMeta) => {
+    acc[pkgMeta.dir] = pkgMeta
 
-  for (const pkgMeta of Object.values(workspace)) {
-    if (pkgMeta.tsconfig) {
-      allProjects.push(pkgMeta.dir)
+    return acc
+  }, {})
+
+  // Find packages by their package.json location
+  const args = files.map(
+    arg => workspaceByPath[path.dirname(path.resolve(arg))]?.pkg.name ?? arg
+  )
+
+  const targets = args.length ? args : Object.keys(workspace)
+
+  echo(
+    `Refreshing tsconfig references for packages: ${chalk.green(
+      `${targets.join(', ')}`
+    )}`
+  )
+
+  const refreshingPromises = targets.map(async name => {
+    const pkgMeta = workspace[name]
+
+    if (!pkgMeta) {
+      return
     }
 
-    refreshingPromises.push(refreshReferencesOfPackage(pkgMeta, workspace))
-  }
+    const { changed } = await refreshReferencesOfPackage(pkgMeta, workspace)
+
+    if (addToGit && changed) {
+      await $`git add ${pkgMeta.dir}/tsconfig.json`
+    }
+  })
 
   await Promise.all(refreshingPromises)
 
   const allTsconfigLoc = path.join(rootPath, ALL_PROJECTS_TSCONFIG)
-  const allReferences = allProjects.map(dir => ({
-    path: path.relative(rootPath, dir),
-  }))
+  const allReferences = Object.values(workspace)
+    .filter(pkg => pkg.tsconfig)
+    .map(pkg => ({
+      path: path.relative(rootPath, pkg.dir),
+    }))
 
   await replaceReferenceOfTsconfigFile(allTsconfigLoc, allReferences)
 }
 
-await main()
+await main(argv._, argv)
