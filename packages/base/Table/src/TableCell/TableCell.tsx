@@ -105,18 +105,12 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         colSpan={colSpan}
         rowSpan={rowSpan}
       >
-        {adornment ? (
-          <div className='flex items-center'>
-            <Typography as='div' {...getTypographySettings(tableSection)}>
-              {renderChildren()}
-            </Typography>
-            {adornment}
-          </div>
-        ) : (
+        <div className={adornment ? 'flex items-center' : undefined}>
           <Typography as='div' {...getTypographySettings(tableSection)}>
             {renderChildren()}
           </Typography>
-        )}
+          {adornment && adornment}
+        </div>
       </MUITableCell>
     )
   }
