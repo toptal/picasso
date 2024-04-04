@@ -1,5 +1,12 @@
 # @toptal/picasso-table
 
+## 1.1.2
+
+### Patch Changes
+
+- [#4218](https://github.com/toptal/picasso/pull/4218) [`1a9c1c0c7feaf1937b756bdf5bf348047f229f66`](https://github.com/toptal/picasso/commit/1a9c1c0c7feaf1937b756bdf5bf348047f229f66) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- fix TableCell issue related to Tooltips
+
 ## 1.1.1
 
 ### Patch Changes
