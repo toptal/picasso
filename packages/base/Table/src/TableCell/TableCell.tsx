@@ -91,6 +91,12 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
     const renderChildren = () =>
       isHead && titleCase ? toTitleCase(children) : children
 
+    const tooltipWithChildren = (
+      <Typography as='div' {...getTypographySettings(tableSection)}>
+        {renderChildren()}
+      </Typography>
+    )
+
     return (
       <MUITableCell
         {...rest}
@@ -105,12 +111,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         colSpan={colSpan}
         rowSpan={rowSpan}
       >
-        <div className={adornment ? 'flex items-center' : undefined}>
-          <Typography as='div' {...getTypographySettings(tableSection)}>
-            {renderChildren()}
-          </Typography>
-          {adornment && adornment}
-        </div>
+        {adornment ? (
+          <div className='flex items-center'>
+            {tooltipWithChildren}
+            {adornment}
+          </div>
+        ) : (
+          tooltipWithChildren
+        )}
       </MUITableCell>
     )
   }
