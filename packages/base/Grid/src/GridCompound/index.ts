@@ -1,4 +1,10 @@
 import { Grid } from '../Grid'
 import { GridItem } from '../GridItem'
 
-export const GridCompound = Object.assign(Grid, { Item: GridItem })
+type GridCompoundType = typeof Grid & {
+  Item: typeof GridItem
+}
+
+export const GridCompound: GridCompoundType = Object.assign(Grid, {
+  Item: GridItem,
+})

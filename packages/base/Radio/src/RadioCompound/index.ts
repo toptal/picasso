@@ -1,6 +1,10 @@
 import { Radio } from '../Radio'
 import { RadioGroup } from '../RadioGroup'
 
-export const RadioCompound = Object.assign(Radio, {
+type RadioCompoundType = typeof Radio & {
+  Group: typeof RadioGroup
+}
+
+export const RadioCompound: RadioCompoundType = Object.assign(Radio, {
   Group: RadioGroup,
 })

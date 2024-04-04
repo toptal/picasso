@@ -9,7 +9,19 @@ import { PageBanner } from '../PageBanner'
 import { PageAutocomplete } from '../PageAutocomplete'
 import { PageArticle } from '../PageArticle'
 
-export const PageCompound = Object.assign(Page, {
+type PageCompoundType = typeof Page & {
+  TopBar: typeof PageTopBar
+  TopBarMenu: typeof PageTopBarMenu
+  Content: typeof PageContent
+  Footer: typeof PageFooter
+  Sidebar: typeof PageSidebar
+  Banner: typeof PageBanner
+  Helmet: typeof PageHelmet
+  Autocomplete: typeof PageAutocomplete
+  Article: typeof PageArticle
+}
+
+export const PageCompound: PageCompoundType = Object.assign(Page, {
   TopBar: PageTopBar,
   TopBarMenu: PageTopBarMenu,
   Content: PageContent,

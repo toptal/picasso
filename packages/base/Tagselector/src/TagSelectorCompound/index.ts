@@ -1,6 +1,13 @@
 import { TagSelector } from '../TagSelector'
 import { TagSelectorLabel } from '../TagSelectorLabel'
 
-export const TagSelectorCompound = Object.assign(TagSelector, {
-  Label: TagSelectorLabel,
-})
+type TagSelectorCompoundType = typeof TagSelector & {
+  Label: typeof TagSelectorLabel
+}
+
+export const TagSelectorCompound: TagSelectorCompoundType = Object.assign(
+  TagSelector,
+  {
+    Label: TagSelectorLabel,
+  }
+)
