@@ -3,7 +3,6 @@ import type {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   ElementType,
-  ComponentPropsWithRef,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -50,7 +49,7 @@ export type OmitInternalProps<T, K = ''> = Pick<
 
 type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
   as?: T
-} & ComponentPropsWithRef<T>
+} & (React.ComponentPropsWithRef<T> | React.HTMLAttributes<T>)
 
 interface NamedComponent<P> {
   defaultProps?: Partial<P>

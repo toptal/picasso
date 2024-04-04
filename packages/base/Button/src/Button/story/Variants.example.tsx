@@ -19,7 +19,9 @@ const Example = () => (
       inline
       style={{ backgroundColor: palette.blue.main }}
     >
-      <Button variant='transparent'>Transparent</Button>
+      <Button foo='bar' variant='transparent'>
+        Transparent
+      </Button>
     </Container>
   </div>
 )

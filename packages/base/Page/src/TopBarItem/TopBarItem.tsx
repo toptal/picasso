@@ -3,9 +3,8 @@ import type {
   TextLabelProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
-import type { ElementType, ReactElement } from 'react'
+import type { ReactElement } from 'react'
 import React, { forwardRef, memo } from 'react'
-import type { MenuItemProps } from '@material-ui/core/MenuItem'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -19,8 +18,6 @@ export interface Props extends BaseProps, TextLabelProps {
   icon?: ReactElement
   /** Highlights the item as selected */
   selected?: boolean
-  /** Component name to render the menu item as */
-  as?: ElementType<MenuItemProps>
   /** Callback when item is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
   /** Callback when item is hovered */

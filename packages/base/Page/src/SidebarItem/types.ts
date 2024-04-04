@@ -1,7 +1,6 @@
-import type { ElementType, ReactElement } from 'react'
+import type { ReactElement } from 'react'
 import type React from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import type { MenuItemProps } from '@material-ui/core/MenuItem'
 import type { MenuItemAttributes } from '@toptal/picasso-menu'
 
 import type { VariantType } from '../PageSidebar/types'
@@ -21,8 +20,6 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   collapsible?: boolean
   /** Renders nested sidebar menu */
   menu?: ReactElement
-  /** Component name to render the menu item as */
-  as?: ElementType<MenuItemProps>
   /** Definition of the embedded badge  */
   badge?: number | SidebarBadgeProps
   /** Render Tag.Rectangular */
