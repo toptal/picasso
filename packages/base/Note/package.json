@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-note",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Toptal UI components library - Note",
   "publishConfig": {
     "access": "public"

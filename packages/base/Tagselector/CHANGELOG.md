@@ -1,5 +1,19 @@
 # @toptal/picasso-tagselector
 
+## 1.0.6
+
+### Patch Changes
+
+- [#4216](https://github.com/toptal/picasso/pull/4216) [`3512588b06c3660471a68500275321c640278cf0`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update types for the compound component
+
+- Updated dependencies [[`3512588`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0)]:
+  - @toptal/picasso-form@1.1.2
+  - @toptal/picasso-tag@1.0.3
+  - @toptal/picasso-outlined-input@1.0.5
+  - @toptal/picasso-autocomplete@1.0.6
+  - @toptal/picasso-input@1.0.5
+
 ## 1.0.5
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @toptal/picasso-overview-block
 
+## 1.0.3
+
+### Patch Changes
+
+- [#4216](https://github.com/toptal/picasso/pull/4216) [`3512588b06c3660471a68500275321c640278cf0`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update types for the compound component
+
 ## 1.0.2
 
 ### Patch Changes
