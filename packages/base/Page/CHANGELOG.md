@@ -1,5 +1,22 @@
 # @toptal/picasso-page
 
+## 1.0.9
+
+### Patch Changes
+
+- [#4224](https://github.com/toptal/picasso/pull/4224) [`c05387de5636ed094365d1eff67b955d84b81c61`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert types for compound components
+
+- Updated dependencies [[`c05387d`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61)]:
+  - @toptal/picasso-notification@1.0.6
+  - @toptal/picasso-accordion@1.0.6
+  - @toptal/picasso-avatar@1.0.4
+  - @toptal/picasso-button@1.0.6
+  - @toptal/picasso-menu@1.0.6
+  - @toptal/picasso-tag@1.0.4
+  - @toptal/picasso-user-badge@1.0.4
+  - @toptal/picasso-autocomplete@1.0.7
+
 ## 1.0.8
 
 ### Patch Changes

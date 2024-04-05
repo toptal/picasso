@@ -1,5 +1,15 @@
 # @toptal/picasso-tabs
 
+## 1.0.5
+
+### Patch Changes
+
+- [#4224](https://github.com/toptal/picasso/pull/4224) [`c05387de5636ed094365d1eff67b955d84b81c61`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert types for compound components
+
+- Updated dependencies []:
+  - @toptal/picasso-user-badge@1.0.4
+
 ## 1.0.4
 
 ### Patch Changes
