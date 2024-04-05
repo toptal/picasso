@@ -95,7 +95,6 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
       onClick={loading ? undefined : onClick}
       className={finalClassName}
       contentClassName='font-semibold text-blue-500 text-md'
-      size='small'
       active={active}
       hovered={hovered}
       focused={focused}
