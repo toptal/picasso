@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-overview-block",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Toptal UI components library - OverviewBlock",
   "publishConfig": {
     "access": "public"
