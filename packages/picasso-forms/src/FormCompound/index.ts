@@ -24,33 +24,7 @@ import PasswordInput from '../PasswordInput'
 import { FormConfigContext } from '../FormConfig'
 import AvatarUpload from '../AvatarUpload'
 
-type FormCompoundType = typeof Form & {
-  Autocomplete: typeof Autocomplete
-  Input: typeof Input
-  Select: typeof Select
-  Radio: typeof Radio
-  ButtonRadio: typeof ButtonRadio
-  RadioGroup: typeof RadioGroup
-  Checkbox: typeof Checkbox
-  ButtonCheckbox: typeof ButtonCheckbox
-  CheckboxGroup: typeof CheckboxGroup
-  NumberInput: typeof NumberInput
-  FileInput: typeof FileInput
-  DatePicker: typeof DatePicker
-  TimePicker: typeof TimePicker
-  TagSelector: typeof TagSelector
-  SubmitButton: typeof SubmitButton
-  ConfigProvider: typeof FormConfigContext.Provider
-  Switch: typeof Switch
-  Rating: typeof Rating
-  Dropzone: typeof Dropzone
-  PasswordInput: typeof PasswordInput
-  FieldRequirements: typeof FieldRequirements
-  RichTextEditor: typeof RichTextEditor
-  AvatarUpload: typeof AvatarUpload
-}
-
-export const FormCompound: FormCompoundType = Object.assign(Form, {
+export const FormCompound = Object.assign(Form, {
   Autocomplete: Autocomplete,
   Input: Input,
   Select: Select,
