@@ -59,8 +59,12 @@ type Props = {
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
+  /** Adds a customized footer at the bottom of the query builder. */
+  footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
+  /** Defines padded layout. */
+  padding?: boolean
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
   /** Defines the total number of results, usually used by other components that may need to know the total number of results. */
@@ -84,12 +88,14 @@ const QueryBuilder = ({
   loading = false,
   onSubmit,
   customValueEditor = ValueEditor,
+  footer,
   hideControls,
   header,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
   totalCount,
   totalCountLoading,
+  padding = false,
   onQueryReset,
   testIds,
 }: Props) => {
@@ -187,7 +193,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls ? undefined : 'medium'}
+        padded={hideControls && !padding ? undefined : 'medium'}
         direction='column'
         gap='small'
       >
@@ -237,6 +243,9 @@ const QueryBuilder = ({
               runQueryTestId={testIds?.runQueryButton}
             />
           </Container>
+        )}
+        {footer && (
+          <Container data-testid={testIds?.footer}>{footer}</Container>
         )}
       </Container>
     </ControlElementsContext>

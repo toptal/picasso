@@ -28,6 +28,11 @@ page
     title: 'Drag and Drop',
   })
 
+  .addExample('QueryBuilder/story/Footer.example.tsx', {
+    title: 'Footer',
+    description: 'Customized footer',
+  })
+
   .addExample('QueryBuilder/story/HideControls.example.tsx', {
     title: 'Hide Controls',
     description: 'Hide buttons used for query reset and submitting',
