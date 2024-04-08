@@ -4,6 +4,7 @@ import {
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Button, Container } from '@toptal/picasso'
+import { SPACING_6 } from '@toptal/picasso-provider'
 
 const initialQuery: RuleGroupTypeAny = {
   rules: [
@@ -49,7 +50,7 @@ const Example = () => {
       query={query}
       onQueryChange={handleQueryChange}
       hideControls
-      padding
+      padded={SPACING_6}
       footer={
         <Container flex justifyContent='space-between'>
           <Button variant='secondary'>Copy url</Button>

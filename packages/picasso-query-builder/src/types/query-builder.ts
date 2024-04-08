@@ -92,4 +92,6 @@ export type TestId = {
   valueEditor?: string
   fieldSelector?: string
   validationErrors?: string
+  header?: string
+  footer?: string
 }
