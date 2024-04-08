@@ -18,6 +18,7 @@ import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { SPACING_0, SPACING_6 } from '@toptal/picasso-provider'
 
 import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
@@ -193,7 +194,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls && !padding ? undefined : 'medium'}
+        padded={hideControls && !padding ? SPACING_0 : SPACING_6}
         direction='column'
         gap='small'
       >
