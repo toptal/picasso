@@ -24,6 +24,7 @@ export type VariantType =
   | 'positive'
   | 'secondary'
   | 'transparent'
+  | 'group'
 
 export type IconPositionType = 'left' | 'right'
 

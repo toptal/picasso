@@ -1,30 +1,24 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+export const createRootClassNames = ({
+  disabled,
+  focused,
+  hovered,
+  active,
+}: {
+  disabled?: boolean
+  focused?: boolean
+  hovered?: boolean
+  active?: boolean
+  loading?: boolean
+}): string[] => {
+  const classNames = []
 
-import {
-  createOutlineCommons,
-  activeGroup,
-  disabledGroup,
-} from '../Button/styles'
+  if (active || hovered || focused || disabled) {
+    classNames.push('z-[1]')
+  }
 
-export default (theme: Theme) =>
-  createStyles({
-    root: {
-      '&:active, &$active, &:hover, &$hovered, &:focus, &$focused, &:disabled, &$disabled':
-        {
-          // border overlap to keep proper border width, but on state change
-          // we need to move up overlapped border
-          zIndex: 1,
-        },
-      '&$group': {
-        ...createOutlineCommons(theme),
-        '&:active, &$active': activeGroup(theme),
-        '&:disabled, &$disabled': disabledGroup(theme),
-      },
-    },
-    active: {},
-    hovered: {},
-    focused: {},
-    disabled: {},
-    group: {},
-  })
+  if (!disabled) {
+    classNames.push('active:z-[1] hover:z-[1] focus-visible:z-[1]')
+  }
+
+  return classNames
+}

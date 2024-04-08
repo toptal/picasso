@@ -193,6 +193,45 @@ export const createVariantClassNames = (
         }
       }
       break
+    case 'group':
+      variantClassNames.push('visited:text-black')
+      variantClassNames.push('border-solid')
+      variantClassNames.push('transition-[color,background]')
+
+      if (disabled) {
+        variantClassNames.push('cursor-not-allowed')
+        variantClassNames.push('text-gray-500')
+
+        if (active) {
+          variantClassNames.push('bg-graphite-700 border-graphite-700')
+        } else {
+          variantClassNames.push('bg-white border-gray-500')
+        }
+      } else {
+        variantClassNames.push(
+          'active:bg-graphite-700 active:border-graphite-700 active:text-white'
+        )
+        variantClassNames.push('hover:border-black')
+        variantClassNames.push(
+          'focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]'
+        )
+
+        if (focused) {
+          variantClassNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+        }
+
+        if (hovered) {
+          variantClassNames.push('bg-white border-black text-black')
+        } else if (active) {
+          variantClassNames.push(
+            'bg-graphite-700 border-graphite-700 text-white'
+          )
+          variantClassNames.push('shadow-none')
+        } else {
+          variantClassNames.push('bg-white border-gray-400 text-black')
+        }
+      }
+      break
   }
 
   return variantClassNames
