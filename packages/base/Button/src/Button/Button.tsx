@@ -85,7 +85,7 @@ const getIcon = ({
   })
 
   return React.cloneElement(icon, {
-    className: cx(iconClassNames, icon.props.className),
+    className: twMerge(iconClassNames, icon.props.className),
   })
 }
 
