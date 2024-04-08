@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 
 import type { ButtonProps } from '../Button'
 import { Button } from '../Button'
@@ -15,7 +15,7 @@ const ButtonGroupItem = ({
   className,
   ...rest
 }: Props) => {
-  const finalClassName = cx(
+  const finalClassName = twMerge(
     createRootClassNames({ active, disabled, focused, hovered }),
     className
   )
@@ -28,7 +28,7 @@ const ButtonGroupItem = ({
       focused={focused}
       hovered={hovered}
       className={finalClassName}
-      variant='group'
+      variant='secondary'
     />
   )
 }

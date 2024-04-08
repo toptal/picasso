@@ -1,6 +1,7 @@
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import type {
   StandardProps,
   SizeType,
@@ -24,7 +25,6 @@ export type VariantType =
   | 'positive'
   | 'secondary'
   | 'transparent'
-  | 'group'
 
 export type IconPositionType = 'left' | 'right'
 
@@ -128,7 +128,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
   })
   const sizeClassNames = createSizeClassNames(size)
 
-  const finalClassName = cx(
+  const finalClassName = twMerge(
     coreClassNames,
     variantClassNames,
     sizeClassNames,
