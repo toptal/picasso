@@ -197,9 +197,7 @@ const QueryBuilder = ({
         direction='column'
         gap='small'
       >
-        {header && (
-          <Container data-testid={testIds?.header}>{header}</Container>
-        )}
+        {header && <Container>{header}</Container>}
         <QueryBuilderDnD dnd={{ ...ReactDnD, ...ReactDndHtml5Backend }}>
           <ReactQueryBuilder
             resetOnFieldChange={resetOnFieldChange}
@@ -244,9 +242,7 @@ const QueryBuilder = ({
             />
           </Container>
         )}
-        {footer && (
-          <Container data-testid={testIds?.footer}>{footer}</Container>
-        )}
+        {footer && <Container>{footer}</Container>}
       </Container>
     </ControlElementsContext>
   )
