@@ -18,7 +18,6 @@ import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
-import type { SpacingType } from '@toptal/picasso-provider'
 import { SPACING_6 } from '@toptal/picasso-provider'
 
 import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
@@ -57,10 +56,7 @@ type Props = {
   customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
-  /**
-   * @deprecated [CPT-2188] Controls will be defined at consumer level
-   * Defines the possibility to display, or not, any of the controls. For example "Clear query" or "Run query" control.
-   */
+  /** Defines the possibility to display, or not, any of the controls. For example "Add rule" or "Add group" control. */
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
@@ -68,8 +64,6 @@ type Props = {
   footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
-  /** Defines padded layout. */
-  padded?: SpacingType
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
   /** Defines the total number of results, usually used by other components that may need to know the total number of results. */
@@ -100,7 +94,6 @@ const QueryBuilder = ({
   resetOnFieldChange = true,
   totalCount,
   totalCountLoading,
-  padded,
   onQueryReset,
   testIds,
 }: Props) => {
@@ -198,7 +191,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls && !padded ? undefined : SPACING_6}
+        padded={hideControls ? undefined : SPACING_6}
         direction='column'
         gap='small'
       >
