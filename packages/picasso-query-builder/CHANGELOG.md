@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 3.2.0
+
+### Minor Changes
+
+- [#4227](https://github.com/toptal/picasso/pull/4227) [`02080a822f02e896372011a23ebe89b655481fc2`](https://github.com/toptal/picasso/commit/02080a822f02e896372011a23ebe89b655481fc2) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- add property to set the Query builder's footer
+
 ## 3.1.2
 
 ### Patch Changes
