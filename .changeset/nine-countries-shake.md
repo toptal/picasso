@@ -2,4 +2,4 @@
 '@toptal/picasso-dropdown': major
 ---
 
-- remove unused Popover
+- delete unused Popover
