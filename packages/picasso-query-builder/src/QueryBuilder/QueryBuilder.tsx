@@ -18,6 +18,7 @@ import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import { SPACING_6 } from '@toptal/picasso-provider'
 
 import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
@@ -59,6 +60,8 @@ type Props = {
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
+  /** Adds a customized footer at the bottom of the query builder. */
+  footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
@@ -84,6 +87,7 @@ const QueryBuilder = ({
   loading = false,
   onSubmit,
   customValueEditor = ValueEditor,
+  footer,
   hideControls,
   header,
   enableDragAndDrop = false,
@@ -187,7 +191,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls ? undefined : 'medium'}
+        padded={hideControls ? undefined : SPACING_6}
         direction='column'
         gap='small'
       >
@@ -237,6 +241,9 @@ const QueryBuilder = ({
               runQueryTestId={testIds?.runQueryButton}
             />
           </Container>
+        )}
+        {footer && (
+          <Container data-testid={testIds?.footer}>{footer}</Container>
         )}
       </Container>
     </ControlElementsContext>
