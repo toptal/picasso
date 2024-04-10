@@ -1,6 +1,6 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import { ButtonGroupItem } from '../ButtonGroupItem'
@@ -15,7 +15,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
   function ButtonGroup(props, ref) {
     const { children, className, style, ...rest } = props
 
-    const finalClassName = cx(createRootClassNames(), className)
+    const finalClassName = twMerge(createRootClassNames(), className)
 
     return (
       <div {...rest} ref={ref} className={finalClassName} style={style}>

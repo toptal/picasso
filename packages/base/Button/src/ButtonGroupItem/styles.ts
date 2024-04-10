@@ -35,10 +35,9 @@ export const createRootClassNames = ({
     }
   } else {
     classNames.push(
-      'active:z-[1] active:bg-graphite-700 active:border-graphite-700 active:text-white'
+      'active:bg-graphite-700 active:border-graphite-700 active:text-white'
     )
-    classNames.push('hover:z-[1] hover:border-black')
-    classNames.push('focus-visible:z-[1]')
+    classNames.push('hover:border-black')
 
     if (hovered) {
       classNames.push('border-black text-black')
