@@ -1,11 +1,8 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { TableHead as MUITableHead } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
-import styles from './styles'
 import { TableSectionContext, TableSection } from '../Table'
 
 export interface Props
@@ -15,24 +12,23 @@ export interface Props
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableHead' })
-
 export const TableHead = forwardRef<HTMLTableSectionElement, Props>(
   function TableHead(props, ref) {
     const { className, style, children, ...rest } = props
-    const classes = useStyles()
 
     return (
       <TableSectionContext.Provider value={TableSection.HEAD}>
-        <MUITableHead
+        <thead
           {...rest}
           ref={ref}
-          classes={classes}
-          className={className}
+          className={twMerge(
+            'border-b border-[0] border-solid border-gray-200',
+            className
+          )}
           style={style}
         >
           {children}
-        </MUITableHead>
+        </thead>
       </TableSectionContext.Provider>
     )
   }
