@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import type { ComponentProps } from 'react'
 
 import { Select } from '../Select'
+import type { BooleanField } from '../types/query-builder'
 
 const OPTIONS = [
   {
@@ -16,8 +17,12 @@ const OPTIONS = [
 
 type SelectProps = ComponentProps<typeof Select>
 
-type BooleanInputProps = Omit<SelectProps, 'options' | 'value'> & {
+type BooleanInputProps = Omit<
+  SelectProps,
+  'options' | 'value' | 'fieldData'
+> & {
   value: boolean
+  fieldData: BooleanField
 }
 
 export const BooleanInput = ({

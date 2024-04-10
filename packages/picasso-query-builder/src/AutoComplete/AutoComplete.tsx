@@ -7,12 +7,15 @@ import cx from 'classnames'
 
 import { validateValueEditor } from '../utils'
 import type {
+  AutoCompleteField,
   BaseVersatileSelectorProps,
   ValueEditorValidationProps,
 } from '../types/query-builder'
 import styles from './styles'
 
-interface Props extends BaseVersatileSelectorProps, ValueEditorValidationProps {
+interface Props
+  extends BaseVersatileSelectorProps<AutoCompleteField>,
+    ValueEditorValidationProps {
   fullWidth?: boolean
   valueEditorTestId?: string
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import type { ValueEditorType } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
@@ -10,37 +9,31 @@ import { RangeInput } from '../RangeInput'
 import { TextInput } from '../TextInput'
 import { useHandleTouched } from '../utils'
 import { BooleanInput } from '../BooleanInput'
-import type { BaseValueEditorProps } from '../types/query-builder'
+import type { BaseValueEditorProps, Field } from '../types/query-builder'
 import styles from './styles'
 
-type CustomValueEditorType =
-  | 'autocomplete'
-  | 'range'
-  | 'boolean'
-  | ValueEditorType
-
-export interface QueryBuilderValueEditorProps
-  extends Omit<BaseValueEditorProps, 'type'> {
-  type?: CustomValueEditorType
+export interface QueryBuilderValueEditorProps<FieldType extends Field = Field>
+  extends Omit<BaseValueEditorProps<FieldType>, 'type'> {
+  // readonly type: FieldType['valueEditorType']
 }
 
 const useStyles = makeStyles(styles)
 
-export const ValueEditor = ({
+export const ValueEditor = <FieldType extends Field = Field>({
   value,
   handleOnChange,
   inputType,
   className,
-  type = 'text',
   disabled,
   path,
   level,
   values = [],
   field,
   fieldData,
+  // type,
   validation,
   context = {},
-}: QueryBuilderValueEditorProps) => {
+}: QueryBuilderValueEditorProps<FieldType>) => {
   const classes = useStyles()
 
   const valueEditorTestId = context?.testIds?.valueEditor
@@ -49,7 +42,7 @@ export const ValueEditor = ({
     submitButtonClicked: context?.submitButtonClicked,
   })
 
-  switch (type) {
+  switch (fieldData.valueEditorType) {
     case 'multiselect':
       return (
         <MultiSelect
@@ -106,10 +99,7 @@ export const ValueEditor = ({
         <RangeInput
           value={value}
           handleOnChange={handleOnChange}
-          min={fieldData.min}
-          max={fieldData.max}
-          step={fieldData.step}
-          icon={fieldData.icon}
+          fieldData={fieldData}
           handleTouched={handleTouched}
           touched={touched}
           validation={validation}

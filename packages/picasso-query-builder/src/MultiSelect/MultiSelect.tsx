@@ -5,11 +5,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import { generateSelectOptions, validateValueEditor } from '../utils'
 import type {
   BaseVersatileSelectorProps,
+  MultiSelectField,
   ValueEditorValidationProps,
 } from '../types/query-builder'
 import styles from './styles'
 
-type Props = BaseVersatileSelectorProps &
+type Props = BaseVersatileSelectorProps<MultiSelectField> &
   ValueEditorValidationProps & {
     valueEditorTestId?: string
   }

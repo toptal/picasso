@@ -1,16 +1,23 @@
 import type { ComponentProps } from 'react'
 import React, { useMemo } from 'react'
 import { Container, Select as PicassoSelect } from '@toptal/picasso'
-import type { VersatileSelectorProps } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'
-import type { ValueEditorValidationProps } from '../types/query-builder'
+import type {
+  BaseVersatileSelectorProps,
+  BooleanField,
+  SelectField,
+  ValueEditorValidationProps,
+} from '../types/query-builder'
 import styles from './styles'
 
 interface Props
-  extends Omit<VersatileSelectorProps, 'path' | 'level' | 'schema'>,
+  extends Omit<
+      BaseVersatileSelectorProps<SelectField | BooleanField>,
+      'path' | 'level' | 'schema'
+    >,
     Pick<ComponentProps<typeof PicassoSelect>, 'renderOption'>,
     ValueEditorValidationProps {
   valueEditorTestId?: string
@@ -49,10 +56,18 @@ export const Select = ({
         menuWidth='fit-content'
         disabled={disabled}
         onChange={event => handleOnChange(event.target.value)}
-        onClick={fieldData?.onClick}
+        onClick={
+          fieldData !== undefined && 'onClick' in fieldData
+            ? fieldData?.onClick
+            : undefined
+        }
         options={formattedOptions}
         value={value}
-        loading={fieldData?.loading}
+        loading={
+          fieldData !== undefined && 'onClick' in fieldData
+            ? fieldData?.loading
+            : undefined
+        }
         status={hasError ? 'error' : undefined}
         onBlur={() => handleTouched?.(true)}
         data-testid={valueEditorTestId}

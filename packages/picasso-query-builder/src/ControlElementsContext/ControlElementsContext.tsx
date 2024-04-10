@@ -1,5 +1,11 @@
-import type { Controls } from 'react-querybuilder'
 import { getCompatContextProvider } from 'react-querybuilder'
+import type {
+  Controls,
+  OperatorSelectorProps,
+  ValueEditorProps,
+  ValueSourceSelectorProps,
+} from 'react-querybuilder'
+import type { ComponentType } from 'react'
 
 import { AddGroupButton } from '../AddGroupButton'
 import { AddRuleButton } from '../AddRuleButton'
@@ -20,11 +26,13 @@ export const picassoControlElements: Partial<Controls> = {
   cloneRuleAction: CloneRuleButton,
   removeGroupAction: RemoveGroupButton,
   removeRuleAction: RemoveRuleButton,
-  valueEditor: ValueEditor,
+  valueEditor: ValueEditor as unknown as ComponentType<ValueEditorProps>,
   combinatorSelector: CombinatorSelector,
   fieldSelector: FieldSelector,
-  operatorSelector: OperatorSelector,
-  valueSourceSelector: Select,
+  operatorSelector:
+    OperatorSelector as unknown as ComponentType<OperatorSelectorProps>,
+  valueSourceSelector:
+    Select as unknown as ComponentType<ValueSourceSelectorProps>,
 }
 
 export const ControlElementsContext = getCompatContextProvider({

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import type { Field, OptionGroup } from '@toptal/picasso-query-builder'
-import {
-  QueryBuilder,
+import { QueryBuilder } from '@toptal/picasso-query-builder'
+import type {
+  Field,
+  OptionGroup,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Accordion, Container } from '@toptal/picasso'
@@ -180,6 +181,7 @@ const fields: Field[] = [
     label: 'First Name',
     placeholder: 'Enter first name',
     inputType: 'text',
+    min: 1,
   },
   {
     name: 'lastName',

@@ -92,7 +92,7 @@ const QueryBuilder = ({
   maxGroupDepth = 3,
   loading = false,
   onSubmit,
-  customValueEditor = ValueEditor,
+  customValueEditor = ValueEditor as unknown as ValueEditorComponentProps,
   footer,
   hideControls,
   header,
@@ -159,7 +159,14 @@ const QueryBuilder = ({
     if (onSubmit && query) {
       onSubmit(query)
     }
-  }, [queryBuilderValid, onSubmit, query, showError, validationErrors])
+  }, [
+    queryBuilderValid,
+    onSubmit,
+    query,
+    showError,
+    validationErrors,
+    testIds?.validationErrors,
+  ])
 
   const resetSubmitButtonClicked = useCallback(() => {
     setSubmitButtonClicked(false)
@@ -167,11 +174,7 @@ const QueryBuilder = ({
 
   const getDisabledFields = () => {
     return fields
-      .filter(field => {
-        if (field?.disabled === true) {
-          return field.name
-        }
-      })
+      .filter(field => field?.disabled === true)
       .map(disabledField => disabledField.name)
   }
 
@@ -220,7 +223,7 @@ const QueryBuilder = ({
               {
                 removeGroup: handleRemoveGroup,
                 maxDepth: maxGroupDepth,
-                queryBuilderValid: queryBuilderValid,
+                queryBuilderValid,
                 submitButtonClicked,
                 resetSubmitButtonClicked,
                 getDisabledFields,

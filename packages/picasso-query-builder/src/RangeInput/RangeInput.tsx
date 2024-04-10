@@ -7,35 +7,39 @@ import type {
 import { makeStyles } from '@material-ui/core/styles'
 
 import type {
-  RangeFieldOptions,
+  BaseVersatileSelectorProps,
+  RangeField,
   RangeValue,
   ValueEditorValidationProps,
 } from '../types/query-builder'
 import styles from './styles'
 
-type Props = RangeFieldOptions & {
+type Props = {
   /**
    * value either accepts a range value or an empty string by default
    */
   value: RangeValue | ''
   handleOnChange: (val: RangeValue) => void
   valueEditorTestId?: string
-} & ValueEditorValidationProps &
+} & Omit<
+  BaseVersatileSelectorProps<RangeField>,
+  'options' | 'path' | 'level' | 'field'
+> &
+  ValueEditorValidationProps &
   Pick<CommonSubComponentProps, 'context'>
 
 const useStyles = makeStyles(styles)
 
 export const RangeInput = ({
   value,
-  step = 1,
-  min,
-  max,
   handleOnChange,
-  icon,
+  fieldData,
   validation,
   handleTouched,
   valueEditorTestId,
 }: Props) => {
+  const { min, step = 1, max, icon } = fieldData || {}
+
   const classes = useStyles()
 
   const fromValue = (value as RangeValue).from ?? ''
