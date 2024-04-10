@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-alert",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Toptal UI components library - Alert",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "1.0.6",
+    "@toptal/picasso-button": "1.0.7",
     "@toptal/picasso-container": "1.0.2",
     "@toptal/picasso-icons": "1.0.2",
     "@toptal/picasso-typography": "1.0.2",

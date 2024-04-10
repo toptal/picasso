@@ -1,5 +1,12 @@
 # @toptal/picasso-button
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`b779ddc`](https://github.com/toptal/picasso/commit/b779ddce4a67593bab27e8d09c2c930708cfb2ec)]:
+  - @toptal/picasso-dropdown@2.0.0
+
 ## 1.0.6
 
 ### Patch Changes

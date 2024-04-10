@@ -1,5 +1,13 @@
 # @toptal/picasso-select
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.7
+  - @toptal/picasso-input@1.0.7
+
 ## 1.0.7
 
 ### Patch Changes
