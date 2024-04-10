@@ -179,7 +179,7 @@
     "react-test-renderer": "^18.2.0",
     "remark-gfm": "^4.0.0",
     "syncpack": "^11.2.1",
-    "tailwindcss": "^3.3.6",
+    "tailwindcss": "^3.4.3",
     "thread-loader": "^4.0.2",
     "ts-loader": "^9.5.1",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
