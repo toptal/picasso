@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-query-builder",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Picasso query builder",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-query-builder#readme",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@material-ui/core": "4.12.4",
     "@react-querybuilder/dnd": "6.5.4",
-    "@toptal/picasso-notification": "1.0.6",
+    "@toptal/picasso-notification": "1.0.7",
     "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1",
     "react-dnd": "^16.0.1",

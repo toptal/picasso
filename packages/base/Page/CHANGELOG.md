@@ -1,5 +1,21 @@
 # @toptal/picasso-page
 
+## 1.0.10
+
+### Patch Changes
+
+- [#4232](https://github.com/toptal/picasso/pull/4232) [`77acf9dfab19a88f41a9fcc1240b636d44b44628`](https://github.com/toptal/picasso/commit/77acf9dfab19a88f41a9fcc1240b636d44b44628) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### PicassoPage
+
+- change react-dom from a `dependency` to `peerDependency`
+- Updated dependencies [[`b779ddc`](https://github.com/toptal/picasso/commit/b779ddce4a67593bab27e8d09c2c930708cfb2ec)]:
+  - @toptal/picasso-dropdown@2.0.0
+  - @toptal/picasso-button@1.0.7
+  - @toptal/picasso-accordion@1.0.7
+  - @toptal/picasso-notification@1.0.7
+  - @toptal/picasso-autocomplete@1.0.8
+
 ## 1.0.9
 
 ### Patch Changes
