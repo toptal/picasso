@@ -1,28 +1,33 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 
 import type { ButtonProps } from '../Button'
 import { Button } from '../Button'
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonGroupItem',
-})
+import { createRootClassNames } from './styles'
 
 export interface Props extends ButtonProps {}
 
-const ButtonGroupItem = (props: Props) => {
-  const classes = useStyles()
+const ButtonGroupItem = ({
+  active,
+  disabled,
+  focused,
+  hovered,
+  className,
+  ...rest
+}: Props) => {
+  const finalClassName = twMerge(
+    createRootClassNames({ active, disabled, focused, hovered }),
+    className
+  )
 
   return (
     <Button
-      {...props}
-      className={cx(props.className, classes.root, classes.group, {
-        [classes.active]: props.active,
-        [classes.disabled]: props.disabled,
-      })}
+      {...rest}
+      active={active}
+      disabled={disabled}
+      focused={focused}
+      hovered={hovered}
+      className={finalClassName}
       variant='secondary'
     />
   )

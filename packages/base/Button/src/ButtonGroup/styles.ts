@@ -1,71 +1,29 @@
-import { createStyles } from '@material-ui/core/styles'
+export const createRootClassNames = () => {
+  const classNames: string[] = [
+    'flex',
+    'justify-start',
 
-const baseButtonProps = {
-  transitionProperty: 'color, background',
+    '[&>[data-component-type="button"]:hover]:z-[1]',
 
-  '&:active, &$active, &:hover, &$hovered, &:focus, &$focused': {
-    // border overlap to keep proper border width, but on state change
-    // we need to move up overlapped border
-    zIndex: 1,
-  },
+    '[&>[data-component-type="button"]:first-child:not(:last-child)]:rounded-r-none',
+    '[&>[data-component-type="button"]:first-child:not(:last-child)]:ml-0',
+
+    '[&>[data-component-type="button"]:not(:first-child):not(:last-child)]:rounded-none',
+    '[&>[data-component-type="button"]:not(:first-child):not(:last-child)]:ml-[-1px]',
+
+    '[&>[data-component-type="button"]:last-child:not(:first-child)]:rounded-l-none',
+    '[&>[data-component-type="button"]:last-child:not(:first-child)]:ml-[-1px]',
+
+    // nested buttons
+    '[&_:first-child:not(:last-child)_[data-component-type="button"]]:rounded-r-none',
+    '[&_:first-child:not(:last-child)_[data-component-type="button"]]:ml-0',
+
+    '[&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:rounded-none',
+    '[&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:ml-[-1px]',
+
+    '[&_:last-child:not(:first-child)_[data-component-type="button"]]:rounded-l-none',
+    '[&_:last-child:not(:first-child)_[data-component-type="button"]]:ml-[-1px]',
+  ]
+
+  return classNames
 }
-
-const firstButtonProps = {
-  borderTopRightRadius: 0,
-  borderBottomRightRadius: 0,
-  marginLeft: '0rem',
-}
-
-const middleButtonProps = {
-  borderRadius: 0,
-  // prevents border between 2 buttons to be wider then specified
-  marginLeft: '-1px',
-}
-
-const lastButtonProps = {
-  borderTopLeftRadius: 0,
-  borderBottomLeftRadius: 0,
-  // prevents border between 2 buttons to be wider then specified
-  marginLeft: '-1px',
-}
-
-export default () =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'flex-start',
-
-      // default case
-      '& [data-component-type="button"]': {
-        ...baseButtonProps,
-
-        // first item
-        '&:first-child:not(:last-child)': firstButtonProps,
-        // middle item
-        '&:not(:first-child):not(:last-child)': middleButtonProps,
-        // last item
-        '&:last-child:not(:first-child)': lastButtonProps,
-      },
-
-      // nested case when button is nested in first item in ButtonGroup
-      '& :first-child:not(:last-child) [data-component-type="button"]': {
-        ...baseButtonProps,
-        ...firstButtonProps,
-      },
-
-      // nested case when button is nested in middle item in ButtonGroup
-      '& :not(:first-child):not(:last-child) [data-component-type="button"]': {
-        ...baseButtonProps,
-        ...middleButtonProps,
-      },
-
-      // nested case when button is nested in last item in ButtonGroup
-      '& :last-child:not(:first-child) [data-component-type="button"]': {
-        ...baseButtonProps,
-        ...lastButtonProps,
-      },
-    },
-    active: {},
-    focused: {},
-    hovered: {},
-  })
