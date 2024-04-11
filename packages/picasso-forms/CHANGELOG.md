@@ -1,5 +1,12 @@
 # Change Log
 
+## 68.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-notification@2.0.0
+
 ## 68.0.5
 
 ### Patch Changes

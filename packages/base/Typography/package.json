@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-typography",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Toptal UI components library - Typography",
   "publishConfig": {
     "access": "public"
@@ -40,7 +40,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.1.0",
+    "@toptal/picasso-provider": "4.2.0",
     "@toptal/picasso-test-utils": "1.1.0"
   },
   "files": [

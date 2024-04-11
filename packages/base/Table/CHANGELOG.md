@@ -1,5 +1,13 @@
 # @toptal/picasso-table
 
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-button@1.0.8
+
 ## 1.1.4
 
 ### Patch Changes
