@@ -46,5 +46,8 @@
     "bin/**",
     "!dist-package/tsconfig.tsbuildinfo",
     "src"
-  ]
+  ],
+  "engines": {
+    "node": ">=18"
+  }
 }
