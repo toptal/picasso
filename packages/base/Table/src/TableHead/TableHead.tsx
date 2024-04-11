@@ -22,7 +22,7 @@ export const TableHead = forwardRef<HTMLTableSectionElement, Props>(
           {...rest}
           ref={ref}
           className={twMerge(
-            'border-b border-[0] border-solid border-gray-200',
+            'border-[0] border-solid border-b-[1px] border-gray-200',
             className
           )}
           style={style}
