@@ -178,7 +178,7 @@ exports[`Autocomplete dynamic behavior renders custom other options text and cal
           class="PicassoAutocomplete-stringContent"
         >
           <span
-            class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+            class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
           >
             my option:
           </span>
@@ -212,7 +212,7 @@ exports[`Autocomplete dynamic behavior renders other option with default text 1`
           class="PicassoAutocomplete-stringContent"
         >
           <span
-            class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-darkGrey MuiTypography-body1"
+            class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
           >
             Other option: 
           </span>

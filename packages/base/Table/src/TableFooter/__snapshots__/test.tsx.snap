@@ -18,7 +18,7 @@ exports[`TableFooter renders 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+              class="m-0 text-sm text-black font-semibold"
             >
               Footer test
             </div>

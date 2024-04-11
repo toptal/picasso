@@ -16,7 +16,7 @@ exports[`List renders ordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N1
           </div>
@@ -29,7 +29,7 @@ exports[`List renders ordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N2
           </div>
@@ -42,7 +42,7 @@ exports[`List renders ordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N3
           </div>
@@ -55,7 +55,7 @@ exports[`List renders ordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N4
           </div>
@@ -68,7 +68,7 @@ exports[`List renders ordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N5
           </div>
@@ -95,7 +95,7 @@ exports[`List renders unordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N1
           </div>
@@ -108,7 +108,7 @@ exports[`List renders unordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N2
           </div>
@@ -121,7 +121,7 @@ exports[`List renders unordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N3
           </div>
@@ -134,7 +134,7 @@ exports[`List renders unordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N4
           </div>
@@ -147,7 +147,7 @@ exports[`List renders unordered list 1`] = `
           class="PicassoContainer-flex PicassoListItem-listContainer"
         >
           <div
-            class="MuiTypography-root PicassoTypography-bodyMedium PicassoListItem-content MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular pl-2"
           >
             list item N5
           </div>

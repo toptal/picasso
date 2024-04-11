@@ -1,28 +1,29 @@
 import type { SizeType } from '@toptal/picasso-shared'
 
+export const DEFAULT_ELEMENT = 'p' as const
+
 const variantsMapping = {
   heading: {
-    xxsmall: undefined,
-    xsmall: undefined,
+    xxsmall: DEFAULT_ELEMENT,
+    xsmall: DEFAULT_ELEMENT,
     small: 'h4' as const,
     medium: 'h3' as const,
     large: 'h2' as const,
     xlarge: 'h1' as const,
-    inherit: undefined,
+    inherit: DEFAULT_ELEMENT,
   },
   body: {
-    xxsmall: 'body1' as const,
-    xsmall: 'body1' as const,
-    small: 'body1' as const,
-    medium: 'body1' as const,
-    large: 'body1' as const,
-    xlarge: undefined,
-    inherit: 'body1' as const,
+    xxsmall: DEFAULT_ELEMENT,
+    xsmall: DEFAULT_ELEMENT,
+    small: DEFAULT_ELEMENT,
+    medium: DEFAULT_ELEMENT,
+    large: DEFAULT_ELEMENT,
+    xlarge: DEFAULT_ELEMENT,
+    inherit: DEFAULT_ELEMENT,
   },
 }
 
-// @TODO: [FX-5055] remove this entire folder after Tailwind migration as the function is not used anymore
-const toMuiVariant = <
+const variantToElement = <
   V extends 'heading' | 'body',
   S extends
     | SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
@@ -32,4 +33,4 @@ const toMuiVariant = <
   size: S
 ): (typeof variantsMapping)[V][S] => variantsMapping[variant][size]
 
-export default toMuiVariant
+export default variantToElement

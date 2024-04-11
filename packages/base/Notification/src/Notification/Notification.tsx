@@ -105,9 +105,10 @@ const renderNotificationContent = (props: PrivateProps) => {
       </Container>
       <Typography
         size={variant === 'yellow' ? 'small' : 'medium'}
+        color='black'
         className={cx(
-          classes?.content,
-          classes?.[`content${capitalizedVariant}`]
+          'break-words min-w-0',
+          variant === 'yellow' ? '!mt-0' : '!mt-[1px]'
         )}
         as='div'
       >
