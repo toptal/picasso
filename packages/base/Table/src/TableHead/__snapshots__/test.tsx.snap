@@ -19,7 +19,7 @@ exports[`TableHead renders 1`] = `
             scope="col"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+              class="m-0 text-xxs text-graphite font-semibold"
             >
               Head test
             </div>

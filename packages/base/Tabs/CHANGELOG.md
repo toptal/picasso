@@ -1,5 +1,19 @@
 # @toptal/picasso-tabs
 
+## 2.0.0
+
+### Major Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- added a `tailwindcss` dependency (tailwindcss is now required to make this package work)
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee), [`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-typography-overflow@2.0.0
+  - @toptal/picasso-user-badge@2.0.0
+
 ## 1.0.5
 
 ### Patch Changes

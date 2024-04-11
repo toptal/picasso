@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-step",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Toptal UI components library - Step",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-icons": "1.0.2",
     "@toptal/picasso-shared": "14.0.1",
-    "@toptal/picasso-typography-overflow": "1.0.3",
+    "@toptal/picasso-typography-overflow": "2.0.0",
     "@toptal/picasso-utils": "1.0.2",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
@@ -39,7 +39,7 @@
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.1.0",
+    "@toptal/picasso-provider": "4.2.0",
     "@toptal/picasso-test-utils": "1.1.0",
     "styled-components": "^6.1.1"
   },

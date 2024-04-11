@@ -53,7 +53,7 @@ export const RangeInput = ({
 
   return (
     <>
-      <Typography variant='body' className={classes.label}>
+      <Typography variant='body' className='self-center'>
         From
       </Typography>
       <Container flex className={classes.input}>
@@ -83,7 +83,7 @@ export const RangeInput = ({
           data-testid={valueEditorTestId}
         />
       </Container>
-      <Typography variant='body' className={classes.label}>
+      <Typography variant='body' className='self-center'>
         To
       </Typography>
       <Container flex className={classes.input}>

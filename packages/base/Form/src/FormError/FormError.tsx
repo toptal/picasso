@@ -30,7 +30,7 @@ export const FormError = forwardRef<HTMLDivElement, Props>(function FormError(
       className={cx(classes.root, className)}
       style={style}
     >
-      <Typography color='red' size='xxsmall' className={classes.error}>
+      <Typography color='red' size='xxsmall' className='cursor-default'>
         {children}
       </Typography>
     </div>

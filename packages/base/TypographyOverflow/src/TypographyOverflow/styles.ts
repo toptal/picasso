@@ -2,13 +2,9 @@ import { createStyles } from '@material-ui/core/styles'
 
 export default () =>
   createStyles({
-    singleLine: {
-      display: 'block',
-      whiteSpace: 'nowrap',
-    },
     multiLine: {
       display: '-webkit-box',
-      whiteSpace: 'initial',
+      whiteSpace: 'initial !important' as 'initial',
       wordBreak: 'break-word',
     },
     wrapper: {
