@@ -1,5 +1,16 @@
 # @toptal/picasso-file-input
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee), [`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-typography-overflow@2.0.0
+  - @toptal/picasso-form@2.0.0
+  - @toptal/picasso-tooltip@1.1.1
+  - @toptal/picasso-button@1.0.8
+
 ## 1.0.8
 
 ### Patch Changes

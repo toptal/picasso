@@ -1,5 +1,66 @@
 # Change Log
 
+## 44.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee), [`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-typography-overflow@2.0.0
+  - @toptal/picasso-notification@2.0.0
+  - @toptal/picasso-timeline@2.0.0
+  - @toptal/picasso-section@2.0.0
+  - @toptal/picasso-tabs@2.0.0
+  - @toptal/picasso-avatar@2.0.0
+  - @toptal/picasso-drawer@2.0.0
+  - @toptal/picasso-form@2.0.0
+  - @toptal/picasso-list@2.0.0
+  - @toptal/picasso-page@2.0.0
+  - @toptal/picasso-user-badge@2.0.0
+  - @toptal/picasso-account-select@1.0.7
+  - @toptal/picasso-alert@1.0.8
+  - @toptal/picasso-amount@1.0.3
+  - @toptal/picasso-application-update-notification@1.0.8
+  - @toptal/picasso-autocomplete@1.0.9
+  - @toptal/picasso-breadcrumbs@1.0.5
+  - @toptal/picasso-calendar@1.0.8
+  - @toptal/picasso-dropzone@1.0.9
+  - @toptal/picasso-empty-state@1.0.4
+  - @toptal/picasso-file-input@1.0.9
+  - @toptal/picasso-grid@1.0.5
+  - @toptal/picasso-helpbox@1.0.8
+  - @toptal/picasso-menu@1.0.7
+  - @toptal/picasso-modal@1.0.8
+  - @toptal/picasso-note@1.0.5
+  - @toptal/picasso-overview-block@1.0.5
+  - @toptal/picasso-pagination@1.0.8
+  - @toptal/picasso-prompt-modal@1.0.8
+  - @toptal/picasso-quote@1.0.3
+  - @toptal/picasso-select@1.0.9
+  - @toptal/picasso-show-more@1.0.8
+  - @toptal/picasso-table@1.1.5
+  - @toptal/picasso-tag@1.0.5
+  - @toptal/picasso-tooltip@1.1.1
+  - @toptal/picasso-step@1.0.6
+  - @toptal/picasso-accordion@1.0.8
+  - @toptal/picasso-button@1.0.8
+  - @toptal/picasso-checkbox@1.0.6
+  - @toptal/picasso-input@1.0.8
+  - @toptal/picasso-outlined-input@1.0.8
+  - @toptal/picasso-radio@1.0.6
+  - @toptal/picasso-slider@1.0.4
+  - @toptal/picasso-switch@1.0.6
+  - @toptal/picasso-avatar-upload@1.0.8
+  - @toptal/picasso-number-input@1.0.8
+  - @toptal/picasso-tagselector@1.0.9
+  - @toptal/picasso-date-picker@1.0.8
+  - @toptal/picasso-date-select@1.0.9
+  - @toptal/picasso-password-input@1.0.8
+  - @toptal/picasso-timepicker@1.0.8
+  - @toptal/picasso-carousel@1.0.9
+  - @toptal/picasso-skeleton-loader@1.0.8
+  - @toptal/picasso-tree-view@1.0.8
+
 ## 44.0.11
 
 ### Patch Changes

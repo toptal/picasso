@@ -1,5 +1,13 @@
 # @toptal/picasso-button
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-checkbox@1.0.6
+  - @toptal/picasso-radio@1.0.6
+
 ## 1.0.7
 
 ### Patch Changes
