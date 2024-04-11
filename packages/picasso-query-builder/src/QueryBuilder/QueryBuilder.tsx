@@ -18,6 +18,7 @@ import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import type { SpacingType } from '@toptal/picasso-provider'
 import { SPACING_6 } from '@toptal/picasso-provider'
 
 import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
@@ -56,7 +57,12 @@ type Props = {
   customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
-  /** Defines the possibility to display, or not, any of the controls. For example "Add rule" or "Add group" control. */
+  /** Defines padded layout. */
+  padded?: SpacingType
+  /**
+   * @deprecated [CPT-2188] Controls will be defined at the consumer level
+   * Defines the possibility to display, or not, any of the controls. For example "Clear query" or "Run query" control.
+   */
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
@@ -92,6 +98,7 @@ const QueryBuilder = ({
   header,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
+  padded = SPACING_6,
   totalCount,
   totalCountLoading,
   onQueryReset,
@@ -191,7 +198,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls ? undefined : SPACING_6}
+        padded={padded}
         direction='column'
         gap='small'
       >
