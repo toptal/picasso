@@ -9,21 +9,20 @@ exports[`TableHead renders 1`] = `
       class="MuiTable-root"
     >
       <thead
-        class="MuiTableHead-root PicassoTableHead-root"
+        class="border-[0] border-solid border-b border-gray"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-head"
+          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
         >
-          <th
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head"
-            scope="col"
+          <td
+            class="MuiTableCell-root PicassoTableCell-root"
           >
             <div
               class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
             >
               Head test
             </div>
-          </th>
+          </td>
         </tr>
       </thead>
     </table>
