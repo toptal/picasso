@@ -1,6 +1,7 @@
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import type {
   StandardProps,
   SizeType,
@@ -87,7 +88,7 @@ const getIcon = ({
   })
 
   return React.cloneElement(icon, {
-    className: cx(iconClassNames, icon.props.className),
+    className: twMerge(iconClassNames, icon.props.className),
   })
 }
 
@@ -130,7 +131,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
   })
   const sizeClassNames = createSizeClassNames(size)
 
-  const finalClassName = cx(
+  const finalClassName = twMerge(
     coreClassNames,
     variantClassNames,
     sizeClassNames,
