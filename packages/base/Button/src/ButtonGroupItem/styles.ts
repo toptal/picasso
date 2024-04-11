@@ -1,30 +1,50 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+export const createRootClassNames = ({
+  disabled,
+  focused,
+  hovered,
+  active,
+}: {
+  disabled?: boolean
+  focused?: boolean
+  hovered?: boolean
+  active?: boolean
+  loading?: boolean
+}): string[] => {
+  const classNames = [
+    'visited:text-black',
+    'border-solid',
+    'transition-[color,background]',
+    'active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1]',
+  ]
 
-import {
-  createOutlineCommons,
-  activeGroup,
-  disabledGroup,
-} from '../Button/styles'
+  if (active || hovered || focused || disabled) {
+    classNames.push('z-[1]')
+  }
 
-export default (theme: Theme) =>
-  createStyles({
-    root: {
-      '&:active, &$active, &:hover, &$hovered, &:focus, &$focused, &:disabled, &$disabled':
-        {
-          // border overlap to keep proper border width, but on state change
-          // we need to move up overlapped border
-          zIndex: 1,
-        },
-      '&$group': {
-        ...createOutlineCommons(theme),
-        '&:active, &$active': activeGroup(theme),
-        '&:disabled, &$disabled': disabledGroup(theme),
-      },
-    },
-    active: {},
-    hovered: {},
-    focused: {},
-    disabled: {},
-    group: {},
-  })
+  if (disabled) {
+    classNames.push('cursor-not-allowed')
+    classNames.push('text-gray-500')
+
+    if (active) {
+      classNames.push('bg-graphite-700 border-graphite-700')
+    } else {
+      classNames.push('border-gray-500')
+    }
+  } else {
+    classNames.push(
+      'active:bg-graphite-700 active:border-graphite-700 active:text-white'
+    )
+    classNames.push('hover:border-black')
+
+    if (hovered) {
+      classNames.push('border-black text-black')
+    } else if (active) {
+      classNames.push('bg-graphite-700 border-graphite-700 text-white')
+      classNames.push('shadow-none')
+    } else {
+      classNames.push('border-gray-400 text-black')
+    }
+  }
+
+  return classNames
+}
