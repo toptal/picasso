@@ -6,7 +6,7 @@ import type {
   FC,
 } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import type {
   StandardProps,
   ButtonOrAnchorProps,
@@ -121,7 +121,7 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     }
   }
 
-  const finalClassName = cx(createCoreClassNames({ disabled }), className)
+  const finalClassName = twMerge(createCoreClassNames({ disabled }), className)
 
   return (
     <MUIButtonBase

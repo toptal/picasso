@@ -31,6 +31,7 @@ module.exports = {
       12: '3rem',
     },
     borderRadius: {
+      none: '0px',
       sm: '4px',
       md: '8px',
       // to support fully rounded corners, use the same approach as TailwindCSS proposes

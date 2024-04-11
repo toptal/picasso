@@ -33,7 +33,8 @@
     "@toptal/picasso-link": "1.0.2",
     "ap-style-title-case": "^1.1.2",
     "@mui/base": "5.0.0-beta.40",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [
     "**/styles.ts",
