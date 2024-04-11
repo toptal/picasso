@@ -14,14 +14,11 @@ export const createRootClassNames = ({
     'visited:text-black',
     'border-solid',
     'transition-[color,background]',
+    'active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1]',
   ]
 
   if (active || hovered || focused || disabled) {
     classNames.push('z-[1]')
-  }
-
-  if (!disabled) {
-    classNames.push('active:z-[1] hover:z-[1] focus-visible:z-[1]')
   }
 
   if (disabled) {
