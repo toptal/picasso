@@ -1,59 +1,51 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import type { SizeType } from '@toptal/picasso-shared'
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    actionButton: {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    menuButton: {
-      minWidth: '2em',
-      paddingLeft: '0.5em',
-      paddingRight: '0.5em',
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      marginLeft: 0,
-    },
+export const createActionButtonClassNames = ({
+  variant,
+}: {
+  variant?: 'primary' | 'secondary'
+}) => {
+  const classNames: string[] = ['transition-[color,background]']
 
-    primaryVariant: {
-      '&$actionButton': {
-        borderRight: `1px solid ${palette.blue.darker}`,
-      },
-      '&$menuButton': {
-        borderLeft: `1px solid ${palette.blue.darker}`,
+  if (variant === 'primary') {
+    classNames.push(
+      'border-r border-l-0 border-y-0 border-solid border-blue-700'
+    )
+  }
 
-        '&$disabled': {
-          borderLeftColor: palette.grey.main,
-        },
-      },
-    },
+  return classNames
+}
 
-    smallSize: {
-      minWidth: '1.5em',
-      paddingLeft: '0.25em',
-      paddingRight: '0.25em',
-    },
-    mediumSize: {},
-    largeSize: {
-      minWidth: '3em',
-      paddingLeft: '0.75em',
-      paddingRight: '0.75em',
-    },
+const menuButtonSizeClassNames: Record<
+  SizeType<'small' | 'medium' | 'large'>,
+  string
+> = {
+  small: 'min-w-[1.5em] px-[0.25em]',
+  medium: 'min-w-[2em] px-[0.5em]',
+  large: 'min-w-[3em] px-[0.75em]',
+}
 
-    dropdown: {
-      display: 'block',
-      cursor: 'pointer',
-    },
+export const createMenuButtonClassNames = ({
+  variant,
+  size,
+  disabled,
+}: {
+  variant?: 'primary' | 'secondary'
+  size: SizeType<'small' | 'medium' | 'large'>
+  disabled?: boolean
+}) => {
+  const classNames: string[] = []
 
-    disabled: {
-      // override dropdown anchor styles
-      '& > div': {
-        cursor: 'auto',
-      },
-    },
+  if (variant === 'primary') {
+    classNames.push('border-l border-r-0 border-y-0 border-solid')
+    if (disabled) {
+      classNames.push('border-gray-500')
+    } else {
+      classNames.push('border-blue-700')
+    }
+  }
 
-    rotated: {
-      transform: 'rotate(180deg)',
-    },
-  })
+  classNames.push(menuButtonSizeClassNames[size])
+
+  return classNames
+}

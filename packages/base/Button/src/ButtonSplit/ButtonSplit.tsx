@@ -1,16 +1,18 @@
 import type { ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { SizeType, BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import { ArrowDownMinor24, ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { Dropdown } from '@toptal/picasso-dropdown'
 
 import type { ButtonProps } from '../Button'
 import { Button } from '../Button'
 import { ButtonGroup } from '../ButtonGroup'
-import styles from './styles'
+import { createButtonGroupItemClassNames } from '../ButtonGroupItem/styles'
+import {
+  createActionButtonClassNames,
+  createMenuButtonClassNames,
+} from './styles'
 
 export interface Props
   extends BaseProps,
@@ -35,13 +37,6 @@ export interface Props
     menuButton?: string
   }
 }
-// Using { index: -1 } to inject CSS link to the bottom of the head
-// in order to prevent Button's styles to override ButtonSplit's ones
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonSplit',
-  index: -1,
-})
 
 const DropdownIcon = ({
   size,
@@ -83,37 +78,35 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
       testIds = {},
       ...rest
     } = props
-    const classes = useStyles()
 
-    const commonClasses = cx(classes.button, {
-      [classes.primaryVariant]: variant === 'primary',
-      [classes.disabled]: disabled,
-    })
+    const renderMenuButton = ({ isOpen }: { isOpen: boolean }) => {
+      const menuButtonClassName = twMerge(
+        createButtonGroupItemClassNames({
+          active: menuButtonProps?.active,
+          hovered: menuButtonProps?.hovered,
+          disabled: menuButtonProps?.disabled || disabled,
+          focused: menuButtonProps?.focused,
+        }),
+        createMenuButtonClassNames({
+          variant,
+          size,
+          disabled: menuButtonProps?.disabled || disabled,
+        }),
+        menuButtonProps?.className
+      )
 
-    const renderMenuButton = ({
-      isOpen,
-      disabled,
-    }: {
-      isOpen: boolean
-      disabled?: boolean
-    }) => {
+      const iconClassName = isOpen ? 'rotate-180' : ''
+
       const menuButton = (
         <Button
           {...menuButtonProps}
           variant={variant}
-          className={`${commonClasses} ${classes.menuButton} ${
-            classes[`${size}Size`]
-          }`}
+          className={menuButtonClassName}
           size={size}
           disabled={disabled}
           data-testid={testIds.menuButton}
         >
-          <DropdownIcon
-            className={cx({
-              [classes.rotated]: isOpen,
-            })}
-            size={size}
-          />
+          <DropdownIcon className={iconClassName} size={size} />
         </Button>
       )
 
@@ -124,11 +117,30 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
       )
     }
 
+    const actionButtonClassName = twMerge(
+      createButtonGroupItemClassNames({
+        active: actionButtonProps?.active,
+        hovered: actionButtonProps?.hovered,
+        disabled: actionButtonProps?.disabled || disabled,
+        focused: actionButtonProps?.focused,
+      }),
+      createActionButtonClassNames({
+        variant,
+        disabled: actionButtonProps?.disabled || disabled,
+      }),
+      actionButtonProps?.className
+    )
+
+    const dropdownClassName = twMerge(
+      'block cursor-pointer',
+      disabled ? '[&>div]:cursor-auto' : ''
+    )
+
     return (
       <ButtonGroup {...rest} ref={ref} style={style} className={className}>
         <Button
           {...actionButtonProps}
-          className={`${commonClasses} ${classes.actionButton}`}
+          className={actionButtonClassName}
           size={size}
           variant={variant}
           disabled={disabled}
@@ -137,15 +149,8 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
         >
           {children}
         </Button>
-        <Dropdown
-          content={menu}
-          className={cx(classes.dropdown, {
-            [classes.disabled]: disabled,
-          })}
-        >
-          {({ isOpen }: { isOpen: boolean }) =>
-            renderMenuButton({ isOpen, disabled })
-          }
+        <Dropdown content={menu} className={dropdownClassName}>
+          {({ isOpen }: { isOpen: boolean }) => renderMenuButton({ isOpen })}
         </Dropdown>
       </ButtonGroup>
     )
