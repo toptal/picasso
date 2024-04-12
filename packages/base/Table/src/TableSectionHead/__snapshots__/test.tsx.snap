@@ -8,14 +8,12 @@ exports[`TableSectionHead renders 1`] = `
     <table
       class="MuiTable-root"
     >
-      <tbody
-        class="MuiTableBody-root"
-      >
+      <tbody>
         <tr
           class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow PicassoTableRow-bordered"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
+            class="MuiTableCell-root PicassoTableCell-root"
             colspan="100"
           >
             <div
