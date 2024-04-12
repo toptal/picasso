@@ -1,5 +1,12 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- [#4138](https://github.com/toptal/picasso/pull/4138) [`c2c97bbe2cb66bb387634085c81ad9263a3096ef`](https://github.com/toptal/picasso/commit/c2c97bbe2cb66bb387634085c81ad9263a3096ef) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump meow from 10.1.3 to 13.2.0. Require Node.js 18
+
 ## 5.6.4
 
 ### Patch Changes
