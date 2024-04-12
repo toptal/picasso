@@ -20,7 +20,7 @@ const ButtonGroupItem = ({
 }: Props) => {
   const finalClassName = twMerge(
     createButtonGroupItemClassNames({ active, disabled, focused, hovered }),
-    createGroupVariantClassNames({ active, disabled, focused, hovered }),
+    createGroupVariantClassNames({ active, disabled, hovered }),
     className
   )
 

@@ -126,7 +126,6 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
       }),
       createActionButtonClassNames({
         variant,
-        disabled: actionButtonProps?.disabled || disabled,
       }),
       actionButtonProps?.className
     )

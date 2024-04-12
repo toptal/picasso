@@ -135,7 +135,7 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
       value={value}
       type={type}
       data-component-type='button'
-      tabIndex={disabled ? -1 : 0}
+      tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
       slots={{ root: RootElement }}
     >
       <Container

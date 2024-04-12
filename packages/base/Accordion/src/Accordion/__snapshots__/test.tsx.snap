@@ -28,16 +28,16 @@ exports[`Accordion renders collapsed by default 1`] = `
             class="PicassoAccordion-expandIconAlignTop"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
               data-component-type="button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold text-blue text-md"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon"
+                  class="PicassoSvgArrowDownMinor16-root w-4 h-4 text-graphite PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -172,16 +172,16 @@ exports[`Accordion renders disabled 1`] = `
             class="PicassoAccordion-expandIconAlignTop"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButtonAction-small PicassoButton-secondary PicassoButton-root PicassoButtonAction-root"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
               data-component-type="button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content PicassoButtonAction-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold text-blue text-md"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root PicassoButton-icon PicassoButtonAction-icon PicassoAccordion-expandIcon"
+                  class="PicassoSvgArrowDownMinor16-root w-4 h-4 text-graphite PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
