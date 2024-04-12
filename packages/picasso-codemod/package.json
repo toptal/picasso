@@ -35,7 +35,7 @@
     "execa": "^7.1.1",
     "globby": "^14.0.0",
     "jscodeshift": "^0.13.1",
-    "meow": "^10.1.3"
+    "meow": "^13.2.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
@@ -46,5 +46,8 @@
     "bin/**",
     "!dist-package/tsconfig.tsbuildinfo",
     "src"
-  ]
+  ],
+  "engines": {
+    "node": ">=18"
+  }
 }
