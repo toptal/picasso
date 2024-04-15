@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import type { ValueEditorProps } from '@toptal/picasso-query-builder'
-import {
-  QueryBuilder,
+import { QueryBuilder } from '@toptal/picasso-query-builder'
+import type {
+  Field,
+  ValueEditorProps,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Input, Select } from '@toptal/picasso'
@@ -11,7 +12,7 @@ const initialQuery = {
   combinator: 'and',
 }
 
-const fields = [
+const fields: Field[] = [
   {
     name: 'firstName',
     label: 'First Name',

@@ -36,9 +36,9 @@ import type { ValidatorResult } from '../utils/use-query-builder-validator'
 
 type ValueEditorComponentProps = ComponentType<DefaultValueEditorProps>
 
-type Props = {
-  /** Defines array of fields to build a query. Each filed is an object with a list of properties. */
-  fields: Field[]
+type Props<FieldType extends Field> = {
+  /** Defines array of fields to build a query. Fields are either of strict types (text, number, autocomplete, range, multiselect, select) or loose types . */
+  fields: FieldType[]
   /** Defines a set of rules which will be used to fetch data, a combinator and a query id. */
   query: RuleGroupTypeAny
   /** Defines a function that is called when the user makes a change to the query in the UI. This function receives an updated query as an argument. */
@@ -50,7 +50,7 @@ type Props = {
   /** Defines a limit for depth of nested rule groups in QB. By default is set to 3. */
   maxGroupDepth?: number
   /** Defines a function that returns an array of operator objects that could be used to construct queries. */
-  getOperators?: (fields: Field[], fieldName: string) => Operator[]
+  getOperators?: (fields: FieldType[], fieldName: string) => Operator[]
   /** Defines a function that is called when the user submits a query constructed in the QB. This function takes a single argument - constructed query. */
   onSubmit?: (query: RuleGroupTypeAny) => void
   /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
@@ -83,7 +83,7 @@ const useStyles = makeStyles(styles)
 
 const ValueEditor = (props: ValEditorProps) => <DefaultValEditor {...props} />
 
-const QueryBuilder = ({
+const QueryBuilder = <FieldType extends Field>({
   fields,
   query,
   onQueryChange,
@@ -103,7 +103,7 @@ const QueryBuilder = ({
   totalCountLoading,
   onQueryReset,
   testIds,
-}: Props) => {
+}: Props<FieldType>) => {
   const classes = useStyles()
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)

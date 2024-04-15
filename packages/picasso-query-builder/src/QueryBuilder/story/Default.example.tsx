@@ -181,7 +181,6 @@ const fields: Field[] = [
     label: 'First Name',
     placeholder: 'Enter first name',
     inputType: 'text',
-    min: 1,
   },
   {
     name: 'lastName',

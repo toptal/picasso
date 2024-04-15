@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import type { Field as QueryBuilderField } from 'react-querybuilder'
 
 import { Select } from '../Select'
 import { MultiSelect } from '../MultiSelect'
@@ -9,17 +10,34 @@ import { RangeInput } from '../RangeInput'
 import { TextInput } from '../TextInput'
 import { useHandleTouched } from '../utils'
 import { BooleanInput } from '../BooleanInput'
-import type { BaseValueEditorProps, Field } from '../types/query-builder'
+import type {
+  AutoCompleteField,
+  BaseValueEditorProps,
+  BasicField,
+  BooleanField,
+  MultiSelectField,
+  RangeField,
+  SelectField,
+} from '../types/query-builder'
 import styles from './styles'
 
-export interface QueryBuilderValueEditorProps<FieldType extends Field = Field>
-  extends Omit<BaseValueEditorProps<FieldType>, 'type'> {
-  // readonly type: FieldType['valueEditorType']
-}
+export type QueryBuilderValueEditorProps =
+  | BaseValueEditorProps<AutoCompleteField>
+  | BaseValueEditorProps<MultiSelectField>
+  | BaseValueEditorProps<RangeField>
+  | BaseValueEditorProps<BooleanField>
+  | BaseValueEditorProps<SelectField>
+  | BaseValueEditorProps<BasicField>
+  | (Omit<BaseValueEditorProps<QueryBuilderField>, 'type'> & {
+      type: Exclude<
+        BaseValueEditorProps<QueryBuilderField>['type'],
+        'multiselect' | 'range' | 'select'
+      >
+    })
 
 const useStyles = makeStyles(styles)
 
-export const ValueEditor = <FieldType extends Field = Field>({
+export const ValueEditor = ({
   value,
   handleOnChange,
   inputType,
@@ -30,10 +48,10 @@ export const ValueEditor = <FieldType extends Field = Field>({
   values = [],
   field,
   fieldData,
-  // type,
+  type,
   validation,
   context = {},
-}: QueryBuilderValueEditorProps<FieldType>) => {
+}: QueryBuilderValueEditorProps) => {
   const classes = useStyles()
 
   const valueEditorTestId = context?.testIds?.valueEditor
@@ -42,7 +60,7 @@ export const ValueEditor = <FieldType extends Field = Field>({
     submitButtonClicked: context?.submitButtonClicked,
   })
 
-  switch (fieldData.valueEditorType) {
+  switch (type) {
     case 'multiselect':
       return (
         <MultiSelect

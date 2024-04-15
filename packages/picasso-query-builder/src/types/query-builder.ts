@@ -7,17 +7,6 @@ import type {
   VersatileSelectorProps,
 } from 'react-querybuilder'
 
-declare module 'react-querybuilder' {
-  type ValueEditorType =
-    | 'text'
-    | 'number'
-    | 'select'
-    | 'multiselect'
-    | 'autocomplete'
-    | 'range'
-    | 'boolean'
-}
-
 export interface RangeFieldOptions {
   min?: number
   max?: number
@@ -36,33 +25,29 @@ type BaseQueryBuilderField = RemoveIndex<QueryBuilderField> & {
 }
 
 export interface BasicField
-  extends Omit<BaseQueryBuilderField, 'inputType' | 'valueEditorType'> {
-  inputType?: 'text' | 'number' | null
+  extends Omit<BaseQueryBuilderField, 'valueEditorType'> {
   valueEditorType?: 'text' | 'number' | null
 }
 
 export interface SelectField
-  extends Omit<BaseQueryBuilderField, 'inputType' | 'valueEditorType'> {
+  extends Omit<BaseQueryBuilderField, 'valueEditorType'> {
   valueEditorType?: 'select'
   loading?: boolean
   onClick?: () => void
 }
 
 export interface RangeField
-  extends Omit<BaseQueryBuilderField, 'inputType' | 'valueEditorType'>,
+  extends Omit<BaseQueryBuilderField, 'valueEditorType'>,
     Partial<RangeFieldOptions> {
   valueEditorType?: 'range'
 }
 
 export interface BooleanField
-  extends Omit<
-    BaseQueryBuilderField,
-    'inputType' | 'valueEditorType' | 'values'
-  > {
+  extends Omit<BaseQueryBuilderField, 'valueEditorType' | 'values'> {
   valueEditorType?: 'boolean'
 }
 export interface MultiSelectField
-  extends Omit<BaseQueryBuilderField, 'inputType' | 'valueEditorType'> {
+  extends Omit<BaseQueryBuilderField, 'valueEditorType'> {
   valueEditorType?: 'multiselect'
   enableReset?: boolean
   enableResetSearch?: boolean
@@ -71,7 +56,7 @@ export interface MultiSelectField
 }
 
 export interface AutoCompleteField
-  extends Omit<BaseQueryBuilderField, 'inputType' | 'valueEditorType'> {
+  extends Omit<BaseQueryBuilderField, 'valueEditorType'> {
   valueEditorType: 'autocomplete'
   /**
    * Callback for autocomplete input change
@@ -89,10 +74,11 @@ export interface AutoCompleteField
 
 export type BaseValueEditorProps<FieldType extends Field = Field> = Omit<
   ValueEditorProps,
-  'schema' | 'fieldData'
+  'schema' | 'fieldData' | 'type'
 > & {
   field: string
   fieldData: FieldType
+  type?: FieldType['valueEditorType']
 }
 
 export type BaseVersatileSelectorProps<FieldType extends Field = Field> = Omit<
@@ -116,6 +102,7 @@ export type Field =
   | AutoCompleteField
   | BooleanField
   | MultiSelectField
+  | QueryBuilderField
 
 export type QueryBuilderErrors = {
   [key: string]: ValidationResult | true
