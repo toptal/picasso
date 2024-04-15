@@ -161,7 +161,7 @@ export const createVariantClassNames = (
 
       break
     case 'transparent':
-      variantClassNames.push('border')
+      variantClassNames.push('border border-solid')
       if (disabled) {
         variantClassNames.push('text-white/[0.32]')
         variantClassNames.push('border-white/[0.32]')
