@@ -10,7 +10,7 @@ exports[`TableSectionHead renders 1`] = `
     >
       <tbody>
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow PicassoTableRow-bordered"
+          class="border-0 border-solid border-b border-gray PicassoTableSectionHead-sectionHeaderRow"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root"

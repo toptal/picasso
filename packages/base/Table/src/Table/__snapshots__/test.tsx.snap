@@ -9,10 +9,10 @@ exports[`Table renders 1`] = `
       class="MuiTable-root"
     >
       <thead
-        class="border-[0] border-solid border-b border-gray"
+        class="border-0 border-solid border-b border-gray"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+          class="border-0 border-solid border-b border-gray"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root"
@@ -27,7 +27,7 @@ exports[`Table renders 1`] = `
       </thead>
       <tbody>
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+          class="border-0 border-solid border-b border-gray"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root"
@@ -44,7 +44,7 @@ exports[`Table renders 1`] = `
         class="border-0 border-solid border-t border-gray"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
+          class="border-0 border-solid border-b border-gray"
         >
           <td
             class="MuiTableCell-root PicassoTableCell-root"
