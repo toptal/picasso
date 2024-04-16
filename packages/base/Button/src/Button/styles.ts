@@ -132,7 +132,7 @@ export const createVariantClassNames = (
       }
       break
     case 'secondary':
-      variantClassNames.push('border-solid')
+      variantClassNames.push('border border-solid')
 
       if (disabled) {
         variantClassNames.push('text-gray-500')
@@ -161,6 +161,7 @@ export const createVariantClassNames = (
 
       break
     case 'transparent':
+      variantClassNames.push('border border-solid')
       if (disabled) {
         variantClassNames.push('text-white/[0.32]')
         variantClassNames.push('border-white/[0.32]')
@@ -208,7 +209,7 @@ export const createCoreClassNames = ({
   hovered?: boolean
   active?: boolean
 }): string[] => {
-  const classNames = ['no-underline', 'rounded-sm', 'border', 'shadow-none']
+  const classNames = ['no-underline', 'rounded-sm', 'shadow-none']
 
   if (!disabled) {
     classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')

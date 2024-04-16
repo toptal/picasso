@@ -1,4 +1,4 @@
-export const createRootClassNames = ({
+export const createButtonGroupItemClassNames = ({
   disabled,
   focused,
   hovered,
@@ -9,9 +9,8 @@ export const createRootClassNames = ({
   hovered?: boolean
   active?: boolean
   loading?: boolean
-}): string[] => {
+}) => {
   const classNames = [
-    'visited:text-black',
     'border-solid',
     'transition-[color,background]',
     'active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1]',
@@ -20,6 +19,21 @@ export const createRootClassNames = ({
   if (active || hovered || focused || disabled) {
     classNames.push('z-[1]')
   }
+
+  return classNames
+}
+
+export const createGroupVariantClassNames = ({
+  disabled,
+  hovered,
+  active,
+}: {
+  disabled?: boolean
+  hovered?: boolean
+  active?: boolean
+  loading?: boolean
+}): string[] => {
+  const classNames = ['visited:text-black', 'border-solid']
 
   if (disabled) {
     classNames.push('cursor-not-allowed')

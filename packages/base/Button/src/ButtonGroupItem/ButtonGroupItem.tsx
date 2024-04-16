@@ -3,7 +3,10 @@ import { twMerge } from 'tailwind-merge'
 
 import type { ButtonProps } from '../Button'
 import { Button } from '../Button'
-import { createRootClassNames } from './styles'
+import {
+  createButtonGroupItemClassNames,
+  createGroupVariantClassNames,
+} from './styles'
 
 export interface Props extends ButtonProps {}
 
@@ -16,7 +19,8 @@ const ButtonGroupItem = ({
   ...rest
 }: Props) => {
   const finalClassName = twMerge(
-    createRootClassNames({ active, disabled, focused, hovered }),
+    createButtonGroupItemClassNames({ active, disabled, focused, hovered }),
+    createGroupVariantClassNames({ active, disabled, hovered }),
     className
   )
 
