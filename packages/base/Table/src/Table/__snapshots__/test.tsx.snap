@@ -41,7 +41,7 @@ exports[`Table renders 1`] = `
         </tr>
       </tbody>
       <tfoot
-        class="border-[0] border-solid border-t border-gray"
+        class="border-0 border-solid border-t border-gray"
       >
         <tr
           class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered"
