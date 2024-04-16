@@ -26,6 +26,7 @@ module.exports = {
     },
     borderWidth: {
       DEFAULT: '1px',
+      0: '0px',
     },
     fontFamily: {
       sans: ['proxima-nova', 'Arial', 'sans-serif'],
