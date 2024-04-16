@@ -2,7 +2,7 @@
 
 exports[`ButtonSplit closes menu on click to the item 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor24-root-206"
+  class="PicassoSvgArrowDownMinor24-root-172"
   style="min-width: 24px; min-height: 24px;"
   viewBox="0 0 24 24"
 >
@@ -18,34 +18,34 @@ exports[`ButtonSplit default render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoButtonGroup-root"
+      class="flex justify-start [&>[data-component-type="button"]:hover]:z [&>[data-component-type="button"]:first-child:not(:last-child)]:rounded-r [&>[data-component-type="button"]:first-child:not(:last-child)]:ml [&>[data-component-type="button"]:not(:first-child):not(:last-child)]:rounded [&>[data-component-type="button"]:not(:first-child):not(:last-child)]:ml-[ [&>[data-component-type="button"]:last-child:not(:first-child)]:rounded-l [&>[data-component-type="button"]:last-child:not(:first-child)]:ml-[ [&_:first-child:not(:last-child)_[data-component-type="button"]]:rounded-r [&_:first-child:not(:last-child)_[data-component-type="button"]]:ml [&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:rounded [&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:ml-[ [&_:last-child:not(:first-child)_[data-component-type="button"]]:rounded-l [&_:last-child:not(:first-child)_[data-component-type="button"]]:ml-["
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root PicassoButtonSplit-primaryVariant PicassoButtonSplit-actionButton"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4 active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] transition-[color,background] border-r border-l border-y border-solid border-blue"
         data-component-type="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           Action
         </span>
       </button>
       <div
-        class="PicassoDropdown-root PicassoButtonSplit-dropdown"
+        class="PicassoDropdown-root block cursor-pointer"
       >
         <div
           class="PicassoDropdown-anchor"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root PicassoButtonSplit-primaryVariant PicassoButtonSplit-menuButton PicassoButtonSplit-mediumSize"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue h-8 py-0 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] min-w px-[0.5em] border-l border-r border-y border-solid border-blue"
             data-component-type="button"
             tabindex="0"
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
                 class="PicassoSvgArrowDownMinor16-root"
@@ -67,7 +67,7 @@ exports[`ButtonSplit default render 1`] = `
 
 exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor16-root-206"
+  class="PicassoSvgArrowDownMinor16-root-172"
   style="min-width: 16px; min-height: 16px;"
   viewBox="0 0 16 16"
 >
@@ -79,7 +79,7 @@ exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
 
 exports[`ButtonSplit renders arrow up icon for an opened menu 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor16-root-206 PicassoButtonSplit-rotated-12"
+  class="PicassoSvgArrowDownMinor16-root-172 rotate-180"
   style="min-width: 16px; min-height: 16px;"
   viewBox="0 0 16 16"
 >
