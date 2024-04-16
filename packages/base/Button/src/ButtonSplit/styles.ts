@@ -1,59 +1,40 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import type { SizeType } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    actionButton: {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
-    menuButton: {
-      minWidth: '2em',
-      paddingLeft: '0.5em',
-      paddingRight: '0.5em',
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-      marginLeft: 0,
-    },
+export const createActionButtonClassNames = ({
+  variant,
+}: {
+  variant?: 'primary' | 'secondary'
+}) => {
+  return twMerge(
+    'transition-[color,background]',
+    variant === 'primary' &&
+      'border-r border-l-0 border-y-0 border-solid border-blue-700'
+  )
+}
 
-    primaryVariant: {
-      '&$actionButton': {
-        borderRight: `1px solid ${palette.blue.darker}`,
-      },
-      '&$menuButton': {
-        borderLeft: `1px solid ${palette.blue.darker}`,
+const menuButtonSizeClassNames: Record<
+  SizeType<'small' | 'medium' | 'large'>,
+  string
+> = {
+  small: 'min-w-[1.5em] px-[0.25em]',
+  medium: 'min-w-[2em] px-[0.5em]',
+  large: 'min-w-[3em] px-[0.75em]',
+}
 
-        '&$disabled': {
-          borderLeftColor: palette.grey.main,
-        },
-      },
-    },
-
-    smallSize: {
-      minWidth: '1.5em',
-      paddingLeft: '0.25em',
-      paddingRight: '0.25em',
-    },
-    mediumSize: {},
-    largeSize: {
-      minWidth: '3em',
-      paddingLeft: '0.75em',
-      paddingRight: '0.75em',
-    },
-
-    dropdown: {
-      display: 'block',
-      cursor: 'pointer',
-    },
-
-    disabled: {
-      // override dropdown anchor styles
-      '& > div': {
-        cursor: 'auto',
-      },
-    },
-
-    rotated: {
-      transform: 'rotate(180deg)',
-    },
-  })
+export const createMenuButtonClassNames = ({
+  variant,
+  size,
+  disabled,
+}: {
+  variant?: 'primary' | 'secondary'
+  size: SizeType<'small' | 'medium' | 'large'>
+  disabled?: boolean
+}) => {
+  return twMerge(
+    menuButtonSizeClassNames[size],
+    variant === 'primary' && 'border-l border-r-0 border-y-0 border-solid',
+    variant === 'primary' && disabled && 'border-gray-500',
+    variant === 'primary' && !disabled && 'border-blue-700'
+  )
+}

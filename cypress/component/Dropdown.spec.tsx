@@ -2,13 +2,13 @@ import React from 'react'
 import {
   Dropdown,
   Menu,
-  Button,
   Grid,
   Container,
   Typography,
   Form,
   Input,
 } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 const LongListExample = () => (

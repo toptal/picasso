@@ -41,14 +41,14 @@ exports[`Alert renders 1`] = `
             class="PicassoContainer-inline"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-6 py-0 px-3"
               data-component-type="button"
               data-testid="action-button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
               >
                 Primary
               </span>
@@ -58,14 +58,14 @@ exports[`Alert renders 1`] = `
             class="PicassoContainer-inline"
           >
             <button
-              class="MuiButtonBase-root PicassoButton-small PicassoButton-secondary PicassoButton-root"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3"
               data-component-type="button"
               data-testid="action-button"
               tabindex="0"
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
               >
                 Secondary
               </span>
