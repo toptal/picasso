@@ -15,8 +15,8 @@ import { makeStyles, ButtonBase } from '@material-ui/core'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
-// to resolve the issue with incorrect styles between Button and Link (that uses MUI Link -> Mui Typography),
 // we need to ensure the correct order of styles import
+// @TODO: to be removed when the component is migrated in FX-4614
 import '@toptal/picasso-link'
 
 import styles from './styles'
