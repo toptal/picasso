@@ -132,7 +132,7 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
 
     const dropdownClassName = twMerge(
       'block cursor-pointer',
-      disabled ? '[&>div]:cursor-auto' : ''
+      disabled && '[&>div]:cursor-auto'
     )
 
     return (
