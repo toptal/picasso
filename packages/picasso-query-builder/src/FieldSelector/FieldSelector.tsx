@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ComponentProps } from 'react'
-import { Tooltip, Typography } from '@toptal/picasso'
+import { Tooltip } from '@toptal/picasso-tooltip'
+import { Typography } from '@toptal/picasso-typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { SPACING_4 } from '@toptal/picasso-provider'
 

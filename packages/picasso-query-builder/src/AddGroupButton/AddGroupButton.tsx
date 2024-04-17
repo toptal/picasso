@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ActionWithRulesAndAddersProps } from 'react-querybuilder'
-import { Button } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 import type { MouseEvent } from 'react'
 
 export type Props = Omit<ActionWithRulesAndAddersProps, 'schema'>

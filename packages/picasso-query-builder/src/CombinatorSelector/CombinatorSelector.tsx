@@ -1,5 +1,7 @@
 import React from 'react'
-import { Container, Radio as PicassoRadio, Typography } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { Typography } from '@toptal/picasso-typography'
+import { RadioGroup as PicassoRadioGroup } from '@toptal/picasso-radio'
 import type { CombinatorSelectorProps } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -27,14 +29,14 @@ export const CombinatorSelector = ({
       className={cx(className, classes.root)}
     >
       {level === 0 && <Typography weight='semibold'>Query</Typography>}
-      <PicassoRadio.Group
+      <PicassoRadioGroup
         name='variableName'
         horizontal
         onChange={event => handleOnChange(event.target.value)}
         value={value}
       >
         {RadioOptions({ options, disabled })}
-      </PicassoRadio.Group>
+      </PicassoRadioGroup>
     </Container>
   )
 }

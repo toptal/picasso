@@ -1,5 +1,7 @@
 import React from 'react'
-import { Button, Container, Loader } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
+import { Container } from '@toptal/picasso-container'
+import { Loader } from '@toptal/picasso-loader'
 import { makeStyles } from '@material-ui/core/styles'
 
 import styles from './styles'
