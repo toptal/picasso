@@ -9,6 +9,7 @@
     { "path": "../Container" },
     { "path": "../Dropdown" },
     { "path": "../Icons" },
+    { "path": "../Link" },
     { "path": "../Loader" },
     { "path": "../Radio" },
     { "path": "../Utils" }
