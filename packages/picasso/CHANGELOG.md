@@ -1,5 +1,42 @@
 # Change Log
 
+## 44.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`d97ddf4`](https://github.com/toptal/picasso/commit/d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6)]:
+  - @toptal/picasso-button@1.0.9
+  - @toptal/picasso-accordion@1.0.9
+  - @toptal/picasso-alert@1.0.9
+  - @toptal/picasso-application-update-notification@1.0.9
+  - @toptal/picasso-calendar@1.0.9
+  - @toptal/picasso-carousel@1.0.10
+  - @toptal/picasso-drawer@2.0.1
+  - @toptal/picasso-file-input@1.0.10
+  - @toptal/picasso-helpbox@1.0.9
+  - @toptal/picasso-modal@1.0.9
+  - @toptal/picasso-notification@2.0.1
+  - @toptal/picasso-outlined-input@1.0.9
+  - @toptal/picasso-page@2.0.1
+  - @toptal/picasso-pagination@1.0.9
+  - @toptal/picasso-password-input@1.0.9
+  - @toptal/picasso-prompt-modal@1.0.9
+  - @toptal/picasso-section@2.0.1
+  - @toptal/picasso-show-more@1.0.9
+  - @toptal/picasso-skeleton-loader@1.0.9
+  - @toptal/picasso-table@1.1.6
+  - @toptal/picasso-tree-view@1.0.9
+  - @toptal/picasso-date-picker@1.0.9
+  - @toptal/picasso-dropzone@1.0.10
+  - @toptal/picasso-autocomplete@1.0.10
+  - @toptal/picasso-avatar-upload@1.0.9
+  - @toptal/picasso-input@1.0.9
+  - @toptal/picasso-number-input@1.0.9
+  - @toptal/picasso-select@1.0.10
+  - @toptal/picasso-tagselector@1.0.10
+  - @toptal/picasso-timepicker@1.0.9
+  - @toptal/picasso-date-select@1.0.10
+
 ## 44.0.12
 
 ### Patch Changes

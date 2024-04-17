@@ -1,5 +1,12 @@
 # @toptal/picasso-button
 
+## 1.0.9
+
+### Patch Changes
+
+- [#4248](https://github.com/toptal/picasso/pull/4248) [`d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6`](https://github.com/toptal/picasso/commit/d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- fix style resolution in Button component
+
 ## 1.0.8
 
 ### Patch Changes
