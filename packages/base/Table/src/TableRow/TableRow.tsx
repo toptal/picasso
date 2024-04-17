@@ -39,12 +39,10 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
         {...rest}
         ref={ref}
         className={twMerge(
-          `${
-            isBordered ? 'border-0 border-solid border-b border-gray-200' : ''
-          }`,
-          `${stripeEven ? 'bg-gray-100' : ''}`,
-          `${hover ? 'hover:bg-blue-100' : ''}`,
-          `${selected ? 'bg-blue-100' : ''}`,
+          isBordered && 'border-0 border-solid border-b border-gray-200',
+          stripeEven && 'bg-gray-100',
+          hover && 'hover:bg-blue-100',
+          selected && 'bg-blue-100',
           className
         )}
         style={style}
