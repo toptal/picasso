@@ -1,6 +1,6 @@
 import React from 'react'
-import type { NumberInputProps } from '@toptal/picasso'
-import { NumberInput as PicassoNumberInput } from '@toptal/picasso'
+import type { NumberInputProps } from '@toptal/picasso-number-input'
+import { NumberInput as PicassoNumberInput } from '@toptal/picasso-number-input'
 import type { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'

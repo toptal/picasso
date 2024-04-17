@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React, { useEffect, useState, useCallback } from 'react'
-import type { PasswordInputProps } from '@toptal/picasso'
-import { FieldRequirements } from '@toptal/picasso'
+import type { PasswordInputProps } from '@toptal/picasso-password-input'
+import { FieldRequirements } from '@toptal/picasso-form'
 import type { FieldValidator } from 'final-form'
 
 import { validators } from '../utils'

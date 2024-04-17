@@ -1,7 +1,7 @@
 import React from 'react'
 import { fireEvent, render, waitFor, act } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
-import { Button } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 
 import type { Props } from './Form'
 import { FormCompound as Form } from '../FormCompound'
