@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-input",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Toptal UI components library - Input",
   "publishConfig": {
     "access": "public"
@@ -26,7 +26,7 @@
     "@toptal/picasso-form": "2.0.0",
     "@toptal/picasso-icons": "1.0.2",
     "@toptal/picasso-input-adornment": "1.0.2",
-    "@toptal/picasso-outlined-input": "1.0.8",
+    "@toptal/picasso-outlined-input": "1.0.9",
     "@toptal/picasso-shared": "14.0.1",
     "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1"
