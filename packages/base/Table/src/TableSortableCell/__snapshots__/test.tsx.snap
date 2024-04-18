@@ -9,7 +9,7 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
       <tbody>
         <tr>
           <td
-            class="text-xxs py-2 border-none px-4 last:pr-6 group hover:bg-gray"
+            class="text-xxs/[2.5rem] py-2 border-none px-4 last:pr-6 group hover:bg-gray"
           >
             <div
               class="flex items-center"
@@ -57,7 +57,7 @@ exports[`TableCell sort direction is desc renders with a sort button in the righ
       <tbody>
         <tr>
           <td
-            class="text-xxs py-2 border-none px-4 last:pr-6 group hover:bg-gray"
+            class="text-xxs/[2.5rem] py-2 border-none px-4 last:pr-6 group hover:bg-gray"
           >
             <div
               class="flex items-center"

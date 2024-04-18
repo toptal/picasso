@@ -97,7 +97,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         {...rest}
         ref={ref}
         className={twMerge(
-          'text-xxs px-2 py-2 border-none',
+          'text-xxs/[2.5rem] px-2 py-2 border-none',
           spacing === 'compact' && 'leading-6 py-[1px] last:pr-3',
           spacing === 'regular' && 'px-4 last:pr-6',
           isHead && 'text-left',
