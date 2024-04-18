@@ -13,7 +13,7 @@ exports[`TableSectionHead renders 1`] = `
           class="border-0 border-solid border-b border-gray PicassoTableSectionHead-sectionHeaderRow"
         >
           <th
-            class="text-[0.75rem]/[2.5rem] py-2 border-none px-4 last:pr-6 text-left"
+            class="text-xxs py-2 border-none px-4 last:pr-6 text-left"
             colspan="100"
           >
             <div
