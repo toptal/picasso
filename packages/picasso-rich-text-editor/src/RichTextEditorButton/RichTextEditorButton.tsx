@@ -4,7 +4,7 @@ import cx from 'classnames'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { Button } from '@toptal/picasso'
+import { ButtonCircular } from '@toptal/picasso-button'
 
 import styles from './styles'
 
@@ -29,7 +29,7 @@ const RichTextEditorButton = (props: Props) => {
   const classes = useStyles(props)
 
   return (
-    <Button.Circular
+    <ButtonCircular
       variant='flat'
       onClick={onClick}
       icon={icon}

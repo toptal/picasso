@@ -2,12 +2,12 @@ import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import {
   Bold16,
-  Container,
   Italic16,
   ListOrdered16,
   ListUnordered16,
-  Select,
-} from '@toptal/picasso'
+} from '@toptal/picasso-icons'
+import { Container } from '@toptal/picasso-container'
+import { Select } from '@toptal/picasso-select'
 import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import React, { forwardRef } from 'react'

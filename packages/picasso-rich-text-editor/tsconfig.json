@@ -3,8 +3,21 @@
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
   "references": [
+    { "path": "../base/Button" },
+    { "path": "../base/Container" },
+    { "path": "../base/FileInput" },
+    { "path": "../base/Form" },
+    { "path": "../base/Icons" },
+    { "path": "../base/Image" },
+    { "path": "../base/Input" },
+    { "path": "../base/InputAdornment" },
+    { "path": "../base/Link" },
+    { "path": "../base/List" },
+    { "path": "../base/Modal" },
+    { "path": "../base/OutlinedInput" },
+    { "path": "../base/Select" },
+    { "path": "../base/Typography" },
     { "path": "../base/Utils" },
-    { "path": "../picasso" },
     { "path": "../shared" }
   ]
 }
