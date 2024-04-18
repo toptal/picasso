@@ -1,8 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef, useContext } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { TableCell as MUITableCell } from '@material-ui/core'
 import type {
   BaseProps,
   ColorType,
@@ -10,11 +7,10 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { toTitleCase } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso-typography'
+import { twMerge } from 'tailwind-merge'
 
-import styles from './styles'
 import { TableContext, TableSectionContext, TableSection } from '../Table'
 
 type AlignType = 'inherit' | 'left' | 'center' | 'right' | 'justify'
@@ -31,8 +27,6 @@ export interface Props
   rowSpan?: number
   adornment?: ReactNode
 }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableCell' })
 
 type TypographySettings = {
   color: ColorType
@@ -78,11 +72,6 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       ...rest
     } = props
 
-    const {
-      compact: compactClass,
-      narrow: narrowClass,
-      ...muiClasses
-    } = useStyles()
     const { spacing } = useContext(TableContext)
     const tableSection = useContext(TableSectionContext)
     const isHead = tableSection === TableSection.HEAD
@@ -92,21 +81,28 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
       isHead && titleCase ? toTitleCase(children) : children
 
     const tooltipWithChildren = (
-      <Typography as='div' {...getTypographySettings(tableSection)}>
+      <Typography
+        align={align}
+        as='div'
+        {...getTypographySettings(tableSection)}
+      >
         {renderChildren()}
       </Typography>
     )
 
+    const Component = isHead ? 'th' : 'td'
+
     return (
-      <MUITableCell
+      <Component
         {...rest}
         ref={ref}
-        align={align}
-        classes={muiClasses}
-        className={cx(className, {
-          [compactClass]: spacing === 'compact',
-          [narrowClass]: spacing === 'narrow',
-        })}
+        className={twMerge(
+          `text-[0.75rem]/[2.5rem] px-2 py-2 border-none`,
+          spacing === 'compact' && 'leading-6 py-[0.0625rem] last:pr-3',
+          spacing === 'regular' && 'px-4 last:pr-6',
+          isHead && 'text-left',
+          className
+        )}
         style={style}
         colSpan={colSpan}
         rowSpan={rowSpan}
@@ -119,7 +115,7 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         ) : (
           tooltipWithChildren
         )}
-      </MUITableCell>
+      </Component>
     )
   }
 )
