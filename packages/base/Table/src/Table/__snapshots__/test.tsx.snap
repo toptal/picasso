@@ -14,15 +14,15 @@ exports[`Table renders 1`] = `
         <tr
           class="border-0 border-solid border-b border-gray"
         >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root"
+          <th
+            class="text-[0.75rem]/[2.5rem] py-2 border-none px-4 last:pr-6 text-left"
           >
             <div
               class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
             >
               Table test
             </div>
-          </td>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@ exports[`Table renders 1`] = `
           class="border-0 border-solid border-b border-gray"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root"
+            class="text-[0.75rem]/[2.5rem] py-2 border-none px-4 last:pr-6"
           >
             <div
               class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
@@ -47,7 +47,7 @@ exports[`Table renders 1`] = `
           class="border-0 border-solid border-b border-gray"
         >
           <td
-            class="MuiTableCell-root PicassoTableCell-root"
+            class="text-[0.75rem]/[2.5rem] py-2 border-none px-4 last:pr-6"
           >
             <div
               class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
