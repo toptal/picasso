@@ -1,6 +1,6 @@
 {
   "name": "@topkit/analytics-charts",
-  "version": "55.0.1",
+  "version": "55.0.2",
   "description": "Charts utilities",
   "author": "Toptal",
   "license": "MIT",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@toptal/picasso-utils": "1.0.2",
-    "@toptal/picasso-charts": "58.0.1",
+    "@toptal/picasso-charts": "58.0.2",
     "@toptal/picasso-container": "1.0.2",
     "@toptal/picasso-typography": "2.0.0",
     "@toptal/picasso-paper": "2.0.1",

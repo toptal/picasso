@@ -1,5 +1,15 @@
 # Change Log
 
+## 68.0.8
+
+### Patch Changes
+
+- [#4250](https://github.com/toptal/picasso/pull/4250) [`47fd7b59374386a09f853c5c45750948a00e525d`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate packages to use Picasso By Parts
+
+- Updated dependencies [[`47fd7b5`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d)]:
+  - @toptal/picasso-rich-text-editor@12.0.2
+
 ## 68.0.7
 
 ### Patch Changes
