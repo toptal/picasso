@@ -18,7 +18,6 @@
     { "path": "../base/Tooltip" },
     { "path": "../base/Typography" },
     { "path": "../base/Utils" },
-    { "path": "../picasso" },
     { "path": "../picasso-provider" }
   ]
 }
