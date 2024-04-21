@@ -1,5 +1,12 @@
 # Change Log
 
+## 58.0.2
+
+### Patch Changes
+
+- [#4250](https://github.com/toptal/picasso/pull/4250) [`47fd7b59374386a09f853c5c45750948a00e525d`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate packages to use Picasso By Parts
+
 ## 58.0.1
 
 ### Patch Changes
