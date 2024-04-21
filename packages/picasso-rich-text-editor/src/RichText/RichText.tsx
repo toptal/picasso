@@ -1,6 +1,6 @@
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
 
 import type { ASTType } from './types'
 import useRichText from './hooks/useRichText'

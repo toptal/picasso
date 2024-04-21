@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
-import type { CheckboxProps } from '@toptal/picasso'
-import {
-  useFieldsLayoutContext,
-  Checkbox as PicassoCheckbox,
-} from '@toptal/picasso'
+import type { CheckboxProps } from '@toptal/picasso-checkbox'
+import { Checkbox as PicassoCheckbox } from '@toptal/picasso-checkbox'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 import type { FieldRenderProps as FinalFormFieldProps } from 'react-final-form'
 import { Field } from 'react-final-form'
 

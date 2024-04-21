@@ -3,8 +3,10 @@
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
   "references": [
+    { "path": "../base/Container" },
+    { "path": "../base/Paper" },
+    { "path": "../base/Typography" },
     { "path": "../base/Utils" },
-    { "path": "../picasso" },
     { "path": "../picasso-charts" }
   ]
 }

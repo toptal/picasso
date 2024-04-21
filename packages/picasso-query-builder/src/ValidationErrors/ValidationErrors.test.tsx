@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import type { ComponentProps } from 'react'
-import { Container, List } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { List } from '@toptal/picasso-list'
 import { render } from '@toptal/picasso-test-utils'
 
 import { ValidationErrors } from './'
@@ -10,8 +11,10 @@ jest.mock('react', () => ({
   Fragment: jest.fn(),
 }))
 
-jest.mock('@toptal/picasso', () => ({
+jest.mock('@toptal/picasso-container', () => ({
   Container: jest.fn(),
+}))
+jest.mock('@toptal/picasso-list', () => ({
   List: (() => {
     const mock: jest.Mock & {
       Item?: jest.Mock
@@ -21,6 +24,8 @@ jest.mock('@toptal/picasso', () => ({
 
     return mock
   })(),
+}))
+jest.mock('@toptal/picasso-typography', () => ({
   Typography: jest.fn(),
 }))
 

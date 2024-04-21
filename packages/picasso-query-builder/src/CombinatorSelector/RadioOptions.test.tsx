@@ -1,12 +1,12 @@
 import React from 'react'
-import { Radio } from '@toptal/picasso'
+import { Radio } from '@toptal/picasso-radio'
 import { render } from '@toptal/picasso-test-utils'
 import type { OptionGroup, Option } from 'react-querybuilder'
 
 import { RadioOptions } from './RadioOptions'
 
-jest.mock('@toptal/picasso', () => ({
-  ...jest.requireActual('@toptal/picasso'),
+jest.mock('@toptal/picasso-radio', () => ({
+  ...jest.requireActual('@toptal/picasso-radio'),
   Radio: Object.assign(jest.fn(), {
     Group: jest.fn(),
   }),

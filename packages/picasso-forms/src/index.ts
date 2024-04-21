@@ -38,7 +38,7 @@ export {
   ExternallyChanged,
   OnBlur,
 } from 'react-final-form-listeners'
-export { FieldRequirements } from '@toptal/picasso'
+export { FieldRequirements } from '@toptal/picasso-form'
 
 // Picasso Forms exports
 /** @deprecated [FX-4712] Use FormNonCompound instead for better tree-shaking */

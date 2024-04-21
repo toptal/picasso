@@ -5,7 +5,7 @@ import Picker from '@emoji-mart/react'
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
-import { Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
 
 import TextEditorButton from '../RichTextEditorButton'
 import type { CustomEmojiGroup, Emoji } from '../plugins/EmojiPlugin'

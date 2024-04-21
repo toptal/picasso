@@ -1,12 +1,12 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
 import type { ComponentProps } from 'react'
-import { Typography } from '@toptal/picasso'
+import { Typography } from '@toptal/picasso-typography'
 
 import { CombinatorSelector } from './CombinatorSelector'
 
-jest.mock('@toptal/picasso', () => ({
-  ...jest.requireActual('@toptal/picasso'),
+jest.mock('@toptal/picasso-typography', () => ({
+  ...jest.requireActual('@toptal/picasso-typography'),
   Typography: jest.fn(),
 }))
 

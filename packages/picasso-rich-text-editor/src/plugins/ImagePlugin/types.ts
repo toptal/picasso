@@ -1,4 +1,4 @@
-import type { FileUpload } from '@toptal/picasso'
+import type { FileUpload } from '@toptal/picasso-file-input'
 
 export type UploadedImage = FileUpload & {
   url?: string

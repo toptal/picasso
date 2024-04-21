@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react'
 import React, { useMemo } from 'react'
-import { Container, Select as PicassoSelect } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { Select as PicassoSelect } from '@toptal/picasso-select'
 import type { VersatileSelectorProps } from 'react-querybuilder'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'

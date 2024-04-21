@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ActionWithRulesProps } from 'react-querybuilder'
-import { Button } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 
 export const CloneGroupButton = ({
   handleOnClick,

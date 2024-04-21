@@ -1,7 +1,7 @@
 import React from 'react'
 import type { OptionList } from 'react-querybuilder'
 import { isOptionGroupArray } from 'react-querybuilder'
-import { Radio } from '@toptal/picasso'
+import { Radio } from '@toptal/picasso-radio'
 
 type Props = {
   options: OptionList

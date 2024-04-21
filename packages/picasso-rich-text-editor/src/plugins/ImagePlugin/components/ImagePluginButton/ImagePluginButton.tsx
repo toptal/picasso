@@ -1,4 +1,4 @@
-import { Image16 } from '@toptal/picasso'
+import { Image16 } from '@toptal/picasso-icons'
 import React from 'react'
 
 import { useRTEPluginContext } from '../../../api'

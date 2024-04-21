@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import type { FileInputProps } from '@toptal/picasso'
-import { Button, Modal, Form, Input, FileInput } from '@toptal/picasso'
+import type { FileInputProps } from '@toptal/picasso-file-input'
+import { Button } from '@toptal/picasso-button'
+import { ModalCompound as Modal } from '@toptal/picasso-modal'
+import { FormCompound as Form } from '@toptal/picasso-form'
+import { Input } from '@toptal/picasso-input'
+import { FileInput } from '@toptal/picasso-file-input'
 
 import type { OnUploadCallback, UploadedImage } from '../../types'
 import { useImageUploader } from '../../hooks'

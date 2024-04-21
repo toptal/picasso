@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@toptal/picasso-test-utils'
-import { Button } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 
 import type { Props as FormProps } from '../Form'
 import { FormCompound as Form } from '../FormCompound'

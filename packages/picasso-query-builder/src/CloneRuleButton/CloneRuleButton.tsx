@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ActionWithRulesProps } from 'react-querybuilder'
-import { Button, Copy16 } from '@toptal/picasso'
+import { ButtonCircular } from '@toptal/picasso-button'
+import { Copy16 } from '@toptal/picasso-icons'
 
 export const CloneRuleButton = ({
   handleOnClick,
@@ -8,7 +9,7 @@ export const CloneRuleButton = ({
   disabled,
 }: ActionWithRulesProps) => {
   return (
-    <Button.Circular
+    <ButtonCircular
       variant='flat'
       icon={<Copy16 />}
       onClick={handleOnClick}

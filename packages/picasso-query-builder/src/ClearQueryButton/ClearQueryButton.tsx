@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 
 type Props = {
   onClick: () => void
