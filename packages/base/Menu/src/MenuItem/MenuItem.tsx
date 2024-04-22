@@ -6,10 +6,7 @@ import type {
   ReactElement,
 } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { MenuItem as MUIMenuItem } from '@material-ui/core'
+import { twJoin, twMerge } from 'tailwind-merge'
 import type {
   BaseProps,
   ButtonOrAnchorProps,
@@ -17,7 +14,6 @@ import type {
   OverridableComponent,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import { Container } from '@toptal/picasso-container'
 import { ChevronMinor16, CheckMinor16 } from '@toptal/picasso-icons'
 import { Paper } from '@toptal/picasso-paper'
 import { Popper } from '@toptal/picasso-popper'
@@ -26,7 +22,6 @@ import { ClickAwayListener, toTitleCase } from '@toptal/picasso-utils'
 import type { AvatarProps, Avatar } from '@toptal/picasso-avatar'
 
 import { useMenuItem } from './hooks'
-import styles from './styles'
 
 export type VariantType = 'light' | 'dark'
 
@@ -67,10 +62,6 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoMenuItem',
-})
-
 export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
@@ -98,7 +89,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
 
-  const classes = useStyles()
   const anchorRef = useRef<HTMLDivElement>(null)
   const titleCase = useTitleCase(propTitleCase)
   const { isOpened, onItemClick, onItemMouseEnter, onAwayClick } = useMenuItem({
@@ -107,57 +97,65 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     onMouseEnter,
   })
   const isLink = as === Link && rest.href
+  const Component: React.ElementType = isLink ? 'a' : as || 'li'
+
   const isIconWrapperVisible = checkmarked !== undefined || icon
+
+  const variantStyles = {
+    light: twJoin(
+      'text-black hover:bg-blue-100 focus:bg-blue-100',
+      (selected || isOpened) && 'bg-blue-100'
+    ),
+    dark: twJoin(
+      'text-gray-500 hover:bg-graphite-700 focus:bg-graphite-700 focus:text-white',
+      (selected || isOpened) && 'text-white bg-graphite-700'
+    ),
+  }
+
+  // TODO aria
 
   return (
     <>
-      <MUIMenuItem
+      <Component
         {...rest}
         ref={ref}
         // replace Picasso Link with Anchor to not applying Picasso
         // Link component styles, this is the only difference between them now
         component={isLink ? 'a' : as}
-        classes={{
-          gutters: classes.gutters,
-          selected: classes.selected,
-        }}
-        className={cx(classes.root, classes[variant], className, {
-          [classes.nonSelectable]: nonSelectable,
-          [classes.disabled]: disabled,
-        })}
+        className={twMerge(
+          variantStyles[variant],
+          disableGutters ? 'p-0' : 'px-4 py-[0.375rem]',
+          nonSelectable && 'hover:bg-[unset] focus:bg-[unset]',
+          disabled && 'opacity-100 pointer-events-none text-gray-600',
+          'min-w-[9rem] w-auto min-h-[unset] md:min-h-0 relative cursor-pointer',
+          'transition-colors duration-150 ease-in-out',
+          'overflow-hidden whitespace-normal text-left no-underline',
+          'flex items-center justify-start',
+          'outline-none bg-[transparent] appearance-none',
+          className
+        )}
         disabled={disabled}
-        disableGutters={disableGutters}
         onClick={onItemClick}
         onMouseEnter={onItemMouseEnter}
         style={style}
         value={value}
-        selected={selected || isOpened}
       >
-        <Container
-          ref={anchorRef}
-          className={classes.itemWrapper}
-          flex
-          direction='row'
-        >
-          {avatar && <Container right='xsmall'>{avatar}</Container>}
+        <div ref={anchorRef} className='flex flex-1 max-w-full'>
+          {avatar && <div className='mr-2'>{avatar}</div>}
 
-          <Container flex direction='column' className={classes.content}>
-            <Container flex alignItems='center'>
+          <div className='flex flex-col flex-1 min-w-0'>
+            <div className='flex items-center'>
               {isIconWrapperVisible && (
-                <Container
-                  className={classes.iconContainer}
-                  flex
-                  inline
-                  right='xsmall'
-                >
+                <div className='w-4 inline-flex mr-2'>
                   {checkmarked ? <CheckMinor16 /> : icon}
-                </Container>
+                </div>
               )}
               {typeof children === 'string' ? (
                 <span
-                  className={cx(classes.stringContent, {
-                    [classes.stringContentSemibold]: checkmarked,
-                  })}
+                  className={twJoin(
+                    'flex-1 text-md leading-5',
+                    checkmarked && 'text-semibold'
+                  )}
                   style={style}
                 >
                   {titleCase ? toTitleCase(children) : children}
@@ -166,25 +164,25 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
                 children
               )}
               {menu && (
-                <Container flex inline left='xsmall'>
+                <div className='inline-flex ml-2'>
                   <ChevronMinor16 color='' />
-                </Container>
+                </div>
               )}
-            </Container>
+            </div>
             {description && (
-              <Container
-                className={cx(classes.description, {
-                  [classes.descriptionDisabled]: disabled,
-                })}
-                left={isIconWrapperVisible ? 'medium' : undefined}
-                top={0.25}
+              <div
+                className={twJoin(
+                  'text-2xs mt-1',
+                  !disabled && 'text-graphite-700',
+                  isIconWrapperVisible && 'ml-6'
+                )}
               >
                 {description}
-              </Container>
+              </div>
             )}
-          </Container>
-        </Container>
-      </MUIMenuItem>
+          </div>
+        </div>
+      </Component>
       {menu && isOpened && (
         <Popper
           anchorEl={anchorRef.current}
@@ -201,7 +199,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           }}
         >
           <ClickAwayListener onClickAway={onAwayClick}>
-            <Paper className={classes.paper}>{menu}</Paper>
+            <Paper className='max-h-[14.75rem] overflow-y-auto'>{menu}</Paper>
           </ClickAwayListener>
         </Popper>
       )}

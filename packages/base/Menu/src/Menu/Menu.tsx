@@ -1,9 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import { MenuList as MUIMenuList } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twMerge } from 'tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
@@ -11,7 +8,6 @@ import { Typography } from '@toptal/picasso-typography'
 import { MenuItem } from '../MenuItem'
 import { useMenu } from './hooks'
 import MenuContext from './MenuContext'
-import styles from './styles'
 import type { MenuVariant } from './types'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
@@ -23,10 +19,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
     menuItem?: string
   }
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoMenu',
-})
 
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
   props,
@@ -41,17 +33,22 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     testIds,
     ...rest
   } = props
-  const classes = useStyles()
   const { context, innerMenu, hasBackButton } = useMenu({ variant })
   const { onBackClick, onMenuMouseLeave } = context
 
   return (
     <MenuContext.Provider value={context}>
       {innerMenu ?? (
-        <MUIMenuList
+        <ul
           {...rest}
           ref={ref}
-          className={cx(classes.root, className)}
+          className={twMerge(
+            'relative list-none',
+            'outline-none shadow-2',
+            'py-2 px-0 m-0',
+            'rounded-sm',
+            className
+          )}
           style={style}
           onMouseLeave={onMenuMouseLeave}
         >
@@ -62,13 +59,13 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
               onClick={onBackClick}
             >
               <Typography size='xsmall' color='dark-grey' variant='body'>
-                <BackMinor16 className={classes.backButtonIcon} />
+                <BackMinor16 className='mt-[-1px] mr-1 ml-[-5px] align-middle' />
                 Back
               </Typography>
             </MenuItem>
           )}
           {children}
-        </MUIMenuList>
+        </ul>
       )}
     </MenuContext.Provider>
   )
