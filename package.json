@@ -63,6 +63,9 @@
     "{**/*.{js,jsx,ts,tsx},.changeset/*.md}": [
       "davinci-syntax lint code",
       "prettier --write"
+    ],
+    "**/package.json": [
+      "yarn refresh:tsconfig-references --addToGit"
     ]
   },
   "nyc": {
@@ -103,7 +106,7 @@
   "devDependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^6.0.0",
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.22.5",
@@ -140,7 +143,7 @@
     "cross-env": "^7.0.3",
     "cypress": "^13.6.0",
     "cypress-plugin-tab": "^1.0.5",
-    "cypress-real-events": "^1.11.0",
+    "cypress-real-events": "^1.12.0",
     "date-fns": "^2.30.0",
     "debounce": "^1.2.1",
     "ejs": "^3.1.8",

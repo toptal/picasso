@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-breadcrumbs",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Toptal UI components library - Breadcrumbs",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-icons": "1.0.2",
     "@toptal/picasso-shared": "14.0.1",
-    "@toptal/picasso-typography": "1.0.2",
+    "@toptal/picasso-typography": "2.0.0",
     "@toptal/picasso-utils": "1.0.2",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
@@ -42,7 +42,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.1.0",
+    "@toptal/picasso-provider": "4.2.0",
     "@toptal/picasso-test-utils": "1.1.0"
   },
   "files": [

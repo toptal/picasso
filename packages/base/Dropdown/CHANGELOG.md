@@ -1,5 +1,12 @@
 # @toptal/picasso-dropdown
 
+## 2.0.0
+
+### Major Changes
+
+- [#4229](https://github.com/toptal/picasso/pull/4229) [`b779ddce4a67593bab27e8d09c2c930708cfb2ec`](https://github.com/toptal/picasso/commit/b779ddce4a67593bab27e8d09c2c930708cfb2ec) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- delete unused Popover
+
 ## 1.0.3
 
 ### Patch Changes

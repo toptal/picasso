@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import type { ButtonCheckboxProps } from '@toptal/picasso'
-import { Button } from '@toptal/picasso'
+import type { ButtonCheckboxProps } from '@toptal/picasso-button'
+import { ButtonCheckbox as PicassoButtonCheckbox } from '@toptal/picasso-button'
 import type { FieldRenderProps as FinalFormFieldProps } from 'react-final-form'
 import { Field } from 'react-final-form'
 
@@ -32,7 +32,7 @@ const ButtonCheckbox = ({ name, value, required, ...restProps }: Props) => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           input: { value: inputValue, type, ...restInput },
         }: FinalFormFieldProps<CheckboxValue>) => {
-          return <Button.Checkbox {...restProps} {...restInput} />
+          return <PicassoButtonCheckbox {...restProps} {...restInput} />
         }}
       </Field>
     )
@@ -52,7 +52,7 @@ const ButtonCheckbox = ({ name, value, required, ...restProps }: Props) => {
         highlight,
         ...input
       }: ButtonCheckboxProps & { highlight?: 'autofill' }) => (
-        <Button.Checkbox {...input} />
+        <PicassoButtonCheckbox {...input} />
       )}
     </PicassoField>
   )

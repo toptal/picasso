@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType } from 'react'
-import { Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
 import { useNotifications } from '@toptal/picasso-notification'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
@@ -18,6 +18,8 @@ import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import type { SpacingType } from '@toptal/picasso-provider'
+import { SPACING_6 } from '@toptal/picasso-provider'
 
 import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
@@ -55,10 +57,17 @@ type Props = {
   customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
-  /** Defines the possibility to display, or not, any of the controls. For example "Add rule" or "Add group" control. */
+  /** Defines padded layout. */
+  padded?: SpacingType
+  /**
+   * @deprecated [CPT-2188] Controls will be defined at the consumer level
+   * Defines the possibility to display, or not, any of the controls. For example "Clear query" or "Run query" control.
+   */
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
+  /** Adds a customized footer at the bottom of the query builder. */
+  footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
@@ -84,10 +93,12 @@ const QueryBuilder = ({
   loading = false,
   onSubmit,
   customValueEditor = ValueEditor,
+  footer,
   hideControls,
   header,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
+  padded = SPACING_6,
   totalCount,
   totalCountLoading,
   onQueryReset,
@@ -187,7 +198,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls ? undefined : 'medium'}
+        padded={padded}
         direction='column'
         gap='small'
       >
@@ -237,6 +248,9 @@ const QueryBuilder = ({
               runQueryTestId={testIds?.runQueryButton}
             />
           </Container>
+        )}
+        {footer && (
+          <Container data-testid={testIds?.footer}>{footer}</Container>
         )}
       </Container>
     </ControlElementsContext>

@@ -1,6 +1,6 @@
 import type { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import { Container } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
 import type { ReactNode } from 'react'
 import React, { createContext, useContext, useState } from 'react'
 import { createPortal } from 'react-dom'

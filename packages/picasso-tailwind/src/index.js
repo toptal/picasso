@@ -1,5 +1,15 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  plugins: [
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.font-inherit-weight': { 'font-weight': 'inherit' },
+        '.font-inherit-size': { 'font-size': '1em' },
+      })
+    }),
+  ],
   theme: {
     screens: {
       xs: '0px',
@@ -41,13 +51,14 @@ module.exports = {
       ],
     },
     fontWeight: {
+      inherit: 'inherit',
       thin: '100',
       light: '300',
       regular: '400',
       semibold: '600',
     },
     fontSize: {
-      '2xs': ['0.75rem', { lineHeight: '1.125rem' }],
+      '2xs': ['0.688rem', { lineHeight: '1rem' }],
       xxs: ['0.75rem', { lineHeight: '1.125rem' }],
       sm: ['0.8125rem', { lineHeight: '1.25rem' }],
       md: ['0.875rem', { lineHeight: '1.375rem' }],

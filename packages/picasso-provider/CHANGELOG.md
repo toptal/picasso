@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.2.0
+
+### Minor Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate Typography to TailwindCSS
+  - style overrides for Typography have been moved to picasso-provider
+  - added utility classes `font-inherit-weight` and `font-inherit-size` to Picasso Tailwind config
+
 ## 4.1.0
 
 ### Minor Changes

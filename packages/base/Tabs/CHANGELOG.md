@@ -1,5 +1,46 @@
 # @toptal/picasso-tabs
 
+## 2.0.0
+
+### Major Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- added a `tailwindcss` dependency (tailwindcss is now required to make this package work)
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee), [`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-typography-overflow@2.0.0
+  - @toptal/picasso-user-badge@2.0.0
+
+## 1.0.5
+
+### Patch Changes
+
+- [#4224](https://github.com/toptal/picasso/pull/4224) [`c05387de5636ed094365d1eff67b955d84b81c61`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert types for compound components
+
+- Updated dependencies []:
+  - @toptal/picasso-user-badge@1.0.4
+
+## 1.0.4
+
+### Patch Changes
+
+- [#4216](https://github.com/toptal/picasso/pull/4216) [`3512588b06c3660471a68500275321c640278cf0`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update types for the compound component
+
+- Updated dependencies []:
+  - @toptal/picasso-user-badge@1.0.3
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-typography-overflow@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes

@@ -86,12 +86,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     userTitle = renderTitle ? (
       renderTitle(title, invert)
     ) : (
-      <Typography
-        inline
-        invert={invert}
-        className={classes.title}
-        size='medium'
-      >
+      <Typography inline invert={invert} className='!ml-[7px]' size='medium'>
         {title}
       </Typography>
     )

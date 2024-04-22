@@ -1,5 +1,7 @@
 import React from 'react'
-import { Paper, Container, Typography } from '@toptal/picasso'
+import { Paper } from '@toptal/picasso-paper'
+import { Container } from '@toptal/picasso-container'
+import { Typography } from '@toptal/picasso-typography'
 
 import type { DataItem, TooltipMap } from '../CategoriesChart/types'
 import { getDisplayTexts } from './utils'

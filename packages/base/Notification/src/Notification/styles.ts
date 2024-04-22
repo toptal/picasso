@@ -69,17 +69,6 @@ export default ({
       },
     },
 
-    // Content
-    content: {
-      color: common.black,
-      overflowWrap: 'break-word',
-      minWidth: 0,
-      marginTop: '1px',
-    },
-    contentYellow: {
-      marginTop: 0,
-    },
-
     // Content Icon
     iconWrapper: {
       flexBasis: '1.5em',

@@ -1,5 +1,79 @@
 # @toptal/picasso-query-builder
 
+## 5.0.2
+
+### Patch Changes
+
+- [#4250](https://github.com/toptal/picasso/pull/4250) [`47fd7b59374386a09f853c5c45750948a00e525d`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate packages to use Picasso By Parts
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-notification@2.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- [#4236](https://github.com/toptal/picasso/pull/4236) [`d7d581bc608ed11b3b98a0ae9209d883ba29e5de`](https://github.com/toptal/picasso/commit/d7d581bc608ed11b3b98a0ae9209d883ba29e5de) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- remove padding dependency on `hideControls` property
+  Padding on the Query Builder was tied to the `hideControls` property,
+  we changed it in such a way that now you can set the desired padding size.
+  By default, the padding will be SPACING_6.
+  In those places where there should be no padding on Query Builder we should provide padded property set to SPACING_0.
+  - add `padded` property to define padded layout
+  - mark `hideControls` property as deprecated
+
+## 4.0.0
+
+### Major Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- added a `tailwindcss` dependency (tailwindcss is now required to make this package work)
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-notification@2.0.0
+
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-notification@1.0.7
+
+## 3.2.0
+
+### Minor Changes
+
+- [#4227](https://github.com/toptal/picasso/pull/4227) [`02080a822f02e896372011a23ebe89b655481fc2`](https://github.com/toptal/picasso/commit/02080a822f02e896372011a23ebe89b655481fc2) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- add property to set the Query builder's footer
+
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`c05387d`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61)]:
+  - @toptal/picasso-notification@1.0.6
+
+## 3.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`3512588`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0)]:
+  - @toptal/picasso-notification@1.0.5
+
+## 3.1.0
+
+### Minor Changes
+
+- [#4208](https://github.com/toptal/picasso/pull/4208) [`977da669eaa4ee5aefbe2acda773e3621e5981c4`](https://github.com/toptal/picasso/commit/977da669eaa4ee5aefbe2acda773e3621e5981c4) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- add tooltip support to the query builder fields using the `tooltip` property in the fields' configuration.
+
 ## 3.0.2
 
 ### Patch Changes

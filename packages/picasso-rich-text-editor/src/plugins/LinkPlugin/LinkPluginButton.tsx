@@ -4,7 +4,7 @@ import {
   $createLinkNode,
 } from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { Link16 } from '@toptal/picasso'
+import { Link16 } from '@toptal/picasso-icons'
 import { $createTextNode, $getSelection, $isRangeSelection } from 'lexical'
 import React, { useCallback, useState } from 'react'
 

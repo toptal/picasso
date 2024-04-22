@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-note",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Toptal UI components library - Note",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "1.0.2",
-    "@toptal/picasso-typography": "1.0.2",
+    "@toptal/picasso-typography": "2.0.0",
     "classnames": "^2.5.1"
   },
   "sideEffects": [

@@ -28,6 +28,11 @@ page
     title: 'Drag and Drop',
   })
 
+  .addExample('QueryBuilder/story/Footer.example.tsx', {
+    title: 'Footer',
+    description: 'Customized footer',
+  })
+
   .addExample('QueryBuilder/story/HideControls.example.tsx', {
     title: 'Hide Controls',
     description: 'Hide buttons used for query reset and submitting',
@@ -36,6 +41,15 @@ page
   .addExample('QueryBuilder/story/Header.example.tsx', {
     title: 'Header',
     description: 'Customized header',
+  })
+
+  .addExample('QueryBuilder/story/CustomPadding.example.tsx', {
+    title: 'Custom Padding',
+  })
+
+  .addExample('QueryBuilder/story/FieldDescription.example.tsx', {
+    title: 'Field Description',
+    description: `Hover over 'First  name' field in the field selector dropdown to display field description in a tooltip`,
   })
 
   .addExample('QueryBuilder/story/Loading.example.tsx', {

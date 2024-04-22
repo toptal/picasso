@@ -1,5 +1,41 @@
 # @toptal/picasso-pagination
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`d97ddf4`](https://github.com/toptal/picasso/commit/d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6)]:
+  - @toptal/picasso-button@1.0.9
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-button@1.0.8
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.7
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`c05387d`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61)]:
+  - @toptal/picasso-button@1.0.6
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`3512588`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0)]:
+  - @toptal/picasso-button@1.0.5
+
 ## 1.0.4
 
 ### Patch Changes

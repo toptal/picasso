@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import type { RequiredDecoration } from '@toptal/picasso'
-import { Form as PicassoForm } from '@toptal/picasso'
+import type { RequiredDecoration } from '@toptal/picasso-form'
+import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 import type { TextLabelProps } from '@toptal/picasso-shared'
 
 import type { RequiredVariant } from '../FormConfig'

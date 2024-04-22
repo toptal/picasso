@@ -1,5 +1,27 @@
 # @toptal/picasso-typography-overflow
 
+## 2.0.0
+
+### Major Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate Typography to TailwindCSS
+  - style overrides for Typography have been moved to picasso-provider
+  - added utility classes `font-inherit-weight` and `font-inherit-size` to Picasso Tailwind config
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-tooltip@1.1.1
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`977da66`](https://github.com/toptal/picasso/commit/977da669eaa4ee5aefbe2acda773e3621e5981c4)]:
+  - @toptal/picasso-tooltip@1.1.0
+
 ## 1.0.2
 
 ### Patch Changes

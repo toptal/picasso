@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
-import type { InputProps } from '@toptal/picasso'
-import { Input as PicassoInput } from '@toptal/picasso'
+import type { InputProps } from '@toptal/picasso-input'
+import { Input as PicassoInput } from '@toptal/picasso-input'
 import { useForm } from 'react-final-form'
 
 import type { FieldProps } from '../Field'

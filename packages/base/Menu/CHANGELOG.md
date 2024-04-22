@@ -1,5 +1,33 @@
 # @toptal/picasso-menu
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee), [`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-avatar@2.0.0
+
+## 1.0.6
+
+### Patch Changes
+
+- [#4224](https://github.com/toptal/picasso/pull/4224) [`c05387de5636ed094365d1eff67b955d84b81c61`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert types for compound components
+
+- Updated dependencies [[`c05387d`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61)]:
+  - @toptal/picasso-avatar@1.0.4
+
+## 1.0.5
+
+### Patch Changes
+
+- [#4216](https://github.com/toptal/picasso/pull/4216) [`3512588b06c3660471a68500275321c640278cf0`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update types for the compound component
+
+- Updated dependencies [[`3512588`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0)]:
+  - @toptal/picasso-avatar@1.0.3
+
 ## 1.0.4
 
 ### Patch Changes

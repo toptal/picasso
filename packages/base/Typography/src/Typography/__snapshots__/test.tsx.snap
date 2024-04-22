@@ -6,7 +6,7 @@ exports[`Typography inherit size render 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyInherit MuiTypography-body1"
+      class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
     >
       Inherit font size
     </p>
@@ -20,7 +20,7 @@ exports[`Typography renders 1`] = `
     class="Picasso-root"
   >
     <p
-      class="MuiTypography-root PicassoTypography-bodyInherit MuiTypography-body1"
+      class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
     >
       Just Typography
     </p>
@@ -34,7 +34,7 @@ exports[`Typography variant heading small render 1`] = `
     class="Picasso-root"
   >
     <h4
-      class="MuiTypography-root MuiTypography-h4"
+      class="m-0 text-md text-black font-semibold"
     >
       Heading small
     </h4>

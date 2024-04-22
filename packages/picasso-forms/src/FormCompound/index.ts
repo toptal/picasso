@@ -1,4 +1,4 @@
-import { FieldRequirements } from '@toptal/picasso'
+import { FieldRequirements } from '@toptal/picasso-form'
 
 import Form from '../Form'
 import Autocomplete from '../Autocomplete'

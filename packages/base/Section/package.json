@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-section",
-  "version": "1.0.4",
+  "version": "2.0.1",
   "description": "Toptal UI components library - Section",
   "publishConfig": {
     "access": "public"
@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "1.0.4",
+    "@toptal/picasso-button": "1.0.9",
     "@toptal/picasso-container": "1.0.2",
     "@toptal/picasso-icons": "1.0.2",
-    "@toptal/picasso-typography": "1.0.2",
+    "@toptal/picasso-typography": "2.0.0",
     "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1"
   },
@@ -35,6 +35,7 @@
   ],
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
+    "tailwindcss": ">=3",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {

@@ -31,7 +31,7 @@ exports[`Modal renders 1`] = `
         class="pr-6 mt-8 mx-8 mb-0"
       >
         <h2
-          class="MuiTypography-root MuiTypography-h2"
+          class="m-0 text-xl text-black font-semibold"
         >
           Title
         </h2>

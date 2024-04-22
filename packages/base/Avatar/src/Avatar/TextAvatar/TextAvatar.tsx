@@ -29,6 +29,11 @@ const TextAvatar = ({
 }: Props) => {
   const classes = useStyles()
 
+  const SIZE_TO_FONT_SIZE = {
+    small: '!text-[0.666666667em]',
+    large: '!text-[1em]',
+  }
+
   return (
     <div
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
@@ -39,7 +44,7 @@ const TextAvatar = ({
       <Typography
         data-testid={dataTestID}
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-        className={classes[`${fontSize!}Font`]}
+        className={SIZE_TO_FONT_SIZE[fontSize!]}
         invert
       >
         {children}

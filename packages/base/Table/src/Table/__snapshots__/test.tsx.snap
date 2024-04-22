@@ -19,7 +19,7 @@ exports[`Table renders 1`] = `
             scope="col"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-darkGrey PicassoTypography-semibold MuiTypography-body1"
+              class="m-0 text-xxs text-graphite font-semibold"
             >
               Table test
             </div>
@@ -36,7 +36,7 @@ exports[`Table renders 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
+              class="m-0 text-sm text-graphite font-inherit"
             >
               Table test
             </div>
@@ -53,7 +53,7 @@ exports[`Table renders 1`] = `
             class="MuiTableCell-root PicassoTableCell-root MuiTableCell-footer"
           >
             <div
-              class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
+              class="m-0 text-sm text-black font-semibold"
             >
               Table test
             </div>

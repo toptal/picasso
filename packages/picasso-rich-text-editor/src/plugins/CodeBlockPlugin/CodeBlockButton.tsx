@@ -1,4 +1,4 @@
-import { CodeBlock16 } from '@toptal/picasso'
+import { CodeBlock16 } from '@toptal/picasso-icons'
 import React, { useCallback, useState } from 'react'
 import {
   $createLineBreakNode,

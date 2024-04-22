@@ -1,5 +1,5 @@
 import { isOptionGroupArray, type OptionList } from 'react-querybuilder'
-import type { SelectOptionGroups } from '@toptal/picasso'
+import type { OptionGroups as SelectOptionGroups } from '@toptal/picasso-select'
 
 export const generateSelectOptions = (options?: OptionList) => {
   if (isOptionGroupArray(options)) {
@@ -19,6 +19,7 @@ export const generateSelectOptions = (options?: OptionList) => {
     return options.map(option => ({
       value: option.name,
       text: option.label,
+      tooltip: option.tooltip,
     }))
   }
 

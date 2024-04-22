@@ -23,7 +23,7 @@ export const DrawerTitle = ({ title }: Props) => {
       alignItems='center'
       className='border-gray-100 border-[0] border-solid border-b py-4 pr-[4rem] pl-6'
     >
-      <Typography variant='heading' size='medium' className='flex-grow'>
+      <Typography variant='heading' size='medium' className='grow'>
         {title}
       </Typography>
     </Container>

@@ -1,5 +1,49 @@
 # @toptal/picasso-button
 
+## 1.0.9
+
+### Patch Changes
+
+- [#4248](https://github.com/toptal/picasso/pull/4248) [`d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6`](https://github.com/toptal/picasso/commit/d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- fix style resolution in Button component
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-checkbox@1.0.6
+  - @toptal/picasso-radio@1.0.6
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`b779ddc`](https://github.com/toptal/picasso/commit/b779ddce4a67593bab27e8d09c2c930708cfb2ec)]:
+  - @toptal/picasso-dropdown@2.0.0
+
+## 1.0.6
+
+### Patch Changes
+
+- [#4224](https://github.com/toptal/picasso/pull/4224) [`c05387de5636ed094365d1eff67b955d84b81c61`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert types for compound components
+
+- Updated dependencies [[`c05387d`](https://github.com/toptal/picasso/commit/c05387de5636ed094365d1eff67b955d84b81c61)]:
+  - @toptal/picasso-radio@1.0.5
+  - @toptal/picasso-checkbox@1.0.5
+
+## 1.0.5
+
+### Patch Changes
+
+- [#4216](https://github.com/toptal/picasso/pull/4216) [`3512588b06c3660471a68500275321c640278cf0`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update types for the compound component
+
+- Updated dependencies [[`3512588`](https://github.com/toptal/picasso/commit/3512588b06c3660471a68500275321c640278cf0)]:
+  - @toptal/picasso-radio@1.0.4
+  - @toptal/picasso-checkbox@1.0.4
+
 ## 1.0.4
 
 ### Patch Changes

@@ -11,7 +11,7 @@
       "@cypress/skip-test"
     ]
   },
-  "include": ["../node_modules/cypress", "./*/*.ts", "./*/*.tsx"],
+  "include": ["../node_modules/cypress", "./**/*.ts", "./**/*.tsx"],
   "references": [
     { "path": "../tsconfig.pkgsrc.json" },
   ]

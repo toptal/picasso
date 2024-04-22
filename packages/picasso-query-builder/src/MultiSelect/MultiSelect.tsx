@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
-import { Container, Select } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { Select } from '@toptal/picasso-select'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { generateSelectOptions, validateValueEditor } from '../utils'

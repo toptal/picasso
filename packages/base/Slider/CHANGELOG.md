@@ -1,5 +1,19 @@
 # @toptal/picasso-slider
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tooltip@1.1.1
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`977da66`](https://github.com/toptal/picasso/commit/977da669eaa4ee5aefbe2acda773e3621e5981c4)]:
+  - @toptal/picasso-tooltip@1.1.0
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,4 +1,4 @@
-import type { BaseProps } from '@toptal/picasso'
+import type { BaseProps } from '@toptal/picasso-shared'
 import type { ReactNode } from 'react'
 
 export type CoordinatePayload = {

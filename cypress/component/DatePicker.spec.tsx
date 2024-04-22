@@ -176,7 +176,7 @@ describe('DatePicker', () => {
     const DATEPICKER_INPUT_TESTID = 'datepicker-input'
 
     const DrawerExample = () => {
-      const [val, setVal] = useState<Date>()
+      const [val, setVal] = useState<Date>(new Date(1712068105523))
 
       return (
         <Drawer open>

@@ -5,7 +5,4 @@ export default () =>
     root: {
       marginTop: '0.25em',
     },
-    error: {
-      cursor: 'default',
-    },
   })

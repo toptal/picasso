@@ -1,6 +1,5 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { rem } from '@toptal/picasso-shared'
 
 export default ({ palette }: Theme) =>
   createStyles({
@@ -38,9 +37,6 @@ export default ({ palette }: Theme) =>
     },
     date: {
       flex: '0 0 auto',
-    },
-    dateText: {
-      lineHeight: rem('24px'),
     },
     connector: {
       flex: 1,

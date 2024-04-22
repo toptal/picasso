@@ -91,20 +91,11 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
     const renderChildren = () =>
       isHead && titleCase ? toTitleCase(children) : children
 
-    const CellContent = () => {
-      return adornment ? (
-        <div className='flex items-center'>
-          <Typography as='div' {...getTypographySettings(tableSection)}>
-            {renderChildren()}
-          </Typography>
-          {adornment}
-        </div>
-      ) : (
-        <Typography as='div' {...getTypographySettings(tableSection)}>
-          {renderChildren()}
-        </Typography>
-      )
-    }
+    const tooltipWithChildren = (
+      <Typography as='div' {...getTypographySettings(tableSection)}>
+        {renderChildren()}
+      </Typography>
+    )
 
     return (
       <MUITableCell
@@ -120,7 +111,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
         colSpan={colSpan}
         rowSpan={rowSpan}
       >
-        <CellContent />
+        {adornment ? (
+          <div className='flex items-center'>
+            {tooltipWithChildren}
+            {adornment}
+          </div>
+        ) : (
+          tooltipWithChildren
+        )}
       </MUITableCell>
     )
   }

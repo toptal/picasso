@@ -32,7 +32,7 @@ exports[`PromptModal renders 1`] = `
         class="pr-6 mt-8 mx-8 mb-0"
       >
         <h2
-          class="MuiTypography-root MuiTypography-h2"
+          class="m-0 text-xl text-black font-semibold"
         >
           Test title
         </h2>
@@ -44,7 +44,7 @@ exports[`PromptModal renders 1`] = `
           class="pt-6 px-8 pb-8 overflow-auto flex-auto"
         >
           <p
-            class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+            class="m-0 text-md text-graphite font-regular"
           >
             Test message
           </p>
@@ -152,7 +152,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
             class="pr-6 mt-8 mx-8 mb-0"
           >
             <h2
-              class="MuiTypography-root MuiTypography-h2"
+              class="m-0 text-xl text-black font-semibold"
             >
               Test title
             </h2>
@@ -164,7 +164,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
               class="pt-6 px-8 pb-8 overflow-auto flex-auto"
             >
               <p
-                class="MuiTypography-root PicassoTypography-bodyMedium MuiTypography-body1"
+                class="m-0 text-md text-graphite font-regular"
               >
                 Test message
               </p>

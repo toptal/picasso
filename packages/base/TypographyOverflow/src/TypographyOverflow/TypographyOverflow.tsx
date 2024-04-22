@@ -114,7 +114,7 @@ export const TypographyOverflow = (props: Props) => {
       style={extendedStyle}
       className={cx(
         classes.wrapper,
-        isMultiline ? classes.multiLine : classes.singleLine,
+        isMultiline ? classes.multiLine : '!block !whitespace-nowrap',
         className
       )}
       onClick={handleClick}

@@ -5,39 +5,45 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
   <div
     class="Picasso-root"
   >
-    <td
-      class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
-    >
-      <div
-        class="flex items-center"
-      >
-        <div
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
-        >
-          Cell
-        </div>
-        <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
-          data-component-type="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+    <table>
+      <tbody>
+        <tr>
+          <td
+            class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
           >
-            <svg
-              class="PicassoSvgArrowLongUp16-root PicassoButton-icon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <div
+              class="flex items-center"
             >
-              <path
-                d="M7.5 1.793 11.207 5.5l-.707.707-2.5-2.5V14H7V3.707l-2.5 2.5-.707-.707 3-3 .707-.707Z"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-    </td>
+              <div
+                class="m-0 text-sm text-graphite font-inherit"
+              >
+                Cell
+              </div>
+              <button
+                class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
+                data-component-type="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                >
+                  <svg
+                    class="PicassoSvgArrowLongUp16-root PicassoButton-icon"
+                    style="min-width: 16px; min-height: 16px;"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M7.5 1.793 11.207 5.5l-.707.707-2.5-2.5V14H7V3.707l-2.5 2.5-.707-.707 3-3 .707-.707Z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;
@@ -47,37 +53,43 @@ exports[`TableCell sort direction is desc renders with a sort button in the righ
   <div
     class="Picasso-root"
   >
-    <td
-      class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
-    >
-      <div
-        class="flex items-center"
-      >
-        <div
-          class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-darkGrey PicassoTypography-inheritWeight MuiTypography-body1"
-        />
-        <button
-          class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
-          data-component-type="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+    <table>
+      <tbody>
+        <tr>
+          <td
+            class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
           >
-            <svg
-              class="PicassoSvgArrowLongDown16-root PicassoButton-icon"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+            <div
+              class="flex items-center"
             >
-              <path
-                d="M8 2v10.293l2.5-2.5.707.707L7.5 14.207 3.793 10.5l.707-.707 2.5 2.5V2h1Z"
+              <div
+                class="m-0 text-sm text-graphite font-inherit"
               />
-            </svg>
-          </span>
-        </button>
-      </div>
-    </td>
+              <button
+                class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root ml-2 invisible group-hover:visible"
+                data-component-type="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                >
+                  <svg
+                    class="PicassoSvgArrowLongDown16-root PicassoButton-icon"
+                    style="min-width: 16px; min-height: 16px;"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 2v10.293l2.5-2.5.707.707L7.5 14.207 3.793 10.5l.707-.707 2.5 2.5V2h1Z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;
