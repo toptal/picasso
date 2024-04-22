@@ -15,7 +15,7 @@ exports[`TableFooter renders 1`] = `
           class="border-0 border-solid border-b border-gray"
         >
           <td
-            class="text-xxs/[2.5rem] py-2 border-none px-4 last:pr-6"
+            class="h-10 py-2 border-none px-4 last:pr-6"
           >
             <div
               class="MuiTypography-root PicassoTypography-bodySmall PicassoTypography-black PicassoTypography-semibold MuiTypography-body1"
