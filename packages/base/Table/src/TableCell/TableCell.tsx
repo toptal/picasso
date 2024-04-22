@@ -92,14 +92,19 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
 
     const Component = isHead ? 'th' : 'td'
 
+    const spacingClasses = {
+      narrow: '',
+      regular: 'px-4 last:pr-6',
+      compact: 'h-6 py-[1px] last:pr-3',
+    }
+
     return (
       <Component
         {...rest}
         ref={ref}
         className={twMerge(
-          'text-xxs/[2.5rem] px-2 py-2 border-none',
-          spacing === 'compact' && 'leading-6 py-[1px] last:pr-3',
-          spacing === 'regular' && 'px-4 last:pr-6',
+          'h-10 px-2 py-2 border-none',
+          spacingClasses[spacing],
           isHead && 'text-left',
           className
         )}
