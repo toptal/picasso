@@ -18,7 +18,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             class="PageSidebar-spacer"
           />
           <ul
-            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
             role="menu"
             tabindex="-1"
           >
@@ -37,18 +37,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <li
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
+                    classes="[object Object]"
                     role="menuitem"
-                    tabindex="0"
+                    tabindex="-1"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                      class="flex flex-1 max-w"
                     >
                       <div
-                        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        class="flex flex-col flex-1 min-w"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          class="flex items-center"
                         >
                           <div
                             class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -95,24 +96,25 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
                       >
                         <ul
-                          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+                          class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
                           role="menu"
                           tabindex="-1"
                         >
                           <li
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                            class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected"
+                            classes="[object Object]"
                             role="menuitem"
-                            tabindex="0"
+                            tabindex="-1"
                           >
                             <div
-                              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                              class="flex flex-1 max-w"
                             >
                               <div
-                                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                                class="flex flex-col flex-1 min-w"
                               >
                                 <div
-                                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                                  class="flex items-center"
                                 >
                                   <div
                                     class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -164,7 +166,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             class="PageSidebar-spacer"
           />
           <ul
-            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
             role="menu"
             tabindex="-1"
           >
@@ -183,18 +185,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <li
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
+                    classes="[object Object]"
                     role="menuitem"
-                    tabindex="0"
+                    tabindex="-1"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                      class="flex flex-1 max-w"
                     >
                       <div
-                        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        class="flex flex-col flex-1 min-w"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          class="flex items-center"
                         >
                           <div
                             class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -241,24 +244,25 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
                       >
                         <ul
-                          class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+                          class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
                           role="menu"
                           tabindex="-1"
                         >
                           <li
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+                            class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected"
+                            classes="[object Object]"
                             role="menuitem"
-                            tabindex="0"
+                            tabindex="-1"
                           >
                             <div
-                              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                              class="flex flex-1 max-w"
                             >
                               <div
-                                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                                class="flex flex-col flex-1 min-w"
                               >
                                 <div
-                                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                                  class="flex items-center"
                                 >
                                   <div
                                     class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -299,18 +303,19 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light"
+      classes="[object Object]"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <div
               class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -340,24 +345,25 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     </li>
     <div>
       <ul
-        class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+        class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
         role="menu"
         tabindex="-1"
       >
         <li
           aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+          class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon"
+          classes="[object Object]"
           role="menuitem"
-          tabindex="0"
+          tabindex="-1"
         >
           <div
-            class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+            class="flex flex-1 max-w"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="flex flex-col flex-1 min-w"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="flex items-center"
               >
                 <div
                   class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -389,18 +395,19 @@ exports[`SidebarItem is selected 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-selected PicassoMenuItem-nonSelectable Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+      class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-selected"
+      classes="[object Object]"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <div
               class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -439,18 +446,19 @@ exports[`SidebarItem renders 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light"
+      classes="[object Object]"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <div
               class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -493,18 +501,19 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         >
           <li
             aria-disabled="false"
-            class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+            class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
+            classes="[object Object]"
             role="menuitem"
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+              class="flex flex-1 max-w"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                class="flex flex-col flex-1 min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                  class="flex items-center"
                 >
                   <div
                     class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -560,24 +569,25 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <ul
-                  class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+                  class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
                   role="menu"
                   tabindex="-1"
                 >
                   <li
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                    class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon"
+                    classes="[object Object]"
                     role="menuitem"
-                    tabindex="0"
+                    tabindex="-1"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                      class="flex flex-1 max-w"
                     >
                       <div
-                        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        class="flex flex-col flex-1 min-w"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          class="flex items-center"
                         >
                           <div
                             class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
@@ -614,18 +624,19 @@ exports[`SidebarItem with icon 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoMenuItem-nonSelectable MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light"
+      classes="[object Object]"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <div
               class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"

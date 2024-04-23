@@ -62,6 +62,63 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
+const getFontColor = ({
+  disabled,
+  variant,
+  highlighted,
+}: {
+  disabled?: boolean
+  variant: VariantType
+  highlighted?: boolean
+}) => {
+  if (disabled) {
+    return 'text-gray-600'
+  }
+
+  if (variant === 'light') {
+    return 'text-black'
+  }
+  if (variant === 'dark') {
+    if (highlighted) {
+      return twJoin(
+        'focus:text-white',
+        highlighted ? 'text-white' : 'text-gray-500'
+      )
+    }
+  }
+}
+
+const getBgColor = ({
+  variant,
+  highlighted,
+  nonSelectable,
+}: {
+  variant: VariantType
+  highlighted: boolean
+  nonSelectable?: boolean
+}) => {
+  let bgColor = 'bg-[transparent]'
+  let actionBgColor
+
+  if (variant === 'dark') {
+    actionBgColor =
+      !nonSelectable && 'hover:bg-graphite-700 focus:bg-graphite-700'
+    if (highlighted) {
+      bgColor = 'bg-graphite-700'
+    }
+  }
+
+  if (variant === 'light') {
+    actionBgColor = !nonSelectable && 'hover:bg-blue-100 focus:bg-blue-100'
+
+    if (highlighted) {
+      bgColor = 'bg-blue-100'
+    }
+  }
+
+  return twJoin(bgColor, actionBgColor)
+}
+
 export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
@@ -81,11 +138,13 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     style,
     value,
     variant = 'light',
+    role = 'menuitem',
     nonSelectable,
     onClick,
     onMouseEnter,
     icon,
     avatar,
+    tabIndex: tabIndexProp,
     ...rest
   } = props
 
@@ -96,49 +155,46 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     onClick,
     onMouseEnter,
   })
+  const highlighted = selected || isOpened
   const isLink = as === Link && rest.href
   const Component: React.ElementType = isLink ? 'a' : as || 'li'
 
   const isIconWrapperVisible = checkmarked !== undefined || icon
 
-  const variantStyles = {
-    light: twJoin(
-      'text-black hover:bg-blue-100 focus:bg-blue-100',
-      (selected || isOpened) && 'bg-blue-100'
-    ),
-    dark: twJoin(
-      'text-gray-500 hover:bg-graphite-700 focus:bg-graphite-700 focus:text-white',
-      (selected || isOpened) && 'text-white bg-graphite-700'
-    ),
-  }
+  let tabIndex
 
-  // TODO aria
+  if (!disabled) {
+    tabIndex = tabIndexProp !== undefined ? tabIndexProp : -1
+  }
 
   return (
     <>
       <Component
-        {...rest}
         ref={ref}
+        role={role}
+        tabIndex={tabIndex}
         // replace Picasso Link with Anchor to not applying Picasso
         // Link component styles, this is the only difference between them now
-        component={isLink ? 'a' : as}
         className={twMerge(
-          variantStyles[variant],
+          getFontColor({ disabled, variant, highlighted }),
+          getBgColor({ variant, highlighted, nonSelectable }),
           disableGutters ? 'p-0' : 'px-4 py-[0.375rem]',
-          nonSelectable && 'hover:bg-[unset] focus:bg-[unset]',
-          disabled && 'opacity-100 pointer-events-none text-gray-600',
+          nonSelectable && '',
+          disabled && 'opacity-100 pointer-events-non',
           'min-w-[9rem] w-auto min-h-[unset] md:min-h-0 relative cursor-pointer',
           'transition-colors duration-150 ease-in-out',
           'overflow-hidden whitespace-normal text-left no-underline',
           'flex items-center justify-start',
-          'outline-none bg-[transparent] appearance-none',
+          'outline-none appearance-none',
           className
         )}
+        aria-disabled={Boolean(disabled)}
         disabled={disabled}
         onClick={onItemClick}
         onMouseEnter={onItemMouseEnter}
         style={style}
         value={value}
+        {...rest}
       >
         <div ref={anchorRef} className='flex flex-1 max-w-full'>
           {avatar && <div className='mr-2'>{avatar}</div>}

@@ -31,10 +31,58 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     variant,
     allowNestedNavigation,
     testIds,
+    role = 'menu',
     ...rest
   } = props
   const { context, innerMenu, hasBackButton } = useMenu({ variant })
   const { onBackClick, onMenuMouseLeave } = context
+
+  let activeItemIndex = -1
+
+  // Find the first selected or first non-disabled item
+  React.Children.map(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      // check if child is a fragment
+      if (child.type === React.Fragment) {
+        console.error(
+          [
+            "The Menu component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n')
+        )
+      }
+    }
+
+    if (!child.props.disabled) {
+      if (child.props.selected) {
+        activeItemIndex = index
+      } else if (activeItemIndex === -1) {
+        activeItemIndex = index
+      }
+    }
+  })
+
+  const items = React.Children.map(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return
+    }
+
+    if (index === activeItemIndex) {
+      const newChildProps: { tabIndex?: number } = {}
+
+      if (child.props.tabIndex === undefined) {
+        newChildProps.tabIndex = 0
+      }
+
+      return React.cloneElement(child, newChildProps)
+    }
+
+    return child
+  })
 
   return (
     <MenuContext.Provider value={context}>
@@ -51,6 +99,8 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
           )}
           style={style}
           onMouseLeave={onMenuMouseLeave}
+          role={role}
+          tabIndex={-1}
         >
           {hasBackButton && allowNestedNavigation && (
             <MenuItem
@@ -64,7 +114,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
               </Typography>
             </MenuItem>
           )}
-          {children}
+          {items}
         </ul>
       )}
     </MenuContext.Provider>

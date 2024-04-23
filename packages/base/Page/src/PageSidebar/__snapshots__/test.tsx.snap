@@ -42,7 +42,7 @@ exports[`PageSidebar with menu 1`] = `
             class="PageSidebar-spacer"
           />
           <ul
-            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
             role="menu"
             tabindex="-1"
           />
@@ -71,12 +71,12 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
             class="PageSidebar-spacer"
           />
           <ul
-            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
+            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
             role="menu"
             tabindex="-1"
           />
           <ul
-            class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
+            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root PicassoSidebarMenu-bottom"
             role="menu"
             tabindex="-1"
           />
