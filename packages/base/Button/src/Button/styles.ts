@@ -213,6 +213,7 @@ export const createCoreClassNames = ({
 
   if (!disabled) {
     classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
+    classNames.push('focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
 
     if (focused) {
       classNames.push('shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')
