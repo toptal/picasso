@@ -80,7 +80,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
     const endAdornment = (
       <InputAdornment position='end'>
         <ButtonCircular
-          className={classes.toggle}
+          className='mr-2'
           variant='flat'
           icon={showPassword ? <Eye16 /> : <EyeHidden16 />}
           onClick={handleToggleVisibilityClick}
