@@ -92,7 +92,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
           ref={ref}
           className={twMerge(
             'relative list-none',
-            'outline-none shadow-2',
+            'outline-none shadow-1',
             'py-2 px-0 m-0',
             'rounded-sm',
             className
