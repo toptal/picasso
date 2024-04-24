@@ -2,7 +2,7 @@
 
 exports[`YearSelect render in descending order 1`] = `
 <ul
-  class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   role="listbox"
   tabindex="-1"
 >
@@ -10,7 +10,7 @@ exports[`YearSelect render in descending order 1`] = `
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h max-[585px]:max-h-[calc(50vh md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"

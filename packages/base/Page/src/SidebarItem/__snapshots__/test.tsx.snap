@@ -40,7 +40,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
                     classes="[object Object]"
                     role="menuitem"
-                    tabindex="-1"
+                    tabindex="0"
                   >
                     <div
                       class="flex flex-1 max-w"
@@ -105,7 +105,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                             class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected"
                             classes="[object Object]"
                             role="menuitem"
-                            tabindex="-1"
+                            tabindex="0"
                           >
                             <div
                               class="flex flex-1 max-w"
@@ -188,7 +188,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
                     classes="[object Object]"
                     role="menuitem"
-                    tabindex="-1"
+                    tabindex="0"
                   >
                     <div
                       class="flex flex-1 max-w"
@@ -253,7 +253,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                             class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected"
                             classes="[object Object]"
                             role="menuitem"
-                            tabindex="-1"
+                            tabindex="0"
                           >
                             <div
                               class="flex flex-1 max-w"
@@ -354,7 +354,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon"
           classes="[object Object]"
           role="menuitem"
-          tabindex="-1"
+          tabindex="0"
         >
           <div
             class="flex flex-1 max-w"
@@ -578,7 +578,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon"
                     classes="[object Object]"
                     role="menuitem"
-                    tabindex="-1"
+                    tabindex="0"
                   >
                     <div
                       class="flex flex-1 max-w"

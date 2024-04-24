@@ -14,7 +14,7 @@ exports[`AccountSelect renders 1`] = `
         aria-disabled="false"
         class="text-black bg-[transparent] hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoAccountSelect-accountItem"
         role="menuitem"
-        tabindex="-1"
+        tabindex="0"
       >
         <div
           class="flex flex-1 max-w"
