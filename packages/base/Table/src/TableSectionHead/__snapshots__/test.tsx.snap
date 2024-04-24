@@ -12,8 +12,8 @@ exports[`TableSectionHead renders 1`] = `
         <tr
           class="border-0 border-solid border-b border-gray PicassoTableSectionHead-sectionHeaderRow"
         >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root"
+          <th
+            class="h-10 py-2 border-none last:pr-6 px-4 text-left"
             colspan="100"
           >
             <div
@@ -21,7 +21,7 @@ exports[`TableSectionHead renders 1`] = `
             >
               Test
             </div>
-          </td>
+          </th>
         </tr>
       </tbody>
     </table>
