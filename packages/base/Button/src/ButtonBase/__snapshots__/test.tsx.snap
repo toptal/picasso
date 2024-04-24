@@ -1,0 +1,262 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "button" when "href" prop is passed renders Button as a link 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      href="/"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "button" when "to" prop is passed renders Button as a link 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <span
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      role="button"
+      tabindex="0"
+      to="/"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" component renders Button as a 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      aria-disabled="false"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer PicassoLink-blue MuiTypography-colorPrimary"
+      data-component-type="button"
+      href="URL"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" component when "disabled" prop is true renders Button as a and does not trigger onClick handler 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      aria-disabled="true"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-default pointer-events PicassoLink-blue MuiTypography-colorPrimary"
+      data-component-type="button"
+      href="URL"
+      role="button"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "as" prop is passed when "as" prop equals "a" renders Button as a 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      href="/"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "disabled" prop is false renders Button and does not trigger onClick handler 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "disabled" prop is true renders Button and does not trigger onClick handler 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      aria-disabled="true"
+      class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-default pointer-events"
+      data-component-type="button"
+      disabled=""
+      role="button"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "loading" prop is true renders Button with loading state and does not trigger onClick handler 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+      <div
+        class="PicassoLoader-root absolute top-1/2 left-1/2 translate-x-[ translate-y-[ PicassoLoader-inline"
+      >
+        <div
+          aria-valuenow="35"
+          class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerInherit MuiCircularProgress-colorPrimary MuiCircularProgress-determinate"
+          role="progressbar"
+          style="width: 16px; height: 16px; transform: rotate(-90deg);"
+        >
+          <svg
+            class="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+              style="stroke-dasharray: 126.920; stroke-dashoffset: 82.498px;"
+            />
+          </svg>
+        </div>
+      </div>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "role" prop is passed renders Button with a custom role 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      role="custom"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ButtonBase when "titleCase" prop is true renders Button with transformed text to title case 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <button
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
+      data-component-type="button"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        __TITLE_CASE__Test bk9
+      </span>
+    </button>
+  </div>
+</div>
+`;

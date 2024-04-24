@@ -50,13 +50,13 @@ const renderEditorInForm = () => (
 const buttonShouldBeActive = (
   button: Cypress.Chainable<JQuery<HTMLButtonElement>>
 ) => {
-  button.should('have.attr', 'class').and('include', 'activeButton')
+  button.should('have.attr', 'class').and('include', 'bg-graphite-700')
 }
 
 const buttonShouldNotBeActive = (
   button: Cypress.Chainable<JQuery<HTMLButtonElement>>
 ) => {
-  button.should('have.attr', 'class').and('not.include', 'activeButton')
+  button.should('have.attr', 'class').and('not.include', 'bg-graphite-700')
 }
 
 const selectShouldHaveValue = (
