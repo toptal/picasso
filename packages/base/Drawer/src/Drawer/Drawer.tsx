@@ -107,7 +107,7 @@ export const Drawer = (props: Props) => {
           variant='flat'
           icon={<CloseMinor16 />}
           onClick={handleOnClose}
-          className={classes.closeButton}
+          className='absolute right-6 top-4'
           aria-label='Close drawer'
         />
       </Container>

@@ -39,7 +39,8 @@
     "@toptal/picasso-typography": "2.0.0",
     "@toptal/picasso-user-badge": "2.0.1",
     "@toptal/picasso-utils": "1.0.2",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [
     "**/styles.ts",
