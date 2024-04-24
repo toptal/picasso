@@ -1,13 +1,9 @@
 import type { ReactNode, RefObject } from 'react'
 import React, { useRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 import { Menu } from '@toptal/picasso-menu'
-
-import styles from './styles'
 
 export interface Props extends BaseProps {
   children: React.ReactNode
@@ -21,10 +17,6 @@ export interface Props extends BaseProps {
     list?: string
   }
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoScrollMenu',
-})
 
 const getMenuSelectedNode = (
   menuRef: RefObject<HTMLDivElement>,
@@ -75,7 +67,6 @@ const ScrollMenu = (props: Props) => {
     'data-testid': dataTestId,
     ...rest
   } = props
-  const classes = useStyles()
   const menuRef = useRef<HTMLDivElement>(null)
 
   useIsomorphicLayoutEffect(
@@ -85,7 +76,7 @@ const ScrollMenu = (props: Props) => {
 
   return (
     <Menu
-      className={cx(classes.menu, className)}
+      className={cx('bg-white', className)}
       style={style}
       role={role}
       data-testid={dataTestId || testIds?.root}
@@ -96,7 +87,12 @@ const ScrollMenu = (props: Props) => {
         <div
           data-testid={testIds?.list}
           ref={menuRef}
-          className={classes.scrollView}
+          className={cx(
+            'overflow-y-auto',
+            'max-h-[26.875rem]',
+            'max-[585px]:max-h-[calc(50vh-4.3125rem)]',
+            'md:max-h-[calc(50vh-4.8125rem)]'
+          )}
           onBlur={onBlur}
         >
           {children}

@@ -269,7 +269,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {...getItemProps(index, option)}
             titleCase={false}
             description={option.description}
-            className={classes.option}
           >
             {renderOption
               ? renderOption(option, index)
