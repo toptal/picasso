@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import type { ComponentType } from 'react'
+import type { ComponentType, ReactNode } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { useNotifications } from '@toptal/picasso-notification'
 import type {
@@ -59,23 +59,18 @@ type Props = {
   loading?: boolean
   /** Defines padded layout. */
   padded?: SpacingType
-  /**
-   * @deprecated [CPT-2188] Controls will be defined at the consumer level
-   * Defines the possibility to display, or not, any of the controls. For example "Clear query" or "Run query" control.
-   */
+  /** Defines the possibility to display, or not, any of the controls. For example "Clear query" or "Run query" control. */
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
+  /** Defines custom Run Query button children that allows to change button text or display custom logic. */
+  runQueryChildren?: ReactNode
   /** Adds a customized footer at the bottom of the query builder. */
   footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
-  /** Defines the total number of results, usually used by other components that may need to know the total number of results. */
-  totalCount?: number
-  /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
-  totalCountLoading?: boolean
   testIds?: TestId
 }
 
@@ -99,8 +94,7 @@ const QueryBuilder = ({
   enableDragAndDrop = false,
   resetOnFieldChange = true,
   padded = SPACING_6,
-  totalCount,
-  totalCountLoading,
+  runQueryChildren,
   onQueryReset,
   testIds,
 }: Props) => {
@@ -243,8 +237,7 @@ const QueryBuilder = ({
             <RunQueryButton
               onClick={handleSubmit}
               loading={loading}
-              totalCount={totalCount}
-              totalCountLoading={totalCountLoading}
+              children={runQueryChildren}
               runQueryTestId={testIds?.runQueryButton}
             />
           </Container>

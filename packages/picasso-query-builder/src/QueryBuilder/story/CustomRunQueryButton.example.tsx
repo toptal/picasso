@@ -3,6 +3,8 @@ import {
   QueryBuilder,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
+import { Container } from '@toptal/picasso-container'
+import { Loader } from '@toptal/picasso-loader'
 
 const initialQuery: RuleGroupTypeAny = {
   rules: [
@@ -42,12 +44,35 @@ const Example = () => {
     setQuery(newQuery)
   }
 
+  const renderTotalCount = ({
+    totalCountLoading,
+    totalCount,
+  }: {
+    totalCountLoading: boolean
+    totalCount: number
+  }) => {
+    if (totalCountLoading) {
+      return (
+        <Container left='small'>
+          <Loader size='small' variant='inherit' />
+        </Container>
+      )
+    }
+
+    return totalCount !== undefined && `(${totalCount})`
+  }
+
   return (
     <QueryBuilder
       fields={fields}
       query={query}
       onQueryChange={handleQueryChange}
-      totalCount={15}
+      runQueryChildren={
+        <>
+          Custom Text{' '}
+          {renderTotalCount({ totalCount: 15, totalCountLoading: false })}
+        </>
+      }
     />
   )
 }
