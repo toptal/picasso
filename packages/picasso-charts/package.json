@@ -36,7 +36,7 @@
     "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1",
     "d3-array": "^3.2.2",
-    "debounce": "^1.2.1",
+    "debounce": "^2.0.0",
     "recharts": "^2.12.3"
   },
   "exports": {

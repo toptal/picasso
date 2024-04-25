@@ -36,7 +36,7 @@
     "@toptal/picasso-utils": "1.0.2",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1",
-    "debounce": "^1.2.1"
+    "debounce": "^2.0.0"
   },
   "sideEffects": [
     "**/styles.ts",
