@@ -33,6 +33,39 @@ Changes in dev dependencies, component HTML structure, or visual changes are not
 
 In order to run storybook you need to execute `yarn start` which will spin up storybook server on <http://localhost:9001>.
 
+## Running visual tests locally
+
+### Run Happo locally for Storybook
+
+1. Go to https://happo.io/a/675/account (`toptal-picasso` account)
+2. Set environment variable `HAPPO_API_KEY` same as API key (`export HAPPO_API_KEY=...` in Unix)
+3. Set environment variable `HAPPO_API_SECRET` same as API secret (`export HAPPO_API_SECRET=...` in Unix)
+4. Run `yarn happo (run|debug|compare|…)` depending on you goals
+
+
+For example, in order to compare two commits (`abc123` and `def456`), follow the steps below
+1. Generate report for `abc123` commit via `yarn happo run abc123` and get link to the report (something like https://happo.io/a/675/p/1189/report/abc123)
+2. Generate report for `def456` commit via `yarn happo run def456` and get link to the report (something like https://happo.io/a/675/p/1189/report/def456)
+3. Compare commits via `yarn happo compare abc123 def456` and get link to the comparison result (something like https://happo.io/a/675/p/1189/compare/abc123/def456)
+
+
+### Run Happo locally for Cypress
+1. Go to https://happo.io/a/675/account (`toptal-picasso` account)
+2. Set environment variable `HAPPO_API_KEY` same as API key (export HAPPO_API_KEY=... in Unix)
+3. Set environment variable `HAPPO_API_SECRET` same as API secret (`export HAPPO_API_SECRET=...` in Unix)
+4. Set environment variable `HAPPO_PROJECT` to match Cypress project (`export HAPPO_PROJECT=Picasso/Cypress` in Unix)
+5. Set environment variable `HAPPO_PREVIOUS_SHA`, it should be the sha of the last `master` commit that passed Happo (Picasso/Cypress) check ([documentation for environment variable](https://docs.happo.io/docs/cypress#continuous-integration))
+6. Set environment variable `HAPPO_CURRENT_SHA`, it should be [the sha of the commit](https://github.com/toptal/picasso/commits/master/) that is compared to `master` ([documentation for environment variable](https://docs.happo.io/docs/cypress#continuous-integration))
+7. Run `yarn test:integration:ci` and get link to the comparison result, something like
+
+
+```bash
+yarn test:integration:ci
+...
+[HAPPO] https://happo.io/a/675/jobs/1104613
+✨  Done in 378.45s.
+```
+
 ## Project commands
 
 | Command                     | Description                                                                         |
@@ -52,6 +85,7 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 | **test**                    | Run jest and cypress tests                                                          |
 | **test:integration**        | Run cypress tests                                                                   |
 | **test:integration:open**   | Run cypress in development mode                                                     |
+| **test:integration:ci**     | Run cypress in CI mode and run cypress visual tests                                 |
 | **test:unit**               | Run unit tests                                                                      |
 | **test:unit -u**            | Update jest snapshots                                                               |
 | **test:unit:watch**         | Run unit tests in watch mode                                                        |
