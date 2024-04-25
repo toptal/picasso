@@ -10,7 +10,9 @@ type ColorType =
   | 'red'
   | 'yellow'
   | 'blue'
+  | 'blue-darker'
   | 'green'
+  | 'grey-darker'
   | 'light-grey'
   | 'light-blue'
 
