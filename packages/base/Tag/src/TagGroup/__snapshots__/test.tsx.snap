@@ -6,55 +6,55 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoLabelGroup-root"
+      class="text-lg min-w transition-none -mr -mb [&>*]:mr-2 [&>*]:mb-2"
     >
       <div
-        class="MuiChip-root PicassoLabel-root"
+        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
-          class="MuiChip-label PicassoLabel-label"
+          class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="PicassoLabel-innerLabel"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
           >
             Angular JS
           </span>
         </span>
       </div>
       <div
-        class="MuiChip-root PicassoLabel-root"
+        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
-          class="MuiChip-label PicassoLabel-label"
+          class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="PicassoLabel-innerLabel"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
           >
             React JS
           </span>
         </span>
       </div>
       <div
-        class="MuiChip-root PicassoLabel-root"
+        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
-          class="MuiChip-label PicassoLabel-label"
+          class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="PicassoLabel-innerLabel"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
           >
             Ember JS
           </span>
         </span>
       </div>
       <div
-        class="MuiChip-root PicassoLabel-root"
+        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
-          class="MuiChip-label PicassoLabel-label"
+          class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="PicassoLabel-innerLabel"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
           >
             Vue JS
           </span>
