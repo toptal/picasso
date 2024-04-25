@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-page",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Toptal UI components library - Page",
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "@toptal/picasso-menu": "1.0.7",
     "@toptal/picasso-notification": "2.0.1",
     "@toptal/picasso-shared": "14.0.1",
-    "@toptal/picasso-tag": "1.0.5",
+    "@toptal/picasso-tag": "1.1.0",
     "@toptal/picasso-tooltip": "1.1.1",
     "@toptal/picasso-typography": "2.0.0",
     "@toptal/picasso-user-badge": "2.0.0",

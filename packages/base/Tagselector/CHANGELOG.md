@@ -1,5 +1,12 @@
 # @toptal/picasso-tagselector
 
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [[`ad19765`](https://github.com/toptal/picasso/commit/ad19765ee6219369a45cd86f65490fdb07b747b6)]:
+  - @toptal/picasso-tag@1.1.0
+
 ## 1.0.10
 
 ### Patch Changes
