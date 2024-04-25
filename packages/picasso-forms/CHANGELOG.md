@@ -1,5 +1,12 @@
 # Change Log
 
+## 68.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tagselector@1.0.11
+
 ## 68.0.8
 
 ### Patch Changes

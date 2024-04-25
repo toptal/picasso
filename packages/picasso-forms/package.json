@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "68.0.8",
+  "version": "68.0.9",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -42,7 +42,7 @@
     "@toptal/picasso-outlined-input": "1.0.9",
     "@toptal/picasso-number-input": "1.0.9",
     "@toptal/picasso-switch": "1.0.6",
-    "@toptal/picasso-tagselector": "1.0.10",
+    "@toptal/picasso-tagselector": "1.0.11",
     "@toptal/picasso-timepicker": "1.0.9",
     "@toptal/picasso-autocomplete": "1.0.10",
     "@toptal/picasso-select": "1.0.10",

@@ -1,5 +1,16 @@
 # @toptal/picasso-tag
 
+## 1.1.0
+
+### Minor Changes
+
+- [#4260](https://github.com/toptal/picasso/pull/4260) [`ad19765ee6219369a45cd86f65490fdb07b747b6`](https://github.com/toptal/picasso/commit/ad19765ee6219369a45cd86f65490fdb07b747b6) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+
+### Tag
+
+- add `blue-darker` and `grey-darker` values for `indicator` prop
+- add `blue-main` and `blue-darker` values for `variant` prop
+
 ## 1.0.5
 
 ### Patch Changes
