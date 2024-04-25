@@ -64,7 +64,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
     tabindex="0"
   >
     <div
-      class="overflow-y max-h max-[585px]:max-h-[calc(50vh md:max-h-[calc(50vh"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-xl:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
@@ -171,7 +171,7 @@ exports[`NonNativeSelect renders description 1`] = `
     tabindex="0"
   >
     <div
-      class="overflow-y max-h max-[585px]:max-h-[calc(50vh md:max-h-[calc(50vh"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-xl:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"

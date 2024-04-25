@@ -90,8 +90,8 @@ const ScrollMenu = (props: Props) => {
           className={cx(
             'overflow-y-auto',
             'max-h-[26.875rem]',
-            'max-[585px]:max-h-[calc(50vh-4.3125rem)]',
-            'md:max-xl:max-h-[calc(50vh-4.8125rem)]'
+            '[@media(max-height:585px)]:max-h-[calc(50vh-4.3125rem)]',
+            '[@media(max-height:585px)]:md:max-xl:max-h-[calc(50vh-4.8125rem)]'
           )}
           onBlur={onBlur}
         >

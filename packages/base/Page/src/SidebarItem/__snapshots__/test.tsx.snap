@@ -18,7 +18,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             class="PageSidebar-spacer"
           />
           <ul
-            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
+            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
             role="menu"
             tabindex="-1"
           >
@@ -37,8 +37,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <li
                     aria-disabled="false"
-                    class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
-                    classes="[object Object]"
+                    class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -96,14 +95,13 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
                       >
                         <ul
-                          class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
+                          class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
                           role="menu"
                           tabindex="-1"
                         >
                           <li
                             aria-disabled="false"
-                            class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected"
-                            classes="[object Object]"
+                            class="px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-8 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
                             role="menuitem"
                             tabindex="0"
                           >
@@ -166,7 +164,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             class="PageSidebar-spacer"
           />
           <ul
-            class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
+            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
             role="menu"
             tabindex="-1"
           >
@@ -185,8 +183,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <li
                     aria-disabled="false"
-                    class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
-                    classes="[object Object]"
+                    class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -244,14 +241,13 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
                       >
                         <ul
-                          class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
+                          class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
                           role="menu"
                           tabindex="-1"
                         >
                           <li
                             aria-disabled="false"
-                            class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenu PicassoSidebarItemHeader-selected"
-                            classes="[object Object]"
+                            class="px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-8 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
                             role="menuitem"
                             tabindex="0"
                           >
@@ -303,8 +299,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light"
-      classes="[object Object]"
+      class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -345,14 +340,13 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     </li>
     <div>
       <ul
-        class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
+        class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
         role="menu"
         tabindex="-1"
       >
         <li
           aria-disabled="false"
-          class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon"
-          classes="[object Object]"
+          class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-[2.875rem] pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
           role="menuitem"
           tabindex="0"
         >
@@ -395,8 +389,7 @@ exports[`SidebarItem is selected 1`] = `
   >
     <li
       aria-disabled="false"
-      class="text-black bg-blue px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-selected"
-      classes="[object Object]"
+      class="px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -446,8 +439,7 @@ exports[`SidebarItem renders 1`] = `
   >
     <li
       aria-disabled="false"
-      class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light"
-      classes="[object Object]"
+      class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -501,8 +493,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         >
           <li
             aria-disabled="false"
-            class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-collapsible"
-            classes="[object Object]"
+            class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
             role="menuitem"
             tabindex="-1"
           >
@@ -569,14 +560,13 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
               >
                 <ul
-                  class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm PicassoSidebarMenu-root"
+                  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
                   role="menu"
                   tabindex="-1"
                 >
                   <li
                     aria-disabled="false"
-                    class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light PicassoSidebarItemHeader-nestedMenuWithIcon"
-                    classes="[object Object]"
+                    class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-[2.875rem] pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -624,8 +614,7 @@ exports[`SidebarItem with icon 1`] = `
   >
     <li
       aria-disabled="false"
-      class="text-black bg-[transparent] px-4 py-[0.375rem] min-w w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none PicassoSidebarItemHeader-root PicassoSidebarItemHeader-noWrap PicassoSidebarItemHeader-light"
-      classes="[object Object]"
+      class="bg-[transparent] px-4 py-[0.375rem] w-auto min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >

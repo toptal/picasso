@@ -63,28 +63,20 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
 }
 
 const getFontColor = ({
-  disabled,
   variant,
   highlighted,
 }: {
-  disabled?: boolean
   variant: VariantType
   highlighted?: boolean
 }) => {
-  if (disabled) {
-    return 'text-gray-600'
-  }
-
   if (variant === 'light') {
     return 'text-black'
   }
   if (variant === 'dark') {
-    if (highlighted) {
-      return twJoin(
-        'focus:text-white',
-        highlighted ? 'text-white' : 'text-gray-500'
-      )
-    }
+    return twJoin(
+      'focus:text-white',
+      highlighted ? 'text-white' : 'text-gray-500'
+    )
   }
 }
 
@@ -176,17 +168,16 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
         // replace Picasso Link with Anchor to not applying Picasso
         // Link component styles, this is the only difference between them now
         className={twMerge(
-          getFontColor({ disabled, variant, highlighted }),
+          getFontColor({ variant, highlighted }),
           getBgColor({ variant, highlighted, nonSelectable }),
           disableGutters ? 'p-0' : 'px-4 py-[0.375rem]',
-          nonSelectable && '',
-          disabled && 'opacity-100 pointer-events-non',
           'min-w-[9rem] w-auto min-h-[unset] md:min-h-0 relative cursor-pointer',
           'transition-colors duration-150 ease-in-out',
           'overflow-hidden whitespace-normal text-left no-underline',
           'flex items-center justify-start',
           'outline-none appearance-none',
-          className
+          className,
+          disabled && 'text-gray-600 opacity-100 pointer-events-none'
         )}
         aria-disabled={Boolean(disabled)}
         disabled={disabled}

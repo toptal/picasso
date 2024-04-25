@@ -6,7 +6,7 @@ exports[`Menu renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm"
+      class="relative list-none outline-none shadow-1 py-2 px-0 m-0 rounded-sm"
       role="menu"
       tabindex="-1"
     >

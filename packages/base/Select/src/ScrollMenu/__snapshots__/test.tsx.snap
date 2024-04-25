@@ -6,7 +6,7 @@ exports[`ScrollMenu renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="relative list-none outline-none shadow-2 py-2 px-0 m-0 rounded-sm bg-white"
+      class="relative list-none outline-none shadow-1 py-2 px-0 m-0 rounded-sm bg-white"
       role="menu"
       tabindex="-1"
     >
@@ -14,7 +14,7 @@ exports[`ScrollMenu renders 1`] = `
         tabindex="0"
       >
         <div
-          class="overflow-y max-h max-[585px]:max-h-[calc(50vh md:max-h-[calc(50vh"
+          class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-xl:max-h-[calc(50vh"
         >
           <li
             aria-disabled="false"
