@@ -1,23 +1,21 @@
-import type { ChangeEvent, ComponentProps } from 'react'
-import React, { forwardRef, useRef, useMemo } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import type { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core'
-import { Slider as MUISlider } from '@material-ui/core'
-import cx from 'classnames'
+import type { ComponentProps } from 'react'
+import React, { forwardRef, useRef } from 'react'
+// import type { Theme } from '@material-ui/core/styles'
+// import { makeStyles } from '@material-ui/core/styles'
+// import { Slider as MUISlider } from '@material-ui/core'
+import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs } from '@toptal/picasso-utils'
+import { twMerge } from 'tailwind-merge'
 
-import type { ValueLabelProps } from '../SliderValueLabel'
-import { SliderValueLabel } from '../SliderValueLabel'
+import { type ValueLabelProps } from '../SliderValueLabel'
 import { SliderContextProvider } from './SliderContext'
-import styles from './styles'
 
-const useStyles = makeStyles<Theme>(styles)
+// const useStyles = makeStyles<Theme>(styles)
 
 type Value = number | number[]
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
-export interface Props extends ComponentProps<typeof MUISlider> {
+export interface Props extends ComponentProps<typeof MUIBaseSlider> {
   /** Minimum slider value */
   min?: number
   /** Maximum slider value */
@@ -48,29 +46,29 @@ export interface Props extends ComponentProps<typeof MUISlider> {
   /** Disable the portal behavior of the tooltip. The children stay within it's parent */
   disablePortal?: boolean
   /** Callback invoked when slider changes its state. */
-  onChange?: (event: ChangeEvent<{}>, value: Value) => void
+  onChange?: (event: Event, value: Value, activeThumb: number) => void
   /** Hide thumb when value is undefined or null. Works only when the component is controlled. */
   hideThumbOnEmpty?: boolean
   /** Disable track highlight. */
   disableTrackHighlight?: boolean
 }
 
-const createDefaultValueLabelComponent = (
-  tooltip?: ValueLabelDisplay,
-  disablePortal?: boolean,
-  compact?: boolean
-) => {
-  const ValueLableComponent = (props: ValueLabelProps) => (
-    <SliderValueLabel
-      {...props}
-      tooltip={tooltip}
-      disablePortal={disablePortal}
-      compact={compact}
-    />
-  )
+// const createDefaultValueLabelComponent = (
+//   tooltip?: ValueLabelDisplay,
+//   disablePortal?: boolean,
+//   compact?: boolean
+// ) => {
+//   const ValueLableComponent = (props: ValueLabelProps) => (
+//     <SliderValueLabel
+//       {...props}
+//       tooltip={tooltip}
+//       disablePortal={disablePortal}
+//       compact={compact}
+//     />
+//   )
 
-  return ValueLableComponent
-}
+//   return ValueLableComponent
+// }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   props,
@@ -82,44 +80,44 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     marks,
     value,
     defaultValue = 0,
-    tooltip,
+    // tooltip,
     tooltipFormat,
-    compact,
-    TooltipComponent: UserDefinedTooltip,
+    // compact,
+    // TooltipComponent: UserDefinedTooltip,
     step,
     disabled,
-    disablePortal,
+    // disablePortal,
     onChange,
     hideThumbOnEmpty,
     disableTrackHighlight,
     ...rest
   } = props
-  const {
-    wrapper,
-    markTrack,
-    hideThumb,
-    markInactive,
-    unmarkTrack,
-    ...classes
-  } = useStyles()
+  // const {
+  //   wrapper,
+  //   markTrack,
+  //   hideThumb,
+  //   markInactive,
+  //   unmarkTrack,
+  //   ...classes
+  // } = useStyles()
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
 
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
-  const DefaultValueLabelComponent = useMemo(
-    () => createDefaultValueLabelComponent(tooltip, disablePortal, compact),
-    [tooltip, disablePortal, compact]
-  )
+  // const DefaultValueLabelComponent = useMemo(
+  //   () => createDefaultValueLabelComponent(tooltip, disablePortal, compact),
+  //   [tooltip, disablePortal, compact]
+  // )
 
   // From Workaround for https://github.com/mui-org/material-ui/issues/21889
-  const ValueLabelComponent = (UserDefinedTooltip ||
-    DefaultValueLabelComponent) as unknown as React.ElementType<MUIValueLabelProps>
+  // const ValueLabelComponent = (UserDefinedTooltip ||
+  //   DefaultValueLabelComponent) as unknown as React.ElementType<ValueLabelProps>
 
   return (
     <SliderContextProvider>
-      <div className={wrapper}>
-        <MUISlider
+      <div className={'my-[6px] mx-0'}>
+        <MUIBaseSlider
           {...rest}
           ref={sliderRef}
           defaultValue={defaultValue}
@@ -129,22 +127,51 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           step={step}
           marks={marks}
           disabled={disabled}
-          classes={{
-            ...classes,
-            track: cx(classes.track, {
-              [markTrack]: marks,
-              [unmarkTrack]: disableTrackHighlight,
-            }),
-            thumb: cx(classes.thumb, {
-              [hideThumb]: isThumbHidden,
-            }),
-            markActive: cx(classes.markActive, {
-              [markInactive]: isThumbHidden || disableTrackHighlight,
-            }),
+          // classes={{
+          //   ...classes,
+          //   track: cx(classes.track, {
+          //     [markTrack]: marks,
+          //     [unmarkTrack]: disableTrackHighlight,
+          //   }),
+          //   thumb: cx(classes.thumb, {
+          //     [hideThumb]: isThumbHidden,
+          //   }),
+          //   markActive: cx(classes.markActive, {
+          //     [markInactive]: isThumbHidden || disableTrackHighlight,
+          //   }),
+          // }}
+          slotProps={{
+            root: {
+              className: 'block py-[6px] -my-[6px]',
+            },
+            rail: {
+              className:
+                'flex w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
+            },
+            thumb: {
+              className: twMerge(
+                'flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue-500 border-[2px] border-solid border-white -mt-[7px] outline-0 absolute -ml-[6px] transition-shadow cursor-pointer',
+                isThumbHidden && 'hidden'
+              ),
+            },
+            track: {
+              className: twMerge(
+                'block absolute h-[1px] bg-blue-500',
+                disableTrackHighlight && 'bg-gray-200'
+              ),
+            },
+            mark: {
+              className: twMerge(
+                'absolute bg-gray-500 w-[6px] h-[6px] rounded-[50%] border-[2px] border-solid border-white opacity-100 top-[1.5px] -translate-x-2/4 box-content'
+              ),
+            },
           }}
-          ValueLabelComponent={ValueLabelComponent}
+          // slots={
+          //   {valueLabel: ValueLabelComponent}
+          // }
+          // ValueLabelComponent={ValueLabelComponent}
+          // valueLabelDisplay={tooltip}
           valueLabelFormat={tooltipFormat}
-          valueLabelDisplay={tooltip}
           onChange={onChange}
         />
       </div>

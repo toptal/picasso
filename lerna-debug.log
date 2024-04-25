@@ -1,0 +1,13 @@
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   scope: '@toptal/picasso-codemod',
+0 silly argv   'include-dependents': true,
+0 silly argv   includeDependents: true,
+0 silly argv   lernaVersion: '8.1.2',
+0 silly argv   '$0': 'node_modules/.bin/lerna',
+0 silly argv   script: 'build:package'
+0 silly argv }
+1 notice cli v8.1.2
+2 verbose packageConfigs Explicit "packages" configuration found in lerna.json. Resolving packages using the configured glob(s): ["packages/*","packages/base/*"]
+3 verbose rootPath /home/adrianc81/FX/Picasso
+4 error
