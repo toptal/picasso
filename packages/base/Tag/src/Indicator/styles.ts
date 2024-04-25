@@ -1,35 +1,12 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import type { ColorType } from './Indicator'
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    root: {
-      width: '0.5rem',
-      height: '0.5rem',
-      borderRadius: '50%',
-    },
-    red: {
-      background: palette.red.main,
-    },
-    yellow: {
-      background: palette.yellow.main,
-    },
-    blue: {
-      background: palette.blue.main,
-    },
-    'blue-darker': {
-      background: palette.blue.darker,
-    },
-    green: {
-      background: palette.green.dark,
-    },
-    'light-grey': {
-      background: palette.grey.light2,
-    },
-    'grey-darker': {
-      background: palette.grey.darker,
-    },
-    'light-blue': {
-      background: palette.blue.light,
-    },
-  })
+export const colorClasses: Record<ColorType, string> = {
+  blue: 'bg-blue-500',
+  green: 'bg-green-600',
+  yellow: 'bg-yellow-500',
+  red: 'bg-red-500',
+  'light-grey': 'bg-gray-400',
+  'blue-darker': 'bg-blue-700',
+  'grey-darker': 'bg-graphite-800',
+  'light-blue': 'bg-blue-400',
+}

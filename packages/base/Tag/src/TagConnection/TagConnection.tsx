@@ -1,10 +1,6 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Link16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from '../Tag/styles'
 
 export type Props = {
   /**
@@ -13,14 +9,10 @@ export type Props = {
   children: string
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
-
 const TagConnection = ({ children }: Props) => {
-  const classes = useStyles()
-
   return (
     <Typography
-      className={classes.connection}
+      className='inline-flex items-center gap-[5px] text-gray-600 group-aria-disabled:text-gray-500'
       color='inherit'
       as='span'
       size='xsmall'

@@ -1,10 +1,9 @@
-import cx from 'classnames'
 import type { ReactElement, MouseEventHandler } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
 import { Tag } from '../Tag'
-import { useStyles } from '../Tag/Tag'
 
 type ClickType = MouseEventHandler<HTMLElement>
 
@@ -24,11 +23,18 @@ export interface Props extends BaseProps, TextLabelProps {
 }
 
 const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
-  { checked = false, children, icon, onClick, onChange, className, ...rest },
+  {
+    checked = false,
+    children,
+    icon,
+    onClick,
+    onChange,
+    className,
+    hovered,
+    ...rest
+  },
   ref
 ) {
-  const classes = useStyles()
-
   const handleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     onChange?.(!checked)
     onClick?.(e)
@@ -38,9 +44,15 @@ const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
 
   return (
     <Tag
-      className={cx(className, classes.checkable)}
+      className={twMerge(
+        `hover:border-graphite-700 transition-all duration-[350ms] ease-in-out cursor-pointer`,
+        className,
+        checked ? 'hover:border-red-500 hover:text-red-500' : '',
+        hovered ? 'border-graphite-700' : '',
+        checked && hovered ? 'border-red-500 text-red-500' : ''
+      )}
       icon={icon}
-      onClick={handleClick}
+      onClick={onChange || onClick ? handleClick : undefined}
       ref={ref}
       variant={variant}
       {...rest}

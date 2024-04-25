@@ -19,22 +19,21 @@ exports[`TagSelector disabled render 1`] = `
         >
           <div
             aria-disabled="true"
-            class="MuiChip-root PicassoLabel-root PicassoLabel-disabled MuiChip-deletable"
+            class="transition-none text-lg border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-gray border-gray pointer-events"
             role="button"
-            tabindex="0"
           >
             <span
-              class="MuiChip-label PicassoLabel-label"
+              class="flex gap-2 px-3 overflow-hidden"
             >
               <span
-                class="PicassoLabel-innerLabel"
+                class="text-xxs min-w font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap"
               >
                 Afghanistan
               </span>
             </span>
             <span
               aria-label="delete icon"
-              class="PicassoLabel-deleteIcon MuiChip-deleteIcon"
+              class="w-min h-min flex items-center cursor-pointer ml-[-0.5rem] mr-2"
               role="button"
             >
               <svg
@@ -100,22 +99,21 @@ exports[`TagSelector preselected value 1`] = `
             class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="MuiChip-root PicassoLabel-root MuiChip-deletable"
+              class="transition-none text-lg border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
               role="button"
-              tabindex="0"
             >
               <span
-                class="MuiChip-label PicassoLabel-label"
+                class="flex gap-2 px-3 overflow-hidden"
               >
                 <span
-                  class="PicassoLabel-innerLabel"
+                  class="text-xxs min-w font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap"
                 >
                   Afghanistan
                 </span>
               </span>
               <span
                 aria-label="delete icon"
-                class="PicassoLabel-deleteIcon MuiChip-deleteIcon"
+                class="w-min h-min flex items-center cursor-pointer ml-[-0.5rem] mr-2"
                 role="button"
               >
                 <svg

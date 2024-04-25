@@ -6,16 +6,12 @@ exports[`TagRectangular renders rectangular Tag 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoTagRectangular-root PicassoTagRectangular-light-grey"
+      class="transition-none rounded-sm font-semibold h-4 flex content-center align-middle flex-wrap bg-gray"
     >
       <span
-        class="MuiChip-label PicassoTagRectangular-label"
+        class="mx-1 w-max text-2xs text-graphite"
       >
-        <span
-          class="PicassoTagRectangular-innerLabel PicassoTagRectangular-innerLabelDarkText"
-        >
-          Reactangular Tag
-        </span>
+        Reactangular Tag
       </span>
     </div>
   </div>
