@@ -187,7 +187,7 @@
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
     "yarn-deduplicate": "^6.0.2",
-    "zx": "^7.2.3"
+    "zx": "^8.0.2"
   },
   "engines": {
     "node": ">=18"
