@@ -63,8 +63,8 @@ type Props = {
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
-  /** Defines custom Run Query button children that allows to change button text or display custom logic. */
-  runQueryChildren?: ReactNode
+  /** Defines custom Run Query button content that allows to change button text or display custom logic. */
+  runQueryButtonContent?: ReactNode
   /** Adds a customized footer at the bottom of the query builder. */
   footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
@@ -94,7 +94,7 @@ const QueryBuilder = ({
   enableDragAndDrop = false,
   resetOnFieldChange = true,
   padded = SPACING_6,
-  runQueryChildren,
+  runQueryButtonContent,
   onQueryReset,
   testIds,
 }: Props) => {
@@ -237,7 +237,7 @@ const QueryBuilder = ({
             <RunQueryButton
               onClick={handleSubmit}
               loading={loading}
-              children={runQueryChildren}
+              children={runQueryButtonContent}
               runQueryTestId={testIds?.runQueryButton}
             />
           </Container>

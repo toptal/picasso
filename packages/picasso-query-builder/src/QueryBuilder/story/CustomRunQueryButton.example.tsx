@@ -67,7 +67,7 @@ const Example = () => {
       fields={fields}
       query={query}
       onQueryChange={handleQueryChange}
-      runQueryChildren={
+      runQueryButtonContent={
         <>
           Custom Text{' '}
           {renderTotalCount({ totalCount: 15, totalCountLoading: false })}
