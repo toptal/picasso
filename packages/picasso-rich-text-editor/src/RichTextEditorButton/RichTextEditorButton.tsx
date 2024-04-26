@@ -22,7 +22,7 @@ const RichTextEditorButton = (props: Props) => {
       icon={icon}
       style={style}
       className={twMerge(
-        'rounded-sm [&:not(:first-of-type)]:ml-2',
+        'rounded-sm [&+&]:ml-2',
         active && 'bg-graphite-700 [&:not(:hover)_svg]:fill-white',
         className
       )}

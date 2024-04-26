@@ -24,7 +24,7 @@ export const createCoreClassNames = ({
     'ease-out',
     'shrink-0',
     'outline-none',
-    '[&:not(:first-of-type)]:ml-4',
+    '[&+&]:ml-4',
   ]
 
   if (!disabled && !loading) {

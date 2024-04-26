@@ -59,6 +59,7 @@ const getIcon = ({ icon }: { icon?: ReactElement }) => {
   }
 
   return React.cloneElement(icon, {
+    className: twMerge('text-[1.2em] flex-1', icon.props.className),
     key: 'button-icon',
   })
 }
