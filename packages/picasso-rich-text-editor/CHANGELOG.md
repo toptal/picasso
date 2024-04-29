@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 12.0.3
+
+### Patch Changes
+
+- [#4268](https://github.com/toptal/picasso/pull/4268) [`ae3cd4ffe45a374eeb73bb7b64ff3a1a567f143b`](https://github.com/toptal/picasso/commit/ae3cd4ffe45a374eeb73bb7b64ff3a1a567f143b) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump `@emoji-mart/data` dependency
+
 ## 12.0.2
 
 ### Patch Changes
