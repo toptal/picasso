@@ -35,7 +35,7 @@
     "typescript": "~4.7.0"
   },
   "dependencies": {
-    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/data": "^1.2.1",
     "@emoji-mart/react": "^1.1.1",
     "@lexical/html": "0.11.2",
     "@lexical/react": "0.11.2",
