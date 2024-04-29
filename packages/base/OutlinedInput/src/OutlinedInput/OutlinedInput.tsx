@@ -1,6 +1,5 @@
 import type {
   ChangeEventHandler,
-  ReactType,
   ReactNode,
   InputHTMLAttributes,
   MouseEvent,
@@ -10,13 +9,15 @@ import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
-import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
 import type { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
-import { InputAdornment , InputValidIconAdornment } from '@toptal/picasso-input-adornment'
+import {
+  InputAdornment,
+  InputValidIconAdornment,
+} from '@toptal/picasso-input-adornment'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
-import { noop , usePropDeprecationWarning } from '@toptal/picasso-utils'
+import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
 
 import styles from './styles'
 
@@ -29,20 +30,23 @@ type ValueType =
 
 export type Status = 'error' | 'success' | 'default'
 
-export type BaseInputProps = InputBaseComponentProps & {
+export type BaseInputProps = React.HTMLAttributes<
+  HTMLInputElement | HTMLTextAreaElement
+> & {
   variant?: 'dark' | 'light'
 }
 
-export interface Props
-  extends StandardProps,
+export interface Props<
+  INPUT_COMPONENT extends React.ElementType<BaseInputProps> = React.ElementType<BaseInputProps>
+> extends StandardProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'defaultValue' | 'size' | 'color'
     > {
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
-  inputComponent?: ReactType<InputBaseComponentProps>
-  inputProps?: BaseInputProps
+  inputComponent?: INPUT_COMPONENT
+  inputProps?: React.ComponentProps<INPUT_COMPONENT>
   defaultValue?: ValueType
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
@@ -119,112 +123,118 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
-  props,
-  ref
-) {
-  const {
-    className,
-    style,
-    multiline,
-    autoFocus,
-    rows,
-    rowsMax,
-    width = 'auto',
-    inputComponent,
-    inputProps,
-    defaultValue,
-    value,
-    type,
-    error,
-    status,
-    startAdornment,
-    endAdornment: userDefinedEndAdornment,
-    onChange,
-    size = 'medium',
-    enableReset,
-    disabled,
-    onResetClick = noop,
-    inputRef,
-    testIds,
-    ...rest
-  } = props
+type TypedInputProps = {
+  displayName?: string
+  defaultProps?: Partial<Props>
+  <C extends React.ElementType<BaseInputProps>>(props: Props<C>): JSX.Element
+}
 
-  // TODO: [FX-4715]
-  usePropDeprecationWarning({
-    props,
-    name: 'error',
-    componentName: 'OutlinedInput',
-    description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-  })
+const OutlinedInput: TypedInputProps = forwardRef<HTMLElement, Props>(
+  function OutlinedInput(props, ref) {
+    const {
+      className,
+      style,
+      multiline,
+      autoFocus,
+      rows,
+      rowsMax,
+      width = 'auto',
+      inputComponent,
+      inputProps,
+      defaultValue,
+      value,
+      type,
+      error,
+      status,
+      startAdornment,
+      endAdornment: userDefinedEndAdornment,
+      onChange,
+      size = 'medium',
+      enableReset,
+      disabled,
+      onResetClick = noop,
+      inputRef,
+      testIds,
+      ...rest
+    } = props
 
-  const classes = useStyles(props)
-  const isDark = inputProps?.variant === 'dark'
-  const shouldShowReset = enableReset && !disabled
-  const hasEndAdornment = status === 'success' || shouldShowReset
-  const endAdornment = hasEndAdornment ? (
-    <>
-      {shouldShowReset && (
-        <ResetButton
-          classes={classes}
-          hasValue={Boolean(value)}
-          onClick={onResetClick}
-          testIds={testIds}
-        />
-      )}
-      {!multiline && status === 'success' && (
-        <InputValidIconAdornment data-testid={testIds?.validIcon} />
-      )}
-      {userDefinedEndAdornment}
-    </>
-  ) : (
-    userDefinedEndAdornment
-  )
+    // TODO: [FX-4715]
+    usePropDeprecationWarning({
+      props,
+      name: 'error',
+      componentName: 'OutlinedInput',
+      description:
+        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
+    })
 
-  return (
-    <MUIOutlinedInput
-      {...rest}
-      classes={{
-        root: cx(
-          classes.root,
-          classes[`root${capitalize(width)}`],
-          classes[`root${capitalize(size)}`],
-          { [`${classes.hidden}`]: type === 'hidden' },
-          { [classes.rootDark]: isDark }
-        ),
-        input: cx(classes.input, classes[`input${capitalize(size)}`], {
-          [classes.inputDark]: isDark,
-        }),
-        inputMultiline: classes.inputMultiline,
-        notchedOutline: cx(classes.notchedOutline, {
-          [classes.notchedOutlineDark]: isDark,
-        }),
-        focused: classes.focused,
-      }}
-      className={className}
-      style={style}
-      labelWidth={0}
-      fullWidth={width === 'full'}
-      error={Boolean(status === 'error' || error)}
-      inputComponent={inputComponent}
-      inputProps={inputProps}
-      ref={ref}
-      inputRef={inputRef}
-      defaultValue={defaultValue}
-      value={value}
-      type={type}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-      multiline={multiline}
-      autoFocus={autoFocus}
-      minRows={rows}
-      maxRows={rowsMax}
-      onChange={onChange}
-      disabled={disabled}
-    />
-  )
-})
+    const classes = useStyles(props)
+    const isDark =
+      inputProps && 'variant' in inputProps && inputProps?.variant === 'dark'
+    const shouldShowReset = enableReset && !disabled
+    const hasEndAdornment = status === 'success' || shouldShowReset
+    const endAdornment = hasEndAdornment ? (
+      <>
+        {shouldShowReset && (
+          <ResetButton
+            classes={classes}
+            hasValue={Boolean(value)}
+            onClick={onResetClick}
+            testIds={testIds}
+          />
+        )}
+        {!multiline && status === 'success' && (
+          <InputValidIconAdornment data-testid={testIds?.validIcon} />
+        )}
+        {userDefinedEndAdornment}
+      </>
+    ) : (
+      userDefinedEndAdornment
+    )
+
+    return (
+      <MUIOutlinedInput
+        {...rest}
+        classes={{
+          root: cx(
+            classes.root,
+            classes[`root${capitalize(width)}`],
+            classes[`root${capitalize(size)}`],
+            { [`${classes.hidden}`]: type === 'hidden' },
+            { [classes.rootDark]: isDark }
+          ),
+          input: cx(classes.input, classes[`input${capitalize(size)}`], {
+            [classes.inputDark]: isDark,
+          }),
+          inputMultiline: classes.inputMultiline,
+          notchedOutline: cx(classes.notchedOutline, {
+            [classes.notchedOutlineDark]: isDark,
+          }),
+          focused: classes.focused,
+        }}
+        className={className}
+        style={style}
+        labelWidth={0}
+        fullWidth={width === 'full'}
+        error={Boolean(status === 'error' || error)}
+        inputComponent={inputComponent}
+        inputProps={inputProps}
+        ref={ref}
+        inputRef={inputRef}
+        defaultValue={defaultValue}
+        value={value}
+        type={type}
+        startAdornment={startAdornment}
+        endAdornment={endAdornment}
+        multiline={multiline}
+        autoFocus={autoFocus}
+        minRows={rows}
+        maxRows={rowsMax}
+        onChange={onChange}
+        disabled={disabled}
+      />
+    )
+  }
+) as TypedInputProps
 
 OutlinedInput.defaultProps = {
   width: 'auto',
