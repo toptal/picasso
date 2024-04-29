@@ -60,6 +60,10 @@ export const TimePicker = (props: Props) => {
     error,
     status,
     highlight,
+
+    /* eslint-disable @typescript-eslint/no-unused-vars -- We are picking these props out of rest, so we could pass it further */
+    size,
+    /* eslint-enable */
     ...rest
   } = props
 

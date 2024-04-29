@@ -30,9 +30,9 @@ type ValueType =
 
 export type Status = 'error' | 'success' | 'default'
 
-export type BaseInputProps = React.HTMLAttributes<
-  HTMLInputElement | HTMLTextAreaElement
-> & {
+export interface BaseInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  'data-testid'?: string
   variant?: 'dark' | 'light'
 }
 
@@ -126,7 +126,9 @@ const ResetButton = ({
 type TypedInputProps = {
   displayName?: string
   defaultProps?: Partial<Props>
-  <C extends React.ElementType<BaseInputProps>>(props: Props<C>): JSX.Element
+  <C extends React.ElementType<BaseInputProps>>(
+    props: Props<C> & React.RefAttributes<HTMLElement>
+  ): JSX.Element | null
 }
 
 const OutlinedInput: TypedInputProps = forwardRef<HTMLElement, Props>(
@@ -234,7 +236,7 @@ const OutlinedInput: TypedInputProps = forwardRef<HTMLElement, Props>(
       />
     )
   }
-) as TypedInputProps
+)
 
 OutlinedInput.defaultProps = {
   width: 'auto',
