@@ -9,7 +9,7 @@ exports[`ButtonGroup render 1`] = `
       class="flex justify-start [&>[data-component-type="button"]:hover]:z [&>[data-component-type="button"]:first-child:not(:last-child)]:rounded-r [&>[data-component-type="button"]:first-child:not(:last-child)]:ml [&>[data-component-type="button"]:not(:first-child):not(:last-child)]:rounded [&>[data-component-type="button"]:not(:first-child):not(:last-child)]:ml-[ [&>[data-component-type="button"]:last-child:not(:first-child)]:rounded-l [&>[data-component-type="button"]:last-child:not(:first-child)]:ml-[ [&_:first-child:not(:last-child)_[data-component-type="button"]]:rounded-r [&_:first-child:not(:last-child)_[data-component-type="button"]]:ml [&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:rounded [&_:not(:first-child):not(:last-child)_[data-component-type="button"]]:ml-[ [&_:last-child:not(:first-child)_[data-component-type="button"]]:rounded-l [&_:last-child:not(:first-child)_[data-component-type="button"]]:ml-["
     >
       <button
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border bg-white min-w h-8 py-0 px-4 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] visited:text-black border-solid active:bg-graphite active:border-graphite active:text-white hover:border-black border-gray text-black"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border bg-white min-w h-8 py-0 px-4 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] visited:text-black border-solid active:bg-graphite active:border-graphite active:text-white hover:border-black border-gray text-black"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -21,7 +21,7 @@ exports[`ButtonGroup render 1`] = `
         </span>
       </button>
       <button
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border min-w h-8 py-0 px-4 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] z-[1] visited:text-black border-solid active:bg-graphite active:border-graphite active:text-white hover:border-black bg-graphite border-graphite text-white shadow-none"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border min-w h-8 py-0 px-4 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] z-[1] visited:text-black border-solid active:bg-graphite active:border-graphite active:text-white hover:border-black bg-graphite border-graphite text-white shadow-none"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -33,7 +33,7 @@ exports[`ButtonGroup render 1`] = `
         </span>
       </button>
       <button
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border bg-white min-w h-8 py-0 px-4 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] visited:text-black border-solid active:bg-graphite active:border-graphite active:text-white hover:border-black border-gray text-black"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border bg-white min-w h-8 py-0 px-4 transition-[color,background] active:z-[1] hover:z-[1] focus-visible:z-[1] disabled:z-[1] visited:text-black border-solid active:bg-graphite active:border-graphite active:text-white hover:border-black border-gray text-black"
         data-component-type="button"
         tabindex="0"
         type="button"

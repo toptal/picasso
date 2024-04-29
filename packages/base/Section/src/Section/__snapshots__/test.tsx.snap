@@ -17,7 +17,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
           data-testid="actions"
         >
           <button
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
             data-component-type="button"
             data-testid="collapse"
             tabindex="0"
@@ -27,7 +27,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root Rotate180-transition"
+                class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -61,7 +61,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
           data-testid="actions"
         >
           <button
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
             data-component-type="button"
             data-testid="collapse"
             tabindex="0"
@@ -71,7 +71,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
               class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root Rotate180-transition Rotate180-rotate180"
+                class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition Rotate180-rotate180"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >

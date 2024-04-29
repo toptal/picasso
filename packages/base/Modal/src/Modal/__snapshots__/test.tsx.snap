@@ -54,7 +54,7 @@ exports[`Modal renders 1`] = `
           class="PicassoModalAction-root"
         >
           <button
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
             data-component-type="button"
             tabindex="0"
             type="button"
@@ -66,7 +66,7 @@ exports[`Modal renders 1`] = `
             </span>
           </button>
           <button
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
             data-component-type="button"
             tabindex="0"
             type="button"
@@ -79,7 +79,7 @@ exports[`Modal renders 1`] = `
           </button>
         </div>
         <button
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent PicassoModal-closeButton"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent absolute right-[2em] top-[2em]"
           data-component-type="button"
           data-testid="close-modal"
           tabindex="0"
@@ -117,7 +117,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
     >
       <button
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -156,7 +156,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
               Modal content
             </p>
             <button
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
               data-component-type="button"
               tabindex="0"
               type="button"
@@ -186,7 +186,7 @@ exports[`Modal useModal opens and closes modal 2`] = `
       class="Picasso-root"
     >
       <button
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -210,7 +210,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
     >
       <button
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -223,7 +223,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       </button>
       <button
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         tabindex="0"
         type="button"

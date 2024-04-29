@@ -9,7 +9,7 @@ exports[`Pagination renders 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
     >
       <button
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -22,7 +22,7 @@ exports[`Pagination renders 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black bg-white border-gray h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -44,7 +44,7 @@ exports[`Pagination renders 1`] = `
       </div>
       <button
         aria-current="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black bg-white border-gray h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -57,7 +57,7 @@ exports[`Pagination renders 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black bg-white border-gray h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -70,7 +70,7 @@ exports[`Pagination renders 1`] = `
       </button>
       <button
         aria-current="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] shadow-none border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black border-black bg-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPaginationButton-active PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] shadow-none border border-solid hover:border-black visited:text-black h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white bg-graphite border-graphite text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -83,7 +83,7 @@ exports[`Pagination renders 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black bg-white border-gray h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -96,7 +96,7 @@ exports[`Pagination renders 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black bg-white border-gray h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -118,7 +118,7 @@ exports[`Pagination renders 1`] = `
       </div>
       <button
         aria-current="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black bg-white border-gray h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -130,7 +130,7 @@ exports[`Pagination renders 1`] = `
         </span>
       </button>
       <button
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 PicassoPagination-button"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-6 py-0 px-3 [&+&]:ml-2"
         data-component-type="button"
         tabindex="0"
         type="button"
@@ -155,7 +155,7 @@ exports[`Pagination renders disabled 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
     >
       <button
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -169,7 +169,7 @@ exports[`Pagination renders disabled 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid border-gray bg-white h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -192,7 +192,7 @@ exports[`Pagination renders disabled 1`] = `
       </div>
       <button
         aria-current="false"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid border-gray bg-white h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -206,7 +206,7 @@ exports[`Pagination renders disabled 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid border-gray bg-white h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -220,7 +220,7 @@ exports[`Pagination renders disabled 1`] = `
       </button>
       <button
         aria-current="true"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPaginationButton-active PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white bg-graphite border-graphite disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -234,7 +234,7 @@ exports[`Pagination renders disabled 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid border-gray bg-white h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -248,7 +248,7 @@ exports[`Pagination renders disabled 1`] = `
       </button>
       <button
         aria-current="false"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid border-gray bg-white h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -271,7 +271,7 @@ exports[`Pagination renders disabled 1`] = `
       </div>
       <button
         aria-current="false"
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPaginationButton-root PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid border-gray bg-white h-6 py-0 min-w px-[0.3em] active:bg-graphite active:border-graphite active:text-white disabled:text-graphite text-graphite [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
@@ -284,7 +284,7 @@ exports[`Pagination renders disabled 1`] = `
         </span>
       </button>
       <button
-        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 PicassoPagination-button"
+        class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none cursor-default pointer-events no-underline rounded-sm shadow-none border border-solid text-gray border-gray bg-white min-w h-6 py-0 px-3 [&+&]:ml-2"
         data-component-type="button"
         disabled=""
         tabindex="-1"
