@@ -14,7 +14,7 @@ const Example = () => {
       <Grid.Item sm={6}>
         <Grid alignItems='center'>
           <Grid.Item sm>
-            <Slider value={value} onChange={handleChange} max={100} compact />
+            <Slider value={value} onChange={handleChange} max={100} />
           </Grid.Item>
           <Grid.Item>
             <Typography size='medium'>{value}</Typography>

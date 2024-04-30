@@ -16,7 +16,7 @@ const Example = () => {
           Display persistently
         </Typography>
         <Container top={SPACING_8}>
-          <Slider tooltip='on' compact />
+          <Slider tooltip='on' />
         </Container>
       </Container>
       <Container top={SPACING_8}>
@@ -24,7 +24,7 @@ const Example = () => {
           Display when the thumb is hovered or focused
         </Typography>
         <Container top={SPACING_8}>
-          <Slider tooltip='auto' compact />
+          <Slider tooltip='auto' />
         </Container>
       </Container>
       <Container top={SPACING_8}>
@@ -32,13 +32,7 @@ const Example = () => {
           Custom rendered label
         </Typography>
         <Container top={SPACING_10}>
-          <Slider
-            min={0}
-            max={23}
-            tooltip='on'
-            tooltipFormat={formatLabel}
-            compact
-          />
+          <Slider min={0} max={23} tooltip='on' tooltipFormat={formatLabel} />
         </Container>
       </Container>
     </Container>
