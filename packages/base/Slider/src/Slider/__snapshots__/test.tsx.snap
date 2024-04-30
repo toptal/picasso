@@ -3,33 +3,42 @@
 exports[`Slider renders 1`] = `
 <div>
   <div
-    class="makeStyles-wrapper"
+    class="my-[6px] mx-0"
   >
     <span
-      class="MuiSlider-root makeStyles-root MuiSlider-colorPrimary"
+      class="base-Slider block relative py-[6px] -my"
     >
       <span
-        class="MuiSlider-rail makeStyles-rail"
+        class="base-Slider flex w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
       />
       <span
-        class="MuiSlider-track makeStyles-track"
+        class="base-Slider block absolute h-[1px] bg-blue"
         style="left: 0%; width: 0%;"
       />
-      <input
-        type="hidden"
-        value="0"
-      />
       <span
-        aria-orientation="horizontal"
-        aria-valuemax="100"
-        aria-valuemin="0"
-        aria-valuenow="0"
-        class="MuiSlider-thumb makeStyles-thumb MuiSlider-thumbColorPrimary"
+        class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt outline-0 absolute -ml transition-shadow cursor-pointer"
         data-index="0"
-        role="slider"
         style="left: 0%;"
-        tabindex="0"
-      />
+      >
+        <input
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="0"
+          data-index="0"
+          max="100"
+          min="0"
+          step="1"
+          style="border: 0px; height: 100%; margin: -1px; overflow: hidden; padding: 0px; position: absolute; white-space: nowrap; width: 100%; direction: ltr;"
+          type="range"
+          value="0"
+        />
+        <span
+          class="absolute -top will-change transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden"
+        >
+          0
+        </span>
+      </span>
     </span>
   </div>
 </div>
@@ -38,33 +47,42 @@ exports[`Slider renders 1`] = `
 exports[`Slider with initial value 1`] = `
 <div>
   <div
-    class="makeStyles-wrapper"
+    class="my-[6px] mx-0"
   >
     <span
-      class="MuiSlider-root makeStyles-root MuiSlider-colorPrimary"
+      class="base-Slider block relative py-[6px] -my"
     >
       <span
-        class="MuiSlider-rail makeStyles-rail"
+        class="base-Slider flex w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
       />
       <span
-        class="MuiSlider-track makeStyles-track"
+        class="base-Slider block absolute h-[1px] bg-blue"
         style="left: 0%; width: 4%;"
       />
-      <input
-        type="hidden"
-        value="4"
-      />
       <span
-        aria-orientation="horizontal"
-        aria-valuemax="100"
-        aria-valuemin="0"
-        aria-valuenow="4"
-        class="MuiSlider-thumb makeStyles-thumb MuiSlider-thumbColorPrimary"
+        class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt outline-0 absolute -ml transition-shadow cursor-pointer"
         data-index="0"
-        role="slider"
         style="left: 4%;"
-        tabindex="0"
-      />
+      >
+        <input
+          aria-orientation="horizontal"
+          aria-valuemax="100"
+          aria-valuemin="0"
+          aria-valuenow="4"
+          data-index="0"
+          max="100"
+          min="0"
+          step="1"
+          style="border: 0px; height: 100%; margin: -1px; overflow: hidden; padding: 0px; position: absolute; white-space: nowrap; width: 100%; direction: ltr;"
+          type="range"
+          value="4"
+        />
+        <span
+          class="absolute -top will-change transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden"
+        >
+          4
+        </span>
+      </span>
     </span>
   </div>
 </div>
