@@ -1,8 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import type { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core/Slider'
-import { Tooltip } from '@toptal/picasso-tooltip'
-
-import { useSliderContext } from '../Slider'
+import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
+import { twJoin } from 'tailwind-merge'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
@@ -12,63 +11,86 @@ export type ValueLabelProps = MUIValueLabelProps & {
   index: number
 }
 
-export interface Props extends ValueLabelProps {
+export interface Props extends SliderValueLabelSlotProps {
   tooltip?: ValueLabelDisplay
   disablePortal?: boolean
   compact?: boolean
-  valueLabelDisplay: ValueLabelDisplay
-  index: number
 }
 
-const SliderValueLabel = ({
-  tooltip,
-  disablePortal,
-  compact,
-  children,
-  open,
-  value,
-  valueLabelDisplay,
-  index,
-}: Props) => {
-  const thumbRef = useRef<HTMLDivElement>(null)
-  const { registerValueLabel, hasTooltipOverlow } = useSliderContext()
-  const isTooltipAlwaysVisible = tooltip === 'on'
-
-  if (valueLabelDisplay === 'off') {
-    return children
-  }
-
-  const getPlacement = () => {
-    if (hasTooltipOverlow) {
-      return index === 0 ? 'top-end' : 'top-start'
-    }
-
-    return 'top'
-  }
-
-  const handleTooltipRef = (tooltipElement: HTMLDivElement) => {
-    // At this moment, both thumb and tooltip refs are set so we can register them in the context
-    const thumbElement = thumbRef.current
-
-    if (tooltipElement && thumbElement) {
-      registerValueLabel(index, tooltipElement, thumbElement)
-    }
-  }
+const flexCommonStyles = 'justify-center items-center'
+const tooltipStates: Record<ValueLabelDisplay, string> = {
+  off: 'hidden',
+  auto: twJoin('hidden group-hover/thumb:flex', flexCommonStyles),
+  on: twJoin('flex', flexCommonStyles),
+}
+const SliderValueLabel = ({ tooltip = 'off', ...props }: Props) => {
+  console.log({ props })
 
   return (
-    <Tooltip
-      ref={thumbRef}
-      tooltipRef={handleTooltipRef}
-      content={value}
-      open={open || valueLabelDisplay === 'on'}
-      placement={getPlacement()}
-      preventOverflow={isTooltipAlwaysVisible}
-      disablePortal={disablePortal}
-      compact={compact}
+    <div
+      className={twJoin(
+        'absolute -top-[35px] bg-graphite-800 text-white rounded-sm py-[2px] px-[4px]',
+        tooltipStates[tooltip]
+      )}
+    >
+      {/* <Typography
+      as='div'
+      size='small'
+      color='inherit'
     >
       {children}
-    </Tooltip>
+    </Typography> */}
+    </div>
   )
 }
+
+// const SliderValueLabel = ({
+//   tooltip,
+//   disablePortal,
+//   compact,
+//   children,
+//   open,
+//   index = -1,
+// }: Props) => {
+//   const thumbRef = useRef<HTMLDivElement>(null)
+//   const { registerValueLabel, hasTooltipOverlow } = useSliderContext()
+//   const isTooltipAlwaysVisible = tooltip === 'on'
+
+//   if (tooltip === 'off') {
+//     return children
+//   }
+
+//   const getPlacement = () => {
+//     if (hasTooltipOverlow) {
+//       return index === 0 ? 'top-end' : 'top-start'
+//     }
+
+//     return 'top'
+//   }
+
+//   const handleTooltipRef = (tooltipElement: HTMLDivElement) => {
+//     // At this moment, both thumb and tooltip refs are set so we can register them in the context
+//     const thumbElement = thumbRef.current
+
+//     if (tooltipElement && thumbElement) {
+//       registerValueLabel(index, tooltipElement, thumbElement)
+//     }
+//   }
+
+//   return (
+//     <Tooltip
+//       ref={thumbRef}
+//       tooltipRef={handleTooltipRef}
+//       content={children}
+//       open={open || tooltip === 'on'}
+//       placement={getPlacement()}
+//       preventOverflow={isTooltipAlwaysVisible}
+//       disablePortal={disablePortal}
+//       compact={compact}
+//     >
+//       {null}
+//     </Tooltip>
+//   )
+// }
 
 export default SliderValueLabel
