@@ -303,7 +303,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
   useHasMultilineCounter(name, showCounter && multiline, setHasMultilineCounter)
 
   return (
-    <>
+    <div>
       <OutlinedInput
         ref={outlineRef}
         inputRef={ref}
@@ -386,7 +386,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           limit={limit}
         />
       )}
-    </>
+    </div>
   )
 })
 
