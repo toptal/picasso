@@ -25,7 +25,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           </svg>
         </div>
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 1
         </span>
@@ -50,7 +50,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           </svg>
         </div>
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 2
         </span>
@@ -75,7 +75,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           </svg>
         </div>
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 3
         </span>
@@ -100,7 +100,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           </svg>
         </div>
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 4
         </span>
@@ -135,7 +135,7 @@ exports[`StepperVertical renders 1`] = `
           </svg>
         </div>
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 1
         </span>
@@ -160,7 +160,7 @@ exports[`StepperVertical renders 1`] = `
           </svg>
         </div>
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 2
         </span>
@@ -175,7 +175,7 @@ exports[`StepperVertical renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 bg-blue text-white"
         />
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 3
         </span>
@@ -190,7 +190,7 @@ exports[`StepperVertical renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 bg-white border border-gray border-solid"
         />
         <span
-          class="m-0 text-2xs text-graphite font-semibold"
+          class="m-0 text-2xs text-graphite font-semibold leading-[1em]"
         >
           Step 4
         </span>
