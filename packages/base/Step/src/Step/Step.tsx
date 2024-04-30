@@ -45,7 +45,12 @@ export const Step = (props: Props) => {
   const titleCase = useTitleCase(propsTitleCase)
 
   const labelElement = expand ? (
-    <Typography as='span' size='xxsmall' weight='semibold'>
+    <Typography
+      as='span'
+      size='xxsmall'
+      weight='semibold'
+      className='leading-[1em]'
+    >
       {titleCase ? toTitleCase(children) : children}
     </Typography>
   ) : null
