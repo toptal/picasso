@@ -6,48 +6,32 @@ exports[`Stepper render with all steps completed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
+      class="flex flex-row items-center gap-1"
     >
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 1
-              </span>
-            </span>
-          </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 1
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -56,45 +40,29 @@ exports[`Stepper render with all steps completed 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 2
-              </span>
-            </span>
-          </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 2
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -103,45 +71,29 @@ exports[`Stepper render with all steps completed 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 3
-              </span>
-            </span>
-          </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 3
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -150,41 +102,25 @@ exports[`Stepper render with all steps completed 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 4
-              </span>
-            </span>
-          </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 4
         </span>
       </div>
     </div>
@@ -198,48 +134,27 @@ exports[`Stepper render with hidden labels 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
+      class="flex flex-row items-center gap-1"
     >
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 1
-              </span>
-            </span>
-          </span>
-        </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -248,45 +163,24 @@ exports[`Stepper render with hidden labels 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 2
-              </span>
-            </span>
-          </span>
-        </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -295,45 +189,24 @@ exports[`Stepper render with hidden labels 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 3
-              </span>
-            </span>
-          </span>
-        </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -342,42 +215,21 @@ exports[`Stepper render with hidden labels 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hidden PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 4
-              </span>
-            </span>
-          </span>
-        </span>
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -390,132 +242,32 @@ exports[`Stepper renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
+      class="flex flex-row items-center gap-1"
     >
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 1
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 2
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-active"
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
             />
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 3
-              </span>
-            </span>
-          </span>
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 1
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -524,31 +276,67 @@ exports[`Stepper renders 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root"
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
             />
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                Step 4
-              </span>
-            </span>
-          </span>
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 2
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root text-gray"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
+        />
+      </svg>
+      <div
+        class="flex flex-row items-center gap-2"
+      >
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 bg-blue text-white"
+        />
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 3
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root text-gray"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
+        />
+      </svg>
+      <div
+        class="flex flex-row items-center gap-2"
+      >
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 bg-white border border-gray border-solid"
+        />
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          Step 4
         </span>
       </div>
     </div>
@@ -562,138 +350,34 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiStepper-root MuiStepper-horizontal PicassoStepper-root MuiPaper-elevation0"
+      class="flex flex-row items-center gap-1"
     >
       <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                <span>
-                  Step 1
-                </span>
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal MuiStep-completed"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-completed"
-            >
-              <svg
-                class="PicassoSvgCheckSolid24-root"
-                style="min-width: 24px; min-height: 24px;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
-                />
-              </svg>
-            </div>
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                <span>
-                  Step 2
-                </span>
-              </span>
-            </span>
-          </span>
-        </span>
-      </div>
-      <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
-        style="min-width: 16px; min-height: 16px;"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
-        />
-      </svg>
-      <div
-        class="MuiStep-root MuiStep-horizontal"
-      >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal"
-        >
-          <span
-            class="MuiStepLabel-iconContainer"
-          >
-            <div
-              class="PicassoStepIcon-root PicassoStepIcon-active"
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
             />
-          </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                <span>
-                  Step 3
-                </span>
-              </span>
-            </span>
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          <span>
+            Step 1
           </span>
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root PicassoStepConnector-connectorIcon"
+        class="PicassoSvgChevronRight16-root text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -702,32 +386,72 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
         />
       </svg>
       <div
-        class="MuiStep-root MuiStep-horizontal"
+        class="flex flex-row items-center gap-2"
       >
-        <span
-          class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled"
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
-          <span
-            class="MuiStepLabel-iconContainer"
+          <svg
+            class="PicassoSvgCheckSolid24-root"
+            style="min-width: 24px; min-height: 24px;"
+            viewBox="0 0 24 24"
           >
-            <div
-              class="PicassoStepIcon-root"
+            <path
+              d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
             />
+          </svg>
+        </div>
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          <span>
+            Step 2
           </span>
-          <span
-            class="MuiStepLabel-labelContainer PicassoStepLabel-root"
-          >
-            <span
-              class="MuiTypography-root MuiStepLabel-label PicassoStepLabel-hiddenOnMobile MuiTypography-body2 MuiTypography-displayBlock"
-            >
-              <span
-                class="PicassoStepLabel-label"
-              >
-                <span>
-                  Step 4
-                </span>
-              </span>
-            </span>
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root text-gray"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
+        />
+      </svg>
+      <div
+        class="flex flex-row items-center gap-2"
+      >
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 bg-blue text-white"
+        />
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          <span>
+            Step 3
+          </span>
+        </span>
+      </div>
+      <svg
+        class="PicassoSvgChevronRight16-root text-gray"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m10.5 6.793.707.707L6.5 12.207l-.707-.707 4-4-4-4 .707-.707 4 4Z"
+        />
+      </svg>
+      <div
+        class="flex flex-row items-center gap-2"
+      >
+        <div
+          class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 bg-white border border-gray border-solid"
+        />
+        <span
+          class="m-0 text-2xs text-graphite font-semibold"
+        >
+          <span>
+            Step 4
           </span>
         </span>
       </div>
