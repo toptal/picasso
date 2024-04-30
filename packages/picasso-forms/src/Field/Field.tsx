@@ -98,7 +98,11 @@ const Field = <
     [required, validate]
   )
 
-  const { meta, input } = useField<TInputValue>(name, {
+  const {
+    meta,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    input: { validateFields: _ignore, ...input },
+  } = useField<TInputValue>(name, {
     validate: shouldValidateOnSubmit ? undefined : validators,
     type,
     afterSubmit,
