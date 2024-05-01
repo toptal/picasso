@@ -121,7 +121,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           },
           rail: {
             className:
-              'flex w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
+              'flex absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
           },
           thumb: {
             className: twJoin(
