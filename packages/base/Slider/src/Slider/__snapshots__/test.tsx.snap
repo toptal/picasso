@@ -9,7 +9,7 @@ exports[`Slider renders 1`] = `
       class="base-Slider block relative py-[6px] -my"
     >
       <span
-        class="base-Slider flex w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
+        class="base-Slider flex absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
       />
       <span
         class="base-Slider block absolute h-[1px] bg-blue"
@@ -53,7 +53,7 @@ exports[`Slider with initial value 1`] = `
       class="base-Slider block relative py-[6px] -my"
     >
       <span
-        class="base-Slider flex w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
+        class="base-Slider flex absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
       />
       <span
         class="base-Slider block absolute h-[1px] bg-blue"
