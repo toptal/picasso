@@ -52,7 +52,7 @@
     "@toptal/picasso-utils": "1.0.2",
     "@toptal/picasso-notification": "2.0.1",
     "classnames": "^2.5.1",
-    "debounce": "^1.2.1",
+    "debounce": "^2.0.0",
     "detect-browser": "^5.3.0",
     "final-form": "^4.20.9",
     "final-form-arrays": "3.0.2",
