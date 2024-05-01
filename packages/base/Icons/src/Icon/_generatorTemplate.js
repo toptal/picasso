@@ -64,7 +64,7 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
     import { makeStyles } from '@material-ui/core/styles'
     import { StandardProps } from '@toptal/picasso-shared'
     ${'\n'}
-    import kebabToCamelCase from '../utils/kebab-to-camel-case'
+    import { kebabToCamelCase } from '@toptal/picasso-utils'
     import styles from './styles'
     const BASE_SIZE = ${baseSize}
     ${'\n'}

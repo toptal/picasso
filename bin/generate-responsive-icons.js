@@ -2,7 +2,7 @@ const ts = require('typescript')
 const fs = require('fs').promises
 const path = require('path')
 
-const ICON_COMPONENTS_DIRECTORY = 'packages/picasso/src/Icon'
+const ICON_COMPONENTS_DIRECTORY = 'packages/base/Icons/src/Icon'
 const ICONS_DIRECTORY_PATH = path.resolve(
   __dirname,
   `../${ICON_COMPONENTS_DIRECTORY}`
