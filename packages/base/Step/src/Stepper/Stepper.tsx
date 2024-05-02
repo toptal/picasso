@@ -1,6 +1,7 @@
 import type { HTMLAttributes, Key, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import { Step } from '../Step'
@@ -39,28 +40,31 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <div
-      className={cx('flex', className, {
-        'flex-row items-center gap-1': direction === 'horizontal',
-        'flex-col': direction === 'vertical',
-      })}
+      className={twMerge(
+        'flex',
+        cx({
+          'flex-row items-center gap-1': direction === 'horizontal',
+          'flex-col': direction === 'vertical',
+        }),
+        className
+      )}
       style={style}
       ref={ref}
       {...rest}
     >
       {steps.map((step, stepIndex) => {
-        const stepProps = {
-          active: stepIndex === active,
-          completed: stepIndex < active,
-          expand: !hideLabels || stepIndex === active,
-          titleCase,
-          withOverflowEllipsis: overflowEllipsis,
-        }
-
         const isStringStep = typeof step === 'string'
 
         return (
           <>
-            <Step key={isStringStep ? step : step.key} {...stepProps}>
+            <Step
+              key={isStringStep ? step : step.key}
+              active={stepIndex === active}
+              completed={stepIndex < active}
+              expand={!hideLabels || stepIndex === active}
+              titleCase={titleCase}
+              withOverflowEllipsis={overflowEllipsis}
+            >
               {isStringStep ? step : step.content}
             </Step>
             {stepIndex < steps.length - 1 && (

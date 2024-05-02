@@ -56,7 +56,7 @@ export const Step = (props: Props) => {
   ) : null
 
   return (
-    <div className={cx('flex flex-row items-center gap-2')}>
+    <div className='flex flex-row items-center gap-2'>
       <div
         className={cx(
           'h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0',
