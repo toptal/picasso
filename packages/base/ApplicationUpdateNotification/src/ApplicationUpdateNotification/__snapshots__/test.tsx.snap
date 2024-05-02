@@ -6,7 +6,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Snackbar relative rounded-md bg-blue shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden"
+      class="base-Snackbar relative flex flex-wrap text-lg/[1.43] items-center rounded-md bg-blue shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden"
       role="presentation"
     >
       <div
