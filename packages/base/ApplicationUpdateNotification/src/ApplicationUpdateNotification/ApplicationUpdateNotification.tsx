@@ -62,7 +62,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
             <ButtonCircular
               data-testid='btn-dismiss'
               className={
-                'text-xxs text-white inline-flex items-center font-semibold whitespace-nowrap'
+                'text-lg text-white inline-flex items-center font-semibold whitespace-nowrap'
               }
               variant='transparent'
               icon={<Close16 />}
