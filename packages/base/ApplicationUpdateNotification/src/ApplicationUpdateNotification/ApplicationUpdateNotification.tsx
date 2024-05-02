@@ -35,7 +35,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
       <Container flex direction='column' gap='xsmall'>
         <svg
           className={
-            'opacity-40 absolute -top-[4em] -left-[0.5em] fill-blue-600'
+            'opacity-40 absolute -top-[0.4em] -left-[0.5em] fill-blue-700'
           }
           viewBox='0 0 105 105'
           width='105'
