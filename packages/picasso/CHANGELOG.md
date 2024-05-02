@@ -1,5 +1,12 @@
 # Change Log
 
+## 44.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`9afe571`](https://github.com/toptal/picasso/commit/9afe5710d418dfa30dcfe7eda88cd74b81838fc3)]:
+  - @toptal/picasso-step@1.1.0
+
 ## 44.0.14
 
 ### Patch Changes
