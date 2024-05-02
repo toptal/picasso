@@ -85,7 +85,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
       <Snackbar
         {...rest}
         className={
-          'relative rounded-md bg-blue-600 shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden'
+          'relative flex flex-wrap text-lg/[1.43] items-center rounded-md bg-blue-600 shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden'
         }
         open
         ref={ref}
