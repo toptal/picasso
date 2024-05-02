@@ -1,16 +1,11 @@
 import type { HTMLAttributes, Key, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Stepper as MUIStepper } from '@material-ui/core'
+import { twMerge } from 'tailwind-merge'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import { Step } from '../Step'
-import { StepLabel } from '../StepLabel'
-import '../StepIcon'
 import { StepConnector } from '../StepConnector'
-import styles from './styles'
 
 export interface StepperBaseProps
   extends BaseProps,
@@ -30,8 +25,6 @@ export interface Props extends StepperBaseProps {
   direction?: 'vertical' | 'horizontal'
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoStepper' })
-
 const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const {
     active = 0,
@@ -44,48 +37,43 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
     overflowEllipsis = false,
     ...rest
   } = props
-  const classes = useStyles()
 
   return (
-    <MUIStepper
-      {...rest}
-      ref={ref}
-      activeStep={active}
-      connector={<StepConnector direction={direction} />}
-      className={cx(classes.root, className)}
+    <div
+      className={twMerge(
+        'flex',
+        cx({
+          'flex-row items-center gap-1': direction === 'horizontal',
+          'flex-col': direction === 'vertical',
+        }),
+        className
+      )}
       style={style}
-      orientation={direction}
+      ref={ref}
+      {...rest}
     >
       {steps.map((step, stepIndex) => {
-        if (typeof step === 'string') {
-          return (
-            <Step key={step}>
-              <StepLabel
-                active={stepIndex === active}
-                hideLabel={hideLabels}
-                titleCase={titleCase}
-                overflowEllipsis={overflowEllipsis}
-              >
-                {step}
-              </StepLabel>
-            </Step>
-          )
-        }
+        const isStringStep = typeof step === 'string'
 
         return (
-          <Step key={step.key}>
-            <StepLabel
+          <>
+            <Step
+              key={isStringStep ? step : step.key}
               active={stepIndex === active}
-              hideLabel={hideLabels}
+              completed={stepIndex < active}
+              expand={!hideLabels || stepIndex === active}
               titleCase={titleCase}
-              overflowEllipsis={overflowEllipsis}
+              withOverflowEllipsis={overflowEllipsis}
             >
-              {step.content}
-            </StepLabel>
-          </Step>
+              {isStringStep ? step : step.content}
+            </Step>
+            {stepIndex < steps.length - 1 && (
+              <StepConnector direction={direction} />
+            )}
+          </>
         )
       })}
-    </MUIStepper>
+    </div>
   )
 })
 
