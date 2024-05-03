@@ -15,7 +15,7 @@ export interface Props extends ComponentProps<typeof MUIBaseSlider> {
   max?: number
   /** Controlled value of the component */
   value?: Value
-  /** The default value. Use when the component is not controlled. */
+  /** The default value. Use when the component is not controlled */
   defaultValue?: Value
   /** Step for the thumb movement */
   step?: number
