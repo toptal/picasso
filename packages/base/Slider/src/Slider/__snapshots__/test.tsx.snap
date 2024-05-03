@@ -33,11 +33,11 @@ exports[`Slider renders 1`] = `
           type="range"
           value="0"
         />
-        <span
+        <div
           class="absolute -top will-change transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden"
         >
           0
-        </span>
+        </div>
       </span>
     </span>
   </div>
@@ -77,11 +77,11 @@ exports[`Slider with initial value 1`] = `
           type="range"
           value="4"
         />
-        <span
+        <div
           class="absolute -top will-change transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden"
         >
           4
-        </span>
+        </div>
       </span>
     </span>
   </div>

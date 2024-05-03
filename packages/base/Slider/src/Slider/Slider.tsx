@@ -66,12 +66,10 @@ const createCustomMark = (hideTrack?: boolean, hideThumb?: boolean) => {
   return Mark
 }
 
-const flexCommonStyles = 'justify-center items-center'
-
 const tooltipStates: Record<ValueLabelDisplay, string> = {
   off: 'hidden',
-  auto: twJoin('hidden group-hover/thumb:flex', flexCommonStyles),
-  on: twJoin('flex', flexCommonStyles),
+  auto: 'hidden group-hover/thumb:flex justify-center items-center',
+  on: 'flex justify-center items-center',
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
@@ -100,7 +98,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
   return (
-    <div className={'my-[6px] mx-0'}>
+    <div className='my-[6px] mx-0'>
       <MUIBaseSlider
         {...rest}
         ref={sliderRef}
@@ -113,7 +111,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         disabled={disabled}
         slots={{
           mark: createCustomMark(disableTrackHighlight, hideThumbOnEmpty),
-          valueLabel: 'span',
+          valueLabel: 'div',
         }}
         slotProps={{
           root: {
@@ -137,7 +135,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           },
           valueLabel: {
             className: twJoin(
-              'absolute -top-[35px] will-change-transform transition-transform m-1 text-sm bg-graphite-800 text-white rounded-sm py-[2px] px-2',
+              'absolute -top-[34px] will-change-transform transition-transform m-1 text-sm bg-graphite-800 text-white rounded-sm py-[2px] px-2',
               tooltipStates[tooltip]
             ),
           },

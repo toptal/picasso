@@ -2,12 +2,10 @@ import React from 'react'
 import { Container, Slider, Typography } from '@toptal/picasso'
 import { SPACING_4, SPACING_8, SPACING_10 } from '@toptal/picasso-utils'
 
-type Value = number | number[]
+type Value = number
 
 const formatLabel = (value: Value) => {
-  let formattedVal = String(value)
-
-  formattedVal = formattedVal.length === 2 ? formattedVal : '0' + value
+  const formattedVal = String(value).padStart(2, '0')
 
   return <Typography color='inherit'>GMT+{formattedVal}:00</Typography>
 }
