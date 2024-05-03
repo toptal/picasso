@@ -28,7 +28,7 @@
     "@toptal/picasso-typography-overflow": "2.0.1",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.3.0",
     "classnames": "^2.5.1"
   },
   "sideEffects": [
