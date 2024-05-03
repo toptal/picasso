@@ -111,7 +111,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         disabled={disabled}
         slots={{
           mark: createCustomMark(disableTrackHighlight, hideThumbOnEmpty),
-          valueLabel: 'span',
+          valueLabel: 'div',
         }}
         slotProps={{
           root: {
