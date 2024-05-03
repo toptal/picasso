@@ -8,6 +8,7 @@ module.exports = {
         '.font-inherit-weight': { 'font-weight': 'inherit' },
         '.font-inherit-size': { 'font-size': '1em' },
         // TODO: using "pct" instead of "%" to avoid escaping
+        // TODO: make the code smaller
         '.width-calc-100pct-8px': {
           width: 'calc(100% + 8px)',
         },

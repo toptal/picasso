@@ -1,36 +1,17 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 import { rem, type BaseProps } from '@toptal/picasso-shared'
 import type { BreakpointKeys } from '@toptal/picasso-provider'
-// eslint-disable-next-line import/order
 import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
 
-// Taken from MUI
-type GridJustification =
-  | 'flex-start'
-  | 'center'
-  | 'flex-end'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly'
-
-// Taken from MUI
-type GridItemsAlignment =
-  | 'flex-start'
-  | 'center'
-  | 'flex-end'
-  | 'stretch'
-  | 'baseline'
-
-// Taken from MUI
-type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse'
-
-// Taken from MUI
-export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse'
-
-import { twMerge } from 'tailwind-merge'
-
 import GridContext from '../GridContext/GridContext'
+import type {
+  GridDirection,
+  GridItemsAlignment,
+  GridJustification,
+  GridWrap,
+} from '../types'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
@@ -49,63 +30,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Defines the flex-wrap style property based on the direction */
   wrap?: GridWrap
 }
-
-/*
-Overall plan
-? make the spacing work, as its styles used to be constructed dynamically
-- make the size work, as its styles used to be constructed dynamically
-
-
-To do
-- CSS is different depending on the direction
-- can addUtilities help?
-- it can generate responsive variants https://v1.tailwindcss.com/docs/adding-new-utilities#generating-responsive-variants
-
-### How spacing used to work before
-
-const humanToMUISpacing = (spacing: number) => {
-  // Material Design margins and columns follow an 8px square baseline grid
-  return (spacing / 8) as GridSpacing
-}
-
-Example
-spacing=32
-passed further to MUIGrid humanToMUISpacing(32) = 4
-
-inside of MUIGrid (https://github.com/mui/material-ui/blob/9f09ed2eb9a35f14684d5015b645976c149ddb57/packages/mui-material/src/Grid/Grid.js#L342)
-
-if string, then it returns `spacing-xs-${spacing}`, so "spacing-xs-4"
-  - "spacing-xs-4" resolves to 
-
-Prepared classed
-  'spacing-xs-1': string;
-  ...
-  'spacing-xs-10': string;
-
-spacing-xs-4 is generated for container and item
-
-.v6ncql-MuiGrid-spacing-xs-4 {
-  width: calc(100pct + 32px);
-  margin: -16px;
-}
-.v6ncql-MuiGrid-spacing-xs-4 > .v6ncql-MuiGrid-item {
-  padding: 16px;
-}
-
-if object, then it returns breakpoints TBD
-
-### How size used to work
-
-Flex items size, "size" property (xs, sm, ...)
-if xs={boolean}, then auto layout https://github.com/mui/material-ui/blob/b78eaf0d320b621b62fdd4381beda60e8c9da0fa/packages/mui-material/src/Grid/Grid.js#L51-L52
-if xs={'auto'}, then the content value is used instead https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis#values
-if xs={number}, then it generates style with custom flexBasis: fullWidth and maxWidth: fullWidth, https://github.com/mui/material-ui/blob/b78eaf0d320b621b62fdd4381beda60e8c9da0fa/packages/mui-material/src/Grid/Grid.js#L94-L95
-
-Row gap and negative margin 
-https://github.com/mui/material-ui/blob/b78eaf0d320b621b62fdd4381beda60e8c9da0fa/packages/mui-material/src/Grid/Grid.js#L181
-
-
-*/
 
 const responsiveSpacingConfiguration: Record<BreakpointKeys, number> = {
   xs: 16,
