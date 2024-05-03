@@ -33,7 +33,6 @@ export interface Props
 // p-0.25 p-0.5 p-0.75 p-1 p-1.25 p-1.5 p-1.75 p-2 p-2.25 p-2.5 p-2.75 p-3 p-3.25 p-3.5 p-3.75 p-4 p-4.25 p-4.5 p-4.75 p-5 p-5.25 p-5.5 p-5.75 p-6 p-6.25 p-6.5 p-6.75 p-7 p-7.25 p-7.5 p-7.75 p-8 p-8.25 p-8.5 p-8.75 p-9 p-9.25 p-9.5 p-9.75 p-10 p-10.25 p-10.5 p-10.75 p-11 p-11.25 p-11.5 p-11.75 p-12 p-12.25 p-12.5 p-12.75 p-13 p-13.25 p-13.5 p-13.75 p-14 p-14.25 p-14.5 p-14.75 p-15 p-15.25 p-15.5 p-15.75 p-16 p-16.25 p-16.5 p-16.75 p-17 p-17.25 p-17.5 p-17.75 p-18 p-18.25 p-18.5 p-18.75 p-19 p-19.25 p-19.5 p-19.75 p-20 p-20.25 p-20.5 p-20.75 p-21 p-21.25 p-21.5 p-21.75 p-22 p-22.25 p-22.5 p-22.75 p-23 p-23.25 p-23.5 p-23.75 p-24
 const getSpacingClassName = (spacing: GridSpacing) => {
   // TODO: recheck, if it is so simple as it looks like
-  console.log('@@@ spacing', spacing)
   if (spacing === 0) {
     return ''
   }
@@ -72,8 +71,6 @@ const generateClassesForNonXsBreakpoints = (
   } else if (breakpointValue === undefined) {
     return []
   }
-
-  console.log('@@@ breakpointValue', breakpointValue, typeof breakpointValue)
 
   const breakpointValueClassName =
     breakpointValue === 12 ? 'full' : `${breakpointValue}/12`
@@ -145,6 +142,7 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
         className
       )}
       style={style}
+      // TODO: no more restBaseProps
       {...rest}
     >
       {children}

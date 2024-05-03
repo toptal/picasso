@@ -10,10 +10,10 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
       role="radiogroup"
     >
       <div
-        class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-spacing-xs MuiGrid-align-items-xs-flex"
+        class="flex w-full justify-start items-start flex-wrap flex-row width-calc-100pct -m PicassoRadioGroup-grid"
       >
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+          class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -48,7 +48,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+          class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -83,7 +83,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+          class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -118,7 +118,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+          class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -153,7 +153,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+          class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -188,7 +188,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item MuiGrid-grid-sm"
+          class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -238,10 +238,10 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
       role="radiogroup"
     >
       <div
-        class="MuiGrid-root PicassoRadioGroup-grid MuiGrid-container PicassoGrid-container MuiGrid-direction-xs MuiGrid-align-items-xs-flex"
+        class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid"
       >
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
+          class="grow-0 PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -276,7 +276,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
           </label>
         </div>
         <div
-          class="MuiGrid-root PicassoRadioGroup-gridItem MuiGrid-item"
+          class="grow-0 PicassoRadioGroup-gridItem"
         >
           <label
             class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"

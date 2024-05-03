@@ -182,8 +182,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   const wrapClassName = getWrapClassName(wrap)
   const directionClassName = getDirectionClassName(direction)
 
-  console.log('@@@ gridSpacing', gridSpacing)
-
   // TODO: tmp hack
   const gridSpacingClassName = getGridSpacingClassName(
     gridSpacing as unknown as Props['spacing']
@@ -208,6 +206,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
           gridSpacingClassName,
           className
         )}
+        // TODO: no more rest + BaseProps
         {...rest}
       >
         {children}

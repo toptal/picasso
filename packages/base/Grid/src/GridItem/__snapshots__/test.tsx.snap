@@ -6,7 +6,7 @@ exports[`GridItem renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiGrid-root MuiGrid-item"
+      class="p-NaN grow-0"
     />
   </div>
 </div>
