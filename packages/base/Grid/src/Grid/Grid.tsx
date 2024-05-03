@@ -2,6 +2,7 @@ import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import { rem, type BaseProps } from '@toptal/picasso-shared'
 import type { BreakpointKeys } from '@toptal/picasso-provider'
+// eslint-disable-next-line import/order
 import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
 
 // Taken from MUI
@@ -14,7 +15,12 @@ type GridJustification =
   | 'space-evenly'
 
 // Taken from MUI
-type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'
+type GridItemsAlignment =
+  | 'flex-start'
+  | 'center'
+  | 'flex-end'
+  | 'stretch'
+  | 'baseline'
 
 // Taken from MUI
 type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse'
@@ -22,8 +28,9 @@ type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse'
 // Taken from MUI
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse'
 
+import { twMerge } from 'tailwind-merge'
+
 import GridContext from '../GridContext/GridContext'
-import { GridSpacing } from '@material-ui/core'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
@@ -78,7 +85,7 @@ Prepared classed
 spacing-xs-4 is generated for container and item
 
 .v6ncql-MuiGrid-spacing-xs-4 {
-  width: calc(100% + 32px);
+  width: calc(100pct + 32px);
   margin: -16px;
 }
 .v6ncql-MuiGrid-spacing-xs-4 > .v6ncql-MuiGrid-item {
@@ -100,7 +107,6 @@ https://github.com/mui/material-ui/blob/b78eaf0d320b621b62fdd4381beda60e8c9da0fa
 
 */
 
-
 const responsiveSpacingConfiguration: Record<BreakpointKeys, number> = {
   xs: 16,
   sm: 16,
@@ -120,7 +126,9 @@ const useResponsiveSpacing = () => {
 }
 
 // TODO: rework, going with ifs for now
-const getJustifyContentClassName = (justifyContent: Props['justifyContent']) => {
+const getJustifyContentClassName = (
+  justifyContent: Props['justifyContent']
+) => {
   if (justifyContent === 'flex-start') {
     return 'justify-start'
   }
@@ -213,13 +221,16 @@ const getWrapClassName = (wrap: Props['wrap']) => {
 
 // TODO: rework, going with ifs for now
 // -m-0.25 -m-0.5 -m-0.75 -m-1 -m-1.25 -m-1.5 -m-1.75 -m-2 -m-2.25 -m-2.5 -m-2.75 -m-3 -m-3.25 -m-3.5 -m-3.75 -m-4 -m-4.25 -m-4.5 -m-4.75 -m-5 -m-5.25 -m-5.5 -m-5.75 -m-6 -m-6.25 -m-6.5 -m-6.75 -m-7 -m-7.25 -m-7.5 -m-7.75 -m-8 -m-8.25 -m-8.5 -m-8.75 -m-9 -m-9.25 -m-9.5 -m-9.75 -m-10 -m-10.25 -m-10.5 -m-10.75 -m-11 -m-11.25 -m-11.5 -m-11.75 -m-12 -m-12.25 -m-12.5 -m-12.75 -m-13 -m-13.25 -m-13.5 -m-13.75 -m-14 -m-14.25 -m-14.5 -m-14.75 -m-15 -m-15.25 -m-15.5 -m-15.75 -m-16 -m-16.25 -m-16.5 -m-16.75 -m-17 -m-17.25 -m-17.5 -m-17.75 -m-18 -m-18.25 -m-18.5 -m-18.75 -m-19 -m-19.25 -m-19.5 -m-19.75 -m-20 -m-20.25 -m-20.5 -m-20.75 -m-21 -m-21.25 -m-21.5 -m-21.75 -m-22 -m-22.25 -m-22.5 -m-22.75 -m-23 -m-23.25 -m-23.5 -m-23.75 -m-24
-// width-calc-100%-16px width-calc-100%-24px width-calc-100%-32px width-calc-100%-40px width-calc-100%-48px width-calc-100%-56px width-calc-100%-64px width-calc-100%-72px width-calc-100%-80px
+// width-calc-100pct-16px width-calc-100pct-24px width-calc-100pct-32px width-calc-100pct-40px width-calc-100pct-48px width-calc-100pct-56px width-calc-100pct-64px width-calc-100pct-72px width-calc-100pct-80px
 const getGridSpacingClassName = (spacing: Props['spacing']) => {
   if (spacing === 0 || spacing === undefined) {
     return ''
   }
 
-  return `width-calc-100%-${spacing / 2}px -m-${rem(spacing * 2).replace('rem', '')}`
+  return `width-calc-100pct-${spacing}px -m-${rem(spacing * 2).replace(
+    'rem',
+    ''
+  )}`
 }
 
 // eslint-disable-next-line react/display-name
@@ -241,27 +252,39 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
 
   const responsiveSpacing = useResponsiveSpacing()
   const gridSpacing = userSpacing ?? responsiveSpacing
-  //const spacingClassName = getSpacingClassName(gridSpacing)
 
   const justifyContentClassName = getJustifyContentClassName(justifyContent)
   const alignItemsClassName = getAlignItemsClassName(alignItems)
   const wrapClassName = getWrapClassName(wrap)
   const directionClassName = getDirectionClassName(direction)
 
-  console.log('@@@ gridSpacing', gridSpacing, wrapClassName)
+  console.log('@@@ gridSpacing', gridSpacing)
 
   // TODO: tmp hack
-  const gridSpacingClassName = getGridSpacingClassName(gridSpacing as unknown as Props['spacing'])
+  const gridSpacingClassName = getGridSpacingClassName(
+    gridSpacing as unknown as Props['spacing']
+  )
 
   return (
-    <GridContext.Provider value={{
-      spacing: gridSpacing,
-    }}
+    <GridContext.Provider
+      value={{
+        spacing: gridSpacing,
+      }}
     >
       <div
         ref={ref}
         style={style}
-        className={`flex w-full ${justifyContentClassName} ${alignItemsClassName} ${wrapClassName} ${directionClassName} ${gridSpacingClassName}`}
+        className={twMerge(
+          'flex',
+          'w-full',
+          justifyContentClassName,
+          alignItemsClassName,
+          wrapClassName,
+          directionClassName,
+          gridSpacingClassName,
+          className
+        )}
+        {...rest}
       >
         {children}
       </div>

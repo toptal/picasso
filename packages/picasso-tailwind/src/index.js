@@ -7,34 +7,35 @@ module.exports = {
       addUtilities({
         '.font-inherit-weight': { 'font-weight': 'inherit' },
         '.font-inherit-size': { 'font-size': '1em' },
-        '.width-calc-100%-8px': {
+        // TODO: using "pct" instead of "%" to avoid escaping
+        '.width-calc-100pct-8px': {
           width: 'calc(100% + 8px)',
         },
-        '.width-calc-100%-16px': {
+        '.width-calc-100pct-16px': {
           width: 'calc(100% + 16px)',
         },
-        '.width-calc-100%-24px': {
+        '.width-calc-100pct-24px': {
           width: 'calc(100% + 24px)',
         },
-        '.width-calc-100%-32px': {
+        '.width-calc-100pct-32px': {
           width: 'calc(100% + 32px)',
         },
-        '.width-calc-100%-40px': {
+        '.width-calc-100pct-40px': {
           width: 'calc(100% + 40px)',
         },
-        '.width-calc-100%-48px': {
+        '.width-calc-100pct-48px': {
           width: 'calc(100% + 48px)',
         },
-        '.width-calc-100%-56px': {
+        '.width-calc-100pct-56px': {
           width: 'calc(100% + 56px)',
         },
-        '.width-calc-100%-64px': {
+        '.width-calc-100pct-64px': {
           width: 'calc(100% + 64px)',
         },
-        '.width-calc-100%-72px': {
+        '.width-calc-100pct-72px': {
           width: 'calc(100% + 72px)',
         },
-        '.width-calc-100%-80px': {
+        '.width-calc-100pct-80px': {
           width: 'calc(100% + 80px)',
         },
       })
@@ -211,7 +212,7 @@ module.exports = {
         '9/12': '75%',
         '10/12': '83.333333%',
         '11/12': '91.666667%',
-        'full': '100%',
+        full: '100%',
       },
     },
   },
