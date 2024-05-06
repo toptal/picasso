@@ -16,7 +16,7 @@ import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
 // we need to ensure the correct order of styles import
-// @TODO: to be removed when the component is migrated in FX-4614
+// TODO: [FX-4614] To be removed when Link component is migrated to tailwind
 import { Link } from '@toptal/picasso-link'
 
 import styles from './styles'
