@@ -7,6 +7,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
+import { twMerge } from 'tailwind-merge'
 
 import styles from './styles'
 
@@ -43,7 +44,7 @@ const CheckboxGroup = (props: Props) => {
       <Grid
         direction={direction}
         spacing={gridSpacing as GridSpacing}
-        className={gridClass}
+        className={twMerge(gridClass, 'mt-0', 'mb-0')}
       >
         {children.map((child, index) => (
           <Grid.Item
