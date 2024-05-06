@@ -9,7 +9,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
       class="MuiFormGroup-root PicassoCheckboxGroup-root PicassoCheckboxGroup-root"
     >
       <div
-        class="flex w-full justify-start items-start flex-wrap flex-row width-calc-100pct -m PicassoCheckboxGroup-grid"
+        class="flex w-full justify-start items-start flex-wrap flex-row width-calc-100pct -m mt-0 mb-0"
       >
         <div
           class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoCheckboxGroup-gridItem"

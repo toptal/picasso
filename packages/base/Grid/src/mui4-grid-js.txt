@@ -155,6 +155,7 @@ function extractZeroValueBreakpointKeys({ breakpoints, values }) {
   return sortedBreakpointKeysByValue.slice(0, sortedBreakpointKeysByValue.indexOf(nonZeroKey));
 }
 
+// PICASSO: rowSpacing is same as "spacing", the fact that we do not provide "rowSpacingProp" does not help
 export function generateRowGap({ theme, ownerState }) {
   const { container, rowSpacing } = ownerState;
   let styles = {};
@@ -201,6 +202,7 @@ export function generateRowGap({ theme, ownerState }) {
   return styles;
 }
 
+// PICASSO: columnSpacing is same as "spacing", the fact that we do not provide "columnSpacingProp" does not help
 export function generateColumnGap({ theme, ownerState }) {
   const { container, columnSpacing } = ownerState;
   let styles = {};
@@ -248,6 +250,7 @@ export function generateColumnGap({ theme, ownerState }) {
   return styles;
 }
 
+// PICASSO: probably never called in our case either
 export function resolveSpacingStyles(spacing, breakpoints, styles = {}) {
   // undefined/null or `spacing` <= 0
   if (!spacing || spacing <= 0) {
@@ -340,6 +343,7 @@ const GridRoot = styled('div', {
   generateGrid,
 );
 
+// PICASSO: function purpose is clear
 export function resolveSpacingClasses(spacing, breakpoints) {
   // undefined/null or `spacing` <= 0
   if (!spacing || spacing <= 0) {
@@ -419,13 +423,14 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     className,
     columns: columnsProp,
     columnSpacing: columnSpacingProp,
+    // PICASSO: no need to support
     component = 'div',
     // PICASSO: container is always true, so it is always flex
     container = false,
     direction = 'row',
     item = false,
     rowSpacing: rowSpacingProp,
-    // PICASSO: in fact it is almost never 0, by default Picasso passes its own custom spacing based on the breakpoint
+    // PICASSO: in fact it is almost never 0, by default Picasso passes its own custom spacing based on the breakpoint, never an object
     spacing = 0,
     wrap = 'wrap',
     zeroMinWidth = false,

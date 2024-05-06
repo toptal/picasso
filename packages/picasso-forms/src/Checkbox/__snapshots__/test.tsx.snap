@@ -31,7 +31,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
             name="checkbox-group"
           >
             <div
-              class="flex w-full justify-start items-start flex-wrap flex-col PicassoCheckboxGroup-grid"
+              class="flex w-full justify-start items-start flex-wrap flex-col mt-0 mb-0"
             >
               <div
                 class="grow-0 PicassoCheckboxGroup-gridItem"

@@ -11,11 +11,6 @@ export default () =>
       },
     },
 
-    grid: {
-      marginTop: 0,
-      marginBottom: 0,
-    },
-
     gridItem: {
       lineHeight: 1,
 
