@@ -66,6 +66,7 @@ const imports: Record<string, object> = {
   '@toptal/picasso-amount': require('@toptal/picasso-amount'),
   '@toptal/picasso-backdrop': require('@toptal/picasso-backdrop'),
   '@toptal/picasso-fade': require('@toptal/picasso-fade'),
+  '@toptal/picasso-collapse': require('@toptal/picasso-collapse'),
   '@toptal/picasso-application-update-notification': require('@toptal/picasso-application-update-notification'),
   '@toptal/picasso-autocomplete': require('@toptal/picasso-autocomplete'),
   '@toptal/picasso-avatar': require('@toptal/picasso-avatar'),
