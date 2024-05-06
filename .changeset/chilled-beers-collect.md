@@ -2,6 +2,6 @@
 '@toptal/picasso-icons': minor
 ---
 
-### AvatarResponsive
+### Icons
 
-- added new avatar component
+- add Avatar icon
