@@ -33,7 +33,7 @@ exports[`FormRadio renders 1`] = `
             type="radio"
           >
             <div
-              class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid"
+              class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid mt-0 mb-0"
             >
               <div
                 class="grow-0 PicassoRadioGroup-gridItem"
@@ -152,7 +152,7 @@ exports[`FormRadio required with asterisk 1`] = `
             type="radio"
           >
             <div
-              class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid"
+              class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid mt-0 mb-0"
             >
               <div
                 class="grow-0 PicassoRadioGroup-gridItem"

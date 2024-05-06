@@ -10,7 +10,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
       role="radiogroup"
     >
       <div
-        class="flex w-full justify-start items-start flex-wrap flex-row width-calc-100pct -m PicassoRadioGroup-grid"
+        class="flex w-full justify-start items-start flex-wrap flex-row width-calc-100pct -m PicassoRadioGroup-grid mt-0 mb-0"
       >
         <div
           class="p-2 grow-0 sm:basis-4/12 sm:max-w PicassoRadioGroup-gridItem"
@@ -238,7 +238,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
       role="radiogroup"
     >
       <div
-        class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid"
+        class="flex w-full justify-start items-start flex-wrap flex-col PicassoRadioGroup-grid mt-0 mb-0"
       >
         <div
           class="grow-0 PicassoRadioGroup-gridItem"
