@@ -41,7 +41,7 @@ const RadioGroup = (props: Props) => {
       <Grid
         direction={direction}
         spacing={gridSpacing as GridSpacing}
-        className={gridClass}
+        className={`${gridClass} mt-0 mb-0`}
       >
         {children.map((child, index) => (
           <Grid.Item
