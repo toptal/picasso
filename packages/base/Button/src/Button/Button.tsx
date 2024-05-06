@@ -17,9 +17,12 @@ import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
 // we need to ensure the correct order of styles import
 // @TODO: to be removed when the component is migrated in FX-4614
-import '@toptal/picasso-link'
+import { Link } from '@toptal/picasso-link'
 
 import styles from './styles'
+
+// HACK: This statement is only used to prevent webpack from tree shaking the import
+void Link
 
 const useStyles = makeStyles<Theme, Props>(styles, {
   name: 'PicassoButton',
