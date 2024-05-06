@@ -1,18 +1,18 @@
-import { Fade } from '../Fade'
+import { Collapse } from '../Collapse'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Transitions').createPage('Fade')
+const page = PicassoBook.section('Transitions').createPage('Collapse')
 
 page.createTabChapter('Props').addComponentDocs({
-  component: Fade,
-  name: 'Fade',
+  component: Collapse,
+  name: 'Collapse',
 })
 
 page.createChapter().addExample(
-  'Fade/story/Default.example.tsx',
+  'Collapse/story/Default.example.tsx',
   {
     title: 'Default',
     takeScreenshot: false,
   },
-  'base/Fade'
+  'base/Collapse'
 )
