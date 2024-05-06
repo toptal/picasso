@@ -1,12 +1,10 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Collapse } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { Grid } from '@toptal/picasso-grid'
+import { sizes } from '@toptal/picasso-provider'
 
-import styles from './styles'
 import type { FieldRequirementItemStatus } from './FieldRequirementItem'
 import FieldRequirementItem from './FieldRequirementItem'
 import type { FieldRequirement } from './types'
@@ -33,8 +31,6 @@ export interface Props<TValueType> extends BaseProps {
 
 const ANIMATION_TIMEOUT = 500
 
-const useStyles = makeStyles<Theme>(styles)
-
 export const FieldRequirements = <TValueType,>({
   value,
   description,
@@ -46,8 +42,6 @@ export const FieldRequirements = <TValueType,>({
   style,
   testIds,
 }: Props<TValueType>) => {
-  const classes = useStyles()
-
   return (
     <Collapse
       style={style}
@@ -67,7 +61,8 @@ export const FieldRequirements = <TValueType,>({
         </Typography>
       )}
       <Grid
-        className={classes.root}
+        // w-[18.75rem]
+        className={`w-[${sizes.input.width}]`}
         spacing={0}
         data-testid={testIds?.gridContainer}
       >
