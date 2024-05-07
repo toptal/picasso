@@ -34,9 +34,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
     const notification = (
       <Container flex direction='column' gap='xsmall'>
         <svg
-          className={
-            'opacity-40 absolute -top-[0.4em] -left-[0.5em] fill-blue-700'
-          }
+          className='opacity-40 absolute -top-[0.4em] -left-[0.5em] fill-blue-700'
           viewBox='0 0 105 105'
           width='105'
           height='105'
@@ -54,16 +52,14 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
             variant='heading'
             size='medium'
             color='inherit'
-            className={'relative'}
+            className='relative'
           >
             {title}
           </Typography>
           {dismissable && (
             <ButtonCircular
               data-testid='btn-dismiss'
-              className={
-                'text-lg text-white inline-flex items-center font-semibold whitespace-nowrap'
-              }
+              className='text-lg text-white inline-flex items-center font-semibold whitespace-nowrap'
               variant='transparent'
               icon={<Close16 />}
               onClick={onClose}
@@ -71,7 +67,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
           )}
         </Container>
 
-        <Container className={'relative'}>
+        <Container className='relative'>
           <Typography size='medium' color='inherit'>
             {description}
           </Typography>
@@ -84,9 +80,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
     return (
       <Snackbar
         {...rest}
-        className={
-          'relative flex flex-wrap text-lg/[1.43] items-center rounded-md bg-blue-600 shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden'
-        }
+        className='relative flex flex-wrap text-lg/[1.43] items-center rounded-md bg-blue-600 shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden'
         open
         ref={ref}
       >
