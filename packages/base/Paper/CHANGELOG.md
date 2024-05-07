@@ -1,5 +1,15 @@
 # @toptal/picasso-paper
 
+## 2.0.2
+
+### Patch Changes
+
+- [#4284](https://github.com/toptal/picasso/pull/4284) [`da32106624188e82773df7fadcf708943e4fc09a`](https://github.com/toptal/picasso/commit/da32106624188e82773df7fadcf708943e4fc09a) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+
+### Paper
+
+- use tailwind-merge
+
 ## 2.0.1
 
 ### Patch Changes
