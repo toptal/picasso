@@ -1,7 +1,6 @@
 // TODO: clarify about 24px spacing
 export type GridSpacing = 0 | 8 | 16 | 24 | 32 | 64 | 72 | 80
 
-// Taken from MUI@4 to maintain API compatibility
 export type GridSize =
   | true
   | 'auto'
@@ -18,7 +17,6 @@ export type GridSize =
   | 11
   | 12
 
-// Taken from MUI@4 to maintain API compatibility
 export type GridJustification =
   | 'flex-start'
   | 'center'
@@ -27,7 +25,6 @@ export type GridJustification =
   | 'space-around'
   | 'space-evenly'
 
-// Taken from MUI@4 to maintain API compatibility
 export type GridItemsAlignment =
   | 'flex-start'
   | 'center'
@@ -35,8 +32,6 @@ export type GridItemsAlignment =
   | 'stretch'
   | 'baseline'
 
-// Taken from MUI@4 to maintain API compatibility
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse'
 
-// Taken from MUI@4 to maintain API compatibility
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse'
