@@ -1,5 +1,5 @@
-import { getBgColor } from './get-bg-color'
-import type { GetBgColorType } from './get-bg-color'
+import { getBgColor } from './slider-utils'
+import type { GetBgColorType } from './slider-utils'
 
 describe('getBgColor function', () => {
   describe('when markActive is true, hideTrack is false, and value is not undefined', () => {
