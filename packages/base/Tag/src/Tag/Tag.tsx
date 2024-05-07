@@ -79,7 +79,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     if (onDelete) {
       event.preventDefault()
 
-      event.stopPropagation()
+      // event.stopPropagation()
 
       onDelete(event)
     }
