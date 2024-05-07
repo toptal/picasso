@@ -1,7 +1,7 @@
-import cx from 'classnames'
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Paper elevation shadow */
@@ -26,7 +26,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   return (
     <div
       ref={ref}
-      className={cx(
+      className={twMerge(
         'bg-white',
         `shadow-${elevation}`,
         'transition-shadow duration-300 delay-0',
