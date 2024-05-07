@@ -5,7 +5,7 @@ import { type BaseProps } from '@toptal/picasso-shared'
 import type { BreakpointKeys } from '@toptal/picasso-provider'
 import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
 
-import GridContext from '../GridContext/GridContext'
+import { GridContext } from '../GridContext'
 import type {
   GridDirection,
   GridItemsAlignment,

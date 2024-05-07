@@ -3,7 +3,7 @@ import React, { forwardRef, useContext } from 'react'
 import { type BaseProps } from '@toptal/picasso-shared'
 import { twMerge } from 'tailwind-merge'
 
-import GridContext from '../GridContext/GridContext'
+import { GridContext } from '../GridContext'
 import type { GridSize, GridSpacing } from '../types'
 
 export interface GridSizes {
@@ -39,17 +39,24 @@ const getSpacingClassName = (gridSpacing?: GridSpacing) => {
 
 /*
 Tailwind needs explicit classnames to include them in the build
-basis-1/12 basis-2/12 basis-3/12 basis-4/12 basis-5/12 basis-6/12 basis-7/12 basis-8/12 basis-9/12 basis-10/12 basis-11/12 basis-full
-sm:basis-1/12 sm:basis-2/12 sm:basis-3/12 sm:basis-4/12 sm:basis-5/12 sm:basis-6/12 sm:basis-7/12 sm:basis-8/12 sm:basis-9/12 sm:basis-10/12 sm:basis-11/12 sm:basis-full
-md:basis-1/12 md:basis-2/12 md:basis-3/12 md:basis-4/12 md:basis-5/12 md:basis-6/12 md:basis-7/12 md:basis-8/12 md:basis-9/12 md:basis-10/12 md:basis-11/12 md:basis-full
-lg:basis-1/12 lg:basis-2/12 lg:basis-3/12 lg:basis-4/12 lg:basis-5/12 lg:basis-6/12 lg:basis-7/12 lg:basis-8/12 lg:basis-9/12 lg:basis-10/12 lg:basis-11/12 lg:basis-full
-xl:basis-1/12 xl:basis-2/12 xl:basis-3/12 xl:basis-4/12 xl:basis-5/12 xl:basis-6/12 xl:basis-7/12 xl:basis-8/12 xl:basis-9/12 xl:basis-10/12 xl:basis-11/12 xl:basis-full
 
-max-w-1/12 max-w-2/12 max-w-3/12 max-w-4/12 max-w-5/12 max-w-6/12 max-w-7/12 max-w-8/12 max-w-9/12 max-w-10/12 max-w-11/12 max-w-full
-sm:max-w-1/12 sm:max-w-2/12 sm:max-w-3/12 sm:max-w-4/12 sm:max-w-5/12 sm:max-w-6/12 sm:max-w-7/12 sm:max-w-8/12 sm:max-w-9/12 sm:max-w-10/12 sm:max-w-11/12 sm:max-w-full
-md:max-w-1/12 md:max-w-2/12 md:max-w-3/12 md:max-w-4/12 md:max-w-5/12 md:max-w-6/12 md:max-w-7/12 md:max-w-8/12 md:max-w-9/12 md:max-w-10/12 md:max-w-11/12 md:max-w-full
-lg:max-w-1/12 lg:max-w-2/12 lg:max-w-3/12 lg:max-w-4/12 lg:max-w-5/12 lg:max-w-6/12 lg:max-w-7/12 lg:max-w-8/12 lg:max-w-9/12 lg:max-w-10/12 lg:max-w-11/12 lg:max-w-full
-xl:max-w-1/12 xl:max-w-2/12 xl:max-w-3/12 xl:max-w-4/12 xl:max-w-5/12 xl:max-w-6/12 xl:max-w-7/12 xl:max-w-8/12 xl:max-w-9/12 xl:max-w-10/12 xl:max-w-11/12 xl:max-w-full
+xs:max-w-full sm:max-w-full md:max-w-full lg:max-w-full xl:max-w-full
+xs:max-w-none sm:max-w-none md:max-w-none lg:max-w-none xl:max-w-none
+
+xs:grow sm:grow md:grow lg:grow xl:grow
+xs:grow-0 sm:grow-0 md:grow-0 lg:grow-0 xl:grow-0
+
+xs:basis-0 xs:basis-auto xs:basis-1/12 xs:basis-2/12 xs:basis-3/12 xs:basis-4/12 xs:basis-5/12 xs:basis-6/12 xs:basis-7/12 xs:basis-8/12 xs:basis-9/12 xs:basis-10/12 xs:basis-11/12 xs:basis-full
+sm:basis-0 sm:basis-auto sm:basis-1/12 sm:basis-2/12 sm:basis-3/12 sm:basis-4/12 sm:basis-5/12 sm:basis-6/12 sm:basis-7/12 sm:basis-8/12 sm:basis-9/12 sm:basis-10/12 sm:basis-11/12 sm:basis-full
+md:basis-0 md:basis-auto md:basis-1/12 md:basis-2/12 md:basis-3/12 md:basis-4/12 md:basis-5/12 md:basis-6/12 md:basis-7/12 md:basis-8/12 md:basis-9/12 md:basis-10/12 md:basis-11/12 md:basis-full
+lg:basis-0 lg:basis-auto lg:basis-1/12 lg:basis-2/12 lg:basis-3/12 lg:basis-4/12 lg:basis-5/12 lg:basis-6/12 lg:basis-7/12 lg:basis-8/12 lg:basis-9/12 lg:basis-10/12 lg:basis-11/12 lg:basis-full
+lg:basis-0 lg:basis-auto xl:basis-1/12 xl:basis-2/12 xl:basis-3/12 xl:basis-4/12 xl:basis-5/12 xl:basis-6/12 xl:basis-7/12 xl:basis-8/12 xl:basis-9/12 xl:basis-10/12 xl:basis-11/12 xl:basis-full
+
+xs:max-w-1/12 xs:max-w-2/12 xs:max-w-3/12 xs:max-w-4/12 xs:max-w-5/12 xs:max-w-6/12 xs:max-w-7/12 xs:max-w-8/12 xs:max-w-9/12 xs:max-w-10/12 xs:max-w-11/12
+sm:max-w-1/12 sm:max-w-2/12 sm:max-w-3/12 sm:max-w-4/12 sm:max-w-5/12 sm:max-w-6/12 sm:max-w-7/12 sm:max-w-8/12 sm:max-w-9/12 sm:max-w-10/12 sm:max-w-11/12
+md:max-w-1/12 md:max-w-2/12 md:max-w-3/12 md:max-w-4/12 md:max-w-5/12 md:max-w-6/12 md:max-w-7/12 md:max-w-8/12 md:max-w-9/12 md:max-w-10/12 md:max-w-11/12
+lg:max-w-1/12 lg:max-w-2/12 lg:max-w-3/12 lg:max-w-4/12 lg:max-w-5/12 lg:max-w-6/12 lg:max-w-7/12 lg:max-w-8/12 lg:max-w-9/12 lg:max-w-10/12 lg:max-w-11/12
+xl:max-w-1/12 xl:max-w-2/12 xl:max-w-3/12 xl:max-w-4/12 xl:max-w-5/12 xl:max-w-6/12 xl:max-w-7/12 xl:max-w-8/12 xl:max-w-9/12 xl:max-w-10/12 xl:max-w-11/12
 */
 const getClassNamesForBreakpoint = (
   breakpointKey: string,
@@ -59,7 +66,7 @@ const getClassNamesForBreakpoint = (
     // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L28
     return [
       `${breakpointKey}:basis-0`,
-      `${breakpointKey}:grow-1`,
+      `${breakpointKey}:grow`,
       `${breakpointKey}:max-w-full`,
     ]
   } else if (size === 'auto') {
