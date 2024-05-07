@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-dropdown",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Toptal UI components library - Dropdown",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-paper": "2.0.1",
+    "@toptal/picasso-paper": "2.0.2",
     "@toptal/picasso-popper": "1.0.2",
     "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1"
