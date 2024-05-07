@@ -59,15 +59,9 @@ const generateClassesForNonXsBreakpoints = (
   breakpointValue?: GridSize | boolean
 ) => {
   if (breakpointValue === true) {
-    throw new Error('TODO')
-    // For the auto layout
-    // styles = {
-    //   flexBasis: 0,
-    //   flexGrow: 1,
-    //   maxWidth: '100%',
-    // };
+    return [`basis-0`, `grow-1`, 'max-w-full']
   } else if (breakpointValue === 'auto') {
-    throw new Error('TODO')
+    throw new Error('TODO 2')
   } else if (breakpointValue === undefined) {
     return []
   }
@@ -89,7 +83,7 @@ const getBreakpointAndColumnClassName = ({ xs, sm, md, lg, xl }: GridSizes) => {
 
   if (xs) {
     if (xs === true) {
-      throw new Error('TODO')
+      throw new Error('TODO 3')
       // For the auto layouting
       // styles = {
       //   flexBasis: 0,
@@ -97,13 +91,13 @@ const getBreakpointAndColumnClassName = ({ xs, sm, md, lg, xl }: GridSizes) => {
       //   maxWidth: '100%',
       // };
     } else if (xs === 'auto') {
-      throw new Error('TODO')
+      throw new Error('TODO 4')
+    } else {
+      const xsClassName = xs === 12 ? 'full' : `${xs}/12`
+
+      // Assuming that xs is a number from now on
+      classNames.push(`basis-${xsClassName} max-w-${xsClassName}`)
     }
-
-    const xsClassName = xs === 12 ? 'full' : `${xs}/12`
-
-    // Assuming that xs is a number from now on
-    classNames.push(`basis-${xsClassName} max-w-${xsClassName}`)
   }
 
   const smClasses = generateClassesForNonXsBreakpoints('sm', sm)
