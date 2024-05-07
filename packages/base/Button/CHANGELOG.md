@@ -1,5 +1,15 @@
 # @toptal/picasso-button
 
+## 1.0.11
+
+### Patch Changes
+
+- [#4280](https://github.com/toptal/picasso/pull/4280) [`f19a61397870dcfd3bb5bb2e645a3ae1be8632ce`](https://github.com/toptal/picasso/commit/f19a61397870dcfd3bb5bb2e645a3ae1be8632ce) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Button
+
+- fix dependency on picasso-link being elicited or tree-shaken
+
 ## 1.0.10
 
 ### Patch Changes
