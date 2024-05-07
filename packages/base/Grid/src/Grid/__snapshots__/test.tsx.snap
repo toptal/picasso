@@ -6,7 +6,7 @@ exports[`Grid renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex w-full justify-start items-start flex-wrap flex-row width-calc-100pct -m"
+      class="box-border flex w-full flex-row flex-wrap items-start justify-start width-calc-100pct -m"
     />
   </div>
 </div>

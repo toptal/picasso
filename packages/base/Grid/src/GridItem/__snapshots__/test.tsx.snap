@@ -6,7 +6,7 @@ exports[`GridItem renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="p-NaN grow-0"
+      class="box-border m-0"
     />
   </div>
 </div>
