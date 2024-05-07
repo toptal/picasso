@@ -1,8 +1,10 @@
 import { createContext } from 'react'
 
+import type { GridSpacing } from '../types'
+
 // TODO: add index file
 export interface GridContextProps {
-  spacing?: number
+  gridSpacing?: GridSpacing
 }
 
 export default createContext<GridContextProps>({})

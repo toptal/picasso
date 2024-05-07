@@ -1,5 +1,22 @@
-// TODO: where is this type coming from?
-export type GridSpacing = 0 | 8 | 16 | 32 | 64 | 72 | 80
+// TODO: clarify about 24px spacing
+export type GridSpacing = 0 | 8 | 16 | 24 | 32 | 64 | 72 | 80
+
+// Taken from MUI@4 to maintain API compatibility
+export type GridSize =
+  | true
+  | 'auto'
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
 
 // Taken from MUI@4 to maintain API compatibility
 export type GridJustification =

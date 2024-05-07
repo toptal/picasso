@@ -7,38 +7,15 @@ module.exports = {
       addUtilities({
         '.font-inherit-weight': { 'font-weight': 'inherit' },
         '.font-inherit-size': { 'font-size': '1em' },
-        // TODO: using "pct" instead of "%" to avoid escaping
-        // TODO: make the code smaller
-        '.width-calc-100pct-8px': {
-          width: 'calc(100% + 8px)',
-        },
-        '.width-calc-100pct-16px': {
-          width: 'calc(100% + 16px)',
-        },
-        '.width-calc-100pct-24px': {
-          width: 'calc(100% + 24px)',
-        },
-        '.width-calc-100pct-32px': {
-          width: 'calc(100% + 32px)',
-        },
-        '.width-calc-100pct-40px': {
-          width: 'calc(100% + 40px)',
-        },
-        '.width-calc-100pct-48px': {
-          width: 'calc(100% + 48px)',
-        },
-        '.width-calc-100pct-56px': {
-          width: 'calc(100% + 56px)',
-        },
-        '.width-calc-100pct-64px': {
-          width: 'calc(100% + 64px)',
-        },
-        '.width-calc-100pct-72px': {
-          width: 'calc(100% + 72px)',
-        },
-        '.width-calc-100pct-80px': {
-          width: 'calc(100% + 80px)',
-        },
+        // Generate classes for all grid spacings
+        ...[8, 16, 24, 32, 40, 48, 56, 64, 72, 80].reduce((acc, value) => {
+          // Use "pct" instead of "%" to avoid escaping (pct is common abbreviation for percent)
+          acc[`.width-calc-100pct-${value}px`] = {
+            width: `calc(100% + ${value}px)`,
+          }
+
+          return acc
+        }, {}),
       })
     }),
   ],
@@ -187,21 +164,6 @@ module.exports = {
         modal: 1300,
       },
       maxWidth: {
-        // '1/2': '50%',
-        // '1/3': '33.333333%',
-        // '2/3': '66.666667%',
-        // '1/4': '25%',
-        // '2/4': '50%',
-        // '3/4': '75%',
-        // '1/5': '20%',
-        // '2/5': '40%',
-        // '3/5': '60%',
-        // '4/5': '80%',
-        // '1/6': '16.666667%',
-        // '2/6': '33.333333%',
-        // '3/6': '50%',
-        // '4/6': '66.666667%',
-        // '5/6': '83.333333%',
         '1/12': '8.333333%',
         '2/12': '16.666667%',
         '3/12': '25%',
