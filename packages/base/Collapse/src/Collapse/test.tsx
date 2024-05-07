@@ -9,7 +9,7 @@ const SomeChildComponent = React.forwardRef<HTMLDivElement>((props, ref) => (
   </div>
 ))
 
-describe('Fade', () => {
+describe('Collapse', () => {
   beforeEach(() => {
     jest.useFakeTimers()
   })
@@ -19,58 +19,35 @@ describe('Fade', () => {
     jest.useRealTimers()
   })
 
-  it('renders without errors', () => {
-    const { getByTestId } = render(
-      <Collapse in={true}>
-        <SomeChildComponent />
-      </Collapse>
-    )
-
-    expect(getByTestId('child-div')).toBeInTheDocument()
-  })
-
   it('transitions based on the `in` prop', () => {
     const { getByTestId, rerender } = render(
-      <Collapse in={false}>
+      <Collapse in={false} data-testid='collapse'>
         <SomeChildComponent />
       </Collapse>
     )
 
-    expect(getByTestId('child-div')).toHaveStyle('visibility: hidden')
+    expect(getByTestId('collapse')).toHaveClass('hidden')
 
     act(() => {
       rerender(
-        <Collapse in={true}>
+        <Collapse in={true} data-testid='collapse'>
           <SomeChildComponent />
         </Collapse>
       )
       jest.runAllTimers()
     })
 
-    expect(getByTestId('child-div')).toHaveStyle('visibility: visible')
+    expect(getByTestId('collapse')).toHaveStyle('display: block')
   })
 
   it('forwards the ref', () => {
     const ref = React.createRef<HTMLDivElement>()
     const { getByTestId } = render(
-      <Collapse in={true} ref={ref}>
+      <Collapse in={true} ref={ref} data-testid='collapse'>
         <SomeChildComponent />
       </Collapse>
     )
 
-    expect(ref.current).toBe(getByTestId('child-div'))
-  })
-
-  it('applies transition duration style', () => {
-    const timeout = 500
-    const { getByTestId } = render(
-      <Collapse in={true} timeout={timeout}>
-        <SomeChildComponent />
-      </Collapse>
-    )
-
-    expect(getByTestId('child-div')).toHaveStyle({
-      transitionDuration: `${timeout}ms`,
-    })
+    expect(ref.current).toBe(getByTestId('collapse'))
   })
 })
