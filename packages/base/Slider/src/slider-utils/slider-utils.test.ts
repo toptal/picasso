@@ -1,5 +1,5 @@
-import { getBgColor } from './slider-utils'
-import type { GetBgColorType } from './slider-utils'
+import { getBgColor, getPosition } from './slider-utils'
+import type { GetBgColorType, GetPositionType } from './slider-utils'
 
 describe('getBgColor function', () => {
   describe('when markActive is true, hideTrack is false, and value is not undefined', () => {
@@ -73,6 +73,46 @@ describe('getBgColor function', () => {
 
         expect(bgColor).toBe('bg-gray-500')
       })
+    })
+  })
+})
+
+describe('getPosition', () => {
+  const options: GetPositionType = {
+    hasTooltipOverflow: true,
+    isRangeSliderCollapsed: false,
+    index: 0,
+  }
+
+  describe('when the tooltips do not overflow', () => {
+    it('exits the function', () => {
+      const position = getPosition({ ...options, hasTooltipOverflow: false })
+
+      expect(position).toBeUndefined()
+    })
+  })
+
+  describe('when the range slider is collapsed', () => {
+    it('exits the function', () => {
+      const position = getPosition({ ...options, isRangeSliderCollapsed: true })
+
+      expect(position).toBeUndefined()
+    })
+  })
+
+  describe('when index is different than 0', () => {
+    it('returns the left placement class', () => {
+      const position = getPosition({ ...options, index: -1 })
+
+      expect(position).toBe('left-[calc(100%-13px)]')
+    })
+  })
+
+  describe('when index is 0', () => {
+    it('returns the right placement class', () => {
+      const position = getPosition({ ...options, index: 0 })
+
+      expect(position).toBe('right-[calc(100%-13px)]')
     })
   })
 })
