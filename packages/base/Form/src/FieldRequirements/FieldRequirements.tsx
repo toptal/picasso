@@ -61,6 +61,7 @@ export const FieldRequirements = <TValueType,>({
         </Typography>
       )}
       <Grid
+        // Tailwind needs explicit classnames to include them in the build
         // w-[18.75rem]
         className={`w-[${sizes.input.width}]`}
         spacing={0}

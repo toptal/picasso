@@ -1,4 +1,3 @@
-// TODO: clarify about 24px spacing
 export type GridSpacing = 0 | 8 | 16 | 24 | 32 | 64 | 72 | 80
 
 export type GridSize =

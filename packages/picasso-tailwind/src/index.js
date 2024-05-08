@@ -7,9 +7,9 @@ module.exports = {
       addUtilities({
         '.font-inherit-weight': { 'font-weight': 'inherit' },
         '.font-inherit-size': { 'font-size': '1em' },
-        // Generate classes for all grid spacings
-        ...[8, 16, 24, 32, 40, 48, 56, 64, 72, 80].reduce((acc, value) => {
-          // Use "pct" instead of "%" to avoid escaping (pct is common abbreviation for percent)
+        // Generate grid width classes for all possible grid spacings (values are same as in GridSpacing type)
+        ...[0, 8, 16, 24, 32, 64, 72, 80].reduce((acc, value) => {
+          // Use "pct" instead of "%" to avoid escaping ("pct" is common abbreviation for percents)
           acc[`.width-calc-100pct-${value}px`] = {
             width: `calc(100% + ${value}px)`,
           }

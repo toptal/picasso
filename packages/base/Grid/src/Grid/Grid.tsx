@@ -101,10 +101,10 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   const {
     children,
     spacing: userSpacing,
-    direction,
-    alignItems,
-    justifyContent,
-    wrap,
+    direction = 'row',
+    alignItems = 'flex-start',
+    justifyContent = 'flex-start',
+    wrap = 'wrap',
     className,
     style,
     ...rest
@@ -113,16 +113,11 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   const responsiveSpacing = useResponsiveSpacing()
   const gridSpacing = userSpacing ?? responsiveSpacing
 
-  // DELETE_BEFORE_MERGE Default value comes from https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L233
-  const directionClassName = directionClassNamesMapping[direction || 'row']
-  // DELETE_BEFORE_MERGE Default value comes from https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L234
-  const wrapClassName = wrapClassNamesMapping[wrap || 'wrap']
-  // DELETE_BEFORE_MERGE Default value comes from https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L235
-  const alignItemsClassName =
-    alignItemsClassNamesMapping[alignItems || 'stretch']
-  // DELETE_BEFORE_MERGE Default value comes from https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L237
+  const directionClassName = directionClassNamesMapping[direction]
+  const wrapClassName = wrapClassNamesMapping[wrap]
+  const alignItemsClassName = alignItemsClassNamesMapping[alignItems]
   const justifyContentClassName =
-    justifyContentClassNamesMapping[justifyContent || 'flex-start']
+    justifyContentClassNamesMapping[justifyContent]
 
   const gridSpacingClassName = getGridSpacingClassName(gridSpacing)
 
