@@ -1,5 +1,12 @@
 # @toptal/picasso-user-badge
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-avatar@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
