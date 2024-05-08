@@ -24,7 +24,6 @@
   "dependencies": {
     "@toptal/picasso-utils": "1.0.2",
     "tailwind-merge": "^2.2.2",
-    "classnames": "^2.5.1",
     "react-transition-group": "^4.4.5"
   },
   "sideEffects": false,

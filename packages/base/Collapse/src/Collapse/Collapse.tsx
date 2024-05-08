@@ -2,8 +2,7 @@ import React, { useRef, useState, forwardRef } from 'react'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useMultipleForwardRefs } from '@toptal/picasso-utils'
-import cx from 'classnames'
-import { twMerge } from 'tailwind-merge'
+import { twJoin } from 'tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */
@@ -38,30 +37,13 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
 
     const [height, setHeight] = useState<number>()
 
-    const onEntering = () => {
-      // onShow && onShow()
+    const setToCurrentHeight = () => {
       if (collapseRef.current) {
         setHeight(collapseRef.current.scrollHeight)
       }
     }
 
-    const onEntered = () => {
-      // setHeight(0)
-    }
-
-    const onExit = () => {
-      if (collapseRef.current) {
-        setHeight(collapseRef.current.scrollHeight)
-      }
-    }
-
-    const onExiting = () => {
-      // onHide && onHide()
-
-      setHeight(0)
-    }
-
-    const onExited = () => {
+    const resetHeight = () => {
       setHeight(0)
     }
 
@@ -70,12 +52,11 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
         in={inProps}
         appear={appear}
         nodeRef={collapseRef}
-        onEntering={onEntering}
+        onEntering={setToCurrentHeight}
         unmountOnExit={unmountOnExit}
-        onEntered={onEntered}
-        onExit={onExit}
-        onExiting={onExiting}
-        onExited={onExited}
+        onExit={setToCurrentHeight}
+        onExiting={resetHeight}
+        onExited={resetHeight}
         timeout={timeout}
         {...rest}
       >
@@ -85,13 +66,11 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
 
           return (
             <div
-              className={twMerge(
-                cx(className, {
-                  'overflow-hidden max-h-0': isAnimating,
-                  hidden: state === 'exited',
-                }),
-                className
-              )}
+              className={twJoin([
+                isAnimating ? 'overflow-hidden max-h-0' : undefined,
+                state === 'exited' ? 'hidden' : undefined,
+                className,
+              ])}
               style={{
                 ...style,
                 ...currentHeight,
