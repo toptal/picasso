@@ -89,14 +89,13 @@ const getClassNamesForBreakpoint = (
   return []
 }
 
-const getSizesClassNames = ({ xs, sm, md, lg, xl }: GridSizes) =>
-  [
-    getClassNamesForBreakpoint('xs', xs),
-    getClassNamesForBreakpoint('sm', sm),
-    getClassNamesForBreakpoint('md', md),
-    getClassNamesForBreakpoint('lg', lg),
-    getClassNamesForBreakpoint('xl', xl),
-  ].flat()
+const getSizesClassNames = ({ xs, sm, md, lg, xl }: GridSizes) => [
+  getClassNamesForBreakpoint('xs', xs),
+  getClassNamesForBreakpoint('sm', sm),
+  getClassNamesForBreakpoint('md', md),
+  getClassNamesForBreakpoint('lg', lg),
+  getClassNamesForBreakpoint('xl', xl),
+]
 
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   props,
@@ -113,7 +112,9 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
     md,
     lg,
     xl,
-  }).join(' ')
+  })
+    .flat()
+    .join(' ')
 
   return (
     <div
