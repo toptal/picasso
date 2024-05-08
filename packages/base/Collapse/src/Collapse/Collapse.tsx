@@ -27,6 +27,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
       unmountOnExit,
       style,
       appear,
+      onExited: onExitedProp,
       'data-testid': dataTestId,
       ...rest
     },
@@ -47,6 +48,13 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
       setHeight(0)
     }
 
+    const onExited = (node: HTMLElement) => {
+      resetHeight()
+      if (onExitedProp) {
+        onExitedProp(node)
+      }
+    }
+
     return (
       <Transition
         in={inProps}
@@ -56,7 +64,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
         unmountOnExit={unmountOnExit}
         onExit={setToCurrentHeight}
         onExiting={resetHeight}
-        onExited={resetHeight}
+        onExited={onExited}
         timeout={timeout}
         {...rest}
       >
