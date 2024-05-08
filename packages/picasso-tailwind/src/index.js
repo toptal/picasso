@@ -7,7 +7,7 @@ module.exports = {
       addUtilities({
         '.font-inherit-weight': { 'font-weight': 'inherit' },
         '.font-inherit-size': { 'font-size': '1em' },
-        // Generate grid width classes for all possible grid spacings (values are same as in GridSpacing type)
+        // Grid width classes for all possible grid spacings (values are same as in GridSpacing type)
         ...[0, 8, 16, 24, 32, 64, 72, 80].reduce((acc, value) => {
           // Use "pct" instead of "%" to avoid escaping ("pct" is common abbreviation for percents)
           acc[`.width-calc-100pct-${value}px`] = {
@@ -16,6 +16,16 @@ module.exports = {
 
           return acc
         }, {}),
+        // Input width, height and padding classes
+        '.input-width': {
+          width: '18.75rem',
+        },
+        '.input-height': {
+          height: '2rem',
+        },
+        '.input-padding': {
+          padding: '0.5rem',
+        },
       })
     }),
   ],

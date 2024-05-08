@@ -79,19 +79,24 @@ const justifyContentClassNamesMapping: { [K in GridJustification]: string } = {
   'space-evenly': 'justify-evenly',
 }
 
-/*
-Tailwind needs explicit classnames to include them in the build
-.-m-[4px] .-m-[8px] .-m-[12px] .-m-[16px] .-m-[32px] .-m-[36px] .-m-[40px]
-.width-calc-100pct-8px .width-calc-100pct-16px .width-calc-100pct-24px .width-calc-100pct-32px
-.width-calc-100pct-64px .width-calc-100pct-72px .width-calc-100pct-80px
-*/
+const gridWidthAndMarginMapping: { [K in GridSpacing]: string } = {
+  '0': 'width-calc-100pct-0px -m-[0px]',
+  '8': 'width-calc-100pct-8px -m-[4px]',
+  '16': 'width-calc-100pct-16px -m-[8px]',
+  '24': 'width-calc-100pct-24px -m-[12px]',
+  '32': 'width-calc-100pct-32px -m-[16px]',
+  '64': 'width-calc-100pct-64px -m-[32px]',
+  '72': 'width-calc-100pct-72px -m-[36px]',
+  '80': 'width-calc-100pct-80px -m-[40px]',
+}
+
 const getGridSpacingClassName = (spacing: Props['spacing']) => {
   if (!spacing) {
     return ''
   }
 
   // Negative margin has half of the spacing value to properly handle space on sides of grid
-  return `width-calc-100pct-${spacing}px -m-[${spacing / 2}px]`
+  return gridWidthAndMarginMapping[spacing]
 }
 
 export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(

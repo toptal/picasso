@@ -3,7 +3,6 @@ import { Collapse } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { Grid } from '@toptal/picasso-grid'
-import { sizes } from '@toptal/picasso-provider'
 
 import type { FieldRequirementItemStatus } from './FieldRequirementItem'
 import FieldRequirementItem from './FieldRequirementItem'
@@ -61,9 +60,7 @@ export const FieldRequirements = <TValueType,>({
         </Typography>
       )}
       <Grid
-        // Tailwind needs explicit classnames to include them in the build
-        // w-[18.75rem]
-        className={`w-[${sizes.input.width}]`}
+        className='input-width'
         spacing={0}
         data-testid={testIds?.gridContainer}
       >
