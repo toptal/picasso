@@ -1,5 +1,13 @@
 # @toptal/picasso-checkbox
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@2.0.1
+  - @toptal/picasso-grid@1.0.6
+
 ## 1.0.6
 
 ### Patch Changes

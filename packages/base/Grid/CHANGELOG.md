@@ -1,5 +1,12 @@
 # @toptal/picasso-grid
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+
 ## 1.0.5
 
 ### Patch Changes

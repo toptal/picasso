@@ -1,5 +1,15 @@
 # @toptal/picasso-icons
 
+## 1.1.0
+
+### Minor Changes
+
+- [#4283](https://github.com/toptal/picasso/pull/4283) [`c7560aed9dd41bb458c5532608ddd542890523e5`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5) Thanks [@vasyl-kuzmyk-toptal](https://github.com/vasyl-kuzmyk-toptal)!
+
+### Icons
+
+- add Avatar icon
+
 ## 1.0.2
 
 ### Patch Changes

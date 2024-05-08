@@ -1,5 +1,61 @@
 # Change Log
 
+## 44.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-accordion@1.0.12
+  - @toptal/picasso-account-select@1.0.9
+  - @toptal/picasso-alert@1.0.12
+  - @toptal/picasso-application-update-notification@1.0.12
+  - @toptal/picasso-avatar@2.0.1
+  - @toptal/picasso-avatar-upload@1.0.12
+  - @toptal/picasso-breadcrumbs@1.0.6
+  - @toptal/picasso-button@1.0.12
+  - @toptal/picasso-calendar@1.0.12
+  - @toptal/picasso-carousel@1.0.13
+  - @toptal/picasso-date-picker@1.0.12
+  - @toptal/picasso-drawer@2.0.4
+  - @toptal/picasso-dropzone@1.0.13
+  - @toptal/picasso-empty-state@1.0.5
+  - @toptal/picasso-file-input@1.0.13
+  - @toptal/picasso-form@2.0.1
+  - @toptal/picasso-grid@1.0.6
+  - @toptal/picasso-helpbox@1.0.12
+  - @toptal/picasso-input@1.0.12
+  - @toptal/picasso-input-adornment@1.0.3
+  - @toptal/picasso-list@2.0.1
+  - @toptal/picasso-logo@1.0.3
+  - @toptal/picasso-menu@1.0.9
+  - @toptal/picasso-modal@1.0.12
+  - @toptal/picasso-notification@2.0.4
+  - @toptal/picasso-number-input@1.0.12
+  - @toptal/picasso-outlined-input@1.0.12
+  - @toptal/picasso-page@2.0.5
+  - @toptal/picasso-password-input@1.0.12
+  - @toptal/picasso-rating@1.0.3
+  - @toptal/picasso-section@2.0.4
+  - @toptal/picasso-select@1.0.13
+  - @toptal/picasso-show-more@1.0.12
+  - @toptal/picasso-step@1.1.1
+  - @toptal/picasso-table@1.1.9
+  - @toptal/picasso-tabs@2.0.1
+  - @toptal/picasso-tag@1.1.1
+  - @toptal/picasso-timepicker@1.0.12
+  - @toptal/picasso-user-badge@2.0.1
+  - @toptal/picasso-pagination@1.0.12
+  - @toptal/picasso-prompt-modal@1.0.12
+  - @toptal/picasso-skeleton-loader@1.0.12
+  - @toptal/picasso-tree-view@1.0.12
+  - @toptal/picasso-autocomplete@1.0.13
+  - @toptal/picasso-checkbox@1.0.7
+  - @toptal/picasso-radio@1.0.7
+  - @toptal/picasso-switch@1.0.7
+  - @toptal/picasso-tagselector@1.0.14
+  - @toptal/picasso-date-select@1.0.13
+
 ## 44.0.17
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @toptal/picasso-pagination
 
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.12
+
 ## 1.0.11
 
 ### Patch Changes

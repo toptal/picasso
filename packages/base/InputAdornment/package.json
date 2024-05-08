@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-input-adornment",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Toptal UI components library - InputAdornment",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "1.0.2",
-    "@toptal/picasso-icons": "1.0.2",
+    "@toptal/picasso-icons": "1.1.0",
     "@toptal/picasso-shared": "14.0.1",
     "@toptal/picasso-utils": "1.0.2",
     "classnames": "^2.5.1"
