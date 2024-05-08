@@ -163,6 +163,7 @@ module.exports = {
         drawer: 1200,
         modal: 1300,
       },
+      // Needed to support all possible grid item widths in 12-columns grid
       maxWidth: {
         '1/12': '8.333333%',
         '2/12': '16.666667%',
