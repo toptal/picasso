@@ -1,8 +1,14 @@
-import type { SliderMarkSlotProps } from '@mui/base/Slider'
 import React from 'react'
 import { twJoin } from 'tailwind-merge'
 
-import { getBgColor } from '../slider-utils/slider-utils'
+import { getBgColor } from '../utils'
+
+export type SliderMarkProps = {
+  markActive: boolean
+  ownerState: { value: number }
+  style: React.CSSProperties
+  'data-index': number
+}
 
 // We need custom Mark component because we have
 // different bg color based on value of the Slider
@@ -12,7 +18,7 @@ const SliderMark = ({
   'data-index': dataIndex,
   style,
   hideTrack,
-}: SliderMarkSlotProps & { hideTrack: boolean }) => {
+}: SliderMarkProps & { hideTrack: boolean }) => {
   return (
     <span
       data-index={dataIndex}

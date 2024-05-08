@@ -1,5 +1,5 @@
-import { getBgColor, getPosition } from './slider-utils'
-import type { GetBgColorType, GetPositionType } from './slider-utils'
+import { getBgColor, getTooltipHorizontalPosition } from './'
+import type { GetBgColorType, GetTooltipHorizontalPosition } from './'
 
 describe('getBgColor function', () => {
   describe('when markActive is true, hideTrack is false, and value is not undefined', () => {
@@ -78,15 +78,14 @@ describe('getBgColor function', () => {
 })
 
 describe('getPosition', () => {
-  const options: GetPositionType = {
-    hasTooltipOverflow: true,
-    isRangeSliderCollapsed: false,
+  const options: GetTooltipHorizontalPosition = {
+    shouldUpdatePosition: false,
     index: 0,
   }
 
-  describe('when the tooltips do not overflow', () => {
+  describe('when the value labels do not overflow', () => {
     it('exits the function', () => {
-      const position = getPosition({ ...options, hasTooltipOverflow: false })
+      const position = getTooltipHorizontalPosition(options)
 
       expect(position).toBeUndefined()
     })
@@ -94,7 +93,10 @@ describe('getPosition', () => {
 
   describe('when the range slider is collapsed', () => {
     it('exits the function', () => {
-      const position = getPosition({ ...options, isRangeSliderCollapsed: true })
+      const position = getTooltipHorizontalPosition({
+        ...options,
+        isRangeSliderCollapsed: true,
+      })
 
       expect(position).toBeUndefined()
     })
@@ -102,7 +104,7 @@ describe('getPosition', () => {
 
   describe('when index is different than 0', () => {
     it('returns the left placement class', () => {
-      const position = getPosition({ ...options, index: -1 })
+      const position = getTooltipHorizontalPosition({ ...options, index: -1 })
 
       expect(position).toBe('left-[calc(100%-13px)]')
     })
@@ -110,7 +112,7 @@ describe('getPosition', () => {
 
   describe('when index is 0', () => {
     it('returns the right placement class', () => {
-      const position = getPosition({ ...options, index: 0 })
+      const position = getTooltipHorizontalPosition({ ...options, index: 0 })
 
       expect(position).toBe('right-[calc(100%-13px)]')
     })

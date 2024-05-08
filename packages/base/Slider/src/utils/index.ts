@@ -4,9 +4,8 @@ export type GetBgColorType = {
   value?: number | readonly number[]
 }
 
-export type GetPositionType = {
-  hasTooltipOverflow: boolean
-  isRangeSliderCollapsed: boolean
+export type GetTooltipHorizontalPosition = {
+  shouldUpdatePosition: boolean
   index: number
 }
 
@@ -27,12 +26,11 @@ export const getBgColor = ({
   return 'bg-gray-500'
 }
 
-export const getPosition = ({
-  hasTooltipOverflow,
-  isRangeSliderCollapsed,
+export const getTooltipHorizontalPosition = ({
+  shouldUpdatePosition,
   index,
-}: GetPositionType) => {
-  if (!hasTooltipOverflow || isRangeSliderCollapsed) {
+}: GetTooltipHorizontalPosition) => {
+  if (!shouldUpdatePosition) {
     return
   }
 

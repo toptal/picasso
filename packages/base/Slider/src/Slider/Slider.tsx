@@ -138,7 +138,6 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   tooltip: 'off',
-  disablePortal: false,
 }
 
 export default Slider

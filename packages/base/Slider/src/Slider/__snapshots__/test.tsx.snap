@@ -6,10 +6,10 @@ exports[`Slider renders 1`] = `
     class="my-[6px] mx-0"
   >
     <span
-      class="base-Slider block relative py-[6px] -my"
+      class="base-Slider block cursor-pointer width-full relative py-[6px] -my"
     >
       <span
-        class="base-Slider flex absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
+        class="base-Slider block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
       />
       <span
         class="base-Slider block absolute h-[1px] bg-blue"
@@ -34,7 +34,7 @@ exports[`Slider renders 1`] = `
           value="0"
         />
         <span
-          class="absolute -top will-change transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden"
+          class="absolute will-change shadow-4 transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden top-[calc(100%+4px)]"
         >
           0
         </span>
@@ -50,10 +50,10 @@ exports[`Slider with initial value 1`] = `
     class="my-[6px] mx-0"
   >
     <span
-      class="base-Slider block relative py-[6px] -my"
+      class="base-Slider block cursor-pointer width-full relative py-[6px] -my"
     >
       <span
-        class="base-Slider flex absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
+        class="base-Slider block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
       />
       <span
         class="base-Slider block absolute h-[1px] bg-blue"
@@ -78,7 +78,7 @@ exports[`Slider with initial value 1`] = `
           value="4"
         />
         <span
-          class="absolute -top will-change transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden"
+          class="absolute will-change shadow-4 transition-transform m-1 text-sm bg-graphite text-white rounded-sm py-[2px] px-2 hidden top-[calc(100%+4px)]"
         >
           4
         </span>
