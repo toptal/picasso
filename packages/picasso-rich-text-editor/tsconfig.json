@@ -18,6 +18,7 @@
     { "path": "../base/Select" },
     { "path": "../base/Typography" },
     { "path": "../base/Utils" },
+    { "path": "../picasso-tailwind" },
     { "path": "../shared" }
   ]
 }

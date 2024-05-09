@@ -4,8 +4,6 @@ export const createCoreClassNames = ({
 }: {
   disabled?: boolean
   focused?: boolean
-  hovered?: boolean
-  active?: boolean
   loading?: boolean
 }): string[] => {
   const classNames = [
@@ -24,7 +22,7 @@ export const createCoreClassNames = ({
     'ease-out',
     'shrink-0',
     'outline-none',
-    '[&:not(:first-of-type)]:ml-4',
+    '[&+&]:ml-4',
   ]
 
   if (!disabled && !loading) {

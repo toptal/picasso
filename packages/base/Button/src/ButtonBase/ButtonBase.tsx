@@ -59,6 +59,7 @@ const getIcon = ({ icon }: { icon?: ReactElement }) => {
   }
 
   return React.cloneElement(icon, {
+    className: twMerge('text-[1.2em] flex-1', icon.props.className),
     key: 'button-icon',
   })
 }
@@ -110,6 +111,12 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
+  /*
+   Workaround for the case: <Button as={Link} href='' /> (with empty href!), we have to determine "rootElementName" like below
+   Mui/base throws an error when "href" or "to" are empty
+   */
+  const rootElementName =
+    as !== 'button' && ('href' in props || 'to' in props) ? 'a' : undefined
 
   if (icon) {
     const iconComponent = getIcon({ icon })
@@ -130,12 +137,15 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
       onClick={getClickHandler(loading, onClick)}
       className={finalClassName}
       style={style}
+      aria-disabled={disabled}
       disabled={disabled}
       title={title}
       value={value}
       type={type}
       data-component-type='button'
       tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
+      role={rest.role ?? 'button'}
+      rootElementName={rootElementName}
       slots={{ root: RootElement }}
     >
       <Container

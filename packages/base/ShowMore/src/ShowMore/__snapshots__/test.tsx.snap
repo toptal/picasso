@@ -23,8 +23,10 @@ exports[`ShowMore renders 1`] = `
       </span>
     </p>
     <button
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
       data-component-type="button"
+      role="button"
       tabindex="0"
       type="button"
     >
@@ -33,7 +35,7 @@ exports[`ShowMore renders 1`] = `
       >
         Show more
         <div
-          class="w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
+          class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
             class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
@@ -74,8 +76,10 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       </span>
     </p>
     <button
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
       data-component-type="button"
+      role="button"
       tabindex="0"
       type="button"
     >
@@ -84,7 +88,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       >
         Show more
         <div
-          class="w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
+          class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
             class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
@@ -125,8 +129,10 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       </span>
     </p>
     <button
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
       data-component-type="button"
+      role="button"
       tabindex="0"
       type="button"
     >
@@ -135,7 +141,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       >
         Display everything
         <div
-          class="w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
+          class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
             class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
@@ -190,8 +196,10 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
     </p>
     <button
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
       data-component-type="button"
+      role="button"
       tabindex="0"
       type="button"
     >
@@ -200,7 +208,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       >
         Show less
         <div
-          class="w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
+          class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
             class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
@@ -241,8 +249,10 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       </span>
     </p>
     <button
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
       data-component-type="button"
+      role="button"
       tabindex="0"
       type="button"
     >
@@ -251,7 +261,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       >
         Show more
         <div
-          class="w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
+          class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
             class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
@@ -280,8 +290,10 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis tenetur est asperiores. Inventore quam vel neque voluptatum, tenetur consectetur sapiente veniam, sint expedita voluptate reiciendis illum numquam officia obcaecati dicta?
     </p>
     <button
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
+      aria-disabled="false"
+      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm PicassoShowMore-toggleText"
       data-component-type="button"
+      role="button"
       tabindex="0"
       type="button"
     >
@@ -290,7 +302,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       >
         Show less
         <div
-          class="w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
+          class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
             class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"

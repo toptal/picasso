@@ -1,42 +1,6 @@
-import type { Theme } from '@material-ui/core/styles'
 import type { SizeType } from '@toptal/picasso-shared'
 
 import type { IconPositionType, VariantType } from './Button'
-
-// @todo: remove in the next tickets
-export const createOutlineCommons = ({ palette }: Theme) => ({
-  color: palette.common.black,
-  backgroundColor: palette.common.white,
-
-  '&:hover, &$hovered': {
-    borderColor: palette.common.black,
-  },
-
-  // when we use <Button as={Link} />
-  '&&&:visited': {
-    color: palette.common.black,
-  },
-
-  '&$disabled': {
-    color: palette.grey.main,
-    borderColor: palette.grey.main,
-    backgroundColor: palette.common.white,
-  },
-})
-
-// @todo: in the next tickets
-export const activeGroup = ({ palette }: Theme) => ({
-  backgroundColor: palette.grey.dark,
-  borderColor: palette.grey.dark,
-  color: palette.common.white,
-})
-
-// @todo: in the next tickets
-export const disabledGroup = ({ palette }: Theme) => ({
-  color: palette.grey.main,
-  cursor: 'not-allowed',
-  pointerEvents: 'all',
-})
 
 export const createSizeClassNames = (
   size: 'small' | 'medium' | 'large'
@@ -244,7 +208,6 @@ export const createIconClassNames = ({
   }
 
   return [
-    'text-[1.2em]',
     sizeClassNames[size].join(' '),
     iconPosition === 'left' ? 'mr-[0.5em]' : '',
     iconPosition === 'right' ? 'ml-[0.5em]' : '',

@@ -72,9 +72,4 @@ export default ({ screens, sizes }: Theme) =>
         maxHeight: maxHeightForTopAligned,
       },
     },
-    closeButton: {
-      position: 'absolute',
-      right: '2em',
-      top: '2em',
-    },
   })

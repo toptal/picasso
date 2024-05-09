@@ -1,15 +1,7 @@
 import React from 'react'
 import type { StandardProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import { Button } from '@toptal/picasso-button'
-
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPaginationButton',
-})
 
 export interface Props extends StandardProps {
   activePage: number
@@ -20,12 +12,20 @@ export interface Props extends StandardProps {
 
 const PaginationButton = (props: Props) => {
   const { page, activePage, disabled, onClick, className } = props
-  const classes = useStyles()
   const isActive = page === activePage
+
+  const finalClassName = twMerge(
+    'min-w-[1.5em] px-[0.3em] ',
+    'active:bg-graphite-700 active:border-graphite-700 active:text-white',
+    isActive && 'bg-graphite-700 border-graphite-700 text-white',
+    'disabled:text-gray-500',
+    disabled && 'text-gray-500',
+    className
+  )
 
   return (
     <Button
-      className={cx(classes.root, { [classes.active]: isActive }, className)}
+      className={finalClassName}
       aria-current={isActive}
       active={isActive}
       disabled={disabled}

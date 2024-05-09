@@ -27,8 +27,10 @@ exports[`Page.TopBar render with custom logo 1`] = `
                   class="PicassoDropdown-anchor"
                 >
                   <button
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
                     data-component-type="button"
+                    role="button"
                     tabindex="0"
                     type="button"
                   >
@@ -36,7 +38,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root PageHamburger-hamburger"
+                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -124,8 +126,10 @@ exports[`Page.TopBar render with link 1`] = `
                   class="PicassoDropdown-anchor"
                 >
                   <button
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
                     data-component-type="button"
+                    role="button"
                     tabindex="0"
                     type="button"
                   >
@@ -133,7 +137,7 @@ exports[`Page.TopBar render with link 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root PageHamburger-hamburger"
+                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -247,8 +251,10 @@ exports[`Page.TopBar renders 1`] = `
                   class="PicassoDropdown-anchor"
                 >
                   <button
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&:not(:first-of-type)]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
                     data-component-type="button"
+                    role="button"
                     tabindex="0"
                     type="button"
                   >
@@ -256,7 +262,7 @@ exports[`Page.TopBar renders 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root PageHamburger-hamburger"
+                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
