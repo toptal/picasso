@@ -1,6 +1,6 @@
 import type { ColorType } from './Indicator'
 
-export const colorClasses: Record<ColorType, string> = {
+export const classByColor: Record<ColorType, string> = {
   blue: 'bg-blue-500',
   green: 'bg-green-600',
   yellow: 'bg-yellow-500',

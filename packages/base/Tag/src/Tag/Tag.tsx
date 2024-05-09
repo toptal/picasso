@@ -13,8 +13,7 @@ import { CloseMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from 'tailwind-merge'
 
-import { variantsRootClasses } from './styles'
-import TagIcon from '../TagIcon'
+import { classByVariant } from './styles'
 
 export type Variant = 'light-grey' | 'blue' | 'green' | 'yellow' | 'red'
 
@@ -93,7 +92,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
         `transition-none border-[0.041625rem] border-solid rounded-[6.25rem]
           h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
           group align-middle`,
-        variantsRootClasses[variant],
+        classByVariant[variant],
         className,
         disabled ? 'text-gray-500 border-gray-200 pointer-events-none' : ''
       )}
@@ -102,7 +101,16 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       tabIndex={onDelete || onClick ? 0 : undefined}
       {...rest}
     >
-      <TagIcon icon={icon} disabled={disabled} />
+      {icon && (
+        <span
+          className={twMerge(
+            'w-min h-min flex items-center -mr-1 ml-3',
+            disabled ? '@text-gray-200' : 'text-graphite-700'
+          )}
+        >
+          {icon}
+        </span>
+      )}
 
       <span className='flex gap-2 px-3 overflow-hidden items-center'>
         <Typography

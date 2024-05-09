@@ -1,6 +1,6 @@
 import type { Variant } from './Tag'
 
-export const variantsRootClasses: Record<Variant, string> = {
+export const classByVariant: Record<Variant, string> = {
   blue: 'text-blue-500 border-blue-500',
   green: 'text-green-600 border-green-600',
   yellow: 'text-yellow-500 border-yellow-500',
