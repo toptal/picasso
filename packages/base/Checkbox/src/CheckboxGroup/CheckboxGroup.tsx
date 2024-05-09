@@ -27,7 +27,7 @@ const useStyles = makeStyles<Theme>(styles, {
 const CheckboxGroup = (props: Props) => {
   const { horizontal, spacing, xs, sm, md, lg, xl, className, ...rest } = props
 
-  const { gridItem: gridItemClass, ...classes } = useStyles()
+  const classes = useStyles()
   const { spacing: themeSpacing } = useTheme()
 
   const direction = horizontal ? 'row' : 'column'
@@ -49,7 +49,7 @@ const CheckboxGroup = (props: Props) => {
         {children.map((child, index) => (
           <Grid.Item
             key={index}
-            className={gridItemClass}
+            className={twMerge('leading-none', '[&&]:pt-0', '[&&]:pb-0')}
             xs={xs}
             sm={sm}
             md={md}

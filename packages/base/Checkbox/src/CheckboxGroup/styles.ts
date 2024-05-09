@@ -10,13 +10,4 @@ export default () =>
         marginBottom: '0.5em',
       },
     },
-
-    gridItem: {
-      lineHeight: 1,
-
-      '&&': {
-        paddingTop: 0,
-        paddingBottom: 0,
-      },
-    },
   })
