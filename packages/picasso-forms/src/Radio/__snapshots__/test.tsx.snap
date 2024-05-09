@@ -36,7 +36,7 @@ exports[`FormRadio renders 1`] = `
               class="box-border flex w-full flex-col flex-wrap items-start justify-start mt-0 mb-0"
             >
               <div
-                class="box-border m-0 PicassoRadioGroup-gridItem"
+                class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
                   class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -71,7 +71,7 @@ exports[`FormRadio renders 1`] = `
                 </label>
               </div>
               <div
-                class="box-border m-0 PicassoRadioGroup-gridItem"
+                class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
                   class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -155,7 +155,7 @@ exports[`FormRadio required with asterisk 1`] = `
               class="box-border flex w-full flex-col flex-wrap items-start justify-start mt-0 mb-0"
             >
               <div
-                class="box-border m-0 PicassoRadioGroup-gridItem"
+                class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
                   class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
@@ -190,7 +190,7 @@ exports[`FormRadio required with asterisk 1`] = `
                 </label>
               </div>
               <div
-                class="box-border m-0 PicassoRadioGroup-gridItem"
+                class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
                   class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
