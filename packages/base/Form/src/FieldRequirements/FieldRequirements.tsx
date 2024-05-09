@@ -60,7 +60,7 @@ export const FieldRequirements = <TValueType,>({
         </Typography>
       )}
       <Grid
-        className='input-width'
+        className='w-input'
         spacing={0}
         data-testid={testIds?.gridContainer}
       >

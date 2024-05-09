@@ -16,16 +16,6 @@ module.exports = {
 
           return acc
         }, {}),
-        // Input width, height and padding classes
-        '.input-width': {
-          width: '18.75rem',
-        },
-        '.input-height': {
-          height: '2rem',
-        },
-        '.input-padding': {
-          padding: '0.5rem',
-        },
       })
     }),
   ],
@@ -172,6 +162,15 @@ module.exports = {
       zIndex: {
         drawer: 1200,
         modal: 1300,
+      },
+      width: {
+        input: '18.75rem',
+      },
+      height: {
+        input: '2rem',
+      },
+      padding: {
+        input: '0.5rem',
       },
       // Needed to support all possible grid item widths in 12-columns grid
       maxWidth: {
