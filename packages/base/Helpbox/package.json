@@ -36,7 +36,7 @@
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "react": ">=16.12.0 < 19.0.0",
-    "tailwindcss": ">=3"
+    "@toptal/picasso-tailwind": ">=2.3.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

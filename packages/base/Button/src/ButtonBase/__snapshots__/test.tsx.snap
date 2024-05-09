@@ -96,6 +96,30 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
 </div>
 `;
 
+exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" component when "href" prop is empty renders Button as a 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <a
+      aria-disabled="false"
+      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer PicassoLink-blue MuiTypography-colorPrimary"
+      data-component-type="button"
+      href=""
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      >
+        Click me!
+      </span>
+    </a>
+  </div>
+</div>
+`;
+
 exports[`ButtonBase when "as" prop is passed when "as" prop equals "a" renders Button as a 1`] = `
 <div>
   <div

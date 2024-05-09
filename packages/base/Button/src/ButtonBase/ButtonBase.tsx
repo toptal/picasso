@@ -111,6 +111,10 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
+  /*
+   Workaround for the case: <Button as={Link} href='' /> (with empty href!), we have to determine "rootElementName" like below
+   Mui/base throws an error when "href" or "to" are empty
+   */
   const rootElementName =
     as !== 'button' && ('href' in props || 'to' in props) ? 'a' : undefined
 

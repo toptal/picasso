@@ -87,6 +87,24 @@ describe('ButtonBase', () => {
         expect(onClick).toHaveBeenCalled()
       })
 
+      describe('when "href" prop is empty', () => {
+        it('renders Button as a', () => {
+          const onClick = jest.fn()
+          const { container, getByText } = renderButton({
+            children: 'Click me!',
+            as: Link,
+            href: '',
+            onClick,
+          })
+
+          expect(container).toMatchSnapshot()
+
+          fireEvent.click(getByText('Click me!'))
+
+          expect(onClick).toHaveBeenCalled()
+        })
+      })
+
       describe('when "disabled" prop is true', () => {
         it('renders Button as a and does not trigger onClick handler', () => {
           const onClick = jest.fn()
