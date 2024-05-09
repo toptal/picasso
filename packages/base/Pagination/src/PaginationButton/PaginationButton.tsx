@@ -18,8 +18,8 @@ const PaginationButton = (props: Props) => {
     'min-w-[1.5em] px-[0.3em] ',
     'active:bg-graphite-700 active:border-graphite-700 active:text-white',
     isActive && 'bg-graphite-700 border-graphite-700 text-white',
-    'disabled:text-graphite-700',
-    disabled && 'text-graphite-700',
+    'disabled:text-gray-500',
+    disabled && 'text-gray-500',
     className
   )
 
