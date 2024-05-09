@@ -5,8 +5,7 @@ export type GetBgColorType = {
 }
 
 export type GetTooltipHorizontalPosition = {
-  shouldUpdatePosition: boolean
-  index: number
+  placement: 'left' | 'right'
 }
 
 export const getBgColor = ({
@@ -27,12 +26,9 @@ export const getBgColor = ({
 }
 
 export const getTooltipHorizontalPosition = ({
-  shouldUpdatePosition,
-  index,
+  placement,
 }: GetTooltipHorizontalPosition) => {
-  if (!shouldUpdatePosition) {
-    return
-  }
-
-  return index === 0 ? 'right-[calc(100%-13px)]' : 'left-[calc(100%-13px)]'
+  return placement === 'left'
+    ? 'right-[calc(100%-13px)]'
+    : 'left-[calc(100%-13px)]'
 }

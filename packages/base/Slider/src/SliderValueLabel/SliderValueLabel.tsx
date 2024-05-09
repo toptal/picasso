@@ -35,7 +35,11 @@ const SliderValueLabel = ({
         'absolute will-change-transform shadow-4 transition-transform m-1 text-sm bg-graphite-800 text-white rounded-sm py-[2px] px-2',
         tooltipStates[tooltip],
         isOnScreen ? 'bottom-[calc(100%+4px)]' : 'top-[calc(100%+4px)]',
-        getTooltipHorizontalPosition({ shouldUpdatePosition, index })
+        shouldUpdatePosition
+          ? getTooltipHorizontalPosition({
+              placement: index === 0 ? 'left' : 'right',
+            })
+          : undefined
       )}
     >
       {children}

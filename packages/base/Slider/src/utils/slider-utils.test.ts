@@ -79,42 +79,22 @@ describe('getBgColor function', () => {
 
 describe('getPosition', () => {
   const options: GetTooltipHorizontalPosition = {
-    shouldUpdatePosition: false,
-    index: 0,
+    placement: 'left',
   }
 
-  describe('when the value labels do not overflow', () => {
-    it('exits the function', () => {
+  describe('when the left valueLabel is active', () => {
+    it('returns the right placement class', () => {
       const position = getTooltipHorizontalPosition(options)
 
-      expect(position).toBeUndefined()
+      expect(position).toBe('right-[calc(100%-13px)]')
     })
   })
 
-  describe('when the range slider is collapsed', () => {
-    it('exits the function', () => {
-      const position = getTooltipHorizontalPosition({
-        ...options,
-        isRangeSliderCollapsed: true,
-      })
-
-      expect(position).toBeUndefined()
-    })
-  })
-
-  describe('when index is different than 0', () => {
+  describe('when the right valueLabel is active', () => {
     it('returns the left placement class', () => {
-      const position = getTooltipHorizontalPosition({ ...options, index: -1 })
+      const position = getTooltipHorizontalPosition({ placement: 'right' })
 
       expect(position).toBe('left-[calc(100%-13px)]')
-    })
-  })
-
-  describe('when index is 0', () => {
-    it('returns the right placement class', () => {
-      const position = getTooltipHorizontalPosition({ ...options, index: 0 })
-
-      expect(position).toBe('right-[calc(100%-13px)]')
     })
   })
 })

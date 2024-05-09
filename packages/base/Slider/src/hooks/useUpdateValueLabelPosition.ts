@@ -21,7 +21,7 @@ export const useUpdateValueLabelPosition = ({
     checkTooltipsOverlap()
   }, [checkTooltipsOverlap, sliderValue, isRangeSlider])
 
-  const shouldUpdatePosition = hasTooltipOverflow || !isRangeSliderCollapsed
+  const shouldUpdatePosition = hasTooltipOverflow && !isRangeSliderCollapsed
 
   return shouldUpdatePosition
 }
