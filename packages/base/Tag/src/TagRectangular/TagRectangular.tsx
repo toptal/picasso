@@ -45,7 +45,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
           noWrap
           className={twMerge(
             'text-white mx-1 w-max',
-            variant === 'light-grey' ? 'text-graphite-800' : ''
+            variant === 'light-grey' && 'text-graphite-800'
           )}
           titleCase={titleCase}
         >

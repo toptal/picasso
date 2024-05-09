@@ -94,7 +94,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
           group align-middle`,
         classByVariant[variant],
         className,
-        disabled ? 'text-gray-500 border-gray-200 pointer-events-none' : ''
+        disabled && 'text-gray-500 border-gray-200 pointer-events-none'
       )}
       style={style}
       onClick={onClick}
@@ -105,7 +105,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
         <span
           className={twMerge(
             'w-min h-min flex items-center -mr-1 ml-3',
-            disabled ? '@text-gray-200' : 'text-graphite-700'
+            disabled ? 'text-gray-500' : 'text-graphite-700'
           )}
         >
           {icon}
