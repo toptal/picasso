@@ -10,11 +10,11 @@ import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
-import { toTitleCase } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from 'tailwind-merge'
 
 import { variantsRootClasses } from './styles'
+import TagIcon from '../TagIcon'
 
 export type Variant = 'light-grey' | 'blue' | 'green' | 'yellow' | 'red'
 
@@ -56,6 +56,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     titleCase: propsTitleCase,
     variant = 'light-grey',
     role,
+    // `hovered` is extracted so we don't pass it to Root with {...rest}
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     hovered,
     ...rest
@@ -101,11 +102,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       tabIndex={onDelete || onClick ? 0 : undefined}
       {...rest}
     >
-      {icon && (
-        <span className='w-min h-min flex items-center mr-[-0.25rem] ml-3'>
-          {icon}
-        </span>
-      )}
+      <TagIcon icon={icon} disabled={disabled} />
 
       <span className='flex gap-2 px-3 overflow-hidden items-center'>
         <Typography
@@ -113,9 +110,10 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
           color='inherit'
           weight='semibold'
           as='span'
+          titleCase={titleCase}
           noWrap
         >
-          {titleCase ? toTitleCase(children) : children}
+          {children}
         </Typography>
 
         {endAdornment}
@@ -125,7 +123,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
         <span
           aria-label='delete icon'
           role='button'
-          className='w-min h-min flex items-center cursor-pointer ml-[-0.5rem] mr-2'
+          className='w-min h-min flex items-center cursor-pointer -ml-2 mr-2'
           onClick={handleDelete}
         >
           <CloseMinor16 />

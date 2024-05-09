@@ -34,7 +34,7 @@ exports[`TagSelector disabled render 1`] = `
             </span>
             <span
               aria-label="delete icon"
-              class="w-min h-min flex items-center cursor-pointer ml-[-0.5rem] mr-2"
+              class="w-min h-min flex items-center cursor-pointer -ml mr-2"
               role="button"
             >
               <svg
@@ -115,7 +115,7 @@ exports[`TagSelector preselected value 1`] = `
               </span>
               <span
                 aria-label="delete icon"
-                class="w-min h-min flex items-center cursor-pointer ml-[-0.5rem] mr-2"
+                class="w-min h-min flex items-center cursor-pointer -ml mr-2"
                 role="button"
               >
                 <svg

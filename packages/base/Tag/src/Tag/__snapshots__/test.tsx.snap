@@ -22,7 +22,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
       </span>
       <span
         aria-label="delete icon"
-        class="w-min h-min flex items-center cursor-pointer ml-[-0.5rem] mr-2"
+        class="w-min h-min flex items-center cursor-pointer -ml mr-2"
         role="button"
       >
         <svg
@@ -133,10 +133,10 @@ exports[`Tag renders with connection and icon 1`] = `
       data-testid="tag"
     >
       <span
-        class="w-min h-min flex items-center mr-[-0.25rem] ml-3"
+        class="w-min h-min flex items-center -mr ml-3"
       >
         <svg
-          class="PicassoSvgSettings16-root"
+          class="PicassoSvgSettings16-root PicassoSvgSettings16-darkGrey"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

@@ -6,7 +6,7 @@ exports[`TagRectangular renders rectangular Tag 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none rounded-sm font-semibold h-4 flex content-center align-middle flex-wrap bg-gray"
+      class="transition-none rounded-sm font-semibold h-4 inline-flex content-center align-middle flex-wrap bg-gray"
     >
       <p
         class="m-0 text-2xs text-graphite font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden mx-1 w-max text-graphite"

@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
-import { toTitleCase } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from 'tailwind-merge'
 
@@ -28,7 +27,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...rest}
         ref={ref}
         className={twMerge(
-          'transition-none rounded-sm font-semibold h-4 flex content-center align-middle flex-wrap',
+          'transition-none rounded-sm font-semibold h-4 inline-flex content-center align-middle flex-wrap',
           variantsRootClasses[variant],
           className
         )}
@@ -43,13 +42,14 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         <Typography
           size='xxsmall'
           weight='semibold'
-          noWrap={true}
+          noWrap
           className={twMerge(
             'text-white mx-1 w-max',
             variant === 'light-grey' ? 'text-graphite-800' : ''
           )}
+          titleCase={titleCase}
         >
-          {titleCase ? toTitleCase(children) : children}
+          {children}
         </Typography>
       </div>
     )
