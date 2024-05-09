@@ -102,7 +102,7 @@ exports[`useNotifications error notification render 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 fill-[#455065]"
+                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
                         style="min-width: 16px; min-height: 16px;"
                         viewBox="0 0 16 16"
                       >
@@ -228,7 +228,7 @@ exports[`useNotifications info notification render 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 fill-[#455065]"
+                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
                         style="min-width: 16px; min-height: 16px;"
                         viewBox="0 0 16 16"
                       >
@@ -351,7 +351,7 @@ exports[`useNotifications success notification render 1`] = `
                       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 fill-[#455065]"
+                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
                         style="min-width: 16px; min-height: 16px;"
                         viewBox="0 0 16 16"
                       >
