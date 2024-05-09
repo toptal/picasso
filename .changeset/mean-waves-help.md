@@ -5,4 +5,4 @@
 ### Slider
 
 - migrate from MUI to MUI Base and TailwindCSS
-- remove compact and TooltipComponent props in Slider component
+- remove `compact`, `disablePortal` and `TooltipComponent` props in Slider component
