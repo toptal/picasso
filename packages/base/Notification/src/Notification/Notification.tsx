@@ -50,7 +50,7 @@ const renderNotificationCloseButton = ({ onClose, testIds }: PrivateProps) => (
     onClick={onClose}
     // TODO: [FX-5219] need to avoid such customization
     className='absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent'
-    icon={<CloseMinor16 className='fill-[#455065]' />}
+    icon={<CloseMinor16 color='darkGrey' />}
   />
 )
 
