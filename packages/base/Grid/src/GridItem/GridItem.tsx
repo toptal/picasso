@@ -292,6 +292,8 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   return (
     <div
       ref={ref}
+      style={style}
+      {...rest}
       className={twMerge(
         // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L112
         'box-border',
@@ -301,8 +303,6 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
         sizesClassNames,
         className
       )}
-      style={style}
-      {...rest}
     >
       {children}
     </div>

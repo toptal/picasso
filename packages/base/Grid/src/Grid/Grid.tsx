@@ -129,6 +129,7 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     <GridContext.Provider value={{ gridSpacing }}>
       <div
         ref={ref}
+        {...rest}
         className={twMerge(
           // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L105
           'box-border',
@@ -143,7 +144,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
           gridSpacingClassName,
           className
         )}
-        {...rest}
       >
         {children}
       </div>
