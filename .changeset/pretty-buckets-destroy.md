@@ -4,4 +4,6 @@
 
 ### Tag
 
-- migrate to Tailwind CSS
+- migrate to TailwindCSS
+- remove `Chip`
+- add `@toptal/picasso-tailwind` as a peer dependency

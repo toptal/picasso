@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
-import { twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 import { Indicator } from '../Indicator'
 import { variantsRootClasses } from './styles'
@@ -43,9 +43,9 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
           size='xxsmall'
           weight='semibold'
           noWrap
-          className={twMerge(
-            'text-white mx-1 w-max',
-            variant === 'light-grey' && 'text-graphite-800'
+          className={twJoin(
+            'mx-1 w-max',
+            variant === 'light-grey' ? 'text-graphite-800' : 'text-white'
           )}
           titleCase={titleCase}
         >

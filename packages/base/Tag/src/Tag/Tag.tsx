@@ -60,7 +60,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     hovered,
     ...rest
   } = props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const titleCase = useTitleCase(propsTitleCase)
 
   const handleDelete = (event: MouseEvent) => {
@@ -72,7 +71,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       event.preventDefault()
 
       /**
-       * This comment prevents the options list from opening.
        * If the event propagates, the component interprets it
        * as a regular click, which triggers the opening of the
        * options list.
@@ -89,7 +87,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       aria-disabled={disabled}
       ref={ref}
       className={twMerge(
-        `transition-none border-[0.041625rem] border-solid rounded-[6.25rem]
+        `transition-none border border-solid rounded-[6.25rem]
           h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
           group align-middle`,
         classByVariant[variant],

@@ -6,7 +6,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       data-testid="tag"
       role="button"
       tabindex="0"
@@ -46,7 +46,7 @@ exports[`Tag renders \`blue\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-blue border-blue"
+      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-blue border-blue"
       data-testid="tag"
     >
       <span
@@ -69,7 +69,7 @@ exports[`Tag renders \`light-grey\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       data-testid="tag"
     >
       <span
@@ -92,7 +92,7 @@ exports[`Tag renders with adornment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       data-testid="tag"
     >
       <span
@@ -129,7 +129,7 @@ exports[`Tag renders with connection and icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       data-testid="tag"
     >
       <span

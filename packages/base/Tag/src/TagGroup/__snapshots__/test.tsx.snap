@@ -9,7 +9,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
       class="text-lg min-w transition-none -mr -mb [&>*]:mr-2 [&>*]:mb-2"
     >
       <div
-        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+        class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
           class="flex gap-2 px-3 overflow-hidden items-center"
@@ -22,7 +22,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         </span>
       </div>
       <div
-        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+        class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
           class="flex gap-2 px-3 overflow-hidden items-center"
@@ -35,7 +35,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         </span>
       </div>
       <div
-        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+        class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
           class="flex gap-2 px-3 overflow-hidden items-center"
@@ -48,7 +48,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
         </span>
       </div>
       <div
-        class="transition-none border-[0.041625rem] border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+        class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
       >
         <span
           class="flex gap-2 px-3 overflow-hidden items-center"
