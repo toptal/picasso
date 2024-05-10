@@ -9,6 +9,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
+// TODO: [FX-5003] Deprecate legacy shadow classes
 const shadowsMapping: Record<number, string> = {
   0: 'shadow-0',
   1: 'shadow-1',
@@ -43,14 +44,6 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
 ) {
   const { className, elevation = 1, style, children, ...rest } = props
 
-  /*
-  TODO: [FX-5003] Deprecate legacy shadow classes
-
-  Use complete class names in comment, so Tailwind includes all of them in the build
-  .shadow-0 .shadow-1 .shadow-2 .shadow-3 .shadow-4 .shadow-5 .shadow-6 .shadow-7 
-  .shadow-8  .shadow-9 .shadow-10 .shadow-11 .shadow-12 .shadow-13 .shadow-14 .shadow-15 
-  .shadow-16 .shadow-17 .shadow-18 .shadow-19 .shadow-20 .shadow-21 .shadow-22 .shadow-23 .shadow-24
-  */
   return (
     <div
       ref={ref}
