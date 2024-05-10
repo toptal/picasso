@@ -29,14 +29,14 @@ export interface Props
 }
 
 const gridSpacingMapping: { [K in GridSpacing]: string } = {
-  '0': 'p-[0px]',
-  '8': 'p-[4px]',
-  '16': 'p-[8px]',
-  '24': 'p-[12px]',
-  '32': 'p-[16px]',
-  '64': 'p-[32px]',
-  '72': 'p-[36px]',
-  '80': 'p-[40px]',
+  0: 'p-[0px]',
+  8: 'p-[4px]',
+  16: 'p-[8px]',
+  24: 'p-[12px]',
+  32: 'p-[16px]',
+  64: 'p-[32px]',
+  72: 'p-[36px]',
+  80: 'p-[40px]',
 }
 
 const getSpacingClassName = (gridSpacing?: GridSpacing) => {
@@ -63,8 +63,6 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
     lg,
     xl,
   })
-    .flat()
-    .join(' ')
 
   return (
     <div

@@ -5,7 +5,6 @@ import { RadioGroup as MUIRadioGroup } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
 import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
-import { twMerge } from 'tailwind-merge'
 
 type GridSpacing = GridProps['spacing']
 
@@ -30,12 +29,12 @@ const RadioGroup = (props: Props) => {
       <Grid
         direction={direction}
         spacing={gridSpacing as GridSpacing}
-        className={twMerge('mt-0', 'mb-0')}
+        className='mt-0 mb-0'
       >
         {children.map((child, index) => (
           <Grid.Item
             key={index}
-            className={twMerge('leading-none', '[&&]:pt-0', '[&&]:pb-0')}
+            className='leading-none [&&]:pt-0 [&&]:pb-0'
             xs={xs}
             sm={sm}
             md={md}
