@@ -10,7 +10,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
       role="radiogroup"
     >
       <div
-        class="box-border flex flex-row flex-wrap items-start justify-start w-[calc(100%-16px)] -m mt-0 mb-0"
+        class="box-border flex flex-row flex-wrap items-start justify-start w-[calc(100%+16px)] -m mt-0 mb-0"
       >
         <div
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
