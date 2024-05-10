@@ -1,5 +1,13 @@
 # @toptal/picasso-tailwind
 
+## 2.4.0
+
+### Minor Changes
+
+- [#4276](https://github.com/toptal/picasso/pull/4276) [`045081fe7fed880890cb16d5defd7859d1e0b147`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147) Thanks [@sashuk](https://github.com/sashuk)!
+- extend maximum width classes with fractions of 12
+  - extend width, height, and padding classes for inputs
+
 ## 2.3.0
 
 ### Minor Changes

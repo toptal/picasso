@@ -1,5 +1,13 @@
 # @toptal/picasso-file-input
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-form@3.0.0
+  - @toptal/picasso-button@1.0.13
+
 ## 1.0.13
 
 ### Patch Changes
