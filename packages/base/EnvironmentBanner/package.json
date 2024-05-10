@@ -38,7 +38,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.2.0"
+    "@toptal/picasso-provider": "4.2.1"
   },
   "files": [
     "dist-package/**",

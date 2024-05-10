@@ -1,5 +1,21 @@
 # @toptal/picasso-form
 
+## 3.0.0
+
+### Major Changes
+
+- [#4276](https://github.com/toptal/picasso/pull/4276) [`045081fe7fed880890cb16d5defd7859d1e0b147`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147) Thanks [@sashuk](https://github.com/sashuk)!
+
+### FieldRequirements
+
+- style grid using Tailwind classes
+- add `@toptal/picasso-tailwind` as a peer dependency
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-grid@2.0.0
+
 ## 2.0.1
 
 ### Patch Changes
