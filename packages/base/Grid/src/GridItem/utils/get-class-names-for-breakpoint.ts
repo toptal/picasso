@@ -191,21 +191,18 @@ export const getClassNamesForBreakpoint = (
   size?: GridSize | boolean
 ) => {
   if (size === true) {
-    // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L28
     return [
       basisMapping[breakpointKey]['0'],
       growMapping[breakpointKey]['grow'],
       maxWidthMapping[breakpointKey]['full'],
     ]
   } else if (size === 'auto') {
-    // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L38
     return [
       basisMapping[breakpointKey]['auto'],
       growMapping[breakpointKey]['grow-0'],
       maxWidthMapping[breakpointKey]['none'],
     ]
   } else if (typeof size === 'number' && !isNaN(size)) {
-    // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L48
     const widthName = size === 12 ? 'full' : `${size}/12`
 
     return [

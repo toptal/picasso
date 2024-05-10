@@ -70,9 +70,7 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
       style={style}
       {...rest}
       className={twMerge(
-        // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L112
         'box-border',
-        // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L113
         'm-0',
         spacingClassName,
         sizesClassNames,

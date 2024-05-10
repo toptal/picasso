@@ -112,11 +112,8 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
         ref={ref}
         {...rest}
         className={twMerge(
-          // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L105
           'box-border',
-          // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L106
           'flex',
-          // DELETE_BEFORE_MERGE https://github.com/mui/material-ui/blob/v4.x/packages/material-ui/src/Grid/Grid.js#L108
           'w-full',
           directionClassName,
           wrapClassName,
