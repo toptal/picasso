@@ -1,11 +1,12 @@
-import type { ReactNode, MouseEvent, ReactElement, HTMLAttributes } from 'react'
+import type {
+  ReactNode,
+  ReactElement,
+  HTMLAttributes,
+  SyntheticEvent,
+} from 'react'
 import React, { forwardRef, cloneElement } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { SnackbarContent } from '@material-ui/core'
-import cx from 'classnames'
 import capitalize from '@material-ui/core/utils/capitalize'
-import type { StandardProps } from '@toptal/picasso-shared'
+import type { Classes, StandardProps } from '@toptal/picasso-shared'
 import {
   CloseMinor16,
   ExclamationSolid16,
@@ -16,8 +17,8 @@ import {
 import { Container } from '@toptal/picasso-container'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from './styles'
+import { Snackbar } from '@mui/base'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
@@ -27,7 +28,9 @@ export interface PrivateProps
   /** Main content of the Notification */
   children: ReactNode
   /** Callback invoked when close button is clicked */
-  onClose?: (event: MouseEvent<HTMLButtonElement>) => void
+  onClose?: (
+    event: Event | SyntheticEvent<HTMLButtonElement, Event> | null
+  ) => void
   /** Style variant of Notification */
   variant?: VariantType
   /** Add <Icon /> before Notification content  */
@@ -54,48 +57,44 @@ const renderNotificationCloseButton = ({ onClose, testIds }: PrivateProps) => (
   />
 )
 
-const renderNotificationIcon = ({ icon, variant, classes }: PrivateProps) => {
-  const iconProps = {
-    className: classes?.icon,
-  }
-
+const renderNotificationIcon = ({ icon, variant }: PrivateProps) => {
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
   // Missing the following: https://github.com/toptal/picasso/issues/253
   switch (variant) {
     case 'red':
-      return <ExclamationSolid24 {...iconProps} color='red' />
+      return <ExclamationSolid24 color='red' />
 
     case 'yellow':
-      return <ExclamationSolid16 {...iconProps} color='yellow' />
+      return <ExclamationSolid16 color='yellow' />
 
     case 'green':
-      return <CheckSolid24 {...iconProps} color='green' />
+      return <CheckSolid24 color='green' />
 
     default: {
-      const infoProps = { ...iconProps, color: 'grey' as const }
+      const infoProps = { color: 'grey' as const }
 
       return icon ? cloneElement(icon, infoProps) : <Info24 {...infoProps} />
     }
   }
 }
 
-const renderNotificationContent = (props: PrivateProps) => {
-  const { classes, children, onClose, variant, testIds } = props
+const capitalizedVariant = (variant: string) => capitalize(variant)
 
-  const capitalizedVariant = capitalize(variant as string)
+const renderNotificationContent = (props: PrivateProps) => {
+  const { children, onClose, variant, testIds } = props
 
   return (
     <Container
       flex
-      className={classes?.contentWrapper}
+      className='flex w-full my-0 mx-auto p-0 max-w-[75em] min-w-[0]'
       data-testid={testIds?.content}
     >
       <Container
         flex
         alignItems='center'
-        className={cx(
-          classes?.iconWrapper,
-          classes?.[`iconWrapper${capitalizedVariant}`]
+        className={twJoin(
+          'h-[1.5em] min-w-[1.5em] mr-[1em] basis-[1.5em]',
+          variant === 'yellow' && 'h-[1em] min-w-[1em] mt-[2px] basis-0'
         )}
       >
         {renderNotificationIcon(props)}
@@ -103,7 +102,7 @@ const renderNotificationContent = (props: PrivateProps) => {
       <Typography
         size={variant === 'yellow' ? 'small' : 'medium'}
         color='black'
-        className={cx(
+        className={twJoin(
           'break-words min-w-0',
           variant === 'yellow' ? '!mt-0' : '!mt-[1px]'
         )}
@@ -116,11 +115,7 @@ const renderNotificationContent = (props: PrivateProps) => {
   )
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'Notification',
-})
-
-export const Notification = forwardRef<HTMLElement, PrivateProps>(
+export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
   function Notification(props, ref) {
     const {
       className,
@@ -131,27 +126,33 @@ export const Notification = forwardRef<HTMLElement, PrivateProps>(
       ...rest
     } = props
 
-    const classes = useStyles()
+    const variantClasses: Classes = {
+      notificationRed: 'bg-red-100',
+      notificationGreen: 'bg-green-100',
+      notificationWhite: 'bg-white px-[1.5em] pt-[1.5625em] pb-[1.5em]',
+      notificationYellow:
+        'bg-yellow-100 px-[1em] py-[1.5em] md:p-[1.5em] xl:px-[130px] xl:py-[1.5em]',
+    }
 
     return (
-      <SnackbarContent
+      <Snackbar
         {...rest}
-        className={cx(
-          classes[`notification${capitalize(variant as string)}`],
-          {
-            [classes.notificationShadow]: elevated,
-            [classes.roundedBorders]: elevated,
-          },
-          classes.notification,
+        open
+        className={twMerge(
+          'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
+          elevated && 'shadow-3 rounded-sm',
+          variant
+            ? variantClasses[`notification${capitalizedVariant(variant)}`]
+            : variantClasses.notificationYellow,
           className
         )}
         data-testid={dataTestId || testIds?.notification}
-        message={renderNotificationContent({
-          ...props,
-          classes,
-        })}
         ref={ref}
-      />
+      >
+        {renderNotificationContent({
+          ...props,
+        })}
+      </Snackbar>
     )
   }
 )

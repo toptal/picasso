@@ -1,16 +1,13 @@
 import type { ReactNode, ReactElement } from 'react'
 import React, { forwardRef, useMemo, useCallback } from 'react'
-import cx from 'classnames'
 import type { OptionsObject } from 'notistack'
 import { useSnackbar } from 'notistack'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { SnackbarOrigin } from '@material-ui/core/Snackbar'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twJoin } from 'tailwind-merge'
 
 import type { VariantType } from '../Notification'
 import { Notification as PicassoNotification } from '../Notification'
-import styles from './styles'
 
 const defaultPosition: SnackbarOrigin = {
   vertical: 'top',
@@ -25,15 +22,10 @@ interface Props extends BaseProps {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoNotification',
-})
-
 const StyledNotification =
   // eslint-disable-next-line react/display-name
-  forwardRef<HTMLElement, Props>(function Notification(props, ref) {
+  forwardRef<HTMLDivElement, Props>(function Notification(props, ref) {
     const { content, icon, key, onClose, variant = 'white' } = props
-    const classes = useStyles()
 
     return (
       <PicassoNotification
@@ -42,10 +34,10 @@ const StyledNotification =
         icon={icon}
         key={key}
         onClose={onClose}
-        className={cx({
-          [classes.generalNotification]: variant === 'white',
-          [classes.formNotification]: variant !== 'white',
-        })}
+        className={twJoin(
+          'w-[20em] max-w-full',
+          variant === 'white' && 'w-[27.5em]'
+        )}
         ref={ref}
       >
         {content}
