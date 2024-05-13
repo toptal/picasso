@@ -120,10 +120,6 @@ class Chapter extends Base {
       component.__docgenInfo
     )
 
-    if (component.displayName === 'Slider') {
-      console.log(component)
-    }
-
     const documentation = documentationGenerator.merge(
       generatedDocumentation,
       additionalDocs!
