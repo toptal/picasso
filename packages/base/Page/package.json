@@ -50,7 +50,7 @@
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
     "react-dom": "^18.2.0",
-    "@toptal/picasso-tailwind": ">=2.3.0",
+    "@toptal/picasso-tailwind": ">=2.5.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {

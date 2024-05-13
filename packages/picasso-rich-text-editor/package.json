@@ -33,7 +33,7 @@
     "react": ">=16.12.0 < 19.0.0",
     "react-dom": ">=16.12.0 < 19.0.0",
     "typescript": "~4.7.0",
-    "@toptal/picasso-tailwind": ">=2.3.0"
+    "@toptal/picasso-tailwind": ">=2.5.0"
   },
   "dependencies": {
     "@emoji-mart/data": "^1.2.1",
