@@ -1,5 +1,12 @@
 # @toptal/picasso-table
 
+## 1.1.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.1
+
 ## 1.1.11
 
 ### Patch Changes

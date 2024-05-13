@@ -1,5 +1,17 @@
 # @toptal/picasso-page
 
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-dropdown@2.0.3
+  - @toptal/picasso-menu@1.0.11
+  - @toptal/picasso-button@2.0.1
+  - @toptal/picasso-autocomplete@1.0.16
+  - @toptal/picasso-accordion@1.0.15
+  - @toptal/picasso-notification@2.0.7
+
 ## 2.0.7
 
 ### Patch Changes

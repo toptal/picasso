@@ -1,5 +1,12 @@
 # @toptal/picasso-menu
 
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies [[`ab2b605`](https://github.com/toptal/picasso/commit/ab2b605da9877b2f5fca18830923e0dcfbe1b9ed)]:
+  - @toptal/picasso-paper@2.0.4
+
 ## 1.0.10
 
 ### Patch Changes
