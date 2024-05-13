@@ -34,9 +34,13 @@ exports[`Slider renders 1`] = `
           value="0"
         />
         <span
-          class="absolute shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 will-change transition-transform hidden top-[calc(100%+2px)] left-[calc(100%-13px)]"
+          class="absolute will-change transition-transform hidden top-[calc(100%+2px)] left-[calc(100%-13px)]"
         >
-          0
+          <span
+            class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
+          >
+            0
+          </span>
         </span>
       </span>
     </span>
@@ -78,9 +82,13 @@ exports[`Slider with initial value 1`] = `
           value="4"
         />
         <span
-          class="absolute shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 will-change transition-transform hidden top-[calc(100%+2px)] left-[calc(100%-13px)]"
+          class="absolute will-change transition-transform hidden top-[calc(100%+2px)] left-[calc(100%-13px)]"
         >
-          4
+          <span
+            class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
+          >
+            4
+          </span>
         </span>
       </span>
     </span>

@@ -10,7 +10,7 @@ import {
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
-const tooltipStates: Record<ValueLabelDisplay, string> = {
+const classesByTooltip: Record<ValueLabelDisplay, string> = {
   off: 'hidden',
   // We need to use visibility: hidden instead of display: none to keep the
   // label visible for javascript calculations.
@@ -44,15 +44,20 @@ const SliderValueLabel = ({
     <span
       ref={ref}
       className={twJoin(
-        'absolute shadow-4 text-sm text-white bg-graphite-800',
-        'm-1 rounded-sm py-[2px] px-2',
-        'will-change-transform transition-transform',
-        tooltipStates[tooltip],
-        isOnScreen ? 'bottom-[calc(100%+2px)]' : 'top-[calc(100%+2px)]',
+        'absolute will-change-transform transition-transform',
+        classesByTooltip[tooltip],
+        isOnScreen ? 'bottom-[calc(100%+3px)]' : 'top-[calc(100%+2px)]',
         positionStyles
       )}
     >
-      {children}
+      <span
+        className={twJoin(
+          'shadow-4 text-sm text-white bg-graphite-800',
+          'm-1 rounded-sm py-[2px] px-2 max-w-[300px] break-words'
+        )}
+      >
+        {children}
+      </span>
     </span>
   )
 }
