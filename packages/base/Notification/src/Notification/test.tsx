@@ -13,11 +13,11 @@ describe('Notification', () => {
   })
 
   it.each(['green', 'red', 'white', 'yellow'] as const)(
-    'has role "alert"',
+    'has role "presentation"',
     variant => {
       const api = render(<Notification variant={variant}>Error</Notification>)
 
-      expect(api.getByRole('alert')).toBeDefined()
+      expect(api.getByRole('presentation')).toBeDefined()
     }
   )
 
