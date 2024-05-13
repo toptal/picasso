@@ -26,7 +26,7 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-tooltip": "1.1.2",
     "@toptal/picasso-utils": "1.0.3",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.2.2"
   },
   "sideEffects": false,
   "peerDependencies": {
