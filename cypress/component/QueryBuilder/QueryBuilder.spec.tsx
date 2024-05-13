@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { QueryBuilder, type Field } from '@toptal/picasso-query-builder'
+import { QueryBuilder } from '@toptal/picasso-query-builder'
 import type {
   RuleGroupTypeAny,
   RuleType,
   ValidationResult,
+  type Field,
 } from '@toptal/picasso-query-builder'
 import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso-notification'
@@ -109,7 +110,7 @@ describe('QueryBuilder', () => {
       cy.getByTestId(testIds.valueEditor).type('firstname')
       cy.getByTestId(testIds.runQueryButton).click()
 
-      cy.getByRole('alert')
+      cy.getByRole('presentation')
         .should('be.visible')
         .and('contain', submitSuccessMessage)
 
@@ -126,7 +127,7 @@ describe('QueryBuilder', () => {
 
       cy.getByTestId(testIds.runQueryButton).click()
 
-      cy.getByRole('alert')
+      cy.getByRole('presentation')
         .should('be.visible')
         .and('contain', "A group can't be empty")
 
@@ -144,7 +145,7 @@ describe('QueryBuilder', () => {
       cy.getByTestId(testIds.addRuleButton).click()
       cy.getByTestId(testIds.runQueryButton).click()
 
-      cy.getByRole('alert')
+      cy.getByRole('presentation')
         .should('be.visible')
         .and('contain', firstNameValidationMessage)
 
@@ -177,7 +178,7 @@ describe('QueryBuilder', () => {
 
       cy.getByTestId(testIds.runQueryButton).click()
 
-      cy.getByRole('alert')
+      cy.getByRole('presentation')
         .should('be.visible')
         .and('contain', firstNameValidationMessage)
         .and('contain', lastNameValidationMessage)

@@ -302,7 +302,7 @@ describe('Form', () => {
 
     cy.getByTestId('success-submit-button').click()
 
-    cy.getByRole('alert')
+    cy.getByRole('presentation')
       .should('be.visible')
       .and('contain', 'Login successful!')
   })
@@ -323,7 +323,7 @@ describe('Form', () => {
       .should('be.visible')
       .isWithinViewport()
 
-    cy.getByRole('alert')
+    cy.getByRole('presentation')
       .should('be.visible')
       .and(
         'contain',
@@ -339,7 +339,7 @@ describe('Form', () => {
 
     cy.getByTestId('submit-with-custom-notification-button').click()
 
-    cy.getByRole('alert')
+    cy.getByRole('presentation')
       .should('be.visible')
       .and('contain', 'Custom Notification Message!')
   })
