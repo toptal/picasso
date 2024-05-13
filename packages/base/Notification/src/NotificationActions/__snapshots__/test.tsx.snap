@@ -13,7 +13,7 @@ exports[`NotificationActions renders 1`] = `
         class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em] h-[1em] min-w mt-[2px] basis-0"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex mr-[1em] h-[1em] min-w mt-[2px] basis-0"
         >
           <svg
             class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
