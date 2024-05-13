@@ -1,5 +1,12 @@
 # Change Log
 
+## 55.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`ab2b605`](https://github.com/toptal/picasso/commit/ab2b605da9877b2f5fca18830923e0dcfbe1b9ed)]:
+  - @toptal/picasso-paper@2.0.4
+
 ## 55.0.4
 
 ### Patch Changes
