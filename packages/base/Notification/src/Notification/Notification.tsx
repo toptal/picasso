@@ -58,7 +58,7 @@ const renderNotificationCloseButton = ({ onClose, testIds }: PrivateProps) => (
   />
 )
 
-const renderNotificationIcon = ({ icon, variant }: PrivateProps) => {
+const renderNotificationIcon = ({ icon, variant = 'yellow' }: PrivateProps) => {
   // TODO: these are Icons required circular Icon bg color definitions, all Icons should be white on that color
   // Missing the following: https://github.com/toptal/picasso/issues/253
   switch (variant) {
@@ -138,11 +138,11 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
         {...rest}
         open
         className={twMerge(
-          'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
-          elevated && 'shadow-3 rounded-sm',
           variant
             ? variantClasses[`notification${capitalizeFirst(variant)}`]
             : variantClasses.notificationYellow,
+          elevated && 'shadow-3 rounded-sm',
+          'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
           className
         )}
         data-testid={dataTestId || testIds?.notification}
