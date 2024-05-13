@@ -15,7 +15,7 @@ const mockUseSliderContext = useSliderContext as jest.MockedFunction<
 const mockUseSliderContextResult = {
   registerValueLabel: jest.fn(),
   checkTooltipsOverlap: jest.fn(),
-  hasTooltipOverflow: false,
+  hasTooltipOverlap: false,
 }
 
 describe('useRangeLabelsOverlapCheck', () => {
@@ -58,7 +58,7 @@ describe('useRangeLabelsOverlapCheck', () => {
   })
 
   it('should return false for shouldUpdatePosition if there is no tooltip overflow', () => {
-    mockUseSliderContextResult.hasTooltipOverflow = false
+    mockUseSliderContextResult.hasTooltipOverlap = false
     const sliderValue = [20, 80]
 
     const { result } = renderHook(() =>
@@ -69,7 +69,7 @@ describe('useRangeLabelsOverlapCheck', () => {
   })
 
   it('should return true for shouldUpdatePosition if there is tooltip overflow and range is not collapsed', () => {
-    mockUseSliderContextResult.hasTooltipOverflow = true
+    mockUseSliderContextResult.hasTooltipOverlap = true
     const sliderValue = [20, 80]
 
     const { result } = renderHook(() =>
@@ -80,7 +80,7 @@ describe('useRangeLabelsOverlapCheck', () => {
   })
 
   it('should return false for shouldUpdatePosition if there is tooltip overflow but range is collapsed', () => {
-    mockUseSliderContextResult.hasTooltipOverflow = true
+    mockUseSliderContextResult.hasTooltipOverlap = true
     const sliderValue = [50, 50]
 
     const { result } = renderHook(() =>

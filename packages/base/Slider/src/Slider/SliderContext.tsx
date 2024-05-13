@@ -34,30 +34,58 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
   ])
   const [hasTooltipOverlap, setHasTooltipOverlap] = useState(false)
 
+  /**
+   * if we have range slider, there is a chance
+   * when we select values next to each other
+   * that the lables might overlap each other. Like this example:
+   * [   ][   ]
+   *   A    B
+   *
+   * In that case we need to reposition the labels to the edges of the thumb:
+   * [   ]  [   ]
+   *     A  B
+   *
+   * This function checks if the labels overlap and sets the state accordingly.
+   * It is called on each render of the component and everytime the Slider changes value.
+   *
+   **/
   const checkTooltipsOverlap = useCallback(() => {
-    if (valueLabels[0] && valueLabels[1]) {
-      const gap = 16
-      const rect1 = valueLabels[0].current?.getBoundingClientRect()
-      const width1 = valueLabels[0].current?.offsetWidth
+    const isRangeSlider = valueLabels[0] && valueLabels[1]
 
-      const rect2 = valueLabels[1].current?.getBoundingClientRect()
-      const width2 = valueLabels[1].current?.offsetWidth
-
-      if (!rect1 || !rect2 || !width1 || !width2) {
-        return
-      }
-
-      let doesOverlap = false
-
-      if (hasTooltipOverlap) {
-        doesOverlap = rect1.right + gap + width2 / 2 > rect2.left - width1 / 2
-      } else {
-        doesOverlap = rect1.right + gap > rect2.left
-      }
-      setHasTooltipOverlap(doesOverlap)
+    if (!isRangeSlider) {
+      return
     }
+
+    const gap = 16
+    const rect1 = valueLabels[0]?.current?.getBoundingClientRect()
+    const rect2 = valueLabels[1]?.current?.getBoundingClientRect()
+
+    if (!rect1 || !rect2) {
+      return
+    }
+
+    const halfWidth1 = rect1.width / 2
+    const halfWidth2 = rect2.width / 2
+    const rightBoundaryWithGap = rect1.right + gap
+
+    // If there is an overlap already, in next rerender
+    // we need add half of the width to check if it is still overlapping
+    const rightBoundaryOfFirstLabel = hasTooltipOverlap
+      ? rightBoundaryWithGap + halfWidth1
+      : rightBoundaryWithGap
+    const leftBoundaryOfSecondLabel = hasTooltipOverlap
+      ? rect2.left - halfWidth2
+      : rect2.left
+
+    const doesOverlap = rightBoundaryOfFirstLabel > leftBoundaryOfSecondLabel
+
+    setHasTooltipOverlap(doesOverlap)
   }, [valueLabels, hasTooltipOverlap])
 
+  /**
+   * On we register each ValueLabel on render
+   * so we can check later if the labels overlap
+   */
   const registerValueLabel = useCallback(
     (index: number, tooltip: React.RefObject<HTMLSpanElement>) => {
       if (!valueLabels[index]) {
@@ -66,11 +94,9 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
         newTooltips[index] = tooltip
 
         setValueLabels(newTooltips)
-      } else {
-        checkTooltipsOverlap()
       }
     },
-    [valueLabels, checkTooltipsOverlap]
+    [valueLabels]
   )
 
   const contextValue = useMemo(
