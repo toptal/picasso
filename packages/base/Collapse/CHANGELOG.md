@@ -1,5 +1,12 @@
 # @toptal/picasso-collapse
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@1.0.3
+
 ## 1.0.1
 
 ### Patch Changes

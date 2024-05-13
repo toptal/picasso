@@ -1,5 +1,14 @@
 # @toptal/picasso-tree-view
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8)]:
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+
 ## 1.0.13
 
 ### Patch Changes

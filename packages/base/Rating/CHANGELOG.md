@@ -1,5 +1,14 @@
 # @toptal/picasso-rating
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-icons@1.1.1
+
 ## 1.0.3
 
 ### Patch Changes

@@ -1,5 +1,31 @@
 # @toptal/picasso-page
 
+## 2.0.7
+
+### Patch Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`761153604f33bd1b9427240846b2d0cbb8ae5ed4`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- replace styles with TailwindCSS
+
+- Updated dependencies [[`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4), [`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8), [`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-notification@2.0.6
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-accordion@1.0.14
+  - @toptal/picasso-autocomplete@1.0.15
+  - @toptal/picasso-avatar@2.0.2
+  - @toptal/picasso-badge@1.0.3
+  - @toptal/picasso-menu@1.0.10
+  - @toptal/picasso-tag@1.1.2
+  - @toptal/picasso-tooltip@1.1.2
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-user-badge@2.0.2
+  - @toptal/picasso-dropdown@2.0.2
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-logo@1.0.4
+
 ## 2.0.6
 
 ### Patch Changes

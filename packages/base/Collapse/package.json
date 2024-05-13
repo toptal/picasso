@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-collapse",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Toptal UI components library - Collapse",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.2",
+    "@toptal/picasso-utils": "1.0.3",
     "tailwind-merge": "^2.2.2",
     "react-transition-group": "^4.4.5"
   },
@@ -36,7 +36,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.1.0"
+    "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [
     "dist-package/**",

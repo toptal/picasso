@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-popper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Toptal UI components library - Popper",
   "publishConfig": {
     "access": "public"
@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-shared": "14.0.1",
-    "@toptal/picasso-utils": "1.0.2",
+    "@toptal/picasso-shared": "15.0.0",
+    "@toptal/picasso-utils": "1.0.3",
     "@toptal/picasso-modal-context": "1.0.1",
     "classnames": "^2.5.1"
   },

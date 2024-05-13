@@ -1,5 +1,32 @@
 # @toptal/picasso-rich-text-editor
 
+## 13.0.0
+
+### Major Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`761153604f33bd1b9427240846b2d0cbb8ae5ed4`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add TailwindCSS support
+
+### Patch Changes
+
+- Updated dependencies [[`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8), [`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4), [`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-modal@2.0.0
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-file-input@1.0.15
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-form@3.0.1
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-input-adornment@1.0.4
+  - @toptal/picasso-list@2.0.2
+  - @toptal/picasso-select@1.0.15
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-link@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-image@1.0.3
+
 ## 12.0.7
 
 ### Patch Changes

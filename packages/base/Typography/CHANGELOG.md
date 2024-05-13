@@ -1,5 +1,12 @@
 # @toptal/picasso-typography
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@1.0.3
+
 ## 2.0.0
 
 ### Major Changes

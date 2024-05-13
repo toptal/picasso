@@ -1,5 +1,12 @@
 # Change Log
 
+## 15.0.0
+
+### Major Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`d599529bcb283c367b63c612fee81394e66c9740`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- remove addClassesToChildren function from shared package
+
 ## 14.0.1
 
 ### Patch Changes
