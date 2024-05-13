@@ -106,7 +106,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           slotProps={{
             mark: {
               // @ts-expect-error we have custom Mark component, where we extend props and MUI does not understand it
-              hideTrack: disableTrackHighlight,
+              forceInactive: disableTrackHighlight,
             },
             root: {
               className:

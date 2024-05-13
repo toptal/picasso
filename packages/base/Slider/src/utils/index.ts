@@ -1,22 +1,28 @@
 export type GetBgColorType = {
   markActive?: boolean
-  hideTrack?: boolean
+  forceInactive?: boolean
   value?: number | readonly number[]
 }
 
 export const getBgColor = ({
   markActive,
-  hideTrack,
+  forceInactive,
   value,
 }: GetBgColorType) => {
-  const isMarkActiveAndTrackVisible = markActive && !hideTrack
-  const isOwnerValueUndefined = value === undefined
+  const inactive = 'bg-gray-500'
+  const active = 'bg-blue-500'
 
-  if (isMarkActiveAndTrackVisible) {
-    // This is needed only for the example 'Hide thumb when value is null or undefined'
-    // because the thumb is not shown so the mark needs to be gray even if is active (blue color)
-    return isOwnerValueUndefined ? 'bg-gray-500' : 'bg-blue-500'
+  if (forceInactive) {
+    return inactive
   }
 
-  return 'bg-gray-500'
+  if (markActive) {
+    if (value === undefined) {
+      return inactive
+    }
+
+    return active
+  }
+
+  return inactive
 }

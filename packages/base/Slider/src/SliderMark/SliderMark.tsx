@@ -8,6 +8,7 @@ export type SliderMarkProps = {
   ownerState: { value: number }
   style: React.CSSProperties
   'data-index': number
+  forceInactive: boolean
 }
 
 // We need custom Mark component because we have
@@ -17,15 +18,15 @@ const SliderMark = ({
   ownerState,
   'data-index': dataIndex,
   style,
-  hideTrack,
-}: SliderMarkProps & { hideTrack: boolean }) => {
+  forceInactive,
+}: SliderMarkProps) => {
   return (
     <span
       data-index={dataIndex}
       style={style}
       className={twJoin(
         'absolute w-[6px] h-[6px] rounded-[50%] border-[2px] top-[1.5px] border-solid border-white opacity-100 -translate-x-2/4 box-content',
-        getBgColor({ markActive, hideTrack, value: ownerState.value })
+        getBgColor({ markActive, forceInactive, value: ownerState.value })
       )}
     />
   )

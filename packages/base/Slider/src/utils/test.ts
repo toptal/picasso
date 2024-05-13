@@ -4,11 +4,11 @@ import { getBgColor } from './index'
 import type { GetBgColorType } from './index'
 
 describe('getBgColor function', () => {
-  describe('when markActive is true, hideTrack is false, and value is not undefined', () => {
+  describe('when markActive is true, forceInactive is false, and value is not undefined', () => {
     it('returns "bg-blue-500"', () => {
       const options: GetBgColorType = {
         markActive: true,
-        hideTrack: false,
+        forceInactive: false,
         value: 0,
       }
       const bgColor = getBgColor(options)
@@ -17,11 +17,11 @@ describe('getBgColor function', () => {
     })
   })
 
-  describe('when markActive is true, hideTrack is false, and value is undefined', () => {
+  describe('when markActive is true, forceInactive is false, and value is undefined', () => {
     it('returns "bg-gray-500"', () => {
       const options: GetBgColorType = {
         markActive: true,
-        hideTrack: false,
+        forceInactive: false,
         value: undefined,
       }
       const bgColor = getBgColor(options)
@@ -30,8 +30,8 @@ describe('getBgColor function', () => {
     })
   })
 
-  describe('when markActive is true, hideTrack is true', () => {
-    const options: GetBgColorType = { markActive: true, hideTrack: true }
+  describe('when markActive is true, forceInactive is true', () => {
+    const options: GetBgColorType = { markActive: true, forceInactive: true }
 
     describe('and value is not undefined', () => {
       it('returns "bg-gray-500"', () => {
@@ -53,25 +53,37 @@ describe('getBgColor function', () => {
   describe('when markActive is false', () => {
     const options: GetBgColorType = { markActive: false }
 
-    describe('and hideTrack is false', () => {
+    describe('and forceInactive is false', () => {
       it('returns "bg-gray-500" regardless of value', () => {
-        let bgColor = getBgColor({ ...options, hideTrack: false, value: 10 })
+        let bgColor = getBgColor({
+          ...options,
+          forceInactive: false,
+          value: 10,
+        })
 
         expect(bgColor).toBe('bg-gray-500')
 
-        bgColor = getBgColor({ ...options, hideTrack: false, value: undefined })
+        bgColor = getBgColor({
+          ...options,
+          forceInactive: false,
+          value: undefined,
+        })
 
         expect(bgColor).toBe('bg-gray-500')
       })
     })
 
-    describe('and hideTrack is true', () => {
+    describe('and forceInactive is true', () => {
       it('returns "bg-gray-500" regardless of value', () => {
-        let bgColor = getBgColor({ ...options, hideTrack: true, value: 10 })
+        let bgColor = getBgColor({ ...options, forceInactive: true, value: 10 })
 
         expect(bgColor).toBe('bg-gray-500')
 
-        bgColor = getBgColor({ ...options, hideTrack: true, value: undefined })
+        bgColor = getBgColor({
+          ...options,
+          forceInactive: true,
+          value: undefined,
+        })
 
         expect(bgColor).toBe('bg-gray-500')
       })
