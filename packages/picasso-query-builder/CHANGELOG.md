@@ -1,5 +1,26 @@
 # @toptal/picasso-query-builder
 
+## 6.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4), [`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8)]:
+  - @toptal/picasso-notification@2.0.6
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-prompt-modal@1.0.14
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-list@2.0.2
+  - @toptal/picasso-number-input@1.0.14
+  - @toptal/picasso-radio@2.0.1
+  - @toptal/picasso-select@1.0.15
+  - @toptal/picasso-tagselector@1.0.16
+  - @toptal/picasso-tooltip@1.1.2
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-loader@1.0.3
+
 ## 6.0.4
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @toptal/picasso-dropdown
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-popper@1.0.3
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-paper@2.0.3
+
 ## 2.0.1
 
 ### Patch Changes

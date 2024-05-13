@@ -1,5 +1,19 @@
 # @toptal/picasso-number-input
 
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-form@3.0.1
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-input-adornment@1.0.4
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-icons@1.1.1
+
 ## 1.0.13
 
 ### Patch Changes

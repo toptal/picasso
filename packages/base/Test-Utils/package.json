@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-test-utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Toptal UI components library - Test-Utils",
   "publishConfig": {
     "access": "public"
@@ -29,7 +29,7 @@
     "**/styles.js"
   ],
   "dependencies": {
-    "@toptal/picasso-shared": "14.0.1"
+    "@toptal/picasso-shared": "15.0.0"
   },
   "peerDependencies": {
     "@toptal/picasso-provider": "*",

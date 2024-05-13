@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind
 
+## 2.5.0
+
+### Minor Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`0c9807b800ed8a992de72f47bc1263d24a2fd4d8`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add design tokens for Button component
+
 ## 2.4.0
 
 ### Minor Changes
