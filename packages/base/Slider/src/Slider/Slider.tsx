@@ -1,14 +1,15 @@
-import type { ComponentProps } from 'react'
+// import type { ComponentProps } from 'react'
 import React, { forwardRef, useRef } from 'react'
 import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
-import { twJoin } from 'tailwind-merge'
+import { twJoin, twMerge } from 'tailwind-merge'
+import type { BaseProps } from '@toptal/picasso-shared'
 
 import { SliderContextProvider } from './SliderContext'
 import SliderMark from '../SliderMark'
 import SliderValueLabel from '../SliderValueLabel'
 
-export interface Props extends ComponentProps<typeof MUIBaseSlider> {
+export interface Props extends BaseProps {
   /** Minimum slider value */
   min?: number
   /** Maximum slider value */
@@ -60,7 +61,10 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange,
     hideThumbOnEmpty,
     disableTrackHighlight,
-    ...rest
+    className,
+    style,
+    'data-private': dataPrivate,
+    'data-testid': dataTestid,
   } = props
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -79,9 +83,12 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 
   return (
     <SliderContextProvider>
-      <div ref={containerRef} className='my-[6px] mx-0'>
+      <div
+        ref={containerRef}
+        className={twMerge('my-[6px] mx-0', className)}
+        style={style}
+      >
         <MUIBaseSlider
-          {...rest}
           ref={sliderRef}
           defaultValue={defaultValue}
           value={value}
@@ -90,6 +97,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
           step={step}
           marks={marks}
           disabled={disabled}
+          data-testid={dataTestid}
+          data-private={dataPrivate}
           slots={{
             mark: SliderMark,
             valueLabel: SliderValueLabel,
