@@ -48,7 +48,7 @@ const SliderValueLabel = ({
         'm-1 rounded-sm py-[2px] px-2',
         'will-change-transform transition-transform',
         tooltipStates[tooltip],
-        isOnScreen ? 'bottom-[calc(100%+4px)]' : 'top-[calc(100%+4px)]',
+        isOnScreen ? 'bottom-[calc(100%+2px)]' : 'top-[calc(100%+2px)]',
         positionStyles
       )}
     >
