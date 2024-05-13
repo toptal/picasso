@@ -62,57 +62,53 @@ exports[`useNotifications error notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="MuiPaper-root MuiSnackbarContent-root Notification-notificationRed Notification-notificationShadow Notification-roundedBorders Notification-notification PicassoNotification-formNotification MuiPaper-elevation6"
-              role="alert"
+              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-red w-[20em] max-w"
+              role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
               <div
-                class="MuiSnackbarContent-message"
+                class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em]"
                 >
-                  <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                  <svg
+                    class="PicassoSvgExclamationSolid24-root PicassoSvgExclamationSolid24-red"
+                    style="min-width: 24px; min-height: 24px;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-10a1 1 0 0 0-1 1v7a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1Z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="m-0 text-md text-black font-regular break-words min-w !mt-[1px]"
+                >
+                  Error message
+                </div>
+                <button
+                  aria-disabled="false"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full w-[1.5em] text-white visited:text-white focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent"
+                  data-component-type="button"
+                  role="button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                   >
                     <svg
-                      class="PicassoSvgExclamationSolid24-root PicassoSvgExclamationSolid24-red"
-                      style="min-width: 24px; min-height: 24px;"
-                      viewBox="0 0 24 24"
+                      class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
                     >
                       <path
-                        d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm0 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-10a1 1 0 0 0-1 1v7a1 1 0 0 0 2 0V7a1 1 0 0 0-1-1Z"
+                        d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
                       />
                     </svg>
-                  </div>
-                  <div
-                    class="m-0 text-md text-black font-regular break-words min-w !mt-[1px]"
-                  >
-                    Error message
-                  </div>
-                  <button
-                    aria-disabled="false"
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full w-[1.5em] text-white visited:text-white focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent"
-                    data-component-type="button"
-                    role="button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
-                    >
-                      <svg
-                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
-                        style="min-width: 16px; min-height: 16px;"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
+                  </span>
+                </button>
               </div>
             </div>
           </div>
@@ -185,60 +181,56 @@ exports[`useNotifications info notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="MuiPaper-root MuiSnackbarContent-root Notification-notificationWhite Notification-notificationShadow Notification-roundedBorders Notification-notification PicassoNotification-generalNotification MuiPaper-elevation6"
-              role="alert"
+              class="base-Snackbar relative flex flex-nowrap items-start transition-shadow duration-300 shadow-3 rounded-sm bg-white px-[1.5em] pt-[1.5625em] pb-[1.5em] max-w w-[27.5em]"
+              role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
               <div
-                class="MuiSnackbarContent-message"
+                class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em]"
                 >
-                  <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                  <svg
+                    class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
+                    fill="none"
+                    style="min-width: 24px; min-height: 24px;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M11.5 22C17.299 22 22 17.299 22 11.5S17.299 1 11.5 1 1 5.701 1 11.5 5.701 22 11.5 22Zm0-1a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM12 9v7h1v1h-3v-1h1v-6h-1V9h2Zm0-2V6h-1v1h1Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="m-0 text-md text-black font-regular break-words min-w !mt-[1px]"
+                >
+                  Info message
+                </div>
+                <button
+                  aria-disabled="false"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full w-[1.5em] text-white visited:text-white focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent"
+                  data-component-type="button"
+                  role="button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                   >
                     <svg
-                      class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
-                      fill="none"
-                      style="min-width: 24px; min-height: 24px;"
-                      viewBox="0 0 24 24"
+                      class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
                     >
                       <path
-                        clip-rule="evenodd"
-                        d="M11.5 22C17.299 22 22 17.299 22 11.5S17.299 1 11.5 1 1 5.701 1 11.5 5.701 22 11.5 22Zm0-1a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM12 9v7h1v1h-3v-1h1v-6h-1V9h2Zm0-2V6h-1v1h1Z"
-                        fill-rule="evenodd"
+                        d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
                       />
                     </svg>
-                  </div>
-                  <div
-                    class="m-0 text-md text-black font-regular break-words min-w !mt-[1px]"
-                  >
-                    Info message
-                  </div>
-                  <button
-                    aria-disabled="false"
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full w-[1.5em] text-white visited:text-white focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent"
-                    data-component-type="button"
-                    role="button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
-                    >
-                      <svg
-                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
-                        style="min-width: 16px; min-height: 16px;"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
+                  </span>
+                </button>
               </div>
             </div>
           </div>
@@ -311,57 +303,53 @@ exports[`useNotifications success notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="MuiPaper-root MuiSnackbarContent-root Notification-notificationGreen Notification-notificationShadow Notification-roundedBorders Notification-notification PicassoNotification-formNotification MuiPaper-elevation6"
-              role="alert"
+              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-green w-[20em] max-w"
+              role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
               <div
-                class="MuiSnackbarContent-message"
+                class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-flex"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em]"
                 >
-                  <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                  <svg
+                    class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
+                    style="min-width: 24px; min-height: 24px;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="m-0 text-md text-black font-regular break-words min-w !mt-[1px]"
+                >
+                  Success message
+                </div>
+                <button
+                  aria-disabled="false"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full w-[1.5em] text-white visited:text-white focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent"
+                  data-component-type="button"
+                  role="button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                   >
                     <svg
-                      class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
-                      style="min-width: 24px; min-height: 24px;"
-                      viewBox="0 0 24 24"
+                      class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
+                      style="min-width: 16px; min-height: 16px;"
+                      viewBox="0 0 16 16"
                     >
                       <path
-                        d="M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0Zm4.034 7.667-5.895 5.91-1.933-1.942-1.373 1.379 1.934 1.942 1.372 1.377 7.267-7.289-1.372-1.377Z"
+                        d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
                       />
                     </svg>
-                  </div>
-                  <div
-                    class="m-0 text-md text-black font-regular break-words min-w !mt-[1px]"
-                  >
-                    Success message
-                  </div>
-                  <button
-                    aria-disabled="false"
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full w-[1.5em] text-white visited:text-white focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent"
-                    data-component-type="button"
-                    role="button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
-                    >
-                      <svg
-                        class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
-                        style="min-width: 16px; min-height: 16px;"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
+                  </span>
+                </button>
               </div>
             </div>
           </div>

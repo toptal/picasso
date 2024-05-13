@@ -5,7 +5,6 @@ import type {
   SyntheticEvent,
 } from 'react'
 import React, { forwardRef, cloneElement } from 'react'
-import capitalize from '@material-ui/core/utils/capitalize'
 import type { Classes, StandardProps } from '@toptal/picasso-shared'
 import {
   CloseMinor16,
@@ -19,6 +18,8 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { Typography } from '@toptal/picasso-typography'
 import { Snackbar } from '@mui/base'
 import { twJoin, twMerge } from 'tailwind-merge'
+
+import { capitalizeFirst } from './utils'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
@@ -77,8 +78,6 @@ const renderNotificationIcon = ({ icon, variant }: PrivateProps) => {
     }
   }
 }
-
-const capitalizedVariant = (variant: string) => capitalize(variant)
 
 const renderNotificationContent = (props: PrivateProps) => {
   const { children, onClose, variant, testIds } = props
@@ -142,7 +141,7 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
           'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
           elevated && 'shadow-3 rounded-sm',
           variant
-            ? variantClasses[`notification${capitalizedVariant(variant)}`]
+            ? variantClasses[`notification${capitalizeFirst(variant)}`]
             : variantClasses.notificationYellow,
           className
         )}
