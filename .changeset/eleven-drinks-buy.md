@@ -2,4 +2,4 @@
 '@toptal/picasso-tailwind': minor
 ---
 
-- add currentColor
+- add `currentColor` to tailwindCss configuration
