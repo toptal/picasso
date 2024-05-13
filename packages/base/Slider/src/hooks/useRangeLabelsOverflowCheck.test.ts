@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react'
+import { describe, expect, it } from '@jest/globals'
 
 import { useSliderContext } from '../Slider/SliderContext'
-import { useUpdateValueLabelPosition } from './useUpdateValueLabelPosition'
+import { useRangeLabelsOverflowCheck } from './useRangeLabelsOverflowCheck'
 
 jest.mock('../Slider/SliderContext', () => ({
   useSliderContext: jest.fn(),
@@ -17,7 +18,7 @@ const mockUseSliderContextResult = {
   hasTooltipOverflow: false,
 }
 
-describe('useUpdateValueLabelPosition', () => {
+describe('useRangeLabelsOverflowCheck', () => {
   beforeEach(() => {
     mockUseSliderContext.mockReturnValue(mockUseSliderContextResult)
   })
@@ -29,7 +30,7 @@ describe('useUpdateValueLabelPosition', () => {
   it('should not call checkTooltipsOverlap if sliderValue is not an array', () => {
     const sliderValue = 50 // Not an array, represents a single value slider
 
-    renderHook(() => useUpdateValueLabelPosition({ sliderValue }))
+    renderHook(() => useRangeLabelsOverflowCheck({ sliderValue }))
 
     expect(
       mockUseSliderContextResult.checkTooltipsOverlap
@@ -39,7 +40,7 @@ describe('useUpdateValueLabelPosition', () => {
   it('should call checkTooltipsOverlap if sliderValue is an array', () => {
     const sliderValue = [25, 75] // Array, represents a range slider
 
-    renderHook(() => useUpdateValueLabelPosition({ sliderValue }))
+    renderHook(() => useRangeLabelsOverflowCheck({ sliderValue }))
 
     expect(
       mockUseSliderContextResult.checkTooltipsOverlap
@@ -50,7 +51,7 @@ describe('useUpdateValueLabelPosition', () => {
     const sliderValue = [50, 50] // Array with equal values, represents a collapsed range
 
     const { result } = renderHook(() =>
-      useUpdateValueLabelPosition({ sliderValue })
+      useRangeLabelsOverflowCheck({ sliderValue })
     )
 
     expect(result.current).toBe(false)
@@ -61,7 +62,7 @@ describe('useUpdateValueLabelPosition', () => {
     const sliderValue = [20, 80]
 
     const { result } = renderHook(() =>
-      useUpdateValueLabelPosition({ sliderValue })
+      useRangeLabelsOverflowCheck({ sliderValue })
     )
 
     expect(result.current).toBe(false)
@@ -72,7 +73,7 @@ describe('useUpdateValueLabelPosition', () => {
     const sliderValue = [20, 80]
 
     const { result } = renderHook(() =>
-      useUpdateValueLabelPosition({ sliderValue })
+      useRangeLabelsOverflowCheck({ sliderValue })
     )
 
     expect(result.current).toBe(true)
@@ -83,7 +84,7 @@ describe('useUpdateValueLabelPosition', () => {
     const sliderValue = [50, 50]
 
     const { result } = renderHook(() =>
-      useUpdateValueLabelPosition({ sliderValue })
+      useRangeLabelsOverflowCheck({ sliderValue })
     )
 
     expect(result.current).toBe(false)

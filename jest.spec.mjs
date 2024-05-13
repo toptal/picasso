@@ -27,6 +27,7 @@ const config = {
     `node_modules/(?!${NODE_MODULES_TO_IGNORE_TRANSFORM})`,
   ],
   coverageReporters: ['json', 'text-summary'],
+  testEnvoironment: 'jsdom',
   // TODO: This option does not work due to bug in davinci-qa https://toptal-core.atlassian.net/browse/FX-4311
   // collectCoverageFrom: ['packages/**/*.{ts,tsx}'],
 }

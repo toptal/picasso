@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react'
+import { describe, expect, it } from '@jest/globals'
 
 import { useSliderContext } from '../Slider/SliderContext'
 import { useRegisterValueLabel } from './useRegisterValueLabel'

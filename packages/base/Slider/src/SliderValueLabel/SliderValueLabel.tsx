@@ -2,14 +2,19 @@ import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
 import React from 'react'
 import { twJoin } from 'tailwind-merge'
 
-import { getTooltipHorizontalPosition } from '../utils'
-import { useUpdateValueLabelPosition, useRegisterValueLabel } from '../hooks'
+import {
+  useLabelPosition,
+  useRangeLabelsOverflowCheck,
+  useRegisterValueLabel,
+} from '../hooks'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
 const tooltipStates: Record<ValueLabelDisplay, string> = {
   off: 'hidden',
-  auto: 'hidden group-hover/thumb:flex justify-center items-center',
+  // We need to use visibility: hidden instead of display: none to keep the
+  // label visible for javascript calculations.
+  auto: 'invisible group-hover/thumb:visible flex justify-center items-center',
   on: 'flex justify-center items-center',
 }
 
@@ -23,23 +28,28 @@ const SliderValueLabel = ({
   tooltip: ValueLabelDisplay
   isOnScreen: boolean
 }) => {
+  const sliderValue = ownerState.value
   const ref = useRegisterValueLabel({ index })
-  const shouldUpdatePosition = useUpdateValueLabelPosition({
-    sliderValue: ownerState.value,
+  const doRangeLabelsOverflow = useRangeLabelsOverflowCheck({
+    sliderValue,
+  })
+  const positionStyles = useLabelPosition({
+    ref,
+    doRangeLabelsOverflow,
+    sliderValue,
+    index,
   })
 
   return (
     <span
       ref={ref}
       className={twJoin(
-        'absolute will-change-transform shadow-4 transition-transform m-1 text-sm bg-graphite-800 text-white rounded-sm py-[2px] px-2',
+        'absolute shadow-4 text-sm text-white bg-graphite-800',
+        'm-1 rounded-sm py-[2px] px-2',
+        'will-change-transform transition-transform',
         tooltipStates[tooltip],
         isOnScreen ? 'bottom-[calc(100%+4px)]' : 'top-[calc(100%+4px)]',
-        shouldUpdatePosition
-          ? getTooltipHorizontalPosition({
-              placement: index === 0 ? 'left' : 'right',
-            })
-          : undefined
+        positionStyles
       )}
     >
       {children}

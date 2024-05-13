@@ -8,18 +8,15 @@ import { SliderContextProvider } from './SliderContext'
 import SliderMark from '../SliderMark'
 import SliderValueLabel from '../SliderValueLabel'
 
-type Value = number | number[]
-type ValueLabelDisplay = 'on' | 'auto' | 'off'
-
 export interface Props extends ComponentProps<typeof MUIBaseSlider> {
   /** Minimum slider value */
   min?: number
   /** Maximum slider value */
   max?: number
   /** Controlled value of the component */
-  value?: Value
+  value?: number | number[]
   /** The default value. Use when the component is not controlled */
-  defaultValue?: Value
+  defaultValue?: number | number[]
   /** Step for the thumb movement */
   step?: number
   /** Whether marks are shown or not */
@@ -31,11 +28,15 @@ export interface Props extends ComponentProps<typeof MUIBaseSlider> {
   - **on** will display persistently.
   - **off** will never display
   */
-  tooltip?: ValueLabelDisplay
+  tooltip?: 'on' | 'auto' | 'off'
   /** The format function the value tooltip's value. */
   tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
   /** Callback invoked when slider changes its state. */
-  onChange?: (event: Event, value: Value, activeThumb: number) => void
+  onChange?: (
+    event: Event,
+    value: number | number[],
+    activeThumb: number
+  ) => void
   /** Hide thumb when value is undefined or null. Works only when the component is controlled. */
   hideThumbOnEmpty?: boolean
   /** Disable track highlight. */

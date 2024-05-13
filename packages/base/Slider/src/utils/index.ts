@@ -4,10 +4,6 @@ export type GetBgColorType = {
   value?: number | readonly number[]
 }
 
-export type GetTooltipHorizontalPosition = {
-  placement: 'left' | 'right'
-}
-
 export const getBgColor = ({
   markActive,
   hideTrack,
@@ -23,12 +19,4 @@ export const getBgColor = ({
   }
 
   return 'bg-gray-500'
-}
-
-export const getTooltipHorizontalPosition = ({
-  placement,
-}: GetTooltipHorizontalPosition) => {
-  return placement === 'left'
-    ? 'right-[calc(100%-13px)]'
-    : 'left-[calc(100%-13px)]'
 }
