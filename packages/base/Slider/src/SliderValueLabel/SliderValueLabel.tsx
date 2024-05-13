@@ -4,7 +4,7 @@ import { twJoin } from 'tailwind-merge'
 
 import {
   useLabelPosition,
-  useRangeLabelsOverflowCheck,
+  useRangeLabelsOverlapCheck,
   useRegisterValueLabel,
 } from '../hooks'
 
@@ -30,12 +30,12 @@ const SliderValueLabel = ({
 }) => {
   const sliderValue = ownerState.value
   const ref = useRegisterValueLabel({ index })
-  const doRangeLabelsOverflow = useRangeLabelsOverflowCheck({
+  const doRangeLabelsOverlap = useRangeLabelsOverlapCheck({
     sliderValue,
   })
   const positionStyles = useLabelPosition({
     ref,
-    doRangeLabelsOverflow,
+    doRangeLabelsOverlap,
     sliderValue,
     index,
   })

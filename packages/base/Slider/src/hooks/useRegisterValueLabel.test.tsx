@@ -15,7 +15,7 @@ const mockUseSliderContext = useSliderContext as jest.MockedFunction<
 const mockUseSliderContextResult = {
   registerValueLabel: jest.fn(),
   checkTooltipsOverlap: jest.fn(),
-  hasTooltipOverflow: false,
+  hasTooltipOverlap: false,
 }
 
 const renderUseRegisterValue = ({ index }: { index: number }) =>

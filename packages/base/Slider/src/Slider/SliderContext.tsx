@@ -14,11 +14,11 @@ const SliderContext = createContext<{
     tooltip: React.RefObject<HTMLSpanElement>
   ) => void
   checkTooltipsOverlap: () => void
-  hasTooltipOverflow: boolean
+  hasTooltipOverlap: boolean
 }>({
   registerValueLabel: noop,
   checkTooltipsOverlap: noop,
-  hasTooltipOverflow: false,
+  hasTooltipOverlap: false,
 })
 
 interface ProviderProps {
@@ -32,7 +32,7 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
     null,
     null,
   ])
-  const [hasTooltipOverflow, setHasTooltipOverflow] = useState(false)
+  const [hasTooltipOverlap, setHasTooltipOverlap] = useState(false)
 
   const checkTooltipsOverlap = useCallback(() => {
     if (valueLabels[0] && valueLabels[1]) {
@@ -49,14 +49,14 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
 
       let doesOverlap = false
 
-      if (hasTooltipOverflow) {
+      if (hasTooltipOverlap) {
         doesOverlap = rect1.right + gap + width2 / 2 > rect2.left - width1 / 2
       } else {
         doesOverlap = rect1.right + gap > rect2.left
       }
-      setHasTooltipOverflow(doesOverlap)
+      setHasTooltipOverlap(doesOverlap)
     }
-  }, [valueLabels, hasTooltipOverflow])
+  }, [valueLabels, hasTooltipOverlap])
 
   const registerValueLabel = useCallback(
     (index: number, tooltip: React.RefObject<HTMLSpanElement>) => {
@@ -76,10 +76,10 @@ const SliderContextProvider = ({ children }: ProviderProps) => {
   const contextValue = useMemo(
     () => ({
       registerValueLabel,
-      hasTooltipOverflow,
+      hasTooltipOverlap,
       checkTooltipsOverlap,
     }),
-    [registerValueLabel, hasTooltipOverflow, checkTooltipsOverlap]
+    [registerValueLabel, hasTooltipOverlap, checkTooltipsOverlap]
   )
 
   return (

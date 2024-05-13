@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 type Props = {
   ref: React.RefObject<HTMLSpanElement>
-  doRangeLabelsOverflow: boolean
+  doRangeLabelsOverlap: boolean
   sliderValue?: number | readonly number[]
   index: number
 }
@@ -17,7 +17,7 @@ export const positionClasses = {
 //   left  center  right
 export const useLabelPosition = ({
   ref,
-  doRangeLabelsOverflow,
+  doRangeLabelsOverlap,
   sliderValue,
   index,
 }: Props) => {
@@ -41,12 +41,12 @@ export const useLabelPosition = ({
       setPosition('right')
     } else if (rightBoundary > window.innerWidth - 16) {
       setPosition('left')
-    } else if (doRangeLabelsOverflow) {
+    } else if (doRangeLabelsOverlap) {
       setPosition(index === 0 ? 'left' : 'right')
     } else {
       setPosition('center')
     }
-  }, [sliderValue, doRangeLabelsOverflow, position, setPosition, index, ref])
+  }, [sliderValue, doRangeLabelsOverlap, position, setPosition, index, ref])
 
   return positionClasses[position]
 }

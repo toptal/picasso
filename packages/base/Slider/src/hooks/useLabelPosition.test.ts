@@ -20,7 +20,7 @@ describe('useLabelPosition', () => {
       const { result } = renderHook(() =>
         useLabelPosition({
           ref,
-          doRangeLabelsOverflow: false,
+          doRangeLabelsOverlap: false,
           sliderValue: 5,
           index: 0,
         })
@@ -45,7 +45,7 @@ describe('useLabelPosition', () => {
       const { result, rerender } = renderHook(() =>
         useLabelPosition({
           ref,
-          doRangeLabelsOverflow: false,
+          doRangeLabelsOverlap: false,
           sliderValue: 5,
           index: 1,
         })
@@ -67,7 +67,7 @@ describe('useLabelPosition', () => {
 
       rerender({
         ref: newRef,
-        doRangeLabelsOverflow: false,
+        doRangeLabelsOverlap: false,
         sliderValue: 5,
         index: 1,
       })
@@ -76,7 +76,7 @@ describe('useLabelPosition', () => {
     })
   })
 
-  describe('when doRangeLabelsOverflow is true', () => {
+  describe('when doRangeLabelsOverlap is true', () => {
     describe('when index is 0', () => {
       it('returns left position class', () => {
         const ref = {
@@ -92,7 +92,7 @@ describe('useLabelPosition', () => {
         const { result } = renderHook(() =>
           useLabelPosition({
             ref,
-            doRangeLabelsOverflow: true,
+            doRangeLabelsOverlap: true,
             sliderValue: 5,
             index: 0,
           })
@@ -117,7 +117,7 @@ describe('useLabelPosition', () => {
         const { result } = renderHook(() =>
           useLabelPosition({
             ref,
-            doRangeLabelsOverflow: true,
+            doRangeLabelsOverlap: true,
             sliderValue: 5,
             index: 1,
           })
@@ -143,7 +143,7 @@ describe('useLabelPosition', () => {
       const { result } = renderHook(() =>
         useLabelPosition({
           ref,
-          doRangeLabelsOverflow: false,
+          doRangeLabelsOverlap: false,
           sliderValue: 5,
           index: 0,
         })

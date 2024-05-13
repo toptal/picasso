@@ -6,8 +6,8 @@ type Props = {
   sliderValue?: number | readonly number[]
 }
 
-export const useRangeLabelsOverflowCheck = ({ sliderValue }: Props) => {
-  const { hasTooltipOverflow, checkTooltipsOverlap } = useSliderContext()
+export const useRangeLabelsOverlapCheck = ({ sliderValue }: Props) => {
+  const { checkTooltipsOverlap, hasTooltipOverlap } = useSliderContext()
   const isRangeSlider = Array.isArray(sliderValue)
   const isRangeSliderCollapsed =
     isRangeSlider && sliderValue[0] === sliderValue[1]
@@ -18,7 +18,5 @@ export const useRangeLabelsOverflowCheck = ({ sliderValue }: Props) => {
     }
   }, [checkTooltipsOverlap, sliderValue, isRangeSlider])
 
-  const doRangeLabelsOverflow = hasTooltipOverflow && !isRangeSliderCollapsed
-
-  return doRangeLabelsOverflow
+  return hasTooltipOverlap && !isRangeSliderCollapsed
 }
