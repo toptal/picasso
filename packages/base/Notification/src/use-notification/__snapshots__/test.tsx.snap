@@ -62,7 +62,7 @@ exports[`useNotifications error notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="base-Snackbar bg-red relative flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 w-[20em] max-w"
+              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-red w-[20em] max-w"
               role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
@@ -181,7 +181,7 @@ exports[`useNotifications info notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="base-Snackbar bg-white px-[1.5em] relative flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 max-w w-[27.5em]"
+              class="base-Snackbar relative flex flex-nowrap items-start transition-shadow duration-300 shadow-3 rounded-sm bg-white px-[1.5em] pt-[1.5625em] pb-[1.5em] max-w w-[27.5em]"
               role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
@@ -303,7 +303,7 @@ exports[`useNotifications success notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="base-Snackbar bg-green relative flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 w-[20em] max-w"
+              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-green w-[20em] max-w"
               role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
