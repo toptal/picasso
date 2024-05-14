@@ -1,13 +1,20 @@
 // import type { ComponentProps } from 'react'
-import React, { forwardRef, useRef } from 'react'
+import type { RefObject } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from 'tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 
-import { SliderContextProvider } from './SliderContext'
 import SliderMark from '../SliderMark'
 import SliderValueLabel from '../SliderValueLabel'
+import { checkOverlap } from '../utils'
 
 export interface Props extends BaseProps {
   /** Minimum slider value */
@@ -66,78 +73,121 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-private': dataPrivate,
     'data-testid': dataTestid,
   } = props
-
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
+  const isRangeSlider = Array.isArray(value)
+  const [valueLabels, setValueLabels] = useState<RefObject<HTMLSpanElement>[]>(
+    []
+  )
+  const [isPartiallyOverlaped, setIsPartiallyOverlaped] = useState(false)
+
+  // handle overlapping of the value labels
+  useEffect(() => {
+    if (!isRangeSlider) {
+      return
+    }
+    const isFullyOverlaped = value[0] === value[1]
+
+    if (isFullyOverlaped) {
+      setIsPartiallyOverlaped(false)
+    } else {
+      if (!(valueLabels[0]?.current && valueLabels[1]?.current)) {
+        return
+      }
+
+      setIsPartiallyOverlaped(
+        checkOverlap({
+          firstLabelRect: valueLabels[0].current.getBoundingClientRect(),
+          secondLabelRect: valueLabels[1].current.getBoundingClientRect(),
+          isPartiallyOverlaped,
+        })
+      )
+    }
+  }, [value, isRangeSlider, isPartiallyOverlaped, valueLabels])
+
+  const handleValueLabelOnRender = useCallback(
+    (index: number, labelRef: RefObject<HTMLSpanElement>) => {
+      setValueLabels(prev => {
+        const next = [...prev]
+
+        next[index] = labelRef
+
+        return next
+      })
+    },
+    [setValueLabels]
+  )
 
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
-  const isOnScreen = useOnScreen({
+  const isContainerOnScreen = useOnScreen({
     ref: containerRef,
     rootMargin: '-24px 0px 0px 0px',
     threshold: 1,
   })
 
   return (
-    <SliderContextProvider>
-      <div
-        ref={containerRef}
-        className={twMerge('my-[6px] mx-0', className)}
-        style={style}
-      >
-        <MUIBaseSlider
-          ref={sliderRef}
-          defaultValue={defaultValue}
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          marks={marks}
-          disabled={disabled}
-          data-testid={dataTestid}
-          data-private={dataPrivate}
-          slots={{
-            mark: SliderMark,
-            valueLabel: SliderValueLabel,
-          }}
-          slotProps={{
-            mark: {
-              // @ts-expect-error we have custom Mark component, where we extend props and MUI does not understand it
-              forceInactive: disableTrackHighlight,
-            },
-            root: {
-              className:
-                'block cursor-pointer width-full relative py-[6px] -my-[6px]',
-            },
-            rail: {
-              className:
-                'block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
-            },
-            thumb: {
-              className: twJoin(
-                'group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue-500 border-[2px] border-solid border-white -mt-[7px] outline-0 absolute -ml-[6px] transition-shadow cursor-pointer',
-                isThumbHidden && 'hidden'
-              ),
-            },
-            track: {
-              className: twJoin(
-                'block absolute h-[1px]',
-                disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
-              ),
-            },
-            valueLabel: {
-              isOnScreen,
-              tooltip,
-            },
-          }}
-          valueLabelFormat={tooltipFormat}
-          onChange={onChange}
-        />
-      </div>
-    </SliderContextProvider>
+    <div
+      ref={containerRef}
+      className={twMerge('my-[6px] mx-0', className)}
+      style={style}
+    >
+      <MUIBaseSlider
+        ref={sliderRef}
+        defaultValue={defaultValue}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        marks={marks}
+        disabled={disabled}
+        data-testid={dataTestid}
+        data-private={dataPrivate}
+        slots={{
+          mark: SliderMark,
+          valueLabel: SliderValueLabel,
+        }}
+        slotProps={{
+          mark: {
+            // @ts-expect-error we have custom Mark component, where we extend props and MUI does not understand it
+            forceInactive: disableTrackHighlight,
+          },
+          root: {
+            className:
+              'block cursor-pointer width-full relative py-[6px] -my-[6px]',
+          },
+          rail: {
+            className:
+              'block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500',
+          },
+          thumb: {
+            className: twJoin(
+              'group/thumb flex justify-center items-center w-[15px] h-[15px]',
+              'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
+              '-mt-[7px] -ml-[6px] outline-0 absolute  transition-shadow cursor-pointer',
+              isThumbHidden && 'hidden'
+            ),
+          },
+          track: {
+            className: twJoin(
+              'block absolute h-[1px]',
+              disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
+            ),
+          },
+          valueLabel: {
+            tooltip,
+            onRender: handleValueLabelOnRender,
+            yPlacement: isContainerOnScreen ? 'top' : 'bottom',
+            isOverlaped: isPartiallyOverlaped,
+          },
+        }}
+        valueLabelFormat={tooltipFormat}
+        onChange={onChange}
+      />
+    </div>
   )
 })
 

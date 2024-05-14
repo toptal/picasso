@@ -1,12 +1,9 @@
 import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
-import React from 'react'
+import type { RefObject } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
 
-import {
-  useLabelPosition,
-  useRangeLabelsOverlapCheck,
-  useRegisterValueLabel,
-} from '../hooks'
+import { getXPlacement } from '../utils'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
@@ -18,27 +15,59 @@ const classesByTooltip: Record<ValueLabelDisplay, string> = {
   on: 'flex justify-center items-center',
 }
 
+const xPlacementClasses = {
+  left: 'right-[calc(100%-13px)]',
+  right: 'left-[calc(100%-13px)]',
+  center: '',
+} as const
+
+const yPlacementClasses = {
+  bottom: 'top-[calc(100%+3px)]',
+  top: 'bottom-[calc(100%+2px)]',
+} as const
+
 const SliderValueLabel = ({
   children,
   index = -1,
   tooltip = 'off',
-  isOnScreen,
-  ownerState,
+  onRender,
+  yPlacement,
+  isOverlaped,
+  ownerState: { value },
 }: SliderValueLabelSlotProps & {
   tooltip: ValueLabelDisplay
-  isOnScreen: boolean
+  yPlacement: 'top' | 'bottom'
+  /** indicates if there are two SliderValueLabels that overlap each other */
+  isOverlaped: boolean
+  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
 }) => {
-  const sliderValue = ownerState.value
-  const ref = useRegisterValueLabel({ index })
-  const doRangeLabelsOverlap = useRangeLabelsOverlapCheck({
-    sliderValue,
-  })
-  const positionStyles = useLabelPosition({
-    ref,
-    doRangeLabelsOverlap,
-    sliderValue,
-    index,
-  })
+  const ref = useRef<HTMLSpanElement>(null)
+
+  // we need to change the placement of the label if it is overlaped
+  // or if it is out of the viewport
+  const [xPlacement, setXPlacement] = useState<'left' | 'right' | 'center'>(
+    'center'
+  )
+
+  useEffect(() => {
+    onRender(index, ref)
+  }, [index, onRender])
+
+  useEffect(() => {
+    if (!ref.current) {
+      return
+    }
+
+    setXPlacement(
+      getXPlacement({
+        rect: ref.current.getBoundingClientRect(),
+        isOverlaped: isOverlaped,
+        isFirstLabel: index === 0,
+        currentPlacement: xPlacement,
+      })
+    )
+    // we need to recalculate on value change to get new rect
+  }, [isOverlaped, index, xPlacement, value])
 
   return (
     <span
@@ -46,8 +75,8 @@ const SliderValueLabel = ({
       className={twJoin(
         'absolute will-change-transform transition-transform',
         classesByTooltip[tooltip],
-        isOnScreen ? 'bottom-[calc(100%+3px)]' : 'top-[calc(100%+2px)]',
-        positionStyles
+        yPlacementClasses[yPlacement],
+        xPlacementClasses[xPlacement]
       )}
     >
       <span

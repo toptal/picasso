@@ -1,12 +1,12 @@
 import { describe, expect, it } from '@jest/globals'
 
 import { getBgColor } from './index'
-import type { GetBgColorType } from './index'
+import type { GetBgColorProps } from './index'
 
 describe('getBgColor function', () => {
   describe('when markActive is true, forceInactive is false, and value is not undefined', () => {
     it('returns "bg-blue-500"', () => {
-      const options: GetBgColorType = {
+      const options: GetBgColorProps = {
         markActive: true,
         forceInactive: false,
         value: 0,
@@ -19,7 +19,7 @@ describe('getBgColor function', () => {
 
   describe('when markActive is true, forceInactive is false, and value is undefined', () => {
     it('returns "bg-gray-500"', () => {
-      const options: GetBgColorType = {
+      const options: GetBgColorProps = {
         markActive: true,
         forceInactive: false,
         value: undefined,
@@ -31,7 +31,7 @@ describe('getBgColor function', () => {
   })
 
   describe('when markActive is true, forceInactive is true', () => {
-    const options: GetBgColorType = { markActive: true, forceInactive: true }
+    const options: GetBgColorProps = { markActive: true, forceInactive: true }
 
     describe('and value is not undefined', () => {
       it('returns "bg-gray-500"', () => {
@@ -51,7 +51,7 @@ describe('getBgColor function', () => {
   })
 
   describe('when markActive is false', () => {
-    const options: GetBgColorType = { markActive: false }
+    const options: GetBgColorProps = { markActive: false }
 
     describe('and forceInactive is false', () => {
       it('returns "bg-gray-500" regardless of value', () => {
