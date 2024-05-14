@@ -3,8 +3,6 @@ import { createStyles } from '@material-ui/core/styles'
 import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export default (theme: Theme) => {
-  const { spacing } = theme
-
   return createStyles({
     root: {
       paddingRight: 0,
@@ -19,9 +17,5 @@ export default (theme: Theme) => {
     },
 
     ...highlightAutofillStyles(theme),
-
-    toggle: {
-      marginRight: spacing(1),
-    },
   })
 }

@@ -53,7 +53,7 @@ describe('CodePlugin', () => {
 
       cy.get('@button')
         .should('have.attr', 'class')
-        .and('include', 'activeButton')
+        .and('include', 'bg-graphite-700')
 
       cy.get('body').happoScreenshot({
         component,
@@ -63,7 +63,7 @@ describe('CodePlugin', () => {
       cy.contains(normalText).click()
       cy.get('@button')
         .should('have.attr', 'class')
-        .and('not.include', 'activeButton')
+        .and('not.include', 'bg-graphite-700')
 
       cy.get('body').happoScreenshot({
         component,

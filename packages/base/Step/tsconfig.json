@@ -6,6 +6,7 @@
     { "path": "../../picasso-provider" },
     { "path": "../../shared" },
     { "path": "../Icons" },
+    { "path": "../Typography" },
     { "path": "../TypographyOverflow" },
     { "path": "../Utils" }
   ]

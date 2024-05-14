@@ -1,5 +1,55 @@
 # @toptal/picasso-dropzone
 
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@1.0.16
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@1.0.15
+  - @toptal/picasso-form@3.0.1
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-form@3.0.0
+  - @toptal/picasso-file-input@1.0.14
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-file-input@1.0.13
+  - @toptal/picasso-form@2.0.1
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@1.0.12
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@1.0.11
+
 ## 1.0.10
 
 ### Patch Changes

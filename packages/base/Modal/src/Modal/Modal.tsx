@@ -249,7 +249,7 @@ export const Modal = forwardRef<HTMLElement, Props>(function Modal(props, ref) {
       {onClose && (
         <ButtonCircular
           variant='flat'
-          className={classes.closeButton}
+          className='absolute right-[2em] top-[2em]'
           onClick={onClose}
           data-testid={testIds?.closeButton}
         >

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-grid",
-  "version": "1.0.5",
+  "version": "3.0.0",
   "description": "Toptal UI components library - Grid",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.0.2",
-    "@toptal/picasso-typography": "2.0.0",
-    "@toptal/picasso-utils": "1.0.2"
+    "@toptal/picasso-icons": "1.1.1",
+    "@toptal/picasso-typography": "2.0.1",
+    "@toptal/picasso-utils": "1.0.3",
+    "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -33,14 +34,16 @@
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
+    "@toptal/picasso-shared": "15.0.0",
+    "@toptal/picasso-tailwind": ">2.1.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.2.0",
-    "@toptal/picasso-test-utils": "1.1.0"
+    "@toptal/picasso-provider": "4.2.1",
+    "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [
     "dist-package/**",

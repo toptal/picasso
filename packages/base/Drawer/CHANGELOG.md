@@ -1,5 +1,55 @@
 # @toptal/picasso-drawer
 
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.1
+
+## 2.0.6
+
+### Patch Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`761153604f33bd1b9427240846b2d0cbb8ae5ed4`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- replace styles with TailwindCSS
+
+- Updated dependencies [[`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8)]:
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.13
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-button@1.0.12
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`f19a613`](https://github.com/toptal/picasso/commit/f19a61397870dcfd3bb5bb2e645a3ae1be8632ce)]:
+  - @toptal/picasso-button@1.0.11
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.10
+
 ## 2.0.1
 
 ### Patch Changes

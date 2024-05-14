@@ -20,11 +20,6 @@ export default ({ screens }: Theme) =>
     content: {
       flex: 1,
     },
-    closeButton: {
-      position: 'absolute',
-      right: '1.5rem',
-      top: '1rem',
-    },
     narrow: {
       width: '100vw',
       maxWidth: '100vw',

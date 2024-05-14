@@ -1,7 +1,7 @@
 import { Fade } from '../Fade'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage('Fade')
+const page = PicassoBook.section('Transitions').createPage('Fade')
 
 page.createTabChapter('Props').addComponentDocs({
   component: Fade,

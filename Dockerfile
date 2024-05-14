@@ -50,6 +50,7 @@ COPY --chown=node:node packages/base/AccountSelect/package.json ./packages/base/
 COPY --chown=node:node packages/base/Alert/package.json ./packages/base/Alert/package.json
 COPY --chown=node:node packages/base/Amount/package.json ./packages/base/Amount/package.json
 COPY --chown=node:node packages/base/Fade/package.json ./packages/base/Fade/package.json
+COPY --chown=node:node packages/base/Collapse/package.json ./packages/base/Collapse/package.json
 COPY --chown=node:node packages/base/Backdrop/package.json ./packages/base/Backdrop/package.json
 COPY --chown=node:node packages/base/ApplicationUpdateNotification/package.json ./packages/base/ApplicationUpdateNotification/package.json
 COPY --chown=node:node packages/base/Autocomplete/package.json ./packages/base/Autocomplete/package.json

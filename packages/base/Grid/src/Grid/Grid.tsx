@@ -1,21 +1,19 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import type {
-  GridSpacing,
-  GridItemsAlignment,
-  GridDirection,
-  GridJustification,
-  GridWrap,
-} from '@material-ui/core'
-import { Grid as MUIGrid } from '@material-ui/core'
-import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
+import { type BaseProps } from '@toptal/picasso-shared'
 import type { BreakpointKeys } from '@toptal/picasso-provider'
 import { useCurrentBreakpointRange } from '@toptal/picasso-provider'
 
-import styles from './styles'
-
+import { GridContext } from '../GridContext'
+import type {
+  GridDirection,
+  GridItemsAlignment,
+  GridJustification,
+  GridSpacing,
+  GridWrap,
+} from '../types'
+import { getGridSpacingClassName } from './utils/get-grid-spacing-class-name'
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Grid content containing Grid.Item */
   children?: ReactNode
@@ -23,7 +21,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
    * be automatically adjusted based on the screen size (16px for screens smaller than medium, 24px
    * for medium screens, and 32px for screens bigger than medium)
    */
-  spacing?: 0 | 8 | 16 | 32 | 64 | 72 | 80
+  spacing?: GridSpacing
   /** Defines the orientation of the grid */
   direction?: GridDirection
   /** Defines the align-items style property based on the direction */
@@ -34,16 +32,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   wrap?: GridWrap
 }
 
-const humanToMUISpacing = (spacing: number) => {
-  /** Material Design margins and columns follow an 8px square baseline grid */
-  return (spacing / 8) as GridSpacing
-}
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGrid',
-})
-
-const responsiveSpacingConfiguration: Record<BreakpointKeys, number> = {
+const responsiveSpacingConfiguration: Record<BreakpointKeys, GridSpacing> = {
   xs: 16,
   sm: 16,
   md: 24,
@@ -61,7 +50,36 @@ const useResponsiveSpacing = () => {
   return responsiveSpacingConfiguration.md
 }
 
-// eslint-disable-next-line react/display-name
+const directionClassNamesMapping: { [K in GridDirection]: string } = {
+  row: 'flex-row',
+  'row-reverse': 'flex-row-reverse',
+  column: 'flex-col',
+  'column-reverse': 'flex-col-reverse',
+}
+
+const wrapClassNamesMapping: { [K in GridWrap]: string } = {
+  wrap: 'flex-wrap',
+  nowrap: 'flex-nowrap',
+  'wrap-reverse': 'flex-wrap-reverse',
+}
+
+const alignItemsClassNamesMapping: { [K in GridItemsAlignment]: string } = {
+  'flex-start': 'items-start',
+  center: 'items-center',
+  'flex-end': 'items-end',
+  stretch: 'items-stretch',
+  baseline: 'items-baseline',
+}
+
+const justifyContentClassNamesMapping: { [K in GridJustification]: string } = {
+  'flex-start': 'justify-start',
+  center: 'justify-center',
+  'flex-end': 'justify-end',
+  'space-between': 'justify-between',
+  'space-around': 'justify-around',
+  'space-evenly': 'justify-evenly',
+}
+
 export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   props,
   ref
@@ -69,35 +87,45 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   const {
     children,
     spacing: userSpacing,
-    direction,
-    alignItems,
-    justifyContent,
-    wrap,
+    direction = 'row',
+    alignItems = 'flex-start',
+    justifyContent = 'flex-start',
+    wrap = 'wrap',
     className,
-    style,
     ...rest
   } = props
-  const classes = useStyles()
 
   const responsiveSpacing = useResponsiveSpacing()
-  const gridSpacing = humanToMUISpacing(userSpacing ?? responsiveSpacing)
+  const gridSpacing = userSpacing ?? responsiveSpacing
+
+  const directionClassName = directionClassNamesMapping[direction]
+  const wrapClassName = wrapClassNamesMapping[wrap]
+  const alignItemsClassName = alignItemsClassNamesMapping[alignItems]
+  const justifyContentClassName =
+    justifyContentClassNamesMapping[justifyContent]
+
+  const gridSpacingClassName = getGridSpacingClassName(gridSpacing)
 
   return (
-    <MUIGrid
-      {...rest}
-      ref={ref}
-      container
-      spacing={gridSpacing}
-      direction={direction}
-      alignItems={alignItems}
-      justifyContent={justifyContent}
-      wrap={wrap}
-      classes={classes}
-      className={className}
-      style={style}
-    >
-      {children}
-    </MUIGrid>
+    <GridContext.Provider value={{ gridSpacing }}>
+      <div
+        ref={ref}
+        {...rest}
+        className={twMerge(
+          'box-border',
+          'flex',
+          'w-full',
+          directionClassName,
+          wrapClassName,
+          alignItemsClassName,
+          justifyContentClassName,
+          gridSpacingClassName,
+          className
+        )}
+      >
+        {children}
+      </div>
+    </GridContext.Provider>
   )
 })
 

@@ -26,7 +26,7 @@ PicassoProvider.override(({ layout, breakpoints: { down } }: Theme) => ({
 }))
 
 export default ({
-  palette: { red, green, yellow, common, text },
+  palette: { red, green, yellow, common },
   shadows,
   breakpoints: { down },
   sizes: { borderRadius },
@@ -81,22 +81,5 @@ export default ({
       minWidth: '1em',
       height: '1em',
       marginTop: '2px',
-    },
-
-    close: {
-      position: 'absolute',
-      right: '0.5em',
-      top: '0.75em',
-      background: 'transparent',
-      border: 0,
-      padding: 0,
-      height: '1em',
-
-      '&:hover': {
-        background: 'transparent',
-      },
-    },
-    closeIcon: {
-      fill: text.primary,
     },
   })

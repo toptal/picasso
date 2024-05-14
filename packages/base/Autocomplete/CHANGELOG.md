@@ -1,5 +1,74 @@
 # @toptal/picasso-autocomplete
 
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@1.0.11
+  - @toptal/picasso-select@1.0.16
+  - @toptal/picasso-outlined-input@1.0.15
+  - @toptal/picasso-input@1.0.15
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-form@3.0.1
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-input-adornment@1.0.4
+  - @toptal/picasso-menu@1.0.10
+  - @toptal/picasso-popper@1.0.3
+  - @toptal/picasso-select@1.0.15
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-loader@1.0.3
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-form@3.0.0
+  - @toptal/picasso-input@1.0.13
+  - @toptal/picasso-outlined-input@1.0.13
+  - @toptal/picasso-select@1.0.14
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@2.0.1
+  - @toptal/picasso-input@1.0.12
+  - @toptal/picasso-input-adornment@1.0.3
+  - @toptal/picasso-menu@1.0.9
+  - @toptal/picasso-outlined-input@1.0.12
+  - @toptal/picasso-select@1.0.13
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.11
+  - @toptal/picasso-input@1.0.11
+  - @toptal/picasso-select@1.0.12
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@1.0.8
+  - @toptal/picasso-select@1.0.11
+  - @toptal/picasso-outlined-input@1.0.10
+  - @toptal/picasso-input@1.0.10
+
 ## 1.0.10
 
 ### Patch Changes

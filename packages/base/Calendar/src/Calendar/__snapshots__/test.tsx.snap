@@ -22,18 +22,20 @@ exports[`Calendar renders 1`] = `
                 class="PicassoContainer-bottommediumMargin PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
               >
                 <button
+                  aria-disabled="false"
                   aria-label="Previous month"
-                  class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
                   data-component-type="button"
+                  role="button"
                   tabindex="0"
                   title="Previous month"
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                   >
                     <svg
-                      class="PicassoSvgBackMinor24-root PicassoButton-icon"
+                      class="PicassoSvgBackMinor24-root text-[1.2em] flex-1"
                       style="min-width: 24px; min-height: 24px;"
                       viewBox="0 0 24 24"
                     >
@@ -51,18 +53,20 @@ exports[`Calendar renders 1`] = `
                   December 2019
                 </h3>
                 <button
+                  aria-disabled="false"
                   aria-label="Next month"
-                  class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+                  class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
                   data-component-type="button"
+                  role="button"
                   tabindex="0"
                   title="Next month"
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                   >
                     <svg
-                      class="PicassoSvgChevronMinor24-root PicassoButton-icon"
+                      class="PicassoSvgChevronMinor24-root text-[1.2em] flex-1"
                       style="min-width: 24px; min-height: 24px;"
                       viewBox="0 0 24 24"
                     >

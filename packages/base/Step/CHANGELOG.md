@@ -1,5 +1,35 @@
 # @toptal/picasso-step
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-typography-overflow@2.0.1
+  - @toptal/picasso-icons@1.1.1
+
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+
+## 1.1.0
+
+### Minor Changes
+
+- [#4273](https://github.com/toptal/picasso/pull/4273) [`9afe5710d418dfa30dcfe7eda88cd74b81838fc3`](https://github.com/toptal/picasso/commit/9afe5710d418dfa30dcfe7eda88cd74b81838fc3) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Stepper
+
+- migrate `@toptal/picasso-step` to Tailwind
+- the package is no longer using MaterialUI as a peer dependency
+- internal components such as `StepLabel` and `StepIcon` are no longer used and have been removed from package exports
+
 ## 1.0.6
 
 ### Patch Changes
