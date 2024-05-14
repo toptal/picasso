@@ -10,7 +10,7 @@ export const getXPlacement = ({
   isOverlaped,
   isFirstLabel,
   currentPlacement,
-}: GetPositionProps) => {
+}: GetPositionProps): 'left' | 'right' | 'center' => {
   const gap = 16
   const halfWidth = width / 2
   const leftBoundary = currentPlacement === 'right' ? left - halfWidth : left

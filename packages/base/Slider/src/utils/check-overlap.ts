@@ -27,7 +27,7 @@ export const checkOverlap = ({
   firstLabelRect,
   secondLabelRect,
   previousResult,
-}: CheckOverlapProps) => {
+}: CheckOverlapProps): boolean => {
   const gap = 16
   const halfWidth1 = firstLabelRect.width / 2
   const halfWidth2 = secondLabelRect.width / 2
