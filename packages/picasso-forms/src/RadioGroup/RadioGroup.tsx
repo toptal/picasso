@@ -1,6 +1,6 @@
 import React, { Children } from 'react'
-import type { RadioProps, RadioGroupProps } from '@toptal/picasso'
-import { Radio as PicassoRadio } from '@toptal/picasso'
+import type { RadioProps, RadioGroupProps } from '@toptal/picasso-radio'
+import { RadioCompound as PicassoRadio } from '@toptal/picasso-radio'
 
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'

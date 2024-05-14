@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@toptal/picasso'
+import { Typography } from '@toptal/picasso-typography'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import styles from './styles'

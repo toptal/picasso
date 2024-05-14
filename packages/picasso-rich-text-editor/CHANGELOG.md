@@ -1,5 +1,111 @@
 # @toptal/picasso-rich-text-editor
 
+## 13.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.1
+  - @toptal/picasso-select@1.0.16
+  - @toptal/picasso-file-input@1.0.16
+  - @toptal/picasso-modal@2.0.1
+  - @toptal/picasso-outlined-input@1.0.15
+  - @toptal/picasso-input@1.0.15
+
+## 13.0.0
+
+### Major Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`761153604f33bd1b9427240846b2d0cbb8ae5ed4`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add TailwindCSS support
+
+### Patch Changes
+
+- Updated dependencies [[`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8), [`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4), [`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-modal@2.0.0
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-file-input@1.0.15
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-form@3.0.1
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-input-adornment@1.0.4
+  - @toptal/picasso-list@2.0.2
+  - @toptal/picasso-select@1.0.15
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-link@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-image@1.0.3
+
+## 12.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-form@3.0.0
+  - @toptal/picasso-button@1.0.13
+  - @toptal/picasso-input@1.0.13
+  - @toptal/picasso-modal@1.0.13
+  - @toptal/picasso-outlined-input@1.0.13
+  - @toptal/picasso-file-input@1.0.14
+  - @toptal/picasso-select@1.0.14
+
+## 12.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-button@1.0.12
+  - @toptal/picasso-file-input@1.0.13
+  - @toptal/picasso-form@2.0.1
+  - @toptal/picasso-input@1.0.12
+  - @toptal/picasso-input-adornment@1.0.3
+  - @toptal/picasso-list@2.0.1
+  - @toptal/picasso-modal@1.0.12
+  - @toptal/picasso-outlined-input@1.0.12
+  - @toptal/picasso-select@1.0.13
+
+## 12.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`f19a613`](https://github.com/toptal/picasso/commit/f19a61397870dcfd3bb5bb2e645a3ae1be8632ce)]:
+  - @toptal/picasso-button@1.0.11
+  - @toptal/picasso-file-input@1.0.12
+  - @toptal/picasso-modal@1.0.11
+  - @toptal/picasso-outlined-input@1.0.11
+  - @toptal/picasso-input@1.0.11
+  - @toptal/picasso-select@1.0.12
+
+## 12.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.10
+  - @toptal/picasso-select@1.0.11
+  - @toptal/picasso-file-input@1.0.11
+  - @toptal/picasso-modal@1.0.10
+  - @toptal/picasso-outlined-input@1.0.10
+  - @toptal/picasso-input@1.0.10
+
+## 12.0.3
+
+### Patch Changes
+
+- [#4268](https://github.com/toptal/picasso/pull/4268) [`ae3cd4ffe45a374eeb73bb7b64ff3a1a567f143b`](https://github.com/toptal/picasso/commit/ae3cd4ffe45a374eeb73bb7b64ff3a1a567f143b) Thanks [@dependabot](https://github.com/apps/dependabot)!
+- bump `@emoji-mart/data` dependency
+
+## 12.0.2
+
+### Patch Changes
+
+- [#4250](https://github.com/toptal/picasso/pull/4250) [`47fd7b59374386a09f853c5c45750948a00e525d`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate packages to use Picasso By Parts
+
 ## 12.0.1
 
 ### Patch Changes

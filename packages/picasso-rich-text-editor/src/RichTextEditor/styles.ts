@@ -1,7 +1,7 @@
 import { outline } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso'
+import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export default (theme: Theme) => {
   const { palette, sizes } = theme

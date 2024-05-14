@@ -1,6 +1,6 @@
 import React from 'react'
-import type { FileInputProps, FileUpload } from '@toptal/picasso'
-import { FileInput as PicassoFileInput } from '@toptal/picasso'
+import type { FileInputProps, FileUpload } from '@toptal/picasso-file-input'
+import { FileInput as PicassoFileInput } from '@toptal/picasso-file-input'
 import type { FieldInputProps as FinalFieldInputProps } from 'react-final-form'
 
 import type { FieldProps } from '../Field'

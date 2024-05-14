@@ -2,8 +2,8 @@ import React from 'react'
 import type {
   RatingStarsProps as PicassoRatingStarsProps,
   RatingThumbsProps as PicassoRatingThumbsProps,
-} from '@toptal/picasso'
-import { Rating as PicassoRating } from '@toptal/picasso'
+} from '@toptal/picasso-rating'
+import { Rating as PicassoRating } from '@toptal/picasso-rating'
 
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'

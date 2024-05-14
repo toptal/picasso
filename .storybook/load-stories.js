@@ -19,6 +19,7 @@ PicassoBook.addSections([
   'Contribution',
   'Tutorials',
   'Components',
+  'Transitions',
   'Layout',
   'Overlays',
   'Utils',

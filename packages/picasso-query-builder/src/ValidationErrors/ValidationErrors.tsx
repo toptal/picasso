@@ -1,5 +1,7 @@
 import React, { Fragment, useMemo } from 'react'
-import { Container, List, Typography } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { List } from '@toptal/picasso-list'
+import { Typography } from '@toptal/picasso-typography'
 import type { ValidationResult } from 'react-querybuilder'
 
 const ValidationErrors = ({

@@ -1,5 +1,29 @@
 # @toptal/picasso-tailwind
 
+## 2.5.0
+
+### Minor Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`0c9807b800ed8a992de72f47bc1263d24a2fd4d8`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add design tokens for Button component
+
+## 2.4.0
+
+### Minor Changes
+
+- [#4276](https://github.com/toptal/picasso/pull/4276) [`045081fe7fed880890cb16d5defd7859d1e0b147`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147) Thanks [@sashuk](https://github.com/sashuk)!
+- extend maximum width classes with fractions of 12
+  - extend width, height, and padding classes for inputs
+
+## 2.3.0
+
+### Minor Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate Typography to TailwindCSS
+  - style overrides for Typography have been moved to picasso-provider
+  - added utility classes `font-inherit-weight` and `font-inherit-size` to Picasso Tailwind config
+
 ## 2.2.0
 
 ### Minor Changes

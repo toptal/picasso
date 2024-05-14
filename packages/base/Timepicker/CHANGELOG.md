@@ -1,5 +1,72 @@
 # @toptal/picasso-timepicker
 
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.15
+  - @toptal/picasso-input@1.0.15
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-icons@1.1.1
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@1.0.13
+  - @toptal/picasso-outlined-input@1.0.13
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-input@1.0.12
+  - @toptal/picasso-outlined-input@1.0.12
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.11
+  - @toptal/picasso-input@1.0.11
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.10
+  - @toptal/picasso-input@1.0.10
+
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.9
+  - @toptal/picasso-input@1.0.9
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@1.0.8
+  - @toptal/picasso-outlined-input@1.0.8
+
 ## 1.0.7
 
 ### Patch Changes

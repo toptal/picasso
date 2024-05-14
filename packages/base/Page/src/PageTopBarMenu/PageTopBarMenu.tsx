@@ -67,7 +67,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           classes={{
             root: classes.contentUserBadge,
             avatar: classes.avatar,
-            name: cx(classes.name, classes.truncateText),
+            name: cx('!font-[400]', classes.truncateText),
           }}
           name={name}
           avatar={avatar}
@@ -93,7 +93,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         center
         size='xxsmall'
         classes={{
-          name: cx(classes.name, classes.truncateText),
+          name: cx('!font-[400]', classes.truncateText),
         }}
         name={name}
         data-private={dataPrivate}

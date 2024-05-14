@@ -43,6 +43,15 @@ page
     description: 'Customized header',
   })
 
+  .addExample('QueryBuilder/story/CustomPadding.example.tsx', {
+    title: 'Custom Padding',
+  })
+
+  .addExample('QueryBuilder/story/CustomRunQueryButton.example.tsx', {
+    title: 'Custom Run Query Button',
+    description: 'Example of Customized children for Run query button',
+  })
+
   .addExample('QueryBuilder/story/FieldDescription.example.tsx', {
     title: 'Field Description',
     description: `Hover over 'First  name' field in the field selector dropdown to display field description in a tooltip`,
@@ -65,12 +74,6 @@ page
 
   .addExample('QueryBuilder/story/CustomOperators.example.tsx', {
     title: 'Custom Operators',
-    takeScreenshot: false,
-  })
-
-  .addExample('QueryBuilder/story/TotalCount.example.tsx', {
-    title: 'Total Count',
-    description: 'Total count is set to 15',
     takeScreenshot: false,
   })
 

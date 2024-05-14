@@ -1,5 +1,5 @@
 import React from 'react'
-import type { OutlinedInputStatus } from '@toptal/picasso'
+import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
 import type { FieldMetaState } from 'react-final-form'
 import { useField } from 'react-final-form'
 

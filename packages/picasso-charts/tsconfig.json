@@ -2,9 +2,5 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
-  "references": [
-    { "path": "../base/Utils" },
-    { "path": "../picasso" },
-    { "path": "../shared" }
-  ]
+  "references": [{ "path": "../base/Utils" }, { "path": "../shared" }]
 }

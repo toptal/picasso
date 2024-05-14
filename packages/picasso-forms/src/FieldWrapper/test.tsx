@@ -1,4 +1,4 @@
-import { Input } from '@toptal/picasso'
+import { Input } from '@toptal/picasso-input'
 import { act, render, fireEvent } from '@toptal/picasso-test-utils'
 import { noop } from '@toptal/picasso-utils'
 import React from 'react'

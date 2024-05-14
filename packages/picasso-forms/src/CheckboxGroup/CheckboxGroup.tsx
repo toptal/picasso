@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { Children } from 'react'
-import type { CheckboxGroupProps } from '@toptal/picasso'
-import { Checkbox as PicassoCheckbox } from '@toptal/picasso'
+import type { CheckboxGroupProps } from '@toptal/picasso-checkbox'
+import { CheckboxCompound as PicassoCheckbox } from '@toptal/picasso-checkbox'
 
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'

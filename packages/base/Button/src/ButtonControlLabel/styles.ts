@@ -1,27 +1,31 @@
-import { createStyles } from '@material-ui/core/styles'
+import type { SizeType } from '@toptal/picasso-shared'
 
-export default () =>
-  createStyles({
-    root: {
-      textAlign: 'center',
-      padding: '0.5rem 1.5rem 0.5rem 1rem',
-      '&$small': {
-        padding: '0.25rem 1rem 0.25rem 0.5rem',
-      },
-      '&$large': {
-        padding: '1rem 2rem 1rem 1rem',
-      },
-    },
-    content: {
-      minWidth: 64,
-      '$small &': {
-        minWidth: 48,
-      },
-      '$large &': {
-        minWidth: 84,
-      },
-    },
-    small: {},
-    medium: {},
-    large: {},
-  })
+export const createSizeClassNames = (
+  size: 'small' | 'medium' | 'large'
+): string => {
+  const sizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string
+  > = {
+    small: 'py-1 pr-4 pl-2',
+    medium: 'py-2 pr-6 pl-4',
+    large: 'py-4 pr-8 pl-4',
+  }
+
+  return sizeClassNames[size]
+}
+
+export const createContentSizeClassNames = (
+  size: 'small' | 'medium' | 'large'
+): string => {
+  const sizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string
+  > = {
+    small: 'min-w-12',
+    medium: 'min-w-16',
+    large: 'min-w-[5.25rem]',
+  }
+
+  return sizeClassNames[size]
+}

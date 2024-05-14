@@ -1,5 +1,81 @@
 # @toptal/picasso-button
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-dropdown@2.0.3
+
+## 2.0.0
+
+### Major Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`0c9807b800ed8a992de72f47bc1263d24a2fd4d8`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- migrate Button component to TailwindCSS
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-checkbox@2.0.1
+  - @toptal/picasso-radio@2.0.1
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-dropdown@2.0.2
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-link@1.0.3
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-loader@1.0.3
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147), [`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-checkbox@2.0.0
+  - @toptal/picasso-radio@2.0.0
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-checkbox@1.0.7
+  - @toptal/picasso-radio@1.0.7
+
+## 1.0.11
+
+### Patch Changes
+
+- [#4280](https://github.com/toptal/picasso/pull/4280) [`f19a61397870dcfd3bb5bb2e645a3ae1be8632ce`](https://github.com/toptal/picasso/commit/f19a61397870dcfd3bb5bb2e645a3ae1be8632ce) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Button
+
+- fix dependency on picasso-link being elicited or tree-shaken
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-dropdown@2.0.1
+
+## 1.0.9
+
+### Patch Changes
+
+- [#4248](https://github.com/toptal/picasso/pull/4248) [`d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6`](https://github.com/toptal/picasso/commit/d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- fix style resolution in Button component
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-checkbox@1.0.6
+  - @toptal/picasso-radio@1.0.6
+
 ## 1.0.7
 
 ### Patch Changes

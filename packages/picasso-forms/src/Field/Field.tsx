@@ -5,8 +5,8 @@ import type {
   FieldRenderProps,
 } from 'react-final-form'
 import { useField } from 'react-final-form'
-import type { OutlinedInputStatus } from '@toptal/picasso'
-import { Form as PicassoForm } from '@toptal/picasso'
+import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
+import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 import type { TextLabelProps } from '@toptal/picasso-shared'
 import { detect } from 'detect-browser'
 

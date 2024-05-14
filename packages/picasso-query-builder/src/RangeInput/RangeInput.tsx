@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-import { Container, NumberInput, Typography } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { NumberInput } from '@toptal/picasso-number-input'
+import { Typography } from '@toptal/picasso-typography'
 import type {
   CommonSubComponentProps,
   ValidationResult,
@@ -53,7 +55,7 @@ export const RangeInput = ({
 
   return (
     <>
-      <Typography variant='body' className={classes.label}>
+      <Typography variant='body' className='self-center'>
         From
       </Typography>
       <Container flex className={classes.input}>
@@ -83,7 +85,7 @@ export const RangeInput = ({
           data-testid={valueEditorTestId}
         />
       </Container>
-      <Typography variant='body' className={classes.label}>
+      <Typography variant='body' className='self-center'>
         To
       </Typography>
       <Container flex className={classes.input}>

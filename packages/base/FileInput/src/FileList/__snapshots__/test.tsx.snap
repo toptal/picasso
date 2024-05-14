@@ -32,13 +32,13 @@ exports[`FileList renders 1`] = `
               </svg>
             </div>
             <p
-              class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-black TypographyOverflow-wrapper TypographyOverflow-singleLine FileListItem-label MuiTypography-body1 MuiTypography-noWrap"
+              class="m-0 text-md text-black font-regular whitespace-nowrap overflow-ellipsis overflow-hidden TypographyOverflow-wrapper !block !whitespace-nowrap FileListItem-label"
             >
               user-profile-picture.png
             </p>
           </div>
           <p
-            class="MuiTypography-root PicassoTypography-bodyXsmall PicassoTypography-red FileListItem-error MuiTypography-body1"
+            class="m-0 text-xxs text-red font-regular !leading-4"
           />
         </div>
       </div>

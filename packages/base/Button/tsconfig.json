@@ -4,11 +4,13 @@
   "include": ["src"],
   "references": [
     { "path": "../../picasso-provider" },
+    { "path": "../../picasso-tailwind" },
     { "path": "../../shared" },
     { "path": "../Checkbox" },
     { "path": "../Container" },
     { "path": "../Dropdown" },
     { "path": "../Icons" },
+    { "path": "../Link" },
     { "path": "../Loader" },
     { "path": "../Radio" },
     { "path": "../Utils" }

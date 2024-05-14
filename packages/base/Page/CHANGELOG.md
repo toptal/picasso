@@ -1,5 +1,129 @@
 # @toptal/picasso-page
 
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-dropdown@2.0.3
+  - @toptal/picasso-menu@1.0.11
+  - @toptal/picasso-button@2.0.1
+  - @toptal/picasso-autocomplete@1.0.16
+  - @toptal/picasso-accordion@1.0.15
+  - @toptal/picasso-notification@2.0.7
+
+## 2.0.7
+
+### Patch Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`761153604f33bd1b9427240846b2d0cbb8ae5ed4`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- replace styles with TailwindCSS
+
+- Updated dependencies [[`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4), [`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8), [`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-notification@2.0.6
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-accordion@1.0.14
+  - @toptal/picasso-autocomplete@1.0.15
+  - @toptal/picasso-avatar@2.0.2
+  - @toptal/picasso-badge@1.0.3
+  - @toptal/picasso-menu@1.0.10
+  - @toptal/picasso-tag@1.1.2
+  - @toptal/picasso-tooltip@1.1.2
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-user-badge@2.0.2
+  - @toptal/picasso-dropdown@2.0.2
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-logo@1.0.4
+
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.13
+  - @toptal/picasso-accordion@1.0.13
+  - @toptal/picasso-autocomplete@1.0.14
+  - @toptal/picasso-notification@2.0.5
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-accordion@1.0.12
+  - @toptal/picasso-avatar@2.0.1
+  - @toptal/picasso-button@1.0.12
+  - @toptal/picasso-logo@1.0.3
+  - @toptal/picasso-menu@1.0.9
+  - @toptal/picasso-notification@2.0.4
+  - @toptal/picasso-tag@1.1.1
+  - @toptal/picasso-user-badge@2.0.1
+  - @toptal/picasso-autocomplete@1.0.13
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`f19a613`](https://github.com/toptal/picasso/commit/f19a61397870dcfd3bb5bb2e645a3ae1be8632ce)]:
+  - @toptal/picasso-button@1.0.11
+  - @toptal/picasso-accordion@1.0.11
+  - @toptal/picasso-notification@2.0.3
+  - @toptal/picasso-autocomplete@1.0.12
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-dropdown@2.0.1
+  - @toptal/picasso-menu@1.0.8
+  - @toptal/picasso-button@1.0.10
+  - @toptal/picasso-autocomplete@1.0.11
+  - @toptal/picasso-accordion@1.0.10
+  - @toptal/picasso-notification@2.0.2
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`ad19765`](https://github.com/toptal/picasso/commit/ad19765ee6219369a45cd86f65490fdb07b747b6)]:
+  - @toptal/picasso-tag@1.1.0
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`d97ddf4`](https://github.com/toptal/picasso/commit/d97ddf4e9ed41e2b294d3701f37cf7cdadbf39c6)]:
+  - @toptal/picasso-button@1.0.9
+  - @toptal/picasso-accordion@1.0.9
+  - @toptal/picasso-notification@2.0.1
+  - @toptal/picasso-autocomplete@1.0.10
+
+## 2.0.0
+
+### Major Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- added a `tailwindcss` dependency (tailwindcss is now required to make this package work)
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee), [`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-typography@2.0.0
+  - @toptal/picasso-notification@2.0.0
+  - @toptal/picasso-avatar@2.0.0
+  - @toptal/picasso-user-badge@2.0.0
+  - @toptal/picasso-autocomplete@1.0.9
+  - @toptal/picasso-menu@1.0.7
+  - @toptal/picasso-tag@1.0.5
+  - @toptal/picasso-tooltip@1.1.1
+  - @toptal/picasso-accordion@1.0.8
+  - @toptal/picasso-button@1.0.8
+
 ## 1.0.10
 
 ### Patch Changes

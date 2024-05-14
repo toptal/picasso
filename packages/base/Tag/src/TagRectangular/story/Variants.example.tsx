@@ -9,6 +9,8 @@ const Example = () => (
     <Tag.Rectangular variant='green'>Green</Tag.Rectangular>
     <Tag.Rectangular variant='dark-grey'>Dark grey</Tag.Rectangular>
     <Tag.Rectangular variant='light-grey'>Light grey</Tag.Rectangular>
+    <Tag.Rectangular variant='blue-main'>Blue main</Tag.Rectangular>
+    <Tag.Rectangular variant='blue-darker'>Blue darker</Tag.Rectangular>
     <Tag.Rectangular variant='light-blue'>Light blue</Tag.Rectangular>
   </Container>
 )

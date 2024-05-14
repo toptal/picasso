@@ -1,5 +1,29 @@
 # @toptal/picasso-paper
 
+## 2.0.4
+
+### Patch Changes
+
+- [#4295](https://github.com/toptal/picasso/pull/4295) [`ab2b605da9877b2f5fca18830923e0dcfbe1b9ed`](https://github.com/toptal/picasso/commit/ab2b605da9877b2f5fca18830923e0dcfbe1b9ed) Thanks [@sashuk](https://github.com/sashuk)!
+- refactor shadows mapping
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@1.0.3
+
+## 2.0.2
+
+### Patch Changes
+
+- [#4284](https://github.com/toptal/picasso/pull/4284) [`da32106624188e82773df7fadcf708943e4fc09a`](https://github.com/toptal/picasso/commit/da32106624188e82773df7fadcf708943e4fc09a) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+
+### Paper
+
+- use tailwind-merge
+
 ## 2.0.1
 
 ### Patch Changes

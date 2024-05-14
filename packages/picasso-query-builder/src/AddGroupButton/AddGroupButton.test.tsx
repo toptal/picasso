@@ -1,12 +1,12 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
-import { Button } from '@toptal/picasso'
+import { Button } from '@toptal/picasso-button'
 import type { ComponentProps } from 'react'
 
 import { AddGroupButton } from './AddGroupButton'
 
-jest.mock('@toptal/picasso', () => ({
-  ...jest.requireActual('@toptal/picasso'),
+jest.mock('@toptal/picasso-button', () => ({
+  ...jest.requireActual('@toptal/picasso-button'),
   Button: jest.fn(),
 }))
 

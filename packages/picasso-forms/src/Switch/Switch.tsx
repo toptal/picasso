@@ -1,6 +1,7 @@
 import React from 'react'
-import type { SwitchProps } from '@toptal/picasso'
-import { Switch as PicassoSwitch, Form as PicassoForm } from '@toptal/picasso'
+import type { SwitchProps } from '@toptal/picasso-switch'
+import { Switch as PicassoSwitch } from '@toptal/picasso-switch'
+import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 
 import type { FieldProps } from '../Field'
 import PicassoField from '../Field'

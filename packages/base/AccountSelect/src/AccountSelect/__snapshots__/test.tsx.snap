@@ -41,7 +41,7 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
                       >
                         <p
-                          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-largeFont MuiTypography-body1"
+                          class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
                         >
                           PL
                         </p>
@@ -54,13 +54,13 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
                         <h4
-                          class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                          class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
                         >
                           Phil Leif 1
                         </h4>
                       </div>
                       <p
-                        class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+                        class="m-0 text-xxs text-graphite font-regular"
                       >
                         Account Owner at Stowaway Cosmetics
                       </p>
@@ -113,7 +113,7 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
                       >
                         <p
-                          class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert PicassoTextAvatar-largeFont MuiTypography-body1"
+                          class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
                         >
                           PL
                         </p>
@@ -126,13 +126,13 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
                         <h4
-                          class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                          class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
                         >
                           Phil Leif 2
                         </h4>
                       </div>
                       <p
-                        class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+                        class="m-0 text-xxs text-graphite font-regular"
                       >
                         Company Representative at Marketing Works
                       </p>
@@ -194,13 +194,13 @@ exports[`AccountSelect renders 1`] = `
                         class="PicassoContainer-centerAlignItems PicassoContainer-flex"
                       >
                         <h4
-                          class="MuiTypography-root PicassoUserBadge-name MuiTypography-h4 MuiTypography-displayInline"
+                          class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
                         >
                           Phil Leif 3
                         </h4>
                       </div>
                       <p
-                        class="MuiTypography-root PicassoTypography-bodyXsmall MuiTypography-body1"
+                        class="m-0 text-xxs text-graphite font-regular"
                       >
                         Talent
                       </p>

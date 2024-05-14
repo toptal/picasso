@@ -1,13 +1,19 @@
 import React from 'react'
-import { Container, NumberInput, Typography } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { NumberInput } from '@toptal/picasso-number-input'
+import { Typography } from '@toptal/picasso-typography'
 import { render } from '@toptal/picasso-test-utils'
 import type { ComponentProps } from 'react'
 
 import { RangeInput } from './'
 
-jest.mock('@toptal/picasso', () => ({
+jest.mock('@toptal/picasso-container', () => ({
   Container: jest.fn(),
+}))
+jest.mock('@toptal/picasso-number-input', () => ({
   NumberInput: jest.fn(),
+}))
+jest.mock('@toptal/picasso-typography', () => ({
   Typography: jest.fn(),
 }))
 

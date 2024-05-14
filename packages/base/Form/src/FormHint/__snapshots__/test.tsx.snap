@@ -9,7 +9,7 @@ exports[`FormHint renders 1`] = `
       class="FormHint-root"
     >
       <p
-        class="MuiTypography-root PicassoTypography-bodyXxsmall MuiTypography-body1"
+        class="m-0 text-2xs text-graphite font-regular"
       >
         Picasso was born on October 25, 1881 in the city of Malaga, Spain
       </p>

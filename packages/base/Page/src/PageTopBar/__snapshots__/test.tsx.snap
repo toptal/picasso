@@ -27,16 +27,18 @@ exports[`Page.TopBar render with custom logo 1`] = `
                   class="PicassoDropdown-anchor"
                 >
                   <button
-                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
                     data-component-type="button"
+                    role="button"
                     tabindex="0"
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root PicassoButton-icon PageHamburger-hamburger"
+                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -79,7 +81,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                   class="PicassoContainer-leftsmallMargin"
                 >
                   <p
-                    class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
+                    class="m-0 font-inherit leading-[1.5em] text-white font-regular"
                   >
                     Something
                   </p>
@@ -124,16 +126,18 @@ exports[`Page.TopBar render with link 1`] = `
                   class="PicassoDropdown-anchor"
                 >
                   <button
-                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
                     data-component-type="button"
+                    role="button"
                     tabindex="0"
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root PicassoButton-icon PageHamburger-hamburger"
+                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -202,7 +206,7 @@ exports[`Page.TopBar render with link 1`] = `
                   class="PicassoContainer-leftsmallMargin"
                 >
                   <p
-                    class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
+                    class="m-0 font-inherit leading-[1.5em] text-white font-regular"
                   >
                     Something
                   </p>
@@ -247,16 +251,18 @@ exports[`Page.TopBar renders 1`] = `
                   class="PicassoDropdown-anchor"
                 >
                   <button
-                    class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-transparent PicassoButtonCircular-root"
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
                     data-component-type="button"
+                    role="button"
                     tabindex="0"
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root PicassoButton-icon PageHamburger-hamburger"
+                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -320,7 +326,7 @@ exports[`Page.TopBar renders 1`] = `
                   class="PicassoContainer-leftsmallMargin"
                 >
                   <p
-                    class="MuiTypography-root PicassoTypography-bodyInherit PicassoTypography-invert MuiTypography-body1"
+                    class="m-0 font-inherit leading-[1.5em] text-white font-regular"
                   >
                     Default
                   </p>

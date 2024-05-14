@@ -1,5 +1,40 @@
 # Change Log
 
+## 55.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`ab2b605`](https://github.com/toptal/picasso/commit/ab2b605da9877b2f5fca18830923e0dcfbe1b9ed)]:
+  - @toptal/picasso-paper@2.0.4
+
+## 55.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-charts@59.0.0
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-paper@2.0.3
+  - @toptal/picasso-typography@2.0.1
+
+## 55.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`da32106`](https://github.com/toptal/picasso/commit/da32106624188e82773df7fadcf708943e4fc09a)]:
+  - @toptal/picasso-paper@2.0.2
+
+## 55.0.2
+
+### Patch Changes
+
+- [#4250](https://github.com/toptal/picasso/pull/4250) [`47fd7b59374386a09f853c5c45750948a00e525d`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate packages to use Picasso By Parts
+
+- Updated dependencies [[`47fd7b5`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d)]:
+  - @toptal/picasso-charts@58.0.2
+
 ## 55.0.1
 
 ### Patch Changes

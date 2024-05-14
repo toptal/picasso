@@ -48,9 +48,16 @@ const Example = () => {
       fields={fields}
       query={query}
       onQueryChange={handleQueryChange}
+      hideControls
       footer={
         <Container flex justifyContent='space-between'>
           <Button variant='secondary'>Copy url</Button>
+          <Container flex justifyContent='flex-end'>
+            <Button variant='secondary'>Clear query</Button>
+            <Button size='medium' variant='positive'>
+              Run query
+            </Button>
+          </Container>
         </Container>
       }
     />

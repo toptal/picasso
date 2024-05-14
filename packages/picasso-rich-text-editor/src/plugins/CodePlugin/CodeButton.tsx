@@ -1,5 +1,5 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { Code16 } from '@toptal/picasso'
+import { Code16 } from '@toptal/picasso-icons'
 import { $getSelection, $isRangeSelection, FORMAT_TEXT_COMMAND } from 'lexical'
 import React, { useState } from 'react'
 

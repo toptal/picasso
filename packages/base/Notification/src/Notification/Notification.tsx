@@ -44,16 +44,13 @@ export interface PrivateProps
 /** `elevated` and `icon` props are omitted from the public declaration, since they're only for internal use */
 export type PublicProps = Omit<PrivateProps, 'elevated' | 'icon'>
 
-const renderNotificationCloseButton = ({
-  onClose,
-  classes,
-  testIds,
-}: PrivateProps) => (
+const renderNotificationCloseButton = ({ onClose, testIds }: PrivateProps) => (
   <ButtonCircular
     data-testid={testIds?.closeButton}
     onClick={onClose}
-    className={classes?.close}
-    icon={<CloseMinor16 className={classes?.closeIcon} />}
+    // TODO: [FX-5219] need to avoid such customization
+    className='absolute right-[0.5em] top-[0.75em] bg-transparent border-none p-0 h-[1em] hover:bg-transparent active:bg-transparent'
+    icon={<CloseMinor16 color='darkGrey' />}
   />
 )
 
@@ -105,9 +102,10 @@ const renderNotificationContent = (props: PrivateProps) => {
       </Container>
       <Typography
         size={variant === 'yellow' ? 'small' : 'medium'}
+        color='black'
         className={cx(
-          classes?.content,
-          classes?.[`content${capitalizedVariant}`]
+          'break-words min-w-0',
+          variant === 'yellow' ? '!mt-0' : '!mt-[1px]'
         )}
         as='div'
       >

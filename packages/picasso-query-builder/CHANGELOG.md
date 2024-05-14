@@ -1,5 +1,152 @@
 # @toptal/picasso-query-builder
 
+## 6.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.1
+  - @toptal/picasso-select@1.0.16
+  - @toptal/picasso-notification@2.0.7
+  - @toptal/picasso-prompt-modal@1.0.15
+  - @toptal/picasso-tagselector@1.0.17
+  - @toptal/picasso-input@1.0.15
+  - @toptal/picasso-number-input@1.0.15
+
+## 6.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4), [`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8)]:
+  - @toptal/picasso-notification@2.0.6
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-prompt-modal@1.0.14
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-list@2.0.2
+  - @toptal/picasso-number-input@1.0.14
+  - @toptal/picasso-radio@2.0.1
+  - @toptal/picasso-select@1.0.15
+  - @toptal/picasso-tagselector@1.0.16
+  - @toptal/picasso-tooltip@1.1.2
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-loader@1.0.3
+
+## 6.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-radio@2.0.0
+  - @toptal/picasso-button@1.0.13
+  - @toptal/picasso-input@1.0.13
+  - @toptal/picasso-notification@2.0.5
+  - @toptal/picasso-number-input@1.0.13
+  - @toptal/picasso-select@1.0.14
+  - @toptal/picasso-tagselector@1.0.15
+  - @toptal/picasso-prompt-modal@1.0.13
+
+## 6.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`c7560ae`](https://github.com/toptal/picasso/commit/c7560aed9dd41bb458c5532608ddd542890523e5)]:
+  - @toptal/picasso-icons@1.1.0
+  - @toptal/picasso-button@1.0.12
+  - @toptal/picasso-input@1.0.12
+  - @toptal/picasso-list@2.0.1
+  - @toptal/picasso-notification@2.0.4
+  - @toptal/picasso-number-input@1.0.12
+  - @toptal/picasso-select@1.0.13
+  - @toptal/picasso-prompt-modal@1.0.12
+  - @toptal/picasso-radio@1.0.7
+  - @toptal/picasso-tagselector@1.0.14
+
+## 6.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`f19a613`](https://github.com/toptal/picasso/commit/f19a61397870dcfd3bb5bb2e645a3ae1be8632ce)]:
+  - @toptal/picasso-button@1.0.11
+  - @toptal/picasso-notification@2.0.3
+  - @toptal/picasso-prompt-modal@1.0.11
+  - @toptal/picasso-input@1.0.11
+  - @toptal/picasso-number-input@1.0.11
+  - @toptal/picasso-select@1.0.12
+  - @toptal/picasso-tagselector@1.0.13
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.10
+  - @toptal/picasso-select@1.0.11
+  - @toptal/picasso-notification@2.0.2
+  - @toptal/picasso-prompt-modal@1.0.10
+  - @toptal/picasso-tagselector@1.0.12
+  - @toptal/picasso-input@1.0.10
+  - @toptal/picasso-number-input@1.0.10
+
+## 6.0.0
+
+### Major Changes
+
+- [#4261](https://github.com/toptal/picasso/pull/4261) [`cab40a729fae5009c40b028befc0108e7fd98f2b`](https://github.com/toptal/picasso/commit/cab40a729fae5009c40b028befc0108e7fd98f2b) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- remove `totalCount` and `totalCountLoading` props from Query Builder. Add `runQueryButtonContent` prop to Query Builder.
+  In order to allow consumers to add the desired functionality for the Run Query button, we added `runQueryButtonContent` prop.
+  `totalCount` and `totalCountLoading` are properties that should not be defined at the library level.
+  Instead they will be implemented in the consumer.
+  - remove deprecation of `hideControls` propery.
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tagselector@1.0.11
+
+## 5.0.2
+
+### Patch Changes
+
+- [#4250](https://github.com/toptal/picasso/pull/4250) [`47fd7b59374386a09f853c5c45750948a00e525d`](https://github.com/toptal/picasso/commit/47fd7b59374386a09f853c5c45750948a00e525d) Thanks [@mkrl](https://github.com/mkrl)!
+- migrate packages to use Picasso By Parts
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-notification@2.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- [#4236](https://github.com/toptal/picasso/pull/4236) [`d7d581bc608ed11b3b98a0ae9209d883ba29e5de`](https://github.com/toptal/picasso/commit/d7d581bc608ed11b3b98a0ae9209d883ba29e5de) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- remove padding dependency on `hideControls` property
+  Padding on the Query Builder was tied to the `hideControls` property,
+  we changed it in such a way that now you can set the desired padding size.
+  By default, the padding will be SPACING_6.
+  In those places where there should be no padding on Query Builder we should provide padded property set to SPACING_0.
+  - add `padded` property to define padded layout
+  - mark `hideControls` property as deprecated
+
+## 4.0.0
+
+### Major Changes
+
+- [#4200](https://github.com/toptal/picasso/pull/4200) [`4ee1ebdafd9e5830d5ec6007620186d5a61befee`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee) Thanks [@mkrl](https://github.com/mkrl)!
+- added a `tailwindcss` dependency (tailwindcss is now required to make this package work)
+
+### Patch Changes
+
+- Updated dependencies [[`4ee1ebd`](https://github.com/toptal/picasso/commit/4ee1ebdafd9e5830d5ec6007620186d5a61befee)]:
+  - @toptal/picasso-notification@2.0.0
+
 ## 3.2.1
 
 ### Patch Changes

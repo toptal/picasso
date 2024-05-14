@@ -7,7 +7,4 @@ export default ({ palette }: Theme) =>
       borderBottom: `1px solid ${palette.grey.lighter}`,
       padding: '1rem 4rem 1rem 1.5rem',
     },
-    title: {
-      flexGrow: 1,
-    },
   })

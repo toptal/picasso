@@ -9,9 +9,6 @@ export default () =>
       minWidth: 0,
       marginLeft: '0.75em',
     },
-    title: {
-      marginLeft: '0.5em',
-    },
     avatar: {},
     name: {},
   })

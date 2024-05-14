@@ -1,12 +1,8 @@
 import type { ReactElement } from 'react'
 import React from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
+import { twMerge } from 'tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { Button } from '@toptal/picasso'
-
-import styles from './styles'
+import { ButtonCircular } from '@toptal/picasso-button'
 
 type Props = BaseProps & {
   active: boolean
@@ -16,29 +12,18 @@ type Props = BaseProps & {
   id?: string
 }
 
-// Using { index: 10 } to inject CSS generated classes after the button's classes
-// in order to prevent Button's styles to override custom TextEditorButton styles
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'TextEditorButton',
-  index: 10,
-})
-
 const RichTextEditorButton = (props: Props) => {
   const { icon, onClick, active, className, style, disabled, ...rest } = props
-  const classes = useStyles(props)
 
   return (
-    <Button.Circular
+    <ButtonCircular
       variant='flat'
       onClick={onClick}
       icon={icon}
       style={style}
-      className={cx(
-        classes.button,
-        {
-          [classes.activeButton]: active,
-        },
+      className={twMerge(
+        'rounded-sm [&+&]:ml-2',
+        active && 'bg-graphite-700 [&:not(:hover)_svg]:fill-white',
         className
       )}
       disabled={disabled}

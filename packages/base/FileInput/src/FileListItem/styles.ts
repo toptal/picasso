@@ -12,9 +12,6 @@ export default ({ palette }: Theme) =>
     label: {
       lineHeight: rem('22px'),
     },
-    error: {
-      lineHeight: rem('16px'),
-    },
     fileNodeContent: {
       minWidth: 0,
     },

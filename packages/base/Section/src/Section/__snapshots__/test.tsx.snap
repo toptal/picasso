@@ -17,17 +17,19 @@ exports[`Section renders collapsible initially collapsed 1`] = `
           data-testid="actions"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+            aria-disabled="false"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
             data-component-type="button"
             data-testid="collapse"
+            role="button"
             tabindex="0"
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition"
+                class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -61,17 +63,19 @@ exports[`Section renders collapsible initially expanded 1`] = `
           data-testid="actions"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+            aria-disabled="false"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
             data-component-type="button"
             data-testid="collapse"
+            role="button"
             tabindex="0"
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition Rotate180-rotate180"
+                class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition Rotate180-rotate180"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -121,13 +125,13 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         data-testid="header"
       >
         <h3
-          class="MuiTypography-root PicassoTypography-headingMedium PicassoSection-title MuiTypography-h3"
+          class="m-0 text-lg text-black font-semibold !mr-4 min-w"
           data-testid="title"
         >
           Title
         </h3>
         <p
-          class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey PicassoSection-subtitle MuiTypography-body1"
+          class="m-0 text-md text-graphite font-regular self-center !mr-4 min-w"
           data-testid="subtitle"
         >
           Subtitle

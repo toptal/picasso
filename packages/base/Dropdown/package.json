@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-dropdown",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "Toptal UI components library - Dropdown",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-paper": "2.0.1",
-    "@toptal/picasso-popper": "1.0.2",
-    "@toptal/picasso-utils": "1.0.2",
+    "@toptal/picasso-paper": "2.0.4",
+    "@toptal/picasso-popper": "1.0.3",
+    "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },
   "sideEffects": [
@@ -37,8 +37,8 @@
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.1.0",
-    "@toptal/picasso-test-utils": "1.1.0",
+    "@toptal/picasso-provider": "4.2.1",
+    "@toptal/picasso-test-utils": "1.1.1",
     "popper.js": "^1.16.1"
   },
   "exports": {

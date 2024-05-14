@@ -10,7 +10,7 @@ import type {
   Spread,
 } from 'lexical'
 import { DecoratorNode } from 'lexical'
-import { Image } from '@toptal/picasso'
+import { Image } from '@toptal/picasso-image'
 
 export interface ImageNodePayload {
   src: string

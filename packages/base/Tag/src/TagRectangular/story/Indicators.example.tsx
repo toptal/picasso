@@ -17,7 +17,13 @@ const Example = () => (
       <Tag.Rectangular indicator='blue'>Blue</Tag.Rectangular>
     </Container>
     <Container right={SPACING_4} top={SPACING_2}>
+      <Tag.Rectangular indicator='blue-darker'>Blue darker</Tag.Rectangular>
+    </Container>
+    <Container right={SPACING_4} top={SPACING_2}>
       <Tag.Rectangular indicator='light-blue'>Light blue</Tag.Rectangular>
+    </Container>
+    <Container right={SPACING_4} top={SPACING_2}>
+      <Tag.Rectangular indicator='grey-darker'>Grey darker</Tag.Rectangular>
     </Container>
   </Container>
 )

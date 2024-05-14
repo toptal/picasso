@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Input } from '@toptal/picasso'
+import { Container } from '@toptal/picasso-container'
+import { Input } from '@toptal/picasso-input'
 import { makeStyles } from '@material-ui/core/styles'
 import type { CommonSubComponentProps } from 'react-querybuilder'
 

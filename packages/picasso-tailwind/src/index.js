@@ -1,5 +1,15 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  plugins: [
+    plugin(({ addUtilities }) => {
+      addUtilities({
+        '.font-inherit-weight': { 'font-weight': 'inherit' },
+        '.font-inherit-size': { 'font-size': '1em' },
+      })
+    }),
+  ],
   theme: {
     screens: {
       xs: '0px',
@@ -21,8 +31,11 @@ module.exports = {
       12: '3rem',
     },
     borderRadius: {
+      none: '0px',
       sm: '4px',
       md: '8px',
+      // to support fully rounded corners, use the same approach as TailwindCSS proposes
+      full: '9999px',
     },
     borderWidth: {
       DEFAULT: '1px',
@@ -42,13 +55,14 @@ module.exports = {
       ],
     },
     fontWeight: {
+      inherit: 'inherit',
       thin: '100',
       light: '300',
       regular: '400',
       semibold: '600',
     },
     fontSize: {
-      '2xs': ['0.75rem', { lineHeight: '1.125rem' }],
+      '2xs': ['0.688rem', { lineHeight: '1rem' }],
       xxs: ['0.75rem', { lineHeight: '1.125rem' }],
       sm: ['0.8125rem', { lineHeight: '1.25rem' }],
       md: ['0.875rem', { lineHeight: '1.375rem' }],
@@ -56,6 +70,9 @@ module.exports = {
       xl: ['1.25rem', { lineHeight: '1.875rem' }],
       '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
       xxl: ['1.75rem', { lineHeight: '2.625rem' }],
+      'button-small': ['12px', { lineHeight: '15px' }],
+      'button-medium': ['13px', { lineHeight: '16px' }],
+      'button-large': ['15px', { lineHeight: '18px' }],
     },
     // TODO: [FX-5003] Deprecate legacy shadow classes
     // Shadows 0-5 correspond to BASE design https://www.figma.com/file/9xnyixadrhlHe9UuXBMRlT/Foundations?type=design&node-id=22%3A21&mode=design&t=8d8TKUUuHKWosUtX-1
@@ -100,6 +117,7 @@ module.exports = {
     colors: {
       white: '#FFFFFF',
       black: '#000000',
+      transparent: 'transparent',
       blue: {
         100: '#EDF1FD',
         400: '#25A9EF',
@@ -144,6 +162,45 @@ module.exports = {
         drawer: 1200,
         modal: 1300,
       },
+      width: {
+        input: '18.75rem',
+      },
+      height: {
+        input: '2rem',
+      },
+      padding: {
+        input: '0.5rem',
+      },
+      transitionDuration: {
+        350: '350ms',
+      },
+      minWidth: ({ theme }) => ({
+        ...theme('spacing'),
+        14: '3.5rem',
+        16: '4rem',
+        24: '6rem',
+      }),
+      // Needed to support all possible grid item widths in 12-columns grid
+      maxWidth: ({ theme }) => ({
+        ...theme('spacing'),
+        '1/12': '8.333333%',
+        '2/12': '16.666667%',
+        '3/12': '25%',
+        '4/12': '33.333333%',
+        '5/12': '41.666667%',
+        '6/12': '50%',
+        '7/12': '58.333333%',
+        '8/12': '66.666667%',
+        '9/12': '75%',
+        '10/12': '83.333333%',
+        '11/12': '91.666667%',
+      }),
+      minHeight: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
+      maxHeight: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
     },
   },
 }

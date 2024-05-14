@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import type { ComponentType } from 'react'
-import { Container } from '@toptal/picasso'
+import type { ComponentType, ReactNode } from 'react'
+import { Container } from '@toptal/picasso-container'
 import { useNotifications } from '@toptal/picasso-notification'
 import type {
   ValueEditorProps as DefaultValueEditorProps,
@@ -18,6 +18,7 @@ import * as ReactDnD from 'react-dnd'
 import * as ReactDndHtml5Backend from 'react-dnd-html5-backend'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
+import type { SpacingType } from '@toptal/picasso-provider'
 import { SPACING_6 } from '@toptal/picasso-provider'
 
 import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
@@ -56,20 +57,20 @@ type Props = {
   customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
-  /** Defines the possibility to display, or not, any of the controls. For example "Add rule" or "Add group" control. */
+  /** Defines padded layout. */
+  padded?: SpacingType
+  /** Defines the possibility to display, or not, any of the controls. For example "Clear query" or "Run query" control. */
   hideControls?: boolean
   /** Defines the possibility to enable, or not, drag-and-drop functionality. This possibility applies to rules and groups to rearrange it within QB. */
   enableDragAndDrop?: boolean
+  /** Defines custom Run Query button content that allows to change button text or display custom logic. */
+  runQueryButtonContent?: ReactNode
   /** Adds a customized footer at the bottom of the query builder. */
   footer?: React.ReactNode
   /** Adds a customized header at the top of the query builder. */
   header?: React.ReactNode
   /** Defines the possibility to reset, or not, operator and value fields when the user changes the field selection for a rule. */
   resetOnFieldChange?: boolean
-  /** Defines the total number of results, usually used by other components that may need to know the total number of results. */
-  totalCount?: number
-  /** Defines the possibility to display a loading indicator or message to the user while the total count is being fetched. */
-  totalCountLoading?: boolean
   testIds?: TestId
 }
 
@@ -92,8 +93,8 @@ const QueryBuilder = ({
   header,
   enableDragAndDrop = false,
   resetOnFieldChange = true,
-  totalCount,
-  totalCountLoading,
+  padded = SPACING_6,
+  runQueryButtonContent,
   onQueryReset,
   testIds,
 }: Props) => {
@@ -191,7 +192,7 @@ const QueryBuilder = ({
       <Container
         className={cx(classes.global, classes.root)}
         flex
-        padded={hideControls ? undefined : SPACING_6}
+        padded={padded}
         direction='column'
         gap='small'
       >
@@ -236,8 +237,7 @@ const QueryBuilder = ({
             <RunQueryButton
               onClick={handleSubmit}
               loading={loading}
-              totalCount={totalCount}
-              totalCountLoading={totalCountLoading}
+              children={runQueryButtonContent}
               runQueryTestId={testIds?.runQueryButton}
             />
           </Container>

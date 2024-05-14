@@ -24,7 +24,7 @@ exports[`Quote renders 1`] = `
         </svg>
       </div>
       <p
-        class="MuiTypography-root PicassoTypography-bodyMedium PicassoTypography-darkGrey MuiTypography-body1"
+        class="m-0 text-md text-graphite font-regular"
       >
         test example string
       </p>
