@@ -130,7 +130,7 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
       notificationGreen: 'bg-green-100',
       notificationWhite: 'bg-white px-[1.5em] pt-[1.5625em] pb-[1.5em]',
       notificationYellow:
-        'bg-yellow-100 px-[1em] py-[1.5em] md:p-[1.5em] xl:px-[130px] xl:py-[1.5em]',
+        'bg-yellow-100 px-[1em] py-[1.5em] sm:p-[1.5em] lg:px-[130px] lg:py-[1.5em]',
     }
 
     return (

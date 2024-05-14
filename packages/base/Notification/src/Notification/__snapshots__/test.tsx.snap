@@ -6,7 +6,7 @@ exports[`Notification renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Snackbar relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] transition-shadow duration-300 bg-yellow px-[1em] py-[1.5em] md:p-[1.5em] xl:px-[130px] xl:py-[1.5em]"
+      class="base-Snackbar relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] transition-shadow duration-300 bg-yellow px-[1em] py-[1.5em] sm:p-[1.5em] lg:px-[130px] lg:py-[1.5em]"
       role="presentation"
     >
       <div
