@@ -1,73 +1,93 @@
-import React, { useRef } from 'react'
-import type { ValueLabelProps as MUIValueLabelProps } from '@material-ui/core/Slider'
-import { Tooltip } from '@toptal/picasso-tooltip'
+import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
+import type { RefObject } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { twJoin } from 'tailwind-merge'
 
-import { useSliderContext } from '../Slider'
+import { getXPlacement } from '../utils'
 
 type ValueLabelDisplay = 'on' | 'auto' | 'off'
 
-// This type is needed because ValueLabelProps does not describe all exposed props
-export type ValueLabelProps = MUIValueLabelProps & {
-  valueLabelDisplay: ValueLabelDisplay
-  index: number
+const classesByTooltip: Record<ValueLabelDisplay, string> = {
+  off: 'hidden',
+  // We need to use visibility: hidden instead of display: none to keep the
+  // label visible for javascript calculations.
+  auto: 'invisible group-hover/thumb:visible flex justify-center items-center',
+  on: 'flex justify-center items-center',
 }
 
-export interface Props extends ValueLabelProps {
-  tooltip?: ValueLabelDisplay
-  disablePortal?: boolean
-  compact?: boolean
-  valueLabelDisplay: ValueLabelDisplay
-  index: number
-}
+const xPlacementClasses = {
+  left: 'right-[calc(100%-13px)]',
+  right: 'left-[calc(100%-13px)]',
+  center: '',
+} as const
+
+const yPlacementClasses = {
+  bottom: 'top-[calc(100%+2px)]',
+  top: 'bottom-[calc(100%+2px)]',
+} as const
 
 const SliderValueLabel = ({
-  tooltip,
-  disablePortal,
-  compact,
   children,
-  open,
-  value,
-  valueLabelDisplay,
-  index,
-}: Props) => {
-  const thumbRef = useRef<HTMLDivElement>(null)
-  const { registerValueLabel, hasTooltipOverlow } = useSliderContext()
-  const isTooltipAlwaysVisible = tooltip === 'on'
+  index = -1,
+  tooltip = 'off',
+  onRender,
+  yPlacement,
+  isOverlaped,
+  ownerState: { value },
+}: SliderValueLabelSlotProps & {
+  tooltip: ValueLabelDisplay
+  yPlacement: 'top' | 'bottom'
+  /** indicates if there are two SliderValueLabels that overlap each other */
+  isOverlaped: boolean
+  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
+}) => {
+  const ref = useRef<HTMLSpanElement>(null)
 
-  if (valueLabelDisplay === 'off') {
-    return children
-  }
+  // we need to change the placement of the label if it is overlaped
+  // or if it is out of the viewport
+  const [xPlacement, setXPlacement] = useState<'left' | 'right' | 'center'>(
+    'center'
+  )
 
-  const getPlacement = () => {
-    if (hasTooltipOverlow) {
-      return index === 0 ? 'top-end' : 'top-start'
+  useEffect(() => {
+    onRender(index, ref)
+  }, [index, onRender])
+
+  useEffect(() => {
+    if (!ref.current) {
+      return
     }
 
-    return 'top'
-  }
-
-  const handleTooltipRef = (tooltipElement: HTMLDivElement) => {
-    // At this moment, both thumb and tooltip refs are set so we can register them in the context
-    const thumbElement = thumbRef.current
-
-    if (tooltipElement && thumbElement) {
-      registerValueLabel(index, tooltipElement, thumbElement)
-    }
-  }
+    setXPlacement(
+      getXPlacement({
+        rect: ref.current.getBoundingClientRect(),
+        isOverlaped: isOverlaped,
+        isFirstLabel: index === 0,
+        currentPlacement: xPlacement,
+      })
+    )
+    // we need to recalculate on value change to get new rect
+  }, [isOverlaped, index, xPlacement, value])
 
   return (
-    <Tooltip
-      ref={thumbRef}
-      tooltipRef={handleTooltipRef}
-      content={value}
-      open={open || valueLabelDisplay === 'on'}
-      placement={getPlacement()}
-      preventOverflow={isTooltipAlwaysVisible}
-      disablePortal={disablePortal}
-      compact={compact}
+    <span
+      ref={ref}
+      className={twJoin(
+        'absolute will-change-transform transition-transform',
+        classesByTooltip[tooltip],
+        yPlacementClasses[yPlacement],
+        xPlacementClasses[xPlacement]
+      )}
     >
-      {children}
-    </Tooltip>
+      <span
+        className={twJoin(
+          'shadow-4 text-sm text-white bg-graphite-800',
+          'm-1 rounded-sm py-[2px] px-2 max-w-[300px] break-words'
+        )}
+      >
+        {children}
+      </span>
+    </span>
   )
 }
 
