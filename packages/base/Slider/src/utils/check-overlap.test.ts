@@ -41,7 +41,7 @@ describe('checkOverlap', () => {
     it('returns false if they would not overlap in a non-overlapped state', () => {
       const firstLabelRect = { right: 10, width: 20 } as DOMRect
       const secondLabelRect = { left: 30, width: 20 } as DOMRect
-      const isPartiallyOverlaped = true
+      const isPartiallyOverlaped = false
 
       expect(
         checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlaped })

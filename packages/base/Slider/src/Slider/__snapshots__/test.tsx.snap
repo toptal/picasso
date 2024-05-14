@@ -16,7 +16,7 @@ exports[`Slider renders 1`] = `
         style="left: 0%; width: 0%;"
       />
       <span
-        class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt outline-0 absolute -ml transition-shadow cursor-pointer"
+        class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 absolute transition-shadow cursor-pointer"
         data-index="0"
         style="left: 0%;"
       >
@@ -34,7 +34,7 @@ exports[`Slider renders 1`] = `
           value="0"
         />
         <span
-          class="absolute will-change transition-transform hidden top-[calc(100%+2px)] left-[calc(100%-13px)]"
+          class="absolute will-change transition-transform hidden top-[calc(100%+3px)] left-[calc(100%-13px)]"
         >
           <span
             class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
@@ -64,7 +64,7 @@ exports[`Slider with initial value 1`] = `
         style="left: 0%; width: 4%;"
       />
       <span
-        class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt outline-0 absolute -ml transition-shadow cursor-pointer"
+        class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 absolute transition-shadow cursor-pointer"
         data-index="0"
         style="left: 4%;"
       >
@@ -82,7 +82,7 @@ exports[`Slider with initial value 1`] = `
           value="4"
         />
         <span
-          class="absolute will-change transition-transform hidden top-[calc(100%+2px)] left-[calc(100%-13px)]"
+          class="absolute will-change transition-transform hidden top-[calc(100%+3px)] left-[calc(100%-13px)]"
         >
           <span
             class="shadow-4 text-sm text-white bg-graphite m-1 rounded-sm py-[2px] px-2 max-w break-words"
