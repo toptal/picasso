@@ -1,12 +1,5 @@
 // import type { ComponentProps } from 'react'
-import type { RefObject } from 'react'
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { forwardRef, useRef } from 'react'
 import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from 'tailwind-merge'
@@ -14,7 +7,7 @@ import type { BaseProps } from '@toptal/picasso-shared'
 
 import SliderMark from '../SliderMark'
 import SliderValueLabel from '../SliderValueLabel'
-import { checkOverlap } from '../utils'
+import { useLabelOverlap } from './hooks'
 
 export interface Props extends BaseProps {
   /** Minimum slider value */
@@ -75,48 +68,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
-  const isRangeSlider = Array.isArray(value)
-  const [valueLabels, setValueLabels] = useState<RefObject<HTMLSpanElement>[]>(
-    []
-  )
-  const [isPartiallyOverlaped, setIsPartiallyOverlaped] = useState(false)
-
-  // handle overlapping of the value labels
-  useEffect(() => {
-    if (!isRangeSlider) {
-      return
-    }
-    const isFullyOverlaped = value[0] === value[1]
-
-    if (isFullyOverlaped) {
-      setIsPartiallyOverlaped(false)
-    } else {
-      if (!(valueLabels[0]?.current && valueLabels[1]?.current)) {
-        return
-      }
-
-      setIsPartiallyOverlaped(
-        checkOverlap({
-          firstLabelRect: valueLabels[0].current.getBoundingClientRect(),
-          secondLabelRect: valueLabels[1].current.getBoundingClientRect(),
-          isPartiallyOverlaped,
-        })
-      )
-    }
-  }, [value, isRangeSlider, isPartiallyOverlaped, valueLabels])
-
-  const handleValueLabelOnRender = useCallback(
-    (index: number, labelRef: RefObject<HTMLSpanElement>) => {
-      setValueLabels(prev => {
-        const next = [...prev]
-
-        next[index] = labelRef
-
-        return next
-      })
-    },
-    [setValueLabels]
-  )
+  const { isPartiallyOverlaped, handleValueLabelOnRender } = useLabelOverlap({
+    value,
+  })
 
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
