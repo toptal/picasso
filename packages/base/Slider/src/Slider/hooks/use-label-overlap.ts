@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { checkOverlap } from '../../utils'
 
 export const useLabelOverlap = ({ value }: { value?: number | number[] }) => {
-  const [isPartiallyOverlaped, setIsPartiallyOverlaped] = useState(false)
+  const [isPartiallyOverlapped, setIsPartiallyOverlapped] = useState(false)
   const [valueLabels, setValueLabels] = useState<RefObject<HTMLSpanElement>[]>(
     []
   )
@@ -17,34 +17,32 @@ export const useLabelOverlap = ({ value }: { value?: number | number[] }) => {
     const isFullyOverlaped = value[0] === value[1]
 
     if (isFullyOverlaped) {
-      setIsPartiallyOverlaped(false)
+      setIsPartiallyOverlapped(false)
     } else {
       if (!(valueLabels[0]?.current && valueLabels[1]?.current)) {
         return
       }
 
-      setIsPartiallyOverlaped(
+      setIsPartiallyOverlapped(
         checkOverlap({
           firstLabelRect: valueLabels[0].current.getBoundingClientRect(),
           secondLabelRect: valueLabels[1].current.getBoundingClientRect(),
-          isPartiallyOverlaped,
+          previousResult: isPartiallyOverlapped,
         })
       )
     }
-  }, [value, isRangeSlider, isPartiallyOverlaped, valueLabels])
+  }, [value, isRangeSlider, isPartiallyOverlapped, valueLabels])
 
   const handleValueLabelOnRender = useCallback(
     (index: number, labelRef: RefObject<HTMLSpanElement>) => {
-      setValueLabels(prev => {
-        const next = [...prev]
+      setValueLabels(valLabels => {
+        valLabels[index] = labelRef
 
-        next[index] = labelRef
-
-        return next
+        return valLabels
       })
     },
     [setValueLabels]
   )
 
-  return { isPartiallyOverlaped, handleValueLabelOnRender }
+  return { isPartiallyOverlapped, handleValueLabelOnRender }
 }

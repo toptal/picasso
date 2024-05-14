@@ -22,7 +22,7 @@ const xPlacementClasses = {
 } as const
 
 const yPlacementClasses = {
-  bottom: 'top-[calc(100%+3px)]',
+  bottom: 'top-[calc(100%+2px)]',
   top: 'bottom-[calc(100%+2px)]',
 } as const
 

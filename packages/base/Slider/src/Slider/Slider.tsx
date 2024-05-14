@@ -68,7 +68,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
-  const { isPartiallyOverlaped, handleValueLabelOnRender } = useLabelOverlap({
+  const { isPartiallyOverlapped, handleValueLabelOnRender } = useLabelOverlap({
     value,
   })
 
@@ -135,7 +135,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
             tooltip,
             onRender: handleValueLabelOnRender,
             yPlacement: isContainerOnScreen ? 'top' : 'bottom',
-            isOverlaped: isPartiallyOverlaped,
+            isOverlaped: isPartiallyOverlapped,
           },
         }}
         valueLabelFormat={tooltipFormat}

@@ -7,10 +7,10 @@ describe('checkOverlap', () => {
     it('returns false', () => {
       const firstLabelRect = { right: 0, width: 20 } as DOMRect
       const secondLabelRect = { left: 30, width: 20 } as DOMRect
-      const isPartiallyOverlaped = false
+      const isPartiallyOverlapped = false
 
       expect(
-        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlaped })
+        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlapped })
       ).toBe(false)
     })
   })
@@ -19,10 +19,10 @@ describe('checkOverlap', () => {
     it('returns true', () => {
       const firstLabelRect = { right: 30, width: 20 } as DOMRect
       const secondLabelRect = { left: 40, width: 20 } as DOMRect
-      const isPartiallyOverlaped = false
+      const isPartiallyOverlapped = false
 
       expect(
-        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlaped })
+        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlapped })
       ).toBe(true)
     })
   })
@@ -31,20 +31,20 @@ describe('checkOverlap', () => {
     it('returns true if they would still overlap in a non-overlapped state', () => {
       const firstLabelRect = { right: 10, width: 20 } as DOMRect
       const secondLabelRect = { left: 25, width: 20 } as DOMRect
-      const isPartiallyOverlaped = true
+      const isPartiallyOverlapped = true
 
       expect(
-        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlaped })
+        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlapped })
       ).toBe(true)
     })
 
     it('returns false if they would not overlap in a non-overlapped state', () => {
       const firstLabelRect = { right: 10, width: 20 } as DOMRect
       const secondLabelRect = { left: 30, width: 20 } as DOMRect
-      const isPartiallyOverlaped = false
+      const isPartiallyOverlapped = false
 
       expect(
-        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlaped })
+        checkOverlap({ firstLabelRect, secondLabelRect, isPartiallyOverlapped })
       ).toBe(false)
     })
   })
