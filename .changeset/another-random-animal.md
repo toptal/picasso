@@ -4,4 +4,4 @@
 
 ### Collapse
 
-- set correct display to fix height computation issue
+- replicate component styling from legacy component

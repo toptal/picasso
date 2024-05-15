@@ -36,10 +36,13 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const variantMapping: { [K in VariantType]: string } = {
+const variantMapping: { [K in VariantType]: string | string[] } = {
   default: '[&>_:last-child:not(:first-child)]:mt-6',
-  bordered:
-    '[&>_:last-child:not(:first-child)]:mt-6 border rounded-md border-solid border-gray-300 p-8 [&_>_:last-child]:pb-0',
+  bordered: [
+    '[&>_:last-child:not(:first-child)]:mt-6',
+    'border rounded-md border-solid border-gray-300',
+    'p-8 [&_>_:last-child]:pb-0',
+  ],
   withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
 }
 
@@ -47,17 +50,18 @@ const headerMapping: { [K in VariantType]: string | string[] } = {
   default: 'flex',
   bordered: 'flex',
   withHeaderBar: [
-    'flex pt-3 pb-3 pl-4 pr-4',
+    'flex',
+    'pt-3 pb-3 pl-4 pr-4',
     'rounded-tl-md rounded-tr-md rounded-br-0 rounded-bl-0',
     'border-solid border-l-0 border-r-0 border-t-0 border-b border-gray-400',
     'bg-gray-100',
   ],
 }
 
-const collapsedHeaderMapping: { [K in VariantType]: string } = {
+const collapsedHeaderMapping: { [K in VariantType]: string | string[] } = {
   default: 'pb-0',
   bordered: 'pb-0',
-  withHeaderBar: 'border-b-0 rounded-md transition delay-300',
+  withHeaderBar: ['border-b-0 rounded-md', 'transition delay-300'],
 }
 
 export const Section = forwardRef<HTMLDivElement, Props>(function Section(

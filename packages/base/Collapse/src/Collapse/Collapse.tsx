@@ -90,7 +90,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
               data-testid={dataTestId}
               ref={combinedRef}
             >
-              {children}
+              <div className='w-full'>{children}</div>
             </div>
           )
         }}

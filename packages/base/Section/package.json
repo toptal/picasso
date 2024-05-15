@@ -28,7 +28,6 @@
     "@toptal/picasso-typography": "2.0.1",
     "@toptal/picasso-utils": "1.0.3",
     "@toptal/picasso-collapse": "1.0.2",
-    "classnames": "^2.5.1",
     "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [
