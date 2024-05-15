@@ -10,13 +10,12 @@ exports[`PromptModal renders 1`] = `
     />
   </div>
   <div
-    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
+    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
     role="presentation"
   >
     <div
       aria-hidden="true"
-      class="opacity-0 transition-opacity base-Modal fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-      ownerstate="[object Object]"
+      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
       style="transition-duration: 300ms; opacity: 1;"
     />
     <div
@@ -24,7 +23,7 @@ exports[`PromptModal renders 1`] = `
       tabindex="0"
     />
     <div
-      class="bg-white shadow-2 transition-shadow duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
       role="dialog"
       style="transition-duration: 300ms; opacity: 1;"
       tabindex="-1"
@@ -139,13 +138,12 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         </span>
       </button>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
+        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
         role="presentation"
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity base-Modal fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-          ownerstate="[object Object]"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -153,7 +151,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 transition-shadow duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
           role="dialog"
           style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
