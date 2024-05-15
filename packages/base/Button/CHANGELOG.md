@@ -1,5 +1,12 @@
 # @toptal/picasso-button
 
+## 2.0.2
+
+### Patch Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update peer dependency on `@toptal/picasso-tailwind` to have open range
+
 ## 2.0.1
 
 ### Patch Changes

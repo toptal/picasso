@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-select",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Toptal UI components library - Select",
   "publishConfig": {
     "access": "public"
@@ -25,11 +25,11 @@
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-form": "3.0.1",
     "@toptal/picasso-icons": "1.1.1",
-    "@toptal/picasso-input": "1.0.15",
+    "@toptal/picasso-input": "1.0.16",
     "@toptal/picasso-input-adornment": "1.0.4",
     "@toptal/picasso-loader": "1.0.3",
     "@toptal/picasso-menu": "1.0.11",
-    "@toptal/picasso-outlined-input": "1.0.15",
+    "@toptal/picasso-outlined-input": "1.0.16",
     "@toptal/picasso-popper": "1.0.3",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.1",

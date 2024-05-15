@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-button",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Toptal UI components library - Button",
   "publishConfig": {
     "access": "public"
