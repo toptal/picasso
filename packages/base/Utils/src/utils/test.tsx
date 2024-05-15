@@ -27,10 +27,12 @@ import unsafeErrorLog from './unsafe-error-log'
 jest.mock('./unsafe-error-log')
 
 describe('capitalize', () => {
-  it('should capitalize first letter', () => {
-    const string = capitalize('test string')
+  it('capitalizes the first letter of a string', () => {
+    expect(capitalize('test string')).toBe('Test string')
+  })
 
-    expect(string).toBe('Test string')
+  it('returns an empty string if the input is empty', () => {
+    expect(capitalize('')).toBe('')
   })
 })
 

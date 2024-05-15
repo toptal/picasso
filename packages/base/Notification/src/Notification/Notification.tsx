@@ -18,8 +18,7 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { Typography } from '@toptal/picasso-typography'
 import { Snackbar } from '@mui/base'
 import { twJoin, twMerge } from 'tailwind-merge'
-
-import { capitalizeFirst } from './utils'
+import { capitalize } from '@toptal/picasso-utils'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'
 
@@ -143,7 +142,7 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
           'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
           elevated && 'shadow-3 rounded-sm',
           variant
-            ? classByVariant[`notification${capitalizeFirst(variant)}`]
+            ? classByVariant[`notification${capitalize(variant)}`]
             : classByVariant.notificationYellow,
           className
         )}
