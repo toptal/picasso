@@ -14,9 +14,6 @@ export default ({ sizes: { input, borderWidth }, palette }: Theme) =>
       width: 'auto',
     },
     rootAuto: {},
-    otherOption: {
-      borderTop: `${borderWidth} solid ${palette.grey.light2}`,
-    },
     stringContent: {
       fontSize: '0.8125em',
     },

@@ -6,13 +6,10 @@ import type {
 import type { ElementType, ReactElement } from 'react'
 import React, { forwardRef, memo } from 'react'
 import type { MenuItemProps } from '@material-ui/core/MenuItem'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twJoin, twMerge } from 'tailwind-merge'
 import { noop } from '@toptal/picasso-utils'
 
 import { SidebarItem } from '../SidebarItem'
-import styles from './styles'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** Pass icon to be used as part of item */
@@ -27,20 +24,37 @@ export interface Props extends BaseProps, TextLabelProps {
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTopBarMenuItem' })
+const rootClasses = twJoin(
+  'lgPage:text-gray-600 lgPage:p-0 lgPage:h-auto',
+  'lgPage:w-auto lgPage:m-0 lgPage:flex-auto',
+  'lgPage:[&_p]:text-sm'
+)
+
+const separatorClasses = twJoin(
+  'lgPage:before:[:not:first-child]:content-[""]',
+  'lgPage:before:bg-gray-600 lgPage:before:inline-block',
+  'lgPage:before:h-2 lgPage:before:mx-2 lgPage:before:w-[1px]'
+)
+// TODO replace bg-[transparent] with bg-transparent after the rebase
+const bgClasses = 'lgPage:hover:bg-[transparent] lgPage:focus:bg-[transparent]'
+const textColorClasses = 'lgPage:hover:text-gray-400 lgPage:hover:text-white'
 
 export const TopBarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
     const { className, icon } = props
-    const classes = useStyles()
 
     return (
       <SidebarItem
         {...props}
-        className={cx(classes.root, className, {
-          [classes.selected]: props.selected,
-          [classes.icon]: icon,
-        })}
+        className={twMerge(
+          rootClasses,
+          separatorClasses,
+          bgClasses,
+          textColorClasses,
+          icon && 'lgPage:[& svg]:w-[1em]',
+          props.selected && 'lgPage:bg-[transparent] lgPage:text-white',
+          className
+        )}
         ref={ref}
       />
     )

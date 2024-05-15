@@ -24,7 +24,7 @@ const getColorStyles = ({
 
   if (variant === 'dark') {
     if (selected) {
-      return 'text-white hover:text-white focus:text-white bg-gray-800 hover:bg-gray-800 focus:bg-gray-800'
+      return 'text-white hover:text-white focus:text-white bg-graphite-700 hover:bg-graphite-700 focus:bg-graphite-700'
     }
 
     return 'hover:text-white focus:text-white'

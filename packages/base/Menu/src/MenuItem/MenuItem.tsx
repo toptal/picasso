@@ -89,6 +89,7 @@ const getBgColor = ({
   highlighted: boolean
   nonSelectable?: boolean
 }) => {
+  // TODO replace bg-[transparent] with bg-transparent after the rebase
   let bgColor = 'bg-[transparent]'
   let actionBgColor
 
@@ -171,11 +172,11 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
           getFontColor({ variant, highlighted }),
           getBgColor({ variant, highlighted, nonSelectable }),
           disableGutters ? 'p-0' : 'px-4 py-[0.375rem]',
-          'min-w-[9rem] w-auto min-h-[unset] md:min-h-0 relative cursor-pointer',
+          'min-w-[9rem] w-auto min-h-[unset] sm:min-h-[auto] md:min-h-0 relative cursor-pointer',
           'transition-colors duration-150 ease-in-out',
           'overflow-hidden whitespace-normal text-left no-underline',
           'flex items-center justify-start',
-          'outline-none appearance-none',
+          'outline-none appearance-none leading-4',
           className,
           disabled && 'text-gray-600 opacity-100 pointer-events-none'
         )}

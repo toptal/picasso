@@ -29,7 +29,7 @@ import {
   usePropDeprecationWarning,
 } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
-import { MenuCompound as Menu } from '@toptal/picasso-menu'
+import { MenuItem } from '@toptal/picasso-menu'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
@@ -261,7 +261,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         }
       >
         {options?.map((option, index) => (
-          <Menu.Item
+          <MenuItem
             data-testid={
               testIds?.menuItem ? `${testIds?.menuItem}-${index}` : undefined
             }
@@ -273,13 +273,12 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
             {renderOption
               ? renderOption(option, index)
               : getDisplayValue(option)}
-          </Menu.Item>
+          </MenuItem>
         ))}
         {shouldShowOtherOption && (
           <OtherOptionMenuItem
             data-testid={testIds?.otherOption}
             value={value}
-            classes={classes}
             renderOtherOption={renderOtherOption}
             otherOptionText={otherOptionText}
             {...getOtherItemProps(optionsLength, value)}

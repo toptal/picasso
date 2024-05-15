@@ -1,38 +1,39 @@
-import type { JssProps } from '@toptal/picasso-shared'
 import type { ReactNode } from 'react'
 import React from 'react'
 import { Typography } from '@toptal/picasso-typography'
-import { MenuCompound as Menu } from '@toptal/picasso-menu'
+import { MenuItem } from '@toptal/picasso-menu'
 
 const OtherOptionMenuItem = ({
   value,
   otherOptionText,
   renderOtherOption,
-  classes,
   ...rest
 }: {
   value: string
   otherOptionText: string
   renderOtherOption?: (value: string) => ReactNode
-} & JssProps) => {
+}) => {
   return (
-    <Menu.Item
+    <MenuItem
       key='other-option'
-      className={`${classes.option} ${classes.otherOption}`}
+      // TODO replace border-[0] with border-0 after rebase
+      className={`px-4 border-gray-400 border-solid border-[0] border-t`}
       {...rest}
       titleCase={false}
     >
       {renderOtherOption ? (
         renderOtherOption(value)
       ) : (
-        <span className={classes.stringContent}>
-          <Typography as='span' color='dark-grey'>
-            {otherOptionText}
+        <>
+          <Typography as='span' size='small' color='black'>
+            <Typography as='span' color='dark-grey'>
+              {otherOptionText}
+            </Typography>
+            {value}
           </Typography>
-          {value}
-        </span>
+        </>
       )}
-    </Menu.Item>
+    </MenuItem>
   )
 }
 

@@ -21,6 +21,7 @@ export const DrawerTitle = ({ title }: Props) => {
     <Container
       flex
       alignItems='center'
+      // TODO replace border-[0] with border-0 after rebase
       className='border-gray-100 border-[0] border-solid border-b py-4 pr-[4rem] pl-6'
     >
       <Typography variant='heading' size='medium' className='grow'>

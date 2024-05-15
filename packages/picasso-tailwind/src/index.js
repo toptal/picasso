@@ -16,6 +16,7 @@ module.exports = {
       sm: '480px',
       md: '768px',
       lg: '1024px',
+      lgPage: '1280px',
       xl: '1440px',
     },
     // https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing
