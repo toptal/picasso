@@ -91,11 +91,15 @@ exports[`Section renders collapsible initially expanded 1`] = `
         class="flex"
       >
         <div
-          class=""
+          class="w-full"
         >
           <div
-            data-testid="content"
-          />
+            class=""
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -138,11 +142,15 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         class="flex"
       >
         <div
-          class=""
+          class="w-full"
         >
           <div
-            data-testid="content"
-          />
+            class=""
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -162,11 +170,15 @@ exports[`Section renders without header 1`] = `
         class="flex"
       >
         <div
-          class=""
+          class="w-full"
         >
           <div
-            data-testid="content"
-          />
+            class=""
+          >
+            <div
+              data-testid="content"
+            />
+          </div>
         </div>
       </div>
     </div>
