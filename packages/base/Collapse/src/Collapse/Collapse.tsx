@@ -75,6 +75,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
           return (
             <div
               className={twJoin([
+                'flex',
                 isAnimating ? 'overflow-hidden max-h-0' : undefined,
                 state === 'exited' ? 'hidden' : undefined,
                 className,

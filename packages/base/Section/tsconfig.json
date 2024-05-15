@@ -5,6 +5,7 @@
   "references": [
     { "path": "../../picasso-tailwind" },
     { "path": "../Button" },
+    { "path": "../Collapse" },
     { "path": "../Container" },
     { "path": "../Icons" },
     { "path": "../Typography" },

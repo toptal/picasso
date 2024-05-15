@@ -1,17 +1,13 @@
-import cx from 'classnames'
 import type { ReactNode } from 'react'
 import React, { forwardRef, useState } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Collapse } from '@material-ui/core'
 import type { SizeType, BaseProps } from '@toptal/picasso-shared'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { isString, Rotate180 } from '@toptal/picasso-utils'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
-
-import styles from './styles'
+import { twMerge } from 'tailwind-merge'
+import { Collapse } from '@toptal/picasso-collapse'
 
 type VariantType = 'bordered' | 'default' | 'withHeaderBar'
 
@@ -40,9 +36,29 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSection',
-})
+const variantMapping: { [K in VariantType]: string } = {
+  default: '[&>_:last-child:not(:first-child)]:mt-6',
+  bordered:
+    '[&>_:last-child:not(:first-child)]:mt-6 border rounded-md border-solid border-gray-300 p-8 [&_>_:last-child]:pb-0',
+  withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
+}
+
+const headerMapping: { [K in VariantType]: string | string[] } = {
+  default: 'flex',
+  bordered: 'flex',
+  withHeaderBar: [
+    'flex pt-3 pb-3 pl-4 pr-4',
+    'rounded-tl-md rounded-tr-md rounded-br-0 rounded-bl-0',
+    'border-solid border-l-0 border-r-0 border-t-0 border-b border-gray-400',
+    'bg-gray-100',
+  ],
+}
+
+const collapsedHeaderMapping: { [K in VariantType]: string } = {
+  default: 'pb-0',
+  bordered: 'pb-0',
+  withHeaderBar: 'border-b-0 rounded-md transition delay-300',
+}
 
 export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   props,
@@ -62,7 +78,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     titleSize = 'medium',
     ...rest
   } = props
-  const classes = useStyles()
+
   const [collapsed, setCollapsed] = useState(
     collapsible ? defaultCollapsed : false
   )
@@ -112,7 +128,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   const hasActions = actions || collapsible
   const renderActions = () =>
     hasActions ? (
-      <Container data-testid={testIds?.actions} className={classes.actions}>
+      <Container data-testid={testIds?.actions} flex className='ml-auto'>
         {actions}
         {renderCollapse()}
       </Container>
@@ -123,27 +139,25 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   return (
     <Container
       ref={ref}
-      className={cx(
-        {
-          [classes[variant]]: true,
-          [classes.collapsed]: variant === 'default' && collapsed,
-        },
-        classes.root,
-        className
-      )}
       variant={
         ['bordered', 'withHeaderBar'].includes(variant) ? 'white' : undefined
       }
       style={style}
       {...rest}
+      className={twMerge(
+        'pt-8',
+        variantMapping[variant],
+        variant === 'default' && collapsed && 'pb-8',
+        className
+      )}
     >
       {hasHeader && (
         <Container
           data-testid={testIds?.header}
-          className={cx({
-            [classes[`${variant}Header`]]: true,
-            [classes[`${variant}CollapsedHeader`]]: collapsed,
-          })}
+          className={twMerge(
+            headerMapping[variant],
+            collapsed && collapsedHeaderMapping[variant]
+          )}
         >
           {renderTitle()}
           {renderSubtitle()}
@@ -151,7 +165,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         </Container>
       )}
       <Collapse in={!collapsed} unmountOnExit>
-        <Container className={classes[`${variant}SectionContent`]}>
+        <Container className={twMerge(variant === 'withHeaderBar' && 'p-6')}>
           {children}
         </Container>
       </Collapse>
