@@ -72,7 +72,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         ref={ref}
         style={style}
         className={cx(
-          'shadow-0 order-1 [& &]:flex-1 flex-grow-0 flex-shrink-1 max-w-full',
+          'shadow-0 order-1 [&_&]:flex-1 flex-grow-0 flex-shrink-1 max-w-full',
           {
             ['order-[99]']: bottom,
             ['p-2']: parentMenu?.compact,

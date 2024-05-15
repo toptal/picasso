@@ -16,8 +16,7 @@ const OtherOptionMenuItem = ({
   return (
     <MenuItem
       key='other-option'
-      // TODO replace border-[0] with border-0 after rebase
-      className={`px-4 border-gray-400 border-solid border-[0] border-t`}
+      className={`px-4 border-gray-400 border-solid border-0 border-t`}
       {...rest}
       titleCase={false}
     >

@@ -45,8 +45,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
         {accounts.map(account => (
           <MenuItem
             disableGutters
-            // TODO replace border-[0] with border-0 after rebase
-            className='h-auto [&+&]:border-t border-[0] border-solid border-gray-400'
+            className='h-auto [&+&]:border-t border-0 border-solid border-gray-400'
             key={`role-${account.id}`}
           >
             <Link

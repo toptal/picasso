@@ -42,7 +42,7 @@ exports[`PageSidebar with menu 1`] = `
             class="PageSidebar-spacer"
           />
           <ul
-            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
+            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
             role="menu"
             tabindex="-1"
           />
@@ -71,12 +71,12 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
             class="PageSidebar-spacer"
           />
           <ul
-            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [& &]:flex-1 flex-grow flex-shrink max-w"
+            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
             role="menu"
             tabindex="-1"
           />
           <ul
-            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 [& &]:flex-1 flex-grow flex-shrink max-w order-[99]"
+            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 [&_&]:flex-1 flex-grow flex-shrink max-w order-[99]"
             role="menu"
             tabindex="-1"
           />

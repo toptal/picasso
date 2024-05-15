@@ -12,7 +12,7 @@ exports[`AccountSelect renders 1`] = `
     >
       <li
         aria-disabled="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-[0] border-solid border-gray"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-0 border-solid border-gray"
         role="menuitem"
         tabindex="0"
       >
@@ -83,7 +83,7 @@ exports[`AccountSelect renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-[0] border-solid border-gray"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-0 border-solid border-gray"
         role="menuitem"
         tabindex="-1"
       >
@@ -155,7 +155,7 @@ exports[`AccountSelect renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-[0] border-solid border-gray"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-0 border-solid border-gray"
         role="menuitem"
         tabindex="-1"
       >

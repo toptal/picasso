@@ -89,8 +89,7 @@ const getBgColor = ({
   highlighted: boolean
   nonSelectable?: boolean
 }) => {
-  // TODO replace bg-[transparent] with bg-transparent after the rebase
-  let bgColor = 'bg-[transparent]'
+  let bgColor = 'bg-transparent'
   let actionBgColor
 
   if (variant === 'dark') {

@@ -42,7 +42,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-1"
         role="option"
         tabindex="-1"
@@ -68,7 +68,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-2"
         role="option"
         tabindex="-1"
@@ -94,7 +94,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-3"
         role="option"
         tabindex="-1"
@@ -120,7 +120,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-4"
         role="option"
         tabindex="-1"
@@ -160,7 +160,7 @@ exports[`Autocomplete dynamic behavior renders custom other options text and cal
 <li
   aria-disabled="false"
   aria-selected="false"
-  class="text-black bg-[transparent] hover:bg-blue focus:bg-blue py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 px-4 border-gray border-solid border-[0] border-t"
+  class="text-black bg-transparent hover:bg-blue focus:bg-blue py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 px-4 border-gray border-solid border-0 border-t"
   data-testid="other-option"
   role="option"
   tabindex="-1"
@@ -194,7 +194,7 @@ exports[`Autocomplete dynamic behavior renders other option with default text 1`
 <li
   aria-disabled="false"
   aria-selected="false"
-  class="text-black bg-[transparent] hover:bg-blue focus:bg-blue py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 px-4 border-gray border-solid border-[0] border-t"
+  class="text-black bg-transparent hover:bg-blue focus:bg-blue py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 px-4 border-gray border-solid border-0 border-t"
   data-testid="other-option"
   role="option"
   tabindex="-1"
@@ -376,7 +376,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-1"
         role="option"
         tabindex="-1"
@@ -402,7 +402,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-2"
         role="option"
         tabindex="-1"
@@ -428,7 +428,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-3"
         role="option"
         tabindex="-1"
@@ -454,7 +454,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-4"
         role="option"
         tabindex="-1"
@@ -524,7 +524,7 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-1"
         role="option"
         tabindex="-1"
@@ -550,7 +550,7 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-2"
         role="option"
         tabindex="-1"
@@ -576,7 +576,7 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-3"
         role="option"
         tabindex="-1"
@@ -602,7 +602,7 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-[transparent] hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-4"
         role="option"
         tabindex="-1"

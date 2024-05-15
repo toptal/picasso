@@ -31,12 +31,11 @@ const rootClasses = twJoin(
 )
 
 const separatorClasses = twJoin(
-  'lgPage:before:[:not:first-child]:content-[""]',
+  'lgPage:before:[&:not(:first-child)]:content-[""]',
   'lgPage:before:bg-gray-600 lgPage:before:inline-block',
   'lgPage:before:h-2 lgPage:before:mx-2 lgPage:before:w-[1px]'
 )
-// TODO replace bg-[transparent] with bg-transparent after the rebase
-const bgClasses = 'lgPage:hover:bg-[transparent] lgPage:focus:bg-[transparent]'
+const bgClasses = 'lgPage:hover:bg-transparent lgPage:focus:bg-transparent'
 const textColorClasses = 'lgPage:hover:text-gray-400 lgPage:hover:text-white'
 
 export const TopBarItem: OverridableComponent<Props> = memo(
@@ -51,8 +50,8 @@ export const TopBarItem: OverridableComponent<Props> = memo(
           separatorClasses,
           bgClasses,
           textColorClasses,
-          icon && 'lgPage:[& svg]:w-[1em]',
-          props.selected && 'lgPage:bg-[transparent] lgPage:text-white',
+          icon && 'lgPage:[&_svg]:w-[1em]',
+          props.selected && 'lgPage:bg-transparent lgPage:text-white',
           className
         )}
         ref={ref}
