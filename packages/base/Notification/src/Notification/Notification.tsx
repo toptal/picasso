@@ -91,10 +91,10 @@ const renderNotificationContent = (props: PrivateProps) => {
         flex
         alignItems='center'
         className={twJoin(
-          'min-w-[1.5em] mr-[1em] basis-[1.5em]',
+          'min-w-[1.5em] mr-[1em]',
           variant === 'yellow'
             ? 'h-[1em] min-w-[1em] mt-[2px] basis-0'
-            : 'h-[1.5em]'
+            : 'h-[1.5em] basis-[1.5em]'
         )}
       >
         {renderNotificationIcon(props)}
