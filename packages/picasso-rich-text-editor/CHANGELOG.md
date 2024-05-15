@@ -1,5 +1,20 @@
 # @toptal/picasso-rich-text-editor
 
+## 13.0.2
+
+### Patch Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update peer dependency on `@toptal/picasso-tailwind` to have open range
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+  - @toptal/picasso-modal@2.0.2
+  - @toptal/picasso-file-input@1.0.17
+  - @toptal/picasso-outlined-input@1.0.16
+  - @toptal/picasso-input@1.0.16
+  - @toptal/picasso-select@1.0.17
+
 ## 13.0.1
 
 ### Patch Changes

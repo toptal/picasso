@@ -1,5 +1,47 @@
 # Change Log
 
+## 45.0.0
+
+### Major Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update `@toptal/picasso-tailwind` to the latest version
+
+### Patch Changes
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-password-input@2.0.2
+  - @toptal/picasso-pagination@2.0.2
+  - @toptal/picasso-helpbox@2.0.2
+  - @toptal/picasso-button@2.0.2
+  - @toptal/picasso-modal@2.0.2
+  - @toptal/picasso-page@2.0.9
+  - @toptal/picasso-accordion@1.0.16
+  - @toptal/picasso-alert@1.0.16
+  - @toptal/picasso-application-update-notification@1.0.16
+  - @toptal/picasso-calendar@1.0.16
+  - @toptal/picasso-carousel@1.0.17
+  - @toptal/picasso-drawer@2.0.8
+  - @toptal/picasso-file-input@1.0.17
+  - @toptal/picasso-notification@2.0.8
+  - @toptal/picasso-outlined-input@1.0.16
+  - @toptal/picasso-prompt-modal@1.0.16
+  - @toptal/picasso-section@2.0.8
+  - @toptal/picasso-show-more@1.0.16
+  - @toptal/picasso-skeleton-loader@1.0.16
+  - @toptal/picasso-table@1.1.13
+  - @toptal/picasso-tree-view@1.0.16
+  - @toptal/picasso-date-picker@1.0.16
+  - @toptal/picasso-dropzone@1.0.17
+  - @toptal/picasso-autocomplete@1.0.17
+  - @toptal/picasso-avatar-upload@1.0.16
+  - @toptal/picasso-input@1.0.16
+  - @toptal/picasso-number-input@1.0.16
+  - @toptal/picasso-select@1.0.17
+  - @toptal/picasso-tagselector@1.0.18
+  - @toptal/picasso-timepicker@1.0.16
+  - @toptal/picasso-date-select@1.0.17
+
 ## 44.0.21
 
 ### Patch Changes
