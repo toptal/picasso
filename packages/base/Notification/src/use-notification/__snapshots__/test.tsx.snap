@@ -70,7 +70,7 @@ exports[`useNotifications error notification render 1`] = `
                 class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em]"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] basis-[1.5em] h-[1.5em]"
                 >
                   <svg
                     class="PicassoSvgExclamationSolid24-root PicassoSvgExclamationSolid24-red"
@@ -189,7 +189,7 @@ exports[`useNotifications info notification render 1`] = `
                 class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em]"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] basis-[1.5em] h-[1.5em]"
                 >
                   <svg
                     class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
@@ -311,7 +311,7 @@ exports[`useNotifications success notification render 1`] = `
                 class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.5em] min-w mr-[1em] basis-[1.5em]"
+                  class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] basis-[1.5em] h-[1.5em]"
                 >
                   <svg
                     class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"

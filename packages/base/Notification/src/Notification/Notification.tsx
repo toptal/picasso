@@ -85,15 +85,17 @@ const renderNotificationContent = (props: PrivateProps) => {
   return (
     <Container
       flex
-      className='flex w-full my-0 mx-auto p-0 max-w-[75em] min-w-[0]'
+      className='flex w-full my-0 mx-auto p-0 max-w-[75em] min-w-0'
       data-testid={testIds?.content}
     >
       <Container
         flex
         alignItems='center'
-        className={twMerge(
-          'h-[1.5em] min-w-[1.5em] mr-[1em] basis-[1.5em]',
-          variant === 'yellow' && 'h-[1em] min-w-[1em] mt-[2px] basis-0'
+        className={twJoin(
+          'min-w-[1.5em] mr-[1em] basis-[1.5em]',
+          variant === 'yellow'
+            ? 'h-[1em] min-w-[1em] mt-[2px] basis-0'
+            : 'h-[1.5em]'
         )}
       >
         {renderNotificationIcon(props)}
@@ -125,7 +127,7 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
       ...rest
     } = props
 
-    const variantClasses: Classes = {
+    const classByVariant: Classes = {
       notificationRed: 'bg-red-100',
       notificationGreen: 'bg-green-100',
       notificationWhite: 'bg-white px-[1.5em] pt-[1.5625em] pb-[1.5em]',
@@ -141,8 +143,8 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
           'relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300',
           elevated && 'shadow-3 rounded-sm',
           variant
-            ? variantClasses[`notification${capitalizeFirst(variant)}`]
-            : variantClasses.notificationYellow,
+            ? classByVariant[`notification${capitalizeFirst(variant)}`]
+            : classByVariant.notificationYellow,
           className
         )}
         data-testid={dataTestId || testIds?.notification}
