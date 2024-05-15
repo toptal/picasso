@@ -62,7 +62,7 @@ exports[`useNotifications error notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-red w-[20em] max-w"
+              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-red max-w w-[20em]"
               role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
@@ -303,7 +303,7 @@ exports[`useNotifications success notification render 1`] = `
             class="notistack-Snackbar go3963613292"
           >
             <div
-              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-green w-[20em] max-w"
+              class="base-Snackbar relative flex flex-nowrap items-start pt-[1.5em] pb-[1.5625em] pr-[2.5em] pl-[1.5em] transition-shadow duration-300 shadow-3 rounded-sm bg-green max-w w-[20em]"
               role="presentation"
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >

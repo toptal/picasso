@@ -35,8 +35,8 @@ const StyledNotification =
         key={key}
         onClose={onClose}
         className={twJoin(
-          'w-[20em] max-w-full',
-          variant === 'white' && 'w-[27.5em]'
+          'max-w-full',
+          variant === 'white' ? 'w-[27.5em]' : `w-[20em]`
         )}
         ref={ref}
       >
