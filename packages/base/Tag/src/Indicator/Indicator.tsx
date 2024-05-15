@@ -1,12 +1,10 @@
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
-import styles from './styles'
+import { classByColor } from './styles'
 
-type ColorType =
+export type ColorType =
   | 'red'
   | 'yellow'
   | 'blue'
@@ -21,20 +19,21 @@ export interface Props extends BaseProps {
   color: ColorType
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoIndicator' })
-
 export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
   props,
   ref
 ) {
   const { className, color, style, ...restProps } = props
-  const classes = useStyles()
 
   return (
     <div
       role='img'
       {...restProps}
-      className={cx(classes.root, className, classes[color])}
+      className={twMerge(
+        'w-2 h-2 rounded-[50%]',
+        classByColor[color],
+        className
+      )}
       style={style}
       ref={ref}
     />

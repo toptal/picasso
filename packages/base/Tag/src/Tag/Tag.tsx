@@ -1,25 +1,25 @@
 import type {
   ReactNode,
   ReactElement,
-  HTMLAttributes,
   ElementType,
   MouseEvent,
   AnchorHTMLAttributes,
+  HTMLAttributes,
 } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
-import { toTitleCase } from '@toptal/picasso-utils'
+import { Typography } from '@toptal/picasso-typography'
+import { twMerge } from 'tailwind-merge'
 
-import { Chip } from '../Chip'
-import styles from './styles'
+import { classByVariant } from './styles'
+
+export type Variant = 'light-grey' | 'blue' | 'green' | 'yellow' | 'red'
 
 export type DivOrAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> &
   HTMLAttributes<HTMLDivElement>
+
 export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
@@ -35,44 +35,28 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
    */
   onDelete?: () => void
   /** Variant of the `Tag` */
-  variant?: 'light-grey' | 'blue' | 'green' | 'yellow' | 'red'
+  variant?: Variant
   /** ReactNode rendered after label */
   endAdornment?: ReactNode
-  hovered?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLabel' })
-
-// eslint-disable-next-line react/display-name
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
-    as = 'div',
+    as: Root = 'div',
     className,
     disabled,
     endAdornment,
-    hovered,
     children,
     icon,
     onDelete,
+    onClick,
     style,
     titleCase: propsTitleCase,
     variant = 'light-grey',
+    role,
     ...rest
   } = props
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { color, ...htmlAttributes } = rest
-  const classes = useStyles()
-
   const titleCase = useTitleCase(propsTitleCase)
-
-  const label = (
-    <>
-      <span className={classes.innerLabel}>
-        {titleCase ? toTitleCase(children) : children}
-      </span>
-      {endAdornment}
-    </>
-  )
 
   const handleDelete = (event: MouseEvent) => {
     if (disabled) {
@@ -81,45 +65,73 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
 
     if (onDelete) {
       event.preventDefault()
+
+      /**
+       * If the event propagates, the component interprets it
+       * as a regular click, which triggers the opening of the
+       * options list.
+       */
+      event.stopPropagation()
+
       onDelete()
     }
   }
 
   return (
-    <Chip
-      {...htmlAttributes}
+    <Root
+      role={role || (onDelete || onClick ? 'button' : undefined)}
+      aria-disabled={disabled}
       ref={ref}
-      classes={{
-        root: classes.root,
-        label: classes.label,
-        clickable: classes.clickable,
-      }}
-      className={cx(className, classes[variant], {
-        [classes.hovered]: hovered,
-        [classes.disabled]: disabled,
-      })}
+      className={twMerge(
+        `transition-none border border-solid rounded-[6.25rem]
+          h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
+          group align-middle`,
+        classByVariant[variant],
+        className,
+        disabled && 'text-gray-500 border-gray-200 pointer-events-none'
+      )}
       style={style}
-      icon={
-        icon
-          ? React.cloneElement(icon, {
-              color: disabled ? 'grey' : 'dark-grey',
-            })
-          : undefined
-      }
-      label={label}
-      deleteIcon={
+      onClick={onClick}
+      tabIndex={onDelete || onClick ? 0 : undefined}
+      {...rest}
+    >
+      {icon && (
+        <span
+          className={twMerge(
+            'w-min h-min flex items-center -mr-1 ml-3',
+            disabled ? 'text-gray-500' : 'text-graphite-700'
+          )}
+        >
+          {icon}
+        </span>
+      )}
+
+      <span className='flex gap-2 px-3 overflow-hidden items-center'>
+        <Typography
+          size='xsmall'
+          color='inherit'
+          weight='semibold'
+          as='span'
+          titleCase={titleCase}
+          noWrap
+        >
+          {children}
+        </Typography>
+
+        {endAdornment}
+      </span>
+
+      {onDelete && (
         <span
           aria-label='delete icon'
           role='button'
-          className={classes.deleteIcon}
+          className='w-min h-min flex items-center cursor-pointer -ml-2 mr-2'
+          onClick={handleDelete}
         >
           <CloseMinor16 />
         </span>
-      }
-      component={as}
-      onDelete={onDelete ? handleDelete : undefined}
-      aria-disabled={disabled}
-    />
+      )}
+    </Root>
   )
 })
 
@@ -131,5 +143,4 @@ Tag.defaultProps = {
 
 Tag.displayName = 'Tag'
 
-export { useStyles }
 export default Tag
