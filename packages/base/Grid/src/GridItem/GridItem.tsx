@@ -1,12 +1,11 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import type { GridSize } from '@material-ui/core'
-import { Grid as MUIGrid } from '@material-ui/core'
-import type { BaseProps } from '@toptal/picasso-shared'
+import React, { forwardRef, useContext } from 'react'
+import { type BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
-import styles from './styles'
+import { GridContext } from '../GridContext'
+import type { GridSize, GridSpacing } from '../types'
+import { getSizesClassNames } from './utils/get-sizes-class-names'
 
 export interface GridSizes {
   /** Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority */
@@ -29,33 +28,57 @@ export interface Props
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoGridItem',
-})
+const gridSpacingMapping: { [K in GridSpacing]: string } = {
+  0: 'p-[0px]',
+  8: 'p-[4px]',
+  16: 'p-[8px]',
+  24: 'p-[12px]',
+  32: 'p-[16px]',
+  64: 'p-[32px]',
+  72: 'p-[36px]',
+  80: 'p-[40px]',
+}
+
+const getSpacingClassName = (gridSpacing?: GridSpacing) => {
+  if (!gridSpacing) {
+    return ''
+  }
+
+  return gridSpacingMapping[gridSpacing]
+}
 
 export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   props,
   ref
 ) {
   const { children, xs, sm, md, lg, xl, className, style, ...rest } = props
-  const classes = useStyles()
+
+  const { gridSpacing } = useContext(GridContext)
+  const spacingClassName = getSpacingClassName(gridSpacing)
+
+  const sizesClassNames = getSizesClassNames({
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
+  })
 
   return (
-    <MUIGrid
-      {...rest}
+    <div
       ref={ref}
-      item
-      xs={xs}
-      sm={sm}
-      md={md}
-      lg={lg}
-      xl={xl}
-      classes={classes}
-      className={className}
       style={style}
+      {...rest}
+      className={twMerge(
+        'box-border',
+        'm-0',
+        spacingClassName,
+        sizesClassNames,
+        className
+      )}
     >
       {children}
-    </MUIGrid>
+    </div>
   )
 })
 

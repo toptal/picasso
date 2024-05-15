@@ -49,7 +49,8 @@ export const Helpbox = forwardRef<HTMLDivElement, Props>(function Helpbox(
       </HelpboxContext.Provider>
       {onClose && (
         <ButtonCircular
-          className={classes.closeButton}
+          // TODO: [FX-5219] need to avoid such customization
+          className='absolute right-[1.5em] top-[1.5em] bg-transparent border-none p-0 hover:bg-transparent active:bg-transparent'
           onClick={onClose}
           icon={<CloseMinor16 color='dark-grey' />}
         />

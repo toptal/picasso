@@ -2,12 +2,9 @@
 import React from 'react'
 import type { RadioGroupProps } from '@material-ui/core'
 import { RadioGroup as MUIRadioGroup } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core/styles'
 import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
-
-import styles from './styles'
 
 type GridSpacing = GridProps['spacing']
 
@@ -18,17 +15,8 @@ export interface Props extends RadioGroupProps, GridSizeProps {
   spacing?: GridSpacing
 }
 
-// Using { index: -1 } to inject CSS link to the bottom of the head
-// in order to prevent FormControlLabel's styles to override RadioGroup's ones
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoRadioGroup',
-  index: -1,
-})
-
 const RadioGroup = (props: Props) => {
   const { horizontal, spacing, xs, sm, md, lg, xl, ...rest } = props
-  const { grid: gridClass, gridItem: gridItemClass, ...classes } = useStyles()
   const { spacing: themeSpacing } = useTheme()
 
   const direction = horizontal ? 'row' : 'column'
@@ -37,16 +25,16 @@ const RadioGroup = (props: Props) => {
   const children = React.Children.toArray(rest.children)
 
   return (
-    <MUIRadioGroup {...rest} classes={classes}>
+    <MUIRadioGroup {...rest}>
       <Grid
         direction={direction}
         spacing={gridSpacing as GridSpacing}
-        className={gridClass}
+        className='mt-0 mb-0'
       >
         {children.map((child, index) => (
           <Grid.Item
             key={index}
-            className={gridItemClass}
+            className='leading-none [&&]:pt-0 [&&]:pb-0'
             xs={xs}
             sm={sm}
             md={md}

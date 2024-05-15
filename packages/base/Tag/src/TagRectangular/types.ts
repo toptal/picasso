@@ -13,6 +13,8 @@ export type VariantType =
   | 'light-grey'
   | 'green'
   | 'light-blue'
+  | 'blue-main'
+  | 'blue-darker'
 
 export interface VariantOnlyProps
   extends BaseProps,

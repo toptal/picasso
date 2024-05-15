@@ -28,6 +28,7 @@
     { "path": "packages/base/Calendar" },
     { "path": "packages/base/Carousel" },
     { "path": "packages/base/Checkbox" },
+    { "path": "packages/base/Collapse" },
     { "path": "packages/base/Container" },
     { "path": "packages/base/DatePicker" },
     { "path": "packages/base/DateSelect" },

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-pictograms",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Pictogram components of Picasso",
   "author": "Toptal",
   "license": "MIT",
@@ -22,18 +22,18 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-pictograms#readme",
   "peerDependencies": {
-    "@toptal/picasso-shared": "^14.0.0",
+    "@toptal/picasso-shared": "^15.0.0",
     "react": ">=16.12.0 < 19.0.0",
     "typescript": "~4.7.0"
   },
   "devDependencies": {
-    "@toptal/picasso": "44.0.13",
+    "@toptal/picasso": "44.0.21",
     "storybook-readme": "^5.0.9",
     "@babel/types": "^7.20.7"
   },
   "sideEffects": false,
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.2"
+    "@toptal/picasso-utils": "1.0.3"
   },
   "exports": {
     ".": "./dist-package/src/index.js",

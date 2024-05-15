@@ -225,7 +225,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       ref={modalRef}
       className={cx(
         className,
-        'fixed z-modal inset-0 flex flex-col text-lg justify-center items-center'
+        'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center'
       )}
       style={style}
       slots={{

@@ -1,5 +1,14 @@
 # @toptal/picasso-typography-overflow
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tooltip@1.1.2
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-typography@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

@@ -1,29 +1,29 @@
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import type {
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
   OverridableComponent,
   TextLabelProps,
-  Classes,
 } from '@toptal/picasso-shared'
-import { useTitleCase } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core'
-import { makeStyles, ButtonBase } from '@material-ui/core'
-import { Loader } from '@toptal/picasso-loader'
-import { Container } from '@toptal/picasso-container'
-import { noop, toTitleCase } from '@toptal/picasso-utils'
+import { noop } from '@toptal/picasso-utils'
 // we need to ensure the correct order of styles import
-// @TODO: to be removed when the component is migrated in FX-4614
-import '@toptal/picasso-link'
+// TODO: [FX-4614] To be removed when Link component is migrated to tailwind
+import { Link } from '@toptal/picasso-link'
 
-import styles from './styles'
+import { ButtonBase } from '../ButtonBase'
+import {
+  createVariantClassNames,
+  createCoreClassNames,
+  createSizeClassNames,
+  createIconClassNames,
+} from './styles'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoButton',
-})
+// HACK: This statement is only used to prevent webpack from tree shaking the import
+void Link
 
 export type VariantType =
   | 'primary'
@@ -70,31 +70,28 @@ export interface Props
   type?: 'button' | 'reset' | 'submit'
 }
 
-const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
-  loading ? noop : handler
-
-const getIcon = (
-  classes: Classes,
-  children: ReactNode,
-  icon?: ReactElement,
+const getIcon = ({
+  children,
+  icon,
+  iconPosition,
+  size,
+}: {
+  children: ReactNode
+  icon?: ReactElement
   iconPosition?: IconPositionType
-) => {
+  size: SizeType<'small' | 'medium' | 'large'>
+}) => {
   if (!icon) {
-    return null
+    return undefined
   }
 
-  const {
-    icon: iconClass,
-    iconLeft: iconLeftClass,
-    iconRight: iconRightClass,
-  } = classes
+  const iconClassNames = createIconClassNames({
+    size,
+    iconPosition: children && iconPosition ? iconPosition : undefined,
+  })
 
   return React.cloneElement(icon, {
-    className: cx(iconClass, icon.props.className, {
-      [iconLeftClass]: children && iconPosition === 'left',
-      [iconRightClass]: children && iconPosition === 'right',
-    }),
-    key: 'button-icon',
+    className: twMerge(iconClassNames, icon.props.className),
   })
 }
 
@@ -106,9 +103,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
     icon,
     iconPosition,
     loading,
-    children,
     className,
-    style,
     fullWidth,
     variant = 'primary',
     size = 'medium',
@@ -116,86 +111,63 @@ export const Button: OverridableComponent<Props> = forwardRef<
     hovered,
     disabled,
     active,
-    onClick,
-    title,
-    value,
-    type,
-    as = 'button',
-    titleCase: propsTitleCase,
     ...rest
   } = props
-  const classes = useStyles(props)
 
-  const {
-    root: rootClass,
-    hidden: hiddenClass,
-    loader: loaderClass,
-    content: contentClass,
-  } = classes
+  const iconComponent = getIcon({
+    children: rest.children,
+    icon,
+    iconPosition,
+    size,
+  })
+  const coreClassNames = createCoreClassNames({
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
+  const variantClassNames = createVariantClassNames(variant, {
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
+  const sizeClassNames = createSizeClassNames(size)
 
-  const titleCase = useTitleCase(propsTitleCase)
+  const finalClassName = twMerge(
+    coreClassNames,
+    variantClassNames,
+    sizeClassNames,
+    fullWidth ? 'w-full' : '',
+    className
+  )
 
-  const finalChildren = [titleCase ? toTitleCase(children) : children]
-
-  if (icon) {
-    const iconComponent = getIcon(classes, children, icon, iconPosition)
-
-    if (iconPosition === 'left') {
-      finalChildren.unshift(iconComponent)
-    } else {
-      finalChildren.push(iconComponent)
-    }
+  const contentSizeClassNames: Record<
+    SizeType<'small' | 'medium' | 'large'>,
+    string[]
+  > = {
+    small: ['text-button-small'],
+    medium: ['text-button-medium'],
+    large: ['text-button-large'],
   }
 
-  const variantClassName = classes[variant]
-  const sizeClassName = classes[size]
-
-  const rootClassName = cx(
-    {
-      [classes.fullWidth]: fullWidth,
-      [classes.active]: active,
-      [classes.focused]: focused,
-      [classes.hovered]: hovered,
-      [classes.disabled]: disabled,
-    },
-    sizeClassName,
-    variantClassName,
-    rootClass
+  const contentClassName = cx(
+    'font-semibold whitespace-nowrap',
+    contentSizeClassNames[size],
+    loading ? 'opacity-0' : ''
   )
 
   return (
     <ButtonBase
       {...rest}
       ref={ref}
-      classes={{
-        root: rootClassName,
-        focusVisible: cx(classes.focusVisible),
-      }}
-      onClick={getClickHandler(loading, onClick)}
-      className={className}
-      style={style}
+      className={finalClassName}
+      contentClassName={contentClassName}
+      icon={iconComponent}
+      iconPosition={iconPosition}
+      loading={loading}
       disabled={disabled}
-      title={title}
-      value={value}
-      type={type}
-      component={as}
-      data-component-type='button'
-    >
-      <Container
-        as='span'
-        inline
-        flex
-        direction='row'
-        alignItems='center'
-        className={cx({ [hiddenClass]: loading }, contentClass)}
-      >
-        {finalChildren}
-      </Container>
-
-      {loading && (
-        <Loader variant='inherit' className={loaderClass} inline size='small' />
-      )}
-    </ButtonBase>
+    />
   )
 })
 

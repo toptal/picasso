@@ -1,13 +1,11 @@
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import { Container } from '@toptal/picasso-container'
 
 import { Button } from '../Button'
-import styles from './styles'
+import { createSizeClassNames, createContentSizeClassNames } from './styles'
 
 export interface Props extends BaseProps {
   /** Show the control initially as checked */
@@ -37,14 +35,6 @@ export interface Props extends BaseProps {
   control: ReactElement
 }
 
-// Using { index: -1 } to inject CSS link to the bottom of the head
-// in order to prevent Button's styles to override ButtonAction's ones
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonControlLabel',
-  index: -1,
-})
-
 const ButtonControlLabel = ({
   children,
   size = 'medium',
@@ -57,14 +47,12 @@ const ButtonControlLabel = ({
   disabled,
   ...props
 }: Props) => {
-  const classes = useStyles()
-
   const contentLeftSpacing = size === 'large' ? 1 : 0.5
 
   return (
     <Button
       {...props}
-      className={cx(className, classes.root, classes[size])}
+      className={twMerge('text-center', createSizeClassNames(size), className)}
       variant='secondary'
       size={size}
       as='label'
@@ -72,7 +60,10 @@ const ButtonControlLabel = ({
       disabled={disabled}
     >
       {React.cloneElement(control, { id, checked, value, onChange, disabled })}
-      <Container className={classes.content} left={contentLeftSpacing}>
+      <Container
+        className={createContentSizeClassNames(size)}
+        left={contentLeftSpacing}
+      >
         {children}
       </Container>
     </Button>

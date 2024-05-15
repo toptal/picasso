@@ -1,17 +1,17 @@
 {
   "namedInputs": {
-    "default": ["{projectRoot}/**/*"],
-    "production": ["default"]
+    "source": [
+      "{projectRoot}/**/*",
+      "!{projectRoot}/dist-package/**/*",
+      "!{projectRoot}/**/*.test.(js|jsx|ts|tsx)",
+      "!{projectRoot}/**/test.(js|jsx|ts|tsx)",
+      "!{projectRoot}/**/story/"
+    ]
   },
   "targetDefaults": {
     "build:package": {
-      "inputs": [
-        "default",
-        "!{projectRoot}/**/*.test.(js|jsx|ts|tsx)",
-        "!{projectRoot}/**/test.(js|jsx|ts|tsx)",
-        "!{projectRoot}/**/story/"
-      ],
-      "outputs": ["{projectRoot}/dist-package/"],
+      "inputs": ["source", "^source"],
+      "outputs": ["{projectRoot}/dist-package/**/*"],
       "cache": true,
       "dependsOn": ["^build:package"]
     }

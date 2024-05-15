@@ -1,5 +1,13 @@
 # @toptal/picasso-note
 
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+
 ## 1.0.5
 
 ### Patch Changes

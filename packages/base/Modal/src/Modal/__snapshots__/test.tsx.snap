@@ -9,12 +9,13 @@ exports[`Modal renders 1`] = `
     class="Picasso-root"
   />
   <div
-    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
+    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
     role="presentation"
   >
     <div
       aria-hidden="true"
-      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+      class="opacity-0 transition-opacity base-Modal fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+      ownerstate="[object Object]"
       style="transition-duration: 300ms; opacity: 1;"
     />
     <div
@@ -49,40 +50,46 @@ exports[`Modal renders 1`] = `
         class="mt-0 mx-8 mb-8 text-right"
       >
         <button
-          class="MuiButtonBase-root PicassoButton-medium PicassoButton-secondary PicassoButton-root"
+          aria-disabled="false"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
           data-component-type="button"
+          role="button"
           tabindex="0"
           type="button"
         >
           <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
           >
             Cancel
           </span>
         </button>
         <button
-          class="MuiButtonBase-root PicassoButton-medium PicassoButton-positive PicassoButton-root"
+          aria-disabled="false"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
           data-component-type="button"
+          role="button"
           tabindex="0"
           type="button"
         >
           <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
           >
             Update
           </span>
         </button>
       </div>
       <button
+        aria-disabled="false"
         aria-label="Close"
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root absolute top-8 right-8"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent absolute top-8 right-8"
         data-component-type="button"
         data-testid="close-modal"
+        role="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           <svg
             class="PicassoSvgCloseMinor16-root"
@@ -111,25 +118,28 @@ exports[`Modal useModal opens and closes modal 1`] = `
       class="Picasso-root"
     >
       <button
+        aria-disabled="false"
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
+        role="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
       </button>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
+        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
         role="presentation"
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity base-Modal fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          ownerstate="[object Object]"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -146,13 +156,15 @@ exports[`Modal useModal opens and closes modal 1`] = `
             Modal content
           </p>
           <button
-            class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+            aria-disabled="false"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
             data-component-type="button"
+            role="button"
             tabindex="0"
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               Hide
             </span>
@@ -175,13 +187,15 @@ exports[`Modal useModal opens and closes modal 2`] = `
       class="Picasso-root"
     >
       <button
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        aria-disabled="false"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
+        role="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
@@ -198,39 +212,44 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       class="Picasso-root"
     >
       <button
+        aria-disabled="false"
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
+        role="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           Show first
         </span>
       </button>
       <button
+        aria-disabled="false"
         aria-hidden="true"
-        class="MuiButtonBase-root PicassoButton-medium PicassoButton-primary PicassoButton-root"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
+        role="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           Show second
         </span>
       </button>
       <div
         aria-hidden="true"
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
+        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
         role="presentation"
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity base-Modal fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          ownerstate="[object Object]"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -253,12 +272,13 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         />
       </div>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg justify-center items-center"
+        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
         role="presentation"
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity base-Modal fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          ownerstate="[object Object]"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
