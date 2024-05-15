@@ -38,7 +38,6 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   variant?: Variant
   /** ReactNode rendered after label */
   endAdornment?: ReactNode
-  hovered?: boolean
 }
 
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
@@ -55,9 +54,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     titleCase: propsTitleCase,
     variant = 'light-grey',
     role,
-    // `hovered` is extracted so we don't pass it to Root with {...rest}
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    hovered,
     ...rest
   } = props
   const titleCase = useTitleCase(propsTitleCase)

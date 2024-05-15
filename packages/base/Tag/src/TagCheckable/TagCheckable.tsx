@@ -54,7 +54,6 @@ const TagCheckable = forwardRef<HTMLDivElement, Props>(function TagCheckable(
           'bg-white border-graphite-700 transition-all duration-[350ms] ease-in-out',
         checked && hovered && 'border-red-500 text-red-500'
       )}
-      hovered={hovered}
       icon={icon}
       onClick={handleClick}
       ref={ref}
