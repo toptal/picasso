@@ -1,5 +1,14 @@
 # @toptal/picasso-password-input
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+  - @toptal/picasso-input@1.0.17
+  - @toptal/picasso-outlined-input@1.0.17
+
 ## 2.0.2
 
 ### Patch Changes
