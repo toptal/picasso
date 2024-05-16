@@ -6,7 +6,7 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { isString, Rotate180 } from '@toptal/picasso-utils'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
-import { twMerge } from 'tailwind-merge'
+import { twMerge, twJoin } from 'tailwind-merge'
 import { Collapse } from '@toptal/picasso-collapse'
 
 type VariantType = 'bordered' | 'default' | 'withHeaderBar'
@@ -36,17 +36,19 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const variantMapping: { [K in VariantType]: string | string[] } = {
-  default: '[&>_:last-child:not(:first-child)]:mt-6',
+const defaultChildMargin = '[&>:last-child:not(:first-child)]:mt-6'
+
+const classesByVariant: { [K in VariantType]: string | string[] } = {
+  default: defaultChildMargin,
   bordered: [
-    '[&>_:last-child:not(:first-child)]:mt-6',
+    defaultChildMargin,
     'border rounded-md border-solid border-gray-300',
-    'p-8 [&_>_:last-child]:pb-0',
+    'p-8 [&>:last-child]:pb-0',
   ],
   withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
 }
 
-const headerMapping: { [K in VariantType]: string | string[] } = {
+const classesByHeader: { [K in VariantType]: string | string[] } = {
   default: 'flex',
   bordered: 'flex',
   withHeaderBar: [
@@ -58,7 +60,7 @@ const headerMapping: { [K in VariantType]: string | string[] } = {
   ],
 }
 
-const collapsedHeaderMapping: { [K in VariantType]: string | string[] } = {
+const classesByCollapsedHeader: { [K in VariantType]: string | string[] } = {
   default: 'pb-0',
   bordered: 'pb-0',
   withHeaderBar: ['border-b-0 rounded-md', 'transition delay-300'],
@@ -150,7 +152,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       {...rest}
       className={twMerge(
         'pt-8',
-        variantMapping[variant],
+        classesByVariant[variant],
         variant === 'default' && collapsed && 'pb-8',
         className
       )}
@@ -158,9 +160,9 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       {hasHeader && (
         <Container
           data-testid={testIds?.header}
-          className={twMerge(
-            headerMapping[variant],
-            collapsed && collapsedHeaderMapping[variant]
+          className={twJoin(
+            classesByHeader[variant],
+            collapsed && classesByCollapsedHeader[variant]
           )}
         >
           {renderTitle()}
@@ -169,7 +171,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         </Container>
       )}
       <Collapse in={!collapsed} unmountOnExit>
-        <Container className={twMerge(variant === 'withHeaderBar' && 'p-6')}>
+        <Container className={variant === 'withHeaderBar' ? 'p-6' : ''}>
           {children}
         </Container>
       </Collapse>
