@@ -1,5 +1,12 @@
 # @toptal/picasso-input
 
+## 2.0.0
+
+### Major Changes
+
+- [#4313](https://github.com/toptal/picasso/pull/4313) [`c3700ac185178d83561ee5fde0b5d259f2d0b049`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049) Thanks [@sashuk](https://github.com/sashuk)!
+- delete InputLabel as it is not used anywhere
+
 ## 1.0.17
 
 ### Patch Changes
