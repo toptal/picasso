@@ -1,5 +1,21 @@
 # Change Log
 
+## 45.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`c3700ac`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049)]:
+  - @toptal/picasso-input@2.0.0
+  - @toptal/picasso-autocomplete@1.0.19
+  - @toptal/picasso-date-picker@1.0.18
+  - @toptal/picasso-number-input@1.0.18
+  - @toptal/picasso-password-input@2.0.4
+  - @toptal/picasso-select@1.0.19
+  - @toptal/picasso-tagselector@1.0.20
+  - @toptal/picasso-timepicker@1.0.18
+  - @toptal/picasso-page@2.0.11
+  - @toptal/picasso-date-select@1.0.19
+
 ## 45.0.1
 
 ### Patch Changes
