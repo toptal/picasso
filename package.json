@@ -38,7 +38,6 @@
     "prepublish": "if [ -f 'yarn.lock' ]; then yarn-deduplicate yarn.lock; fi",
     "refresh:tsconfig-references": "./bin/refresh-tsconfig-references.mjs",
     "release": "yarn build:package && changeset publish",
-    
     "start": "yarn -s build:package && concurrently --names build,storybook --raw yarn:build:package:watch yarn:start:storybook",
     "start:storybook": "start-storybook -p 9001 -c .storybook",
     "symlink": "cross-env ./bin/symlink --link",

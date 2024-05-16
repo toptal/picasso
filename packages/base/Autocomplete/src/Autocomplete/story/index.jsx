@@ -1,3 +1,4 @@
+import { Autocomplete } from '../Autocomplete'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(
@@ -5,47 +6,47 @@ const page = PicassoBook.section('Forms').createPage(
   `${PicassoBook.createSourceLink(__filename)}`
 )
 
-// page.createTabChapter('Props').addComponentDocs({
-//   component: Autocomplete,
-//   name: 'Autocomplete',
-//   additionalDocs: {
-//     options: {
-//       type: {
-//         name: '[]',
-//         description: `
-// {\n
-//   text?: string\n
-//   value?: string\n
-// }
-//         `,
-//       },
-//     },
-//   },
-// })
+page.createTabChapter('Props').addComponentDocs({
+  component: Autocomplete,
+  name: 'Autocomplete',
+  additionalDocs: {
+    options: {
+      type: {
+        name: '[]',
+        description: `
+{\n
+  text?: string\n
+  value?: string\n
+}
+        `,
+      },
+    },
+  },
+})
 
 page
   .createChapter()
-  //   .addTextSection(
-  //     `
-  // Autocomplete supports all the default HTML native props, as Input supports.
+  .addTextSection(
+    `
+  Autocomplete supports all the default HTML native props, as Input supports.
 
-  // ### A note about browser autofilling
+  ### A note about browser autofilling
 
-  // Standard browser autofilling feature is disabled in this component by default, because it's used pretty rarely.
-  // You can enable it by specifying \`enableAutofill\` property. Keep in mind that to enable browser autofilling
-  // you most likely need to specify \`name\` property as well.
+  Standard browser autofilling feature is disabled in this component by default, because it's used pretty rarely.
+  You can enable it by specifying \`enableAutofill\` property. Keep in mind that to enable browser autofilling
+  you most likely need to specify \`name\` property as well.
 
-  // If you're still experiencing browser autofilling and you want to get rid of it, try to wrap
-  // your **Autocomplete** component into \`<Form>\`, you can also specify \`autoComplete='off'\` on that **Form** component
-  // if needed.
+  If you're still experiencing browser autofilling and you want to get rid of it, try to wrap
+  your **Autocomplete** component into \`<Form>\`, you can also specify \`autoComplete='off'\` on that **Form** component
+  if needed.
 
-  // \`\`\`jsx
-  // <Form autoComplete='off'>
-  //   <Autocomplete ... />
-  // </Form>
-  // \`\`\`
-  //     `
-  //   )
+  \`\`\`jsx
+  <Form autoComplete='off'>
+    <Autocomplete ... />
+  </Form>
+  \`\`\`
+      `
+  )
   .addExample(
     'Autocomplete/story/Default.example.tsx',
     'Default',

@@ -14,9 +14,6 @@ export default ({ sizes: { input, borderWidth }, palette }: Theme) =>
       width: 'auto',
     },
     rootAuto: {},
-    stringContent: {
-      fontSize: '0.8125em',
-    },
     poweredByGoogle: {
       padding: '0.75rem 1rem',
       borderTop: `${borderWidth} solid ${palette.grey.light}`,
