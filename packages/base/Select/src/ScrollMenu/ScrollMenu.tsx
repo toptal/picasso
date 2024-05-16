@@ -1,9 +1,9 @@
 import type { ReactNode, RefObject } from 'react'
 import React, { useRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 import { Menu } from '@toptal/picasso-menu'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 export interface Props extends BaseProps {
   children: React.ReactNode
@@ -76,7 +76,7 @@ const ScrollMenu = (props: Props) => {
 
   return (
     <Menu
-      className={cx('bg-white', className)}
+      className={twMerge('bg-white', className)}
       style={style}
       role={role}
       data-testid={dataTestId || testIds?.root}
@@ -87,7 +87,7 @@ const ScrollMenu = (props: Props) => {
         <div
           data-testid={testIds?.list}
           ref={menuRef}
-          className={cx(
+          className={twJoin(
             'overflow-y-auto',
             'max-h-[26.875rem]',
             '[@media(max-height:585px)]:max-h-[calc(50vh-4.3125rem)]',

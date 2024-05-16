@@ -1,6 +1,5 @@
 ---
-'@toptal/picasso-page': major
+'@toptal/picasso-page': patch
 ---
 
 - migrate TopBarMenu to TailwindCSS
-- use `@toptal/picasso-tailwind@2.6.0` (Breaking change)

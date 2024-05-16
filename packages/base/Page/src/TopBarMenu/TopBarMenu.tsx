@@ -24,7 +24,7 @@ export const TopBarMenu = forwardRef<HTMLUListElement, Props>(
         {...rest}
         allowNestedNavigation={false}
         ref={ref}
-        className='block lgPage:flex'
+        className='block min-[1280px]:flex'
       >
         {items}
       </Menu>

@@ -109,7 +109,7 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
               onClick={onBackClick}
             >
               <Typography size='xsmall' color='dark-grey' variant='body'>
-                <BackMinor16 className='mt-[-1px] mr-1 ml-[-5px] align-middle' />
+                <BackMinor16 className='-mt-[1px] mr-1 -ml-[5px] align-middle' />
                 Back
               </Typography>
             </MenuItem>

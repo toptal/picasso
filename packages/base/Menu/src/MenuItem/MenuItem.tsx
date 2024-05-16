@@ -73,14 +73,11 @@ const getFontColor = ({
     return 'text-black'
   }
   if (variant === 'dark') {
-    return twJoin(
-      'focus:text-white',
-      highlighted ? 'text-white' : 'text-gray-500'
-    )
+    return ['focus:text-white', highlighted ? 'text-white' : 'text-gray-500']
   }
 }
 
-const getBgColor = ({
+const getBackgroundAndActionStyles = ({
   variant,
   highlighted,
   nonSelectable,
@@ -108,7 +105,7 @@ const getBgColor = ({
     }
   }
 
-  return twJoin(bgColor, actionBgColor)
+  return [bgColor, actionBgColor]
 }
 
 export const MenuItem: OverridableComponent<Props> = forwardRef<
@@ -169,7 +166,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
         // Link component styles, this is the only difference between them now
         className={twMerge(
           getFontColor({ variant, highlighted }),
-          getBgColor({ variant, highlighted, nonSelectable }),
+          getBackgroundAndActionStyles({ variant, highlighted, nonSelectable }),
           disableGutters ? 'p-0' : 'px-4 py-[0.375rem]',
           'min-w-[9rem] w-auto min-h-[unset] sm:min-h-[auto] md:min-h-0 relative cursor-pointer',
           'transition-colors duration-150 ease-in-out',
