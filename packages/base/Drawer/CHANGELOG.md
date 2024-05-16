@@ -1,5 +1,12 @@
 # @toptal/picasso-drawer
 
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+
 ## 2.0.8
 
 ### Patch Changes

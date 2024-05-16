@@ -1,5 +1,13 @@
 # @toptal/picasso-button
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`81ba64e`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746)]:
+  - @toptal/picasso-checkbox@2.0.2
+  - @toptal/picasso-radio@2.0.2
+
 ## 2.0.2
 
 ### Patch Changes
