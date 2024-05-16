@@ -38,7 +38,7 @@ export interface Props extends BaseProps {
 
 const defaultChildMargin = '[&>:last-child:not(:first-child)]:mt-6'
 
-const classesByVariant: { [K in VariantType]: string | string[] } = {
+const classesByVariant: Record<VariantType, string | string[]> = {
   default: defaultChildMargin,
   bordered: [
     defaultChildMargin,
@@ -48,7 +48,7 @@ const classesByVariant: { [K in VariantType]: string | string[] } = {
   withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
 }
 
-const classesByHeader: { [K in VariantType]: string | string[] } = {
+const classesByHeader: Record<VariantType, string | string[]> = {
   default: 'flex',
   bordered: 'flex',
   withHeaderBar: [
@@ -60,7 +60,7 @@ const classesByHeader: { [K in VariantType]: string | string[] } = {
   ],
 }
 
-const classesByCollapsedHeader: { [K in VariantType]: string | string[] } = {
+const classesByCollapsedHeader: Record<VariantType, string | string[]> = {
   default: 'pb-0',
   bordered: 'pb-0',
   withHeaderBar: ['border-b-0 rounded-md', 'transition delay-300'],
