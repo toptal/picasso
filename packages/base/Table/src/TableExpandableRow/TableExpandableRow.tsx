@@ -1,26 +1,19 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useRef, useEffect } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Collapse as MUICollapse } from '@material-ui/core'
-import type { BaseProps } from '@toptal/picasso-shared'
+import { Collapse } from '@toptal/picasso-collapse'
+import { type BaseProps } from '@toptal/picasso-shared'
+import { twJoin } from 'tailwind-merge'
 
 import { TableRow } from '../TableRow'
 import { TableCell } from '../TableCell'
-import styles from './styles'
 
 const MAX_COL_SPAN = 100
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTableExpandableRow',
-})
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */
   children: ReactNode
   /** Collapsible content of `TableExpandableRow` */
-  content: ReactNode
+  content: React.ReactElement
   /** Whether the row is in collapsed or expanded state */
   expanded?: boolean
   /** Set a stripe even background for the row */
@@ -41,7 +34,6 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
       style,
       ...rest
     } = props
-    const classes = useStyles()
 
     const wasExpandedOnce = useRef(false)
     const shouldTransition = !defaultExpanded || wasExpandedOnce.current
@@ -69,15 +61,19 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {row}
         {expanded && (
           <TableRow
-            className={cx(className, {
-              [classes.stripeEven]: stripeEven,
-            })}
+            className={twJoin(className, stripeEven && 'bg-gray-100')}
             style={style}
           >
-            <TableCell className={classes.noPadding} colSpan={MAX_COL_SPAN}>
-              <MUICollapse appear={shouldTransition} in>
+            <TableCell
+              className={twJoin(
+                'p-0 last:pr-0',
+                stripeEven && 'bg-[rgba(235,236,237,0.32)]'
+              )}
+              colSpan={MAX_COL_SPAN}
+            >
+              <Collapse appear={shouldTransition} in>
                 {content}
-              </MUICollapse>
+              </Collapse>
             </TableCell>
           </TableRow>
         )}
