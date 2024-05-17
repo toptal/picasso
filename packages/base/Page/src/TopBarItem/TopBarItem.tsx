@@ -6,7 +6,7 @@ import type {
 import type { ElementType, ReactElement } from 'react'
 import React, { forwardRef, memo } from 'react'
 import type { MenuItemProps } from '@material-ui/core/MenuItem'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge'
 import { noop } from '@toptal/picasso-utils'
 
 import { SidebarItem } from '../SidebarItem'
@@ -24,17 +24,16 @@ export interface Props extends BaseProps, TextLabelProps {
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-const rootClasses = twJoin(
+const rootClasses = [
   'min-[1280px]:text-gray-600 min-[1280px]:p-0 min-[1280px]:h-auto',
   'min-[1280px]:w-auto min-[1280px]:m-0 min-[1280px]:flex-auto',
-  'min-[1280px]:[&_p]:text-sm'
-)
-
-const separatorClasses = twJoin(
+  'min-[1280px]:[&_p]:text-sm',
+]
+const separatorClasses = [
   'min-[1280px]:before:[&:not(:first-child)]:content-[""]',
   'min-[1280px]:before:bg-gray-600 min-[1280px]:before:inline-block',
-  'min-[1280px]:before:h-2 min-[1280px]:before:mx-2 min-[1280px]:before:w-[1px]'
-)
+  'min-[1280px]:before:h-2 min-[1280px]:before:mx-2 min-[1280px]:before:w-[1px]',
+]
 const bgClasses =
   'min-[1280px]:hover:bg-transparent min-[1280px]:focus:bg-transparent'
 const textColorClasses =
