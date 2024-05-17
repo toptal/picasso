@@ -24,7 +24,6 @@
   "dependencies": {
     "@toptal/picasso-autocomplete": "1.0.21",
     "@toptal/picasso-form": "3.0.4",
-    "@toptal/picasso-input": "2.0.2",
     "@toptal/picasso-outlined-input": "1.0.19",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-tag": "2.0.2",

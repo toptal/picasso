@@ -1,8 +1,7 @@
-import type { Theme } from '@material-ui/core/styles'
+// import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
-export default (theme: Theme) =>
+export default () =>
   createStyles({
     root: {
       paddingRight: 0,
@@ -16,8 +15,4 @@ export default (theme: Theme) =>
       },
       '-moz-appearance': 'textfield',
     },
-    horizontalLayout: {
-      width: '100%',
-    },
-    ...highlightAutofillStyles(theme),
   })

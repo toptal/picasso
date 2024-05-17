@@ -13,10 +13,14 @@ import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
 import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
 import capitalize from '@material-ui/core/utils/capitalize'
 import type { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
-import { InputAdornment , InputValidIconAdornment } from '@toptal/picasso-input-adornment'
+import {
+  InputAdornment,
+  InputValidIconAdornment,
+} from '@toptal/picasso-input-adornment'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
-import { noop , usePropDeprecationWarning } from '@toptal/picasso-utils'
+import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import styles from './styles'
 
@@ -79,6 +83,7 @@ export interface Props
     resetButton?: string
     validIcon?: string
   }
+  highlight?: 'autofill'
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -147,6 +152,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     onResetClick = noop,
     inputRef,
     testIds,
+    highlight,
     ...rest
   } = props
 
@@ -159,6 +165,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
   })
 
+  const { layout } = useFieldsLayoutContext()
   const classes = useStyles(props)
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
@@ -190,8 +197,12 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
           classes.root,
           classes[`root${capitalize(width)}`],
           classes[`root${capitalize(size)}`],
-          { [`${classes.hidden}`]: type === 'hidden' },
-          { [classes.rootDark]: isDark }
+          {
+            [`${classes.hidden}`]: type === 'hidden',
+            [classes.rootDark]: isDark,
+            [classes.highlightAutofill]: highlight === 'autofill',
+            [classes.horizontalLayout]: layout === 'horizontal',
+          }
         ),
         input: cx(classes.input, classes[`input${capitalize(size)}`], {
           [classes.inputDark]: isDark,
