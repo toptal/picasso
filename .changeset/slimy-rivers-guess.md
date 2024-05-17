@@ -1,6 +1,9 @@
 ---
 '@toptal/picasso-modal': major
+'@toptal/picasso': major
 ---
+
+### Modal
 
 - as we don't use Paper from material ui anymore, we have to change
   `paperProps` to `HTMLDivAttributes`.

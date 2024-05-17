@@ -125,12 +125,7 @@ export const NonNativeSelect = documentable(
       const { layout } = useFieldsLayoutContext()
 
       const searchInput = showSearch ? (
-        <MenuItem
-          as='div'
-          nonSelectable
-          disableGutters
-          className={classes.searchInputGutters}
-        >
+        <MenuItem as='div' nonSelectable className='px-2 pt-[0.375rem]'>
           <OutlinedInput
             inputRef={searchInputRef}
             className={classes.searchOutlinedInput}
