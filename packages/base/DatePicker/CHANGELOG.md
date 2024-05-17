@@ -1,5 +1,12 @@
 # @toptal/picasso-date-picker
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`c3700ac`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049)]:
+  - @toptal/picasso-input@2.0.0
+
 ## 1.0.17
 
 ### Patch Changes

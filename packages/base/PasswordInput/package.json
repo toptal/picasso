@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-password-input",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Toptal UI components library - PasswordInput",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-button": "2.0.3",
     "@toptal/picasso-icons": "1.1.1",
-    "@toptal/picasso-input": "1.0.17",
+    "@toptal/picasso-input": "2.0.0",
     "@toptal/picasso-input-adornment": "1.0.4",
     "@toptal/picasso-outlined-input": "1.0.17",
     "@toptal/picasso-utils": "1.0.3",
