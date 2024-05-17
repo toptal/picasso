@@ -82,7 +82,7 @@ exports[`Form renders with an error 1`] = `
           data-field-has-error="true"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium Mui-error Mui-error MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoOutlinedInput-error PicassoOutlinedInput-error Mui-error Mui-error MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
           >
             <input
               aria-invalid="true"
