@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 2.0.12
+
+### Patch Changes
+
+- [#4312](https://github.com/toptal/picasso/pull/4312) [`3d327e88a923d2dfeafe3e2f0ba5a69416eb6270`](https://github.com/toptal/picasso/commit/3d327e88a923d2dfeafe3e2f0ba5a69416eb6270) Thanks [@aesqe](https://github.com/aesqe)!
+- update PageTopBarMenu avatar prop type to string
+
 ## 2.0.11
 
 ### Patch Changes
