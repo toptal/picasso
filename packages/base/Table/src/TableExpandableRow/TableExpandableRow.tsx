@@ -13,7 +13,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   /** Should be valid `<tr>` children such as `Table.Cell`. */
   children: ReactNode
   /** Collapsible content of `TableExpandableRow` */
-  content: React.ReactElement
+  content: ReactNode
   /** Whether the row is in collapsed or expanded state */
   expanded?: boolean
   /** Set a stripe even background for the row */
@@ -61,16 +61,13 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {row}
         {expanded && (
           <TableRow
-            className={twJoin(className, stripeEven && 'bg-gray-100')}
+            className={twJoin(
+              className,
+              stripeEven && 'bg-gray-200 bg-opacity-[32]'
+            )}
             style={style}
           >
-            <TableCell
-              className={twJoin(
-                'p-0 last:pr-0',
-                stripeEven && 'bg-[rgba(235,236,237,0.32)]'
-              )}
-              colSpan={MAX_COL_SPAN}
-            >
+            <TableCell className='p-0 last:pr-0' colSpan={MAX_COL_SPAN}>
               <Collapse appear={shouldTransition} in>
                 {content}
               </Collapse>
