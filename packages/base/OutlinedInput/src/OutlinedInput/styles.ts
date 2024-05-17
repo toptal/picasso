@@ -107,6 +107,9 @@ export default ({ palette, sizes: { input } }: Theme) =>
           ...outline(palette.common.white),
         },
       },
+      '&$error': {
+        backgroundColor: palette.common.white,
+      },
     },
     hidden: {
       display: 'none',
@@ -178,4 +181,5 @@ export default ({ palette, sizes: { input } }: Theme) =>
     horizontalLayout: {
       width: '100%',
     },
+    error: {},
   })

@@ -202,6 +202,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
             [classes.rootDark]: isDark,
             [classes.highlightAutofill]: highlight === 'autofill',
             [classes.horizontalLayout]: layout === 'horizontal',
+            [classes.error]: Boolean(status === 'error' || error),
           }
         ),
         input: cx(classes.input, classes[`input${capitalize(size)}`], {
@@ -213,7 +214,12 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
         }),
         focused: classes.focused,
       }}
-      className={className}
+      className={cx(
+        {
+          [classes.error]: Boolean(status === 'error' || error),
+        },
+        className
+      )}
       style={style}
       labelWidth={0}
       fullWidth={width === 'full'}

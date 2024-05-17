@@ -38,7 +38,7 @@ export default (theme: Theme) => {
       outline: 0,
     },
     outlinedInput: {
-      backgroundColor: palette.common.white,
+      // backgroundColor: palette.common.white,
       paddingRight: '1.625rem',
     },
     searchOutlinedInput: {
