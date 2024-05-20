@@ -99,7 +99,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       {icon && (
         <span
           className={twMerge(
-            'w-min h-min flex items-center -mr-1 ml-3',
+            'w-min h-min flex items-center ml-3',
             disabled ? 'text-gray-500' : 'text-graphite-700'
           )}
         >
