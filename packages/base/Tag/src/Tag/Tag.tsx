@@ -77,6 +77,18 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     }
   }
 
+  let iconCloned = null
+
+  if (icon && React.isValidElement(icon)) {
+    iconCloned = React.cloneElement(icon as ReactElement<BaseProps>, {
+      className: twMerge(
+        'flex items-center -mr-1 ml-3',
+        disabled ? 'text-gray-500' : 'text-graphite-700',
+        (icon.props as BaseProps).className
+      ),
+    })
+  }
+
   return (
     <Root
       role={role || (onDelete || onClick ? 'button' : undefined)}
@@ -96,16 +108,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       tabIndex={onDelete || onClick ? 0 : undefined}
       {...rest}
     >
-      {icon && (
-        <span
-          className={twMerge(
-            'w-min h-min flex items-center ml-3',
-            disabled ? 'text-gray-500' : 'text-graphite-700'
-          )}
-        >
-          {icon}
-        </span>
-      )}
+      {iconCloned}
 
       <span className='flex gap-2 px-3 overflow-hidden items-center'>
         <Typography

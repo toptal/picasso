@@ -19,7 +19,7 @@ exports[`TagSelector disabled render 1`] = `
         >
           <div
             aria-disabled="true"
-            class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-gray border-gray pointer-events"
+            class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-gray border-gray pointer-events"
             role="button"
             tabindex="0"
           >
@@ -27,7 +27,7 @@ exports[`TagSelector disabled render 1`] = `
               class="flex gap-2 px-3 overflow-hidden items-center"
             >
               <span
-                class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+                class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
               >
                 Afghanistan
               </span>
@@ -100,7 +100,7 @@ exports[`TagSelector preselected value 1`] = `
             class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
-              class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+              class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
               role="button"
               tabindex="0"
             >
@@ -108,7 +108,7 @@ exports[`TagSelector preselected value 1`] = `
                 class="flex gap-2 px-3 overflow-hidden items-center"
               >
                 <span
-                  class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+                  class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
                 >
                   Afghanistan
                 </span>

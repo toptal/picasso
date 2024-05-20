@@ -6,7 +6,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
       role="button"
       tabindex="0"
@@ -15,7 +15,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -46,14 +46,14 @@ exports[`Tag renders \`blue\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-blue border-blue"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-blue border-blue"
       data-testid="tag"
     >
       <span
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -69,14 +69,14 @@ exports[`Tag renders \`light-grey\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
     >
       <span
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -92,14 +92,14 @@ exports[`Tag renders with adornment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
     >
       <span
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           foobar
         </span>
@@ -129,27 +129,23 @@ exports[`Tag renders with connection and icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle text-graphite border-gray"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
     >
-      <span
-        class="w-min h-min flex items-center -mr ml-3 text-graphite"
+      <svg
+        class="PicassoSvgSettings16-root flex items-center -mr ml-3 text-graphite"
+        style="min-width: 16px; min-height: 16px;"
+        viewBox="0 0 16 16"
       >
-        <svg
-          class="PicassoSvgSettings16-root"
-          style="min-width: 16px; min-height: 16px;"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M6 2.341V0h4v2.341a5.994 5.994 0 0 1 1.9 1.098l2.028-1.171 2 3.464L13.9 6.903a6.034 6.034 0 0 1 0 2.194l2.028 1.17-2 3.465-2.029-1.171A5.994 5.994 0 0 1 10 13.659V16H6v-2.341a5.994 5.994 0 0 1-1.9-1.098l-2.028 1.171-2-3.464L2.1 9.097a6.034 6.034 0 0 1 0-2.194L.072 5.733l2-3.465L4.1 3.439A5.994 5.994 0 0 1 6 2.341ZM7 1v2.049l-.667.235a4.993 4.993 0 0 0-1.582.915l-.537.46-1.776-1.025-1 1.732L3.212 6.39l-.129.695a5.034 5.034 0 0 0 0 1.83l.129.695-1.774 1.024 1 1.732 1.776-1.025.537.46c.467.4 1.003.71 1.582.915L7 12.95V15h2v-2.049l.667-.235a4.993 4.993 0 0 0 1.582-.915l.537-.46 1.776 1.025 1-1.732-1.774-1.024.129-.695a5.034 5.034 0 0 0 0-1.83l-.129-.695 1.774-1.024-1-1.732-1.776 1.025-.537-.46a4.993 4.993 0 0 0-1.582-.915L9 3.05V1H7Zm1 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0-1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
-          />
-        </svg>
-      </span>
+        <path
+          d="M6 2.341V0h4v2.341a5.994 5.994 0 0 1 1.9 1.098l2.028-1.171 2 3.464L13.9 6.903a6.034 6.034 0 0 1 0 2.194l2.028 1.17-2 3.465-2.029-1.171A5.994 5.994 0 0 1 10 13.659V16H6v-2.341a5.994 5.994 0 0 1-1.9-1.098l-2.028 1.171-2-3.464L2.1 9.097a6.034 6.034 0 0 1 0-2.194L.072 5.733l2-3.465L4.1 3.439A5.994 5.994 0 0 1 6 2.341ZM7 1v2.049l-.667.235a4.993 4.993 0 0 0-1.582.915l-.537.46-1.776-1.025-1 1.732L3.212 6.39l-.129.695a5.034 5.034 0 0 0 0 1.83l.129.695-1.774 1.024 1 1.732 1.776-1.025.537.46c.467.4 1.003.71 1.582.915L7 12.95V15h2v-2.049l.667-.235a4.993 4.993 0 0 0 1.582-.915l.537-.46 1.776 1.025 1-1.732-1.774-1.024.129-.695a5.034 5.034 0 0 0 0-1.83l-.129-.695 1.774-1.024-1-1.732-1.776 1.025-.537-.46a4.993 4.993 0 0 0-1.582-.915L9 3.05V1H7Zm1 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm0-1a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
+        />
+      </svg>
       <span
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           foobar
         </span>
