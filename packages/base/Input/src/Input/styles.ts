@@ -5,7 +5,6 @@ import '@toptal/picasso-input-adornment/styles'
 
 import highlightAutofillStyles from '../InputBase/highlight-styles'
 import '../InputBase/styles'
-import '../InputLabel/styles'
 
 export default (theme: Theme) =>
   createStyles({

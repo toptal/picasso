@@ -1,5 +1,42 @@
 # @toptal/picasso-page
 
+## 2.0.12
+
+### Patch Changes
+
+- [#4312](https://github.com/toptal/picasso/pull/4312) [`3d327e88a923d2dfeafe3e2f0ba5a69416eb6270`](https://github.com/toptal/picasso/commit/3d327e88a923d2dfeafe3e2f0ba5a69416eb6270) Thanks [@aesqe](https://github.com/aesqe)!
+- update PageTopBarMenu avatar prop type to string
+
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-autocomplete@1.0.19
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+  - @toptal/picasso-autocomplete@1.0.18
+  - @toptal/picasso-accordion@1.0.17
+  - @toptal/picasso-notification@2.0.9
+
+## 2.0.9
+
+### Patch Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update peer dependency on `@toptal/picasso-tailwind` to have open range
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+  - @toptal/picasso-accordion@1.0.16
+  - @toptal/picasso-notification@2.0.8
+  - @toptal/picasso-autocomplete@1.0.17
+
 ## 2.0.8
 
 ### Patch Changes

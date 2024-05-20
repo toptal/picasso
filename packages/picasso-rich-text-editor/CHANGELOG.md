@@ -1,5 +1,41 @@
 # @toptal/picasso-rich-text-editor
 
+## 13.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`c3700ac`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049)]:
+  - @toptal/picasso-input@2.0.0
+  - @toptal/picasso-select@1.0.19
+
+## 13.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`81ba64e`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746)]:
+  - @toptal/picasso-form@3.0.2
+  - @toptal/picasso-button@2.0.3
+  - @toptal/picasso-file-input@1.0.18
+  - @toptal/picasso-input@1.0.17
+  - @toptal/picasso-select@1.0.18
+  - @toptal/picasso-modal@2.0.3
+  - @toptal/picasso-outlined-input@1.0.17
+
+## 13.0.2
+
+### Patch Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update peer dependency on `@toptal/picasso-tailwind` to have open range
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+  - @toptal/picasso-modal@2.0.2
+  - @toptal/picasso-file-input@1.0.17
+  - @toptal/picasso-outlined-input@1.0.16
+  - @toptal/picasso-input@1.0.16
+  - @toptal/picasso-select@1.0.17
+
 ## 13.0.1
 
 ### Patch Changes

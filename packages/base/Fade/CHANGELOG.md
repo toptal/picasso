@@ -1,5 +1,12 @@
 # @toptal/picasso-fade
 
+## 1.0.4
+
+### Patch Changes
+
+- [#4308](https://github.com/toptal/picasso/pull/4308) [`81ba64e3ee6206aa7119fa2069ca685228567746`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- make wider range for `@toptal/picasso-tailwind` peer dependency
+
 ## 1.0.3
 
 ### Patch Changes
