@@ -6,7 +6,7 @@ exports[`Indicator renders in red color 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoIndicator-root PicassoIndicator-red"
+      class="w-2 h-2 rounded-[50%] bg-red"
       role="img"
     />
   </div>
