@@ -1,5 +1,18 @@
 # @toptal/picasso-tag
 
+## 2.0.0
+
+### Major Changes
+
+- [#4316](https://github.com/toptal/picasso/pull/4316) [`52594865c858dab4d7a3e2419ca87d38d7d01588`](https://github.com/toptal/picasso/commit/52594865c858dab4d7a3e2419ca87d38d7d01588) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Tag
+
+- migrate to TailwindCSS
+- remove `Chip`
+- add `@toptal/picasso-tailwind` as a peer dependency
+- delete `hovered` prop from `Tag` (it doesn't affect anything)
+
 ## 1.1.2
 
 ### Patch Changes
