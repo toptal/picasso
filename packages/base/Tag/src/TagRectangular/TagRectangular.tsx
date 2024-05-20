@@ -27,7 +27,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
         {...rest}
         ref={ref}
         className={twMerge(
-          'transition-none rounded-sm font-semibold h-4 inline-flex content-center align-middle flex-wrap',
+          'text-lg transition-none rounded-sm font-semibold h-4 inline-flex content-center justify-center align-middle flex-wrap',
           variantsRootClasses[variant],
           className
         )}

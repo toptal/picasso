@@ -83,9 +83,10 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
       aria-disabled={disabled}
       ref={ref}
       className={twMerge(
-        `transition-none border border-solid rounded-[6.25rem]
+        `text-lg transition-none border border-solid rounded-[6.25rem]
           h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
           group align-middle`,
+        'leading-[inherit]',
         classByVariant[variant],
         className,
         disabled && 'text-gray-500 border-gray-200 pointer-events-none'
@@ -113,6 +114,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
           weight='semibold'
           as='span'
           titleCase={titleCase}
+          className='leading-[inherit]'
           noWrap
         >
           {children}
