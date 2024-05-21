@@ -2,5 +2,10 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
-  "references": [{ "path": "../../picasso-provider" }, { "path": "../Utils" }]
+  "references": [
+    { "path": "../../picasso-provider" },
+    { "path": "../../picasso-tailwind" },
+    { "path": "../Typography" },
+    { "path": "../Utils" }
+  ]
 }
