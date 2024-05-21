@@ -1,5 +1,13 @@
 # @toptal/picasso-radio
 
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@3.0.3
+  - @toptal/picasso-grid@3.0.2
+
 ## 2.0.2
 
 ### Patch Changes
