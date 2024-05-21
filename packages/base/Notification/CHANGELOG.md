@@ -1,5 +1,13 @@
 # @toptal/picasso-notification
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-button@2.0.4
+
 ## 2.0.9
 
 ### Patch Changes
