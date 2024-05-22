@@ -1,5 +1,37 @@
 # @toptal/picasso-input
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-form@3.0.3
+  - @toptal/picasso-input-adornment@1.0.5
+  - @toptal/picasso-outlined-input@1.0.18
+
+## 2.0.0
+
+### Major Changes
+
+- [#4313](https://github.com/toptal/picasso/pull/4313) [`c3700ac185178d83561ee5fde0b5d259f2d0b049`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049) Thanks [@sashuk](https://github.com/sashuk)!
+- delete InputLabel as it is not used anywhere
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies [[`81ba64e`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746)]:
+  - @toptal/picasso-form@3.0.2
+  - @toptal/picasso-outlined-input@1.0.17
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.0.16
+
 ## 1.0.15
 
 ### Patch Changes

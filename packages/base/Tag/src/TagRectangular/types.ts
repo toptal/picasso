@@ -1,5 +1,5 @@
-import type { HTMLAttributes, AnchorHTMLAttributes } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
+import type { AnchorHTMLAttributes, HTMLAttributes } from 'react'
 
 import type { IndicatorProps } from '../Indicator'
 

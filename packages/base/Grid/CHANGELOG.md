@@ -1,5 +1,19 @@
 # @toptal/picasso-grid
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+
+## 3.0.1
+
+### Patch Changes
+
+- [#4308](https://github.com/toptal/picasso/pull/4308) [`81ba64e3ee6206aa7119fa2069ca685228567746`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- make wider range for `@toptal/picasso-tailwind` peer dependency
+
 ## 3.0.0
 
 ### Patch Changes

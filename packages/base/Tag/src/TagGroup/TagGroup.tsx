@@ -1,15 +1,7 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoLabelGroup',
-})
+import { twMerge } from 'tailwind-merge'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Tag` components which you want to render inside `TagGroup` */
@@ -22,10 +14,15 @@ export const TagGroup = forwardRef<HTMLDivElement, Props>(function TagGroup(
 ) {
   const { children, className, ...rest } = props
 
-  const classes = useStyles()
-
   return (
-    <div {...rest} ref={ref} className={cx(classes.root, className)}>
+    <div
+      {...rest}
+      ref={ref}
+      className={twMerge(
+        'min-w-full transition-none -mr-[0.5em] -mb-[0.5em] [&>*]:mr-2 [&>*]:mb-2',
+        className
+      )}
+    >
       {children}
     </div>
   )
