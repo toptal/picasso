@@ -124,6 +124,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
               '-mt-[7px] -ml-[6px] outline-0 absolute  transition-shadow cursor-pointer',
               isThumbHidden && 'hidden'
             ),
+            role: 'slider',
           },
           track: {
             className: twJoin(
