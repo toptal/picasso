@@ -6,7 +6,7 @@ exports[`Table renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="w-full border-collapse border-spacing"
     >
       <thead
         class="border-0 border-solid border-b border-gray"

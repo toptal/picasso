@@ -6,7 +6,7 @@ exports[`TableFooter renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="w-full border-collapse border-spacing"
     >
       <tfoot
         class="border-0 border-solid border-t border-gray"
