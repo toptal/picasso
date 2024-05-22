@@ -1,16 +1,8 @@
 import type { PropsWithChildren } from 'react'
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@toptal/picasso-typography'
 import { Bullet16, CheckMinor16, CloseMinor16 } from '@toptal/picasso-icons'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
-
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'FieldRequirementItem',
-})
 
 export type FieldRequirementItemStatus = 'default' | 'success' | 'error'
 type ColorType = 'dark-grey' | 'inherit' | 'red'
@@ -37,15 +29,13 @@ interface Props extends PropsWithChildren<{}> {
   }
 }
 const FieldRequirementItem = ({ children, status, testIds }: Props) => {
-  const classes = useStyles()
-
   const IconComponent = IconsMap[status]
   const iconTestId = getIconTestId(status, testIds)
 
   return (
     <Grid.Item
       xs={6}
-      className={classes.fieldRequirementItem}
+      className='flex items-center text-gray-600'
       data-testid={testIds?.root}
     >
       <IconComponent color={colorMap[status]} data-testid={iconTestId} />
