@@ -18,6 +18,7 @@ exports[`Slider renders 1`] = `
       <span
         class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 absolute transition-shadow cursor-pointer"
         data-index="0"
+        role="slider"
         style="left: 0%;"
       >
         <input
@@ -66,6 +67,7 @@ exports[`Slider with initial value 1`] = `
       <span
         class="base-Slider group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 absolute transition-shadow cursor-pointer"
         data-index="0"
+        role="slider"
         style="left: 4%;"
       >
         <input
