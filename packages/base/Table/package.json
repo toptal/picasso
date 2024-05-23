@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-table",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "Toptal UI components library - Table",
   "publishConfig": {
     "access": "public"
@@ -24,11 +24,13 @@
   "dependencies": {
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.1",
-    "@toptal/picasso-button": "2.0.3",
-    "@toptal/picasso-icons": "1.1.1",
+    "@toptal/picasso-button": "2.0.4",
+    "@toptal/picasso-collapse": "1.0.3",
+    "@toptal/picasso-icons": "1.2.0",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -37,7 +39,8 @@
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
-    "react": ">=16.12.0 < 19.0.0"
+    "react": ">=16.12.0 < 19.0.0",
+    "tailwindcss": ">=3"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "4.2.1",

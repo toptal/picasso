@@ -1,5 +1,13 @@
 # @toptal/picasso-prompt-modal
 
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.4
+  - @toptal/picasso-modal@2.0.4
+
 ## 1.0.17
 
 ### Patch Changes

@@ -1,11 +1,8 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { TableFooter as MUITableFooter } from '@material-ui/core'
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from 'tailwind-merge'
 
-import styles from './styles'
 import { TableSection, TableSectionContext } from '../Table'
 
 export interface Props
@@ -15,26 +12,23 @@ export interface Props
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTableFooter',
-})
-
 export const TableFooter = forwardRef<HTMLTableSectionElement, Props>(
   function TableFooter(props, ref) {
     const { className, style, children, ...rest } = props
-    const classes = useStyles()
 
     return (
       <TableSectionContext.Provider value={TableSection.FOOTER}>
-        <MUITableFooter
+        <tfoot
           {...rest}
           ref={ref}
-          classes={classes}
-          className={className}
+          className={twMerge(
+            'border-0 border-solid border-t border-gray-200',
+            className
+          )}
           style={style}
         >
           {children}
-        </MUITableFooter>
+        </tfoot>
       </TableSectionContext.Provider>
     )
   }
