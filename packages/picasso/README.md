@@ -110,6 +110,10 @@ render () {
 
 **_A [`Picasso`](/?path=/story/components-picasso--picasso) component rendered at root level is required for the library theme configuration and theme to work properly._**
 
+## Merging classes
+
+When working with TailwindCSS merging classes is vital. Read our [Merging classes](?path=/story/tutorials-merging-classes--merging-classes) tutorial to make it right.
+
 ## Documentation
 
 Documentation and demos are available at [picasso.toptal.net](https://picasso.toptal.net/).
