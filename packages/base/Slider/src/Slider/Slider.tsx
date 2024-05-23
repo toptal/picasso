@@ -38,10 +38,20 @@ export interface Props extends BaseProps {
     value: number | number[],
     activeThumb: number
   ) => void
+  /** Callback invoked on focus */
+  onFocus?: (event: React.FocusEvent<HTMLElement>) => void
   /** Hide thumb when value is undefined or null. Works only when the component is controlled. */
   hideThumbOnEmpty?: boolean
   /** Disable track highlight. */
   disableTrackHighlight?: boolean
+  /**
+   * Name attribute of the `input` element.
+   */
+  name?: string
+  /**
+   * Id attribute of the `input` element.
+   */
+  id?: string
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
@@ -59,10 +69,13 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     step,
     disabled,
     onChange,
+    onFocus,
     hideThumbOnEmpty,
     disableTrackHighlight,
     className,
     style,
+    name,
+    id,
     'data-private': dataPrivate,
     'data-testid': dataTestid,
   } = props
@@ -100,6 +113,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         disabled={disabled}
         data-testid={dataTestid}
         data-private={dataPrivate}
+        onFocus={onFocus}
+        name={name}
+        id={id}
         slots={{
           mark: SliderMark,
           valueLabel: SliderValueLabel,
