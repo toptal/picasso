@@ -2,4 +2,6 @@
 '@toptal/picasso-forms': major
 ---
 
-- remove value from Switch props
+### Switch
+
+- remove `value` property from Switch

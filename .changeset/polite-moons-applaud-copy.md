@@ -1,5 +1,9 @@
 ---
 '@toptal/picasso-switch': major
+'@toptal/picasso': major
 ---
 
-- migrate Switch component to TailwindCSS. Remove value from Switch props.
+### Switch
+
+- migrate Switch component from MUI@4 to MUI Base and TailwindCSS
+- remove `value` property from Switch.

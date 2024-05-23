@@ -1,5 +1,6 @@
 ---
 '@toptal/picasso-collapse': patch
+'@toptal/picasso': patch
 ---
 
 ### Collapse
