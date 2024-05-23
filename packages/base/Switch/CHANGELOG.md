@@ -1,5 +1,12 @@
 # @toptal/picasso-switch
 
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@3.0.3
+
 ## 1.0.10
 
 ### Patch Changes

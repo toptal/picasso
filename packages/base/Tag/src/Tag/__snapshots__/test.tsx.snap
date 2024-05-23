@@ -6,23 +6,23 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root MuiChip-deletable"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
       role="button"
       tabindex="0"
     >
       <span
-        class="MuiChip-label PicassoLabel-label"
+        class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="PicassoLabel-innerLabel"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
       </span>
       <span
         aria-label="delete icon"
-        class="PicassoLabel-deleteIcon MuiChip-deleteIcon"
+        class="w-min h-min flex items-center cursor-pointer -ml mr-2"
         role="button"
       >
         <svg
@@ -46,14 +46,14 @@ exports[`Tag renders \`blue\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root PicassoLabel-blue"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-blue border-blue"
       data-testid="tag"
     >
       <span
-        class="MuiChip-label PicassoLabel-label"
+        class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="PicassoLabel-innerLabel"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -69,14 +69,14 @@ exports[`Tag renders \`light-grey\` variant 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
     >
       <span
-        class="MuiChip-label PicassoLabel-label"
+        class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="PicassoLabel-innerLabel"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -92,19 +92,19 @@ exports[`Tag renders with adornment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
     >
       <span
-        class="MuiChip-label PicassoLabel-label"
+        class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="PicassoLabel-innerLabel"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           foobar
         </span>
         <span
-          class="m-0 text-xxs text-inherit font-regular PicassoLabel-connection"
+          class="m-0 text-xxs text-inherit font-regular inline-flex items-center gap-[5px] text-gray group-aria-disabled:text-gray"
         >
           <svg
             class="PicassoSvgLink16-root"
@@ -129,11 +129,11 @@ exports[`Tag renders with connection and icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiChip-root PicassoLabel-root"
+      class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
       data-testid="tag"
     >
       <svg
-        class="PicassoSvgSettings16-root MuiChip-icon PicassoSvgSettings16-darkGrey"
+        class="PicassoSvgSettings16-root flex items-center -mr ml-3 text-graphite"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -142,15 +142,15 @@ exports[`Tag renders with connection and icon 1`] = `
         />
       </svg>
       <span
-        class="MuiChip-label PicassoLabel-label"
+        class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="PicassoLabel-innerLabel"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
         >
           foobar
         </span>
         <span
-          class="m-0 text-xxs text-inherit font-regular PicassoLabel-connection"
+          class="m-0 text-xxs text-inherit font-regular inline-flex items-center gap-[5px] text-gray group-aria-disabled:text-gray"
         >
           <svg
             class="PicassoSvgLink16-root"
