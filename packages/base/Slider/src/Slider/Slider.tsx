@@ -125,6 +125,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
               isThumbHidden && 'hidden'
             ),
             role: 'slider',
+            tabIndex: 0,
           },
           track: {
             className: twJoin(
