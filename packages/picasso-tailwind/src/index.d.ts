@@ -1,1 +1,5 @@
-export const theme: Record<string, string | string[]>
+export const theme: Partial<
+  CustomThemeConfig & {
+    extend: Partial<CustomThemeConfig>
+  }
+>
