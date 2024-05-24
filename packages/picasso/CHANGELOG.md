@@ -1,5 +1,12 @@
 # Change Log
 
+## 45.0.6
+
+### Patch Changes
+
+- [#4321](https://github.com/toptal/picasso/pull/4321) [`d03712b77511528d0139da4b5ef74e797d64446c`](https://github.com/toptal/picasso/commit/d03712b77511528d0139da4b5ef74e797d64446c) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- mention `Merging classes` tutorial in README.md
+
 ## 45.0.5
 
 ### Patch Changes
