@@ -1,5 +1,66 @@
 # Change Log
 
+## 45.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`2820f38`](https://github.com/toptal/picasso/commit/2820f38931f1b2736c4ad20b5609ca562da0d515)]:
+  - @toptal/picasso-typography@2.0.2
+  - @toptal/picasso-account-select@1.0.13
+  - @toptal/picasso-alert@1.0.19
+  - @toptal/picasso-amount@1.0.5
+  - @toptal/picasso-application-update-notification@1.0.19
+  - @toptal/picasso-autocomplete@1.0.21
+  - @toptal/picasso-avatar@2.0.4
+  - @toptal/picasso-breadcrumbs@1.0.9
+  - @toptal/picasso-calendar@1.0.19
+  - @toptal/picasso-drawer@2.0.11
+  - @toptal/picasso-dropzone@1.0.20
+  - @toptal/picasso-empty-state@1.0.8
+  - @toptal/picasso-file-input@1.0.20
+  - @toptal/picasso-form@3.0.4
+  - @toptal/picasso-grid@3.0.3
+  - @toptal/picasso-helpbox@2.0.5
+  - @toptal/picasso-list@2.0.4
+  - @toptal/picasso-menu@1.0.13
+  - @toptal/picasso-modal@2.0.5
+  - @toptal/picasso-note@1.0.7
+  - @toptal/picasso-notification@2.0.11
+  - @toptal/picasso-overview-block@1.0.7
+  - @toptal/picasso-page@2.0.15
+  - @toptal/picasso-pagination@2.0.5
+  - @toptal/picasso-prompt-modal@1.0.19
+  - @toptal/picasso-quote@1.0.5
+  - @toptal/picasso-section@2.0.11
+  - @toptal/picasso-select@1.0.21
+  - @toptal/picasso-show-more@1.0.19
+  - @toptal/picasso-step@1.1.4
+  - @toptal/picasso-table@1.1.16
+  - @toptal/picasso-tabs@2.0.4
+  - @toptal/picasso-tag@2.0.2
+  - @toptal/picasso-timeline@2.0.2
+  - @toptal/picasso-tooltip@1.1.3
+  - @toptal/picasso-typography-overflow@2.0.2
+  - @toptal/picasso-user-badge@2.0.4
+  - @toptal/picasso-tagselector@1.0.23
+  - @toptal/picasso-avatar-upload@1.0.19
+  - @toptal/picasso-date-picker@1.0.20
+  - @toptal/picasso-checkbox@2.0.4
+  - @toptal/picasso-input@2.0.2
+  - @toptal/picasso-number-input@1.0.20
+  - @toptal/picasso-radio@2.0.4
+  - @toptal/picasso-switch@1.0.12
+  - @toptal/picasso-date-select@1.0.21
+  - @toptal/picasso-slider@1.0.6
+  - @toptal/picasso-button@2.0.5
+  - @toptal/picasso-password-input@2.0.6
+  - @toptal/picasso-timepicker@1.0.20
+  - @toptal/picasso-accordion@1.0.19
+  - @toptal/picasso-carousel@1.0.20
+  - @toptal/picasso-outlined-input@1.0.19
+  - @toptal/picasso-skeleton-loader@1.0.19
+  - @toptal/picasso-tree-view@1.0.19
+
 ## 45.0.6
 
 ### Patch Changes
