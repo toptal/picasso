@@ -1,6 +1,5 @@
 import type { ReactNode, HTMLAttributes, ElementType } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
 import type {
   StandardProps,
   ColorType,
@@ -8,6 +7,7 @@ import type {
   SizeType,
 } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import variantToElement from './utils/variant-to-element'
 
@@ -191,7 +191,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   return (
     <Component
       ref={ref}
-      className={cx(
+      className={twMerge(
         'm-0',
         VARIANT_SIZE[variant][size],
         getColor(),

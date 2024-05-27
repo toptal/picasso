@@ -75,7 +75,7 @@ const TimelineRow = ({
           style={{ whiteSpace: 'nowrap' }}
         >
           <Container className={classes.date} right='large'>
-            <Typography className='!leading-6' weight='semibold' size='medium'>
+            <Typography className='leading-6' weight='semibold' size='medium'>
               {date}
             </Typography>
           </Container>
