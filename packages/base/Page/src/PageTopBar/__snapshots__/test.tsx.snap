@@ -168,7 +168,7 @@ exports[`Page.TopBar render with link 1`] = `
                 </div>
               </div>
               <a
-                class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoLink-blue MuiTypography-colorPrimary"
+                class="m-0 font-inherit leading-[1.5em] font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline"
                 href="https://www.toptal.com"
               >
                 <svg

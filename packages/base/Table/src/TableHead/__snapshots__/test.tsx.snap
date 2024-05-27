@@ -6,20 +6,19 @@ exports[`TableHead renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="w-full border-collapse border-spacing"
     >
       <thead
-        class="MuiTableHead-root PicassoTableHead-root"
+        class="border-0 border-solid border-b border-gray"
       >
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableRow-bordered MuiTableRow-head"
+          class="border-0 border-solid border-b border-gray"
         >
           <th
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-head"
-            scope="col"
+            class="h-10 py-2 border-none last:pr-6 px-4 text-left"
           >
             <div
-              class="m-0 text-xxs text-graphite font-semibold"
+              class="m-0 text-xxs font-semibold text-align"
             >
               Head test
             </div>
