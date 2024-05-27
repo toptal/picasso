@@ -1,5 +1,13 @@
 # @toptal/picasso-input
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@3.0.4
+  - @toptal/picasso-outlined-input@1.0.19
+
 ## 2.0.1
 
 ### Patch Changes

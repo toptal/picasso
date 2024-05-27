@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-timeline",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Toptal UI components library - Timeline",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-typography": "2.0.1",
+    "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },

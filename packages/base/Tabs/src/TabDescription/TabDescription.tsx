@@ -11,7 +11,7 @@ const TabDescription = ({ children, disabled }: Props) => {
 
   return (
     <TypographyOverflow
-      className='!mt-[2px]'
+      className='mt-[2px]'
       size='xxsmall'
       inline
       color={color}

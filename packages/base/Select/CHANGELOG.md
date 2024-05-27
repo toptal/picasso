@@ -1,5 +1,16 @@
 # @toptal/picasso-select
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [[`2820f38`](https://github.com/toptal/picasso/commit/2820f38931f1b2736c4ad20b5609ca562da0d515)]:
+  - @toptal/picasso-typography@2.0.2
+  - @toptal/picasso-form@3.0.4
+  - @toptal/picasso-menu@1.0.13
+  - @toptal/picasso-input@2.0.2
+  - @toptal/picasso-outlined-input@1.0.19
+
 ## 1.0.20
 
 ### Patch Changes

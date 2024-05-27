@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tag",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Toptal UI components library - Tag",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-icons": "1.2.0",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-typography": "2.0.1",
+    "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
     "tailwind-merge": "^2.2.2"

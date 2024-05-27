@@ -15,7 +15,7 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
               class="flex items-center"
             >
               <div
-                class="m-0 text-sm text-graphite font-inherit text-align"
+                class="m-0 text-sm font-inherit text-align"
               >
                 Cell
               </div>
@@ -65,7 +65,7 @@ exports[`TableCell sort direction is desc renders with a sort button in the righ
               class="flex items-center"
             >
               <div
-                class="m-0 text-sm text-graphite font-inherit text-align"
+                class="m-0 text-sm font-inherit text-align"
               />
               <button
                 aria-disabled="false"

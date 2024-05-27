@@ -55,7 +55,7 @@ export const FieldRequirements = <TValueType,>({
             data-testid={testIds?.description}
             variant='body'
             size='xxsmall'
-            className='!mt-[0.4rem]'
+            className='mt-[0.4rem]'
           >
             {description}
           </Typography>

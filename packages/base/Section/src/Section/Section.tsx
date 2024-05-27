@@ -73,7 +73,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     title ? (
       <Typography
         as={isString(title) ? undefined : 'div'}
-        className='!mr-4 min-w-0'
+        className='mr-4 min-w-0'
         data-testid={testIds?.title}
         variant='heading'
         size={titleSize}
