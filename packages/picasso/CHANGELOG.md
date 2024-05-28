@@ -1,5 +1,26 @@
 # Change Log
 
+## 46.0.1
+
+### Patch Changes
+
+- [#4317](https://github.com/toptal/picasso/pull/4317) [`27acfb01f720505e1bfa3dad341800ba7fe1d1b2`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- refactor highlight and vertical layout
+
+- Updated dependencies [[`5ce143b`](https://github.com/toptal/picasso/commit/5ce143b0cea7b98797e63114756208119790c4af), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2)]:
+  - @toptal/picasso-outlined-input@1.1.0
+  - @toptal/picasso-number-input@1.0.21
+  - @toptal/picasso-password-input@2.0.7
+  - @toptal/picasso-tagselector@1.0.24
+  - @toptal/picasso-select@1.0.22
+  - @toptal/picasso-input@2.0.3
+  - @toptal/picasso-autocomplete@1.0.22
+  - @toptal/picasso-avatar-upload@1.0.20
+  - @toptal/picasso-date-picker@1.0.21
+  - @toptal/picasso-timepicker@1.0.21
+  - @toptal/picasso-date-select@1.0.22
+  - @toptal/picasso-page@2.0.16
+
 ## 46.0.0
 
 ### Major Changes
