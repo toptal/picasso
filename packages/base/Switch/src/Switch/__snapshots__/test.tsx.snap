@@ -2,35 +2,27 @@
 
 exports[`Switch behaves correctly when interacting 1`] = `
 <label
-  class="PicassoFormControlLabel-root PicassoSwitch-root"
+  class="PicassoFormControlLabel-root items-start text-lg"
   data-testid="switch"
 >
   <span
-    class="MuiSwitch-root"
+    class="base-Switch base- w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
+    color="primary"
   >
     <span
-      aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-checked Mui-checked"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <input
-          class="PrivateSwitchBase-input MuiSwitch-input"
-          type="checkbox"
-          value=""
-        />
-        <span
-          class="MuiSwitch-thumb"
-        />
-      </span>
-    </span>
+      class="base-Switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-[.base--checked]:bg-blue group-[.base--checked]:border-blue group-[.base--disabled]:opacity group-[.base--disabled:not(.base--checked)]:bg"
+    />
     <span
-      class="MuiSwitch-track"
+      class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
+    />
+    <input
+      class="base-Switch w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left cursor-pointer z-20 group-[.base--disabled]:cursor"
+      role="switch"
+      type="checkbox"
     />
   </span>
   <span
-    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label"
+    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
     <span
       class="PicassoFormLabel-medium"
@@ -47,28 +39,20 @@ exports[`Switch renders default Switch without label 1`] = `
     class="Picasso-root"
   >
     <span
-      class="MuiSwitch-root"
+      class="base-Switch w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
+      color="primary"
+      data-testid="switch"
     >
       <span
-        aria-disabled="false"
-        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary"
-        data-testid="switch"
-      >
-        <span
-          class="MuiIconButton-label"
-        >
-          <input
-            class="PrivateSwitchBase-input MuiSwitch-input"
-            type="checkbox"
-            value=""
-          />
-          <span
-            class="MuiSwitch-thumb"
-          />
-        </span>
-      </span>
+        class="base-Switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-[.base--checked]:bg-blue group-[.base--checked]:border-blue group-[.base--disabled]:opacity group-[.base--disabled:not(.base--checked)]:bg"
+      />
       <span
-        class="MuiSwitch-track"
+        class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
+      />
+      <input
+        class="base-Switch w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left cursor-pointer z-20 group-[.base--disabled]:cursor"
+        role="switch"
+        type="checkbox"
       />
     </span>
   </div>
@@ -77,37 +61,28 @@ exports[`Switch renders default Switch without label 1`] = `
 
 exports[`Switch renders disabled state 1`] = `
 <label
-  class="PicassoFormControlLabel-root PicassoSwitch-root PicassoFormControlLabel-disabled"
+  class="PicassoFormControlLabel-root items-start text-lg PicassoFormControlLabel-disabled"
   data-testid="switch"
 >
   <span
-    class="MuiSwitch-root"
+    class="base-Switch base- w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
+    color="primary"
   >
     <span
-      aria-disabled="true"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-disabled Mui-disabled Mui-disabled Mui-disabled"
-      tabindex="-1"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <input
-          class="PrivateSwitchBase-input MuiSwitch-input"
-          disabled=""
-          type="checkbox"
-          value=""
-        />
-        <span
-          class="MuiSwitch-thumb"
-        />
-      </span>
-    </span>
+      class="base-Switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-[.base--checked]:bg-blue group-[.base--checked]:border-blue group-[.base--disabled]:opacity group-[.base--disabled:not(.base--checked)]:bg"
+    />
     <span
-      class="MuiSwitch-track"
+      class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
+    />
+    <input
+      class="base-Switch w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left cursor-pointer z-20 group-[.base--disabled]:cursor"
+      disabled=""
+      role="switch"
+      type="checkbox"
     />
   </span>
   <span
-    class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-inline PicassoFormControlLabel-label PicassoSwitch-label"
+    class="PicassoFormLabel-root PicassoFormLabel-disabled PicassoFormLabel-inline PicassoFormControlLabel-label ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
     <span
       class="PicassoFormLabel-medium"

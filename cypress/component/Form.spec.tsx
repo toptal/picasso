@@ -278,7 +278,6 @@ const DisabledFieldsExample = () => {
       />
       <Form.Switch
         disabled
-        value='public'
         name='disabledPublicProfile'
         label='Public Profile'
         width='auto'
