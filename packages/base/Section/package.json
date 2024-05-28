@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-section",
-  "version": "2.0.11",
+  "version": "3.0.0",
   "description": "Toptal UI components library - Section",
   "publishConfig": {
     "access": "public"
@@ -27,7 +27,7 @@
     "@toptal/picasso-icons": "1.2.0",
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",
-    "@toptal/picasso-collapse": "1.0.3",
+    "@toptal/picasso-collapse": "1.0.4",
     "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [

@@ -1,5 +1,50 @@
 # Change Log
 
+## 46.0.0
+
+### Major Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Tailwind preset
+
+- add `@toptal/picasso-tailwind` package to peer dependencies
+- please, update `@toptal/picasso-tailwind` to the **latest** version!
+- add `currentColor` to the tailwind theme
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Slider
+
+- migrate from MUI@4 to MUI Base and TailwindCSS
+- remove `compact`, `disablePortal` and `TooltipComponent` props in Slider component
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Switch
+
+- migrate Switch component from MUI@4 to MUI Base and TailwindCSS
+- remove `value` property from Switch.
+
+### Patch Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Collapse
+
+- wrap content into additional layer to stretch the content as in legacy implementation
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Section
+
+- migrate component from MUI@4 to custom solution and TailwindCSS
+- update peer dependencies
+- Updated dependencies [[`75540be`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2), [`75540be`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2), [`75540be`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2)]:
+  - @toptal/picasso-slider@2.0.0
+  - @toptal/picasso-switch@2.0.0
+  - @toptal/picasso-section@3.0.0
+
 ## 45.0.7
 
 ### Patch Changes
