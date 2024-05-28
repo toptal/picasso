@@ -6,7 +6,6 @@
     { "path": "../../picasso-tailwind" },
     { "path": "../Button" },
     { "path": "../Icons" },
-    { "path": "../Input" },
     { "path": "../InputAdornment" },
     { "path": "../OutlinedInput" },
     { "path": "../Utils" }

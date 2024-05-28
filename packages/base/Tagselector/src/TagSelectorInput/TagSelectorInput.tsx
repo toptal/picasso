@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import type { Props as InputProps } from '@toptal/picasso-input'
-import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import styles from './styles'
 
@@ -58,8 +57,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     const classes = useStyles()
 
-    const { layout } = useFieldsLayoutContext()
-
     let usedEndAdornment = null
 
     if (endAdornment) {
@@ -74,11 +71,8 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         style={style}
         className={cx(classes.inputBase, {
           [classes.withEndAdornment]: Boolean(endAdornment),
-          [classes.horizontalLayout]: layout === 'horizontal',
         })}
-        classes={{
-          root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),
-        }}
+        highlight={highlight}
         id={id}
         name={name}
         defaultValue={defaultValue}

@@ -24,7 +24,6 @@
   "dependencies": {
     "@toptal/picasso-button": "2.0.5",
     "@toptal/picasso-icons": "1.2.0",
-    "@toptal/picasso-input": "2.0.2",
     "@toptal/picasso-input-adornment": "1.0.5",
     "@toptal/picasso-outlined-input": "1.0.19",
     "@toptal/picasso-utils": "1.0.3",
