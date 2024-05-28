@@ -1,16 +1,10 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { SnackbarContent } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
 import { Close16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
-
-import styles from './styles'
 
 export interface Props extends BaseProps {
   /** Notification title */
@@ -25,11 +19,7 @@ export interface Props extends BaseProps {
   onClose?: () => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'ApplicationUpdateNotification',
-})
-
-export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
+export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
   function ApplicationUpdateNotification(props, ref) {
     const {
       title,
@@ -39,12 +29,11 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
       onClose,
       ...rest
     } = props
-    const classes = useStyles()
 
     const notification = (
       <Container flex direction='column' gap='xsmall'>
         <svg
-          className={classes.icon}
+          className='opacity-40 absolute -top-[0.4em] -left-[0.5em] fill-blue-700'
           viewBox='0 0 105 105'
           width='105'
           height='105'
@@ -62,14 +51,14 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
             variant='heading'
             size='medium'
             color='inherit'
-            className={classes.positionRelative}
+            className='relative'
           >
             {title}
           </Typography>
           {dismissable && (
             <ButtonCircular
               data-testid='btn-dismiss'
-              className={classes.closeAction}
+              className='text-lg text-white inline-flex items-center font-semibold whitespace-nowrap'
               variant='transparent'
               icon={<Close16 />}
               onClick={onClose}
@@ -77,7 +66,7 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
           )}
         </Container>
 
-        <Container className={classes.positionRelative}>
+        <Container className='relative'>
           <Typography size='medium' color='inherit'>
             {description}
           </Typography>
@@ -88,15 +77,14 @@ export const ApplicationUpdateNotification = forwardRef<HTMLElement, Props>(
     )
 
     return (
-      <SnackbarContent
+      <div
         {...rest}
-        classes={{
-          root: cx([classes.root, classes.positionRelative]),
-          message: classes.message,
-        }}
-        message={notification}
+        className='relative flex flex-wrap text-lg/[1.43] items-center rounded-md bg-blue-600 shadow-3 w-[27.5em] text-white p-[1.5em] overflow-hidden'
         ref={ref}
-      />
+        role='alert'
+      >
+        {notification}
+      </div>
     )
   }
 )
