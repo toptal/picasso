@@ -35,8 +35,6 @@ PicassoProvider.override(
           color: palette.grey.main,
         },
 
-        // '&$highlightAutofill': {},
-
         '&:hover:not($disabled)': {
           '&:not($error)&:not($focused) $notchedOutline': {
             borderColor: palette.grey.main2,
