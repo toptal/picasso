@@ -1,5 +1,15 @@
 # @toptal/picasso-collapse
 
+## 1.0.4
+
+### Patch Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Collapse
+
+- wrap content into additional layer to stretch the content as in legacy implementation
+
 ## 1.0.3
 
 ### Patch Changes

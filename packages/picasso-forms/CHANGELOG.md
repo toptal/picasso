@@ -1,5 +1,20 @@
 # Change Log
 
+## 70.0.0
+
+### Major Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Switch
+
+- remove `value` property from Switch
+
+### Patch Changes
+
+- Updated dependencies [[`75540be`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2)]:
+  - @toptal/picasso-switch@2.0.0
+
 ## 69.0.7
 
 ### Patch Changes
