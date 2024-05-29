@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import React, { Children, forwardRef } from 'react'
 import { Badge as MuiBadge } from '@mui/base'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { classBySize, classByVariant } from './styles'
 
@@ -59,19 +59,20 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
           className: twMerge(
             `inline-flex flex-shrink-0 content-middle flex-nowrap justify-normal 
             text-[10px] font-semibold leading-3 align-middle text-graphite-700 
-            relative top-0 right-0`,
+            top-0 right-0`,
             hasChildren ? 'relative' : 'static',
             className
           ),
           style: style,
         },
         badge: {
-          className: twMerge(
+          className: twJoin(
             `border-solid items-center content-center inline-flex flex-nowrap 
-            justify-center z-[1] border px-[1px] border-gray-400 static`,
+            justify-center z-[1] border rounded-full`,
             classByVariant[variant],
-            hasChildren &&
-              'absolute right-0 top-0 translate-x-[50%] translate-y-[-50%]',
+            hasChildren
+              ? 'absolute right-0 top-0 translate-x-[50%] translate-y-[-50%]'
+              : 'static',
             classBySize[size]
           ),
         },
