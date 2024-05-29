@@ -9,7 +9,7 @@ exports[`MonthSelect renders 1`] = `
       class="relative inline-flex text-lg cursor-pointer w-full"
     >
       <div
-        class="w-inherit outline-0"
+        class="w-[inherit] outline-0"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium pr-[1.625rem] MuiInputBase-fullWidth"
