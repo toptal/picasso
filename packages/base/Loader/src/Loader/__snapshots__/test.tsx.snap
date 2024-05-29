@@ -3,19 +3,19 @@
 exports[`Loader props combo 1`] = `
 <div>
   <div
-    class="PicassoLoader-root PicassoLoader-inline"
+    class="text-lg flex-col items-center inline-flex"
   >
     <div
-      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      class="text-blue animate-[spin_1400ms_linear_infinite]"
       role="progressbar"
       style="width: 64px; height: 64px;"
     >
       <svg
-        class="MuiCircularProgress-svg"
+        class="block"
         viewBox="22 22 44 44"
       >
         <circle
-          class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+          class="animate-[stroke-dash_1.4s_ease-in stroke-[currentColor]"
           cx="44"
           cy="44"
           fill="none"
@@ -25,7 +25,7 @@ exports[`Loader props combo 1`] = `
       </svg>
     </div>
     <div
-      class="PicassoLoader-label"
+      class="mt-4"
     >
       Testing
     </div>

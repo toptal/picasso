@@ -1,16 +1,12 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
-import cx from 'classnames'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
-
-import { CircularProgress } from '../CircularProgress'
-import styles from './styles'
+import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 
 const DEFAULT_PROGRESS = 35
+const VIEWBOX_SIZE = 44
+const THICKNESS = 3.6
 
 enum SIZES {
   small = 16,
@@ -33,8 +29,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLoader' })
-
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
   props,
   ref
@@ -46,34 +40,73 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
     className,
     value,
     variant = 'blue',
+    style,
     ...rest
   } = props
 
-  const classes = useStyles()
   const { disableTransitions } = useAppConfig()
 
   const progress = disableTransitions ? DEFAULT_PROGRESS : value
-  const progressVariant =
-    disableTransitions || value ? 'determinate' : 'indeterminate'
+  const animated = !(disableTransitions || Boolean(progress))
+
+  const circumference = 2 * Math.PI * ((VIEWBOX_SIZE - THICKNESS) / 2)
 
   return (
     <div
       {...rest}
       ref={ref}
-      className={cx(classes.root, className, {
-        [classes.inline]: inline,
-      })}
+      className={twMerge(
+        'text-lg flex flex-col items-center',
+        inline ? 'inline-flex' : '',
+        className
+      )}
     >
-      <CircularProgress
-        classes={{
-          root: classes[`spinner${capitalize(variant)}`],
-        }}
-        size={SIZES[size]}
-        value={progress}
-        variant={progressVariant}
-      />
+      <div
+        className={twJoin(
+          variant === 'blue' ? 'text-blue-500' : 'text-inherit',
+          animated
+            ? 'animate-[spin_1400ms_linear_infinite]'
+            : 'transform -rotate-90',
+          className
+        )}
+        style={{ width: SIZES[size], height: SIZES[size], ...style }}
+        role='progressbar'
+        aria-valuenow={progress ? Math.round(progress) : undefined}
+      >
+        <svg
+          className='block'
+          viewBox={`${VIEWBOX_SIZE / 2} ${
+            VIEWBOX_SIZE / 2
+          } ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
+        >
+          <circle
+            className={twJoin(
+              animated
+                ? 'animate-[stroke-dash_1.4s_ease-in-out_infinite]'
+                : 'transition-all',
+              'stroke-[currentColor]'
+            )}
+            cx={VIEWBOX_SIZE}
+            cy={VIEWBOX_SIZE}
+            r={(VIEWBOX_SIZE - THICKNESS) / 2}
+            fill='none'
+            strokeWidth={THICKNESS}
+            style={
+              progress
+                ? {
+                    strokeDashoffset: `${(
+                      ((100 - progress) / 100) *
+                      circumference
+                    ).toFixed(3)}px`,
+                    strokeDasharray: circumference.toFixed(3),
+                  }
+                : undefined
+            }
+          />
+        </svg>
+      </div>
 
-      {children && <div className={classes.label}>{children}</div>}
+      {children && <div className='mt-4'>{children}</div>}
     </div>
   )
 })
