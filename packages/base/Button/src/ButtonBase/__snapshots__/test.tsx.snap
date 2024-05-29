@@ -214,7 +214,7 @@ exports[`ButtonBase when "loading" prop is true renders Button with loading stat
       >
         <div
           aria-valuenow="35"
-          class="text-inherit transform -rotate absolute top-1/2 left-1/2 translate-x-[ translate-y-["
+          class="text-inherit transform -rotate"
           role="progressbar"
           style="width: 16px; height: 16px;"
         >
