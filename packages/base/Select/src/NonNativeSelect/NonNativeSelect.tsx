@@ -167,7 +167,7 @@ export const NonNativeSelect = documentable(
         <>
           <div
             {...rootProps}
-            className={cx('w-inherit outline-0', {
+            className={cx('w-[inherit] outline-0', {
               'w-full': layout === 'horizontal',
             })}
           >
