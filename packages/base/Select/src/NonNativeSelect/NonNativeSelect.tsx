@@ -1,9 +1,6 @@
 import React, { useRef } from 'react'
 import type PopperJs from 'popper.js'
 import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
 import { Search16 } from '@toptal/picasso-icons'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { Popper } from '@toptal/picasso-popper'
@@ -16,6 +13,7 @@ import {
 } from '@toptal/picasso-utils'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import SelectCaret from '../SelectCaret'
 import { NonNativeSelectLoader } from '../NonNativeSelectLoader'
@@ -32,11 +30,18 @@ import {
   filterFlatOptions as defaultFilterOptions,
 } from '../SelectBase'
 import { NonNativeSelectOptions } from '../NonNativeSelectOptions'
-import styles from './styles'
 import { NonNativeSelectLimitFooter } from '../NonNativeSelectLimitFooter'
-const useStyles = makeStyles<Theme>(styles)
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
+
+const classesByWidth: Record<
+  Exclude<SelectProps['width'], undefined>,
+  string
+> = {
+  auto: '',
+  full: 'w-full',
+  shrink: 'w-auto',
+}
 
 export const NonNativeSelect = documentable(
   forwardRef(
@@ -84,8 +89,6 @@ export const NonNativeSelect = documentable(
         ...rest
       } = props
 
-      const classes = useStyles()
-
       const selectRef = useCombinedRefs<HTMLInputElement>(
         ref,
         useRef<HTMLInputElement>(null)
@@ -125,10 +128,15 @@ export const NonNativeSelect = documentable(
       const { layout } = useFieldsLayoutContext()
 
       const searchInput = showSearch ? (
-        <MenuItem as='div' nonSelectable className='px-2 pt-[0.375rem]'>
+        <MenuItem
+          as='div'
+          nonSelectable
+          disableGutters
+          className='pt-[0.375rem] pl-2 pb-2 pr-2'
+        >
           <OutlinedInput
             inputRef={searchInputRef}
-            className={classes.searchOutlinedInput}
+            className='w-full'
             startAdornment={
               <InputAdornment position='start' disablePointerEvents>
                 <Search16 />
@@ -159,8 +167,8 @@ export const NonNativeSelect = documentable(
         <>
           <div
             {...rootProps}
-            className={cx(classes.inputWrapper, {
-              [classes.horizontalLayout]: layout === 'horizontal',
+            className={cx('w-inherit outline-0', {
+              'w-full': layout === 'horizontal',
             })}
           >
             {!enableAutofill && name && (
@@ -184,7 +192,7 @@ export const NonNativeSelect = documentable(
               width={width}
               readOnly
               defaultValue={undefined}
-              className={classes.outlinedInput}
+              className='pr-[1.625rem]'
               highlight={highlight}
               inputProps={{
                 size: 1, // let input to have smallest width by default for width:'shrink'
@@ -219,7 +227,6 @@ export const NonNativeSelect = documentable(
                   renderOption={renderOption as any}
                   highlightedIndex={highlightedIndex}
                   getItemProps={getItemProps}
-                  // eslint-disable-next-line react/jsx-handler-names
                   onBlur={rootProps.onBlur}
                   selection={selection}
                   filterOptionsValue={filterOptionsValue}
@@ -247,13 +254,11 @@ export const NonNativeSelect = documentable(
 
       return (
         <div
-          className={cx(
-            classes.root,
+          className={twMerge(
+            'relative inline-flex text-lg cursor-pointer',
             className,
-            classes[`root${capitalize(width)}`],
-            {
-              [classes.rootDisabled]: disabled,
-            }
+            classesByWidth[width],
+            disabled && 'cursor-default'
           )}
           style={style}
           ref={inputWrapperRef}
