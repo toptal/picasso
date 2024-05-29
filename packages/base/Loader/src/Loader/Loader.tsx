@@ -66,8 +66,7 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
           variant === 'blue' ? 'text-blue-500' : 'text-inherit',
           animated
             ? 'animate-[spin_1400ms_linear_infinite]'
-            : 'transform -rotate-90',
-          className
+            : 'transform -rotate-90'
         )}
         style={{ width: SIZES[size], height: SIZES[size], ...style }}
         role='progressbar'
