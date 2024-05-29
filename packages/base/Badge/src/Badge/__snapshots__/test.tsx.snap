@@ -6,10 +6,10 @@ exports[`Badge renders 1`] = `
     class="Picasso-root"
   >
     <span
-      class="MuiBadge-root"
+      class="base-Badge inline-flex flex-shrink content-middle flex-nowrap justify-normal text-[10px] font-semibold leading-3 align-middle text-graphite top-0 right-0 static"
     >
       <span
-        class="MuiBadge-badge PicassoBadge-root PicassoBadge-white PicassoBadge-large PicassoBadge-static MuiBadge-anchorOriginTopRightRectangular"
+        class="base-Badge border-solid items-center content-center inline-flex flex-nowrap justify-center z-[1] border static bg-white text-graphite border-gray px-[3px] rounded-[1.25rem] h-[1.25rem] min-w"
       >
         5
       </span>
@@ -24,10 +24,10 @@ exports[`Badge renders in red variant 1`] = `
     class="Picasso-root"
   >
     <span
-      class="MuiBadge-root"
+      class="base-Badge inline-flex flex-shrink content-middle flex-nowrap justify-normal text-[10px] font-semibold leading-3 align-middle text-graphite top-0 right-0 static"
     >
       <span
-        class="MuiBadge-badge PicassoBadge-root PicassoBadge-red PicassoBadge-large PicassoBadge-static MuiBadge-anchorOriginTopRightRectangular"
+        class="base-Badge border-solid items-center content-center inline-flex flex-nowrap justify-center z-[1] border static text-white bg-red border-red px-[3px] rounded-[1.25rem] h-[1.25rem] min-w"
       >
         5
       </span>
