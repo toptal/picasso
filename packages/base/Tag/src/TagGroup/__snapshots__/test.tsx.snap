@@ -6,7 +6,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
     class="Picasso-root"
   >
     <div
-      class="space-x"
+      class="-mr -mb [&>*]:mr-[0.5em] [&>*]:mb-[0.5em]"
     >
       <div
         class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
