@@ -50,6 +50,7 @@ const InputAdornment = (props: Props) => {
     [onClick, stopPropagation]
   )
 
+  //
   return (
     <MUIInputAdornment
       {...rest}
