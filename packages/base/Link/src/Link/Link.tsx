@@ -115,7 +115,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
       color='inherit'
       weight={variant === 'action' ? 'semibold' : 'inherit'}
       className={twMerge(
-        'focus:outline-none hover:underline',
+        'focus:outline-none hover:underline leading-[inherit]',
         COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
         disabled ? 'cursor-not-allowed' : '',
         noUnderline ? '!no-underline' : '',
