@@ -168,7 +168,7 @@ exports[`Page.TopBar render with link 1`] = `
                 </div>
               </div>
               <a
-                class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
+                class="m-0 font-inherit leading-[1.5em] text-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
                 href="https://www.toptal.com"
               >
                 <svg
