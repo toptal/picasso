@@ -18,7 +18,7 @@ exports[`TableFooter renders 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4"
           >
             <div
-              class="m-0 text-sm font-semibold text-align"
+              class="m-0 text-sm text-black font-semibold text-align"
             >
               Footer test
             </div>

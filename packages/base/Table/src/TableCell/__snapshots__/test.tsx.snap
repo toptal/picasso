@@ -16,7 +16,7 @@ exports[`TableCell renders 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4"
           >
             <div
-              class="m-0 text-sm font-inherit text-align"
+              class="m-0 text-sm text-graphite font-inherit text-align"
             >
               Cell
             </div>
@@ -44,7 +44,7 @@ exports[`TableCell renders compact 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4"
           >
             <div
-              class="m-0 text-sm font-inherit text-align"
+              class="m-0 text-sm text-graphite font-inherit text-align"
             >
               Cell
             </div>
@@ -72,7 +72,7 @@ exports[`TableCell renders narrow 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4"
           >
             <div
-              class="m-0 text-sm font-inherit text-align"
+              class="m-0 text-sm text-graphite font-inherit text-align"
             >
               Cell
             </div>

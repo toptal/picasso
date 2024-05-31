@@ -17,7 +17,7 @@ exports[`TableSectionHead renders 1`] = `
             colspan="100"
           >
             <div
-              class="m-0 text-xxs font-semibold text-align"
+              class="m-0 text-xxs text-graphite font-semibold text-align"
             >
               Test
             </div>
