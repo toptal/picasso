@@ -207,6 +207,7 @@ jobs:
           HAPPO_API_KEY: ${{ env.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ env.HAPPO_API_SECRET }}
           PREVIOUS_SHA: ${{ github.event.pull_request.base.sha }}
+          HAPPO_PREVIOUS_SHA: ${{ github.event.pull_request.base.sha }}
 
   integration-tests:
     name: Integration Tests
