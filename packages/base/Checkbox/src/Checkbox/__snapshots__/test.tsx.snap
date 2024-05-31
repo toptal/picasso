@@ -6,7 +6,7 @@ exports[`Checkbox Checkbox.Group renders checkbox in a grid group 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex flex-wrap -my flex-row"
+      class="flex flex-wrap -mr -mb flex-row"
     >
       <div
         class="box-border flex flex-row flex-wrap items-start justify-start w-[calc(100%+16px)] -m mt-0 mb-0"

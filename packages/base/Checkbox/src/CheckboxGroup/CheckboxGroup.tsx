@@ -28,7 +28,7 @@ const CheckboxGroup = (props: Props) => {
     <div
       {...rest}
       className={twMerge(
-        'flex flex-col flex-wrap -my-2',
+        'flex flex-col flex-wrap -mr-2 -mb-2',
         horizontal ? 'flex-row' : undefined,
         className
       )}
