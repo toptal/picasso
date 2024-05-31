@@ -6,7 +6,7 @@ exports[`Link renders 1`] = `
     class="Picasso-root"
   >
     <a
-      class="m-0 font-inherit leading-[1.5em] text-inherit font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline"
+      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
     >
       Please verify your email
     </a>
@@ -21,7 +21,7 @@ exports[`Link renders a Link from react-router 1`] = `
   >
     <div>
       <a
-        class="m-0 font-inherit leading-[1.5em] text-inherit font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline"
+        class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
         href="/"
       >
         Please verify your email
@@ -38,7 +38,7 @@ exports[`Link renders disabled link 1`] = `
   >
     <a
       aria-disabled="true"
-      class="m-0 font-inherit leading-[1.5em] text-inherit font-inherit focus:outline-none hover:underline text-gray underline cursor-not"
+      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-gray underline cursor-not"
       download="filename"
       rel="noopener"
     >
@@ -54,7 +54,7 @@ exports[`Link renders native attributes 1`] = `
     class="Picasso-root"
   >
     <a
-      class="m-0 font-inherit leading-[1.5em] text-inherit font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline"
+      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
       download="filename"
       href="https://toptal.com/filename.txt"
       rel="noopener"
