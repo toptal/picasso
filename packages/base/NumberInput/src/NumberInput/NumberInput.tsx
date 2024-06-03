@@ -1,7 +1,5 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
@@ -10,8 +8,9 @@ import {
   usePropDeprecationWarning,
 } from '@toptal/picasso-utils'
 import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
 
 export interface Props
@@ -38,10 +37,6 @@ export interface Props
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   highlight?: 'autofill'
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoNumberInput',
-})
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
   function NumberInput(props, ref) {
@@ -74,7 +69,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const classes = useStyles(props)
+    const { layout } = useFieldsLayoutContext()
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
@@ -102,8 +97,17 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
     return (
       <OutlinedInput
         classes={{
-          root: classes.root,
-          input: classes.input,
+          root: twJoin(
+            'pr-0 cursor-text',
+            highlight === 'autofill' && 'bg-yellow-100 bg-opacity-60',
+            layout === 'horizontal' && 'w-full'
+          ),
+          input:
+            // required to remove arrows in WebKit based browsers
+            `[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 
+            [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0` +
+            // required to remove arrows in Firefox
+            '[appearance:textfield]',
         }}
         highlight={highlight}
         inputProps={{
