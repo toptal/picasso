@@ -25,7 +25,6 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-button": "2.0.5",
-    "@toptal/picasso-collapse": "1.0.3",
     "@toptal/picasso-icons": "1.2.0",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",

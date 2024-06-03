@@ -1,37 +1,44 @@
 /* eslint-disable react/no-array-index-key */
-import type { TableHTMLAttributes } from 'react'
 import React from 'react'
+import type { FormGroupProps } from '@material-ui/core'
+import { FormGroup } from '@material-ui/core'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import cx from 'classnames'
 import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+
+import styles from './styles'
 
 type GridSpacing = GridProps['spacing']
 
-export interface Props
-  extends TableHTMLAttributes<HTMLTableElement>,
-    GridSizeProps {
+export interface Props extends FormGroupProps, GridSizeProps {
   /** Align checkboxes horizontally  */
   horizontal?: boolean
   /** Defines amount of space between checkbox components (in px) */
   spacing?: GridSpacing
 }
 
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'PicassoCheckboxGroup',
+})
+
 const CheckboxGroup = (props: Props) => {
   const { horizontal, spacing, xs, sm, md, lg, xl, className, ...rest } = props
 
+  const classes = useStyles()
+  const { spacing: themeSpacing } = useTheme()
+
   const direction = horizontal ? 'row' : 'column'
-  const gridSpacing = spacing ?? horizontal ? 16 : 0
+  const gridSpacing = spacing ?? horizontal ? themeSpacing(2) : 0
 
   const children = React.Children.toArray(rest.children)
 
   return (
-    <div
+    <FormGroup
       {...rest}
-      className={twMerge(
-        'flex flex-col flex-wrap -mr-2 -mb-2',
-        horizontal ? 'flex-row' : undefined,
-        className
-      )}
+      classes={classes}
+      className={cx(classes.root, className)}
     >
       <Grid
         direction={direction}
@@ -41,7 +48,7 @@ const CheckboxGroup = (props: Props) => {
         {children.map((child, index) => (
           <Grid.Item
             key={index}
-            className='leading-none [&&]:pt-0 [&&]:pb-0 [&&>label]:mb-[0.5em]'
+            className='leading-none [&&]:pt-0 [&&]:pb-0'
             xs={xs}
             sm={sm}
             md={md}
@@ -52,7 +59,7 @@ const CheckboxGroup = (props: Props) => {
           </Grid.Item>
         ))}
       </Grid>
-    </div>
+    </FormGroup>
   )
 }
 
