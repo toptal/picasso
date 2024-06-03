@@ -27,7 +27,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
             </span>
           </label>
           <div
-            class="flex flex-col flex-wrap -my"
+            class="flex flex-col flex-wrap -mr -mb"
             name="checkbox-group"
           >
             <div
