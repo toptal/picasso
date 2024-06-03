@@ -1,5 +1,29 @@
 # @toptal/picasso-breadcrumbs
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`2820f38`](https://github.com/toptal/picasso/commit/2820f38931f1b2736c4ad20b5609ca562da0d515)]:
+  - @toptal/picasso-typography@2.0.2
+
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-typography@2.0.1
+  - @toptal/picasso-icons@1.1.1
+
 ## 1.0.6
 
 ### Patch Changes

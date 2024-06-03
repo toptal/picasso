@@ -149,7 +149,7 @@ describe('NotificationStream', () => {
 
         cy.mount(<DefaultExample />)
 
-        cy.getByTestId('trigger-default').click()
+        cy.getByTestId('trigger-default').realClick()
         cy.get('body').happoScreenshot({
           component,
           variant: `notification/${width}-default`,

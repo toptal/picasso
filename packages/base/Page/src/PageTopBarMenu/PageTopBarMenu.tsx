@@ -22,8 +22,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   name: string
   /** Additional content */
   meta?: ReactNode
-  /** Photo url or custom Avatar component */
-  avatar?: ReactNode
+  /** Photo url */
+  avatar?: string
   /** Menu content */
   children: ReactNode
 }
@@ -85,7 +85,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         size='xxsmall'
         data-private={dataPrivate}
         name={name}
-        src={avatar as string}
+        src={avatar}
       />
     ) : (
       <UserBadge

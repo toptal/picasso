@@ -1,5 +1,98 @@
 # @toptal/picasso-password-input
 
+## 2.0.7
+
+### Patch Changes
+
+- [#4317](https://github.com/toptal/picasso/pull/4317) [`27acfb01f720505e1bfa3dad341800ba7fe1d1b2`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- refactor highlight and vertical layout
+
+- Updated dependencies [[`5ce143b`](https://github.com/toptal/picasso/commit/5ce143b0cea7b98797e63114756208119790c4af), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2)]:
+  - @toptal/picasso-outlined-input@1.1.0
+
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@2.0.2
+  - @toptal/picasso-button@2.0.5
+  - @toptal/picasso-outlined-input@1.0.19
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-button@2.0.4
+  - @toptal/picasso-input@2.0.1
+  - @toptal/picasso-input-adornment@1.0.5
+  - @toptal/picasso-outlined-input@1.0.18
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`c3700ac`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049)]:
+  - @toptal/picasso-input@2.0.0
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+  - @toptal/picasso-input@1.0.17
+  - @toptal/picasso-outlined-input@1.0.17
+
+## 2.0.2
+
+### Patch Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update peer dependency on `@toptal/picasso-tailwind` to have open range
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+  - @toptal/picasso-outlined-input@1.0.16
+  - @toptal/picasso-input@1.0.16
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.1
+  - @toptal/picasso-outlined-input@1.0.15
+  - @toptal/picasso-input@1.0.15
+
+## 2.0.0
+
+### Major Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`761153604f33bd1b9427240846b2d0cbb8ae5ed4`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add TailwindCSS support
+
+### Patch Changes
+
+- Updated dependencies [[`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8)]:
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-input-adornment@1.0.4
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-icons@1.1.1
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.13
+  - @toptal/picasso-input@1.0.13
+  - @toptal/picasso-outlined-input@1.0.13
+
 ## 1.0.12
 
 ### Patch Changes

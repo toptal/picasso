@@ -1,5 +1,34 @@
 # @toptal/picasso-tailwind
 
+## 2.6.0
+
+### Minor Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add `currentColor` to tailwindCss configuration
+
+## 2.5.1
+
+### Patch Changes
+
+- [#4321](https://github.com/toptal/picasso/pull/4321) [`d03712b77511528d0139da4b5ef74e797d64446c`](https://github.com/toptal/picasso/commit/d03712b77511528d0139da4b5ef74e797d64446c) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- add index.d.ts
+
+## 2.5.0
+
+### Minor Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`0c9807b800ed8a992de72f47bc1263d24a2fd4d8`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add design tokens for Button component
+
+## 2.4.0
+
+### Minor Changes
+
+- [#4276](https://github.com/toptal/picasso/pull/4276) [`045081fe7fed880890cb16d5defd7859d1e0b147`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147) Thanks [@sashuk](https://github.com/sashuk)!
+- extend maximum width classes with fractions of 12
+  - extend width, height, and padding classes for inputs
+
 ## 2.3.0
 
 ### Minor Changes

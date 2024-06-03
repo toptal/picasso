@@ -74,6 +74,7 @@
     { "path": "../base/UserBadge" },
     { "path": "../base/Utils" },
     { "path": "../picasso-provider" },
+    { "path": "../picasso-tailwind" },
     { "path": "../shared" }
   ]
 }

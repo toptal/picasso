@@ -1,5 +1,72 @@
 # @toptal/picasso-button
 
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-checkbox@2.0.4
+  - @toptal/picasso-radio@2.0.4
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-checkbox@2.0.3
+  - @toptal/picasso-radio@2.0.3
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`81ba64e`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746)]:
+  - @toptal/picasso-checkbox@2.0.2
+  - @toptal/picasso-radio@2.0.2
+
+## 2.0.2
+
+### Patch Changes
+
+- [#4303](https://github.com/toptal/picasso/pull/4303) [`98abedf74fb621f9036e6a3925631e541424133b`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update peer dependency on `@toptal/picasso-tailwind` to have open range
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-dropdown@2.0.3
+
+## 2.0.0
+
+### Major Changes
+
+- [#4294](https://github.com/toptal/picasso/pull/4294) [`0c9807b800ed8a992de72f47bc1263d24a2fd4d8`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- migrate Button component to TailwindCSS
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-checkbox@2.0.1
+  - @toptal/picasso-radio@2.0.1
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-dropdown@2.0.2
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-link@1.0.3
+  - @toptal/picasso-icons@1.1.1
+  - @toptal/picasso-loader@1.0.3
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147), [`045081f`](https://github.com/toptal/picasso/commit/045081fe7fed880890cb16d5defd7859d1e0b147)]:
+  - @toptal/picasso-checkbox@2.0.0
+  - @toptal/picasso-radio@2.0.0
+
 ## 1.0.12
 
 ### Patch Changes

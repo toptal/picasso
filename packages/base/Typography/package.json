@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-typography",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Toptal UI components library - Typography",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.2",
+    "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
   },
@@ -33,6 +33,7 @@
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
+    "@toptal/picasso-tailwind-merge": "^1.0.0",
     "tailwindcss": ">=3",
     "react": ">=16.12.0 < 19.0.0"
   },
@@ -40,8 +41,8 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.2.0",
-    "@toptal/picasso-test-utils": "1.1.0"
+    "@toptal/picasso-provider": "4.2.1",
+    "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [
     "dist-package/**",

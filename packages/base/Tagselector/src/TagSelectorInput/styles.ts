@@ -1,13 +1,11 @@
-import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import { rem } from '@toptal/picasso-shared'
-import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export const TAG_SELECTOR_INPUT_GUTTER_SIZE = rem('4px')
 const END_ADORNMENT_PADDING = '0.625em'
 const END_ADORNMENT_HEIGHT = '1em'
 
-export default (theme: Theme) =>
+export default () =>
   createStyles({
     inputBase: {
       display: 'flex',
@@ -28,7 +26,6 @@ export default (theme: Theme) =>
         marginBottom: 0,
       },
     },
-    ...highlightAutofillStyles(theme),
     withEndAdornment: {
       paddingRight: `calc(2*${END_ADORNMENT_PADDING} + ${END_ADORNMENT_HEIGHT})`,
     },

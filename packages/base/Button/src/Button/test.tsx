@@ -14,7 +14,7 @@ const renderButton = (
   props: OmitInternalProps<Props>,
   picassoConfig?: PicassoConfig
 ) => {
-  const { children, disabled, loading, onClick, titleCase, as } = props
+  const { children, disabled, loading, onClick, titleCase, as, href } = props
 
   return render(
     <Button
@@ -23,6 +23,7 @@ const renderButton = (
       onClick={onClick}
       titleCase={titleCase}
       as={as}
+      href={href}
     >
       {children}
     </Button>,
@@ -119,6 +120,7 @@ describe('Button', () => {
         children: 'Click me!',
         disabled: true,
         as: Link,
+        href: 'URL',
       })
 
       expect(container).toMatchSnapshot()

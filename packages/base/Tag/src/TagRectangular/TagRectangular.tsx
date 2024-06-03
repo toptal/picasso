@@ -1,24 +1,16 @@
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { useTitleCase } from '@toptal/picasso-shared'
-import { toTitleCase } from '@toptal/picasso-utils'
+import { Typography } from '@toptal/picasso-typography'
+import { twJoin, twMerge } from 'tailwind-merge'
 
 import { Indicator } from '../Indicator'
-import { Chip } from '../Chip'
-import styles from './styles'
+import { variantsRootClasses } from './styles'
 import type { Props } from './types'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTagRectangular',
-})
 
 export const TagRectangular = forwardRef<HTMLDivElement, Props>(
   function TagRectangular(props, ref) {
     const {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      color,
       children,
       style,
       className,
@@ -28,31 +20,38 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
       ...rest
     } = props
 
-    const classes = useStyles()
     const titleCase = useTitleCase(propsTitleCase)
 
     return (
-      <Chip
+      <div
         {...rest}
         ref={ref}
-        classes={{
-          root: cx(classes.root, classes[variant]),
-          label: classes.label,
-          icon: classes.icon,
-        }}
-        className={className}
+        className={twMerge(
+          'text-lg transition-none rounded-sm font-semibold h-4 inline-flex content-center justify-center align-middle',
+          variantsRootClasses[variant],
+          className
+        )}
         style={style}
-        icon={indicator ? <Indicator color={indicator} /> : undefined}
-        label={
-          <span
-            className={cx(classes.innerLabel, {
-              [classes.innerLabelDarkText]: variant === 'light-grey',
-            })}
-          >
-            {titleCase ? toTitleCase(children) : children}
-          </span>
-        }
-      />
+      >
+        {indicator && (
+          <div className='ml-1 flex content-center flex-wrap'>
+            <Indicator color={indicator} />
+          </div>
+        )}
+
+        <Typography
+          size='xxsmall'
+          weight='semibold'
+          noWrap
+          className={twJoin(
+            'mx-1 w-max',
+            variant === 'light-grey' ? 'text-graphite-800' : 'text-white'
+          )}
+          titleCase={titleCase}
+        >
+          {children}
+        </Typography>
+      </div>
     )
   }
 )

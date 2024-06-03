@@ -1,5 +1,90 @@
 # @toptal/picasso-date-picker
 
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies [[`5ce143b`](https://github.com/toptal/picasso/commit/5ce143b0cea7b98797e63114756208119790c4af), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2)]:
+  - @toptal/picasso-outlined-input@1.1.0
+  - @toptal/picasso-input@2.0.3
+
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-calendar@1.0.19
+  - @toptal/picasso-input@2.0.2
+  - @toptal/picasso-outlined-input@1.0.19
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-calendar@1.0.18
+  - @toptal/picasso-input@2.0.1
+  - @toptal/picasso-input-adornment@1.0.5
+  - @toptal/picasso-outlined-input@1.0.18
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`c3700ac`](https://github.com/toptal/picasso/commit/c3700ac185178d83561ee5fde0b5d259f2d0b049)]:
+  - @toptal/picasso-input@2.0.0
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@1.0.17
+  - @toptal/picasso-calendar@1.0.17
+  - @toptal/picasso-outlined-input@1.0.17
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-calendar@1.0.16
+  - @toptal/picasso-outlined-input@1.0.16
+  - @toptal/picasso-input@1.0.16
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-calendar@1.0.15
+  - @toptal/picasso-outlined-input@1.0.15
+  - @toptal/picasso-input@1.0.15
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-calendar@1.0.14
+  - @toptal/picasso-outlined-input@1.0.14
+  - @toptal/picasso-input@1.0.14
+  - @toptal/picasso-input-adornment@1.0.4
+  - @toptal/picasso-popper@1.0.3
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-icons@1.1.1
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-calendar@1.0.13
+  - @toptal/picasso-input@1.0.13
+  - @toptal/picasso-outlined-input@1.0.13
+
 ## 1.0.12
 
 ### Patch Changes

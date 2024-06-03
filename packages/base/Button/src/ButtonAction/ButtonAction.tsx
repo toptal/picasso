@@ -1,8 +1,6 @@
-import type { ReactElement, MouseEvent, ElementType } from 'react'
+import type { ReactElement, MouseEvent, ElementType, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type {
   BaseProps,
   ButtonOrAnchorProps,
@@ -11,8 +9,30 @@ import type {
 import { Loader } from '@toptal/picasso-loader'
 
 import type { IconPositionType } from '../Button'
-import { Button } from '../Button'
-import styles from './styles'
+import { ButtonBase } from '../ButtonBase'
+import { createRootClassNames, createIconClassNames } from './styles'
+
+const getIcon = ({
+  children,
+  icon,
+  iconPosition,
+}: {
+  children: ReactNode
+  icon?: ReactElement
+  iconPosition?: IconPositionType
+}) => {
+  if (!icon) {
+    return null
+  }
+
+  const iconClassNames = createIconClassNames({
+    iconPosition: children && iconPosition ? iconPosition : undefined,
+  })
+
+  return React.cloneElement(icon, {
+    className: cx(iconClassNames, icon.props.className),
+  })
+}
 
 export interface Props extends BaseProps, ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
@@ -37,14 +57,6 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   value?: string | number
 }
 
-// Using { index: -1 } to inject CSS link to the bottom of the head
-// in order to prevent Button's styles to override ButtonAction's ones
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonAction',
-  index: -1,
-})
-
 const loaderIcon = <Loader size='small' variant='inherit' />
 
 export const ButtonAction: OverridableComponent<Props> = forwardRef<
@@ -63,50 +75,26 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
     onClick,
     ...rest
   } = props
-  const classes = useStyles()
-
-  const {
-    root: rootClass,
-    content,
-    icon: iconClassName,
-    iconLeft,
-    iconRight,
-    small,
-  } = classes
-
-  const rootClassName = cx(
-    {
-      [classes.active]: active,
-      [classes.focused]: focused,
-      [classes.hovered]: hovered,
-      [classes.disabled]: disabled,
-      [classes.loading]: loading,
-      [classes.iconless]: !icon,
-    },
-    rootClass
-  )
 
   const usedIcon = loading ? loaderIcon : icon
   const usedIconPosition = icon ? iconPosition : 'right'
 
+  const finalClassName = cx(createRootClassNames(props), className)
+  const finalIcon = getIcon({
+    children: rest.children,
+    icon: usedIcon,
+    iconPosition: usedIconPosition,
+  })
+
   return (
-    <Button
+    <ButtonBase
       {...rest}
       ref={ref}
-      icon={usedIcon}
+      icon={finalIcon}
       iconPosition={usedIconPosition}
       onClick={loading ? undefined : onClick}
-      variant='secondary'
-      classes={{
-        root: rootClassName,
-        content,
-        icon: iconClassName,
-        iconLeft,
-        iconRight,
-        small,
-      }}
-      className={className}
-      size='small'
+      className={finalClassName}
+      contentClassName='font-semibold text-blue-500 text-md'
       active={active}
       hovered={hovered}
       focused={focused}

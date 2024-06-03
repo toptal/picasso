@@ -4,10 +4,6 @@ import { rem } from '@toptal/picasso-shared'
 
 import { headerBreakingPointXL } from '../PageTopBar/constants'
 
-// decided to use a custom shadow for the sidebar's collapse button
-const COLLAPSE_BUTTON_SHADOW =
-  '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)'
-
 export default ({ palette, screens, transitions }: Theme) =>
   createStyles({
     root: {
@@ -72,25 +68,6 @@ export default ({ palette, screens, transitions }: Theme) =>
     dark: {
       boxShadow: `inset -1px 0px 0px 0px ${palette.grey.darker}`,
       backgroundColor: palette.grey.darker,
-    },
-    collapseButton: {
-      position: 'absolute',
-      right: '-0.75rem',
-      top: '0.75rem',
-      visibility: 'hidden',
-      color: palette.grey.dark,
-      backgroundColor: palette.common.white,
-      borderRadius: '50%',
-      boxShadow: COLLAPSE_BUTTON_SHADOW,
-      zIndex: 100,
-
-      '&:hover': {
-        color: palette.common.white,
-        backgroundColor: palette.primary.main,
-      },
-    },
-    buttonVisible: {
-      visibility: 'visible',
     },
     rootCollapsed: {
       width: '5rem',

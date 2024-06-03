@@ -1,6 +1,6 @@
 {
   "name": "@topkit/analytics-charts",
-  "version": "55.0.3",
+  "version": "55.0.6",
   "description": "Charts utilities",
   "author": "Toptal",
   "license": "MIT",
@@ -25,17 +25,17 @@
     "typescript": "~4.7.0"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.1.0",
+    "@toptal/picasso-test-utils": "1.1.1",
     "@types/d3": "^7.4.0",
     "@types/d3-array": "3.0.4",
     "date-fns": "^2.30.0"
   },
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.2",
-    "@toptal/picasso-charts": "58.0.2",
-    "@toptal/picasso-container": "1.0.2",
-    "@toptal/picasso-typography": "2.0.0",
-    "@toptal/picasso-paper": "2.0.2",
+    "@toptal/picasso-utils": "1.0.3",
+    "@toptal/picasso-charts": "59.0.0",
+    "@toptal/picasso-container": "1.0.3",
+    "@toptal/picasso-typography": "2.0.2",
+    "@toptal/picasso-paper": "2.0.4",
     "d3": "^7.8.2",
     "d3-array": "^3.2.2"
   },

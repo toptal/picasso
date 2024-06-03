@@ -1,5 +1,65 @@
 # @toptal/picasso-prompt-modal
 
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [[`2820f38`](https://github.com/toptal/picasso/commit/2820f38931f1b2736c4ad20b5609ca562da0d515)]:
+  - @toptal/picasso-typography@2.0.2
+  - @toptal/picasso-modal@2.0.5
+  - @toptal/picasso-button@2.0.5
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.4
+  - @toptal/picasso-modal@2.0.4
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+  - @toptal/picasso-modal@2.0.3
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+  - @toptal/picasso-modal@2.0.2
+
+## 1.0.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.1
+  - @toptal/picasso-modal@2.0.1
+
+## 1.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`0c9807b`](https://github.com/toptal/picasso/commit/0c9807b800ed8a992de72f47bc1263d24a2fd4d8), [`7611536`](https://github.com/toptal/picasso/commit/761153604f33bd1b9427240846b2d0cbb8ae5ed4)]:
+  - @toptal/picasso-button@2.0.0
+  - @toptal/picasso-modal@2.0.0
+  - @toptal/picasso-utils@1.0.3
+  - @toptal/picasso-container@1.0.3
+  - @toptal/picasso-typography@2.0.1
+
+## 1.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@1.0.13
+  - @toptal/picasso-modal@1.0.13
+
 ## 1.0.12
 
 ### Patch Changes

@@ -1,5 +1,32 @@
 # @toptal/picasso-slider
 
+## 2.0.0
+
+### Major Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Slider
+
+- migrate from MUI@4 to MUI Base and TailwindCSS
+- remove `compact`, `disablePortal` and `TooltipComponent` props in Slider component
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tooltip@1.1.3
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`d599529`](https://github.com/toptal/picasso/commit/d599529bcb283c367b63c612fee81394e66c9740)]:
+  - @toptal/picasso-shared@15.0.0
+  - @toptal/picasso-tooltip@1.1.2
+  - @toptal/picasso-utils@1.0.3
+
 ## 1.0.4
 
 ### Patch Changes

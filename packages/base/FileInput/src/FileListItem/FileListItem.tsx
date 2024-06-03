@@ -83,7 +83,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
           </TypographyOverflow>
         </Container>
         <Typography
-          className='!leading-4'
+          className='leading-4'
           variant='body'
           size='xsmall'
           color='red'

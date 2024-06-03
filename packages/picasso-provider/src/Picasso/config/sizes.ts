@@ -1,3 +1,6 @@
+/**
+ * @deprecated Please use Tailwind classes based on "@toptal/picasso-tailwind"
+ */
 export interface Sizes {
   borderWidth: string
   borderRadius: {
@@ -11,6 +14,9 @@ export interface Sizes {
   }
 }
 
+/**
+ * @deprecated Please use Tailwind classes based on "@toptal/picasso-tailwind"
+ */
 const sizes = {
   borderWidth: '1px',
   borderRadius: {

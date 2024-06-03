@@ -6,28 +6,30 @@ exports[`Section renders collapsible initially collapsed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-collapsed PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6 pb-8"
     >
       <div
-        class="PicassoSection-defaultHeader PicassoSection-defaultCollapsedHeader"
+        class="flex pb-0"
         data-testid="header"
       >
         <div
-          class="PicassoSection-actions"
+          class="PicassoContainer-flex ml-auto"
           data-testid="actions"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+            aria-disabled="false"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
             data-component-type="button"
             data-testid="collapse"
+            role="button"
             tabindex="0"
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition"
+                class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -50,28 +52,30 @@ exports[`Section renders collapsible initially expanded 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="PicassoSection-defaultHeader"
+        class="flex"
         data-testid="header"
       >
         <div
-          class="PicassoSection-actions"
+          class="PicassoContainer-flex ml-auto"
           data-testid="actions"
         >
           <button
-            class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+            aria-disabled="false"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
             data-component-type="button"
             data-testid="collapse"
+            role="button"
             tabindex="0"
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoButton-icon Rotate180-transition Rotate180-rotate180"
+                class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition Rotate180-rotate180"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -84,22 +88,17 @@ exports[`Section renders collapsible initially expanded 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-root MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="flex"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="w-full"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class=""
           >
             <div
-              class="PicassoSection-defaultSectionContent"
-            >
-              <div
-                data-testid="content"
-              />
-            </div>
+              data-testid="content"
+            />
           </div>
         </div>
       </div>
@@ -114,14 +113,14 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="PicassoSection-defaultHeader"
+        class="flex"
         data-testid="header"
       >
         <h3
-          class="m-0 text-lg text-black font-semibold !mr-4 min-w"
+          class="m-0 text-lg text-black font-semibold mr-4 min-w"
           data-testid="title"
         >
           Title
@@ -133,29 +132,24 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
           Subtitle
         </p>
         <div
-          class="PicassoSection-actions"
+          class="PicassoContainer-flex ml-auto"
           data-testid="actions"
         >
           Actions
         </div>
       </div>
       <div
-        class="MuiCollapse-root MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="flex"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="w-full"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class=""
           >
             <div
-              class="PicassoSection-defaultSectionContent"
-            >
-              <div
-                data-testid="content"
-              />
-            </div>
+              data-testid="content"
+            />
           </div>
         </div>
       </div>
@@ -170,25 +164,20 @@ exports[`Section renders without header 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="MuiCollapse-root MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="flex"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="w-full"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class=""
           >
             <div
-              class="PicassoSection-defaultSectionContent"
-            >
-              <div
-                data-testid="content"
-              />
-            </div>
+              data-testid="content"
+            />
           </div>
         </div>
       </div>

@@ -1,17 +1,14 @@
 import type { ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type {
   BaseProps,
   ButtonOrAnchorProps,
   OverridableComponent,
 } from '@toptal/picasso-shared'
-import { kebabToCamelCase } from '@toptal/picasso-utils'
 
-import { Button } from '../Button'
-import styles from './styles'
+import { ButtonBase } from '../ButtonBase'
+import { createRootClassNames, createVariantClassNames } from './styles'
 
 export type VariantType = 'primary' | 'flat' | 'transparent'
 
@@ -40,14 +37,6 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   responsive?: boolean
 }
 
-// Using { index: -1 } to inject CSS link to the bottom of the head
-// in order to prevent Button's styles to override ButtonCircular's ones
-// Related Jira issue: https://toptal-core.atlassian.net/browse/FX-1520
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoButtonCircular',
-  index: -1,
-})
-
 export const ButtonCircular: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
@@ -60,39 +49,35 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
     hovered,
     disabled,
     responsive,
+    loading,
     ...rest
   } = props
-  const classes = useStyles()
+  const variantClassNames = createVariantClassNames(variant, {
+    disabled,
+    focused,
+    hovered,
+    active,
+  })
 
-  const { root: rootClass, focusVisible: focusVisibleClass } = classes
+  const finalClassName = cx(
+    createRootClassNames({ responsive, active, disabled, focused, hovered }),
+    variantClassNames,
+    className
+  )
 
-  const variantClassName = classes[kebabToCamelCase(variant)]
-
-  const rootClassName = cx(
-    {
-      [classes.active]: active,
-      [classes.focused]: focused,
-      [classes.hovered]: hovered,
-      [classes.disabled]: disabled,
-      [classes.responsive]: responsive,
-    },
-    variantClassName,
-    rootClass
+  const contentClassName = cx(
+    'font-semibold whitespace-nowrap',
+    'text-button-small',
+    loading ? 'opacity-0' : ''
   )
 
   return (
-    <Button
+    <ButtonBase
       {...rest}
       ref={ref}
-      classes={{
-        root: rootClassName,
-        focusVisible: focusVisibleClass,
-      }}
-      className={className}
-      size='small'
-      active={active}
-      hovered={hovered}
-      focused={focused}
+      loading={loading}
+      className={finalClassName}
+      contentClassName={contentClassName}
       disabled={disabled}
     />
   )

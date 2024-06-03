@@ -35,17 +35,19 @@ exports[`FileListItem renders 1`] = `
           </p>
         </div>
         <p
-          class="m-0 text-xxs text-red font-regular !leading-4"
+          class="m-0 text-xxs text-red font-regular leading-4"
         />
       </div>
       <button
-        class="MuiButtonBase-root PicassoButton-small PicassoButton-primary PicassoButton-root PicassoButtonCircular-flat PicassoButtonCircular-root"
+        aria-disabled="false"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
         data-component-type="button"
+        role="button"
         tabindex="0"
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoButton-content"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
         >
           <svg
             class="PicassoSvgTrash16-root PicassoSvgTrash16-red"
