@@ -1,5 +1,61 @@
 # Change Log
 
+## 46.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`87ace4e`](https://github.com/toptal/picasso/commit/87ace4e92a7ec66d5312ac62cefffc41cb0899a0)]:
+  - @toptal/picasso-icons@1.3.0
+  - @toptal/picasso-accordion@1.0.20
+  - @toptal/picasso-account-select@1.0.14
+  - @toptal/picasso-alert@1.0.20
+  - @toptal/picasso-application-update-notification@1.0.20
+  - @toptal/picasso-avatar@2.0.5
+  - @toptal/picasso-avatar-upload@1.0.21
+  - @toptal/picasso-breadcrumbs@1.0.10
+  - @toptal/picasso-button@2.0.6
+  - @toptal/picasso-calendar@1.0.20
+  - @toptal/picasso-carousel@1.0.21
+  - @toptal/picasso-date-picker@1.0.22
+  - @toptal/picasso-drawer@2.0.12
+  - @toptal/picasso-dropzone@1.0.21
+  - @toptal/picasso-empty-state@1.0.9
+  - @toptal/picasso-file-input@1.0.21
+  - @toptal/picasso-form@3.0.5
+  - @toptal/picasso-grid@3.0.4
+  - @toptal/picasso-helpbox@2.0.6
+  - @toptal/picasso-input@2.0.4
+  - @toptal/picasso-input-adornment@1.0.6
+  - @toptal/picasso-list@2.0.5
+  - @toptal/picasso-logo@1.0.6
+  - @toptal/picasso-menu@1.0.14
+  - @toptal/picasso-modal@2.0.6
+  - @toptal/picasso-notification@2.0.12
+  - @toptal/picasso-number-input@1.0.22
+  - @toptal/picasso-outlined-input@1.1.1
+  - @toptal/picasso-page@2.0.17
+  - @toptal/picasso-password-input@2.0.8
+  - @toptal/picasso-rating@1.0.6
+  - @toptal/picasso-section@3.0.1
+  - @toptal/picasso-select@1.0.23
+  - @toptal/picasso-show-more@1.0.20
+  - @toptal/picasso-step@1.1.5
+  - @toptal/picasso-table@1.1.17
+  - @toptal/picasso-tabs@2.0.5
+  - @toptal/picasso-tag@2.0.3
+  - @toptal/picasso-timepicker@1.0.22
+  - @toptal/picasso-user-badge@2.0.5
+  - @toptal/picasso-pagination@2.0.6
+  - @toptal/picasso-prompt-modal@1.0.20
+  - @toptal/picasso-skeleton-loader@1.0.20
+  - @toptal/picasso-tree-view@1.0.20
+  - @toptal/picasso-autocomplete@1.0.23
+  - @toptal/picasso-checkbox@2.0.5
+  - @toptal/picasso-radio@2.0.5
+  - @toptal/picasso-switch@2.0.1
+  - @toptal/picasso-tagselector@1.0.25
+  - @toptal/picasso-date-select@1.0.23
+
 ## 46.0.1
 
 ### Patch Changes
