@@ -97,9 +97,9 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
           input:
             // required to remove arrows in WebKit based browsers
             `[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 
-            [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0` +
+            [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 ` +
             // required to remove arrows in Firefox
-            '[appearance:textfield]',
+            '[-moz-appearance:textfield]',
         }}
         highlight={highlight}
         inputProps={{
