@@ -6,7 +6,7 @@ exports[`TagSelectorInput renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium flex flex-wrap h-auto pb-1 pl-1 pt-1 [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
     >
       <input
         aria-invalid="false"
