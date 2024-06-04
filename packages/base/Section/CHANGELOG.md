@@ -1,5 +1,21 @@
 # @toptal/picasso-section
 
+## 3.0.0
+
+### Major Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Section
+
+- migrate component from MUI@4 to custom solution and TailwindCSS
+- update peer dependencies
+
+### Patch Changes
+
+- Updated dependencies [[`75540be`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2)]:
+  - @toptal/picasso-collapse@1.0.4
+
 ## 2.0.11
 
 ### Patch Changes
