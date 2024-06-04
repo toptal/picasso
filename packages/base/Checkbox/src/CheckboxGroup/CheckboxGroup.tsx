@@ -14,11 +14,13 @@ export interface Props extends HTMLAttributes<HTMLDivElement>, GridSizeProps {
   spacing?: GridSpacing
 }
 
+const HORIZONTAL_SPACING = 16
+
 const CheckboxGroup = (props: Props) => {
   const { horizontal, spacing, xs, sm, md, lg, xl, className, ...rest } = props
 
   const direction = horizontal ? 'row' : 'column'
-  const gridSpacing = spacing ?? horizontal ? 16 : 0
+  const gridSpacing = spacing ?? horizontal ? HORIZONTAL_SPACING : 0
 
   const children = React.Children.toArray(rest.children)
 
@@ -27,7 +29,7 @@ const CheckboxGroup = (props: Props) => {
       {...rest}
       className={twMerge(
         'flex flex-col flex-wrap -mr-2 -mb-2',
-        horizontal ? 'flex-row' : undefined,
+        horizontal && 'flex-row',
         className
       )}
     >
@@ -39,7 +41,7 @@ const CheckboxGroup = (props: Props) => {
         {children.map((child, index) => (
           <Grid.Item
             key={index}
-            className='leading-none [&&]:pt-0 [&&]:pb-0 [&&>label]:mb-[0.5em]'
+            className='leading-none pt-0 pb-0 [&>label]:mb-[0.5em]'
             xs={xs}
             sm={sm}
             md={md}
