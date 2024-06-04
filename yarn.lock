@@ -5647,15 +5647,6 @@
     requireindex "^1.2.0"
     resolve-ts-aliases "^1.0.1"
 
-"@toptal/picasso-collapse@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@toptal/picasso-collapse/-/picasso-collapse-1.0.3.tgz#695a5af4b4b388296349de6369107d090ae06ab4"
-  integrity sha512-K6OH2uezv7GMKCIiHLV3av5mhixWa7iCKWwWaB2U2HdOQQKpUJEYzqQOuxdgBhUfgApjm0JzjNMhwPITTv5Cgw==
-  dependencies:
-    "@toptal/picasso-utils" "1.0.3"
-    react-transition-group "^4.4.5"
-    tailwind-merge "^2.2.2"
-
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"
