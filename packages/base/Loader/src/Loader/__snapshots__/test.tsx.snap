@@ -20,6 +20,8 @@ exports[`Loader props combo 1`] = `
           cy="44"
           fill="none"
           r="20.2"
+          stroke-dasharray="80px, 200px"
+          stroke-dashoffset="0px"
           stroke-width="3.6"
         />
       </svg>

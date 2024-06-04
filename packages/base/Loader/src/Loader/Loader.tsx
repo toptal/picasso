@@ -89,6 +89,8 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
             cy={VIEWBOX_SIZE}
             r={(VIEWBOX_SIZE - THICKNESS) / 2}
             fill='none'
+            strokeDasharray='80px, 200px'
+            strokeDashoffset='0px'
             strokeWidth={THICKNESS}
             style={
               progress
