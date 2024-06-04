@@ -4,8 +4,6 @@ import { createStyles } from '@material-ui/core/styles'
 import '@toptal/picasso-input/styles'
 import '@toptal/picasso-loader/styles'
 
-import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
-
 export default (theme: Theme) => {
   const { palette } = theme
 
@@ -55,6 +53,5 @@ export default (theme: Theme) => {
     endAdornmentPadding: {
       paddingRight: '3.5625rem',
     },
-    ...highlightAutofillStyles(theme),
   })
 }

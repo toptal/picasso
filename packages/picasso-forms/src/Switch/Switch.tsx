@@ -9,9 +9,11 @@ import type { Props as FieldLabelProps } from '../FieldLabel'
 
 export type FormSwitchProps = Omit<SwitchProps, 'onChange'> & {
   onChange?: SwitchProps['onChange']
+  value?: string
 }
+
 export type Props = FormSwitchProps &
-  FieldProps<SwitchProps['value']> &
+  FieldProps<FormSwitchProps['value']> &
   Omit<FieldLabelProps, 'name' | 'required'>
 
 export const Switch = (props: Props) => (
@@ -34,8 +36,14 @@ export const Switch = (props: Props) => (
       // omitting highlight from inputProps
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       highlight,
+      // value is not expected in PicassoSwitch
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      value,
       ...inputProps
-    }: SwitchProps & { highlight?: 'autofill' }) => {
+    }: SwitchProps & {
+      highlight?: 'autofill'
+      value: FormSwitchProps['value']
+    }) => {
       return <PicassoSwitch {...inputProps} />
     }}
   </PicassoField>

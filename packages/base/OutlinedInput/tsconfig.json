@@ -6,6 +6,7 @@
     { "path": "../../picasso-provider" },
     { "path": "../../shared" },
     { "path": "../Button" },
+    { "path": "../Form" },
     { "path": "../Icons" },
     { "path": "../InputAdornment" },
     { "path": "../Utils" }

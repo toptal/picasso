@@ -28,7 +28,6 @@ import type {
   InputIconAdornmentProps,
 } from '@toptal/picasso-input-adornment'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
-import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import styles from './styles'
 
@@ -296,8 +295,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   const classes = useStyles()
 
-  const { layout } = useFieldsLayoutContext()
-
   const showCounter = !!charsLength && hasCounter({ counter, limit })
 
   useHasMultilineCounter(name, showCounter && multiline, setHasMultilineCounter)
@@ -309,11 +306,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         inputRef={ref}
         className={className}
         style={style}
+        highlight={highlight}
         classes={{
           root: cx(classes.root, {
             [classes.rootMultiline]: multiline,
-            [classes.highlightAutofill]: highlight === 'autofill',
-            [classes.horizontalLayout]: layout === 'horizontal',
           }),
           input: cx(classes.input, {
             [classes.inputMultilineResizable]: multiline && multilineResizable,

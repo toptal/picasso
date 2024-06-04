@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-date-picker",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Toptal UI components library - DatePicker",
   "publishConfig": {
     "access": "public"
@@ -25,9 +25,9 @@
     "@toptal/picasso-calendar": "1.0.19",
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-icons": "1.2.0",
-    "@toptal/picasso-input": "2.0.2",
+    "@toptal/picasso-input": "2.0.3",
     "@toptal/picasso-input-adornment": "1.0.5",
-    "@toptal/picasso-outlined-input": "1.0.19",
+    "@toptal/picasso-outlined-input": "1.1.0",
     "@toptal/picasso-popper": "1.0.3",
     "@toptal/picasso-utils": "1.0.3",
     "date-fns": "^2.30.0",
