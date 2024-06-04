@@ -255,7 +255,7 @@ export const NonNativeSelect = documentable(
       return (
         <div
           className={twMerge(
-            'relative inline-flex text-lg cursor-pointer',
+            'relative inline-flex text-[1rem] cursor-pointer',
             className,
             classesByWidth[width],
             disabled && 'cursor-default'
