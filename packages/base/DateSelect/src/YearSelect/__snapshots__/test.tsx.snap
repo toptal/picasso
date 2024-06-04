@@ -173,7 +173,7 @@ exports[`YearSelect renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative inline-flex text-lg cursor-pointer w-full"
+      class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
         class="w-[inherit] outline-0"
