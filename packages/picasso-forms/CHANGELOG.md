@@ -1,5 +1,40 @@
 # Change Log
 
+## 70.0.1
+
+### Patch Changes
+
+- [#4317](https://github.com/toptal/picasso/pull/4317) [`27acfb01f720505e1bfa3dad341800ba7fe1d1b2`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- refactor highlight and vertical layout
+
+- Updated dependencies [[`5ce143b`](https://github.com/toptal/picasso/commit/5ce143b0cea7b98797e63114756208119790c4af), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2)]:
+  - @toptal/picasso-outlined-input@1.1.0
+  - @toptal/picasso-number-input@1.0.21
+  - @toptal/picasso-rich-text-editor@13.0.7
+  - @toptal/picasso-password-input@2.0.7
+  - @toptal/picasso-tagselector@1.0.24
+  - @toptal/picasso-select@1.0.22
+  - @toptal/picasso-input@2.0.3
+  - @toptal/picasso-autocomplete@1.0.22
+  - @toptal/picasso-avatar-upload@1.0.20
+  - @toptal/picasso-date-picker@1.0.21
+  - @toptal/picasso-timepicker@1.0.21
+
+## 70.0.0
+
+### Major Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Switch
+
+- remove `value` property from Switch
+
+### Patch Changes
+
+- Updated dependencies [[`75540be`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2)]:
+  - @toptal/picasso-switch@2.0.0
+
 ## 69.0.7
 
 ### Patch Changes

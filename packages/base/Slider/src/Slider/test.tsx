@@ -1,8 +1,14 @@
 import type { ReactNode } from 'react'
+import { describe, expect, it } from '@jest/globals'
 import React from 'react'
 import type { RenderResult } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+
+jest.mock('@toptal/picasso-utils', () => ({
+  ...jest.requireActual('@toptal/picasso-utils'),
+  useOnScreen: jest.fn().mockRejectedValueOnce(true),
+}))
 
 import type { Props } from './Slider'
 import { Slider } from './Slider'

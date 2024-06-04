@@ -1,5 +1,12 @@
 # @toptal/picasso-avatar-upload
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [[`5ce143b`](https://github.com/toptal/picasso/commit/5ce143b0cea7b98797e63114756208119790c4af), [`27acfb0`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2)]:
+  - @toptal/picasso-outlined-input@1.1.0
+
 ## 1.0.19
 
 ### Patch Changes

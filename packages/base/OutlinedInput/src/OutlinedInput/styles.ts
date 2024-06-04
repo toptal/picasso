@@ -1,6 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { darken, outline } from '@toptal/picasso-shared'
+import { darken, outline, alpha } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
 PicassoProvider.override(
@@ -105,6 +105,9 @@ export default ({ palette, sizes: { input } }: Theme) =>
           ...outline(palette.common.white),
         },
       },
+      '&$error': {
+        backgroundColor: palette.common.white,
+      },
     },
     hidden: {
       display: 'none',
@@ -169,4 +172,12 @@ export default ({ palette, sizes: { input } }: Theme) =>
         opacity: 0.64,
       },
     },
+    highlightAutofill: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      backgroundColor: alpha(palette.yellow.lighter!, 0.6),
+    },
+    horizontalLayout: {
+      width: '100%',
+    },
+    error: {},
   })

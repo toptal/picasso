@@ -94,8 +94,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       <OutlinedInput
         style={style}
         className={cx(classes.root, className)}
+        highlight={highlight}
         classes={{
-          root: cx({ [classes.highlightAutofill]: highlight === 'autofill' }),
           input: classes.input,
         }}
         inputProps={{
