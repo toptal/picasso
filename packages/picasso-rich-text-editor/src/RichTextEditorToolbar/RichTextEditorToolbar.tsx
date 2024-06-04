@@ -90,7 +90,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
             ]}
             size='small'
             menuWidth='auto'
-            width='auto'
             className={classes.select}
             disabled={isBlockFormattingDisabled}
             data-testid={testIds?.headerSelect}

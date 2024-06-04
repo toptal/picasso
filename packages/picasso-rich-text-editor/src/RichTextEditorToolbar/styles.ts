@@ -25,7 +25,8 @@ export default ({ palette }: Theme) =>
       },
     },
     select: {
-      width: '7.125em',
+      // XXX: Using important to override Tailwind styles, remove when migrating RTE to Tailwind
+      width: '7.125em !important',
     },
 
     groupDisabled: {
