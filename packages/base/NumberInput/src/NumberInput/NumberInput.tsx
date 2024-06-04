@@ -3,7 +3,6 @@ import React, { forwardRef, useRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import {
@@ -11,7 +10,6 @@ import {
   usePropDeprecationWarning,
 } from '@toptal/picasso-utils'
 import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
-import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 import styles from './styles'
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
@@ -76,8 +74,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const { layout } = useFieldsLayoutContext()
-
     const classes = useStyles(props)
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
@@ -106,12 +102,10 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
     return (
       <OutlinedInput
         classes={{
-          root: cx(classes.root, {
-            [classes.highlightAutofill]: highlight === 'autofill',
-            [classes.horizontalLayout]: layout === 'horizontal',
-          }),
+          root: classes.root,
           input: classes.input,
         }}
+        highlight={highlight}
         inputProps={{
           ...rest,
           step,

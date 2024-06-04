@@ -1,7 +1,6 @@
-import { outline } from '@toptal/picasso-shared'
+import { alpha, outline } from '@toptal/picasso-shared'
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
 
 export default (theme: Theme) => {
   const { palette, sizes } = theme
@@ -37,6 +36,9 @@ export default (theme: Theme) => {
       ...outline(palette.primary.main),
     },
 
-    ...highlightAutofillStyles(theme),
+    highlightAutofill: {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      backgroundColor: alpha(palette.yellow.lighter!, 0.6),
+    },
   })
 }

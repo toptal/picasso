@@ -5,7 +5,12 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import capitalize from '@material-ui/core/utils/capitalize'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
-import { documentable, forwardRef, noop, useCombinedRefs } from '@toptal/picasso-utils'
+import {
+  documentable,
+  forwardRef,
+  noop,
+  useCombinedRefs,
+} from '@toptal/picasso-utils'
 
 import SelectCaret from '../SelectCaret'
 import type { ValueType, SelectProps } from '../SelectBase'
@@ -123,6 +128,7 @@ export const NativeSelect = documentable(
               className={classes.nativeInput}
               testIds={testIds}
               status={error ? 'error' : status}
+              highlight={highlight}
               // eslint-disable-next-line react/jsx-props-no-spreading
               {...getInputProps()}
             />
@@ -133,7 +139,6 @@ export const NativeSelect = documentable(
           classes={{
             root: cx(classes.select, {
               [classes.placeholder]: !selection.isSelected(),
-              [classes.highlightAutofill]: highlight === 'autofill',
             }),
             select: cx({
               [classes.startAdornmentPadding]:

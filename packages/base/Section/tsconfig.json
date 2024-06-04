@@ -3,7 +3,9 @@
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
   "references": [
+    { "path": "../../picasso-tailwind" },
     { "path": "../Button" },
+    { "path": "../Collapse" },
     { "path": "../Container" },
     { "path": "../Icons" },
     { "path": "../Typography" },
