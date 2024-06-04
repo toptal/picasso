@@ -8,8 +8,6 @@ import {
   usePropDeprecationWarning,
 } from '@toptal/picasso-utils'
 import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
-import { useFieldsLayoutContext } from '@toptal/picasso-form'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
 
@@ -69,8 +67,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const { layout } = useFieldsLayoutContext()
-
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
       useRef<HTMLInputElement>(null)
@@ -97,11 +93,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
     return (
       <OutlinedInput
         classes={{
-          root: twJoin(
-            'pr-0 cursor-text',
-            highlight === 'autofill' && 'bg-yellow-100 bg-opacity-60',
-            layout === 'horizontal' && 'w-full'
-          ),
+          root: 'pr-0 cursor-text',
           input:
             // required to remove arrows in WebKit based browsers
             `[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 
