@@ -1,6 +1,5 @@
 import { createStyles } from '@material-ui/core/styles'
 import '@toptal/picasso-outlined-input/styles'
-import '@toptal/picasso-input-adornment/styles'
 
 import '../InputBase/styles'
 

@@ -1,10 +1,7 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
-import { InputAdornment } from '@material-ui/core'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { InputAdornment } from '../InputAdornment'
 import { InputMultilineAdornment } from '../InputMultilineAdornment'
 
 type CounterType = 'remaining' | 'entered'
@@ -19,10 +16,6 @@ export interface Props {
     message?: string
   }
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoInputLimitAdornment',
-})
 
 const hasRemainingCounter = (counter: CounterType) => counter === 'remaining'
 const formatCharacters = (count: number) =>
@@ -55,7 +48,6 @@ const getMultilineLabel = ({
 }
 
 const InputLimitAdornment = (props: Props) => {
-  const classes = useStyles()
   const { multiline, charsLength, counter, limit, testIds } = props
 
   const charsTillLimit = getCharsTillLimit(charsLength, counter, limit)
@@ -85,9 +77,10 @@ const InputLimitAdornment = (props: Props) => {
       data-testid={testIds?.inputAdornment}
       position='end'
       disablePointerEvents
-      className={cx(classes.limiterLabel, {
-        [classes.limiterLabelError]: error,
-      })}
+      className={twJoin(
+        'text-[0.625rem] leading-4',
+        error ? 'text-red-500' : 'text-gray-600'
+      )}
     >
       <span data-testid={testIds?.message}>
         <span translate='no'>{charsTillLimit}</span>{' '}
