@@ -9,7 +9,7 @@ exports[`NumberInput renders 1`] = `
   >
     <input
       aria-invalid="false"
-      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input [&::-webkit-outer-spin-button]:appearance [&::-webkit-outer-spin-button]:m-0[&::-webkit-inner-spin-button]:appearance [&::-webkit-inner-spin-button]:m-0[-moz PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input [&::-webkit-outer-spin-button]:appearance [&::-webkit-outer-spin-button]:m [&::-webkit-inner-spin-button]:appearance [&::-webkit-inner-spin-button]:m [-moz PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
       max="100"
       min="-100"
       step="5"
