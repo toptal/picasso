@@ -251,7 +251,7 @@ exports[`Autocomplete static behavior renders 1`] = `
             value=""
           />
           <div
-            class="MuiInputAdornment-root PicassoInputAdornment-root PicassoOutlinedInput-resetButton MuiInputAdornment-positionEnd"
+            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 PicassoOutlinedInput-resetButton"
             data-testid="reset-adornment"
           >
             <button
@@ -303,30 +303,32 @@ exports[`Autocomplete static behavior renders 1`] = `
 
 exports[`Autocomplete static behavior renders a loading indicator 1`] = `
 <div
-  class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
+  class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 pointer-events"
   data-testid="loading-adornment"
 >
   <div
-    class="PicassoLoader-root"
+    class="text-lg flex flex-col items-center"
   >
     <div
       aria-valuenow="35"
-      class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerBlue MuiCircularProgress-colorPrimary MuiCircularProgress-determinate"
+      class="text-blue transform -rotate"
       role="progressbar"
-      style="width: 16px; height: 16px; transform: rotate(-90deg);"
+      style="width: 16px; height: 16px;"
     >
       <svg
-        class="MuiCircularProgress-svg"
+        class="block"
         viewBox="22 22 44 44"
       >
         <circle
-          class="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate"
+          class="transition-all stroke-[currentColor]"
           cx="44"
           cy="44"
           fill="none"
           r="20.2"
+          stroke-dasharray="80px, 200px"
+          stroke-dashoffset="0px"
           stroke-width="3.6"
-          style="stroke-dasharray: 126.920; stroke-dashoffset: 82.498px;"
+          style="stroke-dashoffset: 82.498px; stroke-dasharray: 126.920;"
         />
       </svg>
     </div>

@@ -2,7 +2,6 @@ import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 import '@toptal/picasso-input/styles'
 import '@toptal/picasso-menu/styles'
-import '@toptal/picasso-loader/styles'
 
 export default ({ palette }: Theme) =>
   createStyles({
