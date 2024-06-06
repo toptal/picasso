@@ -23,6 +23,8 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipDelay?: DelayType
   /** Do not show tooltips for shorten content. */
   disableTooltip?: boolean
+  /** Show the tooltip in a compact view. */
+  compact?: boolean
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -36,6 +38,7 @@ export const TypographyOverflow = (props: Props) => {
     tooltipContent,
     tooltipDelay,
     disableTooltip,
+    compact,
     className,
     onClick,
     onMouseEnter,
@@ -132,6 +135,7 @@ export const TypographyOverflow = (props: Props) => {
       delay={tooltipDelay}
       interactive
       disableListeners={disableTooltip}
+      compact={compact}
       onOpen={handleTooltipOpen}
       onClose={handleTooltipClose}
       onTransitionExiting={handleTransitionExiting}

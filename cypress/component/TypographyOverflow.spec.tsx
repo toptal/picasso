@@ -77,6 +77,14 @@ const CustomTooltipAndDelayExample = () => (
   </Container>
 )
 
+const CompactTooltipExample = () => (
+  <Container padded='medium' style={{ width: 300, marginTop: 100 }}>
+    <TypographyOverflow compact data-testid='compact-tooltip'>
+      This typography is very long and therefore it overflows.
+    </TypographyOverflow>
+  </Container>
+)
+
 const component = 'TypographyOverflow'
 
 describe('TypographyOverflow', () => {
@@ -106,6 +114,16 @@ describe('TypographyOverflow', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'checkbox-label/after-hovered',
+    })
+  })
+
+  it('renders with compact tooltip', () => {
+    cy.mount(<CompactTooltipExample />)
+
+    cy.getByTestId('compact-tooltip').click()
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'compact-tooltip/after-hovered',
     })
   })
 

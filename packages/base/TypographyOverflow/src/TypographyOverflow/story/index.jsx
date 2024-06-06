@@ -56,3 +56,11 @@ page
     },
     'base/TypographyOverflow'
   )
+  .addExample(
+    'TypographyOverflow/story/Compact.example.tsx',
+    {
+      title: 'Compact',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )
