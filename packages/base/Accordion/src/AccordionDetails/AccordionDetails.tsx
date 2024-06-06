@@ -1,36 +1,29 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { AccordionDetails as MUIAccordionDetails } from '@material-ui/core'
+import React, { forwardRef } from 'react'
 import type { StandardProps } from '@toptal/picasso-shared'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAccordionDetails',
-})
+const AccordionDetails = forwardRef<HTMLDivElement, Props>(
+  function AccordionDetails(props, ref) {
+    const {
+      children,
+      // Avoid passing external classes inside the rest props
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      classes: externalClasses,
+      className,
+      ...rest
+    } = props
 
-const AccordionDetails = (props: Props) => {
-  const {
-    children,
-    // Avoid passing external classes inside the rest props
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    classes: externalClasses,
-    ...rest
-  } = props
-
-  const classes = useStyles(props)
-
-  return (
-    <MUIAccordionDetails {...rest} classes={classes}>
-      {children}
-    </MUIAccordionDetails>
-  )
-}
+    return (
+      <div {...rest} className={twMerge('flex p-0', className)} ref={ref}>
+        {children}
+      </div>
+    )
+  }
+)
 
 export default AccordionDetails
