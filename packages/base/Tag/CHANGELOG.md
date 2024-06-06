@@ -1,5 +1,15 @@
 # @toptal/picasso-tag
 
+## 2.0.4
+
+### Patch Changes
+
+- [#4337](https://github.com/toptal/picasso/pull/4337) [`79c7c29a6fed6b5f1941e753d8428ad92f21cc96`](https://github.com/toptal/picasso/commit/79c7c29a6fed6b5f1941e753d8428ad92f21cc96) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### TagGroup
+
+- remove `min-width: 100%` it was added by mistake during the migration
+
 ## 2.0.3
 
 ### Patch Changes

@@ -2,7 +2,7 @@
 
 exports[`Autocomplete dynamic behavior on focus 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
@@ -11,27 +11,27 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
         aria-selected="true"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-0"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 Belarus
               </span>
@@ -42,22 +42,22 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-1"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 Croatia
               </span>
@@ -68,22 +68,22 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-2"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 Lithuania
               </span>
@@ -94,22 +94,22 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-3"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 Slovakia
               </span>
@@ -120,22 +120,22 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-4"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 Ukraine
               </span>
@@ -160,22 +160,22 @@ exports[`Autocomplete dynamic behavior renders custom other options text and cal
 <li
   aria-disabled="false"
   aria-selected="false"
-  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  class="text-black bg-transparent hover:bg-blue focus:bg-blue py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 px-4 border-gray border-solid border-0 border-t"
   data-testid="other-option"
   role="option"
   tabindex="-1"
 >
   <div
-    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+    class="flex flex-1 max-w"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      class="flex flex-col flex-1 min-w"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        class="flex items-center"
       >
         <span
-          class="PicassoAutocomplete-stringContent"
+          class="m-0 text-sm text-black font-regular"
         >
           <span
             class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
@@ -194,22 +194,22 @@ exports[`Autocomplete dynamic behavior renders other option with default text 1`
 <li
   aria-disabled="false"
   aria-selected="false"
-  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option PicassoAutocomplete-otherOption MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+  class="text-black bg-transparent hover:bg-blue focus:bg-blue py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 px-4 border-gray border-solid border-0 border-t"
   data-testid="other-option"
   role="option"
   tabindex="-1"
 >
   <div
-    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+    class="flex flex-1 max-w"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      class="flex flex-col flex-1 min-w"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        class="flex items-center"
       >
         <span
-          class="PicassoAutocomplete-stringContent"
+          class="m-0 text-sm text-black font-regular"
         >
           <span
             class="m-0 font-inherit leading-[1.5em] text-graphite font-regular"
@@ -338,7 +338,7 @@ exports[`Autocomplete static behavior renders a loading indicator 1`] = `
 
 exports[`Autocomplete static behavior renders custom display value 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
@@ -347,27 +347,27 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
         aria-selected="true"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-0"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 BelarusBY
               </span>
@@ -378,22 +378,22 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-1"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 CroatiaHR
               </span>
@@ -404,22 +404,22 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-2"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 LithuaniaLU
               </span>
@@ -430,22 +430,22 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-3"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 SlovakiaSK
               </span>
@@ -456,22 +456,22 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-4"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 UkraineUA
               </span>
@@ -486,7 +486,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
 
 exports[`Autocomplete static behavior renders custom options with custom keys 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   data-testid="scroll-menu"
   role="menu"
   tabindex="-1"
@@ -495,24 +495,24 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
         aria-selected="true"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-0"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
                 data-testid="custom-option"
@@ -526,19 +526,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-1"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
                 data-testid="custom-option"
@@ -552,19 +552,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-2"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
                 data-testid="custom-option"
@@ -578,19 +578,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-3"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
                 data-testid="custom-option"
@@ -604,19 +604,19 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAutocomplete-option MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-testid="menu-item-4"
         role="option"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
                 data-testid="custom-option"

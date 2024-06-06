@@ -7,6 +7,7 @@
     { "path": "../../picasso-tailwind" },
     { "path": "../../shared" },
     { "path": "../Button" },
+    { "path": "../Collapse" },
     { "path": "../Icons" },
     { "path": "../Typography" },
     { "path": "../Utils" }

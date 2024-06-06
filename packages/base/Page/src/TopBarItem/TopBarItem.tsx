@@ -6,13 +6,10 @@ import type {
 import type { ElementType, ReactElement } from 'react'
 import React, { forwardRef, memo } from 'react'
 import type { MenuItemProps } from '@material-ui/core/MenuItem'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twMerge } from 'tailwind-merge'
 import { noop } from '@toptal/picasso-utils'
 
 import { SidebarItem } from '../SidebarItem'
-import styles from './styles'
 
 export interface Props extends BaseProps, TextLabelProps {
   /** Pass icon to be used as part of item */
@@ -27,20 +24,38 @@ export interface Props extends BaseProps, TextLabelProps {
   onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTopBarMenuItem' })
+const rootClasses = [
+  'min-[1280px]:text-gray-600 min-[1280px]:p-0 min-[1280px]:h-auto',
+  'min-[1280px]:w-auto min-[1280px]:m-0 min-[1280px]:flex-auto',
+  'min-[1280px]:[&_p]:text-sm',
+]
+const separatorClasses = [
+  'min-[1280px]:before:[&:not(:first-child)]:content-[""]',
+  'min-[1280px]:before:bg-gray-600 min-[1280px]:before:inline-block',
+  'min-[1280px]:before:h-2 min-[1280px]:before:mx-2 min-[1280px]:before:w-[1px]',
+]
+const bgClasses =
+  'min-[1280px]:hover:bg-transparent min-[1280px]:focus:bg-transparent'
+const textColorClasses =
+  'min-[1280px]:hover:text-gray-400 min-[1280px]:hover:text-white'
 
 export const TopBarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
     const { className, icon } = props
-    const classes = useStyles()
 
     return (
       <SidebarItem
         {...props}
-        className={cx(classes.root, className, {
-          [classes.selected]: props.selected,
-          [classes.icon]: icon,
-        })}
+        className={twMerge(
+          rootClasses,
+          separatorClasses,
+          bgClasses,
+          textColorClasses,
+          icon && 'min-[1280px]:[&_svg]:w-[1em]',
+          props.selected &&
+            'min-[1280px]:bg-transparent min-[1280px]:text-white',
+          className
+        )}
         ref={ref}
       />
     )

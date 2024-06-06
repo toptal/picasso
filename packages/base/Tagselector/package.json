@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tagselector",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Toptal UI components library - Tagselector",
   "publishConfig": {
     "access": "public"
@@ -26,7 +26,7 @@
     "@toptal/picasso-form": "3.0.5",
     "@toptal/picasso-outlined-input": "1.1.1",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-tag": "2.0.3",
+    "@toptal/picasso-tag": "2.0.4",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },

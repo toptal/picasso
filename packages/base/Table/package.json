@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
+    "@toptal/picasso-collapse": "1.0.4",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-button": "2.0.6",

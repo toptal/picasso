@@ -7,21 +7,21 @@ exports[`MenuItem renders 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="flex-1 text-md leading-5"
             >
               1
             </span>
@@ -40,21 +40,21 @@ exports[`MenuItem renders checkmarked 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              class="w-4 inline-flex mr-2"
             >
               <svg
                 class="PicassoSvgCheckMinor16-root"
@@ -67,7 +67,7 @@ exports[`MenuItem renders checkmarked 1`] = `
               </svg>
             </div>
             <span
-              class="PicassoMenuItem-stringContent PicassoMenuItem-stringContentSemibold"
+              class="flex-1 text-md leading-5 text-semibold"
             >
               1
             </span>
@@ -89,21 +89,21 @@ exports[`MenuItem renders in title case with global prop 1`] = `
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 Arrow
               </span>
@@ -123,21 +123,21 @@ exports[`MenuItem renders in title case with local prop 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="flex-1 text-md leading-5"
             >
               Arrow
             </span>
@@ -156,26 +156,26 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="flex-1 text-md leading-5"
             >
               1
             </span>
             <div
-              class="PicassoContainer-leftxsmallMargin PicassoContainer-flex PicassoContainer-inline"
+              class="inline-flex ml-2"
             >
               <svg
                 class="PicassoSvgChevronMinor16-root"
@@ -202,28 +202,27 @@ exports[`MenuItem renders with description 1`] = `
   >
     <li
       aria-disabled="false"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+      class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
       role="menuitem"
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             <span
-              class="PicassoMenuItem-stringContent"
+              class="flex-1 text-md leading-5"
             >
               1
             </span>
           </div>
           <div
-            class="PicassoMenuItem-description"
-            style="margin-top: 0.25rem;"
+            class="text-2xs mt-1 text-graphite"
           >
             details
           </div>

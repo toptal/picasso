@@ -1,17 +1,10 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
 import cx from 'classnames'
 
 import type { ScrollMenuProps } from '../ScrollMenu'
 import { ScrollMenu } from '../ScrollMenu'
-import styles from './styles'
 
 export interface Props extends ScrollMenuProps {}
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSelectOptions',
-})
 
 const SelectOptions = (props: Props) => {
   const {
@@ -25,15 +18,14 @@ const SelectOptions = (props: Props) => {
     role,
     ...rest
   } = props
-  const classes = useStyles()
 
   return (
     <ScrollMenu
       className={cx(
-        classes.menu,
+        'shadow-5',
         {
-          [classes.withHeader]: Boolean(fixedHeader),
-          [classes.withFooter]: Boolean(fixedFooter),
+          ['pt-[0.125rem] [&>div:first-child]:pb-2']: Boolean(fixedHeader),
+          ['pb-0']: Boolean(fixedFooter),
         },
         className
       )}
