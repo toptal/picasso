@@ -59,7 +59,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         inputRef={ref}
         style={style}
         className={cx(
-          `flex flex-wrap h-auto pb-1 pl-1 pt-1
+          `flex flex-wrap h-auto py-1 pl-1
           [&>input]:min-w-[3em] [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
           {
             'pr-[2.25em]': Boolean(endAdornment),
