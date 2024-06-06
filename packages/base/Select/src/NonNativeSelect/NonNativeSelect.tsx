@@ -183,7 +183,6 @@ export const NonNativeSelect = documentable(
               endAdornment={endAdornment}
               // Input specific props
               value={displayValue}
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
               {...getInputProps()}
               placeholder={placeholder}
               width={width}
@@ -224,7 +223,6 @@ export const NonNativeSelect = documentable(
                   renderOption={renderOption as any}
                   highlightedIndex={highlightedIndex}
                   getItemProps={getItemProps}
-                  // eslint-disable-next-line react/jsx-handler-names
                   onBlur={rootProps.onBlur}
                   selection={selection}
                   filterOptionsValue={filterOptionsValue}

@@ -50,7 +50,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     if (endAdornment && React.isValidElement(endAdornment)) {
       usedEndAdornment = React.cloneElement(endAdornment, {
-        className: 'absolute top-[calc(50%-0.5em)] right-[0.625em]',
+        className: 'absolute top-[calc(50%-0.5em)] right-[0.625em] h-[1em]',
       })
     }
 
@@ -59,7 +59,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         inputRef={ref}
         style={style}
         className={cx(
-          `flex flex-wrap h-auto py-1 pl-1
+          `flex flex-wrap h-auto py-1 pl-1 cursor-pointer
           [&>input]:min-w-[3em] [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
           {
             'pr-[2.25em]': Boolean(endAdornment),
