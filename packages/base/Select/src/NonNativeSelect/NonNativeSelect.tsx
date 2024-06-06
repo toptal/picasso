@@ -131,7 +131,6 @@ export const NonNativeSelect = documentable(
         <MenuItem
           as='div'
           nonSelectable
-          disableGutters
           className='pt-[0.375rem] pl-2 pb-2 pr-2'
         >
           <OutlinedInput
