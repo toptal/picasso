@@ -135,6 +135,8 @@ const imports: Record<string, object> = {
   '@toptal/picasso-typography-overflow': require('@toptal/picasso-typography-overflow'),
   '@toptal/picasso-user-badge': require('@toptal/picasso-user-badge'),
   '@toptal/picasso-utils': require('@toptal/picasso-utils'),
+  '@toptal/picasso-tailwind': require('@toptal/picasso-tailwind'),
+  '@toptal/picasso-tailwind-merge': require('@toptal/picasso-tailwind-merge'),
 }
 
 const resolver = (path: string) => imports[path]

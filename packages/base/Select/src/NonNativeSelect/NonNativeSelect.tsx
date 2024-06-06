@@ -185,12 +185,7 @@ export const NonNativeSelect = documentable(
               readOnly
               defaultValue={undefined}
               className={classes.outlinedInput}
-              classes={{
-                root: cx({
-                  [classes.highlightAutofill]: highlight === 'autofill',
-                  [classes.horizontalLayout]: layout === 'horizontal',
-                }),
-              }}
+              highlight={highlight}
               inputProps={{
                 size: 1, // let input to have smallest width by default for width:'shrink'
               }}

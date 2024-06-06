@@ -4,8 +4,6 @@ import { createStyles } from '@material-ui/core/styles'
 import '@toptal/picasso-input/styles'
 import '@toptal/picasso-loader/styles'
 
-import { highlightStyles as highlightAutofillStyles } from '@toptal/picasso-input'
-
 export default (theme: Theme) => {
   const { palette } = theme
 
@@ -39,7 +37,6 @@ export default (theme: Theme) => {
       outline: 0,
     },
     outlinedInput: {
-      backgroundColor: palette.common.white,
       paddingRight: '1.625rem',
     },
     searchOutlinedInput: {
@@ -57,6 +54,5 @@ export default (theme: Theme) => {
     horizontalLayout: {
       width: '100%',
     },
-    ...highlightAutofillStyles(theme),
   })
 }

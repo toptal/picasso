@@ -1,5 +1,43 @@
 # @toptal/picasso-alert
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies [[`87ace4e`](https://github.com/toptal/picasso/commit/87ace4e92a7ec66d5312ac62cefffc41cb0899a0)]:
+  - @toptal/picasso-icons@1.3.0
+  - @toptal/picasso-button@2.0.6
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [[`2820f38`](https://github.com/toptal/picasso/commit/2820f38931f1b2736c4ad20b5609ca562da0d515)]:
+  - @toptal/picasso-typography@2.0.2
+  - @toptal/picasso-button@2.0.5
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-button@2.0.4
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+
 ## 1.0.15
 
 ### Patch Changes

@@ -151,7 +151,7 @@ export { HelpboxCompound as Helpbox } from '@toptal/picasso-helpbox'
 export type { HelpboxProps } from '@toptal/picasso-helpbox'
 export { Image } from '@toptal/picasso-image'
 export type { ImageProps } from '@toptal/picasso-image'
-export { Input, highlightStyles } from '@toptal/picasso-input'
+export { Input } from '@toptal/picasso-input'
 export type { InputProps } from '@toptal/picasso-input'
 export {
   InputAdornment,

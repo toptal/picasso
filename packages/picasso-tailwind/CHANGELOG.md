@@ -1,5 +1,19 @@
 # @toptal/picasso-tailwind
 
+## 2.6.0
+
+### Minor Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add `currentColor` to tailwindCss configuration
+
+## 2.5.1
+
+### Patch Changes
+
+- [#4321](https://github.com/toptal/picasso/pull/4321) [`d03712b77511528d0139da4b5ef74e797d64446c`](https://github.com/toptal/picasso/commit/d03712b77511528d0139da4b5ef74e797d64446c) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- add index.d.ts
+
 ## 2.5.0
 
 ### Minor Changes

@@ -54,14 +54,6 @@ page
   )
   .addExample('Slider/story/Marks.example.tsx', 'Marks', 'base/Slider')
   .addExample(
-    'Slider/story/CustomTooltip.example.tsx',
-    {
-      title: 'Custom Tooltip',
-      takeScreenshot: false,
-    },
-    'base/Slider'
-  )
-  .addExample(
     'Slider/story/HideThumb.example.tsx',
     'Hide thumb when value is null or undefined',
     'base/Slider'

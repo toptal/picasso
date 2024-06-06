@@ -1,5 +1,49 @@
 # @toptal/picasso-tag
 
+## 2.0.4
+
+### Patch Changes
+
+- [#4337](https://github.com/toptal/picasso/pull/4337) [`79c7c29a6fed6b5f1941e753d8428ad92f21cc96`](https://github.com/toptal/picasso/commit/79c7c29a6fed6b5f1941e753d8428ad92f21cc96) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### TagGroup
+
+- remove `min-width: 100%` it was added by mistake during the migration
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`87ace4e`](https://github.com/toptal/picasso/commit/87ace4e92a7ec66d5312ac62cefffc41cb0899a0)]:
+  - @toptal/picasso-icons@1.3.0
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`2820f38`](https://github.com/toptal/picasso/commit/2820f38931f1b2736c4ad20b5609ca562da0d515)]:
+  - @toptal/picasso-typography@2.0.2
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+
+## 2.0.0
+
+### Major Changes
+
+- [#4316](https://github.com/toptal/picasso/pull/4316) [`52594865c858dab4d7a3e2419ca87d38d7d01588`](https://github.com/toptal/picasso/commit/52594865c858dab4d7a3e2419ca87d38d7d01588) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Tag
+
+- migrate to TailwindCSS
+- remove `Chip`
+- add `@toptal/picasso-tailwind` as a peer dependency
+- delete `hovered` prop from `Tag` (it doesn't affect anything)
+
 ## 1.1.2
 
 ### Patch Changes

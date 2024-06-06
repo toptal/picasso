@@ -32,7 +32,6 @@ const Example = () => {
           onChange={handleChange}
           tooltip='on'
           tooltipFormat={renderLabel}
-          compact
         />
       </Container>
     </Container>

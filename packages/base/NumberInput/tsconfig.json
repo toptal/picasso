@@ -7,7 +7,6 @@
     { "path": "../Container" },
     { "path": "../Form" },
     { "path": "../Icons" },
-    { "path": "../Input" },
     { "path": "../InputAdornment" },
     { "path": "../OutlinedInput" },
     { "path": "../Utils" }

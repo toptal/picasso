@@ -1,5 +1,44 @@
 # @toptal/picasso-switch
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@3.0.5
+
+## 2.0.0
+
+### Major Changes
+
+- [#4320](https://github.com/toptal/picasso/pull/4320) [`75540be4ee8bd57c4da93ae725782c39c7cf85b2`](https://github.com/toptal/picasso/commit/75540be4ee8bd57c4da93ae725782c39c7cf85b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Switch
+
+- migrate Switch component from MUI@4 to MUI Base and TailwindCSS
+- remove `value` property from Switch.
+
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@3.0.4
+
+## 1.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@3.0.3
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`81ba64e`](https://github.com/toptal/picasso/commit/81ba64e3ee6206aa7119fa2069ca685228567746)]:
+  - @toptal/picasso-form@3.0.2
+
 ## 1.0.9
 
 ### Patch Changes

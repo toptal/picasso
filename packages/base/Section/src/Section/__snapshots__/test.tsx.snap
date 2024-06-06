@@ -6,14 +6,14 @@ exports[`Section renders collapsible initially collapsed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-collapsed PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6 pb-8"
     >
       <div
-        class="PicassoSection-defaultHeader PicassoSection-defaultCollapsedHeader"
+        class="flex pb-0"
         data-testid="header"
       >
         <div
-          class="PicassoSection-actions"
+          class="PicassoContainer-flex ml-auto"
           data-testid="actions"
         >
           <button
@@ -52,14 +52,14 @@ exports[`Section renders collapsible initially expanded 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="PicassoSection-defaultHeader"
+        class="flex"
         data-testid="header"
       >
         <div
-          class="PicassoSection-actions"
+          class="PicassoContainer-flex ml-auto"
           data-testid="actions"
         >
           <button
@@ -88,22 +88,17 @@ exports[`Section renders collapsible initially expanded 1`] = `
         </div>
       </div>
       <div
-        class="MuiCollapse-root MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="flex"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="w-full"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class=""
           >
             <div
-              class="PicassoSection-defaultSectionContent"
-            >
-              <div
-                data-testid="content"
-              />
-            </div>
+              data-testid="content"
+            />
           </div>
         </div>
       </div>
@@ -118,14 +113,14 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="PicassoSection-defaultHeader"
+        class="flex"
         data-testid="header"
       >
         <h3
-          class="m-0 text-lg text-black font-semibold !mr-4 min-w"
+          class="m-0 text-lg text-black font-semibold mr-4 min-w"
           data-testid="title"
         >
           Title
@@ -137,29 +132,24 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
           Subtitle
         </p>
         <div
-          class="PicassoSection-actions"
+          class="PicassoContainer-flex ml-auto"
           data-testid="actions"
         >
           Actions
         </div>
       </div>
       <div
-        class="MuiCollapse-root MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="flex"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="w-full"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class=""
           >
             <div
-              class="PicassoSection-defaultSectionContent"
-            >
-              <div
-                data-testid="content"
-              />
-            </div>
+              data-testid="content"
+            />
           </div>
         </div>
       </div>
@@ -174,25 +164,20 @@ exports[`Section renders without header 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoSection-default PicassoSection-root"
+      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="MuiCollapse-root MuiCollapse-entered"
-        style="min-height: 0px;"
+        class="flex"
       >
         <div
-          class="MuiCollapse-wrapper"
+          class="w-full"
         >
           <div
-            class="MuiCollapse-wrapperInner"
+            class=""
           >
             <div
-              class="PicassoSection-defaultSectionContent"
-            >
-              <div
-                data-testid="content"
-              />
-            </div>
+              data-testid="content"
+            />
           </div>
         </div>
       </div>

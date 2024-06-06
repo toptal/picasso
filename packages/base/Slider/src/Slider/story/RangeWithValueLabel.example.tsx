@@ -36,7 +36,6 @@ const Example = () => {
             onChange={handleChange}
             tooltip='on'
             tooltipFormat={renderLabel}
-            compact
           />
         </Grid.Item>
         <Grid.Item sm={1}>

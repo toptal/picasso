@@ -35,7 +35,7 @@ exports[`FileListItem renders 1`] = `
           </p>
         </div>
         <p
-          class="m-0 text-xxs text-red font-regular !leading-4"
+          class="m-0 text-xxs text-red font-regular leading-4"
         />
       </div>
       <button

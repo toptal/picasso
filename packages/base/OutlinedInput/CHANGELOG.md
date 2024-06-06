@@ -1,5 +1,58 @@
 # @toptal/picasso-outlined-input
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`87ace4e`](https://github.com/toptal/picasso/commit/87ace4e92a7ec66d5312ac62cefffc41cb0899a0)]:
+  - @toptal/picasso-icons@1.3.0
+  - @toptal/picasso-button@2.0.6
+  - @toptal/picasso-form@3.0.5
+  - @toptal/picasso-input-adornment@1.0.6
+
+## 1.1.0
+
+### Minor Changes
+
+- [#4317](https://github.com/toptal/picasso/pull/4317) [`27acfb01f720505e1bfa3dad341800ba7fe1d1b2`](https://github.com/toptal/picasso/commit/27acfb01f720505e1bfa3dad341800ba7fe1d1b2) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add `highlight` and `layout` properties
+  - they are mainly supposed to be used internally
+
+### Patch Changes
+
+- [#4332](https://github.com/toptal/picasso/pull/4332) [`5ce143b0cea7b98797e63114756208119790c4af`](https://github.com/toptal/picasso/commit/5ce143b0cea7b98797e63114756208119790c4af) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update ts references
+
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.5
+
+## 1.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`978ae36`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e)]:
+  - @toptal/picasso-icons@1.2.0
+  - @toptal/picasso-button@2.0.4
+  - @toptal/picasso-input-adornment@1.0.5
+
+## 1.0.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.3
+
+## 1.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`98abedf`](https://github.com/toptal/picasso/commit/98abedf74fb621f9036e6a3925631e541424133b)]:
+  - @toptal/picasso-button@2.0.2
+
 ## 1.0.15
 
 ### Patch Changes

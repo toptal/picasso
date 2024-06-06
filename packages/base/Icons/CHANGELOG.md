@@ -1,5 +1,22 @@
 # @toptal/picasso-icons
 
+## 1.3.0
+
+### Minor Changes
+
+- [#4346](https://github.com/toptal/picasso/pull/4346) [`87ace4e92a7ec66d5312ac62cefffc41cb0899a0`](https://github.com/toptal/picasso/commit/87ace4e92a7ec66d5312ac62cefffc41cb0899a0) Thanks [@ertrzyiks](https://github.com/ertrzyiks)!
+- add Critical16, Critical24 icons
+  - add CriticalSolid16, CriticalSolid24 icons
+  - add Warning16, Warning24 icons
+  - add WarningSolid16, WarningSolid24 icons
+
+## 1.2.0
+
+### Minor Changes
+
+- [#4323](https://github.com/toptal/picasso/pull/4323) [`978ae36fa8e0306ecbffdddf1a725dc0997c3d6e`](https://github.com/toptal/picasso/commit/978ae36fa8e0306ecbffdddf1a725dc0997c3d6e) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- add Dollar16, Dollar24, ProjectDiscovery16 and ProjectDiscovery24 icons
+
 ## 1.1.1
 
 ### Patch Changes

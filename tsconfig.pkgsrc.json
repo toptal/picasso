@@ -11,6 +11,7 @@
     { "path": "packages/picasso-query-builder" },
     { "path": "packages/picasso-rich-text-editor" },
     { "path": "packages/picasso-tailwind" },
+    { "path": "packages/picasso-tailwind-merge" },
     { "path": "packages/shared" },
     { "path": "packages/topkit-analytics-charts" },
     { "path": "packages/base/Accordion" },
