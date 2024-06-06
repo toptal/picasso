@@ -92,7 +92,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                       role="region"
                     >
                       <div
-                        class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+                        class="flex p-0"
                       >
                         <ul
                           class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
@@ -238,7 +238,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                       role="region"
                     >
                       <div
-                        class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+                        class="flex p-0"
                       >
                         <ul
                           class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
@@ -557,7 +557,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+                class="flex p-0"
               >
                 <ul
                   class="MuiList-root PicassoMenu-root PicassoSidebarMenu-root"
