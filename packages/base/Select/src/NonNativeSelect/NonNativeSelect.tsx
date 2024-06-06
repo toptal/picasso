@@ -185,7 +185,6 @@ export const NonNativeSelect = documentable(
               endAdornment={endAdornment}
               // Input specific props
               value={displayValue}
-              /* eslint-disable-next-line react/jsx-props-no-spreading */
               {...getInputProps()}
               placeholder={placeholder}
               width={width}

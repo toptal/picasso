@@ -15,7 +15,7 @@ exports[`TagSelector disabled render 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <div
             aria-disabled="true"
@@ -97,7 +97,7 @@ exports[`TagSelector preselected value 1`] = `
           class="PicassoContainer-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
           >
             <div
               class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -177,7 +177,7 @@ exports[`TagSelector renders 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
         >
           <input
             aria-autocomplete="list"
