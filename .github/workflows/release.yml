@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - master
-      - ci-3421-move-build-image-to-gha
 
 env:
   REPOSITORY_NAME: ${{ github.event.repository.name }}
@@ -173,72 +172,71 @@ jobs:
         uses: toptal/davinci-github-actions/build-push-image@v15.0.0
         with:
           image-name: picasso
-          checkout-davinci: true
           registry-name: ${{ steps.parse_secrets.outputs.TOPTAL_DEFAULT_REGISTRY }}
 
-  #     - name: Trigger deployment job
-  #       id: trigger-deploy
-  #       uses: ./.github/actions/trigger-jenkins-job
-  #       env:
-  #         JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
-  #       with:
-  #         jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_URL }}
-  #         jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-  #         jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
-  #         jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_CLIENT_ID }}
-  #         jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
-  #         job_name: ${{ env.JENKINS_JOB_NAME }}
-  #         job_params: |
-  #           {
-  #             "COMMIT_ID": "${{ github.sha }}"
-  #           }
-  #         job_timeout: "7200"
+      - name: Trigger deployment job
+        id: trigger-deploy
+        uses: ./.github/actions/trigger-jenkins-job
+        env:
+          JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-docs
+        with:
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_URL }}
+          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
+          job_name: ${{ env.JENKINS_JOB_NAME }}
+          job_params: |
+            {
+              "COMMIT_ID": "${{ github.sha }}"
+            }
+          job_timeout: "7200"
 
-  #     - name: Send a Slack notification on failure
-  #       if: ${{ failure() }}
-  #       uses: slackapi/slack-github-action@v1.26.0
-  #       env:
-  #         SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
-  #         FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
-  #         FALLBACK_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true
-  #       with:
-  #         channel-id: "-frontend-exp-team-notifications"
-  #         slack-message: ":x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>."
+      - name: Send a Slack notification on failure
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@v1.26.0
+        env:
+          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+          FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
+          FALLBACK_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true
+        with:
+          channel-id: "-frontend-exp-team-notifications"
+          slack-message: ":x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>."
 
-  #     - name: Send a Slack notification on success release
-  #       if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-  #       uses: slackapi/slack-github-action@v1.26.0
-  #       with:
-  #         channel-id: "-frontend-exp-team-notifications"
-  #         slack-message: "Current master version of Picasso successfully released :green_heart:"
-  #       env:
-  #         SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      - name: Send a Slack notification on success release
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: "-frontend-exp-team-notifications"
+          slack-message: "Current master version of Picasso successfully released :green_heart:"
+        env:
+          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
 
-  #     - name: Send a Slack notification on success PR merge
-  #       if: ${{ success() && steps.changesets.outputs.published != 'true'}}
-  #       uses: slackapi/slack-github-action@v1.26.0
-  #       with:
-  #         channel-id: "-frontend-exp-team-notifications"
-  #         slack-message: "A new PR was merged to Picasso :parrotspin:"
-  #       env:
-  #         SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      - name: Send a Slack notification on success PR merge
+        if: ${{ success() && steps.changesets.outputs.published != 'true'}}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: "-frontend-exp-team-notifications"
+          slack-message: "A new PR was merged to Picasso :parrotspin:"
+        env:
+          SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
 
-  #     - name: Create Jira deployment
-  #       uses: ./.github/actions/create-jira-deployment/
-  #       if: ${{ steps.changesets.outputs.published == 'true' }}
-  #       with:
-  #         jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
-  #         jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-  #         jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-  #         jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
-  #         jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
-  #         token: ${{ env.DEVBOT_TOKEN }}
-  #         environment: production
-  #         environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
+      - name: Create Jira deployment
+        uses: ./.github/actions/create-jira-deployment/
+        if: ${{ steps.changesets.outputs.published == 'true' }}
+        with:
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
+          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
+          token: ${{ env.DEVBOT_TOKEN }}
+          environment: production
+          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
 
-  # integration-tests:
-  #   name: Integration Tests
-  #   uses: ./.github/workflows/davinci-integration-tests.yml
-  #   secrets:
-  #     IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
-  #     SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}
+  integration-tests:
+    name: Integration Tests
+    uses: ./.github/workflows/davinci-integration-tests.yml
+    secrets:
+      IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
+      SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}
