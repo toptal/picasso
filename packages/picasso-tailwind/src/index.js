@@ -202,6 +202,25 @@ module.exports = {
       maxHeight: ({ theme }) => ({
         ...theme('spacing'),
       }),
+      animation: {
+        'circle-spin': 'stroke-dash 1.4s ease-in-out infinite',
+      },
+      keyframes: {
+        'stroke-dash': {
+          '0%': {
+            strokeDasharray: '1px, 200px',
+            strokeDashoffset: '0px',
+          },
+          '50%': {
+            strokeDasharray: '100px, 200px',
+            strokeDashoffset: '-15px',
+          },
+          '100%': {
+            strokeDasharray: '100px, 200px',
+            strokeDashoffset: '-125px',
+          },
+        },
+      },
     },
   },
 }

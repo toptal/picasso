@@ -2,7 +2,6 @@ import type { Theme } from '@material-ui/core/styles'
 // eslint-disable-next-line import/order
 import { createStyles } from '@material-ui/core/styles'
 import '@toptal/picasso-input/styles'
-import '@toptal/picasso-loader/styles'
 
 export default (theme: Theme) => {
   const { palette } = theme

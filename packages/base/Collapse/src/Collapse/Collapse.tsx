@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import React, { useRef, useState, forwardRef } from 'react'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
@@ -6,7 +7,7 @@ import { twJoin } from 'tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */
-  children: React.ReactElement
+  children: ReactNode
   /* Show the component; triggers the enter or exit states */
   in?: boolean
   /* Trigger the transition on the first mount, regardless of the `in` prop. */
