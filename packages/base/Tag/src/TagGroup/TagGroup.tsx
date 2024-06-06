@@ -19,7 +19,7 @@ export const TagGroup = forwardRef<HTMLDivElement, Props>(function TagGroup(
       {...rest}
       ref={ref}
       className={twMerge(
-        'min-w-full transition-none -mr-[0.5em] -mb-[0.5em] [&>*]:mr-2 [&>*]:mb-2',
+        '-mr-[0.5em] -mb-[0.5em] [&>*]:mr-[0.5em] [&>*]:mb-[0.5em]',
         className
       )}
     >
