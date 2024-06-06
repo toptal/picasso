@@ -35,7 +35,7 @@ const MenuGroup = (props: MenuGroupProps) => {
         role='option'
         titleCase={false}
         nonSelectable
-        className='pt-4 pl-4 pr-4 pb-[10px]'
+        className='pt-4 px-4 pb-[10px]'
         {...rest}
       >
         <Typography size='xsmall' weight='semibold' color='dark-grey'>

@@ -16,7 +16,7 @@ export const NonNativeSelectLimitFooter = ({
     <MenuItem
       data-testid={dataTestId}
       titleCase={false}
-      className='text-graphite-700 pt-3 pb-3 pr-4 pl-4 border border-solid border-gray-300 text-[0.6875rem]'
+      className='text-graphite-700 py-3 px-4 border border-solid border-gray-300 text-[0.6875rem]'
       disabled
     >
       Showing only first {limit} of {totalCount} items
