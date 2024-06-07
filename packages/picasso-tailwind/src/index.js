@@ -157,6 +157,7 @@ module.exports = {
       purple: {
         500: '#6727CF',
       },
+      inheritColor: 'inherit',
     },
     extend: {
       zIndex: {
