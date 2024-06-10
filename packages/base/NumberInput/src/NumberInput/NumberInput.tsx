@@ -8,6 +8,7 @@ import {
   usePropDeprecationWarning,
 } from '@toptal/picasso-utils'
 import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { NumberInputEndAdornment } from '../NumberInputEndAdornment'
 
@@ -94,12 +95,13 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       <OutlinedInput
         classes={{
           root: 'pr-0 cursor-text',
-          input:
+          input: twJoin(
             // required to remove arrows in WebKit based browsers
-            '[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 ' +
-            '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 ' +
+            '[&::-webkit-outer-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 ',
+            '[&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 ',
             // required to remove arrows in Firefox
-            '[-moz-appearance:textfield]',
+            '[-moz-appearance:textfield]'
+          ),
         }}
         highlight={highlight}
         inputProps={{
