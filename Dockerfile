@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM node:18-alpine
 
 ENV PATH="${PATH}:/app/node_modules/.bin" \
