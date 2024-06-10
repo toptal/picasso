@@ -47,7 +47,7 @@ const InputAdornment = (props: Props) => {
         'text-graphite-700 h-auto flex items-center whitespace-nowrap max-h-[2em]',
         disabled && 'text-opacity-[0.48]',
         position === 'end' &&
-          'justify-end ml-0 flex-grow-0 flex-shrink-0 basis-0',
+          'justify-end ml-auto flex-grow-0 flex-shrink-0 basis-auto',
         disablePointerEvents && 'pointer-events-none',
         className
       )}

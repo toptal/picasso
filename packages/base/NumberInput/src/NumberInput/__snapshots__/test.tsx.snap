@@ -17,7 +17,7 @@ exports[`NumberInput renders 1`] = `
       value="10"
     />
     <div
-      class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0"
+      class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto"
     >
       <div
         class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-column"

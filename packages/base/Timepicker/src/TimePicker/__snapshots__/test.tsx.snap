@@ -17,7 +17,7 @@ exports[`TimePicker renders 1`] = `
         value="21:00"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 pointer-events"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
       >
         <svg
           class="PicassoSvgTime16-root PicassoTimePicker-icon grow shrink basis-0"
