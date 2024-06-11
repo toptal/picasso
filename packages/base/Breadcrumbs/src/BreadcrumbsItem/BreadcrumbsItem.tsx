@@ -43,7 +43,7 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   return (
     <Component
       ref={ref}
-      className={twMerge('text-md font-semibold', className)}
+      className={twMerge('text-[14px] font-semibold', className)}
       {...rest}
     >
       {titleCase ? toTitleCase(children) : children}
