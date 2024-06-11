@@ -3,7 +3,6 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import './styles'
 import { Typography } from '@toptal/picasso-typography'
 import { ChevronRight16 } from '@toptal/picasso-icons'
 
@@ -15,7 +14,8 @@ export interface Props extends BaseProps {
 const insertSeparator = (items: React.ReactElement[]): React.ReactElement[] => {
   return items.reduce<React.ReactElement[]>((acc, current, index) => {
     if (index < items.length - 1) {
-      acc = acc.concat(
+      acc = [
+        ...acc,
         current,
         <li
           aria-hidden
@@ -23,8 +23,8 @@ const insertSeparator = (items: React.ReactElement[]): React.ReactElement[] => {
           className='flex select-none ml-1 mr-1'
         >
           <ChevronRight16 />
-        </li>
-      )
+        </li>,
+      ]
     } else {
       acc.push(current)
     }
@@ -42,7 +42,7 @@ export const Breadcrumbs = forwardRef<HTMLDivElement, Props>(
     ))
 
     return (
-      <Typography as='nav' ref={ref} className='text-md text-[#0000008a]'>
+      <Typography as='nav' ref={ref} className='text-[#0000008a]'>
         <ol className='flex flex-wrap items-center p-0 m-0 list-none'>
           {insertSeparator(allItems)}
         </ol>
