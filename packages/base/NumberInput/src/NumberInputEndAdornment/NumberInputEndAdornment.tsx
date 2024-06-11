@@ -134,11 +134,11 @@ export const NumberInputEndAdornment = (props: Props) => {
     
     hover:bg-gray-400 hover:border-gray-400
 
-    [&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-solid 
-    [&:not(:first-of-type)]:border-t-gray-400 
+    [&+&]:border-t [&+&]:border-solid 
+    [&+&]:border-t-gray-400 
 
-    active:[&:not(:first-of-type)]:border-t active:[&:not(:first-of-type)]:border-t-solid 
-    active:[&:not(:first-of-type)]:border-gray-500
+    active:[&+&]:border-t active:[&+&]:border-t-solid 
+    active:[&+&]:border-gray-500
 
     active:bg-gray-500 active:border-t-gray-500 
 
