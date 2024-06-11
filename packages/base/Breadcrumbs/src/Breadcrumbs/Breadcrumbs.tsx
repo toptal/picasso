@@ -42,7 +42,7 @@ export const Breadcrumbs = forwardRef<HTMLDivElement, Props>(
     ))
 
     return (
-      <Typography as='nav' ref={ref} className='text-[#0000008a]'>
+      <Typography as='nav' ref={ref} className='text-md text-[#0000008a]'>
         <ol className='flex flex-wrap items-center p-0 m-0 list-none'>
           {insertSeparator(allItems)}
         </ol>
