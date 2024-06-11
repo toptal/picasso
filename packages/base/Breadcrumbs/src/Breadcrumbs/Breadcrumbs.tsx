@@ -1,36 +1,13 @@
-// here is fine to use index as key (https://github.com/jsx-eslint/eslint-plugin-react/issues/1123)
-/* eslint-disable react/no-array-index-key */
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
-import { ChevronRight16 } from '@toptal/picasso-icons'
+
+import insertSeparator from './utils/insertSeparator'
 
 export interface Props extends BaseProps {
   /** Content of Breadcrumbs */
   children: ReactNode
-}
-
-const insertSeparator = (items: React.ReactElement[]): React.ReactElement[] => {
-  return items.reduce<React.ReactElement[]>((acc, current, index) => {
-    if (index < items.length - 1) {
-      acc = [
-        ...acc,
-        current,
-        <li
-          aria-hidden
-          key={`separator-${index}`}
-          className='flex select-none ml-1 mr-1'
-        >
-          <ChevronRight16 />
-        </li>,
-      ]
-    } else {
-      acc.push(current)
-    }
-
-    return acc
-  }, [])
 }
 
 export const Breadcrumbs = forwardRef<HTMLDivElement, Props>(
@@ -38,6 +15,8 @@ export const Breadcrumbs = forwardRef<HTMLDivElement, Props>(
     const { children } = props
 
     const allItems = React.Children.toArray(children).map((child, index) => (
+      // here is fine to use index as key (https://github.com/jsx-eslint/eslint-plugin-react/issues/1123)
+      // eslint-disable-next-line react/no-array-index-key
       <li key={`child-${index}`}>{child}</li>
     ))
 
