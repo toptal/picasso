@@ -1,12 +1,9 @@
-import cx from 'classnames'
 import React, { forwardRef } from 'react'
-import { ButtonBase } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16, ChevronMinor16 } from '@toptal/picasso-icons'
 import { Container } from '@toptal/picasso-container'
-
-import styles from './styles'
+import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
+import { Button as MUIButtonBase } from '@mui/base/Button'
 
 type DirectionType = 'left' | 'right'
 
@@ -17,14 +14,9 @@ export interface Props extends BaseProps {
   disabled?: boolean
 }
 
-const useStyles = makeStyles(styles, {
-  name: 'PicassoTabScrollButton',
-})
-
 export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
   function TabScrollButton(props, ref) {
     const { className, style, direction, disabled, ...rest } = props
-    const classes = useStyles()
 
     if (disabled) {
       return null
@@ -34,25 +26,27 @@ export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
       <Container
         {...rest}
         ref={ref}
-        className={cx(classes.root, className)}
+        className={twMerge('relative', className)}
         style={style}
       >
         <Container
-          className={cx(classes.gradient, {
-            [classes.left]: direction === 'left',
-            [classes.right]: direction === 'right',
-          })}
+          className={twJoin(
+            'absolute w-10 h-full z-[2]',
+            direction === 'left'
+              ? 'bg-gradient-to-r from-white from-50% left-0'
+              : 'bg-gradient-to-l from-white from-50% right-0'
+          )}
         >
-          <ButtonBase
-            className={cx(classes.button, {
-              [classes.left]: direction === 'left',
-              [classes.right]: direction === 'right',
-            })}
+          <MUIButtonBase
+            className={twJoin(
+              'border-0 p-0 bg-transparent cursor-pointer absolute w-4 h-full flex items-center',
+              direction === 'left' ? 'left-0' : 'right-0'
+            )}
             aria-label={`${direction} button`}
             data-testid={`tab-scroll-button-${direction}`}
           >
             {direction === 'left' ? <BackMinor16 /> : <ChevronMinor16 />}
-          </ButtonBase>
+          </MUIButtonBase>
         </Container>
       </Container>
     )
