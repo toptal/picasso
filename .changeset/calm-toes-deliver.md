@@ -2,15 +2,4 @@
 '@toptal/picasso-pictograms': minor
 ---
 
-Add a couple pictograms:
-
-- add Clock2Blue64
-- add Clock2White64
-- add ReportBlue64
-- add ReportWhite64
-- add HandDeliveryBlue64
-- add HandDeliveryWhite64
-- add TeamBusinessBlue64
-- add TeamBusinessWhite64
-- add TeamOkrsBlue64
-- add TeamOkrsWhite64
+- add pictograms (Clock2Blue64, Clock2White64, ReportBlue64, ReportWhite64, HandDeliveryBlue64, HandDeliveryWhite64, TeamBusinessBlue64, TeamBusinessWhite64, TeamOkrsBlue64, TeamOkrsWhite64)
