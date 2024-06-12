@@ -28,7 +28,7 @@ exports[`PageAutocomplete renders 1`] = `
             variant="dark"
           />
           <div
-            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 PicassoOutlinedInput-resetButton"
+            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto PicassoOutlinedInput-resetButton"
             data-testid="reset-adornment"
           >
             <button
