@@ -251,7 +251,7 @@ exports[`Autocomplete static behavior renders 1`] = `
             value=""
           />
           <div
-            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 PicassoOutlinedInput-resetButton"
+            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto PicassoOutlinedInput-resetButton"
             data-testid="reset-adornment"
           >
             <button
@@ -303,7 +303,7 @@ exports[`Autocomplete static behavior renders 1`] = `
 
 exports[`Autocomplete static behavior renders a loading indicator 1`] = `
 <div
-  class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 pointer-events"
+  class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
   data-testid="loading-adornment"
 >
   <div

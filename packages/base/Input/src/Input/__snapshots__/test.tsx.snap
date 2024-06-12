@@ -153,7 +153,7 @@ exports[`Input should show reset button 1`] = `
         value="Some value"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-0 flex-grow flex-shrink basis-0 PicassoOutlinedInput-resetButton PicassoOutlinedInput-resetButtonDirty"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto PicassoOutlinedInput-resetButton PicassoOutlinedInput-resetButtonDirty"
         data-testid="reset-adornment"
       >
         <button
