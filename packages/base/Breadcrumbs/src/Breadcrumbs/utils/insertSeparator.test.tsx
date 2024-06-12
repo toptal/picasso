@@ -40,7 +40,7 @@ describe('insertSeparator', () => {
 
       // Check if separators have the correct class
       container.querySelectorAll('li').forEach(li => {
-        expect(li).toHaveClass('flex select-none ml-1 mr-1')
+        expect(li).toHaveClass('flex select-none mx-1')
       })
     })
 
