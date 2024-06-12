@@ -26,6 +26,7 @@ export const NativeSelectInput = forwardRef<
           'pr-6' // From MUI, this rule is more specific and should override classname
         )}
         disabled={disabled}
+        multiple={multiple}
         ref={ref}
         {...other}
       />
