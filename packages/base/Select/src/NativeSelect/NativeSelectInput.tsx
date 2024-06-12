@@ -19,7 +19,7 @@ export const NativeSelectInput = forwardRef<
       <select
         className={twMerge(
           `appearance-none select-none rounded-none min-w-4 cursor-pointer
-           focus:bg-[rgba(0,0,0,0.05)] focus:rounded-none`,
+           focus:bg-black/[.05] focus:rounded-none`,
           disabled && 'cursor-default',
           multiple ? 'h-auto' : '[&_option]:bg-white [&_optgroup]:bg-white',
           className,
@@ -35,8 +35,8 @@ export const NativeSelectInput = forwardRef<
         : IconComponent && (
             <IconComponent
               className={twJoin(
-                'absolute right-0 top-[calc(50%-12px)] pointer-events-none text-[rgba(0,0,0,0.54)]',
-                disabled && 'text-[rgba(0,0,0,0.26)]'
+                'absolute right-0 top-[calc(50%-12px)] pointer-events-none',
+                disabled ? 'text-black/[.26]' : 'text-black/[.54]'
               )}
             />
           )}
