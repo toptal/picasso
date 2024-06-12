@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- [#4358](https://github.com/toptal/picasso/pull/4358) [`eb852a05a379591b6b80652a110d4c6c30814f41`](https://github.com/toptal/picasso/commit/eb852a05a379591b6b80652a110d4c6c30814f41) Thanks [@hweeTan](https://github.com/hweeTan)!
+- add pictograms (Clock2Blue64, Clock2White64, ReportBlue64, ReportWhite64, HandDeliveryBlue64, HandDeliveryWhite64, TeamBusinessBlue64, TeamBusinessWhite64, TeamOkrsBlue64, TeamOkrsWhite64)
+
 ## 4.0.0
 
 ### Patch Changes
