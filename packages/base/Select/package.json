@@ -35,7 +35,6 @@
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
-    "classnames": "^2.5.1",
     "tailwind-merge": "^2.2.2"
   },
   "sideEffects": [

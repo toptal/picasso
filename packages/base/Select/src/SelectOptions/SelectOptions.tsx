@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'classnames'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ScrollMenuProps } from '../ScrollMenu'
 import { ScrollMenu } from '../ScrollMenu'
@@ -21,12 +21,10 @@ const SelectOptions = (props: Props) => {
 
   return (
     <ScrollMenu
-      className={cx(
+      className={twJoin(
         'shadow-5',
-        {
-          ['pt-[0.125rem] [&>div:first-child]:pb-2']: Boolean(fixedHeader),
-          ['pb-0']: Boolean(fixedFooter),
-        },
+        Boolean(fixedHeader) && 'pt-[0.125rem] [&>div:first-child]:pb-2',
+        Boolean(fixedFooter) && 'pb-0',
         className
       )}
       style={style}
