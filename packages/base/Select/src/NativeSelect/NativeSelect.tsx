@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { NativeSelect as MUINativeSelect } from '@material-ui/core'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import {
   documentable,
@@ -20,6 +19,7 @@ import {
 } from '../SelectBase'
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
+import { NativeSelectInput } from './NativeSelectInput'
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
 
@@ -111,43 +111,8 @@ export const NativeSelect = documentable(
         <div className='absolute right-[1.625rem]'>{selectEndAdornment}</div>
       )
 
-      const nativeSelectComponent = (
-        <MUINativeSelect
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...rest}
-          ref={selectRef}
-          disabled={disabled}
-          name={name}
-          id={id}
-          startAdornment={startAdornment}
-          endAdornment={endAdornment}
-          input={
-            <OutlinedInput
-              width={width}
-              inputProps={{ multiple }}
-              size={size}
-              className='p-0 bg-white'
-              testIds={testIds}
-              status={error ? 'error' : status}
-              highlight={highlight}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getInputProps()}
-            />
-          }
-          value={value}
-          onChange={onChange as any}
-          IconComponent={() => <SelectCaret disabled={disabled} />}
-          classes={{
-            root: twJoin(
-              'w-full p-2 focus:bg-inheritColor',
-              !selection.isSelected() && 'text-gray-600'
-            ),
-            select: twJoin(
-              React.isValidElement(startAdornment) && 'pl-[2.5625rem]',
-              React.isValidElement(endAdornment) && 'pr-[3.5625rem]'
-            ),
-          }}
-        >
+      const children = (
+        <>
           <NativeSelectPlaceholder
             emptySelectValue={emptySelectValue}
             disabled={!enableReset}
@@ -160,7 +125,41 @@ export const NativeSelect = documentable(
             renderOption={renderOption as any}
             getItemProps={getItemProps}
           />
-        </MUINativeSelect>
+        </>
+      )
+
+      const nativeSelectComponent = (
+        <OutlinedInput
+          width={width}
+          size={size}
+          className='p-0 bg-white'
+          testIds={testIds}
+          status={error ? 'error' : status}
+          highlight={highlight}
+          {...getInputProps()}
+          {...rest}
+          ref={selectRef}
+          disabled={disabled}
+          name={name}
+          id={id}
+          startAdornment={startAdornment}
+          endAdornment={endAdornment}
+          value={value}
+          onChange={onChange as any}
+          inputComponent={NativeSelectInput as any}
+          inputProps={{
+            multiple,
+            children,
+            type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+            IconComponent: () => <SelectCaret disabled={disabled} />,
+            className: twJoin(
+              'w-full p-2 focus:bg-inheritColor',
+              !selection.isSelected() && 'text-gray-600',
+              React.isValidElement(startAdornment) && 'pl-[2.5625rem]',
+              React.isValidElement(endAdornment) && 'pr-[3.5625rem]'
+            ),
+          }}
+        />
       )
 
       return (
