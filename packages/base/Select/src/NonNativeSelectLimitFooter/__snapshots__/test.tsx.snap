@@ -7,18 +7,18 @@ exports[`NonNativeSelectLimitFooter renders footer when overflow 1`] = `
   >
     <li
       aria-disabled="true"
-      class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light makeStyles-root PicassoMenuItem-disabled MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters Mui-disabled MuiListItem-button Mui-disabled"
+      class="bg-transparent hover:bg-blue focus:bg-blue min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none py-3 px-4 border border-solid border-gray text-[0.6875rem] text-gray opacity-100 pointer-events"
+      disabled=""
       role="menuitem"
-      tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex flex-1 max-w"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col flex-1 min-w"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="flex items-center"
           >
             Showing only first 
             50

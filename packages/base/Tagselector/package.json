@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tagselector",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Toptal UI components library - Tagselector",
   "publishConfig": {
     "access": "public"
@@ -26,7 +26,7 @@
     "@toptal/picasso-form": "3.0.5",
     "@toptal/picasso-outlined-input": "1.1.1",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-tag": "2.0.3",
+    "@toptal/picasso-tag": "2.0.4",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },
@@ -35,10 +35,11 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@material-ui/core": "4.12.4",
+    "@toptal/picasso-tailwind": ">=2.6.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
+    "@toptal/picasso-tailwind": "2.6.0",
     "@toptal/picasso-test-utils": "1.1.1",
     "popper.js": "^1.16.1"
   },

@@ -6,13 +6,13 @@ exports[`NonNativeSelect renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="makeStyles-root makeStyles-rootFull"
+      class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="makeStyles-inputWrapper"
+        class="w-[inherit] outline-0"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium pr-[1.625rem] MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
@@ -56,7 +56,7 @@ exports[`NonNativeSelect renders 1`] = `
 
 exports[`NonNativeSelect renders custom options 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   role="listbox"
   tabindex="-1"
 >
@@ -64,28 +64,28 @@ exports[`NonNativeSelect renders custom options 1`] = `
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="true"
         role="option"
         tabindex="-1"
         value="val1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <div
                 data-testid="custom-option-1"
@@ -99,23 +99,23 @@ exports[`NonNativeSelect renders custom options 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="val2"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <div
                 data-testid="custom-option-2"
@@ -129,23 +129,23 @@ exports[`NonNativeSelect renders custom options 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="val3"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <div
                 data-testid="custom-option-3"
@@ -163,7 +163,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
 
 exports[`NonNativeSelect renders description 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   role="listbox"
   tabindex="-1"
 >
@@ -171,38 +171,37 @@ exports[`NonNativeSelect renders description 1`] = `
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="true"
         role="option"
         tabindex="-1"
         value="val1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 text1
               </span>
             </div>
             <div
-              class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-              style="margin-top: 0.25rem;"
+              class="text-2xs mt-1 text-graphite ml-6"
             >
               description1
             </div>
@@ -212,33 +211,32 @@ exports[`NonNativeSelect renders description 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="val2"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 text2
               </span>
             </div>
             <div
-              class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-              style="margin-top: 0.25rem;"
+              class="text-2xs mt-1 text-graphite ml-6"
             >
               description2
             </div>
@@ -248,33 +246,32 @@ exports[`NonNativeSelect renders description 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="val3"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 text3
               </span>
             </div>
             <div
-              class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
-              style="margin-top: 0.25rem;"
+              class="text-2xs mt-1 text-graphite ml-6"
             >
               description3
             </div>

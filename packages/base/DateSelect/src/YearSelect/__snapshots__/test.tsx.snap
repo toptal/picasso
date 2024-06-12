@@ -2,7 +2,7 @@
 
 exports[`YearSelect render in descending order 1`] = `
 <ul
-  class="MuiList-root PicassoMenu-root PicassoScrollMenu-menu PicassoSelectOptions-menu"
+  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   role="listbox"
   tabindex="-1"
 >
@@ -10,31 +10,31 @@ exports[`YearSelect render in descending order 1`] = `
     tabindex="0"
   >
     <div
-      class="PicassoScrollMenu-scrollView"
+      class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
     >
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light Mui-selected PicassoMenuItem-selected MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="true"
         role="option"
         tabindex="-1"
         value="2005"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 2005
               </span>
@@ -45,26 +45,26 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="2004"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 2004
               </span>
@@ -75,26 +75,26 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="2003"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 2003
               </span>
@@ -105,26 +105,26 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="2002"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 2002
               </span>
@@ -135,26 +135,26 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
         value="2001"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="flex items-center"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="w-4 inline-flex mr-2"
               />
               <span
-                class="PicassoMenuItem-stringContent"
+                class="flex-1 text-md leading-5"
               >
                 2001
               </span>
@@ -173,13 +173,13 @@ exports[`YearSelect renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="makeStyles-root makeStyles-rootFull"
+      class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="makeStyles-inputWrapper"
+        class="w-[inherit] outline-0"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-outlinedInput MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium pr-[1.625rem] MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
