@@ -6,7 +6,7 @@ import {
   noop,
   useCombinedRefs,
 } from '@toptal/picasso-utils'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import SelectCaret from '../SelectCaret'
 import type { ValueType, SelectProps } from '../SelectBase'
@@ -164,7 +164,7 @@ export const NativeSelect = documentable(
 
       return (
         <div
-          className={twJoin(
+          className={twMerge(
             'relative inline-flex text-[1rem] cursor-pointer',
             className,
             classesByWidth[width],

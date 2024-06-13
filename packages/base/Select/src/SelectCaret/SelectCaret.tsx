@@ -15,7 +15,7 @@ const SelectCaret = ({ disabled }: Props) => {
         // so 5px are left instead of 10px when we use wider icon.
         `absolute top-[calc(50%-0.5rem)] right-[0.3125rem]
         text-graphite-700 text-[1rem]
-        cursor-pointer pointer-events-none`,
+        cursor-inherit pointer-events-none`,
         disabled && 'text-graphite-700/[.48] z-[1]'
       )}
     />
