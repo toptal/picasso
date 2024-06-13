@@ -34,8 +34,7 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",
-    "ap-style-title-case": "^1.1.2",
-    "@toptal/picasso-tailwind-merge": "1.0.1"
+    "ap-style-title-case": "^1.1.2"
   },
   "sideEffects": [
     "**/styles.ts",
