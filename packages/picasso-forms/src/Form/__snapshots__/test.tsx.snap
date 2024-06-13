@@ -17,32 +17,17 @@ exports[`Form renders 1`] = `
           data-field-has-error="false"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+            class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
           >
             <input
-              aria-invalid="false"
               autocomplete="none"
-              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+              class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
               id="test"
               name="test"
               placeholder="test input"
               type="text"
               value=""
             />
-            <fieldset
-              aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
-            >
-              <legend
-                class="PrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
           </div>
         </div>
         <button
@@ -82,32 +67,18 @@ exports[`Form renders with an error 1`] = `
           data-field-has-error="true"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white PicassoOutlinedInput-error PicassoOutlinedInput-error Mui-error Mui-error MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+            class="base-Input base- base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:rounded-sm @tw after:border-red [&:has(input:focus)]:after:border-red [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-red"
           >
             <input
               aria-invalid="true"
               autocomplete="none"
-              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+              class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
               id="test"
               name="test"
               placeholder="test input"
               type="text"
               value=""
             />
-            <fieldset
-              aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
-            >
-              <legend
-                class="PrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
           </div>
           <div
             class=""

@@ -5,14 +5,9 @@ import type {
   InputHTMLAttributes,
   MouseEvent,
 } from 'react'
-import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { OutlinedInput as MUIOutlinedInput } from '@material-ui/core'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import capitalize from '@material-ui/core/utils/capitalize'
-import type { StandardProps, SizeType, Classes } from '@toptal/picasso-shared'
+import type { StandardProps, SizeType, BaseProps } from '@toptal/picasso-shared'
 import {
   InputAdornment,
   InputValidIconAdornment,
@@ -21,8 +16,10 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
+import { Input } from '@mui/base/Input'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { getInputClassName, getRootClassName, getRows } from './utils'
 
 type ValueType =
   | (string | number | boolean | object)[]
@@ -35,6 +32,13 @@ export type Status = 'error' | 'success' | 'default'
 
 export type BaseInputProps = InputBaseComponentProps & {
   variant?: 'dark' | 'light'
+}
+
+export interface InputProps
+  extends React.HTMLAttributes<HTMLInputElement>,
+    BaseProps {
+  size?: number | 'small' | 'medium' | 'large'
+  multiple?: boolean | undefined
 }
 
 export interface Props
@@ -88,17 +92,11 @@ export interface Props
   highlight?: 'autofill'
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoOutlinedInput',
-})
-
 const ResetButton = ({
-  classes,
   hasValue,
   onClick,
   testIds,
 }: {
-  classes: Classes
   hasValue: boolean
   onClick: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
   testIds?: Props['testIds']
@@ -106,9 +104,10 @@ const ResetButton = ({
   <InputAdornment
     data-testid={testIds?.resetButton}
     position='end'
-    className={cx(classes.resetButton, {
-      [classes.resetButtonDirty]: hasValue,
-    })}
+    className={twJoin(
+      'invisible',
+      hasValue && 'peer-focus:visible peer-hover:visible'
+    )}
   >
     <ButtonCircular
       tabIndex={-1}
@@ -126,7 +125,6 @@ const ResetButton = ({
   </InputAdornment>
 )
 
-// eslint-disable-next-line complexity
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   props,
   ref
@@ -144,7 +142,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     inputProps,
     defaultValue,
     value,
-    type,
+    type = 'text',
     error,
     status,
     startAdornment,
@@ -157,6 +155,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     inputRef,
     testIds,
     highlight,
+    classes,
     ...rest
   } = props
 
@@ -170,7 +169,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   })
 
   const { layout } = useFieldsLayoutContext()
-  const classes = useStyles(props)
   const isDark = inputProps?.variant === 'dark'
   const shouldShowReset = enableReset && !disabled
   const hasEndAdornment = status === 'success' || shouldShowReset
@@ -178,7 +176,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     <>
       {shouldShowReset && (
         <ResetButton
-          classes={classes}
           hasValue={Boolean(value)}
           onClick={onResetClick}
           testIds={testIds}
@@ -193,61 +190,68 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     userDefinedEndAdornment
   )
 
-  return (
-    <MUIOutlinedInput
-      {...rest}
-      classes={{
-        root: cx(
-          classes.root,
-          classes[`root${capitalize(width)}`],
-          classes[`root${capitalize(size)}`],
-          'cursor-text [font-size:_unset]',
-          {
-            [`${classes.hidden}`]: type === 'hidden',
-            [classes.rootDark]: isDark,
-            [classes.highlightAutofill]: highlight === 'autofill',
-            'bg-white': highlight !== 'autofill',
-            [classes.horizontalLayout]: layout === 'horizontal',
-            [classes.error]: Boolean(status === 'error' || error),
-            'h-auto': multiline,
-          }
-        ),
-        input: cx(classes.input, classes[`input${capitalize(size)}`], {
-          [classes.inputDark]: isDark,
-          'resize-y': multiline && multilineResizable,
+  const divRef = useRef<HTMLDivElement | null>(null)
+
+  useImperativeHandle(ref, () => divRef.current as HTMLElement, [])
+
+  const isError = Boolean(status === 'error' || error)
+
+  const sharedProps = {
+    ...rest,
+    slots: { input: inputComponent },
+    slotProps: {
+      root: {
+        ref: divRef,
+        className: getRootClassName({
+          size,
+          width,
+          type,
+          layout,
+          isDark,
+          multiline,
+          highlight,
+          disabled,
+          className,
+          classes,
+          isError,
         }),
-        inputMultiline: classes.inputMultiline,
-        notchedOutline: cx(classes.notchedOutline, {
-          [classes.notchedOutlineDark]: isDark,
+      },
+      input: {
+        ...inputProps,
+        ref: inputRef,
+        className: getInputClassName({
+          size,
+          disabled,
+          isDark,
+          multiline,
+          multilineResizable,
+          classes,
+          type,
+          inputProps,
         }),
-        focused: classes.focused,
-      }}
-      className={cx(
-        {
-          [classes.error]: Boolean(status === 'error' || error),
-        },
-        className
-      )}
-      style={style}
-      labelWidth={0}
-      fullWidth={width === 'full'}
-      error={Boolean(status === 'error' || error)}
-      inputComponent={inputComponent}
-      inputProps={inputProps}
-      ref={ref}
-      inputRef={inputRef}
-      defaultValue={defaultValue}
-      value={value}
-      type={type}
-      startAdornment={startAdornment}
-      endAdornment={endAdornment}
-      multiline={multiline}
-      autoFocus={autoFocus}
-      minRows={rows}
-      maxRows={rowsMax}
-      onChange={onChange}
-      disabled={disabled}
+        type,
+      },
+    },
+    style,
+    error: isError,
+    defaultValue,
+    value,
+    startAdornment,
+    endAdornment,
+    autoFocus,
+    onChange,
+    disabled,
+  }
+
+  return multiline ? (
+    <Input
+      {...sharedProps}
+      multiline={true}
+      rows={getRows(rows)}
+      maxRows={getRows(rowsMax)}
     />
+  ) : (
+    <Input {...sharedProps} />
   )
 })
 

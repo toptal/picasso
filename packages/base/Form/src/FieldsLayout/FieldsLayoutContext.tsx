@@ -8,8 +8,10 @@ export type ResponsiveLabelColumnSize = {
   [k in BreakpointKeys]?: LabelColumnSize
 }
 
+export type FieldLayout = 'horizontal' | 'vertical'
+
 export type FieldsLayoutContextValue = {
-  layout: 'horizontal' | 'vertical'
+  layout: FieldLayout
   labelWidth: LabelColumnSize | ResponsiveLabelColumnSize
 }
 
