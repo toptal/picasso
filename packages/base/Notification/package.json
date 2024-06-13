@@ -30,7 +30,7 @@
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1",
     "notistack": "3.0.1",
-    "tailwind-merge": "^2.2.2"
+    "@toptal/picasso-tailwind-merge": "1.0.1"
   },
   "sideEffects": [
     "**/styles.ts",

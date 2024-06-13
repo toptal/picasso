@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@toptal/picasso-utils": "1.0.3",
-    "tailwind-merge": "^2.2.2"
+    "@toptal/picasso-tailwind-merge": "1.0.1"
   },
   "files": [
     "dist-package/**",

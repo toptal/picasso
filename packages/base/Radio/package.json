@@ -27,7 +27,7 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
-    "tailwind-merge": "^2.2.2",
+    "@toptal/picasso-tailwind-merge": "1.0.1",
     "classnames": "^2.5.1"
   },
   "sideEffects": [

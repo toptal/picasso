@@ -3,7 +3,7 @@ import React, { useRef, useState, forwardRef } from 'react'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useMultipleForwardRefs } from '@toptal/picasso-utils'
-import { twJoin } from 'tailwind-merge'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
   /* Element that accepts ref */

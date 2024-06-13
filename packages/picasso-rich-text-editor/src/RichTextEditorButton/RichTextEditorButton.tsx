@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { ButtonCircular } from '@toptal/picasso-button'
 

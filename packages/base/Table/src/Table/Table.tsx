@@ -1,7 +1,7 @@
 import type { ReactNode, TableHTMLAttributes } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import TableContext from './TableContext'
 

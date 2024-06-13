@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-utils": "1.0.3",
     "@toptal/picasso-typography": "2.0.2",
-    "tailwind-merge": "^2.2.2"
+    "@toptal/picasso-tailwind-merge": "1.0.1"
   },
   "sideEffects": [
     "**/styles.ts",

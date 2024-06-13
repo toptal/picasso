@@ -29,7 +29,7 @@
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-user-badge": "2.0.5",
     "@toptal/picasso-utils": "1.0.3",
-    "tailwind-merge": "^2.2.2"
+    "@toptal/picasso-tailwind-merge": "1.0.1"
   },
   "sideEffects": [
     "**/styles.ts",
