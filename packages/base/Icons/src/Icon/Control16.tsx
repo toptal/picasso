@@ -46,18 +46,13 @@ const SvgControl16 = forwardRef(function SvgControl16(
 
   return (
     <svg
-      fill='none'
       viewBox='0 0 16 16'
       className={cx(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
     >
-      <path
-        fillRule='evenodd'
-        d='M10 5H0V4h10v1Zm6 0h-3V4h3v1ZM3 13H0v-1h3v1Zm13 0H6v-1h10v1Z'
-        clipRule='evenodd'
-      />
+      <path d='M10 5H0V4h10v1Zm6 0h-3V4h3v1ZM3 13H0v-1h3v1Zm13 0H6v-1h10v1ZM11.5 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM9 4.5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0ZM4.5 11a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM2 12.5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Z' />
     </svg>
   )
 })
