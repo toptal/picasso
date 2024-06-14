@@ -14,22 +14,14 @@ export const Breadcrumbs = forwardRef<HTMLDivElement, Props>(
   function Breadcrumbs(props, ref) {
     const { children } = props
 
-    const allItems = React.Children.toArray(children).map((child, index) => (
-      // here is fine to use index as key (https://github.com/jsx-eslint/eslint-plugin-react/issues/1123)
-      // eslint-disable-next-line react/no-array-index-key
-      <li className='p-0 m-0' key={`child-${index}`}>
-        {child}
-      </li>
+    const allItems = React.Children.map(children, child => (
+      <li className='p-0 m-0'>{child}</li>
     ))
 
     return (
-      <Typography
-        as='nav'
-        ref={ref}
-        className='text-md text-black text-opacity-[0.54]'
-      >
+      <Typography as='nav' ref={ref} className='text-md text-black/[.54]'>
         <ol className='flex flex-wrap items-center p-0 m-0 list-none'>
-          {insertSeparator(allItems)}
+          {allItems && insertSeparator(allItems)}
         </ol>
       </Typography>
     )
