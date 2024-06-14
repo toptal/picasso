@@ -179,7 +179,7 @@ exports[`YearSelect renders 1`] = `
         class="w-[inherit] outline-0"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium pr-[1.625rem] MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white pr-[1.625rem] MuiInputBase-fullWidth"
           role="textbox"
         >
           <input

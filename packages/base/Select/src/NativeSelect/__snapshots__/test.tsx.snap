@@ -9,7 +9,7 @@ exports[`NativeSelect renders native select 1`] = `
       class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium p-0 bg-white MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white p-0 bg-white MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
@@ -78,7 +78,7 @@ exports[`NativeSelect renders native select with the empty option enabled when e
       class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium p-0 bg-white MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white p-0 bg-white MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
