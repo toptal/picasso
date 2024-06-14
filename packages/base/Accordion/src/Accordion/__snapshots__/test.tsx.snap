@@ -66,7 +66,7 @@ exports[`Accordion renders collapsed by default 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+                class="flex p-0"
               >
                 <div
                   class="PicassoAccordion-detailsWrapper"
@@ -128,7 +128,7 @@ exports[`Accordion renders custom icon when passed 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+                class="flex p-0"
               >
                 <div
                   class="PicassoAccordion-detailsWrapper"
@@ -212,7 +212,7 @@ exports[`Accordion renders disabled 1`] = `
               role="region"
             >
               <div
-                class="MuiAccordionDetails-root PicassoAccordionDetails-root PicassoAccordion-details"
+                class="flex p-0"
               >
                 <div
                   class="PicassoAccordion-detailsWrapper"
