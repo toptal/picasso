@@ -1,7 +1,6 @@
 import React from 'react'
 import { TypographyOverflow } from '@toptal/picasso-typography-overflow'
 import { Typography } from '@toptal/picasso-typography'
-import { toTitleCase } from '@toptal/picasso-utils'
 
 interface Props {
   label?: React.ReactNode
@@ -12,8 +11,14 @@ interface Props {
 const TabLabel = ({ label, orientation, titleCase }: Props) => {
   if (orientation === 'horizontal') {
     return (
-      <Typography as='div' size='small' weight='semibold' color='inherit'>
-        {titleCase ? toTitleCase(label) : label}
+      <Typography
+        as='div'
+        size='small'
+        weight='semibold'
+        color='inherit'
+        titleCase={titleCase}
+      >
+        {label}
       </Typography>
     )
   }
@@ -26,8 +31,9 @@ const TabLabel = ({ label, orientation, titleCase }: Props) => {
       size='medium'
       variant='body'
       weight='semibold'
+      titleCase={titleCase}
     >
-      {titleCase ? toTitleCase(label) : label}
+      {label}
     </TypographyOverflow>
   )
 }
