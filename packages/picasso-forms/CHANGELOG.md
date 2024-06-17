@@ -1,5 +1,32 @@
 # Change Log
 
+## 70.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`f267743`](https://github.com/toptal/picasso/commit/f2677435e4e43253d87d5bb4105f0bb540dca56e)]:
+  - @toptal/picasso-icons@1.4.0
+  - @toptal/picasso-avatar-upload@1.0.22
+  - @toptal/picasso-button@2.0.7
+  - @toptal/picasso-date-picker@1.0.23
+  - @toptal/picasso-dropzone@1.0.22
+  - @toptal/picasso-file-input@1.0.22
+  - @toptal/picasso-form@3.0.6
+  - @toptal/picasso-input@2.0.5
+  - @toptal/picasso-notification@2.0.13
+  - @toptal/picasso-number-input@1.0.23
+  - @toptal/picasso-outlined-input@1.1.2
+  - @toptal/picasso-password-input@2.0.9
+  - @toptal/picasso-rating@1.0.7
+  - @toptal/picasso-select@1.0.24
+  - @toptal/picasso-timepicker@1.0.23
+  - @toptal/picasso-rich-text-editor@13.0.9
+  - @toptal/picasso-autocomplete@1.0.24
+  - @toptal/picasso-checkbox@2.0.6
+  - @toptal/picasso-radio@2.0.6
+  - @toptal/picasso-switch@2.0.2
+  - @toptal/picasso-tagselector@1.0.27
+
 ## 70.0.3
 
 ### Patch Changes
