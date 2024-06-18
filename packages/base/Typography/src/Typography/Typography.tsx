@@ -85,7 +85,7 @@ const VARIANT_SIZE: Record<
     small: 'text-sm',
     medium: 'text-md',
     large: 'text-lg',
-    xlarge: 'text-md',
+    xlarge: '', // Body xlarge size is not defined on BASE
     inherit: 'font-inherit-size leading-[1.5em]',
   },
 }
