@@ -7,7 +7,6 @@ import React, {
 } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 
 import { TreeViewContext } from './TreeViewContainer'
 import { useTree } from './use-tree'
@@ -32,39 +31,11 @@ export interface Props extends TreeViewPropsBase {
   showZoom?: boolean
   /** Scales the current zoom transform by coefficient */
   scaleCoefficient?: number
-  /**
-   * Custom center translation vector (happens after zoom center translation on selected node is applied)
-   * @deprecated [FX-4718] If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView
-   */
-  centerTranslation?: Vector2
-  /**
-   * Transition duration for centering animation in ms
-   * @deprecated [FX-4718] If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView
-   */
-  transitionDuration?: number
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
 
 export const TreeView = (props: Props) => {
-  // TODO: [FX-4718]
-  usePropDeprecationWarning({
-    props,
-    name: 'centerTranslation',
-    componentName: 'TreeView',
-    description:
-      'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView',
-  })
-
-  // TODO: [FX-4718]
-  usePropDeprecationWarning({
-    props,
-    name: 'transitionDuration',
-    componentName: 'TreeView',
-    description:
-      'If you happen to rely on it, you are likely would want to migrate to StaticTreeView component instead of TreeView',
-  })
-
   const {
     data,
     renderNode,
@@ -74,10 +45,6 @@ export const TreeView = (props: Props) => {
     initialScale = TreeView.defaultProps.initialScale,
     scaleCoefficient = TreeView.defaultProps.scaleCoefficient,
     showZoom = TreeView.defaultProps.showZoom,
-    // NOTE: these two are intentionally removed from defaultProps in order
-    // to make usePropDeprecationWarning hook correctly detect their usage
-    centerTranslation = ZERO_VECTOR2,
-    transitionDuration = 750,
   } = props
 
   const {
@@ -121,10 +88,10 @@ export const TreeView = (props: Props) => {
     rootRef,
     scaleExtent,
     center: {
-      x: center.x + centerTranslation.x,
-      y: center.y + centerTranslation.y,
+      x: center.x + ZERO_VECTOR2.x,
+      y: center.y + ZERO_VECTOR2.y,
     },
-    transitionDuration,
+    transitionDuration: 750,
     initialScale,
   })
   const [initialized, setInitialized] = useState(false)
