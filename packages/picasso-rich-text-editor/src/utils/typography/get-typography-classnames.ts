@@ -15,8 +15,7 @@ export type TypographyOptions = {
   as?: React.ElementType<React.HTMLAttributes<HTMLElement>>
 }
 
-// @TODO: [FX-5055] remove this entire folder after Tailwind migration as the function is not used anymore
-const getTypographyClassName = (
+export const getTypographyClassName = (
   classes: Record<string, string>,
   {
     variant,
@@ -51,5 +50,3 @@ const getTypographyClassName = (
     }
   )
 }
-
-export default getTypographyClassName
