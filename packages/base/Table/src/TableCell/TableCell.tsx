@@ -9,7 +9,7 @@ import type {
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso-typography'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { TableContext, TableSectionContext, TableSection } from '../Table'
 

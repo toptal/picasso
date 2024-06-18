@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'react'
 import React from 'react'
 import type { GridSizeProps, GridProps } from '@toptal/picasso-grid'
 import { GridCompound as Grid } from '@toptal/picasso-grid'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type GridSpacing = GridProps['spacing']
 

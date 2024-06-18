@@ -12,7 +12,7 @@ exports[`MonthSelect renders 1`] = `
         class="w-[inherit] outline-0"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium pr-[1.625rem] MuiInputBase-fullWidth"
+          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white pr-[1.625rem] MuiInputBase-fullWidth"
           role="textbox"
         >
           <input
@@ -40,7 +40,7 @@ exports[`MonthSelect renders 1`] = `
           </fieldset>
         </div>
         <svg
-          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

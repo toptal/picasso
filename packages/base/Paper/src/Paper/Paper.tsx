@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Paper elevation shadow */

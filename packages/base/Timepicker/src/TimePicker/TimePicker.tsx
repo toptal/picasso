@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
-import cx from 'classnames'
 import { Input } from '@toptal/picasso-input'
 import { Time16 } from '@toptal/picasso-icons'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
 import type { Status } from '@toptal/picasso-outlined-input'
-
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTimePicker',
-})
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props
   extends BaseProps,
@@ -97,7 +89,6 @@ export const TimePicker = (props: Props) => {
       'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
   })
 
-  const classes = useStyles()
   const browser = detect()
   const isSafari = browser?.name === 'safari'
   const startsWithTwo = value && value[0] === '2'
@@ -110,7 +101,18 @@ export const TimePicker = (props: Props) => {
     /[0-9]/,
   ]
 
-  const icon = <Time16 classes={{ root: classes.icon }} />
+  const icon = (
+    <Time16
+      classes={{
+        root: 'bg-white absolute right-[0.625rem] pointer-events-none m-0 select-none',
+      }}
+    />
+  )
+
+  const inputClassName = twMerge('cursor-default', className)
+
+  const inputPropClassName = `-mr-[8px] [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:right-2
+    [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:bg-none`
 
   if (isSafari) {
     return (
@@ -121,10 +123,10 @@ export const TimePicker = (props: Props) => {
         icon={icon}
         width={width}
         status={error ? 'error' : status}
-        className={cx(classes.root, className)}
+        className={inputClassName}
         highlight={highlight}
         inputProps={{
-          className: classes.inputBase,
+          className: inputPropClassName,
           ...rest,
         }}
         startAdornment={
@@ -134,7 +136,7 @@ export const TimePicker = (props: Props) => {
             maskPlaceholder='-'
             value={value}
             onChange={onChange}
-            className={classes.inputMask}
+            className={'text-sm border-none p-0 m-0 outline-none'}
           />
         }
       />
@@ -145,7 +147,7 @@ export const TimePicker = (props: Props) => {
     <Input
       type='time'
       value={value}
-      className={cx(classes.root, className)}
+      className={inputClassName}
       onChange={onChange}
       iconPosition='end'
       highlight={highlight}
@@ -153,7 +155,7 @@ export const TimePicker = (props: Props) => {
       width={width}
       status={error ? 'error' : status}
       inputProps={{
-        className: classes.inputBase,
+        className: inputPropClassName,
         step: 60, // 1 min
         ...rest,
       }}

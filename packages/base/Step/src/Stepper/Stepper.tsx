@@ -1,7 +1,7 @@
 import type { HTMLAttributes, Key, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 
 import { Step } from '../Step'

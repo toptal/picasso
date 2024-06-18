@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import type PopperJs from 'popper.js'
-import cx from 'classnames'
 import { Search16 } from '@toptal/picasso-icons'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { Popper } from '@toptal/picasso-popper'
@@ -13,7 +12,7 @@ import {
 } from '@toptal/picasso-utils'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 
 import SelectCaret from '../SelectCaret'
 import { NonNativeSelectLoader } from '../NonNativeSelectLoader'
@@ -166,9 +165,10 @@ export const NonNativeSelect = documentable(
         <>
           <div
             {...rootProps}
-            className={cx('w-[inherit] outline-0', {
-              'w-full': layout === 'horizontal',
-            })}
+            className={twJoin(
+              'w-[inherit] outline-0',
+              layout === 'horizontal' && 'w-full'
+            )}
           >
             {!enableAutofill && name && (
               <input type='hidden' value={displayValue} name={name} />

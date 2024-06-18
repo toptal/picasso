@@ -6,7 +6,7 @@ exports[`Input renders icon in the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -53,7 +53,7 @@ exports[`Input renders icon in the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -100,12 +100,12 @@ exports[`Input should show manual resize handler 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white h-auto MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <textarea
         aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoInput-inputMultilineResizable PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium resize-y MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         rows="4"
         style="height: 0px; overflow: hidden;"
       >
@@ -113,7 +113,7 @@ exports[`Input should show manual resize handler 1`] = `
       </textarea>
       <textarea
         aria-hidden="true"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoInput-inputMultilineResizable PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium resize-y MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
         readonly=""
         style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
         tabindex="-1"
@@ -143,7 +143,7 @@ exports[`Input should show reset button 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <input
         aria-invalid="false"
@@ -204,7 +204,7 @@ exports[`Input shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoInput-rootMultiline PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white h-auto MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <textarea
         aria-invalid="false"
@@ -248,7 +248,7 @@ exports[`Input shows counter for regular input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
     >
       <input
         aria-invalid="false"

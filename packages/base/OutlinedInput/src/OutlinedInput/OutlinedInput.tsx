@@ -51,6 +51,8 @@ export interface Props
   value?: ValueType
   /** Whether `Input` should be rendered as `TextArea` or not */
   multiline?: boolean
+  /** If true, `TextArea` would be resizable vertical */
+  multilineResizable?: boolean
   /** If true, the input element will be focused during the first mount */
   autoFocus?: boolean
   /** Specify rows amount for `TextArea` */
@@ -124,6 +126,7 @@ const ResetButton = ({
   </InputAdornment>
 )
 
+// eslint-disable-next-line complexity
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   props,
   ref
@@ -132,6 +135,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     className,
     style,
     multiline,
+    multilineResizable,
     autoFocus,
     rows,
     rowsMax,
@@ -197,16 +201,20 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
           classes.root,
           classes[`root${capitalize(width)}`],
           classes[`root${capitalize(size)}`],
+          'cursor-text [font-size:_unset]',
           {
             [`${classes.hidden}`]: type === 'hidden',
             [classes.rootDark]: isDark,
             [classes.highlightAutofill]: highlight === 'autofill',
+            'bg-white': highlight !== 'autofill',
             [classes.horizontalLayout]: layout === 'horizontal',
             [classes.error]: Boolean(status === 'error' || error),
+            'h-auto': multiline,
           }
         ),
         input: cx(classes.input, classes[`input${capitalize(size)}`], {
           [classes.inputDark]: isDark,
+          'resize-y': multiline && multilineResizable,
         }),
         inputMultiline: classes.inputMultiline,
         notchedOutline: cx(classes.notchedOutline, {

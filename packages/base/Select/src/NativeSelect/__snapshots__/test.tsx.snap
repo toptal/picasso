@@ -6,14 +6,14 @@ exports[`NativeSelect renders native select 1`] = `
     class="Picasso-root"
   >
     <div
-      class="makeStyles-root makeStyles-rootFull"
+      class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white p-0 bg-white MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
+          class="appearance-none select-none rounded-none min-w cursor-pointer focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium w-full p-2 focus:bg-inheritColor pr-6"
         >
           <option
             disabled=""
@@ -41,7 +41,7 @@ exports[`NativeSelect renders native select 1`] = `
           </option>
         </select>
         <svg
-          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -75,14 +75,14 @@ exports[`NativeSelect renders native select with the empty option enabled when e
     class="Picasso-root"
   >
     <div
-      class="makeStyles-root makeStyles-rootFull"
+      class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium makeStyles-nativeInput MuiInputBase-fullWidth"
+        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white p-0 bg-white MuiInputBase-fullWidth"
       >
         <select
           aria-invalid="false"
-          class="MuiNativeSelect-root makeStyles-select MuiNativeSelect-select MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
+          class="appearance-none select-none rounded-none min-w cursor-pointer focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium w-full p-2 focus:bg-inheritColor pr-6"
         >
           <option
             value=""
@@ -109,7 +109,7 @@ exports[`NativeSelect renders native select with the empty option enabled when e
           </option>
         </select>
         <svg
-          class="PicassoSvgDropdownArrows16-root makeStyles-caret"
+          class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { classByColor } from './styles'
 

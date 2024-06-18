@@ -20,7 +20,7 @@ const Example = () => {
       </Container>
       <Container padded={SPACING_4}>
         <Typography variant='heading' size='small'>
-          With auto-expand (up to 5 rows) and manual resize
+          With auto-expand (up to 5 rows) and manual resize (not limited)
         </Typography>
         <Container right={SPACING_4}>
           <Input

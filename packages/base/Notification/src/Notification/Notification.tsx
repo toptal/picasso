@@ -11,7 +11,7 @@ import {
 import { Container } from '@toptal/picasso-container'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Typography } from '@toptal/picasso-typography'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import { capitalize } from '@toptal/picasso-utils'
 
 export type VariantType = 'red' | 'green' | 'white' | 'yellow'

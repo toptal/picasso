@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 import { Menu } from '@toptal/picasso-menu'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps {
   children: React.ReactNode

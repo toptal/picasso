@@ -19,6 +19,7 @@
     { "path": "../base/Typography" },
     { "path": "../base/Utils" },
     { "path": "../picasso-tailwind" },
+    { "path": "../picasso-tailwind-merge" },
     { "path": "../shared" }
   ]
 }

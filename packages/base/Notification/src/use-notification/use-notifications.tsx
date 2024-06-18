@@ -1,6 +1,6 @@
 import type { ReactNode, ReactElement } from 'react'
 import React, { forwardRef, useMemo, useCallback } from 'react'
-import { twJoin } from 'tailwind-merge'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { OptionsObject } from 'notistack'
 import { useSnackbar } from 'notistack'
 import type { SnackbarOrigin } from '@material-ui/core/Snackbar'

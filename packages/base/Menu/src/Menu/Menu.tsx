@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
