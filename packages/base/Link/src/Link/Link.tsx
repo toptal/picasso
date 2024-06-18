@@ -1,6 +1,6 @@
 import type { ReactNode, AnchorHTMLAttributes, ElementType } from 'react'
 import React, { forwardRef } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 

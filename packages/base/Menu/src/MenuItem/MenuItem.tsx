@@ -6,7 +6,7 @@ import type {
   ReactElement,
 } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
   BaseProps,
   ButtonOrAnchorProps,

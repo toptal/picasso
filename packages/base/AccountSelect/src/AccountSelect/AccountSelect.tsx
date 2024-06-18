@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { Typography } from '@toptal/picasso-typography'
 import { Link } from '@toptal/picasso-link'

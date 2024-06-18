@@ -1,6 +1,6 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { type BaseProps } from '@toptal/picasso-shared'
 import type { BreakpointKeys } from '@toptal/picasso-provider'
 import { useCurrentBreakpointRange } from '@toptal/picasso-provider'

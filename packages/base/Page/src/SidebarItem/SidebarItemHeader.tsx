@@ -1,4 +1,4 @@
-import { twMerge, twJoin } from 'tailwind-merge'
+import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 import React, { forwardRef, useCallback } from 'react'
 import { MenuItem } from '@toptal/picasso-menu'
 
