@@ -168,7 +168,7 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
         className={twJoin('w-full', wrapperClassesByOrientation[orientation])}
       >
         {renderLabel}
-        {icon && <span className='absolute right-0 mb-0'>{icon}</span>}
+        {icon && <span className='absolute right-0 mb-0 h-4'>{icon}</span>}
       </span>
     </MUITab>
   )

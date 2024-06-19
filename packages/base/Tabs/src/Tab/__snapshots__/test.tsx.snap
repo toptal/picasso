@@ -118,7 +118,7 @@ exports[`Tab Tab tab with icon 1`] = `
                 Tab Label
               </div>
               <span
-                class="absolute right-0 mb-0"
+                class="absolute right-0 mb-0 h-4"
               >
                 <div
                   id="Icon"
