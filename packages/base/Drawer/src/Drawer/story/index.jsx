@@ -77,3 +77,11 @@ page
     },
     'base/Drawer'
   )
+  .addExample(
+    'Drawer/story/WithDisabledBackdrop.example.tsx',
+    {
+      title: 'With disabled backdrop',
+      takeScreenshot: false,
+    },
+    'base/Drawer'
+  )
