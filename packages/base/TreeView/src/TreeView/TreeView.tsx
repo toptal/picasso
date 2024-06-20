@@ -15,6 +15,7 @@ import styles from './styles'
 import { useZoom } from './use-zoom'
 import {
   DEFAULT_SCALE_EXTENT,
+  DEFAULT_TRANSITION_DURATION,
   ZERO_VECTOR2,
   TreeViewPropsDefaults,
 } from './variables'
@@ -91,7 +92,7 @@ export const TreeView = (props: Props) => {
       x: center.x + ZERO_VECTOR2.x,
       y: center.y + ZERO_VECTOR2.y,
     },
-    transitionDuration: 750,
+    transitionDuration: DEFAULT_TRANSITION_DURATION,
     initialScale,
   })
   const [initialized, setInitialized] = useState(false)
