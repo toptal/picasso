@@ -86,7 +86,7 @@ const rootClassesByOrientation = (selected: boolean) => ({
       'before:bg-blue-500',
     ],
     selected
-      ? 'bg-white text-black'
+      ? 'bg-gray-50 text-black'
       : 'bg-gray-100 hover:bg-gray-200 text-graphite-700 hover:text-black',
   ],
 })
