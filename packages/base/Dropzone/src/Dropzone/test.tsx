@@ -18,12 +18,18 @@ describe('Dropzone', () => {
 
   it('shows error', () => {
     const { queryByText } = renderDropzone({
-      errorMessages: ['error example'],
       hint: 'hint example',
+      value: [
+        {
+          error: 'error example',
+          file: new File(['resume.pdf'], 'resume.pdf'),
+        },
+      ],
     })
 
     expect(queryByText('hint example')).toBeInTheDocument()
     expect(queryByText('error example')).toBeVisible()
+    expect(queryByText('resume.pdf')).toBeVisible()
   })
 
   it('renders hint', () => {
