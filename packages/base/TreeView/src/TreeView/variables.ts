@@ -8,6 +8,7 @@ export const DEFAULT_WIDTH = 236
 export const DEFAULT_HEIGHT = 59
 export const DEFAULT_SCALE_EXTENT: [number, number] = [0.1, 5]
 export const ZERO_VECTOR2: Vector2 = { x: 0, y: 0 }
+export const DEFAULT_TRANSITION_DURATION = 750
 
 export const TreeViewPropsDefaults = {
   nodeWidth: DEFAULT_WIDTH,
