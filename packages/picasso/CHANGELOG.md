@@ -1,5 +1,12 @@
 # Change Log
 
+## 46.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`08cfcd4`](https://github.com/toptal/picasso/commit/08cfcd4483a532e437b9cca087c0e498a70b2197)]:
+  - @toptal/picasso-tree-view@2.0.0
+
 ## 46.0.4
 
 ### Patch Changes
