@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.4.0
+
+### Minor Changes
+
+- [#4364](https://github.com/toptal/picasso/pull/4364) [`f2677435e4e43253d87d5bb4105f0bb540dca56e`](https://github.com/toptal/picasso/commit/f2677435e4e43253d87d5bb4105f0bb540dca56e) Thanks [@diogolessa](https://github.com/diogolessa)!
+- add Control16 and Control24 icons
+
 ## 1.3.0
 
 ### Minor Changes
