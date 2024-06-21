@@ -1,5 +1,73 @@
 # Change Log
 
+## 46.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`c5651b1`](https://github.com/toptal/picasso/commit/c5651b165b82e3ac76f616d622c6f1226697f713)]:
+  - @toptal/picasso-button@2.0.8
+  - @toptal/picasso-accordion@1.0.22
+  - @toptal/picasso-alert@1.0.22
+  - @toptal/picasso-application-update-notification@1.0.22
+  - @toptal/picasso-calendar@1.0.22
+  - @toptal/picasso-carousel@1.0.23
+  - @toptal/picasso-drawer@2.0.14
+  - @toptal/picasso-file-input@1.0.23
+  - @toptal/picasso-helpbox@2.0.8
+  - @toptal/picasso-modal@2.0.8
+  - @toptal/picasso-notification@2.0.14
+  - @toptal/picasso-outlined-input@1.1.3
+  - @toptal/picasso-page@2.0.22
+  - @toptal/picasso-pagination@2.0.8
+  - @toptal/picasso-password-input@2.0.10
+  - @toptal/picasso-prompt-modal@1.0.22
+  - @toptal/picasso-section@3.0.3
+  - @toptal/picasso-show-more@1.0.22
+  - @toptal/picasso-skeleton-loader@1.0.22
+  - @toptal/picasso-table@1.1.19
+  - @toptal/picasso-tree-view@2.0.1
+  - @toptal/picasso-date-picker@1.0.24
+  - @toptal/picasso-dropzone@1.0.23
+  - @toptal/picasso-autocomplete@1.0.27
+  - @toptal/picasso-avatar-upload@1.0.23
+  - @toptal/picasso-input@2.0.6
+  - @toptal/picasso-number-input@1.0.24
+  - @toptal/picasso-select@1.0.27
+  - @toptal/picasso-tagselector@1.0.30
+  - @toptal/picasso-timepicker@1.0.24
+  - @toptal/picasso-date-select@1.0.27
+
+## 46.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`147fc5f`](https://github.com/toptal/picasso/commit/147fc5ff8893d71a73e3f6046e7de9fd0d67a06d)]:
+  - @toptal/picasso-select@1.0.26
+  - @toptal/picasso-autocomplete@1.0.26
+  - @toptal/picasso-date-select@1.0.26
+  - @toptal/picasso-page@2.0.21
+  - @toptal/picasso-tagselector@1.0.29
+
+## 46.0.6
+
+### Patch Changes
+
+- [#4375](https://github.com/toptal/picasso/pull/4375) [`ca379cb9334324ed794074e7c7e3fddf8538b5d6`](https://github.com/toptal/picasso/commit/ca379cb9334324ed794074e7c7e3fddf8538b5d6) Thanks [@trofim-samusev](https://github.com/trofim-samusev)!
+
+### picasso-select
+
+- export SelectCaret component
+
+### picasso
+
+- export OutlinedInputProps type
+- Updated dependencies [[`ca379cb`](https://github.com/toptal/picasso/commit/ca379cb9334324ed794074e7c7e3fddf8538b5d6)]:
+  - @toptal/picasso-select@1.0.25
+  - @toptal/picasso-autocomplete@1.0.25
+  - @toptal/picasso-date-select@1.0.25
+  - @toptal/picasso-page@2.0.20
+  - @toptal/picasso-tagselector@1.0.28
+
 ## 46.0.5
 
 ### Patch Changes

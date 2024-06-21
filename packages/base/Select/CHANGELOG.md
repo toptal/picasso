@@ -1,5 +1,34 @@
 # @toptal/picasso-select
 
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.1.3
+  - @toptal/picasso-input@2.0.6
+
+## 1.0.26
+
+### Patch Changes
+
+- [#4379](https://github.com/toptal/picasso/pull/4379) [`147fc5ff8893d71a73e3f6046e7de9fd0d67a06d`](https://github.com/toptal/picasso/commit/147fc5ff8893d71a73e3f6046e7de9fd0d67a06d) Thanks [@trofim-samusev](https://github.com/trofim-samusev)!
+- fix SelectCaret export
+
+## 1.0.25
+
+### Patch Changes
+
+- [#4375](https://github.com/toptal/picasso/pull/4375) [`ca379cb9334324ed794074e7c7e3fddf8538b5d6`](https://github.com/toptal/picasso/commit/ca379cb9334324ed794074e7c7e3fddf8538b5d6) Thanks [@trofim-samusev](https://github.com/trofim-samusev)!
+
+### picasso-select
+
+- export SelectCaret component
+
+### picasso
+
+- export OutlinedInputProps type
+
 ## 1.0.24
 
 ### Patch Changes

@@ -12,7 +12,7 @@ import {
   useCombinedRefs,
 } from '@toptal/picasso-utils'
 
-import SelectCaret from '../SelectCaret'
+import { SelectCaret } from '../SelectCaret'
 import type { ValueType, SelectProps } from '../SelectBase'
 import {
   getOptionText,

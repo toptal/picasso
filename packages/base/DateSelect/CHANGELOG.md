@@ -1,5 +1,26 @@
 # @toptal/picasso-date-select
 
+## 1.0.27
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@1.0.27
+
+## 1.0.26
+
+### Patch Changes
+
+- Updated dependencies [[`147fc5f`](https://github.com/toptal/picasso/commit/147fc5ff8893d71a73e3f6046e7de9fd0d67a06d)]:
+  - @toptal/picasso-select@1.0.26
+
+## 1.0.25
+
+### Patch Changes
+
+- Updated dependencies [[`ca379cb`](https://github.com/toptal/picasso/commit/ca379cb9334324ed794074e7c7e3fddf8538b5d6)]:
+  - @toptal/picasso-select@1.0.25
+
 ## 1.0.24
 
 ### Patch Changes

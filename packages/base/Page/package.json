@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-page",
-  "version": "2.0.19",
+  "version": "2.0.22",
   "description": "Toptal UI components library - Page",
   "publishConfig": {
     "access": "public"
@@ -22,17 +22,17 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-accordion": "1.0.21",
-    "@toptal/picasso-autocomplete": "1.0.24",
+    "@toptal/picasso-accordion": "1.0.22",
+    "@toptal/picasso-autocomplete": "1.0.27",
     "@toptal/picasso-avatar": "2.0.6",
     "@toptal/picasso-badge": "1.0.3",
-    "@toptal/picasso-button": "2.0.7",
+    "@toptal/picasso-button": "2.0.8",
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-dropdown": "2.0.3",
     "@toptal/picasso-icons": "1.4.0",
     "@toptal/picasso-logo": "1.0.7",
     "@toptal/picasso-menu": "1.0.15",
-    "@toptal/picasso-notification": "2.0.13",
+    "@toptal/picasso-notification": "2.0.14",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-tag": "2.0.5",
     "@toptal/picasso-tooltip": "1.1.3",
