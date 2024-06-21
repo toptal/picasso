@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tailwind-merge",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Tailwind merge configured for Picasso theme",
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind": "2.6.0",
+    "@toptal/picasso-tailwind": "2.6.1",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [
