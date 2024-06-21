@@ -1,5 +1,17 @@
 # @toptal/picasso-rich-text-editor
 
+## 13.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`c5651b1`](https://github.com/toptal/picasso/commit/c5651b165b82e3ac76f616d622c6f1226697f713)]:
+  - @toptal/picasso-button@2.0.8
+  - @toptal/picasso-file-input@1.0.23
+  - @toptal/picasso-modal@2.0.8
+  - @toptal/picasso-outlined-input@1.1.3
+  - @toptal/picasso-input@2.0.6
+  - @toptal/picasso-select@1.0.27
+
 ## 13.0.11
 
 ### Patch Changes
