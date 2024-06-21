@@ -17,7 +17,7 @@ import {
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
-import SelectCaret from '../SelectCaret'
+import { SelectCaret } from '../SelectCaret'
 import { NonNativeSelectLoader } from '../NonNativeSelectLoader'
 import type { ValueType, SelectProps } from '../SelectBase'
 import {
