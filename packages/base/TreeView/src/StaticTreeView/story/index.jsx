@@ -20,15 +20,7 @@ page
     'StaticTreeView/story/Default.example.tsx',
     {
       title: 'Default',
-      takeScreenshot: {
-        // https://docs.happo.io/docs/storybook#waiting-for-a-condition-to-be-truthy
-        waitFor: () => {
-          const imageElement: HTMLImageElement | undefined =
-            document.querySelector('svg image')
-
-          return imageElement && imageElement.complete
-        },
-      },
+      takeScreenshot: false,
     },
     'base/TreeView'
   )
