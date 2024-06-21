@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-autocomplete",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Toptal UI components library - Autocomplete",
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,7 @@
     "@toptal/picasso-menu": "1.0.15",
     "@toptal/picasso-outlined-input": "1.1.2",
     "@toptal/picasso-popper": "1.0.3",
-    "@toptal/picasso-select": "1.0.25",
+    "@toptal/picasso-select": "1.0.26",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",

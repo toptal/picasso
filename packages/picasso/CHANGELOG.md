@@ -1,5 +1,16 @@
 # Change Log
 
+## 46.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`147fc5f`](https://github.com/toptal/picasso/commit/147fc5ff8893d71a73e3f6046e7de9fd0d67a06d)]:
+  - @toptal/picasso-select@1.0.26
+  - @toptal/picasso-autocomplete@1.0.26
+  - @toptal/picasso-date-select@1.0.26
+  - @toptal/picasso-page@2.0.21
+  - @toptal/picasso-tagselector@1.0.29
+
 ## 46.0.6
 
 ### Patch Changes
