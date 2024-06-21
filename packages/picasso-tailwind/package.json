@@ -30,7 +30,6 @@
     "tailwindcss": "^3.3.5"
   },
   "sideEffects": false,
-  "module": "./src/index.js",
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
