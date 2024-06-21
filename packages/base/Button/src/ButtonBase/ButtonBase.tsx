@@ -1,10 +1,4 @@
-import type {
-  ReactNode,
-  ReactElement,
-  MouseEvent,
-  ElementType,
-  FC,
-} from 'react'
+import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import type {
@@ -15,6 +9,7 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { Button as MUIButtonBase } from '@mui/base/Button'
+import type { ButtonRootSlotProps } from '@mui/base/Button'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
@@ -48,6 +43,8 @@ export interface Props
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
+  /** The HTML element that is ultimately rendered, for example 'button', 'a' or 'label */
+  rootElementName?: keyof HTMLElementTagNameMap
 }
 
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
@@ -64,14 +61,14 @@ const getIcon = ({ icon }: { icon?: ReactElement }) => {
   })
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isReactComponent = (component: any) => {
-  return (
-    component &&
-    (component.$$typeof === Symbol.for('react.forward_ref') ||
-      typeof component === 'function')
-  )
-}
+const RootElement = forwardRef(
+  (props: ButtonRootSlotProps & { as: ElementType }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { ownerState, as: Root, ...rest } = props
+
+    return <Root {...rest} ref={ref} />
+  }
+)
 
 export const ButtonBase: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
@@ -91,23 +88,10 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     value,
     type,
     as = 'button',
+    rootElementName,
     titleCase: propsTitleCase,
     ...rest
   } = props
-
-  let RootElement: ElementType | FC = as
-
-  if (isReactComponent(RootElement)) {
-    RootElement = forwardRef(
-      // We don't need to pass ownerState to the root component
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ({ ownerState, ...restProps }: { ownerState: object }, rootRef) => {
-        const Root = as
-
-        return <Root ref={rootRef} {...restProps} />
-      }
-    )
-  }
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
@@ -115,8 +99,9 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
    Workaround for the case: <Button as={Link} href='' /> (with empty href!), we have to determine "rootElementName" like below
    Mui/base throws an error when "href" or "to" are empty
    */
-  const rootElementName =
-    as !== 'button' && ('href' in props || 'to' in props) ? 'a' : undefined
+  const finalRootElementName =
+    rootElementName ||
+    (as !== 'button' && ('href' in props || 'to' in props) ? 'a' : undefined)
 
   if (icon) {
     const iconComponent = getIcon({ icon })
@@ -145,8 +130,10 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
       data-component-type='button'
       tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
       role={rest.role ?? 'button'}
-      rootElementName={rootElementName}
+      rootElementName={finalRootElementName}
       slots={{ root: RootElement }}
+      // @ts-ignore
+      slotProps={{ root: { as } }}
     >
       <Container
         as='span'
