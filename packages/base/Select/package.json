@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-select",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Toptal UI components library - Select",
   "publishConfig": {
     "access": "public"

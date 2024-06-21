@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 2.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-autocomplete@1.0.26
+
 ## 2.0.20
 
 ### Patch Changes
