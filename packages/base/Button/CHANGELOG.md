@@ -1,5 +1,12 @@
 # @toptal/picasso-button
 
+## 2.0.8
+
+### Patch Changes
+
+- [#4372](https://github.com/toptal/picasso/pull/4372) [`c5651b165b82e3ac76f616d622c6f1226697f713`](https://github.com/toptal/picasso/commit/c5651b165b82e3ac76f616d622c6f1226697f713) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix "Maximum update depth exceeded" issue
+
 ## 2.0.7
 
 ### Patch Changes
