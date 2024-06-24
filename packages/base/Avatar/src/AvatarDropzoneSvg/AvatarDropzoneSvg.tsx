@@ -1,10 +1,8 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core'
-import { capitalize, makeStyles } from '@material-ui/core'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { rootClassBySize, svgClassBySize } from './styles'
 import { getShapes } from './utils'
 
 /**
@@ -43,6 +41,8 @@ export const AVATAR_DROPZONE_SVG_SHAPES = {
   large: getShapes(SETTINGS.large),
 } as const
 
+export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+
 export interface Props extends BaseProps {
   size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   isDragActive?: boolean
@@ -51,10 +51,6 @@ export interface Props extends BaseProps {
   focused?: boolean
   hovered?: boolean
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoDropzoneSvg',
-})
 
 export const DropzoneSvg = (props: Props) => {
   const {
@@ -70,35 +66,35 @@ export const DropzoneSvg = (props: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const shapes = AVATAR_DROPZONE_SVG_SHAPES[size!]
 
-  const classes = useStyles()
-
   return (
     <div
-      className={cx(classes.root, classes[`root${capitalize(size)}`])}
+      className={twJoin(
+        '[pointer-events:unset] relative bg-transparent',
+        rootClassBySize[size]
+      )}
       data-testid={dataTestId}
     >
       <svg
-        className={cx(classes.svg, classes[`svg${capitalize(size)}`])}
+        className={twJoin('m-[-3px]', svgClassBySize[size])}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
-          className={cx(classes.background, {
-            [classes.dragActive]: isDragActive,
-            [classes.disabled]: disabled,
-            [classes.error]: error,
-            [classes.focused]: focused,
-            [classes.hovered]: hovered,
-          })}
+          className={twJoin(
+            'fill-blue-100 transition-[fill] duration-350 ease-out hover:fill-blue-100/[0.84]',
+            isDragActive && 'fill-blue-500/[0.24]',
+            disabled && 'fill-gray-100 hover:fill-gray-400'
+          )}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.background}
         />
         <path
-          className={cx(classes.outline, {
-            [classes.focused]: focused,
-            [classes.error]: error,
-          })}
+          className={twJoin(
+            'hidden stroke-blue-500',
+            focused && !isDragActive && '[display:initial]',
+            error && 'stroke-red-500'
+          )}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.outline}
@@ -107,11 +103,11 @@ export const DropzoneSvg = (props: Props) => {
           strokeLinejoin='round'
         />
         <path
-          className={cx(classes.border, {
-            [classes.error]: error,
-            [classes.focused]: focused,
-            [classes.hovered]: hovered,
-          })}
+          className={twJoin(
+            'stroke-blue-500 transition-[stroke] duration-350',
+            hovered && 'stroke-blue-500/[0.84]',
+            error && 'stroke-red-500'
+          )}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.borders}

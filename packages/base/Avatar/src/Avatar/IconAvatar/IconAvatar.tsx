@@ -1,19 +1,15 @@
 import React from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { Profile16 } from '@toptal/picasso-icons'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { classBySize } from './styles'
+
+export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 
 interface Props extends BaseProps {
   size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoIconAvatar',
-})
 
 const IconAvatar = ({
   size,
@@ -21,11 +17,13 @@ const IconAvatar = ({
   className,
   style,
 }: Props) => {
-  const classes = useStyles()
-
   return (
     <Profile16
-      className={cx(className, classes.root, classes[`${size}Icon`])}
+      className={twMerge(
+        className,
+        'absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%]',
+        classBySize[size]
+      )}
       color='white'
       data-testid={dataTestId}
       style={style}

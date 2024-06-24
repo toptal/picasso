@@ -1,14 +1,11 @@
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import React, { useMemo } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { Avatar } from '../Avatar'
 import AvatarWrapper from '../Avatar/AvatarWrapper/AvatarWrapper'
 import TextAvatar from '../Avatar/TextAvatar/TextAvatar'
-import styles from './styles'
 
 type ItemType = {
   alt?: string
@@ -31,10 +28,6 @@ export interface Props extends Omit<BaseProps, 'data-testid'> {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAvatarGroup',
-})
-
 const AvatarGroup = ({
   className,
   style,
@@ -43,8 +36,6 @@ const AvatarGroup = ({
   limit,
   size,
 }: Props) => {
-  const classes = useStyles()
-
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const isOverLimit = items.length > limit!
   // we need to add +1 for the last item that is going to be transformed to numbered Avatar
@@ -63,7 +54,7 @@ const AvatarGroup = ({
 
   return (
     <Container
-      className={cx(classes.root, className)}
+      className={twMerge('max-w-full overflow-x-auto', className)}
       data-testid={testIds?.container}
       flex
       gap='xsmall'

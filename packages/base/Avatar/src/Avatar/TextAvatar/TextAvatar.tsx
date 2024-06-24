@@ -1,22 +1,20 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { containerTextClassBySize, typographyTextClassBySize } from './styles'
+
+export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+
+export type FontSize = SizeType<'small' | 'large'>
 
 interface Props extends BaseProps {
   children: ReactNode
-  fontSize?: SizeType<'small' | 'large'>
-  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  fontSize?: FontSize
+  size: Size
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTextAvatar',
-})
 
 const TextAvatar = ({
   children,
@@ -26,32 +24,25 @@ const TextAvatar = ({
   fontSize,
   size,
   'data-private': dataPrivate,
-}: Props) => {
-  const classes = useStyles()
-
-  const SIZE_TO_FONT_SIZE = {
-    small: '!text-[0.666666667em]',
-    large: '!text-[1em]',
-  }
-
-  return (
-    <div
-      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-      className={cx(classes.root, className, classes[size!])}
-      style={style}
-      data-private={dataPrivate}
+}: Props) => (
+  <div
+    className={twMerge(
+      'uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)]',
+      className,
+      containerTextClassBySize[size]
+    )}
+    style={style}
+    data-private={dataPrivate}
+  >
+    <Typography
+      data-testid={dataTestID}
+      className={fontSize ? typographyTextClassBySize[fontSize] : ''}
+      invert
     >
-      <Typography
-        data-testid={dataTestID}
-        /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-        className={SIZE_TO_FONT_SIZE[fontSize!]}
-        invert
-      >
-        {children}
-      </Typography>
-    </div>
-  )
-}
+      {children}
+    </Typography>
+  </div>
+)
 
 TextAvatar.defaultProps = {
   size: 'large',
