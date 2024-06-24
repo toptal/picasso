@@ -42,6 +42,8 @@ export interface Props extends BaseProps {
   maintainBodyScrollLock?: boolean
   /** Specify the backdrop transparency  */
   transparentBackdrop?: boolean
+  /** Remove the backdrop and leave elements behind interactive  */
+  disableBackdrop?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoDrawer' })
@@ -57,6 +59,7 @@ export const Drawer = (props: Props) => {
     transitionProps,
     maintainBodyScrollLock = true,
     transparentBackdrop,
+    disableBackdrop,
     ...rest
   } = props
   const classes = useStyles()
@@ -87,11 +90,17 @@ export const Drawer = (props: Props) => {
       {...rest}
       open={open}
       onClose={handleOnClose}
+      BackdropComponent={disableBackdrop ? () => null : undefined}
       BackdropProps={{ invisible: transparentBackdrop }}
       disablePortal={disablePortal}
       container={container}
       disableScrollLock
-      ModalProps={{ style: { zIndex: theme.zIndex.drawer } }}
+      ModalProps={{
+        style: {
+          zIndex: theme.zIndex.drawer,
+          position: disableBackdrop ? 'unset' : 'fixed',
+        },
+      }}
       SlideProps={transitionProps}
     >
       <Container
