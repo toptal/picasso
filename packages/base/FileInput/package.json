@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-file-input",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "Toptal UI components library - FileInput",
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,7 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-tooltip": "1.1.3",
     "@toptal/picasso-typography": "2.0.2",
-    "@toptal/picasso-typography-overflow": "2.0.2",
+    "@toptal/picasso-typography-overflow": "2.0.3",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },

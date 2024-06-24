@@ -1,5 +1,15 @@
 # @toptal/picasso-drawer
 
+## 2.1.0
+
+### Minor Changes
+
+- [#4371](https://github.com/toptal/picasso/pull/4371) [`4a71002c89400db184edec86ca4668a74bf07377`](https://github.com/toptal/picasso/commit/4a71002c89400db184edec86ca4668a74bf07377) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Drawer
+
+- add `disableBackdrop` prop to `Drawer` to preserve interactivity when `Drawer` is open
+
 ## 2.0.14
 
 ### Patch Changes

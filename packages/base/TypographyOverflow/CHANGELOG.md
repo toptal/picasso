@@ -1,5 +1,12 @@
 # @toptal/picasso-typography-overflow
 
+## 2.0.3
+
+### Patch Changes
+
+- [#4357](https://github.com/toptal/picasso/pull/4357) [`b2f0d71869ff4ce899837ca0a57864bc839e1394`](https://github.com/toptal/picasso/commit/b2f0d71869ff4ce899837ca0a57864bc839e1394) Thanks [@ManarSayedEid](https://github.com/ManarSayedEid)!
+- add placement prop to TypographyOverflow component
+
 ## 2.0.2
 
 ### Patch Changes
