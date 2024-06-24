@@ -1,5 +1,17 @@
 # Change Log
 
+## 46.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`4a71002`](https://github.com/toptal/picasso/commit/4a71002c89400db184edec86ca4668a74bf07377), [`b2f0d71`](https://github.com/toptal/picasso/commit/b2f0d71869ff4ce899837ca0a57864bc839e1394), [`c5aaee5`](https://github.com/toptal/picasso/commit/c5aaee5529e41b8db855c05e2d757c3c7472f9e3)]:
+  - @toptal/picasso-drawer@2.1.0
+  - @toptal/picasso-typography-overflow@2.0.3
+  - @toptal/picasso-dropzone@2.0.0
+  - @toptal/picasso-file-input@1.0.24
+  - @toptal/picasso-step@1.1.7
+  - @toptal/picasso-tabs@2.0.7
+
 ## 46.0.8
 
 ### Patch Changes

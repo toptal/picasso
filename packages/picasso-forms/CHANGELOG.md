@@ -1,5 +1,14 @@
 # Change Log
 
+## 70.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`c5aaee5`](https://github.com/toptal/picasso/commit/c5aaee5529e41b8db855c05e2d757c3c7472f9e3)]:
+  - @toptal/picasso-dropzone@2.0.0
+  - @toptal/picasso-file-input@1.0.24
+  - @toptal/picasso-rich-text-editor@13.0.13
+
 ## 70.0.7
 
 ### Patch Changes

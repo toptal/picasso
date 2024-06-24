@@ -1,5 +1,17 @@
 # @toptal/picasso-dropzone
 
+## 2.0.0
+
+### Major Changes
+
+- [#4374](https://github.com/toptal/picasso/pull/4374) [`c5aaee5529e41b8db855c05e2d757c3c7472f9e3`](https://github.com/toptal/picasso/commit/c5aaee5529e41b8db855c05e2d757c3c7472f9e3) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- remove deprecated `errorMessages` prop
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@1.0.24
+
 ## 1.0.23
 
 ### Patch Changes

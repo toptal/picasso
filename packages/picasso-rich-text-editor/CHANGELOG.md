@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 13.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@1.0.24
+
 ## 13.0.12
 
 ### Patch Changes
