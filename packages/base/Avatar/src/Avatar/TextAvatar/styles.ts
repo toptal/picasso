@@ -1,25 +1,14 @@
-import { createStyles } from '@material-ui/core/styles'
+import type { FontSize, Size } from './TextAvatar'
 
-export default () =>
-  createStyles({
-    root: {
-      textTransform: 'uppercase',
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
+export const containerTextClassBySize: Record<Size, string> = {
+  xxsmall: 'text-[1em]',
+  xsmall: 'text-[1em]',
+  small: 'text-[2em]',
+  medium: 'text-[3em]',
+  large: 'text-[5em]',
+}
 
-    xxsmall: { fontSize: '1em' },
-    xsmall: { fontSize: '1em' },
-    small: { fontSize: '2em' },
-    medium: { fontSize: '3em' },
-    large: { fontSize: '5em' },
-
-    smallFont: {
-      fontSize: '0.666666667em',
-    },
-    largeFont: {
-      fontSize: '1em',
-    },
-  })
+export const typographyTextClassBySize: Record<FontSize, string> = {
+  small: '!text-[0.666666667em]',
+  large: '!text-[1em]',
+}

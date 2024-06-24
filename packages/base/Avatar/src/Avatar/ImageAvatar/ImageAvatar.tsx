@@ -1,29 +1,23 @@
 import React from 'react'
-import cx from 'classnames'
-import type { JssProps, BaseProps, SizeType } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { Logo } from '@toptal/picasso-logo'
 import { Image } from '@toptal/picasso-image'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 
 export interface Props extends BaseProps {
-  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  size: Size
   src: string
   alt?: string
   name?: string
 }
 
 type LogoProps = {
-  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
-} & JssProps
+  size: Size
+}
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoImageAvatar',
-})
-
-const AvatarLogo = ({ size, classes }: LogoProps) => {
+const AvatarLogo = ({ size }: LogoProps) => {
   const isTooSmall = ['small', 'xsmall', 'xxsmall'].includes(size)
 
   if (isTooSmall) {
@@ -32,11 +26,11 @@ const AvatarLogo = ({ size, classes }: LogoProps) => {
 
   return (
     <div
-      className={classes.logoContainer}
+      className={'flex absolute bottom-4 left-4'}
       role='img'
       aria-label='photo placeholder'
     >
-      <Logo emblem variant='white' className={classes.logo} />
+      <Logo emblem variant='white' className={'w-[1.0625rem] h-6'} />
     </div>
   )
 }
@@ -52,19 +46,21 @@ const ImageAvatar = (props: Props) => {
     'data-testid': dataTestId,
     'data-private': dataPrivate,
   } = props
-  const classes = useStyles(props)
 
   return (
     <>
       <Image
         alt={alt || name || ''}
-        className={cx(classes.image, className)}
+        className={twMerge(
+          'object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize-contrast]',
+          className
+        )}
         src={src}
         style={style}
         data-testid={dataTestId}
         data-private={dataPrivate}
       />
-      <AvatarLogo classes={classes} size={size} />
+      <AvatarLogo size={size} />
     </>
   )
 }

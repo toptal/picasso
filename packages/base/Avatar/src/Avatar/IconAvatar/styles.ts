@@ -1,16 +1,9 @@
-import { createStyles } from '@material-ui/core/styles'
+import type { Size } from './IconAvatar'
 
-export default () =>
-  createStyles({
-    root: {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-    xxsmallIcon: { fontSize: '1em' },
-    xsmallIcon: { fontSize: '1em' },
-    smallIcon: { fontSize: '1.5em' },
-    mediumIcon: { fontSize: '1.875em' },
-    largeIcon: { fontSize: '3em' },
-  })
+export const classBySize: Record<Size, string> = {
+  xxsmall: 'text-[1em]',
+  xsmall: 'text-[1em]',
+  small: 'text-[1.5em]',
+  medium: 'text-[1.875em]',
+  large: 'text-[3em]',
+}

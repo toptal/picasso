@@ -1,16 +1,13 @@
 import type { HTMLAttributes } from 'react'
 import React, { useCallback } from 'react'
 import type { StandardProps, SizeType } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { AVATAR_INITIALS_LIMIT , getNameInitials } from '@toptal/picasso-utils'
+import { AVATAR_INITIALS_LIMIT, getNameInitials } from '@toptal/picasso-utils'
 
 import ImageAvatar from './ImageAvatar/ImageAvatar'
 import TextAvatar from './TextAvatar/TextAvatar'
 import IconAvatar from './IconAvatar/IconAvatar'
 import AvatarWrapper from './AvatarWrapper/AvatarWrapper'
 import AvatarEditContainer from './AvatarEditContainer/AvatarEditContainer'
-import styles from './styles'
 
 export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Alt text */
@@ -33,10 +30,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
     editContainer?: string
   }
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoAvatarWrapper',
-})
 
 export const Avatar = (props: Props) => {
   const {
@@ -106,9 +99,9 @@ export const Avatar = (props: Props) => {
     testIds?.text,
     name,
     style,
+    dataPrivate,
   ])
 
-  const classes = useStyles(props)
   const isEditable = Boolean(onEdit)
 
   const avatar = (
@@ -126,7 +119,7 @@ export const Avatar = (props: Props) => {
 
   if (isEditable) {
     return (
-      <div className={classes.editableAvatarContainer}>
+      <div className={'relative'}>
         {avatar}
         {isEditable && (
           <AvatarEditContainer

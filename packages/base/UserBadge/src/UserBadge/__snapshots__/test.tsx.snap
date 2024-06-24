@@ -9,10 +9,10 @@ exports[`UserBadge auto center alignment 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -48,10 +48,10 @@ exports[`UserBadge custom name 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -90,10 +90,10 @@ exports[`UserBadge custom title 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -137,10 +137,10 @@ exports[`UserBadge invert render 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -181,10 +181,10 @@ exports[`UserBadge manual center alignment 1`] = `
       class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -225,10 +225,10 @@ exports[`UserBadge override auto center alignment 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -264,10 +264,10 @@ exports[`UserBadge renders 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeXsmallSquare PicassoAvatarWrapper-cornerXsmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-xsmall"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[1em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
@@ -308,10 +308,10 @@ exports[`UserBadge small size 1`] = `
       class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
     >
       <div
-        class="PicassoAvatarWrapper-root PicassoAvatarWrapper-sizeSmallSquare PicassoAvatarWrapper-cornerSmall"
+        class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[5em] h-[5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_1em_100%,_0_calc(100%-1em))]"
       >
         <div
-          class="PicassoTextAvatar-root PicassoUserBadge-avatar PicassoTextAvatar-small"
+          class="uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)] PicassoUserBadge-avatar text-[2em]"
         >
           <p
             class="m-0 font-inherit leading-[1.5em] text-white font-regular !text-[1em]"
