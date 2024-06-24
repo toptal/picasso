@@ -56,3 +56,11 @@ page
     },
     'base/TypographyOverflow'
   )
+  .addExample(
+    'TypographyOverflow/story/Placement.example.tsx',
+    {
+      title: 'Placement',
+      takeScreenshot: false,
+    },
+    'base/TypographyOverflow'
+  )

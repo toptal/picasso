@@ -8,7 +8,7 @@ import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
 import type { TypographyProps } from '@toptal/picasso-typography'
-import type { DelayType } from '@toptal/picasso-tooltip'
+import type { DelayType, PlacementType } from '@toptal/picasso-tooltip'
 
 import styles from './styles'
 
@@ -23,6 +23,8 @@ export interface Props extends BaseProps, TypographyProps {
   tooltipDelay?: DelayType
   /** Do not show tooltips for shorten content. */
   disableTooltip?: boolean
+  /** Where should the tooltip be positioned */
+  placement?: PlacementType
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -40,6 +42,7 @@ export const TypographyOverflow = (props: Props) => {
     onClick,
     onMouseEnter,
     style,
+    placement = 'top',
     ...rest
   } = props
 
@@ -128,7 +131,7 @@ export const TypographyOverflow = (props: Props) => {
     <Tooltip
       open={isTooltipOpened}
       content={tooltipContent ?? children}
-      placement='top'
+      placement={placement}
       delay={tooltipDelay}
       interactive
       disableListeners={disableTooltip}
