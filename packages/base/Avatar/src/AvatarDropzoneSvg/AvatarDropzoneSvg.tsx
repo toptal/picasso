@@ -81,8 +81,10 @@ export const DropzoneSvg = (props: Props) => {
       >
         <path
           className={twJoin(
-            'fill-blue-100 transition-[fill] duration-350 ease-out hover:fill-blue-100/[0.84]',
+            'fill-blue-100 transition-[fill] duration-350 ease-out',
+            hovered && 'fill-blue-100/[0.84]',
             isDragActive && 'fill-blue-500/[0.24]',
+            'active:fill-blue-500/[0.24]',
             disabled && 'fill-gray-100 hover:fill-gray-400'
           )}
           fillRule='evenodd'
