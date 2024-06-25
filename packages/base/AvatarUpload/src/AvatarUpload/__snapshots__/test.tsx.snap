@@ -25,7 +25,7 @@ exports[`AvatarUpload renders 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            class="fill-blue transition-[fill] duration-350 ease-out hover:fill-blue"
+            class="fill-blue transition-[fill] duration-350 ease-out active:fill-blue"
             clip-rule="evenodd"
             d="
     M 3 3
