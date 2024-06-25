@@ -179,7 +179,7 @@ exports[`YearSelect renders 1`] = `
         class="w-[inherit] outline-0"
       >
         <div
-          class="base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-full after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray pr-[1.625rem]"
+          class="base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-full after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray pr-[1.625rem]"
           role="textbox"
         >
           <input

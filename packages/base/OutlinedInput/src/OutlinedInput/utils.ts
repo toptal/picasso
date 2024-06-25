@@ -23,7 +23,7 @@ export const getRootClassName = ({
 }) =>
   twMerge(
     'relative text-black inline-flex p-2 gap-y-1 gap-x-2 items-center rounded-sm',
-    '@tw [font-size:_unset] cursor-[inherit] bg-white',
+    '[font-size:_unset] cursor-[inherit] bg-white',
     'hover:[&_.resetButtonDirty]:visible',
     size === 'small' && 'py-1 px-[0.625rem] h-6',
     size === 'medium' && 'p-2 h-8',
@@ -48,7 +48,7 @@ export const getRootClassName = ({
       !isError &&
       'hover:[&:not(:has(input:focus))]:after:border-gray-600',
     isError &&
-      `@tw after:border-red-500 [&:has(input:focus)]:after:border-red-500 [&:has(input:focus)]:after:shadow-[0_0_0_3px] 
+      `after:border-red-500 [&:has(input:focus)]:after:border-red-500 [&:has(input:focus)]:after:shadow-[0_0_0_3px] 
     [&:has(input:focus)]:after:shadow-red-500/[.48]`,
     classes?.root,
     className

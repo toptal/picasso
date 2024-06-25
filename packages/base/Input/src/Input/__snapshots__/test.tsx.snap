@@ -6,7 +6,7 @@ exports[`Input renders icon in the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -38,7 +38,7 @@ exports[`Input renders icon in the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -70,7 +70,7 @@ exports[`Input should show manual resize handler 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] h-auto after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] h-auto after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
     >
       <textarea
         autocomplete="none"
@@ -91,7 +91,7 @@ exports[`Input should show reset button 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
     >
       <input
         autocomplete="none"
@@ -137,7 +137,7 @@ exports[`Input shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] h-auto after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] h-auto after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
     >
       <textarea
         autocomplete="none"
@@ -159,7 +159,7 @@ exports[`Input shows counter for regular input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm @tw [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray"
     >
       <input
         autocomplete="none"

@@ -7,7 +7,7 @@ import type {
 } from 'react'
 import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import type { InputBaseComponentProps } from '@material-ui/core/InputBase'
-import type { StandardProps, SizeType, BaseProps } from '@toptal/picasso-shared'
+import type { SizeType, BaseProps } from '@toptal/picasso-shared'
 import {
   InputAdornment,
   InputValidIconAdornment,
@@ -42,11 +42,13 @@ export interface InputProps
 }
 
 export interface Props
-  extends StandardProps,
+  extends BaseProps,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'value' | 'defaultValue' | 'size' | 'color'
     > {
+  /** Classes for input and root */
+  classes?: { input?: string; root?: string }
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   inputComponent?: ReactType<InputBaseComponentProps>
