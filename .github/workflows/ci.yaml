@@ -74,7 +74,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
           echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v15.2.1
+      - uses: toptal/davinci-github-actions/build-push-image@v15.0.0
         with:
           sha: ${{ github.event.pull_request.head.sha }}
           image-name: picasso
