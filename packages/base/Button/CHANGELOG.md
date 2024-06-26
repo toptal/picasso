@@ -1,5 +1,17 @@
 # @toptal/picasso-button
 
+## 2.1.0
+
+### Minor Changes
+
+- [#4386](https://github.com/toptal/picasso/pull/4386) [`d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add new property `rootElementName` to cover edge cases where automatic detection is not working
+
+### Patch Changes
+
+- [#4386](https://github.com/toptal/picasso/pull/4386) [`d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix style issues when as Link
+
 ## 2.0.8
 
 ### Patch Changes
