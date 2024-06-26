@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -43,8 +44,6 @@ export interface Props
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
-  /** The HTML element that is ultimately rendered, for example 'button', 'a' or 'label */
-  rootElementName?: keyof HTMLElementTagNameMap
 }
 
 const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
@@ -88,20 +87,13 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     value,
     type,
     as = 'button',
-    rootElementName,
     titleCase: propsTitleCase,
     ...rest
   } = props
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
-  /*
-   Workaround for the case: <Button as={Link} href='' /> (with empty href!), we have to determine "rootElementName" like below
-   Mui/base throws an error when "href" or "to" are empty
-   */
-  const finalRootElementName =
-    rootElementName ||
-    (as !== 'button' && ('href' in props || 'to' in props) ? 'a' : undefined)
+  const finalRootElementName = typeof as === 'string' ? as : 'a'
 
   if (icon) {
     const iconComponent = getIcon({ icon })
@@ -130,7 +122,7 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
       data-component-type='button'
       tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
       role={rest.role ?? 'button'}
-      rootElementName={finalRootElementName}
+      rootElementName={finalRootElementName as keyof HTMLElementTagNameMap}
       slots={{ root: RootElement }}
       // @ts-ignore
       slotProps={{ root: { as } }}

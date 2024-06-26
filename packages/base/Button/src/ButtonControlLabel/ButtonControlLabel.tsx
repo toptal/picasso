@@ -56,7 +56,6 @@ const ButtonControlLabel = ({
       variant='secondary'
       size={size}
       as='label'
-      rootElementName='label'
       htmlFor={id}
       disabled={disabled}
     >
