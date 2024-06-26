@@ -66,7 +66,7 @@ const wrapperClassesByOrientation = {
 
 const rootClassesByOrientation = (selected: boolean) => ({
   horizontal: [
-    'm-0 [&:not(:last-child)]:mr-8 pt-[0.5625rem] pb-[0.4375rem] px-0',
+    'm-0 [&:not(:last-child)]:mr-[2em] pt-[0.5625rem] pb-[0.4375rem] px-0',
     'text-center bg-transparent transition-shadow z-10 rounded-none',
     'text-black',
     selected && 'shadow-blue-500 shadow-[inset_0_-2px_0]',

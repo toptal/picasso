@@ -1,23 +1,24 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useState } from 'react'
-import type { TabsProps } from '@mui/base/Tabs'
+import React, { forwardRef, useMemo } from 'react'
 import { Tabs as MUITabs } from '@mui/base/Tabs'
 import { TabsList } from '@mui/base/TabsList'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+
+type ValueType = string | number | null
 
 export interface Props extends BaseProps {
   /** Tabs content containing Tab components */
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: (
-    event: React.ChangeEvent<{}> | null,
-    value: TabsProps['value']
-  ) => void
+  onChange?: (event: React.ChangeEvent<{}> | null, value: ValueType) => void
 
-  /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
-  value: TabsProps['value']
+  /**
+   * The value of the currently selected Tab.
+   * If you don't want any selected Tab, you can set this property to null.
+   */
+  value: ValueType
 
   /** The tabs orientation (layout flow direction). */
   orientation?: 'horizontal' | 'vertical'
@@ -30,6 +31,39 @@ export const TabsContext = React.createContext<{
   orientation: 'horizontal' | 'vertical'
   variant: 'scrollable' | 'fullWidth'
 }>({ orientation: 'horizontal', variant: 'scrollable' })
+
+const indicatorClasses = [
+  'after:absolute',
+  'after:content-[""]',
+  'after:bottom-0',
+  'after:left-0',
+  'after:right-0',
+  'after:h-[1px]',
+  'after:bg-gray-500',
+  'after:z-0',
+]
+
+const classesByOrientation = {
+  vertical: {
+    root: 'w-[200px] m-0 flex-col',
+    scroller: 'pl-2',
+  },
+  horizontal: {
+    root: '',
+    scroller: indicatorClasses,
+  },
+}
+
+const classesByVariant = {
+  scrollable: {
+    root: 'overflow-x-auto',
+    scroller: '',
+  },
+  fullWidth: {
+    root: '',
+    scroller: 'w-full overflow-hidden',
+  },
+}
 
 // eslint-disable-next-line react/display-name
 export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
@@ -46,21 +80,13 @@ export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
     ...rest
   } = props
 
-  const [contextValue] = useState({
-    orientation,
-    variant,
-  })
-
-  const classesByOrientation = {
-    vertical: 'w-[200px] m-0 flex-col',
-    horizontal:
-      'after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray-500 after:z-0',
-  }
-
-  const classesByVariant = {
-    scrollable: 'overflow-x-auto',
-    fullWidth: '',
-  }
+  const contextValue = useMemo(
+    () => ({
+      orientation,
+      variant,
+    }),
+    [orientation, variant]
+  )
 
   const isVertical = orientation === 'vertical'
 
@@ -74,8 +100,8 @@ export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
             ref,
             className: twMerge(
               'relative min-h-0 flex overflow-hidden',
-              classesByOrientation[orientation],
-              classesByVariant[variant],
+              classesByOrientation[orientation].root,
+              classesByVariant[variant].root,
               className
             ),
           },
@@ -86,8 +112,8 @@ export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
       >
         <div
           className={twJoin(
-            isVertical && 'pl-2',
-            variant === 'fullWidth' && 'w-full overflow-hidden',
+            classesByVariant[variant].scroller,
+            classesByOrientation[orientation].scroller,
             'flex-auto inline-block relative whitespace-nowrap'
           )}
         >
