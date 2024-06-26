@@ -19,7 +19,7 @@ import { useFieldsLayoutContext } from '@toptal/picasso-form'
 import { Input } from '@mui/base/Input'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import { getInputClassName, getRootClassName, getRows } from './utils'
+import { getInputClassName, getRootClassName, getRows } from './utils/utils'
 
 type ValueType =
   | (string | number | boolean | object)[]

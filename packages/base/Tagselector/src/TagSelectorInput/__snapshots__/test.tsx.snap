@@ -6,7 +6,7 @@ exports[`TagSelectorInput renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input relative text-black gap-y gap-x items-center rounded-sm [font-size:_unset] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+      class="base-Input relative text-black gap-y gap-x items-center rounded-sm [font-size:_unset] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
     >
       <input
         class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"

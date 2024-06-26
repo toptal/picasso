@@ -15,7 +15,7 @@ exports[`TagSelector disabled render 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="base-Input base- base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue after:border-gray bg-gray text-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+          class="base-Input base- base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 w-[18.75rem] after:border-gray bg-gray text-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
         >
           <div
             aria-disabled="true"
@@ -82,7 +82,7 @@ exports[`TagSelector preselected value 1`] = `
           class="PicassoContainer-flex"
         >
           <div
-            class="base-Input base-Input relative text-black gap-y gap-x items-center rounded-sm [font-size:_unset] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+            class="base-Input base-Input relative text-black gap-y gap-x items-center rounded-sm [font-size:_unset] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
           >
             <div
               class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -147,7 +147,7 @@ exports[`TagSelector renders 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="base-Input base-Input relative text-black gap-y gap-x items-center rounded-sm [font-size:_unset] bg-white hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+          class="base-Input base-Input relative text-black gap-y gap-x items-center rounded-sm [font-size:_unset] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
         >
           <input
             aria-autocomplete="list"
