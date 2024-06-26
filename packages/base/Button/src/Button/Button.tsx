@@ -68,8 +68,6 @@ export interface Props
   title?: string
   /** HTML type of Button component */
   type?: 'button' | 'reset' | 'submit'
-  /** The HTML element that is ultimately rendered, for example 'button', 'a' or 'label */
-  rootElementName?: keyof HTMLElementTagNameMap
 }
 
 const getIcon = ({
