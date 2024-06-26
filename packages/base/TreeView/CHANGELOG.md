@@ -1,5 +1,22 @@
 # @toptal/picasso-tree-view
 
+## 2.0.0
+
+### Major Changes
+
+- [#4369](https://github.com/toptal/picasso/pull/4369) [`08cfcd4483a532e437b9cca087c0e498a70b2197`](https://github.com/toptal/picasso/commit/08cfcd4483a532e437b9cca087c0e498a70b2197) Thanks [@mkrl](https://github.com/mkrl)!
+
+### TreeView
+
+- removed deprecated props: `centerTranslation` and `transitionDuration`
+
+## 1.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@2.0.7
+
 ## 1.0.20
 
 ### Patch Changes

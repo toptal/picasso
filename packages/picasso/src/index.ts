@@ -191,6 +191,7 @@ export type {
   BaseInputProps as OutlinedInputBaseProps,
 } from '@toptal/picasso-outlined-input'
 export { OutlinedInput } from '@toptal/picasso-outlined-input'
+export type { OutlinedInputProps } from '@toptal/picasso-outlined-input'
 export { OverviewBlockCompound as OverviewBlock } from '@toptal/picasso-overview-block'
 export type { OverviewBlockProps } from '@toptal/picasso-overview-block'
 export { PageCompound as Page, PageHead } from '@toptal/picasso-page'
@@ -292,15 +293,8 @@ export {
   useTreeView,
 } from '@toptal/picasso-tree-view'
 export type { TreeNodeInterface } from '@toptal/picasso-tree-view'
-export {
-  Typography,
-  getTypographyClassName,
-  typographyStyles,
-} from '@toptal/picasso-typography'
-export type {
-  TypographyOptions,
-  TypographyProps,
-} from '@toptal/picasso-typography'
+export { Typography } from '@toptal/picasso-typography'
+export type { TypographyProps } from '@toptal/picasso-typography'
 export { TypographyOverflow } from '@toptal/picasso-typography-overflow'
 export type { TypographyOverflowProps } from '@toptal/picasso-typography-overflow'
 export { UserBadge } from '@toptal/picasso-user-badge'

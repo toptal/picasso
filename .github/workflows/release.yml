@@ -29,14 +29,18 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v14.0.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
           secrets_name: |-
+            DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
+            GCR_ACCOUNT_KEY:toptal-ci/GCR_ACCOUNT_KEY
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
+            TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
             TOPTAL_BUILD_BOT_TOKEN:toptal-ci/TOPTAL_BUILD_BOT_TOKEN
+            TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
             TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
             TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
@@ -50,17 +54,26 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v14.0.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
       - name: Set ENV Variables
+        shell: bash
         run: |-
+          echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
           echo "SLACK_BOT_TOKEN=${{ steps.parse_secrets.outputs.SLACK_BOT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+          echo 'GCR_ACCOUNT_KEY<<EOF' >> $GITHUB_ENV
+          echo '${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}' >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+          echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
+          echo '${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_SSH_KEY }}' >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -155,26 +168,11 @@ jobs:
           sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
           sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
-      - name: Trigger build image job
-        uses: ./.github/actions/trigger-jenkins-job
-        id: trigger-build
-        env:
-          JENKINS_JOB_NAME: ${{ env.REPOSITORY_NAME }}-build-image
-          JENKINS_USER: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+      - name: Build and push picasso image
+        uses: toptal/davinci-github-actions/build-push-image@v15.0.0
         with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
-          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
-          job_name: ${{ env.JENKINS_JOB_NAME }}
-          job_params: |
-            {
-              "BRANCH": "master",
-              "VERSION": "${{ github.sha }}",
-              "IMAGE_NAME": "${{ env.REPOSITORY_NAME }}"
-            }
-          job_timeout: "7200"
+          image-name: picasso
+          registry-name: ${{ steps.parse_secrets.outputs.TOPTAL_DEFAULT_REGISTRY }}
 
       - name: Trigger deployment job
         id: trigger-deploy

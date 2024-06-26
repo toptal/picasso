@@ -35,43 +35,51 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v14.0.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
           secrets_name: |-
+            DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
             GCR_ACCOUNT_KEY:toptal-ci/GCR_ACCOUNT_KEY
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
+            TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
+            TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
             TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v14.0.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
+          echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
+          echo 'GCR_ACCOUNT_KEY<<EOF' >> $GITHUB_ENV
+          echo '${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}' >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
+          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
+          echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
+          echo '${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_SSH_KEY }}' >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v14.0.0
-        env:
-          GITHUB_TOKEN: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          GCR_ACCOUNT_KEY: ${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}
+      - uses: toptal/davinci-github-actions/build-push-image@v15.0.0
         with:
           sha: ${{ github.event.pull_request.head.sha }}
           image-name: picasso
           environment: temploy
-          docker-file: ./Dockerfile
+          registry-name: ${{ steps.parse_secrets.outputs.TOPTAL_DEFAULT_REGISTRY }}
 
   static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
@@ -90,7 +98,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v14.0.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -104,7 +112,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v14.0.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -123,7 +131,7 @@ jobs:
           node-version: 18
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v14.0.0
+        uses: toptal/davinci-github-actions/report-missing-changeset@v15.0.0
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -135,7 +143,7 @@ jobs:
         uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v14.0.0
+        uses: toptal/davinci-github-actions/yarn-install@v15.0.0
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
@@ -169,7 +177,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v14.0.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -181,7 +189,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v14.0.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -198,7 +206,7 @@ jobs:
           node-version: 18
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v14.0.0
+        uses: toptal/davinci-github-actions/yarn-install@v15.0.0
 
       - name: Visual Tests
         run: yarn happo:storybook
@@ -225,7 +233,7 @@ jobs:
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v14.0.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -243,7 +251,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v14.0.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 

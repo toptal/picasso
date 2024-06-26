@@ -1,5 +1,13 @@
 # @toptal/picasso-avatar
 
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`f267743`](https://github.com/toptal/picasso/commit/f2677435e4e43253d87d5bb4105f0bb540dca56e)]:
+  - @toptal/picasso-icons@1.4.0
+  - @toptal/picasso-logo@1.0.7
+
 ## 2.0.5
 
 ### Patch Changes

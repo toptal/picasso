@@ -1,5 +1,6 @@
 export * from './Select'
 export * from './SelectBase'
+export * from './SelectCaret'
 export * from './SelectOptions'
 export * from './ScrollMenu'
 export * from './NonNativeSelect'
