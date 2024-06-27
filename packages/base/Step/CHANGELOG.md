@@ -1,5 +1,15 @@
 # @toptal/picasso-step
 
+## 1.1.8
+
+### Patch Changes
+
+- [#4390](https://github.com/toptal/picasso/pull/4390) [`f81346e54232231f7085dc2c9a2912dd6a04fd11`](https://github.com/toptal/picasso/commit/f81346e54232231f7085dc2c9a2912dd6a04fd11) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Stepper
+
+- fix missing key on a `Stepper` step fragment
+
 ## 1.1.7
 
 ### Patch Changes
