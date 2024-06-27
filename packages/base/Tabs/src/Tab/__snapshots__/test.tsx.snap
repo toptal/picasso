@@ -19,7 +19,7 @@ exports[`Tab Tab disabled tab 1`] = `
           <button
             aria-disabled="true"
             aria-selected="false"
-            class="base-Tab base- opacity-50 m-0 [&:not(:last-child)]:mr-[2em] pt-[0.5625rem] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none shrink-0 max-w text-gray pointer-events min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="base-Tab base- opacity-50 m-0 [&:not(:last-child)]:mr-8 pt-[0.5625rem] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none shrink-0 max-w text-gray pointer-events min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             id=":r1:"
             role="tab"
             tabindex="0"
@@ -61,7 +61,7 @@ exports[`Tab Tab renders 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="base-Tab opacity-70 m-0 [&:not(:last-child)]:mr-[2em] pt-[0.5625rem] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="base-Tab opacity-70 m-0 [&:not(:last-child)]:mr-8 pt-[0.5625rem] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             id=":r0:"
             role="tab"
             tabindex="0"
@@ -103,7 +103,7 @@ exports[`Tab Tab tab with icon 1`] = `
           <button
             aria-disabled="false"
             aria-selected="false"
-            class="base-Tab opacity-70 m-0 [&:not(:last-child)]:mr-[2em] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none text-black shrink-0 max-w min-h pt-[0.5625rem] pr-6 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            class="base-Tab opacity-70 m-0 [&:not(:last-child)]:mr-8 pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none text-black shrink-0 max-w min-h pt-[0.5625rem] pr-6 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
             id=":r2:"
             role="tab"
             tabindex="0"

@@ -94,7 +94,6 @@ export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
     <TabsContext.Provider value={contextValue}>
       <MUITabs
         {...rest}
-        className=''
         slotProps={{
           root: {
             ref,
