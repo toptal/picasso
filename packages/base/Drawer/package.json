@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
+    "@toptal/picasso-backdrop": "1.0.4",
     "@toptal/picasso-button": "2.1.0",
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-icons": "1.4.0",
