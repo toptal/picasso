@@ -1,5 +1,12 @@
 # @toptal/picasso-drawer
 
+## 2.1.2
+
+### Patch Changes
+
+- [#4391](https://github.com/toptal/picasso/pull/4391) [`34097ae9d85c813a4067b95642c1fdde4edfa216`](https://github.com/toptal/picasso/commit/34097ae9d85c813a4067b95642c1fdde4edfa216) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- use Picasso Backdrop to remove `React does not recognize the `transitionDuration` prop on a DOM element` error
+
 ## 2.1.1
 
 ### Patch Changes
