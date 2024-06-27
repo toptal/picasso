@@ -54,12 +54,10 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
     >
       {steps.map((step, stepIndex) => {
         const isStringStep = typeof step === 'string'
-        const key = isStringStep ? step : step.key
 
         return (
-          <Fragment key={`step-${key}`}>
+          <Fragment key={isStringStep ? step : step.key}>
             <Step
-              key={key}
               active={stepIndex === active}
               completed={stepIndex < active}
               expand={!hideLabels || stepIndex === active}
