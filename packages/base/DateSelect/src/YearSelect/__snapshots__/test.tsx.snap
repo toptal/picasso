@@ -179,12 +179,12 @@ exports[`YearSelect renders 1`] = `
         class="w-[inherit] outline-0"
       >
         <div
-          class="base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 h-8 w-full hover:[&:not(:has(input:focus))]:after:border-gray pr-[1.625rem]"
+          class="base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-8 w-full bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit] pr-[1.625rem]"
           role="textbox"
         >
           <input
             autocomplete="off"
-            class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
+            class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
             readonly=""
             size="1"
             type="text"

@@ -17,9 +17,9 @@ import { CloseMinor16 } from '@toptal/picasso-icons'
 import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
 import { Input } from '@mui/base/Input'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { getInputClassName, getRootClassName, getRows } from './utils/utils'
+import { getInputClassName, getRootClassName, getRows } from './styles'
 
 type ValueType =
   | (string | number | boolean | object)[]
@@ -40,6 +40,8 @@ export interface InputProps
   size?: number | 'small' | 'medium' | 'large'
   multiple?: boolean | undefined
 }
+
+export type Size = SizeType<'small' | 'medium' | 'large'>
 
 export interface Props
   extends BaseProps,
@@ -78,7 +80,7 @@ export interface Props
   endAdornment?: ReactNode
   onChange?: ChangeEventHandler<HTMLInputElement>
   /** Component size */
-  size?: SizeType<'small' | 'medium' | 'large'>
+  size?: Size
   /** Whether to render reset icon when there is a value in the input */
   enableReset?: boolean
   /** Callback invoked when reset button was clicked */
@@ -198,6 +200,30 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
 
   const isError = Boolean(status === 'error' || error)
 
+  const inputClassName = getInputClassName({
+    size,
+    disabled,
+    isDark,
+    multiline,
+    multilineResizable,
+    type,
+    inputProps,
+  })
+
+  const rootClassName = getRootClassName({
+    size,
+    width,
+    type,
+    layout,
+    isDark,
+    multiline,
+    highlight,
+    disabled,
+    className,
+    classes,
+    isError,
+  })
+
   const multilineProps = multiline
     ? ({
         multiline: true,
@@ -213,33 +239,16 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
       slotProps={{
         root: {
           ref: divRef,
-          className: getRootClassName({
-            size,
-            width,
-            type,
-            layout,
-            isDark,
-            multiline,
-            highlight,
-            disabled,
-            className,
-            classes,
-            isError,
-          }),
+          className: twMerge(rootClassName, classes?.root, className),
         },
         input: {
           ...inputProps,
           ref: inputRef,
-          className: getInputClassName({
-            size,
-            disabled,
-            isDark,
-            multiline,
-            multilineResizable,
-            classes,
-            type,
-            inputProps,
-          }),
+          className: twMerge(
+            inputClassName,
+            classes?.input,
+            inputProps?.className
+          ),
           type,
         },
       }}

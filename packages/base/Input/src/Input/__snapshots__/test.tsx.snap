@@ -6,7 +6,7 @@ exports[`Input renders icon in the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 h-8 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-8 w-[18.75rem] bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -23,7 +23,7 @@ exports[`Input renders icon in the beginning 1`] = `
       </div>
       <input
         autocomplete="none"
-        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
+        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
@@ -38,7 +38,7 @@ exports[`Input renders icon in the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 h-8 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-8 w-[18.75rem] bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -55,7 +55,7 @@ exports[`Input renders icon in the end 1`] = `
       </div>
       <input
         autocomplete="none"
-        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
+        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
@@ -70,11 +70,11 @@ exports[`Input should show manual resize handler 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 w-[18.75rem] h-auto hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-auto w-[18.75rem] bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <textarea
         autocomplete="none"
-        class="base-Input base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 p-0 resize-y"
+        class="base-Input base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
         rows="4"
         type="text"
       >
@@ -91,11 +91,11 @@ exports[`Input should show reset button 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 h-8 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-8 w-[18.75rem] bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <input
         autocomplete="none"
-        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
+        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value="Some value"
       />
@@ -137,11 +137,11 @@ exports[`Input shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 w-[18.75rem] h-auto hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-auto w-[18.75rem] bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <textarea
         autocomplete="none"
-        class="base-Input base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 p-0"
+        class="base-Input base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         rows="4"
         type="text"
       />
@@ -159,11 +159,11 @@ exports[`Input shows counter for regular input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="base-Input base-Input base-Input relative text-black inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] cursor-[inherit] bg-white hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events after:cursor-default after:border after:border-solid after:border-gray after:rounded-sm [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue p-2 h-8 w-[18.75rem] hover:[&:not(:has(input:focus))]:after:border-gray"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-8 w-[18.75rem] bg-white after:border-solid after:rounded-sm after:border after:border-gray [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <input
         autocomplete="none"
-        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-calendar-picker-indicator]:bg text-md leading-4"
+        class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
