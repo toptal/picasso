@@ -198,62 +198,62 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
 
   const isError = Boolean(status === 'error' || error)
 
-  const sharedProps = {
-    ...rest,
-    slots: { input: inputComponent },
-    slotProps: {
-      root: {
-        ref: divRef,
-        className: getRootClassName({
-          size,
-          width,
-          type,
-          layout,
-          isDark,
-          multiline,
-          highlight,
-          disabled,
-          className,
-          classes,
-          isError,
-        }),
-      },
-      input: {
-        ...inputProps,
-        ref: inputRef,
-        className: getInputClassName({
-          size,
-          disabled,
-          isDark,
-          multiline,
-          multilineResizable,
-          classes,
-          type,
-          inputProps,
-        }),
-        type,
-      },
-    },
-    style,
-    error: isError,
-    defaultValue,
-    value,
-    startAdornment,
-    endAdornment,
-    autoFocus,
-    onChange,
-    disabled,
-  }
+  const multilineProps = multiline
+    ? ({
+        multiline: true,
+        rows: getRows(rows),
+        maxRows: getRows(rowsMax),
+      } as const)
+    : {}
 
-  return multiline ? (
+  return (
     <Input
-      {...sharedProps}
-      multiline={true}
-      rows={getRows(rows)}
-      maxRows={getRows(rowsMax)}
+      {...rest}
+      slots={{ input: inputComponent }}
+      slotProps={{
+        root: {
+          ref: divRef,
+          className: getRootClassName({
+            size,
+            width,
+            type,
+            layout,
+            isDark,
+            multiline,
+            highlight,
+            disabled,
+            className,
+            classes,
+            isError,
+          }),
+        },
+        input: {
+          ...inputProps,
+          ref: inputRef,
+          className: getInputClassName({
+            size,
+            disabled,
+            isDark,
+            multiline,
+            multilineResizable,
+            classes,
+            type,
+            inputProps,
+          }),
+          type,
+        },
+      }}
+      style={style}
+      error={isError}
+      defaultValue={defaultValue}
+      value={value}
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
+      autoFocus={autoFocus}
+      onChange={onChange}
+      disabled={disabled}
+      {...multilineProps}
     />
-  ) : (
-    <Input {...sharedProps} />
   )
 })
 
