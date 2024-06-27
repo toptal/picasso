@@ -1,4 +1,5 @@
 import { Drawer as MUIDrawer } from '@material-ui/core'
+import type { BackdropProps } from '@material-ui/core'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -8,6 +9,7 @@ import type { ReactNode } from 'react'
 import React from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
+import { Backdrop } from '@toptal/picasso-backdrop'
 import { Container } from '@toptal/picasso-container'
 import {
   useIsomorphicLayoutEffect,
@@ -90,7 +92,11 @@ export const Drawer = (props: Props) => {
       {...rest}
       open={open}
       onClose={handleOnClose}
-      BackdropComponent={disableBackdrop ? () => null : undefined}
+      BackdropComponent={
+        disableBackdrop
+          ? () => null
+          : (Backdrop as React.ElementType<BackdropProps>)
+      }
       BackdropProps={{ invisible: transparentBackdrop }}
       disablePortal={disablePortal}
       container={container}
