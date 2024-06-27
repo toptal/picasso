@@ -1,5 +1,5 @@
 import type { HTMLAttributes, Key, ReactNode } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, Fragment } from 'react'
 import cx from 'classnames'
 import { twMerge } from 'tailwind-merge'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
@@ -54,11 +54,12 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
     >
       {steps.map((step, stepIndex) => {
         const isStringStep = typeof step === 'string'
+        const key = isStringStep ? step : step.key
 
         return (
-          <>
+          <Fragment key={`step-${key}`}>
             <Step
-              key={isStringStep ? step : step.key}
+              key={key}
               active={stepIndex === active}
               completed={stepIndex < active}
               expand={!hideLabels || stepIndex === active}
@@ -70,7 +71,7 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
             {stepIndex < steps.length - 1 && (
               <StepConnector direction={direction} />
             )}
-          </>
+          </Fragment>
         )
       })}
     </div>
