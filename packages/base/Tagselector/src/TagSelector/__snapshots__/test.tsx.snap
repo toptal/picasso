@@ -15,7 +15,7 @@ exports[`TagSelector disabled render 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="base-Input base- base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] bg-gray after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray text-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
         >
           <div
             aria-disabled="true"
@@ -50,27 +50,12 @@ exports[`TagSelector disabled render 1`] = `
           </div>
           <input
             aria-autocomplete="list"
-            aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="base-Input base- [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-gray [&::-webkit-text-fill-color]:text-gray ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
             disabled=""
             type="text"
             value=""
           />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
         </div>
       </div>
       <div
@@ -97,7 +82,7 @@ exports[`TagSelector preselected value 1`] = `
           class="PicassoContainer-flex"
         >
           <div
-            class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            class="base-Input base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
           >
             <div
               class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -131,26 +116,11 @@ exports[`TagSelector preselected value 1`] = `
             </div>
             <input
               aria-autocomplete="list"
-              aria-invalid="false"
               autocomplete="off"
-              class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+              class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
               type="text"
               value=""
             />
-            <fieldset
-              aria-hidden="true"
-              class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-              style="padding-left: 8px;"
-            >
-              <legend
-                class="PrivateNotchedOutline-legend"
-                style="width: 0.01px;"
-              >
-                <span>
-                  ​
-                </span>
-              </legend>
-            </fieldset>
           </div>
         </div>
         <div
@@ -177,31 +147,16 @@ exports[`TagSelector renders 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+          class="base-Input base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
         >
           <input
             aria-autocomplete="list"
-            aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+            class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
             placeholder="Please select..."
             type="text"
             value=""
           />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
         </div>
       </div>
       <div

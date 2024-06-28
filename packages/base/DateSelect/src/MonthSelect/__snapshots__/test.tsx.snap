@@ -12,32 +12,17 @@ exports[`MonthSelect renders 1`] = `
         class="w-[inherit] outline-0"
       >
         <div
-          class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white pr-[1.625rem] MuiInputBase-fullWidth"
+          class="base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-full bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit] pr-[1.625rem]"
           role="textbox"
         >
           <input
-            aria-invalid="false"
             autocomplete="off"
-            class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium"
+            class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
             readonly=""
             size="1"
             type="text"
             value=""
           />
-          <fieldset
-            aria-hidden="true"
-            class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-            style="padding-left: 8px;"
-          >
-            <legend
-              class="PrivateNotchedOutline-legend"
-              style="width: 0.01px;"
-            >
-              <span>
-                ​
-              </span>
-            </legend>
-          </fieldset>
         </div>
         <svg
           class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"

@@ -6,7 +6,7 @@ exports[`Input renders icon in the beginning 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -22,26 +22,11 @@ exports[`Input renders icon in the beginning 1`] = `
         </svg>
       </div>
       <input
-        aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>
@@ -53,7 +38,7 @@ exports[`Input renders icon in the end 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <div
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
@@ -69,26 +54,11 @@ exports[`Input renders icon in the end 1`] = `
         </svg>
       </div>
       <input
-        aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>
@@ -100,38 +70,16 @@ exports[`Input should show manual resize handler 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white h-auto MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-auto w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <textarea
-        aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium resize-y MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
         rows="4"
-        style="height: 0px; overflow: hidden;"
+        type="text"
       >
         Some value
       </textarea>
-      <textarea
-        aria-hidden="true"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium resize-y MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        readonly=""
-        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
-        tabindex="-1"
-      />
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>
@@ -143,17 +91,16 @@ exports[`Input should show reset button 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <input
-        aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value="Some value"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto PicassoOutlinedInput-resetButton PicassoOutlinedInput-resetButtonDirty"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto invisible peer-focus:visible peer-hover:visible"
         data-testid="reset-adornment"
       >
         <button
@@ -179,20 +126,6 @@ exports[`Input should show reset button 1`] = `
           </span>
         </button>
       </div>
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>
@@ -204,36 +137,14 @@ exports[`Input shows counter for multiline input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white h-auto MuiInputBase-multiline MuiOutlinedInput-multiline MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-auto w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <textarea
-        aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
         rows="4"
-        style="height: 0px; overflow: hidden;"
+        type="text"
       />
-      <textarea
-        aria-hidden="true"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputMultiline MuiOutlinedInput-inputMultiline PicassoOutlinedInput-inputMultiline MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
-        readonly=""
-        style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); width: 100%;"
-        tabindex="-1"
-      />
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
     <div
       class="PicassoContainer-flex"
@@ -248,29 +159,14 @@ exports[`Input shows counter for regular input 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
     >
       <input
-        aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>

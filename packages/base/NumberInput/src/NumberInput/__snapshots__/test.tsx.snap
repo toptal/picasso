@@ -5,11 +5,10 @@ exports[`NumberInput renders 1`] = `
   class="Picasso-root"
 >
   <div
-    class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root pr-0 cursor-text PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+    class="base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black pr-0 cursor-text"
   >
     <input
-      aria-invalid="false"
-      class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input [&::-webkit-outer-spin-button]:appearance [&::-webkit-outer-spin-button]:m [&::-webkit-inner-spin-button]:appearance [&::-webkit-inner-spin-button]:m [-moz PicassoOutlinedInput-inputMedium MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+      class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-outer-spin-button]:appearance [&::-webkit-outer-spin-button]:m [&::-webkit-inner-spin-button]:appearance [&::-webkit-inner-spin-button]:m [-moz"
       max="100"
       min="-100"
       step="5"
@@ -50,20 +49,6 @@ exports[`NumberInput renders 1`] = `
         </button>
       </div>
     </div>
-    <fieldset
-      aria-hidden="true"
-      class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-      style="padding-left: 8px;"
-    >
-      <legend
-        class="PrivateNotchedOutline-legend"
-        style="width: 0.01px;"
-      >
-        <span>
-          ​
-        </span>
-      </legend>
-    </fieldset>
   </div>
 </div>
 `;

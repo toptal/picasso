@@ -9,11 +9,12 @@ exports[`NativeSelect renders native select 1`] = `
       class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white p-0 bg-white MuiInputBase-fullWidth"
+        class="base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible h-8 w-full after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit] p-0 bg-white"
       >
         <select
-          aria-invalid="false"
-          class="appearance-none select-none rounded-none min-w cursor-pointer focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium w-full p-2 focus:bg-inheritColor pr-6"
+          class="appearance-none select-none rounded-none min-w focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none peer resize-none text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100 w-full p-2 focus:bg-inheritColor pr-6"
+          ownerstate="[object Object]"
+          type="text"
         >
           <option
             disabled=""
@@ -49,20 +50,6 @@ exports[`NativeSelect renders native select 1`] = `
             d="m10.997 10.29.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3Zm-3-9 3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707Z"
           />
         </svg>
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
       </div>
     </div>
   </div>
@@ -78,11 +65,12 @@ exports[`NativeSelect renders native select with the empty option enabled when e
       class="relative inline-flex text-[1rem] cursor-pointer w-full"
     >
       <div
-        class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootFull PicassoOutlinedInput-rootMedium cursor-text [font-size:_unset] bg-white p-0 bg-white MuiInputBase-fullWidth"
+        class="base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible h-8 w-full after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit] p-0 bg-white"
       >
         <select
-          aria-invalid="false"
-          class="appearance-none select-none rounded-none min-w cursor-pointer focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium w-full p-2 focus:bg-inheritColor pr-6"
+          class="appearance-none select-none rounded-none min-w focus:rounded-none [&_option]:bg-white [&_optgroup]:bg-white base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none peer resize-none text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100 w-full p-2 focus:bg-inheritColor pr-6"
+          ownerstate="[object Object]"
+          type="text"
         >
           <option
             value=""
@@ -117,20 +105,6 @@ exports[`NativeSelect renders native select with the empty option enabled when e
             d="m10.997 10.29.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3Zm-3-9 3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707Z"
           />
         </svg>
-        <fieldset
-          aria-hidden="true"
-          class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-          style="padding-left: 8px;"
-        >
-          <legend
-            class="PrivateNotchedOutline-legend"
-            style="width: 0.01px;"
-          >
-            <span>
-              ​
-            </span>
-          </legend>
-        </fieldset>
       </div>
     </div>
   </div>
