@@ -15,12 +15,12 @@ exports[`PageAutocomplete renders 1`] = `
         class="PicassoContainer-flex"
       >
         <div
-          class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:inline-block after:content-[""] after:pointer-events p-2 h-8 w-[18.75rem] bg-[#081237] after:rounded-sm after:border-none after:border-gray [&:has(input:focus)]:after:shadow-0 [&:has(input:focus)]:after:border-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
+          class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-[#081237] after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:rounded-sm after:border-none [&:has(input:focus)]:after:shadow-0 hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
         >
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="base-Input w-full border-none outline-none cursor-[inherit] bg-transparent box-border h-full p-0 resize-none peer [&::-webkit-calendar-picker-indicator]:bg text-md leading-4 text-white [&::placeholder]:text-white [&::placeholder]:opacity-[0.64]"
+            class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-white [&::placeholder]:text-white [&::placeholder]:opacity-[0.64]"
             data-testid="autocomplete"
             type="text"
             value=""
