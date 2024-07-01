@@ -1,8 +1,6 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, ColorType } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import {
@@ -11,8 +9,6 @@ import {
   InfoSolid16,
 } from '@toptal/picasso-icons'
 import type { VariantType as ContainerVariants } from '@toptal/picasso-container'
-
-import styles from './styles'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
@@ -33,15 +29,10 @@ const icons = {
   yellow: <ExclamationSolid16 color='yellow' />,
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAlertInline',
-})
-
 export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const classes = useStyles()
   const { variant, children, className } = props
   const icon = icons[variant!]
 
@@ -53,13 +44,8 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   }
 
   return (
-    <Container inline flex ref={ref} className={classes.root}>
-      <Container
-        right='xsmall'
-        flex
-        alignItems='center'
-        className={classes.iconWrapper}
-      >
+    <Container inline flex ref={ref} className='text-lg/[1.375em]'>
+      <Container right='xsmall' flex alignItems='center' className='h-[1.25em]'>
         {icon}
       </Container>
       <Typography
