@@ -1,7 +1,5 @@
 import type { MouseEvent, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { SPACING_4 } from '@toptal/picasso-provider'
 import { Container } from '@toptal/picasso-container'
@@ -15,8 +13,6 @@ import {
 } from '@toptal/picasso-icons'
 import type { VariantType as ContainerVariants } from '@toptal/picasso-container'
 import type { ButtonSplitProps, ButtonProps } from '@toptal/picasso-button'
-
-import styles from './styles'
 
 export type VariantType = Extract<
   'red' | 'green' | 'yellow' | 'blue',
@@ -101,15 +97,10 @@ const icons = {
   yellow: <Exclamation16 color='yellow' />,
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAlert',
-})
-
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const classes = useStyles()
   const { children, variant, onClose, className, actions } = props
   const icon = icons[variant!]
 
@@ -124,12 +115,12 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       variant={variant}
       className={className}
     >
-      <Container inline flex ref={ref} className={classes.root}>
+      <Container inline flex ref={ref} className='text-lg/[1.375em]'>
         <Container
           right='small'
           flex
           alignItems='center'
-          className={classes.iconWrapper}
+          className='h-[1.375em]'
         >
           {icon}
         </Container>
