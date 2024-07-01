@@ -7,7 +7,6 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import { toTitleCase } from '@toptal/picasso-utils'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -77,16 +76,14 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
     const isHead = tableSection === TableSection.HEAD
     const titleCase = useTitleCase(propsTitleCase)
 
-    const renderChildren = () =>
-      isHead && titleCase ? toTitleCase(children) : children
-
     const tooltipWithChildren = (
       <Typography
         align={align}
         as='div'
+        titleCase={isHead && titleCase}
         {...getTypographySettings(tableSection)}
       >
-        {renderChildren()}
+        {children}
       </Typography>
     )
 
