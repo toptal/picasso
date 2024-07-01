@@ -413,6 +413,7 @@ describe('Select', () => {
           cy.mount(<TestSelect options={MANY_OPTIONS} />)
 
           openSelect()
+          cy.getByTestId('select').invoke('attr', 'data-happo-focus', true)
 
           cy.get('body').happoScreenshot({
             component,
