@@ -74,4 +74,21 @@ describe('Calendar', () => {
       })
     })
   })
+  describe('when dropdownNavigation is enabled', () => {
+    it('renders the alternative navigation variant', () => {
+      cy.mount(
+        <TestCalendar
+          onChange={noop}
+          dropdownNavigation
+          minDate={new Date('1990-01-01')}
+          maxDate={new Date('2022-11-30')}
+        />
+      )
+
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'dropdown-navigation',
+      })
+    })
+  })
 })

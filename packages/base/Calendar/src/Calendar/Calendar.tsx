@@ -32,6 +32,7 @@ import type {
 } from './types'
 import type { RenderRoot } from '../CalendarContainer'
 import { CalendarContainer } from '../CalendarContainer'
+import { CalendarDateSelector } from '../CalendarDateSelector'
 
 export type CalendarMonthsAmount = 1 | 2
 
@@ -68,6 +69,8 @@ export interface Props
   hasFooter?: boolean
   /** Number of months to display */
   numberOfMonths?: CalendarMonthsAmount
+  /** Display dropdown navigation between days and months (requires minDate and maxDate to be set) */
+  dropdownNavigation?: boolean
 }
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
@@ -102,6 +105,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     hasFooter = false,
     renderRoot,
     numberOfMonths = 1,
+    dropdownNavigation = false,
     ...rest
   } = props
 
@@ -207,6 +211,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
 
   const mobileScreen = useBreakpoint(['xs', 'sm'])
   const shouldRenderMultipleMonths = numberOfMonths > 1 && !mobileScreen
+  const shouldDisplayDropdownNavigation =
+    dropdownNavigation && minDate && maxDate
 
   return (
     <div ref={ref} {...rest} tabIndex={0}>
@@ -234,6 +240,8 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             // @ts-ignore
             onSelect={range ? handleRangeChange : handleSingleDateChange}
             fromDate={minDate}
+            fromYear={minDate?.getFullYear()}
+            toYear={maxDate?.getFullYear()}
             onMonthChange={month => setNavigationMonth(month)}
             toDate={maxDate}
             numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
@@ -241,12 +249,19 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
             modifiers={modifiers}
+            captionLayout={
+              shouldDisplayDropdownNavigation ? 'dropdown' : undefined
+            }
             components={{
-              Caption: CalendarMonthHeader,
+              Caption: shouldDisplayDropdownNavigation
+                ? undefined
+                : CalendarMonthHeader,
               Day: CalendarDay,
+              Dropdown: CalendarDateSelector,
             }}
             classNames={{
               months: shouldRenderMultipleMonths ? classes.months : undefined,
+              caption_dropdowns: classes.caption_dropdowns,
               head: classes.head,
               table: classes.table,
               head_row: classes.head_row,
