@@ -46,7 +46,7 @@ export const getFontColorClass = ({
 }
 
 export const placeholderClasses = {
-  default: ['([&::placeholder]:text-gray-600)', '[&::placeholder]:opacity-100'],
+  default: ['[&::placeholder]:text-gray-600', '[&::placeholder]:opacity-100'],
   dark: ['[&::placeholder]:text-white', '[&::placeholder]:opacity-[0.64]'],
 }
 
