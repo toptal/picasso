@@ -28,8 +28,8 @@ const TextAvatar = ({
   <div
     className={twMerge(
       'uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)]',
-      className,
-      containerTextClassBySize[size]
+      containerTextClassBySize[size],
+      className
     )}
     style={style}
     data-private={dataPrivate}

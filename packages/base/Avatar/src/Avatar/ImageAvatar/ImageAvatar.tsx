@@ -26,11 +26,11 @@ const AvatarLogo = ({ size }: LogoProps) => {
 
   return (
     <div
-      className={'flex absolute bottom-4 left-4'}
+      className='flex absolute bottom-4 left-4'
       role='img'
       aria-label='photo placeholder'
     >
-      <Logo emblem variant='white' className={'w-[1.0625rem] h-6'} />
+      <Logo emblem variant='white' className='w-[1.0625rem] h-6' />
     </div>
   )
 }
