@@ -1,1 +1,1 @@
-export { default } from './SelectCaret'
+export { default as SelectCaret } from './SelectCaret'

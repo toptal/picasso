@@ -1,5 +1,19 @@
 # @toptal/picasso-input
 
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.1.4
+
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@1.1.3
+
 ## 2.0.5
 
 ### Patch Changes

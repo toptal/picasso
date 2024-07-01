@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tailwind",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "Picasso Tailwind configuration",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-tailwind#readme",
@@ -30,7 +30,6 @@
     "tailwindcss": "^3.3.5"
   },
   "sideEffects": false,
-  "module": "./src/index.js",
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",

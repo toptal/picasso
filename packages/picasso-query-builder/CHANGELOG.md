@@ -1,5 +1,39 @@
 # @toptal/picasso-query-builder
 
+## 6.0.20
+
+### Patch Changes
+
+- Updated dependencies [[`d2d58ab`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578), [`d2d58ab`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578)]:
+  - @toptal/picasso-button@2.1.0
+  - @toptal/picasso-notification@2.0.15
+  - @toptal/picasso-prompt-modal@1.0.23
+  - @toptal/picasso-input@2.0.7
+  - @toptal/picasso-number-input@1.0.25
+  - @toptal/picasso-select@1.0.28
+  - @toptal/picasso-tagselector@1.0.31
+
+## 6.0.19
+
+### Patch Changes
+
+- Updated dependencies [[`c5651b1`](https://github.com/toptal/picasso/commit/c5651b165b82e3ac76f616d622c6f1226697f713)]:
+  - @toptal/picasso-button@2.0.8
+  - @toptal/picasso-notification@2.0.14
+  - @toptal/picasso-prompt-modal@1.0.22
+  - @toptal/picasso-input@2.0.6
+  - @toptal/picasso-number-input@1.0.24
+  - @toptal/picasso-select@1.0.27
+  - @toptal/picasso-tagselector@1.0.30
+
+## 6.0.18
+
+### Patch Changes
+
+- Updated dependencies [[`147fc5f`](https://github.com/toptal/picasso/commit/147fc5ff8893d71a73e3f6046e7de9fd0d67a06d)]:
+  - @toptal/picasso-select@1.0.26
+  - @toptal/picasso-tagselector@1.0.29
+
 ## 6.0.17
 
 ### Patch Changes

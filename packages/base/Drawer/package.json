@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-drawer",
-  "version": "2.0.13",
+  "version": "2.1.2",
   "description": "Toptal UI components library - Drawer",
   "publishConfig": {
     "access": "public"
@@ -26,7 +26,7 @@
     "@toptal/picasso-slide": "0.0.0",
     "@toptal/picasso-backdrop": "1.0.4",
     "@toptal/picasso-paper": "2.0.4",
-    "@toptal/picasso-button": "2.0.7",
+    "@toptal/picasso-button": "2.1.0",
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-icons": "1.4.0",
     "@toptal/picasso-typography": "2.0.2",

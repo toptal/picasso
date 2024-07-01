@@ -39,8 +39,8 @@ export interface Props extends BaseProps {
   maintainBodyScrollLock?: boolean
   /** Specify the backdrop transparency  */
   transparentBackdrop?: boolean
-  /** Disable backdrop to make items behind it interactive  */
-  hideBackdrop?: boolean
+  /** Remove the backdrop and leave elements behind interactive  */
+  disableBackdrop?: boolean
 }
 
 const widthClassName: Record<WidthType, string> = {
@@ -69,7 +69,7 @@ export const Drawer = (props: Props) => {
     transitionProps,
     maintainBodyScrollLock = true,
     transparentBackdrop,
-    hideBackdrop,
+    disableBackdrop,
     anchor = 'right',
     className,
     style,
@@ -104,9 +104,9 @@ export const Drawer = (props: Props) => {
     <Modal
       open={open}
       ref={ref}
-      className={cx(className, 'z-drawer inset-0', { fixed: !hideBackdrop })}
+      className={cx(className, 'z-drawer inset-0', { fixed: !disableBackdrop })}
       slots={{
-        backdrop: hideBackdrop ? undefined : Backdrop,
+        backdrop: disableBackdrop ? undefined : Backdrop,
       }}
       slotProps={{
         backdrop: backdropProps,

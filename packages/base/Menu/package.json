@@ -47,7 +47,7 @@
     "./styles": "./dist-package/src/styles.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "1.0.1",
+    "@toptal/picasso-tailwind-merge": "1.1.0",
     "@toptal/picasso-provider": "4.2.1",
     "@toptal/picasso-test-utils": "1.1.1"
   },

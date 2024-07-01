@@ -1,5 +1,24 @@
 # @toptal/picasso-button
 
+## 2.1.0
+
+### Minor Changes
+
+- [#4386](https://github.com/toptal/picasso/pull/4386) [`d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add new property `rootElementName` to cover edge cases where automatic detection is not working
+
+### Patch Changes
+
+- [#4386](https://github.com/toptal/picasso/pull/4386) [`d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix style issues when as Link
+
+## 2.0.8
+
+### Patch Changes
+
+- [#4372](https://github.com/toptal/picasso/pull/4372) [`c5651b165b82e3ac76f616d622c6f1226697f713`](https://github.com/toptal/picasso/commit/c5651b165b82e3ac76f616d622c6f1226697f713) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix "Maximum update depth exceeded" issue
+
 ## 2.0.7
 
 ### Patch Changes

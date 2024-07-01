@@ -64,10 +64,13 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
   Props
 >(function ButtonAction(props, ref) {
   const {
-    className,
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    // We use these props only to determine styles
     active,
     focused,
     hovered,
+    /* eslint-enable @typescript-eslint/no-unused-vars */
+    className,
     disabled,
     loading,
     icon,
@@ -95,9 +98,6 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
       onClick={loading ? undefined : onClick}
       className={finalClassName}
       contentClassName='font-semibold text-blue-500 text-md'
-      active={active}
-      hovered={hovered}
-      focused={focused}
       disabled={disabled}
     />
   )

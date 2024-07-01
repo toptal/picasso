@@ -100,6 +100,7 @@ export const createVariantClassNames = (
 
       if (disabled) {
         variantClassNames.push('text-gray-500')
+        variantClassNames.push('visited:text-gray-500')
         variantClassNames.push('border-gray-500')
         variantClassNames.push('bg-white')
       } else {
@@ -173,7 +174,11 @@ export const createCoreClassNames = ({
   hovered?: boolean
   active?: boolean
 }): string[] => {
-  const classNames = ['no-underline', 'rounded-sm', 'shadow-none']
+  const classNames = [
+    'no-underline hover:no-underline',
+    'rounded-sm',
+    'shadow-none',
+  ]
 
   if (!disabled) {
     classNames.push('focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)]')

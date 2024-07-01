@@ -21,7 +21,7 @@
     "tsc:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:package:watch": "lerna watch -- lerna run --scope=\\$LERNA_PACKAGE_NAME build:package --include-dependents",
-    "build:storybook": "yarn build:package && build-storybook -c .storybook -o build/storybook --quiet",
+    "build:storybook": "yarn nx reset && yarn build:package && build-storybook -c .storybook -o build/storybook --quiet",
     "check:icon-sizes": "node ./bin/check-icon-sizes",
     "circularity": "madge --circular packages/*/src",
     "clean": "yarn cache clean && nx reset && find . -type d -name \"node_modules\" -exec rm -rf '{}' +",

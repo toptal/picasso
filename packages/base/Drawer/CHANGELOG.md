@@ -1,5 +1,36 @@
 # @toptal/picasso-drawer
 
+## 2.1.2
+
+### Patch Changes
+
+- [#4391](https://github.com/toptal/picasso/pull/4391) [`34097ae9d85c813a4067b95642c1fdde4edfa216`](https://github.com/toptal/picasso/commit/34097ae9d85c813a4067b95642c1fdde4edfa216) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- use Picasso Backdrop to remove `React does not recognize the `transitionDuration` prop on a DOM element` error
+
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`d2d58ab`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578), [`d2d58ab`](https://github.com/toptal/picasso/commit/d2d58ab35a0f245b7f6cc0bbea3b9b2727d8c578)]:
+  - @toptal/picasso-button@2.1.0
+
+## 2.1.0
+
+### Minor Changes
+
+- [#4371](https://github.com/toptal/picasso/pull/4371) [`4a71002c89400db184edec86ca4668a74bf07377`](https://github.com/toptal/picasso/commit/4a71002c89400db184edec86ca4668a74bf07377) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Drawer
+
+- add `disableBackdrop` prop to `Drawer` to preserve interactivity when `Drawer` is open
+
+## 2.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`c5651b1`](https://github.com/toptal/picasso/commit/c5651b165b82e3ac76f616d622c6f1226697f713)]:
+  - @toptal/picasso-button@2.0.8
+
 ## 2.0.13
 
 ### Patch Changes

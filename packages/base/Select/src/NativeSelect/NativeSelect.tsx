@@ -8,7 +8,7 @@ import {
 } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import SelectCaret from '../SelectCaret'
+import { SelectCaret } from '../SelectCaret'
 import type { ValueType, SelectProps } from '../SelectBase'
 import {
   getOptionText,

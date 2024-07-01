@@ -5,11 +5,10 @@ import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Upload24 } from '@toptal/picasso-icons'
-import { FormHint , FormError } from '@toptal/picasso-form'
+import { FormHint } from '@toptal/picasso-form'
 import { Container } from '@toptal/picasso-container'
 import { FileList } from '@toptal/picasso-file-input'
 import { Typography } from '@toptal/picasso-typography'
-import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 
 import type { FileUpload, DropzoneOptions } from './types'
 import styles from './styles'
@@ -43,11 +42,6 @@ export interface Props extends BaseProps {
   validator?: DropzoneOptions['validator']
   /** Value uses the File interface. */
   value?: FileUpload[]
-  /**
-   * @deprecated [FX-4715] Use value[n].error instead.
-   * Provide reasons why files couldn't be dropped into dropzone
-   */
-  errorMessages?: string[]
   focused?: boolean
   hovered?: boolean
 }
@@ -64,7 +58,6 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     onRemove,
     value,
     className,
-    errorMessages = [],
     style,
     'data-testid': dataTestId,
     focused,
@@ -100,15 +93,6 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
 
   const classes = useStyles()
 
-  // TODO: [FX-4715]
-  usePropDeprecationWarning({
-    props,
-    name: 'errorMessages',
-    componentName: 'Dropzone',
-    description:
-      'Use the `value[n].error` prop instead. `errorMessages` is deprecated and will be removed in the next major release.',
-  })
-
   return (
     <Container style={style} ref={ref} className={className}>
       <Container
@@ -133,15 +117,6 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           </Typography>
         )}
         {hint && <FormHint className={cx(classes.hint)}>{hint}</FormHint>}
-        {errorMessages.length > 0 &&
-          errorMessages.map((error, index) => (
-            <FormError
-              className={classes.error}
-              key={`${error}-${String(index)}`}
-            >
-              {error}
-            </FormError>
-          ))}
       </Container>
       {value && value.length > 0 && (
         <Container top='xsmall'>
