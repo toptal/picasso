@@ -2,7 +2,12 @@ import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import { rootClassBySize, svgClassBySize } from './styles'
+import {
+  getBackgroundFillClass,
+  getBordersStrokeClass,
+  rootClassBySize,
+  svgClassBySize,
+} from './styles'
 import { getShapes } from './utils'
 
 /**
@@ -81,11 +86,9 @@ export const DropzoneSvg = (props: Props) => {
       >
         <path
           className={twJoin(
-            'fill-blue-100 transition-[fill] duration-350 ease-out',
-            hovered && 'fill-blue-100/[0.84]',
-            isDragActive && 'fill-blue-500/[0.24]',
+            'transition-[fill] duration-350 ease-out',
             'active:fill-blue-500/[0.24]',
-            disabled && 'fill-gray-100 hover:fill-gray-400'
+            getBackgroundFillClass({ hovered, isDragActive, disabled })
           )}
           fillRule='evenodd'
           clipRule='evenodd'
@@ -93,9 +96,9 @@ export const DropzoneSvg = (props: Props) => {
         />
         <path
           className={twJoin(
-            'hidden stroke-blue-500',
+            'hidden',
             focused && !isDragActive && '[display:initial]',
-            error && 'stroke-red-500'
+            error ? 'stroke-red-500' : 'stroke-blue-500'
           )}
           fillRule='evenodd'
           clipRule='evenodd'
@@ -106,9 +109,8 @@ export const DropzoneSvg = (props: Props) => {
         />
         <path
           className={twJoin(
-            'stroke-blue-500 transition-[stroke] duration-350',
-            hovered && 'stroke-blue-500/[0.84]',
-            error && 'stroke-red-500'
+            'transition-[stroke] duration-350',
+            getBordersStrokeClass({ hovered, error })
           )}
           fillRule='evenodd'
           clipRule='evenodd'

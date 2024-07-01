@@ -30,10 +30,10 @@ const AvatarWrapper = (props: Props) => {
       style={style}
       data-testid={dataTestId}
       className={twMerge(
-        className,
         'relative bg-gray-500 text-[1rem] shrink-0 grow-0',
         classBySizeAndVariant[size][variant],
-        clipClassBySize[size]
+        clipClassBySize[size],
+        className
       )}
     >
       {children}
