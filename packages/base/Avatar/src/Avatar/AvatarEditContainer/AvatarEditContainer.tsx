@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { Pencil16, Pencil24 } from '@toptal/picasso-icons'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
@@ -35,7 +34,7 @@ export const AvatarEditContainer = (props: Props) => {
 
   return (
     <button
-      className={cx(
+      className={twJoin(
         'border-none cursor-pointer absolute left-0 top-0 flex justify-center',
         'items-center outline-none bg-transparent',
         rootClassBySize[size]
@@ -46,7 +45,7 @@ export const AvatarEditContainer = (props: Props) => {
       onBlur={handleBlur}
     >
       <svg
-        className={cx('-m-[3px] absolute', svgClassBySize[size])}
+        className={twJoin('-m-[3px] absolute', svgClassBySize[size])}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
       >
@@ -69,7 +68,7 @@ export const AvatarEditContainer = (props: Props) => {
           strokeLinejoin='round'
         />
       </svg>
-      <PencilIconComponent className={'text-white z-modal'} />
+      <PencilIconComponent className='text-white z-modal' />
     </button>
   )
 }

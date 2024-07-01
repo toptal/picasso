@@ -28,8 +28,7 @@
     "@toptal/picasso-logo": "1.0.7",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.2",
-    "@toptal/picasso-utils": "1.0.3",
-    "classnames": "^2.5.1"
+    "@toptal/picasso-utils": "1.0.3"
   },
   "sideEffects": [
     "**/styles.ts",
