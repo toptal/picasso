@@ -18,7 +18,7 @@ exports[`Table renders 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4 text-left"
           >
             <div
-              class="m-0 text-xxs font-semibold text-align"
+              class="m-0 text-xxs text-graphite font-semibold text-align"
             >
               Table test
             </div>
@@ -33,7 +33,7 @@ exports[`Table renders 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4"
           >
             <div
-              class="m-0 text-sm font-inherit text-align"
+              class="m-0 text-sm text-graphite font-inherit text-align"
             >
               Table test
             </div>
@@ -50,7 +50,7 @@ exports[`Table renders 1`] = `
             class="h-10 py-2 border-none last:pr-6 px-4"
           >
             <div
-              class="m-0 text-sm font-semibold text-align"
+              class="m-0 text-sm text-black font-semibold text-align"
             >
               Table test
             </div>

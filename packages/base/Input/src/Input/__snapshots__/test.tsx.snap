@@ -23,7 +23,7 @@ exports[`Input renders icon in the beginning 1`] = `
       </div>
       <input
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
@@ -55,7 +55,7 @@ exports[`Input renders icon in the end 1`] = `
       </div>
       <input
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
@@ -74,7 +74,7 @@ exports[`Input should show manual resize handler 1`] = `
     >
       <textarea
         autocomplete="none"
-        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
         rows="4"
         type="text"
       >
@@ -95,7 +95,7 @@ exports[`Input should show reset button 1`] = `
     >
       <input
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value="Some value"
       />
@@ -141,7 +141,7 @@ exports[`Input shows counter for multiline input 1`] = `
     >
       <textarea
         autocomplete="none"
-        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         rows="4"
         type="text"
       />
@@ -163,7 +163,7 @@ exports[`Input shows counter for regular input 1`] = `
     >
       <input
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />

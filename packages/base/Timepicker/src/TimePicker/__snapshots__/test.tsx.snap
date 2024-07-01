@@ -10,7 +10,7 @@ exports[`TimePicker renders 1`] = `
     >
       <input
         autocomplete="none"
-        class="base-Input bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black ([&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg"
+        class="base-Input bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg"
         step="60"
         type="time"
         value="21:00"
