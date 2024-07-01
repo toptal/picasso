@@ -119,7 +119,7 @@ export const Avatar = (props: Props) => {
 
   if (isEditable) {
     return (
-      <div className={'relative'}>
+      <div className='relative'>
         {avatar}
         {isEditable && (
           <AvatarEditContainer
