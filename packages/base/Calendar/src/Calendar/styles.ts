@@ -7,6 +7,27 @@ export default ({ palette }: Theme) =>
     head: {
       display: 'block',
     },
+    caption_dropdowns: {
+      display: 'flex',
+      gap: '1rem',
+      paddingBottom: '1rem',
+    },
+    pointer_events: {
+      pointerEvents: 'none',
+    },
+    icon_wrapper: { width: '24px', height: '24px' },
+    select: {
+      opacity: '0',
+      position: 'absolute',
+      fontSize: '0.875rem',
+      fontWeight: 400,
+      cursor: 'pointer',
+    },
+    dropdown_label: {
+      display: 'flex',
+      position: 'relative',
+      alignItems: 'center',
+    },
     head_row: {
       display: 'flex',
       textAlign: 'center',
