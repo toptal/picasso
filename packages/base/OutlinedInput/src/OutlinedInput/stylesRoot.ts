@@ -151,29 +151,41 @@ const getTextColorClass = (disabled: boolean | undefined) =>
 const getCursorClass = (disabled: boolean | undefined) =>
   disabled ? cursorClass.disabled : cursorClass.default
 
-const borderPseudoElement = ({
-  disabled,
-  isDark,
-  isError,
-}: {
-  disabled?: boolean
+type State = 'default' | 'disabled' | 'error' | 'dark'
+type StateConditions = Partial<Record<State, boolean>> & {
   isDark: boolean
   isError: boolean
-}) => {
-  const { borderColor, border, shadow } = borderPseudoClassesByState
-  const hoverClass = !(disabled || isError) ? borderColor.hoverWithoutFocus : ''
+}
 
-  let stateClasses = [borderColor.default, border.default, shadow.default]
+const getClassForState = (
+  state: State,
+  { borderColor, border, shadow }: typeof borderPseudoClassesByState
+) => {
+  return [
+    borderColor[state] || borderColor.default,
+    border[state] || border.default,
+    shadow[state] || shadow.default,
+  ]
+}
 
-  if (isError) {
-    stateClasses = [borderColor.error, border.error, shadow.error]
-  } else if (disabled) {
-    stateClasses = [borderColor.disabled, border.disabled, shadow.disabled]
-  } else if (isDark) {
-    stateClasses = [borderColor.dark, border.dark, shadow.dark]
-  }
+const borderPseudoElement = (conditions: StateConditions) => {
+  const { disabled, isDark, isError } = conditions
+  const { borderColor } = borderPseudoClassesByState
+  const primaryState = isError
+    ? 'error'
+    : disabled
+    ? 'disabled'
+    : isDark
+    ? 'dark'
+    : 'default'
 
-  return [borderPseudoCoreClasses, stateClasses, hoverClass]
+  const hoverClass = !disabled && !isError ? borderColor.hoverWithoutFocus : ''
+
+  return [
+    borderPseudoCoreClasses,
+    getClassForState(primaryState, borderPseudoClassesByState),
+    hoverClass,
+  ]
 }
 
 export const getRootClassName = ({
