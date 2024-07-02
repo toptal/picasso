@@ -5,9 +5,9 @@ import { TabsList } from '@mui/base/TabsList'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-type ValueType = string | number | null
+export type TabsValueType = string | number | null
 
-export interface Props<V extends ValueType> extends BaseProps {
+export interface Props<V extends TabsValueType> extends BaseProps {
   /** Tabs content containing Tab components */
   children: ReactNode
 
@@ -66,7 +66,7 @@ const classesByVariant = {
 } as const
 
 // eslint-disable-next-line react/display-name
-const TabsComponent = <V extends ValueType>(
+const TabsComponent = <V extends TabsValueType>(
   props: Props<V>,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
