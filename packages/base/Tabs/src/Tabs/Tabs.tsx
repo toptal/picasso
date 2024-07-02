@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, ForwardedRef } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import { Tabs as MUITabs } from '@mui/base/Tabs'
 import { TabsList } from '@mui/base/TabsList'
@@ -12,7 +12,7 @@ export interface Props<V extends TabsValueType> extends BaseProps {
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: (event: React.SyntheticEvent | null, value: V) => void
+  onChange?: (event: React.ChangeEvent<{}> | null, value: V) => void
 
   /**
    * The value of the currently selected Tab.
@@ -65,68 +65,70 @@ const classesByVariant = {
   },
 } as const
 
-// eslint-disable-next-line react/display-name
-const TabsComponent = <V extends TabsValueType>(
-  props: Props<V>,
-  ref: React.ForwardedRef<HTMLDivElement>
-) => {
-  const {
-    children,
-    orientation = 'horizontal',
-    onChange,
-    value,
-    variant = 'scrollable',
-    className,
-    ...rest
-  } = props
+const Tabs = forwardRef(
+  <V extends TabsValueType = TabsValueType>(
+    {
+      children,
+      orientation = 'horizontal',
+      onChange,
+      value,
+      variant = 'scrollable',
+      className,
+      ...rest
+    }: Props<V>,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    const contextValue = useMemo(
+      () => ({
+        orientation,
+        variant,
+      }),
+      [orientation, variant]
+    )
 
-  const contextValue = useMemo(
-    () => ({
-      orientation,
-      variant,
-    }),
-    [orientation, variant]
-  )
+    const isVertical = orientation === 'vertical'
 
-  const isVertical = orientation === 'vertical'
-
-  return (
-    <TabsContext.Provider value={contextValue}>
-      <MUITabs
-        {...rest}
-        slotProps={{
-          root: {
-            ref,
-            className: twMerge(
-              'relative min-h-0 flex overflow-hidden',
-              classesByOrientation[orientation].root,
-              classesByVariant[variant].root,
-              className
-            ),
-          },
-        }}
-        onChange={(event, newValue) => onChange?.(event, newValue as V)}
-        value={value}
-        orientation={orientation}
-      >
-        <div
-          className={twJoin(
-            classesByVariant[variant].scroller,
-            classesByOrientation[orientation].scroller,
-            'flex-auto inline-block relative whitespace-nowrap'
-          )}
+    return (
+      <TabsContext.Provider value={contextValue}>
+        <MUITabs
+          {...rest}
+          slotProps={{
+            root: {
+              ref,
+              className: twMerge(
+                'relative min-h-0 flex overflow-hidden',
+                classesByOrientation[orientation].root,
+                classesByVariant[variant].root,
+                className
+              ),
+            },
+          }}
+          onChange={
+            onChange as (
+              event: React.ChangeEvent<{}> | null,
+              value: TabsValueType
+            ) => void
+          }
+          value={value}
+          orientation={orientation}
         >
-          <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
-            {children}
-          </TabsList>
-        </div>
-      </MUITabs>
-    </TabsContext.Provider>
-  )
-}
-
-export const Tabs = forwardRef(TabsComponent)
-
-Tabs.displayName = 'Tabs'
+          <div
+            className={twJoin(
+              classesByVariant[variant].scroller,
+              classesByOrientation[orientation].scroller,
+              'flex-auto inline-block relative whitespace-nowrap'
+            )}
+          >
+            <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
+              {children}
+            </TabsList>
+          </div>
+        </MUITabs>
+      </TabsContext.Provider>
+    )
+  }
+) as <V extends TabsValueType = TabsValueType>(
+  props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof MUITabs>
 
 export default Tabs
