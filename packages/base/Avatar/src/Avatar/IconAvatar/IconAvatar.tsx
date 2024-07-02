@@ -21,7 +21,7 @@ const IconAvatar = ({
     <Profile16
       className={twMerge(
         className,
-        'absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%]',
+        'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
         classBySize[size]
       )}
       color='white'
