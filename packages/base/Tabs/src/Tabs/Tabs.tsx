@@ -7,18 +7,18 @@ import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 type ValueType = string | number | null
 
-export interface Props extends BaseProps {
+export interface Props<V extends ValueType> extends BaseProps {
   /** Tabs content containing Tab components */
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: (event: React.ChangeEvent<{}> | null, value: ValueType) => void
+  onChange?: (event: React.SyntheticEvent | null, value: V) => void
 
   /**
    * The value of the currently selected Tab.
    * If you don't want any selected Tab, you can set this property to null.
    */
-  value: ValueType
+  value: V
 
   /** The tabs orientation (layout flow direction). */
   orientation?: 'horizontal' | 'vertical'
@@ -52,7 +52,7 @@ const classesByOrientation = {
     root: '',
     scroller: indicatorClasses,
   },
-}
+} as const
 
 const classesByVariant = {
   scrollable: {
@@ -63,13 +63,13 @@ const classesByVariant = {
     root: '',
     scroller: 'w-full overflow-hidden',
   },
-}
+} as const
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
-  props,
-  ref
-) {
+const TabsComponent = <V extends ValueType>(
+  props: Props<V>,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => {
   const {
     children,
     orientation = 'horizontal',
@@ -105,7 +105,7 @@ export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
             ),
           },
         }}
-        onChange={onChange}
+        onChange={(event, newValue) => onChange?.(event, newValue as V)}
         value={value}
         orientation={orientation}
       >
@@ -123,7 +123,9 @@ export const Tabs = forwardRef<HTMLDivElement, Props>(function Tabs(
       </MUITabs>
     </TabsContext.Provider>
   )
-})
+}
+
+export const Tabs = forwardRef(TabsComponent)
 
 Tabs.displayName = 'Tabs'
 
