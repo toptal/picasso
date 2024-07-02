@@ -17,15 +17,15 @@ exports[`AvatarUpload renders 1`] = `
         type="file"
       />
       <div
-        class="PicassoDropzoneSvg-root PicassoDropzoneSvg-rootSmall"
+        class="[pointer-events:unset] relative bg-transparent w-[80px] h-[80px]"
       >
         <svg
-          class="PicassoDropzoneSvg-svg PicassoDropzoneSvg-svgSmall"
+          class="m-[-3px] w-[86px] h-[86px]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            class="PicassoDropzoneSvg-background"
+            class="transition-colors duration-350 ease-out active:fill-blue fill-blue"
             clip-rule="evenodd"
             d="
     M 3 3
@@ -37,7 +37,7 @@ exports[`AvatarUpload renders 1`] = `
             fill-rule="evenodd"
           />
           <path
-            class="PicassoDropzoneSvg-outline"
+            class="hidden stroke-blue"
             clip-rule="evenodd"
             d="
     M 2 2
@@ -52,7 +52,7 @@ exports[`AvatarUpload renders 1`] = `
             stroke-width="3"
           />
           <path
-            class="PicassoDropzoneSvg-border"
+            class="transition-[stroke] duration-350 stroke-blue"
             clip-rule="evenodd"
             d="
     M 4 4
