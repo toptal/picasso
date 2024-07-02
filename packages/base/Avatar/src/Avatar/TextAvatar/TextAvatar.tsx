@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { containerTextClassBySize, typographyTextClassBySize } from './styles'
 
@@ -27,7 +27,7 @@ const TextAvatar = ({
 }: Props) => (
   <div
     className={twMerge(
-      'uppercase absolute top-2/4 left-2/4 [transform:translate(-50%,-50%)]',
+      'uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)]',
       containerTextClassBySize[size],
       className
     )}
@@ -36,7 +36,10 @@ const TextAvatar = ({
   >
     <Typography
       data-testid={dataTestID}
-      className={fontSize ? typographyTextClassBySize[fontSize] : ''}
+      className={twJoin(
+        fontSize ? typographyTextClassBySize[fontSize] : '',
+        'leading-[1.5em]'
+      )}
       invert
     >
       {children}
