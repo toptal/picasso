@@ -9,6 +9,6 @@ export const containerTextClassBySize: Record<Size, string> = {
 }
 
 export const typographyTextClassBySize: Record<FontSize, string> = {
-  small: '!text-[0.666666667em]',
-  large: '!text-[1em]',
+  small: 'text-[0.666666667em]',
+  large: 'text-[1em]',
 }

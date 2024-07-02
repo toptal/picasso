@@ -86,7 +86,7 @@ export const DropzoneSvg = (props: Props) => {
       >
         <path
           className={twJoin(
-            'transition-[fill] duration-350 ease-out',
+            'transition-colors duration-350 ease-out',
             'active:fill-blue-500/[0.24]',
             getBackgroundFillClass({ hovered, isDragActive, disabled })
           )}
