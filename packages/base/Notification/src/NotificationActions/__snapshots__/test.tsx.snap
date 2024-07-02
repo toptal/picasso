@@ -6,37 +6,33 @@ exports[`NotificationActions renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiSnackbarContent-root Notification-notificationYellow Notification-notification MuiPaper-elevation6"
+      class="relative w-full flex flex-nowrap items-start shadow-[none] rounded-[none] transition-shadow duration-300 bg-yellow px-[1em] py-[1.5em] sm:p-[1.5em] lg:px-[130px] lg:py-[1.5em]"
       role="alert"
     >
       <div
-        class="MuiSnackbarContent-message"
+        class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
       >
         <div
-          class="PicassoContainer-flex"
+          class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] h-[1em] min-w mt-[2px] basis-0"
         >
-          <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper Notification-iconWrapperYellow"
+          <svg
+            class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
+            style="min-width: 16px; min-height: 16px;"
+            viewBox="0 0 16 16"
           >
-            <svg
-              class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-8a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1Z"
-              />
-            </svg>
-          </div>
+            <path
+              d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm0-8a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1Z"
+            />
+          </svg>
+        </div>
+        <div
+          class="m-0 text-sm text-black font-regular break-words min-w !mt-0"
+        >
+          The time zone in your profile is set to (UTC -08:00) America - Los
           <div
-            class="m-0 text-sm text-black font-regular break-words min-w !mt-0"
+            class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
           >
-            The time zone in your profile is set to (UTC -08:00) America - Los
-            <div
-              class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
-            >
-              Test
-            </div>
+            Test
           </div>
         </div>
       </div>

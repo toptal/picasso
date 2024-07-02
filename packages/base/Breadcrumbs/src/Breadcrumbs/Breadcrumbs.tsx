@@ -1,21 +1,32 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { Breadcrumbs as MuiBreadcrumbs } from '@material-ui/core'
-import { ChevronRight16 } from '@toptal/picasso-icons'
-import './styles'
+import { Typography } from '@toptal/picasso-typography'
+
+import insertSeparator from './utils/insertSeparator'
 
 export interface Props extends BaseProps {
   /** Content of Breadcrumbs */
   children: ReactNode
 }
 
-export const Breadcrumbs = forwardRef<HTMLElement, Props>(function Breadcrumbs(
-  props,
-  ref
-) {
-  return <MuiBreadcrumbs ref={ref} separator={<ChevronRight16 />} {...props} />
-})
+export const Breadcrumbs = forwardRef<HTMLDivElement, Props>(
+  function Breadcrumbs(props, ref) {
+    const { children } = props
+
+    const allItems = React.Children.map(children, child => (
+      <li className='p-0 m-0'>{child}</li>
+    ))
+
+    return (
+      <Typography as='nav' ref={ref} className='text-md text-black/[.54]'>
+        <ol className='flex flex-wrap items-center p-0 m-0 list-none'>
+          {allItems && insertSeparator(allItems)}
+        </ol>
+      </Typography>
+    )
+  }
+)
 
 Breadcrumbs.displayName = 'Breadcrumbs'
 

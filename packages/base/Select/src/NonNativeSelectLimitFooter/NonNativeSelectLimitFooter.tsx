@@ -1,12 +1,6 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { MenuItem } from '@toptal/picasso-menu'
-
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles)
 
 interface Props extends BaseProps {
   totalCount: number
@@ -18,13 +12,11 @@ export const NonNativeSelectLimitFooter = ({
   limit,
   'data-testid': dataTestId,
 }: Props) => {
-  const classes = useStyles()
-
   return limit < totalCount ? (
     <MenuItem
       data-testid={dataTestId}
       titleCase={false}
-      className={classes.root}
+      className='text-graphite-700 py-3 px-4 border border-solid border-gray-300 text-[0.6875rem]'
       disabled
     >
       Showing only first {limit} of {totalCount} items

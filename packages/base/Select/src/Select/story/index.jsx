@@ -63,7 +63,7 @@ page
     {
       title: 'Search behavior',
       description: `Search is enabled when the number of options is greater or equal to \`searchThreshold\`.
-      ⚠️ When used in Drawer, we need to use \`disablePortal\` to enable the mouse focus of the search input.`,
+    ⚠️ When used in Drawer, we need to use \`disablePortal\` to enable the mouse focus of the search input.`,
       takeScreenshot: false,
     },
     'base/Select'

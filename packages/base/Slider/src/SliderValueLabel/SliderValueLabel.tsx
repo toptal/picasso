@@ -1,7 +1,7 @@
 import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
 import type { RefObject } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
-import { twJoin } from 'tailwind-merge'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { getXPlacement } from '../utils'
 

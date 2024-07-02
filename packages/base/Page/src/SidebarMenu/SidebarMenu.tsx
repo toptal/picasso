@@ -1,5 +1,3 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
 import type { HTMLAttributes } from 'react'
@@ -9,24 +7,17 @@ import { Menu } from '@toptal/picasso-menu'
 import { useSidebarContext } from '../PageSidebar/SidebarContextProvider'
 import type { SidebarItemProps } from '../SidebarItem'
 import { useSubMenuContext } from '../SidebarItem'
-import styles from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   /** Defines is sidebar menu pushed to bottom of sidebar */
   bottom?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarMenu',
-})
-
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
   function SidebarMenu(props, ref) {
     const { bottom, style, className, children, ...rest } = props
     const { parentSidebarItemIndex, isSubMenu, parentMenu } =
       useSubMenuContext()
-
-    const classes = useStyles()
 
     const {
       variant,
@@ -81,10 +72,10 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         ref={ref}
         style={style}
         className={cx(
-          classes.root,
+          'shadow-0 order-1 [&_&]:flex-1 flex-grow-0 flex-shrink-1 max-w-full',
           {
-            [classes.bottom]: bottom,
-            [classes.compactParent]: parentMenu?.compact,
+            ['order-[99]']: bottom,
+            ['p-2']: parentMenu?.compact,
           },
           className
         )}

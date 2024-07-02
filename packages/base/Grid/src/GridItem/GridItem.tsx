@@ -1,7 +1,7 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
 import { type BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { GridContext } from '../GridContext'
 import type { GridSize, GridSpacing } from '../types'

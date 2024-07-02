@@ -1,10 +1,10 @@
 import React from 'react'
-import { MenuCompound as Menu } from '@toptal/picasso-menu'
+import { MenuItem } from '@toptal/picasso-menu'
 
 const NoOptionsMenuItem = ({ children, ...rest }: { children: string }) => (
-  <Menu.Item titleCase={false} disabled {...rest}>
+  <MenuItem titleCase={false} disabled {...rest}>
     {children}
-  </Menu.Item>
+  </MenuItem>
 )
 
 NoOptionsMenuItem.displayName = 'NoOptionsMenuItem'

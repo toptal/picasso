@@ -2,10 +2,10 @@ import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
 
-type Value = number | string | boolean
+type Value = number | string | null
 
 const Example = () => {
-  const [value, setValue] = React.useState<Value>(false)
+  const [value, setValue] = React.useState<Value>(0)
 
   const handleChange = (_: React.ChangeEvent<{}>, newValue: Value) => {
     setValue(newValue)

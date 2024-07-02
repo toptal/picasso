@@ -1,6 +1,6 @@
 import React from 'react'
 import type { StandardProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { Button } from '@toptal/picasso-button'
 
 export interface Props extends StandardProps {

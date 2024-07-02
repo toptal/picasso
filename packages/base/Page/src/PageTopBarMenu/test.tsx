@@ -2,7 +2,7 @@ import React from 'react'
 /* eslint-disable-next-line */
 import { render } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
-import { MenuCompound as Menu } from '@toptal/picasso-menu'
+import { Menu, MenuItem } from '@toptal/picasso-menu'
 
 import type { Props } from './PageTopBarMenu'
 import { PageTopBarMenu } from './PageTopBarMenu'
@@ -27,8 +27,8 @@ describe('PageTopBarMenu', () => {
         avatar='./jacqueline-with-flowers-1954-square.jpg'
       >
         <Menu>
-          <Menu.Item>My Account</Menu.Item>
-          <Menu.Item>Log Out</Menu.Item>
+          <MenuItem>My Account</MenuItem>
+          <MenuItem>Log Out</MenuItem>
         </Menu>
       </TestPageTopBarMenu>
     )

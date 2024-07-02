@@ -2,7 +2,7 @@
 import React, { forwardRef, useRef } from 'react'
 import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 
 import SliderMark from '../SliderMark'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, screen } from '@toptal/picasso-test-utils'
-import { MenuCompound as PicassoMenu } from '@toptal/picasso-menu'
+import { Menu as PicassoMenu, MenuItem } from '@toptal/picasso-menu'
 
 import { ButtonSplit } from './ButtonSplit'
 
@@ -9,9 +9,9 @@ const Menu = () => {
 
   return (
     <PicassoMenu data-testid='menu'>
-      <PicassoMenu.Item onClick={handleClick}>First item</PicassoMenu.Item>
-      <PicassoMenu.Item onClick={handleClick}>Second item</PicassoMenu.Item>
-      <PicassoMenu.Item onClick={handleClick}>Third item</PicassoMenu.Item>
+      <MenuItem onClick={handleClick}>First item</MenuItem>
+      <MenuItem onClick={handleClick}>Second item</MenuItem>
+      <MenuItem onClick={handleClick}>Third item</MenuItem>
     </PicassoMenu>
   )
 }

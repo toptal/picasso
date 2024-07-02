@@ -6,7 +6,7 @@ exports[`AccordionDetails renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiAccordionDetails-root PicassoAccordionDetails-root"
+      class="flex p-0"
     >
       Lorem ipsum
     </div>

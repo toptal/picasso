@@ -6,9 +6,6 @@ import type {
   MouseEvent,
 } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
@@ -28,8 +25,6 @@ import type {
   InputIconAdornmentProps,
 } from '@toptal/picasso-input-adornment'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
-
-import styles from './styles'
 
 export interface Props
   extends BaseProps,
@@ -118,8 +113,6 @@ type EndAdornmentProps = Pick<
   | 'status'
   | 'testIds'
 > & { charsLength?: number; showCounter: boolean }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoInput' })
 
 const hasRemainingCounter = ({
   counter,
@@ -293,8 +286,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
 
   const charsLength = value ? value.length : 0
 
-  const classes = useStyles()
-
   const showCounter = !!charsLength && hasCounter({ counter, limit })
 
   useHasMultilineCounter(name, showCounter && multiline, setHasMultilineCounter)
@@ -307,14 +298,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         className={className}
         style={style}
         highlight={highlight}
-        classes={{
-          root: cx(classes.root, {
-            [classes.rootMultiline]: multiline,
-          }),
-          input: cx(classes.input, {
-            [classes.inputMultilineResizable]: multiline && multilineResizable,
-          }),
-        }}
+        multiline={multiline}
+        multilineResizable={multilineResizable}
         id={id}
         name={name}
         defaultValue={defaultValue}
@@ -322,7 +307,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         placeholder={placeholder}
         status={error ? 'error' : status}
         disabled={disabled}
-        multiline={multiline}
         autoFocus={autoFocus}
         rows={rows}
         rowsMax={rowsMax}

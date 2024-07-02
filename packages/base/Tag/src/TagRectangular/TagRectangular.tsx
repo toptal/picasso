@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { Indicator } from '../Indicator'
 import { variantsRootClasses } from './styles'

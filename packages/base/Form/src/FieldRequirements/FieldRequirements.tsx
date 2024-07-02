@@ -1,8 +1,8 @@
 import React from 'react'
-import { Collapse } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { Grid } from '@toptal/picasso-grid'
+import { Collapse } from '@toptal/picasso-collapse'
 
 import type { FieldRequirementItemStatus } from './FieldRequirementItem'
 import FieldRequirementItem from './FieldRequirementItem'
@@ -49,42 +49,44 @@ export const FieldRequirements = <TValueType,>({
       timeout={timeout}
       data-testid={testIds?.root}
     >
-      {description && (
-        <Typography
-          data-testid={testIds?.description}
-          variant='body'
-          size='xxsmall'
-          className='mt-[0.4rem]'
+      <>
+        {description && (
+          <Typography
+            data-testid={testIds?.description}
+            variant='body'
+            size='xxsmall'
+            className='mt-[0.4rem]'
+          >
+            {description}
+          </Typography>
+        )}
+        <Grid
+          className='w-input'
+          spacing={0}
+          data-testid={testIds?.gridContainer}
         >
-          {description}
-        </Typography>
-      )}
-      <Grid
-        className='w-input'
-        spacing={0}
-        data-testid={testIds?.gridContainer}
-      >
-        {requirements.map(requirement => {
-          let status: FieldRequirementItemStatus = 'default'
+          {requirements.map(requirement => {
+            let status: FieldRequirementItemStatus = 'default'
 
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          if (requirement.validator(value!)) {
-            status = 'success'
-          } else if (error) {
-            status = 'error'
-          }
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            if (requirement.validator(value!)) {
+              status = 'success'
+            } else if (error) {
+              status = 'error'
+            }
 
-          return (
-            <FieldRequirementItem
-              key={requirement.message}
-              status={status}
-              testIds={requirement.testIds}
-            >
-              {requirement.message}
-            </FieldRequirementItem>
-          )
-        })}
-      </Grid>
+            return (
+              <FieldRequirementItem
+                key={requirement.message}
+                status={status}
+                testIds={requirement.testIds}
+              >
+                {requirement.message}
+              </FieldRequirementItem>
+            )
+          })}
+        </Grid>
+      </>
     </Collapse>
   )
 }

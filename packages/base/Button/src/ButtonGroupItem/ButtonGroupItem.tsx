@@ -1,5 +1,5 @@
 import React from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { ButtonProps } from '../Button'
 import { Button } from '../Button'

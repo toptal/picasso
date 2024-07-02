@@ -1,7 +1,7 @@
 import { fireEvent, render, waitFor, act } from '@toptal/picasso-test-utils'
 import React from 'react'
 import { Container } from '@toptal/picasso-container'
-import { MenuCompound as Menu } from '@toptal/picasso-menu'
+import { Menu, MenuItem } from '@toptal/picasso-menu'
 
 import { DropdownCompound as Dropdown } from '../DropdownCompound'
 
@@ -21,9 +21,9 @@ describe('Dropdown', () => {
       <Dropdown
         content={
           <Menu>
-            <Menu.Item>Item1</Menu.Item>
-            <Menu.Item>Item2</Menu.Item>
-            <Menu.Item>Item3</Menu.Item>
+            <MenuItem>Item1</MenuItem>
+            <MenuItem>Item2</MenuItem>
+            <MenuItem>Item3</MenuItem>
           </Menu>
         }
       >
@@ -44,9 +44,9 @@ describe('Dropdown', () => {
         <Dropdown
           content={
             <Menu>
-              <Menu.Item>Item1</Menu.Item>
-              <Menu.Item>Item2</Menu.Item>
-              <Menu.Item>Item3</Menu.Item>
+              <MenuItem>Item1</MenuItem>
+              <MenuItem>Item2</MenuItem>
+              <MenuItem>Item3</MenuItem>
             </Menu>
           }
           disableAutoFocus={false}
@@ -77,9 +77,9 @@ describe('Dropdown', () => {
       <Dropdown
         content={
           <Menu>
-            <Menu.Item>Item1</Menu.Item>
-            <Menu.Item>Item2</Menu.Item>
-            <Menu.Item>Item3</Menu.Item>
+            <MenuItem>Item1</MenuItem>
+            <MenuItem>Item2</MenuItem>
+            <MenuItem>Item3</MenuItem>
           </Menu>
         }
         onOpen={onOpen}

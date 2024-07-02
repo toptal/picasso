@@ -1,7 +1,7 @@
 import type { ReactElement, MouseEventHandler } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { Tag } from '../Tag'
 

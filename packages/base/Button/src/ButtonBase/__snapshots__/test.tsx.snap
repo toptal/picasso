@@ -55,7 +55,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
   >
     <a
       aria-disabled="false"
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer PicassoLink-blue MuiTypography-colorPrimary"
+      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
       data-component-type="button"
       href="URL"
       role="button"
@@ -79,7 +79,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
   >
     <a
       aria-disabled="true"
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-default pointer-events PicassoLink-blue MuiTypography-colorPrimary"
+      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-default pointer-events"
       data-component-type="button"
       href="URL"
       role="button"
@@ -103,7 +103,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
   >
     <a
       aria-disabled="false"
-      class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer PicassoLink-blue MuiTypography-colorPrimary"
+      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer"
       data-component-type="button"
       href=""
       role="button"
@@ -210,26 +210,28 @@ exports[`ButtonBase when "loading" prop is true renders Button with loading stat
         Click me!
       </span>
       <div
-        class="PicassoLoader-root absolute top-1/2 left-1/2 translate-x-[ translate-y-[ PicassoLoader-inline"
+        class="text-lg flex-col items-center inline-flex absolute top-1/2 left-1/2 translate-x-[ translate-y-["
       >
         <div
           aria-valuenow="35"
-          class="MuiCircularProgress-root PicassoCircularProgress-root PicassoLoader-spinnerInherit MuiCircularProgress-colorPrimary MuiCircularProgress-determinate"
+          class="text-inherit transform -rotate"
           role="progressbar"
-          style="width: 16px; height: 16px; transform: rotate(-90deg);"
+          style="width: 16px; height: 16px;"
         >
           <svg
-            class="MuiCircularProgress-svg"
+            class="block"
             viewBox="22 22 44 44"
           >
             <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleDeterminate"
+              class="transition-all stroke-[currentColor]"
               cx="44"
               cy="44"
               fill="none"
               r="20.2"
+              stroke-dasharray="80px, 200px"
+              stroke-dashoffset="0px"
               stroke-width="3.6"
-              style="stroke-dasharray: 126.920; stroke-dashoffset: 82.498px;"
+              style="stroke-dashoffset: 82.498px; stroke-dasharray: 126.920;"
             />
           </svg>
         </div>

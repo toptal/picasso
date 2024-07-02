@@ -85,7 +85,7 @@ const VARIANT_SIZE: Record<
     small: 'text-sm',
     medium: 'text-md',
     large: 'text-lg',
-    xlarge: 'text-md',
+    xlarge: 'text-md', // Body xlarge size is not defined on BASE, but we need this as retro-compatibility
     inherit: 'font-inherit-size leading-[1.5em]',
   },
 }

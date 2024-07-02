@@ -1,17 +1,11 @@
-import type { ReactNode, ElementType, AnchorHTMLAttributes } from 'react'
+import type { ReactNode, AnchorHTMLAttributes, ElementType } from 'react'
 import React, { forwardRef } from 'react'
-import { Link as MUILink } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
-
-import styles from './styles'
+import { Typography } from '@toptal/picasso-typography'
 
 type VariantType = 'action' | 'anchor'
 type ColorType = 'white' | 'blue'
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLink' })
 
 const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
   if (target !== '_blank') {
@@ -27,6 +21,32 @@ const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
   return isRelSafe ? rel : rel.concat(' noopener')
 }
 
+const COLOR_DISABLED_MAP: Record<
+  ColorType,
+  Record<VariantType, Record<'disabled' | 'normal', string>>
+> = {
+  blue: {
+    action: {
+      disabled: 'text-blue-500 no-underline opacity-50 hover:!no-underline',
+      normal: 'text-blue-500 visited:text-purple-500 no-underline',
+    },
+    anchor: {
+      disabled: 'text-gray-600 underline',
+      normal: 'text-blue-500 visited:text-purple-500 no-underline',
+    },
+  },
+  white: {
+    action: {
+      disabled: 'text-gray-600',
+      normal: 'inherit',
+    },
+    anchor: {
+      disabled: 'text-gray-600 visited:text-gray-500 underline',
+      normal: 'inherit text-white visited:text-gray-500 underline',
+    },
+  },
+}
+
 export type Props = BaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     /** Content of the component */
@@ -39,7 +59,7 @@ export type Props = BaseProps &
      * The component used for the root node.
      * Either a string to use a DOM element or a component.
      */
-    as?: ElementType
+    as?: ElementType<React.HTMLAttributes<HTMLElement>>
     /** Either it's a regular hyperlink or an _action_ */
     variant?: VariantType
     /** Controls color of the link */
@@ -80,32 +100,38 @@ export const Link: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
   const nativeHTMLAttributes = rest
-  const classes = useStyles()
   const sanitizedRel = sanitizeRel(rel, target)
 
   return (
-    <MUILink
+    <Typography
       {...nativeHTMLAttributes}
       ref={ref}
+      as={as}
+      // @ts-expect-error Typography is incompatible with href prop
       href={disabled ? undefined : href}
       target={disabled ? undefined : target}
       rel={sanitizedRel}
       onClick={disabled ? undefined : onClick}
-      className={cx(classes.root, className, {
-        [classes.action]: variant === 'action',
-        [classes.white]: color === 'white',
-        [classes.blue]: color === 'blue',
-        [classes.visited]: visited,
-        [classes.disabled]: disabled,
-        [classes.noUnderline]: noUnderline,
-      })}
+      color='inherit'
+      weight={variant === 'action' ? 'semibold' : 'inherit'}
+      className={twMerge(
+        'focus:outline-none hover:underline leading-[inherit]',
+        COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
+        disabled ? 'cursor-not-allowed' : '',
+        noUnderline ? '!no-underline' : '',
+        visited
+          ? color === 'blue'
+            ? 'visited text-purple-500'
+            : 'visited text-gray-500'
+          : '',
+        className
+      )}
       style={style}
-      component={as}
       tabIndex={tabIndex}
       aria-disabled={disabled || ariaDisabled}
     >
       {children}
-    </MUILink>
+    </Typography>
   )
 })
 

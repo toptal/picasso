@@ -6,8 +6,17 @@ import { isSubstring } from '@toptal/picasso-utils'
 const allOptions = [
   { text: 'Belarus' },
   { text: 'Croatia' },
+  { text: 'Finland' },
   { text: 'Lithuania' },
+  { text: 'Micronesia' },
+  { text: 'Moldova' },
+  { text: 'Monaco' },
+  { text: 'Mongolia' },
+  { text: 'Norway' },
   { text: 'Slovakia' },
+  { text: 'Spain' },
+  { text: 'Sweden' },
+  { text: 'Switzerland' },
   { text: 'Ukraine' },
 ]
 

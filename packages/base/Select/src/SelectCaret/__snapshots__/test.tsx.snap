@@ -6,7 +6,7 @@ exports[`SelectCaret renders 1`] = `
     class="Picasso-root"
   >
     <svg
-      class="PicassoSvgDropdownArrows16-root makeStyles-caret"
+      class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
       style="min-width: 16px; min-height: 16px;"
       viewBox="0 0 16 16"
     >
@@ -24,7 +24,7 @@ exports[`SelectCaret renders disabled 1`] = `
     class="Picasso-root"
   >
     <svg
-      class="PicassoSvgDropdownArrows16-root makeStyles-caret makeStyles-caretDisabled"
+      class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events text-graphite z-[1]"
       style="min-width: 16px; min-height: 16px;"
       viewBox="0 0 16 16"
     >

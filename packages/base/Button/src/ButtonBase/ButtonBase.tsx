@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
   StandardProps,
   ButtonOrAnchorProps,

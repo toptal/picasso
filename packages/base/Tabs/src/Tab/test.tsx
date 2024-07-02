@@ -6,6 +6,7 @@ import type { PicassoConfig } from '@toptal/picasso-test-utils'
 
 import type { Props } from './Tab'
 import { Tab } from './Tab'
+import { Tabs } from '../Tabs'
 
 jest.mock('ap-style-title-case')
 
@@ -16,7 +17,14 @@ const renderTab = (
   const { label, disabled, icon, titleCase } = props
 
   return render(
-    <Tab label={label} disabled={disabled} icon={icon} titleCase={titleCase} />,
+    <Tabs value={null}>
+      <Tab
+        label={label}
+        disabled={disabled}
+        icon={icon}
+        titleCase={titleCase}
+      />
+    </Tabs>,
     undefined,
     picassoConfig
   )

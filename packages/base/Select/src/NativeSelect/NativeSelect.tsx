@@ -1,9 +1,4 @@
 import React, { useRef } from 'react'
-import cx from 'classnames'
-import { NativeSelect as MUINativeSelect } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import {
   documentable,
@@ -11,6 +6,7 @@ import {
   noop,
   useCombinedRefs,
 } from '@toptal/picasso-utils'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { SelectCaret } from '../SelectCaret'
 import type { ValueType, SelectProps } from '../SelectBase'
@@ -23,11 +19,18 @@ import {
 } from '../SelectBase'
 import NativeSelectOptions from '../NativeSelectOptions'
 import NativeSelectPlaceholder from '../NativeSelectPlaceholder'
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles)
+import { NativeSelectInput } from './NativeSelectInput'
 
 const DEFAULT_EMPTY_ARRAY_VALUE: ValueType[] = []
+
+const classesByWidth: Record<
+  Exclude<SelectProps['width'], undefined>,
+  string
+> = {
+  full: 'w-full',
+  shrink: 'w-auto',
+  auto: '',
+}
 
 export const NativeSelect = documentable(
   forwardRef(
@@ -74,8 +77,6 @@ export const NativeSelect = documentable(
         ...rest
       } = props
 
-      const classes = useStyles()
-
       const selectRef = useCombinedRefs<HTMLInputElement>(
         ref,
         useRef<HTMLInputElement>(null)
@@ -104,49 +105,14 @@ export const NativeSelect = documentable(
       })
 
       const startAdornment = selectStartAdornment && (
-        <div className={classes.startAdornment}>{selectStartAdornment}</div>
+        <div className='absolute left-[0.625rem]'>{selectStartAdornment}</div>
       )
       const endAdornment = selectEndAdornment && (
-        <div className={classes.endAdornment}>{selectEndAdornment}</div>
+        <div className='absolute right-[1.625rem]'>{selectEndAdornment}</div>
       )
 
-      const nativeSelectComponent = (
-        <MUINativeSelect
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...rest}
-          ref={selectRef}
-          disabled={disabled}
-          name={name}
-          id={id}
-          startAdornment={startAdornment}
-          endAdornment={endAdornment}
-          input={
-            <OutlinedInput
-              width={width}
-              inputProps={{ multiple }}
-              size={size}
-              className={classes.nativeInput}
-              testIds={testIds}
-              status={error ? 'error' : status}
-              highlight={highlight}
-              // eslint-disable-next-line react/jsx-props-no-spreading
-              {...getInputProps()}
-            />
-          }
-          value={value}
-          onChange={onChange as any}
-          IconComponent={() => <SelectCaret disabled={disabled} />}
-          classes={{
-            root: cx(classes.select, {
-              [classes.placeholder]: !selection.isSelected(),
-            }),
-            select: cx({
-              [classes.startAdornmentPadding]:
-                React.isValidElement(startAdornment),
-              [classes.endAdornmentPadding]: React.isValidElement(endAdornment),
-            }),
-          }}
-        >
+      const children = (
+        <>
           <NativeSelectPlaceholder
             emptySelectValue={emptySelectValue}
             disabled={!enableReset}
@@ -159,18 +125,50 @@ export const NativeSelect = documentable(
             renderOption={renderOption as any}
             getItemProps={getItemProps}
           />
-        </MUINativeSelect>
+        </>
+      )
+
+      const nativeSelectComponent = (
+        <OutlinedInput
+          width={width}
+          size={size}
+          className='p-0 bg-white'
+          testIds={testIds}
+          status={error ? 'error' : status}
+          highlight={highlight}
+          {...getInputProps()}
+          {...rest}
+          ref={selectRef}
+          disabled={disabled}
+          name={name}
+          id={id}
+          startAdornment={startAdornment}
+          endAdornment={endAdornment}
+          value={value}
+          onChange={onChange as any}
+          inputComponent={NativeSelectInput as any}
+          inputProps={{
+            multiple,
+            children,
+            type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+            IconComponent: () => <SelectCaret disabled={disabled} />,
+            className: twJoin(
+              'w-full p-2 focus:bg-inheritColor',
+              !selection.isSelected() && 'text-gray-600',
+              React.isValidElement(startAdornment) && 'pl-[2.5625rem]',
+              React.isValidElement(endAdornment) && 'pr-[3.5625rem]'
+            ),
+          }}
+        />
       )
 
       return (
         <div
-          className={cx(
-            classes.root,
+          className={twMerge(
+            'relative inline-flex text-[1rem] cursor-pointer',
             className,
-            classes[`root${capitalize(width)}`],
-            {
-              [classes.rootDisabled]: disabled,
-            }
+            classesByWidth[width],
+            disabled && 'cursor-default'
           )}
           style={style}
           ref={inputWrapperRef}

@@ -1,15 +1,13 @@
 import type { ReactNode } from 'react'
 import React, { Children, forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
-import { Badge as MuiBadge } from '@material-ui/core'
+import { Badge as MuiBadge } from '@mui/base'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { classBySize, classByVariant } from './styles'
 
-type VariantType = 'white' | 'red'
-type SizeType = 'medium' | 'small' | 'large'
+export type VariantType = 'white' | 'red'
+export type SizeType = 'medium' | 'small' | 'large'
 
 export interface Props extends BaseProps {
   /** The `Badge` content */
@@ -27,8 +25,6 @@ export interface Props extends BaseProps {
   /** The badged will be overlaid on it's children */
   children?: ReactNode
 }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoBadge' })
 
 const thresholds: Record<SizeType, number> = {
   small: 9,
@@ -49,25 +45,38 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   },
   ref
 ) {
-  const classes = useStyles()
-
   const hasChildren = Children.count(children) > 0
 
   return (
     <MuiBadge
       ref={ref}
-      style={style}
       data-testid={testId}
       badgeContent={content}
       max={max || thresholds[size]}
-      className={className}
       showZero
-      classes={{
-        badge: cx(classes.root, classes[variant], classes[size], {
-          [classes.static]: !hasChildren,
-        }),
+      slotProps={{
+        root: {
+          className: twMerge(
+            `inline-flex flex-shrink-0 content-middle flex-nowrap justify-normal 
+            text-[10px] font-semibold leading-3 align-middle text-graphite-700 
+            top-0 right-0`,
+            hasChildren ? 'relative' : 'static',
+            className
+          ),
+          style: style,
+        },
+        badge: {
+          className: twJoin(
+            `border-solid items-center content-center inline-flex flex-nowrap 
+            justify-center z-[1] border rounded-full`,
+            classByVariant[variant],
+            hasChildren
+              ? 'absolute right-0 top-0 translate-x-[50%] translate-y-[-50%]'
+              : 'static',
+            classBySize[size]
+          ),
+        },
       }}
-      overlap='rectangular'
     >
       {children}
     </MuiBadge>

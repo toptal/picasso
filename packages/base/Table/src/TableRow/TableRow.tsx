@@ -1,12 +1,8 @@
 import type { ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { TableRow as MUITableRow } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import { TableContext } from '../Table'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
@@ -22,8 +18,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
   stripeEven?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTableRow' })
-
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
   function TableRow(props, ref) {
     const {
@@ -36,30 +30,26 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       onClick,
       ...rest
     } = props
-    const {
-      stripeEven: stripeEvenClass,
-      bordered: borderedClass,
-      ...muiClasses
-    } = useStyles()
+
     const { variant } = useContext(TableContext)
     const isBordered = variant === 'bordered' || variant === 'striped'
 
     return (
-      <MUITableRow
+      <tr
         {...rest}
         ref={ref}
-        classes={muiClasses}
-        className={cx(className, {
-          [stripeEvenClass]: stripeEven,
-          [borderedClass]: isBordered,
-        })}
+        className={twMerge(
+          isBordered && 'border-0 border-solid border-b border-gray-200',
+          stripeEven && 'bg-gray-100',
+          hover && 'hover:bg-blue-100 transition-colors',
+          selected && 'bg-blue-100',
+          className
+        )}
         style={style}
-        hover={hover}
-        selected={selected}
         onClick={onClick}
       >
         {children}
-      </MUITableRow>
+      </tr>
     )
   }
 )

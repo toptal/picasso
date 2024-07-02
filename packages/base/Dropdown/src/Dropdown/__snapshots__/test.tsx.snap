@@ -52,27 +52,27 @@ exports[`Dropdown should render menu 1`] = `
           >
             <div>
               <ul
-                class="MuiList-root PicassoMenu-root"
+                class="relative list-none outline-none shadow-1 py-2 px-0 m-0 rounded-sm"
                 role="menu"
                 tabindex="-1"
               >
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
                   role="menuitem"
                   tabindex="0"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                    class="flex flex-1 max-w"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="flex flex-col flex-1 min-w"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="flex items-center"
                       >
                         <span
-                          class="PicassoMenuItem-stringContent"
+                          class="flex-1 text-md leading-5"
                         >
                           Item1
                         </span>
@@ -82,21 +82,21 @@ exports[`Dropdown should render menu 1`] = `
                 </li>
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
                   role="menuitem"
                   tabindex="-1"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                    class="flex flex-1 max-w"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="flex flex-col flex-1 min-w"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="flex items-center"
                       >
                         <span
-                          class="PicassoMenuItem-stringContent"
+                          class="flex-1 text-md leading-5"
                         >
                           Item2
                         </span>
@@ -106,21 +106,21 @@ exports[`Dropdown should render menu 1`] = `
                 </li>
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
                   role="menuitem"
                   tabindex="-1"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                    class="flex flex-1 max-w"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="flex flex-col flex-1 min-w"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="flex items-center"
                       >
                         <span
-                          class="PicassoMenuItem-stringContent"
+                          class="flex-1 text-md leading-5"
                         >
                           Item3
                         </span>
@@ -169,31 +169,31 @@ exports[`Dropdown should render menu with focus 1`] = `
         <div>
           <div
             class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content"
-            style="opacity: 1; transform: none; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+            style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <div>
               <ul
-                class="MuiList-root PicassoMenu-root"
+                class="relative list-none outline-none shadow-1 py-2 px-0 m-0 rounded-sm"
                 role="menu"
                 tabindex="-1"
               >
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-focusVisible Mui-focusVisible"
+                  class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
                   role="menuitem"
                   tabindex="0"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                    class="flex flex-1 max-w"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="flex flex-col flex-1 min-w"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="flex items-center"
                       >
                         <span
-                          class="PicassoMenuItem-stringContent"
+                          class="flex-1 text-md leading-5"
                         >
                           Item1
                         </span>
@@ -203,21 +203,21 @@ exports[`Dropdown should render menu with focus 1`] = `
                 </li>
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
                   role="menuitem"
                   tabindex="-1"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                    class="flex flex-1 max-w"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="flex flex-col flex-1 min-w"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="flex items-center"
                       >
                         <span
-                          class="PicassoMenuItem-stringContent"
+                          class="flex-1 text-md leading-5"
                         >
                           Item2
                         </span>
@@ -227,21 +227,21 @@ exports[`Dropdown should render menu with focus 1`] = `
                 </li>
                 <li
                   aria-disabled="false"
-                  class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light MuiMenuItem-gutters PicassoMenuItem-gutters MuiListItem-gutters MuiListItem-button"
+                  class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
                   role="menuitem"
                   tabindex="-1"
                 >
                   <div
-                    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                    class="flex flex-1 max-w"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                      class="flex flex-col flex-1 min-w"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="flex items-center"
                       >
                         <span
-                          class="PicassoMenuItem-stringContent"
+                          class="flex-1 text-md leading-5"
                         >
                           Item3
                         </span>

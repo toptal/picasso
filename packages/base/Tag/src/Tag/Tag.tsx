@@ -11,7 +11,7 @@ import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { classByVariant } from './styles'
 
