@@ -1,21 +1,19 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles, { getCornerClassName, getSizeClassName } from './styles'
+import { classBySizeAndVariant, clipClassBySize } from './styles'
+
+export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+
+export type Variant = 'square' | 'portrait' | 'landscape'
 
 export interface Props extends BaseProps {
   children: ReactNode
-  size: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
-  variant: 'square' | 'portrait' | 'landscape'
+  size: Size
+  variant: Variant
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAvatarWrapper',
-})
 
 const AvatarWrapper = (props: Props) => {
   const {
@@ -26,20 +24,16 @@ const AvatarWrapper = (props: Props) => {
     size,
     variant,
   } = props
-  const classes = useStyles()
-
-  const sizeClassName = getSizeClassName(size, variant)
-  const cornerClassName = getCornerClassName(size)
 
   return (
     <div
       style={style}
       data-testid={dataTestId}
-      className={cx(
-        className,
-        classes.root,
-        classes[sizeClassName],
-        classes[cornerClassName]
+      className={twMerge(
+        'relative bg-gray-500 text-[1rem] shrink-0 grow-0',
+        classBySizeAndVariant[size][variant],
+        clipClassBySize[size],
+        className
       )}
     >
       {children}
