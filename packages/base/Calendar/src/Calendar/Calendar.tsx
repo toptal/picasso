@@ -69,7 +69,7 @@ export interface Props
   hasFooter?: boolean
   /** Number of months to display */
   numberOfMonths?: CalendarMonthsAmount
-  /** Display dropdown navigation between days and months (requires minDate and maxDate to be set) */
+  /** Display dropdown navigation between months and years (requires minDate and maxDate to be set) */
   dropdownNavigation?: boolean
 }
 

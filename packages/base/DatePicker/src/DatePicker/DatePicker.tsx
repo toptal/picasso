@@ -120,7 +120,7 @@ export interface Props
   highlight?: 'autofill'
   /** Display more than one month at the same time */
   numberOfMonths?: CalendarMonthsAmount
-  /** Display dropdown navigation between days and months (requires minDate and maxDate to be set) */
+  /** Display dropdown navigation between months and years (requires minDate and maxDate to be set) */
   dropdownNavigation?: boolean
 }
 
