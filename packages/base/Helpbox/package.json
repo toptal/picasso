@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-test-utils": "1.1.1",
-    "@toptal/picasso-tailwind-merge": "^1.1.1"
+    "@toptal/picasso-tailwind-merge": "1.1.0"
   },
   "files": [
     "dist-package/**",

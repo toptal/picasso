@@ -6,7 +6,7 @@ exports[`Helpbox renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-mediumPadding PicassoContainer-bordered PicassoContainer-rounded PicassoHelpbox-root"
+      class="PicassoContainer-mediumPadding PicassoContainer-bordered PicassoContainer-rounded relative"
     >
       <div
         class="PicassoContainer-bottomsmallMargin"
@@ -23,7 +23,7 @@ exports[`Helpbox renders 1`] = `
         Test
       </div>
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoHelpboxActions-root"
+        class="PicassoContainer-centerAlignItems PicassoContainer-flex absolute right-6 top-6"
       >
         <button
           aria-disabled="false"
