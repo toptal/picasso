@@ -86,53 +86,53 @@ exports[`Calendar renders 1`] = `
                   class="PicassoCalendar-head"
                 >
                   <tr
-                    class="PicassoCalendar-head_row-5"
+                    class="PicassoCalendar-head_row-10"
                   >
                     <th
                       aria-label="Monday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Mon
                     </th>
                     <th
                       aria-label="Tuesday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Tue
                     </th>
                     <th
                       aria-label="Wednesday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Wed
                     </th>
                     <th
                       aria-label="Thursday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Thu
                     </th>
                     <th
                       aria-label="Friday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Fri
                     </th>
                     <th
                       aria-label="Saturday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Sat
                     </th>
                     <th
                       aria-label="Sunday"
-                      class="PicassoCalendar-head_cell-6"
+                      class="PicassoCalendar-head_cell-11"
                       scope="col"
                     >
                       Sun

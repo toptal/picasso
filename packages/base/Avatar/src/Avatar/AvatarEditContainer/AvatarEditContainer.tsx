@@ -1,22 +1,18 @@
 import React, { useState } from 'react'
-import type { Theme } from '@material-ui/core'
-import { capitalize, makeStyles } from '@material-ui/core'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { Pencil16, Pencil24 } from '@toptal/picasso-icons'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { rootClassBySize, svgClassBySize } from './styles'
 import { AVATAR_DROPZONE_SVG_SHAPES } from '../../AvatarDropzoneSvg'
 
+export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+
 export interface Props extends BaseProps {
-  size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
+  size?: Size
   disabled?: boolean
   onClick?: (event: React.MouseEvent) => void
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoDropzoneSvg',
-})
 
 export const AvatarEditContainer = (props: Props) => {
   const { size = 'small', onClick, 'data-testid': dataTestId } = props
@@ -24,8 +20,6 @@ export const AvatarEditContainer = (props: Props) => {
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const shapes = AVATAR_DROPZONE_SVG_SHAPES[size!]
-
-  const classes = useStyles()
 
   const PencilIconComponent =
     size === 'xxsmall' || size === 'xsmall' ? Pencil16 : Pencil24
@@ -40,27 +34,32 @@ export const AvatarEditContainer = (props: Props) => {
 
   return (
     <button
-      className={cx(classes.root, classes[`root${capitalize(size)}`])}
+      className={twJoin(
+        'border-none cursor-pointer absolute left-0 top-0 flex justify-center',
+        'items-center outline-none bg-transparent',
+        rootClassBySize[size]
+      )}
       data-testid={dataTestId}
       onClick={onClick}
       onFocus={handleFocus}
       onBlur={handleBlur}
     >
       <svg
-        className={cx(classes.svg, classes[`svg${capitalize(size)}`])}
+        className={twJoin('-m-[3px] absolute', svgClassBySize[size])}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
-          className={classes.background}
+          className={'fill-graphite-800/70'}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.background}
         />
         <path
-          className={cx(classes.outline, {
-            [classes.focused]: focused,
-          })}
+          className={twJoin(
+            'stroke-blue-500',
+            focused ? '[display:initial]' : 'hidden'
+          )}
           fillRule='evenodd'
           clipRule='evenodd'
           d={shapes.outline}
@@ -69,7 +68,7 @@ export const AvatarEditContainer = (props: Props) => {
           strokeLinejoin='round'
         />
       </svg>
-      <PencilIconComponent className={classes.pencilIcon} />
+      <PencilIconComponent className='text-white z-modal' />
     </button>
   )
 }
