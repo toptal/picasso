@@ -6,13 +6,17 @@ type NativeSelectInputProps = {
   disabled?: boolean
   IconComponent?: React.ElementType
   multiple?: boolean
+  ownerState?: {}
 } & React.HTMLAttributes<HTMLSelectElement>
 
 export const NativeSelectInput = forwardRef<
   HTMLSelectElement,
   NativeSelectInputProps
 >((props, ref) => {
-  const { className, disabled, multiple, IconComponent, ...other } = props
+  // omit ownerState from the props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { ownerState, className, disabled, multiple, IconComponent, ...other } =
+    props
 
   return (
     <>
