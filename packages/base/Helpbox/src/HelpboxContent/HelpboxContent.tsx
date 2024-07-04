@@ -1,12 +1,8 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type ContentWidth = 'shrink' | 'full'
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
@@ -19,21 +15,15 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   width?: ContentWidth
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpboxContent',
-})
-
 export const HelpboxContent = forwardRef<HTMLElement, Props>(
   function HelpboxContent(props, ref) {
     const { width, className, style, children, ...rest } = props
-
-    const classes = useStyles()
 
     return (
       <Typography
         {...rest}
         ref={ref}
-        className={cx({ [classes.shrinkWidth]: width === 'shrink' }, className)}
+        className={twMerge(width === 'shrink' && 'max-w-[640px]', className)}
         style={style}
         variant='body'
         as='div'
