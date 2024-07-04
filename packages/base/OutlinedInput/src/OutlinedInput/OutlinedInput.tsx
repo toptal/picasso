@@ -8,7 +8,11 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
-import { Input } from '@mui/base/Input'
+import { Input, type InputOwnerState } from '@mui/base/Input'
+import {
+  TextareaAutosize,
+  type TextareaAutosizeProps,
+} from '@mui/base/TextareaAutosize'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { getRootClassName } from './stylesRoot'
@@ -47,6 +51,22 @@ const ResetButton = ({
       ) => event.stopPropagation()}
     />
   </InputAdornment>
+)
+
+const Textarea = forwardRef<
+  HTMLTextAreaElement,
+  { ownerState: InputOwnerState } & TextareaAutosizeProps
+>(
+  (
+    {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ownerState,
+      ...rest
+    },
+    ref
+  ) => {
+    return <TextareaAutosize ref={ref} {...rest} />
+  }
 )
 
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
@@ -147,7 +167,9 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   const multilineProps = multiline
     ? ({
         multiline: true,
-        rows: getRows(rows),
+        // to keep the same behavior as in MUI@4
+        // rows: getRows(rows),
+        minRows: getRows(rows),
         maxRows: getRows(rowsMax),
       } as const)
     : {}
@@ -155,7 +177,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   return (
     <Input
       {...rest}
-      slots={{ input: inputComponent }}
+      slots={{ input: inputComponent, textarea: Textarea }}
       slotProps={{
         root: {
           ref: divRef,
