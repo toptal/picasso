@@ -34,5 +34,10 @@ page
     'Editable state',
     'base/Avatar'
   )
+  .addExample(
+    'Avatar/story/ToptalLogo.example.tsx',
+    'Variant with Toptal logo',
+    'base/Avatar'
+  )
 
 page.connect(AvatarGroupStory.chapter)

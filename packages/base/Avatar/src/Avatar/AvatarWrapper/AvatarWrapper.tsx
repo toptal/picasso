@@ -19,13 +19,13 @@ export interface Props extends BaseProps {
   children: ReactNode
   size: Size
   variant: Variant
-  isTalent?: boolean
+  emblem?: boolean
 }
 
-const showLogo = (size: Size, isTalent?: boolean): boolean => {
+const showLogo = (size: Size, emblem?: boolean): boolean => {
   const isTooSmall = ['xsmall', 'xxsmall'].includes(size)
 
-  if (isTooSmall || !isTalent) {
+  if (isTooSmall || !emblem) {
     return false
   }
 
@@ -57,15 +57,12 @@ const AvatarWrapper = (props: Props) => {
     'data-testid': dataTestId,
     size,
     variant,
-    isTalent = false,
+    emblem = false,
   } = props
 
   return (
     <div
-      className={twJoin(
-        `flex relative`,
-        showLogo(size, isTalent) && 'bg-white'
-      )}
+      className={twJoin(`flex relative`, showLogo(size, emblem) && 'bg-white')}
     >
       <div
         style={style}
@@ -80,7 +77,7 @@ const AvatarWrapper = (props: Props) => {
         {children}
       </div>
 
-      {showLogo(size, isTalent) && <AvatarLogo size={size} />}
+      {showLogo(size, emblem) && <AvatarLogo size={size} />}
     </div>
   )
 }

@@ -20,8 +20,8 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   src?: string
   /** Variant of the avatar shape */
   variant?: 'square' | 'portrait' | 'landscape'
-  /** Displays the Toptal logo for talents */
-  isTalent?: boolean
+  /** Displays Toptal logo */
+  emblem?: boolean
   /** Callback to show edit-on-click and receive event */
   onEdit?: (event: React.MouseEvent) => void
   testIds?: {
@@ -42,7 +42,7 @@ export const Avatar = (props: Props) => {
     size,
     style,
     variant,
-    isTalent,
+    emblem,
     testIds,
     onEdit,
     'data-private': dataPrivate,
@@ -113,7 +113,7 @@ export const Avatar = (props: Props) => {
       variant={variant!}
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       size={size!}
-      isTalent={isTalent}
+      emblem={emblem}
       data-testid={testIds?.wrapper}
       {...rest}
     >
