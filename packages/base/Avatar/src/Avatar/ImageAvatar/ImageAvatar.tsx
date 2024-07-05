@@ -1,6 +1,5 @@
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import { Logo } from '@toptal/picasso-logo'
 import { Image } from '@toptal/picasso-image'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -13,34 +12,11 @@ export interface Props extends BaseProps {
   name?: string
 }
 
-type LogoProps = {
-  size: Size
-}
-
-const AvatarLogo = ({ size }: LogoProps) => {
-  const isTooSmall = ['small', 'xsmall', 'xxsmall'].includes(size)
-
-  if (isTooSmall) {
-    return null
-  }
-
-  return (
-    <div
-      className='flex absolute bottom-4 left-4'
-      role='img'
-      aria-label='photo placeholder'
-    >
-      <Logo emblem variant='white' className='w-[1.0625rem] h-6' />
-    </div>
-  )
-}
-
 const ImageAvatar = (props: Props) => {
   const {
     alt,
     className,
     name,
-    size,
     src,
     style,
     'data-testid': dataTestId,
@@ -60,7 +36,6 @@ const ImageAvatar = (props: Props) => {
         data-testid={dataTestId}
         data-private={dataPrivate}
       />
-      <AvatarLogo size={size} />
     </>
   )
 }
