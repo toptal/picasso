@@ -1,31 +1,11 @@
-import type { Size, Variant } from './AvatarWrapper'
+import type { Size } from './AvatarWrapper'
 
-export const classBySizeAndVariant: Record<Size, Record<Variant, string>> = {
-  xxsmall: {
-    square: 'w-[2em] h-[2em]',
-    portrait: 'w-[1.333333333em] h-[2em]',
-    landscape: 'w-[2em] h-[1.333333333em]',
-  },
-  xsmall: {
-    square: 'w-[2.5em] h-[2.5em]',
-    portrait: 'w-[1.666666666em] h-[2.5em]',
-    landscape: 'w-[2.5em] h-[1.666666666em]',
-  },
-  small: {
-    square: 'w-[5em] h-[5em]',
-    portrait: 'w-[3.333333333em] h-[5em]',
-    landscape: 'w-[5em] h-[3.333333333em]',
-  },
-  medium: {
-    square: 'w-[7.5em] h-[7.5em]',
-    portrait: 'w-[5em] h-[7.5em]',
-    landscape: 'w-[7.5em] h-[5em]',
-  },
-  large: {
-    square: 'w-[10em] h-[10em]',
-    portrait: 'w-[7.5em] h-[10em]',
-    landscape: 'w-[10em] h-[7.5em]',
-  },
+export const classBySize: Record<Size, string> = {
+  xxsmall: 'w-[2em] h-[2em]',
+  xsmall: 'w-[2.5em] h-[2.5em]',
+  small: 'w-[5em] h-[5em]',
+  medium: 'w-[7.5em] h-[7.5em]',
+  large: 'w-[10em] h-[10em]',
 }
 
 export const clipClassBySize: Record<Size, string> = {

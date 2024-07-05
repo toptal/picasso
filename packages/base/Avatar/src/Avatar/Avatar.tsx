@@ -18,8 +18,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   /** Photo url */
   src?: string
-  /** Variant of the avatar shape */
-  variant?: 'square' | 'portrait' | 'landscape'
   /** Displays Toptal logo */
   emblem?: boolean
   /** Callback to show edit-on-click and receive event */
@@ -41,7 +39,6 @@ export const Avatar = (props: Props) => {
     name,
     size,
     style,
-    variant,
     emblem,
     testIds,
     onEdit,
@@ -110,8 +107,6 @@ export const Avatar = (props: Props) => {
   const avatar = (
     <AvatarWrapper
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-      variant={variant!}
-      /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       size={size!}
       emblem={emblem}
       data-testid={testIds?.wrapper}
@@ -141,7 +136,6 @@ export const Avatar = (props: Props) => {
 
 Avatar.defaultProps = {
   size: 'xsmall',
-  variant: 'square',
 }
 
 Avatar.displayName = 'Avatar'

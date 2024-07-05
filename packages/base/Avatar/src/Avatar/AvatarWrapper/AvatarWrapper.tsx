@@ -5,7 +5,7 @@ import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import { Logo } from '@toptal/picasso-logo'
 
 import {
-  classBySizeAndVariant,
+  classBySize,
   clipClassBySize,
   logoClassByPadding,
   logoClassBySize,
@@ -13,12 +13,9 @@ import {
 
 export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 
-export type Variant = 'square' | 'portrait' | 'landscape'
-
 export interface Props extends BaseProps {
   children: ReactNode
   size: Size
-  variant: Variant
   emblem?: boolean
 }
 
@@ -56,7 +53,6 @@ const AvatarWrapper = (props: Props) => {
     style,
     'data-testid': dataTestId,
     size,
-    variant,
     emblem = false,
   } = props
 
@@ -69,7 +65,7 @@ const AvatarWrapper = (props: Props) => {
         data-testid={dataTestId}
         className={twMerge(
           'relative bg-gray-500 text-[1rem] shrink-0 grow-0',
-          classBySizeAndVariant[size][variant],
+          classBySize[size],
           clipClassBySize[size],
           className
         )}

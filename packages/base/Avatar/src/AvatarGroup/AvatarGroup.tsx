@@ -75,7 +75,7 @@ const AvatarGroup = ({
       )}
       {isOverLimit ? (
         /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
-        <AvatarWrapper size={size!} variant='square'>
+        <AvatarWrapper size={size!}>
           {/* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */}
           <TextAvatar data-testid={testIds?.overLimit} size={size!}>
             +{itemsOverLimit}
