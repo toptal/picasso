@@ -42,6 +42,7 @@ const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
       // eslint-disable-next-line no-inline-styles/no-inline-styles
       style={{ minWidth: '1px', minHeight: '1px' }}
       className={logoClassBySize[size]}
+      data-testid='avatar-emblem'
     />
   </div>
 )
