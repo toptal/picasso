@@ -2,6 +2,6 @@
 '@toptal/picasso-page': minor
 ---
 
-### PageTopBarMenu
+### PageTopBar, PageTopBarMenu
 
-- added `invert` property to be used with the light version of the `PageTopBar`
+- added support for `PageTopBarMenu` to be rendered in `PageTopBar` when `variant='light'`
