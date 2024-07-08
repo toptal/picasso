@@ -26,6 +26,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   avatar?: string
   /** Menu content */
   children: ReactNode
+  /** Invert text in UserBadge */
+  invert?: boolean
 }
 
 export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
@@ -37,6 +39,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       className,
       style,
       children,
+      invert = false,
       'data-private': dataPrivate,
       ...rest
     } = props
@@ -48,7 +51,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       typeof meta === 'string' ? (
         <Typography
           className={classes.truncateText}
-          invert={!isCompactLayout}
+          invert={!isCompactLayout && !invert}
           size='xsmall'
           data-private={dataPrivate}
         >
@@ -89,7 +92,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       />
     ) : (
       <UserBadge
-        invert
+        invert={!invert}
         center
         size='xxsmall'
         classes={{
@@ -122,7 +125,9 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         }}
       >
         {trigger}
-        <Dropdown.Arrow className={classes.arrow} />
+        <Dropdown.Arrow
+          className={cx(classes.arrow, { [classes.invert]: invert })}
+        />
       </Dropdown>
     )
   }
