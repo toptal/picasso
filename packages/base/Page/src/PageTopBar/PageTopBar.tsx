@@ -48,6 +48,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   }
 }
 
+export const PageTopBarContext = React.createContext<{ variant: VariantType }>({
+  variant: 'dark',
+})
+
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTopBar',
 })
@@ -125,58 +129,67 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   )
 
   return (
-    <div className={classes.wrapper}>
-      <header
-        {...rest}
-        ref={ref}
-        className={cx('mui-fixed', classes.root, classes[variant], className, {
-          [classes.preventPageWidthChangeOnScrollbar]:
-            preventPageWidthChangeOnScrollbar,
-        })}
-        style={style}
-      >
-        <div className={innerClassName}>
-          {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
-          <div className={classes.left}>
-            <Container flex alignItems='center' gap='small'>
-              <PageHamburger
-                id={hamburgerId}
-                data-testid={testIds?.hamburger}
-              />
-              {logoLink
-                ? React.cloneElement(logoLink, {}, logoComponent)
-                : logoComponent}
-              {titleComponent}
-            </Container>
-            {leftContent}
-          </div>
-
-          {/* Center part: inline menu */}
-          {centerContent && (
-            <>
-              <PageHamburgerPortal>
-                <div className={classes.centerContentPortal}>
-                  {centerContent}
-                </div>
-              </PageHamburgerPortal>
-              <Container
-                flex
-                alignItems='center'
-                className={classes.centerContent}
-              >
-                {centerContent}
-              </Container>
-            </>
+    <PageTopBarContext.Provider value={{ variant }}>
+      <div className={classes.wrapper}>
+        <header
+          {...rest}
+          ref={ref}
+          className={cx(
+            'mui-fixed',
+            classes.root,
+            classes[variant],
+            className,
+            {
+              [classes.preventPageWidthChangeOnScrollbar]:
+                preventPageWidthChangeOnScrollbar,
+            }
           )}
+          style={style}
+        >
+          <div className={innerClassName}>
+            {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
+            <div className={classes.left}>
+              <Container flex alignItems='center' gap='small'>
+                <PageHamburger
+                  id={hamburgerId}
+                  data-testid={testIds?.hamburger}
+                />
+                {logoLink
+                  ? React.cloneElement(logoLink, {}, logoComponent)
+                  : logoComponent}
+                {titleComponent}
+              </Container>
+              {leftContent}
+            </div>
 
-          {/* Right part: Action items, User menu, Notifications */}
-          <div className={classes.right}>
-            {actionItems}
-            {rightContent}
+            {/* Center part: inline menu */}
+            {centerContent && (
+              <>
+                <PageHamburgerPortal>
+                  <div className={classes.centerContentPortal}>
+                    {centerContent}
+                  </div>
+                </PageHamburgerPortal>
+                <Container
+                  flex
+                  alignItems='center'
+                  className={classes.centerContent}
+                >
+                  {centerContent}
+                </Container>
+              </>
+            )}
+
+            {/* Right part: Action items, User menu, Notifications */}
+
+            <div className={classes.right}>
+              {actionItems}
+              {rightContent}
+            </div>
           </div>
-        </div>
-      </header>
-    </div>
+        </header>
+      </div>
+    </PageTopBarContext.Provider>
   )
 })
 
