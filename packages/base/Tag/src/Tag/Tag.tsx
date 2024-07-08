@@ -40,6 +40,33 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   endAdornment?: ReactNode
 }
 
+type IconProps = {
+  className?: string
+  color?: string
+}
+
+const DeleteIcon = ({ onClick }: { onClick: (event: MouseEvent) => void }) => (
+  <span
+    aria-label='delete icon'
+    role='button'
+    className='w-min h-min flex items-center cursor-pointer -ml-2 mr-2'
+    onClick={onClick}
+  >
+    <CloseMinor16 />
+  </span>
+)
+
+const cloneIcon = (icon: ReactElement<IconProps>, disabled?: boolean) => {
+  if (!icon || !React.isValidElement(icon)) {
+    return null
+  }
+
+  return React.cloneElement(icon, {
+    color: disabled ? 'grey' : icon.props.color || 'darkGrey',
+    className: twMerge('flex items-center -mr-1 ml-3', icon.props.className),
+  })
+}
+
 export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
   const {
     as: Root = 'div',
@@ -56,14 +83,12 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     role,
     ...rest
   } = props
+
   const titleCase = useTitleCase(propsTitleCase)
+  const isInteractive = onDelete || onClick
 
   const handleDelete = (event: MouseEvent) => {
-    if (disabled) {
-      return
-    }
-
-    if (onDelete) {
+    if (!disabled && onDelete) {
       event.preventDefault()
 
       /**
@@ -72,44 +97,31 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
        * options list.
        */
       event.stopPropagation()
-
       onDelete()
     }
   }
 
-  let iconCloned = null
-
-  if (icon && React.isValidElement(icon)) {
-    iconCloned = React.cloneElement(icon as ReactElement<BaseProps>, {
-      className: twMerge(
-        'flex items-center -mr-1 ml-3',
-        disabled ? 'text-gray-500' : 'text-graphite-700',
-        (icon.props as BaseProps).className
-      ),
-    })
-  }
+  const clonedIcon = cloneIcon(icon as ReactElement<IconProps>, disabled)
 
   return (
     <Root
-      role={role || (onDelete || onClick ? 'button' : undefined)}
+      role={role || (isInteractive ? 'button' : undefined)}
       aria-disabled={disabled}
       ref={ref}
       className={twMerge(
         `text-lg transition-none border border-solid rounded-[6.25rem]
-          h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
-          group align-middle`,
-        'leading-[inherit]',
+        h-6 max-w-full inline-flex justify-center items-center cursor-default bg-white
+        group align-middle leading-[inherit]`,
         classByVariant[variant],
         className,
         disabled && 'text-gray-500 border-gray-200 pointer-events-none'
       )}
       style={style}
       onClick={onClick}
-      tabIndex={onDelete || onClick ? 0 : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
       {...rest}
     >
-      {iconCloned}
-
+      {clonedIcon}
       <span className='flex gap-2 px-3 overflow-hidden items-center'>
         <Typography
           size='xsmall'
@@ -122,20 +134,9 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
         >
           {children}
         </Typography>
-
         {endAdornment}
       </span>
-
-      {onDelete && (
-        <span
-          aria-label='delete icon'
-          role='button'
-          className='w-min h-min flex items-center cursor-pointer -ml-2 mr-2'
-          onClick={handleDelete}
-        >
-          <CloseMinor16 />
-        </span>
-      )}
+      {onDelete && <DeleteIcon onClick={handleDelete} />}
     </Root>
   )
 })
