@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { forwardRef } from 'react'
+import React, { useContext, forwardRef } from 'react'
 import cx from 'classnames'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -12,6 +12,7 @@ import { Typography } from '@toptal/picasso-typography'
 import { DropdownCompound as Dropdown } from '@toptal/picasso-dropdown'
 
 import styles from './styles'
+import { PageTopBarContext } from '../PageTopBar'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoTopBarMenu',
@@ -26,8 +27,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   avatar?: string
   /** Menu content */
   children: ReactNode
-  /** Invert text in UserBadge */
-  invert?: boolean
 }
 
 export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
@@ -39,11 +38,13 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       className,
       style,
       children,
-      invert = false,
       'data-private': dataPrivate,
       ...rest
     } = props
     const classes = useStyles()
+
+    const { variant } = useContext(PageTopBarContext)
+    const invert = variant === 'light'
 
     const isCompactLayout = useBreakpoint(['xs', 'sm', 'md'])
 

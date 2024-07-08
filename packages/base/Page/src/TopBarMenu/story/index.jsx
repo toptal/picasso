@@ -29,11 +29,6 @@ const chapter = PicassoBook.connectToPage(page =>
       'TopBar Menu with Sidebar',
       'base/Page'
     )
-    .addExample(
-      'TopBarMenu/story/Inverted.example.tsx',
-      'Inverted TopBar Menu',
-      'base/Page'
-    )
 )
 
 export default {
