@@ -1,5 +1,12 @@
 # @toptal/picasso-avatar
 
+## 3.0.0
+
+### Major Changes
+
+- [#4385](https://github.com/toptal/picasso/pull/4385) [`1c99af999c8a242e1035a5416a5d63411a0abaf2`](https://github.com/toptal/picasso/commit/1c99af999c8a242e1035a5416a5d63411a0abaf2) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate `Avatar` to `TailwindCSS`
+
 ## 2.0.6
 
 ### Patch Changes

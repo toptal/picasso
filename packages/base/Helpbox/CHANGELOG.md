@@ -1,5 +1,13 @@
 # @toptal/picasso-helpbox
 
+## 3.0.0
+
+### Major Changes
+
+- [#4398](https://github.com/toptal/picasso/pull/4398) [`5acb05fa9a9d779d25585263240d77fd642be622`](https://github.com/toptal/picasso/commit/5acb05fa9a9d779d25585263240d77fd642be622) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate from material-ui to TailwindCSS
+  - make "@toptal/picasso-tailwind-merge": "^1.1.1" a peer dependency
+
 ## 2.0.9
 
 ### Patch Changes

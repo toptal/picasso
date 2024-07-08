@@ -1,5 +1,26 @@
 # Change Log
 
+## 46.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`337d17a`](https://github.com/toptal/picasso/commit/337d17a31cf871c7ef5c7f9241d50b632a8738a7), [`1c99af9`](https://github.com/toptal/picasso/commit/1c99af999c8a242e1035a5416a5d63411a0abaf2), [`8b1aa26`](https://github.com/toptal/picasso/commit/8b1aa267dd0797cb5a9b24ce3052af8d68a85d53), [`423ceac`](https://github.com/toptal/picasso/commit/423ceac1737a27c11f1794fc09ccf727a26dfea6), [`5acb05f`](https://github.com/toptal/picasso/commit/5acb05fa9a9d779d25585263240d77fd642be622)]:
+  - @toptal/picasso-page@2.1.0
+  - @toptal/picasso-avatar@3.0.0
+  - @toptal/picasso-alert@2.0.0
+  - @toptal/picasso-date-picker@1.1.0
+  - @toptal/picasso-calendar@1.1.0
+  - @toptal/picasso-helpbox@3.0.0
+  - @toptal/picasso-avatar-upload@1.0.25
+  - @toptal/picasso-menu@1.0.16
+  - @toptal/picasso-user-badge@2.0.7
+  - @toptal/picasso-account-select@1.0.16
+  - @toptal/picasso-autocomplete@1.0.29
+  - @toptal/picasso-select@1.0.29
+  - @toptal/picasso-tabs@2.0.8
+  - @toptal/picasso-tagselector@1.0.32
+  - @toptal/picasso-date-select@1.0.29
+
 ## 46.0.12
 
 ### Patch Changes
