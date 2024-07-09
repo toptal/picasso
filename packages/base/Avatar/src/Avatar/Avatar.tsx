@@ -19,7 +19,7 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   /** Photo url */
   src?: string
   /** Displays Toptal logo */
-  emblem?: boolean
+  showEmblem?: boolean
   /** Callback to show edit-on-click and receive event */
   onEdit?: (event: React.MouseEvent) => void
   testIds?: {
@@ -39,7 +39,7 @@ export const Avatar = (props: Props) => {
     name,
     size,
     style,
-    emblem,
+    showEmblem,
     testIds,
     onEdit,
     'data-private': dataPrivate,
@@ -108,7 +108,7 @@ export const Avatar = (props: Props) => {
     <AvatarWrapper
       /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
       size={size!}
-      emblem={emblem}
+      showEmblem={showEmblem}
       data-testid={testIds?.wrapper}
       {...rest}
     >

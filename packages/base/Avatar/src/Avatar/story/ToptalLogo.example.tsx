@@ -5,19 +5,19 @@ import { SPACING_4 } from '@toptal/picasso-utils'
 const Example = () => (
   <div>
     <Container inline>
-      <Avatar size='xxsmall' emblem />
+      <Avatar size='xxsmall' showEmblem />
     </Container>
 
     <Container inline left={SPACING_4}>
-      <Avatar size='xsmall' emblem />
+      <Avatar size='xsmall' showEmblem />
     </Container>
 
     <Container inline left={SPACING_4}>
-      <Avatar size='small' emblem />
+      <Avatar size='small' showEmblem />
     </Container>
 
     <Container inline left={SPACING_4}>
-      <Avatar size='medium' name='Jacqueline Roque' emblem />
+      <Avatar size='medium' name='Jacqueline Roque' showEmblem />
     </Container>
 
     <Container inline left={SPACING_4}>
@@ -26,7 +26,7 @@ const Example = () => (
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         name='Jacqueline Roque'
         src='./jacqueline-with-flowers-1954-square.jpg'
-        emblem
+        showEmblem
       />
     </Container>
   </div>

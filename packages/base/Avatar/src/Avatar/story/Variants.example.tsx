@@ -24,7 +24,7 @@ const Example = () => (
         alt='Jacqueline Roque. Pablo Picasso, 1954'
         name='Jacqueline Roque'
         src='./jacqueline-with-flowers-1954-square.jpg'
-        emblem
+        showEmblem
       />
     </Container>
   </div>

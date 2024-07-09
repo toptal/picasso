@@ -22,7 +22,7 @@ export interface Props extends Omit<BaseProps, 'data-testid'> {
   /** Size */
   size?: SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
   /** Displays Toptal logo */
-  emblem?: boolean
+  showEmblem?: boolean
   /** data-testid to all parts of component */
   testIds?: {
     container?: string
@@ -37,7 +37,7 @@ const AvatarGroup = ({
   items,
   limit,
   size,
-  emblem = false,
+  showEmblem = false,
 }: Props) => {
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
   const isOverLimit = items.length > limit!
@@ -71,7 +71,7 @@ const AvatarGroup = ({
             name={name}
             /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
             size={size!}
-            emblem={emblem}
+            showEmblem={showEmblem}
             src={src}
             data-testid={avatarTestId}
           />

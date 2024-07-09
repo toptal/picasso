@@ -11,13 +11,13 @@ export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 export interface Props extends BaseProps {
   children: ReactNode
   size: Size
-  emblem?: boolean
+  showEmblem?: boolean
 }
 
-const showLogo = (size: Size, emblem?: boolean): boolean => {
+const showLogo = (size: Size, showEmblem?: boolean): boolean => {
   const isTooSmall = ['xsmall', 'xxsmall'].includes(size)
 
-  if (isTooSmall || !emblem) {
+  if (isTooSmall || !showEmblem) {
     return false
   }
 
@@ -51,12 +51,15 @@ const AvatarWrapper = (props: Props) => {
     style,
     'data-testid': dataTestId,
     size,
-    emblem = false,
+    showEmblem = false,
   } = props
 
   return (
     <div
-      className={twJoin(`flex relative`, showLogo(size, emblem) && 'bg-white')}
+      className={twJoin(
+        `flex relative`,
+        showLogo(size, showEmblem) && 'bg-white'
+      )}
     >
       <div
         style={style}
@@ -71,7 +74,7 @@ const AvatarWrapper = (props: Props) => {
         {children}
       </div>
 
-      {showLogo(size, emblem) && <AvatarLogo size={size} />}
+      {showLogo(size, showEmblem) && <AvatarLogo size={size} />}
     </div>
   )
 }
