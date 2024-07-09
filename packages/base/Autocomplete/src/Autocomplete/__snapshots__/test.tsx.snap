@@ -243,6 +243,7 @@ exports[`Autocomplete static behavior renders 1`] = `
         >
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
             data-testid="autocomplete"
@@ -620,6 +621,7 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
 exports[`Autocomplete static behavior uses a custom popper container 1`] = `
 <input
   aria-autocomplete="list"
+  aria-invalid="false"
   autocomplete="off"
   class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
   data-testid="autocomplete"

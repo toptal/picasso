@@ -50,6 +50,7 @@ exports[`TagSelector disabled render 1`] = `
           </div>
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="base-Input base- [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-gray [&::-webkit-text-fill-color]:text-gray [&::placeholder]:text-gray [&::placeholder]:opacity-100"
             disabled=""
@@ -116,6 +117,7 @@ exports[`TagSelector preselected value 1`] = `
             </div>
             <input
               aria-autocomplete="list"
+              aria-invalid="false"
               autocomplete="off"
               class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
               type="text"
@@ -151,6 +153,7 @@ exports[`TagSelector renders 1`] = `
         >
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
             placeholder="Please select..."

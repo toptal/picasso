@@ -19,6 +19,7 @@ exports[`PageAutocomplete renders 1`] = `
         >
           <input
             aria-autocomplete="list"
+            aria-invalid="false"
             autocomplete="off"
             class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-white [&::placeholder]:text-white [&::placeholder]:opacity-[0.64]"
             data-testid="autocomplete"
