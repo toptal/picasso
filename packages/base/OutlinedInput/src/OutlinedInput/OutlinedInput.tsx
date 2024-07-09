@@ -192,6 +192,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
             inputProps?.className
           ),
           type,
+          'aria-invalid': isError,
         },
       }}
       style={style}
