@@ -4,12 +4,7 @@ import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import { Logo } from '@toptal/picasso-logo'
 
-import {
-  classBySize,
-  clipClassBySize,
-  logoClassByPadding,
-  logoClassBySize,
-} from './styles'
+import { AvatarLogoClassesBySize, classBySize, clipClassBySize } from './styles'
 
 export type Size = SizeType<'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'>
 
@@ -31,7 +26,10 @@ const showLogo = (size: Size, emblem?: boolean): boolean => {
 
 const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
   <div
-    className={twJoin('flex absolute bottom-0', logoClassByPadding[size])}
+    className={twJoin(
+      'flex absolute bottom-0',
+      AvatarLogoClassesBySize.root[size]
+    )}
     role='img'
     aria-label='photo placeholder'
   >
@@ -41,8 +39,7 @@ const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
       // Necessary to decrease the default minWeight and minHeight so that the new width and height could apply
       // eslint-disable-next-line no-inline-styles/no-inline-styles
       style={{ minWidth: '1px', minHeight: '1px' }}
-      className={logoClassBySize[size]}
-      data-testid='avatar-emblem'
+      className={AvatarLogoClassesBySize.logo[size]}
     />
   </div>
 )

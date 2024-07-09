@@ -21,18 +21,19 @@ export const clipClassBySize: Record<Size, string> = {
     '[clip-path:polygon(0_0,_100%_0,_100%_100%,_1.5em_100%,_0_calc(100%-1.5em))]',
 }
 
-export const logoClassBySize: Record<Size, string> = {
-  xxsmall: '',
-  xsmall: '',
-  small: 'w-[5.7px] h-[8px]',
-  medium: 'w-[8.54px] h-[12px]',
-  large: 'w-[7.12px] h-[10px]',
-}
-
-export const logoClassByPadding: Record<Size, string> = {
-  xxsmall: '',
-  xsmall: '',
-  small: 'pl-[1px] pb-[1px]',
-  medium: 'pl-[2px] pb-[2px]',
-  large: 'pl-[3px] pb-[3px]',
+export const AvatarLogoClassesBySize: Record<string, Record<Size, string>> = {
+  root: {
+    xxsmall: '',
+    xsmall: '',
+    small: 'pl-[1px] pb-[1px]',
+    medium: 'pl-[2px] pb-[2px]',
+    large: 'pl-[3px] pb-[3px]',
+  },
+  logo: {
+    xxsmall: '',
+    xsmall: '',
+    small: 'w-[5.7px] h-[8px]',
+    medium: 'w-[8.54px] h-[12px]',
+    large: 'w-[7.12px] h-[10px]',
+  },
 }
