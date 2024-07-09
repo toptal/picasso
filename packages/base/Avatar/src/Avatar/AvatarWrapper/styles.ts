@@ -21,7 +21,7 @@ export const clipClassBySize: Record<Size, string> = {
     '[clip-path:polygon(0_0,_100%_0,_100%_100%,_1.5em_100%,_0_calc(100%-1.5em))]',
 }
 
-export const AvatarLogoClassesBySize: Record<string, Record<Size, string>> = {
+export const avatarLogoClassesBySize: Record<string, Record<Size, string>> = {
   root: {
     xxsmall: '',
     xsmall: '',

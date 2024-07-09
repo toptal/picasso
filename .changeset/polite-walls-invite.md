@@ -1,6 +1,9 @@
 ---
 '@toptal/picasso-avatar': major
+'@toptal/picasso': patch
 ---
+
+### Avatar, AvatarGroup
 
 - add `emblem` prop to Avatar and AvatarGroup to enable display of Toptal logo
 - remove `variant` prop because we no longer display avatar as `portrait` or `landscape`
