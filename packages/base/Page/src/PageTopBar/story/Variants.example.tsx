@@ -49,6 +49,32 @@ const Example = () => (
         }
       />
     </Container>
+
+    <Container style={{ position: 'relative', height: '6rem' }}>
+      <Page hamburgerId='hamburger-default-example'>
+        <Page.TopBar
+          variant='light'
+          title='Light with menu'
+          actionItems={
+            <Container right={SPACING_6}>
+              <Button variant='primary'>Create job</Button>
+            </Container>
+          }
+          rightContent={
+            <Page.TopBarMenu
+              name='Jacqueline Roque'
+              meta='Developer'
+              avatar='./jacqueline-with-flowers-1954-square.jpg'
+            >
+              <Menu>
+                <Menu.Item>My Account</Menu.Item>
+                <Menu.Item>Log Out</Menu.Item>
+              </Menu>
+            </Page.TopBarMenu>
+          }
+        />
+      </Page>
+    </Container>
   </div>
 )
 
