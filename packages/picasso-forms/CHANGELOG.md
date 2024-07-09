@@ -1,5 +1,17 @@
 # Change Log
 
+## 70.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`423ceac`](https://github.com/toptal/picasso/commit/423ceac1737a27c11f1794fc09ccf727a26dfea6)]:
+  - @toptal/picasso-date-picker@1.1.0
+  - @toptal/picasso-avatar-upload@1.0.25
+  - @toptal/picasso-autocomplete@1.0.29
+  - @toptal/picasso-select@1.0.29
+  - @toptal/picasso-tagselector@1.0.32
+  - @toptal/picasso-rich-text-editor@13.0.15
+
 ## 70.0.9
 
 ### Patch Changes
