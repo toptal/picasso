@@ -1,5 +1,20 @@
 # @toptal/picasso-date-picker
 
+## 1.1.0
+
+### Minor Changes
+
+- [#4396](https://github.com/toptal/picasso/pull/4396) [`423ceac1737a27c11f1794fc09ccf727a26dfea6`](https://github.com/toptal/picasso/commit/423ceac1737a27c11f1794fc09ccf727a26dfea6) Thanks [@mkrl](https://github.com/mkrl)!
+
+### DatePicker, Calendar
+
+- add `dropdownNavigation` to enable alternative navigation between months and years
+
+### Patch Changes
+
+- Updated dependencies [[`423ceac`](https://github.com/toptal/picasso/commit/423ceac1737a27c11f1794fc09ccf727a26dfea6)]:
+  - @toptal/picasso-calendar@1.1.0
+
 ## 1.0.25
 
 ### Patch Changes

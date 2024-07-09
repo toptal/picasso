@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-alert",
-  "version": "1.0.23",
+  "version": "2.0.0",
   "description": "Toptal UI components library - Alert",
   "publishConfig": {
     "access": "public"

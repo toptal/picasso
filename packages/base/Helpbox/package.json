@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-helpbox",
-  "version": "2.0.9",
+  "version": "3.0.0",
   "description": "Toptal UI components library - Helpbox",
   "publishConfig": {
     "access": "public"

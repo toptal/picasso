@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-menu",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Toptal UI components library - Menu",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-avatar": "2.0.6",
+    "@toptal/picasso-avatar": "3.0.0",
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-icons": "1.4.0",
     "@toptal/picasso-link": "1.0.3",
