@@ -1,5 +1,23 @@
 # @toptal/picasso-page
 
+## 2.1.0
+
+### Minor Changes
+
+- [#4403](https://github.com/toptal/picasso/pull/4403) [`337d17a31cf871c7ef5c7f9241d50b632a8738a7`](https://github.com/toptal/picasso/commit/337d17a31cf871c7ef5c7f9241d50b632a8738a7) Thanks [@mkrl](https://github.com/mkrl)!
+
+### PageTopBar, PageTopBarMenu
+
+- added support for `PageTopBarMenu` to be rendered in `PageTopBar` when `variant='light'`
+
+### Patch Changes
+
+- Updated dependencies [[`1c99af9`](https://github.com/toptal/picasso/commit/1c99af999c8a242e1035a5416a5d63411a0abaf2)]:
+  - @toptal/picasso-avatar@3.0.0
+  - @toptal/picasso-menu@1.0.16
+  - @toptal/picasso-user-badge@2.0.7
+  - @toptal/picasso-autocomplete@1.0.29
+
 ## 2.0.23
 
 ### Patch Changes

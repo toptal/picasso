@@ -120,6 +120,8 @@ export interface Props
   highlight?: 'autofill'
   /** Display more than one month at the same time */
   numberOfMonths?: CalendarMonthsAmount
+  /** Display dropdown navigation between months and years (requires minDate and maxDate to be set) */
+  dropdownNavigation?: boolean
 }
 
 export const DatePicker = (props: Props) => {
@@ -153,6 +155,7 @@ export const DatePicker = (props: Props) => {
     footerBackgroundColor,
     highlight,
     numberOfMonths = 1,
+    dropdownNavigation,
     ...rest
   } = props
   const classes = useStyles()
@@ -465,6 +468,7 @@ export const DatePicker = (props: Props) => {
                 hasFooter={Boolean(footer)}
                 weekStartsOn={weekStartsOn}
                 numberOfMonths={numberOfMonths}
+                dropdownNavigation={dropdownNavigation}
               />
               {footer && (
                 <div

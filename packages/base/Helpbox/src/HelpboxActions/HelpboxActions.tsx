@@ -1,12 +1,9 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, useContext } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import type { HelpboxContextProps } from '../Helpbox/types'
 import HelpboxContext from '../Helpbox/HelpboxContext'
 
@@ -15,15 +12,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoHelpboxActions',
-})
-
 export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
   function HelpboxActions(props, ref) {
     const { className, style, children, ...rest } = props
-
-    const classes = useStyles()
 
     const { closeable }: HelpboxContextProps =
       useContext<HelpboxContextProps>(HelpboxContext)
@@ -32,11 +23,9 @@ export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
       <Container
         {...rest}
         ref={ref}
-        className={cx(
-          classes.root,
-          {
-            [classes.rootCloseable]: closeable,
-          },
+        className={twMerge(
+          'absolute right-6 top-6',
+          closeable && 'right-[4rem]',
           className
         )}
         style={style}

@@ -4,6 +4,7 @@
   "include": ["src"],
   "references": [
     { "path": "../../picasso-provider" },
+    { "path": "../../picasso-tailwind" },
     { "path": "../Button" },
     { "path": "../Container" },
     { "path": "../Icons" },

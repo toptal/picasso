@@ -173,3 +173,13 @@ page
     },
     'base/DatePicker'
   )
+  .addExample(
+    'DatePicker/story/DropdownNav.example.tsx',
+    {
+      title: 'Dropdown Navigation',
+      description:
+        'Display an alternative navigation for the calendar, using dropdowns for month and year selection',
+      takeScreenshot: false,
+    },
+    'base/DatePicker'
+  )
