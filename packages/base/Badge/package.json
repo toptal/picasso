@@ -5,8 +5,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist-package/src/index.js",
-  "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
     "prepublishOnly": "yarn build:package"
