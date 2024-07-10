@@ -133,7 +133,7 @@ exports[`Tag renders with connection and icon 1`] = `
       data-testid="tag"
     >
       <svg
-        class="PicassoSvgSettings16-root flex items-center -mr ml-3 text-graphite"
+        class="PicassoSvgSettings16-root flex items-center -mr ml-3 PicassoSvgSettings16-darkGrey"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
