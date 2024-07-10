@@ -56,8 +56,8 @@ const DeleteIcon = ({ onClick }: { onClick: (event: MouseEvent) => void }) => (
   </span>
 )
 
-const cloneIcon = (icon: ReactElement<IconProps>, disabled?: boolean) => {
-  if (!icon || !React.isValidElement(icon)) {
+const cloneIcon = (icon: ReactNode, disabled?: boolean) => {
+  if (!icon || !React.isValidElement<IconProps>(icon)) {
     return null
   }
 
@@ -101,7 +101,7 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     }
   }
 
-  const clonedIcon = cloneIcon(icon as ReactElement<IconProps>, disabled)
+  const clonedIcon = cloneIcon(icon, disabled)
 
   return (
     <Root
