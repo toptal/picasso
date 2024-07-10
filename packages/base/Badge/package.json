@@ -5,10 +5,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist-package/src/index.js",
-  "module": "./dist-package/src/index.js",
+  "main": "./dist-package/cjs/src/index.js",
+  "module": "./dist-package/es/src/index.mjs",
+  "exports": {
+    "import": {
+      "types": "./dist-package/es/src/index.d.ts",
+      "default": "./dist-package/es/src/index.mjs"
+    },
+    "require": {
+      "types": "./dist-package/cjs/src/index.d.cts",
+      "default": "./dist-package/cjs/src/index.cjs"
+    }
+  },
+  "types": "./dist-package/cjs/index.d.ts",
   "scripts": {
-    "build:package": "tsc -b tsconfig.json",
+    "build:package": "bunchee",
     "prepublishOnly": "yarn build:package"
   },
   "repository": {
@@ -33,9 +44,6 @@
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "react": ">=16.12.0 < 19.0.0"
-  },
-  "exports": {
-    ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
     "@toptal/picasso-test-utils": "1.1.1"
