@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.5.0
+
+### Minor Changes
+
+- [#4408](https://github.com/toptal/picasso/pull/4408) [`cd00880`](https://github.com/toptal/picasso/commit/cd008802e9701bb6574b3354f9d6e95c6ffc61ed) Thanks [@diogolessa](https://github.com/diogolessa)!
+- add Send16 and Send24 icons
+
 ## 1.4.0
 
 ### Minor Changes

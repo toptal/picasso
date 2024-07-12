@@ -1,5 +1,17 @@
 # @toptal/picasso-tag
 
+## 2.0.6
+
+### Patch Changes
+
+- [#4399](https://github.com/toptal/picasso/pull/4399) [`3b4fc59`](https://github.com/toptal/picasso/commit/3b4fc5959cadc90c6d4376b50c8d14791921c5d4) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Tag
+
+- allow to customize the color of an icon
+- Updated dependencies [[`cd00880`](https://github.com/toptal/picasso/commit/cd008802e9701bb6574b3354f9d6e95c6ffc61ed)]:
+  - @toptal/picasso-icons@1.5.0
+
 ## 2.0.5
 
 ### Patch Changes
