@@ -78,6 +78,7 @@ export const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
   acc[`${snakeToCamelCase(spacingKey)}Padding`] = {
     // padding: spacingToRem(spacings[spacingKey] as PicassoSpacing),
     padding: `p-[${spacingToRem(spacings[spacingKey] as PicassoSpacing)}]`,
+    // p-2
   }
 
   return acc
@@ -85,24 +86,6 @@ export const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
 
 console.log('basePaddings', basePaddings);
 
-export const gaps = spacingVariants.reduce((acc, variant) => {
-  acc[`${variant}Gap`] = {
-    // gap: spacingToRem(variant as DeprecatedSpacingType),
-    gap: `gap-[${spacingToRem(variant as DeprecatedSpacingType)}]`,
-  }
-
-  return acc
-}, Object.create(null))
-
-console.log('Gaps', gaps);
-
-const baseGaps = Object.keys(spacings).reduce((acc, spacingKey) => {
-  acc[`${snakeToCamelCase(spacingKey)}Gap`] = {
-    gap: spacingToRem(spacings[spacingKey] as PicassoSpacing),
-  }
-
-  return acc
-}, Object.create(null))
 
 const marginClassDef = (direction: Direction, spacing: Spacing) => ({
   [`margin${capitalize(direction)}`]: spacingToRem(spacing),
@@ -244,6 +227,4 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
     ...alignItems,
     ...justifyContent,
     ...textAlignItems,
-    ...gaps,
-    ...baseGaps,
   })

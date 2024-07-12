@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals'
 import {
   SPACING_1,
   SPACING_2,
@@ -23,23 +24,16 @@ describe('getBaseSpacingClasses', () => {
           randomProperty: SPACING_6,
         },
         {
-          spacing1Gap: 'spacing1Gap-class',
-          spacing2Padding: 'spacing2Padding-class',
-          topSpacing3Margin: 'topSpacing3Margin-class',
-          rightSpacing4Margin: 'rightSpacing4Margin-class',
-          bottomSpacing6Margin: 'bottomSpacing6Margin-class',
-          leftSpacing8Margin: 'leftSpacing8Margin-class',
+          spacing1Gap: 'gap-1',
+          spacing2Padding: 'p-2',
+          topSpacing3Margin: 'mt-3',
+          rightSpacing4Margin: 'mr-4',
+          bottomSpacing6Margin: 'mb-6',
+          leftSpacing8Margin: 'ml-8',
         }
       )
 
-      expect(result).toEqual([
-        'spacing2Padding-class',
-        'spacing1Gap-class',
-        'topSpacing3Margin-class',
-        'rightSpacing4Margin-class',
-        'bottomSpacing6Margin-class',
-        'leftSpacing8Margin-class',
-      ])
+      expect(result).toEqual(['p-2', 'gap-1', 'mt-3', 'mr-4', 'mb-6', 'ml-8'])
     })
   })
 })

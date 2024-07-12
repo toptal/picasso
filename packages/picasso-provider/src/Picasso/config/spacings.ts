@@ -36,26 +36,28 @@ export enum SpacingEnum {
   xlarge = 2.5,
 }
 
+type spacingToken = 0 | 1 | 2 | 3 | 4 | 6 | 8 | 10 | 12
+
 class PicassoSpacing {
   #value: PicassoSpacingValues
   /**
    * Corresponds to token index in https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing
    */
-  baseTokenIndex: number
+  baseTokenIndex: spacingToken
 
-  private constructor(value: PicassoSpacingValues, index: number) {
+  private constructor(value: PicassoSpacingValues, index: spacingToken) {
     this.#value = value
     this.baseTokenIndex = index
   }
 
-  static create(value: PicassoSpacingValues, index: number): PicassoSpacing {
+  static create(value: PicassoSpacingValues, index: spacingToken ): PicassoSpacing {
     return new PicassoSpacing(value, index)
   }
 
   /**
    * @deprecated [FX-4713] Use "baseTokenIndex" property directly
    */
-  indexOf(): number {
+  indexOf(): spacingToken {
     return this.baseTokenIndex
   }
 
