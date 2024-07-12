@@ -1,8 +1,6 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
-import type { Color } from '@material-ui/core';
 import { capitalize } from '@material-ui/core'
-import type { SimplePaletteColorOptions } from '@material-ui/core/styles/createPalette'
 import {
   spacingToRem,
   type DeprecatedSpacingType,
@@ -52,16 +50,6 @@ export type AlignItemsType = (typeof alignItemsVariants)[number]
 export type JustifyContentType = (typeof justifyContentVariants)[number]
 type MapOfClasses = Record<string, Record<string, string>>
 
-const colorVariant = (colorOptions?: SimplePaletteColorOptions | Color) => {
-  if (!colorOptions) {
-    return {}
-  }
-
-  return {
-    backgroundColor: colorOptions.lighter2 ?? colorOptions.lighter,
-  }
-}
-
 const directionVariants = ['top', 'left', 'bottom', 'right'] as const
 
 const spacingVariants = [
@@ -75,29 +63,38 @@ const spacingVariants = [
 type Direction = (typeof directionVariants)[number]
 type Spacing = (typeof spacingVariants)[number]
 
-const paddings = spacingVariants.reduce((acc, variant) => {
+export const paddings = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Padding`] = {
-    padding: spacingToRem(variant as DeprecatedSpacingType),
+    // padding: spacingToRem(variant as DeprecatedSpacingType),
+    padding: `p-[${spacingToRem(variant as DeprecatedSpacingType)}]`,
   }
 
   return acc
 }, Object.create(null))
 
-const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
+console.log('Paddings', paddings);
+
+export const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
   acc[`${snakeToCamelCase(spacingKey)}Padding`] = {
-    padding: spacingToRem(spacings[spacingKey] as PicassoSpacing),
+    // padding: spacingToRem(spacings[spacingKey] as PicassoSpacing),
+    padding: `p-[${spacingToRem(spacings[spacingKey] as PicassoSpacing)}]`,
   }
 
   return acc
 }, Object.create(null))
 
-const gaps = spacingVariants.reduce((acc, variant) => {
+console.log('basePaddings', basePaddings);
+
+export const gaps = spacingVariants.reduce((acc, variant) => {
   acc[`${variant}Gap`] = {
-    gap: spacingToRem(variant as DeprecatedSpacingType),
+    // gap: spacingToRem(variant as DeprecatedSpacingType),
+    gap: `gap-[${spacingToRem(variant as DeprecatedSpacingType)}]`,
   }
 
   return acc
 }, Object.create(null))
+
+console.log('Gaps', gaps);
 
 const baseGaps = Object.keys(spacings).reduce((acc, spacingKey) => {
   acc[`${snakeToCamelCase(spacingKey)}Gap`] = {
@@ -138,6 +135,13 @@ const margins: MapOfClasses = {
   ...marginClasses('right'),
 }
 
+// const bottom = 'large'
+
+// console.log(margins);
+// console.log(margins[`bottom${bottom}Margin`]);
+
+
+
 const baseMargins: MapOfClasses = {
   ...baseMarginClasses('top'),
   ...baseMarginClasses('left'),
@@ -168,6 +172,22 @@ justifyContentVariants.forEach(variant => {
     justifyContent: variant,
   }
 })
+
+export const variantClassesByColor: Record<VariantType, string> = {
+  white: 'bg-white',
+  red: 'bg-red-100',
+  green: 'bg-green-100',
+  yellow: 'bg-yellow-100',
+  blue: 'bg-blue-100',
+  grey: 'bg-gray-200',
+  transparent: '',
+}
+
+export const flexClassesByDirection: Record<string, string> = {
+  column: 'flex-col',
+  rowReverse: 'flex-row-reverse',
+  columnReverse: 'flex-col-reverse',
+}
 
 export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
@@ -207,15 +227,15 @@ export default ({ palette, sizes: { borderRadius } }: Theme) =>
       backgroundColor: palette.common.white,
     },
 
-    redVariant: colorVariant(palette.red),
+    // redVariant: colorVariant(palette.red),
 
-    greenVariant: colorVariant(palette.green),
+    // greenVariant: colorVariant(palette.green),
 
-    yellowVariant: colorVariant(palette.yellow),
+    // yellowVariant: colorVariant(palette.yellow),
 
-    blueVariant: colorVariant(palette.blue),
+    // blueVariant: colorVariant(palette.blue),
 
-    greyVariant: colorVariant(palette.grey),
+    // greyVariant: colorVariant(palette.grey),
 
     ...paddings,
     ...basePaddings,

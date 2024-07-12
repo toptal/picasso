@@ -1,20 +1,21 @@
+/* eslint-disable complexity */
 import type { PropTypes } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { SpacingType } from '@toptal/picasso-provider'
-import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
+import { kebabToCamelCase, makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
+// import cx from 'classnames'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
-import { documentable, forwardRef , kebabToCamelCase } from '@toptal/picasso-utils'
+import { documentable, forwardRef } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
-import styles from './styles'
-import {
-  filterOutStringAndPicassoSpacing,
-  getBaseSpacingClasses,
-} from './utils'
+import { flexClassesByDirection, gaps, paddings, variantClassesByColor } from './styles'
+import { filterOutStringAndPicassoSpacing } from './utils'
+// import {
+//   filterOutStringAndPicassoSpacing,
+//   getBaseSpacingClasses,
+// } from './utils'
 
 type ContainerType = 'div' | 'span'
 
@@ -22,9 +23,9 @@ type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoContainer',
-})
+// const useStyles = makeStyles<Theme, Props>(styles, {
+//   name: 'PicassoContainer',
+// })
 
 const useResponsiveProps = makeResponsiveSpacingProps(
   [
@@ -40,7 +41,7 @@ const useResponsiveProps = makeResponsiveSpacingProps(
 
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
-    HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
+  HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
 
@@ -122,7 +123,7 @@ export const Container: ContainerProps = documentable(
         ...rest
       } = props
 
-      const classes = useStyles(props)
+      // const classes = useStyles(props)
       const { className: responsiveClasses, style: responsiveStyle } =
         useResponsiveProps({
           'margin-top': filterOutStringAndPicassoSpacing(top),
@@ -133,47 +134,63 @@ export const Container: ContainerProps = documentable(
           gap: filterOutStringAndPicassoSpacing(gap),
         })
 
-      const baseSpacingClasses = getBaseSpacingClasses(
-        { top, left, bottom, right, gap, padded },
-        classes
-      )
+      // const baseSpacingClasses = getBaseSpacingClasses(
+      //   { top, left, bottom, right, gap, padded },
+      //   classes
+      // )
 
       return (
         <Component
           {...rest}
           ref={ref}
-          className={cx(
-            classes[`${variant}Variant`],
-            {
-              [classes[`${padded}Padding`]]: typeof padded === 'string',
-              [classes[`${gap}Gap`]]: typeof gap === 'string',
+          className=
+          // {cx(
+          //   classes[`${variant}Variant`], done
+          //   {
+          //     [classes[`${padded}Padding`]]: typeof padded === 'string', 
+          //     [classes[`${gap}Gap`]]: typeof gap === 'string',
 
-              [classes[`top${top}Margin`]]: typeof top === 'string',
-              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-              [classes[`left${left}Margin`]]: typeof left === 'string',
-              [classes[`right${right}Margin`]]: typeof right === 'string',
+          //     [classes[`top${top}Margin`]]: typeof top === 'string',
+          //     [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+          //     [classes[`left${left}Margin`]]: typeof left === 'string',
+          //     [classes[`right${right}Margin`]]: typeof right === 'string',
 
-              [classes[`${align}TextAlign`]]: typeof align === 'string',
+          //     [classes[`${align}TextAlign`]]: typeof align === 'string',
 
-              [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
-                alignItems,
+          //     [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
+          //       alignItems,
 
-              [classes[
-                `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-              ]]: justifyContent,
+          //     [classes[
+          //       `${kebabToCamelCase(justifyContent || '')}JustifyContent`
+          //     ]]: justifyContent,
 
-              [classes.bordered]: bordered,
-              [classes.rounded]: rounded,
-              [classes.flex]: flex,
-              [classes.inline]: inline,
-              [classes[kebabToCamelCase(direction || '')]]:
-                direction && direction !== 'row',
-            },
-            baseSpacingClasses,
-            responsiveClasses,
+          //     [classes.bordered]: bordered, done
+          //     [classes.rounded]: rounded, done
+          //     [classes.flex]: flex, done
+          //     [classes.inline]: inline, done
+          //     [classes[kebabToCamelCase(direction || '')]]:
+          //       direction && direction !== 'row',
+          //   }, done
+          //   baseSpacingClasses,
+          //   responsiveClasses,
+          //   className
+          // )}
+          {twMerge(
+            variant && variantClassesByColor[variant],
+
+            typeof padded == 'string' && paddings[`${padded}Padding`]?.padding,
+            typeof gap === 'string' &&  gaps[`${gap}Gap`].gap,
+
+            bordered && 'border-DEFAULT border-solid border-gray-200',
+            rounded && 'rounded-md',
+            flex ? (inline ? 'inline-flex' : 'flex') : '',
+            inline && 'inline-block',
+            direction && direction !== 'row' && flexClassesByDirection[kebabToCamelCase(direction)],
+            // baseSpacingClasses,
+            // responsiveClasses,
             className
           )}
-          style={{ ...responsiveStyle, ...style }}
+        // style={{ ...responsiveStyle, ...style }}
         >
           {children}
         </Component>
