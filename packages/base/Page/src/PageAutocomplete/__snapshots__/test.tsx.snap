@@ -12,7 +12,7 @@ exports[`PageAutocomplete renders 1`] = `
       role="combobox"
     >
       <div
-        class="PicassoContainer-flex"
+        class="flex"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoOutlinedInput-rootDark MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
@@ -40,7 +40,7 @@ exports[`PageAutocomplete renders 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                class="items-center inline-block font-semibold whitespace-nowrap text-button"
               >
                 <svg
                   class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1"

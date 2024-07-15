@@ -17,22 +17,22 @@ exports[`AccountSelect renders 1`] = `
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                    class="items-start flex PicassoUserBadge-root"
                   >
                     <div
                       class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
@@ -48,10 +48,10 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                      class="flex flex-col PicassoUserBadge-infoContainer"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="items-center flex"
                       >
                         <h4
                           class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -88,23 +88,23 @@ exports[`AccountSelect renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
                 href="#"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                    class="items-start flex PicassoUserBadge-root"
                   >
                     <div
                       class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
@@ -120,10 +120,10 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                      class="flex flex-col PicassoUserBadge-infoContainer"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="items-center flex"
                       >
                         <h4
                           class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -160,23 +160,23 @@ exports[`AccountSelect renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
                 href="#"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                    class="items-start flex PicassoUserBadge-root"
                   >
                     <div
                       class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
@@ -188,10 +188,10 @@ exports[`AccountSelect renders 1`] = `
                       />
                     </div>
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                      class="flex flex-col PicassoUserBadge-infoContainer"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="items-center flex"
                       >
                         <h4
                           class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"

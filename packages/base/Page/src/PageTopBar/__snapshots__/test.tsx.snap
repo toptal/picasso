@@ -18,7 +18,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="gap-4 items-center flex"
             >
               <div
                 class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
@@ -35,7 +35,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
@@ -72,13 +72,13 @@ exports[`Page.TopBar render with custom logo 1`] = `
                 Custom logo content
               </div>
               <div
-                class="PicassoContainer-centerAlignItems PicassoTopBar-title"
+                class="items-center PicassoTopBar-title"
               >
                 <div
                   class="PicassoTopBar-divider"
                 />
                 <div
-                  class="PicassoContainer-leftsmallMargin"
+                  class="ml-4"
                 >
                   <p
                     class="m-0 font-inherit leading-[1.5em] text-white font-regular"
@@ -117,7 +117,7 @@ exports[`Page.TopBar render with link 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="gap-4 items-center flex"
             >
               <div
                 class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
@@ -134,7 +134,7 @@ exports[`Page.TopBar render with link 1`] = `
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
@@ -197,13 +197,13 @@ exports[`Page.TopBar render with link 1`] = `
                 </svg>
               </a>
               <div
-                class="PicassoContainer-centerAlignItems PicassoTopBar-title"
+                class="items-center PicassoTopBar-title"
               >
                 <div
                   class="PicassoTopBar-divider"
                 />
                 <div
-                  class="PicassoContainer-leftsmallMargin"
+                  class="ml-4"
                 >
                   <p
                     class="m-0 font-inherit leading-[1.5em] text-white font-regular"
@@ -242,7 +242,7 @@ exports[`Page.TopBar renders 1`] = `
             class="PicassoTopBar-left"
           >
             <div
-              class="PicassoContainer-smallGap PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="gap-4 items-center flex"
             >
               <div
                 class="PicassoDropdown-root PageHamburger-root PageHamburger-hidden"
@@ -259,7 +259,7 @@ exports[`Page.TopBar renders 1`] = `
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
@@ -317,13 +317,13 @@ exports[`Page.TopBar renders 1`] = `
                 />
               </svg>
               <div
-                class="PicassoContainer-centerAlignItems PicassoTopBar-title"
+                class="items-center PicassoTopBar-title"
               >
                 <div
                   class="PicassoTopBar-divider"
                 />
                 <div
-                  class="PicassoContainer-leftsmallMargin"
+                  class="ml-4"
                 >
                   <p
                     class="m-0 font-inherit leading-[1.5em] text-white font-regular"

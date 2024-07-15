@@ -17,7 +17,7 @@ exports[`ButtonGroup render 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           One
         </span>
@@ -31,7 +31,7 @@ exports[`ButtonGroup render 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Two
         </span>
@@ -45,7 +45,7 @@ exports[`ButtonGroup render 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Three
         </span>

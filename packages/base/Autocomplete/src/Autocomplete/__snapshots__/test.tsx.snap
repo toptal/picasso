@@ -22,13 +22,13 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -48,13 +48,13 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -74,13 +74,13 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -100,13 +100,13 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -126,13 +126,13 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -166,13 +166,13 @@ exports[`Autocomplete dynamic behavior renders custom other options text and cal
   tabindex="-1"
 >
   <div
-    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+    class="flex PicassoMenuItem-itemWrapper"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      class="flex flex-col PicassoMenuItem-content"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        class="items-center flex"
       >
         <span
           class="PicassoAutocomplete-stringContent"
@@ -200,13 +200,13 @@ exports[`Autocomplete dynamic behavior renders other option with default text 1`
   tabindex="-1"
 >
   <div
-    class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+    class="flex PicassoMenuItem-itemWrapper"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+      class="flex flex-col PicassoMenuItem-content"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+        class="items-center flex"
       >
         <span
           class="PicassoAutocomplete-stringContent"
@@ -236,7 +236,7 @@ exports[`Autocomplete static behavior renders 1`] = `
       role="combobox"
     >
       <div
-        class="PicassoContainer-flex"
+        class="flex"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
@@ -263,7 +263,7 @@ exports[`Autocomplete static behavior renders 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                class="items-center inline-block font-semibold whitespace-nowrap text-button"
               >
                 <svg
                   class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1"
@@ -356,13 +356,13 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -382,13 +382,13 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -408,13 +408,13 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -434,13 +434,13 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -460,13 +460,13 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <span
                 class="PicassoMenuItem-stringContent"
@@ -504,13 +504,13 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
                 data-testid="custom-option"
@@ -530,13 +530,13 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
                 data-testid="custom-option"
@@ -556,13 +556,13 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
                 data-testid="custom-option"
@@ -582,13 +582,13 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
                 data-testid="custom-option"
@@ -608,13 +608,13 @@ exports[`Autocomplete static behavior renders custom options with custom keys 1`
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
                 data-testid="custom-option"

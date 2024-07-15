@@ -6,7 +6,7 @@ exports[`SidebarLogo renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-bottomxsmallMargin PicassoContainer-leftlargeMargin PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarLogo-root"
+      class="mb-2 ml-8 items-center flex PicassoSidebarLogo-root"
     >
       <svg
         class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-default"

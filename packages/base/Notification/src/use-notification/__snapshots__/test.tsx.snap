@@ -14,7 +14,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Error
       </span>
@@ -28,7 +28,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Info
       </span>
@@ -42,7 +42,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Success
       </span>
@@ -70,10 +70,10 @@ exports[`useNotifications error notification render 1`] = `
                 class="MuiSnackbarContent-message"
               >
                 <div
-                  class="PicassoContainer-flex"
+                  class="flex"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                    class="items-center flex Notification-iconWrapper"
                   >
                     <svg
                       class="PicassoSvgExclamationSolid24-root PicassoSvgExclamationSolid24-red"
@@ -99,7 +99,7 @@ exports[`useNotifications error notification render 1`] = `
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
@@ -137,7 +137,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Error
       </span>
@@ -151,7 +151,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Info
       </span>
@@ -165,7 +165,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Success
       </span>
@@ -193,10 +193,10 @@ exports[`useNotifications info notification render 1`] = `
                 class="MuiSnackbarContent-message"
               >
                 <div
-                  class="PicassoContainer-flex"
+                  class="flex"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                    class="items-center flex Notification-iconWrapper"
                   >
                     <svg
                       class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
@@ -225,7 +225,7 @@ exports[`useNotifications info notification render 1`] = `
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
@@ -263,7 +263,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Error
       </span>
@@ -277,7 +277,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Info
       </span>
@@ -291,7 +291,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         Show Success
       </span>
@@ -319,10 +319,10 @@ exports[`useNotifications success notification render 1`] = `
                 class="MuiSnackbarContent-message"
               >
                 <div
-                  class="PicassoContainer-flex"
+                  class="flex"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper"
+                    class="items-center flex Notification-iconWrapper"
                   >
                     <svg
                       class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
@@ -348,7 +348,7 @@ exports[`useNotifications success notification render 1`] = `
                     type="button"
                   >
                     <span
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"

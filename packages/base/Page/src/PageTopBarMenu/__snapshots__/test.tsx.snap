@@ -12,7 +12,7 @@ exports[`PageTopBarMenu renders 1`] = `
         class="PicassoDropdown-anchor"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
+          class="items-center flex PicassoUserBadge-root"
         >
           <div
             class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2em] h-[2em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
@@ -24,10 +24,10 @@ exports[`PageTopBarMenu renders 1`] = `
             />
           </div>
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+            class="flex flex-col PicassoUserBadge-infoContainer"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <h4
                 class="m-0 text-md text-white font-semibold inline PicassoUserBadge-name !font-[400] PicassoTopBarMenu-truncateText"

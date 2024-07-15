@@ -14,7 +14,7 @@ exports[`ButtonRadio renders 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-block font-semibold whitespace-nowrap text-button"
       >
         <span
           aria-disabled="false"

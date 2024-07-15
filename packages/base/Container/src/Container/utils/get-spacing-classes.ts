@@ -61,6 +61,7 @@ export const getResponsiveClasses = (
 
     classes.push(className)
   }
+  console.log(classes)
 
   return classes
 }

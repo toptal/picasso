@@ -165,7 +165,7 @@ exports[`Input should show reset button 1`] = `
           type="button"
         >
           <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+            class="items-center inline-block font-semibold whitespace-nowrap text-button"
           >
             <svg
               class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1"
@@ -236,7 +236,7 @@ exports[`Input shows counter for multiline input 1`] = `
       </fieldset>
     </div>
     <div
-      class="PicassoContainer-flex"
+      class="flex"
     />
   </div>
 </div>
@@ -278,7 +278,7 @@ exports[`Input shows counter for regular input 1`] = `
 
 exports[`Input shows excess chars for multiline input with exceeded limit 1`] = `
 <div
-  class="PicassoContainer-flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
+  class="flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
   data-testid="limit-adornment-multiline-label"
 >
   <span>
@@ -297,7 +297,7 @@ exports[`Input shows excess chars for multiline input with exceeded limit 1`] = 
 
 exports[`Input shows remaining chars for for multiline input with limit 1`] = `
 <div
-  class="PicassoContainer-flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
+  class="flex PicassoInputMultilineAdornment-root PicassoInputMultilineAdornment-error"
   data-testid="limit-adornment-multiline-label"
 >
   <span>

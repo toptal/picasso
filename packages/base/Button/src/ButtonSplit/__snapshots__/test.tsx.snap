@@ -2,7 +2,7 @@
 
 exports[`ButtonSplit closes menu on click to the item 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor24-root-172"
+  class="PicassoSvgArrowDownMinor24-root-29"
   style="min-width: 24px; min-height: 24px;"
   viewBox="0 0 24 24"
 >
@@ -29,7 +29,7 @@ exports[`ButtonSplit default render 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Action
         </span>
@@ -49,7 +49,7 @@ exports[`ButtonSplit default render 1`] = `
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+              class="items-center inline-block font-semibold whitespace-nowrap text-button"
             >
               <svg
                 class="PicassoSvgArrowDownMinor16-root"
@@ -71,7 +71,7 @@ exports[`ButtonSplit default render 1`] = `
 
 exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor16-root-172"
+  class="PicassoSvgArrowDownMinor16-root-29"
   style="min-width: 16px; min-height: 16px;"
   viewBox="0 0 16 16"
 >
@@ -83,7 +83,7 @@ exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
 
 exports[`ButtonSplit renders arrow up icon for an opened menu 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor16-root-172 rotate-180"
+  class="PicassoSvgArrowDownMinor16-root-29 rotate-180"
   style="min-width: 16px; min-height: 16px;"
   viewBox="0 0 16 16"
 >

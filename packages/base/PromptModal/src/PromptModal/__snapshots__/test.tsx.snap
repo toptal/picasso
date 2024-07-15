@@ -67,7 +67,7 @@ exports[`PromptModal renders 1`] = `
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+              class="items-center inline-block font-semibold whitespace-nowrap text-button"
             >
               Cancel
             </span>
@@ -81,7 +81,7 @@ exports[`PromptModal renders 1`] = `
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+              class="items-center inline-block font-semibold whitespace-nowrap text-button"
             >
               Submit
             </span>
@@ -112,7 +112,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
@@ -138,7 +138,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
@@ -201,7 +201,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
                 type="button"
               >
                 <span
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                  class="items-center inline-block font-semibold whitespace-nowrap text-button"
                 >
                   Cancel
                 </span>
@@ -215,7 +215,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
                 type="button"
               >
                 <span
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                  class="items-center inline-block font-semibold whitespace-nowrap text-button"
                 >
                   Submit
                 </span>
@@ -248,7 +248,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
@@ -273,7 +273,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action 1`] =
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>

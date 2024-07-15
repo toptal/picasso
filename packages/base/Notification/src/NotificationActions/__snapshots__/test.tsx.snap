@@ -13,10 +13,10 @@ exports[`NotificationActions renders 1`] = `
         class="MuiSnackbarContent-message"
       >
         <div
-          class="PicassoContainer-flex"
+          class="flex"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex Notification-iconWrapper Notification-iconWrapperYellow"
+            class="items-center flex Notification-iconWrapper Notification-iconWrapperYellow"
           >
             <svg
               class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"
@@ -33,7 +33,7 @@ exports[`NotificationActions renders 1`] = `
           >
             The time zone in your profile is set to (UTC -08:00) America - Los
             <div
-              class="PicassoContainer-topxsmallMargin PicassoContainer-flex"
+              class="mt-2 flex"
             >
               Test
             </div>

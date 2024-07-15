@@ -6,13 +6,13 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="flex flex-col PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PageSidebar-scrollableContent"
+          class="flex flex-col PageSidebar-scrollableContent"
         >
           <div
             class="PageSidebar-spacer"
@@ -42,19 +42,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     tabindex="0"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                      class="flex PicassoMenuItem-itemWrapper"
                     >
                       <div
-                        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        class="flex flex-col PicassoMenuItem-content"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          class="items-center flex"
                         >
                           <div
-                            class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                            class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                           >
                             <div
-                              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                              class="items-center flex PicassoSidebarItemContent-noWrap"
                             >
                               <p
                                 class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -106,19 +106,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                             tabindex="0"
                           >
                             <div
-                              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                              class="flex PicassoMenuItem-itemWrapper"
                             >
                               <div
-                                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                                class="flex flex-col PicassoMenuItem-content"
                               >
                                 <div
-                                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                                  class="items-center flex"
                                 >
                                   <div
-                                    class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                                    class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                                   >
                                     <div
-                                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                                      class="items-center flex PicassoSidebarItemContent-noWrap"
                                     >
                                       <p
                                         class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -152,13 +152,13 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="flex flex-col PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PageSidebar-scrollableContent"
+          class="flex flex-col PageSidebar-scrollableContent"
         >
           <div
             class="PageSidebar-spacer"
@@ -188,19 +188,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     tabindex="0"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                      class="flex PicassoMenuItem-itemWrapper"
                     >
                       <div
-                        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        class="flex flex-col PicassoMenuItem-content"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          class="items-center flex"
                         >
                           <div
-                            class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                            class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                           >
                             <div
-                              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                              class="items-center flex PicassoSidebarItemContent-noWrap"
                             >
                               <p
                                 class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -252,19 +252,19 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                             tabindex="0"
                           >
                             <div
-                              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                              class="flex PicassoMenuItem-itemWrapper"
                             >
                               <div
-                                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                                class="flex flex-col PicassoMenuItem-content"
                               >
                                 <div
-                                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                                  class="items-center flex"
                                 >
                                   <div
-                                    class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                                    class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                                   >
                                     <div
-                                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                                      class="items-center flex PicassoSidebarItemContent-noWrap"
                                     >
                                       <p
                                         class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -304,16 +304,16 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="items-center flex"
           >
             <div
-              class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
             >
               <svg
                 class="PicassoSvgCandidates16-root"
@@ -325,7 +325,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                 />
               </svg>
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
+                class="items-center flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
               >
                 <p
                   class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -351,19 +351,19 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           tabindex="0"
         >
           <div
-            class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+            class="flex PicassoMenuItem-itemWrapper"
           >
             <div
-              class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+              class="flex flex-col PicassoMenuItem-content"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                class="items-center flex"
               >
                 <div
-                  class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                  class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                 >
                   <div
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                    class="items-center flex PicassoSidebarItemContent-noWrap"
                   >
                     <p
                       class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -394,16 +394,16 @@ exports[`SidebarItem is selected 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="items-center flex"
           >
             <div
-              class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
             >
               <svg
                 class="PicassoSvgCandidates16-root"
@@ -415,7 +415,7 @@ exports[`SidebarItem is selected 1`] = `
                 />
               </svg>
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
+                class="items-center flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
               >
                 <p
                   class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -444,19 +444,19 @@ exports[`SidebarItem renders 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="items-center flex"
           >
             <div
-              class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
             >
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                class="items-center flex PicassoSidebarItemContent-noWrap"
               >
                 <p
                   class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -498,16 +498,16 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             tabindex="-1"
           >
             <div
-              class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+              class="flex PicassoMenuItem-itemWrapper"
             >
               <div
-                class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                class="flex flex-col PicassoMenuItem-content"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                  class="items-center flex"
                 >
                   <div
-                    class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                    class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                   >
                     <svg
                       class="PicassoSvgCandidates16-root"
@@ -519,7 +519,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                       />
                     </svg>
                     <div
-                      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
+                      class="items-center flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
                     >
                       <p
                         class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -571,19 +571,19 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     tabindex="0"
                   >
                     <div
-                      class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+                      class="flex PicassoMenuItem-itemWrapper"
                     >
                       <div
-                        class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+                        class="flex flex-col PicassoMenuItem-content"
                       >
                         <div
-                          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                          class="items-center flex"
                         >
                           <div
-                            class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+                            class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
                           >
                             <div
-                              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap"
+                              class="items-center flex PicassoSidebarItemContent-noWrap"
                             >
                               <p
                                 class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
@@ -619,16 +619,16 @@ exports[`SidebarItem with icon 1`] = `
       tabindex="-1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="items-center flex"
           >
             <div
-              class="PicassoContainer-xsmallGap PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
             >
               <svg
                 class="PicassoSvgCandidates16-root"
@@ -640,7 +640,7 @@ exports[`SidebarItem with icon 1`] = `
                 />
               </svg>
               <div
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
+                class="items-center flex PicassoSidebarItemContent-noWrap PicassoSidebarItemContent-withIcon"
               >
                 <p
                   class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"

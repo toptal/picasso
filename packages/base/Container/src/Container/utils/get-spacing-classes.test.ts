@@ -153,19 +153,19 @@ describe('getResponsiveClasses', () => {
       ]
 
       const expectedTopClass = [
-        'xs:top-0',
-        'sm:top-2',
-        'md:top-4',
-        'lg:top-6',
-        'xl:top-8',
+        'xs:mt-0',
+        'sm:mt-2',
+        'md:mt-4',
+        'lg:mt-6',
+        'xl:mt-8',
       ]
 
       const expectedPaddedClass = [
-        'xs:padded-0',
-        'sm:padded-2',
-        'md:padded-4',
-        'lg:padded-6',
-        'xl:padded-8',
+        'xs:p-0',
+        'sm:p-2',
+        'md:p-4',
+        'lg:p-6',
+        'xl:p-8',
       ]
 
       expect(getResponsiveClasses(spacing, 'gap')).toEqual(expectedGapClass)

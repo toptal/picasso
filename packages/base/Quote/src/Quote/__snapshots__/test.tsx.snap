@@ -6,10 +6,10 @@ exports[`Quote renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex"
+      class="flex"
     >
       <div
-        class="PicassoContainer-rightsmallMargin"
+        class="mr-4"
       >
         <svg
           class="PicassoQuoteMark-root"

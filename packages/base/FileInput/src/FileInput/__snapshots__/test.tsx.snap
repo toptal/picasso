@@ -17,7 +17,7 @@ exports[`FileInput can change label 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Upload File
         </span>
@@ -48,7 +48,7 @@ exports[`FileInput renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-block font-semibold whitespace-nowrap text-button"
         >
           Choose File
         </span>

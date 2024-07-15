@@ -13,7 +13,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
         class="MuiSnackbarContent-message ApplicationUpdateNotification-message"
       >
         <div
-          class="PicassoContainer-xsmallGap PicassoContainer-flex PicassoContainer-column"
+          class="gap-2 flex flex-col"
         >
           <svg
             class="ApplicationUpdateNotification-icon"
@@ -26,7 +26,7 @@ exports[`ApplicationUpdateNotification renders 1`] = `
             />
           </svg>
           <div
-            class="PicassoContainer-flexStartAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+            class="items-start justify-between flex"
           >
             <h3
               class="m-0 text-lg text-inherit font-semibold ApplicationUpdateNotification-positionRelative"
