@@ -84,7 +84,7 @@ describe('getMappedClass', () => {
   })
 })
 
-describe('getGapStyle', () => {
+describe('getSpacingStyles', () => {
   describe('when provided with valid numeric gap spacing', () => {
     it('returns a style object', () => {
       const result = getSpacingStyles({

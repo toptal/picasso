@@ -2,7 +2,6 @@
 import type { PropTypes } from '@material-ui/core'
 import type { SpacingType } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
-// import cx from 'classnames'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
 import { documentable, forwardRef } from '@toptal/picasso-utils'
@@ -11,32 +10,12 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import { alignmentClasses, variantClassesByColor } from './styles'
 import { getSpacingClasses, getSpacingStyles } from './utils'
-// import {
-//   filterOutStringAndPicassoSpacing,
-//   getBaseSpacingClasses,
-// } from './utils'
 
 type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
-
-// const useStyles = makeStyles<Theme, Props>(styles, {
-//   name: 'PicassoContainer',
-// })
-
-// const useResponsiveProps = makeResponsiveSpacingProps(
-//   [
-//     'margin-top',
-//     'margin-bottom',
-//     'margin-left',
-//     'margin-right',
-//     'padding',
-//     'gap',
-//   ] as const,
-//   'PicassoContainer-Responsive'
-// )
 
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
@@ -118,60 +97,19 @@ export const Container: ContainerProps = documentable(
         // Avoid passing external classes inside the rest props
         /* eslint-disable @typescript-eslint/no-unused-vars */
         classes: externalClasses,
-        /* eslint-enable */
         ...rest
       } = props
 
-      // const classes = useStyles(props)
-      // const { className: responsiveClasses, style: responsiveStyle } =
-      //   useResponsiveProps({
-      //     'margin-top': filterOutStringAndPicassoSpacing(top),
-      //     'margin-bottom': filterOutStringAndPicassoSpacing(bottom),
-      //     'margin-left': filterOutStringAndPicassoSpacing(left),
-      //     'margin-right': filterOutStringAndPicassoSpacing(right),
-      //     padding: filterOutStringAndPicassoSpacing(padded),
-      //     gap: filterOutStringAndPicassoSpacing(gap),
-      //   })
-
-      // <Container padded={SPACING_2} />
-
-      // const baseSpacingClasses = getBaseSpacingClasses(
-      //   { top, left, bottom, right, gap, padded },
-      //   classes
-      // )
       const spacingProps = { gap, padded, top, bottom, right, left }
 
       return (
         <Component
           {...rest}
           ref={ref}
-          className=//     [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string', //     [classes[`top${top}Margin`]]: typeof top === 'string', //     [classes[`${gap}Gap`]]: typeof gap === 'string', //     [classes[`${padded}Padding`]]: typeof padded === 'string', //   { //   classes[`${variant}Variant`], done // {cx(
-          //     [classes[`left${left}Margin`]]: typeof left === 'string',
-          //     [classes[`right${right}Margin`]]: typeof right === 'string',
-
-          //     [classes[`${align}TextAlign`]]: typeof align === 'string',
-
-          //     [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
-          //       alignItems,
-
-          //     [classes[
-          //       `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-          //     ]]: justifyContent,
-
-          //     [classes.bordered]: bordered, done
-          //     [classes.rounded]: rounded, done
-          //     [classes.flex]: flex, done
-          //     [classes.inline]: inline, done
-          //     [classes[kebabToCamelCase(direction || '')]]:
-          //       direction && direction !== 'row',
-          //   }, done
-          //   baseSpacingClasses,
-          //   responsiveClasses,
-          //   className
-          // )}
-          {twMerge(
+          className={twMerge(
             variant && variantClassesByColor[variant],
             getSpacingClasses(spacingProps),
+
             typeof align === 'string' && alignmentClasses.textAlign[align],
 
             alignItems && alignmentClasses.alignItems[alignItems],
