@@ -1,10 +1,6 @@
 /* eslint-disable complexity */
 import type { PropTypes } from '@material-ui/core'
 import type { SpacingType } from '@toptal/picasso-provider'
-import {
-  kebabToCamelCase,
-  makeResponsiveSpacingProps,
-} from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
 // import cx from 'classnames'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
@@ -13,12 +9,8 @@ import { documentable, forwardRef } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
-import {
-  alignmentClasses,
-  paddings,
-  variantClassesByColor,
-} from './styles'
-import { filterOutStringAndPicassoSpacing, getGapStyle } from './utils'
+import { alignmentClasses, variantClassesByColor } from './styles'
+import { getSpacingClasses, getSpacingStyles } from './utils'
 // import {
 //   filterOutStringAndPicassoSpacing,
 //   getBaseSpacingClasses,
@@ -34,17 +26,17 @@ type BorderableType = 'transparent' | 'white'
 //   name: 'PicassoContainer',
 // })
 
-const useResponsiveProps = makeResponsiveSpacingProps(
-  [
-    'margin-top',
-    'margin-bottom',
-    'margin-left',
-    'margin-right',
-    'padding',
-    'gap',
-  ] as const,
-  'PicassoContainer-Responsive'
-)
+// const useResponsiveProps = makeResponsiveSpacingProps(
+//   [
+//     'margin-top',
+//     'margin-bottom',
+//     'margin-left',
+//     'margin-right',
+//     'padding',
+//     'gap',
+//   ] as const,
+//   'PicassoContainer-Responsive'
+// )
 
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
@@ -131,15 +123,15 @@ export const Container: ContainerProps = documentable(
       } = props
 
       // const classes = useStyles(props)
-      const { className: responsiveClasses, style: responsiveStyle } =
-        useResponsiveProps({
-          'margin-top': filterOutStringAndPicassoSpacing(top),
-          'margin-bottom': filterOutStringAndPicassoSpacing(bottom),
-          'margin-left': filterOutStringAndPicassoSpacing(left),
-          'margin-right': filterOutStringAndPicassoSpacing(right),
-          padding: filterOutStringAndPicassoSpacing(padded),
-          gap: filterOutStringAndPicassoSpacing(gap),
-        })
+      // const { className: responsiveClasses, style: responsiveStyle } =
+      //   useResponsiveProps({
+      //     'margin-top': filterOutStringAndPicassoSpacing(top),
+      //     'margin-bottom': filterOutStringAndPicassoSpacing(bottom),
+      //     'margin-left': filterOutStringAndPicassoSpacing(left),
+      //     'margin-right': filterOutStringAndPicassoSpacing(right),
+      //     padding: filterOutStringAndPicassoSpacing(padded),
+      //     gap: filterOutStringAndPicassoSpacing(gap),
+      //   })
 
       // <Container padded={SPACING_2} />
 
@@ -147,17 +139,13 @@ export const Container: ContainerProps = documentable(
       //   { top, left, bottom, right, gap, padded },
       //   classes
       // )
+      const spacingProps = { gap, padded, top, bottom, right, left }
 
       return (
         <Component
           {...rest}
           ref={ref}
-          className=//   { //   classes[`${variant}Variant`], done // {cx(
-          //     [classes[`${padded}Padding`]]: typeof padded === 'string',
-          //     [classes[`${gap}Gap`]]: typeof gap === 'string',
-
-          //     [classes[`top${top}Margin`]]: typeof top === 'string',
-          //     [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
+          className=//     [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string', //     [classes[`top${top}Margin`]]: typeof top === 'string', //     [classes[`${gap}Gap`]]: typeof gap === 'string', //     [classes[`${padded}Padding`]]: typeof padded === 'string', //   { //   classes[`${variant}Variant`], done // {cx(
           //     [classes[`left${left}Margin`]]: typeof left === 'string',
           //     [classes[`right${right}Margin`]]: typeof right === 'string',
 
@@ -183,29 +171,27 @@ export const Container: ContainerProps = documentable(
           // )}
           {twMerge(
             variant && variantClassesByColor[variant],
-            
-            // getSpacingClasses({ gap, padded, top, bottom, right, left }),
-            typeof padded == 'string' && paddings[`${padded}Padding`]?.padding,
-
+            getSpacingClasses(spacingProps),
             typeof align === 'string' && alignmentClasses.textAlign[align],
 
-            alignItems && alignmentClasses.alignItems[kebabToCamelCase(alignItems)],
+            alignItems && alignmentClasses.alignItems[alignItems],
 
-            justifyContent && alignmentClasses.justifyContent[kebabToCamelCase(justifyContent)],
+            justifyContent && alignmentClasses.justifyContent[justifyContent],
 
             bordered && 'border-DEFAULT border-solid border-gray-200',
             rounded && 'rounded-md',
             flex ? (inline ? 'inline-flex' : 'flex') : '',
             inline && 'inline-block',
-            direction && direction !== 'row' && alignmentClasses.direction[kebabToCamelCase(direction)],
-            // baseSpacingClasses,
-            // responsiveClasses,
+            direction &&
+              direction !== 'row' &&
+              alignmentClasses.direction[direction],
             className
           )}
           style={{
-            ...getGapStyle(),
+            // used for deprecated spacing props (typeof number)
+            ...getSpacingStyles(spacingProps),
+            ...style,
           }}
-          // style={{ ...responsiveStyle, ...style }}
         >
           {children}
         </Component>

@@ -50,7 +50,10 @@ class PicassoSpacing {
     this.baseTokenIndex = index
   }
 
-  static create(value: PicassoSpacingValues, index: spacingToken ): PicassoSpacing {
+  static create(
+    value: PicassoSpacingValues,
+    index: spacingToken
+  ): PicassoSpacing {
     return new PicassoSpacing(value, index)
   }
 
@@ -78,8 +81,11 @@ export const isPicassoSpacing = (
 
 export const isResponsiveSpacing = (
   spacing: SpacingType
-): spacing is ResponsiveSpacingType =>
-  typeof spacing == 'object' && !isPicassoSpacing(spacing)
+): spacing is ResponsiveSpacingType => {
+  console.log(isPicassoSpacing(spacing))
+
+  return typeof spacing == 'object' && !isPicassoSpacing(spacing)
+}
 
 export const SPACING_0 = PicassoSpacing.create(0, 0)
 export const SPACING_1 = PicassoSpacing.create(0.25, 1)

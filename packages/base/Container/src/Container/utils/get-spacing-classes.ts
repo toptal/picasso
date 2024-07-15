@@ -1,126 +1,9 @@
-import type { SpacingType } from '@toptal/picasso-provider';
+import type { SpacingType } from '@toptal/picasso-provider'
 import { isPicassoSpacing, isResponsiveSpacing } from '@toptal/picasso-provider'
 
-export const SPACING_CLASSES = {
-  base: {
-    0: {
-      gap: 'gap-0',
-      padded: 'p-0',
-      top: 'mt-0',
-      bottom: 'mb-0',
-      left: 'ml-0',
-      right: 'mr-0',
-    },
-    1: {
-      gap: 'gap-1',
-      padded: 'p-1',
-      top: 'mt-1',
-      bottom: 'mb-1',
-      left: 'ml-1',
-      right: 'mr-1',
-    },
-    2: {
-      gap: 'gap-2',
-      padded: 'p-2',
-      top: 'mt-2',
-      bottom: 'mb-2',
-      left: 'ml-2',
-      right: 'mr-2',
-    },
-    3: {
-      gap: 'gap-3',
-      padded: 'p-3',
-      top: 'mt-3',
-      bottom: 'mb-3',
-      left: 'ml-3',
-      right: 'mr-3',
-    },
-    4: {
-      gap: 'gap-4',
-      padded: 'p-4',
-      top: 'mt-4',
-      bottom: 'mb-4',
-      left: 'ml-4',
-      right: 'mr-4',
-    },
-    6: {
-      gap: 'gap-6',
-      padded: 'p-6',
-      top: 'mt-6',
-      bottom: 'mb-6',
-      left: 'ml-6',
-      right: 'mr-6',
-    },
-    8: {
-      gap: 'gap-8',
-      padded: 'p-8',
-      top: 'mt-8',
-      bottom: 'mb-8',
-      left: 'ml-8',
-      right: 'mr-8',
-    },
-    10: {
-      gap: 'gap-10',
-      padded: 'p-10',
-      top: 'mt-10',
-      bottom: 'mb-10',
-      left: 'ml-10',
-      right: 'mr-10',
-    },
-    12: {
-      gap: 'gap-12',
-      padded: 'p-12',
-      top: 'mt-12',
-      bottom: 'mb-12',
-      left: 'ml-12',
-      right: 'mr-12',
-    },
-  },
-  deprecated: {
-    xsmall: {
-      gap: 'gap-2',
-      padded: 'p-2',
-      top: 'mt-2',
-      bottom: 'mb-2',
-      left: 'ml-2',
-      right: 'mr-2',
-    },
-    small: {
-      gap: 'gap-4',
-      padded: 'p-4',
-      top: 'mt-4',
-      bottom: 'mb-4',
-      left: 'ml-4',
-      right: 'mr-4',
-    },
-    medium: {
-      gap: 'gap-6',
-      padded: 'p-6',
-      top: 'mt-6',
-      bottom: 'mb-6',
-      left: 'ml-6',
-      right: 'mr-6',
-    },
-    large: {
-      gap: 'gap-8',
-      padded: 'p-8',
-      top: 'mt-8',
-      bottom: 'mb-8',
-      left: 'ml-8',
-      right: 'mr-8',
-    },
-    xlarge: {
-      gap: 'gap-10',
-      padded: 'p-10',
-      top: 'mt-10',
-      bottom: 'mb-10',
-      left: 'ml-10',
-      right: 'mr-10',
-    },
-  },
-} as const
+import { SPACING_CLASSES, DEPRECATED_CLASSES } from './constants'
 
-type GetSpacingClassProps = {
+type SpacingProps = {
   gap?: SpacingType
   padded?: SpacingType
   top?: SpacingType
@@ -129,24 +12,70 @@ type GetSpacingClassProps = {
   left?: SpacingType
 }
 
-export const getMappedClass = (spacing: SpacingType | undefined, type: keyof GetSpacingClassProps) => {
-  if (!spacing || typeof spacing === 'number') {
+type ResultType = string | undefined
+type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+export const getMappedClass = (
+  spacing: SpacingType | undefined,
+  type: keyof SpacingProps
+): ResultType => {
+  if (!spacing || typeof spacing === 'number' || isResponsiveSpacing(spacing)) {
     return
   }
 
   if (isPicassoSpacing(spacing)) {
     const { baseTokenIndex } = spacing
 
-    return SPACING_CLASSES.base[baseTokenIndex][type] || ''
+    return SPACING_CLASSES[baseTokenIndex][type].default
   }
 
   if (typeof spacing === 'string') {
-    return SPACING_CLASSES.deprecated[spacing] || ''
+    return DEPRECATED_CLASSES[spacing][type].default
   }
 
   if (isResponsiveSpacing(spacing)) {
-    // TODO check if responsive
+    return
   }
+}
+
+export const getResponsiveClasses = (
+  spacing: SpacingType,
+  type: keyof SpacingProps
+) => {
+  if (!isResponsiveSpacing(spacing)) {
+    return
+  }
+
+  const classes = []
+
+  for (const viewport in spacing) {
+    const vp = viewport as BreakpointType
+    const baseTokenIndex = spacing[vp]?.baseTokenIndex
+
+    if (baseTokenIndex === undefined) {
+      continue
+    }
+
+    const classesByToken = SPACING_CLASSES[baseTokenIndex]
+    const className = classesByToken[type][vp]
+
+    classes.push(className)
+  }
+
+  return classes
+}
+
+const getClassList = (
+  prop: SpacingType | undefined,
+  type: keyof SpacingProps
+) => {
+  if (!prop) {
+    return []
+  }
+
+  return isResponsiveSpacing(prop)
+    ? getResponsiveClasses(prop, type)
+    : getMappedClass(prop, type)
 }
 
 export const getSpacingClasses = ({
@@ -156,25 +85,49 @@ export const getSpacingClasses = ({
   bottom,
   right,
   left,
-}: GetSpacingClassProps) => {
+}: SpacingProps) => {
   return [
-    getMappedClass(gap, 'gap'),
-    getMappedClass(padded, 'padded'),
-    getMappedClass(top, 'top'),
-    getMappedClass(bottom, 'bottom'),
-    getMappedClass(right, 'right'),
-    getMappedClass(left, 'left'),
+    getClassList(gap, 'gap'),
+    getClassList(padded, 'padded'),
+    getClassList(top, 'top'),
+    getClassList(bottom, 'bottom'),
+    getClassList(right, 'right'),
+    getClassList(left, 'left'),
   ]
 }
 
-export const getGapStyle = (gapSpacing?: SpacingType) => {
-  if (!gapSpacing || typeof gapSpacing !== 'number') {
+const convertToRem = (value?: SpacingType) => {
+  if (!value || typeof value !== 'number') {
     return
   }
 
-  return {
-    gap: `${gapSpacing}rem`,
-  }
+  return `${value}rem`
 }
 
-export default getSpacingClasses
+export const getSpacingStyles = ({
+  gap,
+  padded,
+  top,
+  bottom,
+  right,
+  left,
+}: SpacingProps) => {
+  const styles: Record<string, string> = {}
+
+  const addStyle = (key: string, value?: SpacingType) => {
+    const convertedValue = convertToRem(value)
+
+    if (convertedValue !== undefined) {
+      styles[key] = convertedValue
+    }
+  }
+
+  addStyle('gap', gap)
+  addStyle('padding', padded)
+  addStyle('marginTop', top)
+  addStyle('marginBottom', bottom)
+  addStyle('marginRight', right)
+  addStyle('marginLeft', left)
+
+  return styles
+}

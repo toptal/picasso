@@ -128,14 +128,10 @@ alignItemsVariants.forEach(variant => {
   }
 })
 
-type AlignmentClasses = 'flexStart' | 'flexEnd' | 'center' | 'stretch' | 'baseline' | 'inherit' | 'justify' | 'spaceBetween' | 'spaceAround' | 'spaceEvenly' | 'column' | 'rowReverse' | 'columnReverse'
-
-type AlignmentType = 'alignItems' | 'textAlign' | 'justifyContent' | 'direction'
-
-export const alignmentClasses: Record<AlignmentType, Record<AlignmentClasses | string, string>> = {
+export const alignmentClasses = {
   alignItems: {
-    flexStart: 'items-start',
-    flexEnd: 'items-end',
+    'flex-start': 'items-start',
+    'flex-end': 'items-end',
     center: 'items-center',
     stretch: 'items-stretch',
     baseline: 'items-baseline',
@@ -149,18 +145,18 @@ export const alignmentClasses: Record<AlignmentType, Record<AlignmentClasses | s
   },
   justifyContent: {
     center: 'justify-center',
-    flexStart: 'justify-start',
-    flexEnd: 'justify-end',
-    spaceBetween: 'justify-between',
-    spaceAround: 'justify-around',
-    spaceEvenly: 'justify-evenly',
+    'flex-start': 'justify-start',
+    'flex-end': 'justify-end',
+    'space-between': 'justify-between',
+    'space-around': 'justify-around',
+    'space-evenly': 'justify-evenly',
   },
   direction: {
     column: 'flex-col',
-    rowReverse: 'flex-row-reverse',
-    columnReverse: 'flex-col-reverse',
+    'row-reverse': 'flex-row-reverse',
+    'column-reverse': 'flex-col-reverse',
   },
-}
+} as const
 
 const textAlignItems: MapOfClasses = {}
 
