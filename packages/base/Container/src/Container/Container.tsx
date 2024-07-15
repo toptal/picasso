@@ -18,7 +18,7 @@ import {
   paddings,
   variantClassesByColor,
 } from './styles'
-import { filterOutStringAndPicassoSpacing, getGapStyle, getSpacingClasses } from './utils'
+import { filterOutStringAndPicassoSpacing, getGapStyle } from './utils'
 // import {
 //   filterOutStringAndPicassoSpacing,
 //   getBaseSpacingClasses,
@@ -184,7 +184,7 @@ export const Container: ContainerProps = documentable(
           {twMerge(
             variant && variantClassesByColor[variant],
             
-            getSpacingClasses({ gap, padded, top, bottom, right, left }),
+            // getSpacingClasses({ gap, padded, top, bottom, right, left }),
             typeof padded == 'string' && paddings[`${padded}Padding`]?.padding,
 
             typeof align === 'string' && alignmentClasses.textAlign[align],
