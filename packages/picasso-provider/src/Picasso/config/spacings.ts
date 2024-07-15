@@ -82,8 +82,6 @@ export const isPicassoSpacing = (
 export const isResponsiveSpacing = (
   spacing: SpacingType
 ): spacing is ResponsiveSpacingType => {
-  console.log(isPicassoSpacing(spacing))
-
   return typeof spacing == 'object' && !isPicassoSpacing(spacing)
 }
 

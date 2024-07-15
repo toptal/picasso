@@ -50,19 +50,16 @@ describe('Container', () => {
       expect(getByTestId(testId).classList).toContain('gap-6')
     })
   })
-  // describe('when gap is passed as responsive BASE spacing', () => {
-  //   it('renders container with proper gap class', () => {
-  //     // TODO update this
-  //     const { getByTestId } = render(
-  //       <Container data-testid={testId} gap={{xs: SPACING_6}}>
-  //         Some text
-  //       </Container>
-  //     )
 
-  //     const element = getByTestId(testId)
-  //     const styles = window.getComputedStyle(element)
+  describe('when gap is passed as responsive BASE spacing', () => {
+    it('renders container with proper gap class', () => {
+      const { getByTestId } = render(
+        <Container data-testid={testId} gap={{ xs: SPACING_6 }}>
+          Some text
+        </Container>
+      )
 
-  //     expect(styles['--picasso-responsive--xs--padding']).toContain('1.5rem')
-  //   })
-  // })
+      expect(getByTestId(testId).className).toContain('xs:gap-6')
+    })
+  })
 })
