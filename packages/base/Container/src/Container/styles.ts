@@ -72,8 +72,6 @@ export const paddings = spacingVariants.reduce((acc, variant) => {
   return acc
 }, Object.create(null))
 
-console.log('Paddings', paddings);
-
 export const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
   acc[`${snakeToCamelCase(spacingKey)}Padding`] = {
     // padding: spacingToRem(spacings[spacingKey] as PicassoSpacing),
@@ -83,9 +81,6 @@ export const basePaddings = Object.keys(spacings).reduce((acc, spacingKey) => {
 
   return acc
 }, Object.create(null))
-
-console.log('basePaddings', basePaddings);
-
 
 const marginClassDef = (direction: Direction, spacing: Spacing) => ({
   [`margin${capitalize(direction)}`]: spacingToRem(spacing),
@@ -118,13 +113,6 @@ const margins: MapOfClasses = {
   ...marginClasses('right'),
 }
 
-// const bottom = 'large'
-
-// console.log(margins);
-// console.log(margins[`bottom${bottom}Margin`]);
-
-
-
 const baseMargins: MapOfClasses = {
   ...baseMarginClasses('top'),
   ...baseMarginClasses('left'),
@@ -139,6 +127,40 @@ alignItemsVariants.forEach(variant => {
     alignItems: variant,
   }
 })
+
+type AlignmentClasses = 'flexStart' | 'flexEnd' | 'center' | 'stretch' | 'baseline' | 'inherit' | 'justify' | 'spaceBetween' | 'spaceAround' | 'spaceEvenly' | 'column' | 'rowReverse' | 'columnReverse'
+
+type AlignmentType = 'alignItems' | 'textAlign' | 'justifyContent' | 'direction'
+
+export const alignmentClasses: Record<AlignmentType, Record<AlignmentClasses | string, string>> = {
+  alignItems: {
+    flexStart: 'items-start',
+    flexEnd: 'items-end',
+    center: 'items-center',
+    stretch: 'items-stretch',
+    baseline: 'items-baseline',
+  },
+  textAlign: {
+    inherit: '[text-align:inherit]',
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right',
+    justify: 'text-justify',
+  },
+  justifyContent: {
+    center: 'justify-center',
+    flexStart: 'justify-start',
+    flexEnd: 'justify-end',
+    spaceBetween: 'justify-between',
+    spaceAround: 'justify-around',
+    spaceEvenly: 'justify-evenly',
+  },
+  direction: {
+    column: 'flex-col',
+    rowReverse: 'flex-row-reverse',
+    columnReverse: 'flex-col-reverse',
+  },
+}
 
 const textAlignItems: MapOfClasses = {}
 
@@ -166,11 +188,11 @@ export const variantClassesByColor: Record<VariantType, string> = {
   transparent: '',
 }
 
-export const flexClassesByDirection: Record<string, string> = {
-  column: 'flex-col',
-  rowReverse: 'flex-row-reverse',
-  columnReverse: 'flex-col-reverse',
-}
+// export const flexClassesByDirection: Record<string, string> = {
+//   column: 'flex-col',
+//   rowReverse: 'flex-row-reverse',
+//   columnReverse: 'flex-col-reverse',
+// }
 
 export default ({ palette, sizes: { borderRadius } }: Theme) =>
   createStyles({
