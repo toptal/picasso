@@ -20,7 +20,7 @@ exports[`NumberInput renders 1`] = `
       class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd"
     >
       <div
-        class="inline-block flex-col"
+        class="inline-flex flex-col"
       >
         <button
           class="MuiButtonBase-root NumberInputEndAdornment-medium NumberInputEndAdornment-root"

@@ -19,7 +19,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
         type="button"
       >
         <span
-          class="items-center inline-block font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
@@ -60,7 +60,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
               type="button"
             >
               <span
-                class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 Hide
               </span>
@@ -95,7 +95,7 @@ exports[`Modal useModal opens and closes modal 2`] = `
         type="button"
       >
         <span
-          class="items-center inline-block font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Show
         </span>
@@ -124,7 +124,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="items-center inline-block font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Show first
         </span>
@@ -139,7 +139,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         type="button"
       >
         <span
-          class="items-center inline-block font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Show second
         </span>

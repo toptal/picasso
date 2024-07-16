@@ -6,7 +6,7 @@ exports[`Alert renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="inline-block text-lg/[1.375em]"
+      class="inline-flex text-lg/[1.375em]"
     >
       <div
         class="mr-2 items-center flex h-[1.25em]"

@@ -29,7 +29,7 @@ exports[`ButtonSplit default render 1`] = `
         type="button"
       >
         <span
-          class="items-center inline-block font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Action
         </span>
@@ -49,7 +49,7 @@ exports[`ButtonSplit default render 1`] = `
             type="button"
           >
             <span
-              class="items-center inline-block font-semibold whitespace-nowrap text-button"
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
                 class="PicassoSvgArrowDownMinor16-root"

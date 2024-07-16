@@ -47,7 +47,7 @@ exports[`FileListItem renders 1`] = `
         type="button"
       >
         <span
-          class="items-center inline-block font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           <svg
             class="PicassoSvgTrash16-root PicassoSvgTrash16-red"

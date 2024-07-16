@@ -263,7 +263,7 @@ exports[`Autocomplete static behavior renders 1`] = `
               type="button"
             >
               <span
-                class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 <svg
                   class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1"

@@ -31,7 +31,7 @@ exports[`ShowMore renders 1`] = `
       type="button"
     >
       <span
-        class="items-center inline-block font-semibold text-blue text-md"
+        class="items-center inline-flex font-semibold text-blue text-md"
       >
         Show more
         <div
@@ -84,7 +84,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
       type="button"
     >
       <span
-        class="items-center inline-block font-semibold text-blue text-md"
+        class="items-center inline-flex font-semibold text-blue text-md"
       >
         Show more
         <div
@@ -137,7 +137,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
       type="button"
     >
       <span
-        class="items-center inline-block font-semibold text-blue text-md"
+        class="items-center inline-flex font-semibold text-blue text-md"
       >
         Display everything
         <div
@@ -204,7 +204,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
       type="button"
     >
       <span
-        class="items-center inline-block font-semibold text-blue text-md"
+        class="items-center inline-flex font-semibold text-blue text-md"
       >
         Show less
         <div
@@ -257,7 +257,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
       type="button"
     >
       <span
-        class="items-center inline-block font-semibold text-blue text-md"
+        class="items-center inline-flex font-semibold text-blue text-md"
       >
         Show more
         <div
@@ -298,7 +298,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
       type="button"
     >
       <span
-        class="items-center inline-block font-semibold text-blue text-md"
+        class="items-center inline-flex font-semibold text-blue text-md"
       >
         Show less
         <div

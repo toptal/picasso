@@ -10,7 +10,7 @@ exports[`Alert renders 1`] = `
       role="alert"
     >
       <div
-        class="inline-block text-lg/[1.375em]"
+        class="inline-flex text-lg/[1.375em]"
       >
         <div
           class="mr-4 items-center flex h-[1.375em]"
@@ -32,10 +32,10 @@ exports[`Alert renders 1`] = `
         </div>
       </div>
       <div
-        class="inline-block"
+        class="inline-flex"
       >
         <div
-          class="gap-4 inline-block"
+          class="gap-4 inline-flex"
         >
           <div
             class="inline-block"
@@ -50,7 +50,7 @@ exports[`Alert renders 1`] = `
               type="button"
             >
               <span
-                class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 Primary
               </span>
@@ -69,7 +69,7 @@ exports[`Alert renders 1`] = `
               type="button"
             >
               <span
-                class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 Secondary
               </span>

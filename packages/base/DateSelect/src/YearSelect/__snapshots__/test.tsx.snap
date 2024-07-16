@@ -31,7 +31,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -61,7 +61,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -91,7 +91,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -121,7 +121,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -151,7 +151,7 @@ exports[`YearSelect render in descending order 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"

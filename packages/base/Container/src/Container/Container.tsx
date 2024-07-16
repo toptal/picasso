@@ -102,6 +102,19 @@ export const Container: ContainerProps = documentable(
 
       const spacingProps = { gap, padded, top, bottom, right, left }
 
+      const getDisplayValue = function getDisplayValue(
+        type: boolean | undefined,
+        display: boolean | undefined
+      ) {
+        return display
+          ? type
+            ? 'inline-flex'
+            : 'flex'
+          : type
+          ? 'inline-block'
+          : ''
+      }
+
       return (
         <Component
           {...rest}
@@ -116,10 +129,9 @@ export const Container: ContainerProps = documentable(
 
             justifyContent && alignmentClasses.justifyContent[justifyContent],
 
-            bordered && 'border-DEFAULT border-solid border-gray-200',
+            bordered && 'border border-solid border-gray-200',
             rounded && 'rounded-md',
-            inline && 'inline-block',
-            flex ? (inline ? 'inline-flex' : 'flex') : '',
+            getDisplayValue(inline, flex),
             direction &&
               direction !== 'row' &&
               alignmentClasses.direction[direction],

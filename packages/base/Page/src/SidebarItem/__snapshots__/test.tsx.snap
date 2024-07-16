@@ -51,7 +51,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                           class="items-center flex"
                         >
                           <div
-                            class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                            class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                           >
                             <div
                               class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -115,7 +115,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                   class="items-center flex"
                                 >
                                   <div
-                                    class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                                    class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                                   >
                                     <div
                                       class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -197,7 +197,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                           class="items-center flex"
                         >
                           <div
-                            class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                            class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                           >
                             <div
                               class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -261,7 +261,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                   class="items-center flex"
                                 >
                                   <div
-                                    class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                                    class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                                   >
                                     <div
                                       class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -313,7 +313,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
             class="items-center flex"
           >
             <div
-              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <svg
                 class="PicassoSvgCandidates16-root"
@@ -360,7 +360,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                 class="items-center flex"
               >
                 <div
-                  class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                  class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                 >
                   <div
                     class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -403,7 +403,7 @@ exports[`SidebarItem is selected 1`] = `
             class="items-center flex"
           >
             <div
-              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <svg
                 class="PicassoSvgCandidates16-root"
@@ -453,7 +453,7 @@ exports[`SidebarItem renders 1`] = `
             class="items-center flex"
           >
             <div
-              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <div
                 class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -507,7 +507,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                   class="items-center flex"
                 >
                   <div
-                    class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                    class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                   >
                     <svg
                       class="PicassoSvgCandidates16-root"
@@ -580,7 +580,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                           class="items-center flex"
                         >
                           <div
-                            class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+                            class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                           >
                             <div
                               class="items-center flex PicassoSidebarItemContent-noWrap"
@@ -628,7 +628,7 @@ exports[`SidebarItem with icon 1`] = `
             class="items-center flex"
           >
             <div
-              class="gap-2 items-center inline-block PicassoSidebarItemContent-noWrap"
+              class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <svg
                 class="PicassoSvgCandidates16-root"

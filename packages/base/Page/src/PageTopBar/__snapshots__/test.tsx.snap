@@ -35,7 +35,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                     type="button"
                   >
                     <span
-                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
@@ -134,7 +134,7 @@ exports[`Page.TopBar render with link 1`] = `
                     type="button"
                   >
                     <span
-                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
@@ -259,7 +259,7 @@ exports[`Page.TopBar renders 1`] = `
                     type="button"
                   >
                     <span
-                      class="items-center inline-block font-semibold whitespace-nowrap text-button"
+                      class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                     >
                       <svg
                         class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"

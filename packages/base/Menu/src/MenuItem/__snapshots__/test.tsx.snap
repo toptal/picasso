@@ -54,7 +54,7 @@ exports[`MenuItem renders checkmarked 1`] = `
             class="items-center flex"
           >
             <div
-              class="mr-2 inline-block PicassoMenuItem-iconContainer"
+              class="mr-2 inline-flex PicassoMenuItem-iconContainer"
             >
               <svg
                 class="PicassoSvgCheckMinor16-root"
@@ -175,7 +175,7 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
               1
             </span>
             <div
-              class="ml-2 inline-block"
+              class="ml-2 inline-flex"
             >
               <svg
                 class="PicassoSvgChevronMinor16-root"

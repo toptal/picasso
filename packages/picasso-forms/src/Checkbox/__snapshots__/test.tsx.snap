@@ -40,7 +40,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                   class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
                 >
                   <span
-                    class="inline-block PicassoCheckbox-checkboxWrapper"
+                    class="inline-flex PicassoCheckbox-checkboxWrapper"
                   >
                     <span
                       aria-disabled="false"
@@ -80,7 +80,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                   class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
                 >
                   <span
-                    class="inline-block PicassoCheckbox-checkboxWrapper"
+                    class="inline-flex PicassoCheckbox-checkboxWrapper"
                   >
                     <span
                       aria-disabled="false"
@@ -142,7 +142,7 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
           >
             <span
-              class="inline-block PicassoCheckbox-checkboxWrapper"
+              class="inline-flex PicassoCheckbox-checkboxWrapper"
             >
               <span
                 aria-disabled="false"
@@ -202,7 +202,7 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
             class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
           >
             <span
-              class="inline-block PicassoCheckbox-checkboxWrapper"
+              class="inline-flex PicassoCheckbox-checkboxWrapper"
             >
               <span
                 aria-disabled="false"

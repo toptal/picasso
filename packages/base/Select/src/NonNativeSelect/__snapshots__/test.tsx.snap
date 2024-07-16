@@ -85,7 +85,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <div
                 data-testid="custom-option-1"
@@ -115,7 +115,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <div
                 data-testid="custom-option-2"
@@ -145,7 +145,7 @@ exports[`NonNativeSelect renders custom options 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <div
                 data-testid="custom-option-3"
@@ -192,7 +192,7 @@ exports[`NonNativeSelect renders description 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -228,7 +228,7 @@ exports[`NonNativeSelect renders description 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -264,7 +264,7 @@ exports[`NonNativeSelect renders description 1`] = `
               class="items-center flex"
             >
               <div
-                class="mr-2 inline-block PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
