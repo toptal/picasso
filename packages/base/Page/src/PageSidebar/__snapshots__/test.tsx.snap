@@ -6,7 +6,7 @@ exports[`PageSidebar renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex flex-col PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"
@@ -30,7 +30,7 @@ exports[`PageSidebar with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex flex-col PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"
@@ -59,7 +59,7 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex flex-col PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
     >
       <div
         class="PageSidebar-wrapper PageSidebar-sticky"
