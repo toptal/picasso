@@ -102,10 +102,10 @@ export const Container: ContainerProps = documentable(
 
       const spacingProps = { gap, padded, top, bottom, right, left }
 
-      const getDisplayValue = function getDisplayValue(
+      const getDisplayValue = (
         type: boolean | undefined,
         display: boolean | undefined
-      ) {
+      ) => {
         return display
           ? type
             ? 'inline-flex'

@@ -97,7 +97,7 @@ export const getSpacingClasses = ({
 }
 
 const convertToRem = (value?: SpacingType) => {
-  if (!value || typeof value !== 'number') {
+  if (typeof value !== 'number') {
     return
   }
 
