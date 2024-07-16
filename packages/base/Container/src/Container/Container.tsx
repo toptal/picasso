@@ -118,8 +118,8 @@ export const Container: ContainerProps = documentable(
 
             bordered && 'border-DEFAULT border-solid border-gray-200',
             rounded && 'rounded-md',
-            flex ? (inline ? 'inline-flex' : 'flex') : '',
             inline && 'inline-block',
+            flex ? (inline ? 'inline-flex' : 'flex') : '',
             direction &&
               direction !== 'row' &&
               alignmentClasses.direction[direction],
