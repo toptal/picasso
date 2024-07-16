@@ -12,7 +12,7 @@ exports[`Timeline renders 1`] = `
         class="PicassoTimeline-root"
       >
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -40,7 +40,7 @@ exports[`Timeline renders 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -68,7 +68,7 @@ exports[`Timeline renders 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -113,7 +113,7 @@ exports[`Timeline renders with dates 1`] = `
         class="PicassoTimeline-root"
       >
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -154,7 +154,7 @@ exports[`Timeline renders with dates 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -195,7 +195,7 @@ exports[`Timeline renders with dates 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -253,7 +253,7 @@ exports[`Timeline renders with icons 1`] = `
         class="PicassoTimeline-root"
       >
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -281,7 +281,7 @@ exports[`Timeline renders with icons 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -309,7 +309,7 @@ exports[`Timeline renders with icons 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -354,7 +354,7 @@ exports[`Timeline renders without a connector 1`] = `
         class="PicassoTimeline-root"
       >
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -383,7 +383,7 @@ exports[`Timeline renders without a connector 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
@@ -412,7 +412,7 @@ exports[`Timeline renders without a connector 1`] = `
           </div>
         </div>
         <div
-          class="flex PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
         >
           <div
             class="PicassoTimelineRow-tableCell"
