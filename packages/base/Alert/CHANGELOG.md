@@ -1,5 +1,20 @@
 # @toptal/picasso-alert
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`cd00880`](https://github.com/toptal/picasso/commit/cd008802e9701bb6574b3354f9d6e95c6ffc61ed)]:
+  - @toptal/picasso-icons@1.5.0
+  - @toptal/picasso-button@2.1.1
+
+## 2.0.0
+
+### Major Changes
+
+- [#4395](https://github.com/toptal/picasso/pull/4395) [`8b1aa267dd0797cb5a9b24ce3052af8d68a85d53`](https://github.com/toptal/picasso/commit/8b1aa267dd0797cb5a9b24ce3052af8d68a85d53) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+
 ## 1.0.23
 
 ### Patch Changes

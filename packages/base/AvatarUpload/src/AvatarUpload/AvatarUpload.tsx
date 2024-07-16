@@ -197,7 +197,6 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
             src={src!}
             alt={alt}
             data-testid={testIds?.avatar}
-            variant='square'
           />
         ) : (
           <>

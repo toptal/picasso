@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-table",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "Toptal UI components library - Table",
   "publishConfig": {
     "access": "public"
@@ -24,8 +24,8 @@
   "dependencies": {
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "2.0.2",
-    "@toptal/picasso-button": "2.1.0",
-    "@toptal/picasso-icons": "1.4.0",
+    "@toptal/picasso-button": "2.1.1",
+    "@toptal/picasso-icons": "1.5.0",
     "@toptal/picasso-utils": "1.0.3",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"

@@ -1,5 +1,12 @@
 # @toptal/picasso-step
 
+## 1.1.9
+
+### Patch Changes
+
+- Updated dependencies [[`cd00880`](https://github.com/toptal/picasso/commit/cd008802e9701bb6574b3354f9d6e95c6ffc61ed)]:
+  - @toptal/picasso-icons@1.5.0
+
 ## 1.1.8
 
 ### Patch Changes
