@@ -103,14 +103,14 @@ export const Container: ContainerProps = documentable(
       const spacingProps = { gap, padded, top, bottom, right, left }
 
       const getDisplayValue = (
-        type: boolean | undefined,
-        display: boolean | undefined
+        isInline: boolean | undefined,
+        isFlex: boolean | undefined
       ) => {
-        return display
-          ? type
+        return isFlex
+          ? isInline
             ? 'inline-flex'
             : 'flex'
-          : type
+          : isInline
           ? 'inline-block'
           : ''
       }
