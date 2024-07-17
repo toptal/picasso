@@ -45,3 +45,8 @@ page
     'With right padding of the container',
     'base/Page'
   )
+  .addExample(
+    'PageHead/story/WithEnabledMinHeight.example.tsx',
+    'With enabled min height for the container',
+    'base/Page'
+  )
