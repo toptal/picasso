@@ -27,7 +27,7 @@
     "typescript": "~4.7.0"
   },
   "devDependencies": {
-    "@toptal/picasso": "46.0.14",
+    "@toptal/picasso": "46.0.15",
     "storybook-readme": "^5.0.9",
     "@babel/types": "^7.20.7"
   },
