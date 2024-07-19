@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 2.2.0
+
+### Minor Changes
+
+- [#4410](https://github.com/toptal/picasso/pull/4410) [`f5e1655`](https://github.com/toptal/picasso/commit/f5e16551b24a5a48e4b8a288928686fdbf57fae1) Thanks [@pudek357](https://github.com/pudek357)!
+- improve `PageHeadMain` to allow using minHeight
+
 ## 2.1.1
 
 ### Patch Changes

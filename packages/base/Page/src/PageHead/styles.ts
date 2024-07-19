@@ -25,4 +25,9 @@ export default ({ palette }: Theme) =>
     main: {
       height: '3.375em',
     },
+    mainEnableMinHeight: {
+      paddingTop: '0.75rem',
+      paddingBottom: '0.75rem',
+      minHeight: '3.375em',
+    },
   })
