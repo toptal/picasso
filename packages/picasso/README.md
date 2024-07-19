@@ -26,7 +26,7 @@ module.exports = {
     path.join(projectRoot, 'node_modules/@toptal/picasso/**/*.js'),
     path.join(projectRoot, 'node_modules/@toptal/picasso-*/**/*.js'),
     // if your project is also using topkit
-    path.join(projectRoot, 'node_modules/@topkit/**/*.js')
+    path.join(projectRoot, 'node_modules/@topkit/**/*.js'),
     // adjust for your project infrastructure
     path.join(projectRoot, '{hosts,libs,namespaces}/**/src/**/*.{ts,tsx}'),
   ],
