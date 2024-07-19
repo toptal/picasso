@@ -1,42 +1,21 @@
+/* eslint-disable complexity */
 import type { PropTypes } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { SpacingType } from '@toptal/picasso-provider'
-import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
-import { documentable, forwardRef , kebabToCamelCase } from '@toptal/picasso-utils'
+import { documentable, forwardRef } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
-import styles from './styles'
-import {
-  filterOutStringAndPicassoSpacing,
-  getBaseSpacingClasses,
-} from './utils'
+import { alignmentClasses, variantClassesByColor } from './styles'
+import { getSpacingClasses, getSpacingStyles } from './utils'
 
 type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
 type BorderableType = 'transparent' | 'white'
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoContainer',
-})
-
-const useResponsiveProps = makeResponsiveSpacingProps(
-  [
-    'margin-top',
-    'margin-bottom',
-    'margin-left',
-    'margin-right',
-    'padding',
-    'gap',
-  ] as const,
-  'PicassoContainer-Responsive'
-)
 
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
@@ -118,62 +97,51 @@ export const Container: ContainerProps = documentable(
         // Avoid passing external classes inside the rest props
         /* eslint-disable @typescript-eslint/no-unused-vars */
         classes: externalClasses,
-        /* eslint-enable */
         ...rest
       } = props
 
-      const classes = useStyles(props)
-      const { className: responsiveClasses, style: responsiveStyle } =
-        useResponsiveProps({
-          'margin-top': filterOutStringAndPicassoSpacing(top),
-          'margin-bottom': filterOutStringAndPicassoSpacing(bottom),
-          'margin-left': filterOutStringAndPicassoSpacing(left),
-          'margin-right': filterOutStringAndPicassoSpacing(right),
-          padding: filterOutStringAndPicassoSpacing(padded),
-          gap: filterOutStringAndPicassoSpacing(gap),
-        })
+      const spacingProps = { gap, padded, top, bottom, right, left }
 
-      const baseSpacingClasses = getBaseSpacingClasses(
-        { top, left, bottom, right, gap, padded },
-        classes
-      )
+      const getDisplayValue = (
+        isInline: boolean | undefined,
+        isFlex: boolean | undefined
+      ) => {
+        return isFlex
+          ? isInline
+            ? 'inline-flex'
+            : 'flex'
+          : isInline
+          ? 'inline-block'
+          : ''
+      }
 
       return (
         <Component
           {...rest}
           ref={ref}
-          className={cx(
-            classes[`${variant}Variant`],
-            {
-              [classes[`${padded}Padding`]]: typeof padded === 'string',
-              [classes[`${gap}Gap`]]: typeof gap === 'string',
+          className={twMerge(
+            variant && variantClassesByColor[variant],
+            getSpacingClasses(spacingProps),
 
-              [classes[`top${top}Margin`]]: typeof top === 'string',
-              [classes[`bottom${bottom}Margin`]]: typeof bottom === 'string',
-              [classes[`left${left}Margin`]]: typeof left === 'string',
-              [classes[`right${right}Margin`]]: typeof right === 'string',
+            typeof align === 'string' && alignmentClasses.textAlign[align],
 
-              [classes[`${align}TextAlign`]]: typeof align === 'string',
+            alignItems && alignmentClasses.alignItems[alignItems],
 
-              [classes[`${kebabToCamelCase(alignItems || '')}AlignItems`]]:
-                alignItems,
+            justifyContent && alignmentClasses.justifyContent[justifyContent],
 
-              [classes[
-                `${kebabToCamelCase(justifyContent || '')}JustifyContent`
-              ]]: justifyContent,
-
-              [classes.bordered]: bordered,
-              [classes.rounded]: rounded,
-              [classes.flex]: flex,
-              [classes.inline]: inline,
-              [classes[kebabToCamelCase(direction || '')]]:
-                direction && direction !== 'row',
-            },
-            baseSpacingClasses,
-            responsiveClasses,
+            bordered && 'border border-solid border-gray-200',
+            rounded && 'rounded-md',
+            getDisplayValue(inline, flex),
+            direction &&
+              direction !== 'row' &&
+              alignmentClasses.direction[direction],
             className
           )}
-          style={{ ...responsiveStyle, ...style }}
+          style={{
+            // used for deprecated spacing props (typeof number)
+            ...getSpacingStyles(spacingProps),
+            ...style,
+          }}
         >
           {children}
         </Component>

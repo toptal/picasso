@@ -18,7 +18,7 @@ exports[`Note renders 1`] = `
         </h4>
       </div>
       <div
-        class="PicassoContainer-bottomsmallMargin"
+        class="mb-4"
       >
         <p
           class="m-0 text-xxs text-graphite font-regular"

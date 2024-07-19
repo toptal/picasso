@@ -36,7 +36,7 @@ exports[`Accordion renders collapsed by default 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold text-blue text-md"
+                class="items-center inline-flex font-semibold text-blue text-md"
               >
                 <svg
                   class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
@@ -182,7 +182,7 @@ exports[`Accordion renders disabled 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold text-blue text-md"
+                class="items-center inline-flex font-semibold text-blue text-md"
               >
                 <svg
                   class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"

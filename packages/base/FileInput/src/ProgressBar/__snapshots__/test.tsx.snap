@@ -6,7 +6,7 @@ exports[`ProgressBar renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+      class="items-center flex"
     >
       <div
         class="PicassoProgressBar-progressBar"
@@ -27,7 +27,7 @@ exports[`ProgressBar renders with percentage 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+      class="items-center flex"
     >
       <div
         class="PicassoProgressBar-progressBar"
@@ -38,7 +38,7 @@ exports[`ProgressBar renders with percentage 1`] = `
         />
       </div>
       <div
-        class="PicassoContainer-leftxsmallMargin"
+        class="ml-2"
       >
         <p
           class="m-0 text-xxs text-graphite font-semibold PicassoProgressBar-percentageValue"

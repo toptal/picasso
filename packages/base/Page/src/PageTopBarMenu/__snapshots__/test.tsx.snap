@@ -12,7 +12,7 @@ exports[`PageTopBarMenu renders 1`] = `
         class="PicassoDropdown-anchor"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
+          class="items-center flex PicassoUserBadge-root"
         >
           <div
             class="flex relative"
@@ -28,10 +28,10 @@ exports[`PageTopBarMenu renders 1`] = `
             </div>
           </div>
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+            class="flex flex-col PicassoUserBadge-infoContainer"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <h4
                 class="m-0 text-md text-white font-semibold inline PicassoUserBadge-name !font-[400] PicassoTopBarMenu-truncateText"

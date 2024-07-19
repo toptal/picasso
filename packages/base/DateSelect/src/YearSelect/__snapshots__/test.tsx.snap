@@ -22,16 +22,16 @@ exports[`YearSelect render in descending order 1`] = `
         value="2005"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -52,16 +52,16 @@ exports[`YearSelect render in descending order 1`] = `
         value="2004"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -82,16 +82,16 @@ exports[`YearSelect render in descending order 1`] = `
         value="2003"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -112,16 +112,16 @@ exports[`YearSelect render in descending order 1`] = `
         value="2002"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"
@@ -142,16 +142,16 @@ exports[`YearSelect render in descending order 1`] = `
         value="2001"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <div
-                class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+                class="mr-2 inline-flex PicassoMenuItem-iconContainer"
               />
               <span
                 class="PicassoMenuItem-stringContent"

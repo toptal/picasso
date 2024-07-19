@@ -19,7 +19,7 @@ exports[`Calendar renders 1`] = `
               class="rdp-month rdp-caption_start rdp-caption_end"
             >
               <div
-                class="PicassoContainer-bottommediumMargin PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                class="mb-6 justify-between flex"
               >
                 <button
                   aria-disabled="false"
@@ -32,7 +32,7 @@ exports[`Calendar renders 1`] = `
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                    class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                   >
                     <svg
                       class="PicassoSvgBackMinor24-root text-[1.2em] flex-1"
@@ -63,7 +63,7 @@ exports[`Calendar renders 1`] = `
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                    class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                   >
                     <svg
                       class="PicassoSvgChevronMinor24-root text-[1.2em] flex-1"

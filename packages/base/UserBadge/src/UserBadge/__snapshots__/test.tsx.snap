@@ -6,7 +6,7 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-center flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -26,10 +26,10 @@ exports[`UserBadge auto center alignment 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -49,7 +49,7 @@ exports[`UserBadge custom name 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-start flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -69,10 +69,10 @@ exports[`UserBadge custom name 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <div>
             Joe Doe
@@ -95,7 +95,7 @@ exports[`UserBadge custom title 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-start flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -115,10 +115,10 @@ exports[`UserBadge custom title 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -146,7 +146,7 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-start flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -166,10 +166,10 @@ exports[`UserBadge invert render 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-white font-semibold inline PicassoUserBadge-name"
@@ -194,7 +194,7 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-center flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -214,10 +214,10 @@ exports[`UserBadge manual center alignment 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -242,7 +242,7 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-start flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -262,10 +262,10 @@ exports[`UserBadge override auto center alignment 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -285,7 +285,7 @@ exports[`UserBadge renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-start flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -305,10 +305,10 @@ exports[`UserBadge renders 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -333,7 +333,7 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+      class="items-start flex PicassoUserBadge-root"
     >
       <div
         class="flex relative"
@@ -353,10 +353,10 @@ exports[`UserBadge small size 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+        class="flex flex-col PicassoUserBadge-infoContainer"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+          class="items-center flex"
         >
           <h4
             class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"

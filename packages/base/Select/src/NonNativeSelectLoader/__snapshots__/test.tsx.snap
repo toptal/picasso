@@ -17,7 +17,7 @@ exports[`NonNativeSelectLoader renders 1`] = `
           class="PicassoScrollMenu-scrollView"
         >
           <div
-            class="PicassoContainer-smallPadding"
+            class="p-4"
           >
             <div
               class="PicassoLoader-root"

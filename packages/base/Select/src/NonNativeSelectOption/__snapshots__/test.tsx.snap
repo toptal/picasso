@@ -15,16 +15,16 @@ exports[`NonNativeSelectOption renders 1`] = `
       value=""
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="items-center flex"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              class="mr-2 inline-flex PicassoMenuItem-iconContainer"
             />
             <span
               class="PicassoMenuItem-stringContent"
@@ -33,7 +33,7 @@ exports[`NonNativeSelectOption renders 1`] = `
             </span>
           </div>
           <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+            class="ml-6 PicassoMenuItem-description"
             style="margin-top: 0.25rem;"
           >
             Test description
@@ -60,16 +60,16 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
       value="option1"
     >
       <div
-        class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+        class="flex PicassoMenuItem-itemWrapper"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+          class="flex flex-col PicassoMenuItem-content"
         >
           <div
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+            class="items-center flex"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin PicassoContainer-flex PicassoContainer-inline PicassoMenuItem-iconContainer"
+              class="mr-2 inline-flex PicassoMenuItem-iconContainer"
             >
               <svg
                 class="PicassoSvgCheckMinor16-root"
@@ -88,7 +88,7 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
             </span>
           </div>
           <div
-            class="PicassoContainer-leftmediumMargin PicassoMenuItem-description"
+            class="ml-6 PicassoMenuItem-description"
             style="margin-top: 0.25rem;"
           >
             Test description

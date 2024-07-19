@@ -170,11 +170,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
                     {centerContent}
                   </div>
                 </PageHamburgerPortal>
-                <Container
-                  flex
-                  alignItems='center'
-                  className={classes.centerContent}
-                >
+                <Container className={classes.centerContent}>
                   {centerContent}
                 </Container>
               </>

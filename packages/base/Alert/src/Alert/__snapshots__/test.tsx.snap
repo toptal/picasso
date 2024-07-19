@@ -6,14 +6,14 @@ exports[`Alert renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-yellowVariant PicassoContainer-smallPadding PicassoContainer-spaceBetweenJustifyContent PicassoContainer-rounded PicassoContainer-flex"
+      class="bg-yellow p-4 justify-between rounded-md flex"
       role="alert"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-inline text-lg/[1.375em]"
+        class="inline-flex text-lg/[1.375em]"
       >
         <div
-          class="PicassoContainer-rightsmallMargin PicassoContainer-centerAlignItems PicassoContainer-flex h-[1.375em]"
+          class="mr-4 items-center flex h-[1.375em]"
         >
           <svg
             class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
@@ -32,13 +32,13 @@ exports[`Alert renders 1`] = `
         </div>
       </div>
       <div
-        class="PicassoContainer-flex PicassoContainer-inline"
+        class="inline-flex"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-inline PicassoContainer-spacing4Gap"
+          class="gap-4 inline-flex"
         >
           <div
-            class="PicassoContainer-inline"
+            class="inline-block"
           >
             <button
               aria-disabled="false"
@@ -50,14 +50,14 @@ exports[`Alert renders 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 Primary
               </span>
             </button>
           </div>
           <div
-            class="PicassoContainer-inline"
+            class="inline-block"
           >
             <button
               aria-disabled="false"
@@ -69,7 +69,7 @@ exports[`Alert renders 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 Secondary
               </span>

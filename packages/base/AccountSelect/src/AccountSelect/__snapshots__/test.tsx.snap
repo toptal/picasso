@@ -17,22 +17,22 @@ exports[`AccountSelect renders 1`] = `
         tabindex="0"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                    class="items-start flex PicassoUserBadge-root"
                   >
                     <div
                       class="flex relative"
@@ -52,10 +52,10 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                      class="flex flex-col PicassoUserBadge-infoContainer"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="items-center flex"
                       >
                         <h4
                           class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -92,23 +92,23 @@ exports[`AccountSelect renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
                 href="#"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                    class="items-start flex PicassoUserBadge-root"
                   >
                     <div
                       class="flex relative"
@@ -128,10 +128,10 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                      class="flex flex-col PicassoUserBadge-infoContainer"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="items-center flex"
                       >
                         <h4
                           class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
@@ -168,23 +168,23 @@ exports[`AccountSelect renders 1`] = `
         tabindex="-1"
       >
         <div
-          class="PicassoContainer-flex PicassoMenuItem-itemWrapper"
+          class="flex PicassoMenuItem-itemWrapper"
         >
           <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoMenuItem-content"
+            class="flex flex-col PicassoMenuItem-content"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="items-center flex"
             >
               <a
                 class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
                 href="#"
               >
                 <div
-                  class="PicassoContainer-mediumPadding PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex"
+                  class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="PicassoContainer-flexStartAlignItems PicassoContainer-flex PicassoUserBadge-root"
+                    class="items-start flex PicassoUserBadge-root"
                   >
                     <div
                       class="flex relative"
@@ -200,10 +200,10 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+                      class="flex flex-col PicassoUserBadge-infoContainer"
                     >
                       <div
-                        class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+                        class="items-center flex"
                       >
                         <h4
                           class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"

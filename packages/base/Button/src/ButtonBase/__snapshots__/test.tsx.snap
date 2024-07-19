@@ -15,7 +15,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "butt
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -39,7 +39,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "butt
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -63,7 +63,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -87,7 +87,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -111,7 +111,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -135,7 +135,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "a" renders B
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -158,7 +158,7 @@ exports[`ButtonBase when "disabled" prop is false renders Button and does not tr
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -182,7 +182,7 @@ exports[`ButtonBase when "disabled" prop is true renders Button and does not tri
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -205,7 +205,7 @@ exports[`ButtonBase when "loading" prop is true renders Button with loading stat
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -253,7 +253,7 @@ exports[`ButtonBase when "role" prop is passed renders Button with a custom role
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         Click me!
       </span>
@@ -276,7 +276,7 @@ exports[`ButtonBase when "titleCase" prop is true renders Button with transforme
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+        class="items-center inline-flex"
       >
         __TITLE_CASE__Test bk9
       </span>

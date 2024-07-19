@@ -6,7 +6,7 @@ exports[`DatePicker renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-inline"
+      class="inline-block"
     >
       <div
         class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"

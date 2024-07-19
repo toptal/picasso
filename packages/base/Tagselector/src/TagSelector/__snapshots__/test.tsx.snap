@@ -12,7 +12,7 @@ exports[`TagSelector disabled render 1`] = `
       role="combobox"
     >
       <div
-        class="PicassoContainer-flex"
+        class="flex"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase Mui-disabled Mui-disabled MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
@@ -94,7 +94,7 @@ exports[`TagSelector preselected value 1`] = `
         role="combobox"
       >
         <div
-          class="PicassoContainer-flex"
+          class="flex"
         >
           <div
             class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
@@ -174,7 +174,7 @@ exports[`TagSelector renders 1`] = `
       role="combobox"
     >
       <div
-        class="PicassoContainer-flex"
+        class="flex"
       >
         <div
           class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTagSelectorInput-inputBase MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"

@@ -13,7 +13,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
         data-testid="header"
       >
         <div
-          class="PicassoContainer-flex ml-auto"
+          class="flex ml-auto"
           data-testid="actions"
         >
           <button
@@ -26,7 +26,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
                 class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition"
@@ -59,7 +59,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
         data-testid="header"
       >
         <div
-          class="PicassoContainer-flex ml-auto"
+          class="flex ml-auto"
           data-testid="actions"
         >
           <button
@@ -72,7 +72,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
             type="button"
           >
             <span
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
                 class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 Rotate180-transition Rotate180-rotate180"
@@ -132,7 +132,7 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
           Subtitle
         </p>
         <div
-          class="PicassoContainer-flex ml-auto"
+          class="flex ml-auto"
           data-testid="actions"
         >
           Actions

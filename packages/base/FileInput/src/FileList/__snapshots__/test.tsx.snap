@@ -6,19 +6,19 @@ exports[`FileList renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-flex PicassoContainer-column FileList-root"
+      class="flex flex-col FileList-root"
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileListItem-root"
+        class="items-center justify-between flex FileListItem-root"
       >
         <div
-          class="PicassoContainer-flex PicassoContainer-column FileListItem-fileNodeContent"
+          class="flex flex-col FileListItem-fileNodeContent"
         >
           <div
-            class="PicassoContainer-flex"
+            class="flex"
           >
             <div
-              class="PicassoContainer-rightxsmallMargin"
+              class="mr-2"
             >
               <svg
                 class="PicassoSvgAttachment16-root PicassoSvgAttachment16-darkGrey"
