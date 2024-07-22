@@ -18,16 +18,6 @@ const Example = () => (
       >
         White
       </Container>
-    </Container>
-
-    <Container>
-      <Typography variant='heading' size='medium'>
-        Non-bordered
-      </Typography>
-
-      <Container rounded padded={SPACING_6} bottom={SPACING_4} top={SPACING_4}>
-        White
-      </Container>
       <Container rounded variant='red' padded={SPACING_6} bottom={SPACING_4}>
         Red
       </Container>
@@ -42,6 +32,16 @@ const Example = () => (
       </Container>
       <Container rounded variant='grey' padded={SPACING_6}>
         Grey
+      </Container>
+    </Container>
+
+    <Container>
+      <Typography variant='heading' size='medium'>
+        Non-bordered
+      </Typography>
+
+      <Container rounded padded={SPACING_6} bottom={SPACING_4} top={SPACING_4}>
+        White
       </Container>
     </Container>
   </Container>

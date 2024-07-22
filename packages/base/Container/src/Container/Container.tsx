@@ -101,6 +101,7 @@ export const Container: ContainerProps = documentable(
       } = props
 
       const spacingProps = { gap, padded, top, bottom, right, left }
+      const isBorderedVariant = !variant || variant === 'white'
 
       const getDisplayValue = (
         isInline: boolean | undefined,
@@ -121,6 +122,7 @@ export const Container: ContainerProps = documentable(
           ref={ref}
           className={twMerge(
             variant && variantClassesByColor[variant],
+
             getSpacingClasses(spacingProps),
 
             typeof align === 'string' && alignmentClasses.textAlign[align],
@@ -129,12 +131,17 @@ export const Container: ContainerProps = documentable(
 
             justifyContent && alignmentClasses.justifyContent[justifyContent],
 
-            bordered && 'border border-solid border-gray-200',
+            bordered &&
+              isBorderedVariant &&
+              'border border-solid border-gray-200',
             rounded && 'rounded-md',
+
             getDisplayValue(inline, flex),
+
             direction &&
               direction !== 'row' &&
               alignmentClasses.direction[direction],
+
             className
           )}
           style={{

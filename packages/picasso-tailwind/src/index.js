@@ -122,6 +122,7 @@ module.exports = {
       current: 'currentColor',
       blue: {
         100: '#EDF1FD',
+        150: '#D5DEFA',
         400: '#25A9EF',
         500: '#204ECF',
         600: '#183A9E',
@@ -129,6 +130,7 @@ module.exports = {
       },
       green: {
         100: '#EAFBF5',
+        150: '#D7F3E9',
         500: '#00CC83',
         600: '#03B080',
         700: '#05947C',
@@ -149,10 +151,12 @@ module.exports = {
       },
       red: {
         100: '#FBEDF1',
+        150: '#F5D8E0',
         500: '#D42551',
       },
       yellow: {
         100: '#FFF5E3',
+        150: '#F8E7C8',
         500: '#E59C01',
       },
       purple: {

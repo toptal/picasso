@@ -29,7 +29,6 @@
     "@toptal/picasso-utils": "1.0.3"
   },
   "peerDependencies": {
-    "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
     "@toptal/picasso-tailwind": ">=2.6",
     "@toptal/picasso-tailwind-merge": "^1.1.1",
