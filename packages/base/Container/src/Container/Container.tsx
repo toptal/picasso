@@ -101,7 +101,8 @@ export const Container: ContainerProps = documentable(
       } = props
 
       const spacingProps = { gap, padded, top, bottom, right, left }
-      const isBorderedVariant = !variant || variant === 'white'
+      const isBorderedVariant =
+        !variant || variant === 'white' || variant === 'transparent'
 
       const getDisplayValue = (
         isInline: boolean | undefined,
