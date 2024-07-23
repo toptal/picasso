@@ -11,6 +11,6 @@ jobs:
     if: startsWith(github.head_ref, 'dependabot-')
     runs-on: ubuntu-latest
     steps:
-      - uses: toptal/davinci-github-actions/pr-conventional-to-toptal-commits@v15.2.1
+      - uses: toptal/davinci-github-actions/pr-conventional-to-toptal-commits@v15.3.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
