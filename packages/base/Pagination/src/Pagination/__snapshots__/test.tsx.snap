@@ -6,7 +6,7 @@ exports[`Pagination renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      class="items-center inline-flex"
     >
       <button
         aria-disabled="false"
@@ -17,7 +17,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Prev
         </span>
@@ -32,7 +32,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           1
         </span>
@@ -56,7 +56,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           3
         </span>
@@ -71,7 +71,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           4
         </span>
@@ -86,7 +86,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           5
         </span>
@@ -101,7 +101,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           6
         </span>
@@ -116,7 +116,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           7
         </span>
@@ -140,7 +140,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           20
         </span>
@@ -154,7 +154,7 @@ exports[`Pagination renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Next
         </span>
@@ -170,7 +170,7 @@ exports[`Pagination renders disabled 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline"
+      class="items-center inline-flex"
     >
       <button
         aria-disabled="true"
@@ -182,7 +182,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Prev
         </span>
@@ -198,7 +198,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           1
         </span>
@@ -223,7 +223,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           3
         </span>
@@ -239,7 +239,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           4
         </span>
@@ -255,7 +255,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           5
         </span>
@@ -271,7 +271,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           6
         </span>
@@ -287,7 +287,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           7
         </span>
@@ -312,7 +312,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           20
         </span>
@@ -327,7 +327,7 @@ exports[`Pagination renders disabled 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           Next
         </span>

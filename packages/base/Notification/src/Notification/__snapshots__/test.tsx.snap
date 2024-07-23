@@ -10,10 +10,10 @@ exports[`Notification renders 1`] = `
       role="alert"
     >
       <div
-        class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
+        class="flex w-full my-0 mx-auto p-0 max-w min-w"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] h-[1em] min-w mt-[2px] basis-0"
+          class="items-center flex mr-[1em] h-[1em] min-w mt-[2px] basis-0"
         >
           <svg
             class="PicassoSvgExclamationSolid16-root PicassoSvgExclamationSolid16-yellow"

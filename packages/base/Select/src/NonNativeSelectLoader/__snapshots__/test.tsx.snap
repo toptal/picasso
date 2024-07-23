@@ -17,7 +17,7 @@ exports[`NonNativeSelectLoader renders 1`] = `
           class="overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
         >
           <div
-            class="PicassoContainer-smallPadding"
+            class="p-4"
           >
             <div
               class="text-lg flex flex-col items-center"

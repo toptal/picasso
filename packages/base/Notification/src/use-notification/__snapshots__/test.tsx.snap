@@ -14,7 +14,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Error
       </span>
@@ -28,7 +28,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Info
       </span>
@@ -42,7 +42,7 @@ exports[`useNotifications error notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Success
       </span>
@@ -67,10 +67,10 @@ exports[`useNotifications error notification render 1`] = `
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
               <div
-                class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
+                class="flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] h-[1.5em] basis-[1.5em]"
+                  class="items-center flex min-w mr-[1em] h-[1.5em] basis-[1.5em]"
                 >
                   <svg
                     class="PicassoSvgExclamationSolid24-root PicassoSvgExclamationSolid24-red"
@@ -96,7 +96,7 @@ exports[`useNotifications error notification render 1`] = `
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                    class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                   >
                     <svg
                       class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
@@ -133,7 +133,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Error
       </span>
@@ -147,7 +147,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Info
       </span>
@@ -161,7 +161,7 @@ exports[`useNotifications info notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Success
       </span>
@@ -186,10 +186,10 @@ exports[`useNotifications info notification render 1`] = `
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
               <div
-                class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
+                class="flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] h-[1.5em] basis-[1.5em]"
+                  class="items-center flex min-w mr-[1em] h-[1.5em] basis-[1.5em]"
                 >
                   <svg
                     class="PicassoSvgInfo24-root PicassoSvgInfo24-grey"
@@ -218,7 +218,7 @@ exports[`useNotifications info notification render 1`] = `
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                    class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                   >
                     <svg
                       class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"
@@ -255,7 +255,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Error
       </span>
@@ -269,7 +269,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Info
       </span>
@@ -283,7 +283,7 @@ exports[`useNotifications success notification render 1`] = `
       type="button"
     >
       <span
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+        class="items-center inline-flex font-semibold whitespace-nowrap text-button"
       >
         Show Success
       </span>
@@ -308,10 +308,10 @@ exports[`useNotifications success notification render 1`] = `
               style="webkit-transform: none; transform: none; webkit-transition: -webkit-transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms; transition: transform 225ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;"
             >
               <div
-                class="PicassoContainer-flex flex w-full my-0 mx-auto p-0 max-w min-w"
+                class="flex w-full my-0 mx-auto p-0 max-w min-w"
               >
                 <div
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex min-w mr-[1em] h-[1.5em] basis-[1.5em]"
+                  class="items-center flex min-w mr-[1em] h-[1.5em] basis-[1.5em]"
                 >
                   <svg
                     class="PicassoSvgCheckSolid24-root PicassoSvgCheckSolid24-green"
@@ -337,7 +337,7 @@ exports[`useNotifications success notification render 1`] = `
                   type="button"
                 >
                   <span
-                    class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                    class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                   >
                     <svg
                       class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1 PicassoSvgCloseMinor16-darkGrey"

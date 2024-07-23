@@ -56,8 +56,10 @@ const Tabs = ({
   )
 }
 
-const Main = (props: { children?: ReactNode } & BaseProps) => {
-  const { className, children, ...rest } = props
+const Main = (
+  props: { children?: ReactNode; enableMinHeight?: boolean } & BaseProps
+) => {
+  const { className, children, enableMinHeight, ...rest } = props
 
   const classes = useMainStyles(props)
 
@@ -66,7 +68,13 @@ const Main = (props: { children?: ReactNode } & BaseProps) => {
       flex
       justifyContent='space-between'
       alignItems='center'
-      className={cx(classes.main, className)}
+      className={cx(
+        {
+          [classes.main]: !enableMinHeight,
+          [classes.mainEnableMinHeight]: enableMinHeight,
+        },
+        className
+      )}
       {...rest}
     >
       {children}

@@ -9,6 +9,7 @@
     { "path": "../Backdrop" },
     { "path": "../Button" },
     { "path": "../Fade" },
+    { "path": "../Icons" },
     { "path": "../ModalContext" },
     { "path": "../Paper" },
     { "path": "../Typography" },

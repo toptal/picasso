@@ -28,7 +28,7 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
                 type="button"
               >
                 <span
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                 >
                   <svg
                     class="PicassoSvgArrowLongUp16-root text-[1.2em] flex-1"
@@ -76,7 +76,7 @@ exports[`TableCell sort direction is desc renders with a sort button in the righ
                 type="button"
               >
                 <span
-                  class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                 >
                   <svg
                     class="PicassoSvgArrowLongDown16-root text-[1.2em] flex-1"

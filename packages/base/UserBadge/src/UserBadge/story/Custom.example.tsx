@@ -9,7 +9,6 @@ const Example = () => (
       avatar={
         <Avatar
           size='large'
-          variant='portrait'
           name='Jacqueline Roque'
           src='./jacqueline-with-flowers-1954-square.jpg'
         />

@@ -6,10 +6,10 @@ exports[`Helpbox renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-mediumPadding PicassoContainer-bordered PicassoContainer-rounded relative"
+      class="p-6 border border-solid border-gray rounded-md relative"
     >
       <div
-        class="PicassoContainer-bottomsmallMargin"
+        class="mb-4"
       >
         <h4
           class="m-0 text-md text-black font-semibold"
@@ -23,7 +23,7 @@ exports[`Helpbox renders 1`] = `
         Test
       </div>
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex absolute right-6 top-6"
+        class="items-center flex absolute right-6 top-6"
       >
         <button
           aria-disabled="false"
@@ -34,7 +34,7 @@ exports[`Helpbox renders 1`] = `
           type="button"
         >
           <span
-            class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
           >
             Button
           </span>

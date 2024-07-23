@@ -100,8 +100,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   return (
     <Container
       ref={ref}
-      flex
-      direction='column'
       style={style}
       className={cx(classes.root, className, classes[variant], classes[size], {
         [classes.rootCollapsed]: collapsible && isCollapsed,

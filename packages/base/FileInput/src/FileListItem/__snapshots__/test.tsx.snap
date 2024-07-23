@@ -6,16 +6,16 @@ exports[`FileListItem renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoContainer-centerAlignItems PicassoContainer-spaceBetweenJustifyContent PicassoContainer-flex FileListItem-root"
+      class="items-center justify-between flex FileListItem-root"
     >
       <div
-        class="PicassoContainer-flex PicassoContainer-column FileListItem-fileNodeContent"
+        class="flex flex-col FileListItem-fileNodeContent"
       >
         <div
-          class="PicassoContainer-flex"
+          class="flex"
         >
           <div
-            class="PicassoContainer-rightxsmallMargin"
+            class="mr-2"
           >
             <svg
               class="PicassoSvgAttachment16-root PicassoSvgAttachment16-darkGrey"
@@ -47,7 +47,7 @@ exports[`FileListItem renders 1`] = `
         type="button"
       >
         <span
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           <svg
             class="PicassoSvgTrash16-root PicassoSvgTrash16-red"

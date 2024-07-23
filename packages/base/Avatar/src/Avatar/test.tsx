@@ -6,7 +6,7 @@ import type { Props } from './Avatar'
 import { Avatar } from './Avatar'
 
 const renderAvatar = (props: OmitInternalProps<Props>) => {
-  const { alt, name, src, size, onEdit, testIds } = props
+  const { alt, name, src, size, showEmblem = false, onEdit, testIds } = props
 
   return render(
     <Avatar
@@ -14,6 +14,7 @@ const renderAvatar = (props: OmitInternalProps<Props>) => {
       name={name}
       src={src}
       size={size}
+      showEmblem={showEmblem}
       testIds={testIds}
       onEdit={onEdit}
     />
@@ -50,7 +51,11 @@ describe('Avatar', () => {
   })
 
   it('renders with logo', () => {
-    const { getAllByRole } = renderAvatar({ src: 'foobar', size: 'medium' })
+    const { getAllByRole } = renderAvatar({
+      src: 'foobar',
+      size: 'medium',
+      showEmblem: true,
+    })
 
     expect(getAllByRole('img')).toHaveLength(2)
   })

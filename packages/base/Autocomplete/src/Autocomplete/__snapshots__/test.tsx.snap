@@ -236,7 +236,7 @@ exports[`Autocomplete static behavior renders 1`] = `
       role="combobox"
     >
       <div
-        class="PicassoContainer-flex"
+        class="flex"
       >
         <div
           class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-[inherit]"
@@ -263,7 +263,7 @@ exports[`Autocomplete static behavior renders 1`] = `
               type="button"
             >
               <span
-                class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-inline font-semibold whitespace-nowrap text-button"
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
                 <svg
                   class="PicassoSvgCloseMinor16-root text-[1.2em] flex-1"

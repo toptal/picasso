@@ -12,22 +12,26 @@ exports[`PageTopBarMenu renders 1`] = `
         class="PicassoDropdown-anchor"
       >
         <div
-          class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoUserBadge-root"
+          class="items-center flex PicassoUserBadge-root"
         >
           <div
-            class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2em] h-[2em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
-          >
-            <img
-              alt="Jacqueline Roque"
-              class="PicassoImage-root object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize PicassoUserBadge-avatar"
-              src="./jacqueline-with-flowers-1954-square.jpg"
-            />
-          </div>
-          <div
-            class="PicassoContainer-flex PicassoContainer-column PicassoUserBadge-infoContainer"
+            class="flex relative"
           >
             <div
-              class="PicassoContainer-centerAlignItems PicassoContainer-flex"
+              class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2em] h-[2em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+            >
+              <img
+                alt="Jacqueline Roque"
+                class="PicassoImage-root object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize PicassoUserBadge-avatar"
+                src="./jacqueline-with-flowers-1954-square.jpg"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col PicassoUserBadge-infoContainer"
+          >
+            <div
+              class="items-center flex"
             >
               <h4
                 class="m-0 text-md text-white font-semibold inline PicassoUserBadge-name !font-[400] PicassoTopBarMenu-truncateText"

@@ -1,5 +1,23 @@
 # @toptal/picasso-avatar
 
+## 4.0.0
+
+### Major Changes
+
+- [#4400](https://github.com/toptal/picasso/pull/4400) [`a7c226f`](https://github.com/toptal/picasso/commit/a7c226f33753682c001e31b76aa72e9e8172d5a4) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Avatar, AvatarGroup
+
+- add `showEmblem` prop to Avatar and AvatarGroup to enable display of Toptal logo
+- remove `variant` prop because we no longer display avatar as `portrait` or `landscape`
+- these changes are the result of the design update that can be tracked [here](https://www.figma.com/design/bUFkua511v5UOOpn08KSZO/Library-2.0?node-id=15794-15305&t=pLpfBxoMagKCtLIi-4)
+
+### Patch Changes
+
+- Updated dependencies [[`cd00880`](https://github.com/toptal/picasso/commit/cd008802e9701bb6574b3354f9d6e95c6ffc61ed)]:
+  - @toptal/picasso-icons@1.5.0
+  - @toptal/picasso-logo@1.0.8
+
 ## 3.0.0
 
 ### Major Changes

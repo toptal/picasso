@@ -9,7 +9,7 @@ exports[`Dropzone renders 1`] = `
       class=""
     >
       <div
-        class="PicassoContainer-centerAlignItems PicassoContainer-flex PicassoContainer-column Dropzone-root"
+        class="items-center flex flex-col Dropzone-root"
         role="presentation"
         tabindex="0"
       >

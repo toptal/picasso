@@ -43,7 +43,6 @@ const TimelineRow = ({
     <Container
       data-testid={dataTestId}
       className={cx(classes.root, classes.tableRow, className)}
-      flex
     >
       <Container className={cx(classes.tableCell)}>
         <Container

@@ -241,7 +241,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             onSelect={range ? handleRangeChange : handleSingleDateChange}
             fromDate={minDate}
             fromYear={minDate?.getFullYear()}
-            toYear={maxDate?.getFullYear()}
             onMonthChange={month => setNavigationMonth(month)}
             toDate={maxDate}
             numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}

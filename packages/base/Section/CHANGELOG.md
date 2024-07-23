@@ -1,5 +1,13 @@
 # @toptal/picasso-section
 
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`cd00880`](https://github.com/toptal/picasso/commit/cd008802e9701bb6574b3354f9d6e95c6ffc61ed)]:
+  - @toptal/picasso-icons@1.5.0
+  - @toptal/picasso-button@2.1.1
+
 ## 3.0.4
 
 ### Patch Changes
