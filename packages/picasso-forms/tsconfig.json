@@ -26,6 +26,7 @@
     { "path": "../base/Timepicker" },
     { "path": "../base/Utils" },
     { "path": "../picasso-rich-text-editor" },
+    { "path": "../picasso-tailwind" },
     { "path": "../shared" }
   ]
 }

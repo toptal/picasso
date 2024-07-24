@@ -2,5 +2,9 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
-  "references": [{ "path": "../Container" }, { "path": "../Typography" }]
+  "references": [
+    { "path": "../../picasso-tailwind" },
+    { "path": "../Container" },
+    { "path": "../Typography" }
+  ]
 }

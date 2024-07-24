@@ -61,10 +61,10 @@ export const alignmentClasses = {
 
 export const variantClassesByColor: Record<VariantType, string> = {
   white: 'bg-white',
-  red: 'bg-red-100',
-  green: 'bg-green-100',
-  yellow: 'bg-yellow-100',
-  blue: 'bg-blue-100',
-  grey: 'bg-gray-200',
+  red: 'bg-red-100 border border-solid border-red-150',
+  green: 'bg-green-100 border border-solid border-green-150',
+  yellow: 'bg-yellow-100 border border-solid border-yellow-150',
+  blue: 'bg-blue-100 border border-solid border-blue-150',
+  grey: 'bg-gray-200 border border-solid border-gray-400',
   transparent: '',
 }
