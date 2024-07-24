@@ -3,6 +3,7 @@
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
   "references": [
+    { "path": "../../picasso-tailwind" },
     { "path": "../Container" },
     { "path": "../FileInput" },
     { "path": "../Form" },

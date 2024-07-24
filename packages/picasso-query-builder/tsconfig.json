@@ -18,6 +18,7 @@
     { "path": "../base/Tooltip" },
     { "path": "../base/Typography" },
     { "path": "../base/Utils" },
-    { "path": "../picasso-provider" }
+    { "path": "../picasso-provider" },
+    { "path": "../picasso-tailwind" }
   ]
 }
