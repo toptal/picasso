@@ -1,5 +1,6 @@
 import React from 'react'
-import { render } from '@toptal/picasso-test-utils'
+import { fireEvent, render } from '@toptal/picasso-test-utils'
+import { describe, expect, it } from '@jest/globals'
 
 import { Calendar } from './Calendar'
 
@@ -38,6 +39,29 @@ describe('Calendar', () => {
       const monthHeader = getByText('June 2019')
 
       expect(monthHeader).toBeInTheDocument()
+    })
+  })
+
+  describe('when maxDate is set', () => {
+    it('will not trigger onChange when we click on disabled button', () => {
+      const minDate = new Date(2024, 6, 1)
+      const maxDate = new Date(2024, 6, 10)
+      const value = new Date(2024, 6, 2)
+      const onChange = jest.fn()
+
+      const { getByTestId } = render(
+        <Calendar
+          minDate={minDate}
+          maxDate={maxDate}
+          value={value}
+          onChange={onChange}
+        />
+      )
+
+      const disabledButton = getByTestId('day-button-11')
+
+      fireEvent.click(disabledButton)
+      expect(onChange).not.toHaveBeenCalled()
     })
   })
 })
