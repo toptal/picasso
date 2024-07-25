@@ -43,25 +43,52 @@ describe('Calendar', () => {
   })
 
   describe('when maxDate is set', () => {
-    it('will not trigger onChange when we click on disabled button', () => {
-      const minDate = new Date(2024, 6, 1)
-      const maxDate = new Date(2024, 6, 10)
-      const value = new Date(2024, 6, 2)
-      const onChange = jest.fn()
+    describe('when we click on disabled button', () => {
+      it('will not trigger onChange', () => {
+        const minDate = new Date(2024, 6, 1)
+        const maxDate = new Date(2024, 6, 10)
+        const value = new Date(2024, 6, 2)
+        const onChange = jest.fn()
 
-      const { getByTestId } = render(
-        <Calendar
-          minDate={minDate}
-          maxDate={maxDate}
-          value={value}
-          onChange={onChange}
-        />
-      )
+        const { getByTestId } = render(
+          <Calendar
+            minDate={minDate}
+            maxDate={maxDate}
+            value={value}
+            onChange={onChange}
+          />
+        )
 
-      const disabledButton = getByTestId('day-button-11')
+        const disabledButton = getByTestId('day-button-11')
 
-      fireEvent.click(disabledButton)
-      expect(onChange).not.toHaveBeenCalled()
+        fireEvent.click(disabledButton)
+        expect(onChange).not.toHaveBeenCalled()
+      })
+    })
+  })
+
+  describe('when minDate is set', () => {
+    describe('when we click on disabled button', () => {
+      it('will not trigger onChange', () => {
+        const minDate = new Date(2024, 6, 10)
+        const maxDate = new Date(2024, 6, 15)
+        const value = new Date(2024, 6, 12)
+        const onChange = jest.fn()
+
+        const { getByTestId } = render(
+          <Calendar
+            minDate={minDate}
+            maxDate={maxDate}
+            value={value}
+            onChange={onChange}
+          />
+        )
+
+        const disabledButton = getByTestId('day-button-6')
+
+        fireEvent.click(disabledButton)
+        expect(onChange).not.toHaveBeenCalled()
+      })
     })
   })
 })
