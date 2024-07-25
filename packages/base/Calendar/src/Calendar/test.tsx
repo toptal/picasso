@@ -64,4 +64,27 @@ describe('Calendar', () => {
       expect(onChange).not.toHaveBeenCalled()
     })
   })
+
+  describe('when minDate is set', () => {
+    it('will not trigger onChange when we click on disabled button', () => {
+      const minDate = new Date(2024, 6, 10)
+      const maxDate = new Date(2024, 6, 15)
+      const value = new Date(2024, 6, 12)
+      const onChange = jest.fn()
+
+      const { getByTestId } = render(
+        <Calendar
+          minDate={minDate}
+          maxDate={maxDate}
+          value={value}
+          onChange={onChange}
+        />
+      )
+
+      const disabledButton = getByTestId('day-button-6')
+
+      fireEvent.click(disabledButton)
+      expect(onChange).not.toHaveBeenCalled()
+    })
+  })
 })
