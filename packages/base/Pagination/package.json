@@ -36,7 +36,7 @@
     "@material-ui/core": "4.12.4",
     "react": ">=16.12.0 < 19.0.0",
     "@toptal/picasso-tailwind-merge": "^1.0.1",
-    "@toptal/picasso-tailwind": ">=2.5.0"
+    "@toptal/picasso-tailwind": ">=2.7"
   },
   "exports": {
     ".": "./dist-package/src/index.js"

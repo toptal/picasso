@@ -7,6 +7,7 @@
     { "path": "../base/Paper" },
     { "path": "../base/Typography" },
     { "path": "../base/Utils" },
-    { "path": "../picasso-charts" }
+    { "path": "../picasso-charts" },
+    { "path": "../picasso-tailwind" }
   ]
 }

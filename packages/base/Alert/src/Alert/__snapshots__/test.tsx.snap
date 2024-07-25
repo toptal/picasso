@@ -6,7 +6,7 @@ exports[`Alert renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="bg-yellow p-4 justify-between rounded-md flex"
+      class="bg-yellow border border-solid border-yellow p-4 justify-between rounded-md flex"
       role="alert"
     >
       <div
