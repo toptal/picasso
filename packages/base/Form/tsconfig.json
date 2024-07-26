@@ -6,6 +6,7 @@
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind" },
     { "path": "../../shared" },
+    { "path": "../Collapse" },
     { "path": "../Container" },
     { "path": "../Grid" },
     { "path": "../Icons" },

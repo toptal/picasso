@@ -1,7 +1,7 @@
 import type { ReactNode, MouseEvent, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { SizeType, BaseProps } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { ArrowDownMinor24, ArrowDownMinor16 } from '@toptal/picasso-icons'
 import { Dropdown } from '@toptal/picasso-dropdown'
 

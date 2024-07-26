@@ -9,13 +9,13 @@ exports[`TableCell sort direction is asc renders with a sort button in the right
       <tbody>
         <tr>
           <td
-            class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
+            class="h-10 py-2 border-none last:pr-6 px-4 group hover:bg-gray"
           >
             <div
               class="flex items-center"
             >
               <div
-                class="m-0 text-sm text-graphite font-inherit"
+                class="m-0 text-sm text-graphite font-inherit text-align"
               >
                 Cell
               </div>
@@ -59,13 +59,13 @@ exports[`TableCell sort direction is desc renders with a sort button in the righ
       <tbody>
         <tr>
           <td
-            class="MuiTableCell-root PicassoTableCell-root group hover:bg-gray"
+            class="h-10 py-2 border-none last:pr-6 px-4 group hover:bg-gray"
           >
             <div
               class="flex items-center"
             >
               <div
-                class="m-0 text-sm text-graphite font-inherit"
+                class="m-0 text-sm text-graphite font-inherit text-align"
               />
               <button
                 aria-disabled="false"

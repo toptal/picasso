@@ -1,5 +1,36 @@
 # @toptal/picasso-helpbox
 
+## 4.0.0
+
+### Major Changes
+
+- [#4409](https://github.com/toptal/picasso/pull/4409) [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Container
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make "@toptal/picasso-tailwind-merge": "^1.1.1" a peer dependency
+- the "@toptal/picasso-tailwind" package has been updated to the latest version in peerDependencies
+
+### Picasso, AccountSelect, Alert, ApplicationUpdateNotification, Autocomplete, Avatar, Button, Calendar, Carousel, Checkbox, DatePicker, Drawer, Dropzone, EmptyState, FileInput, Form, Helpbox, Input, InputAdornment, List, Menu, Note, Notification, NumberInput, OverviewBlock, Page, Pagination, PromptModal, Quote, Rating, Section, Select, Tabs, Timeline, TreeView, Forms, QueryBuilder, RichTextEditor, AnalyticsCharts
+
+- the "@toptal/picasso-tailwind" package has been updated to the latest version in peerDependencies
+
+### Minor Changes
+
+- [#4414](https://github.com/toptal/picasso/pull/4414) [`c06cf2c`](https://github.com/toptal/picasso/commit/c06cf2c21d6cd294ef4903613268e747670f252b) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Alert, Helpbox, Container
+
+- all variants except white (in Container only) and transparent now have a 1px border by default.
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`c06cf2c`](https://github.com/toptal/picasso/commit/c06cf2c21d6cd294ef4903613268e747670f252b), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f)]:
+  - @toptal/picasso-typography@3.0.0
+  - @toptal/picasso-button@3.0.0
+  - @toptal/picasso-container@2.0.0
+
 ## 3.0.1
 
 ### Patch Changes

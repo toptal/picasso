@@ -1,5 +1,12 @@
 # @toptal/picasso-switch
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f)]:
+  - @toptal/picasso-form@4.0.0
+
 ## 2.0.3
 
 ### Patch Changes

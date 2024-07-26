@@ -33,7 +33,7 @@ const TabsContent = ({ children }: { children: React.ReactNode }) => {
 const Example = () => {
   const [value, setValue] = React.useState(0)
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (_: React.ChangeEvent<{}> | null, newValue: number) => {
     setValue(newValue)
   }
 

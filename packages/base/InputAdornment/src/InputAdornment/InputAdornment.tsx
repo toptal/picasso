@@ -1,13 +1,8 @@
 import type { ReactNode, HTMLAttributes, MouseEvent } from 'react'
 import React, { useCallback } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { InputAdornment as MUIInputAdornment } from '@material-ui/core'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso-utils'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type PositionType = 'start' | 'end'
 
@@ -19,10 +14,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   stopPropagation?: boolean
   'data-testid'?: string
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoInputAdornment',
-})
 
 const InputAdornment = (props: Props) => {
   const {
@@ -38,7 +29,6 @@ const InputAdornment = (props: Props) => {
     ...rest
   } = props
 
-  const classes = useStyles()
   const handleClick = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
       if (stopPropagation) {
@@ -51,22 +41,22 @@ const InputAdornment = (props: Props) => {
   )
 
   return (
-    <MUIInputAdornment
+    <div
       {...rest}
-      classes={{
-        root: cx(classes.root, {
-          [classes.rootDisabled]: disabled,
-        }),
-      }}
-      className={className}
+      className={twMerge(
+        'text-graphite-700 h-auto flex items-center whitespace-nowrap max-h-[2em]',
+        disabled && 'text-opacity-[0.48]',
+        position === 'end' &&
+          'justify-end ml-auto flex-grow-0 flex-shrink-0 basis-auto',
+        disablePointerEvents && 'pointer-events-none',
+        className
+      )}
       style={style}
-      position={position}
-      disablePointerEvents={disablePointerEvents}
       onClick={handleClick}
       data-testid={dataTestId}
     >
       {children}
-    </MUIInputAdornment>
+    </div>
   )
 }
 

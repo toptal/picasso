@@ -1,5 +1,23 @@
 # @toptal/picasso-tailwind
 
+## 2.7.0
+
+### Minor Changes
+
+- [#4414](https://github.com/toptal/picasso/pull/4414) [`c06cf2c`](https://github.com/toptal/picasso/commit/c06cf2c21d6cd294ef4903613268e747670f252b) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### picasso-tailwind
+
+- add new colors to tailwindCss configuration
+
+### Patch Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Picasso Tailwind Config
+
+- added animations required to make `Loader` work
+
 ## 2.6.1
 
 ### Patch Changes

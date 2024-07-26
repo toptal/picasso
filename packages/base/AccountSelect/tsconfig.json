@@ -4,6 +4,7 @@
   "include": ["src"],
   "references": [
     { "path": "../../picasso-tailwind" },
+    { "path": "../../picasso-tailwind-merge" },
     { "path": "../Container" },
     { "path": "../Icons" },
     { "path": "../Link" },

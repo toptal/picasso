@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-paper",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "description": "Toptal UI components library - Paper",
   "publishConfig": {
     "access": "public"
@@ -26,6 +26,7 @@
     "**/styles.js"
   ],
   "peerDependencies": {
+    "@toptal/picasso-tailwind-merge": "^1.0.1",
     "@toptal/picasso-provider": "*",
     "@toptal/picasso-tailwind": ">=2.0.1",
     "react": ">=16.12.0 < 19.0.0",
@@ -35,12 +36,12 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.2.1",
+    "@toptal/picasso-tailwind-merge": "1.2.0",
+    "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.3",
-    "tailwind-merge": "^2.2.2"
+    "@toptal/picasso-utils": "1.0.3"
   },
   "files": [
     "dist-package/**",

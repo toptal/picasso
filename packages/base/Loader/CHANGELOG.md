@@ -1,5 +1,18 @@
 # @toptal/picasso-loader
 
+## 2.0.0
+
+### Major Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- add @toptal/picasso-tailwind-merge as peer dependency, it now needs to be provided by the project consuming the package
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Loader
+
+- migrated away from MUI to pure Tailwind CSS
+
 ## 1.0.3
 
 ### Patch Changes

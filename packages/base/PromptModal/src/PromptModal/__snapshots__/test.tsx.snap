@@ -10,87 +10,81 @@ exports[`PromptModal renders 1`] = `
     />
   </div>
   <div
-    class="MuiDialog-root PicassoModal-root"
+    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
     role="presentation"
-    style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
   >
     <div
       aria-hidden="true"
-      class="MuiBackdrop-root"
-      style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+      style="transition-duration: 300ms; opacity: 1;"
     />
     <div
-      data-test="sentinelStart"
+      data-testid="sentinelStart"
       tabindex="0"
     />
     <div
-      class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-      role="none presentation"
-      style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+      role="dialog"
+      style="transition-duration: 300ms; opacity: 1;"
       tabindex="-1"
     >
       <div
-        class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-small MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-        role="dialog"
+        class="pr-6 mt-8 mx-8 mb-0"
+      >
+        <h2
+          class="m-0 text-xl text-black font-semibold"
+        >
+          Test title
+        </h2>
+      </div>
+      <div
+        class="flex relative flex-auto overflow-y"
       >
         <div
-          class="PicassoModalTitle-root"
+          class="pt-6 px-8 pb-8 overflow-auto flex-auto"
         >
-          <h2
-            class="m-0 text-xl text-black font-semibold"
+          <p
+            class="m-0 text-md text-graphite font-regular"
           >
-            Test title
-          </h2>
+            Test message
+          </p>
         </div>
-        <div
-          class="PicassoModalContent-wrapper"
+      </div>
+      <div
+        class="mt-0 mx-8 mb-8 text-right"
+      >
+        <button
+          aria-disabled="false"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+          data-component-type="button"
+          role="button"
+          tabindex="0"
+          type="button"
         >
-          <div
-            class="PicassoModalContent-modalContent"
+          <span
+            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
           >
-            <p
-              class="m-0 text-md text-graphite font-regular"
-            >
-              Test message
-            </p>
-          </div>
-        </div>
-        <div
-          class="PicassoModalAction-root"
+            Cancel
+          </span>
+        </button>
+        <button
+          aria-disabled="false"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+          data-component-type="button"
+          role="button"
+          tabindex="0"
+          type="button"
         >
-          <button
-            aria-disabled="false"
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
-            data-component-type="button"
-            role="button"
-            tabindex="0"
-            type="button"
+          <span
+            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
           >
-            <span
-              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-            >
-              Cancel
-            </span>
-          </button>
-          <button
-            aria-disabled="false"
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-            data-component-type="button"
-            role="button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-            >
-              Submit
-            </span>
-          </button>
-        </div>
+            Submit
+          </span>
+        </button>
       </div>
     </div>
     <div
-      data-test="sentinelEnd"
+      data-testid="sentinelEnd"
       tabindex="0"
     />
   </div>
@@ -144,87 +138,81 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         </span>
       </button>
       <div
-        class="MuiDialog-root PicassoModal-root"
+        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
         role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
       >
         <div
           aria-hidden="true"
-          class="MuiBackdrop-root"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          style="transition-duration: 300ms; opacity: 1;"
         />
         <div
-          data-test="sentinelStart"
+          data-testid="sentinelStart"
           tabindex="0"
         />
         <div
-          class="MuiDialog-container PicassoModal-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          role="dialog"
+          style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
         >
           <div
-            class="MuiPaper-root MuiDialog-paper PicassoModal-paper PicassoModal-small MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation2"
-            role="dialog"
+            class="pr-6 mt-8 mx-8 mb-0"
+          >
+            <h2
+              class="m-0 text-xl text-black font-semibold"
+            >
+              Test title
+            </h2>
+          </div>
+          <div
+            class="flex relative flex-auto overflow-y"
           >
             <div
-              class="PicassoModalTitle-root"
+              class="pt-6 px-8 pb-8 overflow-auto flex-auto"
             >
-              <h2
-                class="m-0 text-xl text-black font-semibold"
+              <p
+                class="m-0 text-md text-graphite font-regular"
               >
-                Test title
-              </h2>
+                Test message
+              </p>
             </div>
-            <div
-              class="PicassoModalContent-wrapper"
+          </div>
+          <div
+            class="mt-0 mx-8 mb-8 text-right"
+          >
+            <button
+              aria-disabled="false"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+              data-component-type="button"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <div
-                class="PicassoModalContent-modalContent"
+              <span
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
-                <p
-                  class="m-0 text-md text-graphite font-regular"
-                >
-                  Test message
-                </p>
-              </div>
-            </div>
-            <div
-              class="PicassoModalAction-root"
+                Cancel
+              </span>
+            </button>
+            <button
+              aria-disabled="false"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+              data-component-type="button"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <button
-                aria-disabled="false"
-                class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
-                data-component-type="button"
-                role="button"
-                tabindex="0"
-                type="button"
+              <span
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
               >
-                <span
-                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-                >
-                  Cancel
-                </span>
-              </button>
-              <button
-                aria-disabled="false"
-                class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-                data-component-type="button"
-                role="button"
-                tabindex="0"
-                type="button"
-              >
-                <span
-                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-                >
-                  Submit
-                </span>
-              </button>
-            </div>
+                Submit
+              </span>
+            </button>
           </div>
         </div>
         <div
-          data-test="sentinelEnd"
+          data-testid="sentinelEnd"
           tabindex="0"
         />
       </div>

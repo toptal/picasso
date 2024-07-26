@@ -1,5 +1,18 @@
 # @toptal/picasso-typography
 
+## 3.0.0
+
+### Major Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- add @toptal/picasso-tailwind-merge as peer dependency, it now needs to be provided by the project consuming the package
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- bump `@toptal/tailwind-merge` to version `1.2.0` to correctly merge classes when using font-weight-inherit and text-align-inherit
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- remove `getTypographyClassName`, `TypographyOptions`, and `typographyStyles`
+
 ## 2.0.2
 
 ### Patch Changes

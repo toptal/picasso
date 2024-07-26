@@ -1,5 +1,19 @@
 # @toptal/picasso-breadcrumbs
 
+## 2.0.0
+
+### Major Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- migrate from material-ui to TailwindCSS
+  - make @toptal/picasso-tailwind a peer dependency
+  - make @toptal/picasso-tailwind-merge": "^1.0.0 a peer dependency
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685)]:
+  - @toptal/picasso-typography@3.0.0
+
 ## 1.0.12
 
 ### Patch Changes

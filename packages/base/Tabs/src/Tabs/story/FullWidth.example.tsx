@@ -8,7 +8,7 @@ const TAB_COUNT = 2
 const Example = () => {
   const [value, setValue] = React.useState(0)
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (_: React.ChangeEvent<{}> | null, newValue: number) => {
     setValue(newValue)
   }
 

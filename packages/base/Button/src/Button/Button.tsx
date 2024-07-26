@@ -1,7 +1,7 @@
 import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
   StandardProps,
   SizeType,

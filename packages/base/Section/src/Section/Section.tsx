@@ -6,7 +6,7 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { isString, Rotate180 } from '@toptal/picasso-utils'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
-import { twMerge, twJoin } from 'tailwind-merge'
+import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 import { Collapse } from '@toptal/picasso-collapse'
 
 type VariantType = 'bordered' | 'default' | 'withHeaderBar'

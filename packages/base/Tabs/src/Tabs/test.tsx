@@ -1,14 +1,17 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { TestingPicasso } from '@toptal/picasso-test-utils'
 
 import type { TabProps } from '../Tab'
-import type { Props } from './Tabs'
+import type { Props, TabsValueType } from './Tabs'
 import { TabsCompound as Tabs } from '../TabsCompound'
 
-const renderTabContent = (tab: TabProps, index: number, value: any) => {
+const renderTabContent = (
+  tab: TabProps,
+  index: number,
+  value: TabsValueType
+) => {
   const isTabActive = index + 1 === value || tab.value === value
   const testId = `tab-${index + 1}-content`
 
@@ -25,7 +28,7 @@ const renderTabContent = (tab: TabProps, index: number, value: any) => {
 
 const renderTabs = (
   tabs: TabProps[],
-  { value, onChange, variant }: OmitInternalProps<Props, 'children'>,
+  { value, onChange, variant }: Omit<Props<TabsValueType>, 'children'>,
   orientation: 'horizontal' | 'vertical' = 'horizontal'
 ) => {
   return render(
@@ -57,7 +60,7 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: false,
+        value: null,
       }
     )
 
@@ -70,7 +73,7 @@ describe('Tabs', () => {
   it('renders in vertical orientation', () => {
     const { container } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
-      { value: false },
+      { value: null },
       'vertical'
     )
 
@@ -113,7 +116,7 @@ describe('Tabs', () => {
     const { getByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: 1,
+        value: 0,
         onChange,
       }
     )
@@ -156,7 +159,7 @@ describe('Tabs', () => {
 
   it('renders in full width', () => {
     const { container } = renderTabs([{ label: 'Tab 1' }, { label: 'Tab 2' }], {
-      value: false,
+      value: null,
       variant: 'fullWidth',
     })
 
