@@ -1,15 +1,13 @@
-import type { Theme } from '@material-ui/core'
-import { capitalize, makeStyles } from '@material-ui/core'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import type { CSSProperties, FocusEvent } from 'react'
 import React, { forwardRef, useImperativeHandle } from 'react'
 import { Avatar, AvatarDropzoneSvg } from '@toptal/picasso-avatar'
 import { Upload16, Upload24 } from '@toptal/picasso-icons'
 import { Loader } from '@toptal/picasso-loader'
 import type { Status } from '@toptal/picasso-outlined-input'
+import { twJoin } from 'packages/picasso-tailwind-merge'
 
-import styles from './styles'
+import { getIconClass, rootClassBySize } from './styles'
 import type { AvatarUploadOptions, FileUpload } from './types'
 import useAvatarUpload from './hooks/use-avatar-upload'
 import useAvatarStates from './hooks/use-avatar-states'
@@ -75,10 +73,6 @@ export interface Props extends BaseProps {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAvatarUpload',
-})
-
 export const AvatarUpload = forwardRef<HTMLElement, Props>(
   function AvatarUpload(props, ref) {
     const {
@@ -109,8 +103,6 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       validator,
     } = props
 
-    const classes = useStyles()
-
     const {
       rootRef,
       showUploadIcon,
@@ -133,6 +125,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       onDropAccepted,
       onDropRejected,
     })
+
     const { hovered, onMouseEnter, onMouseLeave, isDragActive, isFocused } =
       useAvatarStates({
         autoHover,
@@ -144,10 +137,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
 
     const loadingIcon = uploading && (
       <Loader
-        className={cx(classes.icon, {
-          [classes.hovered]: hovered,
-          [classes.error]: status === 'error',
-        })}
+        className={getIconClass(hovered, status)}
         size='small'
         variant='inherit'
         data-testid={testIds?.loader}
@@ -158,10 +148,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       size === 'xxsmall' || size === 'xsmall' ? Upload16 : Upload24
     const uploadIcon = showUploadIcon && (
       <UploadIconComponent
-        className={cx(classes.icon, {
-          [classes.hovered]: hovered,
-          [classes.error]: status === 'error',
-        })}
+        className={getIconClass(hovered, status)}
         data-testid={testIds?.uploadIcon}
       />
     )
@@ -175,10 +162,12 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       <div
         style={style}
         {...getRootProps({
-          className: cx(classes.root, classes[`size${capitalize(size)}`], {
-            [classes.disabled]: disabled,
-            [classes.readonlyAvatar]: showAvatar,
-          }),
+          className: twJoin(
+            'relative flex justify-center items-center text-blue-500 outline-none cursor-pointer',
+            rootClassBySize[size],
+            disabled && 'cursor-no-drop',
+            showAvatar && 'cursor-default'
+          ),
           'data-testid': dataTestId,
           onMouseEnter,
           onMouseLeave,
