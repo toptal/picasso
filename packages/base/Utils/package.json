@@ -31,7 +31,7 @@
     "classnames": "^2.5.1"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "4.2.1",
+    "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1",
     "styled-components": "^6.1.1"
   },

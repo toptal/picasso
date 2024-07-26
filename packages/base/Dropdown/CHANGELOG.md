@@ -1,5 +1,12 @@
 # @toptal/picasso-dropdown
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685)]:
+  - @toptal/picasso-paper@3.0.0
+
 ## 2.0.3
 
 ### Patch Changes

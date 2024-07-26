@@ -1,5 +1,34 @@
 # @toptal/picasso-modal
 
+## 3.0.0
+
+### Major Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- migrate to TailwindCSS
+
+  - set correct `line-height` to the Modal container,
+    children now inherit this `line-height`, so small changes in visual tests are expected
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Modal
+
+- as we don't use Paper from material ui anymore, we have to change
+  `paperProps` to `HTMLDivAttributes`.
+- it should not affect our users as
+  from the research we found out that it is used mainly to set aria attributes, change the role attribute, or customize styles.
+  Still, technically it is breaking change.
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f)]:
+  - @toptal/picasso-backdrop@1.0.5
+  - @toptal/picasso-typography@3.0.0
+  - @toptal/picasso-button@3.0.0
+  - @toptal/picasso-paper@3.0.0
+  - @toptal/picasso-fade@1.0.5
+
 ## 2.0.10
 
 ### Patch Changes
