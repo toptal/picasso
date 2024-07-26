@@ -1,5 +1,34 @@
 # @toptal/picasso-calendar
 
+## 2.0.0
+
+### Major Changes
+
+- [#4409](https://github.com/toptal/picasso/pull/4409) [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Container
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make "@toptal/picasso-tailwind-merge": "^1.1.1" a peer dependency
+- the "@toptal/picasso-tailwind" package has been updated to the latest version in peerDependencies
+
+### Picasso, AccountSelect, Alert, ApplicationUpdateNotification, Autocomplete, Avatar, Button, Calendar, Carousel, Checkbox, DatePicker, Drawer, Dropzone, EmptyState, FileInput, Form, Helpbox, Input, InputAdornment, List, Menu, Note, Notification, NumberInput, OverviewBlock, Page, Pagination, PromptModal, Quote, Rating, Section, Select, Tabs, Timeline, TreeView, Forms, QueryBuilder, RichTextEditor, AnalyticsCharts
+
+- the "@toptal/picasso-tailwind" package has been updated to the latest version in peerDependencies
+
+### Patch Changes
+
+- [#4416](https://github.com/toptal/picasso/pull/4416) [`3a11dd5`](https://github.com/toptal/picasso/commit/3a11dd530575b3a51acc3cf010264e5ec658ce8a) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- disable days before minDate
+
+- [#4415](https://github.com/toptal/picasso/pull/4415) [`8d97d12`](https://github.com/toptal/picasso/commit/8d97d12c07ed656a22273aaccf6be4ae6a5b3c29) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix issue with days past maxDate are not disabled
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`c06cf2c`](https://github.com/toptal/picasso/commit/c06cf2c21d6cd294ef4903613268e747670f252b), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f)]:
+  - @toptal/picasso-typography@3.0.0
+  - @toptal/picasso-button@3.0.0
+  - @toptal/picasso-container@2.0.0
+
 ## 1.1.1
 
 ### Patch Changes

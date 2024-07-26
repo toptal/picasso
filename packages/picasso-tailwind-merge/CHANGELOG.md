@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind-merge
 
+## 1.2.0
+
+### Minor Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- extend tailwind merge config with custom font-weight and text-align values
+
 ## 1.1.0
 
 ### Minor Changes

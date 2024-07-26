@@ -1,5 +1,50 @@
 # @toptal/picasso-tabs
 
+## 3.0.0
+
+### Major Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- migrate to mui/base and TailwindCSS, material-ui@4 is no longer required for this package
+
+  - for horizontal tabs
+
+    - we updated the animation of the active tab
+    - we don't have scrollable buttons on side, instead we reuse native browser scrolling
+
+  - update types
+
+  ```diff
+  {
+  -  value: any
+  +  value: string | number | null
+
+  -  onChange: (event: React.ChangeEvent<{}>, value: any) => void
+  +  onChange: (event: React.ChangeEvent<{}> | null, value: string | number | null) => null
+  }
+  ```
+
+- [#4409](https://github.com/toptal/picasso/pull/4409) [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Container
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make "@toptal/picasso-tailwind-merge": "^1.1.1" a peer dependency
+- the "@toptal/picasso-tailwind" package has been updated to the latest version in peerDependencies
+
+### Picasso, AccountSelect, Alert, ApplicationUpdateNotification, Autocomplete, Avatar, Button, Calendar, Carousel, Checkbox, DatePicker, Drawer, Dropzone, EmptyState, FileInput, Form, Helpbox, Input, InputAdornment, List, Menu, Note, Notification, NumberInput, OverviewBlock, Page, Pagination, PromptModal, Quote, Rating, Section, Select, Tabs, Timeline, TreeView, Forms, QueryBuilder, RichTextEditor, AnalyticsCharts
+
+- the "@toptal/picasso-tailwind" package has been updated to the latest version in peerDependencies
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`c06cf2c`](https://github.com/toptal/picasso/commit/c06cf2c21d6cd294ef4903613268e747670f252b), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`0351ab2`](https://github.com/toptal/picasso/commit/0351ab22db1dad0b1de81d37e4d0365b3eb5ad3f), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685)]:
+  - @toptal/picasso-typography@3.0.0
+  - @toptal/picasso-container@2.0.0
+  - @toptal/picasso-user-badge@3.0.0
+  - @toptal/picasso-tailwind-merge@1.2.0
+  - @toptal/picasso-typography-overflow@2.0.4
+
 ## 2.0.9
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @toptal/picasso-step
 
+## 2.0.0
+
+### Major Changes
+
+- [#4345](https://github.com/toptal/picasso/pull/4345) [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- add @toptal/picasso-tailwind-merge as peer dependency, it now needs to be provided by the project consuming the package
+
+### Patch Changes
+
+- Updated dependencies [[`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685), [`6716e0b`](https://github.com/toptal/picasso/commit/6716e0bb3178a7f452f2c79ce56dd524e9bd8685)]:
+  - @toptal/picasso-typography@3.0.0
+  - @toptal/picasso-typography-overflow@2.0.4
+
 ## 1.1.9
 
 ### Patch Changes
