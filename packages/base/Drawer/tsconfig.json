@@ -9,6 +9,8 @@
     { "path": "../Button" },
     { "path": "../Container" },
     { "path": "../Icons" },
+    { "path": "../Paper" },
+    { "path": "../Slide" },
     { "path": "../Typography" },
     { "path": "../Utils" }
   ]

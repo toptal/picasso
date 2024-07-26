@@ -6,27 +6,27 @@ exports[`AccountSelect renders 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="MuiList-root PicassoMenu-root PicassoAccountSelect-root"
+      class="relative list-none outline-none shadow-1 m-0 rounded-sm p-0"
       role="menu"
       tabindex="-1"
     >
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-0 border-solid border-gray"
         role="menuitem"
         tabindex="0"
       >
         <div
-          class="flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="flex flex-col PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="items-center flex"
+              class="flex items-center"
             >
               <a
-                class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
+                class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline !no-underline flex-1"
               >
                 <div
                   class="p-6 items-center justify-between flex"
@@ -87,21 +87,21 @@ exports[`AccountSelect renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-0 border-solid border-gray"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="flex flex-col PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="items-center flex"
+              class="flex items-center"
             >
               <a
-                class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
+                class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline !no-underline flex-1"
                 href="#"
               >
                 <div
@@ -163,21 +163,21 @@ exports[`AccountSelect renders 1`] = `
       </li>
       <li
         aria-disabled="false"
-        class="MuiButtonBase-root MuiListItem-root MuiMenuItem-root PicassoMenuItem-root PicassoMenuItem-light PicassoAccountSelect-accountItem MuiListItem-button"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue p-0 min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-auto [&+&]:border-t border-0 border-solid border-gray"
         role="menuitem"
         tabindex="-1"
       >
         <div
-          class="flex PicassoMenuItem-itemWrapper"
+          class="flex flex-1 max-w"
         >
           <div
-            class="flex flex-col PicassoMenuItem-content"
+            class="flex flex-col flex-1 min-w"
           >
             <div
-              class="items-center flex"
+              class="flex items-center"
             >
               <a
-                class="MuiTypography-root MuiLink-root MuiLink-underlineHover PicassoLink-root PicassoAccountSelect-accountLink PicassoLink-blue PicassoLink-noUnderline MuiTypography-colorPrimary"
+                class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline !no-underline flex-1"
                 href="#"
               >
                 <div

@@ -1,5 +1,5 @@
 import React from 'react'
-import { twJoin } from 'tailwind-merge'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { getBgColor } from '../utils'
 

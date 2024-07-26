@@ -6,21 +6,21 @@ exports[`TimePicker renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiInputBase-root MuiOutlinedInput-root PicassoOutlinedInput-root PicassoInput-root PicassoOutlinedInput-rootAuto PicassoOutlinedInput-rootMedium PicassoTimePicker-root MuiInputBase-adornedStart MuiOutlinedInput-adornedStart MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
+      class="base-Input base-Input base-Input relative inline-flex gap-y gap-x items-center rounded-sm [font-size:_unset] hover:[&_.resetButtonDirty]:visible p-2 h-8 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(input:focus)]:after:border-blue after:border [&:has(input:focus)]:after:shadow-[0_0_0_3px] [&:has(input:focus)]:after:shadow-blue hover:[&:not(:has(input:focus))]:after:border-gray text-black cursor-default"
     >
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="MuiInputBase-input MuiOutlinedInput-input PicassoOutlinedInput-input PicassoOutlinedInput-inputMedium PicassoTimePicker-inputBase MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart MuiInputBase-inputAdornedEnd MuiOutlinedInput-inputAdornedEnd"
+        class="base-Input bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg"
         step="60"
         type="time"
         value="21:00"
       />
       <div
-        class="MuiInputAdornment-root PicassoInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-disablePointerEvents"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
       >
         <svg
-          class="PicassoSvgTime16-root PicassoTimePicker-icon PicassoInputIconAdornment-icon"
+          class="PicassoSvgTime16-root bg-white absolute right-[0.625rem] pointer-events m-0 select-none grow shrink basis-0"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -29,20 +29,6 @@ exports[`TimePicker renders 1`] = `
           />
         </svg>
       </div>
-      <fieldset
-        aria-hidden="true"
-        class="PrivateNotchedOutline-root MuiOutlinedInput-notchedOutline PicassoOutlinedInput-notchedOutline"
-        style="padding-left: 8px;"
-      >
-        <legend
-          class="PrivateNotchedOutline-legend"
-          style="width: 0.01px;"
-        >
-          <span>
-            ​
-          </span>
-        </legend>
-      </fieldset>
     </div>
   </div>
 </div>

@@ -33,14 +33,14 @@
     "@toptal/picasso-link": "1.0.3",
     "ap-style-title-case": "^1.1.2",
     "@mui/base": "5.0.0-beta.40",
-    "classnames": "^2.5.1",
-    "tailwind-merge": "^2.2.2"
+    "classnames": "^2.5.1"
   },
   "sideEffects": [
     "**/styles.ts",
     "**/styles.js"
   ],
   "peerDependencies": {
+    "@toptal/picasso-tailwind-merge": "^1.0.1",
     "@toptal/picasso-tailwind": ">=2.7",
     "@toptal/picasso-provider": "*",
     "react": ">=16.12.0 < 19.0.0"
@@ -49,6 +49,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
+    "@toptal/picasso-tailwind-merge": "1.1.0",
     "@toptal/picasso-provider": "4.2.1",
     "@toptal/picasso-test-utils": "1.1.1"
   },

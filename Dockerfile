@@ -119,6 +119,7 @@ COPY --chown=node:node packages/base/Tooltip/package.json ./packages/base/Toolti
 COPY --chown=node:node packages/base/TreeView/package.json ./packages/base/TreeView/package.json
 COPY --chown=node:node packages/base/TypographyOverflow/package.json ./packages/base/TypographyOverflow/package.json
 COPY --chown=node:node packages/base/Typography/package.json ./packages/base/Typography/package.json
+COPY --chown=node:node packages/base/Slide/package.json ./packages/base/Slide/package.json
 COPY --chown=node:node packages/base/UserBadge/package.json ./packages/base/UserBadge/package.json
 COPY --chown=node:node packages/base/Utils/package.json ./packages/base/Utils/package.json
 

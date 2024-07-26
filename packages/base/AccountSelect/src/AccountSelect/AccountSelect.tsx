@@ -1,17 +1,13 @@
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { Typography } from '@toptal/picasso-typography'
 import { Link } from '@toptal/picasso-link'
 import { Container } from '@toptal/picasso-container'
 import { ChevronRight16 } from '@toptal/picasso-icons'
-import { MenuCompound as Menu } from '@toptal/picasso-menu'
-
-import styles from './styles'
+import { Menu, MenuItem } from '@toptal/picasso-menu'
 
 type Account = {
   /** User's id */
@@ -35,30 +31,25 @@ export interface Props
   onSelect: (account: Account) => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAccountSelect',
-})
-
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
   function AccountSelect(props, ref) {
     const { className, accounts, onSelect, style, ...rest } = props
-    const classes = useStyles()
 
     return (
       <Menu
         {...rest}
         ref={ref}
-        className={cx(classes.root, className)}
+        className={twMerge('p-0', className)}
         style={style}
       >
         {accounts.map(account => (
-          <Menu.Item
+          <MenuItem
             disableGutters
-            className={classes.accountItem}
+            className='h-auto [&+&]:border-t border-0 border-solid border-gray-400'
             key={`role-${account.id}`}
           >
             <Link
-              className={classes.accountLink}
+              className='flex-1'
               href={account.href}
               onClick={() => onSelect(account)}
               noUnderline
@@ -76,7 +67,7 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
                 <ChevronRight16 color='dark-grey' />
               </Container>
             </Link>
-          </Menu.Item>
+          </MenuItem>
         ))}
       </Menu>
     )

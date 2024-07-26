@@ -6,13 +6,9 @@ import type {
   OverridableComponent,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { Typography } from '@toptal/picasso-typography'
 import { toTitleCase } from '@toptal/picasso-utils'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props
   extends BaseProps,
@@ -23,10 +19,6 @@ export interface Props
   /** Whether the item is active */
   active: boolean
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoBreadcrumbs',
-})
 
 const Active = (props: { children: ReactNode }) => {
   return <Typography weight='semibold' color='black' {...props} />
@@ -45,12 +37,15 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
     ...rest
   } = props
   const Component = active ? Active : as || 'span'
-  const classes = useStyles()
 
   const titleCase = useTitleCase(propsTitleCase)
 
   return (
-    <Component ref={ref} className={cx(classes.root, className)} {...rest}>
+    <Component
+      ref={ref}
+      className={twMerge('text-[14px] font-semibold', className)}
+      {...rest}
+    >
       {titleCase ? toTitleCase(children) : children}
     </Component>
   )

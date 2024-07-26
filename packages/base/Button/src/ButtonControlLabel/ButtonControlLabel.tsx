@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { Container } from '@toptal/picasso-container'
 
 import { Button } from '../Button'

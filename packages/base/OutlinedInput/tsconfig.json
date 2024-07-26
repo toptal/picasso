@@ -3,7 +3,8 @@
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
   "references": [
-    { "path": "../../picasso-provider" },
+    { "path": "../../picasso-tailwind" },
+    { "path": "../../picasso-tailwind-merge" },
     { "path": "../../shared" },
     { "path": "../Button" },
     { "path": "../Form" },

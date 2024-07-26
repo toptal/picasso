@@ -1,12 +1,9 @@
 import type { ReactNode, TableHTMLAttributes } from 'react'
 import React, { forwardRef, useMemo } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import { Table as MUITable } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import TableContext from './TableContext'
-import styles from './styles'
 
 export interface Props
   extends BaseProps,
@@ -18,10 +15,6 @@ export interface Props
   /** Appearance variant */
   variant?: 'clear' | 'bordered' | 'striped'
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'Table',
-})
 
 // eslint-disable-next-line react/display-name
 export const Table = forwardRef<HTMLTableElement, Props>(function Table(
@@ -36,21 +29,22 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
     variant = 'bordered',
     ...rest
   } = props
-  const classes = useStyles()
 
   const tableConfig = useMemo(() => ({ spacing, variant }), [spacing, variant])
 
   return (
     <TableContext.Provider value={tableConfig}>
-      <MUITable
+      <table
         {...rest}
         ref={ref}
-        classes={classes}
-        className={className}
+        className={twMerge(
+          'w-full border-collapse border-spacing-0',
+          className
+        )}
         style={style}
       >
         {children}
-      </MUITable>
+      </table>
     </TableContext.Provider>
   )
 })

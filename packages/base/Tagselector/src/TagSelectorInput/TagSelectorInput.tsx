@@ -1,17 +1,8 @@
-import type { ReactElement } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import type { Props as InputProps } from '@toptal/picasso-input'
-
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTagSelectorInput',
-})
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
   function TagSelectorInput(props, ref) {
@@ -55,13 +46,11 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const classes = useStyles()
+    let usedEndAdornment: React.ReactNode
 
-    let usedEndAdornment = null
-
-    if (endAdornment) {
-      usedEndAdornment = React.cloneElement(endAdornment as ReactElement, {
-        className: classes.endAdornment,
+    if (endAdornment && React.isValidElement(endAdornment)) {
+      usedEndAdornment = React.cloneElement(endAdornment, {
+        className: 'absolute top-[calc(50%-0.5em)] right-[0.625em] h-[1em]',
       })
     }
 
@@ -69,9 +58,13 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       <OutlinedInput
         inputRef={ref}
         style={style}
-        className={cx(classes.inputBase, {
-          [classes.withEndAdornment]: Boolean(endAdornment),
-        })}
+        className={cx(
+          `flex flex-wrap h-auto py-1 pl-1 cursor-pointer
+          [&>input]:min-w-[3em] [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
+          {
+            'pr-[2.25em]': Boolean(endAdornment),
+          }
+        )}
         highlight={highlight}
         id={id}
         name={name}

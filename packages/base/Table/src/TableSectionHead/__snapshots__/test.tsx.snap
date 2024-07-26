@@ -6,24 +6,22 @@ exports[`TableSectionHead renders 1`] = `
     class="Picasso-root"
   >
     <table
-      class="MuiTable-root"
+      class="w-full border-collapse border-spacing"
     >
-      <tbody
-        class="MuiTableBody-root"
-      >
+      <tbody>
         <tr
-          class="MuiTableRow-root PicassoTableRow-root PicassoTableSectionHead-sectionHeaderRow PicassoTableRow-bordered"
+          class="border-0 min-h border-y border-solid border-gray"
         >
-          <td
-            class="MuiTableCell-root PicassoTableCell-root MuiTableCell-body"
+          <th
+            class="h-10 py-2 border-none last:pr-6 px-4 text-left"
             colspan="100"
           >
             <div
-              class="m-0 text-xxs text-graphite font-semibold"
+              class="m-0 text-xxs text-graphite font-semibold text-align"
             >
               Test
             </div>
-          </td>
+          </th>
         </tr>
       </tbody>
     </table>

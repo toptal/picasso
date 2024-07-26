@@ -1,5 +1,5 @@
 import type { SizeType } from '@toptal/picasso-shared'
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export const createActionButtonClassNames = ({
   variant,

@@ -26,8 +26,7 @@
     "@toptal/picasso-container": "1.0.3",
     "@toptal/picasso-typography": "2.0.2",
     "@toptal/picasso-utils": "1.0.3",
-    "classnames": "^2.5.1",
-    "tailwind-merge": "^2.2.2"
+    "classnames": "^2.5.1"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -36,12 +35,14 @@
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "react": ">=16.12.0 < 19.0.0",
+    "@toptal/picasso-tailwind-merge": "^1.0.1",
     "@toptal/picasso-tailwind": ">=2.7"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
+    "@toptal/picasso-tailwind-merge": "1.1.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [

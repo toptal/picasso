@@ -1,12 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { RefObject } from 'react'
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { isBrowser } from '@toptal/picasso-shared'
-import { ButtonBase } from '@material-ui/core'
-import cx from 'classnames'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { Container } from '@toptal/picasso-container'
 import {
@@ -15,8 +11,9 @@ import {
   ArrowDownMinor24,
   ArrowUpMinor24,
 } from '@toptal/picasso-icons'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+export type Size = SizeType<'small' | 'medium' | 'large'>
 
 export interface Props extends BaseProps {
   /** Value of the `input` element. */
@@ -30,14 +27,10 @@ export interface Props extends BaseProps {
   /** Indicates whether component is in disabled state */
   disabled?: boolean
   /** Component size */
-  size?: SizeType<'small' | 'medium' | 'large'>
+  size?: Size
   /** Ref of the input element */
   inputRef: RefObject<HTMLInputElement>
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'NumberInputEndAdornment',
-})
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const nativeInputValueSetter = isBrowser()
@@ -50,6 +43,12 @@ const nativeInputValueSetter = isBrowser()
     ).set!
   : undefined
 
+const classBySize: Record<Size, string> = {
+  small: 'h-3 w-[1.375rem]',
+  medium: 'h-4 w-[1.625rem]',
+  large: 'h-6 w-[2.125rem]',
+}
+
 export const NumberInputEndAdornment = (props: Props) => {
   const {
     step = 1,
@@ -60,8 +59,6 @@ export const NumberInputEndAdornment = (props: Props) => {
     size = 'medium',
     inputRef,
   } = props
-
-  const classes = useStyles(props)
 
   const normalizedStep = Number(step)
   const normalizedValue = Number(value)
@@ -94,7 +91,7 @@ export const NumberInputEndAdornment = (props: Props) => {
 
     let nextValue = normalizedValue + normalizedStep
 
-    if (nextValue <= max) {
+    if (nextValue <= Number(max)) {
       if (normalizedValue < normalizedMin + normalizedStep) {
         nextValue = normalizedMin + normalizedStep
       }
@@ -113,7 +110,7 @@ export const NumberInputEndAdornment = (props: Props) => {
 
     let nextValue = normalizedValue - normalizedStep
 
-    if (nextValue >= min) {
+    if (nextValue >= Number(min)) {
       if (normalizedValue > normalizedMax - normalizedStep) {
         nextValue = normalizedMax - normalizedStep
       }
@@ -125,35 +122,51 @@ export const NumberInputEndAdornment = (props: Props) => {
     }
   }
 
-  const rootClassName = cx(
-    {
-      [classes.disabled]: disabled,
-    },
-    classes[size],
-    classes.root
+  const rootClassName = twJoin(
+    `flex relative items-center justify-center align-middle 
+
+    p-0 bottom-0 cursor-pointer
+
+    text-graphite-700 decoration-graphite-700 bg-inherit bg-transparent
+    
+    border-t-0 border-b-0 border-l border-r border-l-solid border-r-solid 
+    border-l-gray-400 border-r-transparent
+    
+    hover:bg-gray-400 hover:border-gray-400
+
+    [&+&]:border-t [&+&]:border-solid 
+    [&+&]:border-t-gray-400 
+
+    active:[&+&]:border-t active:[&+&]:border-t-solid 
+    active:[&+&]:border-gray-500
+
+    active:bg-gray-500 active:border-t-gray-500 
+
+    [&:first-child]:rounded-tr-sm [&:last-child]:rounded-br-sm 
+
+    transition-[color,_border,_background] ease-out duration-350`,
+    classBySize[size],
+    disabled && 'opacity-[0.48]'
   )
 
   return (
     <InputAdornment position='end'>
       <Container flex direction='column' inline>
-        <ButtonBase
+        <button
           disabled={disabled}
-          classes={{
-            root: rootClassName,
-          }}
+          className={rootClassName}
           onClick={handleUpClick}
         >
           {size === 'large' ? <ArrowUpMinor24 /> : <ArrowUpMinor16 />}
-        </ButtonBase>
-        <ButtonBase
+        </button>
+
+        <button
           disabled={disabled}
-          classes={{
-            root: rootClassName,
-          }}
+          className={rootClassName}
           onClick={handleDownClick}
         >
           {size === 'large' ? <ArrowDownMinor24 /> : <ArrowDownMinor16 />}
-        </ButtonBase>
+        </button>
       </Container>
     </InputAdornment>
   )

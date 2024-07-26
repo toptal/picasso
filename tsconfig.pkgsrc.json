@@ -72,6 +72,7 @@
     { "path": "packages/base/Select" },
     { "path": "packages/base/ShowMore" },
     { "path": "packages/base/SkeletonLoader" },
+    { "path": "packages/base/Slide" },
     { "path": "packages/base/Slider" },
     { "path": "packages/base/Step" },
     { "path": "packages/base/Switch" },
