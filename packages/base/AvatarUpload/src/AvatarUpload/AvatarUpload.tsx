@@ -5,7 +5,7 @@ import { Avatar, AvatarDropzoneSvg } from '@toptal/picasso-avatar'
 import { Upload16, Upload24 } from '@toptal/picasso-icons'
 import { Loader } from '@toptal/picasso-loader'
 import type { Status } from '@toptal/picasso-outlined-input'
-import { twJoin } from 'packages/picasso-tailwind-merge'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { getIconClass, rootClassBySize } from './styles'
 import type { AvatarUploadOptions, FileUpload } from './types'

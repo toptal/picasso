@@ -6,7 +6,7 @@ exports[`AvatarUpload renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoAvatarUpload-root PicassoAvatarUpload-sizeSmall"
+      class="relative flex justify-center items-center text-blue outline-none cursor-pointer w-[5rem] h-[5rem]"
       role="presentation"
       tabindex="0"
     >
@@ -67,7 +67,7 @@ exports[`AvatarUpload renders 1`] = `
         </svg>
       </div>
       <svg
-        class="PicassoSvgUpload24-root PicassoAvatarUpload-icon"
+        class="PicassoSvgUpload24-root absolute pointer-events"
         style="min-width: 24px; min-height: 24px;"
         viewBox="0 0 24 24"
       >
