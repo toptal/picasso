@@ -5633,6 +5633,15 @@
     requireindex "^1.2.0"
     resolve-ts-aliases "^1.0.1"
 
+"@toptal/picasso-tailwind-merge@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@toptal/picasso-tailwind-merge/-/picasso-tailwind-merge-1.1.0.tgz#0b374fbc5c5c56efe6ffb3d08e88aa04bb8029e4"
+  integrity sha512-IKsLfko23o6oZcGHcRe4LaFqkrjyV9YP3a9g1F/GVh9NcQvBfQHMtlR1llFfZUgP08mRYSTqyPr+MqSs1e1g9w==
+  dependencies:
+    "@toptal/picasso-utils" "1.0.3"
+    react-transition-group "^4.4.5"
+    tailwind-merge "^2.2.2"
+
 "@trysound/sax@0.2.0":
   version "0.2.0"
   resolved "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"

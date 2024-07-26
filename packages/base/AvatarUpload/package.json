@@ -43,7 +43,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "1.1.0",
+    "@toptal/picasso-tailwind-merge": "1.2.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [
