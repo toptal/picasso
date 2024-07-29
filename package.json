@@ -81,6 +81,7 @@
     ]
   },
   "resolutions": {
+    "webpack-dev-middleware": "5.3.4",
     "**/@types/unist": "3.0.0",
     "**/default-browser-id/meow/trim-newlines": "^3",
     "**/find-babel-config/json5": "1",
