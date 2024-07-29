@@ -70,8 +70,7 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@toptal/picasso-test-utils": "1.1.1",
     "@toptal/picasso-tailwind-merge": "1.2.0",
-    "@types/classnames": "^2.3.1",
-    "storybook-readme": "^5.0.9"
+    "@types/classnames": "^2.3.1"
   },
   "sideEffects": false,
   "exports": {

@@ -66,7 +66,6 @@
     "@toptal/picasso-test-utils": "1.1.1",
     "@types/classnames": "^2.3.1",
     "@types/react-final-form-listeners": "^1.0.0",
-    "storybook-readme": "^5.0.9",
     "type-fest": "^4.15.0"
   },
   "sideEffects": false,
