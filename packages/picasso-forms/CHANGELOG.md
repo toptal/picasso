@@ -1,5 +1,12 @@
 # Change Log
 
+## 71.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`c480aa7`](https://github.com/toptal/picasso/commit/c480aa74834bad61d4a91e461dcbb6e83005385c)]:
+  - @toptal/picasso-avatar-upload@2.0.0
+
 ## 71.0.0
 
 ### Major Changes

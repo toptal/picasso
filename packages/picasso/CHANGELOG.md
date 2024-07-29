@@ -1,5 +1,18 @@
 # Change Log
 
+## 47.0.1
+
+### Patch Changes
+
+- [#4417](https://github.com/toptal/picasso/pull/4417) [`c480aa7`](https://github.com/toptal/picasso/commit/c480aa74834bad61d4a91e461dcbb6e83005385c) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### AvatarUpload
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make "@toptal/picasso-tailwind-merge": "^1.1.0" a peer dependency
+- Updated dependencies [[`c480aa7`](https://github.com/toptal/picasso/commit/c480aa74834bad61d4a91e461dcbb6e83005385c)]:
+  - @toptal/picasso-avatar-upload@2.0.0
+
 ## 47.0.0
 
 ### Major Changes
