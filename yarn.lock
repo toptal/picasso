@@ -3165,7 +3165,7 @@
     pacote "^13.0.3"
     semver "^7.3.5"
 
-"@npmcli/metavuln-calculator@^7.0.0", "@npmcli/metavuln-calculator@^7.1.1":
+"@npmcli/metavuln-calculator@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@npmcli/metavuln-calculator/-/metavuln-calculator-7.1.1.tgz#4d3b6c3192f72bc8ad59476de0da939c33877fcf"
   integrity sha512-Nkxf96V0lAx3HCpVda7Vw4P23RILgdi/5K1fmj2tZkWIYLpXAN8k2UVVOsW16TsS5F8Ws2I7Cm+PU1/rsVF47g==
@@ -8141,7 +8141,7 @@ bin-links@^3.0.3:
     rimraf "^3.0.0"
     write-file-atomic "^4.0.0"
 
-bin-links@^4.0.1, bin-links@^4.0.4:
+bin-links@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/bin-links/-/bin-links-4.0.4.tgz#c3565832b8e287c85f109a02a17027d152a58a63"
   integrity sha512-cMtq4W5ZsEwcutJrVId+a/tjt8GSbS+h0oNkdl6+6rBuEv8Ot33Bevj5KPm40t309zuhVic8NjpuL42QCiJWWA==
@@ -19579,7 +19579,7 @@ pacote@^13.0.3, pacote@^13.6.1, pacote@^13.6.2:
     ssri "^9.0.0"
     tar "^6.1.11"
 
-pacote@^17.0.0, pacote@^17.0.4, pacote@^17.0.6:
+pacote@^17.0.4, pacote@^17.0.6:
   version "17.0.6"
   resolved "https://registry.yarnpkg.com/pacote/-/pacote-17.0.6.tgz#874bb59cda5d44ab784d0b6530fcb4a7d9b76a60"
   integrity sha512-cJKrW21VRE8vVTRskJo78c/RCvwJCn1f4qgfxL4w77SOWrTCRcmfkYHlHtS0gqpgjv3zhXflRtgsrUCX5xwNnQ==
