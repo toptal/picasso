@@ -1,7 +1,6 @@
 // eslint-disable-file @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { doc } from 'storybook-readme'
-
+import { createMarkdownPage } from '../../../components/Markdown'
 import PicassoBook from '../../../components/PicassoBook'
 // @ts-ignore
 import CSS_NAMING from '../../../../docs/contribution/css-naming.md'
@@ -19,10 +18,13 @@ import VISUAL_SNAPSHOTS from '../../../../docs/contribution/visual-testing.md'
 import COMPONENT_API from '../../../../docs/contribution/component-api.md'
 
 const section = PicassoBook.section('Contribution')
-section.createDocPage('GitHub workflow', doc(GITHUB_WORKFLOW))
-section.createDocPage('CSS naming', doc(CSS_NAMING))
-section.createDocPage('JSS onboarding', doc(JSS_ONBOARDING))
-section.createDocPage('New components', doc(NEW_COMPONENT))
-section.createDocPage('Creating examples', doc(CREATING_EXAMPLES))
-section.createDocPage('Visual snapshots', doc(VISUAL_SNAPSHOTS))
-section.createDocPage('Design component API', doc(COMPONENT_API))
+section.createDocPage('GitHub workflow', createMarkdownPage(GITHUB_WORKFLOW))
+section.createDocPage('CSS naming', createMarkdownPage(CSS_NAMING))
+section.createDocPage('JSS onboarding', createMarkdownPage(JSS_ONBOARDING))
+section.createDocPage('New components', createMarkdownPage(NEW_COMPONENT))
+section.createDocPage(
+  'Creating examples',
+  createMarkdownPage(CREATING_EXAMPLES)
+)
+section.createDocPage('Visual snapshots', createMarkdownPage(VISUAL_SNAPSHOTS))
+section.createDocPage('Design component API', createMarkdownPage(COMPONENT_API))
