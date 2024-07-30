@@ -14392,10 +14392,10 @@ ip-regex@^5.0.0:
   resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-5.0.0.tgz#cd313b2ae9c80c07bd3851e12bf4fa4dc5480632"
   integrity sha512-fOCG6lhoKKakwv+C6KdsOnGvgXnmgfmp0myi3bcNwj3qfwPAxRKWEuFhvEFF7ceYIz6+1jRZ+yguLFAmUNPEfw==
 
-ip@^2.0.0, "ip@npm:@toptal/davinci-ip@2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-fa0ed8d6.2480+fa0ed8d6":
-  version "2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-fa0ed8d6.2480"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-ip/-/davinci-ip-2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-fa0ed8d6.2480.tgz#01d98d3099db91b0e6f36ddb43d5e8893f1a968a"
-  integrity sha512-C1dXhdlMM5e6NoMnB26wTT1iWk9MIKRQ1ZDnrxeob6gTq+Ic/UcQplgC3zDOOV3hlOxwxlNL91tjnuZXN4A0Fg==
+ip@^2.0.0, "ip@npm:@toptal/davinci-ip@2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-dc87f1ea.2481+dc87f1ea":
+  version "2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-dc87f1ea.2481"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-ip/-/davinci-ip-2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-dc87f1ea.2481.tgz#b8d8d30922e8d6b8dd857fb1e2412797dc391218"
+  integrity sha512-FCW6AqPRevHFssNnkuKZEsUa/UQVZVMxzrYduBlHeBzbkOZvgF1Dn8wYLR7kvegDewt/XuYZAa+FZYFVBMxE9g==
 
 ipaddr.js@1.9.1:
   version "1.9.1"
