@@ -53,7 +53,8 @@ describe('Dropzone', () => {
         ],
       })
 
-      expect(getByTestId('dropzone').getAttribute('data-disabled')).toBe('true')
+      // Dropzone has ".bg-gray-100" applied when it is disabled
+      expect(getByTestId('dropzone').className).toContain('bg-gray-100')
     })
   })
 

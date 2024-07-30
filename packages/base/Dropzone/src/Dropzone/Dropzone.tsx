@@ -93,7 +93,6 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         direction='column'
         alignItems='center'
         rounded
-        data-disabled={isDisabled}
         data-testid={dataTestId}
         {...getRootProps({})}
         className={twJoin(
