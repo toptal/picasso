@@ -14,7 +14,6 @@ exports[`Dropzone renders 1`] = `
         tabindex="0"
       >
         <input
-          class="hidden"
           multiple=""
           style="display: none;"
           tabindex="-1"

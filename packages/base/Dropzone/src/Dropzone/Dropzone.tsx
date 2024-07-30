@@ -110,7 +110,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           isDisabled && 'bg-gray-100 hover:no-drop hover:border-gray-400'
         )}
       >
-        <input {...getInputProps()} className='hidden' />
+        <input {...getInputProps()} />
         <Upload24 color='darkGrey' />
         {!hideContentText && (
           <Typography size='medium' color='black' weight='semibold'>
