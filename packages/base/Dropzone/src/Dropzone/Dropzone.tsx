@@ -1,8 +1,6 @@
 import React, { forwardRef } from 'react'
 import { useDropzone } from 'react-dropzone'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Upload24 } from '@toptal/picasso-icons'
 import { FormHint } from '@toptal/picasso-form'
@@ -11,7 +9,6 @@ import { FileList } from '@toptal/picasso-file-input'
 import { Typography } from '@toptal/picasso-typography'
 
 import type { FileUpload, DropzoneOptions } from './types'
-import styles from './styles'
 
 export interface Props extends BaseProps {
   /**
@@ -45,8 +42,6 @@ export interface Props extends BaseProps {
   focused?: boolean
   hovered?: boolean
 }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'Dropzone' })
 
 export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   props,
@@ -91,32 +86,46 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     validator,
   })
 
-  const classes = useStyles()
-
   return (
     <Container style={style} ref={ref} className={className}>
       <Container
         flex
         direction='column'
         alignItems='center'
+        rounded
         data-testid={dataTestId}
-        {...getRootProps({
-          className: cx(classes.root, {
-            [classes.dragActive]: isDragActive,
-            [classes.hovered]: hovered,
-            [classes.disabled]: isDisabled,
-            [classes.focused]: focused,
-          }),
-        })}
+        {...getRootProps({})}
+        className={twJoin(
+          'bg-white',
+          'border',
+          'border-dashed',
+          'border-radius-md',
+          'border-gray-400',
+          'box-border',
+          'p-[20px]',
+          'text-graphite-700',
+          'gap-2',
+          'transition-all ease-out duration-350',
+          'hover:border-blue-500 hover:cursor-pointer',
+          hovered && 'border-blue-500 cursor-pointer',
+          'focus:border-blue-500 focus:cursor-pointer',
+          focused && 'border-blue-500 cursor-pointer',
+          isDragActive && 'border-blue-500 cursor-pointer',
+          disabled && 'bg-gray-100 hover:no-drop hover:border-gray-400'
+        )}
       >
-        <input {...getInputProps({ className: classes.nativeInput })} />
+        <input {...getInputProps()} className='hidden' />
         <Upload24 color='darkGrey' />
         {!hideContentText && (
           <Typography size='medium' color='black' weight='semibold'>
             Click or drag to upload
           </Typography>
         )}
-        {hint && <FormHint className={cx(classes.hint)}>{hint}</FormHint>}
+        {hint && (
+          <FormHint className={twJoin('m-0', '[&>*]:leading-4')}>
+            {hint}
+          </FormHint>
+        )}
       </Container>
       {value && value.length > 0 && (
         <Container top='xsmall'>
