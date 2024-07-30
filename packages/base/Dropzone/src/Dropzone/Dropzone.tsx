@@ -97,21 +97,17 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         {...getRootProps({})}
         className={twJoin(
           'bg-white',
-          'border',
-          'border-dashed',
-          'border-radius-md',
-          'border-gray-400',
+          'border border-dashed border-gray-400',
           'box-border',
           'p-[20px]',
           'text-graphite-700',
           'gap-2',
           'transition-all ease-out duration-350',
           'hover:border-blue-500 hover:cursor-pointer',
-          hovered && 'border-blue-500 cursor-pointer',
           'focus:border-blue-500 focus:cursor-pointer',
-          focused && 'border-blue-500 cursor-pointer',
-          isDragActive && 'border-blue-500 cursor-pointer',
-          disabled && 'bg-gray-100 hover:no-drop hover:border-gray-400'
+          (hovered || focused || isDragActive) &&
+            'border-blue-500 cursor-pointer',
+          isDisabled && 'bg-gray-100 hover:no-drop hover:border-gray-400'
         )}
       >
         <input {...getInputProps()} className='hidden' />
