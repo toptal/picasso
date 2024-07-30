@@ -81,7 +81,7 @@
     ]
   },
   "resolutions": {
-    "**/@storybook/react/**/ip": "npm:@toptal/davinci-ip@2.0.3-alpha-fx-5708-fix-vulnerability-for-ip-dependency-5ee42a3d.2484+5ee42a3d",
+    "**/@storybook/core-server/**/ip": "npm:@toptal/davinci-ip@2.0.3",
     "webpack-dev-middleware": "5.3.4",
     "**/@types/unist": "3.0.0",
     "**/default-browser-id/meow/trim-newlines": "^3",
