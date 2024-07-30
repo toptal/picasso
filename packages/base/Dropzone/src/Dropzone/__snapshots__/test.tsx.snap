@@ -9,11 +9,13 @@ exports[`Dropzone renders 1`] = `
       class=""
     >
       <div
-        class="items-center flex flex-col Dropzone-root"
+        class="items-center rounded-md flex flex-col bg-white border border-dashed border-gray box-border p-[20px] text-graphite gap-2 transition-all ease-out duration-350 hover:border-blue hover:cursor-pointer focus:border-blue focus:cursor-pointer"
+        data-disabled="false"
         role="presentation"
         tabindex="0"
       >
         <input
+          class="hidden"
           multiple=""
           style="display: none;"
           tabindex="-1"

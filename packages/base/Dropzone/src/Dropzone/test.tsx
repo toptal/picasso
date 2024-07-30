@@ -53,7 +53,7 @@ describe('Dropzone', () => {
         ],
       })
 
-      expect(getByTestId('dropzone').className).toContain('disabled')
+      expect(getByTestId('dropzone').getAttribute('data-disabled')).toBe('true')
     })
   })
 
