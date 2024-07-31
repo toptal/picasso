@@ -2,9 +2,7 @@ import type { ReactNode } from 'react'
 import React, { useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
 import { useDayRender } from 'react-day-picker'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import {
   isToday as isTodayDateFns,
   endOfMonth,
@@ -14,7 +12,6 @@ import {
   startOfMonth,
 } from 'date-fns'
 
-import styles from './styles'
 import { CalendarIndicators } from '../CalendarIndicators'
 import { useCalendar } from '../CalendarContext'
 import type { DayProps as RenderDayProps } from '../Calendar'
@@ -30,8 +27,6 @@ const checkIfBelongsToPreviousMonth = (date: Date, currentMonth: Date) =>
 
 const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
   isAfter(date, endOfMonth(currentMonth))
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 
 /**
  * The content of a day cell
@@ -51,19 +46,17 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
     selected: isSelected = false,
     disabled: isDisabled = false,
     indicated: isIndicated = false,
-    outside: isOutside = false,
-    weekend: isWeekend = false,
-    temporaryRangeMiddle: isTemporaryRangeMiddle = false,
-    temporaryRangeEnd: isTemporaryRangeEnd = false,
+    // outside: isOutside = false,
+    // weekend: isWeekend = false,
+    // temporaryRangeMiddle: isTemporaryRangeMiddle = false,
+    // temporaryRangeEnd: isTemporaryRangeEnd = false,
     range_start: isRangeStart = false,
-    range_middle: isRangeMiddle = false,
+    // range_middle: isRangeMiddle = false,
     range_end: isRangeEnd = false,
   } = activeModifiers
 
   const isToday = isTodayDateFns(date)
   const isoDate = getISODate(date)
-
-  const classes = useStyles()
 
   const defaultComponent = (
     <button
@@ -74,15 +67,18 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       }`}
       data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
-      className={cx(classes.day, {
-        [classes.selected]: isSelected,
-        [classes.weekend]: isWeekend,
-        [classes.grayed]: isOutside && !isDisabled,
-        [classes.disabled]: isDisabled,
-        [classes.startSelection]: isRangeStart,
-        [classes.withinSelection]: isRangeMiddle || isTemporaryRangeMiddle,
-        [classes.endSelection]: isRangeEnd || isTemporaryRangeEnd,
-      })}
+      className={twJoin(
+        'h-[2.5rem] w-[2.5rem] min-w-[2.5rem] vertical-align-middle text-xxs user-select-none flex items-center justify-center bg-white relative m-0 p-0 border-none outline-none rounded-[0.25rem] cursor-pointer'
+      )}
+      // className={cx(classes.day, {
+      //   [classes.selected]: isSelected,
+      //   [classes.weekend]: isWeekend,
+      //   [classes.grayed]: isOutside && !isDisabled,
+      //   [classes.disabled]: isDisabled,
+      //   [classes.startSelection]: isRangeStart,
+      //   [classes.withinSelection]: isRangeMiddle || isTemporaryRangeMiddle,
+      //   [classes.endSelection]: isRangeEnd || isTemporaryRangeEnd,
+      // })}
       onClick={isDisabled ? undefined : event => buttonProps?.onClick?.(event)}
       onMouseEnter={event => {
         onDayMouseEnter?.(date)

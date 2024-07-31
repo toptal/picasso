@@ -5,8 +5,6 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type {
   SelectRangeEventHandler,
@@ -18,7 +16,6 @@ import isWeekend from 'date-fns/isWeekend'
 import { format, isEqual } from 'date-fns'
 import { useBreakpoint } from '@toptal/picasso-provider'
 
-import styles from './styles'
 import type { RenderDay } from '../CalendarDay'
 import { CalendarDay } from '../CalendarDay'
 import type { RenderMonthHeader } from '../CalendarMonthHeader'
@@ -73,8 +70,6 @@ export interface Props
   dropdownNavigation?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
-
 const getDefaultNavigationMonth = (
   value: DateOrDateRangeType | undefined,
   rangeModeIsEnabled: boolean
@@ -89,7 +84,6 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
   props,
   ref
 ) {
-  const classes = useStyles()
   const {
     range = false,
     activeMonth,
@@ -258,15 +252,16 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               Dropdown: CalendarDateSelector,
             }}
             classNames={{
-              months: shouldRenderMultipleMonths ? classes.months : undefined,
-              caption_dropdowns: classes.caption_dropdowns,
-              head: classes.head,
-              table: classes.table,
-              head_row: classes.head_row,
-              head_cell: classes.head_cell,
-              row: classes.row,
-              cell: classes.cell,
-              vhidden: classes.vhidden,
+              months: shouldRenderMultipleMonths ? 'flex gap-6' : undefined,
+              caption_dropdowns: 'flex gap-4 pb-4',
+              head: 'block',
+              table: 'flex flex-col border-spacing-0',
+              head_row:
+                'flex text-center uppercase text-xxs pt-[3px] pb-[11px] text-gray-600',
+              head_cell: 'p-0 basis-[15%] w-40 font-weight-400',
+              row: 'flex',
+              cell: 'p-0 basis-[15%]',
+              vhidden: 'hidden',
             }}
             // Keeping the legacy classname as it is heavily used as a locator in tests
             className='calendar-month'

@@ -3,11 +3,6 @@ import type { DropdownProps } from 'react-day-picker'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
 import { ArrowDropDown16 } from '@toptal/picasso-icons'
-import { makeStyles, type Theme } from '@material-ui/core/styles'
-
-import styles from '../Calendar/styles'
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 
 const CalendarDateSelector = ({
   children,
@@ -16,13 +11,11 @@ const CalendarDateSelector = ({
   value,
   'aria-label': ariaLabel,
 }: DropdownProps) => {
-  const classes = useStyles()
-
   return (
     <label
       aria-label={ariaLabel}
       htmlFor={`month${caption}`}
-      className={classes.dropdown_label}
+      className='flex relative items-center'
     >
       <Typography
         variant='heading'
@@ -33,16 +26,16 @@ const CalendarDateSelector = ({
         {caption}
       </Typography>
       <Container
-        className={classes.icon_wrapper}
+        className='w-6 h-6'
         flex
         justifyContent='center'
         alignItems='center'
       >
-        <ArrowDropDown16 className={classes.pointer_events} color='darkGrey' />
+        <ArrowDropDown16 className='pointer-events-none' color='darkGrey' />
       </Container>
       <select
         name={`month${caption}`}
-        className={classes.select}
+        className='absolute opacity-0 text-md font-normal cursor-pointer'
         value={value}
         onChange={onChange}
       >
