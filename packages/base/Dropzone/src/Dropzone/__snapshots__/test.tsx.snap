@@ -9,7 +9,7 @@ exports[`Dropzone renders 1`] = `
       class=""
     >
       <div
-        class="p-6 items-center rounded-md flex flex-col border border-dashed box-border text-graphite gap-2 transition-all ease-out duration-350 hover:border-blue focus:border-blue border-gray bg-white hover:cursor-pointer focus:cursor-pointer"
+        class="p-6 items-center rounded-md flex flex-col border border-dashed box-border text-graphite gap-2 transition-all ease-out duration-350 border-gray bg-white hover:border-blue focus:border-blue hover:cursor-pointer focus:cursor-pointer"
         role="presentation"
         tabindex="0"
       >

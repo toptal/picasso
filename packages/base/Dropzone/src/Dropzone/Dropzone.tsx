@@ -103,14 +103,12 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           'text-graphite-700',
           'gap-2',
           'transition-all ease-out duration-350',
-          'hover:border-blue-500',
-          'focus:border-blue-500',
           hovered || focused || isDragActive
             ? 'border-blue-500 cursor-pointer'
             : 'border-gray-400',
           isDisabled
             ? 'bg-gray-100 hover:no-drop hover:border-gray-400 cursor-not-allowed'
-            : 'bg-white hover:cursor-pointer focus:cursor-pointer'
+            : 'bg-white hover:border-blue-500 focus:border-blue-500 hover:cursor-pointer focus:cursor-pointer'
         )}
       >
         <input {...getInputProps()} />
