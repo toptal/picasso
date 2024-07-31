@@ -7,6 +7,7 @@ import { FormHint } from '@toptal/picasso-form'
 import { Container } from '@toptal/picasso-container'
 import { FileList } from '@toptal/picasso-file-input'
 import { Typography } from '@toptal/picasso-typography'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 import type { FileUpload, DropzoneOptions } from './types'
 
@@ -93,21 +94,23 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         direction='column'
         alignItems='center'
         rounded
+        padded={SPACING_6}
         data-testid={dataTestId}
         {...getRootProps({})}
         className={twJoin(
-          'bg-white',
-          'border border-dashed border-gray-400',
+          'border border-dashed',
           'box-border',
-          'p-[20px]',
           'text-graphite-700',
           'gap-2',
           'transition-all ease-out duration-350',
-          'hover:border-blue-500 hover:cursor-pointer',
-          'focus:border-blue-500 focus:cursor-pointer',
-          (hovered || focused || isDragActive) &&
-            'border-blue-500 cursor-pointer',
-          isDisabled && 'bg-gray-100 hover:no-drop hover:border-gray-400'
+          'hover:border-blue-500',
+          'focus:border-blue-500',
+          hovered || focused || isDragActive
+            ? 'border-blue-500 cursor-pointer'
+            : 'border-gray-400',
+          isDisabled
+            ? 'bg-gray-100 hover:no-drop hover:border-gray-400 cursor-not-allowed'
+            : 'bg-white hover:cursor-pointer focus:cursor-pointer'
         )}
       >
         <input {...getInputProps()} />
