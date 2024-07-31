@@ -1,5 +1,5 @@
 ---
-'@toptal/picasso-environment-banner': minor
+'@toptal/picasso-tailwind': minor
 ---
 
 - add snackbar `zIndex` value
