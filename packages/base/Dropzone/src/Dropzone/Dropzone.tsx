@@ -1,17 +1,15 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Upload24 } from '@toptal/picasso-icons'
 import { FormHint } from '@toptal/picasso-form'
 import { Container } from '@toptal/picasso-container'
 import { FileList } from '@toptal/picasso-file-input'
 import { Typography } from '@toptal/picasso-typography'
+import { SPACING_6 } from '@toptal/picasso-utils'
 
 import type { FileUpload, DropzoneOptions } from './types'
-import styles from './styles'
 
 export interface Props extends BaseProps {
   /**
@@ -46,7 +44,51 @@ export interface Props extends BaseProps {
   hovered?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'Dropzone' })
+type DropzoneState = {
+  isDisabled?: boolean
+  isHovered?: boolean
+  isFocused?: boolean
+  isDragActive?: boolean
+}
+
+type StateToClassMatcher = (currentState: DropzoneState) => string
+
+const getCursorClasses: StateToClassMatcher = ({
+  isDisabled,
+  isHovered,
+  isFocused,
+  isDragActive,
+}) => {
+  if (isDisabled) {
+    return 'cursor-not-allowed'
+  }
+
+  if (isHovered || isFocused || isDragActive) {
+    return 'cursor-pointer'
+  }
+
+  return 'hover:cursor-pointer focus:cursor-pointer'
+}
+
+const getBorderColorClasses: StateToClassMatcher = ({
+  isDisabled,
+  isHovered,
+  isFocused,
+  isDragActive,
+}) => {
+  if (isDisabled) {
+    return 'border-gray-400 hover:border-gray-400'
+  }
+
+  if (isHovered || isFocused || isDragActive) {
+    return 'border-blue-500'
+  }
+
+  return 'border-gray-400 hover:border-blue-500 focus:border-blue-500'
+}
+
+const getBackgroundColorClasses: StateToClassMatcher = ({ isDisabled }) =>
+  isDisabled ? 'bg-gray-100' : 'bg-white'
 
 export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   props,
@@ -60,8 +102,8 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     className,
     style,
     'data-testid': dataTestId,
-    focused,
-    hovered,
+    focused: isFocused,
+    hovered: isHovered,
 
     // dropzoneOptions
     accept,
@@ -91,7 +133,15 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     validator,
   })
 
-  const classes = useStyles()
+  const componentState = useMemo(
+    () => ({
+      isDisabled,
+      isHovered,
+      isFocused,
+      isDragActive,
+    }),
+    [isDisabled, isHovered, isFocused, isDragActive]
+  )
 
   return (
     <Container style={style} ref={ref} className={className}>
@@ -99,24 +149,35 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         flex
         direction='column'
         alignItems='center'
+        rounded
+        aria-disabled={isDisabled}
+        padded={SPACING_6}
         data-testid={dataTestId}
-        {...getRootProps({
-          className: cx(classes.root, {
-            [classes.dragActive]: isDragActive,
-            [classes.hovered]: hovered,
-            [classes.disabled]: isDisabled,
-            [classes.focused]: focused,
-          }),
-        })}
+        {...getRootProps({})}
+        className={twJoin(
+          'border border-dashed',
+          'box-border',
+          'text-graphite-700',
+          'gap-2',
+          'transition-all ease-out duration-350',
+          getCursorClasses(componentState),
+          getBorderColorClasses(componentState),
+          getBackgroundColorClasses(componentState),
+          isDisabled && 'hover:no-drop'
+        )}
       >
-        <input {...getInputProps({ className: classes.nativeInput })} />
+        <input {...getInputProps()} />
         <Upload24 color='darkGrey' />
         {!hideContentText && (
           <Typography size='medium' color='black' weight='semibold'>
             Click or drag to upload
           </Typography>
         )}
-        {hint && <FormHint className={cx(classes.hint)}>{hint}</FormHint>}
+        {hint && (
+          <FormHint className={twJoin('m-0', '[&>*]:leading-4')}>
+            {hint}
+          </FormHint>
+        )}
       </Container>
       {value && value.length > 0 && (
         <Container top='xsmall'>
