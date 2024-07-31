@@ -1,5 +1,12 @@
 # Change Log
 
+## 71.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`3c57cb2`](https://github.com/toptal/picasso/commit/3c57cb2e2a0abdf9ac23f4cf011aefaa53173754)]:
+  - @toptal/picasso-dropzone@3.0.1
+
 ## 71.0.1
 
 ### Patch Changes
