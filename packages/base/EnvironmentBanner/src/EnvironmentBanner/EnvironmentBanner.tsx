@@ -1,13 +1,13 @@
 import React, { forwardRef, useState } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
 import { useAppConfig } from '@toptal/picasso-provider'
 
-import styles from './styles'
-
-export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
+type ExtendedEnvironmentType = EnvironmentType<'temploy' | 'test'>
+export type EnvironmentTypes = Exclude<
+  ExtendedEnvironmentType,
+  'production' | 'test'
+>
 
 export interface Props extends BaseProps {
   /** Name of the current environment */
@@ -16,24 +16,37 @@ export interface Props extends BaseProps {
   productName: string
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoEnvironmentBanner',
-})
+const ENVIRONMENT_BORDER_COLORS = {
+  development: 'border-t-green-600',
+  temploy: 'border-t-yellow-500',
+  staging: 'border-t-red-500',
+}
+
+const getBorderTopClasses = (environment: EnvironmentTypes) =>
+  `border-0 border-t-[4px] border-solid ${ENVIRONMENT_BORDER_COLORS[environment]}`
+
+const ENVIRONMENT_LABEL_BACKGROUND_COLORS = {
+  development: 'bg-green-600',
+  temploy: 'bg-yellow-500',
+  staging: 'bg-red-500',
+}
+
+const getLabelBackgroundColor = (environment: EnvironmentTypes) =>
+  ENVIRONMENT_LABEL_BACKGROUND_COLORS[environment]
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner(props, ref) {
     const { environment: configEnvironment } = useAppConfig()
     const { environment, productName, style } = props
-    const classes = useStyles()
-
     const [isShown, setIsShown] = useState(true)
 
-    const resolvedEnvironment = environment || configEnvironment
+    const resolvedEnvironment =
+      (environment as ExtendedEnvironmentType) || configEnvironment
 
     if (
+      !isShown ||
       resolvedEnvironment === 'production' ||
-      resolvedEnvironment === 'test' ||
-      !isShown
+      resolvedEnvironment === 'test'
     ) {
       return null
     }
@@ -41,20 +54,34 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
     return (
       <div
         ref={ref}
-        className={cx(classes.root, {
-          [classes.rootDevelopment]: resolvedEnvironment === 'development',
-          [classes.rootTemploy]: resolvedEnvironment === 'temploy',
-          [classes.rootStaging]: resolvedEnvironment === 'staging',
-        })}
+        className={twJoin(
+          getBorderTopClasses(resolvedEnvironment),
+          'fixed',
+          'text-center',
+          'top-0',
+          'w-[100vw]',
+          'z-snackbar',
+          'text-xxs',
+          'pointer-events-none'
+        )}
         style={style}
       >
         <div
           onClick={() => setIsShown(false)}
-          className={cx(classes.label, {
-            [classes.labelDevelopment]: resolvedEnvironment === 'development',
-            [classes.labelTemploy]: resolvedEnvironment === 'temploy',
-            [classes.labelStaging]: resolvedEnvironment === 'staging',
-          })}
+          className={twJoin(
+            getLabelBackgroundColor(resolvedEnvironment),
+            'rounded-b-sm',
+            'font-semibold',
+            'text-white',
+            'cursor-pointer',
+            'inline-block',
+            'px-2',
+            'py-[3px]',
+            'tracking-[0.01em]',
+            'uppercase',
+            'select-none',
+            'pointer-events-[initial]'
+          )}
         >
           {`${productName} ${resolvedEnvironment}`}
         </div>
@@ -62,10 +89,6 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-// TODO: remove default environment in v5, so either directly passed version will be used
-// or one from config, but not from defaultProps
-EnvironmentBanner.defaultProps = { environment: 'production' }
 
 EnvironmentBanner.displayName = 'EnvironmentBanner'
 
