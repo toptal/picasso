@@ -46,17 +46,21 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
     selected: isSelected = false,
     disabled: isDisabled = false,
     indicated: isIndicated = false,
-    // outside: isOutside = false,
-    // weekend: isWeekend = false,
-    // temporaryRangeMiddle: isTemporaryRangeMiddle = false,
-    // temporaryRangeEnd: isTemporaryRangeEnd = false,
+    outside: isOutside = false,
+    weekend: isWeekend = false,
+    temporaryRangeMiddle: isTemporaryRangeMiddle = false,
+    temporaryRangeEnd: isTemporaryRangeEnd = false,
     range_start: isRangeStart = false,
-    // range_middle: isRangeMiddle = false,
+    range_middle: isRangeMiddle = false,
     range_end: isRangeEnd = false,
   } = activeModifiers
 
   const isToday = isTodayDateFns(date)
   const isoDate = getISODate(date)
+
+  const startSelection = isRangeStart
+  const withinSelection = isRangeMiddle || isTemporaryRangeMiddle
+  const endSelection = isRangeEnd || isTemporaryRangeEnd
 
   const defaultComponent = (
     <button
@@ -68,7 +72,30 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
       className={twJoin(
-        'h-[2.5rem] w-[2.5rem] min-w-[2.5rem] vertical-align-middle text-xxs user-select-none flex items-center justify-center bg-white relative m-0 p-0 border-none outline-none rounded-[0.25rem] cursor-pointer'
+        'h-[2.5rem] w-[2.5rem] min-w-[2.5rem]',
+        'vertical-align-middle text-xxs user-select-none flex items-center justify-center',
+        'bg-white relative',
+        'm-0 p-0',
+        'border-none outline-none rounded-sm cursor-pointer',
+        !isSelected &&
+          !isDisabled &&
+          !startSelection &&
+          !endSelection &&
+          '[&]:hover:bg-red [&]:focus:bg-red',
+        isSelected && 'bg-blue-500 text-white',
+        // concat?
+        isWeekend &&
+          'bg-gray-100' &&
+          !isSelected &&
+          !withinSelection &&
+          '[&]:not(:hover):border-sm [&]:not(:hover):border-white [&]:not(:hover):rounded-md',
+        isOutside && !isDisabled && 'text-gray-600',
+        isDisabled &&
+          'text-gray-500 cursor-default [&]:hover:bg-transparent ' +
+            (isWeekend
+              ? '[&]:hover:bg-gray-100 [&]:hover:border-sm [&]:hover:border-white [&]:hover:rounded-md'
+              : '')
+        // 3 more left
       )}
       // className={cx(classes.day, {
       //   [classes.selected]: isSelected,
