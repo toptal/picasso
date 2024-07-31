@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
-import { useAppConfig } from '@toptal/picasso-provider'
 
 type ExtendedEnvironmentType = EnvironmentType<'temploy' | 'test'>
 export type EnvironmentTypes = Exclude<
@@ -36,18 +35,10 @@ const getLabelBackgroundColor = (environment: EnvironmentTypes) =>
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner(props, ref) {
-    const { environment: configEnvironment } = useAppConfig()
     const { environment, productName, style } = props
     const [isShown, setIsShown] = useState(true)
 
-    const resolvedEnvironment =
-      (environment as ExtendedEnvironmentType) || configEnvironment
-
-    if (
-      !isShown ||
-      resolvedEnvironment === 'production' ||
-      resolvedEnvironment === 'test'
-    ) {
+    if (!isShown) {
       return null
     }
 
@@ -55,7 +46,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
       <div
         ref={ref}
         className={twJoin(
-          getBorderTopClasses(resolvedEnvironment),
+          getBorderTopClasses(environment),
           'fixed',
           'text-center',
           'top-0',
@@ -69,7 +60,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
         <div
           onClick={() => setIsShown(false)}
           className={twJoin(
-            getLabelBackgroundColor(resolvedEnvironment),
+            getLabelBackgroundColor(environment),
             'rounded-b-sm',
             'font-semibold',
             'text-white',
@@ -82,7 +73,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
             'pointer-events-[initial]'
           )}
         >
-          {`${productName} ${resolvedEnvironment}`}
+          {`${productName} ${environment}`}
         </div>
       </div>
     )
