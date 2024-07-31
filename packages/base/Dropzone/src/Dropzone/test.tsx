@@ -53,8 +53,7 @@ describe('Dropzone', () => {
         ],
       })
 
-      // Dropzone has ".bg-gray-100" applied when it is disabled
-      expect(getByTestId('dropzone').className).toContain('bg-gray-100')
+      expect(getByTestId('dropzone').getAttribute('aria-disabled')).toBe('true')
     })
   })
 

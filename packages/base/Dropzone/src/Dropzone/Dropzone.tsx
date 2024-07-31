@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -44,6 +44,52 @@ export interface Props extends BaseProps {
   hovered?: boolean
 }
 
+type DropzoneState = {
+  isDisabled?: boolean
+  isHovered?: boolean
+  isFocused?: boolean
+  isDragActive?: boolean
+}
+
+type StateToClassMatcher = (currentState: DropzoneState) => string
+
+const getCursorClasses: StateToClassMatcher = ({
+  isDisabled,
+  isHovered,
+  isFocused,
+  isDragActive,
+}) => {
+  if (isDisabled) {
+    return 'cursor-not-allowed'
+  }
+
+  if (isHovered || isFocused || isDragActive) {
+    return 'cursor-pointer'
+  }
+
+  return 'hover:cursor-pointer focus:cursor-pointer'
+}
+
+const getBorderColorClasses: StateToClassMatcher = ({
+  isDisabled,
+  isHovered,
+  isFocused,
+  isDragActive,
+}) => {
+  if (isDisabled) {
+    return 'border-gray-400 hover:border-gray-400'
+  }
+
+  if (isHovered || isFocused || isDragActive) {
+    return 'border-blue-500'
+  }
+
+  return 'border-gray-400 hover:border-blue-500 focus:border-blue-500'
+}
+
+const getBackgroundColorClasses: StateToClassMatcher = ({ isDisabled }) =>
+  isDisabled ? 'bg-gray-100' : 'bg-white'
+
 export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   props,
   ref
@@ -56,8 +102,8 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     className,
     style,
     'data-testid': dataTestId,
-    focused,
-    hovered,
+    focused: isFocused,
+    hovered: isHovered,
 
     // dropzoneOptions
     accept,
@@ -87,6 +133,16 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
     validator,
   })
 
+  const componentState = useMemo(
+    () => ({
+      isDisabled,
+      isHovered,
+      isFocused,
+      isDragActive,
+    }),
+    [isDisabled, isHovered, isFocused, isDragActive]
+  )
+
   return (
     <Container style={style} ref={ref} className={className}>
       <Container
@@ -94,6 +150,7 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         direction='column'
         alignItems='center'
         rounded
+        aria-disabled={isDisabled}
         padded={SPACING_6}
         data-testid={dataTestId}
         {...getRootProps({})}
@@ -103,12 +160,10 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
           'text-graphite-700',
           'gap-2',
           'transition-all ease-out duration-350',
-          hovered || focused || isDragActive
-            ? 'border-blue-500 cursor-pointer'
-            : 'border-gray-400',
-          isDisabled
-            ? 'bg-gray-100 hover:no-drop hover:border-gray-400 cursor-not-allowed'
-            : 'bg-white hover:border-blue-500 focus:border-blue-500 hover:cursor-pointer focus:cursor-pointer'
+          getCursorClasses(componentState),
+          getBorderColorClasses(componentState),
+          getBackgroundColorClasses(componentState),
+          isDisabled && 'hover:no-drop'
         )}
       >
         <input {...getInputProps()} />
