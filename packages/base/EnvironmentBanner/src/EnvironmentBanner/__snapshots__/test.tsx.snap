@@ -6,10 +6,10 @@ exports[`EnvironmentBanner development render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="border-0 border-t border-solid border-t-green fixed text-center top-0 w-[100vw] z-snackbar text-xxs pointer-events"
+      class="border-0 border-t border-solid border-t-green fixed text-center top-0 w-[100vw] z-snackbar text-xxs pointer-events leading-6"
     >
       <div
-        class="bg-green rounded-b font-semibold text-white cursor-pointer inline-block px-2 py-1 tracking-[0.01em] uppercase select-none pointer-events"
+        class="bg-green rounded-b font-semibold text-white cursor-pointer inline-block px-2 py-1 tracking-[0.01em] uppercase select-none leading-4 pointer-events"
       >
         Picasso development
       </div>

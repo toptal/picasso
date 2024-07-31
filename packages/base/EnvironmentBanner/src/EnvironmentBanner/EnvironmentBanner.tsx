@@ -2,11 +2,8 @@ import React, { forwardRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
 
-type ExtendedEnvironmentType = EnvironmentType<'temploy' | 'test'>
-export type EnvironmentTypes = Exclude<
-  ExtendedEnvironmentType,
-  'production' | 'test'
->
+export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
+type SupportedEnvironments = Exclude<EnvironmentTypes, 'production' | 'test'>
 
 export interface Props extends BaseProps {
   /** Name of the current environment */
@@ -21,16 +18,13 @@ const ENVIRONMENT_BORDER_COLORS = {
   staging: 'border-t-red-500',
 }
 
-const getBorderTopClasses = (environment: EnvironmentTypes) =>
-  `border-0 border-t-[4px] border-solid ${ENVIRONMENT_BORDER_COLORS[environment]}`
-
 const ENVIRONMENT_LABEL_BACKGROUND_COLORS = {
   development: 'bg-green-600',
   temploy: 'bg-yellow-500',
   staging: 'bg-red-500',
 }
 
-const getLabelBackgroundColor = (environment: EnvironmentTypes) =>
+const getLabelBackgroundColor = (environment: SupportedEnvironments) =>
   ENVIRONMENT_LABEL_BACKGROUND_COLORS[environment]
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
@@ -38,7 +32,7 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
     const { environment, productName, style } = props
     const [isShown, setIsShown] = useState(true)
 
-    if (!isShown) {
+    if (!isShown || environment === 'production' || environment === 'test') {
       return null
     }
 
@@ -46,14 +40,15 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
       <div
         ref={ref}
         className={twJoin(
-          getBorderTopClasses(environment),
+          `border-0 border-t-[4px] border-solid ${ENVIRONMENT_BORDER_COLORS[environment]}`,
           'fixed',
           'text-center',
           'top-0',
           'w-[100vw]',
           'z-snackbar',
           'text-xxs',
-          'pointer-events-none'
+          'pointer-events-none',
+          'leading-6'
         )}
         style={style}
       >
@@ -70,7 +65,8 @@ export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
             'tracking-[0.01em]',
             'uppercase',
             'select-none',
-            'pointer-events-[initial]'
+            'leading-4',
+            'pointer-events-auto'
           )}
         >
           {`${productName} ${environment}`}
