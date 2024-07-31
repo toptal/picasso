@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "71.0.1",
+  "version": "71.0.2",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -31,7 +31,7 @@
   "dependencies": {
     "@toptal/picasso-container": "2.0.0",
     "@toptal/picasso-input": "3.0.0",
-    "@toptal/picasso-dropzone": "3.0.0",
+    "@toptal/picasso-dropzone": "3.0.1",
     "@toptal/picasso-button": "3.0.0",
     "@toptal/picasso-password-input": "3.0.0",
     "@toptal/picasso-radio": "3.0.0",

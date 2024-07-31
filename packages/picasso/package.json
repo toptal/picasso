@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "47.0.1",
+  "version": "47.0.2",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -54,7 +54,7 @@
     "@toptal/picasso-date-select": "1.0.31",
     "@toptal/picasso-drawer": "3.0.0",
     "@toptal/picasso-dropdown": "2.0.4",
-    "@toptal/picasso-dropzone": "3.0.0",
+    "@toptal/picasso-dropzone": "3.0.1",
     "@toptal/picasso-empty-state": "2.0.0",
     "@toptal/picasso-environment-banner": "1.0.3",
     "@toptal/picasso-file-input": "2.0.0",
