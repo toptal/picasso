@@ -1,11 +1,7 @@
 import type { HTMLAttributes, ReactElement } from 'react'
 import React, { forwardRef, cloneElement } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from './styles'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   /** Adds <Icon /> above EmptyStatePage content  */
@@ -14,13 +10,8 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   title?: string
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoEmptyStatePage',
-})
-
 export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
   function EmptyStatePage(props, ref) {
-    const classes = useStyles()
     const { image, title, children, style, ...rest } = props
 
     return (
@@ -38,7 +29,7 @@ export const EmptyStatePage = forwardRef<HTMLDivElement, Props>(
           bottom='medium'
           flex
         >
-          {cloneElement(image, { className: classes.image })}
+          {cloneElement(image, { className: 'w-[8rem] h-[8rem]' })}
         </Container>
         {title && (
           <Container bottom='xsmall'>
