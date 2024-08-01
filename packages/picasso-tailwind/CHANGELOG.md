@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind
 
+## 2.8.0
+
+### Minor Changes
+
+- [#4430](https://github.com/toptal/picasso/pull/4430) [`27d596a`](https://github.com/toptal/picasso/commit/27d596a3bb913923f7d7e577ac3a7b6f9045b42f) Thanks [@sashuk](https://github.com/sashuk)!
+- add snackbar `zIndex` value
+
 ## 2.7.0
 
 ### Minor Changes
