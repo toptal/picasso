@@ -1,7 +1,5 @@
 /* eslint-disable max-lines-per-function, max-lines */
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
 import type PopperJs from 'popper.js'
@@ -34,7 +32,6 @@ import {
   DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
   POPPER_OPTIONS,
 } from './constants'
-import styles from './styles'
 import type { DatePickerValue, DatePickerInputCustomValueParser } from './types'
 import {
   formatDateRange,
@@ -45,10 +42,6 @@ import {
 } from './utils'
 
 const EMPTY_INPUT_VALUE = ''
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoDatePicker',
-})
 
 export interface Props
   extends BaseProps,
@@ -158,7 +151,6 @@ export const DatePicker = (props: Props) => {
     dropdownNavigation,
     ...rest
   } = props
-  const classes = useStyles()
 
   // TODO: [FX-4715]
   usePropDeprecationWarning({
@@ -464,7 +456,7 @@ export const DatePicker = (props: Props) => {
                 indicatedIntervals={indicatedIntervals}
                 renderDay={renderDay}
                 onChange={handleCalendarChange}
-                className={classes.calendar}
+                className={'outline-none'}
                 hasFooter={Boolean(footer)}
                 weekStartsOn={weekStartsOn}
                 numberOfMonths={numberOfMonths}
@@ -472,7 +464,9 @@ export const DatePicker = (props: Props) => {
               />
               {footer && (
                 <div
-                  className={classes.footer}
+                  className={
+                    'bg-gray-50 shadow-5 rounded-t-none rounded-b-sm py-[0.625rem] px-[1.187rem] w-[20.5rem]'
+                  }
                   style={{ backgroundColor: footerBackgroundColor }}
                 >
                   {footer}
