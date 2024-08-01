@@ -1,5 +1,15 @@
 # @toptal/picasso-date-picker
 
+## 2.0.2
+
+### Patch Changes
+
+- [#4433](https://github.com/toptal/picasso/pull/4433) [`d1e9886`](https://github.com/toptal/picasso/commit/d1e9886d04014c541459f75a555ae40972ed9155) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### DatePicker
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+
 ## 2.0.1
 
 ### Patch Changes
