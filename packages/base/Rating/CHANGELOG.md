@@ -1,5 +1,12 @@
 # @toptal/picasso-rating
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`941aaa8`](https://github.com/toptal/picasso/commit/941aaa827318acc969968b1b770ddb5bb63471a7)]:
+  - @toptal/picasso-icons@1.6.0
+
 ## 2.0.0
 
 ### Major Changes

@@ -1,5 +1,21 @@
 # @toptal/picasso-dropzone
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`941aaa8`](https://github.com/toptal/picasso/commit/941aaa827318acc969968b1b770ddb5bb63471a7)]:
+  - @toptal/picasso-icons@1.6.0
+  - @toptal/picasso-file-input@2.0.1
+  - @toptal/picasso-form@4.0.1
+
+## 3.0.1
+
+### Patch Changes
+
+- [#4428](https://github.com/toptal/picasso/pull/4428) [`3c57cb2`](https://github.com/toptal/picasso/commit/3c57cb2e2a0abdf9ac23f4cf011aefaa53173754) Thanks [@sashuk](https://github.com/sashuk)!
+- migrate Dropzone to Tailwind
+
 ## 3.0.0
 
 ### Major Changes
