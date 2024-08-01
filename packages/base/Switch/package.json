@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-switch",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Toptal UI components library - Switch",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-form": "4.0.0",
+    "@toptal/picasso-form": "4.0.1",
     "@toptal/picasso-shared": "15.0.0",
     "@mui/base": "5.0.0-beta.40",
     "classnames": "^2.5.1"
