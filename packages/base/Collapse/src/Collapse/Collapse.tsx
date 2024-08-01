@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
-import React, { useRef, useState, forwardRef } from 'react'
+import React, { useRef, forwardRef } from 'react'
+import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
-import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends TransitionProps, BaseProps {
@@ -18,6 +18,10 @@ export interface Props extends TransitionProps, BaseProps {
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
+const triggerReflow = (element: HTMLElement) => {
+  void element.offsetHeight
+}
+
 export const Collapse = forwardRef<HTMLDivElement, Props>(
   (
     {
@@ -28,31 +32,68 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
       unmountOnExit,
       style,
       appear,
-      onExited: onExitedProp,
       'data-testid': dataTestId,
       ...rest
     },
     ref
   ) => {
-    const collapseRef = useRef<HTMLDivElement>(null)
-    const combinedRef = useMultipleForwardRefs([ref, collapseRef])
+    const wrapperRef = useRef<HTMLDivElement>(null)
+    const nodeRef = useRef<HTMLDivElement>(null)
+    const combinedRef = useMultipleForwardRefs<HTMLDivElement>([ref, nodeRef])
+    const currentState = useRef<
+      'enter' | 'entering' | 'entered' | 'exit' | 'exiting' | 'exited'
+    >()
 
-    const [height, setHeight] = useState<number>()
+    const getWrapperSize = () =>
+      wrapperRef.current ? wrapperRef.current.clientHeight : 0
 
-    const setToCurrentHeight = () => {
-      if (collapseRef.current) {
-        setHeight(collapseRef.current.scrollHeight)
+    const handleEnter = (_: HTMLElement, isAppearing: boolean) => {
+      const node = nodeRef?.current
+
+      if (node) {
+        node.style.height = '0px'
+        currentState.current = 'enter'
+
+        if (rest.onEnter) {
+          rest.onEnter(node, isAppearing)
+        }
       }
     }
 
-    const resetHeight = () => {
-      setHeight(0)
+    const handleEntering = () => {
+      const node = nodeRef?.current
+
+      if (node) {
+        node.style.height = `${getWrapperSize()}px`
+        currentState.current = 'entering'
+      }
     }
 
-    const onExited = (node: HTMLElement) => {
-      resetHeight()
-      if (onExitedProp) {
-        onExitedProp(node)
+    const handleEntered = () => {
+      const node = nodeRef?.current
+
+      if (node) {
+        node.style.height = 'auto'
+        currentState.current = 'entered'
+      }
+    }
+
+    const handleExit = () => {
+      const node = nodeRef?.current
+
+      if (node) {
+        node.style.height = `${getWrapperSize()}px`
+        currentState.current = 'exit'
+      }
+    }
+
+    const handleExiting = () => {
+      const node = nodeRef?.current
+
+      if (node) {
+        triggerReflow(node)
+        node.style.height = '0px'
+        currentState.current = 'exiting'
       }
     }
 
@@ -60,38 +101,32 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
       <Transition
         in={inProps}
         appear={appear}
-        nodeRef={collapseRef}
-        onEntering={setToCurrentHeight}
+        nodeRef={nodeRef}
+        onEnter={handleEnter}
+        onEntering={handleEntering}
+        onEntered={handleEntered}
         unmountOnExit={unmountOnExit}
-        onExit={setToCurrentHeight}
-        onExiting={resetHeight}
-        onExited={onExited}
+        onExit={handleExit}
+        onExiting={handleExiting}
         timeout={timeout}
         {...rest}
       >
         {state => {
-          const currentHeight = height === 0 ? null : { maxHeight: height }
-          const isAnimating = state === 'entering' || state === 'exiting'
-
           return (
             <div
               className={twJoin([
-                'flex',
-                isAnimating ? 'overflow-hidden max-h-0' : undefined,
-                state === 'exited' ? 'hidden' : undefined,
+                'transition-[height] ease-in-out min-h-0',
+                state === 'exited' && !inProps && 'invisible',
+                state === 'entered' ? 'overflow-visible' : 'overflow-hidden',
                 className,
               ])}
-              style={{
-                ...style,
-                ...currentHeight,
-                transition: isAnimating
-                  ? `max-height ${timeout}ms ease`
-                  : undefined,
-              }}
+              style={{ ...style, transitionDuration: `${timeout}ms` }}
               data-testid={dataTestId}
               ref={combinedRef}
             >
-              <div className='w-full'>{children}</div>
+              <div className='flex' ref={wrapperRef}>
+                <div className='w-full'>{children}</div>
+              </div>
             </div>
           )
         }}

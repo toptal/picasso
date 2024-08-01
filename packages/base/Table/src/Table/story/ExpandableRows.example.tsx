@@ -23,6 +23,85 @@ const StyledArrowDownMinor16 = styled(
   transform: rotate(${({ expanded }) => (expanded ? '180deg' : '0deg')});
 `
 
+const DynamicContent = () => {
+  const [isLoaded, setLoaded] = React.useState(false)
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoaded(true)
+    }, 1000)
+  })
+
+  return (
+    <Container>
+      {isLoaded ? (
+        <Typography size='small'>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi placeat
+          dolorem provident, aut aspernatur doloribus eos reiciendis molestiae
+          ab quidem ad facilis animi dolorum quis laborum possimus temporibus
+          debitis maiores ullam neque? Tempora rem eligendi ex consectetur
+          impedit eos optio illum voluptates. Quis expedita, rerum reiciendis
+          hic quae molestiae sit doloribus, beatae assumenda illo non iste
+          itaque deleniti! Expedita ducimus, deleniti accusantium iusto adipisci
+          nesciunt inventore! Laborum, repudiandae temporibus eligendi
+          blanditiis laudantium suscipit. Tempore culpa, consequuntur placeat,
+          inventore cumque vitae recusandae at consequatur praesentium
+          asperiores sunt porro beatae, ipsa dicta laboriosam quae voluptatum.
+          Magnam animi ea sint ex, ipsum explicabo. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Modi placeat dolorem provident, aut
+          aspernatur doloribus eos reiciendis molestiae ab quidem ad facilis
+          animi dolorum quis laborum possimus temporibus debitis maiores ullam
+          neque? Tempora rem eligendi ex consectetur impedit eos optio illum
+          voluptates. Quis expedita, rerum reiciendis hic quae molestiae sit
+          doloribus, beatae assumenda illo non iste itaque deleniti! Expedita
+          ducimus, deleniti accusantium iusto adipisci nesciunt inventore!
+          Laborum, repudiandae temporibus eligendi blanditiis laudantium
+          suscipit. Tempore culpa, consequuntur placeat, inventore cumque vitae
+          recusandae at consequatur praesentium asperiores sunt porro beatae,
+          ipsa dicta laboriosam quae voluptatum. Magnam animi ea sint ex, ipsum
+          explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Modi placeat dolorem provident, aut aspernatur doloribus eos
+          reiciendis molestiae ab quidem ad facilis animi dolorum quis laborum
+          possimus temporibus debitis maiores ullam neque? Tempora rem eligendi
+          ex consectetur impedit eos optio illum voluptates. Quis expedita,
+          rerum reiciendis hic quae molestiae sit doloribus, beatae assumenda
+          illo non iste itaque deleniti! Expedita ducimus, deleniti accusantium
+          iusto adipisci nesciunt inventore! Laborum, repudiandae temporibus
+          eligendi blanditiis laudantium suscipit. Tempore culpa, consequuntur
+          placeat, inventore cumque vitae recusandae at consequatur praesentium
+          asperiores sunt porro beatae, ipsa dicta laboriosam quae voluptatum.
+          Magnam animi ea sint ex, ipsum explicabo. Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Modi placeat dolorem provident, aut
+          aspernatur doloribus eos reiciendis molestiae ab quidem ad facilis
+          animi dolorum quis laborum possimus temporibus debitis maiores ullam
+          neque? Tempora rem eligendi ex consectetur impedit eos optio illum
+          voluptates. Quis expedita, rerum reiciendis hic quae molestiae sit
+          doloribus, beatae assumenda illo non iste itaque deleniti! Expedita
+          ducimus, deleniti accusantium iusto adipisci nesciunt inventore!
+          Laborum, repudiandae temporibus eligendi blanditiis laudantium
+          suscipit. Tempore culpa, consequuntur placeat, inventore cumque vitae
+          recusandae at consequatur praesentium asperiores sunt porro beatae,
+          ipsa dicta laboriosam quae voluptatum. Magnam animi ea sint ex, ipsum
+          explicabo. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Modi placeat dolorem provident, aut aspernatur doloribus eos
+          reiciendis molestiae ab quidem ad facilis animi dolorum quis laborum
+          possimus temporibus debitis maiores ullam neque? Tempora rem eligendi
+          ex consectetur impedit eos optio illum voluptates. Quis expedita,
+          rerum reiciendis hic quae molestiae sit doloribus, beatae assumenda
+          illo non iste itaque deleniti! Expedita ducimus, deleniti accusantium
+          iusto adipisci nesciunt inventore! Laborum, repudiandae temporibus
+          eligendi blanditiis laudantium suscipit. Tempore culpa, consequuntur
+          placeat, inventore cumque vitae recusandae at consequatur praesentium
+          asperiores sunt porro beatae, ipsa dicta laboriosam quae voluptatum.
+          Magnam animi ea sint ex, ipsum explicabo.
+        </Typography>
+      ) : (
+        <Typography size='small'>Loading dynamic content...</Typography>
+      )}
+    </Container>
+  )
+}
+
 const ExpandableContent = () => (
   <Container padded={SPACING_4}>
     <Tabs value={1}>
@@ -61,6 +140,7 @@ const ExpandableContent = () => (
     <Container top={SPACING_4}>
       <Tag>$2k Design Credit</Tag>
     </Container>
+    <DynamicContent />
   </Container>
 )
 
