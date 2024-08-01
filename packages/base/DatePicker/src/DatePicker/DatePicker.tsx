@@ -456,7 +456,7 @@ export const DatePicker = (props: Props) => {
                 indicatedIntervals={indicatedIntervals}
                 renderDay={renderDay}
                 onChange={handleCalendarChange}
-                className={'outline-none'}
+                className='outline-none'
                 hasFooter={Boolean(footer)}
                 weekStartsOn={weekStartsOn}
                 numberOfMonths={numberOfMonths}
@@ -464,9 +464,7 @@ export const DatePicker = (props: Props) => {
               />
               {footer && (
                 <div
-                  className={
-                    'bg-gray-50 shadow-5 rounded-t-none rounded-b-sm py-[0.625rem] px-[1.187rem] w-[20.5rem]'
-                  }
+                  className='bg-gray-50 shadow-5 rounded-t-none rounded-b-sm py-[0.625rem] px-[1.187rem] w-[20.5rem]'
                   style={{ backgroundColor: footerBackgroundColor }}
                 >
                   {footer}
