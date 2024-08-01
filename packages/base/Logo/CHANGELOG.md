@@ -1,5 +1,12 @@
 # @toptal/picasso-logo
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`941aaa8`](https://github.com/toptal/picasso/commit/941aaa827318acc969968b1b770ddb5bb63471a7)]:
+  - @toptal/picasso-icons@1.6.0
+
 ## 1.0.8
 
 ### Patch Changes
