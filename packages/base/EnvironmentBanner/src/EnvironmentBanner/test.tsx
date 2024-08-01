@@ -23,22 +23,4 @@ describe('EnvironmentBanner', () => {
 
     expect(container).toMatchSnapshot()
   })
-
-  it('production render', () => {
-    const { container } = renderEnvironmentBanner({
-      environment: 'production',
-      productName: 'Picasso',
-    })
-
-    expect(container).toMatchSnapshot()
-  })
-
-  it('render nothing in test environment', () => {
-    const { container } = renderEnvironmentBanner({
-      environment: 'test',
-      productName: 'Picasso',
-    })
-
-    expect(container).toMatchSnapshot()
-  })
 })

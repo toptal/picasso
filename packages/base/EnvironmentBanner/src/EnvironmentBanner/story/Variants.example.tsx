@@ -46,9 +46,6 @@ const Example = () => (
         Production (should be empty)
       </Typography>
     </Container>
-    <Container style={{ position: 'relative', height: CONTAINER_HEIGHT }}>
-      <EnvironmentBanner environment='production' productName='Picasso' />
-    </Container>
   </div>
 )
 
