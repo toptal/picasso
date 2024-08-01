@@ -1,5 +1,12 @@
 # Change Log
 
+## 71.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`d1e9886`](https://github.com/toptal/picasso/commit/d1e9886d04014c541459f75a555ae40972ed9155)]:
+  - @toptal/picasso-date-picker@2.0.2
+
 ## 71.0.3
 
 ### Patch Changes
