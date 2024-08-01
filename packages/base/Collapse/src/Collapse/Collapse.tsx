@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import React, { useRef, forwardRef } from 'react'
+import React, { useRef, forwardRef, useMemo } from 'react'
 import { useMultipleForwardRefs } from '@toptal/picasso-utils'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
@@ -15,10 +15,18 @@ export interface Props extends TransitionProps, BaseProps {
   /* Unmount the component on exit */
   unmountOnExit?: boolean
   /* Callback fired when the component has entered */
-  onEnter?: (node: HTMLElement, isAppearing: boolean) => void
+  onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
 }
 
-const triggerReflow = (element: HTMLElement) => {
+/**
+ * Forces a reflow of the specified element by accessing its offsetHeight property.
+ * This is necessary to ensure that any pending style changes are applied immediately.
+ * Without this, the browser might batch style updates causing the transition not to run as expected.
+ */
+const triggerReflow = (element: HTMLElement | null) => {
+  if (!element) {
+    return
+  }
   void element.offsetHeight
 }
 
@@ -40,61 +48,56 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
     const wrapperRef = useRef<HTMLDivElement>(null)
     const nodeRef = useRef<HTMLDivElement>(null)
     const combinedRef = useMultipleForwardRefs<HTMLDivElement>([ref, nodeRef])
-    const currentState = useRef<
-      'enter' | 'entering' | 'entered' | 'exit' | 'exiting' | 'exited'
-    >()
+
+    // Memoized style object to avoid unnecessary recalculations
+    const transitionStyle = useMemo(
+      () => ({ transitionDuration: `${timeout}ms`, ...style }),
+      [timeout, style]
+    )
 
     const getWrapperSize = () =>
       wrapperRef.current ? wrapperRef.current.clientHeight : 0
 
+    const heightByState = {
+      closed: '0px',
+      transition: `${getWrapperSize()}px`,
+      opened: 'auto',
+    }
+
+    const setNodeHeight = (height: string) => {
+      const node = nodeRef.current
+
+      if (!node) {
+        return
+      }
+
+      node.style.height = height
+    }
+
     const handleEnter = (_: HTMLElement, isAppearing: boolean) => {
-      const node = nodeRef?.current
+      setNodeHeight(heightByState.closed)
 
-      if (node) {
-        node.style.height = '0px'
-        currentState.current = 'enter'
-
-        if (rest.onEnter) {
-          rest.onEnter(node, isAppearing)
-        }
+      if (rest.onEnter) {
+        rest.onEnter(nodeRef.current, isAppearing)
       }
     }
 
     const handleEntering = () => {
-      const node = nodeRef?.current
-
-      if (node) {
-        node.style.height = `${getWrapperSize()}px`
-        currentState.current = 'entering'
-      }
+      setNodeHeight(`${getWrapperSize()}px`)
     }
 
     const handleEntered = () => {
-      const node = nodeRef?.current
-
-      if (node) {
-        node.style.height = 'auto'
-        currentState.current = 'entered'
-      }
+      setNodeHeight(heightByState.opened)
     }
 
     const handleExit = () => {
-      const node = nodeRef?.current
-
-      if (node) {
-        node.style.height = `${getWrapperSize()}px`
-        currentState.current = 'exit'
-      }
+      setNodeHeight(heightByState.transition)
     }
 
     const handleExiting = () => {
-      const node = nodeRef?.current
-
-      if (node) {
-        triggerReflow(node)
-        node.style.height = '0px'
-        currentState.current = 'exiting'
-      }
+      // Trigger a reflow to ensure the transition runs as expected
+      triggerReflow(nodeRef.current)
+      setNodeHeight(heightByState.closed)
     }
 
     return (
@@ -120,7 +123,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
                 state === 'entered' ? 'overflow-visible' : 'overflow-hidden',
                 className,
               ])}
-              style={{ ...style, transitionDuration: `${timeout}ms` }}
+              style={transitionStyle}
               data-testid={dataTestId}
               ref={combinedRef}
             >
