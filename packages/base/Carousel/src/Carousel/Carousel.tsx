@@ -1,18 +1,13 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import 'glider-js/glider.css'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import { CarouselGradient } from '../CarouselGradient'
 import useCarousel from './hooks/useCarousel'
 import { CarouselNavigation } from '../CarouselNavigation'
-
-const useStyles = makeStyles<Theme>(styles, { name: 'Carousel' })
 
 export interface Props extends BaseProps {
   /**
@@ -101,15 +96,13 @@ export const Carousel = ({
     hasDots,
   })
 
-  const classes = useStyles()
-
   return (
     <Container
-      className={cx(classes.root, className)}
+      className={twMerge('[&_.glider-slide]:min-w-[100px]', className)}
       data-testid={testIds.root}
       {...getContainerProps()}
     >
-      <Container className={classes.container}>
+      <Container className='relative'>
         <Container {...getCarouselProps()} data-testid={testIds.carousel}>
           {children}
         </Container>
