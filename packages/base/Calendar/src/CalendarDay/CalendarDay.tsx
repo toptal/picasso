@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
-import React, { useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
 import { useDayRender } from 'react-day-picker'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 import {
   isToday as isTodayDateFns,
   endOfMonth,
@@ -27,6 +27,45 @@ const checkIfBelongsToPreviousMonth = (date: Date, currentMonth: Date) =>
 
 const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
   isAfter(date, endOfMonth(currentMonth))
+
+type DayState = {
+  isSelected: boolean
+  isDisabled: boolean
+  isWeekend: boolean
+  isToday: boolean
+  isOutside: boolean
+  startSelection: boolean
+  withinSelection: boolean
+  endSelection: boolean
+  isRangeStart: boolean
+  isRangeMiddle: boolean
+  isRangeEnd: boolean
+  isTemporaryRangeMiddle: boolean
+  isTemporaryRangeEnd: boolean
+}
+
+const getBackgroundColorClass = (state: DayState) => {
+  let classes = []
+
+
+
+
+  return 'bg-white'
+}
+
+const getHoverAndFocusEffectsClass =(state: DayState) => {
+  const { isSelected, isWeekend, isDisabled, startSelection, endSelection, withinSelection } = state
+
+  if (!isSelected && !isDisabled && !startSelection && !endSelection) {
+    return '[&]:hover:bg-blue-500 [&]:hover:opacity-25 [&]:focus:bg-blue-500 [&]:focus:opacity-25'
+  }
+
+  if (isWeekend && !isSelected && !withinSelection) {
+    return '[&]:not(:hover):border-sm [&]:not(:hover):border-white [&]:not(:hover):rounded-md'
+  }
+
+  return ''
+}
 
 /**
  * The content of a day cell
@@ -62,6 +101,22 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
   const withinSelection = isRangeMiddle || isTemporaryRangeMiddle
   const endSelection = isRangeEnd || isTemporaryRangeEnd
 
+  const defaultComponentState = useMemo(() => ({
+    isSelected,
+    isDisabled,
+    isWeekend,
+    isToday,
+    isOutside,
+    startSelection,
+    withinSelection,
+    endSelection,
+    isRangeStart,
+    isRangeMiddle,
+    isRangeEnd,
+    isTemporaryRangeMiddle,
+    isTemporaryRangeEnd
+  }), [])
+
   const defaultComponent = (
     <button
       ref={buttonRef}
@@ -71,41 +126,42 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       }`}
       data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
-      className={twJoin(
+
+      className={twMerge(
         'h-[2.5rem] w-[2.5rem] min-w-[2.5rem]',
         'vertical-align-middle text-xxs user-select-none flex items-center justify-center',
-        'bg-white relative',
+        'relative',
         'm-0 p-0',
         'border-none outline-none rounded-sm cursor-pointer',
-        !isSelected &&
-          !isDisabled &&
-          !startSelection &&
-          !endSelection &&
-          '[&]:hover:bg-red [&]:focus:bg-red',
+
+        getBackgroundColorClass(defaultComponentState),
+
+        getHoverAndFocusEffectsClass(defaultComponentState),
+
+
+
+
+
+
+
+
+
+
         isSelected && 'bg-blue-500 text-white',
-        // concat?
-        isWeekend &&
-          'bg-gray-100' &&
-          !isSelected &&
-          !withinSelection &&
-          '[&]:not(:hover):border-sm [&]:not(:hover):border-white [&]:not(:hover):rounded-md',
+        (isWeekend ?
+          'bg-gray-100 ' + ((!isSelected &&
+            !withinSelection) ?
+            '[&]:not(:hover):border-sm [&]:not(:hover):border-white [&]:not(:hover):rounded-md':'') : ''),
         isOutside && !isDisabled && 'text-gray-600',
         isDisabled &&
-          'text-gray-500 cursor-default [&]:hover:bg-transparent ' +
+          ('text-gray-500 cursor-default [&]:hover:bg-transparent ' +
             (isWeekend
               ? '[&]:hover:bg-gray-100 [&]:hover:border-sm [&]:hover:border-white [&]:hover:rounded-md'
-              : '')
-        // 3 more left
+              : '')),
+        isRangeStart && ('bg-blue-500 text-white ' + (isToday ? 'after:bg-white' : '')),
+        (isRangeMiddle || isTemporaryRangeMiddle) && 'bg-blue-100 rounded-none text-black',
+        (isRangeEnd || isTemporaryRangeEnd) && ('bg-blue-500 text-white ' + (isToday ? 'after:bg-white' : '')),
       )}
-      // className={cx(classes.day, {
-      //   [classes.selected]: isSelected,
-      //   [classes.weekend]: isWeekend,
-      //   [classes.grayed]: isOutside && !isDisabled,
-      //   [classes.disabled]: isDisabled,
-      //   [classes.startSelection]: isRangeStart,
-      //   [classes.withinSelection]: isRangeMiddle || isTemporaryRangeMiddle,
-      //   [classes.endSelection]: isRangeEnd || isTemporaryRangeEnd,
-      // })}
       onClick={isDisabled ? undefined : event => buttonProps?.onClick?.(event)}
       onMouseEnter={event => {
         onDayMouseEnter?.(date)

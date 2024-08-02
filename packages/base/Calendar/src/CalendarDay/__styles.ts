@@ -28,17 +28,17 @@
 //       //     backgroundColor: alpha(palette.blue.main, 0.24),
 //       //   },
 //     },
-//     // weekend: {
-//     //   backgroundColor: palette.grey.lighter,
-//     //   '&:not(:hover):not($selected):not($withinSelection)': {
-//     //     border: '4px solid white',
-//     //     borderRadius: sizes.borderRadius.medium,
-//     //   },
-//     // },
-//     // selected: {
-//     //   background: palette.blue.main,
-//     //   color: palette.common.white,
-//     // },
+    // weekend: {
+    //   backgroundColor: palette.grey.lighter,
+    //   '&:not(:hover):not($selected):not($withinSelection)': {
+    //     border: '4px solid white',
+    //     borderRadius: sizes.borderRadius.medium,
+    //   },
+    // },
+    // selected: {
+    //   background: palette.blue.main,
+    //   color: palette.common.white,
+    // },
 //     // NOT MIGRATED
 //     isInsideIndicatedRange: {
 //       '&:after': {
@@ -51,7 +51,6 @@
 //         bottom: '0.375rem',
 //       },
 //     },
-//     // NOT MIGRATED
 //     startSelection: {
 //       backgroundColor: palette.blue.main,
 //       color: palette.common.white,
@@ -60,13 +59,11 @@
 //         backgroundColor: palette.common.white,
 //       },
 //     },
-//     // NOT MIGRATED
 //     withinSelection: {
 //       borderRadius: '0px',
 //       backgroundColor: palette.blue.lighter,
 //       color: palette.common.black,
 //     },
-//     // NOT MIGRATED
 //     endSelection: {
 //       backgroundColor: palette.blue.main,
 //       color: palette.common.white,
