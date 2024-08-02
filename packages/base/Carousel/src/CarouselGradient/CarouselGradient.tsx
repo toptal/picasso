@@ -1,12 +1,7 @@
 import React, { useMemo } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import gradientWidth from './utils/gradient-width'
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, { name: 'CarouselGradient' })
 
 type Props = {
   slidesToShow: number
@@ -14,8 +9,6 @@ type Props = {
 }
 
 const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
-  const classes = useStyles()
-
   const showNextGradient = !isLastPage
   const showPrevGradient = isLastPage
 
@@ -28,11 +21,13 @@ const CarouselGradient = ({ isLastPage, slidesToShow }: Props) => {
   return (
     <div
       style={gradientStyle}
-      className={cx({
-        [classes.gradient]: showNextGradient || showPrevGradient,
-        [classes.nextGradient]: showNextGradient,
-        [classes.prevGradient]: showPrevGradient,
-      })}
+      className={twMerge(
+        (showNextGradient || showPrevGradient) && 'absolute h-full top-0',
+        showNextGradient &&
+          'right-0 bg-gradient-to-r from-white/20 to-white to-95%',
+        showPrevGradient &&
+          'left-0 bg-gradient-to-r from-white from-5% to-white/20'
+      )}
     />
   )
 }
