@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "48.0.1",
+  "version": "48.0.2",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -47,7 +47,7 @@
     "@toptal/picasso-badge": "2.0.0",
     "@toptal/picasso-breadcrumbs": "2.0.1",
     "@toptal/picasso-calendar": "2.0.1",
-    "@toptal/picasso-carousel": "2.0.1",
+    "@toptal/picasso-carousel": "3.0.0",
     "@toptal/picasso-checkbox": "3.0.1",
     "@toptal/picasso-container": "2.0.0",
     "@toptal/picasso-date-picker": "2.0.2",
