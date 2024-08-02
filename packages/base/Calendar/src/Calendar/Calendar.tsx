@@ -258,7 +258,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
               table: 'flex flex-col border-spacing-0',
               head_row:
                 'flex text-center uppercase text-xxs pt-[3px] pb-[11px] text-gray-600',
-              head_cell: 'p-0 basis-[15%] w-40 font-weight-400',
+              head_cell: 'p-0 basis-[15%] w-40 font-regular',
               row: 'flex',
               cell: 'p-0 basis-[15%]',
               vhidden: 'hidden',
