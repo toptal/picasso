@@ -39,7 +39,7 @@
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind": "2.7.0",
+    "@toptal/picasso-tailwind": "2.8.0",
     "@toptal/picasso-test-utils": "1.1.1",
     "popper.js": "^1.16.1"
   },

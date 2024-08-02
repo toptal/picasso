@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-environment-banner",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Toptal UI components library - EnvironmentBanner",
   "publishConfig": {
     "access": "public"
@@ -30,8 +30,8 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@material-ui/core": "4.12.4",
-    "@toptal/picasso-provider": "*",
+    "@toptal/picasso-tailwind-merge": "^1.0.1",
+    "@toptal/picasso-tailwind": ">=2.8.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {

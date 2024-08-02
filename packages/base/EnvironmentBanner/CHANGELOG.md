@@ -1,5 +1,13 @@
 # @toptal/picasso-environment-banner
 
+## 2.0.0
+
+### Major Changes
+
+- [#4430](https://github.com/toptal/picasso/pull/4430) [`27d596a`](https://github.com/toptal/picasso/commit/27d596a3bb913923f7d7e577ac3a7b6f9045b42f) Thanks [@sashuk](https://github.com/sashuk)!
+- migrate EnvironmentBanner to Tailwind
+  - update peer dependencies
+
 ## 1.0.3
 
 ### Patch Changes

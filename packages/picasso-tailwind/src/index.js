@@ -168,6 +168,7 @@ module.exports = {
       zIndex: {
         drawer: 1200,
         modal: 1300,
+        snackbar: 1400,
       },
       width: {
         input: '18.75rem',

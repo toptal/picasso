@@ -1,13 +1,9 @@
 import React, { forwardRef, useState } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import type { EnvironmentType, BaseProps } from '@toptal/picasso-shared'
-import { useAppConfig } from '@toptal/picasso-provider'
-
-import styles from './styles'
 
 export type EnvironmentTypes = EnvironmentType<'temploy' | 'test'>
+type SupportedEnvironments = Exclude<EnvironmentTypes, 'production' | 'test'>
 
 export interface Props extends BaseProps {
   /** Name of the current environment */
@@ -16,56 +12,69 @@ export interface Props extends BaseProps {
   productName: string
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoEnvironmentBanner',
-})
+const ENVIRONMENT_BORDER_COLORS = {
+  development: 'border-t-green-600',
+  temploy: 'border-t-yellow-500',
+  staging: 'border-t-red-500',
+}
+
+const ENVIRONMENT_LABEL_BACKGROUND_COLORS = {
+  development: 'bg-green-600',
+  temploy: 'bg-yellow-500',
+  staging: 'bg-red-500',
+}
+
+const getLabelBackgroundColor = (environment: SupportedEnvironments) =>
+  ENVIRONMENT_LABEL_BACKGROUND_COLORS[environment]
 
 export const EnvironmentBanner = forwardRef<HTMLDivElement, Props>(
   function EnvironmentBanner(props, ref) {
-    const { environment: configEnvironment } = useAppConfig()
     const { environment, productName, style } = props
-    const classes = useStyles()
-
     const [isShown, setIsShown] = useState(true)
 
-    const resolvedEnvironment = environment || configEnvironment
-
-    if (
-      resolvedEnvironment === 'production' ||
-      resolvedEnvironment === 'test' ||
-      !isShown
-    ) {
+    if (!isShown || environment === 'production' || environment === 'test') {
       return null
     }
 
     return (
       <div
         ref={ref}
-        className={cx(classes.root, {
-          [classes.rootDevelopment]: resolvedEnvironment === 'development',
-          [classes.rootTemploy]: resolvedEnvironment === 'temploy',
-          [classes.rootStaging]: resolvedEnvironment === 'staging',
-        })}
+        className={twJoin(
+          `border-0 border-t-[4px] border-solid ${ENVIRONMENT_BORDER_COLORS[environment]}`,
+          'fixed',
+          'text-center',
+          'top-0',
+          'w-[100vw]',
+          'z-snackbar',
+          'text-xxs',
+          'pointer-events-none',
+          'leading-6'
+        )}
         style={style}
       >
         <div
           onClick={() => setIsShown(false)}
-          className={cx(classes.label, {
-            [classes.labelDevelopment]: resolvedEnvironment === 'development',
-            [classes.labelTemploy]: resolvedEnvironment === 'temploy',
-            [classes.labelStaging]: resolvedEnvironment === 'staging',
-          })}
+          className={twJoin(
+            getLabelBackgroundColor(environment),
+            'rounded-b-sm',
+            'font-semibold',
+            'text-white',
+            'cursor-pointer',
+            'inline-block',
+            'px-2 py-1',
+            'tracking-[0.01em]',
+            'uppercase',
+            'select-none',
+            'leading-4',
+            'pointer-events-auto'
+          )}
         >
-          {`${productName} ${resolvedEnvironment}`}
+          {`${productName} ${environment}`}
         </div>
       </div>
     )
   }
 )
-
-// TODO: remove default environment in v5, so either directly passed version will be used
-// or one from config, but not from defaultProps
-EnvironmentBanner.defaultProps = { environment: 'production' }
 
 EnvironmentBanner.displayName = 'EnvironmentBanner'
 
