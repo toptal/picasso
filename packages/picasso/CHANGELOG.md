@@ -1,5 +1,12 @@
 # Change Log
 
+## 48.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`ead8d50`](https://github.com/toptal/picasso/commit/ead8d50cfc224b638d2c7ac1efca97aa7c4a904a)]:
+  - @toptal/picasso-empty-state@2.0.2
+
 ## 48.0.0
 
 ### Major Changes

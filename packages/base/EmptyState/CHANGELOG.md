@@ -1,5 +1,15 @@
 # @toptal/picasso-empty-state
 
+## 2.0.2
+
+### Patch Changes
+
+- [#4437](https://github.com/toptal/picasso/pull/4437) [`ead8d50`](https://github.com/toptal/picasso/commit/ead8d50cfc224b638d2c7ac1efca97aa7c4a904a) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### EmptyState
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+
 ## 2.0.1
 
 ### Patch Changes
