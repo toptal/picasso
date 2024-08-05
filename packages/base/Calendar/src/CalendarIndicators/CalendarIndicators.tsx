@@ -18,13 +18,13 @@ export const CalendarIndicators = ({
         {isToday && (
           <div
             className={twJoin(
-              'h-[0.25rem] w-[0.25rem] rounded-[50%] bg-blue-500',
+              'h-1 w-1 rounded-[50%] bg-blue-500',
               isSelected && 'bg-white'
             )}
           />
         )}
         {isIndicated && (
-          <div className='content-[""] h-[0.25rem] w-[0.25rem] rounded-[50%] bg-yellow-500' />
+          <div className='content-[""] h-1 w-1 rounded-[50%] bg-yellow-500' />
         )}
       </div>
     )

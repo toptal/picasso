@@ -15,7 +15,8 @@ import {
 import { CalendarIndicators } from '../CalendarIndicators'
 import { useCalendar } from '../CalendarContext'
 import type { DayProps as RenderDayProps } from '../Calendar'
-import { getBackgroundAndTextColorClasses } from './utils/get-background-and-text-color-classes'
+import { getTextColorClass } from './utils/get-text-color-class'
+import { getBackgroundColorClass } from './utils/get-background-color-class'
 import { getBorderClasses } from './utils/get-border-classes'
 import { getHoverAndFocusEffectsClasses } from './utils/get-hover-and-focus-effects-classes'
 
@@ -74,7 +75,8 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
     }
 
     return twJoin(
-      getBackgroundAndTextColorClasses(currentComponentState),
+      getTextColorClass(currentComponentState),
+      getBackgroundColorClass(currentComponentState),
       getBorderClasses(currentComponentState),
       getHoverAndFocusEffectsClasses(currentComponentState),
       isDisabled ? 'cursor-default' : 'cursor-pointer'
@@ -102,7 +104,7 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
       className={twJoin(
-        'h-[2.5rem] w-[2.5rem] min-w-[2.5rem]',
+        'h-10 w-10 min-w-10',
         'm-0 p-0',
         'text-[0.75rem]',
         'flex items-center justify-center vertical-align-middle relative',
