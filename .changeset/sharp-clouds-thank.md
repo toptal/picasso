@@ -1,5 +1,6 @@
 ---
-'@toptal/picasso-calendar': patch
+'@toptal/picasso-calendar': major
 ---
 
-- migrate Calendar to TailwindCSS
+- migrate component to TailwindCSS
+- update peer dependencies
