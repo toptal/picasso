@@ -9,7 +9,7 @@ exports[`Calendar renders 1`] = `
       tabindex="0"
     >
       <div
-        class="PicassoCalendarContainer-root"
+        class="p-6 text-graphite flex flex-col basis-[20.5rem] shadow-5 bg-white rounded-sm max-w"
       >
         <div
           class="rdp calendar-month"
