@@ -106,7 +106,8 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       className={twJoin(
         'h-10 w-10 min-w-10',
         'm-0 p-0',
-        'text-[0.75rem]',
+        'text-xxs',
+        'leading-[1.5em]',
         'flex items-center justify-center vertical-align-middle relative',
         'user-select-none',
         'outline-none',

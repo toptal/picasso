@@ -26,9 +26,5 @@ export const getTextColorClass = (state: DayState) => {
     return 'text-white'
   }
 
-  if (!isOutside) {
-    return 'text-gray-600'
-  }
-
   return 'text-black'
 }

@@ -150,7 +150,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-25"
                         data-testid="day-button-25"
                         type="button"
@@ -164,7 +164,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-26"
                         data-testid="day-button-26"
                         type="button"
@@ -178,7 +178,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-27"
                         data-testid="day-button-27"
                         type="button"
@@ -192,7 +192,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-28"
                         data-testid="day-button-28"
                         type="button"
@@ -206,7 +206,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-29"
                         data-testid="day-button-29"
                         type="button"
@@ -220,7 +220,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-11-30"
                         data-testid="day-button-30"
                         type="button"
@@ -234,7 +234,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-01"
                         data-testid="day-button-1"
                         type="button"
@@ -252,7 +252,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-02"
                         data-testid="day-button-2"
                         type="button"
@@ -266,7 +266,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-03"
                         data-testid="day-button-3"
                         type="button"
@@ -280,7 +280,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-04"
                         data-testid="day-button-4"
                         type="button"
@@ -294,7 +294,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-05"
                         data-testid="day-button-5"
                         type="button"
@@ -308,7 +308,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-06"
                         data-testid="day-button-6"
                         type="button"
@@ -322,7 +322,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-07"
                         data-testid="day-button-7"
                         type="button"
@@ -336,7 +336,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-08"
                         data-testid="day-button-8"
                         type="button"
@@ -354,7 +354,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-09"
                         data-testid="day-button-9"
                         type="button"
@@ -368,7 +368,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-10"
                         data-testid="day-button-10"
                         type="button"
@@ -382,7 +382,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-11"
                         data-testid="day-button-11"
                         type="button"
@@ -396,7 +396,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-white bg-blue border-none rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-white bg-blue border-none rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-12"
                         data-testid="day-button-selected"
                         type="button"
@@ -410,7 +410,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-13"
                         data-testid="day-button-13"
                         type="button"
@@ -424,7 +424,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-14"
                         data-testid="day-button-14"
                         type="button"
@@ -438,7 +438,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-15"
                         data-testid="day-button-15"
                         type="button"
@@ -456,7 +456,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-16"
                         data-testid="day-button-16"
                         type="button"
@@ -470,7 +470,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-17"
                         data-testid="day-button-17"
                         type="button"
@@ -484,7 +484,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-18"
                         data-testid="day-button-18"
                         type="button"
@@ -498,7 +498,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-19"
                         data-testid="day-button-19"
                         type="button"
@@ -512,7 +512,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-20"
                         data-testid="day-button-20"
                         type="button"
@@ -526,7 +526,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-21"
                         data-testid="day-button-21"
                         type="button"
@@ -540,7 +540,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-22"
                         data-testid="day-button-22"
                         type="button"
@@ -558,7 +558,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-23"
                         data-testid="day-button-23"
                         type="button"
@@ -572,7 +572,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-24"
                         data-testid="day-button-24"
                         type="button"
@@ -586,7 +586,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-25"
                         data-testid="day-button-25"
                         type="button"
@@ -600,7 +600,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-26"
                         data-testid="day-button-26"
                         type="button"
@@ -614,7 +614,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-27"
                         data-testid="day-button-27"
                         type="button"
@@ -628,7 +628,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-28"
                         data-testid="day-button-28"
                         type="button"
@@ -642,7 +642,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-29"
                         data-testid="day-button-29"
                         type="button"
@@ -660,7 +660,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-30"
                         data-testid="day-button-30"
                         type="button"
@@ -674,7 +674,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-black bg-white border-none rounded-none [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2019-12-31"
                         data-testid="day-button-31"
                         type="button"
@@ -688,7 +688,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-01"
                         data-testid="day-button-1"
                         type="button"
@@ -702,7 +702,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-02"
                         data-testid="day-button-2"
                         type="button"
@@ -716,7 +716,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-white border-none rounded-none [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-03"
                         data-testid="day-button-3"
                         type="button"
@@ -730,7 +730,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-04"
                         data-testid="day-button-4"
                         type="button"
@@ -744,7 +744,7 @@ exports[`Calendar renders 1`] = `
                       role="presentation"
                     >
                       <button
-                        class="h-10 w-10 min-w m-0 p-0 text-[0.75rem] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
+                        class="h-10 w-10 min-w m-0 p-0 text-xxs leading-[1.5em] flex items-center justify-center vertical-align relative user-select outline-none text-gray bg-gray border-solid border-[0.25rem] border-white rounded-md [&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-gray [&]:focus:text-gray [&]:hover:bg-blue [&]:focus:bg-blue [&]:hover:rounded-sm [&]:focus:rounded-sm cursor-pointer"
                         data-calendar-day="2020-01-05"
                         data-testid="day-button-5"
                         type="button"
