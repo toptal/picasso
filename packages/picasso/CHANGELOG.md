@@ -1,5 +1,20 @@
 # Change Log
 
+## 48.0.3
+
+### Patch Changes
+
+- [#4431](https://github.com/toptal/picasso/pull/4431) [`745ffbc`](https://github.com/toptal/picasso/commit/745ffbc8c5804cbfb44a3abfb1e57308b4341702) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Calendar
+
+- migrate component to TailwindCSS
+- remove peer dependency on `@material-ui/core`
+- add peer dependency on `@toptal/picasso-tailwind-merge`
+- Updated dependencies [[`745ffbc`](https://github.com/toptal/picasso/commit/745ffbc8c5804cbfb44a3abfb1e57308b4341702)]:
+  - @toptal/picasso-calendar@3.0.0
+  - @toptal/picasso-date-picker@2.0.3
+
 ## 48.0.2
 
 ### Patch Changes
