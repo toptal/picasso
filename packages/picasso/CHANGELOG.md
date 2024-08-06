@@ -1,5 +1,15 @@
 # Change Log
 
+## 48.0.2
+
+### Patch Changes
+
+- [#4439](https://github.com/toptal/picasso/pull/4439) [`5097840`](https://github.com/toptal/picasso/commit/5097840440d21c074fea8db2dccec836131f1eb9) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- migrate Carousel to tailwind, now @toptal/picasso-tailwind-merge is a peer dependency and needs to be provided by the consuming app
+
+- Updated dependencies [[`5097840`](https://github.com/toptal/picasso/commit/5097840440d21c074fea8db2dccec836131f1eb9)]:
+  - @toptal/picasso-carousel@3.0.0
+
 ## 48.0.1
 
 ### Patch Changes
