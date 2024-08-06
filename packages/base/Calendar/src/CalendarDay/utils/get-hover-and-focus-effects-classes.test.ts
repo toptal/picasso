@@ -6,8 +6,8 @@ describe('getHoverAndFocusEffectsClasses', () => {
     it('returns default classes', () => {
       const state = {} as DayState
 
-      expect(getHoverAndFocusEffectsClasses(state)).toBe(
-        '[&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25 [&]:hover:rounded-sm [&]:focus:rounded-sm'
+      expect(getHoverAndFocusEffectsClasses(state).toString()).toBe(
+        '[&]:hover:text-black [&]:focus:text-black,[&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25,[&]:hover:rounded-sm [&]:focus:rounded-sm'
       )
     })
   })
@@ -16,8 +16,8 @@ describe('getHoverAndFocusEffectsClasses', () => {
     it('returns gray text for hover and focus classes', () => {
       const state = { isOutside: true } as DayState
 
-      expect(getHoverAndFocusEffectsClasses(state)).toBe(
-        '[&]:hover:text-gray-600 [&]:focus:text-gray-600 [&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25 [&]:hover:rounded-sm [&]:focus:rounded-sm'
+      expect(getHoverAndFocusEffectsClasses(state).toString()).toBe(
+        '[&]:hover:text-gray-600 [&]:focus:text-gray-600,[&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25,[&]:hover:rounded-sm [&]:focus:rounded-sm'
       )
     })
   })
@@ -42,8 +42,8 @@ describe('getHoverAndFocusEffectsClasses', () => {
     it('returns black text and pale blue background for hover and focus classes', () => {
       const state = { isWeekend: true } as DayState
 
-      expect(getHoverAndFocusEffectsClasses(state)).toBe(
-        '[&]:hover:border-none [&]:focus:border-none [&]:hover:border-white [&]:focus:border-white [&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25 [&]:hover:rounded-sm [&]:focus:rounded-sm'
+      expect(getHoverAndFocusEffectsClasses(state).toString()).toBe(
+        '[&]:hover:border-none [&]:focus:border-none,[&]:hover:border-white [&]:focus:border-white,[&]:hover:text-black [&]:focus:text-black,[&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25,[&]:hover:rounded-sm [&]:focus:rounded-sm'
       )
     })
   })
@@ -53,8 +53,8 @@ describe('getHoverAndFocusEffectsClasses', () => {
       it('returns default selection classes', () => {
         const state = { isWeekend: true, isRangeMiddle: true } as DayState
 
-        expect(getHoverAndFocusEffectsClasses(state)).toBe(
-          '[&]:hover:text-black [&]:focus:text-black [&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25 [&]:hover:rounded-sm [&]:focus:rounded-sm'
+        expect(getHoverAndFocusEffectsClasses(state).toString()).toBe(
+          '[&]:hover:text-black [&]:focus:text-black,[&]:hover:bg-blue-500/25 [&]:focus:bg-blue-500/25,[&]:hover:rounded-sm [&]:focus:rounded-sm'
         )
       })
     })
@@ -63,8 +63,8 @@ describe('getHoverAndFocusEffectsClasses', () => {
       it('returns white text and blue background', () => {
         const state = { isRangeEnd: true } as DayState
 
-        expect(getHoverAndFocusEffectsClasses(state)).toBe(
-          '[&]:hover:text-white [&]:focus:text-white [&]:hover:bg-blue-500 [&]:focus:bg-blue-500'
+        expect(getHoverAndFocusEffectsClasses(state).toString()).toBe(
+          '[&]:hover:text-white [&]:focus:text-white,[&]:hover:bg-blue-500 [&]:focus:bg-blue-500'
         )
       })
     })
