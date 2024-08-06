@@ -73,14 +73,10 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
       if (transitionState === 'exiting' || transitionState === 'entering') {
         // we need to add small delay as 'exit' and 'exiting'
         // are triggered in the same time and React is batching them
-
-        // flushSync react dom
         setTimeout(() => setHeight(heightByState[transitionState]), 50)
       } else {
         setHeight(heightByState[transitionState])
       }
-
-      console.log('transitionState', transitionState)
     }, [transitionState])
 
     const memoStyles = useMemo(() => {
