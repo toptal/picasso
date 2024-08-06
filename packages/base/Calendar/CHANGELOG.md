@@ -1,5 +1,17 @@
 # @toptal/picasso-calendar
 
+## 3.0.0
+
+### Major Changes
+
+- [#4431](https://github.com/toptal/picasso/pull/4431) [`745ffbc`](https://github.com/toptal/picasso/commit/745ffbc8c5804cbfb44a3abfb1e57308b4341702) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Calendar
+
+- migrate component to TailwindCSS
+- remove peer dependency on `@material-ui/core`
+- add peer dependency on `@toptal/picasso-tailwind-merge`
+
 ## 2.0.1
 
 ### Patch Changes
