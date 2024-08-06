@@ -1,15 +1,8 @@
 import type { ReactNode } from 'react'
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import { useCalendar } from '../CalendarContext'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCalendarContainer',
-})
 
 export type CalendarContainerProps = {
   children?: ReactNode
@@ -24,17 +17,17 @@ const CalendarContainer = ({
   hasFooter,
   isFlexible,
 }: CalendarContainerProps) => {
-  const classes = useStyles()
   const { renderRoot } = useCalendar()
 
   return renderRoot ? (
     <>{renderRoot({ hasFooter, children })}</>
   ) : (
     <div
-      className={cx(classes.root, {
-        [classes.hasFooter]: hasFooter,
-        [classes.flexible]: isFlexible,
-      })}
+      className={twJoin(
+        'p-6 text-graphite-800 flex flex-col basis-[20.5rem] shadow-5 bg-white',
+        hasFooter ? 'rounded-t-sm rounded-b-none' : 'rounded-sm',
+        !isFlexible && 'max-w-[20.5rem]'
+      )}
     >
       {children}
     </div>

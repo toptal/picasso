@@ -1,9 +1,5 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
-
-import styles from './styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 export interface Props {
   isSelected: boolean
@@ -11,28 +7,25 @@ export interface Props {
   isIndicated: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoCalendarIndicators',
-})
-
 export const CalendarIndicators = ({
   isIndicated,
   isSelected,
   isToday,
 }: Props) => {
-  const classes = useStyles()
-
   if (isToday || isIndicated) {
     return (
-      <div className={classes.indicators}>
+      <div className='flex flex-row	justify-around w-[1.3em] absolute bottom-[0.375rem]'>
         {isToday && (
           <div
-            className={cx(classes.today, {
-              [classes.selected]: isSelected,
-            })}
+            className={twJoin(
+              'h-1 w-1 rounded-[50%] bg-blue-500',
+              isSelected && 'bg-white'
+            )}
           />
         )}
-        {isIndicated && <div className={classes.indicated} />}
+        {isIndicated && (
+          <div className='content-[""] h-1 w-1 rounded-[50%] bg-yellow-500' />
+        )}
       </div>
     )
   }

@@ -1,10 +1,8 @@
 import type { ReactNode } from 'react'
-import React, { useRef } from 'react'
+import React, { useMemo, useRef } from 'react'
 import type { DayProps } from 'react-day-picker'
 import { useDayRender } from 'react-day-picker'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import {
   isToday as isTodayDateFns,
   endOfMonth,
@@ -14,10 +12,13 @@ import {
   startOfMonth,
 } from 'date-fns'
 
-import styles from './styles'
 import { CalendarIndicators } from '../CalendarIndicators'
 import { useCalendar } from '../CalendarContext'
 import type { DayProps as RenderDayProps } from '../Calendar'
+import { getTextColorClass } from './utils/get-text-color-class'
+import { getBackgroundColorClass } from './utils/get-background-color-class'
+import { getBorderClasses } from './utils/get-border-classes'
+import { getHoverAndFocusEffectsClasses } from './utils/get-hover-and-focus-effects-classes'
 
 export type RenderDay = (args: RenderDayProps) => ReactNode
 
@@ -30,8 +31,6 @@ const checkIfBelongsToPreviousMonth = (date: Date, currentMonth: Date) =>
 
 const checkIfBelongsToNextMonth = (date: Date, currentMonth: Date) =>
   isAfter(date, endOfMonth(currentMonth))
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoCalendar' })
 
 /**
  * The content of a day cell
@@ -63,7 +62,37 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
   const isToday = isTodayDateFns(date)
   const isoDate = getISODate(date)
 
-  const classes = useStyles()
+  const stateDependentClasses = useMemo(() => {
+    const currentComponentState = {
+      isSelected,
+      isDisabled,
+      isWeekend,
+      isToday,
+      isOutside,
+      isRangeStart,
+      isRangeMiddle: isRangeMiddle || isTemporaryRangeMiddle,
+      isRangeEnd: isRangeEnd || isTemporaryRangeEnd,
+    }
+
+    return twJoin(
+      getTextColorClass(currentComponentState),
+      getBackgroundColorClass(currentComponentState),
+      getBorderClasses(currentComponentState),
+      getHoverAndFocusEffectsClasses(currentComponentState),
+      isDisabled ? 'cursor-default' : 'cursor-pointer'
+    )
+  }, [
+    isSelected,
+    isDisabled,
+    isWeekend,
+    isToday,
+    isOutside,
+    isRangeStart,
+    isRangeMiddle,
+    isRangeEnd,
+    isTemporaryRangeMiddle,
+    isTemporaryRangeEnd,
+  ])
 
   const defaultComponent = (
     <button
@@ -74,15 +103,15 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
       }`}
       data-calendar-day={isoDate}
       tabIndex={isDisabled ? -1 : undefined}
-      className={cx(classes.day, {
-        [classes.selected]: isSelected,
-        [classes.weekend]: isWeekend,
-        [classes.grayed]: isOutside && !isDisabled,
-        [classes.disabled]: isDisabled,
-        [classes.startSelection]: isRangeStart,
-        [classes.withinSelection]: isRangeMiddle || isTemporaryRangeMiddle,
-        [classes.endSelection]: isRangeEnd || isTemporaryRangeEnd,
-      })}
+      className={twJoin(
+        'h-10 w-10 min-w-10',
+        'm-0 p-0',
+        'text-[0.75rem]',
+        'flex items-center justify-center vertical-align-middle relative',
+        'user-select-none',
+        'outline-none',
+        stateDependentClasses
+      )}
       onClick={isDisabled ? undefined : event => buttonProps?.onClick?.(event)}
       onMouseEnter={event => {
         onDayMouseEnter?.(date)
