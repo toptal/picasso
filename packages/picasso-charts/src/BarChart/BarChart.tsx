@@ -19,8 +19,6 @@ import { BarChartIndicators } from '../BarChartIndicators'
 import type { BaseChartProps, BarChartDataItem, BarOptions } from '../types'
 import { defineStackId, findTopDomain } from './utils'
 import CHART_CONSTANTS, { chartMargins } from '../utils/constants'
-// TODO: rename file and align exports
-//import { checkIfLabelsExistInData } from './utils/check-if-labels-exist-in-data'
 
 const {
   TICK_MARGIN,
@@ -170,12 +168,10 @@ const BarChart = <T extends string>({
     tickFormatter: valueAxisTickFormatter,
   }
 
-  //const dataHasLabels = checkIfLabelsExistInData<T>(data, labelKey)
-
   const xAxisProps = horizontal ? categoryAxisProps : valueAxisProps
   const yAxisProps = !horizontal ? categoryAxisProps : valueAxisProps
 
-  // If data labels are empty, the corresponding axis with labels is not rendered to avoid empty space
+  // If ticks are not shown, the corresponding axis is not rendered to avoid empty space
   const renderXAxis = showEveryNthTickOnXAxis !== 0
   const renderYAxis = showEveryNthTickOnYAxis !== 0
 
