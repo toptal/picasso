@@ -1,5 +1,12 @@
 # @toptal/picasso-collapse
 
+## 2.0.1
+
+### Patch Changes
+
+- [#4434](https://github.com/toptal/picasso/pull/4434) [`5580ada`](https://github.com/toptal/picasso/commit/5580ada3feac0767aac160853047f71da32d0212) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- set height auto after the open transition is finished
+
 ## 2.0.0
 
 ### Major Changes
