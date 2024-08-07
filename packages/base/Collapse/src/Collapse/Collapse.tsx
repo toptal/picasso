@@ -17,8 +17,8 @@ export interface Props extends TransitionProps, BaseProps {
   onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
-const useCollapseLogic = () => {
-  const [height, setHeight] = useState<string>('0px')
+const useCollapseLogic = (inProps: boolean) => {
+  const [height, setHeight] = useState<string>(inProps ? 'auto' : '0px')
   const wrapperRef = React.useRef<HTMLDivElement>(null)
 
   const getCurrentHeight = () => wrapperRef.current?.clientHeight
@@ -58,7 +58,7 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
       setHeightToZero,
       setHeightToAuto,
       setHeightToCurrent,
-    } = useCollapseLogic()
+    } = useCollapseLogic(inProps)
 
     // we need to add small delay as 'enter', 'entering' and 'exit', 'exiting'
     // are triggered in the same time and React is batching them
