@@ -14,7 +14,7 @@ export interface Props extends TransitionProps, BaseProps {
   /* Unmount the component on exit */
   unmountOnExit?: boolean
   /* Callback fired when the component has entered */
-  onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
+  onEnter?: (node: HTMLElement, isAppearing: boolean) => void
 }
 
 const useCollapseLogic = () => {

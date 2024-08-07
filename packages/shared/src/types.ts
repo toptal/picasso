@@ -87,7 +87,7 @@ export type ColorType =
 
 export interface TransitionProps {
   /* Callback fired when the component has exited */
-  onExited?: (node: HTMLElement | null) => void
+  onExited?: (node: HTMLElement) => void
   /* The duration for the transition, in milliseconds */
   timeout?: number | { enter?: number; exit?: number; appear?: number }
 }
