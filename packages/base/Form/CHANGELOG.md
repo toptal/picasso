@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`5580ada`](https://github.com/toptal/picasso/commit/5580ada3feac0767aac160853047f71da32d0212)]:
+  - @toptal/picasso-collapse@2.0.1
+
 ## 4.0.1
 
 ### Patch Changes
