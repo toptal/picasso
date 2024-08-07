@@ -88,17 +88,22 @@ exports[`Section renders collapsible initially expanded 1`] = `
         </div>
       </div>
       <div
-        class="flex"
+        class="transition-[height] ease-in min-h overflow-visible"
+        style="transition-duration: 350ms; height: auto;"
       >
         <div
-          class="w-full"
+          class="flex"
         >
           <div
-            class=""
+            class="w-full"
           >
             <div
-              data-testid="content"
-            />
+              class=""
+            >
+              <div
+                data-testid="content"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -139,17 +144,22 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
         </div>
       </div>
       <div
-        class="flex"
+        class="transition-[height] ease-in min-h overflow-visible"
+        style="transition-duration: 350ms; height: auto;"
       >
         <div
-          class="w-full"
+          class="flex"
         >
           <div
-            class=""
+            class="w-full"
           >
             <div
-              data-testid="content"
-            />
+              class=""
+            >
+              <div
+                data-testid="content"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -167,17 +177,22 @@ exports[`Section renders without header 1`] = `
       class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
     >
       <div
-        class="flex"
+        class="transition-[height] ease-in min-h overflow-visible"
+        style="transition-duration: 350ms; height: auto;"
       >
         <div
-          class="w-full"
+          class="flex"
         >
           <div
-            class=""
+            class="w-full"
           >
             <div
-              data-testid="content"
-            />
+              class=""
+            >
+              <div
+                data-testid="content"
+              />
+            </div>
           </div>
         </div>
       </div>

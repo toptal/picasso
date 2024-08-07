@@ -26,7 +26,7 @@ describe('Collapse', () => {
       </Collapse>
     )
 
-    expect(getByTestId('collapse')).toHaveClass('hidden')
+    expect(getByTestId('collapse')).toHaveClass('invisible')
 
     act(() => {
       rerender(

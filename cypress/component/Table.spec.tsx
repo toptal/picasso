@@ -205,7 +205,7 @@ const ExpandableContent = () => (
       </Container>
     </Container>
 
-    <Container top='small'>
+    <Container top='small' data-testid='tag'>
       <Tag>$2k Design Credit</Tag>
     </Container>
   </Container>
@@ -349,6 +349,8 @@ describe('Table', () => {
     ]
 
     cy.mount(<TableExpandableRowsExample localData={localData} />)
+
+    cy.getByTestId('tag')
 
     cy.get('body').happoScreenshot({
       component,
