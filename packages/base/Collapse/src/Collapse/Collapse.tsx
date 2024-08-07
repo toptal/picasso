@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import React, { forwardRef, useEffect, useMemo, useState } from 'react'
+import React, { forwardRef, useMemo, useState } from 'react'
 import { Transition } from 'react-transition-group'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
@@ -15,6 +15,24 @@ export interface Props extends TransitionProps, BaseProps {
   unmountOnExit?: boolean
   /* Callback fired when the component has entered */
   onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
+}
+
+const useCollapseLogic = () => {
+  const [height, setHeight] = useState<string>('0px')
+  const wrapperRef = React.useRef<HTMLDivElement>(null)
+
+  const getCurrentHeight = () => wrapperRef.current?.clientHeight
+  const setHeightToCurrent = () => setHeight(`${getCurrentHeight()}px`)
+  const setHeightToZero = () => setHeight('0px')
+  const setHeightToAuto = () => setHeight('auto')
+
+  return {
+    height,
+    wrapperRef,
+    setHeightToCurrent,
+    setHeightToZero,
+    setHeightToAuto,
+  }
 }
 
 export const Collapse = forwardRef<HTMLDivElement, Props>(
@@ -34,50 +52,28 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
-    const [transitionState, setTransitionState] = React.useState<
-      'enter' | 'entering' | 'entered' | 'exit' | 'exiting' | 'exited'
-    >(inProps && !appear ? 'entered' : 'exited')
+    const {
+      height,
+      wrapperRef,
+      setHeightToZero,
+      setHeightToAuto,
+      setHeightToCurrent,
+    } = useCollapseLogic()
 
-    const [height, setHeight] = useState<string>('0px')
-    const wrapperRef = React.useRef<HTMLDivElement>(null)
+    // we need to add small delay as 'enter', 'entering' and 'exit', 'exiting'
+    // are triggered in the same time and React is batching them
+    const handleEntering = () => setTimeout(setHeightToCurrent, 50)
+    const handleExiting = () => setTimeout(setHeightToZero, 50)
 
     const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
-      setTransitionState('enter')
+      setHeightToZero()
       onEnter?.(node, isAppearing)
     }
-    const handleEntering = () => setTransitionState('entering')
-    const handleEntered = () => setTransitionState('entered')
-    const handleExit = () => setTransitionState('exit')
-    const handleExiting = () => setTransitionState('exiting')
+
     const handleExited = (node: HTMLElement) => {
-      setTransitionState('exited')
+      setHeightToZero()
       onExited?.(node)
     }
-
-    useEffect(() => {
-      const transitionStates = {
-        closed: '0px',
-        transition: `${wrapperRef.current?.clientHeight}px`,
-        opened: 'auto',
-      }
-
-      const heightByState = {
-        enter: transitionStates.closed,
-        entering: transitionStates.transition,
-        entered: transitionStates.opened,
-        exit: transitionStates.transition,
-        exiting: transitionStates.closed,
-        exited: transitionStates.closed,
-      } as const
-
-      if (transitionState === 'exiting' || transitionState === 'entering') {
-        // we need to add small delay as 'exit' and 'exiting'
-        // are triggered in the same time and React is batching them
-        setTimeout(() => setHeight(heightByState[transitionState]), 50)
-      } else {
-        setHeight(heightByState[transitionState])
-      }
-    }, [transitionState])
 
     const memoStyles = useMemo(() => {
       return {
@@ -93,8 +89,10 @@ export const Collapse = forwardRef<HTMLDivElement, Props>(
         appear={appear}
         onEnter={handleEnter}
         onEntering={handleEntering}
-        onEntered={handleEntered}
-        onExit={handleExit}
+        // we need to set height to 'auto' after transition is finished
+        // to support dynamic content inside Collapse
+        onEntered={setHeightToAuto}
+        onExit={setHeightToCurrent}
         onExiting={handleExiting}
         onExited={handleExited}
         unmountOnExit={unmountOnExit}
