@@ -89,7 +89,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
       </div>
       <div
         class="transition-[height] ease-in min-h overflow-visible"
-        style="transition-duration: 350ms;"
+        style="transition-duration: 350ms; height: 0px;"
       >
         <div
           class="flex"
@@ -145,7 +145,7 @@ exports[`Section renders with title, subtitle, actions and content 1`] = `
       </div>
       <div
         class="transition-[height] ease-in min-h overflow-visible"
-        style="transition-duration: 350ms;"
+        style="transition-duration: 350ms; height: 0px;"
       >
         <div
           class="flex"
@@ -178,7 +178,7 @@ exports[`Section renders without header 1`] = `
     >
       <div
         class="transition-[height] ease-in min-h overflow-visible"
-        style="transition-duration: 350ms;"
+        style="transition-duration: 350ms; height: 0px;"
       >
         <div
           class="flex"
