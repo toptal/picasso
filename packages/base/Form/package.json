@@ -41,12 +41,14 @@
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
     "@toptal/picasso-tailwind": ">=2.7",
+    "@toptal/picasso-tailwind-merge": "^1.2.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
+    "@toptal/picasso-tailwind-merge": "1.2.0",
     "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },
