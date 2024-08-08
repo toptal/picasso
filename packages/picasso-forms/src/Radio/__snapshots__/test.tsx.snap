@@ -12,7 +12,7 @@ exports[`FormRadio renders 1`] = `
         class=""
       >
         <div
-          class="PicassoFormField-root"
+          class="text-[1rem] [&+&]:mt-4"
           data-field-has-error="false"
         >
           <label
@@ -127,7 +127,7 @@ exports[`FormRadio required with asterisk 1`] = `
         class=""
       >
         <div
-          class="PicassoFormField-root"
+          class="text-[1rem] [&+&]:mt-4"
           data-field-has-error="false"
         >
           <label
