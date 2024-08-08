@@ -1,5 +1,12 @@
 # @toptal/picasso-carousel
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@3.0.3
+
 ## 3.0.1
 
 ### Patch Changes

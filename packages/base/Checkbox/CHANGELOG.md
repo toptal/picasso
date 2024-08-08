@@ -1,5 +1,12 @@
 # @toptal/picasso-checkbox
 
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`2f6e42e`](https://github.com/toptal/picasso/commit/2f6e42e3adc968a48e15f0599395f79d8097eb1c)]:
+  - @toptal/picasso-form@4.1.0
+
 ## 3.0.2
 
 ### Patch Changes
