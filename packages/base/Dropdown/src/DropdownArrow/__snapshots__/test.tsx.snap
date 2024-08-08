@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropdownArrow renders icon 1`] = `
+<div>
+  <span
+    class="pl-[0.7em] flex"
+  >
+    <svg
+      class="fill-current min-w"
+      viewBox="3 3 11 11"
+    >
+      <path
+        d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+      />
+    </svg>
+  </span>
+</div>
+`;

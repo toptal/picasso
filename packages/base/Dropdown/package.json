@@ -25,7 +25,6 @@
     "@toptal/picasso-paper": "3.0.0",
     "@toptal/picasso-popper": "1.0.3",
     "@toptal/picasso-utils": "1.0.3",
-    "@toptal/picasso-icons": "1.6.0",
     "classnames": "^2.5.1"
   },
   "sideEffects": [

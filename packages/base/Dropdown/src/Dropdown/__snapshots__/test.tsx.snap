@@ -12,11 +12,12 @@ exports[`Dropdown renders 1`] = `
         class="PicassoDropdown-anchor"
       >
         Open Dropdown 
-        <span>
+        <span
+          class="pl-[0.7em] flex"
+        >
           <svg
-            class="PicassoSvgArrowDownMinor16-root ml-[0.375rem]"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+            class="fill-current min-w"
+            viewBox="3 3 11 11"
           >
             <path
               d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
@@ -42,11 +43,12 @@ exports[`Dropdown should render menu 1`] = `
           class="PicassoDropdown-anchor"
         >
           Open Dropdown 
-          <span>
+          <span
+            class="pl-[0.7em] flex"
+          >
             <svg
-              class="PicassoSvgArrowDownMinor16-root ml-[0.375rem]"
-              style="min-width: 16px; min-height: 16px;"
-              viewBox="0 0 16 16"
+              class="fill-current min-w"
+              viewBox="3 3 11 11"
             >
               <path
                 d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
@@ -170,11 +172,12 @@ exports[`Dropdown should render menu with focus 1`] = `
             class="PicassoDropdown-anchor"
           >
             Open Dropdown 
-            <span>
+            <span
+              class="pl-[0.7em] flex"
+            >
               <svg
-                class="PicassoSvgArrowDownMinor16-root ml-[0.375rem]"
-                style="min-width: 16px; min-height: 16px;"
-                viewBox="0 0 16 16"
+                class="fill-current min-w"
+                viewBox="3 3 11 11"
               >
                 <path
                   d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"

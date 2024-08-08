@@ -5,7 +5,6 @@
   "references": [
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind-merge" },
-    { "path": "../Icons" },
     { "path": "../Paper" },
     { "path": "../Popper" },
     { "path": "../Utils" }
