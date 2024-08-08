@@ -33,7 +33,7 @@ exports[`FormError renders 1`] = `
           />
         </div>
         <div
-          class="PicassoFormError-root"
+          class="mt-1"
         >
           <p
             class="m-0 text-2xs text-red font-regular cursor-default"
@@ -42,7 +42,7 @@ exports[`FormError renders 1`] = `
           </p>
         </div>
         <div
-          class="FormHint-root"
+          class="mt-1"
         >
           <p
             class="m-0 text-2xs text-graphite font-regular"

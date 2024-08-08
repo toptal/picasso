@@ -6,7 +6,7 @@ exports[`FormHint renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="FormHint-root"
+      class="mt-1"
     >
       <p
         class="m-0 text-2xs text-graphite font-regular"
