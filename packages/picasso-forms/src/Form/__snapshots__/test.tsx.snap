@@ -13,7 +13,7 @@ exports[`Form renders 1`] = `
         data-testid="form"
       >
         <div
-          class="PicassoFormField-root"
+          class="text-[1rem] [&+&]:mt-4"
           data-field-has-error="false"
         >
           <div
@@ -64,7 +64,7 @@ exports[`Form renders with an error 1`] = `
         data-testid="form"
       >
         <div
-          class="PicassoFormField-root"
+          class="text-[1rem] [&+&]:mt-4"
           data-field-has-error="true"
         >
           <div
@@ -85,7 +85,7 @@ exports[`Form renders with an error 1`] = `
             class=""
           >
             <div
-              class="mt-1 PicassoFormField-error"
+              class="mt-1"
             >
               <p
                 class="m-0 text-2xs text-red font-regular cursor-default"

@@ -1,14 +1,12 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef, Children } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { FormHint } from '../FormHint'
 import { FormError } from '../FormError'
-import styles, { createLabelWidthStyles } from './styles'
+import { createLabelWidthStyles, horizontalLayoutClasses } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -26,8 +24,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   hasMultilineCounter?: boolean
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoFormField' })
-
 type FormFieldAdornmentsProps = Pick<
   Props,
   'autoSaveIndicator' | 'hasMultilineCounter' | 'children'
@@ -38,7 +34,6 @@ const FormFieldAdornments = ({
   children,
   hasMultilineCounter,
 }: FormFieldAdornmentsProps) => {
-  const classes = useStyles()
   const { layout } = useFieldsLayoutContext()
 
   if (Children.toArray(children).length === 0) {
@@ -47,11 +42,7 @@ const FormFieldAdornments = ({
 
   if (!autoSaveIndicator) {
     return (
-      <div
-        className={cx({
-          [classes.horizontalLayoutAdornment]: layout === 'horizontal',
-        })}
-      >
+      <div className={twJoin(layout === 'horizontal' && '[grid-area:error]')}>
         {children}
       </div>
     )
@@ -61,15 +52,17 @@ const FormFieldAdornments = ({
     <Container
       flex
       direction='column'
-      className={cx(classes.adornment, {
-        [classes.horizontalLayoutAdornment]: layout === 'horizontal',
-      })}
+      className={twJoin(
+        'relative pr-8',
+        layout === 'horizontal' && '[grid-area:error]'
+      )}
     >
       {children}
       <Container
-        className={cx(classes.autoSaveIndicator, {
-          [classes.hasMultilineCounter]: hasMultilineCounter,
-        })}
+        className={twJoin(
+          'absolute right-0',
+          hasMultilineCounter ? '-top-[0.875rem]' : 'top-0'
+        )}
       >
         {autoSaveIndicator}
       </Container>
@@ -93,7 +86,6 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
     ...rest
   } = props
 
-  const classes = useStyles()
   const { layout, labelWidth } = useFieldsLayoutContext()
   const labelWidthStyles =
     layout === 'horizontal' ? createLabelWidthStyles(labelWidth) : {}
@@ -102,9 +94,9 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
     <div
       {...rest}
       ref={ref}
-      className={cx(
-        classes.root,
-        { [classes.horizontalLayout]: layout === 'horizontal' },
+      className={twMerge(
+        'text-[1rem] [&+&]:mt-4',
+        layout === 'horizontal' && horizontalLayoutClasses,
         className
       )}
       style={{ ...style, ...labelWidthStyles }}
@@ -115,8 +107,12 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
         autoSaveIndicator={autoSaveIndicator}
         hasMultilineCounter={hasMultilineCounter}
       >
-        {error && <FormError className={classes.error}>{error}</FormError>}
-        {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
+        {error && <FormError>{error}</FormError>}
+        {hint && (
+          <FormHint className={twJoin(error && hint && 'mt-0')}>
+            {hint}
+          </FormHint>
+        )}
         {fieldRequirements}
       </FormFieldAdornments>
     </div>
