@@ -85,7 +85,7 @@ exports[`Form renders with an error 1`] = `
             class=""
           >
             <div
-              class="PicassoFormError-root PicassoFormField-error"
+              class="mt-1 PicassoFormField-error"
             >
               <p
                 class="m-0 text-2xs text-red font-regular cursor-default"
