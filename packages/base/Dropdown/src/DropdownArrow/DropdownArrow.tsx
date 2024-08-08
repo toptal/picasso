@@ -1,12 +1,12 @@
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
+import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 
 import styles from './styles'
-
 export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
   /** A Dropdown.Arrow can have different sizes */
   size?: SizeType<'small' | 'medium'>
@@ -23,12 +23,18 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
     const classes = useStyles()
 
     return (
-      <span
-        {...rest}
-        ref={ref}
-        className={cx(classes.root, className, classes[size])}
-        style={style}
-      />
+      <span ref={ref}>
+        <ArrowDownMinor16
+          {...rest}
+          className={cx(classes.root, className)}
+          style={{
+            ...style,
+            ...(size === 'small'
+              ? { minHeight: '4px', minWidth: '8px', width: '11px' }
+              : {}),
+          }}
+        />
+      </span>
     )
   }
 )
