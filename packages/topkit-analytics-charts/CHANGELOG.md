@@ -1,5 +1,12 @@
 # Change Log
 
+## 56.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`6f62aba`](https://github.com/toptal/picasso/commit/6f62aba2d549b2a1bb0c2a03116e0641a32816b6)]:
+  - @toptal/picasso-charts@59.0.1
+
 ## 56.0.0
 
 ### Major Changes

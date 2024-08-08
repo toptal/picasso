@@ -1,5 +1,12 @@
 # Change Log
 
+## 59.0.1
+
+### Patch Changes
+
+- [#4447](https://github.com/toptal/picasso/pull/4447) [`6f62aba`](https://github.com/toptal/picasso/commit/6f62aba2d549b2a1bb0c2a03116e0641a32816b6) Thanks [@sashuk](https://github.com/sashuk)!
+- hide axis if every tick is skipped
+
 ## 59.0.0
 
 ### Patch Changes
