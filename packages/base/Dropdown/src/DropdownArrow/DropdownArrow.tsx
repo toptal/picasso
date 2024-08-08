@@ -13,6 +13,9 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
   function DropdownArrow(props, ref) {
     const { className, style, size = 'medium', ...rest } = props
 
+    // Scaling down the icon for "small" component size
+    const smallIconStyle = { minHeight: '4px', minWidth: '8px', width: '11px' }
+
     return (
       <span ref={ref}>
         <ArrowDownMinor16
@@ -20,9 +23,7 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
           className={twMerge('ml-[0.375rem]', className)}
           style={{
             ...style,
-            ...(size === 'small'
-              ? { minHeight: '4px', minWidth: '8px', width: '11px' }
-              : {}),
+            ...(size === 'small' && smallIconStyle),
           }}
         />
       </span>
