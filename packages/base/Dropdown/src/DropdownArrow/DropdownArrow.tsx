@@ -13,11 +13,12 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
     const { className, style, size = 'medium', ...rest } = props
 
     return (
-      <span ref={ref} className='pl-[0.7em] flex'>
+      <span ref={ref} className='flex'>
         <svg
           viewBox='3 3 11 11'
           className={twMerge(
             'fill-current',
+            'ml-[0.7em]',
             size === 'small' ? 'min-w-[8px]' : 'min-w-[11px]',
             className
           )}

@@ -42,10 +42,10 @@ exports[`PageTopBarMenu renders 1`] = `
           </div>
         </div>
         <span
-          class="pl-[0.7em] flex"
+          class="flex"
         >
           <svg
-            class="fill-current min-w PicassoTopBarMenu-arrow"
+            class="fill-current ml-[0.7em] min-w xs:max-lg:ml-2 text-white"
             viewBox="3 3 11 11"
           >
             <path

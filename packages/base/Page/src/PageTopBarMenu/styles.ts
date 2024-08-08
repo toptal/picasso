@@ -1,7 +1,7 @@
 import type { Theme } from '@material-ui/core/styles'
 import { createStyles } from '@material-ui/core/styles'
 
-export default ({ screens, palette }: Theme) =>
+export default ({ screens }: Theme) =>
   createStyles({
     avatar: {
       fontSize: '0.9rem',
@@ -30,16 +30,6 @@ export default ({ screens, palette }: Theme) =>
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
-    },
-    arrow: {
-      color: 'white',
-
-      [screens('xs', 'sm', 'md')]: {
-        marginLeft: '0.5rem',
-      },
-    },
-    invert: {
-      color: palette.text.primary,
     },
     paper: {
       [screens('xs', 'sm', 'md')]: {

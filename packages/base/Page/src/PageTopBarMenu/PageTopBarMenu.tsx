@@ -10,6 +10,7 @@ import { UserBadge } from '@toptal/picasso-user-badge'
 import { Avatar } from '@toptal/picasso-avatar'
 import { Typography } from '@toptal/picasso-typography'
 import { DropdownCompound as Dropdown } from '@toptal/picasso-dropdown'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import styles from './styles'
 import { PageTopBarContext } from '../PageTopBar'
@@ -127,7 +128,10 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       >
         {trigger}
         <Dropdown.Arrow
-          className={cx(classes.arrow, { [classes.invert]: invert })}
+          className={twJoin(
+            'xs:max-lg:ml-2',
+            invert ? 'text-graphite-700' : 'text-white'
+          )}
         />
       </Dropdown>
     )
