@@ -1,5 +1,19 @@
 # @toptal/picasso-query-builder
 
+## 7.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@3.0.3
+  - @toptal/picasso-number-input@2.0.3
+  - @toptal/picasso-radio@3.0.3
+  - @toptal/picasso-select@2.0.3
+  - @toptal/picasso-tagselector@2.0.3
+  - @toptal/picasso-button@3.0.3
+  - @toptal/picasso-notification@3.0.3
+  - @toptal/picasso-prompt-modal@2.0.3
+
 ## 7.0.2
 
 ### Patch Changes

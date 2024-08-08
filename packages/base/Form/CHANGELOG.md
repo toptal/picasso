@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 4.1.0
+
+### Minor Changes
+
+- [#4448](https://github.com/toptal/picasso/pull/4448) [`2f6e42e`](https://github.com/toptal/picasso/commit/2f6e42e3adc968a48e15f0599395f79d8097eb1c) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- refactor FormHint and FormError to TailwindCSS
+
 ## 4.0.2
 
 ### Patch Changes

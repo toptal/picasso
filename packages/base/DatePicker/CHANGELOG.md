@@ -1,5 +1,14 @@
 # @toptal/picasso-date-picker
 
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@3.0.3
+  - @toptal/picasso-outlined-input@2.0.3
+  - @toptal/picasso-calendar@3.0.2
+
 ## 2.0.4
 
 ### Patch Changes

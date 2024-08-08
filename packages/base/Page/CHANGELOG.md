@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-autocomplete@2.0.3
+  - @toptal/picasso-button@3.0.3
+  - @toptal/picasso-accordion@2.0.3
+  - @toptal/picasso-notification@3.0.3
+
 ## 3.0.2
 
 ### Patch Changes
