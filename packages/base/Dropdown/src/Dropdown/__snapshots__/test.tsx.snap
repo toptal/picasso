@@ -14,7 +14,7 @@ exports[`Dropdown renders 1`] = `
         Open Dropdown 
         <span>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoDropdownArrow-root"
+            class="PicassoSvgArrowDownMinor16-root ml-[0.7em]"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -44,7 +44,7 @@ exports[`Dropdown should render menu 1`] = `
           Open Dropdown 
           <span>
             <svg
-              class="PicassoSvgArrowDownMinor16-root PicassoDropdownArrow-root"
+              class="PicassoSvgArrowDownMinor16-root ml-[0.7em]"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
             >
@@ -172,7 +172,7 @@ exports[`Dropdown should render menu with focus 1`] = `
             Open Dropdown 
             <span>
               <svg
-                class="PicassoSvgArrowDownMinor16-root PicassoDropdownArrow-root"
+                class="PicassoSvgArrowDownMinor16-root ml-[0.7em]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >

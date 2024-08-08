@@ -43,7 +43,7 @@ exports[`PageTopBarMenu renders 1`] = `
         </div>
         <span>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoDropdownArrow-root PicassoTopBarMenu-arrow"
+            class="PicassoSvgArrowDownMinor16-root ml-[0.7em] PicassoTopBarMenu-arrow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

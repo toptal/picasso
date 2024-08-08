@@ -6,12 +6,12 @@ exports[`SelectCaret renders 1`] = `
     class="Picasso-root"
   >
     <svg
-      class="PicassoSvgArrowDownMinor16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
+      class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
       style="min-width: 16px; min-height: 16px;"
       viewBox="0 0 16 16"
     >
       <path
-        d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+        d="m10.997 10.29.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3Zm-3-9 3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707Z"
       />
     </svg>
   </div>
@@ -24,12 +24,12 @@ exports[`SelectCaret renders disabled 1`] = `
     class="Picasso-root"
   >
     <svg
-      class="PicassoSvgArrowDownMinor16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events text-graphite z-[1]"
+      class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events text-graphite z-[1]"
       style="min-width: 16px; min-height: 16px;"
       viewBox="0 0 16 16"
     >
       <path
-        d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+        d="m10.997 10.29.707.707-3.707 3.707-3.707-3.707.707-.707 3 3 3-3Zm-3-9 3.707 3.707-.707.707-3-3-3 3-.707-.707 3-3 .707-.707Z"
       />
     </svg>
   </div>

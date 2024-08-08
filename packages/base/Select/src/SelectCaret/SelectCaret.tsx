@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowDownMinor16 } from '@toptal/picasso-icons'
+import { DropdownArrows16 } from '@toptal/picasso-icons'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 const SelectCaret = ({ disabled }: Props) => {
   return (
-    <ArrowDownMinor16
+    <DropdownArrows16
       // className={twJoin(classes.caret, disabled && classes.caretDisabled)}
       className={twJoin(
         // in specs right spacing is defined relative to 6px icon width, while we use 16px
