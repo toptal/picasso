@@ -116,7 +116,7 @@ const BarChart = <T extends string>({
   customTooltip,
   allowTooltipEscapeViewBox,
   getBarColor = defaultGetBarColor,
-  labelKey,
+  labelKey = 'name',
   getBarLabelColor = defaultGetBarLabelColor,
   renderBarIndicators,
   testIds,
@@ -156,7 +156,7 @@ const BarChart = <T extends string>({
   const ticks = getD3Ticks(BOTTOM_DOMAIN, topDomain, NUMBER_OF_TICKS)
 
   const categoryAxisProps = {
-    dataKey: labelKey || 'name',
+    dataKey: labelKey,
     height: TICK_HEIGHT,
     interval: 0,
     tick: { width: TICK_WIDTH },
@@ -170,6 +170,10 @@ const BarChart = <T extends string>({
 
   const xAxisProps = horizontal ? categoryAxisProps : valueAxisProps
   const yAxisProps = !horizontal ? categoryAxisProps : valueAxisProps
+
+  // If ticks are not shown, the corresponding axis is not rendered to avoid empty space
+  const renderXAxis = showEveryNthTickOnXAxis !== 0
+  const renderYAxis = showEveryNthTickOnYAxis !== 0
 
   return (
     <div style={{ height, width }} className={className} {...rest}>
@@ -190,24 +194,31 @@ const BarChart = <T extends string>({
             stroke={palette.grey.lighter2}
             vertical={!horizontal}
           />
-          <XAxis
-            {...xAxisProps}
-            type={horizontal ? 'category' : 'number'}
-            tickLine={TICK_LINE}
-            axisLine={AXIS_LINE}
-            minTickGap={MIN_TICK_GAP}
-            tickMargin={TICK_MARGIN}
-            interval={showEveryNthTickOnXAxis - 1}
-          />
-          <YAxis
-            {...yAxisProps}
-            type={horizontal ? 'number' : 'category'}
-            tickLine={TICK_LINE}
-            axisLine={AXIS_LINE}
-            minTickGap={MIN_TICK_GAP}
-            tickMargin={TICK_MARGIN}
-            interval={showEveryNthTickOnYAxis - 1}
-          />
+
+          {renderXAxis && (
+            <XAxis
+              {...xAxisProps}
+              type={horizontal ? 'category' : 'number'}
+              tickLine={TICK_LINE}
+              axisLine={AXIS_LINE}
+              minTickGap={MIN_TICK_GAP}
+              tickMargin={TICK_MARGIN}
+              interval={showEveryNthTickOnXAxis - 1}
+            />
+          )}
+
+          {renderYAxis && (
+            <YAxis
+              {...yAxisProps}
+              type={horizontal ? 'number' : 'category'}
+              tickLine={TICK_LINE}
+              axisLine={AXIS_LINE}
+              minTickGap={MIN_TICK_GAP}
+              tickMargin={TICK_MARGIN}
+              interval={showEveryNthTickOnYAxis - 1}
+            />
+          )}
+
           {tooltipElement}
           {dataKeys.map(dataKey => (
             <Bar
@@ -254,6 +265,7 @@ BarChart.defaultProps = {
   width: 'auto',
   tooltip: false,
   showBarLabel: true,
+  labelKey: 'name',
   layout: 'horizontal',
 }
 

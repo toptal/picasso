@@ -65,7 +65,8 @@ page
     takeScreenshot: false,
   })
   .addExample('BarChart/story/ShowEveryNthTick.example.tsx', {
-    title: 'Show every Nth tick on X or Y-axis',
+    title:
+      'Show every Nth tick on X or Y-axis (or hide axis labels completely)',
     description: `You can show every Nth tick for X-axis or Y-axis. "0" hides all ticks, "1" shows all ticks (default behavior). The example below has "showEveryNthTickOnXAxis={3}" (every third tick is shown on X-axis) and "showEveryNthTickOnYAxis={0}" (no ticks are shown on Y-axis).`,
     takeScreenshot: false,
   })
