@@ -17,7 +17,7 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
       <span ref={ref}>
         <ArrowDownMinor16
           {...rest}
-          className={twMerge('ml-[0.7em]', className)}
+          className={twMerge('ml-[0.375rem]', className)}
           style={{
             ...style,
             ...(size === 'small'
