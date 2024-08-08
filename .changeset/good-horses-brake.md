@@ -3,4 +3,4 @@
 '@toptal/picasso': minor
 ---
 
-- refactor FormHind and FormError to TailwindCSS
+- refactor FormHint and FormError to TailwindCSS
