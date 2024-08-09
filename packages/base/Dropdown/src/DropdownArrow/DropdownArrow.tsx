@@ -1,4 +1,4 @@
-import type { HTMLAttributes, SVGProps } from 'react'
+import type { HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
@@ -8,13 +8,14 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
   size?: SizeType<'small' | 'medium'>
 }
 
-export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
+export const DropdownArrow = forwardRef<SVGSVGElement, Props>(
   function DropdownArrow(props, ref) {
-    const { className, style, size = 'medium', ...rest } = props
+    const { className, style, size = 'medium' } = props
 
     return (
-      <span ref={ref} className='flex'>
+      <span className='flex'>
         <svg
+          ref={ref}
           viewBox='3 3 11 11'
           className={twMerge(
             'fill-current',
@@ -23,7 +24,7 @@ export const DropdownArrow = forwardRef<HTMLSpanElement, Props>(
             className
           )}
           style={style}
-          {...(rest as SVGProps<SVGSVGElement>)}
+          data-testid={props['data-testid']}
         >
           <path d='m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z'></path>
         </svg>
