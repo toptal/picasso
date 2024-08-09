@@ -1,5 +1,19 @@
 # @toptal/picasso-page
 
+## 3.0.4
+
+### Patch Changes
+
+- [#4451](https://github.com/toptal/picasso/pull/4451) [`a1c2b1d`](https://github.com/toptal/picasso/commit/a1c2b1dc5ee808034171dc2879b30a63de24257d) Thanks [@sashuk](https://github.com/sashuk)!
+- align dropdown arrow icon with BASE design
+  - update peer dependencies in Dropdown component
+- Updated dependencies [[`a1c2b1d`](https://github.com/toptal/picasso/commit/a1c2b1dc5ee808034171dc2879b30a63de24257d)]:
+  - @toptal/picasso-dropdown@3.0.0
+  - @toptal/picasso-button@3.0.4
+  - @toptal/picasso-accordion@2.0.4
+  - @toptal/picasso-notification@3.0.4
+  - @toptal/picasso-autocomplete@2.0.4
+
 ## 3.0.3
 
 ### Patch Changes
