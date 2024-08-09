@@ -6,7 +6,7 @@ exports[`FormField when layout is horizontal renders FormField with appropriate 
     class="Picasso-root"
   >
     <div
-      class="text-[1rem] [&+&]:mt-4 grid w-full gap-x gap-y grid-rows grid-cols-[calc((17rem/4)*var(--form-label [grid-template xs:[--form-label-width:var(--form-label-width- sm:[--form-label-width:var(--form-label-width- md:[--form-label-width:var(--form-label-width- lg:[--form-label-width:var(--form-label-width- xl:[--form-label-width:var(--form-label-width-"
+      class="text-[1rem] [&+&]:mt-4 grid w-full gap-x gap-y grid-rows grid-cols-[calc(4.25rem*var(--form-label [grid-template xs:[--form-label-width:var(--form-label-width- sm:[--form-label-width:var(--form-label-width- md:[--form-label-width:var(--form-label-width- lg:[--form-label-width:var(--form-label-width- xl:[--form-label-width:var(--form-label-width-"
       data-field-has-error="false"
       style="--form-label-width: 3;"
     >
@@ -22,7 +22,7 @@ exports[`FormField when layout is horizontal when labelWidth is 4 renders FormFi
     class="Picasso-root"
   >
     <div
-      class="text-[1rem] [&+&]:mt-4 grid w-full gap-x gap-y grid-rows grid-cols-[calc((17rem/4)*var(--form-label [grid-template xs:[--form-label-width:var(--form-label-width- sm:[--form-label-width:var(--form-label-width- md:[--form-label-width:var(--form-label-width- lg:[--form-label-width:var(--form-label-width- xl:[--form-label-width:var(--form-label-width-"
+      class="text-[1rem] [&+&]:mt-4 grid w-full gap-x gap-y grid-rows grid-cols-[calc(4.25rem*var(--form-label [grid-template xs:[--form-label-width:var(--form-label-width- sm:[--form-label-width:var(--form-label-width- md:[--form-label-width:var(--form-label-width- lg:[--form-label-width:var(--form-label-width- xl:[--form-label-width:var(--form-label-width-"
       data-field-has-error="false"
       style="--form-label-width: 4;"
     >

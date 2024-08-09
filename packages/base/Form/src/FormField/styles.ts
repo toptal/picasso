@@ -49,7 +49,7 @@ export const createLabelWidthStyles = (
 
 export const horizontalLayoutClasses = `
   grid w-full gap-x-[32px] gap-y-0 grid-rows-[auto_auto] 
-  grid-cols-[calc((17rem/4)*var(--form-label-width,3))_1fr]
+  grid-cols-[calc(4.25rem*var(--form-label-width,3))_1fr]
   [grid-template-areas:"label_input"_"hint_error"]
 
   xs:[--form-label-width:var(--form-label-width--xs)]
