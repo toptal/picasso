@@ -37,7 +37,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -72,7 +72,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -107,7 +107,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -142,7 +142,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -177,7 +177,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -212,7 +212,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -265,7 +265,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"
@@ -300,7 +300,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label Radio-label"
+              class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
                 class="PicassoFormLabel-medium"

@@ -2,7 +2,6 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type {
   BaseProps,
   TextLabelProps,
@@ -10,6 +9,7 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import styles from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
@@ -74,15 +74,14 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       {...rest}
       ref={ref}
       htmlFor={htmlFor}
-      className={cx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.inline]: isInline,
-          [classes.horizontalLayout]: layout === 'horizontal',
-          [classes.alignmentTop]:
-            layout === 'horizontal' && alignment === 'top',
-        },
+      className={twMerge(
+        'block text-graphite-700 mb-[0.5em] leading-[1em]',
+        disabled && 'text-graphite-700/[0.48]',
+        isInline &&
+          `inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top 
+          [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top`,
+        layout === 'horizontal' && 'flex items-center mb-0',
+        layout === 'horizontal' && alignment === 'top' && 'pt-2 items-start',
         className
       )}
       style={style}

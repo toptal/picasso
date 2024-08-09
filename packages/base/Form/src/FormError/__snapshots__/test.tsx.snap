@@ -13,7 +13,7 @@ exports[`FormError renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
             class="PicassoFormLabel-medium"

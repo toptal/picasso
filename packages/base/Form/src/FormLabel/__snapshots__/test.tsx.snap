@@ -13,7 +13,7 @@ exports[`FormLabel disabled 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-disabled"
+          class="block mb-[0.5em] leading-[1em] text-graphite"
         >
           <span
             class="PicassoFormLabel-medium"
@@ -40,7 +40,7 @@ exports[`FormLabel renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
             class="PicassoFormLabel-medium"
@@ -67,7 +67,7 @@ exports[`FormLabel required with (optional) 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
             class="PicassoFormLabel-medium"
@@ -95,7 +95,7 @@ exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] =
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
             class="PicassoFormLabel-medium"
@@ -126,7 +126,7 @@ exports[`FormLabel required with asterisk 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
             class="PicassoFormLabel-medium"
