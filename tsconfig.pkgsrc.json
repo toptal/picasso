@@ -2,6 +2,7 @@
   "files": [],
   "compilerOptions": { "composite": true },
   "references": [
+    { "path": "packages/base-tailwind" },
     { "path": "packages/picasso" },
     { "path": "packages/picasso-charts" },
     { "path": "packages/picasso-codemod" },
