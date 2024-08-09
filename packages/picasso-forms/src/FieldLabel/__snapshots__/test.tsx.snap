@@ -10,7 +10,7 @@ exports[`FieldLabel renders default field label 1`] = `
       for="name"
     >
       <span
-        class="text-[0.875rem] text-[0.8125rem] align-top"
+        class="text-[0.8125rem]align-top"
       >
         label
          (optional)

@@ -1,10 +1,10 @@
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { Layout } from '../FieldsLayout/FieldsLayoutContext'
 import type { Alignment, Size } from './FormLabel'
 
 export const classesBySize: Record<Size, string> = {
-  medium: 'text-[0.875rem]',
+  medium: 'text-[0.8125rem]',
   large: 'text-[1rem]',
 }
 
@@ -19,7 +19,7 @@ export const getRootClasses = ({
   layout: Layout
   alignment: Alignment
 }) => {
-  return twJoin(
+  return twMerge(
     'block text-graphite-700 mb-[0.5em] leading-[1em]',
     disabled && 'text-graphite-700/[0.48]',
     isInline &&

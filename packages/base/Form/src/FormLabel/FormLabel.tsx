@@ -7,7 +7,7 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
-import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { classesBySize, getRootClasses } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
@@ -76,12 +76,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       )}
       style={style}
     >
-      <span
-        className={twJoin(
-          classesBySize[size],
-          size === 'medium' && 'text-[0.8125rem] align-top'
-        )}
-      >
+      <span className={classesBySize[size] + 'align-top'}>
         {requiredDecoration === 'asterisk' && (
           <span className='text-[0.8125rem] align-top'>*</span>
         )}

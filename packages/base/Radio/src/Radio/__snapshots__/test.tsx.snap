@@ -40,7 +40,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+1
               </span>
@@ -75,7 +75,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+2
               </span>
@@ -110,7 +110,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+3
               </span>
@@ -145,7 +145,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+4
               </span>
@@ -180,7 +180,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+5
               </span>
@@ -215,7 +215,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+6
               </span>
@@ -268,7 +268,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+1
               </span>
@@ -303,7 +303,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
               class="text-graphite leading-[1em] inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top PicassoFormControlLabel-label Radio-label"
             >
               <span
-                class="text-[0.875rem] text-[0.8125rem] align-top"
+                class="text-[0.8125rem]align-top"
               >
                 LABEL+2
               </span>

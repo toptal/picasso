@@ -16,7 +16,7 @@ exports[`FormError renders 1`] = `
           class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
-            class="text-[0.875rem] text-[0.8125rem] align-top"
+            class="text-[0.8125rem]align-top"
           >
             Label:
           </span>
