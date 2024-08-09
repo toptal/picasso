@@ -35,6 +35,7 @@ const FormFieldAdornments = ({
   hasMultilineCounter,
 }: FormFieldAdornmentsProps) => {
   const { layout } = useFieldsLayoutContext()
+  const isHorizontal = layout === 'horizontal'
 
   if (Children.toArray(children).length === 0) {
     return null
@@ -42,7 +43,7 @@ const FormFieldAdornments = ({
 
   if (!autoSaveIndicator) {
     return (
-      <div className={twJoin(layout === 'horizontal' && '[grid-area:error]')}>
+      <div className={twJoin(isHorizontal && '[grid-area:error]')}>
         {children}
       </div>
     )
@@ -52,10 +53,7 @@ const FormFieldAdornments = ({
     <Container
       flex
       direction='column'
-      className={twJoin(
-        'relative pr-8',
-        layout === 'horizontal' && '[grid-area:error]'
-      )}
+      className={twJoin('relative pr-8', isHorizontal && '[grid-area:error]')}
     >
       {children}
       <Container
@@ -87,8 +85,10 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
   } = props
 
   const { layout, labelWidth } = useFieldsLayoutContext()
-  const labelWidthStyles =
-    layout === 'horizontal' ? createLabelWidthStyles(labelWidth) : {}
+  const isHorizontal = layout === 'horizontal'
+  const labelWidthStyles = isHorizontal
+    ? createLabelWidthStyles(labelWidth)
+    : {}
 
   return (
     <div
@@ -96,7 +96,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
       ref={ref}
       className={twMerge(
         'text-[1rem] [&+&]:mt-4',
-        layout === 'horizontal' && horizontalLayoutClasses,
+        isHorizontal && horizontalLayoutClasses,
         className
       )}
       style={{ ...style, ...labelWidthStyles }}
