@@ -1,7 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type {
   BaseProps,
   TextLabelProps,
@@ -9,13 +7,15 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { classesBySize } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
+
+export type Size = SizeType<'medium' | 'large'>
 
 export interface Props
   extends BaseProps,
@@ -34,14 +34,12 @@ export interface Props
   /** Component used for the root node */
   as?: ComponentType
   /** Component size */
-  size?: SizeType<'medium' | 'large'>
+  size?: Size
   /** Whether label should be aligned to top of the container or not */
   alignment?: 'top' | 'middle'
   /** Label's end adornment */
   labelEndAdornment?: ReactNode
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   props,
@@ -62,12 +60,11 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     labelEndAdornment,
     ...rest
   } = props
-
-  const classes = useStyles(props)
-
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
   const { layout } = useFieldsLayoutContext()
+
+  const isHorizontal = layout === 'horizontal'
 
   return (
     <Component
@@ -80,15 +77,20 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
         isInline &&
           `inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top 
           [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top`,
-        layout === 'horizontal' && 'flex items-center mb-0',
-        layout === 'horizontal' && alignment === 'top' && 'pt-2 items-start',
+        isHorizontal && 'flex items-center mb-0',
+        isHorizontal && alignment === 'top' && 'pt-2 items-start',
         className
       )}
       style={style}
     >
-      <span className={classes[size]}>
+      <span
+        className={twJoin(
+          classesBySize[size],
+          size === 'medium' && 'text-[0.8125rem] align-top'
+        )}
+      >
         {requiredDecoration === 'asterisk' && (
-          <span className={classes.asterisk}>*</span>
+          <span className='text-[0.8125rem] align-top'>*</span>
         )}
 
         {titleCase ? toTitleCase(children) : children}

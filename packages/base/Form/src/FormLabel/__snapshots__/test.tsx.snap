@@ -16,7 +16,7 @@ exports[`FormLabel disabled 1`] = `
           class="block mb-[0.5em] leading-[1em] text-graphite"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem] text-[0.8125rem] align-top"
           >
             Label
           </span>
@@ -43,7 +43,7 @@ exports[`FormLabel renders 1`] = `
           class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem] text-[0.8125rem] align-top"
           >
             Label
           </span>
@@ -70,7 +70,7 @@ exports[`FormLabel required with (optional) 1`] = `
           class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem] text-[0.8125rem] align-top"
           >
             Label
              (optional)
@@ -98,7 +98,7 @@ exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] =
           class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem] text-[0.8125rem] align-top"
           >
             Label
              (optional)
@@ -129,10 +129,10 @@ exports[`FormLabel required with asterisk 1`] = `
           class="block text-graphite mb-[0.5em] leading-[1em]"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem] text-[0.8125rem] align-top"
           >
             <span
-              class="PicassoFormLabel-asterisk"
+              class="text-[0.8125rem] align-top"
             >
               *
             </span>
