@@ -1,55 +1,31 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { alpha } from '@toptal/picasso-shared'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    root: {
-      color: palette.grey[400],
-      display: 'block',
-      marginBottom: '0.5em',
-      lineHeight: '1em',
-    },
+import type { Layout } from '../FieldsLayout/FieldsLayoutContext'
+import type { Alignment, Size } from './FormLabel'
 
-    disabled: {
-      color: alpha(palette.grey[400], 0.48),
-    },
+export const classesBySize: Record<Size, string> = {
+  medium: 'text-[0.8125rem]',
+  large: 'text-[1rem]',
+}
 
-    medium: {
-      fontSize: '0.875rem',
-    },
-
-    large: {
-      fontSize: '1rem',
-    },
-
-    asterisk: {
-      marginRight: '0.3125em',
-      color: palette.error.main,
-    },
-
-    inline: {
-      display: 'inline-block',
-      marginBottom: 0,
-
-      '& $medium': {
-        fontSize: '0.8125rem',
-        verticalAlign: 'top',
-      },
-
-      '& $asterisk': {
-        fontSize: '0.8125rem',
-        verticalAlign: 'top',
-      },
-    },
-
-    horizontalLayout: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: 0,
-    },
-    alignmentTop: {
-      alignItems: 'start',
-      paddingTop: '0.5rem',
-    },
-  })
+export const getRootClasses = ({
+  disabled,
+  isInline,
+  layout,
+  alignment,
+}: {
+  disabled?: boolean
+  isInline: boolean
+  layout: Layout
+  alignment: Alignment
+}) => {
+  return twMerge(
+    'block text-graphite-700 mb-[0.5em] leading-[1em]',
+    disabled && 'text-graphite-700/[0.48]',
+    isInline &&
+      `inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top 
+          [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top`,
+    layout === 'horizontal' && 'flex items-center mb-0',
+    layout === 'horizontal' && alignment === 'top' && 'pt-2 items-start'
+  )
+}
