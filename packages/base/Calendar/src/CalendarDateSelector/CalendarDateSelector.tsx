@@ -2,7 +2,7 @@ import React from 'react'
 import type { DropdownProps } from 'react-day-picker'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
-import { ArrowDropDown16 } from '@toptal/picasso-icons'
+import { ArrowDownMinor16 } from '@toptal/picasso-icons'
 
 const CalendarDateSelector = ({
   children,
@@ -31,7 +31,7 @@ const CalendarDateSelector = ({
         justifyContent='center'
         alignItems='center'
       >
-        <ArrowDropDown16 className='pointer-events-none' color='darkGrey' />
+        <ArrowDownMinor16 className='pointer-events-none' color='darkGrey' />
       </Container>
       <select
         name={`month${caption}`}
