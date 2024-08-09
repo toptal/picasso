@@ -9,7 +9,7 @@ exports[`FormLabel disabled 1`] = `
       class=""
     >
       <div
-        class="PicassoFormField-root"
+        class="text-[1rem] [&+&]:mt-4"
         data-field-has-error="false"
       >
         <label
@@ -36,7 +36,7 @@ exports[`FormLabel renders 1`] = `
       class=""
     >
       <div
-        class="PicassoFormField-root"
+        class="text-[1rem] [&+&]:mt-4"
         data-field-has-error="false"
       >
         <label
@@ -63,7 +63,7 @@ exports[`FormLabel required with (optional) 1`] = `
       class=""
     >
       <div
-        class="PicassoFormField-root"
+        class="text-[1rem] [&+&]:mt-4"
         data-field-has-error="false"
       >
         <label
@@ -91,7 +91,7 @@ exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] =
       class=""
     >
       <div
-        class="PicassoFormField-root"
+        class="text-[1rem] [&+&]:mt-4"
         data-field-has-error="false"
       >
         <label
@@ -122,7 +122,7 @@ exports[`FormLabel required with asterisk 1`] = `
       class=""
     >
       <div
-        class="PicassoFormField-root"
+        class="text-[1rem] [&+&]:mt-4"
         data-field-has-error="false"
       >
         <label
