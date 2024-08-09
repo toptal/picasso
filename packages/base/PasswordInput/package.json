@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-password-input",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Toptal UI components library - PasswordInput",
   "publishConfig": {
     "access": "public"
@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "3.0.3",
+    "@toptal/picasso-button": "3.0.4",
     "@toptal/picasso-icons": "1.6.0",
     "@toptal/picasso-input-adornment": "2.0.1",
-    "@toptal/picasso-outlined-input": "2.0.3",
+    "@toptal/picasso-outlined-input": "2.0.4",
     "@toptal/picasso-utils": "1.0.3"
   },
   "sideEffects": [
