@@ -9,13 +9,14 @@ import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { classesBySize } from './styles'
+import { classesBySize, getRootClasses } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
 
 export type Size = SizeType<'medium' | 'large'>
+export type Alignment = 'top' | 'middle'
 
 export interface Props
   extends BaseProps,
@@ -36,7 +37,7 @@ export interface Props
   /** Component size */
   size?: Size
   /** Whether label should be aligned to top of the container or not */
-  alignment?: 'top' | 'middle'
+  alignment?: Alignment
   /** Label's end adornment */
   labelEndAdornment?: ReactNode
 }
@@ -64,21 +65,13 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   const titleCase = useTitleCase(propsTitleCase)
   const { layout } = useFieldsLayoutContext()
 
-  const isHorizontal = layout === 'horizontal'
-
   return (
     <Component
       {...rest}
       ref={ref}
       htmlFor={htmlFor}
       className={twMerge(
-        'block text-graphite-700 mb-[0.5em] leading-[1em]',
-        disabled && 'text-graphite-700/[0.48]',
-        isInline &&
-          `inline-block mb-0 [&_medium]:text-[0.8125rem] [&_medium]:align-top 
-          [&_asterisk]:text-[0.8125rem] [&_asterisk]:align-top`,
-        isHorizontal && 'flex items-center mb-0',
-        isHorizontal && alignment === 'top' && 'pt-2 items-start',
+        getRootClasses({ disabled, isInline, layout, alignment }),
         className
       )}
       style={style}
