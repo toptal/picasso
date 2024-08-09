@@ -1,13 +1,10 @@
 import type { ReactElement, ReactNode, LabelHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { RequiredDecoration } from '../FormLabel'
-import styles from './styles'
 import { FormCompound as Form } from '../FormCompound'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 
@@ -27,11 +24,11 @@ export interface Props
   disabled?: boolean
   /** Whether to show asterisk or (optional) postfix as a 'required' decoration */
   requiredDecoration?: RequiredDecoration
+  classes?: {
+    root?: string
+    label?: string
+  }
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoFormControlLabel',
-})
 
 const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
   function FormControlLabel(props, ref) {
@@ -43,33 +40,33 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
       disabled,
       requiredDecoration,
       titleCase,
-      // Avoid passing external classes inside the rest props
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      classes: externalClasses,
+      classes,
       ...rest
     } = props
 
-    const classes = useStyles(props)
-
     const { layout } = useFieldsLayoutContext()
+    const isHorizontalLayout = layout === 'horizontal'
 
     return (
       <label
         {...rest}
         ref={ref}
-        className={cx(
-          classes.root,
-          {
-            [classes.disabled]: disabled,
-            [classes.horizontalLayout]: layout === 'horizontal',
-          },
+        className={twMerge(
+          'inline-flex items-center',
+          'max-w-full',
+          'align-middle',
+          '-webkit-tap-highlight-color-transparent',
+          'mx-0',
+          disabled ? 'cursor-default' : 'cursor-pointer',
+          isHorizontalLayout && 'col-start-1 col-span-2',
+          classes?.root,
           className
         )}
         style={style}
       >
         {React.cloneElement(control, { disabled })}
         <Form.Label
-          className={classes.label}
+          className={twMerge(disabled && 'pointer-events-auto', classes?.label)}
           as='span'
           requiredDecoration={requiredDecoration}
           disabled={disabled}
