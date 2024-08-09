@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   theme: {
-    // TODO: Add at least font weight?
+    // TODO: delete before merge
     fontWeight: {
       inherit: 'inherit',
       thin: '100',
