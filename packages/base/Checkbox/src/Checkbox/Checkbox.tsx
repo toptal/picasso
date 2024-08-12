@@ -113,7 +113,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         classes={{
           label: twJoin(
-            'max-w-[calc(100%_-_0.5em_+_1px)]',
+            'max-w-[calc(100%_-_1.5em_+_1px)]',
             'ml-[0.5em]',
             disabled && 'text-gray-500'
           ),
