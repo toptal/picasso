@@ -4,14 +4,27 @@ BASE design Tailwind preset that contains global design token. The preset has to
 
 
 ```javascript
+const basePreset = require('@toptal/base-tailwind')
+const picassoPreset = require('@toptal/picasso-tailwind')
+const caliberPreset = require('@toptal/caliber-tailwind')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [
-    require('@toptal/base-tailwind'),
-    require('@toptal/picasso-tailwind'),
-    require('@toptal/caliber-tailwind'),
-    // ...
+  plugins: [
+    ...(basePreset.plugins || []),
+    ...(picassoPreset.plugins || []),
+    ...(caliberPreset.plugins || []),
   ],
+  theme: {
+    ...basePreset.theme,
+    ...picassoPreset.theme,
+    ...caliberPreset.theme,
+  },
+  extend: {
+    ...basePreset.extend,
+    ...picassoPreset.extend,
+    ...caliberPreset.extend,
+  },
   // ...
 }
 ```

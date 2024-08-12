@@ -20,6 +20,10 @@ Please note that Picasso Tailwind preset has to be used along with `@toptal/base
 ```js
 const path = require('path')
 
+// Import presets
+const basePreset = require('@toptal/base-tailwind')
+const picassoPreset = require('@toptal/picasso-tailwind')
+
 const projectRoot = __dirname
 
 /** @type {import('tailwindcss').Config} */
@@ -32,10 +36,18 @@ module.exports = {
     // adjust for your project infrastructure
     path.join(projectRoot, '{hosts,libs,namespaces}/**/src/**/*.{ts,tsx}'),
   ],
-  presets: [
-    require('@toptal/base-tailwind'),
-    require('@toptal/picasso-tailwind'),
+  plugins: [
+    ...(basePreset.plugins || []),
+    ...(picassoPreset.plugins || []),
   ],
+  theme: {
+    ...basePreset.theme,
+    ...picassoPreset.theme,
+  },
+  extend: {
+    ...basePreset.extend,
+    ...picassoPreset.extend,
+  },
   corePlugins: {
     preflight: false,
   },
