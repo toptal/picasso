@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 4.1.1
+
+### Patch Changes
+
+- [#4449](https://github.com/toptal/picasso/pull/4449) [`22e2a67`](https://github.com/toptal/picasso/commit/22e2a674c96eb54f36d71515a6328877faae0576) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate FormField and FormActionContainer to TailwindCSS
+
 ## 4.1.0
 
 ### Minor Changes
