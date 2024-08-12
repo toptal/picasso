@@ -15,6 +15,8 @@ yarn add @toptal/picasso @toptal/picasso-provider @toptal/picasso-tailwind
 
 ## Create `tailwind.config.js` in the root of the project
 
+Please note that Picasso Tailwind configuration has to be used along with `@toptal/base-tailwind` preset.
+
 ```js
 const path = require('path')
 
@@ -30,7 +32,10 @@ module.exports = {
     // adjust for your project infrastructure
     path.join(projectRoot, '{hosts,libs,namespaces}/**/src/**/*.{ts,tsx}'),
   ],
-  presets: [require('@toptal/picasso-tailwind')],
+  presets: [
+    require('@toptal/base-tailwind'),
+    require('@toptal/picasso-tailwind'),
+  ],
   corePlugins: {
     preflight: false,
   },
