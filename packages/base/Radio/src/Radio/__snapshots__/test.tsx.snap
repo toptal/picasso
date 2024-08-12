@@ -16,7 +16,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -51,7 +51,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -86,7 +86,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -121,7 +121,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -156,7 +156,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -191,7 +191,7 @@ exports[`Radio Radio.Group renders radio in a grid group 1`] = `
           class="box-border m-0 p-[8px] sm:basis-4/12 sm:max-w leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -244,7 +244,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
           class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
@@ -279,7 +279,7 @@ exports[`Radio Radio.Group renders radio in group 1`] = `
           class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
         >
           <label
-            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
+            class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer text-[1rem] items-start"
           >
             <span
               aria-disabled="false"
