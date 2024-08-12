@@ -1,5 +1,12 @@
 # @toptal/picasso-modal
 
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@3.0.5
+
 ## 3.0.4
 
 ### Patch Changes
