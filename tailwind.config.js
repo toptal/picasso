@@ -1,5 +1,5 @@
 // Ignore missing imports as packages are definitely present in the project
-// eslint-disable import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
 const basePreset = require('@toptal/base-tailwind')
 const picassoPreset = require('@toptal/picasso-tailwind')
 
