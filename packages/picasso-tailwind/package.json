@@ -27,8 +27,7 @@
     "tailwindcss": "^3.3.6"
   },
   "peerDependencies": {
-    "tailwindcss": "^3.3.5",
-    "@toptal/base-tailwind": "^0.0.1"
+    "tailwindcss": "^3.3.5"
   },
   "sideEffects": false,
   "files": [
