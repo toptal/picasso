@@ -1,6 +1,6 @@
 # `base-tailwind`
 
-Base Tailwind configuration that contains global design token. This preset have to be reused by any project-specific Tailwind configuration (Picasso, Caliber, etc.).
+BASE design Tailwind preset that contains global design token. The preset has to be reused by any project-specific Tailwind configuration (Picasso, Caliber, etc.).
 
 
 ```javascript

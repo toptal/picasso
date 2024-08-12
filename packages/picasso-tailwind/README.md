@@ -1,6 +1,6 @@
 # `picasso-tailwind`
 
-Picasso-specific Tailwind definitions. Picasso-specific design tokens from BASE and support for Picasso usage.
+Picasso-specific Tailwind preset that contains Picasso-specific design tokens from BASE and support for Picasso usage.
 
 The configuration has to be used with `@toptal/base-tailwind` preset like in the example below.
 
