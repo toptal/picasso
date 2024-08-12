@@ -1,7 +1,5 @@
 import type { FocusEventHandler } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Button } from '@toptal/picasso-button'
@@ -10,7 +8,6 @@ import { useCombinedRefs } from '@toptal/picasso-utils'
 
 import { FileList } from '../FileList'
 import type { FileUpload } from './types'
-import styles from './styles'
 
 export interface Props extends BaseProps {
   /** A string that defines the file types the file input should accept */
@@ -35,8 +32,6 @@ export interface Props extends BaseProps {
   onBlur?: FocusEventHandler<HTMLDivElement>
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'FileInputContent' })
-
 export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   props,
   ref
@@ -54,7 +49,6 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     onBlur,
   } = props
 
-  const classes = useStyles()
   const isUnlimitedFiles = maxFiles === null
   const preventAddingNewFiles =
     !isUnlimitedFiles && value && value.length === maxFiles
@@ -67,7 +61,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
   )
 
   return (
-    <Container onFocus={onFocus} onBlur={onBlur} className={classes.root}>
+    <Container onFocus={onFocus} onBlur={onBlur} className='max-w-[300px]'>
       <Button
         size='small'
         variant='secondary'
@@ -79,13 +73,13 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
 
       <input
         type='file'
-        className={classes.nativeInput}
+        className='hidden'
         ref={inputRef}
         accept={accept}
         onChange={onChange}
         multiple={isUnlimitedFiles}
       />
-      {hint && <FormHint className={classes.hint}>{hint}</FormHint>}
+      {hint && <FormHint className='[&>*]:leading-4'>{hint}</FormHint>}
       {value && value.length > 0 && (
         <Container top='xsmall'>
           <FileList files={value} disabled={disabled} onItemRemove={onRemove} />
