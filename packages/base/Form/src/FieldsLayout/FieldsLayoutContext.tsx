@@ -22,10 +22,8 @@ const FieldsLayoutContext = createContext<FieldsLayoutContextValue>({
   labelWidth: DEFAULT_LABEL_WIDTH_SIZE,
 })
 
-export type Layout = 'horizontal' | 'vertical'
-
 export type FieldsLayoutContextProviderProps = {
-  layout?: 'horizontal' | 'vertical'
+  layout?: FieldLayout
   labelWidth?: LabelColumnSize | ResponsiveLabelColumnSize
   children: React.ReactNode
 }

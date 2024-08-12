@@ -1,6 +1,6 @@
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import type { Layout } from '../FieldsLayout/FieldsLayoutContext'
+import type { FieldLayout } from '../FieldsLayout/FieldsLayoutContext'
 import type { Alignment, Size } from './FormLabel'
 
 export const classesBySize: Record<Size, string> = {
@@ -11,7 +11,7 @@ export const classesBySize: Record<Size, string> = {
 type GetRootClassesOptions = {
   disabled?: boolean
   isInline: boolean
-  layout: Layout
+  layout: FieldLayout
   alignment: Alignment
 }
 
