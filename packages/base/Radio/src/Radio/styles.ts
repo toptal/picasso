@@ -3,7 +3,6 @@ import { createStyles } from '@material-ui/core/styles'
 import { rem, outline, mix } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-const CONTROL_WIDTH = '1em'
 const CONTROL_MARGIN_RIGHT = '0.5em'
 const RADIO_VERTICAL_MARGIN = '0.25em'
 
@@ -142,10 +141,4 @@ export default ({ palette, sizes, transitions }: Theme) =>
       dotOpacity: 1,
       transition: `all ${transitions.duration.short}ms ${transitions.easing.easeInOut}`,
     }),
-    label: {
-      // 1px is needed for safari
-      maxWidth: `calc(100% - ${CONTROL_WIDTH} - ${CONTROL_MARGIN_RIGHT} + 1px)`,
-      marginTop: RADIO_VERTICAL_MARGIN,
-    },
-    labelWithRightSpacing: {},
   })

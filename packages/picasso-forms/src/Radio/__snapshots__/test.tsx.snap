@@ -39,7 +39,7 @@ exports[`FormRadio renders 1`] = `
                 class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
-                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+                  class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
                 >
                   <span
                     aria-disabled="false"
@@ -60,7 +60,7 @@ exports[`FormRadio renders 1`] = `
                     </span>
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label Radio-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -74,7 +74,7 @@ exports[`FormRadio renders 1`] = `
                 class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
-                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+                  class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
                 >
                   <span
                     aria-disabled="false"
@@ -96,7 +96,7 @@ exports[`FormRadio renders 1`] = `
                     </span>
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label Radio-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -158,7 +158,7 @@ exports[`FormRadio required with asterisk 1`] = `
                 class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
-                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+                  class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
                 >
                   <span
                     aria-disabled="false"
@@ -179,7 +179,7 @@ exports[`FormRadio required with asterisk 1`] = `
                     </span>
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label Radio-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -193,7 +193,7 @@ exports[`FormRadio required with asterisk 1`] = `
                 class="box-border m-0 leading-none [&&]:pt-0 [&&]:pb-0"
               >
                 <label
-                  class="PicassoFormControlLabel-root Radio-root Radio-labelWithRightSpacing"
+                  class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer"
                 >
                   <span
                     aria-disabled="false"
@@ -215,7 +215,7 @@ exports[`FormRadio required with asterisk 1`] = `
                     </span>
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label Radio-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite mt-[0.25em] max-w-[calc(100%_"
                   >
                     <span
                       class="align-top text-[0.8125rem]"

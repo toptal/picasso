@@ -2,7 +2,7 @@
 
 exports[`Switch behaves correctly when interacting 1`] = `
 <label
-  class="PicassoFormControlLabel-root items-start text-lg"
+  class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer items-start text-lg"
   data-testid="switch"
 >
   <span
@@ -22,7 +22,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
     />
   </span>
   <span
-    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
+    class="inline-block leading-[1em] mb-0 text-graphite ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
     <span
       class="align-top text-[0.8125rem]"
@@ -61,7 +61,7 @@ exports[`Switch renders default Switch without label 1`] = `
 
 exports[`Switch renders disabled state 1`] = `
 <label
-  class="PicassoFormControlLabel-root items-start text-lg PicassoFormControlLabel-disabled"
+  class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-default items-start text-lg"
   data-testid="switch"
 >
   <span
@@ -82,7 +82,7 @@ exports[`Switch renders disabled state 1`] = `
     />
   </span>
   <span
-    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
+    class="inline-block leading-[1em] mb-0 text-graphite pointer-events ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
     <span
       class="align-top text-[0.8125rem]"
