@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-file-input",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Toptal UI components library - FileInput",
   "publishConfig": {
     "access": "public"

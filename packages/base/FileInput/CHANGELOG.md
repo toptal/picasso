@@ -1,5 +1,15 @@
 # @toptal/picasso-file-input
 
+## 2.0.8
+
+### Patch Changes
+
+- [#4458](https://github.com/toptal/picasso/pull/4458) [`5fcbb88`](https://github.com/toptal/picasso/commit/5fcbb88dd0b1dd4abb9839687875753bf078c105) Thanks [@mkrl](https://github.com/mkrl)!
+
+### FileInput
+
+- migrated `FileInput` to TailwindCSS
+
 ## 2.0.7
 
 ### Patch Changes
