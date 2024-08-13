@@ -1,5 +1,12 @@
 # @toptal/picasso-switch
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`608f2f7`](https://github.com/toptal/picasso/commit/608f2f74446cc6dcc4ae3876e5f819388c84741a)]:
+  - @toptal/picasso-tailwind@3.0.0
+
 ## 2.0.10
 
 ### Patch Changes
