@@ -90,10 +90,9 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         {...externalEventListeners}
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         control={muiRadio}
-        className={classes.labelWithRightSpacing}
         classes={{
-          ...rootClasses,
-          label: classes.label,
+          label: 'mt-[0.25em] max-w-[calc(100%_-_1.5em_+_1px)]',
+          root: 'text-[1rem] items-start',
         }}
         style={style}
         label={label}

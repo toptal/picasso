@@ -37,7 +37,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                 class="box-border m-0 leading-none pt-0 pb-0 [&>.picasso-checkbox]:mb-[0.5em]"
               >
                 <label
-                  class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+                  class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer picasso-checkbox"
                 >
                   <span
                     class="inline-flex PicassoCheckbox-checkboxWrapper"
@@ -63,7 +63,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                     </span>
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -77,7 +77,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                 class="box-border m-0 leading-none pt-0 pb-0 [&>.picasso-checkbox]:mb-[0.5em]"
               >
                 <label
-                  class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+                  class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer picasso-checkbox"
                 >
                   <span
                     class="inline-flex PicassoCheckbox-checkboxWrapper"
@@ -103,7 +103,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                     </span>
                   </span>
                   <span
-                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
                   >
                     <span
                       class="align-top text-[0.8125rem]"
@@ -139,7 +139,7 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
           data-testid="single-checkbox"
         >
           <label
-            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer picasso-checkbox"
           >
             <span
               class="inline-flex PicassoCheckbox-checkboxWrapper"
@@ -166,7 +166,7 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
               </span>
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
+              class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
             >
               <span
                 class="align-top text-[0.8125rem]"
@@ -199,7 +199,7 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
           data-testid="single-checkbox"
         >
           <label
-            class="PicassoFormControlLabel-root PicassoCheckbox-root picasso-checkbox"
+            class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer picasso-checkbox"
           >
             <span
               class="inline-flex PicassoCheckbox-checkboxWrapper"
@@ -226,7 +226,7 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
               </span>
             </span>
             <span
-              class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
+              class="inline-block leading-[1em] mb-0 text-graphite max-w-[calc(100%_ ml-[0.5em]"
             >
               <span
                 class="align-top text-[0.8125rem]"

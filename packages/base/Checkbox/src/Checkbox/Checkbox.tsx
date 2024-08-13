@@ -12,6 +12,7 @@ import React, { forwardRef } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { FormControlLabel } from '@toptal/picasso-form'
 import type { RequiredDecoration } from '@toptal/picasso-form'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import styles from './styles'
 
@@ -111,8 +112,11 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         style={labelStyle}
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         classes={{
-          ...rootClasses,
-          label: classes.label,
+          label: twJoin(
+            'max-w-[calc(100%_-_1.5em_+_1px)]',
+            'ml-[0.5em]',
+            disabled && 'text-gray-500'
+          ),
         }}
         control={muiCheckbox}
         requiredDecoration={requiredDecoration}

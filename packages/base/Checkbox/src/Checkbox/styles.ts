@@ -3,9 +3,6 @@ import { createStyles } from '@material-ui/core/styles'
 import { mix, outline } from '@toptal/picasso-shared'
 import { PicassoProvider } from '@toptal/picasso-provider'
 
-const controlWidth = '1em'
-const labelMargin = '0.5em'
-
 PicassoProvider.override(() => ({
   MuiCheckbox: {
     root: {
@@ -50,9 +47,6 @@ export default ({ palette, sizes, transitions }: Theme) =>
     disabled: {
       '&:hover $uncheckedIcon': {
         border: `${sizes.borderWidth} solid ${palette.grey.main}`,
-      },
-      '& $label': {
-        color: palette.grey.main,
       },
     },
     focused: {
@@ -124,11 +118,6 @@ export default ({ palette, sizes, transitions }: Theme) =>
         left: '50%',
         transform: 'translate(-50%, -50%)',
       },
-    },
-    label: {
-      marginLeft: labelMargin,
-      // 1px is needed for safari
-      maxWidth: `calc(100% - ${controlWidth} - ${labelMargin} + 1px)`,
     },
     labelWithRightSpacing: {},
     checkboxWrapper: {
