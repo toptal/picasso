@@ -1,12 +1,5 @@
 # Change Log
 
-## 71.0.12
-
-### Patch Changes
-
-- Updated dependencies []:
-  - @toptal/picasso-switch@3.0.0
-
 ## 71.0.11
 
 ### Patch Changes
