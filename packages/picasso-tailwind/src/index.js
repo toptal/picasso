@@ -2,6 +2,7 @@ const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  presets: [],
   plugins: [
     plugin(({ addUtilities }) => {
       addUtilities({
