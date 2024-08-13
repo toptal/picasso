@@ -1,54 +1,18 @@
-import type { Theme } from '@material-ui/core'
-import { createStyles } from '@material-ui/core'
+export const classes: Record<string, string> = {
+  root: 'fill-current inline-block font-inherit-size h-[1em] align-[-.125em]',
+  green: 'text-green-500',
+  darkGreen: 'text-green-600',
+  red: 'text-red-500',
+  lightBlue: 'text-blue-400',
+  blue: 'text-blue-500',
+  yellow: 'text-yellow-500',
+  white: 'text-white',
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    root: {
-      fill: 'currentColor',
-      display: 'inline-block',
-      fontSize: 'inherit',
-      height: '1em',
-      verticalAlign: '-.125em',
-    },
+  lightGrey: 'text-gray-400',
+  grey: 'text-gray-500',
+  darkGrey: 'text-graphite-700',
 
-    // colors
-    green: {
-      color: palette.green.main,
-    },
-    darkGreen: {
-      color: palette.green.dark,
-    },
-    red: {
-      color: palette.red.main,
-    },
-    lightBlue: {
-      color: palette.blue.light,
-    },
-    blue: {
-      color: palette.primary.main,
-    },
-    yellow: {
-      color: palette.yellow.main,
-    },
-    white: {
-      color: palette.common.white,
-    },
-    lightGrey: {
-      color: palette.grey.light2,
-    },
-    grey: {
-      color: palette.grey.main,
-    },
-    darkGrey: {
-      color: palette.text.primary,
-    },
-    black: {
-      color: palette.common.black,
-    },
-    invert: {
-      color: palette.common.white,
-    },
-    inherit: {
-      color: 'inherit',
-    },
-  })
+  black: 'text-black',
+  invert: 'text-white',
+  inherit: 'text-inheritColor',
+}

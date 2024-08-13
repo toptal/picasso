@@ -1,7 +1,7 @@
 const types = require('@babel/types')
 
 /**
- * Add `className={cx(classes.root, className)}` to the svg tag
+ * Add `className={twMerge(classes.root, className)}` to the svg tag
  */
 const decorateWithClassNameProp = svgElement => {
   svgElement.attributes = [
@@ -9,7 +9,7 @@ const decorateWithClassNameProp = svgElement => {
     types.jsxAttribute(
       types.jsxIdentifier('className'),
       types.jsxExpressionContainer(
-        types.callExpression(types.identifier('cx'), [
+        types.callExpression(types.identifier('twMerge'), [
           types.identifier('...classNames'),
         ])
       )
@@ -49,7 +49,7 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
 
   const svgElement = jsx.openingElement
 
-  // add `className={cx(classes.root, classes[colorClassName], className)}` to svg root tag
+  // add `className={twMerge(classes.root, classes[colorClassName], className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
   decorateWithProp(svgElement, 'style', 'svgStyle')
@@ -60,12 +60,11 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
 
   return tpl`
     import React, { forwardRef, Ref } from 'react'
-    import cx from 'classnames'
-    import { makeStyles } from '@material-ui/core/styles'
+    import { twMerge } from '@toptal/picasso-tailwind-merge'
     import { StandardProps } from '@toptal/picasso-shared'
     ${'\n'}
     import { kebabToCamelCase } from '@toptal/picasso-utils'
-    import styles from './styles'
+    import { classes } from './styles'
     const BASE_SIZE = ${baseSize}
     ${'\n'}
     type ScaleType =
@@ -78,23 +77,23 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
       color?: string,
       base?: number
     }
-    const useStyles = makeStyles(styles, {
-      name: '${styleName}'
-    })
     const ${componentName} = forwardRef(function ${componentName}(
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
       const { className, style = {}, color, scale, base, 'data-testid': testId } = props
 
-      const classes: Record<string, string> = useStyles(props)
-      const classNames = [classes.root, className]
+      const classNames = [${JSON.stringify(styleName)}, classes.root]
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
       const colorClassName = kebabToCamelCase(\`\${color}\`)
 
       if (classes[colorClassName]) {
         classNames.push(classes[colorClassName])
+      }
+
+      if (className) {
+        classNames.push(className)
       }
       ${'\n'}
       const svgStyle = {
