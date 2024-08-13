@@ -13,10 +13,10 @@ exports[`FormLabel disabled 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root PicassoFormLabel-disabled"
+          class="block leading-[1em] mb-[0.5em] text-graphite"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem]"
           >
             Label
           </span>
@@ -40,10 +40,10 @@ exports[`FormLabel renders 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block leading-[1em] mb-[0.5em] text-graphite"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem]"
           >
             Label
           </span>
@@ -67,10 +67,10 @@ exports[`FormLabel required with (optional) 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block leading-[1em] mb-[0.5em] text-graphite"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem]"
           >
             Label
              (optional)
@@ -95,10 +95,10 @@ exports[`FormLabel required with (optional) and with \`labelEndAdornment\` 1`] =
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block leading-[1em] mb-[0.5em] text-graphite"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem]"
           >
             Label
              (optional)
@@ -126,13 +126,13 @@ exports[`FormLabel required with asterisk 1`] = `
         data-field-has-error="false"
       >
         <label
-          class="PicassoFormLabel-root"
+          class="block leading-[1em] mb-[0.5em] text-graphite"
         >
           <span
-            class="PicassoFormLabel-medium"
+            class="text-[0.875rem]"
           >
             <span
-              class="PicassoFormLabel-asterisk"
+              class="align-top text-red mr-[0.3125em]"
             >
               *
             </span>

@@ -1,55 +1,66 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-import { alpha } from '@toptal/picasso-shared'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-export default ({ palette }: Theme) =>
-  createStyles({
-    root: {
-      color: palette.grey[400],
-      display: 'block',
-      marginBottom: '0.5em',
-      lineHeight: '1em',
-    },
+import type { FieldLayout } from '../FieldsLayout/FieldsLayoutContext'
+import type { Alignment, Size } from './FormLabel'
 
-    disabled: {
-      color: alpha(palette.grey[400], 0.48),
-    },
+export const classesBySize: Record<Size, string> = {
+  medium: 'text-[0.875rem]',
+  large: 'text-[1rem]',
+}
 
-    medium: {
-      fontSize: '0.875rem',
-    },
+type GetRootClassesOptions = {
+  disabled?: boolean
+  isInline: boolean
+  layout: FieldLayout
+  alignment: Alignment
+}
 
-    large: {
-      fontSize: '1rem',
-    },
+const getDisplayClasses = ({
+  isInline,
+  layout,
+  alignment,
+}: Partial<GetRootClassesOptions>) => {
+  if (layout === 'horizontal' && alignment === 'top') {
+    return 'flex items-start'
+  }
 
-    asterisk: {
-      marginRight: '0.3125em',
-      color: palette.error.main,
-    },
+  if (layout === 'horizontal') {
+    return 'flex items-center'
+  }
 
-    inline: {
-      display: 'inline-block',
-      marginBottom: 0,
+  if (isInline) {
+    return 'inline-block'
+  }
 
-      '& $medium': {
-        fontSize: '0.8125rem',
-        verticalAlign: 'top',
-      },
+  return 'block'
+}
 
-      '& $asterisk': {
-        fontSize: '0.8125rem',
-        verticalAlign: 'top',
-      },
-    },
+const getMarginClasses = ({
+  layout,
+  isInline,
+}: Partial<GetRootClassesOptions>) =>
+  layout === 'horizontal' || isInline ? 'mb-0' : 'mb-[0.5em]'
 
-    horizontalLayout: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: 0,
-    },
-    alignmentTop: {
-      alignItems: 'start',
-      paddingTop: '0.5rem',
-    },
-  })
+const getPaddingsClasses = ({
+  layout,
+  alignment,
+}: Partial<GetRootClassesOptions>) =>
+  layout === 'horizontal' && alignment === 'top' ? 'pt-2' : ''
+
+const getColorClasses = ({ disabled }: Partial<GetRootClassesOptions>) =>
+  disabled ? 'text-graphite-700/[0.48]' : 'text-graphite-700'
+
+export const getRootClasses = ({
+  disabled,
+  isInline,
+  layout,
+  alignment,
+}: GetRootClassesOptions) => {
+  return twJoin(
+    getDisplayClasses({ isInline, layout, alignment }),
+    'leading-[1em]',
+    getMarginClasses({ layout, isInline }),
+    getColorClasses({ disabled }),
+    getPaddingsClasses({ layout, alignment })
+  )
+}

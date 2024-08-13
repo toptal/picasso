@@ -16,11 +16,11 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
           data-field-has-error="false"
         >
           <label
-            class="PicassoFormLabel-root"
+            class="block leading-[1em] mb-[0.5em] text-graphite"
             for="checkbox-group"
           >
             <span
-              class="PicassoFormLabel-medium"
+              class="text-[0.875rem]"
             >
               checkbox-group-label
                (optional)
@@ -63,10 +63,10 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
                   >
                     <span
-                      class="PicassoFormLabel-medium"
+                      class="align-top text-[0.8125rem]"
                     >
                       checkbox-label-0
                     </span>
@@ -103,10 +103,10 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                     </span>
                   </span>
                   <span
-                    class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+                    class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
                   >
                     <span
-                      class="PicassoFormLabel-medium"
+                      class="align-top text-[0.8125rem]"
                     >
                       checkbox-label-1
                     </span>
@@ -166,10 +166,10 @@ exports[`Form.Checkbox default render for single checkbox 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+              class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-medium"
+                class="align-top text-[0.8125rem]"
               >
                 The checkbox label
               </span>
@@ -226,13 +226,13 @@ exports[`Form.Checkbox required with asterisk single checkbox 1`] = `
               </span>
             </span>
             <span
-              class="PicassoFormLabel-root PicassoFormLabel-inline PicassoFormControlLabel-label PicassoCheckbox-label"
+              class="inline-block leading-[1em] mb-0 text-graphite PicassoFormControlLabel-label PicassoCheckbox-label"
             >
               <span
-                class="PicassoFormLabel-medium"
+                class="align-top text-[0.8125rem]"
               >
                 <span
-                  class="PicassoFormLabel-asterisk"
+                  class="align-top text-red mr-[0.3125em]"
                 >
                   *
                 </span>

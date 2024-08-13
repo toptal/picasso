@@ -23,7 +23,7 @@ const FieldsLayoutContext = createContext<FieldsLayoutContextValue>({
 })
 
 export type FieldsLayoutContextProviderProps = {
-  layout?: 'horizontal' | 'vertical'
+  layout?: FieldLayout
   labelWidth?: LabelColumnSize | ResponsiveLabelColumnSize
   children: React.ReactNode
 }

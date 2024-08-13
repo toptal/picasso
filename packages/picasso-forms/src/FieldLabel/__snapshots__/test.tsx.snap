@@ -6,11 +6,11 @@ exports[`FieldLabel renders default field label 1`] = `
     class="Picasso-root"
   >
     <label
-      class="PicassoFormLabel-root"
+      class="block leading-[1em] mb-[0.5em] text-graphite"
       for="name"
     >
       <span
-        class="PicassoFormLabel-medium"
+        class="text-[0.875rem]"
       >
         label
          (optional)

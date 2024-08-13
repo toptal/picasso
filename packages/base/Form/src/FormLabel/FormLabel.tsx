@@ -1,8 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type {
   BaseProps,
   TextLabelProps,
@@ -10,12 +7,16 @@ import type {
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { classesBySize, getRootClasses } from './styles'
 import { useFieldsLayoutContext } from '../FieldsLayout'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
+
+export type Size = SizeType<'medium' | 'large'>
+export type Alignment = 'top' | 'middle'
 
 export interface Props
   extends BaseProps,
@@ -34,14 +35,12 @@ export interface Props
   /** Component used for the root node */
   as?: ComponentType
   /** Component size */
-  size?: SizeType<'medium' | 'large'>
+  size?: Size
   /** Whether label should be aligned to top of the container or not */
-  alignment?: 'top' | 'middle'
+  alignment?: Alignment
   /** Label's end adornment */
   labelEndAdornment?: ReactNode
 }
-
-const useStyles = makeStyles<Theme, Props>(styles, { name: 'PicassoFormLabel' })
 
 export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
   props,
@@ -62,9 +61,6 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     labelEndAdornment,
     ...rest
   } = props
-
-  const classes = useStyles(props)
-
   const isInline = inline || Component === 'span'
   const titleCase = useTitleCase(propsTitleCase)
   const { layout } = useFieldsLayoutContext()
@@ -74,22 +70,19 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
       {...rest}
       ref={ref}
       htmlFor={htmlFor}
-      className={cx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.inline]: isInline,
-          [classes.horizontalLayout]: layout === 'horizontal',
-          [classes.alignmentTop]:
-            layout === 'horizontal' && alignment === 'top',
-        },
+      className={twMerge(
+        getRootClasses({ disabled, isInline, layout, alignment }),
         className
       )}
       style={style}
     >
-      <span className={classes[size]}>
+      <span
+        className={
+          isInline ? 'align-top text-[0.8125rem]' : classesBySize[size]
+        }
+      >
         {requiredDecoration === 'asterisk' && (
-          <span className={classes.asterisk}>*</span>
+          <span className='align-top text-red-500 mr-[0.3125em]'>*</span>
         )}
 
         {titleCase ? toTitleCase(children) : children}
