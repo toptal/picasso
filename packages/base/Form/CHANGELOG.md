@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 4.1.2
+
+### Patch Changes
+
+- [#4455](https://github.com/toptal/picasso/pull/4455) [`8b2bc9d`](https://github.com/toptal/picasso/commit/8b2bc9d596317060845e4b5c8a48c5c178d72f5f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate FormLabel to TailwindCSS
+
 ## 4.1.1
 
 ### Patch Changes

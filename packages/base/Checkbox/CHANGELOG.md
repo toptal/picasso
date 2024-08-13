@@ -1,5 +1,15 @@
 # @toptal/picasso-checkbox
 
+## 3.0.5
+
+### Patch Changes
+
+- [#4455](https://github.com/toptal/picasso/pull/4455) [`8b2bc9d`](https://github.com/toptal/picasso/commit/8b2bc9d596317060845e4b5c8a48c5c178d72f5f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate FormLabel to TailwindCSS
+
+- Updated dependencies [[`8b2bc9d`](https://github.com/toptal/picasso/commit/8b2bc9d596317060845e4b5c8a48c5c178d72f5f)]:
+  - @toptal/picasso-form@4.1.2
+
 ## 3.0.4
 
 ### Patch Changes
