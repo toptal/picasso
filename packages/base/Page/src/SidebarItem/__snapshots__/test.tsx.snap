@@ -68,7 +68,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="PicassoSvgArrowDownMinor16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -214,7 +214,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="PicassoSvgArrowDownMinor16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -316,7 +316,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
               class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <svg
-                class="PicassoSvgCandidates16-root"
+                class="PicassoSvgCandidates16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -406,7 +406,7 @@ exports[`SidebarItem is selected 1`] = `
               class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <svg
-                class="PicassoSvgCandidates16-root"
+                class="PicassoSvgCandidates16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -510,7 +510,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                     class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
                   >
                     <svg
-                      class="PicassoSvgCandidates16-root"
+                      class="PicassoSvgCandidates16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                       style="min-width: 16px; min-height: 16px;"
                       viewBox="0 0 16 16"
                     >
@@ -533,7 +533,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon"
+            class="PicassoSvgArrowDownMinor16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -631,7 +631,7 @@ exports[`SidebarItem with icon 1`] = `
               class="gap-2 items-center inline-flex PicassoSidebarItemContent-noWrap"
             >
               <svg
-                class="PicassoSvgCandidates16-root"
+                class="PicassoSvgCandidates16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >

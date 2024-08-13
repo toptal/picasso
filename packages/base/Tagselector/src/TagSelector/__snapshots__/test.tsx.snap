@@ -38,7 +38,7 @@ exports[`TagSelector disabled render 1`] = `
               role="button"
             >
               <svg
-                class="PicassoSvgCloseMinor16-root"
+                class="PicassoSvgCloseMinor16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -105,7 +105,7 @@ exports[`TagSelector preselected value 1`] = `
                 role="button"
               >
                 <svg
-                  class="PicassoSvgCloseMinor16-root"
+                  class="PicassoSvgCloseMinor16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >

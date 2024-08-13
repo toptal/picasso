@@ -18,7 +18,7 @@ exports[`FileListItem renders 1`] = `
             class="mr-2"
           >
             <svg
-              class="PicassoSvgAttachment16-root PicassoSvgAttachment16-darkGrey"
+              class="PicassoSvgAttachment16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-graphite"
               fill="none"
               style="min-width: 16px; min-height: 16px;"
               viewBox="0 0 16 16"
@@ -50,7 +50,7 @@ exports[`FileListItem renders 1`] = `
           class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           <svg
-            class="PicassoSvgTrash16-root PicassoSvgTrash16-red"
+            class="PicassoSvgTrash16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-red"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

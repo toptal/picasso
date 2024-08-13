@@ -39,7 +39,7 @@ exports[`Accordion renders collapsed by default 1`] = `
                 class="items-center inline-flex font-semibold text-blue text-md"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
+                  class="PicassoSvgArrowDownMinor16 fill-current inline-block align-[-.125em] text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -185,7 +185,7 @@ exports[`Accordion renders disabled 1`] = `
                 class="items-center inline-flex font-semibold text-blue text-md"
               >
                 <svg
-                  class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
+                  class="PicassoSvgArrowDownMinor16 fill-current inline-block align-[-.125em] text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >

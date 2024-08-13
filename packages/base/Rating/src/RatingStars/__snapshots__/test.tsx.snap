@@ -14,7 +14,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            class="PicassoSvgStarSolid16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -38,7 +38,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            class="PicassoSvgStarSolid16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -62,7 +62,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            class="PicassoSvgStarSolid16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -87,7 +87,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+            class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -111,7 +111,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+            class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

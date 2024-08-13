@@ -38,7 +38,7 @@ exports[`ShowMore renders 1`] = `
           class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoShowMore-icon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -91,7 +91,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
           class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoShowMore-icon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -144,7 +144,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
           class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoShowMore-icon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -211,7 +211,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
           class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
+            class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoShowMore-icon PicassoShowMore-expandedIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -264,7 +264,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
           class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon"
+            class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoShowMore-icon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -305,7 +305,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
           class="text-[1.2em] flex-1 w-4 h-4 text-graphite ml-[0.5rem] PicassoShowMore-iconWrapper"
         >
           <svg
-            class="PicassoSvgChevronRight16-root PicassoShowMore-icon PicassoShowMore-expandedIcon"
+            class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoShowMore-icon PicassoShowMore-expandedIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

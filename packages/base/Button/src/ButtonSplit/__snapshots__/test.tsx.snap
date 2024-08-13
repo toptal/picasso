@@ -2,7 +2,7 @@
 
 exports[`ButtonSplit closes menu on click to the item 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor24-root-29"
+  class="PicassoSvgArrowDownMinor24 fill-current inline-block font-inherit-size h-[1em] align-[-.125em]"
   style="min-width: 24px; min-height: 24px;"
   viewBox="0 0 24 24"
 >
@@ -52,7 +52,7 @@ exports[`ButtonSplit default render 1`] = `
               class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="PicassoSvgArrowDownMinor16-root"
+                class="PicassoSvgArrowDownMinor16 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -71,7 +71,7 @@ exports[`ButtonSplit default render 1`] = `
 
 exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor16-root-29"
+  class="PicassoSvgArrowDownMinor16 fill-current inline-block font-inherit-size h-[1em] align-[-.125em]"
   style="min-width: 16px; min-height: 16px;"
   viewBox="0 0 16 16"
 >
@@ -83,7 +83,7 @@ exports[`ButtonSplit renders arrow down icon for a closed menu 1`] = `
 
 exports[`ButtonSplit renders arrow up icon for an opened menu 1`] = `
 <svg
-  class="PicassoSvgArrowDownMinor16-root-29 rotate-180"
+  class="PicassoSvgArrowDownMinor16 fill-current inline-block font-inherit-size h-[1em] align-[-.125em] rotate-180"
   style="min-width: 16px; min-height: 16px;"
   viewBox="0 0 16 16"
 >

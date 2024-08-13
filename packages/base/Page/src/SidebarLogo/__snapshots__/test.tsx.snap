@@ -9,7 +9,7 @@ exports[`SidebarLogo renders 1`] = `
       class="mb-2 ml-8 PicassoSidebarLogo-root"
     >
       <svg
-        class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-default"
+        class="PicassoSvgLogo fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoLogo-root PicassoLogo-default"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 109 30"
       >

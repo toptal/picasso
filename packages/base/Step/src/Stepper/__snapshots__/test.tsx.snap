@@ -15,7 +15,7 @@ exports[`Stepper render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -31,7 +31,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -46,7 +46,7 @@ exports[`Stepper render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -62,7 +62,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -77,7 +77,7 @@ exports[`Stepper render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -93,7 +93,7 @@ exports[`Stepper render with all steps completed 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -108,7 +108,7 @@ exports[`Stepper render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -143,7 +143,7 @@ exports[`Stepper render with hidden labels 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -154,7 +154,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </div>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -169,7 +169,7 @@ exports[`Stepper render with hidden labels 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -180,7 +180,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </div>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -195,7 +195,7 @@ exports[`Stepper render with hidden labels 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -206,7 +206,7 @@ exports[`Stepper render with hidden labels 1`] = `
         </div>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -221,7 +221,7 @@ exports[`Stepper render with hidden labels 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -251,7 +251,7 @@ exports[`Stepper renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -267,7 +267,7 @@ exports[`Stepper renders 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -282,7 +282,7 @@ exports[`Stepper renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -298,7 +298,7 @@ exports[`Stepper renders 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -319,7 +319,7 @@ exports[`Stepper renders 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -359,7 +359,7 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -377,7 +377,7 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -392,7 +392,7 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="PicassoSvgCheckSolid24 fill-current inline-block font-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -410,7 +410,7 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >
@@ -433,7 +433,7 @@ exports[`Stepper when steps are custom nodes renders 1`] = `
         </span>
       </div>
       <svg
-        class="PicassoSvgChevronRight16-root text-gray"
+        class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-gray"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 16 16"
       >

@@ -71,7 +71,7 @@ exports[`AccountSelect renders 1`] = `
                     </div>
                   </div>
                   <svg
-                    class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
+                    class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-graphite"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -147,7 +147,7 @@ exports[`AccountSelect renders 1`] = `
                     </div>
                   </div>
                   <svg
-                    class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
+                    class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-graphite"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -219,7 +219,7 @@ exports[`AccountSelect renders 1`] = `
                     </div>
                   </div>
                   <svg
-                    class="PicassoSvgChevronRight16-root PicassoSvgChevronRight16-darkGrey"
+                    class="PicassoSvgChevronRight16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-graphite"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >

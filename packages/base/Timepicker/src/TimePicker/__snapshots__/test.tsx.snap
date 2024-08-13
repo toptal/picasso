@@ -20,7 +20,7 @@ exports[`TimePicker renders 1`] = `
         class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
       >
         <svg
-          class="PicassoSvgTime16-root bg-white absolute right-[0.625rem] pointer-events m-0 select-none grow shrink basis-0"
+          class="PicassoSvgTime16 fill-current inline-block font-inherit h-[1em] align-[-.125em] grow shrink basis-0"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

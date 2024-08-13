@@ -26,7 +26,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -50,7 +50,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -74,7 +74,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -98,7 +98,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -122,7 +122,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16 fill-current inline-block font-inherit h-[1em] align-[-.125em] text-yellow PicassoRatingIcon-clickableIcon"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -178,7 +178,7 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
               for="0-posititve"
             >
               <svg
-                class="PicassoSvgThumbsUp16-root makeStyles-thumbs makeStyles-interactiveThumbs"
+                class="PicassoSvgThumbsUp16 fill-current inline-block font-inherit h-[1em] align-[-.125em] makeStyles-thumbs makeStyles-interactiveThumbs"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -200,7 +200,7 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
               for="0-negative"
             >
               <svg
-                class="PicassoSvgThumbsDown16-root makeStyles-thumbs makeStyles-interactiveThumbs"
+                class="PicassoSvgThumbsDown16 fill-current inline-block font-inherit h-[1em] align-[-.125em] makeStyles-thumbs makeStyles-interactiveThumbs"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >

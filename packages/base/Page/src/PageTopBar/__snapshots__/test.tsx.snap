@@ -38,7 +38,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
                       class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
+                        class="PicassoSvgOverview24 fill-current inline-block h-[1em] align-[-.125em] text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -137,7 +137,7 @@ exports[`Page.TopBar render with link 1`] = `
                       class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
+                        class="PicassoSvgOverview24 fill-current inline-block h-[1em] align-[-.125em] text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -172,7 +172,7 @@ exports[`Page.TopBar render with link 1`] = `
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="PicassoSvgLogoEmblem-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
+                  class="PicassoSvgLogoEmblem fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 21 30"
                 >
@@ -182,7 +182,7 @@ exports[`Page.TopBar render with link 1`] = `
                   />
                 </svg>
                 <svg
-                  class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
+                  class="PicassoSvgLogo fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >
@@ -262,7 +262,7 @@ exports[`Page.TopBar renders 1`] = `
                       class="items-center inline-flex font-semibold whitespace-nowrap text-button"
                     >
                       <svg
-                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 PageHamburger-hamburger"
+                        class="PicassoSvgOverview24 fill-current inline-block h-[1em] align-[-.125em] text-[1.2em] flex-1 PageHamburger-hamburger"
                         style="min-width: 24px; min-height: 24px;"
                         viewBox="0 0 24 24"
                       >
@@ -293,7 +293,7 @@ exports[`Page.TopBar renders 1`] = `
                 </div>
               </div>
               <svg
-                class="PicassoSvgLogoEmblem-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
+                class="PicassoSvgLogoEmblem fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 21 30"
               >
@@ -303,7 +303,7 @@ exports[`Page.TopBar renders 1`] = `
                 />
               </svg>
               <svg
-                class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
+                class="PicassoSvgLogo fill-current inline-block font-inherit h-[1em] align-[-.125em] PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
