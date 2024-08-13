@@ -1,5 +1,6 @@
 ---
-'@toptal/picasso-file-input': minor
+'@toptal/picasso-file-input': patch
+'@toptal/picasso': patch
 ---
 
 ### FileInput
