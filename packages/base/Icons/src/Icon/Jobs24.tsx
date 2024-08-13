@@ -1,11 +1,10 @@
 import type { Ref } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import { makeStyles } from '@material-ui/core/styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { StandardProps } from '@toptal/picasso-shared'
 import { kebabToCamelCase } from '@toptal/picasso-utils'
 
-import styles from './styles'
+import { classes } from './styles'
 const BASE_SIZE = 24
 
 type ScaleType = 1 | 2 | 3 | 4
@@ -14,9 +13,6 @@ export interface Props extends StandardProps {
   color?: string
   base?: number
 }
-const useStyles = makeStyles(styles, {
-  name: 'PicassoSvgJobs24',
-})
 const SvgJobs24 = forwardRef(function SvgJobs24(
   props: Props,
   ref: Ref<SVGSVGElement>
@@ -29,13 +25,15 @@ const SvgJobs24 = forwardRef(function SvgJobs24(
     base,
     'data-testid': testId,
   } = props
-  const classes: Record<string, string> = useStyles(props)
-  const classNames = [classes.root, className]
+  const classNames = ['PicassoSvgJobs24', classes.root]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
   const colorClassName = kebabToCamelCase(`${color}`)
 
   if (classes[colorClassName]) {
     classNames.push(classes[colorClassName])
+  }
+  if (className) {
+    classNames.push(className)
   }
 
   const svgStyle = {
@@ -47,7 +45,7 @@ const SvgJobs24 = forwardRef(function SvgJobs24(
   return (
     <svg
       viewBox='0 0 24 24'
-      className={cx(...classNames)}
+      className={twMerge(...classNames)}
       style={svgStyle}
       ref={ref}
       data-testid={testId}
