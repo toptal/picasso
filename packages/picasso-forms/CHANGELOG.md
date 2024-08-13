@@ -1,5 +1,33 @@
 # Change Log
 
+## 71.0.10
+
+### Patch Changes
+
+- [#4455](https://github.com/toptal/picasso/pull/4455) [`8b2bc9d`](https://github.com/toptal/picasso/commit/8b2bc9d596317060845e4b5c8a48c5c178d72f5f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate FormLabel to TailwindCSS
+
+- Updated dependencies [[`8b2bc9d`](https://github.com/toptal/picasso/commit/8b2bc9d596317060845e4b5c8a48c5c178d72f5f)]:
+  - @toptal/picasso-form@4.1.2
+  - @toptal/picasso-checkbox@3.0.5
+  - @toptal/picasso-radio@3.0.5
+  - @toptal/picasso-switch@2.0.9
+  - @toptal/picasso-autocomplete@2.0.6
+  - @toptal/picasso-dropzone@3.0.7
+  - @toptal/picasso-file-input@2.0.6
+  - @toptal/picasso-input@3.0.6
+  - @toptal/picasso-number-input@2.0.6
+  - @toptal/picasso-outlined-input@2.0.6
+  - @toptal/picasso-select@2.0.6
+  - @toptal/picasso-tagselector@2.0.6
+  - @toptal/picasso-rich-text-editor@14.0.6
+  - @toptal/picasso-button@3.0.6
+  - @toptal/picasso-date-picker@2.0.8
+  - @toptal/picasso-timepicker@2.0.6
+  - @toptal/picasso-avatar-upload@2.0.6
+  - @toptal/picasso-password-input@3.0.6
+  - @toptal/picasso-notification@3.0.6
+
 ## 71.0.9
 
 ### Patch Changes

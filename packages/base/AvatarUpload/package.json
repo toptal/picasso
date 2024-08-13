@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-avatar-upload",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Toptal UI components library - AvatarUpload",
   "publishConfig": {
     "access": "public"
@@ -25,7 +25,7 @@
     "@toptal/picasso-avatar": "5.0.1",
     "@toptal/picasso-icons": "1.6.0",
     "@toptal/picasso-loader": "2.0.0",
-    "@toptal/picasso-outlined-input": "2.0.5",
+    "@toptal/picasso-outlined-input": "2.0.6",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "1.0.3",
     "react-dropzone": "^14.2.3"
