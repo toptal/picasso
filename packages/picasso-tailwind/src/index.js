@@ -55,14 +55,13 @@ module.exports = {
         'monospace',
       ],
     },
-    // TODO: revert before merge
-    // fontWeight: {
-    //   inherit: 'inherit',
-    //   thin: '100',
-    //   light: '300',
-    //   regular: '400',
-    //   semibold: '600',
-    // },
+    fontWeight: {
+      inherit: 'inherit',
+      thin: '100',
+      light: '300',
+      regular: '400',
+      semibold: '600',
+    },
     // NOTE: If adding new font sizes, make sure to update @toptal/picasso-tailwind-merge
     fontSize: {
       '2xs': ['0.688rem', { lineHeight: '1rem' }],
