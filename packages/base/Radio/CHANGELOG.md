@@ -1,5 +1,15 @@
 # @toptal/picasso-radio
 
+## 3.0.6
+
+### Patch Changes
+
+- [#4454](https://github.com/toptal/picasso/pull/4454) [`f084dd3`](https://github.com/toptal/picasso/commit/f084dd34bd262db8efb00c7c9c8638eb284c2f1f) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- migrate styles of FormControlLabel to TailwindCSS
+
+- Updated dependencies [[`f084dd3`](https://github.com/toptal/picasso/commit/f084dd34bd262db8efb00c7c9c8638eb284c2f1f)]:
+  - @toptal/picasso-form@4.1.3
+
 ## 3.0.5
 
 ### Patch Changes
