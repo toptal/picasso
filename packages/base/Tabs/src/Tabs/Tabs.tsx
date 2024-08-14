@@ -1,9 +1,13 @@
-import type { ReactNode, ForwardedRef } from 'react'
-import React, { forwardRef, useMemo } from 'react'
-import { Tabs as MUITabs } from '@mui/base/Tabs'
-import { TabsList } from '@mui/base/TabsList'
+import type { ForwardedRef, ReactNode } from 'react'
+import React, { forwardRef } from 'react'
+import type { Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
+import { Tabs as MUITabs } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+
+import { TabScrollButton } from '../TabScrollButton'
+import styles from './styles'
+import useTabAction from './use-tab-action'
 
 export type TabsValueType = string | number | null
 
@@ -14,10 +18,7 @@ export interface Props<V extends TabsValueType> extends BaseProps {
   /** Callback fired when the value changes. */
   onChange?: (event: React.ChangeEvent<{}> | null, value: V) => void
 
-  /**
-   * The value of the currently selected Tab.
-   * If you don't want any selected Tab, you can set this property to null.
-   */
+  /** The value of the currently selected Tab. If you don't want any selected Tab, you can set this property to false. */
   value: V
 
   /** The tabs orientation (layout flow direction). */
@@ -27,108 +28,55 @@ export interface Props<V extends TabsValueType> extends BaseProps {
   variant?: 'scrollable' | 'fullWidth'
 }
 
-export const TabsContext = React.createContext<{
-  orientation: 'horizontal' | 'vertical'
-  variant: 'scrollable' | 'fullWidth'
-}>({ orientation: 'horizontal', variant: 'scrollable' })
+const useStyles = makeStyles<Theme>(styles, {
+  name: 'Tabs',
+})
 
-const indicatorClasses = [
-  'after:absolute',
-  'after:content-[""]',
-  'after:bottom-0',
-  'after:left-0',
-  'after:right-0',
-  'after:h-[1px]',
-  'after:bg-gray-500',
-  'after:z-0',
-]
+export const TabsOrientationContext = React.createContext<
+  'horizontal' | 'vertical'
+>('horizontal')
 
-const classesByOrientation = {
-  vertical: {
-    root: 'w-[200px] m-0 flex-col',
-    scroller: 'pl-2',
-  },
-  horizontal: {
-    root: '',
-    scroller: indicatorClasses,
-  },
-} as const
-
-const classesByVariant = {
-  scrollable: {
-    root: 'overflow-x-auto',
-    scroller: '',
-  },
-  fullWidth: {
-    root: '',
-    scroller: 'w-full overflow-hidden',
-  },
-} as const
-
-const Tabs = forwardRef(
+// eslint-disable-next-line react/display-name
+export const Tabs = forwardRef(
   <V extends TabsValueType = TabsValueType>(
-    {
+    props: Props<V>,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    const {
       children,
-      orientation = 'horizontal',
+      orientation,
       onChange,
       value,
       variant = 'scrollable',
-      className,
       ...rest
-    }: Props<V>,
-    ref: ForwardedRef<HTMLDivElement>
-  ) => {
-    const contextValue = useMemo(
-      () => ({
-        orientation,
-        variant,
-      }),
-      [orientation, variant]
-    )
-
-    const isVertical = orientation === 'vertical'
+    } = props
+    const classes = useStyles(props)
+    const action = useTabAction()
 
     return (
-      <TabsContext.Provider value={contextValue}>
+      <TabsOrientationContext.Provider value={orientation!}>
         <MUITabs
           {...rest}
-          slotProps={{
-            root: {
-              ref,
-              className: twMerge(
-                'relative min-h-0 flex overflow-hidden',
-                classesByOrientation[orientation].root,
-                classesByVariant[variant].root,
-                className
-              ),
-            },
-          }}
-          onChange={
-            onChange as (
-              event: React.ChangeEvent<{}> | null,
-              value: TabsValueType
-            ) => void
-          }
+          classes={{ root: classes[orientation!] }}
+          ref={ref}
+          onChange={onChange}
           value={value}
+          action={action}
+          scrollButtons='auto'
+          ScrollButtonComponent={TabScrollButton}
           orientation={orientation}
+          variant={variant}
         >
-          <div
-            className={twJoin(
-              classesByVariant[variant].scroller,
-              classesByOrientation[orientation].scroller,
-              'flex-auto inline-block relative whitespace-nowrap'
-            )}
-          >
-            <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
-              {children}
-            </TabsList>
-          </div>
+          {children}
         </MUITabs>
-      </TabsContext.Provider>
+      </TabsOrientationContext.Provider>
     )
   }
-) as <V extends TabsValueType = TabsValueType>(
-  props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
-) => ReturnType<typeof MUITabs>
+)
+
+Tabs.displayName = 'Tabs'
+Tabs.defaultProps = {
+  orientation: 'horizontal',
+}
 
 export default Tabs
