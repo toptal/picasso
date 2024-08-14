@@ -1,5 +1,15 @@
 # @toptal/picasso-outlined-input
 
+## 2.0.8
+
+### Patch Changes
+
+- [#4467](https://github.com/toptal/picasso/pull/4467) [`f86b1ce`](https://github.com/toptal/picasso/commit/f86b1ced3fa3b82ed75bc9417aa69c5a85e4b4de) Thanks [@mkrl](https://github.com/mkrl)!
+
+### OutlinedInput, TextArea and Select
+
+- fixed focus outline not visible when focused on DOM elements that are not `<input>`
+
 ## 2.0.7
 
 ### Patch Changes

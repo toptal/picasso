@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-outlined-input",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Toptal UI components library - OutlinedInput",
   "publishConfig": {
     "access": "public"
