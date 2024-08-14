@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 14.0.9
+
+### Patch Changes
+
+- [#4459](https://github.com/toptal/picasso/pull/4459) [`c4bc6d6`](https://github.com/toptal/picasso/commit/c4bc6d65542a4e16af43a21f2d261fd13b43774f) Thanks [@yvniTop](https://github.com/yvniTop)!
+- handle long string line break
+
 ## 14.0.8
 
 ### Patch Changes
