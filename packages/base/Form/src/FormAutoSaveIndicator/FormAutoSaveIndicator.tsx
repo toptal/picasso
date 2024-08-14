@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import debounce from 'debounce'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
 
-import styles from './styles'
+import { getStyles } from './styles'
 
 export interface Props {
   /** Indicates that form values are being saved */
@@ -17,15 +14,11 @@ export interface Props {
   label?: string
 }
 
-enum SavingState {
+export enum SavingState {
   Initial,
   Saving,
   Saved,
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAutoSaveIndicator',
-})
 
 const FormAutoSaveIndicator = ({
   saving,
@@ -35,7 +28,6 @@ const FormAutoSaveIndicator = ({
   const [savingState, setSavingState] = useState<SavingState>(
     SavingState.Initial
   )
-  const classes = useStyles()
 
   useEffect(() => {
     if (saving) {
@@ -60,12 +52,7 @@ const FormAutoSaveIndicator = ({
   }, [savingState, hideTimeout])
 
   return (
-    <Container
-      className={cx(classes.root, {
-        [classes.visible]: savingState === SavingState.Saved,
-      })}
-      align='right'
-    >
+    <Container className={getStyles({ savingState })} align='right'>
       <Typography size='xxsmall'>{label}</Typography>
     </Container>
   )
