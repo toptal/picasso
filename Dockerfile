@@ -47,6 +47,7 @@ COPY --chown=node:node packages/picasso-rich-text-editor/package.json ./packages
 COPY --chown=node:node packages/picasso-query-builder/package.json ./packages/picasso-query-builder/package.json
 COPY --chown=node:node packages/picasso-tailwind/package.json ./packages/picasso-tailwind/package.json
 COPY --chown=node:node packages/picasso-tailwind-merge/package.json ./packages/picasso-tailwind-merge/package.json
+COPY --chown=node:node packages/base-tailwind/package.json ./packages/base-tailwind/package.json
 COPY --chown=node:node packages/base/Accordion/package.json ./packages/base/Accordion/package.json
 COPY --chown=node:node packages/base/AccountSelect/package.json ./packages/base/AccountSelect/package.json
 COPY --chown=node:node packages/base/Alert/package.json ./packages/base/Alert/package.json
