@@ -1,6 +1,7 @@
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import type { ASTType } from './types'
 import useRichText from './hooks/useRichText'
@@ -24,7 +25,7 @@ export const RichText = ({
     <Container
       style={style}
       data-testid={dataTestId}
-      className={className}
+      className={twJoin('break-words', className)}
       gap='xsmall'
       flex
       direction='column'

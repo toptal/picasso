@@ -30,6 +30,10 @@ page
     title: 'AST from BE for normal view',
     takeScreenshot: false,
   })
+  .addExample('RichText/story/LongString.example.tsx', {
+    title: 'Handle long string line breaks',
+    delay: true,
+  })
   .addExample('RichText/story/HTML.example.tsx', {
     title: 'HTML from FE for live-editing preview',
     delay: true,
