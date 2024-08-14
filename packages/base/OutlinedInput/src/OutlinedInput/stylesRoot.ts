@@ -62,16 +62,10 @@ export const borderPseudoCoreClasses = [
 export const borderPseudoClassesByState = {
   borderColor: {
     dark: '',
-    default: [
-      'after:border-gray-400',
-      '[&:has(input:focus)]:after:border-blue-500',
-    ],
+    default: ['after:border-gray-400', '[&:has(:focus)]:after:border-blue-500'],
     disabled: 'after:border-gray-200',
-    error: [
-      'after:border-red-500',
-      '[&:has(input:focus)]:after:border-red-500',
-    ],
-    hoverWithoutFocus: 'hover:[&:not(:has(input:focus))]:after:border-gray-600',
+    error: ['after:border-red-500', '[&:has(:focus)]:after:border-red-500'],
+    hoverWithoutFocus: 'hover:[&:not(:has(:focus))]:after:border-gray-600',
   },
   border: {
     dark: 'after:border-none',
@@ -80,15 +74,15 @@ export const borderPseudoClassesByState = {
     error: '',
   },
   shadow: {
-    dark: '[&:has(input:focus)]:after:shadow-0',
+    dark: '[&:has(:focus)]:after:shadow-0',
     default: [
-      '[&:has(input:focus)]:after:shadow-[0_0_0_3px]',
-      '[&:has(input:focus)]:after:shadow-blue-500/[.48]',
+      '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
+      '[&:has(:focus)]:after:shadow-blue-500/[.48]',
     ],
     disabled: '',
     error: [
-      '[&:has(input:focus)]:after:shadow-[0_0_0_3px]',
-      '[&:has(input:focus)]:after:shadow-red-500/[.48]',
+      '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
+      '[&:has(:focus)]:after:shadow-red-500/[.48]',
     ],
   },
 }
