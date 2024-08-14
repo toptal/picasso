@@ -36,7 +36,6 @@ export const TabsOrientationContext = React.createContext<
   'horizontal' | 'vertical'
 >('horizontal')
 
-// eslint-disable-next-line react/display-name
 export const Tabs = forwardRef(
   <V extends TabsValueType = TabsValueType>(
     props: Props<V>,
@@ -72,11 +71,8 @@ export const Tabs = forwardRef(
       </TabsOrientationContext.Provider>
     )
   }
-)
-
-Tabs.displayName = 'Tabs'
-Tabs.defaultProps = {
-  orientation: 'horizontal',
-}
+) as <V extends TabsValueType = TabsValueType>(
+  props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof MUITabs>
 
 export default Tabs
