@@ -32,6 +32,11 @@ page
   )
   .addExample('Input/story/Disabled.example.tsx', 'Disabled', 'base/Input')
   .addExample('Input/story/Status.example.tsx', 'Status', 'base/Input')
+  .addExample(
+    'Input/story/StatusHorizontal.example.tsx',
+    'Status horizontal',
+    'base/Input'
+  )
   .addExample('Input/story/WithIcon.example.tsx', 'With icon', 'base/Input')
   .addExample('Input/story/Sizes.example.tsx', 'Sizes', 'base/Input')
   .addExample('Input/story/FullWidth.example.tsx', 'Full width', 'base/Input')
