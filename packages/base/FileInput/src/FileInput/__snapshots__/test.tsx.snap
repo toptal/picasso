@@ -6,7 +6,7 @@ exports[`FileInput can change label 1`] = `
     class="Picasso-root"
   >
     <div
-      class="FileInputContent-root"
+      class="max-w"
     >
       <button
         aria-disabled="false"
@@ -23,7 +23,7 @@ exports[`FileInput can change label 1`] = `
         </span>
       </button>
       <input
-        class="FileInputContent-nativeInput"
+        class="hidden"
         type="file"
       />
     </div>
@@ -37,7 +37,7 @@ exports[`FileInput renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="FileInputContent-root"
+      class="max-w"
     >
       <button
         aria-disabled="false"
@@ -54,7 +54,7 @@ exports[`FileInput renders 1`] = `
         </span>
       </button>
       <input
-        class="FileInputContent-nativeInput"
+        class="hidden"
         type="file"
       />
     </div>
