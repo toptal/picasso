@@ -25,6 +25,7 @@ import type {
   InputIconAdornmentProps,
 } from '@toptal/picasso-input-adornment'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
+import { useFieldsLayoutContext } from '@toptal/picasso-form'
 
 export interface Props
   extends BaseProps,
@@ -195,8 +196,11 @@ const MultilineAdornment = ({
   status,
   testIds,
 }: MultilineAdornmentProps) => {
+  const { layout } = useFieldsLayoutContext()
+  const isHorizontal = layout === 'horizontal'
+
   return (
-    <Container flex>
+    <Container flex className={isHorizontal ? '[grid-area:error]' : ''}>
       {showCounter && (
         <InputLimitAdornment
           testIds={testIds}
