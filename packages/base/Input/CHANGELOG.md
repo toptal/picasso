@@ -1,5 +1,12 @@
 # @toptal/picasso-input
 
+## 3.0.9
+
+### Patch Changes
+
+- [#4466](https://github.com/toptal/picasso/pull/4466) [`eb2193e`](https://github.com/toptal/picasso/commit/eb2193e4f2b5ba18c492403dd6db6504c21b0ae8) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- fix multiline adornment position for horizontal layout
+
 ## 3.0.8
 
 ### Patch Changes
