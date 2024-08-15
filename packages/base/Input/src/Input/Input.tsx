@@ -197,10 +197,12 @@ const MultilineAdornment = ({
   testIds,
 }: MultilineAdornmentProps) => {
   const { layout } = useFieldsLayoutContext()
-  const isHorizontal = layout === 'horizontal'
 
   return (
-    <Container flex className={isHorizontal ? '[grid-area:error]' : ''}>
+    <Container
+      flex
+      className={layout === 'horizontal' ? '[grid-area:error]' : ''}
+    >
       {showCounter && (
         <InputLimitAdornment
           testIds={testIds}
