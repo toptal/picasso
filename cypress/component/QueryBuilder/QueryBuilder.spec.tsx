@@ -4,7 +4,7 @@ import type {
   RuleGroupTypeAny,
   RuleType,
   ValidationResult,
-  type Field,
+  Field,
 } from '@toptal/picasso-query-builder'
 import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso-notification'
