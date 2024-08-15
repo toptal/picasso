@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import debounce from 'debounce'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
@@ -29,6 +29,8 @@ const FormAutoSaveIndicator = ({
     SavingState.Initial
   )
 
+  const classes = useMemo(() => getStyles({ savingState }), [savingState])
+
   useEffect(() => {
     if (saving) {
       setSavingState(SavingState.Saving)
@@ -52,7 +54,7 @@ const FormAutoSaveIndicator = ({
   }, [savingState, hideTimeout])
 
   return (
-    <Container className={getStyles({ savingState })} align='right'>
+    <Container className={classes} align='right'>
       <Typography size='xxsmall'>{label}</Typography>
     </Container>
   )
