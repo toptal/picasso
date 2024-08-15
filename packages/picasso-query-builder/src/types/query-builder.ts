@@ -85,6 +85,8 @@ export type ValueEditorValidationProps = {
 export type TestId = {
   addRuleButton?: string
   addGroupButton?: string
+  cloneGroupButton?: string
+  removeGroupButton?: string
   select?: string
   multiSelect?: string
   runQueryButton?: string

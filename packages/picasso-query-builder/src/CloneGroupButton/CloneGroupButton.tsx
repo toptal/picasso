@@ -6,6 +6,7 @@ export const CloneGroupButton = ({
   handleOnClick,
   className,
   disabled,
+  context: { testIds },
 }: ActionWithRulesProps) => {
   return (
     <Button
@@ -14,6 +15,7 @@ export const CloneGroupButton = ({
       size='small'
       variant='secondary'
       onClick={handleOnClick}
+      data-testid={testIds?.cloneGroupButton}
     >
       Duplicate
     </Button>
