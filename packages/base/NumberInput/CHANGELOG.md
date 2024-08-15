@@ -1,5 +1,12 @@
 # @toptal/picasso-number-input
 
+## 2.0.9
+
+### Patch Changes
+
+- [#4475](https://github.com/toptal/picasso/pull/4475) [`bdc1c4e`](https://github.com/toptal/picasso/commit/bdc1c4e077e6e041a45c5b7bc885e5efa0df278d) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- prevent the form from validation
+
 ## 2.0.8
 
 ### Patch Changes
