@@ -1,9 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import debounce from 'debounce'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
-
-import { getStyles } from './styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 export interface Props {
   /** Indicates that form values are being saved */
@@ -14,7 +13,7 @@ export interface Props {
   label?: string
 }
 
-export enum SavingState {
+enum SavingState {
   Initial,
   Saving,
   Saved,
@@ -28,8 +27,6 @@ const FormAutoSaveIndicator = ({
   const [savingState, setSavingState] = useState<SavingState>(
     SavingState.Initial
   )
-
-  const classes = useMemo(() => getStyles({ savingState }), [savingState])
 
   useEffect(() => {
     if (saving) {
@@ -54,7 +51,13 @@ const FormAutoSaveIndicator = ({
   }, [savingState, hideTimeout])
 
   return (
-    <Container className={classes} align='right'>
+    <Container
+      className={twJoin(
+        'mt-[0.25em] mb-[0.25em]',
+        savingState === SavingState.Saved ? 'visible' : 'invisible'
+      )}
+      align='right'
+    >
       <Typography size='xxsmall'>{label}</Typography>
     </Container>
   )
