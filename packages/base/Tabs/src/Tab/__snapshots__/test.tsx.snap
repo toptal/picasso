@@ -6,7 +6,7 @@ exports[`Tab Tab disabled tab 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root"
+      class="MuiTabs-root Tabs-horizontal"
     >
       <div
         class="MuiTabs-scrollable"
@@ -22,7 +22,7 @@ exports[`Tab Tab disabled tab 1`] = `
         >
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit Mui-disabled Mui-disabled"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit Mui-disabled Mui-disabled"
             disabled=""
             role="tab"
             tabindex="-1"
@@ -32,7 +32,7 @@ exports[`Tab Tab disabled tab 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab Label
               </div>
@@ -55,7 +55,7 @@ exports[`Tab Tab renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root"
+      class="MuiTabs-root Tabs-horizontal"
     >
       <div
         class="MuiTabs-scrollable"
@@ -71,7 +71,7 @@ exports[`Tab Tab renders 1`] = `
         >
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
             role="tab"
             tabindex="0"
             type="button"
@@ -80,7 +80,7 @@ exports[`Tab Tab renders 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab Label
               </div>
@@ -103,7 +103,7 @@ exports[`Tab Tab tab with icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root"
+      class="MuiTabs-root Tabs-horizontal"
     >
       <div
         class="MuiTabs-scrollable"
@@ -119,7 +119,7 @@ exports[`Tab Tab tab with icon 1`] = `
         >
           <button
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-labelIcon"
+            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit MuiTab-labelIcon"
             role="tab"
             tabindex="0"
             type="button"
@@ -131,7 +131,7 @@ exports[`Tab Tab tab with icon 1`] = `
                 id="Icon"
               />
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-sm text-inherit font-semibold"
               >
                 Tab Label
               </div>
