@@ -34,7 +34,7 @@ page
   .addExample('Input/story/Status.example.tsx', 'Status', 'base/Input')
   .addExample(
     'Input/story/StatusHorizontal.example.tsx',
-    'Status horizontal',
+    'Multiline status horizontal',
     'base/Input'
   )
   .addExample('Input/story/WithIcon.example.tsx', 'With icon', 'base/Input')
