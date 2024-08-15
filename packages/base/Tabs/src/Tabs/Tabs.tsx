@@ -43,7 +43,7 @@ export const Tabs = forwardRef(
   ) => {
     const {
       children,
-      orientation,
+      orientation = 'horizontal',
       onChange,
       value,
       variant = 'scrollable',
@@ -53,10 +53,10 @@ export const Tabs = forwardRef(
     const action = useTabAction()
 
     return (
-      <TabsOrientationContext.Provider value={orientation!}>
+      <TabsOrientationContext.Provider value={orientation}>
         <MUITabs
           {...rest}
-          classes={{ root: classes[orientation!] }}
+          classes={{ root: classes[orientation] }}
           ref={ref}
           onChange={onChange}
           value={value}
