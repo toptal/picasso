@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { RefObject } from 'react'
+import type { MouseEventHandler, RefObject } from 'react'
 import React from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { isBrowser } from '@toptal/picasso-shared'
@@ -84,7 +84,9 @@ export const NumberInputEndAdornment = (props: Props) => {
     }
   }
 
-  const handleUpClick = () => {
+  const handleUpClick: MouseEventHandler<HTMLButtonElement> = e => {
+    e.preventDefault()
+
     if (typeof value === 'undefined') {
       return
     }
@@ -103,7 +105,9 @@ export const NumberInputEndAdornment = (props: Props) => {
     }
   }
 
-  const handleDownClick = () => {
+  const handleDownClick: MouseEventHandler<HTMLButtonElement> = e => {
+    e.preventDefault()
+
     if (typeof value === 'undefined') {
       return
     }
