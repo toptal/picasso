@@ -229,9 +229,15 @@ describe('QueryBuilder', () => {
     })
   })
 
-  describe('when we add a new group', () => {
-    it('allows adding nested groups', () => {
+  describe('when we manipulate query builder groups', () => {
+    it('adds, clones and removes groups', () => {
       cy.mount(<QueryBuilderExample maxGroupDepth={4} />)
+
+      cy.getByTestId(testIds.addGroupButton).click()
+
+      cy.getByTestId(testIds.removeGroupButton).click()
+      getSubmitButton().click()
+      getGroupByDepth(1).should('not.exist')
 
       cy.getByTestId(testIds.addGroupButton).click()
 
@@ -243,30 +249,9 @@ describe('QueryBuilder', () => {
       getGroupByDepth(2).should('be.visible').and('exist')
       getGroupByDepth(3).should('be.visible').and('exist')
       getGroupByDepth(4).should('be.visible').and('exist')
-    })
-  })
-
-  describe('when we clone a group', () => {
-    it('creates cloned group', () => {
-      cy.mount(<QueryBuilderExample />)
-
-      cy.getByTestId(testIds.addGroupButton).click()
 
       cy.getByTestId(testIds.cloneGroupButton).click()
       getGroupByDepth(1).should('be.visible').and('exist')
-    })
-  })
-
-  describe('when we remove a group', () => {
-    it('removes a group', () => {
-      cy.mount(<QueryBuilderExample />)
-
-      cy.getByTestId(testIds.addGroupButton).click()
-
-      getGroupByDepth(1).should('be.visible').and('exist')
-      cy.getByTestId(testIds.removeGroupButton).click()
-      getSubmitButton().click()
-      getGroupByDepth(1).should('not.exist')
     })
   })
 })
