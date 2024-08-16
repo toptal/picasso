@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 4.0.0
+
+### Major Changes
+
+- [#4471](https://github.com/toptal/picasso/pull/4471) [`e5b6e64`](https://github.com/toptal/picasso/commit/e5b6e64fcb0e5e4d0e5fc45a46230cb706d0d13b) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- revert migration to mui/base
+
 ## 3.0.1
 
 ### Patch Changes
