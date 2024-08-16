@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import debounce from 'debounce'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+export const TEST_ID = 'form-auto-save-indicator'
 
 export interface Props {
   /** Indicates that form values are being saved */
@@ -23,10 +21,6 @@ enum SavingState {
   Saved,
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAutoSaveIndicator',
-})
-
 const FormAutoSaveIndicator = ({
   saving,
   label = 'Saved',
@@ -35,7 +29,6 @@ const FormAutoSaveIndicator = ({
   const [savingState, setSavingState] = useState<SavingState>(
     SavingState.Initial
   )
-  const classes = useStyles()
 
   useEffect(() => {
     if (saving) {
@@ -61,10 +54,12 @@ const FormAutoSaveIndicator = ({
 
   return (
     <Container
-      className={cx(classes.root, {
-        [classes.visible]: savingState === SavingState.Saved,
-      })}
+      className={twJoin(
+        'mt-[0.25em] mb-[0.25em]',
+        savingState === SavingState.Saved ? 'visible' : 'invisible'
+      )}
       align='right'
+      data-testid={TEST_ID}
     >
       <Typography size='xxsmall'>{label}</Typography>
     </Container>
