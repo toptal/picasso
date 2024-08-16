@@ -116,7 +116,7 @@ describe('Tabs', () => {
     const { getByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: 0,
+        value: 1,
         onChange,
       }
     )
