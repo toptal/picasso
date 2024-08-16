@@ -14,7 +14,7 @@ export const Note = forwardRef<HTMLDivElement, Props>(function Note(
     <div
       ref={ref}
       className={twMerge(
-        `rounded-md border border-gray-200 px-6 pt-6 pb-[28px] relative overflow-hidden bg-white
+        `rounded-md border border-solid border-gray-200 py-6 pr-6 pl-[28px] relative overflow-hidden bg-white
         before:content-[''] before:bg-yellow-500 before:block before:h-full before:absolute before:top-0 before:left-0 before:w-[4px]`,
         className
       )}
