@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 4.0.1
+
+### Patch Changes
+
+- [#4484](https://github.com/toptal/picasso/pull/4484) [`30f8a78`](https://github.com/toptal/picasso/commit/30f8a782c340b2148df2876b2cd7b927c6e09142) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix value type from `null` to `false` when empty
+
 ## 4.0.0
 
 ### Major Changes
