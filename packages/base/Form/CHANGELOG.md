@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 4.1.4
+
+### Patch Changes
+
+- [#4472](https://github.com/toptal/picasso/pull/4472) [`9f68a50`](https://github.com/toptal/picasso/commit/9f68a50c86112a8c491f0852a7da17e0db25128a) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate FormAutoSaveIndicator to TailwindCSS
+
 ## 4.1.3
 
 ### Patch Changes
