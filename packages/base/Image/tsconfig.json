@@ -2,9 +2,5 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
-  "references": [
-    { "path": "../../picasso-tailwind" },
-    { "path": "../../picasso-tailwind-merge" },
-    { "path": "../Utils" }
-  ]
+  "references": [{ "path": "../Utils" }]
 }
