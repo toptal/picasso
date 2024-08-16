@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormAutoSaveIndicator in initial state hides label 1`] = `
+<div
+  class="text-right mt-[0.25em] mb-[0.25em] invisible"
+  data-testid="form-auto-save-indicator"
+>
+  <p
+    class="m-0 text-2xs text-graphite font-regular"
+  >
+    Saved
+  </p>
+</div>
+`;
+
+exports[`FormAutoSaveIndicator when saved should show label 1`] = `
+<div
+  class="text-right mt-[0.25em] mb-[0.25em] visible"
+  data-testid="form-auto-save-indicator"
+>
+  <p
+    class="m-0 text-2xs text-graphite font-regular"
+  >
+    Saved
+  </p>
+</div>
+`;
+
+exports[`FormAutoSaveIndicator when saving hides label 1`] = `
+<div
+  class="text-right mt-[0.25em] mb-[0.25em] invisible"
+  data-testid="form-auto-save-indicator"
+>
+  <p
+    class="m-0 text-2xs text-graphite font-regular"
+  >
+    Saved
+  </p>
+</div>
+`;

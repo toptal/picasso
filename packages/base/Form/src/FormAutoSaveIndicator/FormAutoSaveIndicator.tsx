@@ -4,6 +4,8 @@ import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
+export const TEST_ID = 'form-auto-save-indicator'
+
 export interface Props {
   /** Indicates that form values are being saved */
   saving?: boolean
@@ -57,6 +59,7 @@ const FormAutoSaveIndicator = ({
         savingState === SavingState.Saved ? 'visible' : 'invisible'
       )}
       align='right'
+      data-testid={TEST_ID}
     >
       <Typography size='xxsmall'>{label}</Typography>
     </Container>
