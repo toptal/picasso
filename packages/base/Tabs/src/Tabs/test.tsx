@@ -60,7 +60,7 @@ describe('Tabs', () => {
     const { container, queryByTestId } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
       {
-        value: null,
+        value: false,
       }
     )
 
@@ -73,7 +73,7 @@ describe('Tabs', () => {
   it('renders in vertical orientation', () => {
     const { container } = renderTabs(
       [{ label: 'Tab 1' }, { label: 'Tab 2' }],
-      { value: null },
+      { value: false },
       'vertical'
     )
 
@@ -159,7 +159,7 @@ describe('Tabs', () => {
 
   it('renders in full width', () => {
     const { container } = renderTabs([{ label: 'Tab 1' }, { label: 'Tab 2' }], {
-      value: null,
+      value: false,
       variant: 'fullWidth',
     })
 
