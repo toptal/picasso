@@ -9,7 +9,7 @@ import { TabScrollButton } from '../TabScrollButton'
 import styles from './styles'
 import useTabAction from './use-tab-action'
 
-export type TabsValueType = string | number | null
+export type TabsValueType = string | number | false
 
 export interface Props<V extends TabsValueType> extends BaseProps {
   /** Tabs content containing Tab components */
