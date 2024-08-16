@@ -1,25 +1,25 @@
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps {
   children: React.ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles)
-
 export const Note = forwardRef<HTMLDivElement, Props>(function Note(
   { children, className, ...rest },
   ref
 ) {
-  const classes = useStyles()
-
   return (
-    <div ref={ref} className={cx(classes.root, className)} {...rest}>
+    <div
+      ref={ref}
+      className={twMerge(
+        `rounded-md border border-gray-200 px-6 pt-6 pb-[28px] relative overflow-hidden bg-white
+        before:content-[''] before:bg-yellow-500 before:block before:h-full before:absolute before:top-0 before:left-0 before:w-[4px]`,
+        className
+      )}
+      {...rest}
+    >
       {children}
     </div>
   )
