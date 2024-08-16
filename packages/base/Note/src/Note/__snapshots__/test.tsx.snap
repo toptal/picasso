@@ -6,10 +6,10 @@ exports[`Note renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="makeStyles-root"
+      class="rounded-md border border-gray px-6 pt-6 pb-[28px] relative overflow-hidden bg-white before:content-[''] before:bg-yellow before:block before:h-full before:absolute before:top-0 before:left-0 before:w-[4px]"
     >
       <div
-        class="makeStyles-root"
+        class="mb-1"
       >
         <h4
           class="m-0 text-md text-black font-semibold"
