@@ -6,7 +6,7 @@ exports[`Note renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="rounded-md border border-gray px-6 pt-6 pb-[28px] relative overflow-hidden bg-white before:content-[''] before:bg-yellow before:block before:h-full before:absolute before:top-0 before:left-0 before:w-[4px]"
+      class="rounded-md border border-solid border-gray py-6 pr-6 pl-[28px] relative overflow-hidden bg-white before:content-[''] before:bg-yellow before:block before:h-full before:absolute before:top-0 before:left-0 before:w-[4px]"
     >
       <div
         class="mb-1"
