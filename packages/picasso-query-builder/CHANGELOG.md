@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 7.1.0
+
+### Minor Changes
+
+- [#4478](https://github.com/toptal/picasso/pull/4478) [`b412331`](https://github.com/toptal/picasso/commit/b41233118ade8bbecacf35e0cbc41d2d6ddd85bd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- add testids for clone and remove Query builder groups
+
 ## 7.0.12
 
 ### Patch Changes
