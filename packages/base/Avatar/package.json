@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-avatar",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Toptal UI components library - Avatar",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-container": "2.0.0",
     "@toptal/picasso-icons": "1.6.0",
-    "@toptal/picasso-image": "1.0.3",
+    "@toptal/picasso-image": "2.0.0",
     "@toptal/picasso-logo": "1.0.9",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "3.0.0",

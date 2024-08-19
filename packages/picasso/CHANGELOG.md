@@ -1,5 +1,29 @@
 # Change Log
 
+## 48.1.13
+
+### Patch Changes
+
+- [#4483](https://github.com/toptal/picasso/pull/4483) [`13863c9`](https://github.com/toptal/picasso/commit/13863c98aa0b73e202b0b46f6bdedbfb9de66177) Thanks [@mkrl](https://github.com/mkrl)!
+
+### Image
+
+- migrated to Tailwind CSS
+- added `@toptal/picasso-tailwind` as a peer dependency to `@toptal/picasso-image`
+- Updated dependencies [[`13863c9`](https://github.com/toptal/picasso/commit/13863c98aa0b73e202b0b46f6bdedbfb9de66177)]:
+  - @toptal/picasso-image@2.0.0
+  - @toptal/picasso-avatar@5.0.2
+  - @toptal/picasso-avatar-upload@2.0.11
+  - @toptal/picasso-menu@2.0.2
+  - @toptal/picasso-page@3.0.12
+  - @toptal/picasso-user-badge@3.0.2
+  - @toptal/picasso-account-select@2.0.2
+  - @toptal/picasso-autocomplete@2.0.12
+  - @toptal/picasso-select@2.0.12
+  - @toptal/picasso-tabs@4.0.2
+  - @toptal/picasso-tagselector@2.0.12
+  - @toptal/picasso-date-select@1.0.43
+
 ## 48.1.12
 
 ### Patch Changes
