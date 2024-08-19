@@ -1,5 +1,47 @@
 # Change Log
 
+## 48.1.12
+
+### Patch Changes
+
+- [#4479](https://github.com/toptal/picasso/pull/4479) [`4a32b80`](https://github.com/toptal/picasso/commit/4a32b80b6d2bb269e71f3cfeea170790e5671576) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- migrate Note to TailwindCSS, the packages `@toptal/picasso-tailwind-merge` now need to be provided from the host project, and tailwind needs to be configured for compiling `@toptal/picasso-note` using `@toptal/picasso-tailwind` configuration
+
+- Updated dependencies [[`4a32b80`](https://github.com/toptal/picasso/commit/4a32b80b6d2bb269e71f3cfeea170790e5671576), [`db535c5`](https://github.com/toptal/picasso/commit/db535c53cc437ca71edeec55480a8c2be11fbd70)]:
+  - @toptal/picasso-note@3.0.0
+  - @toptal/picasso-checkbox@3.0.8
+  - @toptal/picasso-button@3.0.9
+  - @toptal/picasso-accordion@2.0.9
+  - @toptal/picasso-alert@3.0.9
+  - @toptal/picasso-application-update-notification@2.0.9
+  - @toptal/picasso-calendar@3.0.8
+  - @toptal/picasso-carousel@3.0.8
+  - @toptal/picasso-drawer@3.0.9
+  - @toptal/picasso-file-input@2.0.10
+  - @toptal/picasso-helpbox@4.0.9
+  - @toptal/picasso-modal@3.0.9
+  - @toptal/picasso-notification@3.0.9
+  - @toptal/picasso-outlined-input@2.0.10
+  - @toptal/picasso-page@3.0.11
+  - @toptal/picasso-pagination@3.0.9
+  - @toptal/picasso-password-input@3.0.10
+  - @toptal/picasso-prompt-modal@2.0.9
+  - @toptal/picasso-section@4.0.9
+  - @toptal/picasso-show-more@1.0.34
+  - @toptal/picasso-skeleton-loader@1.0.34
+  - @toptal/picasso-table@2.0.9
+  - @toptal/picasso-tree-view@3.0.9
+  - @toptal/picasso-date-picker@2.0.13
+  - @toptal/picasso-dropzone@3.0.11
+  - @toptal/picasso-autocomplete@2.0.11
+  - @toptal/picasso-avatar-upload@2.0.10
+  - @toptal/picasso-input@3.0.11
+  - @toptal/picasso-number-input@2.0.11
+  - @toptal/picasso-select@2.0.11
+  - @toptal/picasso-tagselector@2.0.11
+  - @toptal/picasso-timepicker@2.0.11
+  - @toptal/picasso-date-select@1.0.42
+
 ## 48.1.11
 
 ### Patch Changes

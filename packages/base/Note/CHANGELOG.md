@@ -1,5 +1,12 @@
 # @toptal/picasso-note
 
+## 3.0.0
+
+### Major Changes
+
+- [#4479](https://github.com/toptal/picasso/pull/4479) [`4a32b80`](https://github.com/toptal/picasso/commit/4a32b80b6d2bb269e71f3cfeea170790e5671576) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+- migrate Note to TailwindCSS, the packages `@toptal/picasso-tailwind-merge` now need to be provided from the host project, and tailwind needs to be configured for compiling `@toptal/picasso-note` using `@toptal/picasso-tailwind` configuration
+
 ## 2.0.0
 
 ### Major Changes

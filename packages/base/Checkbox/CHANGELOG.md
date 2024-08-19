@@ -1,5 +1,12 @@
 # @toptal/picasso-checkbox
 
+## 3.0.8
+
+### Patch Changes
+
+- [#4486](https://github.com/toptal/picasso/pull/4486) [`db535c5`](https://github.com/toptal/picasso/commit/db535c53cc437ca71edeec55480a8c2be11fbd70) Thanks [@sashuk](https://github.com/sashuk)!
+- fix the child selector
+
 ## 3.0.7
 
 ### Patch Changes
