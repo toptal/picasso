@@ -1,11 +1,7 @@
 import type { ImgHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type VariantType = 'rectangle' | 'circular'
 
@@ -20,8 +16,6 @@ export interface Props extends BaseProps, ImgHTMLAttributes<HTMLImageElement> {
   variant?: VariantType
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoImage' })
-
 export const Image = forwardRef<HTMLImageElement, Props>(function Image(
   props,
   ref
@@ -35,7 +29,6 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
     style,
     ...rest
   } = props
-  const classes = useStyles()
 
   return (
     <img
@@ -44,11 +37,9 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
       src={src}
       srcSet={srcSet}
       alt={alt}
-      className={cx(
-        {
-          [classes.circular]: variant === 'circular',
-        },
-        classes.root,
+      className={twMerge(
+        variant === 'circular' && 'rounded-full',
+        'block',
         className
       )}
       style={style}
