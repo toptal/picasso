@@ -41,7 +41,7 @@ const CheckboxGroup = (props: Props) => {
         {children.map((child, index) => (
           <Grid.Item
             key={index}
-            className='leading-none pt-0 pb-0 [&>.picasso-checkbox]:mb-[0.5em]'
+            className='leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]'
             xs={xs}
             sm={sm}
             md={md}
