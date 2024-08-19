@@ -58,8 +58,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
         root: {
           className: twMerge(
             `inline-flex flex-shrink-0 content-middle flex-nowrap justify-normal 
-            text-[10px] font-semibold leading-3 align-middle text-graphite-700 
-            top-0 right-0`,
+            text-[10px] font-semibold leading-3 align-middle text-graphite-700`,
             hasChildren ? 'relative' : 'static',
             className
           ),
