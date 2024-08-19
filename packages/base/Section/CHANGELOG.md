@@ -1,5 +1,12 @@
 # @toptal/picasso-section
 
+## 4.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@3.0.9
+
 ## 4.0.8
 
 ### Patch Changes
