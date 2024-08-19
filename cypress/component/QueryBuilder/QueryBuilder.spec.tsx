@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { QueryBuilder, type Field } from '@toptal/picasso-query-builder'
+import { QueryBuilder } from '@toptal/picasso-query-builder'
 import type {
   RuleGroupTypeAny,
   RuleType,
   ValidationResult,
+  Field,
 } from '@toptal/picasso-query-builder'
 import { Container } from '@toptal/picasso'
 import { useNotifications } from '@toptal/picasso-notification'
@@ -56,6 +57,8 @@ const testIds = {
   runQueryButton: 'run-query-button',
   addRuleButton: 'add-rule-button',
   addGroupButton: 'add-group-button',
+  cloneGroupButton: 'clone-group-button',
+  removeGroupButton: 'remove-group-button',
   controls: 'query-builder-controls',
   valueEditor: 'value-editor',
   fieldSelector: 'field-selector',
@@ -99,6 +102,9 @@ const getGroupByDepth = (depth: number) =>
 
 const getAddGroupButtonByDepth = (depth: number) =>
   getGroupByDepth(depth).find('.rule-group-add-group')
+
+const getSubmitButton = () =>
+  cy.get('button').contains('Confirm').closest('button')
 
 describe('QueryBuilder', () => {
   describe('when the query builder is ready to be submitted', () => {
@@ -220,6 +226,38 @@ describe('QueryBuilder', () => {
         component,
         variant: 'max-depth/pre-defined',
       })
+    })
+  })
+
+  describe('when we manipulate query builder groups', () => {
+    it('adds, clones and removes groups', () => {
+      cy.mount(<QueryBuilderExample />)
+
+      cy.getByTestId(testIds.addGroupButton).click()
+
+      cy.getByTestId(testIds.removeGroupButton).click()
+      getSubmitButton().click()
+      getGroupByDepth(1).should('not.exist')
+
+      cy.getByTestId(testIds.addGroupButton).click()
+
+      cy.getByTestId(testIds.cloneGroupButton).click()
+      getGroupByDepth(1).should('be.visible').and('exist')
+    })
+
+    it('adds groups on 4 levels', () => {
+      cy.mount(<QueryBuilderExample maxGroupDepth={4} />)
+
+      cy.getByTestId(testIds.addGroupButton).click()
+
+      getAddGroupButtonByDepth(1).click()
+      getAddGroupButtonByDepth(2).click()
+      getAddGroupButtonByDepth(3).click()
+
+      getGroupByDepth(1).should('be.visible').and('exist')
+      getGroupByDepth(2).should('be.visible').and('exist')
+      getGroupByDepth(3).should('be.visible').and('exist')
+      getGroupByDepth(4).should('be.visible').and('exist')
     })
   })
 })
