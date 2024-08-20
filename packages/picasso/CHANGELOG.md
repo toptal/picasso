@@ -1,5 +1,12 @@
 # Change Log
 
+## 48.1.14
+
+### Patch Changes
+
+- Updated dependencies [[`a7ce3ac`](https://github.com/toptal/picasso/commit/a7ce3ac077d50bd8a14e7acb1acf23d3e10124c9)]:
+  - @toptal/picasso-quote@2.0.1
+
 ## 48.1.13
 
 ### Patch Changes
