@@ -301,9 +301,8 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     return (
       <div
         className={twMerge(
-          'relative w-[18.75rem]',
-          rootClassByWidth[width],
-          layout === 'horizontal' && 'w-full',
+          'relative',
+          layout === 'horizontal' ? 'w-full' : rootClassByWidth[width],
           className
         )}
         style={style}
