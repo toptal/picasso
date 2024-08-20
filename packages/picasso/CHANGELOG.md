@@ -1,5 +1,49 @@
 # Change Log
 
+## 48.1.15
+
+### Patch Changes
+
+- [#4490](https://github.com/toptal/picasso/pull/4490) [`7b64f21`](https://github.com/toptal/picasso/commit/7b64f21273b039a5f0652edf4bb1abecba2b5eff) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- migrate `@toptal/picasso-overview-block` to tailwind CSS
+
+- Updated dependencies [[`a5d61c8`](https://github.com/toptal/picasso/commit/a5d61c8f5295a669e480a5baadced66cfe80b711), [`7b64f21`](https://github.com/toptal/picasso/commit/7b64f21273b039a5f0652edf4bb1abecba2b5eff)]:
+  - @toptal/picasso-badge@2.0.1
+  - @toptal/picasso-tabs@4.0.3
+  - @toptal/picasso-checkbox@3.0.9
+  - @toptal/picasso-overview-block@3.0.0
+  - @toptal/picasso-page@3.0.13
+  - @toptal/picasso-button@3.0.10
+  - @toptal/picasso-accordion@2.0.10
+  - @toptal/picasso-alert@3.0.10
+  - @toptal/picasso-application-update-notification@2.0.10
+  - @toptal/picasso-calendar@3.0.9
+  - @toptal/picasso-carousel@3.0.9
+  - @toptal/picasso-drawer@3.0.10
+  - @toptal/picasso-file-input@2.0.11
+  - @toptal/picasso-helpbox@4.0.10
+  - @toptal/picasso-modal@3.0.10
+  - @toptal/picasso-notification@3.0.10
+  - @toptal/picasso-outlined-input@2.0.11
+  - @toptal/picasso-pagination@3.0.10
+  - @toptal/picasso-password-input@3.0.11
+  - @toptal/picasso-prompt-modal@2.0.10
+  - @toptal/picasso-section@4.0.10
+  - @toptal/picasso-show-more@1.0.35
+  - @toptal/picasso-skeleton-loader@1.0.35
+  - @toptal/picasso-table@2.0.10
+  - @toptal/picasso-tree-view@3.0.10
+  - @toptal/picasso-date-picker@2.0.14
+  - @toptal/picasso-dropzone@3.0.12
+  - @toptal/picasso-autocomplete@2.0.13
+  - @toptal/picasso-avatar-upload@2.0.12
+  - @toptal/picasso-input@3.0.12
+  - @toptal/picasso-number-input@2.0.12
+  - @toptal/picasso-select@2.0.13
+  - @toptal/picasso-tagselector@2.0.13
+  - @toptal/picasso-timepicker@2.0.12
+  - @toptal/picasso-date-select@1.0.44
+
 ## 48.1.14
 
 ### Patch Changes
