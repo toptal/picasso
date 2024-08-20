@@ -4,4 +4,4 @@
 ---
 
 - migrate to TailwindCSS, material-ui@4 is no longer required for this package
-- make [@toptal](https://github.com/toptal)/picasso-tailwind-merge a peer dependency
+- make @toptal/picasso-tailwind-merge a peer dependency
