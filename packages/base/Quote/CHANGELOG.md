@@ -1,5 +1,12 @@
 # @toptal/picasso-quote
 
+## 2.0.1
+
+### Patch Changes
+
+- [#4492](https://github.com/toptal/picasso/pull/4492) [`a7ce3ac`](https://github.com/toptal/picasso/commit/a7ce3ac077d50bd8a14e7acb1acf23d3e10124c9) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- migrate Quote to TailwindCSS
+
 ## 2.0.0
 
 ### Major Changes
