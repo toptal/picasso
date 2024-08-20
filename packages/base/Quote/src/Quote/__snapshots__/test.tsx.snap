@@ -12,7 +12,7 @@ exports[`Quote renders 1`] = `
         class="mr-4"
       >
         <svg
-          class="PicassoQuoteMark-root"
+          class="fill-blue"
           height="24"
           viewBox="0 0 30 24"
           width="30"
