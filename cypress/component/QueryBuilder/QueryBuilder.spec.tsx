@@ -56,6 +56,8 @@ const initialQuery = {
 const testIds = {
   runQueryButton: 'run-query-button',
   addRuleButton: 'add-rule-button',
+  cloneRuleButton: 'clone-rule-button',
+  removeRuleButton: 'remove-rule-button',
   addGroupButton: 'add-group-button',
   cloneGroupButton: 'clone-group-button',
   removeGroupButton: 'remove-group-button',
@@ -100,8 +102,17 @@ const QueryBuilderExample = ({ maxGroupDepth }: ExampleProps) => {
 const getGroupByDepth = (depth: number) =>
   cy.get(`.rule-group[data-level=${depth}]`)
 
+const getRuleByPath = (path: number[]) =>
+  cy.get(`[data-testid=rule][data-path="[${path.join(',')}]"]`)
+
+const getRuleValueEditorByPath = (path: number[]) =>
+  getRuleByPath(path).find(`[data-testid=${testIds.valueEditor}]`)
+
 const getAddGroupButtonByDepth = (depth: number) =>
   getGroupByDepth(depth).find('.rule-group-add-group')
+
+const getAddRuleButtonByDepth = (depth: number) =>
+  getGroupByDepth(depth).find(`[data-testid=${testIds.addRuleButton}]`)
 
 const getSubmitButton = () =>
   cy.get('button').contains('Confirm').closest('button')
@@ -258,6 +269,44 @@ describe('QueryBuilder', () => {
       getGroupByDepth(2).should('be.visible').and('exist')
       getGroupByDepth(3).should('be.visible').and('exist')
       getGroupByDepth(4).should('be.visible').and('exist')
+    })
+  })
+
+  describe('adds, clones and removes rules', () => {
+    it('adds, clones and removes rules', () => {
+      cy.mount(<QueryBuilderExample />)
+
+      cy.getByTestId(testIds.addRuleButton).click()
+
+      getRuleByPath([0]).should('be.visible')
+
+      getRuleValueEditorByPath([0]).type('firstname')
+
+      cy.getByTestId(testIds.cloneRuleButton).click()
+
+      getRuleByPath([1]).should('be.visible')
+
+      getRuleValueEditorByPath([1]).should('have.value', 'firstname')
+
+      cy.getByTestId(testIds.removeRuleButton).eq(1).click()
+
+      getRuleByPath([1]).should('not.exist')
+    })
+
+    it('adds rules on 2 levels', () => {
+      cy.mount(<QueryBuilderExample />)
+
+      cy.getByTestId(testIds.addRuleButton).click()
+
+      getRuleByPath([0]).should('be.visible')
+
+      cy.getByTestId(testIds.addGroupButton).click()
+
+      getRuleByPath([1, 0]).should('be.visible')
+
+      getAddRuleButtonByDepth(1).click()
+
+      getRuleByPath([1, 1]).should('be.visible')
     })
   })
 })
