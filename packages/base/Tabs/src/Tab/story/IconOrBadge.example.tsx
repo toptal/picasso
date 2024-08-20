@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Tabs, Tooltip } from '@toptal/picasso'
+import { Container, Tabs, Tooltip, Badge } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
 import { Exclamation16 } from '@toptal/picasso-icons'
 
@@ -24,16 +24,7 @@ const Example = () => {
           }
         />
         <Tabs.Tab label='Label' />
-        <Tabs.Tab
-          label='Label'
-          icon={
-            <Tooltip content='Some content...' placement='top'>
-              <span>
-                <Exclamation16 color='red' />
-              </span>
-            </Tooltip>
-          }
-        />
+        <Tabs.Tab label='Label' icon={<Badge content={10} variant='white' />} />
       </Tabs>
 
       {value === 0 && (

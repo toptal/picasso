@@ -20,7 +20,11 @@ const chapter = PicassoBook.connectToPage(page => {
       'Using custom value',
       'base/Tabs'
     )
-    .addExample('Tab/story/Icon.example.tsx', 'With Icon', 'base/Tabs')
+    .addExample(
+      'Tab/story/IconOrBadge.example.tsx',
+      'With Icon or Badge',
+      'base/Tabs'
+    )
 })
 
 export default {
