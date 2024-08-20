@@ -112,6 +112,7 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
         style={labelStyle}
         ref={ref as React.ForwardedRef<HTMLLabelElement>}
         classes={{
+          root: 'text-[1rem]',
           label: twJoin(
             'max-w-[calc(100%_-_1.5em_+_1px)]',
             'ml-[0.5em]',
