@@ -34,7 +34,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
               class="box-border flex w-full flex-col flex-wrap items-start justify-start mt-0 mb-0"
             >
               <div
-                class="box-border m-0 leading-none pt-0 pb-0 [&>.picasso-checkbox]:mb-[0.5em]"
+                class="box-border m-0 leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
               >
                 <label
                   class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer picasso-checkbox"
@@ -74,7 +74,7 @@ exports[`Form.Checkbox default render for checkboxes in a group 1`] = `
                 </label>
               </div>
               <div
-                class="box-border m-0 leading-none pt-0 pb-0 [&>.picasso-checkbox]:mb-[0.5em]"
+                class="box-border m-0 leading-none pt-0 pb-0 [&_.picasso-checkbox]:mb-[0.5em]"
               >
                 <label
                   class="inline-flex items-center max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer picasso-checkbox"

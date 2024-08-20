@@ -1,5 +1,19 @@
 # @toptal/picasso-avatar-upload
 
+## 2.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-avatar@5.0.2
+
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@2.0.10
+
 ## 2.0.9
 
 ### Patch Changes

@@ -7,7 +7,7 @@ import { useModal } from '@toptal/picasso-utils'
 export const RemoveGroupButton = ({
   className,
   disabled,
-  context: { removeGroup } = {},
+  context: { removeGroup, testIds } = {},
   path,
 }: ActionWithRulesProps) => {
   const { showModal, hideModal, isOpen } = useModal()
@@ -20,6 +20,7 @@ export const RemoveGroupButton = ({
         onClick={showModal}
         className={className}
         disabled={disabled}
+        data-testid={testIds?.removeGroupButton}
       >
         Remove
       </Button>
