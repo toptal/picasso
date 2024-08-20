@@ -10,7 +10,7 @@ import { useTitleCase } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { toTitleCase, isString } from '@toptal/picasso-utils'
-import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { Alignment, BlockWidth } from '../OverviewBlockGroup/settings'
 import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
@@ -102,14 +102,13 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
       {...rest}
       ref={ref}
       className={twMerge(
-        twJoin(
-          isClickable ? 'cursor-pointer outline-none hover:bg-blue-100' : '',
-          !isClickable ? 'outline-none' : '',
-          getAlignmentClassnames(align),
-          getBlockWidthClassnames(blockWidth),
-          'flex flex-col bg-white m-0 min-w-[9.375rem] border-none no-underline',
-          '[&:not(:first-child)]:border-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-solid [&:not(:first-child)]:border-gray-400'
-        ),
+        isClickable
+          ? 'cursor-pointer outline-none hover:bg-blue-100'
+          : 'outline-none',
+        getAlignmentClassnames(align),
+        getBlockWidthClassnames(blockWidth),
+        'flex flex-col bg-white m-0 min-w-[9.375rem] border-none no-underline',
+        '[&:not(:first-child)]:border-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-solid [&:not(:first-child)]:border-gray-400',
         className
       )}
       onClick={onClick}

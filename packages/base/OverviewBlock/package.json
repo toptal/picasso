@@ -26,8 +26,7 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "3.0.0",
     "@toptal/picasso-utils": "1.0.3",
-    "ap-style-title-case": "^1.1.2",
-    "classnames": "^2.5.1"
+    "ap-style-title-case": "^1.1.2"
   },
   "sideEffects": false,
   "peerDependencies": {
