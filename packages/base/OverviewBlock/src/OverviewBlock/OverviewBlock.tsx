@@ -1,8 +1,5 @@
 import type { ElementType, HTMLAttributes, MouseEvent, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type {
   OverridableComponent,
   ColorType,
@@ -13,9 +10,10 @@ import { useTitleCase } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { toTitleCase, isString } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
+import type { Alignment, BlockWidth } from '../OverviewBlockGroup/settings'
 import { useOverviewBlockGroupContext } from '../OverviewBlockGroup/OverviewBlockGroupContext'
-import styles from './styles'
 
 type VariantColorType = Extract<ColorType, 'red' | 'green' | 'yellow'>
 
@@ -41,9 +39,26 @@ export type Props = BaseProps &
     onClick?: (event: MouseEvent) => void
   }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoOverviewBlock',
-})
+const getAlignmentClassnames = (alignment: Alignment) => {
+  switch (alignment) {
+    case 'center':
+      return 'items-center'
+    case 'default':
+    default:
+      return 'items-start'
+  }
+}
+
+const getBlockWidthClassnames = (blockWidth: BlockWidth) => {
+  switch (blockWidth) {
+    case 'narrow':
+      return 'p-3 px-4'
+    case 'regular':
+      return 'p-3 px-6'
+    case 'wide':
+      return 'p-3 px-8'
+  }
+}
 
 export const OverviewBlock: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
@@ -59,7 +74,7 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
     titleCase: propsTitleCase,
     ...rest
   } = props
-  const classes = useStyles()
+
   const { align, blockWidth } = useOverviewBlockGroupContext()
 
   const color: ColorSchema = {
@@ -86,12 +101,14 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
     <Component
       {...rest}
       ref={ref}
-      className={cx(
-        { [classes.clickable]: isClickable },
-        { [classes.disableOutline]: !isClickable },
-        classes[`${align}Align`],
-        classes[`${blockWidth}Width`],
-        classes.root,
+      className={twMerge(
+        isClickable
+          ? 'cursor-pointer outline-none hover:bg-blue-100'
+          : 'outline-none',
+        getAlignmentClassnames(align),
+        getBlockWidthClassnames(blockWidth),
+        'flex flex-col bg-white m-0 min-w-[9.375rem] border-none no-underline',
+        '[&:not(:first-child)]:border-0 [&:not(:first-child)]:border-l [&:not(:first-child)]:border-solid [&:not(:first-child)]:border-gray-400',
         className
       )}
       onClick={onClick}
