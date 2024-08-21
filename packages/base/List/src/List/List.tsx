@@ -1,27 +1,12 @@
-import type { ReactNode } from 'react'
 import React from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { ListItem } from '../ListItem'
 import type { Props as ListItemProps } from '../ListItem'
-import styles from './styles'
-import type { ListItemType } from './context'
 import { ListContextProvider, useListContext } from './context'
-
-export type Props = BaseProps & {
-  children: ReactNode
-  /** The variant to use */
-  variant: 'ordered' | 'unordered'
-  /** Specifies the start value of the first list item in an ordered list */
-  start?: number
-  /** Style for items bullet/ordinal, can be overridden on a item level */
-  styleType?: ListItemType
-}
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoList' })
+import { listStyleTypeClass, getPaddingClasses } from './styles'
+import type { ListItemType } from './context'
+import type { Props } from './types'
 
 const Tags = {
   unordered: 'ul',
@@ -56,7 +41,6 @@ const getDefaultType = (
 }
 
 export const List = (props: Props) => {
-  const classes = useStyles()
   const {
     variant,
     children,
@@ -86,13 +70,10 @@ export const List = (props: Props) => {
   return (
     <ListTag
       start={start !== 1 ? start : undefined}
-      className={cx(
-        classes.root,
-        classes[variant],
-        classes[styleType ?? getDefaultType(variant, level) ?? ''],
-        {
-          [classes.firstLevel]: level === 0,
-        },
+      className={twMerge(
+        'text-[0.875rem] text-black mt-1',
+        listStyleTypeClass[styleType ?? getDefaultType(variant, level) ?? ''],
+        getPaddingClasses({ variant, level }),
         className
       )}
       data-testid={testId}
