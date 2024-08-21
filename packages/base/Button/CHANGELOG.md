@@ -1,5 +1,12 @@
 # @toptal/picasso-button
 
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`a5d61c8`](https://github.com/toptal/picasso/commit/a5d61c8f5295a669e480a5baadced66cfe80b711)]:
+  - @toptal/picasso-checkbox@3.0.9
+
 ## 3.0.9
 
 ### Patch Changes

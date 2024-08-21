@@ -1,5 +1,12 @@
 # @toptal/picasso-overview-block
 
+## 3.0.0
+
+### Major Changes
+
+- [#4490](https://github.com/toptal/picasso/pull/4490) [`7b64f21`](https://github.com/toptal/picasso/commit/7b64f21273b039a5f0652edf4bb1abecba2b5eff) Thanks [@dmaklygin](https://github.com/dmaklygin)!
+- add `@toptal/picasso-tailwind` as a peer dependency to `@toptal/picasso-overview-block`
+
 ## 2.0.0
 
 ### Major Changes

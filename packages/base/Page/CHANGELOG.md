@@ -1,5 +1,16 @@
 # @toptal/picasso-page
 
+## 3.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`a5d61c8`](https://github.com/toptal/picasso/commit/a5d61c8f5295a669e480a5baadced66cfe80b711)]:
+  - @toptal/picasso-badge@2.0.1
+  - @toptal/picasso-button@3.0.10
+  - @toptal/picasso-accordion@2.0.10
+  - @toptal/picasso-notification@3.0.10
+  - @toptal/picasso-autocomplete@2.0.13
+
 ## 3.0.12
 
 ### Patch Changes
