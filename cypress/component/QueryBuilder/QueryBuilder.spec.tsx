@@ -272,7 +272,7 @@ describe('QueryBuilder', () => {
     })
   })
 
-  describe('adds, clones and removes rules', () => {
+  describe('when we manipulate query builder rules', () => {
     it('adds, clones and removes rules', () => {
       cy.mount(<QueryBuilderExample />)
 
