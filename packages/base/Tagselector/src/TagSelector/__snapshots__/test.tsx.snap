@@ -8,7 +8,7 @@ exports[`TagSelector disabled render 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+      class="relative w-[18.75rem]"
       role="combobox"
     >
       <div
@@ -76,7 +76,7 @@ exports[`TagSelector preselected value 1`] = `
       <div
         aria-expanded="false"
         aria-haspopup="listbox"
-        class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+        class="relative w-[18.75rem]"
         role="combobox"
       >
         <div
@@ -142,7 +142,7 @@ exports[`TagSelector renders 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+      class="relative w-[18.75rem]"
       role="combobox"
     >
       <div

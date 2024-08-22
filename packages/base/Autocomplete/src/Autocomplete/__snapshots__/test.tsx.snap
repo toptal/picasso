@@ -232,7 +232,7 @@ exports[`Autocomplete static behavior renders 1`] = `
     <div
       aria-expanded="false"
       aria-haspopup="listbox"
-      class="PicassoAutocomplete-root PicassoAutocomplete-rootAuto"
+      class="relative w-[18.75rem]"
       role="combobox"
     >
       <div
