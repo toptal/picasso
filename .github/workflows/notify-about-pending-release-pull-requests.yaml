@@ -29,7 +29,6 @@ jobs:
         workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
         service_account: ${{ secrets.SA_IDENTITY_POOL }}
         secrets_name: |-
-          NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
           SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
           TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
 
@@ -61,16 +60,16 @@ jobs:
           //const fourHoursInMilliseconds = 4 * 60 * 60 * 1000
           const fourHoursInMilliseconds = 0
 
-          // Find a PR with the title "Version Packages" that has been open for more than 4 hours
+          // Find a PR with the title "Version Packages" that has been open long enough
           const now = new Date()
           const targetPR = prs.find(pr => pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > fourHoursInMilliseconds)
 
           if (targetPR) {
-            // If there is at least one pull request, set
+            // If there is at least one stale pull request, require notification
             core.setOutput('notification_is_needed', 'true')
           }
     
-    - name: Send a Slack notification if an old "Version Packages" PR is found
+    - name: Send a Slack notification
       if: ${{ steps.find-pull-requests.outputs.notification_is_needed == 'true' }}
       uses: slackapi/slack-github-action@v1.26.0
       env:
