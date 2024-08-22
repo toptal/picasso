@@ -78,4 +78,4 @@ jobs:
       with:
         channel-id: "-frontend-exp-team-notifications"
         # TODO: add ":x: <!here>" before merge
-        slack-message: "There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|broken>, review and merge it."
+        slack-message: "There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|Picasso>, review and merge it."
