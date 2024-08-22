@@ -34,7 +34,7 @@ exports[`PageTopBarMenu renders 1`] = `
               class="items-center flex"
             >
               <h4
-                class="m-0 text-md text-white font-semibold inline"
+                class="m-0 text-md text-white font-semibold inline !font-[400] PicassoTopBarMenu-truncateText"
               >
                 Jacqueline Roque
               </h4>

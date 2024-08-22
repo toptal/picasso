@@ -51,16 +51,19 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     children,
     className,
     style,
-    // Avoid passing external classes inside the rest props
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    classes: externalClasses,
+    classes,
     ...rest
   } = props
 
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
-    <Avatar name={name} size={size} src={avatar as string} />
+    <Avatar
+      name={name}
+      size={size}
+      src={avatar as string}
+      className={classes?.avatar}
+    />
   )
 
   // if 'auto' then center if children are null
@@ -81,7 +84,13 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
   const userName = renderName ? (
     renderName(name, invert)
   ) : (
-    <Typography inline variant='heading' size='small' invert={invert}>
+    <Typography
+      inline
+      variant='heading'
+      size='small'
+      invert={invert}
+      className={classes?.name}
+    >
       {name}
     </Typography>
   )
