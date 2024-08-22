@@ -11,10 +11,6 @@ import type {
   Ref,
 } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import capitalize from '@material-ui/core/utils/capitalize'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { isForwardRef } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
@@ -32,13 +28,14 @@ import type { InputProps } from '@toptal/picasso-input'
 import { MenuItem } from '@toptal/picasso-menu'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import PoweredByGoogle from './PoweredByGoogle'
 import NoOptionsMenuItem from './NoOptionsMenuItem'
 import OtherOptionMenuItem from './OtherOptionMenuItem'
 import type { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
-import styles from './styles'
+import { rootClassByWidth } from './styles'
 
 export interface Props
   extends BaseProps,
@@ -136,10 +133,6 @@ export interface Props
   highlight?: 'autofill'
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoAutocomplete',
-})
-
 const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
@@ -206,8 +199,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
     })
 
-    const classes = useStyles()
-
     const getKey = (item: Item) => {
       if (customGetKey) {
         return customGetKey(item)
@@ -256,8 +247,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
         fixedFooter={
-          optionsLength > 0 &&
-          poweredByGoogle && <PoweredByGoogle classes={classes} />
+          optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />
         }
       >
         {options?.map((option, index) => (
@@ -310,13 +300,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     return (
       <div
-        className={cx(
-          classes.root,
-          className,
-          classes[`root${capitalize(width)}` as 'rootAuto'],
-          {
-            [classes.horizontalLayout]: layout === 'horizontal',
-          }
+        className={twMerge(
+          'relative',
+          layout === 'horizontal' ? 'w-full' : rootClassByWidth[width],
+          className
         )}
         style={style}
         role='combobox'

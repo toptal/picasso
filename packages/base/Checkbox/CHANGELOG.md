@@ -1,5 +1,14 @@
 # @toptal/picasso-checkbox
 
+## 3.0.9
+
+### Patch Changes
+
+- [#4489](https://github.com/toptal/picasso/pull/4489) [`a5d61c8`](https://github.com/toptal/picasso/commit/a5d61c8f5295a669e480a5baadced66cfe80b711) Thanks [@sashuk](https://github.com/sashuk)!
+- fix styles in Badge component
+  - add "badge in tab" case to Tabs storybook stories
+  - fix font size for Checkbox root
+
 ## 3.0.8
 
 ### Patch Changes
