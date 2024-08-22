@@ -12,7 +12,7 @@ exports[`PageTopBarMenu renders 1`] = `
         class="PicassoDropdown-anchor"
       >
         <div
-          class="items-center flex PicassoUserBadge-root"
+          class="items-center flex text-lg"
         >
           <div
             class="flex relative"
@@ -22,19 +22,19 @@ exports[`PageTopBarMenu renders 1`] = `
             >
               <img
                 alt="Jacqueline Roque"
-                class="block object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize PicassoUserBadge-avatar"
+                class="block object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize"
                 src="./jacqueline-with-flowers-1954-square.jpg"
               />
             </div>
           </div>
           <div
-            class="flex flex-col PicassoUserBadge-infoContainer"
+            class="flex flex-col min-w ml-[0.75em]"
           >
             <div
               class="items-center flex"
             >
               <h4
-                class="m-0 text-md text-white font-semibold inline PicassoUserBadge-name !font-[400] PicassoTopBarMenu-truncateText"
+                class="m-0 text-md text-white font-semibold inline"
               >
                 Jacqueline Roque
               </h4>

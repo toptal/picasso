@@ -1,15 +1,11 @@
 /* eslint-disable complexity */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { StandardProps, SizeType } from '@toptal/picasso-shared'
 import { Avatar } from '@toptal/picasso-avatar'
 import { Typography } from '@toptal/picasso-typography'
 import { Container } from '@toptal/picasso-container'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type AlignmentType = boolean | 'auto'
 
@@ -39,10 +35,6 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'PicassoUserBadge',
-})
-
 export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
   props,
   ref
@@ -64,17 +56,11 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     classes: externalClasses,
     ...rest
   } = props
-  const classes = useStyles(props)
 
   const UserBadgeAvatar = React.isValidElement(avatar) ? (
     avatar
   ) : (
-    <Avatar
-      className={classes.avatar}
-      name={name}
-      size={size}
-      src={avatar as string}
-    />
+    <Avatar name={name} size={size} src={avatar as string} />
   )
 
   // if 'auto' then center if children are null
@@ -95,13 +81,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
   const userName = renderName ? (
     renderName(name, invert)
   ) : (
-    <Typography
-      className={classes.name}
-      inline
-      variant='heading'
-      size='small'
-      invert={invert}
-    >
+    <Typography inline variant='heading' size='small' invert={invert}>
       {name}
     </Typography>
   )
@@ -112,11 +92,11 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
       ref={ref}
       flex
       alignItems={alignItems}
-      className={cx(classes.root, className)}
+      className={twMerge('text-lg', className)}
       style={style}
     >
       {UserBadgeAvatar}
-      <Container flex direction='column' className={classes.infoContainer}>
+      <Container flex direction='column' className='min-w-0 ml-[0.75em]'>
         <Container flex alignItems='center'>
           {userName}
           {userTitle}

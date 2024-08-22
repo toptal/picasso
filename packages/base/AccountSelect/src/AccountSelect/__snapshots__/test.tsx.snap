@@ -32,7 +32,7 @@ exports[`AccountSelect renders 1`] = `
                   class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="items-start flex PicassoUserBadge-root"
+                    class="items-start flex text-lg"
                   >
                     <div
                       class="flex relative"
@@ -41,7 +41,7 @@ exports[`AccountSelect renders 1`] = `
                         class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
                       >
                         <div
-                          class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+                          class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
                         >
                           <p
                             class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -52,13 +52,13 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="flex flex-col PicassoUserBadge-infoContainer"
+                      class="flex flex-col min-w ml-[0.75em]"
                     >
                       <div
                         class="items-center flex"
                       >
                         <h4
-                          class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+                          class="m-0 text-md text-black font-semibold inline"
                         >
                           Phil Leif 1
                         </h4>
@@ -108,7 +108,7 @@ exports[`AccountSelect renders 1`] = `
                   class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="items-start flex PicassoUserBadge-root"
+                    class="items-start flex text-lg"
                   >
                     <div
                       class="flex relative"
@@ -117,7 +117,7 @@ exports[`AccountSelect renders 1`] = `
                         class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
                       >
                         <div
-                          class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+                          class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
                         >
                           <p
                             class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -128,13 +128,13 @@ exports[`AccountSelect renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="flex flex-col PicassoUserBadge-infoContainer"
+                      class="flex flex-col min-w ml-[0.75em]"
                     >
                       <div
                         class="items-center flex"
                       >
                         <h4
-                          class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+                          class="m-0 text-md text-black font-semibold inline"
                         >
                           Phil Leif 2
                         </h4>
@@ -184,7 +184,7 @@ exports[`AccountSelect renders 1`] = `
                   class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="items-start flex PicassoUserBadge-root"
+                    class="items-start flex text-lg"
                   >
                     <div
                       class="flex relative"
@@ -194,19 +194,19 @@ exports[`AccountSelect renders 1`] = `
                       >
                         <img
                           alt="Phil Leif 3"
-                          class="block object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize PicassoUserBadge-avatar"
+                          class="block object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize"
                           src="./jacqueline-with-flowers-1954-square.jpg"
                         />
                       </div>
                     </div>
                     <div
-                      class="flex flex-col PicassoUserBadge-infoContainer"
+                      class="flex flex-col min-w ml-[0.75em]"
                     >
                       <div
                         class="items-center flex"
                       >
                         <h4
-                          class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+                          class="m-0 text-md text-black font-semibold inline"
                         >
                           Phil Leif 3
                         </h4>
