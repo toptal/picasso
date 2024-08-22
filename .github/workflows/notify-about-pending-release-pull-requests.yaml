@@ -57,19 +57,14 @@ jobs:
             state: 'open',
           })
 
-          const now = new Date()
-
           // TODO: revert before merge
           //const fourHoursInMilliseconds = 4 * 60 * 60 * 1000
           const fourHoursInMilliseconds = 0
 
           // Find a PR with the title "Version Packages" that has been open for more than 4 hours
-          const targetPR = prs.find(pr => {
-            console.log('@@@ 1', pr.title, pr.created_at, (now - new Date(pr.created_at)))
-            return pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > fourHoursInMilliseconds
-          })
+          const now = new Date()
+          const targetPR = prs.find(pr => pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > fourHoursInMilliseconds)
 
-          console.log('@@@ 2', targetPR)
           if (targetPR) {
             // If there is at least one pull request, set
             core.setOutput('notification_is_needed', 'true')
@@ -82,5 +77,5 @@ jobs:
         SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       with:
         channel-id: "-frontend-exp-team-notifications"
-        slack-message: "TESTING, PLEASE IGNORE: There is stale Version Packages pull request in <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>, review and merge it."
-        #  slack-message: ":x: <!here> There is stale Version Packages pull request in <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>, review and merge it."
+        # TODO: add ":x: <!here>" before merge
+        slack-message: "There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|broken>, review and merge it."
