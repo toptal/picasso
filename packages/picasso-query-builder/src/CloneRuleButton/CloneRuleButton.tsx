@@ -13,7 +13,7 @@ export const CloneRuleButton = ({
     <ButtonCircular
       variant='flat'
       icon={<Copy16 />}
-      data-testid={testIds.cloneRuleButton}
+      data-testid={testIds?.cloneRuleButton}
       onClick={handleOnClick}
       className={className}
       disabled={disabled}
