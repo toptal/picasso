@@ -6,7 +6,7 @@ on:
     branches:
       - FX-NULL-add-version-packages-pull-request-reminder
   schedule:
-    - cron: '0 9-18/3 * * 1-5' # Runs every 3 hours during from Monday to Friday and only during work hours (e.g., 9 AM to 6 PM)
+    - cron: '0 9-18/3 * * 1-5' # Runs every 3 hours during work hours (e.g., 9 AM to 6 PM) from Monday to Friday
   workflow_dispatch:
 
 jobs:
