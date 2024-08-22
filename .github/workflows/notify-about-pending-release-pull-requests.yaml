@@ -65,11 +65,11 @@ jobs:
 
           // Find a PR with the title "Version Packages" that has been open for more than 4 hours
           const targetPR = prs.find(pr => {
-            console.log('@@@', pr.title, pr.created_at)
+            console.log('@@@ 1', pr.title, pr.created_at, (now - new Date(pr.created_at)))
             return pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > fourHoursInMilliseconds
           })
 
-          console.log('@@@', now, prs, targetPR)
+          console.log('@@@ 2', targetPR)
           if (targetPR) {
             // If there is at least one pull request, set
             core.setOutput('notification_is_needed', 'true')
