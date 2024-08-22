@@ -13,7 +13,7 @@ import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
 import { noop } from '@toptal/picasso-utils'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import useContentClasses from './use-content-classes'
 
@@ -251,7 +251,12 @@ export const Dropdown: DropdownProps = forwardRef<
   }
 
   return (
-    <div {...rest} ref={ref} className={className} style={style}>
+    <div
+      {...rest}
+      ref={ref}
+      className={twMerge('flex items-center', className)}
+      style={style}
+    >
       <div
         className='inline-flex items-center cursor-pointer'
         onClick={handleAnchorClick}
