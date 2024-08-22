@@ -1,5 +1,13 @@
 # @toptal/picasso-autocomplete
 
+## 3.0.0
+
+### Major Changes
+
+- [#4491](https://github.com/toptal/picasso/pull/4491) [`b9aee47`](https://github.com/toptal/picasso/commit/b9aee476b9422d19543ec25ee3f4a5280d616b03) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+  - make @toptal/picasso-tailwind-merge a peer dependency
+
 ## 2.0.13
 
 ### Patch Changes
