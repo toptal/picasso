@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`b9aee47`](https://github.com/toptal/picasso/commit/b9aee476b9422d19543ec25ee3f4a5280d616b03)]:
+  - @toptal/picasso-autocomplete@3.0.0
+
 ## 3.0.13
 
 ### Patch Changes

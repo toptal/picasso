@@ -1,5 +1,13 @@
 # @toptal/picasso-pagination
 
+## 3.0.11
+
+### Patch Changes
+
+- [#4496](https://github.com/toptal/picasso/pull/4496) [`1c2648f`](https://github.com/toptal/picasso/commit/1c2648f330b40d85f277eea0a7956dd5b727991c) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate Pagination to TailwindCSS
+  - remove peer dependency on `@material-ui/core`
+
 ## 3.0.10
 
 ### Patch Changes

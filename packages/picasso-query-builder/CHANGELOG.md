@@ -1,5 +1,17 @@
 # @toptal/picasso-query-builder
 
+## 7.2.0
+
+### Minor Changes
+
+- [#4495](https://github.com/toptal/picasso/pull/4495) [`b7400db`](https://github.com/toptal/picasso/commit/b7400dba11baa869ec1b6801931aa77b4dbeabd5) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- add test ids for remove and group rules buttons
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-tagselector@2.0.14
+
 ## 7.1.2
 
 ### Patch Changes
