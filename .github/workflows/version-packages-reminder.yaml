@@ -1,0 +1,108 @@
+name: Check if major Version Updates pull request are ignored
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch: # Allows you to trigger the workflow manually
+
+jobs:
+  check-version-update-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: GSM Secrets
+      id: secrets_manager
+      uses: toptal/davinci-github-actions/gsm-secrets@v15.3.1
+      with:
+        workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+        service_account: ${{ secrets.SA_IDENTITY_POOL }}
+        secrets_name: |-
+          DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
+          GCR_ACCOUNT_KEY:toptal-ci/GCR_ACCOUNT_KEY
+          NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
+          SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
+          TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
+          TOPTAL_BUILD_BOT_TOKEN:toptal-ci/TOPTAL_BUILD_BOT_TOKEN
+          TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
+          TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+          TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
+          TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
+          TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN
+          TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
+
+    - name: Parse secrets
+      id: parse_secrets
+      uses: toptal/davinci-github-actions/expose-json-outputs@v15.3.1
+      with:
+        json: ${{ steps.secrets_manager.outputs.secrets }}
+
+    - name: Set ENV Variables
+      shell: bash
+      run: |-
+        echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
+        echo "SLACK_BOT_TOKEN=${{ steps.parse_secrets.outputs.SLACK_BOT_TOKEN }}" >> $GITHUB_ENV
+        echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
+        echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+        echo 'GCR_ACCOUNT_KEY<<EOF' >> $GITHUB_ENV
+        echo '${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}' >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+        echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+        echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
+        echo '${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_SSH_KEY }}' >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+
+    - name: List open pull requests
+      uses: actions/github-script@v6
+      id: list-prs
+      with:
+        script: |
+          const prs = await github.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+          });
+          return prs.data;
+
+    - name: Check if "Version Updates" PR is older than 4 hours
+      id: check-pr
+      run: |
+        now=$(date +%s)
+        for pr in $(echo "${{ steps.list-prs.outputs.result }}" | jq -r '.[] | @base64'); do
+          _jq() {
+            echo ${pr} | base64 --decode | jq -r ${1}
+          }
+
+          pr_title=$(_jq '.title')
+          pr_created_at=$(_jq '.created_at')
+          pr_url=$(_jq '.html_url')
+
+          # Convert PR creation time to seconds since epoch
+          pr_created_seconds=$(date --date="$pr_created_at" +%s)
+
+          # Calculate the age of the PR in seconds
+          age_seconds=$((now - pr_created_seconds))
+
+          # Check if the PR title is "Version Updates" and if it's older than 4 hours (14400 seconds)
+          if [[ "$pr_title" == "Version Updates" && "$age_seconds" -gt 14400 ]]; then
+            echo "::set-output name=pr_url::$pr_url"
+            echo "Found an old 'Version Updates' PR: $pr_url"
+            exit 1
+          fi
+        done
+
+        echo "No old 'Version Updates' PR found."
+        exit 0
+    
+    - name: Send a Slack notification if an old "Version Updates" PR is found
+      if: ${{ failure() }}
+      uses: slackapi/slack-github-action@v1.26.0
+      env:
+        SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+        FALLBACK_URL: ${{ steps.check-pr.outputs.pr_url }}
+      with:
+        channel-id: "-frontend-exp-team-notifications"
+        slack-message: "TESTING, PLEASE IGNORE There is stale Version Packages pull request in <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>, review and merge it."
+        #  slack-message: ":x: <!here> There is stale Version Packages pull request in <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>, review and merge it."
