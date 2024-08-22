@@ -6,10 +6,10 @@ exports[`PageTopBarMenu renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoDropdown-root"
+      class="flex items-center"
     >
       <div
-        class="PicassoDropdown-anchor"
+        class="inline-flex items-center cursor-pointer"
       >
         <div
           class="items-center flex PicassoUserBadge-root"
