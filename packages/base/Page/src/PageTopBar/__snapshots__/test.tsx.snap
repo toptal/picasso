@@ -21,7 +21,7 @@ exports[`Page.TopBar render with custom logo 1`] = `
               class="gap-4 items-center flex"
             >
               <div
-                class="flex items-center PageHamburger-root PageHamburger-hidden"
+                class="PageHamburger-root PageHamburger-hidden"
               >
                 <div
                   class="inline-flex items-center cursor-pointer"
@@ -120,7 +120,7 @@ exports[`Page.TopBar render with link 1`] = `
               class="gap-4 items-center flex"
             >
               <div
-                class="flex items-center PageHamburger-root PageHamburger-hidden"
+                class="PageHamburger-root PageHamburger-hidden"
               >
                 <div
                   class="inline-flex items-center cursor-pointer"
@@ -245,7 +245,7 @@ exports[`Page.TopBar renders 1`] = `
               class="gap-4 items-center flex"
             >
               <div
-                class="flex items-center PageHamburger-root PageHamburger-hidden"
+                class="PageHamburger-root PageHamburger-hidden"
               >
                 <div
                   class="inline-flex items-center cursor-pointer"

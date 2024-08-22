@@ -35,7 +35,7 @@ exports[`ButtonSplit default render 1`] = `
         </span>
       </button>
       <div
-        class="items-center block cursor-pointer"
+        class="block cursor-pointer"
       >
         <div
           class="inline-flex items-center cursor-pointer"

@@ -6,7 +6,7 @@ exports[`PageTopBarMenu renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="flex items-center"
+      class=""
     >
       <div
         class="inline-flex items-center cursor-pointer"

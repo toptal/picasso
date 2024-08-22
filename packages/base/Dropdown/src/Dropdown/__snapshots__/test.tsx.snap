@@ -5,9 +5,7 @@ exports[`Dropdown renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
-      class="flex items-center"
-    >
+    <div>
       <div
         class="inline-flex items-center cursor-pointer"
       >
@@ -36,9 +34,7 @@ exports[`Dropdown should render menu 1`] = `
     <div
       class="Picasso-root"
     >
-      <div
-        class="flex items-center"
-      >
+      <div>
         <div
           class="inline-flex items-center cursor-pointer"
         >
@@ -165,9 +161,7 @@ exports[`Dropdown should render menu with focus 1`] = `
       <div
         class=""
       >
-        <div
-          class="flex items-center"
-        >
+        <div>
           <div
             class="inline-flex items-center cursor-pointer"
           >
