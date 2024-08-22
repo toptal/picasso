@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { ListItem } from '../ListItem'
@@ -67,15 +67,21 @@ export const List = (props: Props) => {
 
   const ListTag = Tags[variant]
 
-  return (
-    <ListTag
-      start={start !== 1 ? start : undefined}
-      className={twMerge(
+  const classes = useMemo(
+    () =>
+      twMerge(
         'text-[0.875rem] text-black mt-1',
         listStyleTypeClass[styleType ?? getDefaultType(variant, level) ?? ''],
         getPaddingClasses({ variant, level }),
         className
-      )}
+      ),
+    [variant, styleType, level, className]
+  )
+
+  return (
+    <ListTag
+      start={start !== 1 ? start : undefined}
+      className={classes}
       data-testid={testId}
     >
       <ListContextProvider styleType={styleType}>

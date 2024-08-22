@@ -55,7 +55,6 @@ export const ListItem = (props: Props) => {
   return (
     <li
       className={twJoin(
-        'focus-visible:bg-unset',
         icon != null && 'list-none -ml-[1.375rem]',
         type != null && listStyleTypeClass[type]
       )}

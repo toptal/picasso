@@ -1,5 +1,6 @@
 ---
 '@toptal/picasso-list': major
+'@toptal/picasso': patch
 ---
 
 - migrate `List` and `ListItem` to TailwindCSS

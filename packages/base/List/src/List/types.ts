@@ -8,7 +8,7 @@ export type Variant = 'ordered' | 'unordered'
 export type Props = BaseProps & {
   children: ReactNode
   /** The variant to use */
-  variant: 'ordered' | 'unordered'
+  variant: Variant
   /** Specifies the start value of the first list item in an ordered list */
   start?: number
   /** Style for items bullet/ordinal, can be overridden on a item level */
