@@ -19,7 +19,7 @@ Describe the changes and motivations for the pull request.
 ### Development checks
 
 - [ ] Add changeset according to [guidelines](https://github.com/toptal/picasso/blob/master/docs/contribution/changeset-guidelines.md) (if needed)
-- [ ] Double check if `picasso-tailwind-merge` requires major update
+- [ ] Double check if `picasso-tailwind-merge` requires major update (check its `README.md`)
 - [ ] Read [CONTRIBUTING.md](https://github.com/toptal/picasso/blob/master/CONTRIBUTING.md) and [Component API principles](https://github.com/toptal/picasso/blob/master/docs/contribution/component-api.md)
 - [ ] Make sure that additions and changes on the design follow [Toptal's BASE design](https://design.toptal.net/), and it's been already discussed with designers at #-base-core
 - [ ] Annotate all `props` in component with documentation
