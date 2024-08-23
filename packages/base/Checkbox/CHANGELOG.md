@@ -1,5 +1,19 @@
 # @toptal/picasso-checkbox
 
+## 4.0.0
+
+### Major Changes
+
+- [#4500](https://github.com/toptal/picasso/pull/4500) [`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- update version of `@toptal/picasso-tailwind-merge` peer dependency
+
+### Patch Changes
+
+- Updated dependencies [[`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f)]:
+  - @toptal/picasso-container@3.0.0
+  - @toptal/picasso-form@5.0.0
+  - @toptal/picasso-grid@5.0.0
+
 ## 3.0.9
 
 ### Patch Changes

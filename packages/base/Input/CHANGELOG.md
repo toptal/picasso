@@ -1,5 +1,15 @@
 # @toptal/picasso-input
 
+## 3.0.13
+
+### Patch Changes
+
+- Updated dependencies [[`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f)]:
+  - @toptal/picasso-container@3.0.0
+  - @toptal/picasso-form@5.0.0
+  - @toptal/picasso-input-adornment@3.0.0
+  - @toptal/picasso-outlined-input@3.0.0
+
 ## 3.0.12
 
 ### Patch Changes
