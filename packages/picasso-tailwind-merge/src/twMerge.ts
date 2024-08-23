@@ -14,7 +14,7 @@ export const PICASSO_TW_FONT_SIZES = [
   'text-button-large',
 ]
 
-export const twMerge = extendTailwindMerge({
+export const CONFIG = {
   extend: {
     classGroups: {
       'font-size': [...PICASSO_TW_FONT_SIZES, 'font-inherit-size'],
@@ -30,6 +30,8 @@ export const twMerge = extendTailwindMerge({
       ],
     },
   },
-})
+}
+
+export const twMerge = extendTailwindMerge(CONFIG)
 
 export { twJoin }

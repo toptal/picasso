@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`twMerge Config was not changed 1`] = `
+Object {
+  "extend": Object {
+    "classGroups": Object {
+      "font-size": Array [
+        "text-2xs",
+        "text-xxs",
+        "text-sm",
+        "text-md",
+        "text-lg",
+        "text-xl",
+        "text-2xl",
+        "text-xxl",
+        "text-button-small",
+        "text-button-medium",
+        "text-button-large",
+        "font-inherit-size",
+      ],
+      "font-weight": Array [
+        "font-regular",
+        "font-semibold",
+        "font-inherit-weight",
+      ],
+      "text-alignment": Array [
+        "text-align-inherit",
+        "text-left",
+        "text-center",
+        "text-right",
+        "text-justify",
+        "text-start",
+        "text-end",
+      ],
+    },
+  },
+}
+`;
