@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-badge",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Toptal UI components library - Badge",
   "publishConfig": {
     "access": "public"
@@ -31,14 +31,14 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@toptal/picasso-tailwind-merge": "^1.0.1",
+    "@toptal/picasso-tailwind-merge": "^2.0.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "1.2.0",
+    "@toptal/picasso-tailwind-merge": "2.0.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [

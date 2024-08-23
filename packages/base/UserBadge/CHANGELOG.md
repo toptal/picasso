@@ -1,5 +1,23 @@
 # @toptal/picasso-user-badge
 
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f), [`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f)]:
+  - @toptal/picasso-avatar@6.0.0
+  - @toptal/picasso-container@3.0.0
+  - @toptal/picasso-typography@4.0.0
+  - @toptal/picasso-tailwind-merge@2.0.0
+
+## 4.0.0
+
+### Major Changes
+
+- [#4501](https://github.com/toptal/picasso/pull/4501) [`fb36465`](https://github.com/toptal/picasso/commit/fb3646581c0be1ded3754978d73e8443514a968d) Thanks [@sashuk](https://github.com/sashuk)!
+- migrate to TailwindCSS
+  - update peer dependencies
+
 ## 3.0.2
 
 ### Patch Changes

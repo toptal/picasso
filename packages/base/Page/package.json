@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-page",
-  "version": "3.0.13",
+  "version": "4.0.0",
   "description": "Toptal UI components library - Page",
   "publishConfig": {
     "access": "public"
@@ -22,22 +22,22 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-accordion": "2.0.10",
-    "@toptal/picasso-autocomplete": "2.0.13",
-    "@toptal/picasso-avatar": "5.0.2",
-    "@toptal/picasso-badge": "2.0.1",
-    "@toptal/picasso-button": "3.0.10",
-    "@toptal/picasso-container": "2.0.0",
-    "@toptal/picasso-dropdown": "3.0.0",
+    "@toptal/picasso-accordion": "2.0.11",
+    "@toptal/picasso-autocomplete": "4.0.0",
+    "@toptal/picasso-avatar": "6.0.0",
+    "@toptal/picasso-badge": "3.0.0",
+    "@toptal/picasso-button": "4.0.0",
+    "@toptal/picasso-container": "3.0.0",
+    "@toptal/picasso-dropdown": "4.0.0",
     "@toptal/picasso-icons": "1.6.0",
     "@toptal/picasso-logo": "1.0.9",
-    "@toptal/picasso-menu": "2.0.2",
-    "@toptal/picasso-notification": "3.0.10",
+    "@toptal/picasso-menu": "3.0.0",
+    "@toptal/picasso-notification": "4.0.0",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-tag": "3.0.1",
-    "@toptal/picasso-tooltip": "1.1.4",
-    "@toptal/picasso-typography": "3.0.0",
-    "@toptal/picasso-user-badge": "3.0.2",
+    "@toptal/picasso-tag": "4.0.0",
+    "@toptal/picasso-tooltip": "1.1.5",
+    "@toptal/picasso-typography": "4.0.0",
+    "@toptal/picasso-user-badge": "5.0.0",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },
@@ -46,7 +46,7 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@toptal/picasso-tailwind-merge": "^1.0.1",
+    "@toptal/picasso-tailwind-merge": "^2.0.0",
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
     "react-dom": "^18.2.0",
@@ -54,7 +54,7 @@
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "1.2.0",
+    "@toptal/picasso-tailwind-merge": "2.0.0",
     "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1",
     "react-dom": "^18.2.0",

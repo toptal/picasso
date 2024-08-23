@@ -4,6 +4,7 @@
   "include": ["src"],
   "references": [
     { "path": "../../picasso-tailwind" },
+    { "path": "../../picasso-tailwind-merge" },
     { "path": "../Avatar" },
     { "path": "../Container" },
     { "path": "../Typography" },

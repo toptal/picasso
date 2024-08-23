@@ -1,5 +1,12 @@
 # @toptal/picasso-tailwind-merge
 
+## 2.0.0
+
+### Major Changes
+
+- [#4500](https://github.com/toptal/picasso/pull/4500) [`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- this update should have been performed previously but was inadvertently missed
+
 ## 1.2.0
 
 ### Minor Changes

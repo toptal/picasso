@@ -1,5 +1,27 @@
 # @toptal/picasso-pagination
 
+## 4.0.0
+
+### Major Changes
+
+- [#4500](https://github.com/toptal/picasso/pull/4500) [`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- update version of `@toptal/picasso-tailwind-merge` peer dependency
+
+### Patch Changes
+
+- Updated dependencies [[`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f)]:
+  - @toptal/picasso-button@4.0.0
+  - @toptal/picasso-container@3.0.0
+  - @toptal/picasso-typography@4.0.0
+
+## 3.0.11
+
+### Patch Changes
+
+- [#4496](https://github.com/toptal/picasso/pull/4496) [`1c2648f`](https://github.com/toptal/picasso/commit/1c2648f330b40d85f277eea0a7956dd5b727991c) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate Pagination to TailwindCSS
+  - remove peer dependency on `@material-ui/core`
+
 ## 3.0.10
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import * as picassoTailwindConfig from '@toptal/picasso-tailwind'
 
-import { PICASSO_TW_FONT_SIZES, twMerge } from './twMerge'
+import { CONFIG, PICASSO_TW_FONT_SIZES, twMerge } from './twMerge'
 
 describe('twMerge', () => {
   it('merges font size classes correctly', () => {
@@ -16,6 +16,14 @@ describe('twMerge', () => {
           key => `text-${key}`
         )
       )
+    })
+  })
+
+  describe('Config', () => {
+    // This test should detect if the config was changed to
+    // help identify cases when major update is needed
+    it('was not changed', () => {
+      expect(CONFIG).toMatchSnapshot()
     })
   })
 })

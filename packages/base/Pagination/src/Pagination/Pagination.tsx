@@ -1,20 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef, useMemo } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Button } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 
 import { getRange, ELLIPSIS } from './utils'
-import styles from './styles'
 import { PaginationButton } from '../PaginationButton'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPagination',
-})
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
@@ -44,7 +37,6 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     variant,
     ...rest
   } = props
-  const classes = useStyles()
 
   const pages = useMemo(
     () => getRange({ activePage, totalPages, siblingCount }),
@@ -64,7 +56,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   const pageButtons = pages.map((page, index) => {
     if (page === ELLIPSIS) {
       return (
-        <Container key={index} className={classes.ellipsis}>
+        <Container key={index} className='py-0 px-[0.5em] cursor-default'>
           <Typography size='xsmall' weight='semibold' color='black'>
             {ELLIPSIS}
           </Typography>

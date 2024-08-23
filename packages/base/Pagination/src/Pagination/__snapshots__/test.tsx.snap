@@ -38,7 +38,7 @@ exports[`Pagination renders 1`] = `
         </span>
       </button>
       <div
-        class="PicassoPagination-ellipsis"
+        class="py-0 px-[0.5em] cursor-default"
       >
         <p
           class="m-0 text-xxs text-black font-semibold"
@@ -122,7 +122,7 @@ exports[`Pagination renders 1`] = `
         </span>
       </button>
       <div
-        class="PicassoPagination-ellipsis"
+        class="py-0 px-[0.5em] cursor-default"
       >
         <p
           class="m-0 text-xxs text-black font-semibold"
@@ -204,7 +204,7 @@ exports[`Pagination renders disabled 1`] = `
         </span>
       </button>
       <div
-        class="PicassoPagination-ellipsis"
+        class="py-0 px-[0.5em] cursor-default"
       >
         <p
           class="m-0 text-xxs text-black font-semibold"
@@ -293,7 +293,7 @@ exports[`Pagination renders disabled 1`] = `
         </span>
       </button>
       <div
-        class="PicassoPagination-ellipsis"
+        class="py-0 px-[0.5em] cursor-default"
       >
         <p
           class="m-0 text-xxs text-black font-semibold"

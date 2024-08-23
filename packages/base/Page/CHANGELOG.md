@@ -1,5 +1,43 @@
 # @toptal/picasso-page
 
+## 4.0.0
+
+### Major Changes
+
+- [#4500](https://github.com/toptal/picasso/pull/4500) [`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- update version of `@toptal/picasso-tailwind-merge` peer dependency
+
+### Patch Changes
+
+- Updated dependencies [[`3ed8c02`](https://github.com/toptal/picasso/commit/3ed8c0271982a82dd9cdc6b967c63656afd3654f)]:
+  - @toptal/picasso-autocomplete@4.0.0
+  - @toptal/picasso-avatar@6.0.0
+  - @toptal/picasso-badge@3.0.0
+  - @toptal/picasso-button@4.0.0
+  - @toptal/picasso-container@3.0.0
+  - @toptal/picasso-dropdown@4.0.0
+  - @toptal/picasso-menu@3.0.0
+  - @toptal/picasso-notification@4.0.0
+  - @toptal/picasso-tag@4.0.0
+  - @toptal/picasso-typography@4.0.0
+  - @toptal/picasso-user-badge@5.0.0
+  - @toptal/picasso-accordion@2.0.11
+  - @toptal/picasso-tooltip@1.1.5
+
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`fb36465`](https://github.com/toptal/picasso/commit/fb3646581c0be1ded3754978d73e8443514a968d)]:
+  - @toptal/picasso-user-badge@4.0.0
+
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`b9aee47`](https://github.com/toptal/picasso/commit/b9aee476b9422d19543ec25ee3f4a5280d616b03)]:
+  - @toptal/picasso-autocomplete@3.0.0
+
 ## 3.0.13
 
 ### Patch Changes

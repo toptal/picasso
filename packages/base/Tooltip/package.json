@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tooltip",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Toptal UI components library - Tooltip",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-typography": "3.0.0",
+    "@toptal/picasso-typography": "4.0.0",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1",
     "debounce": "^1.2.1"

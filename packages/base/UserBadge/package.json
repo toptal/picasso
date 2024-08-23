@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-user-badge",
-  "version": "3.0.2",
+  "version": "5.0.0",
   "description": "Toptal UI components library - UserBadge",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-avatar": "5.0.2",
-    "@toptal/picasso-container": "2.0.0",
-    "@toptal/picasso-typography": "3.0.0",
+    "@toptal/picasso-avatar": "6.0.0",
+    "@toptal/picasso-container": "3.0.0",
+    "@toptal/picasso-typography": "4.0.0",
     "@toptal/picasso-utils": "1.0.3",
     "classnames": "^2.5.1"
   },
@@ -33,8 +33,8 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@material-ui/core": "4.12.4",
     "@toptal/picasso-tailwind": ">=2.7",
+    "@toptal/picasso-tailwind-merge": "2.0.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {
