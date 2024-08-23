@@ -2,8 +2,6 @@ import * as picassoTailwindConfig from '@toptal/picasso-tailwind'
 
 import { CONFIG, PICASSO_TW_FONT_SIZES, twMerge } from './twMerge'
 
-describe('extendTailwindMerge call', () => {})
-
 describe('twMerge', () => {
   it('merges font size classes correctly', () => {
     expect(twMerge('font-inherit-size text-button-large text-2xs')).toBe(
