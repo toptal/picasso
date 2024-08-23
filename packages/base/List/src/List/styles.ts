@@ -17,14 +17,4 @@ export const getPaddingClasses = ({
 }: {
   variant: Variant
   level: number
-}) => {
-  if (level === 0) {
-    return 'pl-4'
-  }
-
-  if (variant === 'unordered') {
-    return 'pl-6'
-  }
-
-  return 'pl-4'
-}
+}) => (level === 0 || variant !== 'unordered' ? 'pl-4' : 'pl-6')

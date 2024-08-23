@@ -55,8 +55,8 @@ export const ListItem = (props: Props) => {
   return (
     <li
       className={twJoin(
-        icon != null && 'list-none -ml-[1.375rem]',
-        type != null && listStyleTypeClass[type]
+        icon && 'list-none -ml-[1.375rem]',
+        type && listStyleTypeClass[type]
       )}
       data-testid={testId}
     >
