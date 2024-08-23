@@ -32,7 +32,7 @@ exports[`AccountSelect renders 1`] = `
                   class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="items-start flex text-lg"
+                    class="items-start flex text-[1rem]"
                   >
                     <div
                       class="flex relative"
@@ -108,7 +108,7 @@ exports[`AccountSelect renders 1`] = `
                   class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="items-start flex text-lg"
+                    class="items-start flex text-[1rem]"
                   >
                     <div
                       class="flex relative"
@@ -184,7 +184,7 @@ exports[`AccountSelect renders 1`] = `
                   class="p-6 items-center justify-between flex"
                 >
                   <div
-                    class="items-start flex text-lg"
+                    class="items-start flex text-[1rem]"
                   >
                     <div
                       class="flex relative"

@@ -6,7 +6,7 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-center flex text-lg"
+      class="items-center flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -49,7 +49,7 @@ exports[`UserBadge custom name 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex text-lg"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -95,7 +95,7 @@ exports[`UserBadge custom title 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex text-lg"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -146,7 +146,7 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex text-lg"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -194,7 +194,7 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-center flex text-lg"
+      class="items-center flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -242,7 +242,7 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex text-lg"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -285,7 +285,7 @@ exports[`UserBadge renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex text-lg"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -333,7 +333,7 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex text-lg"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"

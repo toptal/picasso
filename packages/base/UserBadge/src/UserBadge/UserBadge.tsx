@@ -101,7 +101,7 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
       ref={ref}
       flex
       alignItems={alignItems}
-      className={twMerge('text-lg', className)}
+      className={twMerge('text-[1rem]', className)}
       style={style}
     >
       {UserBadgeAvatar}

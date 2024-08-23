@@ -12,7 +12,7 @@ exports[`PageTopBarMenu renders 1`] = `
         class="PicassoDropdown-anchor"
       >
         <div
-          class="items-center flex text-lg"
+          class="items-center flex text-[1rem]"
         >
           <div
             class="flex relative"
