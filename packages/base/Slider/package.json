@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-slider",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Toptal UI components library - Slider",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@mui/base": "5.0.0-beta.40",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-tooltip": "1.1.4",
+    "@toptal/picasso-tooltip": "1.1.5",
     "@toptal/picasso-utils": "1.0.3"
   },
   "sideEffects": false,
@@ -38,7 +38,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "1.2.0",
+    "@toptal/picasso-tailwind-merge": "2.0.0",
     "@toptal/picasso-provider": "5.0.0"
   },
   "files": [
