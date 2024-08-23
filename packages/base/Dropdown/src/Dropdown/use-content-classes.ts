@@ -34,7 +34,7 @@ const useContentClasses = (contentType: 'scroll' | 'visible') => {
 
   const baseContentClasses = 'text-[length:inherit] bg-white overflow-y-auto'
   const baseContentVisibleClasses =
-    'max-h-none xs:max-h-screen xs:overflow-y-scroll sm:max-h-screen sm:xs:overflow-y-scroll'
+    'max-h-screen overflow-y-scroll md:max-h-none md:overflow-y-hidden'
 
   return `${twJoin(
     baseContentClasses,
