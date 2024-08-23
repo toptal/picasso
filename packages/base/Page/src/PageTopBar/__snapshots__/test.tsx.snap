@@ -50,13 +50,13 @@ exports[`Page.TopBar render with custom logo 1`] = `
                   </button>
                 </div>
                 <div
-                  class="PicassoPopper-root shadow-2"
+                  class="PicassoPopper-root shadow-2 PageHamburger-popper"
                   role="navigation"
                   style="position: fixed; top: 0px; left: 0px; display: none;"
                 >
                   <div>
                     <div
-                      class="shadow-0 transition-shadow duration-300 delay-0 text-[length:inherit] bg-white overflow-y max-h"
+                      class="shadow-0 transition-shadow duration-300 delay-0 text-[length:inherit] bg-white overflow-y !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
@@ -149,13 +149,13 @@ exports[`Page.TopBar render with link 1`] = `
                   </button>
                 </div>
                 <div
-                  class="PicassoPopper-root shadow-2"
+                  class="PicassoPopper-root shadow-2 PageHamburger-popper"
                   role="navigation"
                   style="position: fixed; top: 0px; left: 0px; display: none;"
                 >
                   <div>
                     <div
-                      class="shadow-0 transition-shadow duration-300 delay-0 text-[length:inherit] bg-white overflow-y max-h"
+                      class="shadow-0 transition-shadow duration-300 delay-0 text-[length:inherit] bg-white overflow-y !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>
@@ -274,13 +274,13 @@ exports[`Page.TopBar renders 1`] = `
                   </button>
                 </div>
                 <div
-                  class="PicassoPopper-root shadow-2"
+                  class="PicassoPopper-root shadow-2 PageHamburger-popper"
                   role="navigation"
                   style="position: fixed; top: 0px; left: 0px; display: none;"
                 >
                   <div>
                     <div
-                      class="shadow-0 transition-shadow duration-300 delay-0 text-[length:inherit] bg-white overflow-y max-h"
+                      class="shadow-0 transition-shadow duration-300 delay-0 text-[length:inherit] bg-white overflow-y !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
                       style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
                     >
                       <div>

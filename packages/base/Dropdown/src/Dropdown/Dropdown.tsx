@@ -266,7 +266,11 @@ export const Dropdown: DropdownProps = forwardRef<
 
       {(isOpen || keepMounted) && (
         <Popper
-          className={twJoin('shadow-2', responsiveClasses)}
+          className={twJoin(
+            'shadow-2',
+            externalClasses?.popper,
+            responsiveClasses
+          )}
           anchorEl={anchorEl ?? null}
           popperOptions={{
             onCreate: focus,
@@ -295,7 +299,7 @@ export const Dropdown: DropdownProps = forwardRef<
               <Grow in={isOpen} appear>
                 <Paper
                   style={contentStyle}
-                  className={contentClasses}
+                  className={twMerge(contentClasses, externalClasses?.content)}
                   onKeyDown={handleContentKeyDown}
                   elevation={0}
                 >
