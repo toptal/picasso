@@ -6,7 +6,7 @@ exports[`UserBadge auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-center flex PicassoUserBadge-root"
+      class="items-center flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -15,7 +15,7 @@ exports[`UserBadge auto center alignment 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -26,13 +26,13 @@ exports[`UserBadge auto center alignment 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-black font-semibold inline"
           >
             Joe Doe
           </h4>
@@ -49,7 +49,7 @@ exports[`UserBadge custom name 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex PicassoUserBadge-root"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -58,7 +58,7 @@ exports[`UserBadge custom name 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -69,7 +69,7 @@ exports[`UserBadge custom name 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
@@ -95,7 +95,7 @@ exports[`UserBadge custom title 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex PicassoUserBadge-root"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -104,7 +104,7 @@ exports[`UserBadge custom title 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -115,13 +115,13 @@ exports[`UserBadge custom title 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-black font-semibold inline"
           >
             Joe Doe
           </h4>
@@ -146,7 +146,7 @@ exports[`UserBadge invert render 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex PicassoUserBadge-root"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -155,7 +155,7 @@ exports[`UserBadge invert render 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -166,13 +166,13 @@ exports[`UserBadge invert render 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-white font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-white font-semibold inline"
           >
             Joe Doe
           </h4>
@@ -194,7 +194,7 @@ exports[`UserBadge manual center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-center flex PicassoUserBadge-root"
+      class="items-center flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -203,7 +203,7 @@ exports[`UserBadge manual center alignment 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -214,13 +214,13 @@ exports[`UserBadge manual center alignment 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-black font-semibold inline"
           >
             Joe Doe
           </h4>
@@ -242,7 +242,7 @@ exports[`UserBadge override auto center alignment 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex PicassoUserBadge-root"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -251,7 +251,7 @@ exports[`UserBadge override auto center alignment 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -262,13 +262,13 @@ exports[`UserBadge override auto center alignment 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-black font-semibold inline"
           >
             Joe Doe
           </h4>
@@ -285,7 +285,7 @@ exports[`UserBadge renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex PicassoUserBadge-root"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -294,7 +294,7 @@ exports[`UserBadge renders 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -305,13 +305,13 @@ exports[`UserBadge renders 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-black font-semibold inline"
           >
             Joe Doe
           </h4>
@@ -333,7 +333,7 @@ exports[`UserBadge small size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="items-start flex PicassoUserBadge-root"
+      class="items-start flex text-[1rem]"
     >
       <div
         class="flex relative"
@@ -342,7 +342,7 @@ exports[`UserBadge small size 1`] = `
           class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[5em] h-[5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_1em_100%,_0_calc(100%-1em))]"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[2em] PicassoUserBadge-avatar"
+            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[2em]"
           >
             <p
               class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
@@ -353,13 +353,13 @@ exports[`UserBadge small size 1`] = `
         </div>
       </div>
       <div
-        class="flex flex-col PicassoUserBadge-infoContainer"
+        class="flex flex-col min-w ml-[0.75em]"
       >
         <div
           class="items-center flex"
         >
           <h4
-            class="m-0 text-md text-black font-semibold inline PicassoUserBadge-name"
+            class="m-0 text-md text-black font-semibold inline"
           >
             Joe Doe
           </h4>
