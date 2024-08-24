@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-query-builder",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "description": "Picasso query builder",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-query-builder#readme",
@@ -40,7 +40,7 @@
     "@toptal/picasso-tooltip": "1.1.5",
     "@toptal/picasso-tagselector": "2.0.15",
     "@toptal/picasso-input": "3.0.13",
-    "@toptal/picasso-list": "3.0.2",
+    "@toptal/picasso-list": "4.0.0",
     "@toptal/picasso-loader": "3.0.0",
     "@toptal/picasso-number-input": "3.0.0",
     "@toptal/picasso-prompt-modal": "2.0.11",
