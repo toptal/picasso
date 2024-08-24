@@ -1,32 +1,16 @@
-import type { ReactNode } from 'react'
 import React from 'react'
+import type { ReactNode } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import { ArrowLongRight16, Check16 } from '@toptal/picasso-icons'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import type { ListItemType } from '../List'
 import { useListContext } from '../List'
-
-export type Props = BaseProps & {
-  children: ReactNode
-  variant?: 'ordered' | 'unordered'
-  index?: number
-  /**
-   * @deprecated [FX-4717] if you need a custom icon that is not available on the prop `type`, please contact the BASE team to add it to the theme
-   **/
-  icon?: ReactNode
-  /** Style of the bullet/ordinal */
-  type?: ListItemType
-  isLastElement?: boolean
-}
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoListItem' })
+import { listStyleTypeClass } from '../List/styles'
+import type { Variant } from '../List/types'
 
 const resolveIcon = (type: ListItemType | undefined) => {
   switch (type) {
@@ -39,12 +23,23 @@ const resolveIcon = (type: ListItemType | undefined) => {
   }
 }
 
+export type Props = BaseProps & {
+  children: ReactNode
+  index?: number
+  variant?: Variant
+  /**
+   * @deprecated [FX-4717] if you need a custom icon that is not available on the prop `type`, please contact the BASE team to add it to the theme
+   **/
+  icon?: ReactNode
+  /** Style of the bullet/ordinal */
+  type?: ListItemType
+  isLastElement?: boolean
+}
+
 export const ListItem = (props: Props) => {
-  const classes = useStyles()
   const { styleType: parentType } = useListContext()
   const {
     children,
-    variant = 'unordered',
     type,
     icon = resolveIcon(type ?? parentType),
     'data-testid': testId,
@@ -59,13 +54,13 @@ export const ListItem = (props: Props) => {
 
   return (
     <li
-      className={cx(classes.root, classes[variant], {
-        [classes.hasIcon]: icon != null,
-        [classes[type ?? '']]: type != null,
-      })}
+      className={twJoin(
+        icon && 'list-none -ml-[1.375rem]',
+        type && listStyleTypeClass[type]
+      )}
       data-testid={testId}
     >
-      <Container flex direction='row' className={cx(classes.listContainer)}>
+      <Container flex direction='row' className='mt-1'>
         {icon && (
           <Container inline justifyContent='flex-end'>
             {icon}
