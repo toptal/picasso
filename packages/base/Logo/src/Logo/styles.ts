@@ -1,36 +1,9 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
-
-export default ({ palette }: Theme) =>
-  createStyles({
-    root: {
-      fontSize: '1.875rem',
-      verticalAlign: 'baseline',
-    },
-    default: {
-      color: palette.blue.main,
-      '--logo-text-color': palette.common.black,
-      '--logo-emblem-color': palette.blue.main,
-    },
-    blue: {
-      // deprecated backward-compatible variant with default
-      color: palette.blue.main,
-      '--logo-text-color': palette.common.black,
-      '--logo-emblem-color': palette.blue.main,
-    },
-    white: {
-      color: palette.common.white,
-      '--logo-text-color': palette.common.white,
-      '--logo-emblem-color': palette.common.white,
-    },
-    black: {
-      color: palette.common.black,
-      '--logo-text-color': palette.common.black,
-      '--logo-emblem-color': palette.common.black,
-    },
-    grey: {
-      color: palette.grey.darker,
-      '--logo-text-color': palette.grey.darker,
-      '--logo-emblem-color': palette.grey.darker,
-    },
-  })
+export const colorClass = {
+  default:
+    'text-blue-500 [--logo-text-color:black] [--logo-emblem-color:#204ECF]',
+  // deprecated backward-compatible variant with default
+  blue: 'text-blue-500 [--logo-text-color:black] [--logo-emblem-color:#204ECF]',
+  white: 'text-white [--logo-text-color:white] [--logo-emblem-color:white]',
+  black: 'text-black [--logo-text-color:black] [--logo-emblem-color:black]',
+  grey: 'text-graphite-800 [--logo-text-color:#262D3D] [--logo-emblem-color:#262D3D]',
+}
