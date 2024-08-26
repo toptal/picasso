@@ -1,5 +1,13 @@
 # @toptal/picasso-query-builder
 
+## 7.2.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@3.0.1
+  - @toptal/picasso-tagselector@2.0.16
+
 ## 7.2.2
 
 ### Patch Changes

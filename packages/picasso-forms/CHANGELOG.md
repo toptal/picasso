@@ -1,5 +1,16 @@
 # Change Log
 
+## 71.0.24
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-avatar-upload@3.0.1
+  - @toptal/picasso-autocomplete@4.0.1
+  - @toptal/picasso-select@3.0.1
+  - @toptal/picasso-tagselector@2.0.16
+  - @toptal/picasso-rich-text-editor@15.0.2
+
 ## 71.0.23
 
 ### Patch Changes

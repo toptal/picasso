@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-rich-text-editor",
-  "version": "15.0.1",
+  "version": "15.0.2",
   "description": "Picasso rich text editor",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-rich-text-editor#readme",
@@ -49,7 +49,7 @@
     "@toptal/picasso-outlined-input": "3.0.0",
     "@toptal/picasso-list": "4.0.0",
     "@toptal/picasso-link": "3.0.0",
-    "@toptal/picasso-select": "3.0.0",
+    "@toptal/picasso-select": "3.0.1",
     "@toptal/picasso-input-adornment": "3.0.0",
     "@toptal/picasso-typography": "4.0.0",
     "@toptal/picasso-modal": "3.0.11",
