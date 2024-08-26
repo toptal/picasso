@@ -6,14 +6,14 @@ exports[`List renders ordered list 1`] = `
     class="Picasso-root"
   >
     <ol
-      class="PicassoList-root PicassoList-numeral PicassoList-firstLevel"
+      class="text-[0.875rem] text-black mt-1 list-decimal pl-4"
       data-testid="ordered-list"
     >
       <li
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -26,7 +26,7 @@ exports[`List renders ordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -39,7 +39,7 @@ exports[`List renders ordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -52,7 +52,7 @@ exports[`List renders ordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -65,7 +65,7 @@ exports[`List renders ordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -85,14 +85,14 @@ exports[`List renders unordered list 1`] = `
     class="Picasso-root"
   >
     <ul
-      class="PicassoList-root PicassoList-unordered PicassoList-disc PicassoList-firstLevel"
+      class="text-[0.875rem] text-black mt-1 list-disc pl-4"
       data-testid="unordered-list"
     >
       <li
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -105,7 +105,7 @@ exports[`List renders unordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -118,7 +118,7 @@ exports[`List renders unordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -131,7 +131,7 @@ exports[`List renders unordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"
@@ -144,7 +144,7 @@ exports[`List renders unordered list 1`] = `
         class=""
       >
         <div
-          class="flex PicassoListItem-listContainer"
+          class="flex mt-1"
         >
           <div
             class="m-0 text-md text-graphite font-regular pl-2"

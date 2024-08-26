@@ -1,16 +1,14 @@
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
   Logo as LogoIcon,
   LogoEmblem as LogoEmblemIcon,
 } from '@toptal/picasso-icons'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { colorClass } from './styles'
 
-type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'
+export type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'
 
 export interface Props extends BaseProps {
   /** Whether logo should be shown as TT emblem or full word mark */
@@ -18,8 +16,6 @@ export interface Props extends BaseProps {
   /** Variant of the `Logo` */
   variant?: VariantType
 }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoLogo' })
 
 export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
   const {
@@ -30,15 +26,16 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
     'data-testid': testId,
   } = props
 
-  const classes = useStyles()
-
-  const colorClass = classes[variant]
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 
   return (
     <LogoComponent
       ref={ref}
-      className={cx(classes.root, colorClass, className)}
+      className={twMerge(
+        'text-[1.875rem] align-baseline',
+        colorClass[variant],
+        className
+      )}
       style={style}
       data-testid={testId}
     />

@@ -172,7 +172,7 @@ exports[`Page.TopBar render with link 1`] = `
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="PicassoSvgLogoEmblem-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
+                  class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logoEmblem"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 21 30"
                 >
@@ -182,7 +182,7 @@ exports[`Page.TopBar render with link 1`] = `
                   />
                 </svg>
                 <svg
-                  class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
+                  class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logo"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >
@@ -293,7 +293,7 @@ exports[`Page.TopBar renders 1`] = `
                 </div>
               </div>
               <svg
-                class="PicassoSvgLogoEmblem-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logoEmblem"
+                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logoEmblem"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 21 30"
               >
@@ -303,7 +303,7 @@ exports[`Page.TopBar renders 1`] = `
                 />
               </svg>
               <svg
-                class="PicassoSvgLogo-root PicassoLogo-root PicassoLogo-white PicassoTopBar-logo"
+                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logo"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >

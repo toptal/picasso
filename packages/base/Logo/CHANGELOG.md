@@ -1,5 +1,16 @@
 # @toptal/picasso-logo
 
+## 2.0.0
+
+### Major Changes
+
+- [#4506](https://github.com/toptal/picasso/pull/4506) [`e1b01cd`](https://github.com/toptal/picasso/commit/e1b01cd6e9526a9c2fc51cf9730b40d4d6ceb4cd) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Logo
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+
 ## 1.0.9
 
 ### Patch Changes
