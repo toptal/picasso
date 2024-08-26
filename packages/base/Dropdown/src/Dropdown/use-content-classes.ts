@@ -44,3 +44,11 @@ const useContentClasses = (contentOverflow: 'scroll' | 'visible') => {
 }
 
 export default useContentClasses
+
+export const contentClass = {
+  content: `overflow-y-auto max-h-[26.875rem] 
+  [@media(max-height:585px)]:max-h-[calc(50vh-4.3125rem)]
+  [@media(max-height:585px)]:md:max-h-[calc(50vh-4.8125rem)]`,
+  contentVisible: `max-h-screen overflow-y-scroll md:max-h-none md:overflow-y-hidden
+    [@media(max-height:585px)]:max-h-screen overflow-y-scroll`,
+}

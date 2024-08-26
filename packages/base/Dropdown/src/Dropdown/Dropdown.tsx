@@ -15,7 +15,7 @@ import { Paper } from '@toptal/picasso-paper'
 import { noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import useContentClasses from './use-content-classes'
+import { contentClass } from './use-content-classes'
 
 type ContentOverflowType = 'scroll' | 'visible'
 
@@ -54,7 +54,7 @@ interface InternalProps
   /** Sets the desired behavior for an element's overflow */
   contentOverflow?: ContentOverflowType
   popperContainer?: HTMLElement
-  classes: Classes & { popper?: string; content?: string }
+  classes?: Classes & { popper?: string; content?: string }
 }
 
 type PropsWithBaseSpacing = InternalProps & {
@@ -150,8 +150,6 @@ export const Dropdown: DropdownProps = forwardRef<
   const contentRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
   const [isOpen, setIsOpen] = useState(false)
-
-  const contentClasses = useContentClasses(contentOverflow)
 
   const handleAnchorClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -300,7 +298,12 @@ export const Dropdown: DropdownProps = forwardRef<
               <Grow in={isOpen} appear>
                 <Paper
                   style={contentStyle}
-                  className={twMerge(contentClasses, externalClasses?.content)}
+                  className={twMerge(
+                    contentClass.content,
+                    contentOverflow === 'visible' &&
+                      contentClass.contentVisible,
+                    externalClasses?.content
+                  )}
                   onKeyDown={handleContentKeyDown}
                   elevation={0}
                 >
