@@ -143,7 +143,7 @@ jobs:
         uses: actions/dependency-review-action@v4
 
       - name: Secret Scanning
-        uses: toptal/actions/security-scan.yml@main
+        uses: toptal/actions/security-scan@main
 
       - name: Install Dependencies
         uses: toptal/davinci-github-actions/yarn-install@v15.3.1
