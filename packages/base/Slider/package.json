@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@mui/base": "5.0.0-beta.40",
+    "@mui/base": "^5.0.0-beta.40",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-tooltip": "1.1.5",
     "@toptal/picasso-utils": "1.0.3"
