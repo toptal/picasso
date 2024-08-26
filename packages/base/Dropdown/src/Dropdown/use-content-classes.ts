@@ -1,7 +1,7 @@
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 import React from 'react'
 
-const useContentClasses = (contentType: 'scroll' | 'visible') => {
+const useContentClasses = (contentOverflow: 'scroll' | 'visible') => {
   const [maxHeightClass, setMaxHeightClass] = React.useState('')
 
   const updateMaxHeight = React.useCallback(() => {
@@ -9,7 +9,7 @@ const useContentClasses = (contentType: 'scroll' | 'visible') => {
     let newMaxHeightClass = ''
 
     if (viewportHeight <= 585) {
-      if (contentType === 'visible') {
+      if (contentOverflow === 'visible') {
         newMaxHeightClass = 'max-h-screen overflow-y-scroll'
       } else {
         newMaxHeightClass =
@@ -20,7 +20,7 @@ const useContentClasses = (contentType: 'scroll' | 'visible') => {
     }
 
     setMaxHeightClass(newMaxHeightClass)
-  }, [contentType])
+  }, [contentOverflow])
 
   React.useEffect(() => {
     window.addEventListener('resize', updateMaxHeight)
@@ -38,7 +38,7 @@ const useContentClasses = (contentType: 'scroll' | 'visible') => {
 
   return `${twJoin(
     baseContentClasses,
-    contentType === 'visible' ? baseContentVisibleClasses : '',
+    contentOverflow === 'visible' ? baseContentVisibleClasses : '',
     maxHeightClass
   )}`
 }
