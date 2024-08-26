@@ -1,4 +1,6 @@
-export const colorClass = {
+import type { VariantType } from './Logo'
+
+export const colorClass: Record<VariantType, string> = {
   default:
     'text-blue-500 [--logo-text-color:black] [--logo-emblem-color:#204ECF]',
   // deprecated backward-compatible variant with default

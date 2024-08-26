@@ -8,7 +8,7 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { colorClass } from './styles'
 
-type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'
+export type VariantType = 'default' | 'white' | 'black' | 'grey' | 'blue'
 
 export interface Props extends BaseProps {
   /** Whether logo should be shown as TT emblem or full word mark */
