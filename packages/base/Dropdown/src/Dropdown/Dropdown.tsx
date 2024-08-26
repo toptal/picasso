@@ -15,7 +15,7 @@ import { Paper } from '@toptal/picasso-paper'
 import { noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { contentClass } from './use-content-classes'
+import { contentClass } from './styles'
 
 type ContentOverflowType = 'scroll' | 'visible'
 
