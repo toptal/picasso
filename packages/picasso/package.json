@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "48.1.18",
+  "version": "48.1.19",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -65,7 +65,7 @@
     "@toptal/picasso-image": "3.0.0",
     "@toptal/picasso-input-adornment": "3.0.0",
     "@toptal/picasso-link": "3.0.0",
-    "@toptal/picasso-list": "3.0.2",
+    "@toptal/picasso-list": "4.0.0",
     "@toptal/picasso-loader": "3.0.0",
     "@toptal/picasso-logo": "1.0.9",
     "@toptal/picasso-menu": "3.0.0",

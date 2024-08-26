@@ -1,5 +1,16 @@
 # Change Log
 
+## 48.1.19
+
+### Patch Changes
+
+- [#4497](https://github.com/toptal/picasso/pull/4497) [`1f9def0`](https://github.com/toptal/picasso/commit/1f9def0a6f588d9e96eab0bb4829c6165c04f830) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate `List` and `ListItem` to TailwindCSS
+  - add `@toptal/picasso-tailwind-merge` as a peer dependency
+  - remove `material-ui/core` from peer dependencies
+- Updated dependencies [[`1f9def0`](https://github.com/toptal/picasso/commit/1f9def0a6f588d9e96eab0bb4829c6165c04f830)]:
+  - @toptal/picasso-list@4.0.0
+
 ## 48.1.18
 
 ### Patch Changes
