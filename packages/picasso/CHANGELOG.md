@@ -1,5 +1,29 @@
 # Change Log
 
+## 48.1.20
+
+### Patch Changes
+
+- [#4506](https://github.com/toptal/picasso/pull/4506) [`e1b01cd`](https://github.com/toptal/picasso/commit/e1b01cd6e9526a9c2fc51cf9730b40d4d6ceb4cd) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Logo
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+- Updated dependencies [[`e1b01cd`](https://github.com/toptal/picasso/commit/e1b01cd6e9526a9c2fc51cf9730b40d4d6ceb4cd)]:
+  - @toptal/picasso-logo@2.0.0
+  - @toptal/picasso-avatar@6.0.1
+  - @toptal/picasso-page@4.0.1
+  - @toptal/picasso-avatar-upload@3.0.1
+  - @toptal/picasso-menu@3.0.1
+  - @toptal/picasso-user-badge@5.0.1
+  - @toptal/picasso-account-select@3.0.1
+  - @toptal/picasso-autocomplete@4.0.1
+  - @toptal/picasso-select@3.0.1
+  - @toptal/picasso-tabs@4.0.6
+  - @toptal/picasso-tagselector@2.0.16
+  - @toptal/picasso-date-select@1.0.46
+
 ## 48.1.19
 
 ### Patch Changes
