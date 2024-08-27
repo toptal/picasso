@@ -1,5 +1,6 @@
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import type { PopperPlacementType } from '@material-ui/core/Popper'
 import type { PopperOptions } from 'popper.js'
@@ -13,7 +14,6 @@ import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
 import { noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
-import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { contentClass } from './styles'
 
@@ -236,7 +236,7 @@ export const Dropdown: DropdownProps = forwardRef<
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: MouseEvent | TouchEvent) => {
+  const handleClickAway = (event: React.MouseEvent<Document>) => {
     const target = event.target
 
     const isAnchorTapEvent =
