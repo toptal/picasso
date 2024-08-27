@@ -3,7 +3,7 @@ import React, { forwardRef, useContext, useRef, useState } from 'react'
 import Grow from '@material-ui/core/Grow'
 import type { PopperPlacementType } from '@material-ui/core/Popper'
 import type { PopperOptions } from 'popper.js'
-import type { Classes, StandardProps } from '@toptal/picasso-shared'
+import type { StandardProps } from '@toptal/picasso-shared'
 import type {
   DeprecatedSpacingType,
   SpacingType,
@@ -54,7 +54,7 @@ interface InternalProps
   /** Sets the desired behavior for an element's overflow */
   contentOverflow?: ContentOverflowType
   popperContainer?: HTMLElement
-  classes?: Classes & { popper?: string; content?: string }
+  classes?: { popper?: string; content?: string }
 }
 
 type PropsWithBaseSpacing = InternalProps & {
