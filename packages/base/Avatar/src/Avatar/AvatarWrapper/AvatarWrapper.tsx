@@ -44,7 +44,7 @@ const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
   </div>
 )
 
-const AvatarWrapper = (props: Props) => {
+export const AvatarWrapper = (props: Props) => {
   const {
     children,
     className,
