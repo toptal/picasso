@@ -54,6 +54,7 @@ interface InternalProps
   /** Sets the desired behavior for an element's overflow */
   contentOverflow?: ContentOverflowType
   popperContainer?: HTMLElement
+  /** Sets styles for the inner wrapper */
   classes?: { popper?: string; content?: string }
 }
 
@@ -299,9 +300,9 @@ export const Dropdown: DropdownProps = forwardRef<
                 <Paper
                   style={contentStyle}
                   className={twMerge(
-                    contentClass.content,
-                    contentOverflow === 'visible' &&
-                      contentClass.contentVisible,
+                    contentOverflow === 'visible'
+                      ? contentClass.contentVisible
+                      : contentClass.content,
                     externalClasses?.content
                   )}
                   onKeyDown={handleContentKeyDown}
