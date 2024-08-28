@@ -1,10 +1,6 @@
 name: Notify about pending release pull requests
 
 on:
-  # TODO: delete "push" before merge
-  push:
-    branches:
-      - FX-NULL-add-version-packages-pull-request-reminder
   schedule:
     - cron: '0 9-18/3 * * 1-5' # Runs every 3 hours during work hours (e.g., 9 AM to 6 PM) from Monday to Friday
   workflow_dispatch:
@@ -56,13 +52,11 @@ jobs:
             state: 'open',
           })
 
-          // TODO: revert before merge
-          //const fourHoursInMilliseconds = 4 * 60 * 60 * 1000
-          const fourHoursInMilliseconds = 0
+          const threeHoursInMilliseconds = 3 * 60 * 60 * 1000
 
           // Find a PR with the title "Version Packages" that has been open long enough
           const now = new Date()
-          const targetPR = prs.find(pr => pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > fourHoursInMilliseconds)
+          const targetPR = prs.find(pr => pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > threeHoursInMilliseconds)
 
           if (targetPR) {
             // If there is at least one stale pull request, require notification
@@ -76,5 +70,4 @@ jobs:
         SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       with:
         channel-id: "-frontend-exp-team-notifications"
-        # TODO: add ":x: <!here>" before merge
-        slack-message: "There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|Picasso>, review and merge it."
+        slack-message: ":x: <!here> There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|Picasso>, review and merge it."
