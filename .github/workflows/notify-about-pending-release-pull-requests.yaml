@@ -1,0 +1,73 @@
+name: Notify about pending release pull requests
+
+on:
+  schedule:
+    - cron: '0 9-18/3 * * 1-5' # Runs every 3 hours during work hours (e.g., 9 AM to 6 PM) from Monday to Friday
+  workflow_dispatch:
+
+jobs:
+  check-pending-release-pull-requests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
+      issues: write
+      pull-requests: write
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: GSM Secrets
+      id: secrets_manager
+      uses: toptal/davinci-github-actions/gsm-secrets@v15.3.1
+      with:
+        workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
+        service_account: ${{ secrets.SA_IDENTITY_POOL }}
+        secrets_name: |-
+          SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
+          TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
+
+    - name: Parse secrets
+      id: parse_secrets
+      uses: toptal/davinci-github-actions/expose-json-outputs@v15.3.1
+      with:
+        json: ${{ steps.secrets_manager.outputs.secrets }}
+
+    - name: Set ENV Variables
+      shell: bash
+      run: |-
+        echo "SLACK_BOT_TOKEN=${{ steps.parse_secrets.outputs.SLACK_BOT_TOKEN }}" >> $GITHUB_ENV
+        echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+
+    - name: Find version packages pull requests
+      uses: actions/github-script@v7
+      id: find-pull-requests
+      with:
+        github-token: ${{ env.GITHUB_TOKEN }}
+        script: |
+          const { data: prs } = await github.rest.pulls.list({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: 'open',
+          })
+
+          const threeHoursInMilliseconds = 3 * 60 * 60 * 1000
+
+          // Find a PR with the title "Version Packages" that has been open long enough
+          const now = new Date()
+          const targetPR = prs.find(pr => pr.title.includes('Version Packages') && (now - new Date(pr.created_at)) > threeHoursInMilliseconds)
+
+          if (targetPR) {
+            // If there is at least one stale pull request, require notification
+            core.setOutput('notification_is_needed', 'true')
+          }
+    
+    - name: Send a Slack notification
+      if: ${{ steps.find-pull-requests.outputs.notification_is_needed == 'true' }}
+      uses: slackapi/slack-github-action@v1.26.0
+      env:
+        SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
+      with:
+        channel-id: "-frontend-exp-team-notifications"
+        slack-message: ":x: <!here> There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|Picasso>, review and merge it."
