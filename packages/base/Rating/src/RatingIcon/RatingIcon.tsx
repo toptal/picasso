@@ -1,9 +1,11 @@
 import React, { forwardRef } from 'react'
 import type { SizeType } from '@toptal/picasso-shared'
 import { Star16, StarSolid16, Star24, StarSolid24 } from '@toptal/picasso-icons'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 export interface Props {
   active: boolean
+  hovered?: boolean
   interactive: boolean
   size: SizeType<'small' | 'large'>
 }
@@ -17,12 +19,13 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   props,
   ref
 ) {
-  const { active, interactive, size, ...rest } = props
+  const { active, hovered, interactive, size, ...rest } = props
 
   const iconColor = 'yellow'
-  const iconClasses = interactive
-    ? 'transition-all duration-350 ease-out hover:scale-150'
-    : ''
+  const iconClasses = twJoin(
+    interactive && 'transition-all duration-350 ease-out hover:scale-150',
+    hovered && 'scale-150'
+  )
   const [Icon, IconSolid] = iconsBySize[size] || iconsBySize.small
 
   return (
