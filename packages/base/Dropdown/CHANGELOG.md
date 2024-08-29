@@ -1,5 +1,15 @@
 # @toptal/picasso-dropdown
 
+## 4.1.0
+
+### Minor Changes
+
+- [#4499](https://github.com/toptal/picasso/pull/4499) [`3a0125d`](https://github.com/toptal/picasso/commit/3a0125df1849c66335436c3adaea1b90f989ee7b) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Dropdown
+
+- change the ClickAwayListener component to be imported from @mui/base
+
 ## 4.0.0
 
 ### Major Changes
