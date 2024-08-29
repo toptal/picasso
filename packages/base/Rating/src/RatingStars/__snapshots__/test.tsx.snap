@@ -9,12 +9,12 @@ exports[`Rating.Stars renders 1`] = `
       class=""
     >
       <label
-        class="PicassoRating-label PicassoRating-clickableLabel"
+        class="mr-[.125rem] cursor-pointer"
         for="rating-name-1"
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            class="PicassoSvgStarSolid16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStarSolid16-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -24,7 +24,7 @@ exports[`Rating.Stars renders 1`] = `
           </svg>
         </span>
         <input
-          class="PicassoRating-radio"
+          class="hidden"
           data-testid="rating-name-1"
           id="rating-name-1"
           name="rating-name"
@@ -33,12 +33,12 @@ exports[`Rating.Stars renders 1`] = `
         />
       </label>
       <label
-        class="PicassoRating-label PicassoRating-clickableLabel"
+        class="mr-[.125rem] cursor-pointer"
         for="rating-name-2"
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            class="PicassoSvgStarSolid16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStarSolid16-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -48,7 +48,7 @@ exports[`Rating.Stars renders 1`] = `
           </svg>
         </span>
         <input
-          class="PicassoRating-radio"
+          class="hidden"
           data-testid="rating-name-2"
           id="rating-name-2"
           name="rating-name"
@@ -57,12 +57,12 @@ exports[`Rating.Stars renders 1`] = `
         />
       </label>
       <label
-        class="PicassoRating-label PicassoRating-clickableLabel"
+        class="mr-[.125rem] cursor-pointer"
         for="rating-name-reset"
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root PicassoRatingIcon-clickableIcon PicassoSvgStarSolid16-yellow"
+            class="PicassoSvgStarSolid16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStarSolid16-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -73,7 +73,7 @@ exports[`Rating.Stars renders 1`] = `
         </span>
         <input
           checked=""
-          class="PicassoRating-radio"
+          class="hidden"
           data-testid="rating-name-3"
           id="rating-name-3"
           name="rating-name"
@@ -82,12 +82,12 @@ exports[`Rating.Stars renders 1`] = `
         />
       </label>
       <label
-        class="PicassoRating-label PicassoRating-clickableLabel"
+        class="mr-[.125rem] cursor-pointer"
         for="rating-name-4"
       >
         <span>
           <svg
-            class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+            class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -97,7 +97,7 @@ exports[`Rating.Stars renders 1`] = `
           </svg>
         </span>
         <input
-          class="PicassoRating-radio"
+          class="hidden"
           data-testid="rating-name-4"
           id="rating-name-4"
           name="rating-name"
@@ -106,12 +106,12 @@ exports[`Rating.Stars renders 1`] = `
         />
       </label>
       <label
-        class="PicassoRating-label PicassoRating-clickableLabel"
+        class="mr-[.125rem] cursor-pointer"
         for="rating-name-5"
       >
         <span>
           <svg
-            class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+            class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -121,7 +121,7 @@ exports[`Rating.Stars renders 1`] = `
           </svg>
         </span>
         <input
-          class="PicassoRating-radio"
+          class="hidden"
           data-testid="rating-name-5"
           id="rating-name-5"
           name="rating-name"
@@ -130,7 +130,7 @@ exports[`Rating.Stars renders 1`] = `
         />
       </label>
       <input
-        class="PicassoRating-radio"
+        class="hidden"
         id="rating-name-reset"
         name="rating-name"
         type="radio"
