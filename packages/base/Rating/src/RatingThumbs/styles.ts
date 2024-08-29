@@ -1,36 +1,25 @@
-import type { Theme } from '@material-ui/core'
-import { createStyles } from '@material-ui/core'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-export default ({ palette, transitions }: Theme) =>
-  createStyles({
-    radio: {
-      display: 'none',
-    },
-    label: {
-      '&:not(:last-child)': {
-        marginRight: '1em',
-      },
-    },
-    thumbs: {
-      color: palette.grey.light2,
-      transition: `color ${transitions.duration.shorter}ms linear`,
-    },
-    interactiveThumbs: {
-      cursor: 'pointer',
-      '&:hover': {
-        color: palette.text.primary,
-      },
-    },
-    thumbsPositive: {
-      color: palette.green.main,
-      '&:hover': {
-        color: palette.green.main,
-      },
-    },
-    thumbsNegative: {
-      color: palette.red.main,
-      '&:hover': {
-        color: palette.red.main,
-      },
-    },
-  })
+type Props = {
+  thumbType: 'up' | 'down'
+  interactive: boolean
+  value?: boolean
+}
+
+export const labelClasses = '[&:not(:last-child)]:mr-[1em]'
+
+export const getThumbClasses = ({ thumbType, interactive, value }: Props) => {
+  let classByType = 'text-gray-400'
+
+  if (thumbType === 'up' && value === true) {
+    classByType = 'text-green-500 hover:text-green-500'
+  } else if (thumbType === 'down' && value === false) {
+    classByType = 'text-red-500 hover:text-red-500'
+  }
+
+  return twJoin(
+    'transition-colors duration-200 ease-linear',
+    interactive ? 'cursor-pointer hover:text-graphite-700' : '',
+    classByType
+  )
+}
