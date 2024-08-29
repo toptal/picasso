@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Components').createPage(
   'UserBadge',
   `Show user avatar and name along with addition content
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -31,5 +31,10 @@ page
   .addExample(
     'UserBadge/story/Title.example.tsx',
     'With Title',
+    'base/UserBadge'
+  )
+  .addExample(
+    'UserBadge/story/WithIcon.example.tsx',
+    'With Icon',
     'base/UserBadge'
   )

@@ -28,7 +28,7 @@ const ImageAvatar = (props: Props) => {
       <Image
         alt={alt || name || ''}
         className={twMerge(
-          'object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize-contrast]',
+          'object-cover w-full h-full [image-rendering:-webkit-optimize-contrast]',
           className
         )}
         src={src}

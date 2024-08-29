@@ -1,5 +1,12 @@
 # @toptal/picasso-avatar
 
+## 6.1.0
+
+### Minor Changes
+
+- [#4511](https://github.com/toptal/picasso/pull/4511) [`9e089cc`](https://github.com/toptal/picasso/commit/9e089cc183a95391f73dc0bf28c59b3c1bfa4758) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- export Avatar.Wrapper to support custom icons
+
 ## 6.0.1
 
 ### Patch Changes
