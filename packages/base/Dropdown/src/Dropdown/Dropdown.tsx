@@ -1,12 +1,8 @@
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React, { forwardRef, useContext, useRef, useState } from 'react'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import Grow from '@material-ui/core/Grow'
 import type { PopperPlacementType } from '@material-ui/core/Popper'
 import type { PopperOptions } from 'popper.js'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type {
   DeprecatedSpacingType,
@@ -16,11 +12,20 @@ import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
 import { noop } from '@toptal/picasso-utils'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
-import type { StyleProps } from './styles'
-import styles from './styles'
+import { contentClass } from './styles'
 
 type ContentOverflowType = 'scroll' | 'visible'
+
+type StyleProps = {
+  /** Control content element style */
+  contentStyle?: {
+    height?: string
+    maxHeight?: string
+  }
+}
 
 interface InternalProps
   extends StandardProps,
@@ -49,6 +54,8 @@ interface InternalProps
   /** Sets the desired behavior for an element's overflow */
   contentOverflow?: ContentOverflowType
   popperContainer?: HTMLElement
+  /** Sets styles for the inner wrapper */
+  classes?: { popper?: string; content?: string }
 }
 
 type PropsWithBaseSpacing = InternalProps & {
@@ -93,13 +100,6 @@ export const useDropdownContext = () => {
 
   return context
 }
-
-const useStyles = makeStyles<
-  Theme,
-  PropsWithBaseSpacing | PropsWithDeprecatedSpacing
->(styles, {
-  name: 'PicassoDropdown',
-})
 
 const useResponsiveProps = makeResponsiveSpacingProps(
   ['margin-top', 'margin-bottom', 'margin-left', 'margin-right'] as const,
@@ -147,7 +147,6 @@ export const Dropdown: DropdownProps = forwardRef<
     contentOverflow = 'scroll',
     ...rest
   } = props
-  const classes = useStyles(props)
 
   const contentRef = useRef<HTMLDivElement>(null)
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | undefined>()
@@ -238,7 +237,7 @@ export const Dropdown: DropdownProps = forwardRef<
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: React.MouseEvent<Document>) => {
+  const handleClickAway = (event: MouseEvent | TouchEvent) => {
     const target = event.target
 
     const isAnchorTapEvent =
@@ -255,16 +254,23 @@ export const Dropdown: DropdownProps = forwardRef<
     <div
       {...rest}
       ref={ref}
-      className={cx(classes.root, className)}
+      className={twMerge('flex items-center', className)}
       style={style}
     >
-      <div className={classes.anchor} onClick={handleAnchorClick}>
+      <div
+        className='inline-flex items-center cursor-pointer'
+        onClick={handleAnchorClick}
+      >
         {typeof children === 'function' ? children({ isOpen }) : children}
       </div>
 
       {(isOpen || keepMounted) && (
         <Popper
-          className={cx(classes.popper, responsiveClasses)}
+          className={twJoin(
+            'shadow-2',
+            externalClasses?.popper,
+            responsiveClasses
+          )}
           anchorEl={anchorEl ?? null}
           popperOptions={{
             onCreate: focus,
@@ -293,9 +299,12 @@ export const Dropdown: DropdownProps = forwardRef<
               <Grow in={isOpen} appear>
                 <Paper
                   style={contentStyle}
-                  className={cx(classes.content, {
-                    [classes.contentVisible]: contentOverflow === 'visible',
-                  })}
+                  className={twMerge(
+                    contentOverflow === 'visible'
+                      ? contentClass.contentVisible
+                      : contentClass.content,
+                    externalClasses?.content
+                  )}
                   onKeyDown={handleContentKeyDown}
                   elevation={0}
                 >
