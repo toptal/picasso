@@ -7,8 +7,8 @@ const Example = () => (
       name='Jacqueline Roque'
       title='UI specialist'
       avatar={
-        <Avatar.Wrapper className='grid' size='xsmall'>
-          <Support16 className='place-self-center' color='white' />
+        <Avatar.Wrapper size='xsmall'>
+          <Support16 color='white' />
         </Avatar.Wrapper>
       }
     />

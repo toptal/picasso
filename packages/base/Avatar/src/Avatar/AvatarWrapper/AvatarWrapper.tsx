@@ -27,7 +27,7 @@ const showLogo = (size: Size, showEmblem?: boolean): boolean => {
 const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
   <div
     className={twJoin(
-      'flex absolute bottom-0',
+      'flex absolute bottom-0 left-0',
       avatarLogoClassesBySize.root[size]
     )}
     role='img'
@@ -55,26 +55,25 @@ export const AvatarWrapper = (props: Props) => {
   } = props
 
   return (
-    <div
-      className={twJoin(
-        `flex relative`,
-        showLogo(size, showEmblem) && 'bg-white'
-      )}
-    >
+    <div>
       <div
-        style={style}
-        data-testid={dataTestId}
-        className={twMerge(
-          'relative bg-gray-500 text-[1rem] shrink-0 grow-0',
-          classBySize[size],
-          clipClassBySize[size],
-          className
-        )}
+        className={twJoin(`relative`, showLogo(size, showEmblem) && 'bg-white')}
       >
-        {children}
+        <div
+          style={style}
+          data-testid={dataTestId}
+          className={twMerge(
+            'relative bg-gray-500 text-[1rem]',
+            'grid place-items-center',
+            classBySize[size],
+            clipClassBySize[size],
+            className
+          )}
+        >
+          {children}
+        </div>
+        {showLogo(size, showEmblem) && <AvatarLogo size={size} />}
       </div>
-
-      {showLogo(size, showEmblem) && <AvatarLogo size={size} />}
     </div>
   )
 }
