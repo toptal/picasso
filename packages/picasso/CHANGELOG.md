@@ -1,5 +1,22 @@
 # Change Log
 
+## 48.1.21
+
+### Patch Changes
+
+- Updated dependencies [[`9e089cc`](https://github.com/toptal/picasso/commit/9e089cc183a95391f73dc0bf28c59b3c1bfa4758)]:
+  - @toptal/picasso-user-badge@5.1.0
+  - @toptal/picasso-avatar@6.1.0
+  - @toptal/picasso-account-select@3.0.2
+  - @toptal/picasso-page@4.0.2
+  - @toptal/picasso-tabs@4.0.7
+  - @toptal/picasso-avatar-upload@3.0.2
+  - @toptal/picasso-menu@3.0.2
+  - @toptal/picasso-autocomplete@4.0.2
+  - @toptal/picasso-select@3.0.2
+  - @toptal/picasso-tagselector@2.0.17
+  - @toptal/picasso-date-select@1.0.47
+
 ## 48.1.20
 
 ### Patch Changes
