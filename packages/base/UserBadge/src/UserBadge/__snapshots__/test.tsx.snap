@@ -8,20 +8,22 @@ exports[`UserBadge auto center alignment 1`] = `
     <div
       class="items-center flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -51,20 +53,22 @@ exports[`UserBadge custom name 1`] = `
     <div
       class="items-start flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -97,20 +101,22 @@ exports[`UserBadge custom title 1`] = `
     <div
       class="items-start flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -148,20 +154,22 @@ exports[`UserBadge invert render 1`] = `
     <div
       class="items-start flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -196,20 +204,22 @@ exports[`UserBadge manual center alignment 1`] = `
     <div
       class="items-center flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -244,20 +254,22 @@ exports[`UserBadge override auto center alignment 1`] = `
     <div
       class="items-start flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -287,20 +299,22 @@ exports[`UserBadge renders 1`] = `
     <div
       class="items-start flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[1em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[2.5em] h-[2.5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[1em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -335,20 +349,22 @@ exports[`UserBadge small size 1`] = `
     <div
       class="items-start flex text-[1rem]"
     >
-      <div
-        class="flex relative"
-      >
+      <div>
         <div
-          class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[5em] h-[5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_1em_100%,_0_calc(100%-1em))]"
+          class="relative"
         >
           <div
-            class="uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)] text-[2em]"
+            class="relative bg-gray text-[1rem] grid place-items w-[5em] h-[5em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_1em_100%,_0_calc(100%-1em))]"
           >
-            <p
-              class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+            <div
+              class="uppercase text-[2em]"
             >
-              JD
-            </p>
+              <p
+                class="m-0 text-white font-regular text-[1em] leading-[1.5em]"
+              >
+                JD
+              </p>
+            </div>
           </div>
         </div>
       </div>
