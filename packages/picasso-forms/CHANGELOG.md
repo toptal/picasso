@@ -1,5 +1,12 @@
 # Change Log
 
+## 71.0.27
+
+### Patch Changes
+
+- Updated dependencies [[`17a4b55`](https://github.com/toptal/picasso/commit/17a4b5532bf013071119429711dad21ddc66645d)]:
+  - @toptal/picasso-rating@3.0.0
+
 ## 71.0.26
 
 ### Patch Changes
