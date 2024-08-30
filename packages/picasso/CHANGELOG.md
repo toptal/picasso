@@ -1,5 +1,18 @@
 # Change Log
 
+## 48.1.23
+
+### Patch Changes
+
+- [#4512](https://github.com/toptal/picasso/pull/4512) [`17a4b55`](https://github.com/toptal/picasso/commit/17a4b5532bf013071119429711dad21ddc66645d) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Rating
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+- Updated dependencies [[`17a4b55`](https://github.com/toptal/picasso/commit/17a4b5532bf013071119429711dad21ddc66645d)]:
+  - @toptal/picasso-rating@3.0.0
+
 ## 48.1.22
 
 ### Patch Changes
