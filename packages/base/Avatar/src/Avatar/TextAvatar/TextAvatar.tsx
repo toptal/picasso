@@ -26,11 +26,7 @@ const TextAvatar = ({
   'data-private': dataPrivate,
 }: Props) => (
   <div
-    className={twMerge(
-      'uppercase absolute top-1/2 left-1/2 [transform:translate(-50%,-50%)]',
-      containerTextClassBySize[size],
-      className
-    )}
+    className={twMerge('uppercase', containerTextClassBySize[size], className)}
     style={style}
     data-private={dataPrivate}
   >

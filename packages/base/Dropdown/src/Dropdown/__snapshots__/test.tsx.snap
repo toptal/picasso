@@ -6,10 +6,10 @@ exports[`Dropdown renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoDropdown-root"
+      class="flex items-center"
     >
       <div
-        class="PicassoDropdown-anchor"
+        class="inline-flex items-center cursor-pointer"
       >
         Open Dropdown 
         <span
@@ -37,10 +37,10 @@ exports[`Dropdown should render menu 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoDropdown-root"
+        class="flex items-center"
       >
         <div
-          class="PicassoDropdown-anchor"
+          class="inline-flex items-center cursor-pointer"
         >
           Open Dropdown 
           <span
@@ -58,14 +58,14 @@ exports[`Dropdown should render menu 1`] = `
         </div>
       </div>
       <div
-        class="PicassoPopper-root PicassoDropdown-popper"
+        class="PicassoPopper-root shadow-2"
         role="tooltip"
         style="position: absolute; top: 0px; left: 0px;"
         x-placement="bottom-end"
       >
         <div>
           <div
-            class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content"
+            class="bg-white shadow-0 transition-shadow duration-300 delay-0 overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
             style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <div>
@@ -166,10 +166,10 @@ exports[`Dropdown should render menu with focus 1`] = `
         class=""
       >
         <div
-          class="PicassoDropdown-root"
+          class="flex items-center"
         >
           <div
-            class="PicassoDropdown-anchor"
+            class="inline-flex items-center cursor-pointer"
           >
             Open Dropdown 
             <span
@@ -188,14 +188,14 @@ exports[`Dropdown should render menu with focus 1`] = `
         </div>
       </div>
       <div
-        class="PicassoPopper-root PicassoDropdown-popper"
+        class="PicassoPopper-root shadow-2"
         role="tooltip"
         style="position: absolute; top: 0px; left: 0px; transform: translate3d(NaNpx, NaNpx, 0); will-change: transform;"
         x-placement="bottom-end"
       >
         <div>
           <div
-            class="bg-white shadow-0 transition-shadow duration-300 delay-0 PicassoDropdown-content"
+            class="bg-white shadow-0 transition-shadow duration-300 delay-0 overflow-y max-h [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh"
             style="opacity: 1; transform: scale(1, 1); transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <div>
