@@ -65,7 +65,7 @@ jobs:
     
     - name: Send a Slack notification
       if: ${{ steps.find-pull-requests.outputs.notification_is_needed == 'true' }}
-      uses: slackapi/slack-github-action@v1.26.0
+      uses: slackapi/slack-github-action@v1.27.0
       env:
         SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
       with:
