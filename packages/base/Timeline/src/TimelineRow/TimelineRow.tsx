@@ -1,13 +1,9 @@
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from './styles'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps {
   /** Timeline row content */
@@ -24,9 +20,7 @@ export interface Props extends BaseProps {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTimelineRow',
-})
+const tableCellClasses = 'table-cell align-top h-full'
 
 const TimelineRow = ({
   className,
@@ -37,31 +31,48 @@ const TimelineRow = ({
   'data-testid': dataTestId,
   testIds = {},
 }: Props) => {
-  const classes = useStyles()
-
   return (
     <Container
       data-testid={dataTestId}
-      className={cx(classes.root, classes.tableRow, className)}
+      // className={cx(classes.root, classes.tableRow, className)}
+      className={twMerge('table-row', className)}
     >
-      <Container className={cx(classes.tableCell)}>
+      <Container className={tableCellClasses}>
         <Container
           flex
           direction='column'
           alignItems='center'
           right='medium'
-          className={classes.tableCellContent}
+          // className={classes.tableCellContent}
+          className='h-full'
         >
           {typeof icon !== 'undefined' ? (
             React.cloneElement(icon, {
-              className: cx(icon.props.className, classes.icon),
+              // className: twJoin(icon.props.className, classes.icon),
+              className: twJoin(
+                icon.props.className,
+                'my-1 mx-0 text-gray-600'
+              ),
             })
           ) : (
-            <div className={classes.dot} data-testid={testIds.dot} />
+            // <div className={classes.dot} data-testid={testIds.dot} />
+            <div
+              className='
+            w-4 h-4 flex items-center justify-center bg-white my-1 mx-0
+
+            [&:after]:content-[""]
+            [&:after]:w-[9px]
+            [&:after]:h-[9px]
+            [&:after]:bg-gray-600
+            [&:after]:rounded-[50%] [&:after]:leading-5
+            '
+              data-testid={testIds.dot}
+            />
           )}
           {hasConnector && (
             <div
-              className={classes.connector}
+              // className={classes.connector}
+              className='flex-1 w-0 border-dashed border-0 border-l border-gray-600'
               data-testid={testIds.connector}
             />
           )}
@@ -70,10 +81,11 @@ const TimelineRow = ({
 
       {date && (
         <Container
-          className={cx(classes.tableCell)}
+          className={tableCellClasses}
           style={{ whiteSpace: 'nowrap' }}
         >
-          <Container className={classes.date} right='large'>
+          {/* <Container className={classes.date} right='large'> */}
+          <Container className='flex-[0_0_auto]' right='large'>
             <Typography className='leading-6' weight='semibold' size='medium'>
               {date}
             </Typography>
@@ -81,8 +93,9 @@ const TimelineRow = ({
         </Container>
       )}
 
-      <Container className={cx(classes.tableCell)}>
-        <Container className={classes.content} bottom='large'>
+      <Container className={tableCellClasses}>
+        {/* <Container className={classes.content} bottom='large'> */}
+        <Container className='grow last:mb-0' bottom='large'>
           {children}
         </Container>
       </Container>
