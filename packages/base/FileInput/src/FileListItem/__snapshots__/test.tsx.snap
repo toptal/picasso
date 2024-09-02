@@ -29,7 +29,7 @@ exports[`FileListItem renders 1`] = `
             </svg>
           </div>
           <p
-            class="m-0 text-md text-black font-regular [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block whitespace-nowrap FileListItem-label"
+            class="m-0 text-md text-black font-regular whitespace-nowrap overflow-ellipsis [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block FileListItem-label"
           >
             user-profile-picture.png
           </p>

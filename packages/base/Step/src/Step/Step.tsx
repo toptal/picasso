@@ -73,9 +73,7 @@ export const Step = (props: Props) => {
       {expand ? (
         withOverflowEllipsis ? (
           <span className='grid'>
-            <TypographyOverflow className='flex'>
-              {labelElement}
-            </TypographyOverflow>
+            <TypographyOverflow>{labelElement}</TypographyOverflow>
           </span>
         ) : (
           labelElement
