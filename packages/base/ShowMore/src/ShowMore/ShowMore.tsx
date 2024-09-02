@@ -1,15 +1,12 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef, useMemo, useCallback, useState } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 import Truncate from 'react-truncate'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { ChevronRight16 } from '@toptal/picasso-icons'
 import { Typography } from '@toptal/picasso-typography'
 import { ButtonAction } from '@toptal/picasso-button'
 
-import styles from './styles'
 import { replaceLineBreaksWithTags } from './utils'
 
 export interface Props extends BaseProps {
@@ -33,8 +30,6 @@ export interface Props extends BaseProps {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoShowMore' })
-
 export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
   props,
   ref
@@ -52,7 +47,6 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
     testIds,
     ...rest
   } = props
-  const classes = useStyles()
   const [shownMore, setShownMore] = useState(initialExpanded)
   const [needsTruncation, setNeedsTruncation] = useState(true)
   const content = useMemo(
@@ -97,13 +91,14 @@ export const ShowMore = forwardRef<HTMLSpanElement, Props>(function ShowMore(
             setShownMore(nextState)
             onToggle(nextState)
           }}
-          className={classes.toggleText}
+          className='inline-flex items-center transition-none'
           icon={
-            <div className={classes.iconWrapper}>
+            <div className='rotate-90 text-lg/none'>
               <ChevronRight16
-                className={cx(classes.icon, {
-                  [classes.expandedIcon]: shownMore,
-                })}
+                className={twJoin(
+                  'text-graphite-700',
+                  shownMore && 'rotate-180'
+                )}
               />
             </div>
           }
