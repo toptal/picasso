@@ -12,7 +12,7 @@ exports[`Timeline renders 1`] = `
         class="table h-fit w-fit"
       >
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -33,14 +33,14 @@ exports[`Timeline renders 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -61,14 +61,14 @@ exports[`Timeline renders 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -89,7 +89,7 @@ exports[`Timeline renders 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
@@ -113,7 +113,7 @@ exports[`Timeline renders with dates 1`] = `
         class="table h-fit w-fit"
       >
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -147,14 +147,14 @@ exports[`Timeline renders with dates 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -188,14 +188,14 @@ exports[`Timeline renders with dates 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -229,7 +229,7 @@ exports[`Timeline renders with dates 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
@@ -253,7 +253,7 @@ exports[`Timeline renders with icons 1`] = `
         class="table h-fit w-fit"
       >
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -274,14 +274,14 @@ exports[`Timeline renders with icons 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -302,14 +302,14 @@ exports[`Timeline renders with icons 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -330,7 +330,7 @@ exports[`Timeline renders with icons 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
@@ -354,7 +354,7 @@ exports[`Timeline renders without a connector 1`] = `
         class="table h-fit w-fit"
       >
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -376,14 +376,14 @@ exports[`Timeline renders without a connector 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -405,14 +405,14 @@ exports[`Timeline renders without a connector 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="table-row"
+          class="table-row group"
         >
           <div
             class="table-cell align-top h-full"
@@ -430,7 +430,7 @@ exports[`Timeline renders without a connector 1`] = `
             class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 grow last:mb-0"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>

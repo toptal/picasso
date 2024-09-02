@@ -34,8 +34,7 @@ const TimelineRow = ({
   return (
     <Container
       data-testid={dataTestId}
-      // className={cx(classes.root, classes.tableRow, className)}
-      className={twMerge('table-row', className)}
+      className={twMerge('table-row group', className)}
     >
       <Container className={tableCellClasses}>
         <Container
@@ -43,19 +42,16 @@ const TimelineRow = ({
           direction='column'
           alignItems='center'
           right='medium'
-          // className={classes.tableCellContent}
           className='h-full'
         >
           {typeof icon !== 'undefined' ? (
             React.cloneElement(icon, {
-              // className: twJoin(icon.props.className, classes.icon),
               className: twJoin(
                 icon.props.className,
                 'my-1 mx-0 text-gray-600'
               ),
             })
           ) : (
-            // <div className={classes.dot} data-testid={testIds.dot} />
             <div
               className='
             w-4 h-4 flex items-center justify-center bg-white my-1 mx-0
@@ -71,7 +67,6 @@ const TimelineRow = ({
           )}
           {hasConnector && (
             <div
-              // className={classes.connector}
               className='flex-1 w-0 border-dashed border-0 border-l border-gray-600'
               data-testid={testIds.connector}
             />
@@ -84,7 +79,6 @@ const TimelineRow = ({
           className={tableCellClasses}
           style={{ whiteSpace: 'nowrap' }}
         >
-          {/* <Container className={classes.date} right='large'> */}
           <Container className='flex-[0_0_auto]' right='large'>
             <Typography className='leading-6' weight='semibold' size='medium'>
               {date}
@@ -94,8 +88,7 @@ const TimelineRow = ({
       )}
 
       <Container className={tableCellClasses}>
-        {/* <Container className={classes.content} bottom='large'> */}
-        <Container className='grow last:mb-0' bottom='large'>
+        <Container className='grow group-last:mb-0' bottom='large'>
           {children}
         </Container>
       </Container>
