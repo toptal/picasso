@@ -78,6 +78,9 @@ export default ({ palette, typography }: Theme) => {
       height: '1.5em',
       alignSelf: 'flex-start',
     },
+    expandIconLeft: {
+      marginRight: '0.5em',
+    },
     summary: {
       color: palette.common.black,
     },
@@ -99,7 +102,9 @@ export default ({ palette, typography }: Theme) => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      lineHeight: '1.5em',
+    },
+    contentRight: {
+      justifyContent: 'normal',
     },
   })
 }
