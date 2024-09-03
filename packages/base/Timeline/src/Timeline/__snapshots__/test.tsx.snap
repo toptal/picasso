@@ -9,87 +9,87 @@ exports[`Timeline renders 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoTimeline-root"
+        class="table h-fit w-fit"
       >
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
                 data-testid="dot"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
                 data-testid="dot"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
                 data-testid="dot"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
@@ -110,31 +110,31 @@ exports[`Timeline renders with dates 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoTimeline-root"
+        class="table h-fit w-fit"
       >
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
             style="white-space: nowrap;"
           >
             <div
-              class="mr-8 PicassoTimelineRow-date"
+              class="mr-8 flex-[0_0_auto]"
             >
               <p
                 class="m-0 text-md text-graphite font-semibold leading-6"
@@ -144,38 +144,38 @@ exports[`Timeline renders with dates 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
             style="white-space: nowrap;"
           >
             <div
-              class="mr-8 PicassoTimelineRow-date"
+              class="mr-8 flex-[0_0_auto]"
             >
               <p
                 class="m-0 text-md text-graphite font-semibold leading-6"
@@ -185,38 +185,38 @@ exports[`Timeline renders with dates 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
             style="white-space: nowrap;"
           >
             <div
-              class="mr-8 PicassoTimelineRow-date"
+              class="mr-8 flex-[0_0_auto]"
             >
               <p
                 class="m-0 text-md text-graphite font-semibold leading-6"
@@ -226,10 +226,10 @@ exports[`Timeline renders with dates 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
@@ -250,87 +250,87 @@ exports[`Timeline renders with icons 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoTimeline-root"
+        class="table h-fit w-fit"
       >
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <span
-                class="PicassoTimelineRow-icon"
+                class="my-1 mx-0 text-gray"
                 data-testid="icon-1"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <span
-                class="PicassoTimelineRow-icon"
+                class="my-1 mx-0 text-gray"
                 data-testid="icon-2"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <span
-                class="PicassoTimelineRow-icon"
+                class="my-1 mx-0 text-gray"
                 data-testid="icon-3"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
@@ -351,86 +351,86 @@ exports[`Timeline renders without a connector 1`] = `
       class="Picasso-root"
     >
       <div
-        class="PicassoTimeline-root"
+        class="table h-fit w-fit"
       >
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
                 data-testid="dot"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
                 data-testid="connector"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #1
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
                 data-testid="dot"
               />
               <div
-                class="PicassoTimelineRow-connector"
+                class="flex-1 w-0 border-dashed border-0 border-l border-gray"
                 data-testid="connector"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #2
             </div>
           </div>
         </div>
         <div
-          class="PicassoTimelineRow-root PicassoTimelineRow-tableRow"
+          class="table-row group"
         >
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mr-6 items-center flex flex-col PicassoTimelineRow-tableCellContent"
+              class="mr-6 items-center flex flex-col h-full"
             >
               <div
-                class="PicassoTimelineRow-dot"
+                class="w-4 h-4 flex items-center justify-center bg-white my-1 mx-0 [&:after]:content-[""] [&:after]:w-[9px] [&:after]:h-[9px] [&:after]:bg-gray [&:after]:rounded-[50%] [&:after]:leading-5"
                 data-testid="dot"
               />
             </div>
           </div>
           <div
-            class="PicassoTimelineRow-tableCell"
+            class="table-cell align-top h-full"
           >
             <div
-              class="mb-8 PicassoTimelineRow-content"
+              class="mb-8 grow group-last:mb-0"
             >
               Row #3
             </div>
