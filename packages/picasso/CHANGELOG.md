@@ -1,5 +1,18 @@
 # Change Log
 
+## 48.1.25
+
+### Patch Changes
+
+- [#4521](https://github.com/toptal/picasso/pull/4521) [`e759dcb`](https://github.com/toptal/picasso/commit/e759dcb03cbe9b2aae937b8d8f20c1e2ba79f351) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Timeline
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+- Updated dependencies [[`e759dcb`](https://github.com/toptal/picasso/commit/e759dcb03cbe9b2aae937b8d8f20c1e2ba79f351)]:
+  - @toptal/picasso-timeline@4.0.0
+
 ## 48.1.24
 
 ### Patch Changes

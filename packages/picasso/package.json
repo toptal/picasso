@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "48.1.24",
+  "version": "48.1.25",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -94,7 +94,7 @@
     "@toptal/picasso-tabs": "4.0.7",
     "@toptal/picasso-tag": "4.0.0",
     "@toptal/picasso-tagselector": "2.0.18",
-    "@toptal/picasso-timeline": "3.0.1",
+    "@toptal/picasso-timeline": "4.0.0",
     "@toptal/picasso-timepicker": "3.0.1",
     "@toptal/picasso-tooltip": "1.1.5",
     "@toptal/picasso-tree-view": "3.0.12",
