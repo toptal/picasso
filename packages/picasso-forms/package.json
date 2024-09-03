@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "71.0.26",
+  "version": "71.0.27",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -35,7 +35,7 @@
     "@toptal/picasso-button": "4.0.1",
     "@toptal/picasso-password-input": "4.0.1",
     "@toptal/picasso-radio": "4.0.0",
-    "@toptal/picasso-rating": "2.0.2",
+    "@toptal/picasso-rating": "3.0.0",
     "@toptal/picasso-icons": "1.6.0",
     "@toptal/picasso-form": "5.0.0",
     "@toptal/picasso-file-input": "2.0.13",

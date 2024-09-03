@@ -21,12 +21,12 @@ exports[`Rating Thumbs renders default Stars 1`] = `
             type="number"
           >
             <label
-              class="PicassoRating-label PicassoRating-clickableLabel"
+              class="mr-[.125rem] cursor-pointer"
               for="stars-1"
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -36,7 +36,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
                 </svg>
               </span>
               <input
-                class="PicassoRating-radio"
+                class="hidden"
                 data-testid="stars-1"
                 id="stars-1"
                 name="stars"
@@ -45,12 +45,12 @@ exports[`Rating Thumbs renders default Stars 1`] = `
               />
             </label>
             <label
-              class="PicassoRating-label PicassoRating-clickableLabel"
+              class="mr-[.125rem] cursor-pointer"
               for="stars-2"
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -60,7 +60,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
                 </svg>
               </span>
               <input
-                class="PicassoRating-radio"
+                class="hidden"
                 data-testid="stars-2"
                 id="stars-2"
                 name="stars"
@@ -69,12 +69,12 @@ exports[`Rating Thumbs renders default Stars 1`] = `
               />
             </label>
             <label
-              class="PicassoRating-label PicassoRating-clickableLabel"
+              class="mr-[.125rem] cursor-pointer"
               for="stars-3"
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -84,7 +84,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
                 </svg>
               </span>
               <input
-                class="PicassoRating-radio"
+                class="hidden"
                 data-testid="stars-3"
                 id="stars-3"
                 name="stars"
@@ -93,12 +93,12 @@ exports[`Rating Thumbs renders default Stars 1`] = `
               />
             </label>
             <label
-              class="PicassoRating-label PicassoRating-clickableLabel"
+              class="mr-[.125rem] cursor-pointer"
               for="stars-4"
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -108,7 +108,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
                 </svg>
               </span>
               <input
-                class="PicassoRating-radio"
+                class="hidden"
                 data-testid="stars-4"
                 id="stars-4"
                 name="stars"
@@ -117,12 +117,12 @@ exports[`Rating Thumbs renders default Stars 1`] = `
               />
             </label>
             <label
-              class="PicassoRating-label PicassoRating-clickableLabel"
+              class="mr-[.125rem] cursor-pointer"
               for="stars-5"
             >
               <span>
                 <svg
-                  class="PicassoSvgStar16-root PicassoRatingIcon-clickableIcon PicassoSvgStar16-yellow"
+                  class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 16 16"
                 >
@@ -132,7 +132,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
                 </svg>
               </span>
               <input
-                class="PicassoRating-radio"
+                class="hidden"
                 data-testid="stars-5"
                 id="stars-5"
                 name="stars"
@@ -141,7 +141,7 @@ exports[`Rating Thumbs renders default Stars 1`] = `
               />
             </label>
             <input
-              class="PicassoRating-radio"
+              class="hidden"
               id="stars-reset"
               name="stars"
               type="radio"
@@ -174,11 +174,11 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
             class=""
           >
             <label
-              class="makeStyles-label"
+              class="[&:not(:last-child)]:mr-[1em]"
               for="0-posititve"
             >
               <svg
-                class="PicassoSvgThumbsUp16-root makeStyles-thumbs makeStyles-interactiveThumbs"
+                class="PicassoSvgThumbsUp16-root transition-colors duration-200 ease-linear cursor-pointer hover:text-graphite text-gray"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -187,7 +187,7 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
                 />
               </svg>
               <input
-                class="makeStyles-radio"
+                class="hidden"
                 data-testid="positive-thumb"
                 id="0-posititve"
                 name="thumbs"
@@ -196,11 +196,11 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
               />
             </label>
             <label
-              class="makeStyles-label"
+              class="[&:not(:last-child)]:mr-[1em]"
               for="0-negative"
             >
               <svg
-                class="PicassoSvgThumbsDown16-root makeStyles-thumbs makeStyles-interactiveThumbs"
+                class="PicassoSvgThumbsDown16-root transition-colors duration-200 ease-linear cursor-pointer hover:text-graphite text-gray"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -209,7 +209,7 @@ exports[`Rating Thumbs renders default Thumbs 1`] = `
                 />
               </svg>
               <input
-                class="makeStyles-radio"
+                class="hidden"
                 data-testid="negative-thumb"
                 id="0-negative"
                 name="thumbs"
