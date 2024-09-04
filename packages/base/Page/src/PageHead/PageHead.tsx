@@ -85,6 +85,7 @@ const borderPseudoElement = [
   'after:bottom-0',
   'after:z-0',
   'after:bg-gray-200',
+  'after:h-[1px]',
 ]
 
 export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
