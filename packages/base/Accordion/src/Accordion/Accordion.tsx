@@ -18,6 +18,7 @@ import { AccordionDetails } from '../AccordionDetails'
 import styles from './styles'
 
 export type Borders = 'all' | 'middle' | 'none'
+export type ExpandIconPlacement = 'left' | 'right'
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'PicassoAccordion',
@@ -44,6 +45,8 @@ export interface Props
   disabled?: boolean
   /** Customize icon indicating expanded status */
   expandIcon?: ReactElement
+  /** Customize icon placement */
+  expandIconPlacement?: ExpandIconPlacement
   /** Defines where the horizontal borders show */
   borders?: Borders
   /** Callback invoked when `Accordion` item is toggled */
@@ -75,6 +78,7 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     expanded,
     defaultExpanded,
     expandIcon,
+    expandIconPlacement = 'right',
     borders,
     disabled,
     className,
@@ -110,6 +114,23 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
   const appliedBorders = children || expanded ? (borders as Borders) : 'none'
 
+  const renderExpandIcon = (expandIconPosition: 'left' | 'right') => {
+    if (expandIcon) {
+      return decorateWithExpandIconClasses(expandIcon, expandIconClass)
+    }
+
+    return (
+      <div
+        className={cx({
+          [classes.expandIconAlignTop]: true,
+          [classes.expandIconLeft]: expandIconPosition === 'left',
+        })}
+      >
+        <ButtonAction icon={<ArrowDownMinor16 className={expandIconClass} />} />
+      </div>
+    )
+  }
+
   return (
     <MUIAccordion
       {...rest}
@@ -129,22 +150,17 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         <AccordionSummary
           classes={{
             root: classes.summary,
-            content: classes.content,
+            content: `${classes.content} ${
+              expandIconPlacement === 'left' ? classes.contentRight : ''
+            }`,
           }}
           expandIcon={null}
           onClick={handleSummaryClick}
           data-testid={testIds?.accordionSummary}
         >
+          {expandIconPlacement === 'left' && renderExpandIcon('left')}
           {children}
-          {expandIcon ? (
-            decorateWithExpandIconClasses(expandIcon, expandIconClass)
-          ) : (
-            <div className={classes.expandIconAlignTop}>
-              <ButtonAction
-                icon={<ArrowDownMinor16 className={expandIconClass} />}
-              />
-            </div>
-          )}
+          {expandIconPlacement === 'right' && renderExpandIcon('right')}
         </AccordionSummary>
       ) : (
         <EmptyAccordionSummary data-testid={testIds?.emptyAccordionSummary} />

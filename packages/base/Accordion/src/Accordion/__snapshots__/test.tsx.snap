@@ -229,3 +229,87 @@ exports[`Accordion renders disabled 1`] = `
   </div>
 </div>
 `;
+
+exports[`Accordion renders expand icon on the left if the \`expandIconPlacement\` prop is provided 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div
+      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersAll MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+    >
+      <div
+        aria-disabled="false"
+        aria-expanded="false"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
+        role="button"
+        tabindex="0"
+      >
+        <div
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoAccordion-contentRight"
+        >
+          <div
+            class="PicassoAccordion-expandIconAlignTop PicassoAccordion-expandIconLeft"
+          >
+            <button
+              aria-disabled="false"
+              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [&+&]:ml-4 cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+              data-component-type="button"
+              role="button"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="items-center inline-flex font-semibold text-blue text-md"
+              >
+                <svg
+                  class="PicassoSvgArrowDownMinor16-root text-[1.2em] flex-1 w-4 h-4 text-graphite PicassoAccordion-expandIcon"
+                  style="min-width: 16px; min-height: 16px;"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <div
+            class="PicassoAccordion-summaryWrapper"
+            data-testid="accordion-summary"
+          >
+            What is a dog?
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiCollapse-root MuiCollapse-hidden"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner"
+          >
+            <div
+              role="region"
+            >
+              <div
+                class="flex p-0"
+              >
+                <div
+                  class="PicassoAccordion-detailsWrapper"
+                  data-testid="accordion-details"
+                >
+                  A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
