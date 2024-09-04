@@ -1,12 +1,9 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps {
   /** Content */
@@ -16,14 +13,6 @@ export interface Props extends BaseProps {
   /** Whether it should hide bottom border */
   noBorder?: boolean
 }
-
-const useStyles = makeStyles(styles, {
-  name: 'PicassoPageHead',
-})
-
-const useMainStyles = makeStyles(styles, {
-  name: 'PicassoPageHeadMain',
-})
 
 const Title = ({
   titleCase,
@@ -61,18 +50,13 @@ const Main = (
 ) => {
   const { className, children, enableMinHeight, ...rest } = props
 
-  const classes = useMainStyles(props)
-
   return (
     <Container
       flex
       justifyContent='space-between'
       alignItems='center'
-      className={cx(
-        {
-          [classes.main]: !enableMinHeight,
-          [classes.mainEnableMinHeight]: enableMinHeight,
-        },
+      className={twMerge(
+        enableMinHeight ? 'py-3 min-h-[3.375em]' : 'h-[3.375em]',
         className
       )}
       {...rest}
@@ -94,20 +78,31 @@ const Actions = ({
   )
 }
 
+const borderPseudoElement = [
+  'after:content-[""]',
+  'after:absolute',
+  'after:inset-x-0',
+  'after:bottom-0',
+  'after:z-0',
+  'after:bg-gray-200',
+]
+
 export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {
   const { children, noBorder, rightPadding, className } = props
-  const classes = useStyles()
+  const withBorder = !noBorder
 
   return (
     <Container
       ref={ref}
-      className={cx(classes.root, className, {
-        [classes.withBorder]: !noBorder,
-        [classes.rightPadding]: rightPadding,
-      })}
+      className={twMerge(
+        'relative',
+        withBorder && borderPseudoElement,
+        rightPadding && 'pr-8',
+        className
+      )}
     >
       {children}
     </Container>
