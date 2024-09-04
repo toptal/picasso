@@ -109,7 +109,9 @@ export const TypographyOverflow = (props: Props) => {
       noWrap={!isMultiline}
       className={twMerge(
         '[-webkit-box-orient:vertical] overflow-hidden text-ellipsis pr-[0.9px]',
-        isMultiline ? '[display:-webkit-box] break-words' : 'block',
+        isMultiline
+          ? '[display:-webkit-box] break-words ![white-space:initial]'
+          : 'block',
         className
       )}
       onClick={handleClick}
