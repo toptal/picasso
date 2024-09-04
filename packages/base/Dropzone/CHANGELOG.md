@@ -1,5 +1,12 @@
 # @toptal/picasso-dropzone
 
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@2.0.14
+
 ## 4.0.1
 
 ### Patch Changes

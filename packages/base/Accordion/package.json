@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-accordion",
-  "version": "2.0.12",
+  "version": "2.1.0",
   "description": "Toptal UI components library - Accordion",
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 4.0.4
+
+### Patch Changes
+
+- [#4524](https://github.com/toptal/picasso/pull/4524) [`bf29f1f`](https://github.com/toptal/picasso/commit/bf29f1fff6e9e183b5b75dde931d068ccc2145db) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- migrate PageHead to the TailwindCSS
+
+- Updated dependencies [[`34f55d4`](https://github.com/toptal/picasso/commit/34f55d46a0f604b19f6ba619cb09d224a99846e4)]:
+  - @toptal/picasso-accordion@2.1.0
+
 ## 4.0.3
 
 ### Patch Changes
