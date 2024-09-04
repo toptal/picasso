@@ -1,5 +1,16 @@
 # @toptal/picasso-typography-overflow
 
+## 3.0.0
+
+### Major Changes
+
+- [#4520](https://github.com/toptal/picasso/pull/4520) [`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### TypographyOverflow
+
+- migrate to TailwindCSS, `material-ui@4` is no longer required for this package
+- require `@toptal/picasso-tailwind` and `@toptal/picasso-tailwind-merge` to be installed
+
 ## 2.0.5
 
 ### Patch Changes

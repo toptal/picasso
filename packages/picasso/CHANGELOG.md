@@ -1,5 +1,24 @@
 # Change Log
 
+## 48.1.26
+
+### Patch Changes
+
+- [#4520](https://github.com/toptal/picasso/pull/4520) [`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### TypographyOverflow
+
+- migrate to TailwindCSS, `material-ui@4` is no longer required for this package
+- require `@toptal/picasso-tailwind` and `@toptal/picasso-tailwind-merge` to be installed
+- Updated dependencies [[`bf29f1f`](https://github.com/toptal/picasso/commit/bf29f1fff6e9e183b5b75dde931d068ccc2145db), [`34f55d4`](https://github.com/toptal/picasso/commit/34f55d46a0f604b19f6ba619cb09d224a99846e4), [`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6)]:
+  - @toptal/picasso-page@4.0.4
+  - @toptal/picasso-accordion@2.1.0
+  - @toptal/picasso-typography-overflow@3.0.0
+  - @toptal/picasso-file-input@2.0.14
+  - @toptal/picasso-step@3.0.1
+  - @toptal/picasso-tabs@4.0.8
+  - @toptal/picasso-dropzone@4.0.2
+
 ## 48.1.25
 
 ### Patch Changes

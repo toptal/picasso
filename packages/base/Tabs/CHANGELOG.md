@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6)]:
+  - @toptal/picasso-typography-overflow@3.0.0
+
 ## 4.0.7
 
 ### Patch Changes
