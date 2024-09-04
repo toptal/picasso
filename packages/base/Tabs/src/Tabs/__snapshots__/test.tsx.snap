@@ -162,7 +162,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block"
               >
                 Tab 1
               </div>
@@ -180,7 +180,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden inline TypographyOverflow-wrapper !block !whitespace-nowrap"
+                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block"
               >
                 Tab 2
               </div>

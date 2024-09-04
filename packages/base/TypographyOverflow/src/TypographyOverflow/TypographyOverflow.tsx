@@ -1,16 +1,12 @@
-import cx from 'classnames'
 import type { ReactNode } from 'react'
 import React, { useCallback, useState } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Typography } from '@toptal/picasso-typography'
 import { isOverflown } from '@toptal/picasso-utils'
 import type { TypographyProps } from '@toptal/picasso-typography'
 import type { DelayType, PlacementType } from '@toptal/picasso-tooltip'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps, TypographyProps {
   /** A typography which can possibly overflow */
@@ -27,10 +23,6 @@ export interface Props extends BaseProps, TypographyProps {
   placement?: PlacementType
 }
 
-const useStyles = makeStyles<Theme, Props>(styles, {
-  name: 'TypographyOverflow',
-})
-
 export const TypographyOverflow = (props: Props) => {
   const {
     children,
@@ -46,7 +38,6 @@ export const TypographyOverflow = (props: Props) => {
     ...rest
   } = props
 
-  const classes = useStyles(props)
   const [isTooltipActive, setIsTooltipActive] = useState(false)
   const [isTooltipOpened, setIsTooltipOpened] = useState(false)
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false)
@@ -115,9 +106,12 @@ export const TypographyOverflow = (props: Props) => {
     <Typography
       {...rest}
       style={extendedStyle}
-      className={cx(
-        classes.wrapper,
-        isMultiline ? classes.multiLine : '!block !whitespace-nowrap',
+      noWrap={!isMultiline}
+      className={twMerge(
+        '[-webkit-box-orient:vertical] overflow-hidden text-ellipsis pr-[0.9px]',
+        isMultiline
+          ? '[display:-webkit-box] break-words ![white-space:initial]'
+          : 'block',
         className
       )}
       onClick={handleClick}
@@ -148,9 +142,5 @@ export const TypographyOverflow = (props: Props) => {
 }
 
 TypographyOverflow.displayName = 'TypographyOverflow'
-
-TypographyOverflow.defaultProps = {
-  noWrap: true,
-}
 
 export default TypographyOverflow
