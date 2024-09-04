@@ -102,6 +102,7 @@ export default ({ palette, typography }: Theme) => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+      lineHeight: '1.5em',
     },
     contentRight: {
       justifyContent: 'normal',

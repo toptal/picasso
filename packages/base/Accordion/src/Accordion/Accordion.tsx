@@ -121,9 +121,10 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
 
     return (
       <div
-        className={`${classes.expandIconAlignTop} ${
-          expandIconPosition === 'left' ? classes.expandIconLeft : ''
-        }`}
+        className={cx({
+          [classes.expandIconAlignTop]: true,
+          [classes.expandIconLeft]: expandIconPosition === 'left',
+        })}
       >
         <ButtonAction icon={<ArrowDownMinor16 className={expandIconClass} />} />
       </div>
