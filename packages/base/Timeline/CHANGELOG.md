@@ -1,5 +1,23 @@
 # @toptal/picasso-timeline
 
+## 5.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+## 4.0.0
+
+### Major Changes
+
+- [#4521](https://github.com/toptal/picasso/pull/4521) [`e759dcb`](https://github.com/toptal/picasso/commit/e759dcb03cbe9b2aae937b8d8f20c1e2ba79f351) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Timeline
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+
 ## 3.0.1
 
 ### Patch Changes

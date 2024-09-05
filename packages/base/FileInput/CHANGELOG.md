@@ -1,5 +1,31 @@
 # @toptal/picasso-file-input
 
+## 3.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+### Patch Changes
+
+- Updated dependencies [[`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd)]:
+  - @toptal/picasso-typography-overflow@4.0.0
+
+## 2.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6)]:
+  - @toptal/picasso-typography-overflow@3.0.0
+
+## 2.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.1
+
 ## 2.0.12
 
 ### Patch Changes

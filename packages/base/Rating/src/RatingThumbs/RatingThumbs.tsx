@@ -1,7 +1,4 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import classNames from 'classnames'
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback, useState } from 'react'
 import {
@@ -12,7 +9,7 @@ import {
 } from '@toptal/picasso-icons'
 import { Container } from '@toptal/picasso-container'
 
-import styles from './styles'
+import { getThumbClasses, labelClasses } from './styles'
 
 type Size = SizeType<'small' | 'large'>
 
@@ -49,8 +46,6 @@ export interface Props extends BaseProps {
   }
 }
 
-const useStyles = makeStyles<Theme>(styles)
-
 const enum ThumbsValue {
   POSITIVE = 'positive',
   NEGATIVE = 'negative',
@@ -68,8 +63,6 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
     { name, interactive = true, size = 'small', value, onChange, testIds = {} },
     ref
   ) {
-    const classes = useStyles()
-
     const [baseUniqueId] = useState(() => globalId++)
 
     const positiveInputId = `${baseUniqueId}-posititve`
@@ -88,17 +81,14 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container ref={ref}>
-        <label className={classes.label} htmlFor={positiveInputId}>
+        <label className={labelClasses} htmlFor={positiveInputId}>
           <ThumbsUp
-            className={classNames(classes.thumbs, {
-              [classes.interactiveThumbs]: interactive,
-              [classes.thumbsPositive]: value === true,
-            })}
+            className={getThumbClasses({ thumbType: 'up', interactive, value })}
           />
 
           <input
             id={positiveInputId}
-            className={classes.radio}
+            className='hidden'
             type='radio'
             name={name}
             value={ThumbsValue.POSITIVE}
@@ -109,17 +99,18 @@ export const RatingThumbs = forwardRef<HTMLDivElement, Props>(
           />
         </label>
 
-        <label className={classes.label} htmlFor={negativeInputId}>
+        <label className={labelClasses} htmlFor={negativeInputId}>
           <ThumbsDown
-            className={classNames(classes.thumbs, {
-              [classes.interactiveThumbs]: interactive,
-              [classes.thumbsNegative]: value === false,
+            className={getThumbClasses({
+              thumbType: 'down',
+              interactive,
+              value,
             })}
           />
 
           <input
             id={negativeInputId}
-            className={classes.radio}
+            className='hidden'
             type='radio'
             name={name}
             value={ThumbsValue.NEGATIVE}

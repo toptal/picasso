@@ -1,5 +1,137 @@
 # Change Log
 
+## 49.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+### Patch Changes
+
+- Updated dependencies [[`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd)]:
+  - @toptal/picasso-typography-overflow@4.0.0
+  - @toptal/picasso-accordion@3.0.0
+  - @toptal/picasso-file-input@3.0.0
+  - @toptal/picasso-dropzone@5.0.0
+  - @toptal/picasso-timeline@5.0.0
+  - @toptal/picasso-page@5.0.0
+  - @toptal/picasso-step@4.0.0
+  - @toptal/picasso-tabs@5.0.0
+
+## 48.1.26
+
+### Patch Changes
+
+- [#4520](https://github.com/toptal/picasso/pull/4520) [`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### TypographyOverflow
+
+- migrate to TailwindCSS, `material-ui@4` is no longer required for this package
+- require `@toptal/picasso-tailwind` and `@toptal/picasso-tailwind-merge` to be installed
+- Updated dependencies [[`bf29f1f`](https://github.com/toptal/picasso/commit/bf29f1fff6e9e183b5b75dde931d068ccc2145db), [`34f55d4`](https://github.com/toptal/picasso/commit/34f55d46a0f604b19f6ba619cb09d224a99846e4), [`2903881`](https://github.com/toptal/picasso/commit/290388118eb10b866f3078eebac26755573d0ca6)]:
+  - @toptal/picasso-page@4.0.4
+  - @toptal/picasso-accordion@2.1.0
+  - @toptal/picasso-typography-overflow@3.0.0
+  - @toptal/picasso-file-input@2.0.14
+  - @toptal/picasso-step@3.0.1
+  - @toptal/picasso-tabs@4.0.8
+  - @toptal/picasso-dropzone@4.0.2
+
+## 48.1.25
+
+### Patch Changes
+
+- [#4521](https://github.com/toptal/picasso/pull/4521) [`e759dcb`](https://github.com/toptal/picasso/commit/e759dcb03cbe9b2aae937b8d8f20c1e2ba79f351) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Timeline
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+- Updated dependencies [[`e759dcb`](https://github.com/toptal/picasso/commit/e759dcb03cbe9b2aae937b8d8f20c1e2ba79f351)]:
+  - @toptal/picasso-timeline@4.0.0
+
+## 48.1.24
+
+### Patch Changes
+
+- [#4517](https://github.com/toptal/picasso/pull/4517) [`e551bb5`](https://github.com/toptal/picasso/commit/e551bb56fda72940e4a12aa2bebc2d5c3345b2ec) Thanks [@sashuk](https://github.com/sashuk)!
+
+### ShowMore
+
+- migrate to TailwindCSS, `material-ui@4` is no longer required for this package
+- update peer dependencies
+- Updated dependencies [[`e551bb5`](https://github.com/toptal/picasso/commit/e551bb56fda72940e4a12aa2bebc2d5c3345b2ec)]:
+  - @toptal/picasso-show-more@2.0.0
+
+## 48.1.23
+
+### Patch Changes
+
+- [#4512](https://github.com/toptal/picasso/pull/4512) [`17a4b55`](https://github.com/toptal/picasso/commit/17a4b5532bf013071119429711dad21ddc66645d) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Rating
+
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+- make @toptal/picasso-tailwind-merge a peer dependency
+- Updated dependencies [[`17a4b55`](https://github.com/toptal/picasso/commit/17a4b5532bf013071119429711dad21ddc66645d)]:
+  - @toptal/picasso-rating@3.0.0
+
+## 48.1.22
+
+### Patch Changes
+
+- Updated dependencies [[`3a0125d`](https://github.com/toptal/picasso/commit/3a0125df1849c66335436c3adaea1b90f989ee7b)]:
+  - @toptal/picasso-dropdown@4.1.0
+  - @toptal/picasso-button@4.0.1
+  - @toptal/picasso-page@4.0.3
+  - @toptal/picasso-accordion@2.0.12
+  - @toptal/picasso-alert@3.0.12
+  - @toptal/picasso-application-update-notification@2.0.12
+  - @toptal/picasso-calendar@4.0.1
+  - @toptal/picasso-carousel@4.0.1
+  - @toptal/picasso-drawer@3.0.12
+  - @toptal/picasso-file-input@2.0.13
+  - @toptal/picasso-helpbox@5.0.1
+  - @toptal/picasso-modal@3.0.12
+  - @toptal/picasso-notification@4.0.1
+  - @toptal/picasso-outlined-input@3.0.1
+  - @toptal/picasso-pagination@4.0.1
+  - @toptal/picasso-password-input@4.0.1
+  - @toptal/picasso-prompt-modal@2.0.12
+  - @toptal/picasso-section@5.0.1
+  - @toptal/picasso-show-more@1.0.37
+  - @toptal/picasso-skeleton-loader@1.0.37
+  - @toptal/picasso-table@3.0.1
+  - @toptal/picasso-tree-view@3.0.12
+  - @toptal/picasso-date-picker@2.0.16
+  - @toptal/picasso-dropzone@4.0.1
+  - @toptal/picasso-autocomplete@4.0.3
+  - @toptal/picasso-avatar-upload@3.0.3
+  - @toptal/picasso-input@3.0.14
+  - @toptal/picasso-number-input@3.0.1
+  - @toptal/picasso-select@3.0.3
+  - @toptal/picasso-tagselector@2.0.18
+  - @toptal/picasso-timepicker@3.0.1
+  - @toptal/picasso-date-select@1.0.48
+
+## 48.1.21
+
+### Patch Changes
+
+- Updated dependencies [[`9e089cc`](https://github.com/toptal/picasso/commit/9e089cc183a95391f73dc0bf28c59b3c1bfa4758)]:
+  - @toptal/picasso-user-badge@5.1.0
+  - @toptal/picasso-avatar@6.1.0
+  - @toptal/picasso-account-select@3.0.2
+  - @toptal/picasso-page@4.0.2
+  - @toptal/picasso-tabs@4.0.7
+  - @toptal/picasso-avatar-upload@3.0.2
+  - @toptal/picasso-menu@3.0.2
+  - @toptal/picasso-autocomplete@4.0.2
+  - @toptal/picasso-select@3.0.2
+  - @toptal/picasso-tagselector@2.0.17
+  - @toptal/picasso-date-select@1.0.47
+
 ## 48.1.20
 
 ### Patch Changes

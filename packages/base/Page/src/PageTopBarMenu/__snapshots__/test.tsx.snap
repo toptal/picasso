@@ -6,25 +6,27 @@ exports[`PageTopBarMenu renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoDropdown-root"
+      class="flex items-center"
     >
       <div
-        class="PicassoDropdown-anchor"
+        class="inline-flex items-center cursor-pointer"
       >
         <div
           class="items-center flex text-[1rem]"
         >
-          <div
-            class="flex relative"
-          >
+          <div>
             <div
-              class="relative bg-gray text-[1rem] shrink-0 grow-0 w-[2em] h-[2em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+              class="relative"
             >
-              <img
-                alt="Jacqueline Roque"
-                class="block object-cover w-full h-full absolute left-0 top-0 [image-rendering:-webkit-optimize"
-                src="./jacqueline-with-flowers-1954-square.jpg"
-              />
+              <div
+                class="relative bg-gray text-[1rem] grid place-items w-[2em] h-[2em] [clip-path:polygon(0_0,_100%_0,_100%_100%,_0.5em_100%,_0_calc(100%-0.5em))]"
+              >
+                <img
+                  alt="Jacqueline Roque"
+                  class="block object-cover w-full h-full [image-rendering:-webkit-optimize"
+                  src="./jacqueline-with-flowers-1954-square.jpg"
+                />
+              </div>
             </div>
           </div>
           <div

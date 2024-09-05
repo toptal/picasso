@@ -1,12 +1,10 @@
 import type { ReactNode, ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { RatingIcon } from '../RatingIcon'
-import styles from './styles'
 
 export interface Props extends BaseProps {
   /** Value of the name attribute of the rating input */
@@ -25,10 +23,6 @@ export interface Props extends BaseProps {
   size?: SizeType<'small' | 'large'>
 }
 
-const useStyles = makeStyles(styles, {
-  name: 'PicassoRating',
-})
-
 const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
   props,
   ref
@@ -43,8 +37,6 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
     size = 'small',
     ...rest
   } = props
-
-  const classes = useStyles()
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -82,9 +74,7 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
           <label
             key={itemId}
             htmlFor={shouldReset ? resetInputId : itemId}
-            className={cx(classes.label, {
-              [classes.clickableLabel]: interactive,
-            })}
+            className={twJoin('mr-[.125rem]', interactive && 'cursor-pointer')}
           >
             {renderItem(itemValue, defaultIcon)}
             <input
@@ -95,7 +85,7 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
               onChange={handleChange}
               readOnly={!interactive}
               checked={itemValue === value}
-              className={classes.radio}
+              className='hidden'
               data-testid={itemId}
             />
           </label>
@@ -109,7 +99,7 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
         id={resetInputId}
         value=''
         onChange={handleChange}
-        className={classes.radio}
+        className='hidden'
       />
     </Container>
   )

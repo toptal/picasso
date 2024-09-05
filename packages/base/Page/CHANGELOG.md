@@ -1,5 +1,48 @@
 # @toptal/picasso-page
 
+## 5.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+### Patch Changes
+
+- Updated dependencies [[`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd)]:
+  - @toptal/picasso-accordion@3.0.0
+
+## 4.0.4
+
+### Patch Changes
+
+- [#4524](https://github.com/toptal/picasso/pull/4524) [`bf29f1f`](https://github.com/toptal/picasso/commit/bf29f1fff6e9e183b5b75dde931d068ccc2145db) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- migrate PageHead to the TailwindCSS
+
+- Updated dependencies [[`34f55d4`](https://github.com/toptal/picasso/commit/34f55d46a0f604b19f6ba619cb09d224a99846e4)]:
+  - @toptal/picasso-accordion@2.1.0
+
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`3a0125d`](https://github.com/toptal/picasso/commit/3a0125df1849c66335436c3adaea1b90f989ee7b)]:
+  - @toptal/picasso-dropdown@4.1.0
+  - @toptal/picasso-button@4.0.1
+  - @toptal/picasso-accordion@2.0.12
+  - @toptal/picasso-notification@4.0.1
+  - @toptal/picasso-autocomplete@4.0.3
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`9e089cc`](https://github.com/toptal/picasso/commit/9e089cc183a95391f73dc0bf28c59b3c1bfa4758)]:
+  - @toptal/picasso-user-badge@5.1.0
+  - @toptal/picasso-avatar@6.1.0
+  - @toptal/picasso-menu@3.0.2
+  - @toptal/picasso-autocomplete@4.0.2
+
 ## 4.0.1
 
 ### Patch Changes

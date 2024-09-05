@@ -1,10 +1,7 @@
 import React, { forwardRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { SizeType } from '@toptal/picasso-shared'
 import { Star16, StarSolid16, Star24, StarSolid24 } from '@toptal/picasso-icons'
-
-import styles from './styles'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 export interface Props {
   active: boolean
@@ -12,10 +9,6 @@ export interface Props {
   interactive: boolean
   size: SizeType<'small' | 'large'>
 }
-
-const useStyles = makeStyles(styles, {
-  name: 'PicassoRatingIcon',
-})
 
 const iconsBySize = {
   small: [Star16, StarSolid16],
@@ -27,13 +20,12 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   ref
 ) {
   const { active, hovered, interactive, size, ...rest } = props
-  const classes = useStyles()
 
   const iconColor = 'yellow'
-  const iconClasses = cx({
-    [classes.clickableIcon]: interactive,
-    [classes.hovered]: hovered,
-  })
+  const iconClasses = twJoin(
+    interactive && 'transition-all duration-350 ease-out hover:scale-150',
+    hovered && 'scale-150'
+  )
   const [Icon, IconSolid] = iconsBySize[size] || iconsBySize.small
 
   return (

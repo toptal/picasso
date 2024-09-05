@@ -19,11 +19,7 @@ const IconAvatar = ({
 }: Props) => {
   return (
     <Profile16
-      className={twMerge(
-        className,
-        'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-        classBySize[size]
-      )}
+      className={twMerge(className, classBySize[size])}
       color='white'
       data-testid={dataTestId}
       style={style}

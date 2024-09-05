@@ -1,5 +1,43 @@
 # @toptal/picasso-rich-text-editor
 
+## 16.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+### Patch Changes
+
+- Updated dependencies [[`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd)]:
+  - @toptal/picasso-file-input@3.0.0
+
+## 15.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@2.0.14
+
+## 15.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.1
+  - @toptal/picasso-file-input@2.0.13
+  - @toptal/picasso-modal@3.0.12
+  - @toptal/picasso-outlined-input@3.0.1
+  - @toptal/picasso-input@3.0.14
+  - @toptal/picasso-select@3.0.3
+
+## 15.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@3.0.2
+
 ## 15.0.2
 
 ### Patch Changes
