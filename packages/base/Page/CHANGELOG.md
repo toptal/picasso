@@ -1,5 +1,17 @@
 # @toptal/picasso-page
 
+## 5.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+### Patch Changes
+
+- Updated dependencies [[`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd)]:
+  - @toptal/picasso-accordion@3.0.0
+
 ## 4.0.4
 
 ### Patch Changes
