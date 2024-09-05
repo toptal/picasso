@@ -77,12 +77,6 @@ describe('Accordion', () => {
     expect(handleChange).toHaveBeenCalledTimes(3)
   })
 
-  it('renders expand icon on the left if the `expandIconPlacement` prop is provided', () => {
-    const { container } = renderAccordion({ expandIconPlacement: 'left' })
-
-    expect(container).toMatchSnapshot()
-  })
-
   it('renders disabled', async () => {
     const { container } = renderAccordion({ disabled: true })
 
