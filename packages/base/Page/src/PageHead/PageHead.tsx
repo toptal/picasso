@@ -1,81 +1,32 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import type { TextLabelProps, BaseProps } from '@toptal/picasso-shared'
-import { Container } from '@toptal/picasso-container'
+import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-export interface Props extends BaseProps {
-  /** Content */
-  children?: ReactNode
+export interface Props extends BaseProps, TextLabelProps {
+  /**
+   * Buttons or other actions to be rendered on the right side of the title
+   */
+  actions?: ReactNode
+  /**
+   * Breadcrumbs component to be rendered above the title
+   */
+  breadcrumbs?: ReactNode
+  /**
+   * Tabs or Stepper component to be rendered below the title
+   */
+  controls?: ReactNode
   /** Whether it should have right padding */
   rightPadding?: boolean
   /** Whether it should hide bottom border */
   noBorder?: boolean
-}
-
-const Title = ({
-  titleCase,
-  children,
-  className,
-  ...rest
-}: TextLabelProps & { children: ReactNode } & BaseProps) => {
-  return (
-    <Typography
-      variant='heading'
-      size='large'
-      titleCase={titleCase}
-      className={className}
-      {...rest}
-    >
-      {children}
-    </Typography>
-  )
-}
-
-const Tabs = ({
-  children,
-  className,
-  ...rest
-}: { children: ReactNode } & BaseProps) => {
-  return (
-    <Container className={className} {...rest}>
-      {children}
-    </Container>
-  )
-}
-
-const Main = (
-  props: { children?: ReactNode; enableMinHeight?: boolean } & BaseProps
-) => {
-  const { className, children, enableMinHeight, ...rest } = props
-
-  return (
-    <Container
-      flex
-      justifyContent='space-between'
-      alignItems='center'
-      className={twMerge(
-        enableMinHeight ? 'py-3 min-h-[3.375em]' : 'h-[3.375em]',
-        className
-      )}
-      {...rest}
-    >
-      {children}
-    </Container>
-  )
-}
-
-const Actions = ({
-  children,
-  className,
-  ...rest
-}: { children: ReactNode } & BaseProps) => {
-  return (
-    <Container flex alignItems='center' className={className} {...rest}>
-      {children}
-    </Container>
-  )
+  /** Render components nex to the title. */
+  titleAdornments?: ReactNode[]
+  /** Title */
+  title?: string
+  /** Subtitle */
+  subtitle?: string
 }
 
 const borderPseudoElement = [
@@ -88,38 +39,79 @@ const borderPseudoElement = [
   'after:h-[1px]',
 ]
 
-export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
-  props,
-  ref
-) {
-  const { children, noBorder, rightPadding, className } = props
-  const withBorder = !noBorder
+export const PageHead = forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      breadcrumbs,
+      controls,
+      title,
+      titleAdornments,
+      titleCase,
+      subtitle,
+      actions,
+      noBorder = false,
+      rightPadding = false,
+      className,
+    },
+    ref
+  ) => {
+    const withBorder = !noBorder
 
-  return (
-    <Container
-      ref={ref}
-      className={twMerge(
-        'relative',
-        withBorder && borderPseudoElement,
-        rightPadding && 'pr-8',
-        className
-      )}
-    >
-      {children}
-    </Container>
-  )
-})
+    const isTabsPassed =
+      controls && (controls as any).type?.displayName === 'Tabs'
 
-PageHead.defaultProps = {
-  rightPadding: false,
-  noBorder: false,
-}
+    return (
+      <div
+        className={twMerge(
+          'relative flex flex-col gap-6',
+          ['pt-3', !isTabsPassed && 'pb-3', rightPadding && 'pr-8'],
+          withBorder && borderPseudoElement,
+          className
+        )}
+        ref={ref}
+      >
+        <div className='flex flex-col gap-4'>
+          {breadcrumbs}
+
+          {/* main */}
+          {
+            <div className='flex justify-between items-start gap-6 flex-wrap'>
+              {/* Title and Subtitle container */}
+              <div className='flex flex-col gap-1'>
+                {/* Title  container */}
+                {title && (
+                  <div className='flex items-center gap-2'>
+                    <Typography
+                      variant='heading'
+                      size='large'
+                      titleCase={titleCase}
+                      className={className}
+                    >
+                      {title}
+                    </Typography>
+                    {titleAdornments}
+                  </div>
+                )}
+                {subtitle && (
+                  <div>
+                    <Typography size='small'>{subtitle}</Typography>
+                  </div>
+                )}
+              </div>
+
+              {/* Actions container */}
+              {actions && (
+                <div className='flex items-center min-h-8'>{actions}</div>
+              )}
+            </div>
+          }
+        </div>
+        {controls && <div>{controls}</div>}
+      </div>
+    )
+  }
+)
 
 PageHead.displayName = 'PageHead'
 
-export default Object.assign(PageHead, {
-  Title,
-  Tabs,
-  Main,
-  Actions,
-})
+export default PageHead

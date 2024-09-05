@@ -8,20 +8,15 @@ const TitleAndTabsExample = () => {
     setValue(newValue)
   }
 
-  return (
-    <PageHead>
-      <PageHead.Main>
-        <PageHead.Title>Heading Large</PageHead.Title>
-      </PageHead.Main>
-      <PageHead.Tabs>
-        <Tabs value={value} onChange={handleChange}>
-          <Tabs.Tab label='Label' />
-          <Tabs.Tab label='Label' />
-          <Tabs.Tab label='Label' />
-        </Tabs>
-      </PageHead.Tabs>
-    </PageHead>
+  const tabs = (
+    <Tabs value={value} onChange={handleChange}>
+      <Tabs.Tab label='Label' />
+      <Tabs.Tab label='Label' />
+      <Tabs.Tab label='Label' />
+    </Tabs>
   )
+
+  return <PageHead title='Heading Large' controls={tabs} />
 }
 
 export default TitleAndTabsExample

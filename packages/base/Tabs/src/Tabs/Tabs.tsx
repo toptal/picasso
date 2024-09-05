@@ -75,4 +75,7 @@ export const Tabs = forwardRef(
   props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
 ) => ReturnType<typeof MUITabs>
 
+// This is needed in condtion in PageHead component
+;(Tabs as any).displayName = 'Tabs'
+
 export default Tabs
