@@ -1,5 +1,24 @@
 # Change Log
 
+## 49.0.0
+
+### Major Changes
+
+- [#4526](https://github.com/toptal/picasso/pull/4526) [`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd) Thanks [@angelinastavniiciuc](https://github.com/angelinastavniiciuc)!
+- revert add `expandIconPlacement` prop to Picasso Accordion
+
+### Patch Changes
+
+- Updated dependencies [[`310302a`](https://github.com/toptal/picasso/commit/310302a66ec446973398cee560d38ba9bf716fbd)]:
+  - @toptal/picasso-typography-overflow@4.0.0
+  - @toptal/picasso-accordion@3.0.0
+  - @toptal/picasso-file-input@3.0.0
+  - @toptal/picasso-dropzone@5.0.0
+  - @toptal/picasso-timeline@5.0.0
+  - @toptal/picasso-page@5.0.0
+  - @toptal/picasso-step@4.0.0
+  - @toptal/picasso-tabs@5.0.0
+
 ## 48.1.26
 
 ### Patch Changes
