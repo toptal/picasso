@@ -32,7 +32,7 @@ Please use this format:
 ```
 ---
 '@toptal/[package]': [version bump]
-//if the version bump is major, please also add `'@toptal/picasso': patch` to have the changeset comments visible in the Picasso patch release notes.
+//if the version bump is major, please also add `'@toptal/picasso': patch` and don't forget to include the heading to have the changeset comments visible in the Picasso patch release notes. This is only required for packages that depend on picasso, usually of the form `@toptal/picasso-show-more`.
 ---
 
 ---
