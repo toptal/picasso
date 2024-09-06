@@ -9,7 +9,7 @@
 '@toptal/picasso-timepicker': major
 '@toptal/picasso-select': major
 '@toptal/picasso-input': major
-'@toptal/picasso': patch
+'@toptal/picasso': major
 ---
 
 ### Autocomplete, DatePicker, Input, NumberInput, OutlinedInput, PasswordInput, Select, TagSelector, TimePicker, RichTextEditor
