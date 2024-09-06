@@ -224,7 +224,10 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
 
     const optionsLength = options ? options.length : 0
 
-    const optionsMenu = options && (
+    console.log('@@@ options', options)
+
+    const hideOptionsCompletely = optionsLength === 0 && !noOptionsText
+    const optionsMenu = !hideOptionsCompletely && options && (
       <SelectOptions
         data-testid={testIds?.scrollMenu}
         selectedIndex={highlightedIndex}
