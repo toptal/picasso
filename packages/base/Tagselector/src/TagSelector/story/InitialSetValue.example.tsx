@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import type { AutocompleteItem } from '@toptal/picasso'
 import { TagSelector } from '@toptal/picasso'
-// import { isSubstring } from '@toptal/picasso-utils'
+import { isSubstring } from '@toptal/picasso-utils'
 
 const allOptions = [
   { value: 'AF', text: 'Afghanistan' },
@@ -19,24 +19,22 @@ const allOptions = [
 const EMPTY_INPUT_VALUE = ''
 const getDisplayValue = (item: AutocompleteItem | null) =>
   item && item.text ? item.text : EMPTY_INPUT_VALUE
-// const filterOptions = (value: string) =>
-//   value !== ''
-//     ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
-//     : allOptions
+const filterOptions = (value: string) =>
+  value !== ''
+    ? allOptions.filter(option => isSubstring(value, getDisplayValue(option)))
+    : allOptions
 
 const Example = () => {
-  // const [options, setOptions] = useState<AutocompleteItem[] | undefined>(
-  //   allOptions
-  // )
+  const [options, setOptions] = useState<AutocompleteItem[] | undefined>(
+    allOptions
+  )
   const [value, setValue] = useState<AutocompleteItem[]>(allOptions.slice(0, 3))
   const [inputValue, setInputValue] = useState(EMPTY_INPUT_VALUE)
 
   return (
     <div>
       <TagSelector
-        //showOtherOption
-        //options={options}
-        noOptionsText={null}
+        options={options}
         placeholder='Start typing...'
         value={value}
         inputValue={inputValue}
@@ -45,14 +43,10 @@ const Example = () => {
           window.console.log('onChange values: ', selectedValues)
           setValue(selectedValues)
         }}
-        onOtherOptionSelect={otherOption => {
-          console.log('@@@', otherOption, value)
-          setValue([...value, { value: otherOption, text: otherOption }])
-        }}
         onInputChange={newInputValue => {
           window.console.log('onInputChange value: ', newInputValue)
           setInputValue(newInputValue)
-          //setOptions(filterOptions(newInputValue))
+          setOptions(filterOptions(newInputValue))
         }}
       />
     </div>

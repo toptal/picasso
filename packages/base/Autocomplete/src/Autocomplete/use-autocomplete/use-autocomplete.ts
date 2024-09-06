@@ -1,5 +1,4 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-
 import type {
   MouseEvent,
   KeyboardEvent,
@@ -96,6 +95,28 @@ export interface Props {
   ref?: Ref<HTMLInputElement>
 }
 
+type BaseItemsProps = {
+  role: string
+  'aria-selected': boolean
+  selected: boolean
+  onMouseMove: () => void
+  onMouseDown: (event: React.MouseEvent) => void
+}
+
+export type GetBaseItemPropsSignature = (index: number) => BaseItemsProps
+
+export type GetItemPropsSignature = (
+  index: number,
+  item: Item
+) => BaseItemsProps
+
+export type GetOtherItemPropsSignature = (
+  index: number,
+  newValue: string
+) => BaseItemsProps & {
+  onClick: (event: MouseEvent) => void
+}
+
 export const useAutocomplete = ({
   value,
   options = [],
@@ -167,7 +188,7 @@ export const useAutocomplete = ({
     onSelect(item, event)
   }
 
-  const getBaseItemProps = (index: number) => ({
+  const getBaseItemProps: GetBaseItemPropsSignature = (index: number) => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
@@ -186,7 +207,7 @@ export const useAutocomplete = ({
     },
   })
 
-  const getItemProps = (index: number, item: Item) => ({
+  const getItemProps: GetItemPropsSignature = (index: number, item: Item) => ({
     ...getBaseItemProps(index),
     onClick: (event: MouseEvent) => {
       if (closeOnSelect) {
@@ -197,7 +218,10 @@ export const useAutocomplete = ({
     },
   })
 
-  const getOtherItemProps = (index: number, newValue: string) => ({
+  const getOtherItemProps: GetOtherItemPropsSignature = (
+    index: number,
+    newValue: string
+  ) => ({
     ...getBaseItemProps(index),
     onClick: (event: MouseEvent) => {
       if (closeOnSelect) {
