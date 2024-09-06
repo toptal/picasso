@@ -6,7 +6,7 @@ import {
 } from '@toptal/picasso-input-adornment'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { CloseMinor16 } from '@toptal/picasso-icons'
-import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
+import { noop } from '@toptal/picasso-utils'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
 import { Input, type InputOwnerState } from '@mui/base/Input'
 import {
@@ -87,7 +87,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     defaultValue,
     value,
     type = 'text',
-    error,
     status,
     startAdornment,
     endAdornment: userDefinedEndAdornment,
@@ -102,15 +101,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     classes,
     ...rest
   } = props
-
-  // TODO: [FX-4715]
-  usePropDeprecationWarning({
-    props,
-    name: 'error',
-    componentName: 'OutlinedInput',
-    description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-  })
 
   const { layout } = useFieldsLayoutContext()
   const isDark = inputProps?.variant === 'dark'
@@ -138,7 +128,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
 
   useImperativeHandle(ref, () => divRef.current as HTMLElement, [])
 
-  const isError = Boolean(status === 'error' || error)
+  const isError = Boolean(status === 'error')
 
   const inputClassName = getInputClassName({
     size,

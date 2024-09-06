@@ -19,7 +19,6 @@ export const getUseSelectPropsMock = (): UseSelectProps => {
     },
     selectProps: {
       disabled: false,
-      error: false,
       loading: false,
       onChange: jest.fn(),
       options: [],

@@ -50,7 +50,6 @@ export const NativeSelect = documentable(
         renderOption = defaultRenderOption,
         placeholder,
         disabled,
-        error,
         status,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
@@ -134,7 +133,7 @@ export const NativeSelect = documentable(
           size={size}
           className='p-0 bg-white'
           testIds={testIds}
-          status={error ? 'error' : status}
+          status={status}
           highlight={highlight}
           {...getInputProps()}
           {...rest}

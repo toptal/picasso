@@ -9,11 +9,7 @@ import React, { forwardRef, Fragment } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
 import { Autocomplete } from '@toptal/picasso-autocomplete'
-import {
-  unsafeErrorLog,
-  noop,
-  usePropDeprecationWarning,
-} from '@toptal/picasso-utils'
+import { unsafeErrorLog, noop } from '@toptal/picasso-utils'
 import type {
   AutocompleteProps,
   Item as AutocompleteItem,
@@ -58,11 +54,6 @@ export interface Props
   placeholder?: string
   /** Disables `TagSelector` */
   disabled?: boolean
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
-   * Indicate whether `TagSelector` is in error state
-   */
-  error?: boolean
   /** Indicate `TagSelector` status */
   status?: Status
   /** Shows the loading icon when options are loading */
@@ -141,21 +132,11 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       width,
       popperContainer,
       popperOptions,
-      error,
       status,
       testIds,
       highlight,
       ...rest
     } = props
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'TagSelector',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     const handleDelete = (value: Item) => {
       if (disabled) {
@@ -242,7 +223,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     return (
       <Autocomplete
         {...rest}
-        status={error ? 'error' : status}
+        status={status}
         ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}
