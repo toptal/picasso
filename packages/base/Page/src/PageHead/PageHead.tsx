@@ -57,14 +57,11 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
   ) => {
     const withBorder = !noBorder
 
-    const isTabsPassed =
-      controls && (controls as any).type?.displayName === 'Tabs'
-
     return (
       <div
         className={twMerge(
           'relative flex flex-col gap-6',
-          ['pt-3', !isTabsPassed && 'pb-3', rightPadding && 'pr-8'],
+          ['py-3', rightPadding && 'pr-8'],
           withBorder && borderPseudoElement,
           className
         )}
@@ -106,7 +103,11 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
             </div>
           }
         </div>
-        {controls && <div>{controls}</div>}
+        {controls && (
+          <div className='has-[[data-component-type="tabs"]]:-mb-3'>
+            {controls}
+          </div>
+        )}
       </div>
     )
   }

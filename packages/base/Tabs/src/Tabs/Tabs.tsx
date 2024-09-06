@@ -65,6 +65,7 @@ export const Tabs = forwardRef(
           ScrollButtonComponent={TabScrollButton}
           orientation={orientation}
           variant={variant}
+          data-component-type='tabs'
         >
           {children}
         </MUITabs>
@@ -74,8 +75,5 @@ export const Tabs = forwardRef(
 ) as <V extends TabsValueType = TabsValueType>(
   props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
 ) => ReturnType<typeof MUITabs>
-
-// This is needed in condtion in PageHead component
-;(Tabs as any).displayName = 'Tabs'
 
 export default Tabs
