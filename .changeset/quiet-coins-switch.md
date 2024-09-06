@@ -1,6 +1,6 @@
 ---
 '@toptal/picasso-list': major
-'@toptal/picasso': patch
+'@toptal/picasso': major
 ---
 
 ### ListItem
