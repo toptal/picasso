@@ -54,15 +54,6 @@ page
     'base/Accordion'
   )
   .addExample(
-    'Accordion/story/ExpandIconPlacement.example.tsx',
-    {
-      title: 'Expand Icon Placement',
-      description:
-        'Accordion expand icon is placed to the right until the `expandIconPlacement` prop is set to `left`.',
-    },
-    'base/Accordion'
-  )
-  .addExample(
     'Accordion/story/BorderedGroups.example.tsx',
     {
       title: 'Borders and Groups',
