@@ -16,7 +16,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Check out the repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: GSM Secrets
       id: secrets_manager
