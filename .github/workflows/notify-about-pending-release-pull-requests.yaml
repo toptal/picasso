@@ -24,14 +24,13 @@ jobs:
           SNOOZE_UNTIL: ${{ vars.STALE_VERSION_PACKAGES_NOTIFICATION_SNOOZE_UNITL }}
         with:
           script: |
-            # Get the current time and the time from the environment variable
             const snoozeUntil = new Date(process.env.SNOOZE_UNTIL)
             const now = new Date()
     
             console.log("Snooze until: ", snoozeUntil.toISOString())
             console.log("Current time: ", now.toISOString())
 
-            return now <= snoozeUntil
+            return (now <= snoozeUntil)
 
   check-pending-release-pull-requests:
     runs-on: ubuntu-latest
