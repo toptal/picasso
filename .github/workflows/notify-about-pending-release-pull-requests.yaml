@@ -1,4 +1,4 @@
-# Description: This workflow sends a Slack notification to the #frontend-exp-team-notifications channel
+# This workflow sends a Slack notification to the #frontend-exp-team-notifications channel
 # if there is a pending pull request with the title "Version Packages" that has been open for more than 3 hours.
 #
 # Use STALE_VERSION_PACKAGES_NOTIFICATION_SNOOZE_UNITL repository variable (https://github.com/toptal/picasso/settings/variables/actions)
@@ -98,4 +98,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
         with:
           channel-id: "-frontend-exp-team-notifications"
-          slack-message: ":x: <!here> There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|Picasso>, review and merge it."
+          slack-message: ":x: <!here> There is stale Version Packages pull request in <https://github.com/toptal/picasso/pulls|Picasso>, review and merge it. To snooze notifications, refer to the documentaion in the workflow code."
