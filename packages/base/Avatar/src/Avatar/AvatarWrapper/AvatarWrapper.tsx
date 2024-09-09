@@ -54,7 +54,11 @@ export const AvatarWrapper = (props: Props) => {
   return (
     <div>
       <div
-        className={twJoin(`relative`, showLogo(size, showEmblem) && 'bg-white')}
+        className={twJoin(
+          `relative`,
+          'blur-32',
+          showLogo(size, showEmblem) && 'bg-white'
+        )}
       >
         <div
           style={style}

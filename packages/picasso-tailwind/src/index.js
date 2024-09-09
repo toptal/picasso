@@ -130,11 +130,11 @@ module.exports = {
         700: '#0F256E',
       },
       green: {
-        100: '#EAFBF5',
-        150: '#D7F3E9',
-        500: '#00CC83',
-        600: '#03B080',
-        700: '#05947C',
+        100: 'var(--color-green-light-100)',
+        150: 'var(--color-green-light-150)',
+        500: 'var(--color-green-light-500)',
+        600: 'var(--color-green-light-600)',
+        700: 'var(--color-green-light-700)',
       },
       gray: {
         50: '#FCFCFC',
