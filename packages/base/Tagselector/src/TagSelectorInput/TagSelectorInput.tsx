@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
-import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
@@ -13,7 +12,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       value,
       placeholder,
       status,
-      error,
       disabled,
       autoFocus,
       autoComplete,
@@ -36,15 +34,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       highlight,
       ...rest
     } = props
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'TagSelectorInput',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     let usedEndAdornment: React.ReactNode
 
@@ -71,7 +60,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
-        status={error ? 'error' : status}
+        status={status}
         disabled={disabled}
         autoFocus={autoFocus}
         autoComplete={autoComplete}

@@ -4,7 +4,6 @@ import InputMask from 'react-input-mask'
 import { detect } from 'detect-browser'
 import { Input } from '@toptal/picasso-input'
 import { Time16 } from '@toptal/picasso-icons'
-import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
 import type { Status } from '@toptal/picasso-outlined-input'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
@@ -49,7 +48,6 @@ export const TimePicker = (props: Props) => {
     value: externalValue,
     width,
     className,
-    error,
     status,
     highlight,
     ...rest
@@ -79,15 +77,6 @@ export const TimePicker = (props: Props) => {
       externalOnChange?.('')
     }
   }
-
-  // TODO: [FX-4715]
-  usePropDeprecationWarning({
-    props,
-    name: 'error',
-    componentName: 'TimePicker',
-    description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-  })
 
   const browser = detect()
   const isSafari = browser?.name === 'safari'
@@ -122,7 +111,7 @@ export const TimePicker = (props: Props) => {
         iconPosition='end'
         icon={icon}
         width={width}
-        status={error ? 'error' : status}
+        status={status}
         className={inputClassName}
         highlight={highlight}
         inputProps={{
@@ -153,7 +142,7 @@ export const TimePicker = (props: Props) => {
       highlight={highlight}
       icon={icon}
       width={width}
-      status={error ? 'error' : status}
+      status={status}
       inputProps={{
         className: inputPropClassName,
         step: 60, // 1 min

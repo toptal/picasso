@@ -20,10 +20,7 @@ import { Loader } from '@toptal/picasso-loader'
 import { SelectOptions } from '@toptal/picasso-select'
 import { Popper } from '@toptal/picasso-popper'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import {
-  unsafeErrorLog,
-  usePropDeprecationWarning,
-} from '@toptal/picasso-utils'
+import { unsafeErrorLog } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
 import { MenuItem } from '@toptal/picasso-menu'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
@@ -91,11 +88,6 @@ export interface Props
   startAdornment?: ReactNode
   /** ReactNode for labels that will be used as end InputAdornment - */
   endAdornment?: ReactNode
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
-   * Indicate whether `Autocomplete` is in error state
-   */
-  error?: boolean
   /** Indicate `Autocomplete` status */
   status?: Status
   /** Specify icon which should be rendered inside Input */
@@ -144,7 +136,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       enableAutofill,
       enableReset,
       endAdornment,
-      error,
       status,
       getDisplayValue = getItemText,
       getKey: customGetKey,
@@ -189,15 +180,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
         'You provided `inputComponent` prop to Autocomplete without using React.forwardRef wrapper. This is not supported and may cause unexpected behavior. Consider wrapping your input component with React.forwardRef.'
       )
     }
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'Autocomplete',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     const getKey = (item: Item) => {
       if (customGetKey) {
@@ -322,7 +304,7 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
           <InputComponent
             {...rest}
             {...inputProps}
-            status={error ? 'error' : status}
+            status={status}
             icon={icon}
             disabled={disabled}
             defaultValue={undefined}
