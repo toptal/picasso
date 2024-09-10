@@ -14,4 +14,4 @@
 
 ### Autocomplete, DatePicker, Input, NumberInput, OutlinedInput, PasswordInput, Select, TagSelector, TimePicker, RichTextEditor
 
-- breaking change: `error` no longer exists as a prop. It has been replaced by `status` which support success and error states.
+- `error` no longer exists as a prop. It has been replaced by `status` which support success and error states.
