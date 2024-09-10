@@ -1,5 +1,100 @@
 # Change Log
 
+## 51.0.0
+
+### Major Changes
+
+- [#4531](https://github.com/toptal/picasso/pull/4531) [`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Autocomplete, DatePicker, Input, NumberInput, OutlinedInput, PasswordInput, Select, TagSelector, TimePicker, RichTextEditor
+
+- `error` no longer exists as a prop. It has been replaced by `status` which support success and error states.
+
+- [#4540](https://github.com/toptal/picasso/pull/4540) [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
+
+- breaking change: components no longer export `Props` type. Import prop types as `component name + Props` (e.g. `AutocompleteProps`, `FileInputProps`, etc.)
+
+- [#4527](https://github.com/toptal/picasso/pull/4527) [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Utils
+
+- remove the export of "Maybe" type from the Utils package
+- the type can be defined directly in your project or imported from private package `@topkit/gql-base-types` if you have access
+
+### Patch Changes
+
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-outlined-input@4.0.0
+  - @toptal/picasso-password-input@5.0.0
+  - @toptal/picasso-autocomplete@5.0.0
+  - @toptal/picasso-number-input@4.0.0
+  - @toptal/picasso-tagselector@3.0.0
+  - @toptal/picasso-date-picker@3.0.0
+  - @toptal/picasso-timepicker@4.0.0
+  - @toptal/picasso-select@4.0.0
+  - @toptal/picasso-input@4.0.0
+  - @toptal/picasso-file-input@4.0.0
+  - @toptal/picasso-checkbox@5.0.0
+  - @toptal/picasso-tooltip@2.0.0
+  - @toptal/picasso-switch@3.0.0
+  - @toptal/picasso-radio@5.0.0
+  - @toptal/picasso-form@6.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-avatar-upload@3.0.4
+  - @toptal/picasso-page@5.0.1
+  - @toptal/picasso-date-select@1.0.49
+  - @toptal/picasso-dropzone@5.0.1
+  - @toptal/picasso-button@4.0.2
+  - @toptal/picasso-slider@4.0.1
+  - @toptal/picasso-typography-overflow@4.0.1
+  - @toptal/picasso-accordion@3.0.1
+  - @toptal/picasso-account-select@3.0.3
+  - @toptal/picasso-alert@3.0.13
+  - @toptal/picasso-amount@1.0.8
+  - @toptal/picasso-application-update-notification@2.0.13
+  - @toptal/picasso-avatar@6.1.1
+  - @toptal/picasso-badge@3.0.1
+  - @toptal/picasso-breadcrumbs@3.0.1
+  - @toptal/picasso-calendar@4.0.2
+  - @toptal/picasso-carousel@4.0.2
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-drawer@3.0.13
+  - @toptal/picasso-dropdown@4.1.1
+  - @toptal/picasso-grid@5.0.1
+  - @toptal/picasso-helpbox@5.0.2
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-image@3.0.1
+  - @toptal/picasso-input-adornment@3.0.1
+  - @toptal/picasso-link@3.0.1
+  - @toptal/picasso-list@5.0.1
+  - @toptal/picasso-loader@3.0.1
+  - @toptal/picasso-logo@2.0.1
+  - @toptal/picasso-menu@3.0.3
+  - @toptal/picasso-modal@3.0.13
+  - @toptal/picasso-notification@4.0.2
+  - @toptal/picasso-overview-block@4.0.1
+  - @toptal/picasso-pagination@4.0.2
+  - @toptal/picasso-paper@4.0.1
+  - @toptal/picasso-popper@1.0.4
+  - @toptal/picasso-prompt-modal@2.0.13
+  - @toptal/picasso-rating@3.0.1
+  - @toptal/picasso-section@5.0.2
+  - @toptal/picasso-skeleton-loader@1.0.38
+  - @toptal/picasso-step@4.0.1
+  - @toptal/picasso-table@3.0.2
+  - @toptal/picasso-tabs@5.0.1
+  - @toptal/picasso-tag@4.0.1
+  - @toptal/picasso-timeline@5.0.1
+  - @toptal/picasso-tree-view@3.0.13
+  - @toptal/picasso-typography@4.0.1
+  - @toptal/picasso-user-badge@5.1.1
+  - @toptal/picasso-show-more@2.0.1
+  - @toptal/picasso-empty-state@2.0.4
+  - @toptal/picasso-note@4.0.1
+  - @toptal/picasso-quote@2.0.3
+
 ## 50.0.0
 
 ### Major Changes

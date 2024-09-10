@@ -1,5 +1,16 @@
 # Change Log
 
+## 56.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-paper@4.0.1
+  - @toptal/picasso-typography@4.0.1
+  - @toptal/picasso-charts@59.0.2
+
 ## 56.0.2
 
 ### Patch Changes
