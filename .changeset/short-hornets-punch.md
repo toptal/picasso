@@ -8,6 +8,7 @@
 '@toptal/picasso-radio': major
 '@toptal/picasso-form': major
 '@toptal/picasso': major
+'@toptal/picasso-forms': major
 ---
 
 ### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
