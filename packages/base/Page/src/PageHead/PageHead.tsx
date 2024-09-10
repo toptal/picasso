@@ -13,10 +13,6 @@ export interface Props extends BaseProps, TextLabelProps {
    * Breadcrumbs component to be rendered above the title
    */
   breadcrumbs?: ReactNode
-  /**
-   * Tabs or Stepper component to be rendered below the title
-   */
-  controls?: ReactNode
   /** Whether it should have right padding */
   rightPadding?: boolean
   /** Whether it should hide bottom border */
@@ -43,7 +39,6 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
   (
     {
       breadcrumbs,
-      controls,
       title,
       titleAdornments,
       titleCase,
@@ -103,11 +98,6 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
             </div>
           }
         </div>
-        {controls && (
-          <div className='has-[[data-component-type="tabs"]]:-mb-3'>
-            {controls}
-          </div>
-        )}
       </div>
     )
   }
