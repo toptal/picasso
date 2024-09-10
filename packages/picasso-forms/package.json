@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-forms",
-  "version": "72.0.0",
+  "version": "72.0.1",
   "description": "Picasso form components",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-forms#readme",
@@ -49,7 +49,7 @@
     "@toptal/picasso-select": "3.0.3",
     "@toptal/picasso-avatar-upload": "3.0.3",
     "@toptal/picasso-date-picker": "2.0.16",
-    "@toptal/picasso-rich-text-editor": "16.0.0",
+    "@toptal/picasso-rich-text-editor": "16.0.1",
     "@toptal/picasso-utils": "1.0.3",
     "@toptal/picasso-notification": "4.0.1",
     "classnames": "^2.5.1",

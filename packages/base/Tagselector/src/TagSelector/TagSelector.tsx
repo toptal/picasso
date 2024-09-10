@@ -14,7 +14,7 @@ import type {
   AutocompleteProps,
   Item as AutocompleteItem,
 } from '@toptal/picasso-autocomplete'
-import type { Props as InputProps } from '@toptal/picasso-input'
+import type { InputProps } from '@toptal/picasso-input'
 import type { Status } from '@toptal/picasso-outlined-input'
 
 import { TagSelectorInput } from '../TagSelectorInput'
