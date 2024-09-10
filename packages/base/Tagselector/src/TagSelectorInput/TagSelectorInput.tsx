@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { usePropDeprecationWarning } from '@toptal/picasso-utils'
-import type { Props as InputProps } from '@toptal/picasso-input'
+import type { InputProps } from '@toptal/picasso-input'
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
   function TagSelectorInput(props, ref) {
