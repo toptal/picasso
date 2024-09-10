@@ -9,13 +9,8 @@
 '@toptal/picasso-form': major
 '@toptal/picasso': major
 '@toptal/picasso-forms': major
-'@toptal/picasso-tagselector': patch
 ---
 
 ### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
 
 - breaking change: components no longer export `Props` type. Import prop types as `component name + Props` (e.g. `AutocompleteProps`, `FileInputProps`, etc.)
-
-### TagSelector
-
-- fix `Props` import
