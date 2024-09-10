@@ -1,21 +1,8 @@
 import React from 'react'
-import {
-  Tabs,
-  Button,
-  Link,
-  PageHead,
-  Breadcrumbs,
-  Badge,
-} from '@toptal/picasso'
+import { Button, Link, PageHead, Breadcrumbs, Badge } from '@toptal/picasso'
 import { TagRectangular } from '@toptal/picasso-tag'
 
 const DefaultExample = () => {
-  const [value, setValue] = React.useState(0)
-
-  const handleChange = (_: React.ChangeEvent<{}> | null, newValue: number) => {
-    setValue(newValue)
-  }
-
   const breadcrumbs = (
     <Breadcrumbs>
       <Breadcrumbs.Item
@@ -52,20 +39,11 @@ const DefaultExample = () => {
     </>
   )
 
-  const tabs = (
-    <Tabs value={value} onChange={handleChange}>
-      <Tabs.Tab label='Label' />
-      <Tabs.Tab label='Label' />
-      <Tabs.Tab label='Label' />
-    </Tabs>
-  )
-
   return (
     <PageHead
       actions={actions}
       breadcrumbs={breadcrumbs}
       subtitle='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-      controls={tabs}
       title='Heading Large'
       titleAdornments={[
         <Badge variant='white' content={1} />,

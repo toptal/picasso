@@ -39,7 +39,16 @@ page
     'Title and breadcrumbs',
     'base/Page'
   )
-  .addExample('PageHead/story/Steps.example.tsx', 'Steps', 'base/Page')
+  .addExample(
+    'PageHead/story/Notification.example.tsx',
+    'Notification',
+    'base/Page'
+  )
+  .addExample(
+    'PageHead/story/NotificationAndTabs.example.tsx',
+    'NotificationAndTabs',
+    'base/Page'
+  )
   .addExample(
     'PageHead/story/WithRightPadding.example.tsx',
     'With right padding of the container',

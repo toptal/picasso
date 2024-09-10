@@ -17,7 +17,7 @@ export interface Props extends BaseProps, TextLabelProps {
   rightPadding?: boolean
   /** Whether it should hide bottom border */
   noBorder?: boolean
-  /** Render components nex to the title. */
+  /** Render components next to the title. */
   titleAdornments?: ReactNode[]
   /** Title */
   title?: string

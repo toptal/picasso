@@ -1,7 +1,7 @@
 import React from 'react'
-import { Tabs, PageHead } from '@toptal/picasso'
+import { Notification, PageHead, Tabs } from '@toptal/picasso'
 
-const TitleAndTabsExample = () => {
+const NotificationAndTabsExample = () => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (_: React.ChangeEvent<{}> | null, newValue: number) => {
@@ -12,6 +12,10 @@ const TitleAndTabsExample = () => {
     <>
       <PageHead title='Heading Large' noBorder />
 
+      <Notification>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </Notification>
+
       <Tabs value={value} onChange={handleChange}>
         <Tabs.Tab label='Label' />
         <Tabs.Tab label='Label' />
@@ -21,4 +25,4 @@ const TitleAndTabsExample = () => {
   )
 }
 
-export default TitleAndTabsExample
+export default NotificationAndTabsExample
