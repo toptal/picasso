@@ -24,6 +24,7 @@ page
     'base/Page'
   )
   .addExample('PageHead/story/Title.example.tsx', 'Title', 'base/Page')
+  .addExample('PageHead/story/Loading.example.tsx', 'Loading', 'base/Page')
   .addExample(
     'PageHead/story/TitleAndButton.example.tsx',
     'Title and button',

@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { SkeletonLoader } from '@toptal/picasso-skeleton-loader'
 
 export interface Props extends BaseProps, TextLabelProps {
   /**
@@ -21,8 +22,12 @@ export interface Props extends BaseProps, TextLabelProps {
   titleAdornments?: ReactNode[]
   /** Title */
   title?: string
+  /** Shows the loading skeleton when title is loading */
+  titleLoading?: boolean
   /** Subtitle */
   subtitle?: string
+  /** Shows the loading skeleton when subtitle is loading */
+  subtitleLoading?: boolean
 }
 
 const borderPseudoElement = [
@@ -46,11 +51,21 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
       actions,
       noBorder = false,
       rightPadding = false,
+      titleLoading = false,
+      subtitleLoading = false,
       className,
     },
     ref
   ) => {
     const withBorder = !noBorder
+
+    const getLoadingState = (loading?: boolean) => {
+      if (loading) {
+        return <SkeletonLoader.Header />
+      }
+
+      return true
+    }
 
     return (
       <div
@@ -71,24 +86,29 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
               {/* Title and Subtitle container */}
               <div className='flex flex-col gap-1'>
                 {/* Title  container */}
-                {title && (
-                  <div className='flex items-center gap-2'>
-                    <Typography
-                      variant='heading'
-                      size='large'
-                      titleCase={titleCase}
-                      className={className}
-                    >
-                      {title}
-                    </Typography>
-                    {titleAdornments}
-                  </div>
-                )}
-                {subtitle && (
-                  <div>
-                    <Typography size='small'>{subtitle}</Typography>
-                  </div>
-                )}
+                {titleLoading
+                  ? getLoadingState(titleLoading)
+                  : title && (
+                      <div className='flex items-center gap-2'>
+                        <Typography
+                          variant='heading'
+                          size='large'
+                          titleCase={titleCase}
+                          className={className}
+                        >
+                          {title}
+                        </Typography>
+                        {titleAdornments}
+                      </div>
+                    )}
+                {subtitleLoading
+                  ? getLoadingState(subtitleLoading)
+                  : subtitle &&
+                    getLoadingState(subtitleLoading) && (
+                      <div>
+                        <Typography size='small'>{subtitle}</Typography>
+                      </div>
+                    )}
               </div>
 
               {/* Actions container */}
