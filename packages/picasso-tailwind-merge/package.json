@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tailwind-merge",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Tailwind merge configured for Picasso theme",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-utils": "1.0.3",
+    "@toptal/picasso-utils": "2.0.0",
     "tailwind-merge": "^2.2.2",
     "react-transition-group": "^4.4.5"
   },
