@@ -12,9 +12,11 @@ const NotificationAndTabsExample = () => {
     <>
       <PageHead title='Heading Large' noBorder />
 
-      <Notification>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </Notification>
+      <div className='mb-3'>
+        <Notification>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </Notification>
+      </div>
 
       <Tabs value={value} onChange={handleChange}>
         <Tabs.Tab label='Label' />
