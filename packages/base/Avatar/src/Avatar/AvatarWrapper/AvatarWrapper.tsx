@@ -54,18 +54,22 @@ export const AvatarWrapper = (props: Props) => {
   return (
     <div>
       <div
-        className={twJoin(
-          `relative`,
-          'blur-32',
-          showLogo(size, showEmblem) && 'bg-white'
-        )}
+        className={twJoin(`relative`, showLogo(size, showEmblem) && 'bg-white')}
       >
+        <div>
+          <p className='text-xxl text-white'>Test text white</p>
+          <p className='text-xxl text-blue-100'>Test text blue 100</p>
+          <p className='text-xxl text-blue-150'>Test text blue 150</p>
+          <p className='text-xxl text-blue-200'>Test text blue 200</p>
+        </div>
         <div
           style={style}
           data-testid={dataTestId}
           className={twMerge(
             'relative bg-gray-500 text-[1rem]',
             'grid place-items-center',
+
+            'blur-4',
             classBySize[size],
             clipClassBySize[size],
             className

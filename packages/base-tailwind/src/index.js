@@ -1,23 +1,31 @@
-const plugin = require('tailwindcss/plugin')
+// const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  plugins: [
-    plugin(function ({ addBase }) {
-      // Place for core semantic tokens
-      addBase({
-        ':root': {
-          '--color-green-light-100': '#EAFBF5',
-          '--color-green-light-150': '#D7F3E9',
-          '--color-green-light-500': '#00CC83',
-          '--color-green-light-600': '#03B080',
-          '--color-green-light-700': '#05947C',
-        },
-      })
-    }),
-  ],
+  // plugins: [
+  //   plugin(function ({ addBase }) {
+  //     // Place for core semantic tokens
+  //     addBase({
+  //       ':root': {
+  //         '--color-green-light-100': '#EAFBF5',
+  //         '--color-green-light-150': '#D7F3E9',
+  //         '--color-green-light-500': '#00CC83',
+  //         '--color-green-light-600': '#03B080',
+  //         '--color-green-light-700': '#05947C',
+  //       },
+  //     })
+  //   }),
+  // ],
   // Place for base semantic tokens
   theme: {
+    colors: {
+      white: '#FFFFFF',
+      black: '#000000',
+      blue: {
+        100: '#EDF1FD',
+        150: '#D5DEFA',
+      },
+    },
     blur: {
       4: '4px',
       8: '8px',
