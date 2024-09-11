@@ -1,5 +1,49 @@
 # Change Log
 
+## 73.0.0
+
+### Major Changes
+
+- [#4540](https://github.com/toptal/picasso/pull/4540) [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
+
+- breaking change: components no longer export `Props` type. Import prop types as `component name + Props` (e.g. `AutocompleteProps`, `FileInputProps`, etc.)
+
+### Patch Changes
+
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-rich-text-editor@17.0.0
+  - @toptal/picasso-outlined-input@4.0.0
+  - @toptal/picasso-password-input@5.0.0
+  - @toptal/picasso-autocomplete@5.0.0
+  - @toptal/picasso-number-input@4.0.0
+  - @toptal/picasso-tagselector@3.0.0
+  - @toptal/picasso-date-picker@3.0.0
+  - @toptal/picasso-timepicker@4.0.0
+  - @toptal/picasso-select@4.0.0
+  - @toptal/picasso-input@4.0.0
+  - @toptal/picasso-file-input@4.0.0
+  - @toptal/picasso-checkbox@5.0.0
+  - @toptal/picasso-switch@3.0.0
+  - @toptal/picasso-radio@5.0.0
+  - @toptal/picasso-form@6.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-avatar-upload@3.0.4
+  - @toptal/picasso-dropzone@5.0.1
+  - @toptal/picasso-button@4.0.2
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-notification@4.0.2
+  - @toptal/picasso-rating@3.0.1
+
+## 72.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-rich-text-editor@16.0.1
+
 ## 72.0.0
 
 ### Major Changes

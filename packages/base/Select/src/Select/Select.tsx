@@ -3,7 +3,6 @@ import type { FeatureOptions } from '@toptal/picasso-utils'
 import {
   disableUnsupportedProps,
   noop,
-  usePropDeprecationWarning,
   documentable,
   forwardRef,
 } from '@toptal/picasso-utils'
@@ -40,15 +39,6 @@ export const Select = documentable(
       { native, ...props }: SelectProps<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
-      // TODO: [FX-4715]
-      usePropDeprecationWarning({
-        props,
-        name: 'error',
-        componentName: 'Select',
-        description:
-          'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-      })
-
       return native ? (
         // eslint-disable-next-line react/jsx-props-no-spreading
         <NativeSelect {...purifyProps(props)} ref={ref} />

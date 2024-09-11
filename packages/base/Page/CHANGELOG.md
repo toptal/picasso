@@ -1,5 +1,27 @@
 # @toptal/picasso-page
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-autocomplete@5.0.0
+  - @toptal/picasso-tooltip@2.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-button@4.0.2
+  - @toptal/picasso-accordion@3.0.1
+  - @toptal/picasso-avatar@6.1.1
+  - @toptal/picasso-badge@3.0.1
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-dropdown@4.1.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-logo@2.0.1
+  - @toptal/picasso-menu@3.0.3
+  - @toptal/picasso-notification@4.0.2
+  - @toptal/picasso-tag@4.0.1
+  - @toptal/picasso-typography@4.0.1
+  - @toptal/picasso-user-badge@5.1.1
+
 ## 5.0.0
 
 ### Major Changes

@@ -59,11 +59,6 @@ export interface Props
   rowsMax?: string | number
   /** Type attribute of the Input element. It should be a valid HTML5 input type */
   type?: string
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
-   * Indicate whether input is in error state
-   */
-  error?: boolean
   /** Indicate input status */
   status?: Status
   startAdornment?: ReactNode

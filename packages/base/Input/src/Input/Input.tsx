@@ -9,10 +9,7 @@ import React, { forwardRef } from 'react'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
-import {
-  disableUnsupportedProps,
-  usePropDeprecationWarning,
-} from '@toptal/picasso-utils'
+import { disableUnsupportedProps } from '@toptal/picasso-utils'
 import type { FeatureOptions } from '@toptal/picasso-utils'
 import {
   InputLimitAdornment,
@@ -40,11 +37,6 @@ export interface Props
   value?: string
   /** Placeholder for value */
   placeholder?: string
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
-   * Indicate whether `Input` is in error state
-   */
-  error?: boolean
   /** Indicate `Input` status */
   status?: Status
   /** If true, the `Input` will be disabled */
@@ -249,7 +241,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     defaultValue,
     value,
     placeholder,
-    error,
     status,
     disabled,
     icon,
@@ -281,15 +272,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     ...rest
   } = purifyProps(props)
 
-  // TODO: [FX-4715]
-  usePropDeprecationWarning({
-    props,
-    name: 'error',
-    componentName: 'Input',
-    description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-  })
-
   const charsLength = value ? value.length : 0
 
   const showCounter = !!charsLength && hasCounter({ counter, limit })
@@ -311,7 +293,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         defaultValue={defaultValue}
         value={value}
         placeholder={placeholder}
-        status={error ? 'error' : status}
+        status={status}
         disabled={disabled}
         autoFocus={autoFocus}
         rows={rows}

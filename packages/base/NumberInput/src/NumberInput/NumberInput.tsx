@@ -3,10 +3,7 @@ import React, { forwardRef, useRef } from 'react'
 import type { BaseProps, OmitInternalProps } from '@toptal/picasso-shared'
 import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import {
-  useCombinedRefs,
-  usePropDeprecationWarning,
-} from '@toptal/picasso-utils'
+import { useCombinedRefs } from '@toptal/picasso-utils'
 import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
@@ -47,7 +44,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       value,
       onChange,
       disabled,
-      error,
       status,
       onResetClick,
       enableReset,
@@ -58,15 +54,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       highlight,
       ...rest
     } = props
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'NumberInput',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     const inputRef = useCombinedRefs<HTMLInputElement>(
       ref,
@@ -113,7 +100,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         width={width}
         onResetClick={onResetClick}
         enableReset={enableReset}
-        status={error ? 'error' : status}
+        status={status}
         inputRef={inputRef}
         type='number'
         value={value}

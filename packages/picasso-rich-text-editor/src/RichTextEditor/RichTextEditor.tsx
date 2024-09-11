@@ -4,7 +4,7 @@ import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-inp
 import { InputMultilineAdornment } from '@toptal/picasso-input-adornment'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useHasMultilineCounter } from '@toptal/picasso-shared'
-import { noop, usePropDeprecationWarning } from '@toptal/picasso-utils'
+import { noop } from '@toptal/picasso-utils'
 import cx from 'classnames'
 import React, { forwardRef, useCallback, useRef, useState } from 'react'
 
@@ -30,11 +30,6 @@ export interface Props extends BaseProps {
   disabled?: boolean
   /** unique identifier */
   id: string
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to support success and error states
-   * Indicate whether `RichTextEditor` is in error state
-   */
-  error?: boolean
   /** Indicate `RichTextEditor` is in `error` or `default` state */
   status?: Extract<OutlinedInputStatus, 'error' | 'default'>
   /** Used inside Form with combination of Label to enable forHtml functionality */
@@ -123,15 +118,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
 
     const classes = useStyles()
     const wrapperRef = useRef<HTMLDivElement | null>(null)
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'RichTextEditor',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     // Possibly use useRef for synchronous updates but no re-rendering effect
     const [hasFocus, setFocus] = useState(false)
