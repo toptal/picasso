@@ -2,6 +2,6 @@
 '@toptal/picasso-link': patch
 ---
 
-### TagSelector
+### Link
 
 - fix: protect Link from unexpected input
