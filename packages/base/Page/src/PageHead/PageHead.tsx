@@ -86,25 +86,26 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
               {/* Title and Subtitle container */}
               <div className='flex flex-col gap-1'>
                 {/* Title  container */}
-                {titleLoading
-                  ? getLoadingState(titleLoading)
-                  : title && (
-                      <div className='flex items-center gap-2'>
-                        <Typography
-                          variant='heading'
-                          size='large'
-                          titleCase={titleCase}
-                          className={className}
-                        >
-                          {title}
-                        </Typography>
-                        {titleAdornments}
-                      </div>
+                {title && (
+                  <div className='flex items-center gap-2'>
+                    {titleLoading ? (
+                      getLoadingState(titleLoading)
+                    ) : (
+                      <Typography
+                        variant='heading'
+                        size='large'
+                        titleCase={titleCase}
+                        className={className}
+                      >
+                        {title}
+                      </Typography>
                     )}
+                    {titleAdornments}
+                  </div>
+                )}
                 {subtitleLoading
                   ? getLoadingState(subtitleLoading)
-                  : subtitle &&
-                    getLoadingState(subtitleLoading) && (
+                  : subtitle && (
                       <div>
                         <Typography size='small'>{subtitle}</Typography>
                       </div>
