@@ -62,6 +62,14 @@ export const AvatarWrapper = (props: Props) => {
           <p className='text-xxl text-blue-150'>Test text blue 150</p>
           <p className='text-xxl text-blue-200'>Test text blue 200</p>
         </div>
+        <div>
+          <div className='w-[300px] h-[100px] bg-blue-100 opacity-1'>
+            Opacity 1 (from Caliber)
+          </div>
+          <div className='w-[300px] h-[100px] bg-blue-100 opacity-10'>
+            Opacity 10 (from Picasso)
+          </div>
+        </div>
         <div
           style={style}
           data-testid={dataTestId}

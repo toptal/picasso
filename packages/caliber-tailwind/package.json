@@ -1,0 +1,38 @@
+{
+  "name": "@toptal/caliber-tailwind",
+  "version": "0.0.1",
+  "description": "Caliber Tailwind configuration DO NOT PUSH TO MASTER",
+  "author": "Toptal",
+  "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-tailwind#readme",
+  "license": "MIT",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptal/picasso.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toptal/picasso/issues"
+  },
+  "scripts": {
+    "build:package": "sh ./bin/build.sh",
+    "prepublishOnly": "yarn build:package"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.6"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.3.5"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist-package/**",
+    "!dist-package/tsconfig.tsbuildinfo",
+    "src"
+  ]
+}

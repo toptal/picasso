@@ -12,6 +12,11 @@ module.exports = {
     }),
   ],
   theme: {
+    opacity: {
+      0: '0',
+      10: '0.1',
+      20: '0.2',
+    },
     screens: {
       xs: '0px',
       sm: '480px',
@@ -124,55 +129,6 @@ module.exports = {
         200: theme.colors.black,
       },
     }),
-    // colors: {
-    //   white: '#FFFFFF',
-    //   black: '#000000',
-    //   transparent: 'transparent',
-    //   current: 'currentColor',
-    //   blue: {
-    //     100: '#EDF1FD',
-    //     150: '#D5DEFA',
-    //     400: '#25A9EF',
-    //     500: '#204ECF',
-    //     600: '#183A9E',
-    //     700: '#0F256E',
-    //   },
-    //   green: {
-    //     100: 'var(--color-green-light-100)',
-    //     150: 'var(--color-green-light-150)',
-    //     500: 'var(--color-green-light-500)',
-    //     600: 'var(--color-green-light-600)',
-    //     700: 'var(--color-green-light-700)',
-    //   },
-    //   gray: {
-    //     50: '#FCFCFC',
-    //     100: '#F3F4F6',
-    //     200: '#EBECED',
-    //     300: '#E5E7EA',
-    //     400: '#D8D9DC',
-    //     500: '#C4C6CA',
-    //     600: '#84888E',
-    //   },
-    //   graphite: {
-    //     700: '#455065',
-    //     800: '#262D3D',
-    //     900: '#191E28',
-    //   },
-    //   red: {
-    //     100: '#FBEDF1',
-    //     150: '#F5D8E0',
-    //     500: '#D42551',
-    //   },
-    //   yellow: {
-    //     100: '#FFF5E3',
-    //     150: '#F8E7C8',
-    //     500: '#E59C01',
-    //   },
-    //   purple: {
-    //     500: '#6727CF',
-    //   },
-    //   inheritColor: 'inherit',
-    // },
     extend: {
       zIndex: {
         drawer: 1200,
