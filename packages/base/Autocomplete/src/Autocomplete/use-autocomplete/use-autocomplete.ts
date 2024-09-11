@@ -8,7 +8,13 @@ import type {
 } from 'react'
 import { useState, useEffect, useMemo } from 'react'
 
-import type { Item, ChangedOptions } from '../types'
+import type {
+  Item,
+  ChangedOptions,
+  GetOtherItemPropsSignature,
+  GetItemPropsSignature,
+  GetBaseItemPropsSignature,
+} from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
 export const INITIAL_HIGHLIGHT_INDEX = 0
@@ -93,28 +99,6 @@ export interface Props {
   showOtherOption?: boolean
   disabled?: boolean
   ref?: Ref<HTMLInputElement>
-}
-
-type BaseItemsProps = {
-  role: string
-  'aria-selected': boolean
-  selected: boolean
-  onMouseMove: () => void
-  onMouseDown: (event: React.MouseEvent) => void
-}
-
-export type GetBaseItemPropsSignature = (index: number) => BaseItemsProps
-
-export type GetItemPropsSignature = (
-  index: number,
-  item: Item
-) => BaseItemsProps
-
-export type GetOtherItemPropsSignature = (
-  index: number,
-  newValue: string
-) => BaseItemsProps & {
-  onClick: (event: MouseEvent) => void
 }
 
 export const useAutocomplete = ({

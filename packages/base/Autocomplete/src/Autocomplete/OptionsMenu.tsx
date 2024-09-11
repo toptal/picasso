@@ -7,11 +7,11 @@ import { unsafeErrorLog } from '@toptal/picasso-utils'
 import PoweredByGoogle from './PoweredByGoogle'
 import NoOptionsMenuItem from './NoOptionsMenuItem'
 import OtherOptionMenuItem from './OtherOptionMenuItem'
-import type { Item } from './types'
 import type {
+  Item,
   GetItemPropsSignature,
   GetOtherItemPropsSignature,
-} from './use-autocomplete/use-autocomplete'
+} from './types'
 
 export type OptionsMenuProps = {
   options?: Item[] | null
