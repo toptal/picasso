@@ -13,7 +13,6 @@ const Example = () => {
   return (
     <div>
       <TagSelector
-        options={null}
         noOptionsText={null}
         placeholder='Type and press Enter to select...'
         value={value}

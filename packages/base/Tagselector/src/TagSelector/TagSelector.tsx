@@ -66,7 +66,7 @@ export interface Props
   submitOtherOptionOnEnter?: boolean
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
-  /** Label to show when no options were found */
+  /** Label to show when no options were found (pass "null" to hide label completely) */
   noOptionsText?: string | null
   /** List of options with unique labels */
   options?: Item[] | null

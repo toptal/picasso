@@ -19,7 +19,7 @@ export type OptionsMenuProps = {
   poweredByGoogle?: boolean
   /** Callback responsible for rendering the other option given the input's value */
   renderOtherOption?: (value: string) => ReactNode
-  /** Label to show when no options were found */
+  /** Label to show when no options were found (pass "null" to hide label completely) */
   noOptionsText?: string | null
   /** Text prefix for other option */
   otherOptionText?: string
