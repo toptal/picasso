@@ -15,6 +15,8 @@ type ContainerType = 'div' | 'span'
 
 type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 
+type WrapType = 'wrap' | 'nowrap' | 'wrap-reverse'
+
 type BorderableType = 'transparent' | 'white'
 
 export interface Props<V extends VariantType = VariantType>
@@ -33,6 +35,8 @@ export interface Props<V extends VariantType = VariantType>
   alignItems?: AlignItemsType
   /** Defines the justify-content style property */
   justifyContent?: JustifyContentType
+  /** Defines flex-wrap style property */
+  wrap?: WrapType
   /** Whether (`white`, `transparent`) container has border or not */
   bordered?: V extends BorderableType ? boolean : never
   /** Whether container has 8px border-radius applied or not */
@@ -82,6 +86,7 @@ export const Container: ContainerProps = documentable(
         direction,
         alignItems,
         justifyContent,
+        wrap,
         style,
         bordered = false,
         rounded = false,
@@ -131,6 +136,8 @@ export const Container: ContainerProps = documentable(
             alignItems && alignmentClasses.alignItems[alignItems],
 
             justifyContent && alignmentClasses.justifyContent[justifyContent],
+
+            wrap && alignmentClasses.wrap[wrap],
 
             bordered &&
               isBorderedVariant &&
