@@ -4,8 +4,11 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { BaseProps, OverridableComponent } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
 
-type VariantType = 'action' | 'anchor'
-type ColorType = 'white' | 'blue'
+const supportedColors = ['white', 'blue'] as const
+const supportedVariants = ['action', 'anchor'] as const
+
+type VariantType = (typeof supportedVariants)[number]
+type ColorType = (typeof supportedColors)[number]
 
 const sanitizeRel = (rel: string | undefined, target: string | undefined) => {
   if (target !== '_blank') {
@@ -77,6 +80,9 @@ export type Props = BaseProps &
     'aria-disabled'?: boolean
   }
 
+const defaultColor = 'blue'
+const defaultVariant = 'anchor'
+
 export const Link: OverridableComponent<Props> = forwardRef<
   HTMLAnchorElement,
   Props
@@ -86,10 +92,10 @@ export const Link: OverridableComponent<Props> = forwardRef<
     onClick,
     children,
     className,
-    color = 'blue',
+    color: inputColor = 'blue',
     style,
     as = 'a',
-    variant = 'anchor',
+    variant: inputVariant = 'anchor',
     tabIndex,
     target,
     rel,
@@ -101,6 +107,12 @@ export const Link: OverridableComponent<Props> = forwardRef<
   } = props
   const nativeHTMLAttributes = rest
   const sanitizedRel = sanitizeRel(rel, target)
+
+  // When Link is used as={Link}, TypeScript can't ensure the input to the Link is compatible with its Props type.
+  const color = supportedColors.includes(inputColor) ? inputColor : defaultColor
+  const variant = supportedVariants.includes(inputVariant)
+    ? inputVariant
+    : defaultVariant
 
   return (
     <Typography
