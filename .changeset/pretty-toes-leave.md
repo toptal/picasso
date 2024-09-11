@@ -1,6 +1,6 @@
 ---
 '@toptal/picasso-breadcrumbs': patch
-'@toptal/picasso-picasso': patch
+'@toptal/picasso': patch
 ---
 
 ### Breadcrumbs
