@@ -1,5 +1,16 @@
 # @toptal/picasso-autocomplete
 
+## 5.0.1
+
+### Patch Changes
+
+- [#4534](https://github.com/toptal/picasso/pull/4534) [`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete
+
+- fix: do not show empty popper container when there are no options and no empty options message
+- refactor: dropdown options menu renders in separate component
+
 ## 5.0.0
 
 ### Major Changes
