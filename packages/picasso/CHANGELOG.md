@@ -1,5 +1,17 @@
 # Change Log
 
+## 51.0.1
+
+### Patch Changes
+
+- [#4542](https://github.com/toptal/picasso/pull/4542) [`0da0237`](https://github.com/toptal/picasso/commit/0da0237c01ae52514b92c443d0e06ebcec4d44f0) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Breadcrumbs
+
+- propage `data-testid`
+- Updated dependencies [[`0da0237`](https://github.com/toptal/picasso/commit/0da0237c01ae52514b92c443d0e06ebcec4d44f0)]:
+  - @toptal/picasso-breadcrumbs@3.0.2
+
 ## 51.0.0
 
 ### Major Changes
