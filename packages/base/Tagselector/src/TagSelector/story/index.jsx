@@ -31,6 +31,16 @@ page
     'base/Tagselector'
   )
   .addExample(
+    'TagSelector/story/OtherOptionSubmissionOnEnter.example.tsx',
+    {
+      title: 'Other option submission on Enter',
+      description:
+        'Press Enter to submit other option value. Combine it with empty `options` and `noOptionsText` properties to hide the options dropdown and achieve regular input behavior and look.',
+      takeScreenshot: false,
+    },
+    'base/Tagselector'
+  )
+  .addExample(
     'TagSelector/story/InitialSetValue.example.tsx',
     'Initially set value',
     'base/Tagselector'
