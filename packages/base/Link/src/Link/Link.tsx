@@ -87,11 +87,13 @@ type ViewModel = {
   className: string
   href?: string
   target?: string
+  color?: 'inherit'
   rel?: string
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
   weight: 'inherit' | 'semibold'
   style?: React.CSSProperties
   tabIndex?: number
+  as: Props['as']
   ariaDisabled?: boolean
   nativeHTMLAttributes: Omit<Props, keyof BaseProps>
 }
@@ -102,6 +104,7 @@ export const calculateViewModel = (props: Props): ViewModel => {
     href,
     onClick,
     className,
+    as = 'a',
     color: inputColor = 'blue',
     style,
     variant: inputVariant = 'anchor',
@@ -142,8 +145,10 @@ export const calculateViewModel = (props: Props): ViewModel => {
     rel: sanitizedRel,
     onClick: disabled ? undefined : onClick,
     weight: variant === 'action' ? 'semibold' : 'inherit',
+    color: 'inherit',
     style,
     tabIndex,
+    as,
     ariaDisabled: disabled || ariaDisabled,
     nativeHTMLAttributes,
   }
@@ -159,13 +164,13 @@ export const Link: OverridableComponent<Props> = forwardRef<
     <Typography
       {...viewModel.nativeHTMLAttributes}
       ref={ref}
-      as={props.as || 'a'}
+      as={viewModel.as}
       // @ts-expect-error Typography is incompatible with href prop
       href={viewModel.href}
       target={viewModel.target}
       rel={viewModel.rel}
       onClick={viewModel.onClick}
-      color='inherit'
+      color={viewModel.color}
       weight={viewModel.weight}
       className={viewModel.className}
       style={viewModel.style}

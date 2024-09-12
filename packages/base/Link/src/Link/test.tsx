@@ -228,4 +228,97 @@ describe('calculateViewModel', () => {
 
     expect(result.nativeHTMLAttributes['data-test-id']).toBe('link-element')
   })
+
+  it('should apply the default "as" prop as "a" when no "as" prop is provided', () => {
+    const props = {}
+    const result = calculateViewModel(props)
+
+    expect(result.as).toBe('a') // default "as" is "a"
+  })
+
+  it('should apply the provided "as" prop when a custom element type is given', () => {
+    const props = {
+      as: 'button', // using "button" instead of default "a"
+    }
+    const result = calculateViewModel(props)
+
+    expect(result.as).toBe('button')
+  })
+
+  it('should apply the provided "as" prop with a custom React component', () => {
+    const CustomComponent = () => <div />
+    const props = {
+      as: CustomComponent,
+    }
+    const result = calculateViewModel(props)
+
+    expect(result.as).toBe(CustomComponent)
+  })
+
+  // Test for the "color" property
+  it('should apply the default color "blue" when no color prop is provided', () => {
+    const props = {}
+    const result = calculateViewModel(props)
+
+    expect(result.className).toContain('text-blue-500')
+  })
+
+  it('should apply the white color when color="white" is provided', () => {
+    const props = {
+      color: 'white',
+    }
+    const result = calculateViewModel(props)
+
+    expect(result.className).toContain('inherit') // since white color has inherit style
+  })
+
+  it('should fallback to the default color "blue" if an unsupported color is provided', () => {
+    const props = {
+      color: 'unsupportedColor', // unsupported color should fallback to default "blue"
+    }
+    const result = calculateViewModel(props)
+
+    expect(result.className).toContain('text-blue-500')
+  })
+
+  // Disabled state interaction with color
+  it('should apply disabled color styles for the provided color when disabled', () => {
+    const blueProps = {
+      color: 'blue',
+      disabled: true,
+    }
+    const whiteProps = {
+      color: 'white',
+      disabled: true,
+    }
+
+    const blueResult = calculateViewModel(blueProps)
+    const whiteResult = calculateViewModel(whiteProps)
+
+    expect(blueResult.className).toContain(
+      'focus:outline-none hover:underline leading-[inherit] text-gray-600 underline cursor-not-allowed'
+    )
+    expect(whiteResult.className).toContain('text-gray-600')
+  })
+
+  // Testing combination of color and visited states
+  it('should apply visited color styles correctly when visited is true and color is blue', () => {
+    const props = {
+      color: 'blue',
+      visited: true,
+    }
+    const result = calculateViewModel(props)
+
+    expect(result.className).toContain('visited text-purple-500')
+  })
+
+  it('should apply visited color styles correctly when visited is true and color is white', () => {
+    const props = {
+      color: 'white',
+      visited: true,
+    }
+    const result = calculateViewModel(props)
+
+    expect(result.className).toContain('visited text-gray-500')
+  })
 })
