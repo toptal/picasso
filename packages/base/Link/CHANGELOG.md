@@ -1,5 +1,15 @@
 # @toptal/picasso-link
 
+## 3.0.2
+
+### Patch Changes
+
+- [#4547](https://github.com/toptal/picasso/pull/4547) [`2984ddf`](https://github.com/toptal/picasso/commit/2984ddf167dfc3a08ab7e978ef31ebfc69eae163) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### Link
+
+- fix: protect Link from unexpected input
+
 ## 3.0.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @toptal/picasso-file-input
 
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.4
+
 ## 4.0.1
 
 ### Patch Changes
