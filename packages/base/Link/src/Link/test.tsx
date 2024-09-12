@@ -233,12 +233,12 @@ describe('calculateViewModel', () => {
     const props = {}
     const result = calculateViewModel(props)
 
-    expect(result.as).toBe('a') // default "as" is "a"
+    expect(result.as).toBe('a')
   })
 
   it('should apply the provided "as" prop when a custom element type is given', () => {
     const props = {
-      as: 'button', // using "button" instead of default "a"
+      as: 'button',
     }
     const result = calculateViewModel(props)
 
@@ -255,7 +255,6 @@ describe('calculateViewModel', () => {
     expect(result.as).toBe(CustomComponent)
   })
 
-  // Test for the "color" property
   it('should apply the default color "blue" when no color prop is provided', () => {
     const props = {}
     const result = calculateViewModel(props)
@@ -269,19 +268,18 @@ describe('calculateViewModel', () => {
     }
     const result = calculateViewModel(props)
 
-    expect(result.className).toContain('inherit') // since white color has inherit style
+    expect(result.className).toContain('inherit')
   })
 
   it('should fallback to the default color "blue" if an unsupported color is provided', () => {
     const props = {
-      color: 'unsupportedColor', // unsupported color should fallback to default "blue"
+      color: 'unsupportedColor',
     }
     const result = calculateViewModel(props)
 
     expect(result.className).toContain('text-blue-500')
   })
 
-  // Disabled state interaction with color
   it('should apply disabled color styles for the provided color when disabled', () => {
     const blueProps = {
       color: 'blue',
@@ -301,7 +299,6 @@ describe('calculateViewModel', () => {
     expect(whiteResult.className).toContain('text-gray-600')
   })
 
-  // Testing combination of color and visited states
   it('should apply visited color styles correctly when visited is true and color is blue', () => {
     const props = {
       color: 'blue',
