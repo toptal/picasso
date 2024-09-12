@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 5.0.5
+
+### Patch Changes
+
+- [#4543](https://github.com/toptal/picasso/pull/4543) [`6e77f38`](https://github.com/toptal/picasso/commit/6e77f3854838667e79c27007b4e41f8cb7560119) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### PageArticle
+
+- replace MUI styles with Tailwind
+
 ## 5.0.4
 
 ### Patch Changes
