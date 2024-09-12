@@ -1,5 +1,12 @@
 # @toptal/picasso-container
 
+## 3.1.0
+
+### Minor Changes
+
+- [#4548](https://github.com/toptal/picasso/pull/4548) [`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98) Thanks [@ertrzyiks](https://github.com/ertrzyiks)!
+- add wrap property to control flex-wrap
+
 ## 3.0.1
 
 ### Patch Changes
