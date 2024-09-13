@@ -12,310 +12,337 @@ describe('Link', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('renders native attributes', () => {
-    const { container } = render(
-      <Link
-        onBlur={() => window.alert('onBlur')}
-        rel='noopener'
-        target='_blank'
-        download='filename'
-        href='https://toptal.com/filename.txt'
-      >
-        Please verify your email
-      </Link>
-    )
+  describe('when native attributes are provided', () => {
+    it('renders native attributes', () => {
+      const { container } = render(
+        <Link
+          onBlur={() => window.alert('onBlur')}
+          rel='noopener'
+          target='_blank'
+          download='filename'
+          href='https://toptal.com/filename.txt'
+        >
+          Please verify your email
+        </Link>
+      )
 
-    expect(container).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
+    })
   })
 
-  it('renders a Link from react-router', () => {
-    const { container } = render(
-      <MemoryRouter>
-        <div>
-          <Link as={RouterLink} to='/'>
-            Please verify your email
-          </Link>
-        </div>
-      </MemoryRouter>
-    )
+  describe('when using react-router Link', () => {
+    it('renders a Link from react-router', () => {
+      const { container } = render(
+        <MemoryRouter>
+          <div>
+            <Link as={RouterLink} to='/'>
+              Please verify your email
+            </Link>
+          </div>
+        </MemoryRouter>
+      )
 
-    expect(container).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
+    })
   })
 
-  it('renders disabled link', () => {
-    const { container } = render(
-      <Link
-        rel='noopener'
-        target='_blank'
-        download='filename'
-        href='https://toptal.com/filename.txt'
-        disabled
-      >
-        Please verify your email
-      </Link>
-    )
+  describe('when disabled', () => {
+    it('renders disabled link', () => {
+      const { container } = render(
+        <Link
+          rel='noopener'
+          target='_blank'
+          download='filename'
+          href='https://toptal.com/filename.txt'
+          disabled
+        >
+          Please verify your email
+        </Link>
+      )
 
-    expect(container).toMatchSnapshot()
+      expect(container).toMatchSnapshot()
+    })
+
+    it('does not allow onClick', () => {
+      const onClick = jest.fn()
+      const { getByTestId } = render(
+        <Link
+          data-testid='foo'
+          onClick={onClick}
+          href='https://foo.bar'
+          disabled
+        >
+          Test
+        </Link>
+      )
+
+      fireEvent.click(getByTestId('foo'))
+      expect(onClick).not.toHaveBeenCalled()
+    })
+
+    it('does not have href', () => {
+      const { getByTestId } = render(
+        <Link data-testid='foo' href='https://foo.bar' disabled>
+          Test
+        </Link>
+      )
+
+      expect(getByTestId('foo')).not.toHaveAttribute('href')
+    })
   })
 
-  it('adds rel="noopener" to target="_blank" links in its absence', () => {
-    render(
-      <Link href='http://example.com' target='_blank'>
-        External Link
-      </Link>
-    )
+  describe('when target="_blank"', () => {
+    it('adds rel="noopener" if rel is absent', () => {
+      render(
+        <Link href='http://example.com' target='_blank'>
+          External Link
+        </Link>
+      )
+      expect(document.querySelector('a')).toHaveAttribute('rel', 'noopener')
+    })
 
-    expect(document.querySelector('a')).toHaveAttribute('rel', 'noopener')
-  })
-
-  it('does not add rel="noopener" to target="_blank" if noreferrer is present', () => {
-    render(
-      <Link href='http://example.com' target='_blank' rel='noreferrer'>
-        External Link
-      </Link>
-    )
-
-    expect(document.querySelector('a')).not.toHaveAttribute('rel', 'noopener')
-  })
-
-  it('does not allow onClick when disabled', () => {
-    const onClick = jest.fn()
-    const { getByTestId } = render(
-      <Link data-testid='foo' onClick={onClick} href='https://foo.bar' disabled>
-        Test
-      </Link>
-    )
-
-    fireEvent.click(getByTestId('foo'))
-    expect(onClick).not.toHaveBeenCalled()
-  })
-
-  it('does not have href when disabled', () => {
-    const { getByTestId } = render(
-      <Link data-testid='foo' href='https://foo.bar' disabled>
-        Test
-      </Link>
-    )
-
-    expect(getByTestId('foo')).not.toHaveAttribute('href')
+    it('does not add rel="noopener" if noreferrer is present', () => {
+      render(
+        <Link href='http://example.com' target='_blank' rel='noreferrer'>
+          External Link
+        </Link>
+      )
+      expect(document.querySelector('a')).not.toHaveAttribute('rel', 'noopener')
+    })
   })
 })
 
 describe('calculateViewModel', () => {
-  it('applies default values when no props are provided', () => {
-    const props = {}
-    const result = calculateViewModel(props)
+  describe('when no props are provided', () => {
+    it('applies default values', () => {
+      const props = {}
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('text-blue-500')
-    expect(result.href).toBeUndefined()
-    expect(result.target).toBeUndefined()
-    expect(result.rel).toBeUndefined()
-    expect(result.onClick).toBeUndefined()
-    expect(result.weight).toBe('inherit')
-    expect(result.ariaDisabled).toBeUndefined()
+      expect(result.className).toContain('text-blue-500')
+      expect(result.href).toBeUndefined()
+      expect(result.target).toBeUndefined()
+      expect(result.rel).toBeUndefined()
+      expect(result.onClick).toBeUndefined()
+      expect(result.weight).toBe('inherit')
+      expect(result.ariaDisabled).toBeUndefined()
+    })
   })
 
-  it('applies correct href, target, rel and onClick when provided', () => {
-    const props = {
-      href: 'https://example.com',
-      target: '_blank',
-      rel: 'nofollow',
-      onClick: jest.fn(),
-    }
-    const result = calculateViewModel(props)
+  describe('when href, target, rel and onClick are provided', () => {
+    it('applies correct href, target, rel, and onClick', () => {
+      const props = {
+        href: 'https://example.com',
+        target: '_blank',
+        rel: 'nofollow',
+        onClick: jest.fn(),
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.href).toBe('https://example.com')
-    expect(result.target).toBe('_blank')
-    expect(result.rel).toBe('nofollow noopener')
-    expect(result.onClick).toBe(props.onClick)
+      expect(result.href).toBe('https://example.com')
+      expect(result.target).toBe('_blank')
+      expect(result.rel).toBe('nofollow noopener')
+      expect(result.onClick).toBe(props.onClick)
+    })
   })
 
-  it('sanitizes rel for target="_blank"', () => {
-    const props = {
-      target: '_blank',
-      rel: 'nofollow',
-    }
-    const result = calculateViewModel(props)
+  describe('when target="_blank" and rel is provided', () => {
+    it('sanitizes rel for target="_blank"', () => {
+      const props = {
+        target: '_blank',
+        rel: 'nofollow',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.rel).toBe('nofollow noopener')
+      expect(result.rel).toBe('nofollow noopener')
+    })
   })
 
-  it('applies disabled behavior', () => {
-    const props = {
-      disabled: true,
-      href: 'https://example.com',
-      target: '_blank',
-      onClick: jest.fn(),
-    }
-    const result = calculateViewModel(props)
+  describe('when disabled', () => {
+    it('applies disabled behavior', () => {
+      const props = {
+        disabled: true,
+        href: 'https://example.com',
+        target: '_blank',
+        onClick: jest.fn(),
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('cursor-not-allowed')
-    expect(result.href).toBeUndefined()
-    expect(result.target).toBeUndefined()
-    expect(result.onClick).toBeUndefined()
-    expect(result.ariaDisabled).toBe(true)
+      expect(result.className).toContain('cursor-not-allowed')
+      expect(result.href).toBeUndefined()
+      expect(result.target).toBeUndefined()
+      expect(result.onClick).toBeUndefined()
+      expect(result.ariaDisabled).toBe(true)
+    })
+
+    it('applies disabled color styles for the provided color', () => {
+      const blueProps = {
+        color: 'blue',
+        disabled: true,
+      }
+      const whiteProps = {
+        color: 'white',
+        disabled: true,
+      }
+
+      const blueResult = calculateViewModel(blueProps)
+      const whiteResult = calculateViewModel(whiteProps)
+
+      expect(blueResult.className).toContain(
+        'focus:outline-none hover:underline leading-[inherit] text-gray-600 underline cursor-not-allowed'
+      )
+      expect(whiteResult.className).toContain('text-gray-600')
+    })
   })
 
-  it('applies visited class when visited is true', () => {
-    const props = {
-      visited: true,
-      color: 'blue',
-    }
-    const result = calculateViewModel(props)
+  describe('when visited is true', () => {
+    it('applies visited class when color is blue', () => {
+      const props = {
+        visited: true,
+        color: 'blue',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('visited text-purple-500')
+      expect(result.className).toContain('visited text-purple-500')
+    })
+
+    it('applies visited class when color is white', () => {
+      const props = {
+        color: 'white',
+        visited: true,
+      }
+      const result = calculateViewModel(props)
+
+      expect(result.className).toContain('visited text-gray-500')
+    })
   })
 
-  it('handles noUnderline properly', () => {
-    const props = {
-      noUnderline: true,
-      color: 'blue',
-    }
-    const result = calculateViewModel(props)
+  describe('when noUnderline is true', () => {
+    it('handles noUnderline properly', () => {
+      const props = {
+        noUnderline: true,
+        color: 'blue',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('!no-underline')
+      expect(result.className).toContain('!no-underline')
+    })
   })
 
-  it('applies correct weight based on variant', () => {
-    const actionProps = {
-      variant: 'action' as const,
-    }
-    const anchorProps = {
-      variant: 'anchor' as const,
-    }
+  describe('when variant is provided', () => {
+    it('applies correct weight based on variant', () => {
+      const actionProps = {
+        variant: 'action' as const,
+      }
+      const anchorProps = {
+        variant: 'anchor' as const,
+      }
 
-    const actionResult = calculateViewModel(actionProps)
-    const anchorResult = calculateViewModel(anchorProps)
+      const actionResult = calculateViewModel(actionProps)
+      const anchorResult = calculateViewModel(anchorProps)
 
-    expect(actionResult.weight).toBe('semibold')
-    expect(anchorResult.weight).toBe('inherit')
+      expect(actionResult.weight).toBe('semibold')
+      expect(anchorResult.weight).toBe('inherit')
+    })
   })
 
-  it('uses default values if an unsupported color or variant is provided', () => {
-    const props = {
-      color: 'unsupportedColor',
-      variant: 'unsupportedVariant',
-    }
-    const result = calculateViewModel(props)
+  describe('when unsupported color or variant is provided', () => {
+    it('uses default values', () => {
+      const props = {
+        color: 'unsupportedColor',
+        variant: 'unsupportedVariant',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('text-blue-500')
-    expect(result.weight).toBe('inherit')
+      expect(result.className).toContain('text-blue-500')
+      expect(result.weight).toBe('inherit')
+    })
   })
 
-  it('applies custom className if provided', () => {
-    const props = {
-      className: 'custom-class',
-    }
-    const result = calculateViewModel(props)
+  describe('when className is provided', () => {
+    it('applies custom className', () => {
+      const props = {
+        className: 'custom-class',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('custom-class')
+      expect(result.className).toContain('custom-class')
+    })
   })
 
-  it('applies tabIndex when provided', () => {
-    const props = {
-      tabIndex: 0,
-    }
-    const result = calculateViewModel(props)
+  describe('when tabIndex is provided', () => {
+    it('applies tabIndex', () => {
+      const props = {
+        tabIndex: 0,
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.tabIndex).toBe(0)
+      expect(result.tabIndex).toBe(0)
+    })
   })
 
-  it('includes additional native HTML attributes', () => {
-    const props = {
-      'data-test-id': 'link-element',
-    }
-    const result = calculateViewModel(props)
+  describe('when additional native HTML attributes are provided', () => {
+    it('includes them', () => {
+      const props = {
+        'data-test-id': 'link-element',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.nativeHTMLAttributes['data-test-id']).toBe('link-element')
+      expect(result.nativeHTMLAttributes['data-test-id']).toBe('link-element')
+    })
   })
 
-  it('applies the default "as" prop as "a" when no "as" prop is provided', () => {
-    const props = {}
-    const result = calculateViewModel(props)
+  describe('when "as" prop is provided', () => {
+    it('applies the default "as" prop as "a" when no "as" prop is provided', () => {
+      const props = {}
+      const result = calculateViewModel(props)
 
-    expect(result.as).toBe('a')
+      expect(result.as).toBe('a')
+    })
+
+    it('applies the provided "as" prop when a custom element type is given', () => {
+      const props = {
+        as: 'button',
+      }
+      const result = calculateViewModel(props)
+
+      expect(result.as).toBe('button')
+    })
+
+    it('applies the provided "as" prop with a custom React component', () => {
+      const CustomComponent = () => <div />
+      const props = {
+        as: CustomComponent,
+      }
+      const result = calculateViewModel(props)
+
+      expect(result.as).toBe(CustomComponent)
+    })
   })
 
-  it('applies the provided "as" prop when a custom element type is given', () => {
-    const props = {
-      as: 'button',
-    }
-    const result = calculateViewModel(props)
+  describe('when color prop is provided', () => {
+    it('applies the default color "blue" when no color prop is provided', () => {
+      const props = {}
+      const result = calculateViewModel(props)
 
-    expect(result.as).toBe('button')
-  })
+      expect(result.className).toContain('text-blue-500')
+    })
 
-  it('applies the provided "as" prop with a custom React component', () => {
-    const CustomComponent = () => <div />
-    const props = {
-      as: CustomComponent,
-    }
-    const result = calculateViewModel(props)
+    it('applies the white color when color="white" is provided', () => {
+      const props = {
+        color: 'white',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.as).toBe(CustomComponent)
-  })
+      expect(result.className).toContain('inherit')
+    })
 
-  it('applies the default color "blue" when no color prop is provided', () => {
-    const props = {}
-    const result = calculateViewModel(props)
+    it('fallbacks to the default color "blue" if an unsupported color is provided', () => {
+      const props = {
+        color: 'unsupportedColor',
+      }
+      const result = calculateViewModel(props)
 
-    expect(result.className).toContain('text-blue-500')
-  })
-
-  it('applies the white color when color="white" is provided', () => {
-    const props = {
-      color: 'white',
-    }
-    const result = calculateViewModel(props)
-
-    expect(result.className).toContain('inherit')
-  })
-
-  it('fallbacks to the default color "blue" if an unsupported color is provided', () => {
-    const props = {
-      color: 'unsupportedColor',
-    }
-    const result = calculateViewModel(props)
-
-    expect(result.className).toContain('text-blue-500')
-  })
-
-  it('applies disabled color styles for the provided color when disabled', () => {
-    const blueProps = {
-      color: 'blue',
-      disabled: true,
-    }
-    const whiteProps = {
-      color: 'white',
-      disabled: true,
-    }
-
-    const blueResult = calculateViewModel(blueProps)
-    const whiteResult = calculateViewModel(whiteProps)
-
-    expect(blueResult.className).toContain(
-      'focus:outline-none hover:underline leading-[inherit] text-gray-600 underline cursor-not-allowed'
-    )
-    expect(whiteResult.className).toContain('text-gray-600')
-  })
-
-  it('applies visited color styles correctly when visited is true and color is blue', () => {
-    const props = {
-      color: 'blue',
-      visited: true,
-    }
-    const result = calculateViewModel(props)
-
-    expect(result.className).toContain('visited text-purple-500')
-  })
-
-  it('applies visited color styles correctly when visited is true and color is white', () => {
-    const props = {
-      color: 'white',
-      visited: true,
-    }
-    const result = calculateViewModel(props)
-
-    expect(result.className).toContain('visited text-gray-500')
+      expect(result.className).toContain('text-blue-500')
+    })
   })
 })
