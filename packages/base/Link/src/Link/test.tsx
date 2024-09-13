@@ -102,7 +102,7 @@ describe('Link', () => {
 })
 
 describe('calculateViewModel', () => {
-  it('should apply default values when no props are provided', () => {
+  it('applies default values when no props are provided', () => {
     const props = {}
     const result = calculateViewModel(props)
 
@@ -115,7 +115,7 @@ describe('calculateViewModel', () => {
     expect(result.ariaDisabled).toBeUndefined()
   })
 
-  it('should apply correct href, target, rel and onClick when provided', () => {
+  it('applies correct href, target, rel and onClick when provided', () => {
     const props = {
       href: 'https://example.com',
       target: '_blank',
@@ -130,7 +130,7 @@ describe('calculateViewModel', () => {
     expect(result.onClick).toBe(props.onClick)
   })
 
-  it('should sanitize rel for target="_blank"', () => {
+  it('sanitizes rel for target="_blank"', () => {
     const props = {
       target: '_blank',
       rel: 'nofollow',
@@ -140,7 +140,7 @@ describe('calculateViewModel', () => {
     expect(result.rel).toBe('nofollow noopener')
   })
 
-  it('should apply disabled behavior', () => {
+  it('applies disabled behavior', () => {
     const props = {
       disabled: true,
       href: 'https://example.com',
@@ -156,7 +156,7 @@ describe('calculateViewModel', () => {
     expect(result.ariaDisabled).toBe(true)
   })
 
-  it('should apply visited class when visited is true', () => {
+  it('applies visited class when visited is true', () => {
     const props = {
       visited: true,
       color: 'blue',
@@ -166,7 +166,7 @@ describe('calculateViewModel', () => {
     expect(result.className).toContain('visited text-purple-500')
   })
 
-  it('should handle noUnderline properly', () => {
+  it('handles noUnderline properly', () => {
     const props = {
       noUnderline: true,
       color: 'blue',
@@ -176,7 +176,7 @@ describe('calculateViewModel', () => {
     expect(result.className).toContain('!no-underline')
   })
 
-  it('should apply correct weight based on variant', () => {
+  it('applies correct weight based on variant', () => {
     const actionProps = {
       variant: 'action' as const,
     }
@@ -191,7 +191,7 @@ describe('calculateViewModel', () => {
     expect(anchorResult.weight).toBe('inherit')
   })
 
-  it('should use default values if an unsupported color or variant is provided', () => {
+  it('uses default values if an unsupported color or variant is provided', () => {
     const props = {
       color: 'unsupportedColor',
       variant: 'unsupportedVariant',
@@ -202,7 +202,7 @@ describe('calculateViewModel', () => {
     expect(result.weight).toBe('inherit')
   })
 
-  it('should apply custom className if provided', () => {
+  it('applies custom className if provided', () => {
     const props = {
       className: 'custom-class',
     }
@@ -211,7 +211,7 @@ describe('calculateViewModel', () => {
     expect(result.className).toContain('custom-class')
   })
 
-  it('should apply tabIndex when provided', () => {
+  it('applies tabIndex when provided', () => {
     const props = {
       tabIndex: 0,
     }
@@ -220,7 +220,7 @@ describe('calculateViewModel', () => {
     expect(result.tabIndex).toBe(0)
   })
 
-  it('should include additional native HTML attributes', () => {
+  it('includes additional native HTML attributes', () => {
     const props = {
       'data-test-id': 'link-element',
     }
@@ -229,14 +229,14 @@ describe('calculateViewModel', () => {
     expect(result.nativeHTMLAttributes['data-test-id']).toBe('link-element')
   })
 
-  it('should apply the default "as" prop as "a" when no "as" prop is provided', () => {
+  it('applies the default "as" prop as "a" when no "as" prop is provided', () => {
     const props = {}
     const result = calculateViewModel(props)
 
     expect(result.as).toBe('a')
   })
 
-  it('should apply the provided "as" prop when a custom element type is given', () => {
+  it('applies the provided "as" prop when a custom element type is given', () => {
     const props = {
       as: 'button',
     }
@@ -245,7 +245,7 @@ describe('calculateViewModel', () => {
     expect(result.as).toBe('button')
   })
 
-  it('should apply the provided "as" prop with a custom React component', () => {
+  it('applies the provided "as" prop with a custom React component', () => {
     const CustomComponent = () => <div />
     const props = {
       as: CustomComponent,
@@ -255,14 +255,14 @@ describe('calculateViewModel', () => {
     expect(result.as).toBe(CustomComponent)
   })
 
-  it('should apply the default color "blue" when no color prop is provided', () => {
+  it('applies the default color "blue" when no color prop is provided', () => {
     const props = {}
     const result = calculateViewModel(props)
 
     expect(result.className).toContain('text-blue-500')
   })
 
-  it('should apply the white color when color="white" is provided', () => {
+  it('applies the white color when color="white" is provided', () => {
     const props = {
       color: 'white',
     }
@@ -271,7 +271,7 @@ describe('calculateViewModel', () => {
     expect(result.className).toContain('inherit')
   })
 
-  it('should fallback to the default color "blue" if an unsupported color is provided', () => {
+  it('fallbacks to the default color "blue" if an unsupported color is provided', () => {
     const props = {
       color: 'unsupportedColor',
     }
@@ -280,7 +280,7 @@ describe('calculateViewModel', () => {
     expect(result.className).toContain('text-blue-500')
   })
 
-  it('should apply disabled color styles for the provided color when disabled', () => {
+  it('applies disabled color styles for the provided color when disabled', () => {
     const blueProps = {
       color: 'blue',
       disabled: true,
@@ -299,7 +299,7 @@ describe('calculateViewModel', () => {
     expect(whiteResult.className).toContain('text-gray-600')
   })
 
-  it('should apply visited color styles correctly when visited is true and color is blue', () => {
+  it('applies visited color styles correctly when visited is true and color is blue', () => {
     const props = {
       color: 'blue',
       visited: true,
@@ -309,7 +309,7 @@ describe('calculateViewModel', () => {
     expect(result.className).toContain('visited text-purple-500')
   })
 
-  it('should apply visited color styles correctly when visited is true and color is white', () => {
+  it('applies visited color styles correctly when visited is true and color is white', () => {
     const props = {
       color: 'white',
       visited: true,
