@@ -562,6 +562,21 @@ describe('Autocomplete', () => {
       expect(myOtherOption).not.toBeNull()
       expect(myOtherOption).toMatchSnapshot()
     })
+
+    describe('when options is null', () => {
+      it('does not render dropdown', async () => {
+        const { getByTestId, queryByText } = renderAutocomplete({
+          options: null,
+          value: 'Ruby',
+        })
+
+        const input = getByTestId('autocomplete') as HTMLInputElement
+
+        fireEvent.change(input, { target: { value: '' } })
+
+        expect(queryByText('No options')).not.toBeInTheDocument()
+      })
+    })
   })
 
   describe('Autofill', () => {

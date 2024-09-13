@@ -115,18 +115,22 @@ const OptionsMenu = ({
     )
   }
 
-  if (menuItems.length === 0) {
+  if (menuItems.length === 0 || !options) {
     return null
   }
 
   return (
-    <SelectOptions
-      data-testid={testIds?.scrollMenu}
-      selectedIndex={highlightedIndex}
-      fixedFooter={optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
-    >
-      {menuItems}
-    </SelectOptions>
+    options && (
+      <SelectOptions
+        data-testid={testIds?.scrollMenu}
+        selectedIndex={highlightedIndex}
+        fixedFooter={
+          optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />
+        }
+      >
+        {menuItems}
+      </SelectOptions>
+    )
   )
 }
 
