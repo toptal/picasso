@@ -120,17 +120,13 @@ const OptionsMenu = ({
   }
 
   return (
-    options && (
-      <SelectOptions
-        data-testid={testIds?.scrollMenu}
-        selectedIndex={highlightedIndex}
-        fixedFooter={
-          optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />
-        }
-      >
-        {menuItems}
-      </SelectOptions>
-    )
+    <SelectOptions
+      data-testid={testIds?.scrollMenu}
+      selectedIndex={highlightedIndex}
+      fixedFooter={optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />}
+    >
+      {menuItems}
+    </SelectOptions>
   )
 }
 
