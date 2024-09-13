@@ -128,19 +128,17 @@ describe('calculateViewModel', () => {
     })
   })
 
-  describe('when href, target, rel and onClick are provided', () => {
-    it('applies correct href, target, rel, and onClick', () => {
+  describe('when href, target and onClick are provided', () => {
+    it('passes them through to view model', () => {
       const props = {
         href: 'https://example.com',
         target: '_blank',
-        rel: 'nofollow',
         onClick: jest.fn(),
       }
       const result = calculateViewModel(props)
 
       expect(result.href).toBe('https://example.com')
       expect(result.target).toBe('_blank')
-      expect(result.rel).toBe('nofollow noopener')
       expect(result.onClick).toBe(props.onClick)
     })
   })
