@@ -19,8 +19,8 @@ export default (theme: Theme) => {
 
     disabled: {
       pointerEvents: 'none',
-      background: palette.grey.lighter,
-      border: `1px solid ${palette.grey.lighter2}`,
+      background: palette.grey.lighter2,
+      border: `1px solid ${palette.grey.light2}`,
     },
 
     error: {
