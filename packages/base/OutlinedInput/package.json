@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-outlined-input",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Toptal UI components library - OutlinedInput",
   "publishConfig": {
     "access": "public"
@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "4.0.4",
-    "@toptal/picasso-form": "6.0.1",
+    "@toptal/picasso-button": "4.0.5",
+    "@toptal/picasso-form": "6.1.0",
     "@toptal/picasso-icons": "1.6.1",
     "@toptal/picasso-input-adornment": "3.0.2",
     "@toptal/picasso-shared": "15.0.0",
