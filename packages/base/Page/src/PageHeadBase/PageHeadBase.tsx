@@ -40,7 +40,7 @@ const borderPseudoElement = [
   'after:h-[1px]',
 ]
 
-export const PageHead = forwardRef<HTMLDivElement, Props>(
+export const PageHeadBase = forwardRef<HTMLDivElement, Props>(
   (
     {
       breadcrumbs,
@@ -124,6 +124,6 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-PageHead.displayName = 'PageHead'
+PageHeadBase.displayName = 'PageHeadBase'
 
-export default PageHead
+export default PageHeadBase
