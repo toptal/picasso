@@ -2,8 +2,6 @@ export const createRootClassNames = () => {
   const classNames: string[] = [
     'flex',
     'justify-start',
-    'items-start',
-    '[[data-component-type="button"]+&]:ml-4',
 
     '[&>[data-component-type="button"]:hover]:z-[1]',
 

@@ -15,7 +15,11 @@ const BlankExample = () => (
       <Page.Content>
         <Container>
           <Page.Article>
-            <PageHead noBorder title='Overview' />
+            <PageHead noBorder>
+              <PageHead.Main>
+                <PageHead.Title>Overview</PageHead.Title>
+              </PageHead.Main>
+            </PageHead>
           </Page.Article>
           <Page.Article style={{ marginTop: '1rem' }}>
             <Section variant='bordered'>

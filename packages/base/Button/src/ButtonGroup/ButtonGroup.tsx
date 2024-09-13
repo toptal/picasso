@@ -18,13 +18,7 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
     const finalClassName = twMerge(createRootClassNames(), className)
 
     return (
-      <div
-        {...rest}
-        ref={ref}
-        data-component-type='button'
-        className={finalClassName}
-        style={style}
-      >
+      <div {...rest} ref={ref} className={finalClassName} style={style}>
         {children}
       </div>
     )

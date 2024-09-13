@@ -1,6 +1,12 @@
 import React from 'react'
 import { PageHead } from '@toptal/picasso'
 
-const TitleExample = () => <PageHead title='Heading Large' />
+const TitleExample = () => (
+  <PageHead>
+    <PageHead.Main>
+      <PageHead.Title>Heading Large</PageHead.Title>
+    </PageHead.Main>
+  </PageHead>
+)
 
 export default TitleExample
