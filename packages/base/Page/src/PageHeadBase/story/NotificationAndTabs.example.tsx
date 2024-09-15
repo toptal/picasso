@@ -1,5 +1,5 @@
 import React from 'react'
-import { Notification, PageHead, Tabs } from '@toptal/picasso'
+import { Notification, PageHeadBase, Tabs } from '@toptal/picasso'
 
 const NotificationAndTabsExample = () => {
   const [value, setValue] = React.useState(0)
@@ -10,7 +10,7 @@ const NotificationAndTabsExample = () => {
 
   return (
     <>
-      <PageHead title='Heading Large' noBorder />
+      <PageHeadBase title='Heading Large' noBorder />
 
       <div className='mb-3'>
         <Notification>

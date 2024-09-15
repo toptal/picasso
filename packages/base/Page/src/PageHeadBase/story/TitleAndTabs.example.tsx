@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tabs, PageHead } from '@toptal/picasso'
+import { Tabs, PageHeadBase } from '@toptal/picasso'
 
 const TitleAndTabsExample = () => {
   const [value, setValue] = React.useState(0)
@@ -10,7 +10,7 @@ const TitleAndTabsExample = () => {
 
   return (
     <>
-      <PageHead title='Heading Large' noBorder />
+      <PageHeadBase title='Heading Large' noBorder />
 
       <Tabs value={value} onChange={handleChange}>
         <Tabs.Tab label='Label' />

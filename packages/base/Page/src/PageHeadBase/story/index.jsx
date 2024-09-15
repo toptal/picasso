@@ -1,21 +1,21 @@
-import { PageHead } from '../PageHead'
+import { PageHeadBase } from '../PageHeadBase'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Components').createPage(
-  'PageHead',
+  'PageHeadBase',
   `${PicassoBook.createSourceLink(__filename)}`
 )
 
 page
   .createTabChapter('Props')
-  .addComponentDocs({ component: PageHead, name: 'PageHead' })
+  .addComponentDocs({ component: PageHeadBase, name: 'PageHeadBase' })
 
 page
   .createChapter()
-  .addExample('PageHead/story/Default.example.tsx', 'Default', 'base/Page')
-  .addExample('PageHead/story/Blank.example.tsx', 'Blank', 'base/Page')
+  .addExample('PageHeadBase/story/Default.example.tsx', 'Default', 'base/Page')
+  .addExample('PageHeadBase/story/Blank.example.tsx', 'Blank', 'base/Page')
   .addExample(
-    'PageHead/story/NoBorder.example.tsx',
+    'PageHeadBase/story/NoBorder.example.tsx',
     {
       title: 'No Border',
       description:
@@ -23,41 +23,41 @@ page
     },
     'base/Page'
   )
-  .addExample('PageHead/story/Title.example.tsx', 'Title', 'base/Page')
-  .addExample('PageHead/story/Steps.example.tsx', 'Steps', 'base/Page')
-  .addExample('PageHead/story/Loading.example.tsx', 'Loading', 'base/Page')
+  .addExample('PageHeadBase/story/Title.example.tsx', 'Title', 'base/Page')
+  .addExample('PageHeadBase/story/Steps.example.tsx', 'Steps', 'base/Page')
+  .addExample('PageHeadBase/story/Loading.example.tsx', 'Loading', 'base/Page')
   .addExample(
-    'PageHead/story/TitleAndButton.example.tsx',
+    'PageHeadBase/story/TitleAndButton.example.tsx',
     'Title and button',
     'base/Page'
   )
   .addExample(
-    'PageHead/story/TitleAndTabs.example.tsx',
+    'PageHeadBase/story/TitleAndTabs.example.tsx',
     'Title and tabs',
     'base/Page'
   )
   .addExample(
-    'PageHead/story/TitleAndBreadcrumbs.example.tsx',
+    'PageHeadBase/story/TitleAndBreadcrumbs.example.tsx',
     'Title and breadcrumbs',
     'base/Page'
   )
   .addExample(
-    'PageHead/story/Notification.example.tsx',
+    'PageHeadBase/story/Notification.example.tsx',
     'Notification',
     'base/Page'
   )
   .addExample(
-    'PageHead/story/NotificationAndTabs.example.tsx',
+    'PageHeadBase/story/NotificationAndTabs.example.tsx',
     'NotificationAndTabs',
     'base/Page'
   )
   .addExample(
-    'PageHead/story/WithRightPadding.example.tsx',
+    'PageHeadBase/story/WithRightPadding.example.tsx',
     'With right padding of the container',
     'base/Page'
   )
   .addExample(
-    'PageHead/story/WithEnabledMinHeight.example.tsx',
+    'PageHeadBase/story/WithEnabledMinHeight.example.tsx',
     'With enabled min height for the container',
     'base/Page'
   )

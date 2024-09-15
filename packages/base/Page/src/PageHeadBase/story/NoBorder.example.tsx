@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Page,
   Section,
-  PageHead,
+  PageHeadBase,
   Typography,
   Container,
   Button,
@@ -15,11 +15,7 @@ const BlankExample = () => (
       <Page.Content>
         <Container>
           <Page.Article>
-            <PageHead noBorder>
-              <PageHead.Main>
-                <PageHead.Title>Overview</PageHead.Title>
-              </PageHead.Main>
-            </PageHead>
+            <PageHeadBase noBorder title='Overview' />
           </Page.Article>
           <Page.Article style={{ marginTop: '1rem' }}>
             <Section variant='bordered'>

@@ -1,10 +1,6 @@
 import React from 'react'
-import { PageHead } from '@toptal/picasso'
+import { PageHeadBase } from '@toptal/picasso'
 
-const BlankExample = () => (
-  <PageHead>
-    <PageHead.Main />
-  </PageHead>
-)
+const BlankExample = () => <PageHeadBase />
 
 export default BlankExample

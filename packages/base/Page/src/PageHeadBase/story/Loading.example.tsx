@@ -1,11 +1,11 @@
 import React from 'react'
-import { Badge, PageHead, SkeletonLoader } from '@toptal/picasso'
+import { Badge, PageHeadBase, SkeletonLoader } from '@toptal/picasso'
 import { TagRectangular } from '@toptal/picasso-tag'
 
 const isLoading = true
 
 const Loading = () => (
-  <PageHead
+  <PageHeadBase
     title='Heading large'
     subtitle='Description'
     subtitleLoading={isLoading}
