@@ -5,7 +5,6 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
   StandardProps,
   ButtonOrAnchorProps,
-  OverridableComponent,
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
@@ -31,7 +30,7 @@ export interface Props
   /** ClassName for the content */
   contentClassName?: string
   /** Add an `<Icon />` along Button's children */
-  icon?: ReactElement
+  icon?: ReactElement | null
   /** Icon can be positioned on the left or right */
   iconPosition?: IconPositionType
   /** Shows a loading indicator and disables click events */
@@ -69,86 +68,88 @@ const RootElement = forwardRef(
   }
 )
 
-export const ButtonBase: OverridableComponent<Props> = forwardRef<
-  HTMLButtonElement,
-  Props
->(function ButtonBase(props, ref) {
-  const {
-    icon,
-    iconPosition,
-    loading,
-    children,
-    className,
-    contentClassName,
-    style,
-    disabled,
-    onClick,
-    title,
-    value,
-    type,
-    as = 'button',
-    titleCase: propsTitleCase,
-    ...rest
-  } = props
+export const ButtonBase = forwardRef<HTMLButtonElement, Props>(
+  function ButtonBase(props, ref) {
+    const {
+      icon,
+      iconPosition,
+      loading,
+      children,
+      className,
+      contentClassName,
+      style,
+      disabled,
+      onClick,
+      title,
+      value,
+      type,
+      as = 'button',
+      titleCase: propsTitleCase,
+      ...rest
+    } = props
 
-  const titleCase = useTitleCase(propsTitleCase)
-  const finalChildren = [titleCase ? toTitleCase(children) : children]
-  const finalRootElementName = typeof as === 'string' ? as : 'a'
+    const titleCase = useTitleCase(propsTitleCase)
+    const finalChildren = [titleCase ? toTitleCase(children) : children]
+    const finalRootElementName = typeof as === 'string' ? as : 'a'
 
-  if (icon) {
-    const iconComponent = getIcon({ icon })
+    if (icon) {
+      const iconComponent = getIcon({ icon })
 
-    if (iconPosition === 'left') {
-      finalChildren.unshift(iconComponent)
-    } else {
-      finalChildren.push(iconComponent)
+      if (iconPosition === 'left') {
+        finalChildren.unshift(iconComponent)
+      } else {
+        finalChildren.push(iconComponent)
+      }
     }
-  }
 
-  const finalClassName = twMerge(createCoreClassNames({ disabled }), className)
+    const finalClassName = twMerge(
+      createCoreClassNames({ disabled }),
+      className
+    )
 
-  return (
-    <MUIButtonBase
-      {...rest}
-      ref={ref}
-      onClick={getClickHandler(loading, onClick)}
-      className={finalClassName}
-      style={style}
-      aria-disabled={disabled}
-      disabled={disabled}
-      title={title}
-      value={value}
-      type={type}
-      data-component-type='button'
-      tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
-      role={rest.role ?? 'button'}
-      rootElementName={finalRootElementName as keyof HTMLElementTagNameMap}
-      slots={{ root: RootElement }}
-      // @ts-ignore
-      slotProps={{ root: { as } }}
-    >
-      <Container
-        as='span'
-        inline
-        flex
-        direction='row'
-        alignItems='center'
-        className={contentClassName}
+    return (
+      <MUIButtonBase
+        {...rest}
+        ref={ref}
+        onClick={getClickHandler(loading, onClick)}
+        className={finalClassName}
+        style={style}
+        aria-disabled={disabled}
+        disabled={disabled}
+        title={title}
+        value={value}
+        type={type}
+        data-component-type='button'
+        tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
+        role={rest.role ?? 'button'}
+        rootElementName={finalRootElementName as keyof HTMLElementTagNameMap}
+        slots={{ root: RootElement }}
+        // @ts-ignore
+        slotProps={{ root: { as } }}
       >
-        {finalChildren}
-      </Container>
-
-      {loading && (
-        <Loader
-          variant='inherit'
-          className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'
+        <Container
+          as='span'
           inline
-          size='small'
-        />
-      )}
-    </MUIButtonBase>
-  )
-})
+          flex
+          direction='row'
+          alignItems='center'
+          className={contentClassName}
+        >
+          {finalChildren}
+        </Container>
+
+        {loading && (
+          <Loader
+            variant='inherit'
+            className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'
+            inline
+            size='small'
+          />
+        )}
+      </MUIButtonBase>
+    )
+  }
+)
 
 ButtonBase.defaultProps = {
   as: 'button',

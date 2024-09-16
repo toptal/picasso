@@ -1,11 +1,7 @@
 import type { ReactElement, MouseEvent, ElementType, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import type {
-  BaseProps,
-  ButtonOrAnchorProps,
-  OverridableComponent,
-} from '@toptal/picasso-shared'
+import type { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 import { Loader } from '@toptal/picasso-loader'
 
 import type { IconPositionType } from '../Button'
@@ -59,49 +55,48 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
 
 const loaderIcon = <Loader size='small' variant='inherit' />
 
-export const ButtonAction: OverridableComponent<Props> = forwardRef<
-  HTMLButtonElement,
-  Props
->(function ButtonAction(props, ref) {
-  const {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    // We use these props only to determine styles
-    active,
-    focused,
-    hovered,
-    /* eslint-enable @typescript-eslint/no-unused-vars */
-    className,
-    disabled,
-    loading,
-    icon,
-    iconPosition,
-    onClick,
-    ...rest
-  } = props
+export const ButtonAction = forwardRef<HTMLButtonElement, Props>(
+  function ButtonAction(props, ref) {
+    const {
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      // We use these props only to determine styles
+      active,
+      focused,
+      hovered,
+      /* eslint-enable @typescript-eslint/no-unused-vars */
+      className,
+      disabled,
+      loading,
+      icon,
+      iconPosition,
+      onClick,
+      ...rest
+    } = props
 
-  const usedIcon = loading ? loaderIcon : icon
-  const usedIconPosition = icon ? iconPosition : 'right'
+    const usedIcon = loading ? loaderIcon : icon
+    const usedIconPosition = icon ? iconPosition : 'right'
 
-  const finalClassName = cx(createRootClassNames(props), className)
-  const finalIcon = getIcon({
-    children: rest.children,
-    icon: usedIcon,
-    iconPosition: usedIconPosition,
-  })
+    const finalClassName = cx(createRootClassNames(props), className)
+    const finalIcon = getIcon({
+      children: rest.children,
+      icon: usedIcon,
+      iconPosition: usedIconPosition,
+    })
 
-  return (
-    <ButtonBase
-      {...rest}
-      ref={ref}
-      icon={finalIcon}
-      iconPosition={usedIconPosition}
-      onClick={loading ? undefined : onClick}
-      className={finalClassName}
-      contentClassName='font-semibold text-blue-500 text-md'
-      disabled={disabled}
-    />
-  )
-})
+    return (
+      <ButtonBase
+        {...rest}
+        ref={ref}
+        icon={finalIcon}
+        iconPosition={usedIconPosition}
+        onClick={loading ? undefined : onClick}
+        className={finalClassName}
+        contentClassName='font-semibold text-blue-500 text-md'
+        disabled={disabled}
+      />
+    )
+  }
+)
 
 ButtonAction.defaultProps = {
   iconPosition: 'left',

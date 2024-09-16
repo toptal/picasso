@@ -1,11 +1,7 @@
 import type { ReactElement, MouseEvent, ElementType } from 'react'
 import React, { forwardRef } from 'react'
 import cx from 'classnames'
-import type {
-  BaseProps,
-  ButtonOrAnchorProps,
-  OverridableComponent,
-} from '@toptal/picasso-shared'
+import type { BaseProps, ButtonOrAnchorProps } from '@toptal/picasso-shared'
 
 import { ButtonBase } from '../ButtonBase'
 import { createRootClassNames, createVariantClassNames } from './styles'
@@ -37,51 +33,50 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
   responsive?: boolean
 }
 
-export const ButtonCircular: OverridableComponent<Props> = forwardRef<
-  HTMLButtonElement,
-  Props
->(function ButtonCircular(props, ref) {
-  const {
-    className,
-    variant = 'primary',
-    active,
-    focused,
-    hovered,
-    disabled,
-    responsive,
-    loading,
-    ...rest
-  } = props
-  const variantClassNames = createVariantClassNames(variant, {
-    disabled,
-    focused,
-    hovered,
-    active,
-  })
+export const ButtonCircular = forwardRef<HTMLButtonElement, Props>(
+  function ButtonCircular(props, ref) {
+    const {
+      className,
+      variant = 'primary',
+      active,
+      focused,
+      hovered,
+      disabled,
+      responsive,
+      loading,
+      ...rest
+    } = props
+    const variantClassNames = createVariantClassNames(variant, {
+      disabled,
+      focused,
+      hovered,
+      active,
+    })
 
-  const finalClassName = cx(
-    createRootClassNames({ responsive, active, disabled, focused, hovered }),
-    variantClassNames,
-    className
-  )
+    const finalClassName = cx(
+      createRootClassNames({ responsive, active, disabled, focused, hovered }),
+      variantClassNames,
+      className
+    )
 
-  const contentClassName = cx(
-    'font-semibold whitespace-nowrap',
-    'text-button-small',
-    loading ? 'opacity-0' : ''
-  )
+    const contentClassName = cx(
+      'font-semibold whitespace-nowrap',
+      'text-button-small',
+      loading ? 'opacity-0' : ''
+    )
 
-  return (
-    <ButtonBase
-      {...rest}
-      ref={ref}
-      loading={loading}
-      className={finalClassName}
-      contentClassName={contentClassName}
-      disabled={disabled}
-    />
-  )
-})
+    return (
+      <ButtonBase
+        {...rest}
+        ref={ref}
+        loading={loading}
+        className={finalClassName}
+        contentClassName={contentClassName}
+        disabled={disabled}
+      />
+    )
+  }
+)
 
 ButtonCircular.defaultProps = {
   variant: 'primary',

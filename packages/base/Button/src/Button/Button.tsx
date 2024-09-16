@@ -6,7 +6,6 @@ import type {
   StandardProps,
   SizeType,
   ButtonOrAnchorProps,
-  OverridableComponent,
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { noop } from '@toptal/picasso-utils'
@@ -95,10 +94,10 @@ const getIcon = ({
   })
 }
 
-export const Button: OverridableComponent<Props> = forwardRef<
-  HTMLButtonElement,
-  Props
->(function Button(props, ref) {
+export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
+  props,
+  ref
+) {
   const {
     icon,
     iconPosition,

@@ -50,23 +50,33 @@ const ButtonControlLabel = ({
   const contentLeftSpacing = size === 'large' ? 1 : 0.5
 
   return (
-    <Button
-      {...props}
-      className={twMerge('text-center', createSizeClassNames(size), className)}
-      variant='secondary'
-      size={size}
-      as='label'
-      htmlFor={id}
-      disabled={disabled}
-    >
-      {React.cloneElement(control, { id, checked, value, onChange, disabled })}
-      <Container
-        className={createContentSizeClassNames(size)}
-        left={contentLeftSpacing}
+    <label htmlFor={id} aria-disabled={disabled}>
+      <Button
+        {...props}
+        className={twMerge(
+          'text-center',
+          createSizeClassNames(size),
+          className
+        )}
+        variant='secondary'
+        size={size}
+        disabled={disabled}
       >
-        {children}
-      </Container>
-    </Button>
+        {React.cloneElement(control, {
+          id,
+          checked,
+          value,
+          onChange,
+          disabled,
+        })}
+        <Container
+          className={createContentSizeClassNames(size)}
+          left={contentLeftSpacing}
+        >
+          {children}
+        </Container>
+      </Button>
+    </label>
   )
 }
 
