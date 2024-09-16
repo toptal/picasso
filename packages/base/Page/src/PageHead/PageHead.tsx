@@ -88,6 +88,7 @@ const borderPseudoElement = [
   'after:h-[1px]',
 ]
 
+/** @deprecated Use `PageHeadBase` instead to conform to BASE. `PageHead` will be removed in a future major update of Picasso*/
 export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
