@@ -1,5 +1,12 @@
 # @toptal/picasso-autocomplete
 
+## 5.0.5
+
+### Patch Changes
+
+- [#4556](https://github.com/toptal/picasso/pull/4556) [`23e4e28`](https://github.com/toptal/picasso/commit/23e4e28c19e7ab3b777f07b7b524a55035fc5556) Thanks [@sashuk](https://github.com/sashuk)!
+- do not render options dropdown when options is null or undefined
+
 ## 5.0.4
 
 ### Patch Changes
