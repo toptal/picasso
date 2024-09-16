@@ -1,5 +1,32 @@
 # @toptal/picasso-outlined-input
 
+## 4.0.3
+
+### Patch Changes
+
+- [#4541](https://github.com/toptal/picasso/pull/4541) [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- fix background and border color for disabled state
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+  - @toptal/picasso-button@4.0.5
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.4
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.3
+  - @toptal/picasso-form@6.0.1
+  - @toptal/picasso-input-adornment@3.0.2
+
 ## 4.0.0
 
 ### Major Changes

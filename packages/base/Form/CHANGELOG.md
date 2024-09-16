@@ -1,5 +1,19 @@
 # @toptal/picasso-form
 
+## 6.1.0
+
+### Minor Changes
+
+- [#4541](https://github.com/toptal/picasso/pull/4541) [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- component `FormHint` got new prop `disabled`
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+
 ## 6.0.0
 
 ### Major Changes

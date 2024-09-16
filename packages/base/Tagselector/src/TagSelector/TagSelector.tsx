@@ -62,10 +62,12 @@ export interface Props
   otherOptionLabel?: string
   /** Callback invoked when other option selected */
   onOtherOptionSelect?: (value: string) => void
+  /** Select other option on Enter key press */
+  submitOtherOptionOnEnter?: boolean
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
-  /** Label to show when no options were found */
-  noOptionsText?: string
+  /** Label to show when no options were found (pass "null" to hide label completely) */
+  noOptionsText?: string | null
   /** List of options with unique labels */
   options?: Item[] | null
   /** The list of values of the selected options, required for a controlled component. */
@@ -127,6 +129,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       placeholder,
       renderLabel: customRenderLabel,
       renderOption,
+      submitOtherOptionOnEnter,
       showOtherOption,
       value: values = [],
       width,
@@ -154,9 +157,14 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     ) => {
       const hasSelection = values.length
       const isDeleting = event.key === 'Backspace'
+      const isEnter = event.key === 'Enter'
 
       if (hasSelection && !newInputValue && isDeleting) {
         handleDelete(values[values.length - 1])
+      }
+
+      if (submitOtherOptionOnEnter && isEnter && newInputValue !== '') {
+        handleOtherOptionSelect(newInputValue)
       }
     }
 

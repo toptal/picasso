@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Layout').createPage(
   'Container',
   `Use Container to add space between 2 elements.
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -66,3 +66,4 @@ Spacing is aligned with BASE design and gets transformed into **rem** units in f
     'TextAlign',
     'base/Container'
   )
+  .addExample('Container/story/Wrap.example.tsx', 'Wrap', 'base/Container')

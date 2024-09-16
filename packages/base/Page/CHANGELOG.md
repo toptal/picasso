@@ -1,5 +1,57 @@
 # @toptal/picasso-page
 
+## 5.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-autocomplete@5.0.4
+  - @toptal/picasso-button@4.0.5
+  - @toptal/picasso-accordion@3.0.4
+  - @toptal/picasso-notification@4.0.5
+
+## 5.0.5
+
+### Patch Changes
+
+- [#4543](https://github.com/toptal/picasso/pull/4543) [`6e77f38`](https://github.com/toptal/picasso/commit/6e77f3854838667e79c27007b4e41f8cb7560119) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### PageArticle
+
+- replace MUI styles with Tailwind
+
+## 5.0.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.4
+  - @toptal/picasso-menu@3.0.5
+  - @toptal/picasso-accordion@3.0.3
+  - @toptal/picasso-notification@4.0.4
+  - @toptal/picasso-autocomplete@5.0.3
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+  - @toptal/picasso-autocomplete@5.0.2
+  - @toptal/picasso-avatar@6.1.2
+  - @toptal/picasso-button@4.0.3
+  - @toptal/picasso-menu@3.0.4
+  - @toptal/picasso-notification@4.0.3
+  - @toptal/picasso-user-badge@5.1.2
+  - @toptal/picasso-accordion@3.0.2
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c)]:
+  - @toptal/picasso-autocomplete@5.0.1
+
 ## 5.0.1
 
 ### Patch Changes

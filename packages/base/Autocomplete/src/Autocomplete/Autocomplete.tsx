@@ -17,25 +17,30 @@ import type { PopperOptions } from 'popper.js'
 import { Input } from '@toptal/picasso-input'
 import { Container } from '@toptal/picasso-container'
 import { Loader } from '@toptal/picasso-loader'
-import { SelectOptions } from '@toptal/picasso-select'
 import { Popper } from '@toptal/picasso-popper'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { unsafeErrorLog } from '@toptal/picasso-utils'
 import type { InputProps } from '@toptal/picasso-input'
-import { MenuItem } from '@toptal/picasso-menu'
 import type { BaseInputProps, Status } from '@toptal/picasso-outlined-input'
 import { useFieldsLayoutContext } from '@toptal/picasso-form'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import PoweredByGoogle from './PoweredByGoogle'
-import NoOptionsMenuItem from './NoOptionsMenuItem'
-import OtherOptionMenuItem from './OtherOptionMenuItem'
 import type { Item, ChangedOptions } from './types'
 import { useAutocomplete, EMPTY_INPUT_VALUE } from './use-autocomplete'
 import { rootClassByWidth } from './styles'
+import type { OptionsMenuProps } from './OptionsMenu'
+import OptionsMenu from './OptionsMenu'
 
 export interface Props
   extends BaseProps,
+    Pick<
+      OptionsMenuProps,
+      | 'otherOptionText'
+      | 'renderOtherOption'
+      | 'noOptionsText'
+      | 'renderOption'
+      | 'poweredByGoogle'
+    >,
     Omit<
       InputHTMLAttributes<HTMLInputElement>,
       'defaultValue' | 'value' | 'onChange' | 'onSelect' | 'onKeyDown' | 'size'
@@ -57,10 +62,6 @@ export interface Props
   ) => void
   /** Placeholder for value */
   placeholder?: string
-  /** Text prefix for other option */
-  otherOptionText?: string
-  /** Callback responsible for rendering the other option given the input's value */
-  renderOtherOption?: (value: string) => ReactNode
   /** Width of the component */
   width?: 'full' | 'shrink' | 'auto'
   /** Width of the menu */
@@ -69,12 +70,10 @@ export interface Props
   loading?: boolean
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
-  /** Label to show when no options were found */
-  noOptionsText?: string | null
   /** List of options */
   options?: Item[] | null
   /** A function that takes a display value from the option item */
-  getDisplayValue?: (item: Item | null) => string
+  getDisplayValue?: OptionsMenuProps['getDisplayValue']
   /**  Callback invoked when key is pressed */
   onKeyDown?: (
     event: KeyboardEvent<HTMLInputElement>,
@@ -94,8 +93,6 @@ export interface Props
   icon?: ReactNode
   /** Custom input component */
   inputComponent?: ComponentType<InputProps>
-  /** Callback responsible for rendering the option given the option and its index in the list of options */
-  renderOption?: (option: Item, index: number) => ReactNode
   /** Provide unique key for each option */
   getKey?: (item: Item) => string
   /** Specifies whether the autofill enabled or not, disabled by default */
@@ -111,8 +108,6 @@ export interface Props
   /** Options provided to the popper.js instance */
   popperOptions?: PopperOptions
   inputProps?: BaseInputProps
-  /** Show the "Powered By Google" label */
-  poweredByGoogle?: boolean
   testIds?: InputProps['testIds'] & {
     menuItem?: string
     scrollMenu?: string
@@ -138,13 +133,13 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       endAdornment,
       status,
       getDisplayValue = getItemText,
-      getKey: customGetKey,
+      getKey,
       icon,
       inputComponent,
       loading,
       menuWidth,
       name,
-      noOptionsText = 'No options',
+      noOptionsText,
       closeOnSelect,
       onBlur,
       onChange,
@@ -181,22 +176,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       )
     }
 
-    const getKey = (item: Item) => {
-      if (customGetKey) {
-        return customGetKey(item)
-      }
-
-      const displayValue = getDisplayValue(item)
-
-      if (!displayValue) {
-        unsafeErrorLog(
-          'Autocomplete expects you to provide key prop value with getKey or Item.value!'
-        )
-      }
-
-      return displayValue
-    }
-
     const {
       highlightedIndex,
       isOpen,
@@ -222,46 +201,23 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
       ref,
     })
 
-    const optionsLength = options ? options.length : 0
-
-    const optionsMenu = options && (
-      <SelectOptions
-        data-testid={testIds?.scrollMenu}
-        selectedIndex={highlightedIndex}
-        fixedFooter={
-          optionsLength > 0 && poweredByGoogle && <PoweredByGoogle />
-        }
-      >
-        {options?.map((option, index) => (
-          <MenuItem
-            data-testid={
-              testIds?.menuItem ? `${testIds?.menuItem}-${index}` : undefined
-            }
-            key={getKey(option)}
-            {...getItemProps(index, option)}
-            titleCase={false}
-            description={option.description}
-          >
-            {renderOption
-              ? renderOption(option, index)
-              : getDisplayValue(option)}
-          </MenuItem>
-        ))}
-        {shouldShowOtherOption && (
-          <OtherOptionMenuItem
-            data-testid={testIds?.otherOption}
-            value={value}
-            renderOtherOption={renderOtherOption}
-            otherOptionText={otherOptionText}
-            {...getOtherItemProps(optionsLength, value)}
-          />
-        )}
-        {!optionsLength && !shouldShowOtherOption && noOptionsText && (
-          <NoOptionsMenuItem data-testid={testIds?.noOptions}>
-            {noOptionsText}
-          </NoOptionsMenuItem>
-        )}
-      </SelectOptions>
+    const optionsMenu = (
+      <OptionsMenu
+        value={value}
+        shouldShowOtherOption={shouldShowOtherOption}
+        options={options}
+        highlightedIndex={highlightedIndex}
+        testIds={testIds}
+        poweredByGoogle={poweredByGoogle}
+        renderOtherOption={renderOtherOption}
+        otherOptionText={otherOptionText}
+        getKey={getKey}
+        getDisplayValue={getDisplayValue}
+        getItemProps={getItemProps}
+        getOtherItemProps={getOtherItemProps}
+        renderOption={renderOption}
+        noOptionsText={noOptionsText}
+      />
     )
 
     const { layout } = useFieldsLayoutContext()

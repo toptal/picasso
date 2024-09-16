@@ -1,5 +1,49 @@
 # @toptal/picasso-autocomplete
 
+## 5.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39), [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+  - @toptal/picasso-outlined-input@4.0.3
+  - @toptal/picasso-input@4.0.3
+  - @toptal/picasso-select@4.0.3
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@3.0.5
+  - @toptal/picasso-outlined-input@4.0.2
+  - @toptal/picasso-select@4.0.2
+  - @toptal/picasso-input@4.0.2
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+  - @toptal/picasso-form@6.0.1
+  - @toptal/picasso-input@4.0.1
+  - @toptal/picasso-input-adornment@3.0.2
+  - @toptal/picasso-menu@3.0.4
+  - @toptal/picasso-select@4.0.1
+  - @toptal/picasso-outlined-input@4.0.1
+
+## 5.0.1
+
+### Patch Changes
+
+- [#4534](https://github.com/toptal/picasso/pull/4534) [`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete
+
+- fix: do not show empty popper container when there are no options and no empty options message
+- refactor: dropdown options menu renders in separate component
+
 ## 5.0.0
 
 ### Major Changes

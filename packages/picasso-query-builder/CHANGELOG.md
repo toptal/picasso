@@ -1,5 +1,55 @@
 # @toptal/picasso-query-builder
 
+## 7.2.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-input@4.0.3
+  - @toptal/picasso-number-input@4.0.3
+  - @toptal/picasso-radio@5.0.2
+  - @toptal/picasso-select@4.0.3
+  - @toptal/picasso-tagselector@3.1.3
+  - @toptal/picasso-button@4.0.5
+  - @toptal/picasso-notification@4.0.5
+  - @toptal/picasso-prompt-modal@2.0.16
+
+## 7.2.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.4
+  - @toptal/picasso-notification@4.0.4
+  - @toptal/picasso-prompt-modal@2.0.15
+  - @toptal/picasso-select@4.0.2
+  - @toptal/picasso-input@4.0.2
+  - @toptal/picasso-number-input@4.0.2
+  - @toptal/picasso-tagselector@3.1.2
+
+## 7.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+  - @toptal/picasso-button@4.0.3
+  - @toptal/picasso-input@4.0.1
+  - @toptal/picasso-list@5.0.2
+  - @toptal/picasso-notification@4.0.3
+  - @toptal/picasso-number-input@4.0.1
+  - @toptal/picasso-prompt-modal@2.0.14
+  - @toptal/picasso-select@4.0.1
+  - @toptal/picasso-tagselector@3.1.1
+  - @toptal/picasso-radio@5.0.1
+
+## 7.2.8
+
+### Patch Changes
+
+- Updated dependencies [[`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c)]:
+  - @toptal/picasso-tagselector@3.1.0
+
 ## 7.2.7
 
 ### Patch Changes
