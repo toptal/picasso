@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import type { ComponentType, ReactNode } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { useNotifications } from '@toptal/picasso-notification'
 import type {
-  ValueEditorProps as DefaultValueEditorProps,
   Field as QueryBuilderField,
-  RuleGroupTypeAny,
   Operator,
+  RuleGroupTypeAny,
+  ValueEditorProps as DefaultValueEditorProps,
 } from 'react-querybuilder'
 import {
-  QueryBuilder as ReactQueryBuilder,
   defaultOperators,
+  QueryBuilder as ReactQueryBuilder,
   remove,
 } from 'react-querybuilder'
 import { QueryBuilderDnD } from '@react-querybuilder/dnd'
@@ -21,7 +21,7 @@ import cx from 'classnames'
 import type { SpacingType } from '@toptal/picasso-provider'
 import { SPACING_6 } from '@toptal/picasso-provider'
 
-import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
+import type { Field, QueryBuilderContext, TestId } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
@@ -32,7 +32,6 @@ import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
-import type { ValidatorResult } from '../utils/use-query-builder-validator'
 
 type ValueEditorComponentProps = ComponentType<DefaultValueEditorProps>
 
@@ -101,10 +100,6 @@ const QueryBuilder = ({
   const classes = useStyles()
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
-  const [queryBuilderValid, setIsQueryBuilderValid] = useState<
-    boolean | undefined
-  >()
-  const [validationErrors, setValidationErrors] = useState<ValidatorResult>({})
 
   const { showError } = useNotifications()
 
@@ -113,11 +108,10 @@ const QueryBuilder = ({
     callback: onQueryChange,
   })
 
-  const { validator } = useQueryBuilderValidator({
-    fields,
-    onValidChange: setIsQueryBuilderValid,
-    onValidationResultChange: setValidationErrors,
-  })
+  const { validator, validationErrors, queryBuilderValid } =
+    useQueryBuilderValidator({
+      fields,
+    })
 
   const resetQuery = useCallback(() => {
     if (onQueryReset) {
