@@ -26,14 +26,14 @@ export const avatarLogoClassesBySize: Record<string, Record<Size, string>> = {
     xxsmall: '',
     xsmall: '',
     small: 'pl-[1px] pb-[1px]',
-    medium: 'pl-[2px] pb-[2px]',
+    medium: 'pl-[1.5px] pb-[1.5px]',
     large: 'pl-[3px] pb-[3px]',
   },
   logo: {
     xxsmall: '',
     xsmall: '',
     small: 'w-[5.7px] h-[8px]',
-    medium: 'w-[8.54px] h-[12px]',
-    large: 'w-[7.12px] h-[10px]',
+    medium: 'w-[9px] h-[14px]',
+    large: 'w-[7.5px] h-[11px]',
   },
 }
