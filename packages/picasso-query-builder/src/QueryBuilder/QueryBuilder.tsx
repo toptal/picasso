@@ -1,16 +1,16 @@
-import type { ComponentType, ReactNode } from 'react'
 import React, { useCallback, useEffect, useState } from 'react'
+import type { ComponentType, ReactNode } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { useNotifications } from '@toptal/picasso-notification'
 import type {
-  Field as QueryBuilderField,
-  Operator,
-  RuleGroupTypeAny,
   ValueEditorProps as DefaultValueEditorProps,
+  Field as QueryBuilderField,
+  RuleGroupTypeAny,
+  Operator,
 } from 'react-querybuilder'
 import {
-  defaultOperators,
   QueryBuilder as ReactQueryBuilder,
+  defaultOperators,
   remove,
 } from 'react-querybuilder'
 import { QueryBuilderDnD } from '@react-querybuilder/dnd'
@@ -21,7 +21,7 @@ import cx from 'classnames'
 import type { SpacingType } from '@toptal/picasso-provider'
 import { SPACING_6 } from '@toptal/picasso-provider'
 
-import type { Field, QueryBuilderContext, TestId } from '../types/query-builder'
+import type { QueryBuilderContext, Field, TestId } from '../types/query-builder'
 import { RunQueryButton } from '../RunQueryButton'
 import { ClearQueryButton } from '../ClearQueryButton'
 import { ControlElementsContext } from '../ControlElementsContext'
@@ -53,6 +53,9 @@ type Props = {
   /** Defines a function that is called when the user submits a query constructed in the QB. This function takes a single argument - constructed query. */
   onSubmit?: (query: RuleGroupTypeAny) => void
   /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
+  valueEditor?: ValueEditorComponentProps
+  /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
+  /** @deprecated. */
   customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
@@ -86,6 +89,7 @@ const QueryBuilder = ({
   maxGroupDepth = 3,
   loading = false,
   onSubmit,
+  valueEditor = ValueEditor,
   customValueEditor = ValueEditor,
   footer,
   hideControls,
@@ -216,7 +220,7 @@ const QueryBuilder = ({
               } as QueryBuilderContext
             }
             controlElements={{
-              valueEditor: customValueEditor,
+              valueEditor: valueEditor || customValueEditor,
             }}
             enableDragAndDrop={enableDragAndDrop}
           />
