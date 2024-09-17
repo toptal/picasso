@@ -81,43 +81,41 @@ export const PageHeadBase = forwardRef<HTMLDivElement, Props>(
           {breadcrumbs}
 
           {/* main */}
-          {
-            <div className='flex justify-between items-start gap-6 flex-wrap'>
-              {/* Title and Subtitle container */}
-              <div className='flex flex-col gap-1'>
-                {/* Title  container */}
-                {title && (
-                  <div className='flex items-center gap-2'>
-                    {titleLoading ? (
-                      getLoadingState(titleLoading)
-                    ) : (
-                      <Typography
-                        variant='heading'
-                        size='large'
-                        titleCase={titleCase}
-                        className={className}
-                      >
-                        {title}
-                      </Typography>
-                    )}
-                    {titleAdornments}
-                  </div>
-                )}
-                {subtitleLoading
-                  ? getLoadingState(subtitleLoading)
-                  : subtitle && (
-                      <div>
-                        <Typography size='small'>{subtitle}</Typography>
-                      </div>
-                    )}
-              </div>
-
-              {/* Actions container */}
-              {actions && (
-                <div className='flex items-center min-h-8'>{actions}</div>
+          <div className='flex justify-between items-start gap-6 flex-wrap md:flex-nowrap'>
+            {/* Title and Subtitle container */}
+            <div className='flex flex-col gap-1 grow'>
+              {/* Title  container */}
+              {title && (
+                <div className='flex items-center gap-2'>
+                  {titleLoading ? (
+                    getLoadingState(titleLoading)
+                  ) : (
+                    <Typography
+                      variant='heading'
+                      size='large'
+                      titleCase={titleCase}
+                      className={className}
+                    >
+                      {title}
+                    </Typography>
+                  )}
+                  {titleAdornments}
+                </div>
               )}
+              {subtitleLoading
+                ? getLoadingState(subtitleLoading)
+                : subtitle && (
+                    <div>
+                      <Typography size='small'>{subtitle}</Typography>
+                    </div>
+                  )}
             </div>
-          }
+
+            {/* Actions container */}
+            {actions && (
+              <div className='flex items-center min-h-8 grow-0'>{actions}</div>
+            )}
+          </div>
         </div>
       </div>
     )

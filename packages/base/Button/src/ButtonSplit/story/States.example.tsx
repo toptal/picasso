@@ -16,19 +16,16 @@ const Example = () => {
     </Menu>
   )
 
-  const customStyles = { marginRight: '1em' }
-
   const renderStates = ({
     variant = 'primary',
   }: { variant?: ButtonSplitProps['variant'] } = {}) => {
     return (
       <>
-        <Button.Split style={customStyles} variant={variant} menu={menu}>
+        <Button.Split variant={variant} menu={menu}>
           Normal
         </Button.Split>
 
         <Button.Split
-          style={customStyles}
           variant={variant}
           menu={menu}
           actionButtonProps={{ hovered: true }}
@@ -36,7 +33,6 @@ const Example = () => {
           Action Hovered
         </Button.Split>
         <Button.Split
-          style={customStyles}
           variant={variant}
           menu={menu}
           menuButtonProps={{ hovered: true }}
@@ -45,7 +41,6 @@ const Example = () => {
         </Button.Split>
 
         <Button.Split
-          style={customStyles}
           variant={variant}
           menu={menu}
           actionButtonProps={{ focused: true }}
@@ -54,7 +49,6 @@ const Example = () => {
         </Button.Split>
 
         <Button.Split
-          style={customStyles}
           variant={variant}
           menu={menu}
           menuButtonProps={{ focused: true }}
@@ -63,7 +57,6 @@ const Example = () => {
         </Button.Split>
 
         <Button.Split
-          style={customStyles}
           variant={variant}
           menu={menu}
           actionButtonProps={{ active: true }}
@@ -72,7 +65,6 @@ const Example = () => {
         </Button.Split>
 
         <Button.Split
-          style={customStyles}
           variant={variant}
           menu={menu}
           menuButtonProps={{ active: true }}
