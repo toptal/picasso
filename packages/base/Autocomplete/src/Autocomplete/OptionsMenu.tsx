@@ -115,7 +115,7 @@ const OptionsMenu = ({
     )
   }
 
-  if (menuItems.length === 0) {
+  if (menuItems.length === 0 || !options) {
     return null
   }
 

@@ -1,5 +1,12 @@
 # @toptal/picasso-tagselector
 
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`23e4e28`](https://github.com/toptal/picasso/commit/23e4e28c19e7ab3b777f07b7b524a55035fc5556)]:
+  - @toptal/picasso-autocomplete@5.0.5
+
 ## 3.1.3
 
 ### Patch Changes
