@@ -33,14 +33,6 @@ const AvatarLogo = ({ size }: Pick<Props, 'size'>) => (
     role='img'
     aria-label='photo placeholder'
   >
-    {/* <Logo
-      emblem
-      variant='blue'
-      // Necessary to decrease the default minWeight and minHeight so that the new width and height could apply
-      // eslint-disable-next-line no-inline-styles/no-inline-styles
-      style={{ minWidth: '1px', minHeight: '1px' }}
-      className={avatarLogoClassesBySize.logo[size]}
-    /> */}
     <LogoNoTrademark
       color='blue'
       style={{ minWidth: '1px', minHeight: '1px' }}
