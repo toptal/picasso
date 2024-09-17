@@ -4,6 +4,7 @@ import { PageHeadBase, Stepper } from '@toptal/picasso'
 const steps = (
   <Stepper
     steps={['Availability', 'Details', 'Feedback', 'Position', 'Skills']}
+    overflowEllipsis
   />
 )
 
