@@ -22,7 +22,7 @@ export const createCoreClassNames = ({
     'ease-out',
     'shrink-0',
     'outline-none',
-    '[&+&]:ml-4',
+    '[[data-component-type="button"]+&]:ml-4',
   ]
 
   if (!disabled && !loading) {
