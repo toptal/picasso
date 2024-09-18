@@ -14,24 +14,7 @@ exports[`Link renders 1`] = `
 </div>
 `;
 
-exports[`Link renders a Link from react-router 1`] = `
-<div>
-  <div
-    class="Picasso-root"
-  >
-    <div>
-      <a
-        class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
-        href="/"
-      >
-        Please verify your email
-      </a>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Link renders disabled link 1`] = `
+exports[`Link when disabled renders disabled link 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -48,7 +31,7 @@ exports[`Link renders disabled link 1`] = `
 </div>
 `;
 
-exports[`Link renders native attributes 1`] = `
+exports[`Link when native attributes are provided renders native attributes 1`] = `
 <div>
   <div
     class="Picasso-root"
@@ -62,6 +45,23 @@ exports[`Link renders native attributes 1`] = `
     >
       Please verify your email
     </a>
+  </div>
+</div>
+`;
+
+exports[`Link when using react-router Link renders a Link from react-router 1`] = `
+<div>
+  <div
+    class="Picasso-root"
+  >
+    <div>
+      <a
+        class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
+        href="/"
+      >
+        Please verify your email
+      </a>
+    </div>
   </div>
 </div>
 `;
