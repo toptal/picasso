@@ -70,7 +70,7 @@ const validateQuery = (
   return validateRule(query as RuleType, fieldValidatorMap)
 }
 
-const useQueryBuilderValidator = ({ fields }: Props) => {
+const useQueryBuilderValidation = ({ fields }: Props) => {
   const [validationErrors, setValidationErrors] = useState<ValidatorResult>({})
   const [queryBuilderValid, setIsQueryBuilderValid] = useState<
     boolean | undefined
@@ -106,4 +106,4 @@ const useQueryBuilderValidator = ({ fields }: Props) => {
   return { validator, validationErrors, queryBuilderValid }
 }
 
-export default useQueryBuilderValidator
+export default useQueryBuilderValidation
