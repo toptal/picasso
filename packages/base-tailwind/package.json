@@ -1,6 +1,6 @@
 {
   "name": "@toptal/base-tailwind",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Base Tailwind configuration that contains global design token. This preset have to be reused by any project-specific Tailwind configuration.",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/base-tailwind#readme",

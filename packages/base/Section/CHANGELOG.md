@@ -1,5 +1,17 @@
 # @toptal/picasso-section
 
+## 5.0.6
+
+### Patch Changes
+
+- [#4559](https://github.com/toptal/picasso/pull/4559) [`38a7e47`](https://github.com/toptal/picasso/commit/38a7e4795ca8f5d5d39315fcd0c569128d276f78) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Section
+
+- fix padding of collapsible bordered section not following BASE spec
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-button@4.0.6
+
 ## 5.0.5
 
 ### Patch Changes

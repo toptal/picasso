@@ -1,5 +1,54 @@
 # Change Log
 
+## 52.0.0
+
+### Major Changes
+
+- [#4529](https://github.com/toptal/picasso/pull/4529) [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update `@toptal/picasso-tailwind` to `3.0.0` in peerDependencies with the latest `tailwindcss`
+
+### Patch Changes
+
+- [#4559](https://github.com/toptal/picasso/pull/4559) [`38a7e47`](https://github.com/toptal/picasso/commit/38a7e4795ca8f5d5d39315fcd0c569128d276f78) Thanks [@augustobmoura](https://github.com/augustobmoura)!
+
+### Section
+
+- fix padding of collapsible bordered section not following BASE spec
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329), [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329), [`38a7e47`](https://github.com/toptal/picasso/commit/38a7e4795ca8f5d5d39315fcd0c569128d276f78), [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-tabs@5.0.3
+  - @toptal/picasso-button@4.0.6
+  - @toptal/picasso-section@5.0.6
+  - @toptal/picasso-page@5.1.0
+  - @toptal/picasso-select@4.0.4
+  - @toptal/picasso-switch@4.0.0
+  - @toptal/picasso-tagselector@3.1.5
+  - @toptal/picasso-accordion@3.0.5
+  - @toptal/picasso-alert@3.0.17
+  - @toptal/picasso-application-update-notification@2.0.17
+  - @toptal/picasso-calendar@4.0.6
+  - @toptal/picasso-carousel@4.0.6
+  - @toptal/picasso-drawer@3.0.17
+  - @toptal/picasso-file-input@4.0.4
+  - @toptal/picasso-helpbox@5.0.6
+  - @toptal/picasso-modal@3.0.17
+  - @toptal/picasso-notification@4.0.6
+  - @toptal/picasso-outlined-input@4.0.4
+  - @toptal/picasso-pagination@4.0.6
+  - @toptal/picasso-password-input@5.0.4
+  - @toptal/picasso-prompt-modal@2.0.17
+  - @toptal/picasso-show-more@2.0.5
+  - @toptal/picasso-skeleton-loader@1.0.42
+  - @toptal/picasso-table@3.0.6
+  - @toptal/picasso-tree-view@3.0.17
+  - @toptal/picasso-date-picker@3.0.4
+  - @toptal/picasso-dropzone@5.0.5
+  - @toptal/picasso-autocomplete@5.0.6
+  - @toptal/picasso-avatar-upload@3.0.8
+  - @toptal/picasso-input@4.0.4
+  - @toptal/picasso-number-input@4.0.4
+  - @toptal/picasso-timepicker@4.0.4
+  - @toptal/picasso-date-select@1.0.53
+
 ## 51.0.7
 
 ### Patch Changes

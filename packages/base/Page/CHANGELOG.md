@@ -1,5 +1,23 @@
 # @toptal/picasso-page
 
+## 5.1.0
+
+### Minor Changes
+
+- [#4529](https://github.com/toptal/picasso/pull/4529) [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### PageHeadBase
+
+- add new component `PageHeadBase` to conform with BASE.
+
+### Patch Changes
+
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-button@4.0.6
+  - @toptal/picasso-accordion@3.0.5
+  - @toptal/picasso-notification@4.0.6
+  - @toptal/picasso-autocomplete@5.0.6
+
 ## 5.0.7
 
 ### Patch Changes

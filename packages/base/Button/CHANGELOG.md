@@ -1,5 +1,16 @@
 # @toptal/picasso-button
 
+## 4.0.6
+
+### Patch Changes
+
+- [#4529](https://github.com/toptal/picasso/pull/4529) [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### PicassoButtonGroup
+
+- increase specifity of CSS selector from `[&+&]:ml-4` to `[[data-component-type="button"]+&]:ml-4`
+- fix spacing between PicassoGroup and Button
+
 ## 4.0.5
 
 ### Patch Changes

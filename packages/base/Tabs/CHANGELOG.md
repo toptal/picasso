@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 5.0.3
+
+### Patch Changes
+
+- [#4529](https://github.com/toptal/picasso/pull/4529) [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add `data-component-type='tabs'` to the root
+
 ## 5.0.2
 
 ### Patch Changes
