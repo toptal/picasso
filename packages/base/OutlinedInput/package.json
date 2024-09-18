@@ -28,7 +28,7 @@
     "@toptal/picasso-input-adornment": "3.0.3",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "2.0.0",
-    "@mui/base": "5.0.0-beta.40",
+    "@mui/base": "5.0.0-beta.58",
     "classnames": "^2.5.1"
   },
   "sideEffects": [

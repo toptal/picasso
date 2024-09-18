@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@mui/base": "5.0.0-beta.40",
+    "@mui/base": "5.0.0-beta.58",
     "@toptal/picasso-utils": "2.0.0",
     "@toptal/picasso-fade": "1.0.6",
     "classnames": "^2.5.1"

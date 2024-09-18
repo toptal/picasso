@@ -31,7 +31,7 @@
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.1",
     "@toptal/picasso-utils": "2.0.0",
-    "@mui/base": "5.0.0-beta.40"
+    "@mui/base": "5.0.0-beta.58"
   },
   "sideEffects": [
     "**/styles.ts",
