@@ -1,5 +1,20 @@
 # @toptal/picasso-rich-text-editor
 
+## 17.0.4
+
+### Patch Changes
+
+- [#4529](https://github.com/toptal/picasso/pull/4529) [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- fix spacing between buttons
+
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-button@4.0.6
+  - @toptal/picasso-select@4.0.4
+  - @toptal/picasso-file-input@4.0.4
+  - @toptal/picasso-modal@3.0.17
+  - @toptal/picasso-outlined-input@4.0.4
+  - @toptal/picasso-input@4.0.4
+
 ## 17.0.3
 
 ### Patch Changes

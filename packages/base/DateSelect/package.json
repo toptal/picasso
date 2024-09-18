@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-date-select",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "Toptal UI components library - DateSelect",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-select": "4.0.3",
+    "@toptal/picasso-select": "4.0.4",
     "@toptal/picasso-utils": "2.0.0"
   },
   "sideEffects": [
