@@ -1,5 +1,19 @@
 # @toptal/picasso-icons
 
+## 1.7.0
+
+### Minor Changes
+
+- [#4561](https://github.com/toptal/picasso/pull/4561) [`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Icons
+
+- add `LogoNoTrademark` icon
+
+### Avatar
+
+- fix icon sizes to match Base design
+
 ## 1.6.1
 
 ### Patch Changes
