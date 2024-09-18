@@ -1,5 +1,15 @@
 # @toptal/picasso-button
 
+## 4.0.8
+
+### Patch Changes
+
+- [#4562](https://github.com/toptal/picasso/pull/4562) [`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+- update mui/base lib to fix multiline textarea issue
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-dropdown@4.1.2
+
 ## 4.0.7
 
 ### Patch Changes
