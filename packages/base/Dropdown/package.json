@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-dropdown",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Toptal UI components library - Dropdown",
   "publishConfig": {
     "access": "public"

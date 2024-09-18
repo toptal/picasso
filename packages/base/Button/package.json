@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-button",
-  "version": "4.0.7",
+  "version": "4.0.8",
   "description": "Toptal UI components library - Button",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-checkbox": "5.0.3",
     "@toptal/picasso-container": "3.1.0",
-    "@toptal/picasso-dropdown": "4.1.1",
+    "@toptal/picasso-dropdown": "4.1.2",
     "@toptal/picasso-icons": "1.7.0",
     "@toptal/picasso-loader": "3.0.1",
     "@toptal/picasso-radio": "5.0.3",

@@ -1,5 +1,48 @@
 # Change Log
 
+## 52.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-outlined-input@4.0.6
+  - @toptal/picasso-dropdown@4.1.2
+  - @toptal/picasso-button@4.0.8
+  - @toptal/picasso-drawer@3.0.19
+  - @toptal/picasso-slider@4.0.2
+  - @toptal/picasso-switch@4.0.2
+  - @toptal/picasso-badge@3.0.2
+  - @toptal/picasso-modal@3.0.19
+  - @toptal/picasso-menu@3.0.7
+  - @toptal/picasso-autocomplete@5.0.8
+  - @toptal/picasso-avatar-upload@3.0.10
+  - @toptal/picasso-date-picker@3.0.6
+  - @toptal/picasso-input@4.0.6
+  - @toptal/picasso-number-input@4.0.6
+  - @toptal/picasso-password-input@5.0.6
+  - @toptal/picasso-select@4.0.6
+  - @toptal/picasso-tagselector@3.1.7
+  - @toptal/picasso-timepicker@4.0.6
+  - @toptal/picasso-page@5.1.2
+  - @toptal/picasso-accordion@3.0.7
+  - @toptal/picasso-alert@3.0.19
+  - @toptal/picasso-application-update-notification@2.0.19
+  - @toptal/picasso-calendar@4.0.8
+  - @toptal/picasso-carousel@4.0.8
+  - @toptal/picasso-file-input@4.0.6
+  - @toptal/picasso-helpbox@5.0.8
+  - @toptal/picasso-notification@4.0.8
+  - @toptal/picasso-pagination@4.0.8
+  - @toptal/picasso-prompt-modal@2.0.19
+  - @toptal/picasso-section@5.0.8
+  - @toptal/picasso-show-more@2.0.7
+  - @toptal/picasso-skeleton-loader@1.0.44
+  - @toptal/picasso-table@3.0.8
+  - @toptal/picasso-tree-view@3.0.19
+  - @toptal/picasso-account-select@3.0.7
+  - @toptal/picasso-date-select@1.0.55
+  - @toptal/picasso-dropzone@5.0.7
+
 ## 52.0.1
 
 ### Patch Changes
