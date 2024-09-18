@@ -54,9 +54,6 @@ type Props = {
   onSubmit?: (query: RuleGroupTypeAny) => void
   /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
   valueEditor?: ValueEditorComponentProps
-  /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
-  /** @deprecated. */
-  customValueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
   /** Defines padded layout. */
@@ -90,7 +87,6 @@ const QueryBuilder = ({
   loading = false,
   onSubmit,
   valueEditor = ValueEditor,
-  customValueEditor = ValueEditor,
   footer,
   hideControls,
   header,
@@ -220,7 +216,7 @@ const QueryBuilder = ({
               } as QueryBuilderContext
             }
             controlElements={{
-              valueEditor: valueEditor || customValueEditor,
+              valueEditor,
             }}
             enableDragAndDrop={enableDragAndDrop}
           />

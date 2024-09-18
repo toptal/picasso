@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import type { ValueEditorProps } from '@toptal/picasso-query-builder'
-import {
-  QueryBuilder,
+import { QueryBuilder } from '@toptal/picasso-query-builder'
+import type {
+  ValueEditorProps,
   type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
 import { Input, Select } from '@toptal/picasso'
@@ -67,7 +67,7 @@ const Example = () => {
       query={query}
       onQueryChange={handleQueryChange}
       fields={fields}
-      customValueEditor={CustomValueEditor}
+      valueEditor={CustomValueEditor}
     />
   )
 }
