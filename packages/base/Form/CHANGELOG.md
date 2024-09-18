@@ -1,5 +1,13 @@
 # @toptal/picasso-form
 
+## 6.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+  - @toptal/picasso-grid@5.0.2
+
 ## 6.1.0
 
 ### Minor Changes
