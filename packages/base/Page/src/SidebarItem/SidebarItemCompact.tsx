@@ -17,7 +17,7 @@ const useStyles = makeStyles<Theme>(styles, {
 
 export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
   function CompactSidebarItem(props: Props, ref) {
-    const { menu, index, compact, icon } = props
+    const { menu, index, compact, icon, disabled } = props
     const [isOpened, handleOpen, handleClose] = useOpen()
     const classes = useStyles()
 
@@ -35,6 +35,7 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
         <Container left='small' right='small'>
           <Dropdown
             classes={{ popper: classes.compactDropdown }}
+            disabled={disabled}
             placement='right-start'
             content={subMenu}
             keepMounted

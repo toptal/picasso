@@ -37,6 +37,8 @@ interface InternalProps
   content: ReactNode
   /** The placement of the content element relative to anchor element. */
   placement?: PopperPlacementType
+  /** Disabled */
+  disabled?: boolean
   /** Disable auto focus of first item in list or item */
   disableAutoFocus?: boolean
   /** Disable close on generic close events */
@@ -131,6 +133,7 @@ export const Dropdown: DropdownProps = forwardRef<
     content,
     offset,
     placement,
+    disabled,
     disableAutoClose,
     disableAutoFocus,
     disablePortal,
@@ -258,8 +261,11 @@ export const Dropdown: DropdownProps = forwardRef<
       style={style}
     >
       <div
-        className='inline-flex items-center cursor-pointer'
-        onClick={handleAnchorClick}
+        className={twJoin(
+          'inline-flex items-center',
+          disabled ? 'pointer-events-none' : 'cursor-pointer'
+        )}
+        onClick={disabled ? () => {} : handleAnchorClick}
       >
         {typeof children === 'function' ? children({ isOpen }) : children}
       </div>
