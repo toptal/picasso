@@ -63,6 +63,26 @@ export const AvatarWrapper = (props: Props) => {
           <p className='text-xxl text-blue-200'>Test text blue 200</p>
         </div>
         <div>
+          <div
+            style={{ width: '100px', height: '100px' }}
+            className='bg-blue-150'
+          >
+            Color from Base preset, should be blue
+          </div>
+          <div
+            style={{ width: '100px', height: '100px' }}
+            className='bg-red-100'
+          >
+            Color from Picasso preset, should be red
+          </div>
+          <div
+            style={{ width: '100px', height: '100px' }}
+            className='bg-custom-9000'
+          >
+            Color from Caliber preset, should be pink
+          </div>
+        </div>
+        <div>
           <div className='w-[300px] h-[100px] bg-blue-100 opacity-1'>
             Opacity 1 (from Caliber)
           </div>
@@ -76,8 +96,6 @@ export const AvatarWrapper = (props: Props) => {
           className={twMerge(
             'relative bg-gray-500 text-[1rem]',
             'grid place-items-center',
-
-            'blur-4',
             classBySize[size],
             clipClassBySize[size],
             className

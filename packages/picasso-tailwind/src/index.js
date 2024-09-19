@@ -12,124 +12,129 @@ module.exports = {
     }),
   ],
   theme: {
-    opacity: {
-      0: '0',
-      10: '0.1',
-      20: '0.2',
-    },
-    screens: {
-      xs: '0px',
-      sm: '480px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1440px',
-    },
-    // https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing
-    spacing: {
-      0: '0',
-      1: '0.25rem',
-      2: '0.5rem',
-      3: '0.75rem',
-      4: '1rem',
-      6: '1.5rem',
-      8: '2rem',
-      10: '2.5rem',
-      12: '3rem',
-    },
-    borderRadius: {
-      none: '0px',
-      sm: '4px',
-      md: '8px',
-      // to support fully rounded corners, use the same approach as TailwindCSS proposes
-      full: '9999px',
-    },
-    borderWidth: {
-      DEFAULT: '1px',
-      0: '0px',
-    },
-    fontFamily: {
-      sans: ['proxima-nova', 'Arial', 'sans-serif'],
-      mono: [
-        'ui-monospace',
-        'SFMono-Regular',
-        'Menlo',
-        'Monaco',
-        'Consolas',
-        'Liberation Mono',
-        'Courier New',
-        'monospace',
-      ],
-    },
-    fontWeight: {
-      inherit: 'inherit',
-      thin: '100',
-      light: '300',
-      regular: '400',
-      semibold: '600',
-    },
-    // NOTE: If adding new font sizes, make sure to update @toptal/picasso-tailwind-merge
-    fontSize: {
-      '2xs': ['0.688rem', { lineHeight: '1rem' }],
-      xxs: ['0.75rem', { lineHeight: '1.125rem' }],
-      sm: ['0.8125rem', { lineHeight: '1.25rem' }],
-      md: ['0.875rem', { lineHeight: '1.375rem' }],
-      lg: ['1rem', { lineHeight: '1.5rem' }],
-      xl: ['1.25rem', { lineHeight: '1.875rem' }],
-      '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
-      xxl: ['1.75rem', { lineHeight: '2.625rem' }],
-      'button-small': ['12px', { lineHeight: '15px' }],
-      'button-medium': ['13px', { lineHeight: '16px' }],
-      'button-large': ['15px', { lineHeight: '18px' }],
-    },
-    // TODO: [FX-5003] Deprecate legacy shadow classes
-    // Shadows 0-5 correspond to BASE design https://www.figma.com/file/9xnyixadrhlHe9UuXBMRlT/Foundations?type=design&node-id=22%3A21&mode=design&t=8d8TKUUuHKWosUtX-1
-    // Shadows 6-24 correspond to Material UI v4 shadows @material-ui/core/styles/shadows.js
-    boxShadow: {
-      0: 'none',
-      /** notification center, paper */
-      1: '0 0 8px 0 rgba(0,0,0, 0.08)',
-      /** modal */
-      2: '0 4px 8px 0 rgba(0,0,0, 0.08)',
-
-      /** nofication growl */
-      3: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)',
-
-      /** tooltip */
-      4: '0 0 4px 0 rgba(0,0,0, 0.24), 0 0 32px 0 rgba(0,0,0, 0.12)',
-
-      /** scroll menu */
-      5: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 12px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04)',
-
-      /** elevations for paper */
-      6: '0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)',
-      7: '0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)',
-      8: '0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)',
-      9: '0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)',
-      10: '0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)',
-      11: '0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)',
-      12: '0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)',
-      13: '0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12)',
-      14: '0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12)',
-      15: '0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)',
-      16: '0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12)',
-      17: '0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12)',
-      18: '0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12)',
-      19: '0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12)',
-      20: '0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12)',
-      21: '0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)',
-      22: '0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)',
-      23: '0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)',
-      24: '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
-    },
-    textColor: ({ theme }) => ({
-      white: theme.colors.white,
-      blue: {
-        100: theme.colors.blue['100'],
-        // To check if it properly assigns the value from the base theme
-        200: theme.colors.black,
-      },
-    }),
     extend: {
+      opacity: {
+        0: '0',
+        10: '0.1',
+        20: '0.2',
+      },
+      screens: {
+        xs: '0px',
+        sm: '480px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1440px',
+      },
+      // https://toptal-core.atlassian.net/wiki/spaces/Base/pages/3217031216/Spacing
+      spacing: {
+        0: '0',
+        1: '0.25rem',
+        2: '0.5rem',
+        3: '0.75rem',
+        4: '1rem',
+        6: '1.5rem',
+        8: '2rem',
+        10: '2.5rem',
+        12: '3rem',
+      },
+      colors: {
+        red: {
+          100: 'red',
+        },
+      },
+      borderRadius: {
+        none: '0px',
+        sm: '4px',
+        md: '8px',
+        // to support fully rounded corners, use the same approach as TailwindCSS proposes
+        full: '9999px',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        0: '0px',
+      },
+      fontFamily: {
+        sans: ['proxima-nova', 'Arial', 'sans-serif'],
+        mono: [
+          'ui-monospace',
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace',
+        ],
+      },
+      fontWeight: {
+        inherit: 'inherit',
+        thin: '100',
+        light: '300',
+        regular: '400',
+        semibold: '600',
+      },
+      // NOTE: If adding new font sizes, make sure to update @toptal/picasso-tailwind-merge
+      fontSize: {
+        '2xs': ['0.688rem', { lineHeight: '1rem' }],
+        xxs: ['0.75rem', { lineHeight: '1.125rem' }],
+        sm: ['0.8125rem', { lineHeight: '1.25rem' }],
+        md: ['0.875rem', { lineHeight: '1.375rem' }],
+        lg: ['1rem', { lineHeight: '1.5rem' }],
+        xl: ['1.25rem', { lineHeight: '1.875rem' }],
+        '2xl': ['1.75rem', { lineHeight: '2.625rem' }],
+        xxl: ['1.75rem', { lineHeight: '2.625rem' }],
+        'button-small': ['12px', { lineHeight: '15px' }],
+        'button-medium': ['13px', { lineHeight: '16px' }],
+        'button-large': ['15px', { lineHeight: '18px' }],
+      },
+      // TODO: [FX-5003] Deprecate legacy shadow classes
+      // Shadows 0-5 correspond to BASE design https://www.figma.com/file/9xnyixadrhlHe9UuXBMRlT/Foundations?type=design&node-id=22%3A21&mode=design&t=8d8TKUUuHKWosUtX-1
+      // Shadows 6-24 correspond to Material UI v4 shadows @material-ui/core/styles/shadows.js
+      boxShadow: {
+        0: 'none',
+        /** notification center, paper */
+        1: '0 0 8px 0 rgba(0,0,0, 0.08)',
+        /** modal */
+        2: '0 4px 8px 0 rgba(0,0,0, 0.08)',
+
+        /** nofication growl */
+        3: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 0 8px 0 rgba(0, 0, 0, 0.16)',
+
+        /** tooltip */
+        4: '0 0 4px 0 rgba(0,0,0, 0.24), 0 0 32px 0 rgba(0,0,0, 0.12)',
+
+        /** scroll menu */
+        5: '0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 12px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04)',
+
+        /** elevations for paper */
+        6: '0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)',
+        7: '0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12)',
+        8: '0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12)',
+        9: '0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12)',
+        10: '0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12)',
+        11: '0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12)',
+        12: '0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12)',
+        13: '0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12)',
+        14: '0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12)',
+        15: '0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12)',
+        16: '0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12)',
+        17: '0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12)',
+        18: '0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12)',
+        19: '0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12)',
+        20: '0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12)',
+        21: '0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12)',
+        22: '0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12)',
+        23: '0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)',
+        24: '0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)',
+      },
+      textColor: ({ theme }) => ({
+        white: theme.colors.white,
+        blue: {
+          100: theme.colors.blue['100'],
+          // To check if it properly assigns the value from the base theme
+          200: theme.colors.black,
+        },
+      }),
       zIndex: {
         drawer: 1200,
         modal: 1300,
