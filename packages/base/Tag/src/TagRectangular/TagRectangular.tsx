@@ -48,6 +48,7 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
             variant === 'light-grey' ? 'text-graphite-800' : 'text-white'
           )}
           titleCase={titleCase}
+          as='span'
         >
           {children}
         </Typography>
