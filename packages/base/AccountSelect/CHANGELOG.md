@@ -1,5 +1,13 @@
 # @toptal/picasso-account-select
 
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`78656d5`](https://github.com/toptal/picasso/commit/78656d5876ea450bc142760dc1b95181378549e6)]:
+  - @toptal/picasso-link@3.0.3
+  - @toptal/picasso-menu@3.0.8
+
 ## 3.0.7
 
 ### Patch Changes

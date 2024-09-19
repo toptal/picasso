@@ -1,5 +1,16 @@
 # @toptal/picasso-page
 
+## 5.1.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.9
+  - @toptal/picasso-menu@3.0.8
+  - @toptal/picasso-accordion@3.0.8
+  - @toptal/picasso-notification@4.0.9
+  - @toptal/picasso-autocomplete@5.0.9
+
 ## 5.1.2
 
 ### Patch Changes
