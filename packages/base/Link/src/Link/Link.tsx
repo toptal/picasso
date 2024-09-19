@@ -136,6 +136,7 @@ export const Link: OverridableComponent<Props> = forwardRef<
             ? 'visited text-purple-500'
             : 'visited text-gray-500'
           : '',
+        onClick || href ? 'cursor-pointer' : '',
         className
       )}
       style={style}
