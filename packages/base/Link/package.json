@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-link",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Toptal UI components library - Link",
   "publishConfig": {
     "access": "public"
