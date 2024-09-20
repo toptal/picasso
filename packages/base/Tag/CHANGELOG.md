@@ -1,5 +1,12 @@
 # @toptal/picasso-tag
 
+## 4.0.3
+
+### Patch Changes
+
+- [#4567](https://github.com/toptal/picasso/pull/4567) [`5287366`](https://github.com/toptal/picasso/commit/5287366074142990aab61c63a58c74eb48fc50c3) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update HTML tag of Tag.Rectangular to span
+
 ## 4.0.2
 
 ### Patch Changes
