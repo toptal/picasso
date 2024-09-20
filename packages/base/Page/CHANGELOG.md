@@ -1,5 +1,21 @@
 # @toptal/picasso-page
 
+## 5.1.5
+
+### Patch Changes
+
+- [#4568](https://github.com/toptal/picasso/pull/4568) [`75087fa`](https://github.com/toptal/picasso/commit/75087fa5ddbb989681255807fba61288b207e2b6) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### PageSidebar
+
+- fix disabled state for collapsible compact sidebar item
+- Updated dependencies [[`75087fa`](https://github.com/toptal/picasso/commit/75087fa5ddbb989681255807fba61288b207e2b6)]:
+  - @toptal/picasso-dropdown@4.2.0
+  - @toptal/picasso-button@4.0.10
+  - @toptal/picasso-accordion@3.0.9
+  - @toptal/picasso-notification@4.0.10
+  - @toptal/picasso-autocomplete@5.0.10
+
 ## 5.1.4
 
 ### Patch Changes
