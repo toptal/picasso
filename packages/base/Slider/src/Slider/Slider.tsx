@@ -1,5 +1,5 @@
 // import type { ComponentProps } from 'react'
-import React, { forwardRef, useRef } from 'react'
+import React, { forwardRef, useEffect, useRef } from 'react'
 import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -66,7 +66,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     marks,
     value,
     defaultValue = 0,
-    tooltip = 'off',
+    tooltip: externalTooltip = 'off',
     tooltipFormat,
     step,
     disabled,
@@ -82,6 +82,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-private': dataPrivate,
     'data-testid': dataTestid,
   } = props
+  const [tooltip, setTooltip] = React.useState('off')
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
   const { isPartiallyOverlapped, handleValueLabelOnRender } = useLabelOverlap({
@@ -93,11 +94,17 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
-  const isContainerOnScreen = useOnScreen({
+  const { isOnScreen, isObserved } = useOnScreen({
     ref: containerRef,
     rootMargin: '-24px 0px 0px 0px',
     threshold: 1,
   })
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setTooltip(externalTooltip)
+    }
+  }, [externalTooltip])
 
   return (
     <div
@@ -153,9 +160,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
             ),
           },
           valueLabel: {
-            tooltip,
+            tooltip: isObserved ? tooltip : 'off',
             onRender: handleValueLabelOnRender,
-            yPlacement: isContainerOnScreen ? 'top' : 'bottom',
+            yPlacement: isOnScreen ? 'top' : 'bottom',
             isOverlaped: isPartiallyOverlapped,
           },
         }}

@@ -67,7 +67,7 @@ const SliderValueLabel = ({
       })
     )
     // we need to recalculate on value change to get new rect
-  }, [isOverlaped, index, xPlacement, value])
+  }, [isOverlaped, index, xPlacement, value, tooltip])
 
   return (
     <span

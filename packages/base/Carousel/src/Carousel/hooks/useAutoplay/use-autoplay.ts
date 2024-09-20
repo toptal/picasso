@@ -17,7 +17,7 @@ const useAutoplay = ({
   rewind,
   isLastPage,
 }: Props) => {
-  const isOnScreen = useOnScreen({ ref: wrapperRef })
+  const { isOnScreen } = useOnScreen({ ref: wrapperRef })
   const isMouseOver = useMouseEnter(wrapperRef)
 
   useInterval({
