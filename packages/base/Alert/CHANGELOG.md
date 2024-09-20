@@ -1,5 +1,12 @@
 # @toptal/picasso-alert
 
+## 3.0.21
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.10
+
 ## 3.0.20
 
 ### Patch Changes
