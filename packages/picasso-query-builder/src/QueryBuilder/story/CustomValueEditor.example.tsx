@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { QueryBuilder } from '@toptal/picasso-query-builder'
 import type {
+  RuleGroupTypeAny,
   ValueEditorProps,
-  type RuleGroupTypeAny,
 } from '@toptal/picasso-query-builder'
+import { QueryBuilder } from '@toptal/picasso-query-builder'
 import { Input, Select } from '@toptal/picasso'
 
 const initialQuery = {
