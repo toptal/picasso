@@ -5,13 +5,10 @@ import React, {
   useState,
   useMemo,
 } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 
 import { TreeViewContext } from './TreeViewContainer'
 import { useTree } from './use-tree'
 import Zoom from './Zoom'
-import styles from './styles'
 import { useZoom } from './use-zoom'
 import {
   DEFAULT_SCALE_EXTENT,
@@ -34,8 +31,6 @@ export interface Props extends TreeViewPropsBase {
   scaleCoefficient?: number
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTreeView' })
-
 export const TreeView = (props: Props) => {
   const {
     data,
@@ -53,7 +48,6 @@ export const TreeView = (props: Props) => {
     variant = TreeView.defaultProps.directionProps.variant,
   } = props.directionProps ?? TreeView.defaultProps.directionProps
 
-  const classes = useStyles()
   const rootRef = createRef<SVGSVGElement>()
 
   const [verticalMargin, horizontalMargin] = useFinalMargins(
@@ -111,7 +105,7 @@ export const TreeView = (props: Props) => {
   }, [rootRef, initialized, zoom, updateState])
 
   return (
-    <div className={classes.root}>
+    <div className='w-full h-full'>
       {showZoom && (
         <Zoom handleZoom={handleZoom} scaleCoefficient={scaleCoefficient} />
       )}
@@ -123,7 +117,7 @@ export const TreeView = (props: Props) => {
         verticalMargin={verticalMargin}
         horizontalMargin={horizontalMargin}
         renderNode={renderNode}
-        svgProps={{ className: classes.svg }}
+        svgProps={{ className: 'w-full h-full' }}
       />
     </div>
   )
