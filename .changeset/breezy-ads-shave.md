@@ -2,5 +2,5 @@
 '@toptal/picasso-query-builder': major
 ---
 
-- separate query validation from QueryBuilder component implementation
-- replace customValueEditor with valueEditor
+- query validation separated from QueryBuilder component implementation
+- customValueEditor prop renamed as valueEditor
