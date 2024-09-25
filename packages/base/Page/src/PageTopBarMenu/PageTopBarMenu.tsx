@@ -1,9 +1,6 @@
 /* eslint-disable complexity */
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef } from 'react'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useBreakpoint } from '@toptal/picasso-utils'
 import { UserBadge } from '@toptal/picasso-user-badge'
@@ -12,12 +9,10 @@ import { Typography } from '@toptal/picasso-typography'
 import { DropdownCompound as Dropdown } from '@toptal/picasso-dropdown'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import { PageTopBarContext } from '../PageTopBar'
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTopBarMenu',
-})
+const truncateText =
+  'max-w-[11.5rem] whitespace-nowrap overflow-hidden overflow-ellipsis'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */
@@ -42,8 +37,6 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       'data-private': dataPrivate,
       ...rest
     } = props
-    const classes = useStyles()
-
     const { variant } = useContext(PageTopBarContext)
     const invert = variant === 'light'
 
@@ -52,7 +45,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
     const metaContent =
       typeof meta === 'string' ? (
         <Typography
-          className={classes.truncateText}
+          className={truncateText}
           invert={!isCompactLayout && !invert}
           size='xsmall'
           data-private={dataPrivate}
@@ -70,9 +63,14 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           size='xxsmall'
           data-private={dataPrivate}
           classes={{
-            root: classes.contentUserBadge,
-            avatar: classes.avatar,
-            name: cx('!font-[400]', classes.truncateText),
+            root: twJoin(
+              'xs:max-lg::p-2',
+              'xs:max-lg:[z-index:1]',
+              'xs:max-lg::bg-white',
+              'xs:max-lg::relative'
+            ),
+            avatar: 'text-[0.9rem]',
+            name: twJoin('font-[400]', truncateText),
           }}
           name={name}
           avatar={avatar}
@@ -98,7 +96,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         center
         size='xxsmall'
         classes={{
-          name: cx('!font-[400]', classes.truncateText),
+          name: twJoin('font-[400]', truncateText),
         }}
         name={name}
         data-private={dataPrivate}
@@ -112,8 +110,14 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
       <Dropdown
         {...rest}
         ref={ref}
-        className={cx(classes.root, className)}
-        classes={{ content: classes.content }}
+        className={className}
+        classes={{
+          content: twJoin(
+            // viewport minus header height
+            'max-h-[calc(100vh-var(--header-height,3.5rem))]',
+            'w-[15em] xs:max-md:w-[100vw]'
+          ),
+        }}
         style={style}
         content={content}
         offset={{ top: isCompactLayout ? 0.8 : 'xsmall' }}
