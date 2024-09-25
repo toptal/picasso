@@ -1,5 +1,13 @@
 # @toptal/picasso-query-builder
 
+## 8.0.0
+
+### Major Changes
+
+- [#4566](https://github.com/toptal/picasso/pull/4566) [`a6d5828`](https://github.com/toptal/picasso/commit/a6d582844ed269408a28cc7b092bc6a955752116) Thanks [@toptalwadiibasmi](https://github.com/toptalwadiibasmi)!
+- query validation separated from QueryBuilder component implementation
+  - customValueEditor prop renamed as valueEditor
+
 ## 7.2.18
 
 ### Patch Changes
