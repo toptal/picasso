@@ -34,7 +34,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
         ref={ref}
         className={twMerge(
           'flex flex-[1] w-full justify-center',
-          hasSidebar && 'bg-gradient-to-r from-[#ebeced] to-[#fcfcfc]',
+          hasSidebar && 'bg-gradient-to-r from-[#f3f4f6] to-[#fcfcfc]',
           className
         )}
         style={style}
