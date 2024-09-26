@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "52.1.1",
+  "version": "52.1.2",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -97,7 +97,7 @@
     "@toptal/picasso-timeline": "5.0.2",
     "@toptal/picasso-timepicker": "4.0.8",
     "@toptal/picasso-tooltip": "2.0.0",
-    "@toptal/picasso-tree-view": "3.0.21",
+    "@toptal/picasso-tree-view": "3.0.22",
     "@toptal/picasso-typography": "4.0.1",
     "@toptal/picasso-typography-overflow": "4.0.1",
     "@toptal/picasso-user-badge": "5.1.3",
