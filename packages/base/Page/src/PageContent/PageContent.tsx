@@ -23,7 +23,7 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
     const { hasSidebar } = useSidebar()
 
     const innerClassName = twJoin(
-      'h-full  grow-1 bg-[#fcfcfc] bg-clip-content',
+      'h-full grow bg-[#fcfcfc] bg-clip-content',
       getMaxWidthClass({ fullWidth, width }),
       flex && 'flex'
     )
