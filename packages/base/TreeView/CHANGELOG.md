@@ -1,5 +1,12 @@
 # @toptal/picasso-tree-view
 
+## 3.0.22
+
+### Patch Changes
+
+- [#4573](https://github.com/toptal/picasso/pull/4573) [`0c35d60`](https://github.com/toptal/picasso/commit/0c35d60122cdb3a13bad4b28b827e1f4123341fa) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate to TailwindCSS, material-ui@4 is no longer required for this package
+
 ## 3.0.21
 
 ### Patch Changes
