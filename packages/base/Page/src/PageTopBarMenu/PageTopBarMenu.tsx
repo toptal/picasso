@@ -11,7 +11,7 @@ import { twJoin } from '@toptal/picasso-tailwind-merge'
 
 import { PageTopBarContext } from '../PageTopBar'
 
-const truncateText =
+const truncateTextClasses =
   'max-w-[11.5rem] whitespace-nowrap overflow-hidden overflow-ellipsis'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
@@ -45,7 +45,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
     const metaContent =
       typeof meta === 'string' ? (
         <Typography
-          className={truncateText}
+          className={truncateTextClasses}
           invert={!isCompactLayout && !invert}
           size='xsmall'
           data-private={dataPrivate}
@@ -63,14 +63,9 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           size='xxsmall'
           data-private={dataPrivate}
           classes={{
-            root: twJoin(
-              'xs:max-lg::p-2',
-              'xs:max-lg:[z-index:1]',
-              'xs:max-lg::bg-white',
-              'xs:max-lg::relative'
-            ),
+            root: 'p-2 [z-index:1] bg-white relative',
             avatar: 'text-[0.9rem]',
-            name: twJoin('font-[400]', truncateText),
+            name: twJoin('font-[400]', truncateTextClasses),
           }}
           name={name}
           avatar={avatar}
@@ -96,7 +91,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
         center
         size='xxsmall'
         classes={{
-          name: twJoin('font-[400]', truncateText),
+          name: twJoin('font-[400]', truncateTextClasses),
         }}
         name={name}
         data-private={dataPrivate}
