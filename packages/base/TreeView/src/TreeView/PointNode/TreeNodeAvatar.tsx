@@ -1,10 +1,6 @@
 import React from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps, SizeType } from '@toptal/picasso-shared'
 import { getNameInitials } from '@toptal/picasso-utils'
-
-import styles from './styles'
 
 export interface Props extends StandardProps {
   /** User full name to display initials on the avatar */
@@ -16,10 +12,6 @@ export interface Props extends StandardProps {
   /** Controls how image fits in the container */
   objectFit?: 'cover' | 'contain'
 }
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTreeNodeAvatar',
-})
 
 const renderInitials = ({ src, name, classes }: Partial<Props>) => {
   if (src || !name) {
@@ -48,8 +40,12 @@ const sizeValues = {
   large: '160',
 }
 
+const classes = {
+  shape: 'fill-gray-500',
+  text: 'text-[1em] uppercase fill-white [dominant-baseline:middle] [text-anchor:middle]',
+}
+
 export const TreeNodeAvatar = (props: Props) => {
-  const classes = useStyles()
   const { name, src, size = 'xxsmall', objectFit = 'contain', ...rest } = props
   const sizeValue = sizeValues[size]
 

@@ -1,9 +1,6 @@
 import React, { useMemo } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 
 import type { DirectionsType, DynamicPointLink } from '../types'
-import styles from './styles'
 
 export interface Props {
   link: DynamicPointLink
@@ -12,11 +9,8 @@ export interface Props {
   horizontalMargin: number
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPointLink' })
-
 export const PointLink = (props: Props) => {
   const { link, direction, verticalMargin, horizontalMargin } = props
-  const classes = useStyles()
   const path = useMemo(() => {
     const { source, target } = link
     const sourceYDeltas = {
@@ -44,7 +38,7 @@ export const PointLink = (props: Props) => {
     return svgPaths[direction]
   }, [link, direction, verticalMargin, horizontalMargin])
 
-  return <path d={path} className={classes.pointLink} />
+  return <path d={path} className='fill-none stroke-gray-400' />
 }
 
 PointLink.displayName = 'PointLink'
