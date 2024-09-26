@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.1.6
+
+### Patch Changes
+
+- [#4574](https://github.com/toptal/picasso/pull/4574) [`e11be3f`](https://github.com/toptal/picasso/commit/e11be3f5663ec1ef18ac45e37a77ead984588c3d) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate `PageTopBarMenu` to TailwindCSS
+
 ## 5.1.5
 
 ### Patch Changes
