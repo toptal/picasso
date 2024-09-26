@@ -1,5 +1,81 @@
 # @toptal/picasso-dropzone
 
+## 5.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@4.0.8
+
+## 5.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@4.0.7
+
+## 5.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@4.0.6
+
+## 5.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+  - @toptal/picasso-file-input@4.0.5
+  - @toptal/picasso-form@6.1.1
+
+## 5.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@4.0.4
+
+## 5.0.4
+
+### Patch Changes
+
+- [#4541](https://github.com/toptal/picasso/pull/4541) [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- fix background and text color for disabled state
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+  - @toptal/picasso-file-input@4.0.3
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-file-input@4.0.2
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+  - @toptal/picasso-file-input@4.0.1
+  - @toptal/picasso-form@6.0.1
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-file-input@4.0.0
+  - @toptal/picasso-form@6.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-typography@4.0.1
+
 ## 5.0.0
 
 ### Major Changes

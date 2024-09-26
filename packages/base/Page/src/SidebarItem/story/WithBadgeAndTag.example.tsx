@@ -51,6 +51,7 @@ const Menu = () => (
     <Page.Sidebar.Item
       collapsible
       icon={<AddDocument16 />}
+      disabled
       menu={
         <Page.Sidebar.Menu>
           <Page.Sidebar.Item badge={5} tag='New'>

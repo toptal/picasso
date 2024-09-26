@@ -10,7 +10,7 @@ exports[`Dropzone renders 1`] = `
     >
       <div
         aria-disabled="false"
-        class="p-6 items-center rounded-md flex flex-col border border-dashed box-border text-graphite gap-2 transition-all ease-out duration-350 hover:cursor-pointer focus:cursor-pointer border-gray hover:border-blue focus:border-blue bg-white"
+        class="p-6 items-center rounded-md flex flex-col border border-dashed box-border gap-2 transition-all ease-out duration-350 hover:cursor-pointer focus:cursor-pointer border-gray hover:border-blue focus:border-blue bg-white"
         role="presentation"
         tabindex="0"
       >

@@ -1,5 +1,47 @@
 # @toptal/picasso-form
 
+## 6.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+  - @toptal/picasso-grid@5.0.2
+
+## 6.1.0
+
+### Minor Changes
+
+- [#4541](https://github.com/toptal/picasso/pull/4541) [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- component `FormHint` got new prop `disabled`
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+
+## 6.0.0
+
+### Major Changes
+
+- [#4540](https://github.com/toptal/picasso/pull/4540) [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
+
+- breaking change: components no longer export `Props` type. Import prop types as `component name + Props` (e.g. `AutocompleteProps`, `FileInputProps`, etc.)
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-collapse@3.0.1
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-grid@5.0.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-typography@4.0.1
+
 ## 5.0.0
 
 ### Major Changes

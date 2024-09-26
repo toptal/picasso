@@ -18,6 +18,7 @@
     { "path": "../Logo" },
     { "path": "../Menu" },
     { "path": "../Notification" },
+    { "path": "../SkeletonLoader" },
     { "path": "../Tag" },
     { "path": "../Tooltip" },
     { "path": "../Typography" },

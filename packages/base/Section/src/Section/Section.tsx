@@ -154,6 +154,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         'pt-8',
         classesByVariant[variant],
         variant === 'default' && collapsed && 'pb-8',
+        collapsible && variant === 'bordered' && 'p-6',
         className
       )}
     >

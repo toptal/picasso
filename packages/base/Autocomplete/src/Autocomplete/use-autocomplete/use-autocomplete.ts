@@ -1,5 +1,4 @@
 /* eslint-disable complexity, max-statements */ // Squiggly lines makes code difficult to work with
-
 import type {
   MouseEvent,
   KeyboardEvent,
@@ -9,7 +8,13 @@ import type {
 } from 'react'
 import { useState, useEffect, useMemo } from 'react'
 
-import type { Item, ChangedOptions } from '../types'
+import type {
+  Item,
+  ChangedOptions,
+  GetOtherItemPropsSignature,
+  GetItemPropsSignature,
+  GetBaseItemPropsSignature,
+} from '../types'
 
 export const EMPTY_INPUT_VALUE = ''
 export const INITIAL_HIGHLIGHT_INDEX = 0
@@ -167,7 +172,7 @@ export const useAutocomplete = ({
     onSelect(item, event)
   }
 
-  const getBaseItemProps = (index: number) => ({
+  const getBaseItemProps: GetBaseItemPropsSignature = (index: number) => ({
     role: 'option',
     'aria-selected': highlightedIndex === index,
     selected: highlightedIndex === index,
@@ -186,7 +191,7 @@ export const useAutocomplete = ({
     },
   })
 
-  const getItemProps = (index: number, item: Item) => ({
+  const getItemProps: GetItemPropsSignature = (index: number, item: Item) => ({
     ...getBaseItemProps(index),
     onClick: (event: MouseEvent) => {
       if (closeOnSelect) {
@@ -197,7 +202,10 @@ export const useAutocomplete = ({
     },
   })
 
-  const getOtherItemProps = (index: number, newValue: string) => ({
+  const getOtherItemProps: GetOtherItemPropsSignature = (
+    index: number,
+    newValue: string
+  ) => ({
     ...getBaseItemProps(index),
     onClick: (event: MouseEvent) => {
       if (closeOnSelect) {

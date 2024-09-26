@@ -1,5 +1,55 @@
 # @toptal/picasso-switch
 
+## 4.0.2
+
+### Patch Changes
+
+- [#4562](https://github.com/toptal/picasso/pull/4562) [`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+- update mui/base lib to fix multiline textarea issue
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.1.1
+
+## 4.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-tailwind@3.0.0
+
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.0.1
+
+## 3.0.0
+
+### Major Changes
+
+- [#4540](https://github.com/toptal/picasso/pull/4540) [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
+
+- breaking change: components no longer export `Props` type. Import prop types as `component name + Props` (e.g. `AutocompleteProps`, `FileInputProps`, etc.)
+
+### Patch Changes
+
+- Updated dependencies [[`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de)]:
+  - @toptal/picasso-form@6.0.0
+
 ## 2.0.12
 
 ### Patch Changes

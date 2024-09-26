@@ -7,6 +7,7 @@ exports[`Tab Tab disabled tab 1`] = `
   >
     <div
       class="MuiTabs-root Tabs-horizontal"
+      data-component-type="tabs"
     >
       <div
         class="MuiTabs-scrollable"
@@ -56,6 +57,7 @@ exports[`Tab Tab renders 1`] = `
   >
     <div
       class="MuiTabs-root Tabs-horizontal"
+      data-component-type="tabs"
     >
       <div
         class="MuiTabs-scrollable"
@@ -104,6 +106,7 @@ exports[`Tab Tab tab with icon 1`] = `
   >
     <div
       class="MuiTabs-root Tabs-horizontal"
+      data-component-type="tabs"
     >
       <div
         class="MuiTabs-scrollable"

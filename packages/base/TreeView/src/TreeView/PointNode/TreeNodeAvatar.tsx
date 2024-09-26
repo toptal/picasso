@@ -40,7 +40,7 @@ const sizeValues = {
   large: '160',
 }
 
-const classes: Record<'shape' | 'text', string> = {
+const classes = {
   shape: 'fill-gray-500',
   text: 'text-[1em] uppercase fill-white [dominant-baseline:middle] [text-anchor:middle]',
 }

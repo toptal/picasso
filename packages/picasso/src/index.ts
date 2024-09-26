@@ -195,8 +195,10 @@ export type { OutlinedInputProps } from '@toptal/picasso-outlined-input'
 export { OverviewBlockCompound as OverviewBlock } from '@toptal/picasso-overview-block'
 export type { OverviewBlockProps } from '@toptal/picasso-overview-block'
 export { PageCompound as Page, PageHead } from '@toptal/picasso-page'
+export { PageHeadBase } from '@toptal/picasso-page'
 export type {
   PageHeadProps,
+  PageHeadBaseProps,
   PageProps,
   PageSidebarProps,
   SidebarItemProps,

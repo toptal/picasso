@@ -57,6 +57,11 @@ export const alignmentClasses = {
     'row-reverse': 'flex-row-reverse',
     'column-reverse': 'flex-col-reverse',
   },
+  wrap: {
+    wrap: 'flex-wrap',
+    'wrap-reverse': 'flex-wrap-reverse',
+    nowrap: 'flex-nowrap',
+  },
 } as const
 
 export const variantClassesByColor: Record<VariantType, string> = {

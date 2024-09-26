@@ -1,8 +1,8 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { act, renderHook } from '@testing-library/react-hooks'
 import type { RuleGroupTypeAny, RuleType } from 'react-querybuilder'
 
 import type { Field } from '../types/query-builder'
-import useQueryBuilderValidator from './use-query-builder-validator'
+import useQueryBuilderValidation from './use-query-builder-validation'
 
 const validateMock1 = (rule: RuleType) => {
   if (!rule.value) {
@@ -97,27 +97,26 @@ const groupedQuery = (field3value = 'should be this'): RuleGroupTypeAny => ({
   ],
 })
 
-const onValidChangeMock = jest.fn()
-const onValidationResultChangeMock = jest.fn()
-
-describe('useQueryBuilderValidator', () => {
+describe('useQueryBuilderValidation', () => {
   describe('when query has only a single group of rule', () => {
     describe('when query does not contain an invalid rule', () => {
       it('returns true', () => {
         const { result } = renderHook(() =>
-          useQueryBuilderValidator({
+          useQueryBuilderValidation({
             fields,
-            onValidChange: onValidChangeMock,
-            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
-        expect(validator(query())).toBe(true)
+        act(() => {
+          expect(validator(query())).toBe(true)
+        })
 
-        expect(onValidChangeMock).toHaveBeenCalledWith(true)
-        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+        const { validationErrors, queryBuilderValid } = result.current
+
+        expect(queryBuilderValid).toBe(true)
+        expect(validationErrors).toEqual({
           rule1: true,
           rule2: true,
           rule3: true,
@@ -128,21 +127,21 @@ describe('useQueryBuilderValidator', () => {
     describe('when query contains an invalid rule', () => {
       it('returns false', () => {
         const { result } = renderHook(() =>
-          useQueryBuilderValidator({
+          useQueryBuilderValidation({
             fields,
-            onValidChange: onValidChangeMock,
-            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
-        const isValid = validator(query('invalid value for field2'))
+        act(() => {
+          expect(validator(query('invalid value for field2'))).toBe(false)
+        })
 
-        expect(isValid).toBe(false)
+        const { validationErrors, queryBuilderValid } = result.current
 
-        expect(onValidChangeMock).toHaveBeenCalledWith(false)
-        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+        expect(queryBuilderValid).toBe(false)
+        expect(validationErrors).toEqual({
           rule1: true,
           rule2: true,
           rule3: {
@@ -158,18 +157,21 @@ describe('useQueryBuilderValidator', () => {
     describe('when query does not contain invalid rule', () => {
       it('returns true', () => {
         const { result } = renderHook(() =>
-          useQueryBuilderValidator({
+          useQueryBuilderValidation({
             fields,
-            onValidChange: onValidChangeMock,
-            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
-        expect(validator(groupedQuery())).toBe(true)
-        expect(onValidChangeMock).toHaveBeenCalledWith(true)
-        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+        act(() => {
+          expect(validator(groupedQuery())).toBe(true)
+        })
+
+        const { validationErrors, queryBuilderValid } = result.current
+
+        expect(queryBuilderValid).toBe(true)
+        expect(validationErrors).toEqual({
           group1: true,
           group2: true,
           rule1: true,
@@ -182,18 +184,21 @@ describe('useQueryBuilderValidator', () => {
     describe('when query contains invalid rule', () => {
       it('returns false', () => {
         const { result } = renderHook(() =>
-          useQueryBuilderValidator({
+          useQueryBuilderValidation({
             fields,
-            onValidChange: onValidChangeMock,
-            onValidationResultChange: onValidationResultChangeMock,
           })
         )
 
         const { validator } = result.current
 
-        expect(validator(groupedQuery('invalid rule'))).toBe(false)
-        expect(onValidChangeMock).toHaveBeenCalledWith(false)
-        expect(onValidationResultChangeMock).toHaveBeenCalledWith({
+        act(() => {
+          expect(validator(groupedQuery('invalid rule'))).toBe(false)
+        })
+
+        const { validationErrors, queryBuilderValid } = result.current
+
+        expect(queryBuilderValid).toBe(false)
+        expect(validationErrors).toEqual({
           group1: true,
           group2: true,
           rule1: true,

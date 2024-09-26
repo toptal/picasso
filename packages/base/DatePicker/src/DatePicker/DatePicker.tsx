@@ -10,11 +10,7 @@ import { Popper } from '@toptal/picasso-popper'
 import { Container } from '@toptal/picasso-container'
 import { Input } from '@toptal/picasso-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
-import {
-  ClickAwayListener,
-  noop,
-  usePropDeprecationWarning,
-} from '@toptal/picasso-utils'
+import { ClickAwayListener, noop } from '@toptal/picasso-utils'
 import { Calendar } from '@toptal/picasso-calendar'
 import type {
   CalendarDateRange,
@@ -80,11 +76,6 @@ export interface Props
   icon?: ReactNode
   /** Specify a value if want to enable browser autofill */
   autoComplete?: string
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
-   * Indicate whether `DatePicker` is in error state
-   */
-  error?: boolean
   /** Indicate `DatePicker` status */
   status?: Status
   /** Function to override default markup to show Date */
@@ -139,7 +130,6 @@ export const DatePicker = (props: Props) => {
     size,
     parseInputValue,
     testIds,
-    error,
     status,
     popperProps,
     disabled,
@@ -151,15 +141,6 @@ export const DatePicker = (props: Props) => {
     dropdownNavigation,
     ...rest
   } = props
-
-  // TODO: [FX-4715]
-  usePropDeprecationWarning({
-    props,
-    name: 'error',
-    componentName: 'DatePicker',
-    description:
-      'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-  })
 
   const inputProps = rest
 
@@ -412,7 +393,7 @@ export const DatePicker = (props: Props) => {
       <Container inline={width !== 'full'} ref={inputWrapperRef}>
         <Input
           {...inputProps}
-          status={error ? 'error' : status}
+          status={status}
           disabled={disabled}
           ref={inputRef}
           onKeyDown={handleInputKeydown}

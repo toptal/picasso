@@ -1,5 +1,126 @@
 # @toptal/picasso-tagselector
 
+## 3.1.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.8
+  - @toptal/picasso-autocomplete@5.0.10
+
+## 3.1.9
+
+### Patch Changes
+
+- Updated dependencies [[`5287366`](https://github.com/toptal/picasso/commit/5287366074142990aab61c63a58c74eb48fc50c3)]:
+  - @toptal/picasso-tag@4.0.3
+
+## 3.1.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.7
+  - @toptal/picasso-autocomplete@5.0.9
+
+## 3.1.7
+
+### Patch Changes
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-outlined-input@4.0.6
+  - @toptal/picasso-autocomplete@5.0.8
+
+## 3.1.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.1.1
+  - @toptal/picasso-outlined-input@4.0.5
+  - @toptal/picasso-tag@4.0.2
+  - @toptal/picasso-autocomplete@5.0.7
+
+## 3.1.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.4
+  - @toptal/picasso-autocomplete@5.0.6
+
+## 3.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`23e4e28`](https://github.com/toptal/picasso/commit/23e4e28c19e7ab3b777f07b7b524a55035fc5556)]:
+  - @toptal/picasso-autocomplete@5.0.5
+
+## 3.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39), [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+  - @toptal/picasso-outlined-input@4.0.3
+  - @toptal/picasso-autocomplete@5.0.4
+
+## 3.1.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.2
+  - @toptal/picasso-autocomplete@5.0.3
+
+## 3.1.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-autocomplete@5.0.2
+  - @toptal/picasso-form@6.0.1
+  - @toptal/picasso-outlined-input@4.0.1
+
+## 3.1.0
+
+### Minor Changes
+
+- [#4534](https://github.com/toptal/picasso/pull/4534) [`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c) Thanks [@sashuk](https://github.com/sashuk)!
+
+### TagSelector
+
+- feature: use `submitOtherOptionOnEnter` property to submit other option on Enter key press
+
+### Patch Changes
+
+- Updated dependencies [[`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c)]:
+  - @toptal/picasso-autocomplete@5.0.1
+
+## 3.0.0
+
+### Major Changes
+
+- [#4531](https://github.com/toptal/picasso/pull/4531) [`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Autocomplete, DatePicker, Input, NumberInput, OutlinedInput, PasswordInput, Select, TagSelector, TimePicker, RichTextEditor
+
+- `error` no longer exists as a prop. It has been replaced by `status` which support success and error states.
+
+### Patch Changes
+
+- [#4540](https://github.com/toptal/picasso/pull/4540) [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de) Thanks [@sashuk](https://github.com/sashuk)!
+
+### TagSelector
+
+- fix `Props` import
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-outlined-input@4.0.0
+  - @toptal/picasso-autocomplete@5.0.0
+  - @toptal/picasso-form@6.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-tag@4.0.1
+
 ## 2.0.18
 
 ### Patch Changes

@@ -1,5 +1,92 @@
 # @toptal/picasso-outlined-input
 
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.10
+
+## 4.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.9
+
+## 4.0.6
+
+### Patch Changes
+
+- [#4562](https://github.com/toptal/picasso/pull/4562) [`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+- update mui/base lib to fix multiline textarea issue
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-button@4.0.8
+
+## 4.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+  - @toptal/picasso-button@4.0.7
+  - @toptal/picasso-form@6.1.1
+  - @toptal/picasso-input-adornment@3.0.3
+
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-button@4.0.6
+
+## 4.0.3
+
+### Patch Changes
+
+- [#4541](https://github.com/toptal/picasso/pull/4541) [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- fix background and border color for disabled state
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+  - @toptal/picasso-button@4.0.5
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.4
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.3
+  - @toptal/picasso-form@6.0.1
+  - @toptal/picasso-input-adornment@3.0.2
+
+## 4.0.0
+
+### Major Changes
+
+- [#4531](https://github.com/toptal/picasso/pull/4531) [`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Autocomplete, DatePicker, Input, NumberInput, OutlinedInput, PasswordInput, Select, TagSelector, TimePicker, RichTextEditor
+
+- `error` no longer exists as a prop. It has been replaced by `status` which support success and error states.
+
+### Patch Changes
+
+- Updated dependencies [[`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-form@6.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-button@4.0.2
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-input-adornment@3.0.1
+
 ## 3.0.1
 
 ### Patch Changes

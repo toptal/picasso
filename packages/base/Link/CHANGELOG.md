@@ -1,5 +1,30 @@
 # @toptal/picasso-link
 
+## 3.0.3
+
+### Patch Changes
+
+- [#4565](https://github.com/toptal/picasso/pull/4565) [`78656d5`](https://github.com/toptal/picasso/commit/78656d5876ea450bc142760dc1b95181378549e6) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- add pointer cursor to Link when only onClick is provided
+
+## 3.0.2
+
+### Patch Changes
+
+- [#4547](https://github.com/toptal/picasso/pull/4547) [`2984ddf`](https://github.com/toptal/picasso/commit/2984ddf167dfc3a08ab7e978ef31ebfc69eae163) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+
+### Link
+
+- fix: protect Link from unexpected input
+
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-typography@4.0.1
+
 ## 3.0.0
 
 ### Major Changes

@@ -5,7 +5,6 @@ import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import { InputAdornment } from '@toptal/picasso-input-adornment'
 import { Eye16, EyeHidden16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
-import { usePropDeprecationWarning } from '@toptal/picasso-utils'
 import type { Props as OutlinedInputProps } from '@toptal/picasso-outlined-input'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -40,7 +39,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       value,
       onChange,
       disabled,
-      error,
       status,
       size,
       width,
@@ -52,15 +50,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
       highlight,
       ...rest
     } = props
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'PasswordInput',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -97,7 +86,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
         }}
         size={size}
         width={width}
-        status={error ? 'error' : status}
+        status={status}
         inputRef={ref}
         type={showPassword ? 'text' : 'password'}
         value={value}

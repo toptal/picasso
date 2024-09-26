@@ -129,11 +129,15 @@ describe('Autocomplete', () => {
     it('uses custom menu keys', () => {
       const getKey = jest.fn(({ value }) => value)
 
-      renderAutocomplete({
+      const { getByTestId } = renderAutocomplete({
         options: testOptions,
         value: '',
         getKey,
       })
+
+      const input = getByTestId('autocomplete')
+
+      fireEvent.click(input)
 
       expect(getKey).toHaveBeenCalledTimes(testOptions.length)
     })
@@ -224,9 +228,8 @@ describe('Autocomplete', () => {
 
       fireEvent.click(input)
 
-      // 5 times on first render
-      // another 5 times on second rerender after click
-      expect(renderOption).toHaveBeenCalledTimes(10)
+      // 5 times on rerender after click
+      expect(renderOption).toHaveBeenCalledTimes(5)
       expect(getAllByTestId('custom-option')).toHaveLength(5)
       expect(getDisplayValue).not.toHaveBeenCalled()
       expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
@@ -245,7 +248,7 @@ describe('Autocomplete', () => {
       fireEvent.click(input)
 
       // when getKey is not passed, getDisplayValue is called twice for each option on every render
-      expect(getDisplayValue).toHaveBeenCalledTimes(20)
+      expect(getDisplayValue).toHaveBeenCalledTimes(10)
       expect(getByTestId(testIds.scrollMenu)).toMatchSnapshot()
     })
 
@@ -264,7 +267,7 @@ describe('Autocomplete', () => {
 
       fireEvent.click(input)
 
-      expect(renderOption).toHaveBeenCalledTimes(10)
+      expect(renderOption).toHaveBeenCalledTimes(5)
       expect(getDisplayValue).not.toHaveBeenCalled()
     })
 
@@ -558,6 +561,21 @@ describe('Autocomplete', () => {
 
       expect(myOtherOption).not.toBeNull()
       expect(myOtherOption).toMatchSnapshot()
+    })
+
+    describe('when options is null', () => {
+      it('does not render dropdown', async () => {
+        const { getByTestId, queryByText } = renderAutocomplete({
+          options: null,
+          value: 'Ruby',
+        })
+
+        const input = getByTestId('autocomplete') as HTMLInputElement
+
+        fireEvent.change(input, { target: { value: '' } })
+
+        expect(queryByText('No options')).not.toBeInTheDocument()
+      })
     })
   })
 

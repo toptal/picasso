@@ -9,16 +9,12 @@ import React, { forwardRef, Fragment } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
 import { Autocomplete } from '@toptal/picasso-autocomplete'
-import {
-  unsafeErrorLog,
-  noop,
-  usePropDeprecationWarning,
-} from '@toptal/picasso-utils'
+import { unsafeErrorLog, noop } from '@toptal/picasso-utils'
 import type {
   AutocompleteProps,
   Item as AutocompleteItem,
 } from '@toptal/picasso-autocomplete'
-import type { Props as InputProps } from '@toptal/picasso-input'
+import type { InputProps } from '@toptal/picasso-input'
 import type { Status } from '@toptal/picasso-outlined-input'
 
 import { TagSelectorInput } from '../TagSelectorInput'
@@ -58,11 +54,6 @@ export interface Props
   placeholder?: string
   /** Disables `TagSelector` */
   disabled?: boolean
-  /**
-   * @deprecated [FX-4715] Use the `status` prop instead to both support success and error states
-   * Indicate whether `TagSelector` is in error state
-   */
-  error?: boolean
   /** Indicate `TagSelector` status */
   status?: Status
   /** Shows the loading icon when options are loading */
@@ -71,10 +62,12 @@ export interface Props
   otherOptionLabel?: string
   /** Callback invoked when other option selected */
   onOtherOptionSelect?: (value: string) => void
+  /** Select other option on Enter key press */
+  submitOtherOptionOnEnter?: boolean
   /** Allow to show the other option in the list of options */
   showOtherOption?: boolean
-  /** Label to show when no options were found */
-  noOptionsText?: string
+  /** Label to show when no options were found (pass "null" to hide label completely) */
+  noOptionsText?: string | null
   /** List of options with unique labels */
   options?: Item[] | null
   /** The list of values of the selected options, required for a controlled component. */
@@ -136,26 +129,17 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
       placeholder,
       renderLabel: customRenderLabel,
       renderOption,
+      submitOtherOptionOnEnter,
       showOtherOption,
       value: values = [],
       width,
       popperContainer,
       popperOptions,
-      error,
       status,
       testIds,
       highlight,
       ...rest
     } = props
-
-    // TODO: [FX-4715]
-    usePropDeprecationWarning({
-      props,
-      name: 'error',
-      componentName: 'TagSelector',
-      description:
-        'Use the `status` prop instead. `error` is deprecated and will be removed in the next major release.',
-    })
 
     const handleDelete = (value: Item) => {
       if (disabled) {
@@ -173,9 +157,14 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     ) => {
       const hasSelection = values.length
       const isDeleting = event.key === 'Backspace'
+      const isEnter = event.key === 'Enter'
 
       if (hasSelection && !newInputValue && isDeleting) {
         handleDelete(values[values.length - 1])
+      }
+
+      if (submitOtherOptionOnEnter && isEnter && newInputValue !== '') {
+        handleOtherOptionSelect(newInputValue)
       }
     }
 
@@ -242,7 +231,7 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     return (
       <Autocomplete
         {...rest}
-        status={error ? 'error' : status}
+        status={status}
         ref={ref}
         placeholder={values.length === 0 ? placeholder : undefined}
         options={autocompleteOptions}

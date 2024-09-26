@@ -1,5 +1,69 @@
 # @toptal/picasso-skeleton-loader
 
+## 1.0.46
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.10
+
+## 1.0.45
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.9
+
+## 1.0.44
+
+### Patch Changes
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-button@4.0.8
+
+## 1.0.43
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.7
+
+## 1.0.42
+
+### Patch Changes
+
+- Updated dependencies [[`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329)]:
+  - @toptal/picasso-button@4.0.6
+
+## 1.0.41
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.5
+
+## 1.0.40
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.4
+
+## 1.0.39
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.3
+
+## 1.0.38
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-button@4.0.2
+
 ## 1.0.37
 
 ### Patch Changes

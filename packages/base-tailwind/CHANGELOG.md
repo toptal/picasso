@@ -1,5 +1,13 @@
 # @toptal/base-tailwind
 
+## 1.0.0
+
+### Major Changes
+
+- [#4529](https://github.com/toptal/picasso/pull/4529) [`e7e45d2`](https://github.com/toptal/picasso/commit/e7e45d2349d548bee964db8aebe55c5326725329) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- update tailwindcss to 3.4.10
+  - check new TailwindCSS [features](https://tailwindcss.com/blog/tailwindcss-v3-4)
+
 ## 0.0.2
 
 ### Patch Changes
