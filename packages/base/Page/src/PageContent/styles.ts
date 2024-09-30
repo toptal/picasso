@@ -1,31 +1,13 @@
-import type { Theme } from '@material-ui/core/styles'
-import { createStyles } from '@material-ui/core/styles'
+import type { PageContextProps } from '../Page/types'
 
-export default ({ layout, palette }: Theme) =>
-  createStyles({
-    root: {
-      flex: 1,
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    content: {
-      height: '100%',
-      flexGrow: 1,
-      maxWidth: layout.contentWidth,
-      backgroundColor: palette.grey.lightest,
-      backgroundClip: 'content-box',
-    },
-    hasSidebar: {
-      background: `linear-gradient(90deg, ${palette.grey.lighter} 50%, ${palette.grey.lightest} 50%)`,
-    },
-    wide: {
-      maxWidth: layout.contentWidthWide,
-    },
-    fullWidth: {
-      maxWidth: '100%',
-    },
-    flex: {
-      display: 'flex',
-    },
-  })
+export const getMaxWidthClass = ({ fullWidth, width }: PageContextProps) => {
+  if (fullWidth || width === 'full') {
+    return 'max-w-full'
+  }
+
+  if (width === 'wide') {
+    return 'max-w-[90em]'
+  }
+
+  return 'max-w-[75em]'
+}
