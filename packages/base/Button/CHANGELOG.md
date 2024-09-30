@@ -1,5 +1,15 @@
 # @toptal/picasso-button
 
+## 4.0.11
+
+### Patch Changes
+
+- [#4580](https://github.com/toptal/picasso/pull/4580) [`aa78d0d`](https://github.com/toptal/picasso/commit/aa78d0d45e209d8b81c2b68b87024adf55ee0434) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Button
+
+- fix active state of buttons in button group
+
 ## 4.0.10
 
 ### Patch Changes
