@@ -1,27 +1,18 @@
 import React, { useState } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Dropdown } from '@toptal/picasso-dropdown'
 import { Close24, Overview24 } from '@toptal/picasso-icons'
 
 import { useHamburgerContext } from './PageHamburgerContext'
-import styles from './styles'
 
 interface Props {
   id: string
   'data-testid'?: string
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PageHamburger',
-})
-
 const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
   const { showSidebarMenu, hamburgerRef } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
-  const classes = useStyles()
 
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)
@@ -29,12 +20,10 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
   return (
     <Dropdown
       content={<div id={id} ref={hamburgerRef} />}
-      className={cx(classes.root, {
-        [classes.hidden]: !showSidebarMenu,
-      })}
+      className={!showSidebarMenu ? 'hidden' : 'min-[1280px]:hidden'}
       classes={{
         content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-var(--header-height,3.5rem))] !bg-gray-100`,
-        popper: classes.popper,
+        popper: 'mt-4',
       }}
       // The "disablePortal" is needed for testing the dropdown hamburger menu in Cypress.
       // Without it, React fails to create portal inside of portal (via `createPortal()`), so
@@ -60,7 +49,7 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
           showContent ? (
             <Close24 />
           ) : (
-            <Overview24 className={classes.hamburger} />
+            <Overview24 className='pointer-events-none' />
           )
         }
         data-testid={dataTestId}
