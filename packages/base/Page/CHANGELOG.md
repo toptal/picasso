@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.1.8
+
+### Patch Changes
+
+- [#4576](https://github.com/toptal/picasso/pull/4576) [`ad34150`](https://github.com/toptal/picasso/commit/ad34150858a482fb56ffc981ed04d0743350104b) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate `PageContent` to TailwindCSS
+
 ## 5.1.7
 
 ### Patch Changes
