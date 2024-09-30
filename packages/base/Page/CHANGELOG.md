@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.1.9
+
+### Patch Changes
+
+- [#4579](https://github.com/toptal/picasso/pull/4579) [`c8a6762`](https://github.com/toptal/picasso/commit/c8a676272ac1050c987ba63742609e7d010021af) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+- migrate `PageHamburger` to TailwindCSS, material-ui@4 is no longer required
+
 ## 5.1.8
 
 ### Patch Changes
