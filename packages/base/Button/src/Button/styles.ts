@@ -190,6 +190,7 @@ export const createCoreClassNames = ({
 
     if (active) {
       classNames.push('shadow-none')
+      classNames.push('z-[1]')
     }
   }
 
