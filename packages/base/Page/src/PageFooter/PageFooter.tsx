@@ -1,13 +1,11 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page/types'
-import styles from './styles'
+import { getMaxWidthClass } from './styles'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content for copyright. You can override default if needed. */
@@ -16,37 +14,36 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   rightContent?: ReactNode
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoPageFooter',
-})
-
 export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   props,
   ref
 ) {
   const { className, style, rightContent, copyrightContent, ...rest } = props
-  const classes = useStyles()
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
-  const contentClassnames = cx(
-    {
-      [classes.fullWidth]: fullWidth || width === 'full',
-      [classes.wide]: width === 'wide',
-    },
-    classes.content
+  const contentClassnames = twJoin(
+    getMaxWidthClass({ width, fullWidth }),
+    'box-border',
+    'flex justify-between xs:max-lg:flex-col',
+    'text-white text-md leading-[1em]',
+    'mx-auto pt-2 pb-6 px-[1em] md:px-[2em]'
   )
 
   return (
     <footer
       {...rest}
       ref={ref}
-      className={cx(classes.root, className)}
+      className={twMerge('bg-[#262d3d] w-full', className)}
       style={style}
     >
       <div className={contentClassnames}>
-        <div className={classes.left}>{copyrightContent}</div>
+        <div className='flex items-center justify-center mt-4'>
+          {copyrightContent}
+        </div>
 
-        <div className={classes.right}>{rightContent}</div>
+        <div className='flex items-center justify-center mt-4 xs:max-lg:-order-1 xs:max-md:flex-col'>
+          {rightContent}
+        </div>
       </div>
     </footer>
   )
