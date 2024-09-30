@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-autocomplete",
-  "version": "5.0.10",
+  "version": "5.0.11",
   "description": "Toptal UI components library - Autocomplete",
   "publishConfig": {
     "access": "public"
@@ -24,13 +24,13 @@
   "dependencies": {
     "@toptal/picasso-container": "3.1.0",
     "@toptal/picasso-form": "6.1.1",
-    "@toptal/picasso-input": "4.0.8",
+    "@toptal/picasso-input": "4.0.9",
     "@toptal/picasso-input-adornment": "3.0.3",
     "@toptal/picasso-loader": "3.0.1",
     "@toptal/picasso-menu": "3.0.8",
-    "@toptal/picasso-outlined-input": "4.0.8",
+    "@toptal/picasso-outlined-input": "4.0.9",
     "@toptal/picasso-popper": "1.0.4",
-    "@toptal/picasso-select": "4.0.8",
+    "@toptal/picasso-select": "4.0.9",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.1",
     "@toptal/picasso-utils": "2.0.0",
