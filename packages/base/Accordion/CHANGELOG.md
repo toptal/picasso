@@ -1,5 +1,12 @@
 # @toptal/picasso-accordion
 
+## 3.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.12
+
 ## 3.0.10
 
 ### Patch Changes

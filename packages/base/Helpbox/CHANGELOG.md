@@ -1,5 +1,12 @@
 # @toptal/picasso-helpbox
 
+## 5.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.12
+
 ## 5.0.11
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @toptal/picasso-form
 
+## 6.1.2
+
+### Patch Changes
+
+- [#4586](https://github.com/toptal/picasso/pull/4586) [`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba) Thanks [@sashuk](https://github.com/sashuk)!
+
+### OutlinedInput
+
+- fix the text breaking logic for adornments in inputs
+
 ## 6.1.1
 
 ### Patch Changes

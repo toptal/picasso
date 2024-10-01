@@ -1,5 +1,35 @@
 # Change Log
 
+## 73.0.13
+
+### Patch Changes
+
+- [#4586](https://github.com/toptal/picasso/pull/4586) [`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba) Thanks [@sashuk](https://github.com/sashuk)!
+
+### OutlinedInput
+
+- fix the text breaking logic for adornments in inputs
+- Updated dependencies [[`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba)]:
+  - @toptal/picasso-outlined-input@4.0.10
+  - @toptal/picasso-autocomplete@5.0.12
+  - @toptal/picasso-number-input@4.0.10
+  - @toptal/picasso-tagselector@3.1.12
+  - @toptal/picasso-date-picker@3.0.10
+  - @toptal/picasso-timepicker@4.0.10
+  - @toptal/picasso-select@4.0.10
+  - @toptal/picasso-input@4.0.10
+  - @toptal/picasso-form@6.1.2
+  - @toptal/picasso-avatar-upload@3.0.14
+  - @toptal/picasso-password-input@5.0.10
+  - @toptal/picasso-rich-text-editor@17.0.10
+  - @toptal/picasso-checkbox@5.0.4
+  - @toptal/picasso-dropzone@5.0.11
+  - @toptal/picasso-file-input@4.0.10
+  - @toptal/picasso-radio@5.0.4
+  - @toptal/picasso-switch@4.0.3
+  - @toptal/picasso-button@4.0.12
+  - @toptal/picasso-notification@4.0.12
+
 ## 73.0.12
 
 ### Patch Changes
