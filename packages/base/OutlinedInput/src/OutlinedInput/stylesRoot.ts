@@ -97,6 +97,7 @@ export const rootBasicClasses = [
   'rounded-sm',
   '[font-size:_unset]',
   'hover:[&_.resetButtonDirty]:visible',
+  'text-nowrap',
 ]
 
 export const getHeightClasses = ({
