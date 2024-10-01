@@ -1,5 +1,20 @@
 # @toptal/picasso-page
 
+## 5.1.10
+
+### Patch Changes
+
+- [#4586](https://github.com/toptal/picasso/pull/4586) [`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba) Thanks [@sashuk](https://github.com/sashuk)!
+
+### OutlinedInput
+
+- fix the text breaking logic for adornments in inputs
+- Updated dependencies [[`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba)]:
+  - @toptal/picasso-autocomplete@5.0.12
+  - @toptal/picasso-button@4.0.12
+  - @toptal/picasso-accordion@3.0.11
+  - @toptal/picasso-notification@4.0.12
+
 ## 5.1.9
 
 ### Patch Changes
