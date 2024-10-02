@@ -7,7 +7,7 @@ exports[`Page renders 1`] = `
   >
     <div
       class="Page-root"
-      style="--header-height: 3.5rem;"
+      style="--header-height: 3.5rem; --content-width-wide: 90em; --content-width: 75em; --content-padding-horizontal: 2em; --content-mobile-padding-horizontal: 1em;"
     >
       <div>
         Test
