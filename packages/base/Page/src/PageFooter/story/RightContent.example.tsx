@@ -13,9 +13,9 @@ const StyledLink = styled(Link)`
 `
 
 const Example = () => (
-  <div>
+  <Page>
     <Page.Footer rightContent={<Links />} />
-  </div>
+  </Page>
 )
 
 const Links = () => (
