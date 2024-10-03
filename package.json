@@ -104,7 +104,8 @@
     "trim": "^0.0.3",
     "unset-value": "^2.0.1",
     "webpack": "^5.0.0",
-    "yaml": "2"
+    "yaml": "2",
+    "**/@storybook/react/**/micromatch": "^4.0.8"
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",
