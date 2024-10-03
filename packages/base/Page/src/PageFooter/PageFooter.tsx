@@ -26,7 +26,7 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
     'box-border',
     'flex justify-between xs:max-lg:flex-col',
     'text-white text-md leading-[1em]',
-    'mx-auto pt-2 pb-6 px-[--content-mobile-padding-horizontal] md:px-[--content-padding-horizontal]'
+    'mx-auto pt-2 pb-6 px-[--content-padding-horizontal]'
   )
 
   return (

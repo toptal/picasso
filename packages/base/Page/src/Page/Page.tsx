@@ -47,17 +47,13 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
     <div
       {...rest}
       ref={ref}
-      className={cx(classes.root, className)}
-      style={
-        {
-          ...style,
-          '--header-height': '3.5rem',
-          '--content-width-wide': '90em',
-          '--content-width': '75em',
-          '--content-padding-horizontal': '2em',
-          '--content-mobile-padding-horizontal': '1em',
-        } as React.CSSProperties
-      }
+      className={cx(
+        classes.root,
+        className,
+        '[--content-padding-horizontal:1em] md:[--content-padding-horizontal:2em]',
+        '[--header-height:3.5rem] [--content-width-wide:90em] [--content-width:75em]'
+      )}
+      style={{ ...style } as React.CSSProperties}
     >
       <PageContext.Provider value={{ width, fullWidth }}>
         <PageHamburgerContextProvider hamburgerId={hamburgerId}>
