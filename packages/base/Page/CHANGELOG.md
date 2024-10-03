@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.1.11
+
+### Patch Changes
+
+- [#4584](https://github.com/toptal/picasso/pull/4584) [`7d2ff8f`](https://github.com/toptal/picasso/commit/7d2ff8fdcfc8251084fe63b0d28458540a07d721) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- migrate `PageFooter` to TailwindCSS
+
 ## 5.1.10
 
 ### Patch Changes
