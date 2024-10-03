@@ -3,7 +3,13 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { checkOverlap } from '../../utils'
 
-export const useLabelOverlap = ({ value }: { value?: number | number[] }) => {
+export const useLabelOverlap = ({
+  value,
+  isTooltipRendered,
+}: {
+  value?: number | number[]
+  isTooltipRendered: boolean
+}) => {
   const [isPartiallyOverlapped, setIsPartiallyOverlapped] = useState(false)
   const [valueLabels, setValueLabels] = useState<RefObject<HTMLSpanElement>[]>(
     []
@@ -11,7 +17,7 @@ export const useLabelOverlap = ({ value }: { value?: number | number[] }) => {
   const isRangeSlider = Array.isArray(value)
 
   useEffect(() => {
-    if (!isRangeSlider) {
+    if (!isRangeSlider || !isTooltipRendered) {
       return
     }
     const isFullyOverlaped = value[0] === value[1]
@@ -31,7 +37,13 @@ export const useLabelOverlap = ({ value }: { value?: number | number[] }) => {
         })
       )
     }
-  }, [value, isRangeSlider, isPartiallyOverlapped, valueLabels])
+  }, [
+    value,
+    isRangeSlider,
+    isPartiallyOverlapped,
+    valueLabels,
+    isTooltipRendered,
+  ])
 
   const handleValueLabelOnRender = useCallback(
     (index: number, labelRef: RefObject<HTMLSpanElement>) => {

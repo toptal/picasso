@@ -1,5 +1,5 @@
 // import type { ComponentProps } from 'react'
-import React, { forwardRef, useEffect, useRef } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import { Slider as MUIBaseSlider } from '@mui/base/Slider'
 import { useCombinedRefs, useOnScreen } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -66,7 +66,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     marks,
     value,
     defaultValue = 0,
-    tooltip: externalTooltip = 'off',
+    tooltip = 'off',
     tooltipFormat,
     step,
     disabled,
@@ -82,15 +82,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'data-private': dataPrivate,
     'data-testid': dataTestid,
   } = props
-  const [tooltip, setTooltip] = React.useState('off')
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
-  const { isPartiallyOverlapped, handleValueLabelOnRender } = useLabelOverlap({
-    value,
-  })
-
-  const isThumbHidden =
-    hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
@@ -100,11 +93,14 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     threshold: 1,
   })
 
-  useEffect(() => {
-    if (containerRef.current) {
-      setTooltip(externalTooltip)
-    }
-  }, [externalTooltip])
+  const { isPartiallyOverlapped, handleValueLabelOnRender } = useLabelOverlap({
+    value,
+    // until IntersectionObserver starts observing the element, we don't render the tooltip
+    isTooltipRendered: isObserved,
+  })
+
+  const isThumbHidden =
+    hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
   return (
     <div
