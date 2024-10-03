@@ -2,9 +2,9 @@ import React from 'react'
 import { Page, Typography } from '@toptal/picasso'
 
 const Example = () => (
-  <div>
+  <Page>
     <Page.Footer copyrightContent={<CopyrightContent />} />
-  </div>
+  </Page>
 )
 
 const CopyrightContent = () => (
