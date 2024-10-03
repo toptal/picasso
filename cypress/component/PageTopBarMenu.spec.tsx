@@ -9,6 +9,7 @@ import {
   Award16,
   Box16,
 } from '@toptal/picasso'
+import { HAPPO_TARGETS } from '@toptal/picasso-test-utils'
 
 export enum TestIds {
   TopBarMenu = 'page-top-bar-menu-dropdown',
@@ -58,12 +59,20 @@ describe('PageTopBarMenu', () => {
     })
   })
 
-  it('renders correctly on small screens', () => {
-    cy.viewport(767, 800)
-    cy.mount(<Example src={src} />)
+  Cypress._.each(HAPPO_TARGETS, happoTarget => {
+    const { width } = happoTarget
 
-    cy.getByTestId(TestIds.TopBarMenu).click()
+    it(`renders correctly on ${width}px`, () => {
+      cy.viewport(width, 800)
+      cy.mount(<Example src={src} />)
 
-    cy.get('body').happoScreenshot()
+      cy.getByTestId(TestIds.TopBarMenu).click()
+
+      cy.get('body').happoScreenshot({
+        component: 'PageTopBarMenu',
+        variant: `width-${width}`,
+        targets: [happoTarget],
+      })
+    })
   })
 })
