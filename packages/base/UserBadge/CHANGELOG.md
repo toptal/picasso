@@ -1,5 +1,12 @@
 # @toptal/picasso-user-badge
 
+## 5.1.4
+
+### Patch Changes
+
+- [#4589](https://github.com/toptal/picasso/pull/4589) [`0dda7dc`](https://github.com/toptal/picasso/commit/0dda7dc3dd41aba05055f3d765497831f816cfaa) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- fix missing uses of classes.root
+
 ## 5.1.3
 
 ### Patch Changes
