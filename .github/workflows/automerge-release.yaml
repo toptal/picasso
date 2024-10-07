@@ -1,4 +1,4 @@
-name: Automatically merge non-major release PR
+name: Automatically merge release PR
 
 on:
   pull_request:
@@ -7,9 +7,6 @@ on:
     types:
       - opened
 
-env:
-  PR_NUMBER: ${{ github.event.number }}
-  PR_BODY: ${{ github.event.pull_request.body }}
 jobs:
   merge-release-pr:
     if: ${{ github.event.pull_request.head.ref == 'changeset-release/master' }}
@@ -39,35 +36,23 @@ jobs:
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
-      - name: Set ENV Variables
-        run: |-
-          echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-
-      - name: Merge pull request if the release is not major
+      - name: Merge pull request
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.DEVBOT_TOKEN }}
+          github-token: ${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}
           script: |
-            const { PR_NUMBER, PR_BODY } = process.env
-            const repository = context.repo
-
-            const isMajorRelease = PR_BODY.includes("### Major Changes")
-            const commentBody = isMajorRelease ?
-              "This pull request seems to be a **major** release and will **not** be merged automatically"
-              : "This pull request seems to be a **non-major** release and will be merged automatically"
+            const commentBody = "This release pull request will be merged automatically"
 
             await github.rest.issues.createComment({
               owner: repository.owner,
-              issue_number: PR_NUMBER,
+              issue_number: ${{ github.event.number }},
               repo: repository.repo,
               body: commentBody,
             })
 
-            if (!isMajorRelease) {
-              await github.rest.pulls.merge({
-                merge_method: "squash",
-                owner: repository.owner,
-                pull_number: PR_NUMBER,
-                repo: repository.repo,
-              })
-            }
+            await github.rest.pulls.merge({
+              merge_method: "squash",
+              owner: repository.owner,
+              pull_number: ${{ github.event.number }},
+              repo: repository.repo,
+            })
