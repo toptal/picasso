@@ -47,6 +47,7 @@ const TagSelectorExample = ({
     <Container padded='medium'>
       <TagSelector
         {...props}
+        getKey={item => item.code as string}
         placeholder='Start typing...'
         options={filteredOptions}
         getDisplayValue={getDisplayValue}

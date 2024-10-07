@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { screen } from '@testing-library/react'
 import type { RenderResult } from '@toptal/picasso-test-utils'
 import { render, fireEvent, waitFor } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
+import type { AutocompleteItem } from '@toptal/picasso'
 
 import type { Props } from './TagSelector'
 import TagSelector, { filterOutSelectedOptions } from './TagSelector'
@@ -22,6 +24,34 @@ const testProps = {
 
 const renderTagSelector = (props: OmitInternalProps<Props>) => {
   return render(<TagSelector {...props} />)
+}
+
+const TagSelectorWithValueManagement = (props: OmitInternalProps<Props>) => {
+  const [value, setValue] = useState<AutocompleteItem[]>([])
+  const [inputValue, setInputValue] = useState('')
+
+  return (
+    <TagSelector
+      value={value}
+      inputValue={inputValue}
+      onChange={selectedValues => {
+        setValue(selectedValues)
+      }}
+      onOtherOptionSelect={otherOption => {
+        setValue([...value, { value: otherOption, text: otherOption }])
+      }}
+      onInputChange={newInputValue => {
+        setInputValue(newInputValue)
+      }}
+      {...props}
+    />
+  )
+}
+
+const renderTagSelectorWithValueManagement = (
+  props: OmitInternalProps<Props>
+) => {
+  return render(<TagSelectorWithValueManagement {...props} />)
 }
 
 const selectOption = async (
@@ -118,6 +148,34 @@ describe('TagSelector', () => {
 
       expect(validIcon).not.toBeVisible()
     })
+  })
+})
+
+describe('when "submitOtherOptionOnEnter" is enabled', () => {
+  it('submits other options on Enter press', async () => {
+    const firstOtherOptionText = 'aaa'
+    const secondOtherOptionText = 'bbb'
+    const { getByText } = renderTagSelectorWithValueManagement({
+      ...testProps,
+      options: null,
+      submitOtherOptionOnEnter: true,
+      testIds: {
+        input: 'input',
+      },
+    })
+
+    const input = screen.getByTestId('input')
+
+    fireEvent.change(input, { target: { value: firstOtherOptionText } })
+    fireEvent.keyDown(input, { key: 'Enter' })
+    fireEvent.change(input, { target: { value: secondOtherOptionText } })
+    fireEvent.keyDown(input, { key: 'Enter' })
+
+    const firstTag = getByText(firstOtherOptionText)
+    const secondTag = getByText(secondOtherOptionText)
+
+    expect(firstTag).toBeInTheDocument()
+    expect(secondTag).toBeInTheDocument()
   })
 })
 

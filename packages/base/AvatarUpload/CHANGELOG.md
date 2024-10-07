@@ -1,5 +1,89 @@
 # @toptal/picasso-avatar-upload
 
+## 3.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba)]:
+  - @toptal/picasso-outlined-input@4.0.10
+
+## 3.0.13
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.9
+
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.8
+
+## 3.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.7
+
+## 3.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-outlined-input@4.0.6
+
+## 3.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+  - @toptal/picasso-avatar@6.1.3
+  - @toptal/picasso-outlined-input@4.0.5
+
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.4
+
+## 3.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-outlined-input@4.0.3
+
+## 3.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.2
+
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-avatar@6.1.2
+  - @toptal/picasso-outlined-input@4.0.1
+
+## 3.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-outlined-input@4.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-avatar@6.1.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-loader@3.0.1
+
 ## 3.0.3
 
 ### Patch Changes

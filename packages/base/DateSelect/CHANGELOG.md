@@ -1,5 +1,88 @@
 # @toptal/picasso-date-select
 
+## 1.0.59
+
+### Patch Changes
+
+- [#4586](https://github.com/toptal/picasso/pull/4586) [`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba) Thanks [@sashuk](https://github.com/sashuk)!
+
+### OutlinedInput
+
+- fix the text breaking logic for adornments in inputs
+- Updated dependencies [[`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba)]:
+  - @toptal/picasso-select@4.0.10
+
+## 1.0.58
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.9
+
+## 1.0.57
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.8
+
+## 1.0.56
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.7
+
+## 1.0.55
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.6
+
+## 1.0.54
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.5
+
+## 1.0.53
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.4
+
+## 1.0.52
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.3
+
+## 1.0.51
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.2
+
+## 1.0.50
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.1
+
+## 1.0.49
+
+### Patch Changes
+
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-select@4.0.0
+  - @toptal/picasso-utils@2.0.0
+
 ## 1.0.48
 
 ### Patch Changes

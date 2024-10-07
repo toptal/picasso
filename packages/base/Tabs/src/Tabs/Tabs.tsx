@@ -65,6 +65,7 @@ export const Tabs = forwardRef(
           ScrollButtonComponent={TabScrollButton}
           orientation={orientation}
           variant={variant}
+          data-component-type='tabs'
         >
           {children}
         </MUITabs>

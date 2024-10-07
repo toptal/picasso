@@ -1,5 +1,39 @@
 # @toptal/picasso-list
 
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-typography@4.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- [#4530](https://github.com/toptal/picasso/pull/4530) [`8a29ff0`](https://github.com/toptal/picasso/commit/8a29ff092ed06d4b2fbaf0b4d1ad98eeebea3c43) Thanks [@sashuk](https://github.com/sashuk)!
+
+### ListItem
+
+- breaking change: `icon` property no longer exists. If your project uses it, please contact the BASE Team to confirm that it should be added to the component.
+
 ## 4.0.0
 
 ### Major Changes

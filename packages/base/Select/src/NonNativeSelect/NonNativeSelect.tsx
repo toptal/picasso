@@ -64,7 +64,6 @@ export const NonNativeSelect = documentable(
         placeholder,
         disabled,
         disablePortal,
-        error,
         status,
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
@@ -178,7 +177,7 @@ export const NonNativeSelect = documentable(
               {...rest}
               onChange={onChange as any}
               inputRef={selectRef}
-              status={error ? 'error' : status}
+              status={status}
               disabled={disabled}
               id={id}
               startAdornment={startAdornment}

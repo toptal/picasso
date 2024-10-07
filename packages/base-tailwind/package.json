@@ -1,6 +1,6 @@
 {
   "name": "@toptal/base-tailwind",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Base Tailwind configuration that contains global design token. This preset have to be reused by any project-specific Tailwind configuration.",
   "author": "Toptal",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/base-tailwind#readme",
@@ -24,10 +24,10 @@
     "prepublishOnly": "yarn build:package"
   },
   "devDependencies": {
-    "tailwindcss": "^3.3.6"
+    "tailwindcss": "^3.4.10"
   },
   "peerDependencies": {
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.4.10"
   },
   "sideEffects": false,
   "files": [

@@ -29,7 +29,7 @@ export const cursorClass = {
 }
 
 export const bgClasses = {
-  disabled: 'bg-gray-100',
+  disabled: 'bg-gray-200',
   dark: 'bg-[#081237]',
   highlight: 'bg-yellow-100/60',
   default: 'bg-white',
@@ -63,7 +63,7 @@ export const borderPseudoClassesByState = {
   borderColor: {
     dark: '',
     default: ['after:border-gray-400', '[&:has(:focus)]:after:border-blue-500'],
-    disabled: 'after:border-gray-200',
+    disabled: 'after:border-gray-400',
     error: ['after:border-red-500', '[&:has(:focus)]:after:border-red-500'],
     hoverWithoutFocus: 'hover:[&:not(:has(:focus))]:after:border-gray-600',
   },
@@ -97,6 +97,7 @@ export const rootBasicClasses = [
   'rounded-sm',
   '[font-size:_unset]',
   'hover:[&_.resetButtonDirty]:visible',
+  'text-nowrap',
 ]
 
 export const getHeightClasses = ({

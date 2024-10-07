@@ -1,5 +1,20 @@
 # @toptal/picasso-backdrop
 
+## 1.0.7
+
+### Patch Changes
+
+- [#4562](https://github.com/toptal/picasso/pull/4562) [`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+- update mui/base lib to fix multiline textarea issue
+
+## 1.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-fade@1.0.6
+
 ## 1.0.5
 
 ### Patch Changes

@@ -6,8 +6,7 @@ exports[`Page renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Page-root"
-      style="--header-height: 3.5rem;"
+      class="Page-root [--content-padding md:[--content-padding [--header [--content-width [--content"
     >
       <div>
         Test

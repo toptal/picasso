@@ -1,5 +1,161 @@
 # @toptal/picasso-autocomplete
 
+## 5.0.12
+
+### Patch Changes
+
+- [#4586](https://github.com/toptal/picasso/pull/4586) [`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba) Thanks [@sashuk](https://github.com/sashuk)!
+
+### OutlinedInput
+
+- fix the text breaking logic for adornments in inputs
+- Updated dependencies [[`6af79c2`](https://github.com/toptal/picasso/commit/6af79c22523e07c8f539a18093949f9c363c90ba)]:
+  - @toptal/picasso-outlined-input@4.0.10
+  - @toptal/picasso-select@4.0.10
+  - @toptal/picasso-input@4.0.10
+  - @toptal/picasso-form@6.1.2
+
+## 5.0.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.9
+  - @toptal/picasso-input@4.0.9
+  - @toptal/picasso-select@4.0.9
+
+## 5.0.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.8
+  - @toptal/picasso-input@4.0.8
+  - @toptal/picasso-select@4.0.8
+
+## 5.0.9
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@3.0.8
+  - @toptal/picasso-outlined-input@4.0.7
+  - @toptal/picasso-select@4.0.7
+  - @toptal/picasso-input@4.0.7
+
+## 5.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-outlined-input@4.0.6
+  - @toptal/picasso-menu@3.0.7
+  - @toptal/picasso-input@4.0.6
+  - @toptal/picasso-select@4.0.6
+
+## 5.0.7
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.1.1
+  - @toptal/picasso-input@4.0.5
+  - @toptal/picasso-input-adornment@3.0.3
+  - @toptal/picasso-menu@3.0.6
+  - @toptal/picasso-outlined-input@4.0.5
+  - @toptal/picasso-select@4.0.5
+
+## 5.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.0.4
+  - @toptal/picasso-outlined-input@4.0.4
+  - @toptal/picasso-input@4.0.4
+
+## 5.0.5
+
+### Patch Changes
+
+- [#4556](https://github.com/toptal/picasso/pull/4556) [`23e4e28`](https://github.com/toptal/picasso/commit/23e4e28c19e7ab3b777f07b7b524a55035fc5556) Thanks [@sashuk](https://github.com/sashuk)!
+- do not render options dropdown when options is null or undefined
+
+## 5.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39), [`be813d1`](https://github.com/toptal/picasso/commit/be813d167816fb899037fda038c92abee73c0b39)]:
+  - @toptal/picasso-form@6.1.0
+  - @toptal/picasso-outlined-input@4.0.3
+  - @toptal/picasso-input@4.0.3
+  - @toptal/picasso-select@4.0.3
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@3.0.5
+  - @toptal/picasso-outlined-input@4.0.2
+  - @toptal/picasso-select@4.0.2
+  - @toptal/picasso-input@4.0.2
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+  - @toptal/picasso-form@6.0.1
+  - @toptal/picasso-input@4.0.1
+  - @toptal/picasso-input-adornment@3.0.2
+  - @toptal/picasso-menu@3.0.4
+  - @toptal/picasso-select@4.0.1
+  - @toptal/picasso-outlined-input@4.0.1
+
+## 5.0.1
+
+### Patch Changes
+
+- [#4534](https://github.com/toptal/picasso/pull/4534) [`8b94619`](https://github.com/toptal/picasso/commit/8b94619e9fec3a3009ba785aaa714dc6f9fbb85c) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete
+
+- fix: do not show empty popper container when there are no options and no empty options message
+- refactor: dropdown options menu renders in separate component
+
+## 5.0.0
+
+### Major Changes
+
+- [#4531](https://github.com/toptal/picasso/pull/4531) [`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0) Thanks [@AdrianContiu](https://github.com/AdrianContiu)!
+
+### Autocomplete, DatePicker, Input, NumberInput, OutlinedInput, PasswordInput, Select, TagSelector, TimePicker, RichTextEditor
+
+- `error` no longer exists as a prop. It has been replaced by `status` which support success and error states.
+
+- [#4540](https://github.com/toptal/picasso/pull/4540) [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Autocomplete, FileInput, Checkbox, Tooltip, Switch, Input, Radio, Form
+
+- breaking change: components no longer export `Props` type. Import prop types as `component name + Props` (e.g. `AutocompleteProps`, `FileInputProps`, etc.)
+
+### Patch Changes
+
+- Updated dependencies [[`1bf35ad`](https://github.com/toptal/picasso/commit/1bf35ad42af6d0a457972064e355ad1181dea6a0), [`031e242`](https://github.com/toptal/picasso/commit/031e242924442575d7dbafcc8a644b5ec03658de), [`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-outlined-input@4.0.0
+  - @toptal/picasso-select@4.0.0
+  - @toptal/picasso-input@4.0.0
+  - @toptal/picasso-form@6.0.0
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-input-adornment@3.0.1
+  - @toptal/picasso-loader@3.0.1
+  - @toptal/picasso-menu@3.0.3
+  - @toptal/picasso-popper@1.0.4
+  - @toptal/picasso-typography@4.0.1
+
 ## 4.0.3
 
 ### Patch Changes

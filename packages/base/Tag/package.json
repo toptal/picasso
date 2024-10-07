@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tag",
-  "version": "4.0.0",
+  "version": "4.0.3",
   "description": "Toptal UI components library - Tag",
   "publishConfig": {
     "access": "public"
@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.6.0",
+    "@toptal/picasso-icons": "1.7.0",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-typography": "4.0.0",
-    "@toptal/picasso-utils": "1.0.3",
+    "@toptal/picasso-typography": "4.0.1",
+    "@toptal/picasso-utils": "2.0.0",
     "ap-style-title-case": "^1.1.2"
   },
   "sideEffects": [
@@ -42,7 +42,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "2.0.0",
+    "@toptal/picasso-tailwind-merge": "2.0.1",
     "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-radio",
-  "version": "4.0.0",
+  "version": "5.0.4",
   "description": "Toptal UI components library - Radio",
   "publishConfig": {
     "access": "public"
@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-form": "5.0.0",
-    "@toptal/picasso-grid": "5.0.0",
+    "@toptal/picasso-form": "6.1.2",
+    "@toptal/picasso-grid": "5.0.2",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-utils": "1.0.3",
+    "@toptal/picasso-utils": "2.0.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
   },
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1",
-    "@toptal/picasso-tailwind-merge": "2.0.0",
+    "@toptal/picasso-tailwind-merge": "2.0.1",
     "styled-components": "^6.1.1"
   },
   "exports": {

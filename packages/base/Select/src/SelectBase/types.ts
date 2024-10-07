@@ -31,8 +31,6 @@ export interface SelectProps<
   disabled?: boolean
   /** Whether to render select options in portal. Should be disabled in Modals */
   disablePortal?: boolean
-  /** @deprecated [FX-4715] Indicate whether `Select` is in error state */
-  error?: boolean
   /** Indicate whether `Select` is in `error` or `default` state */
   status?: Extract<Status, 'error' | 'default'>
   /** Component ID */

@@ -1,5 +1,31 @@
 # @toptal/picasso-dropdown
 
+## 4.2.0
+
+### Minor Changes
+
+- [#4568](https://github.com/toptal/picasso/pull/4568) [`75087fa`](https://github.com/toptal/picasso/commit/75087fa5ddbb989681255807fba61288b207e2b6) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Dropdown
+
+- support disabled state
+
+## 4.1.2
+
+### Patch Changes
+
+- [#4562](https://github.com/toptal/picasso/pull/4562) [`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+- update mui/base lib to fix multiline textarea issue
+
+## 4.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-paper@4.0.1
+  - @toptal/picasso-popper@1.0.4
+
 ## 4.1.0
 
 ### Minor Changes

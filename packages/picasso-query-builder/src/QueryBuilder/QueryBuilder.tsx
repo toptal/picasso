@@ -32,7 +32,6 @@ import { controlClassnames, useQueryBuilderValidator } from '../utils'
 import styles from './styles'
 import { useOnQueryChange } from './hooks/useOnQueryChange'
 import { ValidationErrors } from '../ValidationErrors'
-import type { ValidatorResult } from '../utils/use-query-builder-validator'
 
 type ValueEditorComponentProps = ComponentType<DefaultValueEditorProps>
 
@@ -54,7 +53,7 @@ type Props = {
   /** Defines a function that is called when the user submits a query constructed in the QB. This function takes a single argument - constructed query. */
   onSubmit?: (query: RuleGroupTypeAny) => void
   /** Defines a component that allows possibility to customize value editor that is used in QB. By default, QB provides default set of editors (text inputs, dropdowns, etc.). */
-  customValueEditor?: ValueEditorComponentProps
+  valueEditor?: ValueEditorComponentProps
   /** Defines the loading state. */
   loading?: boolean
   /** Defines padded layout. */
@@ -87,7 +86,7 @@ const QueryBuilder = ({
   maxGroupDepth = 3,
   loading = false,
   onSubmit,
-  customValueEditor = ValueEditor,
+  valueEditor = ValueEditor,
   footer,
   hideControls,
   header,
@@ -101,10 +100,6 @@ const QueryBuilder = ({
   const classes = useStyles()
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false)
-  const [queryBuilderValid, setIsQueryBuilderValid] = useState<
-    boolean | undefined
-  >()
-  const [validationErrors, setValidationErrors] = useState<ValidatorResult>({})
 
   const { showError } = useNotifications()
 
@@ -113,11 +108,10 @@ const QueryBuilder = ({
     callback: onQueryChange,
   })
 
-  const { validator } = useQueryBuilderValidator({
-    fields,
-    onValidChange: setIsQueryBuilderValid,
-    onValidationResultChange: setValidationErrors,
-  })
+  const { validator, validationErrors, queryBuilderValid } =
+    useQueryBuilderValidator({
+      fields,
+    })
 
   const resetQuery = useCallback(() => {
     if (onQueryReset) {
@@ -222,7 +216,7 @@ const QueryBuilder = ({
               } as QueryBuilderContext
             }
             controlElements={{
-              valueEditor: customValueEditor,
+              valueEditor,
             }}
             enableDragAndDrop={enableDragAndDrop}
           />

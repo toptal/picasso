@@ -1,5 +1,59 @@
 # @toptal/picasso-account-select
 
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`78656d5`](https://github.com/toptal/picasso/commit/78656d5876ea450bc142760dc1b95181378549e6)]:
+  - @toptal/picasso-link@3.0.3
+  - @toptal/picasso-menu@3.0.8
+
+## 3.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`2880a4b`](https://github.com/toptal/picasso/commit/2880a4b68cb4676be3b91b416f45a87d201df715)]:
+  - @toptal/picasso-menu@3.0.7
+
+## 3.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`0d88ec7`](https://github.com/toptal/picasso/commit/0d88ec7dfab46c4eb02669ee8d69a921e6cac569)]:
+  - @toptal/picasso-icons@1.7.0
+  - @toptal/picasso-menu@3.0.6
+  - @toptal/picasso-user-badge@5.1.3
+
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`2984ddf`](https://github.com/toptal/picasso/commit/2984ddf167dfc3a08ab7e978ef31ebfc69eae163)]:
+  - @toptal/picasso-link@3.0.2
+  - @toptal/picasso-menu@3.0.5
+
+## 3.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`b44b4bb`](https://github.com/toptal/picasso/commit/b44b4bbc12075d379a87395c3786736007bedc98)]:
+  - @toptal/picasso-container@3.1.0
+  - @toptal/picasso-menu@3.0.4
+  - @toptal/picasso-user-badge@5.1.2
+
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`80407eb`](https://github.com/toptal/picasso/commit/80407eb734c69894ee6d2dadd3e773752fc43c5d)]:
+  - @toptal/picasso-utils@2.0.0
+  - @toptal/picasso-container@3.0.1
+  - @toptal/picasso-icons@1.6.1
+  - @toptal/picasso-link@3.0.1
+  - @toptal/picasso-menu@3.0.3
+  - @toptal/picasso-typography@4.0.1
+  - @toptal/picasso-user-badge@5.1.1
+
 ## 3.0.2
 
 ### Patch Changes

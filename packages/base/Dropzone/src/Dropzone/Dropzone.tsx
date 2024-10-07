@@ -88,7 +88,7 @@ const getBorderColorClasses: StateToClassMatcher = ({
 }
 
 const getBackgroundColorClasses: StateToClassMatcher = ({ isDisabled }) =>
-  isDisabled ? 'bg-gray-100' : 'bg-white'
+  isDisabled ? 'bg-gray-200' : 'bg-white'
 
 export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
   props,
@@ -157,7 +157,6 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         className={twJoin(
           'border border-dashed',
           'box-border',
-          'text-graphite-700',
           'gap-2',
           'transition-all ease-out duration-350',
           getCursorClasses(componentState),
@@ -169,12 +168,19 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
         <input {...getInputProps()} />
         <Upload24 color='darkGrey' />
         {!hideContentText && (
-          <Typography size='medium' color='black' weight='semibold'>
+          <Typography
+            size='medium'
+            color={isDisabled ? 'grey-main-2' : 'black'}
+            weight='semibold'
+          >
             Click or drag to upload
           </Typography>
         )}
         {hint && (
-          <FormHint className={twJoin('m-0', '[&>*]:leading-4')}>
+          <FormHint
+            className={twJoin('m-0', '[&>*]:leading-4')}
+            disabled={isDisabled}
+          >
             {hint}
           </FormHint>
         )}

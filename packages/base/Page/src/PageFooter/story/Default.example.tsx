@@ -2,9 +2,9 @@ import React from 'react'
 import { Page } from '@toptal/picasso'
 
 const Example = () => (
-  <div>
+  <Page>
     <Page.Footer />
-  </div>
+  </Page>
 )
 
 export default Example
