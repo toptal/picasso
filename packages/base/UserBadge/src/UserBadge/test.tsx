@@ -109,14 +109,17 @@ describe('UserBadge', () => {
   })
 
   it('passes classes.root to the root element', () => {
+    const testId = 'user-badge'
+    const rootClass = 'custom-root'
+
     renderUserBadge(<Typography>QA tester</Typography>, {
       name: 'Joe Doe',
-      classes: { root: 'custom-root' },
-      'data-testid': 'user-badge',
+      classes: { root: rootClass },
+      'data-testid': testId,
     })
 
-    const root = screen.getByTestId('user-badge')
+    const root = screen.getByTestId(testId)
 
-    expect(root).toHaveClass('custom-root')
+    expect(root).toHaveClass(rootClass)
   })
 })
