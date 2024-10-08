@@ -63,7 +63,7 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
           size='xxsmall'
           data-private={dataPrivate}
           classes={{
-            root: 'p-2 [z-index:1] bg-white relative',
+            root: 'p-[1em] [z-index:1] bg-white relative',
             avatar: 'text-[0.9rem]',
             name: twJoin('font-[400]', truncateTextClasses),
           }}

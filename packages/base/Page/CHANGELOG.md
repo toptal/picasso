@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 5.1.12
+
+### Patch Changes
+
+- [#4589](https://github.com/toptal/picasso/pull/4589) [`0dda7dc`](https://github.com/toptal/picasso/commit/0dda7dc3dd41aba05055f3d765497831f816cfaa) Thanks [@ruslan-sed](https://github.com/ruslan-sed)!
+- fix padding for `PageTopBarMenu`
+
+- Updated dependencies [[`0dda7dc`](https://github.com/toptal/picasso/commit/0dda7dc3dd41aba05055f3d765497831f816cfaa)]:
+  - @toptal/picasso-user-badge@5.1.4
+
 ## 5.1.11
 
 ### Patch Changes

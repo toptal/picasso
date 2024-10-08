@@ -1,16 +1,23 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
-import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { Typography } from '@toptal/picasso-typography'
+import { screen } from '@testing-library/react'
 
 import type { Props } from './UserBadge'
 import { UserBadge } from './UserBadge'
 
-const renderUserBadge = (
-  children: React.ReactNode,
-  props: OmitInternalProps<Props>
-) => {
-  const { size, center, name, title, invert, renderName, renderTitle } = props
+const renderUserBadge = (children: React.ReactNode, props: Props) => {
+  const {
+    size,
+    center,
+    name,
+    title,
+    invert,
+    renderName,
+    renderTitle,
+    classes,
+    'data-testid': dataTestId,
+  } = props
 
   return render(
     <UserBadge
@@ -21,6 +28,8 @@ const renderUserBadge = (
       invert={invert}
       renderName={renderName}
       renderTitle={renderTitle}
+      classes={classes}
+      data-testid={dataTestId}
     >
       {children}
     </UserBadge>
@@ -97,5 +106,20 @@ describe('UserBadge', () => {
     })
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('passes classes.root to the root element', () => {
+    const testId = 'user-badge'
+    const rootClass = 'custom-root'
+
+    renderUserBadge(<Typography>QA tester</Typography>, {
+      name: 'Joe Doe',
+      classes: { root: rootClass },
+      'data-testid': testId,
+    })
+
+    const root = screen.getByTestId(testId)
+
+    expect(root).toHaveClass(rootClass)
   })
 })

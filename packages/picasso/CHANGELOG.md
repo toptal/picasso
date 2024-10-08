@@ -1,5 +1,15 @@
 # Change Log
 
+## 52.1.8
+
+### Patch Changes
+
+- Updated dependencies [[`0dda7dc`](https://github.com/toptal/picasso/commit/0dda7dc3dd41aba05055f3d765497831f816cfaa), [`0dda7dc`](https://github.com/toptal/picasso/commit/0dda7dc3dd41aba05055f3d765497831f816cfaa)]:
+  - @toptal/picasso-user-badge@5.1.4
+  - @toptal/picasso-page@5.1.12
+  - @toptal/picasso-account-select@3.0.9
+  - @toptal/picasso-tabs@5.0.5
+
 ## 52.1.7
 
 ### Patch Changes
