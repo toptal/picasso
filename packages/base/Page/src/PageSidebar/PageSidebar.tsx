@@ -104,48 +104,32 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     <Container
       ref={ref}
       style={style}
-      className={twJoin(
+      className={twMerge(
         'h-full',
         'shadow-[inset_-1px_0_0_0]',
-        // TODO: watch out for line height
-        'text-lg',
+        'shadow-graphite-800',
+        // TODO: "none" is needed to fix line height in visuals
+        'text-lg/none',
         'relative',
-        // TODO: check how it is applied during animation
-        'transition-[width] ease-in-out delay-225',
-        'display-none',
-        'min-[1280px]:block',
+        'transition-[width] ease-in-out delay-[225ms]',
+        'hidden min-[1280px]:block',
+        'xs:max-sm:w-[100vw]',
+        'xs:max-sm:overflow-y-scroll',
         '[&]:before:absolute',
         '[&]:before:content-[""]',
         '[&]:before:left-0',
         '[&]:before:top-0',
-        '[&]:before:w-[15.50rem]',
+        '[&]:before:w-[15.5rem]',
         '[&]:before:h-full',
-        // TODO: double check
-        'xs:max-sm:w-[100vw]',
-        'xs:max-sm:overflow-y-scroll',
-        // TODO: or to use merge?
         className,
         classesByVariant[variant],
         classesBySize[size],
         collapsible &&
           isCollapsed && [
-            'w-[5rem] ',
-            // TODO: is it needed? Looks like duplication
-            'transition-[width] ease-in-out delay-225',
+            'w-[5rem]',
             '[&]:before:w-[5.75rem]',
-
-            /*
-^
-    rootCollapsed: {
-      '& $scrollableContent': {
-        '-ms-overflow-style': 'none',
-        'scrollbar-width': 'none',
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-      },
-    },
-*/
+            '[&_.scrollable-content]:[-ms-overflow-style:none]',
+            '[&_.scrollable-content]:[scrollbar-width:none]',
           ],
         !hasTopBar && 'block'
       )}
@@ -168,7 +152,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         <Container
           flex
           direction='column'
-          className={'h-full overflow-y-auto pt-4 pb-2 px-0'}
+          className='scrollable-content h-full overflow-y-auto pt-4 pb-2 px-0'
           data-testid={testIds?.scrollableContainer}
         >
           {collapsible && (
@@ -185,7 +169,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
               data-testid={testIds?.collapseButton}
             />
           )}
-          <div className={'order-[50] flex-1 h-full'} />
+          <div className='order-[50] flex-1 h-full' />
           <SidebarContextProvider
             isCollapsed={isCollapsed}
             isHovered={isHovered}
