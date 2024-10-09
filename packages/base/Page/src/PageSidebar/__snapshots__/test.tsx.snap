@@ -6,7 +6,7 @@ exports[`PageSidebar renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block xs:max-sm:w-[100vw] xs:max-sm:overflow-y [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] block"
+      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
       <div
         class="h-full max-h-[calc(100vh-var(--header sticky top-[var(--header"
@@ -30,7 +30,7 @@ exports[`PageSidebar with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block xs:max-sm:w-[100vw] xs:max-sm:overflow-y [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] block"
+      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
       <div
         class="h-full max-h-[calc(100vh-var(--header sticky top-[var(--header"
@@ -59,7 +59,7 @@ exports[`PageSidebar with one normal and one bottom menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block xs:max-sm:w-[100vw] xs:max-sm:overflow-y [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] block"
+      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
       <div
         class="h-full max-h-[calc(100vh-var(--header sticky top-[var(--header"

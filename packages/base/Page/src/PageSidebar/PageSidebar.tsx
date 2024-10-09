@@ -112,8 +112,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         'relative',
         'transition-[width] ease-in-out delay-[225ms]',
         'hidden min-[1280px]:block',
-        'xs:max-sm:w-[100vw]',
-        'xs:max-sm:overflow-y-scroll',
         '[&]:before:absolute',
         '[&]:before:content-[""]',
         '[&]:before:left-0',
@@ -123,6 +121,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         className,
         classesByVariant[variant],
         classesBySize[size],
+        'xs:max-md:overflow-y-scroll',
         collapsible &&
           isCollapsed && [
             'w-[5rem]',
