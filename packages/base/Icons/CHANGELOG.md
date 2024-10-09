@@ -1,5 +1,15 @@
 # @toptal/picasso-icons
 
+## 1.8.0
+
+### Minor Changes
+
+- [#4598](https://github.com/toptal/picasso/pull/4598) [`f8cb675`](https://github.com/toptal/picasso/commit/f8cb675a660c22afd128bbdb76c4eeeac9f9ca27) Thanks [@sofiaternovskaya](https://github.com/sofiaternovskaya)!
+
+### Icon
+
+- add `Sparkle16` and `Sparkle24` icons
+
 ## 1.7.0
 
 ### Minor Changes
