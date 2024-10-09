@@ -109,7 +109,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         'shadow-[inset_-1px_0_0_0]',
         'shadow-graphite-800',
         // TODO: "none" is needed to fix line height in visuals
-        'text-lg/none',
+        'text-lg/[inherit]',
         'relative',
         'transition-[width] ease-in-out delay-[225ms]',
         'hidden min-[1280px]:block',
