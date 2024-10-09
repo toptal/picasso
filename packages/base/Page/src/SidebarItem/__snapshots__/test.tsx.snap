@@ -6,16 +6,16 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
       <div
-        class="PageSidebar-wrapper PageSidebar-sticky"
+        class="h-full max-h-[calc(100vh-var(--header sticky top-[var(--header"
       >
         <div
-          class="flex flex-col PageSidebar-scrollableContent"
+          class="flex flex-col scrollable-content h-full overflow-y pt-4 pb-2 px-0"
         >
           <div
-            class="PageSidebar-spacer"
+            class="order-[50] flex-1 h-full"
           />
           <ul
             class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
@@ -152,16 +152,16 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
     class="Picasso-root"
   >
     <div
-      class="PageSidebar-root PageSidebar-light PageSidebar-medium PageSidebar-hamburgerNotAvailable"
+      class="h-full shadow-[inset_-1px_0_0_0] text-lg/[inherit] relative transition-[width] ease-in delay-[225ms] min-[1280px]:block [&]:before:absolute [&]:before:content-[""] [&]:before:left-0 [&]:before:top-0 [&]:before:w-[15.5rem] [&]:before:h-full shadow-gray bg-gray w-[236px] xs:max-md:overflow-y block"
     >
       <div
-        class="PageSidebar-wrapper PageSidebar-sticky"
+        class="h-full max-h-[calc(100vh-var(--header sticky top-[var(--header"
       >
         <div
-          class="flex flex-col PageSidebar-scrollableContent"
+          class="flex flex-col scrollable-content h-full overflow-y pt-4 pb-2 px-0"
         >
           <div
-            class="PageSidebar-spacer"
+            class="order-[50] flex-1 h-full"
           />
           <ul
             class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"

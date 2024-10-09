@@ -1,9 +1,6 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { useSidebar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
-import cx from 'classnames'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 import type { ReactNode } from 'react'
 import React, { forwardRef, useCallback, useEffect, useState } from 'react'
 import { ButtonCircular } from '@toptal/picasso-button'
@@ -20,7 +17,6 @@ import { SidebarItem } from '../SidebarItem'
 import { SidebarLogo } from '../SidebarLogo'
 import { SidebarMenu } from '../SidebarMenu'
 import { SidebarContextProvider } from './SidebarContextProvider'
-import styles from './styles'
 import type { VariantType } from './types'
 
 export interface Props extends BaseProps {
@@ -47,9 +43,16 @@ export interface Props extends BaseProps {
   onCollapse?: () => void
 }
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PageSidebar',
-})
+const classesByVariant = {
+  light: 'shadow-gray-200 bg-gray-100',
+  dark: 'shadow-graphite-800 bg-graphite-800',
+}
+
+const classesBySize = {
+  small: 'w-[212px]',
+  medium: 'w-[236px]',
+  large: 'w-[280px]',
+}
 
 export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   props,
@@ -68,7 +71,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     disableSticky,
     onCollapse = noop,
   } = props
-  const classes = useStyles()
+
   const { setHasSidebar } = useSidebar()
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
@@ -101,10 +104,32 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     <Container
       ref={ref}
       style={style}
-      className={cx(classes.root, className, classes[variant], classes[size], {
-        [classes.rootCollapsed]: collapsible && isCollapsed,
-        [classes.hamburgerNotAvailable]: !hasTopBar,
-      })}
+      className={twMerge(
+        'h-full',
+        'shadow-[inset_-1px_0_0_0]',
+        'text-lg/[inherit]',
+        'relative',
+        'transition-[width] ease-in-out delay-[225ms]',
+        'hidden min-[1280px]:block',
+        '[&]:before:absolute',
+        '[&]:before:content-[""]',
+        '[&]:before:left-0',
+        '[&]:before:top-0',
+        '[&]:before:w-[15.5rem]',
+        '[&]:before:h-full',
+        className,
+        classesByVariant[variant],
+        classesBySize[size],
+        'xs:max-md:overflow-y-scroll',
+        collapsible &&
+          isCollapsed && [
+            'w-[5rem]',
+            '[&]:before:w-[5.75rem]',
+            '[&_.scrollable-content]:[-ms-overflow-style:none]',
+            '[&_.scrollable-content]:[scrollbar-width:none]',
+          ],
+        !hasTopBar && 'block'
+      )}
       data-testid={testIds?.container}
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
       onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
@@ -115,14 +140,16 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
         style={{
           maxHeight: wrapperMaxHeight,
         }}
-        className={cx(classes.wrapper, {
-          [classes.sticky]: !disableSticky,
-        })}
+        className={twJoin(
+          'h-full',
+          !disableSticky &&
+            'max-h-[calc(100vh-var(--header-height,3.5rem))] sticky top-[var(--header-height,3.5rem)]'
+        )}
       >
         <Container
           flex
           direction='column'
-          className={classes.scrollableContent}
+          className='scrollable-content h-full overflow-y-auto pt-4 pb-2 px-0'
           data-testid={testIds?.scrollableContainer}
         >
           {collapsible && (
@@ -139,7 +166,7 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
               data-testid={testIds?.collapseButton}
             />
           )}
-          <div className={classes.spacer} />
+          <div className='order-[50] flex-1 h-full' />
           <SidebarContextProvider
             isCollapsed={isCollapsed}
             isHovered={isHovered}
