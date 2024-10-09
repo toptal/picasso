@@ -1,5 +1,26 @@
 # @toptal/picasso-page
 
+## 5.1.13
+
+### Patch Changes
+
+- [#4597](https://github.com/toptal/picasso/pull/4597) [`05fa2c9`](https://github.com/toptal/picasso/commit/05fa2c927de80a218fe2cf59042c4e7db1cb8e11) Thanks [@sashuk](https://github.com/sashuk)!
+
+### PageSidebar
+
+- migrate `PageSidebar` to TailwindCSS
+- Updated dependencies [[`f8cb675`](https://github.com/toptal/picasso/commit/f8cb675a660c22afd128bbdb76c4eeeac9f9ca27)]:
+  - @toptal/picasso-icons@1.8.0
+  - @toptal/picasso-accordion@3.0.12
+  - @toptal/picasso-avatar@6.1.4
+  - @toptal/picasso-button@4.0.13
+  - @toptal/picasso-logo@2.0.3
+  - @toptal/picasso-menu@3.0.9
+  - @toptal/picasso-notification@4.0.13
+  - @toptal/picasso-tag@4.0.4
+  - @toptal/picasso-user-badge@5.1.5
+  - @toptal/picasso-autocomplete@5.0.13
+
 ## 5.1.12
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @toptal/picasso-tabs
 
+## 5.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`f8cb675`](https://github.com/toptal/picasso/commit/f8cb675a660c22afd128bbdb76c4eeeac9f9ca27)]:
+  - @toptal/picasso-icons@1.8.0
+  - @toptal/picasso-user-badge@5.1.5
+
 ## 5.0.5
 
 ### Patch Changes
