@@ -28,13 +28,13 @@ jobs:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
           secrets_name: |-
-            JENKINS_BUILD_CLIENT_ID:toptal-ci/JENKINS_BUILD_CLIENT_ID
-            JENKINS_BUILD_URL:toptal-ci/JENKINS_BUILD_URL
+            JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
+            JENKINS_URL:toptal-ci/JENKINS_URL
             JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
-            TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
+            TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
 
       - name: Parse secrets
@@ -152,10 +152,10 @@ jobs:
       - name: Create Jira deployment
         uses: ./.github/actions/create-jira-deployment/
         with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
           jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.GITHUB_TOKEN }}
           environment: development

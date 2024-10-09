@@ -43,13 +43,13 @@ jobs:
             TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
             TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
-            TOPTAL_TRIGGERBOT_BUILD_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_BUILD_TOKEN
+            TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
             JENKINS_DEPLOYMENT_CLIENT_ID:toptal-ci/JENKINS_DEPLOYMENT_CLIENT_ID
             JENKINS_DEPLOYMENT_URL:toptal-ci/JENKINS_DEPLOYMENT_URL
-            JENKINS_BUILD_CLIENT_ID:toptal-ci/JENKINS_BUILD_CLIENT_ID
-            JENKINS_BUILD_URL:toptal-ci/JENKINS_BUILD_URL
+            JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
+            JENKINS_URL:toptal-ci/JENKINS_URL
             JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
 
       - name: Parse secrets
@@ -65,7 +65,7 @@ jobs:
           echo "SLACK_BOT_TOKEN=${{ steps.parse_secrets.outputs.SLACK_BOT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
-          echo "TOPTAL_JENKINS_BUILD_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}" >> $GITHUB_ENV
+          echo "TOPTAL_JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo 'GCR_ACCOUNT_KEY<<EOF' >> $GITHUB_ENV
           echo '${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}' >> $GITHUB_ENV
@@ -225,10 +225,10 @@ jobs:
         uses: ./.github/actions/create-jira-deployment/
         if: ${{ steps.changesets.outputs.published == 'true' }}
         with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_URL }}
+          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_BUILD_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_BUILD_CLIENT_ID }}
+          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
+          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
           jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.DEVBOT_TOKEN }}
           environment: production
