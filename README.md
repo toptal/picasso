@@ -74,6 +74,7 @@ yarn test:integration:ci
 | **build:storybook**         | Build Storybook as static website                                                   |
 | **generate:component**      | Generate a new component template                                                   |
 | **generate:example**        | Generate a new component component code example                                     |
+| **generate:package**        | Generate a new package                                    |
 | **generate:svg-components** | [Generate JSX components from SVGs](#adding-icons-and-pictograms)                   |
 | **generate:icons**          | [Generate JSX components from SVGs (only icons)](#adding-icons-and-pictograms)      |
 | **generate:pictograms**     | [Generate JSX components from SVGs (only pictograms)](#adding-icons-and-pictograms) |
@@ -123,45 +124,7 @@ After Picasso will be released with your changes you can start using your icons 
 
 ## Adding new packages
 
-1. Create a new folder under `/packages` and add to it:
-
-   - `package.json` by running `lerna add`. Specify `Toptal` as the author and `src/index.ts` in the `main` key
-   - `tsconfig.build.json` using this template with paths to the `node_modules` of any used packages from the `/packages` directory
-
-   ```json
-   {
-     "extends": "../../tsconfig.build.json",
-     "compilerOptions": {
-       "outDir": "./build",
-       "paths": {
-         "@toptal/picasso/*": ["node_modules/@toptal/picasso/src/*"],
-         "@toptal/picasso": ["node_modules/@toptal/picasso/src/index"]
-       }
-     },
-     "include": ["./src/**/*"],
-     "exclude": [
-       "**/*.example.jsx",
-       "**/*.example.tsx",
-       "**/test.jsx",
-       "**/test.tsx"
-     ]
-   }
-   ```
-
-   - `CHANGELOG.md` using this template (All notable changes to the package will be documented in this file automatically)
-
-   ```md
-   # Change Log
-
-   All notable changes to this project will be documented in this file.
-   ```
-
-2. Add the new package to:
-
-   - the `paths` key in `/tsconfig.json`
-   - the `alias` key in `/.storybook/main.js`
-   - the `imports` variable in `/.storybook/components/CodeExample/CodeExample.tsx`
-   - the new record to Dockerfile
+Run `yarn generate:package` and follow the instructions.
 
 ## Linking with other projects
 

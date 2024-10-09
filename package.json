@@ -27,6 +27,7 @@
     "clean": "yarn cache clean && nx reset && find . -type d -name \"node_modules\" -exec rm -rf '{}' +",
     "generate:component": "davinci-code new component",
     "generate:example": "davinci-code new example",
+    "generate:package": "hygen package new",
     "generate:icons": "./bin/generate-components-from-svg icon",
     "generate:pictograms": "./bin/generate-components-from-svg pictogram",
     "generate:svg-components": "yarn generate:icons && yarn generate:pictograms",
