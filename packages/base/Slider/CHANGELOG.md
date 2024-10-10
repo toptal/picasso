@@ -1,5 +1,18 @@
 # @toptal/picasso-slider
 
+## 4.0.3
+
+### Patch Changes
+
+- [#4572](https://github.com/toptal/picasso/pull/4572) [`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### Slider
+
+- fix initial position of Tooltip
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+  - @toptal/picasso-tooltip@2.0.1
+
 ## 4.0.2
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @toptal/picasso-user-badge
 
+## 5.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+  - @toptal/picasso-avatar@6.1.5
+  - @toptal/picasso-container@3.1.1
+  - @toptal/picasso-typography@4.0.2
+  - @toptal/picasso-tailwind-merge@2.0.2
+
 ## 5.1.5
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @toptal/picasso-carousel
 
+## 4.0.14
+
+### Patch Changes
+
+- [#4572](https://github.com/toptal/picasso/pull/4572) [`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+- refactor useOnScreen usage after the breaking change
+
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+  - @toptal/picasso-button@4.0.14
+  - @toptal/picasso-container@3.1.1
+  - @toptal/picasso-icons@1.8.1
+
 ## 4.0.13
 
 ### Patch Changes

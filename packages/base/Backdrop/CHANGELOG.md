@@ -1,5 +1,13 @@
 # @toptal/picasso-backdrop
 
+## 1.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+  - @toptal/picasso-fade@1.0.7
+
 ## 1.0.7
 
 ### Patch Changes

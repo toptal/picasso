@@ -1,5 +1,19 @@
 # @toptal/picasso-drawer
 
+## 3.0.25
+
+### Patch Changes
+
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+  - @toptal/picasso-backdrop@1.0.8
+  - @toptal/picasso-button@4.0.14
+  - @toptal/picasso-container@3.1.1
+  - @toptal/picasso-icons@1.8.1
+  - @toptal/picasso-paper@4.0.2
+  - @toptal/picasso-slide@1.0.2
+  - @toptal/picasso-typography@4.0.2
+
 ## 3.0.24
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # @toptal/picasso-select
 
+## 4.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+  - @toptal/picasso-container@3.1.1
+  - @toptal/picasso-form@6.1.4
+  - @toptal/picasso-icons@1.8.1
+  - @toptal/picasso-input@4.0.12
+  - @toptal/picasso-input-adornment@3.0.5
+  - @toptal/picasso-loader@3.0.2
+  - @toptal/picasso-menu@3.0.10
+  - @toptal/picasso-outlined-input@4.0.12
+  - @toptal/picasso-popper@1.0.5
+  - @toptal/picasso-typography@4.0.2
+
 ## 4.0.11
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @toptal/picasso-empty-state
 
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-container@3.1.1
+  - @toptal/picasso-icons@1.8.1
+  - @toptal/picasso-typography@4.0.2
+
 ## 2.0.7
 
 ### Patch Changes

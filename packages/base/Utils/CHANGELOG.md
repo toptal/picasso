@@ -1,5 +1,20 @@
 # @toptal/picasso-utils
 
+## 3.0.0
+
+### Major Changes
+
+- [#4572](https://github.com/toptal/picasso/pull/4572) [`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498) Thanks [@TomasSlama](https://github.com/TomasSlama)!
+
+### useOnScreen
+
+- change return value of the hook to let component know when the oberver starts observing
+
+```diff
+-const isOnScreen = useOnScreen({...})
++const { isOnScreen, isObserved } = useOnScreen({...})
+```
+
 ## 2.0.0
 
 ### Major Changes
