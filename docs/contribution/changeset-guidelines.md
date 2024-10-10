@@ -29,6 +29,9 @@ The same as commits, we write changeset in `present simple`.
 
 Please use this format:
 
+> [!NOTE]
+> If the version bump is major, please also add `'@toptal/picasso': patch | minor | major` and don't forget to include the heading to have the changeset comments visible in the Picasso patch release notes. This is required for packages that Picasso depends on, usually these packages have name like `@toptal/picasso-package-name`.
+
 ```
 ---
 '@toptal/[package]': [version bump]
