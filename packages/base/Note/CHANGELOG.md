@@ -1,5 +1,14 @@
 # @toptal/picasso-note
 
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-container@3.1.1
+  - @toptal/picasso-typography@4.0.2
+  - @toptal/picasso-tailwind-merge@2.0.2
+
 ## 4.0.2
 
 ### Patch Changes

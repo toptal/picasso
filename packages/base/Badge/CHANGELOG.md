@@ -1,5 +1,12 @@
 # @toptal/picasso-badge
 
+## 3.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`0dbab90`](https://github.com/toptal/picasso/commit/0dbab90237a18e15e092355bb2f894395148e498)]:
+  - @toptal/picasso-utils@3.0.0
+
 ## 3.0.2
 
 ### Patch Changes

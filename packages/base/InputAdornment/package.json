@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-input-adornment",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Toptal UI components library - InputAdornment",
   "publishConfig": {
     "access": "public"
@@ -22,10 +22,10 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-container": "3.1.0",
-    "@toptal/picasso-icons": "1.8.0",
+    "@toptal/picasso-container": "3.1.1",
+    "@toptal/picasso-icons": "1.8.1",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-utils": "2.0.0"
+    "@toptal/picasso-utils": "3.0.0"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -41,7 +41,7 @@
     "./styles": "./dist-package/src/styles.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "2.0.1",
+    "@toptal/picasso-tailwind-merge": "2.0.2",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [
