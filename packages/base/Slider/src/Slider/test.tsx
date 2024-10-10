@@ -1,29 +1,23 @@
-import type { ReactNode } from 'react'
 import { describe, expect, it } from '@jest/globals'
 import React from 'react'
 import type { RenderResult } from '@testing-library/react'
 import { render } from '@testing-library/react'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 
-jest.mock('@toptal/picasso-utils', () => ({
-  ...jest.requireActual('@toptal/picasso-utils'),
-  useOnScreen: jest.fn().mockRejectedValueOnce(true),
-}))
-
 import type { Props } from './Slider'
 import { Slider } from './Slider'
 
-const renderSlider = (children: ReactNode, props: OmitInternalProps<Props>) => {
+const renderSlider = (props: OmitInternalProps<Props>) => {
   const { value } = props
 
-  return render(<Slider value={value}>{children}</Slider>)
+  return render(<Slider value={value} />)
 }
 
 describe('Slider', () => {
   let api: RenderResult
 
   beforeEach(() => {
-    api = renderSlider(null, {})
+    api = renderSlider({})
   })
 
   it('renders', () => {
@@ -33,7 +27,7 @@ describe('Slider', () => {
   })
 
   it('with initial value', () => {
-    const { container } = renderSlider(null, { value: 4 })
+    const { container } = renderSlider({ value: 4 })
 
     expect(container).toMatchSnapshot()
   })

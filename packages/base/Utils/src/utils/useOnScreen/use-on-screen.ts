@@ -13,13 +13,15 @@ const useOnScreen = ({
   rootMargin,
   threshold,
 }: UseOnScreenProps) => {
-  const [isIntersecting, setIntersecting] = useState(false)
+  const [isOnScreen, setIsOnScreen] = useState(false)
+  const [isObserved, setObserved] = useState(false)
 
   const observer = useMemo(
     () =>
       new IntersectionObserver(
         ([entry]) => {
-          setIntersecting(entry.isIntersecting)
+          setIsOnScreen(entry.isIntersecting)
+          setObserved(true)
         },
         {
           root: root?.current,
@@ -44,7 +46,7 @@ const useOnScreen = ({
     }
   }, [observer, ref])
 
-  return isIntersecting
+  return { isOnScreen, isObserved }
 }
 
 export default useOnScreen

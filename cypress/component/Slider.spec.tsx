@@ -36,6 +36,7 @@ describe('Slider', () => {
   it('renders range with tooltips intersect', () => {
     cy.mount(<TestSlider value={[10, 11]} tooltipFormat={renderLabel} />)
 
+    cy.contains('GMT+10:00').should('be.visible')
     cy.get('body').happoScreenshot({
       component,
       variant: 'range/when-tooltip-intersect',

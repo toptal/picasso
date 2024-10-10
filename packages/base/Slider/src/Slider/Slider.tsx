@@ -84,20 +84,23 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const sliderRef = useCombinedRefs<HTMLElement>(ref, useRef<HTMLElement>(null))
-  const { isPartiallyOverlapped, handleValueLabelOnRender } = useLabelOverlap({
-    value,
-  })
-
-  const isThumbHidden =
-    hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
   // The rootMargin is not working correctly in the storybooks iframe
   // To test properly we can open the iframe in new window
-  const isContainerOnScreen = useOnScreen({
+  const { isOnScreen, isObserved } = useOnScreen({
     ref: containerRef,
     rootMargin: '-24px 0px 0px 0px',
     threshold: 1,
   })
+
+  const { isPartiallyOverlapped, handleValueLabelOnRender } = useLabelOverlap({
+    value,
+    // until IntersectionObserver starts observing the element, we don't render the tooltip
+    isTooltipRendered: isObserved,
+  })
+
+  const isThumbHidden =
+    hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
   return (
     <div
@@ -153,9 +156,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
             ),
           },
           valueLabel: {
-            tooltip,
+            tooltip: isObserved ? tooltip : 'off',
             onRender: handleValueLabelOnRender,
-            yPlacement: isContainerOnScreen ? 'top' : 'bottom',
+            yPlacement: isOnScreen ? 'top' : 'bottom',
             isOverlaped: isPartiallyOverlapped,
           },
         }}
