@@ -1,5 +1,15 @@
 # @toptal/picasso-number-input
 
+## 4.0.13
+
+### Patch Changes
+
+- [#4604](https://github.com/toptal/picasso/pull/4604) [`1ba3f82`](https://github.com/toptal/picasso/commit/1ba3f82802f018025ef899746a7914c5777354d2) Thanks [@sashuk](https://github.com/sashuk)!
+
+### NumberInput
+
+- restore `type=button` in number input controls
+
 ## 4.0.12
 
 ### Patch Changes
