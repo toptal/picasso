@@ -24,6 +24,7 @@ exports[`NumberInput renders 1`] = `
       >
         <button
           class="flex relative items-center justify-center align-middle p-0 bottom-0 cursor-pointer text-graphite decoration-graphite bg-inherit bg-transparent border-t border-b border-l border-r border-l border-r border-l-gray border-r hover:bg-gray hover:border-gray [&+&]:border-t [&+&]:border-solid [&+&]:border-t-gray active:[&+&]:border-t active:[&+&]:border-t active:[&+&]:border-gray active:bg-gray active:border-t-gray [&:first-child]:rounded-tr [&:last-child]:rounded-br transition-[color,_border,_background] ease-out duration-350 h-4 w-[1.625rem]"
+          type="button"
         >
           <svg
             class="PicassoSvgArrowUpMinor16-root"
@@ -37,6 +38,7 @@ exports[`NumberInput renders 1`] = `
         </button>
         <button
           class="flex relative items-center justify-center align-middle p-0 bottom-0 cursor-pointer text-graphite decoration-graphite bg-inherit bg-transparent border-t border-b border-l border-r border-l border-r border-l-gray border-r hover:bg-gray hover:border-gray [&+&]:border-t [&+&]:border-solid [&+&]:border-t-gray active:[&+&]:border-t active:[&+&]:border-t active:[&+&]:border-gray active:bg-gray active:border-t-gray [&:first-child]:rounded-tr [&:last-child]:rounded-br transition-[color,_border,_background] ease-out duration-350 h-4 w-[1.625rem]"
+          type="button"
         >
           <svg
             class="PicassoSvgArrowDownMinor16-root"
