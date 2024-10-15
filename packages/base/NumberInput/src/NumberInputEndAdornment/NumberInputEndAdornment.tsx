@@ -157,6 +157,7 @@ export const NumberInputEndAdornment = (props: Props) => {
     <InputAdornment position='end'>
       <Container flex direction='column' inline>
         <button
+          type='button'
           disabled={disabled}
           className={rootClassName}
           onClick={handleUpClick}
@@ -165,6 +166,7 @@ export const NumberInputEndAdornment = (props: Props) => {
         </button>
 
         <button
+          type='button'
           disabled={disabled}
           className={rootClassName}
           onClick={handleDownClick}
