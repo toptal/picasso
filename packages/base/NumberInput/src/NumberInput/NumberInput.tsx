@@ -23,6 +23,8 @@ export interface Props
   max?: number | string
   /** Next value of the `input` element will be calculated based on step */
   step?: number | string
+  /** Enable value change on mouse wheel */
+  enableChangeOnMouseWheel?: boolean
   /** Should controls be hidden or not */
   hideControls?: boolean
   /** Specify icon which should be rendered inside NumberInput */
@@ -41,6 +43,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       min = -Infinity,
       max = Infinity,
       hideControls,
+      enableChangeOnMouseWheel,
       value,
       onChange,
       disabled,
@@ -96,6 +99,10 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
           step,
           min,
           max,
+          // TODO: [FX-6102] Add test for wheel event
+          onWheel: enableChangeOnMouseWheel
+            ? undefined
+            : event => event.currentTarget.blur(),
         }}
         width={width}
         onResetClick={onResetClick}
