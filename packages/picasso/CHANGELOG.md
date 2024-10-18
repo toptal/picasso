@@ -1,5 +1,17 @@
 # Change Log
 
+## 53.0.2
+
+### Patch Changes
+
+- [#4606](https://github.com/toptal/picasso/pull/4606) [`2c4c584`](https://github.com/toptal/picasso/commit/2c4c584c72a093ec1b778961d28864ef6fbf5c4d) Thanks [@sashuk](https://github.com/sashuk)!
+
+### NumberInput
+
+- disable value change on mouse wheel (to enable the behavior, use `enableMouseWheelChange` prop)
+- Updated dependencies [[`2c4c584`](https://github.com/toptal/picasso/commit/2c4c584c72a093ec1b778961d28864ef6fbf5c4d)]:
+  - @toptal/picasso-number-input@4.0.14
+
 ## 53.0.1
 
 ### Patch Changes

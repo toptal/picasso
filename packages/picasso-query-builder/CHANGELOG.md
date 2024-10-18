@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 8.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`2c4c584`](https://github.com/toptal/picasso/commit/2c4c584c72a093ec1b778961d28864ef6fbf5c4d)]:
+  - @toptal/picasso-number-input@4.0.14
+
 ## 8.0.5
 
 ### Patch Changes
