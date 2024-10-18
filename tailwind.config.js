@@ -1,6 +1,3 @@
-// Ignore missing imports as packages are definitely present in the project
-/* eslint-disable import/no-extraneous-dependencies */
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,6 +7,7 @@ module.exports = {
   presets: [
     require('@toptal/base-tailwind'),
     require('@toptal/picasso-tailwind'),
+    require('@toptal/caliber-tailwind'),
   ],
   corePlugins: {
     preflight: false,
