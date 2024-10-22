@@ -42,6 +42,8 @@ export const NumberInput = (props: Props) => {
 
   return (
     <InputField<NumberInputProps>
+      min={min}
+      max={max}
       {...rest}
       validate={composeValidators([validateNumberLimits, validate])}
       label={
