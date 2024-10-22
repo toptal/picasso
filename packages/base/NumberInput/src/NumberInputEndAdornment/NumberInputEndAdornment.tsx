@@ -132,14 +132,15 @@ export const NumberInputEndAdornment = (props: Props) => {
     p-0 bottom-0 cursor-pointer
 
     text-graphite-700 decoration-graphite-700 bg-inherit bg-transparent
-    
-    border-t-0 border-b-0 border-l border-r border-l-solid border-r-solid 
+
+    border-y-0 border-x border-x-solid
     border-l-gray-400 border-r-transparent
-    
+
     hover:bg-gray-400 hover:border-gray-400
 
-    [&+&]:border-t [&+&]:border-solid 
-    [&+&]:border-t-gray-400 
+    [&]:border-solid
+    [&+&]:border-t [&+&]:border-solid
+    [&+&]:border-t-gray-400
 
     active:[&+&]:border-t active:[&+&]:border-t-solid 
     active:[&+&]:border-gray-500
