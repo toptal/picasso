@@ -1,5 +1,17 @@
 # Change Log
 
+## 53.0.3
+
+### Patch Changes
+
+- [#4608](https://github.com/toptal/picasso/pull/4608) [`980c0ae`](https://github.com/toptal/picasso/commit/980c0ae9e111d73a114b5b52ed640ce3972ef6d6) Thanks [@sashuk](https://github.com/sashuk)!
+
+### NumberInput
+
+- fix border rendering for controls
+- Updated dependencies [[`980c0ae`](https://github.com/toptal/picasso/commit/980c0ae9e111d73a114b5b52ed640ce3972ef6d6)]:
+  - @toptal/picasso-number-input@4.0.15
+
 ## 53.0.2
 
 ### Patch Changes
