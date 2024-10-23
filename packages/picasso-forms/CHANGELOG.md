@@ -1,5 +1,12 @@
 # Change Log
 
+## 73.0.19
+
+### Patch Changes
+
+- [#4610](https://github.com/toptal/picasso/pull/4610) [`a1dc51e`](https://github.com/toptal/picasso/commit/a1dc51efdbd224f15f043f24f9d637de4fa562e0) Thanks [@sashuk](https://github.com/sashuk)!
+- pass min and max to number input in forms
+
 ## 73.0.18
 
 ### Patch Changes
