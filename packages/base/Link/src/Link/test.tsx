@@ -165,7 +165,7 @@ describe('calculateViewModel', () => {
       }
       const result = calculateViewModel(props)
 
-      expect(result.className).toContain('cursor-not-allowed')
+      expect(result.className).toContain('cursor-pointer')
       expect(result.href).toBeUndefined()
       expect(result.target).toBeUndefined()
       expect(result.onClick).toBeUndefined()

@@ -21,7 +21,7 @@ exports[`Link when disabled renders disabled link 1`] = `
   >
     <a
       aria-disabled="true"
-      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-gray underline cursor-not"
+      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-gray underline cursor-pointer"
       download="filename"
       rel="noopener"
     >
@@ -37,7 +37,7 @@ exports[`Link when native attributes are provided renders native attributes 1`] 
     class="Picasso-root"
   >
     <a
-      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline"
+      class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline cursor-pointer"
       download="filename"
       href="https://toptal.com/filename.txt"
       rel="noopener"
