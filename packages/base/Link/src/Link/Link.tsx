@@ -83,18 +83,30 @@ export type Props = BaseProps &
 const defaultColor = 'blue'
 const defaultVariant = 'anchor'
 
-export const Link: OverridableComponent<Props> = forwardRef<
-  HTMLAnchorElement,
-  Props
->(function Link(props, ref) {
+type ViewModel = {
+  className: string
+  href?: string
+  target?: string
+  color?: 'inherit'
+  rel?: string
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void
+  weight: 'inherit' | 'semibold'
+  style?: React.CSSProperties
+  tabIndex?: number
+  as: Props['as']
+  ariaDisabled?: boolean
+  nativeHTMLAttributes: Omit<Props, keyof BaseProps>
+}
+
+/* eslint-disable complexity */
+export const calculateViewModel = (props: Props): ViewModel => {
   const {
     href,
     onClick,
-    children,
     className,
+    as = 'a',
     color: inputColor = 'blue',
     style,
-    as = 'a',
     variant: inputVariant = 'anchor',
     tabIndex,
     target,
@@ -103,9 +115,9 @@ export const Link: OverridableComponent<Props> = forwardRef<
     visited = false,
     noUnderline,
     'aria-disabled': ariaDisabled,
-    ...rest
+    ...nativeHTMLAttributes
   } = props
-  const nativeHTMLAttributes = rest
+
   const sanitizedRel = sanitizeRel(rel, target)
 
   // When Link is used as={Link}, TypeScript can't ensure the input to the Link is compatible with its Props type.
@@ -114,36 +126,58 @@ export const Link: OverridableComponent<Props> = forwardRef<
     ? inputVariant
     : defaultVariant
 
+  return {
+    className: twMerge(
+      'focus:outline-none hover:underline leading-[inherit]',
+      COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
+      disabled ? 'cursor-not-allowed' : '',
+      noUnderline ? '!no-underline' : '',
+      visited
+        ? color === 'blue'
+          ? 'visited text-purple-500'
+          : 'visited text-gray-500'
+        : '',
+      onClick || href ? 'cursor-pointer' : '',
+      className
+    ),
+    href: disabled ? undefined : href,
+    target: disabled ? undefined : target,
+    rel: sanitizedRel,
+    onClick: disabled ? undefined : onClick,
+    weight: variant === 'action' ? 'semibold' : 'inherit',
+    color: 'inherit',
+    style,
+    tabIndex,
+    as,
+    ariaDisabled: disabled || ariaDisabled,
+    nativeHTMLAttributes,
+  }
+}
+
+export const Link: OverridableComponent<Props> = forwardRef<
+  HTMLAnchorElement,
+  Props
+>(function Link(props, ref) {
+  const viewModel = calculateViewModel(props)
+
   return (
     <Typography
-      {...nativeHTMLAttributes}
+      {...viewModel.nativeHTMLAttributes}
       ref={ref}
-      as={as}
+      as={viewModel.as}
       // @ts-expect-error Typography is incompatible with href prop
-      href={disabled ? undefined : href}
-      target={disabled ? undefined : target}
-      rel={sanitizedRel}
-      onClick={disabled ? undefined : onClick}
-      color='inherit'
-      weight={variant === 'action' ? 'semibold' : 'inherit'}
-      className={twMerge(
-        'focus:outline-none hover:underline leading-[inherit]',
-        COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
-        disabled ? 'cursor-not-allowed' : '',
-        noUnderline ? '!no-underline' : '',
-        visited
-          ? color === 'blue'
-            ? 'visited text-purple-500'
-            : 'visited text-gray-500'
-          : '',
-        onClick || href ? 'cursor-pointer' : '',
-        className
-      )}
-      style={style}
-      tabIndex={tabIndex}
-      aria-disabled={disabled || ariaDisabled}
+      href={viewModel.href}
+      target={viewModel.target}
+      rel={viewModel.rel}
+      onClick={viewModel.onClick}
+      color={viewModel.color}
+      weight={viewModel.weight}
+      className={viewModel.className}
+      style={viewModel.style}
+      tabIndex={viewModel.tabIndex}
+      aria-disabled={viewModel.ariaDisabled}
     >
-      {children}
+      {props.children}
     </Typography>
   )
 })
