@@ -44,7 +44,7 @@ The following is a set of guidelines for contributing to Picasso and its package
 
 Picasso is an internal company open source project &mdash; yes we just invented this approach 😄, which should help everyone inside Toptal to focus on their work and forgot about issues with design sync-up, repeating same implementations of UI/UX patterns, and follow same conventions in all FE projects.
 
-Picasso is considered as project of everyone but on the top of that `Frontend Experience` team has ownership of all code and we are maintaining and keeping consistency and quality on highest level.
+Picasso is collectively owned, so all of us maintain and keep consistency and quality on highest level.
 
 ### IMPORTANT: Design decisions
 
@@ -54,11 +54,7 @@ We try to have everything inside `Picasso` synced with latest design proposal ca
 
 - Make sure tests pass by running `yarn test`
 
-- When your PR is opened, `contribution` label will be added and a ticket will be created automatically with high priority on `Frontend Experience` Kanban board. It will be reviewed by the team as soon as possible.
-
-- You can also use `@toptal-anvil ping reviewers` to ping the reviewers back to get their approvals after resolving the stated issues.
-
-- In case of an emergency, ask for review in [#-frontend-exp-core](https://toptal-core.slack.com/archives/CERF5NHT3)
+- You can also use `@toptal-anvil ping reviewers` to ping the reviewers back to get their approvals after resolving the stated issues
 
 ### Your first contribution
 
