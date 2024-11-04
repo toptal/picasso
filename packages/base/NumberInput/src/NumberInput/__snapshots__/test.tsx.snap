@@ -10,8 +10,8 @@ exports[`NumberInput renders 1`] = `
     <input
       aria-invalid="false"
       class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 [&::-webkit-outer-spin-button]:appearance [&::-webkit-outer-spin-button]:m [&::-webkit-inner-spin-button]:appearance [&::-webkit-inner-spin-button]:m [-moz"
-      max="100"
-      min="-100"
+      max="Infinity"
+      min="-Infinity"
       step="5"
       type="number"
       value="10"
