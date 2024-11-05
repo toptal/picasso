@@ -97,13 +97,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         inputProps={{
           ...rest,
           step,
-          /*
-          Set "max" and "min" to Infinity and -Infinity to
-          - keep same width calculation for the input as before to avoid breaking visuals ("max" and "min" were always set to Infinity before)
-          - prevent browser from doing a step validation on submit (see the https://developer.mozilla.org/en-US/docs/Web/API/ValidityState/stepMismatch for details)
-          */
-          min: -Infinity,
-          max: Infinity,
           // TODO: [FX-6102] Add test for wheel event
           onWheel: enableChangeOnMouseWheel
             ? undefined
