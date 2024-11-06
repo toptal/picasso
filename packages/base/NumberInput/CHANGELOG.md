@@ -1,5 +1,15 @@
 # @toptal/picasso-number-input
 
+## 4.0.16
+
+### Patch Changes
+
+- [#4619](https://github.com/toptal/picasso/pull/4619) [`1cafabe`](https://github.com/toptal/picasso/commit/1cafabe2e3926a5332f6cc106826cf9b1b8b73b1) Thanks [@sashuk](https://github.com/sashuk)!
+
+### NumberInput
+
+- do not pass min and max to HTML number input
+
 ## 4.0.15
 
 ### Patch Changes
