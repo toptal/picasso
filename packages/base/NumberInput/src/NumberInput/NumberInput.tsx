@@ -97,8 +97,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         inputProps={{
           ...rest,
           step,
-          min,
-          max,
           // TODO: [FX-6102] Add test for wheel event
           onWheel: enableChangeOnMouseWheel
             ? undefined

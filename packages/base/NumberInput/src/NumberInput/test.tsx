@@ -42,7 +42,7 @@ describe('NumberInput', () => {
     expect(container.firstChild).toMatchSnapshot()
   })
 
-  it('increase value', async () => {
+  it('increases value by step', async () => {
     const { getByDisplayValue, queryAllByRole } = renderNumberInput()
 
     const input = getByDisplayValue('10') as HTMLInputElement
@@ -55,7 +55,7 @@ describe('NumberInput', () => {
     expect(input.value).toBe('15')
   })
 
-  it('decrease value', () => {
+  it('decreases value by step', () => {
     const { getByDisplayValue, queryAllByRole } = renderNumberInput()
 
     const input = getByDisplayValue('10') as HTMLInputElement
