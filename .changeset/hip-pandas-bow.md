@@ -10,14 +10,10 @@
 
 - display reset button on hover of full width of the input
 
----
-
 ### Select
 
-- implicit update from Input
-
----
+- implicit update from input
 
 ### Autocomplete
 
-- implicit update from Input
+- implicit update from input
