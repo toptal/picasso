@@ -96,7 +96,7 @@ export const rootBasicClasses = [
   'items-center',
   'rounded-sm',
   '[font-size:_unset]',
-  'hover:[&_.resetButtonDirty]:visible',
+  'group',
   'text-nowrap',
 ]
 
