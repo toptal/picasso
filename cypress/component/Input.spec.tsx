@@ -45,4 +45,21 @@ describe('Input', () => {
       variant: 'error-status/after-focused',
     })
   })
+
+  it('shows the `X` when hover over the input', () => {
+    cy.mount(
+      <Container padded='small'>
+        <Input
+          enableReset
+          value='Text'
+          testIds={{ resetButton: 'reset-button' }}
+        />
+      </Container>
+    )
+
+    cy.getByTestId('reset-button').should('not.be.visible')
+    // making sure that we hover over the very end of the input not just the text of the input
+    cy.getByTestId('reset-button').realHover()
+    cy.getByTestId('reset-button').should('be.visible')
+  })
 })

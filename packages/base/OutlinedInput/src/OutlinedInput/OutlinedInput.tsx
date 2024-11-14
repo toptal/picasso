@@ -34,7 +34,7 @@ const ResetButton = ({
     position='end'
     className={twJoin(
       'invisible',
-      hasValue && 'peer-focus:visible peer-hover:visible'
+      hasValue && 'peer-focus:visible peer-active:visible group-hover:visible'
     )}
   >
     <ButtonCircular
