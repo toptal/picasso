@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "5.0.0",
-    "@babel/types": "^7.20.7"
+    "@babel/types": "^7.26.0"
   },
   "files": [
     "dist-package/**",
