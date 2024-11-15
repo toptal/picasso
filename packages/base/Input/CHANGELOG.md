@@ -1,5 +1,27 @@
 # @toptal/picasso-input
 
+## 4.0.13
+
+### Patch Changes
+
+- [#4622](https://github.com/toptal/picasso/pull/4622) [`b3868a1`](https://github.com/toptal/picasso/commit/b3868a1c174d9567b4d1638089ea5ab5f941f252) Thanks [@george-aidonidis](https://github.com/george-aidonidis)!
+
+---
+
+### Input
+
+- display reset button on hover of full width of the input
+
+### Select
+
+- implicit update from input
+
+### Autocomplete
+
+- implicit update from input
+- Updated dependencies [[`b3868a1`](https://github.com/toptal/picasso/commit/b3868a1c174d9567b4d1638089ea5ab5f941f252)]:
+  - @toptal/picasso-outlined-input@4.0.13
+
 ## 4.0.12
 
 ### Patch Changes
