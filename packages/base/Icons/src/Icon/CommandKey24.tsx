@@ -1,0 +1,65 @@
+import type { Ref } from 'react'
+import React, { forwardRef } from 'react'
+import cx from 'classnames'
+import { makeStyles } from '@material-ui/core/styles'
+import type { StandardProps } from '@toptal/picasso-shared'
+import { kebabToCamelCase } from '@toptal/picasso-utils'
+
+import styles from './styles'
+const BASE_SIZE = 24
+
+type ScaleType = 1 | 2 | 3 | 4
+export interface Props extends StandardProps {
+  scale?: ScaleType
+  color?: string
+  base?: number
+}
+const useStyles = makeStyles(styles, {
+  name: 'PicassoSvgCommandKey24',
+})
+const SvgCommandKey24 = forwardRef(function SvgCommandKey24(
+  props: Props,
+  ref: Ref<SVGSVGElement>
+) {
+  const {
+    className,
+    style = {},
+    color,
+    scale,
+    base,
+    'data-testid': testId,
+  } = props
+  const classes: Record<string, string> = useStyles(props)
+  const classNames = [classes.root, className]
+  const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
+  const colorClassName = kebabToCamelCase(`${color}`)
+
+  if (classes[colorClassName]) {
+    classNames.push(classes[colorClassName])
+  }
+
+  const svgStyle = {
+    minWidth: `${scaledSize}px`,
+    minHeight: `${scaledSize}px`,
+    ...style,
+  }
+
+  return (
+    <svg
+      fill='none'
+      viewBox='0 0 24 24'
+      className={cx(...classNames)}
+      style={svgStyle}
+      ref={ref}
+      data-testid={testId}
+    >
+      <path
+        fillRule='evenodd'
+        d='M4.933 2.056c-1.018.195-1.785.691-2.333 1.51-.405.606-.572 1.17-.572 1.934 0 .765.167 1.328.575 1.938.54.808 1.355 1.33 2.347 1.503.256.044.677.059 1.695.059H8v5.994l-1.51.016c-1.627.016-1.686.023-2.338.269-.303.114-.789.435-1.083.715-.285.272-.667.83-.788 1.152-.201.533-.253.812-.253 1.354 0 .765.167 1.328.575 1.938.715 1.07 2.03 1.685 3.265 1.529 1.602-.202 2.797-1.336 3.072-2.915.045-.258.06-.676.06-1.697V16h5.994l.016 1.51c.016 1.629.023 1.686.271 2.344.126.335.514.894.815 1.177.746.697 1.835 1.062 2.791.935.827-.11 1.507-.44 2.073-1.006.57-.57.902-1.26 1.007-2.09.12-.953-.244-2.034-.936-2.774-.283-.301-.842-.689-1.177-.815-.658-.248-.715-.255-2.344-.271L16 14.994V9h1.355c1.021 0 1.439-.015 1.697-.06 1.572-.274 2.701-1.457 2.914-3.055.126-.95-.241-2.047-.935-2.789-.283-.301-.842-.689-1.177-.815-.533-.201-.812-.253-1.354-.253-.764 0-1.328.167-1.934.572-.747.5-1.194 1.139-1.457 2.08-.077.275-.085.428-.099 1.81L14.994 8H9V6.645c0-1.024-.015-1.438-.06-1.699-.292-1.676-1.628-2.854-3.32-2.927a3.299 3.299 0 0 0-.687.037m1.203 1.023c.444.113.758.295 1.108.641.358.354.564.7.676 1.14.073.284.08.444.08 1.726V8H6.586c-1.276 0-1.443-.008-1.722-.079-.457-.117-.757-.293-1.125-.66-.367-.368-.543-.668-.66-1.125a2.655 2.655 0 0 1 .209-1.829c.173-.326.693-.846 1.02-1.019a2.646 2.646 0 0 1 1.828-.209m13 0c.17.043.42.138.557.209.326.173.846.693 1.019 1.019.386.733.379 1.695-.019 2.409-.188.338-.639.789-.977.977-.504.281-.701.307-2.302.307H16V6.586c0-1.581.025-1.779.288-2.279.173-.326.693-.846 1.02-1.019a2.646 2.646 0 0 1 1.828-.209M15 12v3H9V9h6v3m-7 5.414c0 1.6-.026 1.797-.306 2.302-.187.338-.674.822-1.001.995-.718.38-1.666.38-2.386.001-.326-.173-.846-.693-1.019-1.019a2.655 2.655 0 0 1-.209-1.829c.117-.457.293-.757.66-1.125.363-.362.666-.542 1.109-.658.26-.068.447-.077 1.722-.079L8 16v1.414m11.136-1.335c.17.043.42.138.557.209.326.173.846.693 1.019 1.019.386.733.379 1.693-.018 2.409-.187.338-.674.822-1.001.995-.718.38-1.666.38-2.386.001-.326-.173-.846-.693-1.019-1.019-.263-.5-.288-.698-.288-2.279V16h1.414c1.276 0 1.443.008 1.722.079'
+      />
+    </svg>
+  )
+})
+
+SvgCommandKey24.displayName = 'SvgCommandKey24'
+export default SvgCommandKey24
