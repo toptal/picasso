@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.9.0
+
+### Minor Changes
+
+- [#4624](https://github.com/toptal/picasso/pull/4624) [`41357fe`](https://github.com/toptal/picasso/commit/41357fe4ac2d804ce6cb7f1dbc7a8b00e7cb77df) Thanks [@Q-Man](https://github.com/Q-Man)!
+- add icons (`Expand` / `Collapse` / `CommandKey`)
+
 ## 1.8.1
 
 ### Patch Changes
