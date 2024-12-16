@@ -1,5 +1,61 @@
 # Change Log
 
+## 53.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`41357fe`](https://github.com/toptal/picasso/commit/41357fe4ac2d804ce6cb7f1dbc7a8b00e7cb77df)]:
+  - @toptal/picasso-icons@1.9.0
+  - @toptal/picasso-accordion@3.0.14
+  - @toptal/picasso-account-select@3.0.12
+  - @toptal/picasso-alert@3.0.26
+  - @toptal/picasso-application-update-notification@2.0.26
+  - @toptal/picasso-avatar@6.1.6
+  - @toptal/picasso-avatar-upload@3.0.18
+  - @toptal/picasso-breadcrumbs@3.0.6
+  - @toptal/picasso-button@4.0.15
+  - @toptal/picasso-calendar@4.0.15
+  - @toptal/picasso-carousel@4.0.15
+  - @toptal/picasso-date-picker@3.0.14
+  - @toptal/picasso-drawer@3.0.26
+  - @toptal/picasso-dropzone@5.0.14
+  - @toptal/picasso-empty-state@2.0.9
+  - @toptal/picasso-file-input@4.0.13
+  - @toptal/picasso-form@6.1.5
+  - @toptal/picasso-grid@5.0.5
+  - @toptal/picasso-helpbox@5.0.15
+  - @toptal/picasso-input@4.0.14
+  - @toptal/picasso-input-adornment@3.0.6
+  - @toptal/picasso-list@5.0.6
+  - @toptal/picasso-logo@2.0.5
+  - @toptal/picasso-menu@3.0.11
+  - @toptal/picasso-modal@3.0.26
+  - @toptal/picasso-notification@4.0.15
+  - @toptal/picasso-number-input@4.0.18
+  - @toptal/picasso-outlined-input@4.0.14
+  - @toptal/picasso-page@5.1.16
+  - @toptal/picasso-password-input@5.0.14
+  - @toptal/picasso-rating@3.0.6
+  - @toptal/picasso-section@5.0.15
+  - @toptal/picasso-select@4.0.14
+  - @toptal/picasso-show-more@2.0.14
+  - @toptal/picasso-step@4.0.5
+  - @toptal/picasso-table@3.0.15
+  - @toptal/picasso-tabs@5.0.8
+  - @toptal/picasso-tag@4.0.6
+  - @toptal/picasso-timepicker@4.0.14
+  - @toptal/picasso-user-badge@5.1.7
+  - @toptal/picasso-pagination@4.0.15
+  - @toptal/picasso-prompt-modal@2.0.26
+  - @toptal/picasso-skeleton-loader@1.0.51
+  - @toptal/picasso-tree-view@3.0.27
+  - @toptal/picasso-autocomplete@5.0.16
+  - @toptal/picasso-checkbox@5.0.7
+  - @toptal/picasso-radio@5.0.7
+  - @toptal/picasso-switch@4.0.6
+  - @toptal/picasso-tagselector@3.1.16
+  - @toptal/picasso-date-select@1.0.63
+
 ## 53.0.5
 
 ### Patch Changes

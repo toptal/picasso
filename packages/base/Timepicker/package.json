@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-timepicker",
-  "version": "4.0.13",
+  "version": "4.0.14",
   "description": "Toptal UI components library - Timepicker",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.8.1",
-    "@toptal/picasso-input": "4.0.13",
-    "@toptal/picasso-outlined-input": "4.0.13",
+    "@toptal/picasso-icons": "1.9.0",
+    "@toptal/picasso-input": "4.0.14",
+    "@toptal/picasso-outlined-input": "4.0.14",
     "@toptal/picasso-utils": "3.0.0",
     "detect-browser": "^5.3.0",
     "react-input-mask": "^3.0.0-alpha.2"

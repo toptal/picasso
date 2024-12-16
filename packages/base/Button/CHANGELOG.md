@@ -1,5 +1,14 @@
 # @toptal/picasso-button
 
+## 4.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`41357fe`](https://github.com/toptal/picasso/commit/41357fe4ac2d804ce6cb7f1dbc7a8b00e7cb77df)]:
+  - @toptal/picasso-icons@1.9.0
+  - @toptal/picasso-checkbox@5.0.7
+  - @toptal/picasso-radio@5.0.7
+
 ## 4.0.14
 
 ### Patch Changes

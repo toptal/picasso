@@ -1,5 +1,21 @@
 # @toptal/picasso-page
 
+## 5.1.16
+
+### Patch Changes
+
+- Updated dependencies [[`41357fe`](https://github.com/toptal/picasso/commit/41357fe4ac2d804ce6cb7f1dbc7a8b00e7cb77df)]:
+  - @toptal/picasso-icons@1.9.0
+  - @toptal/picasso-accordion@3.0.14
+  - @toptal/picasso-avatar@6.1.6
+  - @toptal/picasso-button@4.0.15
+  - @toptal/picasso-logo@2.0.5
+  - @toptal/picasso-menu@3.0.11
+  - @toptal/picasso-notification@4.0.15
+  - @toptal/picasso-tag@4.0.6
+  - @toptal/picasso-user-badge@5.1.7
+  - @toptal/picasso-autocomplete@5.0.16
+
 ## 5.1.15
 
 ### Patch Changes

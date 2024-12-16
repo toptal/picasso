@@ -1,5 +1,12 @@
 # @toptal/picasso-tree-view
 
+## 3.0.27
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.15
+
 ## 3.0.26
 
 ### Patch Changes
