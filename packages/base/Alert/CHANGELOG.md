@@ -1,5 +1,13 @@
 # @toptal/picasso-alert
 
+## 3.0.27
+
+### Patch Changes
+
+- Updated dependencies [[`bad3a6d`](https://github.com/toptal/picasso/commit/bad3a6dd4dbdfef0a06b47a6e33aa1530eaca8ed)]:
+  - @toptal/picasso-icons@1.10.0
+  - @toptal/picasso-button@4.0.16
+
 ## 3.0.26
 
 ### Patch Changes
