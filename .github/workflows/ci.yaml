@@ -5,7 +5,7 @@ on:
   pull_request:
     branches:
       - master # triggers the flow for every PR to master
-      - "feature/**" # triggers the flow for a PR to a branch like feature/v9
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
 
     types:
       - synchronize # PR was updated
@@ -128,7 +128,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Check missing changeset
         uses: toptal/davinci-github-actions/report-missing-changeset@v15.4.1
@@ -203,7 +203,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies from cache
         uses: toptal/davinci-github-actions/yarn-install@v15.4.1
@@ -294,7 +294,7 @@ jobs:
               "BRANCH": "${{ env.BRANCH }}",
               "PR_ID": "${{ env.PR_ID }}"
             }
-          job_timeout: "3600"
+          job_timeout: '3600'
 
       - name: Create Jira Deployment
         uses: ./.github/actions/create-jira-deployment/
