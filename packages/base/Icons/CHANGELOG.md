@@ -1,5 +1,15 @@
 # @toptal/picasso-icons
 
+## 1.10.0
+
+### Minor Changes
+
+- [#4630](https://github.com/toptal/picasso/pull/4630) [`bad3a6d`](https://github.com/toptal/picasso/commit/bad3a6dd4dbdfef0a06b47a6e33aa1530eaca8ed) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Icon
+
+- add new icons: `Location`, `Objective`, `PendingQueue`, `Playbook`, `ReferralPartners`
+
 ## 1.9.0
 
 ### Minor Changes
