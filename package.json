@@ -171,7 +171,7 @@
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
     "raw-loader": "^4.0.2",
-    "react": "^18.2.0",
+    "react": "^19.0.0",
     "react-ace": "^10.1.0",
     "react-deprecate": "^0.1.0",
     "react-dom": "^18.2.0",
