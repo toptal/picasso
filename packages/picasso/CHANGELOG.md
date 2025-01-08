@@ -1,5 +1,61 @@
 # Change Log
 
+## 53.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`37b95cc`](https://github.com/toptal/picasso/commit/37b95ccd1a28aeb9971f1b8ab27cdcc2190854a8)]:
+  - @toptal/picasso-icons@1.11.0
+  - @toptal/picasso-accordion@3.0.16
+  - @toptal/picasso-account-select@3.0.14
+  - @toptal/picasso-alert@3.0.28
+  - @toptal/picasso-application-update-notification@2.0.28
+  - @toptal/picasso-avatar@6.1.8
+  - @toptal/picasso-avatar-upload@3.0.20
+  - @toptal/picasso-breadcrumbs@3.0.8
+  - @toptal/picasso-button@4.0.17
+  - @toptal/picasso-calendar@4.0.17
+  - @toptal/picasso-carousel@4.0.17
+  - @toptal/picasso-date-picker@3.0.16
+  - @toptal/picasso-drawer@3.0.28
+  - @toptal/picasso-dropzone@5.0.16
+  - @toptal/picasso-empty-state@2.0.11
+  - @toptal/picasso-file-input@4.0.15
+  - @toptal/picasso-form@6.1.7
+  - @toptal/picasso-grid@5.0.7
+  - @toptal/picasso-helpbox@5.0.17
+  - @toptal/picasso-input@4.0.16
+  - @toptal/picasso-input-adornment@3.0.8
+  - @toptal/picasso-list@5.0.8
+  - @toptal/picasso-logo@2.0.7
+  - @toptal/picasso-menu@3.0.13
+  - @toptal/picasso-modal@3.0.28
+  - @toptal/picasso-notification@4.0.17
+  - @toptal/picasso-number-input@4.0.20
+  - @toptal/picasso-outlined-input@4.0.16
+  - @toptal/picasso-page@5.1.18
+  - @toptal/picasso-password-input@5.0.16
+  - @toptal/picasso-rating@3.0.8
+  - @toptal/picasso-section@5.0.17
+  - @toptal/picasso-select@4.0.16
+  - @toptal/picasso-show-more@2.0.16
+  - @toptal/picasso-step@4.0.7
+  - @toptal/picasso-table@3.0.17
+  - @toptal/picasso-tabs@5.0.10
+  - @toptal/picasso-tag@4.0.8
+  - @toptal/picasso-timepicker@4.0.16
+  - @toptal/picasso-user-badge@5.1.9
+  - @toptal/picasso-pagination@4.0.17
+  - @toptal/picasso-prompt-modal@2.0.28
+  - @toptal/picasso-skeleton-loader@1.0.53
+  - @toptal/picasso-tree-view@3.0.29
+  - @toptal/picasso-autocomplete@5.0.18
+  - @toptal/picasso-checkbox@5.0.9
+  - @toptal/picasso-radio@5.0.9
+  - @toptal/picasso-switch@4.0.8
+  - @toptal/picasso-tagselector@3.1.18
+  - @toptal/picasso-date-select@1.0.65
+
 ## 53.0.7
 
 ### Patch Changes

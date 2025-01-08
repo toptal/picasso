@@ -1,5 +1,13 @@
 # @toptal/picasso-modal
 
+## 3.0.28
+
+### Patch Changes
+
+- Updated dependencies [[`37b95cc`](https://github.com/toptal/picasso/commit/37b95ccd1a28aeb9971f1b8ab27cdcc2190854a8)]:
+  - @toptal/picasso-icons@1.11.0
+  - @toptal/picasso-button@4.0.17
+
 ## 3.0.27
 
 ### Patch Changes

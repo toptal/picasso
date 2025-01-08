@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-list",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "description": "Toptal UI components library - List",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "3.1.1",
-    "@toptal/picasso-icons": "1.10.0",
+    "@toptal/picasso-icons": "1.11.0",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.2",
     "@toptal/picasso-utils": "3.0.0",
