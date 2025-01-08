@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:18-alpine
+FROM node:20-alpine
 
 ENV PATH="${PATH}:/app/node_modules/.bin" \
   # Installs Chromium (77) package.

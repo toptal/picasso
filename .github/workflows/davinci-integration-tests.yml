@@ -54,7 +54,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - uses: toptal/davinci-github-actions/yarn-install@v15.4.1
 
@@ -64,7 +64,7 @@ jobs:
       - name: Cache built packages
         uses: actions/cache@v3
         with:
-          path: "packages/**/dist-package"
+          path: 'packages/**/dist-package'
           key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
 
   integration-tests:
@@ -113,14 +113,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - uses: toptal/davinci-github-actions/yarn-install@v15.4.1
 
       - name: Get cached packages
         uses: actions/cache@v3
         with:
-          path: "packages/**/dist-package"
+          path: 'packages/**/dist-package'
           key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
 
       - name: Run integration tests
@@ -172,7 +172,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - uses: toptal/davinci-github-actions/yarn-install@v15.4.1
 
