@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-carousel",
-  "version": "4.0.16",
+  "version": "4.0.17",
   "description": "Toptal UI components library - Carousel",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "4.0.16",
+    "@toptal/picasso-button": "4.0.17",
     "@toptal/picasso-container": "3.1.1",
-    "@toptal/picasso-icons": "1.10.0",
+    "@toptal/picasso-icons": "1.11.0",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "3.0.0",
     "glider-js": "^1.7.8"

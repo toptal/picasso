@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tagselector",
-  "version": "3.1.17",
+  "version": "3.1.18",
   "description": "Toptal UI components library - Tagselector",
   "publishConfig": {
     "access": "public"
@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-autocomplete": "5.0.17",
-    "@toptal/picasso-form": "6.1.6",
-    "@toptal/picasso-outlined-input": "4.0.15",
+    "@toptal/picasso-autocomplete": "5.0.18",
+    "@toptal/picasso-form": "6.1.7",
+    "@toptal/picasso-outlined-input": "4.0.16",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-tag": "4.0.7",
+    "@toptal/picasso-tag": "4.0.8",
     "@toptal/picasso-utils": "3.0.0",
     "classnames": "^2.5.1"
   },

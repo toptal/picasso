@@ -1,5 +1,17 @@
 # @toptal/picasso-autocomplete
 
+## 5.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.1.7
+  - @toptal/picasso-input@4.0.16
+  - @toptal/picasso-input-adornment@3.0.8
+  - @toptal/picasso-menu@3.0.13
+  - @toptal/picasso-outlined-input@4.0.16
+  - @toptal/picasso-select@4.0.16
+
 ## 5.0.17
 
 ### Patch Changes

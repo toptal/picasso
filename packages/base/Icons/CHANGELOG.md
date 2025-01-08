@@ -1,5 +1,15 @@
 # @toptal/picasso-icons
 
+## 1.11.0
+
+### Minor Changes
+
+- [#4634](https://github.com/toptal/picasso/pull/4634) [`37b95cc`](https://github.com/toptal/picasso/commit/37b95ccd1a28aeb9971f1b8ab27cdcc2190854a8) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Icon
+
+- add new icons: `AssociatedOrgUnitJoin16`, `Dashboard`, `Memo`, `ProfileCard`, `Table`, `VideoCall`
+
 ## 1.10.0
 
 ### Minor Changes

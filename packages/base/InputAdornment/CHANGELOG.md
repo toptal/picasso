@@ -1,5 +1,12 @@
 # @toptal/picasso-input-adornment
 
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies [[`37b95cc`](https://github.com/toptal/picasso/commit/37b95ccd1a28aeb9971f1b8ab27cdcc2190854a8)]:
+  - @toptal/picasso-icons@1.11.0
+
 ## 3.0.7
 
 ### Patch Changes
