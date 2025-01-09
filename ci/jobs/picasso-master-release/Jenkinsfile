@@ -200,7 +200,7 @@ pipeline {
 
                 message = "Hey, everything is fine, I wanted to do a release but I didn't find any suitable commits which should trigger a new version."
                 attachments = data.replace('{VERSION}', NEW_VERSION)
-                slackSend color: 'good', channel: '-frontend-exp-team-notifications', attachments: attachments, message: message
+                slackSend color: 'good', channel: 'frontend-notifications', attachments: attachments, message: message
               } else {
                 data = '''[
                   {

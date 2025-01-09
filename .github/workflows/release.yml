@@ -200,14 +200,14 @@ jobs:
           FAILURE_URL: ${{ steps.trigger-deploy.outputs.jenkins_job_url || steps.trigger-build.outputs.jenkins_job_url }}
           FALLBACK_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true
         with:
-          channel-id: "-frontend-exp-team-notifications"
+          channel-id: "frontend-notifications"
           slack-message: ":x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>."
 
       - name: Send a Slack notification on success release
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
         uses: slackapi/slack-github-action@v1.27.0
         with:
-          channel-id: "-frontend-exp-team-notifications"
+          channel-id: "frontend-notifications"
           slack-message: "Current master version of Picasso successfully released :green_heart:"
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
@@ -216,7 +216,7 @@ jobs:
         if: ${{ success() && steps.changesets.outputs.published != 'true'}}
         uses: slackapi/slack-github-action@v1.27.0
         with:
-          channel-id: "-frontend-exp-team-notifications"
+          channel-id: "frontend-notifications"
           slack-message: "A new PR was merged to Picasso :parrotspin:"
         env:
           SLACK_BOT_TOKEN: ${{ env.SLACK_BOT_TOKEN }}
