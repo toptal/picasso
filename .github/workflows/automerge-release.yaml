@@ -44,15 +44,15 @@ jobs:
             const commentBody = "This release pull request will be merged automatically"
 
             await github.rest.issues.createComment({
-              owner: repository.owner,
+              owner: context.repo.owner,
               issue_number: ${{ github.event.number }},
-              repo: repository.repo,
+              repo: context.repo.repo,
               body: commentBody,
             })
 
             await github.rest.pulls.merge({
               merge_method: "squash",
-              owner: repository.owner,
+              owner: context.repo.owner,
               pull_number: ${{ github.event.number }},
-              repo: repository.repo,
+              repo: context.repo.repo,
             })
