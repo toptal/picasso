@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- [#4640](https://github.com/toptal/picasso/pull/4640) [`c61f17e`](https://github.com/toptal/picasso/commit/c61f17eeed2605cd7bd9b0740de1ab505ee409f5) Thanks [@sashuk](https://github.com/sashuk)!
+- add pictograms (`BoxArchiveEmptyStateBacklog`, `PeopleReferralInviteEmptyState`, `ScanHeatmapSiteResearchTest`)
+
 ## 5.0.2
 
 ### Patch Changes
