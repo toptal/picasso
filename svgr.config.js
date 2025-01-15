@@ -16,6 +16,9 @@ const ICON_CLEANUP_CONFIG = {
   },
 }
 
+const ATTRIBUTES_TO_REMOVE_IN_ICONS = '(stroke|width|height|xmlns.*)'
+const ATTRIBUTES_TO_REMOVE_IN_PICTOGRAMS = '(width|height|xmlns.*)'
+
 const getCleanupConfig = svgPath => {
   for (const [key, value] of Object.entries(ICON_CLEANUP_CONFIG)) {
     if (svgPath.indexOf(key) > -1) {
@@ -153,8 +156,30 @@ module.exports = {
       },
       {
         name: 'removeAttrs',
-        params: {
-          attrs: '(stroke|width|height|xmlns.*)',
+        fn: (node, _, info) => {
+          const isPictogram = info.path.indexOf('picasso-pictograms') > -1
+
+          const attrsToRemove = isPictogram
+            ? ATTRIBUTES_TO_REMOVE_IN_PICTOGRAMS
+            : ATTRIBUTES_TO_REMOVE_IN_ICONS
+
+          const traverse = (node) => {
+            if (node.attributes) {
+              Object.keys(node.attributes).forEach((attr) => {
+                if (new RegExp(attrsToRemove).test(attr)) {
+                  delete node.attributes[attr]
+                }
+              })
+            }
+
+            if (node.children) {
+              node.children.forEach(traverse)
+            }
+          }
+
+          traverse(node)
+
+          return node
         },
       },
       {
