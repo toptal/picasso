@@ -49,18 +49,25 @@ const SvgScanHeatmapSiteResearchTestWhite64 = forwardRef(
             opacity={0.3}
           />
           <path
+            stroke='#fff'
             strokeMiterlimit={10}
             d='M12 55.533H2.5c-1.1 0-2-.9-2-2v-43c0-1.1.9-2 2-2h58c1.1 0 2 .9 2 2v43c0 1.1-.9 2-2 2H51M.5 16.533h62M3.5 12.533h2M7 12.533h2M10.5 12.533h2'
           />
           <path
+            stroke='#fff'
             strokeMiterlimit={10}
             d='M31.5 47.533c-6.39 0-12.03 3.16-15.47 8 3.44 4.84 9.08 8 15.47 8 6.39 0 12.03-3.16 15.47-8-3.44-4.84-9.08-8-15.47-8Z'
           />
           <path
+            stroke='#fff'
             strokeMiterlimit={10}
             d='M31.5 61.533a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z'
           />
-          <path strokeMiterlimit={10} d='m29 56.033 1.5 1.5 3.5-3.5' />
+          <path
+            stroke='#fff'
+            strokeMiterlimit={10}
+            d='m29 56.033 1.5 1.5 3.5-3.5'
+          />
         </g>
         <defs>
           <clipPath id='a'>
