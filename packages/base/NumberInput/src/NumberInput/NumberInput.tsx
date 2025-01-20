@@ -78,13 +78,11 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
 
     const endAdornment = hideControls ? (
       customEndAdornment
-    ) : customEndAdornment ? (
+    ) : (
       <>
         {customEndAdornment}
         {defaultEndAdornment}
       </>
-    ) : (
-      defaultEndAdornment
     )
 
     const startAdornment = icon ? (
