@@ -50,6 +50,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       status,
       onResetClick,
       enableReset,
+      endAdornment: customEndAdornment = null,
       width,
       icon,
       size,
@@ -63,7 +64,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
       useRef<HTMLInputElement>(null)
     )
 
-    const endAdornment = hideControls ? null : (
+    const defaultEndAdornment = (
       <NumberInputEndAdornment
         step={step}
         min={min}
@@ -73,6 +74,17 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
         size={size}
         inputRef={inputRef}
       />
+    )
+
+    const endAdornment = hideControls ? (
+      customEndAdornment
+    ) : customEndAdornment ? (
+      <>
+        {customEndAdornment}
+        {defaultEndAdornment}
+      </>
+    ) : (
+      defaultEndAdornment
     )
 
     const startAdornment = icon ? (
