@@ -56,7 +56,7 @@ jobs:
         with:
           node-version: 18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v15.4.1
+      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
 
       - name: Build packages
         run: yarn build:package
@@ -115,7 +115,7 @@ jobs:
         with:
           node-version: 18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v15.4.1
+      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
 
       - name: Get cached packages
         uses: actions/cache@v3
@@ -174,7 +174,7 @@ jobs:
         with:
           node-version: 18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v15.4.1
+      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
 
       - name: Finalize Happo
         run: npx happo-e2e finalize
