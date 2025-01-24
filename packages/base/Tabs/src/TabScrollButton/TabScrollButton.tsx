@@ -1,9 +1,9 @@
-import cx from 'classnames'
 import React, { forwardRef } from 'react'
 import { ButtonBase } from '@material-ui/core'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { BackMinor16, ChevronMinor16 } from '@toptal/picasso-icons'
 import { Container } from '@toptal/picasso-container'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type DirectionType = 'left' | 'right'
 
@@ -26,11 +26,11 @@ export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
       <Container
         {...rest}
         ref={ref}
-        className={cx('relative', className)}
+        className={twMerge('relative', className)}
         style={style}
       >
         <Container
-          className={cx(
+          className={twMerge(
             'absolute w-10 h-full z-10',
             direction === 'left'
               ? 'bg-gradient-to-r from-white via-white to-transparent'
@@ -39,7 +39,7 @@ export const TabScrollButton = forwardRef<HTMLDivElement, Props>(
           )}
         >
           <ButtonBase
-            className={cx(
+            className={twMerge(
               'absolute w-4 h-full',
               direction === 'left' ? 'left-0' : 'right-0'
             )}
