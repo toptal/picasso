@@ -124,7 +124,7 @@
     "react-truncate": "^2.4.0"
   },
   "devDependencies": {
-    "@babel/types": "^7.20.7",
+    "@babel/types": "^7.26.5",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/react-hooks": "^8.0.1",
