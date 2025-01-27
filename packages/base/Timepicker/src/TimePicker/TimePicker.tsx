@@ -50,6 +50,7 @@ export const TimePicker = (props: Props) => {
     className,
     status,
     highlight,
+    size,
     ...rest
   } = props
 
@@ -114,6 +115,7 @@ export const TimePicker = (props: Props) => {
         status={status}
         className={inputClassName}
         highlight={highlight}
+        size={size}
         inputProps={{
           className: inputPropClassName,
           ...rest,
@@ -142,6 +144,7 @@ export const TimePicker = (props: Props) => {
       highlight={highlight}
       icon={icon}
       width={width}
+      size={size}
       status={status}
       inputProps={{
         className: inputPropClassName,
