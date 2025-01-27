@@ -1,5 +1,12 @@
 # Change Log
 
+## 53.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`00ee4e9`](https://github.com/toptal/picasso/commit/00ee4e95cbafa3de5e249cbe6d6528da114ee511)]:
+  - @toptal/picasso-tabs@5.0.11
+
 ## 53.0.8
 
 ### Patch Changes

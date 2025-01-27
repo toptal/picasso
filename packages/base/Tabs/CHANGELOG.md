@@ -1,5 +1,17 @@
 # @toptal/picasso-tabs
 
+## 5.0.11
+
+### Patch Changes
+
+- [#4646](https://github.com/toptal/picasso/pull/4646) [`00ee4e9`](https://github.com/toptal/picasso/commit/00ee4e95cbafa3de5e249cbe6d6528da114ee511) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+### Tabs
+
+- migrated TabScrollButton component to tailwind css
+
 ## 5.0.10
 
 ### Patch Changes
