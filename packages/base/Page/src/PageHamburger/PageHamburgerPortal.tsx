@@ -20,12 +20,8 @@ const PageHamburgerPortal = ({ children }: Props) => {
   }, [hamburgerRef, isMounted])
 
   if (!container || !showSidebarMenu) {
-    console.log('PageHamburgerPortal NULL', showSidebarMenu, container)
-
     return null
   }
-
-  console.log('PageHamburgerPortal active', showSidebarMenu, container)
 
   return createPortal(children, container)
 }
