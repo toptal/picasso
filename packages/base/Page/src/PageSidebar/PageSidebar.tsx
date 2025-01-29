@@ -98,9 +98,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const screenSize = useScreenSize()
   const isScreenSmall = screenSize < 1280
 
-  console.log('screenSize', screenSize)
-  console.log('isScreenSmall', isScreenSmall)
-
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
     onCollapse()
