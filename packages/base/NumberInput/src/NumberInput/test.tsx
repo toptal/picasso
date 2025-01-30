@@ -22,6 +22,8 @@ const NumberInputRenderer = (
       value={value}
       onChange={handleChange}
       status={props.status}
+      endAdornment={props.endAdornment}
+      hideControls={props.hideControls}
       testIds={props.testIds}
     />
   )
@@ -148,6 +150,37 @@ describe('NumberInput', () => {
       rerender(<NumberInput {...testProps} status='error' />)
 
       expect(validIcon).not.toBeVisible()
+    })
+  })
+
+  describe('end adornment', () => {
+    describe('when endAdornment is passed', () => {
+      it('renders endAdornment with control buttons', () => {
+        const testProps: NumberInputProps = {
+          value: '10',
+          endAdornment: <div data-testid='custom-end-adornment' />,
+        }
+
+        const { getByTestId, getAllByRole } = renderNumberInput(testProps)
+
+        expect(getByTestId('custom-end-adornment')).toBeVisible()
+        expect(getAllByRole('button')).toHaveLength(2)
+      })
+    })
+
+    describe('when endAdornment is passed and controls are hidden', () => {
+      it('renders endAdornment without control buttons', () => {
+        const testProps: NumberInputProps = {
+          value: '10',
+          endAdornment: <div data-testid='custom-end-adornment' />,
+          hideControls: true,
+        }
+
+        const { getByTestId, queryAllByRole } = renderNumberInput(testProps)
+
+        expect(getByTestId('custom-end-adornment')).toBeVisible()
+        expect(queryAllByRole('button')).toHaveLength(0)
+      })
     })
   })
 })
