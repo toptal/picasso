@@ -1,5 +1,12 @@
 # @toptal/picasso-timepicker
 
+## 4.0.17
+
+### Patch Changes
+
+- [#4653](https://github.com/toptal/picasso/pull/4653) [`cf69d42`](https://github.com/toptal/picasso/commit/cf69d4231e4ac6e53b9c31d62ca134d9472b33a0) Thanks [@hweeTan](https://github.com/hweeTan)!
+- fix size prop
+
 ## 4.0.16
 
 ### Patch Changes

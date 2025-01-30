@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-timepicker",
-  "version": "4.0.16",
+  "version": "4.0.17",
   "description": "Toptal UI components library - Timepicker",
   "publishConfig": {
     "access": "public"
