@@ -1,5 +1,12 @@
 # Change Log
 
+## 53.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`cf69d42`](https://github.com/toptal/picasso/commit/cf69d4231e4ac6e53b9c31d62ca134d9472b33a0)]:
+  - @toptal/picasso-timepicker@4.0.17
+
 ## 53.0.9
 
 ### Patch Changes
