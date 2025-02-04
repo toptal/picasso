@@ -2,4 +2,4 @@
 '@toptal/picasso-tabs': patch
 ---
 
-- fix horizontal tabs heigh (no top padding and adjusted line height)
+- fix spacing in horizontal tabs variant (no top padding and adjusted line height)
