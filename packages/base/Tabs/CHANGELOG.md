@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 5.0.12
+
+### Patch Changes
+
+- [#4657](https://github.com/toptal/picasso/pull/4657) [`5b24021`](https://github.com/toptal/picasso/commit/5b24021fb4becb9147434d3b9440c06a51daf0d1) Thanks [@sashuk](https://github.com/sashuk)!
+- fix spacing in horizontal tabs variant (no top padding and adjusted line height)
+
 ## 5.0.11
 
 ### Patch Changes
