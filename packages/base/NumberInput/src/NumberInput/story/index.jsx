@@ -4,7 +4,7 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 const page = PicassoBook.section('Forms').createPage(
   'NumberInput',
   `Input component for numbers
-  
+
   ${PicassoBook.createSourceLink(__filename)}
   `
 )
@@ -33,6 +33,11 @@ page
   .addExample(
     'NumberInput/story/WithIcon.example.tsx',
     'With Icon',
+    'base/NumberInput'
+  )
+  .addExample(
+    'NumberInput/story/WithEndAdornment.example.tsx',
+    'With End Adornment',
     'base/NumberInput'
   )
   .addExample(
