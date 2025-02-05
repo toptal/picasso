@@ -1,5 +1,12 @@
 # Change Log
 
+## 73.0.26
+
+### Patch Changes
+
+- Updated dependencies [[`c1a7cbb`](https://github.com/toptal/picasso/commit/c1a7cbb9592cc7f27e4d9bcbb3e85e550bb4cabc)]:
+  - @toptal/picasso-number-input@4.1.0
+
 ## 73.0.25
 
 ### Patch Changes
