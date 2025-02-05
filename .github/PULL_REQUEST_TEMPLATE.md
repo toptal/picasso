@@ -44,7 +44,7 @@ Describe the changes and motivations for the pull request.
 List of available commands:
 
 - `@toptal-bot run package:alpha-release` - Release alpha version
-- `@toptal-anvil ping reviewers` - Ping FX team for review
+- `@toptal-anvil ping reviewers` - Ping for reviews
 
 </details>
 

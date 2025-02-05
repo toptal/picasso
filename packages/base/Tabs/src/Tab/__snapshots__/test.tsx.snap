@@ -33,7 +33,7 @@ exports[`Tab Tab disabled tab 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab Label
               </div>
@@ -82,7 +82,7 @@ exports[`Tab Tab renders 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab Label
               </div>
@@ -134,7 +134,7 @@ exports[`Tab Tab tab with icon 1`] = `
                 id="Icon"
               />
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab Label
               </div>

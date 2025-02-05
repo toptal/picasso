@@ -17,6 +17,7 @@ const TabLabel = ({ label, orientation, titleCase }: Props) => {
         weight='semibold'
         color='inherit'
         titleCase={titleCase}
+        className='leading-[1.1rem]'
       >
         {label}
       </Typography>

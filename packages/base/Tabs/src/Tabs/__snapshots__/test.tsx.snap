@@ -33,7 +33,7 @@ exports[`Tabs renders 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 1
               </div>
@@ -51,7 +51,7 @@ exports[`Tabs renders 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 2
               </div>
@@ -97,7 +97,7 @@ exports[`Tabs renders in full width 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 1
               </div>
@@ -115,7 +115,7 @@ exports[`Tabs renders in full width 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 2
               </div>
@@ -233,7 +233,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 1
               </div>
@@ -251,7 +251,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 2
               </div>
@@ -308,7 +308,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 1
               </div>
@@ -326,7 +326,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
               class="MuiTab-wrapper PicassoTab-wrapper"
             >
               <div
-                class="m-0 text-sm text-inherit font-semibold"
+                class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab 2
               </div>

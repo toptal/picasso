@@ -49,6 +49,7 @@ PicassoProvider.override(({ breakpoints, palette }: Theme) => ({
 export default ({ sizes, palette, shadows, transitions }: Theme) =>
   createStyles({
     horizontal: {
+      paddingTop: 0,
       '&:not(:last-child)': {
         marginRight: '2em',
       },
