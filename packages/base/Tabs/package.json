@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tabs",
-  "version": "5.0.11",
+  "version": "5.0.12",
   "description": "Toptal UI components library - Tabs",
   "publishConfig": {
     "access": "public"
