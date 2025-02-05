@@ -31,7 +31,7 @@ const TabLabel = ({ label, orientation, titleCase }: Props) => {
       inline
       size='medium'
       variant='body'
-      weight='semibold'
+      weight='regular'
       titleCase={titleCase}
     >
       {label}
