@@ -1,5 +1,12 @@
 # @toptal/picasso-number-input
 
+## 4.1.0
+
+### Minor Changes
+
+- [#4645](https://github.com/toptal/picasso/pull/4645) [`c1a7cbb`](https://github.com/toptal/picasso/commit/c1a7cbb9592cc7f27e4d9bcbb3e85e550bb4cabc) Thanks [@diogolessa](https://github.com/diogolessa)!
+- support custom `endAdornment` in NumberInput
+
 ## 4.0.20
 
 ### Patch Changes
