@@ -1,4 +1,4 @@
-import { useSidebar, useScreenSize } from '@toptal/picasso-provider'
+import { useSidebar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 import type { ReactNode } from 'react'
@@ -76,7 +76,8 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
-  const { hasTopBar } = useHamburgerContext()
+
+  const { hasTopBar, hasPageHamburger } = useHamburgerContext()
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
@@ -94,9 +95,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   }, [setHasSidebar])
 
   useRegisterMenu()
-
-  const screenSize = useScreenSize()
-  const isScreenSmall = screenSize < 1280
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
@@ -137,8 +135,10 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       onMouseEnter={collapsible ? () => setIsHovered(true) : noop}
       onMouseLeave={collapsible ? () => setIsHovered(false) : noop}
     >
-      {isScreenSmall && <PageHamburgerPortal>{children}</PageHamburgerPortal>}
-      {!isScreenSmall && (
+      {hasPageHamburger && (
+        <PageHamburgerPortal>{children}</PageHamburgerPortal>
+      )}
+      {!hasPageHamburger && (
         <div
           style={{
             maxHeight: wrapperMaxHeight,

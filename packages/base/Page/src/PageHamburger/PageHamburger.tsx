@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Dropdown } from '@toptal/picasso-dropdown'
 import { Close24, Overview24 } from '@toptal/picasso-icons'
-import { useScreenSize } from '@toptal/picasso-provider'
 
 import { useHamburgerContext } from './PageHamburgerContext'
 
@@ -18,10 +17,7 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)
 
-  const screenSize = useScreenSize()
-  const isScreenSmall = screenSize < 1280
-
-  if (!showSidebarMenu || !isScreenSmall) {
+  if (!showSidebarMenu) {
     return null
   }
 
