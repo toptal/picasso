@@ -16,14 +16,15 @@ interface InternalHamburgerContextProps {
   hasTopBar: boolean
   setHasTopBar: (val: boolean) => void
   hamburgerRef?: React.RefObject<HTMLDivElement>
+  hasPageHamburger: boolean
+  setHasPageHamburger: (val: boolean) => void
 }
 
-export interface HamburgerContextProps {
-  hamburgerId: string
+export type HamburgerContextProps = Omit<
+  InternalHamburgerContextProps,
+  'menuCount' | 'setMenuCount'
+> & {
   showSidebarMenu: boolean
-  hasTopBar: boolean
-  setHasTopBar: (val: boolean) => void
-  hamburgerRef?: React.RefObject<HTMLDivElement>
 }
 
 const PageHamburgerContext = createContext<InternalHamburgerContextProps>({
@@ -32,6 +33,8 @@ const PageHamburgerContext = createContext<InternalHamburgerContextProps>({
   menuCount: 0,
   setHasTopBar: noop,
   hasTopBar: false,
+  setHasPageHamburger: noop,
+  hasPageHamburger: false,
 })
 
 interface Props {
@@ -44,6 +47,7 @@ export const PageHamburgerContextProvider = ({
   hamburgerId,
 }: Props) => {
   const [hasTopBar, setHasTopBar] = useState(true)
+  const [hasPageHamburger, setHasPageHamburger] = useState(false)
   const [menuCount, setMenuCount] = useState(0)
 
   const hamburgerRef = useRef<HTMLDivElement>(null)
@@ -55,6 +59,8 @@ export const PageHamburgerContextProvider = ({
     hamburgerRef,
     setMenuCount,
     menuCount,
+    setHasPageHamburger,
+    hasPageHamburger,
   }
 
   return (
@@ -65,8 +71,15 @@ export const PageHamburgerContextProvider = ({
 }
 
 export const useHamburgerContext = (): HamburgerContextProps => {
-  const { hamburgerId, hasTopBar, setHasTopBar, hamburgerRef, menuCount } =
-    useContext(PageHamburgerContext)
+  const {
+    hamburgerId,
+    hasTopBar,
+    setHasTopBar,
+    hamburgerRef,
+    menuCount,
+    setHasPageHamburger,
+    hasPageHamburger,
+  } = useContext(PageHamburgerContext)
 
   const hasSidebar = menuCount > 0
 
@@ -76,6 +89,8 @@ export const useHamburgerContext = (): HamburgerContextProps => {
     setHasTopBar,
     hamburgerRef,
     showSidebarMenu: hasSidebar && hasTopBar,
+    setHasPageHamburger,
+    hasPageHamburger,
   }
 }
 
