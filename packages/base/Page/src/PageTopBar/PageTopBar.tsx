@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Logo } from '@toptal/picasso-logo'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { useIsomorphicLayoutEffect, useBreakpoint } from '@toptal/picasso-utils'
 
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
@@ -95,10 +95,17 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   }, [hasTopBar, setHasTopBarHamburger])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
-  const { hamburgerId } = useHamburgerContext()
+
+  const { hamburgerId, setHasPageHamburger } = useHamburgerContext()
+  const isSmallScreen = useBreakpoint(['xs', 'sm', 'md'])
+
+  useEffect(() => {
+    setHasPageHamburger(isSmallScreen)
+
+    return () => setHasPageHamburger(false)
+  }, [setHasPageHamburger, isSmallScreen])
 
   const isDark = ['dark', 'grey'].includes(variant)
-
   const logoVariant = isDark ? 'white' : 'default'
   const logoDefault = (
     <>
@@ -150,10 +157,12 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
             <div className={classes.left}>
               <Container flex alignItems='center' gap='small'>
-                <PageHamburger
-                  id={hamburgerId}
-                  data-testid={testIds?.hamburger}
-                />
+                {isSmallScreen && (
+                  <PageHamburger
+                    id={hamburgerId}
+                    data-testid={testIds?.hamburger}
+                  />
+                )}
                 {logoLink
                   ? React.cloneElement(logoLink, {}, logoComponent)
                   : logoComponent}
