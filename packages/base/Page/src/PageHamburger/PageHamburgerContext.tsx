@@ -1,20 +1,10 @@
 import type { ReactNode } from 'react'
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { createContext, useContext, useRef, useState } from 'react'
 
 const noop = () => {}
 
 interface InternalHamburgerContextProps {
   hamburgerId: string
-  setMenuCount: (val: (prev: number) => number) => void
-  menuCount: number
-  hasTopBar: boolean
-  setHasTopBar: (val: boolean) => void
   hamburgerRef?: React.RefObject<HTMLDivElement>
   hasPageHamburger: boolean
   setHasPageHamburger: (val: boolean) => void
@@ -23,16 +13,10 @@ interface InternalHamburgerContextProps {
 export type HamburgerContextProps = Omit<
   InternalHamburgerContextProps,
   'menuCount' | 'setMenuCount'
-> & {
-  showSidebarMenu: boolean
-}
+>
 
 const PageHamburgerContext = createContext<InternalHamburgerContextProps>({
   hamburgerId: 'hamburger',
-  setMenuCount: noop,
-  menuCount: 0,
-  setHasTopBar: noop,
-  hasTopBar: false,
   setHasPageHamburger: noop,
   hasPageHamburger: false,
 })
@@ -46,19 +30,12 @@ export const PageHamburgerContextProvider = ({
   children,
   hamburgerId,
 }: Props) => {
-  const [hasTopBar, setHasTopBar] = useState(true)
   const [hasPageHamburger, setHasPageHamburger] = useState(false)
-  const [menuCount, setMenuCount] = useState(0)
-
   const hamburgerRef = useRef<HTMLDivElement>(null)
 
   const context: InternalHamburgerContextProps = {
     hamburgerId,
-    hasTopBar,
-    setHasTopBar,
     hamburgerRef,
-    setMenuCount,
-    menuCount,
     setHasPageHamburger,
     hasPageHamburger,
   }
@@ -71,37 +48,13 @@ export const PageHamburgerContextProvider = ({
 }
 
 export const useHamburgerContext = (): HamburgerContextProps => {
-  const {
-    hamburgerId,
-    hasTopBar,
-    setHasTopBar,
-    hamburgerRef,
-    menuCount,
-    setHasPageHamburger,
-    hasPageHamburger,
-  } = useContext(PageHamburgerContext)
-
-  const hasSidebar = menuCount > 0
+  const { hamburgerId, hamburgerRef, setHasPageHamburger, hasPageHamburger } =
+    useContext(PageHamburgerContext)
 
   return {
     hamburgerId,
-    hasTopBar,
-    setHasTopBar,
     hamburgerRef,
-    showSidebarMenu: hasSidebar && hasTopBar,
     setHasPageHamburger,
     hasPageHamburger,
   }
-}
-
-export const useRegisterMenu = () => {
-  const { setMenuCount } = useContext(PageHamburgerContext)
-
-  useEffect(() => {
-    setMenuCount(prev => prev + 1)
-
-    return () => {
-      setMenuCount(prev => prev - 1)
-    }
-  }, [setMenuCount])
 }

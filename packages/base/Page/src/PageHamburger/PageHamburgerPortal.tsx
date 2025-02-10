@@ -8,7 +8,7 @@ interface Props {
 }
 
 const PageHamburgerPortal = ({ children }: Props) => {
-  const { showSidebarMenu, hamburgerRef } = useHamburgerContext()
+  const { hamburgerRef } = useHamburgerContext()
   const [container, setContainer] = React.useState<HTMLElement | null>(null)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
 
@@ -19,7 +19,7 @@ const PageHamburgerPortal = ({ children }: Props) => {
     }
   }, [hamburgerRef, isMounted])
 
-  if (!container || !showSidebarMenu) {
+  if (!container) {
     return null
   }
 
