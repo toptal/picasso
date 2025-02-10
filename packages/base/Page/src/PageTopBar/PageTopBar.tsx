@@ -5,6 +5,7 @@ import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
   usePageTopBar,
+  useSidebar,
   usePreventPageWidthChangeOnScrollbar,
   useScreenSize,
 } from '@toptal/picasso-provider'
@@ -98,11 +99,15 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const screenSize = useScreenSize()
   const isSmallScreen = screenSize < SMALL_SCREEN_WIDTH
 
+  const { hasSidebar } = useSidebar()
+
+  const showHamburger = isSmallScreen && (hasSidebar || !!centerContent)
+
   useEffect(() => {
-    setHasPageHamburger(isSmallScreen)
+    setHasPageHamburger(showHamburger)
 
     return () => setHasPageHamburger(false)
-  }, [setHasPageHamburger, isSmallScreen])
+  }, [setHasPageHamburger, showHamburger])
 
   const isDark = ['dark', 'grey'].includes(variant)
   const logoVariant = isDark ? 'white' : 'default'
@@ -156,7 +161,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
             <div className={classes.left}>
               <Container flex alignItems='center' gap='small'>
-                {isSmallScreen && (
+                {showHamburger && (
                   <PageHamburger
                     id={hamburgerId}
                     data-testid={testIds?.hamburger}

@@ -20,54 +20,6 @@ exports[`Page.TopBar render with custom logo 1`] = `
             <div
               class="gap-4 items-center flex"
             >
-              <div
-                class="items-center hidden"
-              >
-                <div
-                  class="inline-flex items-center cursor-pointer"
-                >
-                  <button
-                    aria-disabled="false"
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
-                    data-component-type="button"
-                    role="button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-                    >
-                      <svg
-                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 pointer-events"
-                        style="min-width: 24px; min-height: 24px;"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-                <div
-                  class="PicassoPopper-root shadow-2 mt-4"
-                  role="navigation"
-                  style="position: fixed; top: 0px; left: 0px; display: none;"
-                >
-                  <div>
-                    <div
-                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 overflow-y [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
-                      style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
-                    >
-                      <div>
-                        <div
-                          id="hamburger"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div>
                 Custom logo content
               </div>
@@ -119,54 +71,6 @@ exports[`Page.TopBar render with link 1`] = `
             <div
               class="gap-4 items-center flex"
             >
-              <div
-                class="items-center hidden"
-              >
-                <div
-                  class="inline-flex items-center cursor-pointer"
-                >
-                  <button
-                    aria-disabled="false"
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
-                    data-component-type="button"
-                    role="button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-                    >
-                      <svg
-                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 pointer-events"
-                        style="min-width: 24px; min-height: 24px;"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-                <div
-                  class="PicassoPopper-root shadow-2 mt-4"
-                  role="navigation"
-                  style="position: fixed; top: 0px; left: 0px; display: none;"
-                >
-                  <div>
-                    <div
-                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 overflow-y [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
-                      style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
-                    >
-                      <div>
-                        <div
-                          id="hamburger"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <a
                 class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline cursor-pointer"
                 href="https://www.toptal.com"
@@ -244,54 +148,6 @@ exports[`Page.TopBar renders 1`] = `
             <div
               class="gap-4 items-center flex"
             >
-              <div
-                class="items-center hidden"
-              >
-                <div
-                  class="inline-flex items-center cursor-pointer"
-                >
-                  <button
-                    aria-disabled="false"
-                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-white hover:bg-white/[0.08] active:bg-white/[0.16] focus-visible:shadow-[0_0_0_3px_rgba(255,255,255,0.48)] bg-transparent"
-                    data-component-type="button"
-                    role="button"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-                    >
-                      <svg
-                        class="PicassoSvgOverview24-root text-[1.2em] flex-1 pointer-events"
-                        style="min-width: 24px; min-height: 24px;"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M0 19h24v1H0v-1Zm0-7h24v1H0v-1Zm0-7h24v1H0V5Z"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-                <div
-                  class="PicassoPopper-root shadow-2 mt-4"
-                  role="navigation"
-                  style="position: fixed; top: 0px; left: 0px; display: none;"
-                >
-                  <div>
-                    <div
-                      class="bg-white shadow-0 transition-shadow duration-300 delay-0 overflow-y [@media(max-height:585px)]:max-h-[calc(50vh [@media(max-height:585px)]:md:max-h-[calc(50vh !shadow-[inset_-1px_0px_0px_0px] !shadow-gray max-h-[calc(100vh-var(--header !bg-gray"
-                      style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
-                    >
-                      <div>
-                        <div
-                          id="hamburger"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <svg
                 class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logoEmblem"
                 style="min-width: 16px; min-height: 16px;"
