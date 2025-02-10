@@ -374,7 +374,7 @@ describe('Page', () => {
           cy.viewport(width, 1000)
           cy.mount(<Example />)
 
-          cy.getByTestId('hamburger-button').should('not.be.visible')
+          cy.getByTestId('hamburger-button').should('not.exist')
 
           cy.get('body').happoScreenshot({
             component,

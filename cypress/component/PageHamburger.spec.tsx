@@ -112,38 +112,38 @@ describe('TopBarMenu', () => {
 
     screenshot('default')
 
-    cy.getByTestId(HAMBURGER_ID).as('hamburger').should('not.be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('not.exist')
 
     cy.get('@toggleSidebar').click()
     screenshot('sidebar-on')
 
-    cy.get('@hamburger').should('be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('be.visible')
 
     cy.get('@toggleSidebar').click()
     screenshot('sidebar-off')
 
-    cy.get('@hamburger').should('not.be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('not.exist')
 
     cy.get('@toggleCenterContent').click()
     screenshot('centerContent-on')
 
-    cy.get('@hamburger').should('be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('be.visible')
 
     cy.get('@toggleCenterContent').click()
     screenshot('centerContent-off')
 
-    cy.get('@hamburger').should('not.be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('not.exist')
 
     cy.get('@toggleCenterContent').click()
     cy.get('@toggleSidebar').click()
     screenshot('both-on')
 
-    cy.get('@hamburger').should('be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('be.visible')
 
     cy.get('@toggleCenterContent').click()
     cy.get('@toggleSidebar').click()
     screenshot('both-off')
 
-    cy.get('@hamburger').should('not.be.visible')
+    cy.getByTestId(HAMBURGER_ID).should('not.exist')
   })
 })
