@@ -6,13 +6,14 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import {
   usePageTopBar,
   usePreventPageWidthChangeOnScrollbar,
+  useScreenSize,
 } from '@toptal/picasso-provider'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import { Logo } from '@toptal/picasso-logo'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { useIsomorphicLayoutEffect, useBreakpoint } from '@toptal/picasso-utils'
+import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
@@ -22,6 +23,8 @@ import {
   useHamburgerContext,
 } from '../PageHamburger'
 import styles from './styles'
+
+const SMALL_SCREEN_WIDTH = 1280
 
 type VariantType = 'dark' | 'light' | 'grey'
 
@@ -92,7 +95,8 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   const { hamburgerId, setHasPageHamburger } = useHamburgerContext()
 
-  const isSmallScreen = useBreakpoint(['xs', 'sm', 'md'])
+  const screenSize = useScreenSize()
+  const isSmallScreen = screenSize < SMALL_SCREEN_WIDTH
 
   useEffect(() => {
     setHasPageHamburger(isSmallScreen)

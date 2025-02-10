@@ -1,7 +1,7 @@
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 import type { ReactNode } from 'react'
-import React, { forwardRef, useState } from 'react'
+import React, { forwardRef, useState, useEffect } from 'react'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Container } from '@toptal/picasso-container'
 import { BackMinor16, ChevronRight16 } from '@toptal/picasso-icons'
@@ -49,6 +49,13 @@ export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
     } = props
 
     const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
+
+    useEffect(() => {
+      // Clear expanded submenu on sidebar collapse
+      if (isCollapsed) {
+        setExpandedItemKey(null)
+      }
+    }, [isCollapsed])
 
     return (
       <div
