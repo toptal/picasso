@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Dropdown } from '@toptal/picasso-dropdown'
 import { Close24, Overview24 } from '@toptal/picasso-icons'
+import { useSidebar } from '@toptal/picasso-provider'
 
 import { useHamburgerContext } from './PageHamburgerContext'
 
@@ -11,13 +12,14 @@ interface Props {
 }
 
 const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
-  const { showSidebarMenu, hamburgerRef } = useHamburgerContext()
+  const { hamburgerRef } = useHamburgerContext()
+  const { hasSidebar } = useSidebar()
   const [showContent, setShowContent] = useState<boolean>(false)
 
   const handleShowContent = () => setShowContent(true)
   const handleHideContent = () => setShowContent(false)
 
-  if (!showSidebarMenu) {
+  if (!hasSidebar) {
     return null
   }
 

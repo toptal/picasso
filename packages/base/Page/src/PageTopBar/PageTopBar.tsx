@@ -79,24 +79,19 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const { setHasTopBar } = usePageTopBar()
   const { preventPageWidthChangeOnScrollbar } =
     usePreventPageWidthChangeOnScrollbar()
-  const { setHasTopBar: setHasTopBarHamburger, hasTopBar } =
-    useHamburgerContext()
 
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
 
-    return () => setHasTopBar(false)
+    return () => {
+      setHasTopBar(false)
+    }
   }, [setHasTopBar])
-
-  useEffect(() => {
-    setHasTopBarHamburger(true)
-
-    return () => setHasTopBarHamburger(false)
-  }, [hasTopBar, setHasTopBarHamburger])
 
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const { hamburgerId, setHasPageHamburger } = useHamburgerContext()
+
   const isSmallScreen = useBreakpoint(['xs', 'sm', 'md'])
 
   useEffect(() => {
@@ -172,19 +167,18 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             </div>
 
             {/* Center part: inline menu */}
-            {centerContent && (
-              <>
+            {centerContent &&
+              (isSmallScreen ? (
                 <PageHamburgerPortal>
                   <div className={classes.centerContentPortal}>
                     {centerContent}
                   </div>
                 </PageHamburgerPortal>
+              ) : (
                 <Container className={classes.centerContent}>
                   {centerContent}
                 </Container>
-              </>
-            )}
-
+              ))}
             {/* Right part: Action items, User menu, Notifications */}
 
             <div className={classes.right}>

@@ -1,4 +1,4 @@
-import { useSidebar } from '@toptal/picasso-provider'
+import { useSidebar, usePageTopBar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { twMerge, twJoin } from '@toptal/picasso-tailwind-merge'
 import type { ReactNode } from 'react'
@@ -8,11 +8,7 @@ import { Container } from '@toptal/picasso-container'
 import { BackMinor16, ChevronRight16 } from '@toptal/picasso-icons'
 import { noop } from '@toptal/picasso-utils'
 
-import {
-  PageHamburgerPortal,
-  useHamburgerContext,
-  useRegisterMenu,
-} from '../PageHamburger'
+import { PageHamburgerPortal, useHamburgerContext } from '../PageHamburger'
 import { SidebarItem } from '../SidebarItem'
 import { SidebarLogo } from '../SidebarLogo'
 import { SidebarMenu } from '../SidebarMenu'
@@ -72,12 +68,13 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     onCollapse = noop,
   } = props
 
-  const { setHasSidebar } = useSidebar()
   const [isCollapsed, setIsCollapsed] = useState(!!defaultCollapsed)
   const [isHovered, setIsHovered] = useState(false)
   const [expandedItemKey, setExpandedItemKey] = useState<number | null>(null)
 
-  const { hasTopBar, hasPageHamburger } = useHamburgerContext()
+  const { setHasSidebar } = useSidebar()
+  const { hasPageHamburger } = useHamburgerContext()
+  const { hasTopBar } = usePageTopBar()
 
   useEffect(() => {
     // Clear expanded submenu on sidebar collapse
@@ -93,8 +90,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       setHasSidebar(false)
     }
   }, [setHasSidebar])
-
-  useRegisterMenu()
 
   const handleCollapseButtonClick = useCallback(() => {
     setIsCollapsed(previousState => !previousState)
