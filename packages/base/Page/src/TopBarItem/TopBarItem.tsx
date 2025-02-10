@@ -25,17 +25,19 @@ export interface Props extends BaseProps, TextLabelProps {
 }
 
 const rootClasses = [
-  'lg:text-gray-600 lg:p-0 lg:h-auto',
-  'lg:w-auto lg:m-0 lg:flex-auto',
-  'lg:[&_p]:text-sm',
+  'min-[1280px]:text-gray-600 min-[1280px]:p-0 min-[1280px]:h-auto',
+  'min-[1280px]:w-auto min-[1280px]:m-0 min-[1280px]:flex-auto',
+  'min-[1280px]:[&_p]:text-sm',
 ]
 const separatorClasses = [
-  'lg:before:[&:not(:first-child)]:content-[""]',
-  'lg:before:bg-gray-600 lg:before:inline-block',
-  'lg:before:h-2 lg:before:mx-2 lg:before:w-[1px]',
+  'min-[1280px]:before:[&:not(:first-child)]:content-[""]',
+  'min-[1280px]:before:bg-gray-600 min-[1280px]:before:inline-block',
+  'min-[1280px]:before:h-2 min-[1280px]:before:mx-2 min-[1280px]:before:w-[1px]',
 ]
-const bgClasses = 'lg:hover:bg-transparent lg:focus:bg-transparent'
-const textColorClasses = 'lg:hover:text-gray-400 lg:hover:text-white'
+const bgClasses =
+  'min-[1280px]:hover:bg-transparent min-[1280px]:focus:bg-transparent'
+const textColorClasses =
+  'min-[1280px]:hover:text-gray-400 min-[1280px]:hover:text-white'
 
 export const TopBarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
@@ -49,8 +51,9 @@ export const TopBarItem: OverridableComponent<Props> = memo(
           separatorClasses,
           bgClasses,
           textColorClasses,
-          icon && 'lg:[&_svg]:w-[1em]',
-          props.selected && 'lg:bg-transparent lg:text-white',
+          icon && 'min-[1280px]:[&_svg]:w-[1em]',
+          props.selected &&
+            'min-[1280px]:bg-transparent min-[1280px]:text-white',
           className
         )}
         ref={ref}
