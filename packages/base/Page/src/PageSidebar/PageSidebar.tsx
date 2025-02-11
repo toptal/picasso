@@ -125,9 +125,11 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
       ) : (
         <PageSidebarDesktop
           testIds={testIds}
+          variant={variant}
           wrapperMaxHeight={wrapperMaxHeight}
           disableSticky={disableSticky}
           collapsible={collapsible}
+          defaultCollapsed={defaultCollapsed}
           isCollapsed={isCollapsed}
           isHovered={isHovered}
           onCollapse={handleCollapse}
