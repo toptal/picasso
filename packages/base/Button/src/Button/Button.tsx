@@ -131,6 +131,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
     focused,
     hovered,
     active,
+    loading,
   })
   const sizeClassNames = createSizeClassNames(size)
 
