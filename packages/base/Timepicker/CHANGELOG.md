@@ -1,5 +1,13 @@
 # @toptal/picasso-timepicker
 
+## 4.0.18
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-outlined-input@4.0.17
+  - @toptal/picasso-input@4.0.17
+
 ## 4.0.17
 
 ### Patch Changes
