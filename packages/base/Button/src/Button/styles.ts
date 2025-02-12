@@ -24,11 +24,13 @@ export const createVariantClassNames = (
     focused,
     hovered,
     active,
+    loading,
   }: {
     disabled?: boolean
     focused?: boolean
     hovered?: boolean
     active?: boolean
+    loading?: boolean
   }
 ): string[] => {
   const variantClassNames = []
@@ -39,7 +41,7 @@ export const createVariantClassNames = (
       variantClassNames.push('text-white')
       variantClassNames.push('visited:text-white')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('bg-gray-400')
       } else {
         variantClassNames.push('hover:bg-[#4269D6]')
@@ -60,7 +62,7 @@ export const createVariantClassNames = (
       variantClassNames.push('text-white')
       variantClassNames.push('visited:text-white')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('bg-gray-400')
       } else {
         variantClassNames.push('hover:bg-[#DB466B]')
@@ -80,7 +82,7 @@ export const createVariantClassNames = (
       variantClassNames.push('text-white')
       variantClassNames.push('visited:text-white')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('bg-gray-400')
       } else {
         variantClassNames.push('hover:bg-[#27D496]')
@@ -98,7 +100,7 @@ export const createVariantClassNames = (
     case 'secondary':
       variantClassNames.push('border border-solid')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('text-gray-500')
         variantClassNames.push('visited:text-gray-500')
         variantClassNames.push('border-gray-500')
@@ -127,7 +129,7 @@ export const createVariantClassNames = (
       break
     case 'transparent':
       variantClassNames.push('border border-solid')
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('text-white/[0.32]')
         variantClassNames.push('border-white/[0.32]')
         variantClassNames.push('bg-transparent')

@@ -28,11 +28,13 @@ export const createVariantClassNames = (
     focused,
     hovered,
     active,
+    loading,
   }: {
     disabled?: boolean
     focused?: boolean
     hovered?: boolean
     active?: boolean
+    loading?: boolean
   }
 ): string[] => {
   const variantClassNames = []
@@ -43,7 +45,7 @@ export const createVariantClassNames = (
       variantClassNames.push('text-white')
       variantClassNames.push('visited:text-white')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('bg-gray-400')
       } else {
         variantClassNames.push('hover:bg-[#4269D6]')
@@ -69,7 +71,7 @@ export const createVariantClassNames = (
       variantClassNames.push('border-none')
       variantClassNames.push('text-graphite-700')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('text-graphite-700')
         variantClassNames.push('opacity-[0.48]')
         variantClassNames.push('bg-transparent')
@@ -97,7 +99,7 @@ export const createVariantClassNames = (
       variantClassNames.push('border-none')
       variantClassNames.push('text-white')
 
-      if (disabled) {
+      if (disabled && !loading) {
         variantClassNames.push('text-white/[0.48]')
         variantClassNames.push('bg-transparent')
       } else {

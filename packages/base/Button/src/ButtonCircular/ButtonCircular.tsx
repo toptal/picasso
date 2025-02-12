@@ -57,6 +57,7 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
     focused,
     hovered,
     active,
+    loading,
   })
 
   const finalClassName = cx(
