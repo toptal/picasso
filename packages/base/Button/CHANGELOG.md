@@ -1,5 +1,17 @@
 # @toptal/picasso-button
 
+## 4.0.18
+
+### Patch Changes
+
+- [#4666](https://github.com/toptal/picasso/pull/4666) [`bb47d73`](https://github.com/toptal/picasso/commit/bb47d739884b873182ba45c4cea714c799e0fccd) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+### Button
+
+- use the button's variant color when displaying the loading indicator in a disabled button, instead of the default grey
+
 ## 4.0.17
 
 ### Patch Changes
