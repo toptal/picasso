@@ -3,8 +3,6 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
 import { Menu } from '@toptal/picasso-menu'
 
-import { useRegisterMenu } from '../PageHamburger'
-
 export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
   /** Menu content */
   children: ReactNode
@@ -16,8 +14,6 @@ export const TopBarMenu = forwardRef<HTMLUListElement, Props>(
 
     // not more than 6 menu items are allowed by BASE design
     const items = React.Children.toArray(children).slice(0, 6)
-
-    useRegisterMenu()
 
     return (
       <Menu
