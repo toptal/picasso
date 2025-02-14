@@ -1,5 +1,21 @@
 # @toptal/picasso-page
 
+## 5.1.20
+
+### Patch Changes
+
+- [#4665](https://github.com/toptal/picasso/pull/4665) [`fc811e8`](https://github.com/toptal/picasso/commit/fc811e8a4c1df2105bc83af72a264e69ef776dbe) Thanks [@vedrani](https://github.com/vedrani)!
+
+---
+
+### Page.Sidebar
+
+- render only one sidebar variant based on screen size.
+
+### Page.TopBar
+
+- render hamburger menu only on small screens.
+
 ## 5.1.19
 
 ### Patch Changes
