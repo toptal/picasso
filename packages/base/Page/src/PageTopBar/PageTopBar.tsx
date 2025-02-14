@@ -5,7 +5,9 @@ import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
   usePageTopBar,
+  useSidebar,
   usePreventPageWidthChangeOnScrollbar,
+  useScreenSize,
 } from '@toptal/picasso-provider'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
@@ -22,6 +24,8 @@ import {
   useHamburgerContext,
 } from '../PageHamburger'
 import styles from './styles'
+
+const SMALL_SCREEN_WIDTH = 1280
 
 type VariantType = 'dark' | 'light' | 'grey'
 
@@ -79,26 +83,33 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const { setHasTopBar } = usePageTopBar()
   const { preventPageWidthChangeOnScrollbar } =
     usePreventPageWidthChangeOnScrollbar()
-  const { setHasTopBar: setHasTopBarHamburger, hasTopBar } =
-    useHamburgerContext()
 
   useIsomorphicLayoutEffect(() => {
     setHasTopBar(true)
 
-    return () => setHasTopBar(false)
+    return () => {
+      setHasTopBar(false)
+    }
   }, [setHasTopBar])
 
-  useEffect(() => {
-    setHasTopBarHamburger(true)
-
-    return () => setHasTopBarHamburger(false)
-  }, [hasTopBar, setHasTopBarHamburger])
-
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
-  const { hamburgerId } = useHamburgerContext()
+
+  const { hamburgerId, setHasPageHamburger } = useHamburgerContext()
+
+  const screenSize = useScreenSize()
+  const isSmallScreen = screenSize < SMALL_SCREEN_WIDTH
+
+  const { hasSidebar } = useSidebar()
+
+  const showHamburger = isSmallScreen && (hasSidebar || !!centerContent)
+
+  useEffect(() => {
+    setHasPageHamburger(showHamburger)
+
+    return () => setHasPageHamburger(false)
+  }, [setHasPageHamburger, showHamburger])
 
   const isDark = ['dark', 'grey'].includes(variant)
-
   const logoVariant = isDark ? 'white' : 'default'
   const logoDefault = (
     <>
@@ -150,10 +161,12 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
             <div className={classes.left}>
               <Container flex alignItems='center' gap='small'>
-                <PageHamburger
-                  id={hamburgerId}
-                  data-testid={testIds?.hamburger}
-                />
+                {showHamburger && (
+                  <PageHamburger
+                    id={hamburgerId}
+                    data-testid={testIds?.hamburger}
+                  />
+                )}
                 {logoLink
                   ? React.cloneElement(logoLink, {}, logoComponent)
                   : logoComponent}
@@ -163,19 +176,18 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             </div>
 
             {/* Center part: inline menu */}
-            {centerContent && (
-              <>
+            {centerContent &&
+              (isSmallScreen ? (
                 <PageHamburgerPortal>
                   <div className={classes.centerContentPortal}>
                     {centerContent}
                   </div>
                 </PageHamburgerPortal>
+              ) : (
                 <Container className={classes.centerContent}>
                   {centerContent}
                 </Container>
-              </>
-            )}
-
+              ))}
             {/* Right part: Action items, User menu, Notifications */}
 
             <div className={classes.right}>

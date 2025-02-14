@@ -11,7 +11,7 @@ interface Props {
 }
 
 const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
-  const { showSidebarMenu, hamburgerRef } = useHamburgerContext()
+  const { hamburgerRef } = useHamburgerContext()
   const [showContent, setShowContent] = useState<boolean>(false)
 
   const handleShowContent = () => setShowContent(true)
@@ -20,7 +20,6 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
   return (
     <Dropdown
       content={<div id={id} ref={hamburgerRef} />}
-      className={!showSidebarMenu ? 'hidden' : 'min-[1280px]:hidden'}
       classes={{
         content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-var(--header-height,3.5rem))] !bg-gray-100`,
         popper: 'mt-4',
