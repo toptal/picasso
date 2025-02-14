@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@toptal/picasso": "53.0.13",
-    "@babel/types": "^7.20.7"
+    "@babel/types": "^7.26.8"
   },
   "sideEffects": false,
   "dependencies": {
