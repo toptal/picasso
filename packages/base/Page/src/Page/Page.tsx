@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useContext, useState } from 'react'
 import type { Theme } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import cx from 'classnames'
@@ -21,7 +21,50 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   hamburgerId?: string
 }
 
-export const PageContext = React.createContext<PageContextProps>({})
+export const PageContext = React.createContext<PageContextProps>({
+  hasSidebar: false,
+  setHasSidebar: () => {},
+  hasTopBar: false,
+  setHasTopBar: () => {},
+})
+
+export const usePageContext = (): PageContextProps => {
+  const {
+    hasSidebar,
+    setHasSidebar,
+    width,
+    fullWidth,
+    hasTopBar,
+    setHasTopBar,
+  } = useContext(PageContext)
+
+  return {
+    width,
+    fullWidth,
+    hasSidebar,
+    setHasSidebar,
+    hasTopBar,
+    setHasTopBar,
+  }
+}
+
+export const useSidebar = () => {
+  const { hasSidebar, setHasSidebar } = useContext(PageContext)
+
+  return {
+    hasSidebar,
+    setHasSidebar,
+  }
+}
+
+export const usePageTopBar = () => {
+  const { hasTopBar, setHasTopBar } = useContext(PageContext)
+
+  return {
+    hasTopBar,
+    setHasTopBar,
+  }
+}
 
 const useStyles = makeStyles<Theme>(styles, {
   name: 'Page',
@@ -43,6 +86,9 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
   } = props
   const classes = useStyles()
 
+  const [hasSidebar, setHasSidebar] = useState(false)
+  const [hasTopBar, setHasTopBar] = useState(false)
+
   return (
     <div
       {...rest}
@@ -55,7 +101,16 @@ export const Page = forwardRef<HTMLDivElement, Props>(function Page(
       )}
       style={{ ...style } as React.CSSProperties}
     >
-      <PageContext.Provider value={{ width, fullWidth }}>
+      <PageContext.Provider
+        value={{
+          width,
+          fullWidth,
+          hasSidebar,
+          setHasSidebar,
+          hasTopBar,
+          setHasTopBar,
+        }}
+      >
         <PageHamburgerContextProvider hamburgerId={hamburgerId}>
           {children}
         </PageHamburgerContextProvider>

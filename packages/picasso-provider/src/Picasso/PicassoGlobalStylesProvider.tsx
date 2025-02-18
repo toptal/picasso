@@ -46,29 +46,8 @@ const PicassoGlobalStylesProvider = (
   const [contextValue, setContextValue] = useState<RootContextProps>({
     rootRef,
     currentBreakpointRange,
-    hasTopBar: false,
-    setHasTopBar: (hasTopBar: boolean) => {
-      setContextValue(context => ({
-        ...context,
-        hasTopBar,
-      }))
-    },
     environment,
     titleCase,
-    hasDrawer: false,
-    setHasDrawer: (hasDrawer: boolean) => {
-      setContextValue(context => ({
-        ...context,
-        hasDrawer,
-      }))
-    },
-    hasSidebar: false,
-    setHasSidebar: (hasSidebar: boolean) => {
-      setContextValue(context => ({
-        ...context,
-        hasSidebar,
-      }))
-    },
     disableTransitions,
     preventPageWidthChangeOnScrollbar,
   })

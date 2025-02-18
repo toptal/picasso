@@ -4,8 +4,6 @@ import React, { useContext, forwardRef, useEffect } from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
-  usePageTopBar,
-  useSidebar,
   usePreventPageWidthChangeOnScrollbar,
   useScreenSize,
 } from '@toptal/picasso-provider'
@@ -16,6 +14,7 @@ import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 
+import { useSidebar, usePageTopBar } from '../Page/Page'
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
 import {
