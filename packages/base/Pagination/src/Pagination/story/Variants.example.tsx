@@ -26,7 +26,6 @@ const Example = () => (
       <Pagination
         activePage={3}
         onPageChange={handlePageChange}
-        totalPages={5}
         variant='compact'
       />
     </Container>

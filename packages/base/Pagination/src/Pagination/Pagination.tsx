@@ -16,12 +16,19 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   /** Callback invoked when any page number is clicked */
   onPageChange: (page: number) => void
-  /** Value of total pages of the data set used for calculation of page buttons */
-  totalPages: number
+  /** Value of total pages of the data set used for calculation of page buttons.
+   *  When not provided:
+   *  - An error will be raised unless `variant=compact`
+   *  - Last page can't be detected, so next button will always be enabled.
+   *    Use `nextDisabled=true` to disable it when rendering the last page.
+   * */
+  totalPages?: number
   /** Number of the active page siblings  */
   siblingCount?: number
   /** Variant of the pagination representation  */
   variant?: 'default' | 'compact'
+  /** Shows the next button as disabled. */
+  nextDisabled?: boolean
 }
 
 export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
@@ -35,15 +42,23 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     onPageChange,
     siblingCount = 2,
     variant,
+    nextDisabled,
     ...rest
   } = props
 
+  if (totalPages == null && variant !== 'compact') {
+    throw new Error('Pagination requires totalPages for non compact variants')
+  }
+
   const pages = useMemo(
-    () => getRange({ activePage, totalPages, siblingCount }),
+    () =>
+      totalPages != null
+        ? getRange({ activePage, totalPages, siblingCount })
+        : [],
     [activePage, totalPages, siblingCount]
   )
 
-  if (pages.length <= 1) {
+  if (totalPages != null && totalPages <= 1) {
     return null
   }
 
@@ -92,7 +107,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 
       <Button
         className='[&+&]:!ml-2'
-        disabled={isLastActive || disabled}
+        disabled={isLastActive || disabled || nextDisabled}
         onClick={handleNextClick}
         variant='secondary'
         size='small'
