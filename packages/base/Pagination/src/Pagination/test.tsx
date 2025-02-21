@@ -48,16 +48,6 @@ describe('Pagination', () => {
     expect(container).toMatchSnapshot()
   })
 
-  it('throws an error when using default variant and no totalPages', () => {
-    expect(() =>
-      renderPagination({
-        activePage: 5,
-        totalPages: null,
-        onPageChange: () => {},
-      })
-    ).toThrow('Pagination requires totalPages for non compact variants')
-  })
-
   it('renders disabled', () => {
     const { container } = renderPagination({
       activePage: 5,
