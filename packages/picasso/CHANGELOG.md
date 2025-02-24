@@ -1,5 +1,12 @@
 # Change Log
 
+## 53.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`1f985cb`](https://github.com/toptal/picasso/commit/1f985cb82c6292cbe81bce96d1ebd6f6fd476b34)]:
+  - @toptal/picasso-pagination@4.0.19
+
 ## 53.0.14
 
 ### Patch Changes
