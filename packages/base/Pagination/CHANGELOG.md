@@ -1,5 +1,13 @@
 # @toptal/picasso-pagination
 
+## 4.0.19
+
+### Patch Changes
+
+- [#4673](https://github.com/toptal/picasso/pull/4673) [`1f985cb`](https://github.com/toptal/picasso/commit/1f985cb82c6292cbe81bce96d1ebd6f6fd476b34) Thanks [@dgsuarez](https://github.com/dgsuarez)!
+- allow `variant=compact` without `totalCount`
+  - add `nextDisabled` for pagination control
+
 ## 4.0.18
 
 ### Patch Changes
