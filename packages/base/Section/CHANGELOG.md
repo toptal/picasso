@@ -1,5 +1,15 @@
 # @toptal/picasso-section
 
+## 5.1.0
+
+### Minor Changes
+
+- [#4678](https://github.com/toptal/picasso/pull/4678) [`41dce38`](https://github.com/toptal/picasso/commit/41dce38c2790ab7642f984024335802c2e0c8965) Thanks [@sashuk](https://github.com/sashuk)!
+
+### Section
+
+- add controlled component behavior support
+
 ## 5.0.18
 
 ### Patch Changes
