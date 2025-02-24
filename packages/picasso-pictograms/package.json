@@ -27,7 +27,7 @@
     "typescript": "~4.7.0"
   },
   "devDependencies": {
-    "@toptal/picasso": "53.0.16",
+    "@toptal/picasso": "53.0.17",
     "@babel/types": "^7.26.8"
   },
   "sideEffects": false,
