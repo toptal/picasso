@@ -52,3 +52,10 @@ page
     'Title Size',
     'base/Section'
   )
+page
+  .createChapter()
+  .addExample(
+    'Section/story/Controlled.example.tsx',
+    'Controlled section',
+    'base/Section'
+  )
