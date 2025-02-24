@@ -2,4 +2,6 @@
 '@toptal/picasso-section': minor
 ---
 
-- make Section component controlled
+### Section
+
+- add controlled component behavior support
