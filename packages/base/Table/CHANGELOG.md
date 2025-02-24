@@ -1,5 +1,15 @@
 # @toptal/picasso-table
 
+## 3.0.19
+
+### Patch Changes
+
+- [#4677](https://github.com/toptal/picasso/pull/4677) [`7447748`](https://github.com/toptal/picasso/commit/74477483a287d27229c12a8e8788381955155dc3) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- make padding of the last Table Cell smaller and equal to the left padding of the first cell/column.
+
 ## 3.0.18
 
 ### Patch Changes

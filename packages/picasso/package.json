@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "53.0.16",
+  "version": "53.0.17",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -90,7 +90,7 @@
     "@toptal/picasso-slider": "4.0.3",
     "@toptal/picasso-step": "4.0.7",
     "@toptal/picasso-switch": "4.0.8",
-    "@toptal/picasso-table": "3.0.18",
+    "@toptal/picasso-table": "3.0.19",
     "@toptal/picasso-tabs": "5.0.12",
     "@toptal/picasso-tag": "4.0.8",
     "@toptal/picasso-tagselector": "3.1.19",

@@ -1,5 +1,12 @@
 # Change Log
 
+## 53.0.17
+
+### Patch Changes
+
+- Updated dependencies [[`7447748`](https://github.com/toptal/picasso/commit/74477483a287d27229c12a8e8788381955155dc3)]:
+  - @toptal/picasso-table@3.0.19
+
 ## 53.0.16
 
 ### Patch Changes
