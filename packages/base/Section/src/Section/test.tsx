@@ -113,4 +113,26 @@ describe('Section', () => {
     fireEvent.click(collapse)
     await waitForElementToBeRemoved(getByTestId(DEFAULT_CONTENT_TEST_ID))
   })
+
+  describe('when component is controlled', () => {
+    describe.each([
+      ['collapsed', true],
+      ['expanded', false],
+    ])('initially %s', (_, collapsed) => {
+      it('reflects controlled collapsed state and calls onToggle', () => {
+        const onToggleMock = jest.fn()
+        const { getByTestId } = renderSection({
+          collapsible: true,
+          collapsed,
+          onToggle: onToggleMock,
+        })
+
+        expect(getByTestId(DEFAULT_COLLAPSE_TEST_ID)).toBeInTheDocument()
+
+        fireEvent.click(getByTestId(DEFAULT_COLLAPSE_TEST_ID))
+
+        expect(onToggleMock).toHaveBeenCalledWith(!collapsed)
+      })
+    })
+  })
 })
