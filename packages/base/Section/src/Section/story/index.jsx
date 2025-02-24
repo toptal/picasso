@@ -56,6 +56,6 @@ page
   .createChapter()
   .addExample(
     'Section/story/Controlled.example.tsx',
-    'Controlled section',
+    'Controlled Section',
     'base/Section'
   )
