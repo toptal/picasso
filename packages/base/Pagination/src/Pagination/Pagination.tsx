@@ -9,20 +9,38 @@ import { Typography } from '@toptal/picasso-typography'
 import { getRange, ELLIPSIS } from './utils'
 import { PaginationButton } from '../PaginationButton'
 
-export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
+interface CommonProps extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Value of the current highlighted page */
   activePage: number
   /** Shows `Pagination` in disabled state when pages are not changeable */
   disabled?: boolean
   /** Callback invoked when any page number is clicked */
   onPageChange: (page: number) => void
-  /** Value of total pages of the data set used for calculation of page buttons */
-  totalPages: number
   /** Number of the active page siblings  */
   siblingCount?: number
-  /** Variant of the pagination representation  */
-  variant?: 'default' | 'compact'
+  /** Shows the next button as disabled. */
+  nextDisabled?: boolean
 }
+
+interface DefaultVariantProps {
+  /** Variant of the pagination representation  */
+  variant?: 'default'
+  /** Value of total pages of the data set used for calculation of page buttons. */
+  totalPages: number
+}
+
+interface CompactVariantProps {
+  /** Variant of the pagination representation  */
+  variant: 'compact'
+  /** Value of total pages of the data set used for calculation of page buttons.
+   *  Only optional for the `compact` variant.
+   *  When not provided the last page can't be detected, so next button will always be enabled.
+   *  Use `nextDisabled=true` to disable it when rendering the last page.
+   * */
+  totalPages?: number
+}
+
+export type Props = CommonProps & (DefaultVariantProps | CompactVariantProps)
 
 export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   props,
@@ -35,15 +53,17 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     onPageChange,
     siblingCount = 2,
     variant,
+    nextDisabled,
     ...rest
   } = props
 
   const pages = useMemo(
-    () => getRange({ activePage, totalPages, siblingCount }),
+    () =>
+      totalPages ? getRange({ activePage, totalPages, siblingCount }) : [],
     [activePage, totalPages, siblingCount]
   )
 
-  if (pages.length <= 1) {
+  if (totalPages !== undefined && totalPages <= 1) {
     return null
   }
 
@@ -92,7 +112,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 
       <Button
         className='[&+&]:!ml-2'
-        disabled={isLastActive || disabled}
+        disabled={isLastActive || disabled || nextDisabled}
         onClick={handleNextClick}
         variant='secondary'
         size='small'

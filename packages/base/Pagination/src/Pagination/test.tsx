@@ -6,7 +6,14 @@ import type { Props } from './Pagination'
 import { Pagination } from './Pagination'
 
 const renderPagination = (props: OmitInternalProps<Props>) => {
-  const { activePage, disabled, onPageChange, totalPages } = props
+  const {
+    activePage,
+    disabled,
+    onPageChange,
+    totalPages,
+    nextDisabled,
+    variant,
+  } = props
 
   return render(
     <Pagination
@@ -14,6 +21,8 @@ const renderPagination = (props: OmitInternalProps<Props>) => {
       disabled={disabled}
       onPageChange={onPageChange}
       totalPages={totalPages}
+      nextDisabled={nextDisabled}
+      variant={variant}
     />
   )
 }
@@ -29,11 +38,32 @@ describe('Pagination', () => {
     expect(container).toMatchSnapshot()
   })
 
+  it('renders compact without totalPages', () => {
+    const { container } = renderPagination({
+      activePage: 5,
+      variant: 'compact',
+      onPageChange: () => {},
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
   it('renders disabled', () => {
     const { container } = renderPagination({
       activePage: 5,
       totalPages: 20,
       disabled: true,
+      onPageChange: () => {},
+    })
+
+    expect(container).toMatchSnapshot()
+  })
+
+  it('renders with next disabled', () => {
+    const { container } = renderPagination({
+      activePage: 5,
+      variant: 'compact',
+      nextDisabled: true,
       onPageChange: () => {},
     })
 
