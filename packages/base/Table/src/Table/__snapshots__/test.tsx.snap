@@ -15,7 +15,7 @@ exports[`Table renders 1`] = `
           class="border-0 border-solid border-b border-gray"
         >
           <th
-            class="h-10 py-2 border-none last:pr-6 px-4 text-left"
+            class="h-10 py-2 border-none px-4 text-left"
           >
             <div
               class="m-0 text-xxs text-graphite font-semibold text-align"
@@ -30,7 +30,7 @@ exports[`Table renders 1`] = `
           class="border-0 border-solid border-b border-gray"
         >
           <td
-            class="h-10 py-2 border-none last:pr-6 px-4"
+            class="h-10 py-2 border-none px-4"
           >
             <div
               class="m-0 text-sm text-graphite font-inherit text-align"
@@ -47,7 +47,7 @@ exports[`Table renders 1`] = `
           class="border-0 border-solid border-b border-gray"
         >
           <td
-            class="h-10 py-2 border-none last:pr-6 px-4"
+            class="h-10 py-2 border-none px-4"
           >
             <div
               class="m-0 text-sm text-black font-semibold text-align"
