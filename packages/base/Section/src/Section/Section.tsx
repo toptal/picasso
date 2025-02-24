@@ -24,6 +24,10 @@ export interface Props extends BaseProps {
   collapsible?: boolean
   /** Default collapsed value **(applied if `collapsible: true`)** */
   defaultCollapsed?: boolean
+  /** Controlled collapsed state */
+  collapsed?: boolean
+  /** Callback when the collapsed state changes */
+  onToggle?: (collapsed: boolean) => void
   testIds?: {
     header?: string
     title?: string
@@ -80,16 +84,28 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     testIds,
     collapsible = false,
     defaultCollapsed = true,
+    collapsed,
+    onToggle,
     variant = 'default',
     titleSize = 'medium',
     ...rest
   } = props
 
-  const [collapsed, setCollapsed] = useState(
+  const [internalCollapsed, setInternalCollapsed] = useState(
     collapsible ? defaultCollapsed : false
   )
 
-  const toggleCollapse = () => setCollapsed(!collapsed)
+  const isCollapsed = collapsed !== undefined ? collapsed : internalCollapsed
+
+  const toggleCollapse = () => {
+    const newCollapsed = !isCollapsed
+
+    if (onToggle) {
+      onToggle(newCollapsed)
+    } else {
+      setInternalCollapsed(newCollapsed)
+    }
+  }
 
   const renderTitle = () =>
     title ? (
@@ -124,7 +140,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         data-testid={testIds?.collapse}
         variant='flat'
         icon={
-          <Rotate180 on={!collapsed}>
+          <Rotate180 on={!isCollapsed}>
             <ArrowDownMinor16 />
           </Rotate180>
         }
@@ -153,7 +169,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       className={twMerge(
         'pt-8',
         classesByVariant[variant],
-        variant === 'default' && collapsed && 'pb-8',
+        variant === 'default' && isCollapsed && 'pb-8',
         collapsible && variant === 'bordered' && 'p-6',
         className
       )}
@@ -163,7 +179,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
           data-testid={testIds?.header}
           className={twJoin(
             classesByHeader[variant],
-            collapsed && classesByCollapsedHeader[variant]
+            isCollapsed && classesByCollapsedHeader[variant]
           )}
         >
           {renderTitle()}
@@ -171,7 +187,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
           {renderActions()}
         </Container>
       )}
-      <Collapse in={!collapsed} unmountOnExit>
+      <Collapse in={!isCollapsed} unmountOnExit>
         <Container className={variant === 'withHeaderBar' ? 'p-6' : ''}>
           {children}
         </Container>
