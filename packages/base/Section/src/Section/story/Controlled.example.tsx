@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Container, Section } from '@toptal/picasso'
+import { Button, Container, Section, Typography } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => {
@@ -20,7 +20,7 @@ const Example = () => {
           title='First section'
           collapsed={!sectionIsOpened}
         >
-          <p>First section content</p>
+          <Typography>First section content</Typography>
           <Button onClick={() => setSectionIsOpened(false)}>
             Close section
           </Button>
