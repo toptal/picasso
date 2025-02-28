@@ -91,3 +91,8 @@ page
     'Status',
     'base/Tagselector'
   )
+  .addExample(
+    'TagSelector/story/Sizes.example.tsx',
+    'Sizes',
+    'base/Tagselector'
+  )

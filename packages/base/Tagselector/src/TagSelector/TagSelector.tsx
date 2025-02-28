@@ -6,7 +6,7 @@ import type {
   FocusEventHandler,
 } from 'react'
 import React, { forwardRef, Fragment } from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
 import { Autocomplete } from '@toptal/picasso-autocomplete'
 import { unsafeErrorLog, noop } from '@toptal/picasso-utils'
@@ -49,7 +49,7 @@ const getItemText = (item: Item | null) =>
 
 export interface Props
   extends BaseProps,
-    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'size'> {
   /** Placeholder for value */
   placeholder?: string
   /** Disables `TagSelector` */
@@ -101,6 +101,8 @@ export interface Props
     onDelete: () => void
     disabled?: boolean
   }) => ReactNode
+  /** Component size */
+  size?: SizeType<'small' | 'medium' | 'large'>
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
   /** Options provided to the popper.js instance */
