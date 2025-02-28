@@ -102,7 +102,7 @@ export interface Props
     disabled?: boolean
   }) => ReactNode
   /** Component size */
-  size?: SizeType<'small' | 'medium' | 'large'>
+  size?: SizeType<'medium' | 'large'>
   /** DOM element that wraps the Popper */
   popperContainer?: HTMLElement
   /** Options provided to the popper.js instance */
@@ -280,6 +280,7 @@ TagSelector.defaultProps = {
   placeholder: '',
   showOtherOption: false,
   status: 'default',
+  size: 'medium',
 }
 
 TagSelector.displayName = 'TagSelector'

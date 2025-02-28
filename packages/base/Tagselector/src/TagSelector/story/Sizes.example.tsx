@@ -75,7 +75,7 @@ const Example = () => {
 
   return (
     <div>
-      {(['small', 'medium', 'large'] as const).map(size => (
+      {(['medium', 'large'] as const).map(size => (
         <Container key={size} bottom={SPACING_4}>
           <Typography variant='body' titleCase>
             {size}

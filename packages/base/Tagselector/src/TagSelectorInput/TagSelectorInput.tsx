@@ -53,7 +53,8 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
           [&>input]:min-w-[3em] [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
           {
             'pr-[2.25em]': Boolean(endAdornment),
-            'pl-1': size === 'small',
+            'py-1 pl-1': size === 'medium',
+            'gap-[12px] px-4': size === 'large',
           }
         )}
         highlight={highlight}
