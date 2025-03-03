@@ -1,5 +1,12 @@
 # Change Log
 
+## 73.0.28
+
+### Patch Changes
+
+- Updated dependencies [[`df6e61b`](https://github.com/toptal/picasso/commit/df6e61baf1cf56158814b4ca8c5c5638799ed5f4)]:
+  - @toptal/picasso-tagselector@3.2.0
+
 ## 73.0.27
 
 ### Patch Changes
