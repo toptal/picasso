@@ -93,6 +93,7 @@ TagSelectorInput.defaultProps = {
   multiline: false,
   width: 'auto',
   status: 'default',
+  size: 'medium',
 }
 
 TagSelectorInput.displayName = 'TagSelectorInput'
