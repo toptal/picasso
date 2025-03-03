@@ -1,5 +1,15 @@
 # @toptal/picasso-tagselector
 
+## 3.2.0
+
+### Minor Changes
+
+- [#4682](https://github.com/toptal/picasso/pull/4682) [`df6e61b`](https://github.com/toptal/picasso/commit/df6e61baf1cf56158814b4ca8c5c5638799ed5f4) Thanks [@sashuk](https://github.com/sashuk)!
+
+### TagSelector
+
+- add `size` property to control input size
+
 ## 3.1.19
 
 ### Patch Changes
