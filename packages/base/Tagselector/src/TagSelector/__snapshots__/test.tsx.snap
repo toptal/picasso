@@ -15,7 +15,7 @@ exports[`TagSelector disabled render 1`] = `
         class="flex"
       >
         <div
-          class="base-Input base- base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] group text-nowrap p-2 w-[18.75rem] bg-gray after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray after:border [&:has(:focus)]:after:shadow-[0_0_0_3px] [&:has(:focus)]:after:shadow-blue text-gray flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+          class="base-Input base- base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] group text-nowrap p-2 w-[18.75rem] bg-gray after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray after:border [&:has(:focus)]:after:shadow-[0_0_0_3px] [&:has(:focus)]:after:shadow-blue text-gray flex flex-wrap h-auto cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 py-1 pl-1"
         >
           <div
             aria-disabled="true"
@@ -83,7 +83,7 @@ exports[`TagSelector preselected value 1`] = `
           class="flex"
         >
           <div
-            class="base-Input base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] group text-nowrap p-2 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(:focus)]:after:border-blue after:border [&:has(:focus)]:after:shadow-[0_0_0_3px] [&:has(:focus)]:after:shadow-blue hover:[&:not(:has(:focus))]:after:border-gray text-black flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+            class="base-Input base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] group text-nowrap p-2 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(:focus)]:after:border-blue after:border [&:has(:focus)]:after:shadow-[0_0_0_3px] [&:has(:focus)]:after:shadow-blue hover:[&:not(:has(:focus))]:after:border-gray text-black flex flex-wrap h-auto cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 py-1 pl-1"
           >
             <div
               class="text-lg transition-none border border-solid rounded-[6.25rem] h-6 max-w inline-flex justify-center items-center cursor-default bg-white group align-middle leading-[inherit] text-graphite border-gray"
@@ -149,7 +149,7 @@ exports[`TagSelector renders 1`] = `
         class="flex"
       >
         <div
-          class="base-Input base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] group text-nowrap p-2 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(:focus)]:after:border-blue after:border [&:has(:focus)]:after:shadow-[0_0_0_3px] [&:has(:focus)]:after:shadow-blue hover:[&:not(:has(:focus))]:after:border-gray text-black flex flex-wrap h-auto py-1 pl-1 cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0"
+          class="base-Input base-Input relative gap-y gap-x items-center rounded-sm [font-size:_unset] group text-nowrap p-2 w-[18.75rem] bg-white after:content-[""] after:inline-block after:absolute after:top-0 after:bottom-0 after:right-0 after:left-0 after:pointer-events after:border-solid after:rounded-sm after:border-gray [&:has(:focus)]:after:border-blue after:border [&:has(:focus)]:after:shadow-[0_0_0_3px] [&:has(:focus)]:after:shadow-blue hover:[&:not(:has(:focus))]:after:border-gray text-black flex flex-wrap h-auto cursor-pointer [&>input]:min-w [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0 py-1 pl-1"
         >
           <input
             aria-autocomplete="list"

@@ -32,6 +32,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       inputProps,
       testIds,
       highlight,
+      size,
       ...rest
     } = props
 
@@ -48,10 +49,12 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         inputRef={ref}
         style={style}
         className={cx(
-          `flex flex-wrap h-auto py-1 pl-1 cursor-pointer
+          `flex flex-wrap h-auto cursor-pointer
           [&>input]:min-w-[3em] [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
           {
             'pr-[2.25em]': Boolean(endAdornment),
+            'py-1 pl-1': size === 'medium',
+            'gap-[12px] px-4': size === 'large',
           }
         )}
         highlight={highlight}
@@ -78,6 +81,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         endAdornment={usedEndAdornment}
         startAdornment={startAdornment}
         onChange={onChange}
+        size={size}
       >
         {children}
       </OutlinedInput>
@@ -89,6 +93,7 @@ TagSelectorInput.defaultProps = {
   multiline: false,
   width: 'auto',
   status: 'default',
+  size: 'medium',
 }
 
 TagSelectorInput.displayName = 'TagSelectorInput'
