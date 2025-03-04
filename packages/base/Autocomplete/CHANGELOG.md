@@ -1,5 +1,15 @@
 # @toptal/picasso-autocomplete
 
+## 5.1.0
+
+### Minor Changes
+
+- [#4687](https://github.com/toptal/picasso/pull/4687) [`00d74d6`](https://github.com/toptal/picasso/commit/00d74d6683d1e37d730b13591cd0f801d613c19b) Thanks [@Q-Man](https://github.com/Q-Man)!
+
+### Autocomplete
+
+- add `size` property to control input size
+
 ## 5.0.19
 
 ### Patch Changes
