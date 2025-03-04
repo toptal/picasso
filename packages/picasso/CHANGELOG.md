@@ -1,5 +1,14 @@
 # Change Log
 
+## 53.0.19
+
+### Patch Changes
+
+- Updated dependencies [[`00d74d6`](https://github.com/toptal/picasso/commit/00d74d6683d1e37d730b13591cd0f801d613c19b)]:
+  - @toptal/picasso-autocomplete@5.1.0
+  - @toptal/picasso-page@5.1.21
+  - @toptal/picasso-tagselector@3.2.1
+
 ## 53.0.18
 
 ### Patch Changes
