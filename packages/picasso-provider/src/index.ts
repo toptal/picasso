@@ -44,10 +44,7 @@ export { default as PicassoProvider } from './Picasso/PicassoProvider'
 
 export {
   usePicassoRoot,
-  usePageTopBar,
   useAppConfig,
-  useDrawer,
-  useSidebar,
   useCurrentBreakpointRange,
   usePreventPageWidthChangeOnScrollbar,
   RootContext,
