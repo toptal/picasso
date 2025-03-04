@@ -26,13 +26,13 @@
     "prepublishOnly": "yarn build:package"
   },
   "dependencies": {
-    "@toptal/picasso-shared": "15.0.0",
+    "@toptal/picasso-shared": "^15.0.0",
     "ap-style-title-case": "^1.1.2",
     "classnames": "^2.5.1"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.0",
-    "@toptal/picasso-test-utils": "1.1.1",
+    "@toptal/picasso-provider": "^5.0.0",
+    "@toptal/picasso-test-utils": "^1.1.1",
     "styled-components": "^6.1.1"
   },
   "peerDependencies": {

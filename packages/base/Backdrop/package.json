@@ -23,8 +23,8 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@mui/base": "5.0.0-beta.58",
-    "@toptal/picasso-utils": "3.0.0",
-    "@toptal/picasso-fade": "1.0.7",
+    "@toptal/picasso-utils": "^3.0.0",
+    "@toptal/picasso-fade": "^1.0.7",
     "classnames": "^2.5.1"
   },
   "sideEffects": false,
@@ -37,7 +37,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.1.1"
+    "@toptal/picasso-test-utils": "^1.1.1"
   },
   "files": [
     "dist-package/**",

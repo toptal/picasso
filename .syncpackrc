@@ -4,7 +4,22 @@
     "overrides",
     "pnpmOverrides",
     "prod",
-    "resolutions",
-    "local"
+    "resolutions"
+  ],
+  "stripVersionPrefixes": true,
+  "semverGroups": [
+    {
+      "range": "^",
+      "dependencyTypes": [
+        "local"
+      ],
+      "packages": [
+        "**"
+      ],
+      "dependencies": [
+        "@toptal/picasso",
+        "@toptal/picasso-*"
+      ]
+    }
   ]
 }

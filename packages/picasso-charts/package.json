@@ -32,7 +32,7 @@
     "@types/d3-array": "3.0.4"
   },
   "dependencies": {
-    "@toptal/picasso-utils": "3.0.0",
+    "@toptal/picasso-utils": "^3.0.0",
     "classnames": "^2.5.1",
     "d3-array": "^3.2.2",
     "debounce": "^1.2.1",
