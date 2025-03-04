@@ -99,6 +99,14 @@ page
     'base/Autocomplete'
   )
   .addExample(
+    'Autocomplete/story/LargeSize.example.tsx',
+    {
+      title: 'Large size',
+      takeScreenshot: false,
+    },
+    'base/Autocomplete'
+  )
+  .addExample(
     'Autocomplete/story/Loading.example.tsx',
     'Loading',
     'base/Autocomplete'

@@ -11,7 +11,7 @@ import type {
   Ref,
 } from 'react'
 import React, { forwardRef, useRef } from 'react'
-import type { BaseProps } from '@toptal/picasso-shared'
+import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { isForwardRef } from '@toptal/picasso-shared'
 import type { PopperOptions } from 'popper.js'
 import { Input } from '@toptal/picasso-input'
@@ -118,6 +118,8 @@ export interface Props
     disableAutofillInput?: string
   }
   highlight?: 'autofill'
+  /** Component size */
+  size?: SizeType<'medium' | 'large'>
 }
 
 const getItemText = (item: Item | null) =>
