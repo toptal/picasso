@@ -66,9 +66,9 @@ const CompactItemContent = (props: Props & { isIndicatorVisible: boolean }) => {
         <div className={styles.iconWrapper}>
           {wrappedIcon}
           {hasSubItems && isIndicatorVisible && (
-            <Container className={styles.compactIndicator}>
+            <div className={styles.compactIndicator}>
               <Indicator color='red' />
-            </Container>
+            </div>
           )}
         </div>
       </Tooltip>
@@ -120,9 +120,9 @@ const ExpandedItemContent = (
       )}
       {hasBadge && !hasSubItems && <ItemContentBadge {...badge} />}
       {isIndicatorVisible && hasSubItems && (
-        <Container className={styles.expandedIndicator}>
+        <div className={styles.expandedIndicator}>
           <Indicator color='red' />
-        </Container>
+        </div>
       )}
     </Container>
   )
