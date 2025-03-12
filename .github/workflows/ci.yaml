@@ -5,7 +5,7 @@ on:
   pull_request:
     branches:
       - master # triggers the flow for every PR to master
-      - "feature/**" # triggers the flow for a PR to a branch like feature/v9
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
 
     types:
       - synchronize # PR was updated
@@ -264,21 +264,10 @@ jobs:
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Get toptal/actions
-        uses: actions/checkout@v4
-        with:
-          repository: toptal/actions
-          token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
-          path: ./.github/actions/
-
-      - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
-        shell: bash
-        run: |
-          sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
+      # NOTE: Remove the entire "Get toptal/actions" checkout step since you no longer need the local copy.
 
       - name: Trigger doc deployment job
-        uses: ./.github/actions/trigger-jenkins-job/
+        uses: toptal/actions/trigger-jenkins-job@1.0.2
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}
@@ -294,10 +283,10 @@ jobs:
               "BRANCH": "${{ env.BRANCH }}",
               "PR_ID": "${{ env.PR_ID }}"
             }
-          job_timeout: "3600"
+          job_timeout: '3600'
 
       - name: Create Jira Deployment
-        uses: ./.github/actions/create-jira-deployment/
+        uses: toptal/actions/create-jira-deployment@1.0.2
         if: ${{ always() }}
         with:
           jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
