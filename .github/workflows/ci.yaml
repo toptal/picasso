@@ -275,7 +275,7 @@ jobs:
           echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Trigger doc deployment job
-        uses: toptal/actions/trigger-jenkins-job@v1.0.4
+        uses: toptal/actions/trigger-jenkins-job@v1.0.2
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}
@@ -294,7 +294,7 @@ jobs:
           job_timeout: '3600'
 
       - name: Create Jira Deployment
-        uses: toptal/actions/create-jira-deployment@v1.0.4
+        uses: toptal/actions/create-jira-deployment@main
         if: ${{ always() }}
         with:
           jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
