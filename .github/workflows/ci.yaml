@@ -296,7 +296,7 @@ jobs:
           ls -la ./.github/actions/trigger-jenkins-job/
 
       - name: Trigger doc deployment job
-        uses: ./.github/actions/trigger-jenkins-job/
+        uses: ./.github/actions/trigger-jenkins-job
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}
@@ -315,7 +315,7 @@ jobs:
           job_timeout: '3600'
 
       - name: Create Jira Deployment
-        uses: ./.github/actions/create-jira-deployment/
+        uses: ./.github/actions/create-jira-deployment
         if: ${{ always() }}
         with:
           jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
