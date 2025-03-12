@@ -21,7 +21,7 @@ jobs:
   build-docker-image:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Build Picasso docker image
-    runs-on: ubuntu-latest
+    runs-on: org-toptal-ubuntu2204-x64-standard
     permissions:
       contents: write
       id-token: write
@@ -84,7 +84,7 @@ jobs:
   static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Static checks
-    runs-on: ubuntu-latest
+    runs-on: org-toptal-ubuntu2204-x64-standard
     permissions:
       contents: read
       id-token: write
@@ -172,7 +172,7 @@ jobs:
   storybook-visual-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Visual Tests
-    runs-on: ubuntu-latest
+    runs-on: org-toptal-ubuntu2204-x64-standard
     permissions: write-all
     needs: [static-checks]
     steps:
@@ -235,7 +235,7 @@ jobs:
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Deploy Picasso docs
-    runs-on: ubuntu-latest
+    runs-on: org-toptal-ubuntu2204-x64-standard
     permissions:
       contents: write
       id-token: write
