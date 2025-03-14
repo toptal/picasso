@@ -264,12 +264,28 @@ jobs:
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
 
+      - name: Debug Authentication Setup
+        run: |
+          echo "Checking if Jenkins credentials are available"
+          if [ -n "$JENKINS_USER" ] && [ -n "$JENKINS_TOKEN" ]; then
+            echo "Jenkins credentials are set"
+          else
+            echo "Jenkins credentials are missing"
+          fi
+
+          if [ -n "${{ steps.secrets_manager.outputs.access_token }}" ]; then
+            echo "Access token from GSM Secrets is available"
+          else
+            echo "Access token from GSM Secrets is not available"
+          fi
+
       - name: Get toptal/actions
         uses: actions/checkout@v4
         with:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
+          ref: 22323b6e20c443279cbe288dd822fd4f1e49a24d
 
       - name: Replace toptal/actions/get-job-url@v1.0.2 from trigger-jenkins-job/action.yml
         shell: bash
@@ -287,7 +303,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           wif_token: ${{ steps.secrets_manager.outputs.access_token }}
           job_name: picasso-docs
           job_params: |
@@ -305,7 +320,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           wif_token: ${{ steps.secrets_manager.outputs.access_token }}
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: staging
