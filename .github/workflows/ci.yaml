@@ -35,7 +35,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@FF-davinci-gha-add-wif
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -53,7 +53,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.1.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -74,7 +74,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
           echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v17.1.0
+      - uses: toptal/davinci-github-actions/build-push-image@v15.4.1
         with:
           sha: ${{ github.event.pull_request.head.sha }}
           image-name: picasso
@@ -98,7 +98,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.1.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -112,7 +112,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.1.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -131,7 +131,7 @@ jobs:
           node-version: 20
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v17.1.0
+        uses: toptal/davinci-github-actions/report-missing-changeset@v15.4.1
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -177,7 +177,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.1.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -189,7 +189,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.1.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -233,7 +233,7 @@ jobs:
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.1.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -251,7 +251,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.1.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -270,12 +270,13 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
+          ref: 22323b6e20c443279cbe288dd822fd4f1e49a24d
 
-      - name: Replace toptal/actions/get-job-url@v1.0.2 from trigger-jenkins-job/action.yml
+      - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
         shell: bash
         run: |
-          sed -i 's|toptal/actions/get-job-url@v1.0.2|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@v1.0.2|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
+          sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
+          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
@@ -288,7 +289,6 @@ jobs:
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
           jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
-          wif_token: ${{ steps.secrets_manager.outputs.access_token }}
           job_name: picasso-docs
           job_params: |
             {
@@ -306,7 +306,6 @@ jobs:
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
           jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
-          wif_token: ${{ steps.secrets_manager.outputs.access_token }}
           token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
           environment: staging
           environment-url: ${{ steps.temploy.outputs.temployURL }}
