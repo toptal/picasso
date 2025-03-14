@@ -27,7 +27,7 @@ import styles from './styles'
 
 const SMALL_SCREEN_WIDTH = 1280
 
-type VariantType = 'dark' | 'light' | 'grey'
+type VariantType = 'dark' | 'light' | 'grey' | 'black'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Title which is displayed along the `Logo` */
@@ -109,7 +109,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     return () => setHasPageHamburger(false)
   }, [setHasPageHamburger, showHamburger])
 
-  const isDark = ['dark', 'grey'].includes(variant)
+  const isDark = ['dark', 'grey', 'black'].includes(variant)
   const logoVariant = isDark ? 'white' : 'default'
   const logoDefault = (
     <>

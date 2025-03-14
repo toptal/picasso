@@ -24,6 +24,9 @@ export default ({ palette, layout, zIndex, screens }: Theme) =>
     grey: {
       backgroundColor: palette.grey.darker,
     },
+    black: {
+      backgroundColor: 'black',
+    },
     content: {
       boxSizing: 'border-box',
       display: 'flex',
