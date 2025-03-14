@@ -1,23 +1,17 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 import { useTitleCase } from '@toptal/picasso-shared'
-import cx from 'classnames'
-import type { Theme } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import { Typography } from '@toptal/picasso-typography'
 import { Tooltip } from '@toptal/picasso-tooltip'
 import { Container } from '@toptal/picasso-container'
 import { Badge } from '@toptal/picasso-badge'
-import { TagRectangular , Indicator } from '@toptal/picasso-tag'
+import { TagRectangular, Indicator } from '@toptal/picasso-tag'
 import { getReactNodeTextContent } from '@toptal/picasso-utils'
+import { twJoin } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import type { Props, SidebarBadgeProps } from './types'
 import useIndicatorOnParentItem from './use-indicator-on-parent-item'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItemContent',
-})
+import { styles } from './styles'
 
 const resolveChildrenText = (text: ReactNode, titleCase: boolean) =>
   typeof text === 'string' ? (
@@ -43,7 +37,6 @@ const ItemContentBadge = (
 
 const CompactItemContent = (props: Props & { isIndicatorVisible: boolean }) => {
   const { icon, children, badge, isIndicatorVisible, menu } = props
-  const classes = useStyles()
 
   const hasBadge = badge != null
   const hasSubItems = menu != null
@@ -59,7 +52,7 @@ const CompactItemContent = (props: Props & { isIndicatorVisible: boolean }) => {
 
   return (
     <Container
-      className={classes.noWrap}
+      className={styles.noWrap}
       inline
       flex
       alignItems='center'
@@ -70,12 +63,12 @@ const CompactItemContent = (props: Props & { isIndicatorVisible: boolean }) => {
         placement='right'
         content={getReactNodeTextContent(children)}
       >
-        <div className={classes.iconWrapper}>
+        <div className={styles.iconWrapper}>
           {wrappedIcon}
           {hasSubItems && isIndicatorVisible && (
-            <Container className={classes.compactIndicator}>
+            <div className={styles.compactIndicator}>
               <Indicator color='red' />
-            </Container>
+            </div>
           )}
         </div>
       </Tooltip>
@@ -96,7 +89,6 @@ const ExpandedItemContent = (
     menu,
     isSubMenu,
   } = props
-  const classes = useStyles()
 
   const hasIcon = icon != null && !isSubMenu
   const hasBadge = badge != null
@@ -105,7 +97,7 @@ const ExpandedItemContent = (
 
   return (
     <Container
-      className={classes.noWrap}
+      className={styles.noWrap}
       inline
       flex
       alignItems='center'
@@ -114,9 +106,7 @@ const ExpandedItemContent = (
       {!isSubMenu && icon}
 
       <Container
-        className={cx(classes.noWrap, {
-          [classes.withIcon]: hasIcon,
-        })}
+        className={twJoin(styles.noWrap, hasIcon && styles.withIcon)}
         flex
         alignItems='center'
         data-testid={testIds?.content}
@@ -130,9 +120,9 @@ const ExpandedItemContent = (
       )}
       {hasBadge && !hasSubItems && <ItemContentBadge {...badge} />}
       {isIndicatorVisible && hasSubItems && (
-        <Container className={classes.expandedIndicator}>
+        <div className={styles.expandedIndicator}>
           <Indicator color='red' />
-        </Container>
+        </div>
       )}
     </Container>
   )
