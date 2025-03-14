@@ -231,6 +231,9 @@ jobs:
       id-token: write
     needs: [build-docker-image]
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: GSM Secrets
         id: secrets_manager
         uses: toptal/davinci-github-actions/gsm-secrets@FF-davinci-gha-add-wif
