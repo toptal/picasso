@@ -296,7 +296,7 @@ jobs:
           sed -i 's|toptal/actions/trigger-jenkins-job@v1.0.2|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Trigger doc deployment job
-        uses: toptal/actions/trigger-jenkins-job@v1.0.2
+        uses: toptal/actions/trigger-jenkins-job@v1.0.4
         env:
           BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_ID: ${{ github.event.pull_request.number }}
