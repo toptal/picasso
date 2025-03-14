@@ -5,7 +5,7 @@ on:
   pull_request:
     branches:
       - master # triggers the flow for every PR to master
-      - "feature/**" # triggers the flow for a PR to a branch like feature/v9
+      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
 
     types:
       - synchronize # PR was updated
@@ -270,6 +270,7 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
+          ref: 22323b6e20c443279cbe288dd822fd4f1e49a24d
 
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
         shell: bash
@@ -294,7 +295,7 @@ jobs:
               "BRANCH": "${{ env.BRANCH }}",
               "PR_ID": "${{ env.PR_ID }}"
             }
-          job_timeout: "3600"
+          job_timeout: '3600'
 
       - name: Create Jira Deployment
         uses: ./.github/actions/create-jira-deployment/
