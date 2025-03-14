@@ -285,7 +285,6 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-          ref: 22323b6e20c443279cbe288dd822fd4f1e49a24d
 
       - name: Replace toptal/actions/get-job-url@v1.0.2 from trigger-jenkins-job/action.yml
         shell: bash
