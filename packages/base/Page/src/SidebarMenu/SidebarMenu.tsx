@@ -1,5 +1,5 @@
 import type { BaseProps } from '@toptal/picasso-shared'
-import cx from 'classnames'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { HTMLAttributes } from 'react'
 import React, { forwardRef, useCallback, useEffect } from 'react'
 import { Menu } from '@toptal/picasso-menu'
@@ -71,12 +71,10 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         allowNestedNavigation={false}
         ref={ref}
         style={style}
-        className={cx(
+        className={twMerge(
           'shadow-0 order-1 [&_&]:flex-1 flex-grow-0 flex-shrink-1 max-w-full',
-          {
-            ['order-[99]']: bottom,
-            ['p-2']: parentMenu?.compact,
-          },
+          bottom && 'order-[99]',
+          parentMenu?.compact && 'p-2',
           className
         )}
       >
