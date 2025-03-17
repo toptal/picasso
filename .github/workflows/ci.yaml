@@ -5,7 +5,7 @@ on:
   pull_request:
     branches:
       - master # triggers the flow for every PR to master
-      - 'feature/**' # triggers the flow for a PR to a branch like feature/v9
+      #- 'feature/**' # triggers the flow for a PR to a branch like feature/v9
 
     types:
       - synchronize # PR was updated
