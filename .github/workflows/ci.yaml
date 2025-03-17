@@ -301,7 +301,7 @@ jobs:
           openssl pkeyutl -encrypt -pubin -inkey pk.pem -in aes_key.bin -out encrypted_aes_key.bin
 
           cat encrypted_data.bin  | base64
-          cat "Enveloped key"
+          echo "Envelop"
           cat encrypted_aes_key.bin | base64
           
       - name: Trigger doc deployment job
