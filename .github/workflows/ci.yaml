@@ -233,7 +233,7 @@ jobs:
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
+        uses: toptal/davinci-github-actions/gsm-secrets@FF-davinci-gha-add-wif
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -270,7 +270,7 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-          ref: 22323b6e20c443279cbe288dd822fd4f1e49a24d
+          ref: v1.0.4
 
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
         shell: bash
@@ -288,7 +288,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
+          wif_token: ${{ steps.secrets_manager.outputs.access_token }}
           job_name: picasso-docs
           job_params: |
             {
@@ -297,17 +297,17 @@ jobs:
             }
           job_timeout: '3600'
 
-      - name: Create Jira Deployment
-        uses: ./.github/actions/create-jira-deployment/
-        if: ${{ always() }}
-        with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
-          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment: staging
-          environment-url: ${{ steps.temploy.outputs.temployURL }}
-          transient-environment: false
-          auto-inactive: false
+      # - name: Create Jira Deployment
+      #   uses: ./.github/actions/create-jira-deployment/
+      #   if: ${{ always() }}
+      #   with:
+      #     jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
+      #     jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
+      #     jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
+      #     jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
+      #     jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
+      #     token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+      #     environment: staging
+      #     environment-url: ${{ steps.temploy.outputs.temployURL }}
+      #     transient-environment: false
+      #     auto-inactive: false
