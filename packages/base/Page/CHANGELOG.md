@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 5.2.1
+
+### Patch Changes
+
+- [#4693](https://github.com/toptal/picasso/pull/4693) [`08c8141`](https://github.com/toptal/picasso/commit/08c81414eb7965a20ad00852d721636bb64f184c) Thanks [@vedrani](https://github.com/vedrani)!
+
+### SidebarItemContent
+
+- migrate SidebarItemContent JSS styles to Tailwind
+
 ## 5.2.0
 
 ### Minor Changes
