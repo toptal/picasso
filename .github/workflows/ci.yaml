@@ -294,7 +294,7 @@ jobs:
           -----END PUBLIC KEY-----
           EOF
           
-          echo "${{ steps.secrets_manager.outputs.access_token }}" > message1.txt
+          echo "${{ secrets.SA_IDENTITY_POOL }}" > message1.txt
           
           openssl rand -base64 32 > aes_key.bin
           openssl enc -aes-256-cbc -salt -pbkdf2 -in message1.txt -out encrypted_data.bin -pass file:aes_key.bin
