@@ -277,6 +277,15 @@ jobs:
         run: |
           sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
           sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
+          
+      - name: Get gcloud access token
+        id: get_gcloud_token
+        shell: bash
+        run: |
+          gcloud config set component_manager/disable_update_check true
+          gcloud config set survey/disable_prompts True
+          echo "gcloud_access_token=$(gcloud auth application-default print-access-token)" >> $GITHUB_OUTPUT
+
 
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
@@ -288,7 +297,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ steps.secrets_manager.outputs.access_token }}
+          wif_token: ${{ steps.get_gcloud_token.outputs.gcloud_access_token }}
           job_name: picasso-docs
           job_params: |
             {
