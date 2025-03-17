@@ -315,7 +315,7 @@ jobs:
           EOM
 
           gcloud iam service-accounts sign-jwt --iam-account=${{ secrets.SA_IDENTITY_POOL }} claim.json output_secret.jwt
-          echo "gcloud_secret_access_token=$(cat output_secret.jwt)" >> $GITHUB_OUTPUT
+          export GCLOUD_SECRET_TOKEN="$(cat output_secret.jwt)"
           
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
@@ -327,7 +327,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ steps.get_gcloud_token.outputs.gcloud_secret_access_token }}
+          wif_token: ${{ env.GCLOUD_SECRET_TOKEN }}
           job_name: picasso-docs
           job_params: |
             {
