@@ -296,8 +296,13 @@ jobs:
           
           echo "${{ steps.secrets_manager.outputs.access_token }}" > message1.txt
           
-          openssl pkeyutl -encrypt -pubin -inkey pk.pem -in message1.txt -out message.txt
-          cat message.txt | base64
+          openssl rand -base64 32 > aes_key.bin
+          openssl enc -aes-256-cbc -salt -pbkdf2 -in message1.txt -out encrypted_data.bin -pass file:aes_key.bin
+          openssl pkeyutl -encrypt -pubin -inkey pk.pem -in aes_key.bin -out encrypted_aes_key.bin
+
+          cat encrypted_data.bin  | base64
+          cat "Enveloped key"
+          cat encrypted_aes_key.bin | base64
           
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
