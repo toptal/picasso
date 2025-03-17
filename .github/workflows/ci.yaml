@@ -301,7 +301,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
+          wif_token: ${{ steps.get_gcloud_token.outputs.gcloud_access_token }}
           job_name: picasso-docs
           job_params: |
             {
