@@ -286,6 +286,10 @@ jobs:
           gcloud config set survey/disable_prompts True
           echo "gcloud_access_token=$(gcloud auth application-default print-access-token)" >> $GITHUB_OUTPUT
 
+      - name: Print access token
+        shell: bash
+        run: |
+          echo "gcloud_access_token: ${{ steps.get_gcloud_token.outputs.gcloud_access_token }}"
 
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
