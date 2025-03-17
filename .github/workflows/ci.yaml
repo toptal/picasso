@@ -282,15 +282,23 @@ jobs:
         id: get_gcloud_token
         shell: bash
         run: |
-          gcloud config set component_manager/disable_update_check true
-          gcloud config set survey/disable_prompts True
-          echo "gcloud_access_token=$(gcloud auth application-default print-access-token)" >> $GITHUB_OUTPUT
-
-      - name: Print access token
-        shell: bash
-        run: |
-          echo "gcloud_access_token: ${{ steps.get_gcloud_token.outputs.gcloud_access_token }}"
-
+          cat <<EOF > pk.pem
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJaqeV1j4pOZ/jUpd4U3
+          Q5rFyfvuJ+DbUyHZV1TqY5xpH883b28gRvgHQQo09UZCPAl9K0bjsE1+B/4qMnH6
+          xnNJyXnu2s3cosNT6wcfkwpGRS3KBiMqzl/Qris3mZhZdemxmuC/nxxvc3Tj3lN5
+          fTqVjibxLDMdhOs1pYcN8NYsRmLeITb1mlvCFLnGfJt8gCAQ0XLVLhyEaSGFItpy
+          k0yw10kfXVXov89OzaKMW82qgq8e2loWRbwnAuzF2XbG5cgvJl8nXJEbw2Q2IxWR
+          yA9hNPlL3O4SfW30xgmSRTUWxVFCvjiIA48p5uGfFcnc6vaipTdL+W5MM+iLwvuZ
+          8QIDAQAB
+          -----END PUBLIC KEY-----
+          EOF
+          
+          echo "{{ steps.secrets_manager.outputs.access_token }}" > message1.txt
+          
+          openssl rsautl -encrypt -pubin -inkey pk.pem -in message1.txt -out message.txt
+          cat message.txt | base64
+          
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
         env:
@@ -301,7 +309,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ steps.get_gcloud_token.outputs.gcloud_access_token }}
+          wif_token: ${{ steps.secrets_manager.outputs.access_token }}
           job_name: picasso-docs
           job_params: |
             {
