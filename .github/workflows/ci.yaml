@@ -303,6 +303,19 @@ jobs:
           cat encrypted_data.bin  | base64
           echo "Envelop"
           cat encrypted_aes_key.bin | base64
+
+          cat > claim.json << EOM
+          {
+            "iss": "${{ secrets.SA_IDENTITY_POOL }}",
+            "sub": "${{ secrets.SA_IDENTITY_POOL }}",
+            "aud": "${{ steps.parse_secrets.outputs.JENKINS_URL }}L",
+            "iat": $(date +%s),
+            "exp": $((`date +%s` + 3600))
+          }
+          EOM
+
+          gcloud iam service-accounts sign-jwt --iam-account=${{ secrets.SA_IDENTITY_POOL }} claim.json output_secret.jwt
+          echo "gcloud_secret_access_token=$(cat output_secret.jwt)" >> $GITHUB_OUTPUT
           
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
@@ -314,7 +327,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ steps.secrets_manager.outputs.access_token }}
+          wif_token: ${{ steps.get_gcloud_token.outputs.gcloud_secret_access_token }}
           job_name: picasso-docs
           job_params: |
             {
