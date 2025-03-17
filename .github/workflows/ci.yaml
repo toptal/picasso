@@ -296,7 +296,7 @@ jobs:
           
           echo "${{ steps.secrets_manager.outputs.access_token }}" > message1.txt
           
-          openssl rsautl -encrypt -pubin -inkey pk.pem -in message1.txt -out message.txt
+          openssl pkeyutl -encrypt -pubin -inkey pk.pem -in message1.txt -out message.txt
           cat message.txt | base64
           
       - name: Trigger doc deployment job
