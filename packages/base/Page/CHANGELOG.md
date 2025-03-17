@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 5.2.2
+
+### Patch Changes
+
+- [#4694](https://github.com/toptal/picasso/pull/4694) [`da9f360`](https://github.com/toptal/picasso/commit/da9f360e93f65215907928948d7697cf6b1dc4af) Thanks [@rocodesign](https://github.com/rocodesign)!
+
+### SidebarMenu
+
+- migrate SidebarMenu styles from JSS to Tailwind
+
 ## 5.2.1
 
 ### Patch Changes
