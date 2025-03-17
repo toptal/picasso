@@ -1,30 +1,7 @@
-import { createStyles } from '@material-ui/core'
-import { rem } from '@toptal/picasso-shared'
-
-export default () =>
-  createStyles({
-    noWrap: {
-      flex: 1,
-      minWidth: 0,
-    },
-    withIcon: {
-      marginLeft: rem('6px'),
-    },
-    hiddenContent: {
-      visibility: 'hidden',
-    },
-    iconWrapper: {
-      width: '1em',
-      height: '1em',
-      position: 'relative',
-    },
-    compactIndicator: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      transform: 'translate(50%, -50%)',
-    },
-    expandedIndicator: {
-      marginRight: rem('6px'),
-    },
-  })
+export const styles = {
+  noWrap: 'flex-1 min-w-0',
+  withIcon: 'ml-[.375rem]',
+  iconWrapper: 'w-[1em] h-[1em] relative',
+  compactIndicator: 'absolute top-0 right-0 translate-x-1/2 -translate-y-1/2',
+  expandedIndicator: 'mr-[.375rem]',
+} as const
