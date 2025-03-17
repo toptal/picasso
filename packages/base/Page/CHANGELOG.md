@@ -1,5 +1,19 @@
 # @toptal/picasso-page
 
+## 5.2.0
+
+### Minor Changes
+
+- [#4696](https://github.com/toptal/picasso/pull/4696) [`f337756`](https://github.com/toptal/picasso/commit/f33775679304c447ffe377b279c790d8eced266b) Thanks [@tmatijev](https://github.com/tmatijev)!
+
+---
+
+### PageTopBar
+
+---
+
+- add black variation for the PageTopBar
+
 ## 5.1.21
 
 ### Patch Changes
