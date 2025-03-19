@@ -276,7 +276,7 @@ jobs:
         shell: bash
         run: |
           sed -i 's|toptal/actions/get-job-url@1.0.2|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@1.0.2|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
+          sed -i 's|toptal/actions/trigger-jenkins-job@1.0.2|./.github/actions/trigger-jenkins-job@ops-fix-workflows|' ./.github/actions/create-jira-deployment/action.yml
           
       - name: Get gcloud access token 
         id: get_gcloud_token
@@ -327,7 +327,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ env.GCLOUD_SECRET_TOKEN }}
           job_name: picasso-docs
           job_params: |
             {
