@@ -51,7 +51,7 @@ jobs:
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
 
-      - name: Parse secrets
+      - name: Parse secrets 
         id: parse_secrets
         uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
         with:
