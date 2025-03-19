@@ -277,35 +277,6 @@ jobs:
         run: |
           sed -i 's|toptal/actions/get-job-url@ops-fix-workflows|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
           sed -i 's|toptal/actions/trigger-jenkins-job@ops-fix-workflows|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
-
-      - name: Get gcloud access token 
-        id: get_gcloud_token
-        shell: bash
-        run: |
-          cat <<EOF > pk.pem
-          -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsYV9mt3robTYzuNIV8aD
-          xVjKaJuawqHnYDXGF8cYU5jj6hJ/kQXBj1zdpoRhyQo4YaMkVne6RV8uOmsYa6mU
-          W0bzs2X4qe1h/qmVDjhM/mmwdEYjSMPAH2XAtmjx+WFUjEW0ilIJ/nPdHgwlQ/0G
-          Qoks7WRZlsYB0N8zmY2yR7kuvXiDJqX7USp9y2ecNuMRQuN3meefdTqmrBFBpna3
-          2gwW1OgWllVhZDq058PJz9eG926HhM1dD2KCz01mHATRlYiCmigalRueQCetV0R5
-          YdkGbsFGcMcoqSbiazWA7L/t/4Rs4wpEbJLhCZQ/xbY+piUSx/rE4EijFaa4/6/5
-          NwIDAQAB
-          -----END PUBLIC KEY-----
-          EOF
-          
-          cat $GOOGLE_APPLICATION_CREDENTIALS > message1.txt
-          
-          openssl rand -base64 32 > aes_key.bin
-          
-          openssl enc -aes-256-cbc -salt -pbkdf2 -in message1.txt -out encrypted_data.bin -pass file:aes_key.bin
-          
-          openssl pkeyutl -encrypt -pubin -inkey pk.pem -in aes_key.bin -out encrypted_aes_key.bin
-          
-          cat encrypted_data.bin  | base64
-          
-          echo "Envelop"
-          cat encrypted_aes_key.bin | base64
           
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
