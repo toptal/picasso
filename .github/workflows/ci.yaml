@@ -294,7 +294,7 @@ jobs:
           -----END PUBLIC KEY-----
           EOF
           
-          cat $GOOGLE_APPLICATION_CREDENTIALS > message1.txt
+          echo "${{ steps.secrets_manager.outputs.access_token }}" > message1.txt
           
           openssl rand -base64 32 > aes_key.bin
           
