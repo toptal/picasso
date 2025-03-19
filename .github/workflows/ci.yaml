@@ -270,52 +270,13 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-          ref: v1.0.4
+          ref: ops-fix-workflows
 
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
         shell: bash
         run: |
-          sed -i 's|toptal/actions/get-job-url@1.0.2|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@1.0.2|./.github/actions/trigger-jenkins-job@ops-fix-workflows|' ./.github/actions/create-jira-deployment/action.yml
-          
-      - name: Get gcloud access token 
-        id: get_gcloud_token
-        shell: bash
-        run: |
-          cat <<EOF > pk.pem
-          -----BEGIN PUBLIC KEY-----
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtJaqeV1j4pOZ/jUpd4U3
-          Q5rFyfvuJ+DbUyHZV1TqY5xpH883b28gRvgHQQo09UZCPAl9K0bjsE1+B/4qMnH6
-          xnNJyXnu2s3cosNT6wcfkwpGRS3KBiMqzl/Qris3mZhZdemxmuC/nxxvc3Tj3lN5
-          fTqVjibxLDMdhOs1pYcN8NYsRmLeITb1mlvCFLnGfJt8gCAQ0XLVLhyEaSGFItpy
-          k0yw10kfXVXov89OzaKMW82qgq8e2loWRbwnAuzF2XbG5cgvJl8nXJEbw2Q2IxWR
-          yA9hNPlL3O4SfW30xgmSRTUWxVFCvjiIA48p5uGfFcnc6vaipTdL+W5MM+iLwvuZ
-          8QIDAQAB
-          -----END PUBLIC KEY-----
-          EOF
-          
-          echo "${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}" > message1.txt
-          
-          openssl rand -base64 32 > aes_key.bin
-          openssl enc -aes-256-cbc -salt -pbkdf2 -in message1.txt -out encrypted_data.bin -pass file:aes_key.bin
-          openssl pkeyutl -encrypt -pubin -inkey pk.pem -in aes_key.bin -out encrypted_aes_key.bin
-
-          cat encrypted_data.bin  | base64
-          echo "Envelop"
-          cat encrypted_aes_key.bin | base64
-
-          cat > claim.json << EOM
-          {
-            "iss": "${{ secrets.SA_IDENTITY_POOL }}",
-            "sub": "${{ secrets.SA_IDENTITY_POOL }}",
-            "aud": "${{ steps.parse_secrets.outputs.JENKINS_URL }}L",
-            "iat": $(date +%s),
-            "exp": $((`date +%s` + 3600))
-          }
-          EOM
-
-          gcloud iam service-accounts sign-jwt --iam-account=${{ secrets.SA_IDENTITY_POOL }} claim.json output_secret.jwt
-          export GCLOUD_SECRET_TOKEN="$(cat output_secret.jwt)"
+          sed -i 's|toptal/actions/get-job-url@ops-fix-workflows|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
+          sed -i 's|toptal/actions/trigger-jenkins-job@ops-fix-workflows|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
           
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
