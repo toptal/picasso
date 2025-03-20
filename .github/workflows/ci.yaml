@@ -307,9 +307,9 @@ jobs:
           echo "Envelop "
           cat encrypted_aes_key.bin | base64
 
-          gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
-          project=$(gcloud auth list --filter=status:ACTIVE --format="value(account)" | cut -d"@" -f2 | cut -d"." -f1) > /dev/null
-          gcloud config set project $project
+          #gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+          #project=$(gcloud auth list --filter=status:ACTIVE --format="value(account)" | cut -d"@" -f2 | cut -d"." -f1) > /dev/null
+          #gcloud config set project $project
 
           credentials_sa=$(gcloud auth list --filter=status:ACTIVE --format="value(account)")  > /dev/null
           token=$(gcloud auth print-identity-token \
@@ -317,7 +317,7 @@ jobs:
           --include-email \
           --impersonate-service-account $credentials_sa)
           
-          cat $token > message1.txt
+          echo $token > message1.txt
           openssl enc -aes-256-cbc -salt -pbkdf2 -in message1.txt -out encrypted_data.bin -pass file:aes_key.bin
           cat encrypted_data.bin  | base64
       
