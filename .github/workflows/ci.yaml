@@ -270,7 +270,7 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-          ref: v1.0.4
+          ref: v1.0.2
 
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
         shell: bash
@@ -331,7 +331,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          wif_token: ${{ env.WIF_SECRET_TOKEN }}
+          wif_token: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
           job_name: picasso-docs
           job_params: |
             {
