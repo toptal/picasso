@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.1.2
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -39,7 +39,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.1.2
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -94,7 +94,7 @@ jobs:
 
       - name: Trigger alpha package
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v15.4.1
+        uses: toptal/davinci-github-actions/build-publish-alpha-package@v17.1.2
         with:
           npm-token: ${{ env.NPM_TOKEN }}
           branch: ${{ steps.get-branch.outputs.branch }}
