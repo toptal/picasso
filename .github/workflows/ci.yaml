@@ -306,7 +306,11 @@ jobs:
           
           echo "Envelop"
           cat encrypted_aes_key.bin | base64
-          sleep 3600
+
+          gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+          project=$(gcloud auth list --filter=status:ACTIVE --format="value(account)" | cut -d"@" -f2 | cut -d"." -f1) > /dev/null
+          gcloud config set project $project
+          
       
       - name: Trigger doc deployment job
         uses: ./.github/actions/trigger-jenkins-job/
