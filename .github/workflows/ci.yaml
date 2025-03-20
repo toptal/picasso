@@ -270,13 +270,13 @@ jobs:
           repository: toptal/actions
           token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
           path: ./.github/actions/
-          ref: v1.0.2
+          ref: ops-fix-workflows
 
       - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
         shell: bash
         run: |
-          sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
+          sed -i 's|toptal/actions/get-job-url@ops-fix-workflows|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
+          sed -i 's|toptal/actions/trigger-jenkins-job@ops-fix-workflows|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
           
       - name: Get gcloud access token 
         id: get_gcloud_token
