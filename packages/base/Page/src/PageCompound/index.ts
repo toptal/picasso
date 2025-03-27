@@ -8,6 +8,7 @@ import { PageContent } from '../PageContent'
 import { PageBanner } from '../PageBanner'
 import { PageAutocomplete } from '../PageAutocomplete'
 import { PageArticle } from '../PageArticle'
+import { PageTopBarLoader } from '../PageTopBarLoader'
 
 export const PageCompound = Object.assign(Page, {
   TopBar: PageTopBar,
@@ -19,4 +20,5 @@ export const PageCompound = Object.assign(Page, {
   Helmet: PageHelmet,
   Autocomplete: PageAutocomplete,
   Article: PageArticle,
+  TopBarLoader: PageTopBarLoader,
 })
