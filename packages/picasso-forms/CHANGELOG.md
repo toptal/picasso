@@ -1,5 +1,15 @@
 # Change Log
 
+## 73.1.0
+
+### Minor Changes
+
+- [#4711](https://github.com/toptal/picasso/pull/4711) [`258eac2`](https://github.com/toptal/picasso/commit/258eac2651f4638d0b242b5f0bfa08ffd24a0a6c) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- expose FieldLabel component for building custom form components
+
 ## 73.0.29
 
 ### Patch Changes
