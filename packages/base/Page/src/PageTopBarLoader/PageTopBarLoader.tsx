@@ -19,7 +19,8 @@ export const PageTopBarLoader: OverridableComponent<Props> = forwardRef<
 
   const innerClassName = twMerge(
     'flex items-center justify-between h-[var(--header-height,3.5rem)] px-4 md:px-8',
-    getMaxWidthClass({ fullWidth, width })
+    'box-border mx-auto',
+    getMaxWidthClass({ width, fullWidth })
   )
 
   return (
