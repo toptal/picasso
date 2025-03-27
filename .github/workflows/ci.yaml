@@ -124,7 +124,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.18
 
       - name: Check missing changeset
         uses: toptal/davinci-github-actions/report-missing-changeset@v15.4.1
@@ -199,7 +199,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.18
 
       - name: Install dependencies from cache
         uses: toptal/davinci-github-actions/yarn-install@v16.0.4
