@@ -71,6 +71,8 @@ export { default as AvatarUpload } from './AvatarUpload'
 
 export { default as Field } from './Field'
 export type { FieldProps } from './Field'
+export { default as FieldLabel } from './FieldLabel'
+export type { Props as FieldLabelProps } from './FieldLabel'
 export type { FormConfigProps, RequiredVariant } from './FormConfig'
 export { default as createFormValuesChangeDecorator } from './utils/form-values-change-decorator'
 export type { ChangedFields } from './utils/form-values-change-decorator'
