@@ -52,17 +52,12 @@ const classesByVariant: Record<VariantType, string | string[]> = {
   withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
 }
 
-const classesByHeader: Record<VariantType, string | string[]> = {
-  default: 'flex',
-  bordered: 'flex',
-  withHeaderBar: [
-    'flex',
-    'pt-3 pb-3 pl-4 pr-4',
-    'rounded-tl-md rounded-tr-md rounded-br-0 rounded-bl-0',
-    'border-solid border-l-0 border-r-0 border-t-0 border-b border-gray-400',
-    'bg-gray-100',
-  ],
-}
+const headerBarClasses = [
+  'pt-3 pb-3 pl-4 pr-4',
+  'rounded-tl-md rounded-tr-md rounded-br-0 rounded-bl-0',
+  'border-solid border-l-0 border-r-0 border-t-0 border-b border-gray-400',
+  'bg-gray-100',
+]
 
 const classesByCollapsedHeader: Record<VariantType, string | string[]> = {
   default: 'pb-0',
@@ -150,7 +145,12 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
   const hasActions = actions || collapsible
   const renderActions = () =>
     hasActions ? (
-      <Container data-testid={testIds?.actions} flex className='ml-auto'>
+      <Container
+        data-testid={testIds?.actions}
+        flex
+        alignItems='center'
+        className='ml-auto'
+      >
         {actions}
         {renderCollapse()}
       </Container>
@@ -178,7 +178,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         <Container
           data-testid={testIds?.header}
           className={twJoin(
-            classesByHeader[variant],
+            'flex items-center',
+            variant === 'withHeaderBar' && headerBarClasses,
             isCollapsed && classesByCollapsedHeader[variant]
           )}
         >
