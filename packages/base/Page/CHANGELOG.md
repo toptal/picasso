@@ -1,5 +1,15 @@
 # @toptal/picasso-page
 
+## 5.2.3
+
+### Patch Changes
+
+- [#4718](https://github.com/toptal/picasso/pull/4718) [`efcdd8e`](https://github.com/toptal/picasso/commit/efcdd8eb41f30ed00e64cfa6253310119b7421ea) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- replace type from mui v4 for the `as` prop with the MenuItemProps from picasso-menu package
+
 ## 5.2.2
 
 ### Patch Changes
