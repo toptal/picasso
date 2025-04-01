@@ -5,7 +5,7 @@ import type {
 } from '@toptal/picasso-shared'
 import type { ElementType, ReactElement } from 'react'
 import React, { forwardRef, memo } from 'react'
-import type { MenuItemProps } from '@material-ui/core/MenuItem'
+import type { MenuItemProps } from '@toptal/picasso-menu'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import { noop } from '@toptal/picasso-utils'
 
