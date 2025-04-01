@@ -59,10 +59,3 @@ page
     'Controlled Section',
     'base/Section'
   )
-page
-  .createChapter()
-  .addExample(
-    'Section/story/CustomSectionTitle.example.tsx',
-    'Custom Section title',
-    'base/Section'
-  )
