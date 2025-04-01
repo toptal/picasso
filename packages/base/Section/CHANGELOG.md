@@ -1,5 +1,12 @@
 # @toptal/picasso-section
 
+## 5.1.1
+
+### Patch Changes
+
+- [#4717](https://github.com/toptal/picasso/pull/4717) [`32d45e4`](https://github.com/toptal/picasso/commit/32d45e4765fbf0ffaae760e8c04a0ee266bd84c3) Thanks [@sashuk](https://github.com/sashuk)!
+- align section header title and controls
+
 ## 5.1.0
 
 ### Minor Changes
