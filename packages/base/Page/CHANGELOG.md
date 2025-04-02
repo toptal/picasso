@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.3.0
+
+### Minor Changes
+
+- [#4714](https://github.com/toptal/picasso/pull/4714) [`6b41628`](https://github.com/toptal/picasso/commit/6b41628fd589efbb54edcdc05c0cd7efac4a4732) Thanks [@tmatijev](https://github.com/tmatijev)!
+- migrate sidebar logo to the Tailwind
+
 ## 5.2.3
 
 ### Patch Changes
