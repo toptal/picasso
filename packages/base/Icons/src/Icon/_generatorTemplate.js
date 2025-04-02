@@ -1,7 +1,7 @@
 const types = require('@babel/types')
 
 /**
- * Add `className={cx(classes.root, className)}` to the svg tag
+ * Add `className={getIconClassNames(className, color)}` to the svg tag
  */
 const decorateWithClassNameProp = svgElement => {
   svgElement.attributes = [
@@ -9,8 +9,9 @@ const decorateWithClassNameProp = svgElement => {
     types.jsxAttribute(
       types.jsxIdentifier('className'),
       types.jsxExpressionContainer(
-        types.callExpression(types.identifier('cx'), [
-          types.identifier('...classNames'),
+        types.callExpression(types.identifier('getIconClassNames'), [
+          types.identifier('className'),
+          types.identifier('color'),
         ])
       )
     ),
@@ -45,11 +46,10 @@ const getBaseSize = (componentName = '') => {
 const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   const displayName = `'${componentName}'`
   const baseSize = `${getBaseSize(displayName)}`
-  const styleName = `Picasso${componentName}`
 
   const svgElement = jsx.openingElement
 
-  // add `className={cx(classes.root, classes[colorClassName], className)}` to svg root tag
+  // add `className={getIconClassNames(className, color)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
   decorateWithProp(svgElement, 'style', 'svgStyle')
@@ -59,13 +59,11 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   decorateWithProp(svgElement, 'data-testid', 'testId')
 
   return tpl`
-    import React, { forwardRef, Ref } from 'react'
-    import cx from 'classnames'
-    import { makeStyles } from '@material-ui/core/styles'
-    import { StandardProps } from '@toptal/picasso-shared'
+    import type { Ref } from 'react'
+    import React, { forwardRef } from 'react'
+    import type { StandardProps } from '@toptal/picasso-shared'
     ${'\n'}
-    import { kebabToCamelCase } from '@toptal/picasso-utils'
-    import styles from './styles'
+    import { getIconClassNames } from './styles'
     const BASE_SIZE = ${baseSize}
     ${'\n'}
     type ScaleType =
@@ -78,25 +76,14 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
       color?: string,
       base?: number
     }
-    const useStyles = makeStyles(styles, {
-      name: '${styleName}'
-    })
+    
     const ${componentName} = forwardRef(function ${componentName}(
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
       const { className, style = {}, color, scale, base, 'data-testid': testId } = props
 
-      const classes: Record<string, string> = useStyles(props)
-      const classNames = [classes.root, className]
-
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
-      const colorClassName = kebabToCamelCase(\`\${color}\`)
-
-      if (classes[colorClassName]) {
-        classNames.push(classes[colorClassName])
-      }
-      ${'\n'}
       const svgStyle = {
         minWidth: \`\${scaledSize}px\`,
         minHeight: \`\${scaledSize}px\`,
