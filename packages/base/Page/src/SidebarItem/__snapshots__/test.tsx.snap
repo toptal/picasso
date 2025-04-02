@@ -23,17 +23,17 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             tabindex="-1"
           >
             <div
-              class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone border-none pl-4 mx-4 Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
                 aria-disabled="false"
                 aria-expanded="true"
-                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItemAccordion-collapsibleWrapper Mui-expanded"
+                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-expanded"
                 role="button"
                 tabindex="0"
               >
                 <div
-                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItemAccordion-content Mui-expanded"
+                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content Mui-expanded"
                 >
                   <li
                     aria-disabled="false"
@@ -68,7 +68,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="PicassoSvgArrowDownMinor16-root transition-transform text-[#455065] rotate-180 PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -169,17 +169,17 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             tabindex="-1"
           >
             <div
-              class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone border-none pl-4 mx-4 Mui-expanded MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
                 aria-disabled="false"
                 aria-expanded="true"
-                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItemAccordion-collapsibleWrapper Mui-expanded"
+                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary Mui-expanded"
                 role="button"
                 tabindex="0"
               >
                 <div
-                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItemAccordion-content Mui-expanded"
+                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content Mui-expanded"
                 >
                   <li
                     aria-disabled="false"
@@ -214,7 +214,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="PicassoSvgArrowDownMinor16-root transition-transform text-[#455065] rotate-180 PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -479,17 +479,17 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
+      class="MuiPaper-root MuiAccordion-root PicassoAccordion-root PicassoAccordion-bordersNone border-none pl-4 mx-4 MuiAccordion-rounded MuiPaper-elevation0 MuiPaper-rounded"
     >
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItemAccordion-collapsibleWrapper"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItemAccordion-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content"
         >
           <li
             aria-disabled="false"
@@ -533,7 +533,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon"
+            class="PicassoSvgArrowDownMinor16-root transition-transform text-[#455065] PicassoAccordion-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
