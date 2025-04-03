@@ -15,6 +15,7 @@ import { Logo } from '@toptal/picasso-logo'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
@@ -113,17 +114,20 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const logoVariant = isDark ? 'white' : 'default'
   const logoDefault = (
     <>
-      <Logo variant={logoVariant} emblem className={classes.logoEmblem} />
-      <Logo variant={logoVariant} className={classes.logo} />
+      <Logo variant={logoVariant} emblem className='inline md:hidden' />
+      <Logo variant={logoVariant} className='hidden md:inline' />
     </>
   )
 
   const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
-    <Container className={classes.title} alignItems='center'>
+    <Container className='hidden lg:flex' alignItems='center'>
       <div
-        className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
+        className={twMerge(
+          'w-[1px] h-[1.5em] bg-white opacity-80',
+          isDark ? 'bg-white' : 'bg-blue-700'
+        )}
       />
       <Container left='small'>
         <Typography invert={isDark}>{title}</Typography>
@@ -141,18 +145,17 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   return (
     <PageTopBarContext.Provider value={{ variant }}>
-      <div className={classes.wrapper}>
+      <div className='relative h-[var(--header-height,3.5rem)] min-h-[var(--header-height,3.5rem)]'>
         <header
           {...rest}
           ref={ref}
           className={cx(
             'mui-fixed',
-            classes.root,
+            'fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100]',
             classes[variant],
             className,
             {
-              [classes.preventPageWidthChangeOnScrollbar]:
-                preventPageWidthChangeOnScrollbar,
+              'md:w-screen': preventPageWidthChangeOnScrollbar,
             }
           )}
           style={style}
