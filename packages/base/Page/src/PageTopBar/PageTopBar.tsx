@@ -1,7 +1,6 @@
 /* eslint-disable complexity */
 import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef, useEffect } from 'react'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
   usePageTopBar,
@@ -9,13 +8,11 @@ import {
   usePreventPageWidthChangeOnScrollbar,
   useScreenSize,
 } from '@toptal/picasso-provider'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Logo } from '@toptal/picasso-logo'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { palette, useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
@@ -24,7 +21,6 @@ import {
   PageHamburgerPortal,
   useHamburgerContext,
 } from '../PageHamburger'
-import styles from './styles'
 
 const SMALL_SCREEN_WIDTH = 1280
 
@@ -57,10 +53,6 @@ export const PageTopBarContext = React.createContext<{ variant: VariantType }>({
   variant: 'dark',
 })
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTopBar',
-})
-
 export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   props,
   ref
@@ -79,7 +71,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     testIds,
     ...rest
   } = props
-  const classes = useStyles()
 
   const { setHasTopBar } = usePageTopBar()
   const { preventPageWidthChangeOnScrollbar } =
@@ -124,8 +115,8 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const titleComponent = title && (
     <Container className='hidden lg:flex' alignItems='center'>
       <div
-        className={twMerge(
-          'w-[1px] h-[1.5em] bg-white opacity-80',
+        className={twJoin(
+          'w-[1px] h-[1.5em] opacity-80',
           isDark ? 'bg-white' : 'bg-blue-700'
         )}
       />
@@ -135,12 +126,11 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     </Container>
   )
 
-  const innerClassName = cx(
-    {
-      [classes.fullWidth]: fullWidth || width === 'full',
-      [classes.wide]: width === 'wide',
-    },
-    classes.content
+  const innerClassName = twJoin(
+    fullWidth || width === 'full' ? 'max-w-full' : '',
+    width === 'wide' ? 'max-w-[90em]' : '',
+    'box-border flex items-center justify-between mx-auto my-0 h-[var(--header-height,3.5rem)]',
+    'max-w-[75em] py-0 px-[1em] md:px-[2em]'
   )
 
   return (
@@ -149,20 +139,24 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
         <header
           {...rest}
           ref={ref}
-          className={cx(
-            'mui-fixed',
-            'fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100]',
-            classes[variant],
+          className={twMerge(
+            `mui-fixed fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100]`,
+            variant === 'light' ? `bg-white` : '',
+            variant === 'dark' ? 'bg-blue-700' : '',
+            variant === 'grey' ? 'bg-graphite-800' : '',
+            variant === 'black' ? 'bg-black' : '',
             className,
-            {
-              'md:w-screen': preventPageWidthChangeOnScrollbar,
-            }
+            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : ''
           )}
-          style={style}
+          style={{
+            boxShadow:
+              variant === 'light' ? `0 1px 0 0 ${palette.grey.lighter2}` : '',
+            ...style,
+          }}
         >
           <div className={innerClassName}>
             {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
-            <div className={classes.left}>
+            <div className='flex items-center gap-4'>
               <Container flex alignItems='center' gap='small'>
                 {showHamburger && (
                   <PageHamburger
@@ -182,18 +176,18 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {centerContent &&
               (isSmallScreen ? (
                 <PageHamburgerPortal>
-                  <div className={classes.centerContentPortal}>
+                  <div className='block min-[1280px]:hidden'>
                     {centerContent}
                   </div>
                 </PageHamburgerPortal>
               ) : (
-                <Container className={classes.centerContent}>
+                <Container className='hidden min-[1280px]:block'>
                   {centerContent}
                 </Container>
               ))}
             {/* Right part: Action items, User menu, Notifications */}
 
-            <div className={classes.right}>
+            <div className='flex items-center gap-6'>
               {actionItems}
               {rightContent}
             </div>
