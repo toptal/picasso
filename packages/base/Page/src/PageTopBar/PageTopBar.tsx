@@ -9,7 +9,6 @@ import {
   useScreenSize,
 } from '@toptal/picasso-provider'
 import { Logo } from '@toptal/picasso-logo'
-import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { palette, useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
@@ -113,17 +112,17 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
-    <Container className='hidden lg:flex' alignItems='center'>
+    <div className='hidden lg:flex items-center'>
       <div
         className={twJoin(
           'w-[1px] h-[1.5em] opacity-80',
           isDark ? 'bg-white' : 'bg-blue-700'
         )}
       />
-      <Container left='small'>
+      <div className='ml-4'>
         <Typography invert={isDark}>{title}</Typography>
-      </Container>
-    </Container>
+      </div>
+    </div>
   )
 
   const innerClassName = twJoin(
@@ -157,7 +156,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
           <div className={innerClassName}>
             {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
             <div className='flex items-center gap-4'>
-              <Container flex alignItems='center' gap='small'>
+              <div className='flex items-center gap-4'>
                 {showHamburger && (
                   <PageHamburger
                     id={hamburgerId}
@@ -168,7 +167,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
                   ? React.cloneElement(logoLink, {}, logoComponent)
                   : logoComponent}
                 {titleComponent}
-              </Container>
+              </div>
               {leftContent}
             </div>
 
@@ -181,9 +180,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
                   </div>
                 </PageHamburgerPortal>
               ) : (
-                <Container className='hidden min-[1280px]:block'>
-                  {centerContent}
-                </Container>
+                <div className='hidden min-[1280px]:block'>{centerContent}</div>
               ))}
             {/* Right part: Action items, User menu, Notifications */}
 
