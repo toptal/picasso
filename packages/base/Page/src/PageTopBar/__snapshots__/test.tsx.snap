@@ -12,7 +12,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
         class="mui-fixed fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100] bg-blue"
       >
         <div
-          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w py-0 px-[1em] md:px-[2em]"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
             class="flex items-center gap-4"
@@ -84,7 +84,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
         class="mui-fixed fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100] bg-blue"
       >
         <div
-          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w py-0 px-[1em] md:px-[2em]"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
             class="flex items-center gap-4"
@@ -156,7 +156,7 @@ exports[`PageTopBar renders with custom logo 1`] = `
         class="mui-fixed fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100] bg-blue"
       >
         <div
-          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w py-0 px-[1em] md:px-[2em]"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
             class="flex items-center gap-4"
@@ -207,7 +207,7 @@ exports[`PageTopBar renders with link 1`] = `
         class="mui-fixed fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100] bg-blue"
       >
         <div
-          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w py-0 px-[1em] md:px-[2em]"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
             class="flex items-center gap-4"
