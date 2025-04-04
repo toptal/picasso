@@ -128,9 +128,9 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
 
   const innerClassName = twJoin(
     fullWidth || width === 'full' ? 'max-w-full' : '',
-    width === 'wide' ? 'max-w-[90em]' : '',
+    width === 'wide' ? 'max-w-[var(--content-width-wide,90em)]' : '',
     'box-border flex items-center justify-between mx-auto my-0 h-[var(--header-height,3.5rem)]',
-    'max-w-[75em] py-0 px-[1em] md:px-[2em]'
+    'max-w-[var(--content-width,75em)] py-0 px-[var(--content-padding-horizontal,1em)] md:px-[var(--content-padding-horizontal,2em)]'
   )
 
   return (
