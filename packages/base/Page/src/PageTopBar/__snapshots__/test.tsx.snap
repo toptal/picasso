@@ -18,7 +18,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
             class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <svg
                 class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
@@ -45,7 +45,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
                 />
               </svg>
               <div
-                class="items-center hidden lg:flex"
+                class="hidden lg:flex items-center"
               >
                 <div
                   class="w-[1px] h-[1.5em] opacity-80 bg-white"
@@ -90,7 +90,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
             class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <svg
                 class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
@@ -117,7 +117,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
                 />
               </svg>
               <div
-                class="items-center hidden lg:flex"
+                class="hidden lg:flex items-center"
               >
                 <div
                   class="w-[1px] h-[1.5em] opacity-80 bg-white"
@@ -162,13 +162,13 @@ exports[`PageTopBar renders with custom logo 1`] = `
             class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <div>
                 Custom logo content
               </div>
               <div
-                class="items-center hidden lg:flex"
+                class="hidden lg:flex items-center"
               >
                 <div
                   class="w-[1px] h-[1.5em] opacity-80 bg-white"
@@ -213,7 +213,7 @@ exports[`PageTopBar renders with link 1`] = `
             class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <a
                 class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline cursor-pointer"
@@ -245,7 +245,7 @@ exports[`PageTopBar renders with link 1`] = `
                 </svg>
               </a>
               <div
-                class="items-center hidden lg:flex"
+                class="hidden lg:flex items-center"
               >
                 <div
                   class="w-[1px] h-[1.5em] opacity-80 bg-white"
