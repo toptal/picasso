@@ -139,8 +139,8 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
           {...rest}
           ref={ref}
           className={twMerge(
-            `mui-fixed fixed top-0 left-0 right-0 w-full text-[1rem] z-[1100]`,
-            variant === 'light' ? `bg-white` : '',
+            'mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100]',
+            variant === 'light' ? 'bg-white' : '',
             variant === 'dark' ? 'bg-blue-700' : '',
             variant === 'grey' ? 'bg-graphite-800' : '',
             variant === 'black' ? 'bg-black' : '',
