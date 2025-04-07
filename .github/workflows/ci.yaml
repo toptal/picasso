@@ -143,7 +143,7 @@ jobs:
         uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+        uses: toptal/davinci-github-actions/yarn-install@v17.2.0
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
@@ -206,7 +206,7 @@ jobs:
           node-version: 20.18
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+        uses: toptal/davinci-github-actions/yarn-install@v17.2.0
 
       - name: Visual Tests
         run: yarn happo:storybook
