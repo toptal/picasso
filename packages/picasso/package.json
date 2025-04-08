@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "53.0.25",
+  "version": "53.0.26",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -74,7 +74,7 @@
     "@toptal/picasso-notification": "4.0.18",
     "@toptal/picasso-number-input": "4.1.1",
     "@toptal/picasso-overview-block": "4.0.3",
-    "@toptal/picasso-page": "5.3.0",
+    "@toptal/picasso-page": "5.4.0",
     "@toptal/picasso-pagination": "4.0.19",
     "@toptal/picasso-paper": "4.0.2",
     "@toptal/picasso-password-input": "5.0.17",
