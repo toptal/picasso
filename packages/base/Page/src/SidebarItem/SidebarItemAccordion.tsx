@@ -1,20 +1,14 @@
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import cx from 'classnames'
 import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
 import { Accordion } from '@toptal/picasso-accordion'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { ParentItemContextProvider } from './ParentItemContextProvider'
 import type { Props } from './types'
 import { SidebarItemHeader } from './SidebarItemHeader'
-
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoSidebarItemAccordion',
-})
+import { styles } from './styles'
 
 export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
   function SidebarItemAccordion(props: Props, ref) {
@@ -28,7 +22,6 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
       icon,
       compact,
     } = props
-    const classes = useStyles()
 
     const handleAccordionChange = useCallback(
       (event: ChangeEvent<{}>, isAccordionExpanded: boolean) => {
@@ -53,23 +46,15 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
         <Accordion
           onChange={handleAccordionChange}
           classes={{
-            summary: classes.collapsibleWrapper,
-            content: classes.content,
+            summary: twMerge(styles.paddingLeft, styles.margin),
+            content: styles.content,
           }}
           content={content}
           borders='none'
           disabled={disabled}
           expanded={isExpanded}
           expandIcon={
-            <ArrowDownMinor16
-              className={cx(
-                classes.expandIcon,
-                classes[`${variant}ExpandIcon`],
-                {
-                  [classes.expandIconDisabled]: disabled,
-                }
-              )}
-            />
+            <ArrowDownMinor16 className={styles.icon(variant, disabled)} />
           }
         >
           <SidebarItemHeader {...props} ref={ref} />

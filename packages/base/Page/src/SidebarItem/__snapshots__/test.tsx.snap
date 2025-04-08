@@ -28,12 +28,12 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               <div
                 aria-disabled="false"
                 aria-expanded="true"
-                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItemAccordion-collapsibleWrapper Mui-expanded"
+                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary pt-0 pr-0 pb-0 pl-4 mx-4 Mui-expanded"
                 role="button"
                 tabindex="0"
               >
                 <div
-                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItemAccordion-content Mui-expanded"
+                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content max-w Mui-expanded"
                 >
                   <li
                     aria-disabled="false"
@@ -68,7 +68,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="PicassoSvgArrowDownMinor16-root text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -174,12 +174,12 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               <div
                 aria-disabled="false"
                 aria-expanded="true"
-                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItemAccordion-collapsibleWrapper Mui-expanded"
+                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary pt-0 pr-0 pb-0 pl-4 mx-4 Mui-expanded"
                 role="button"
                 tabindex="0"
               >
                 <div
-                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItemAccordion-content Mui-expanded"
+                  class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content max-w Mui-expanded"
                 >
                   <li
                     aria-disabled="false"
@@ -214,7 +214,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="PicassoSvgArrowDownMinor16-root text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -484,12 +484,12 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary PicassoSidebarItemAccordion-collapsibleWrapper"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary pt-0 pr-0 pb-0 pl-4 mx-4"
         role="button"
         tabindex="0"
       >
         <div
-          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content PicassoSidebarItemAccordion-content"
+          class="MuiAccordionSummary-content WithStyles(ForwardRef(AccordionSummary))-content PicassoAccordion-content max-w"
         >
           <li
             aria-disabled="false"
@@ -533,7 +533,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="PicassoSvgArrowDownMinor16-root PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon"
+            class="PicassoSvgArrowDownMinor16-root text-base text-graphite PicassoAccordion-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
