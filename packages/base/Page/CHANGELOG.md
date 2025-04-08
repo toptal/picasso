@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.4.0
+
+### Minor Changes
+
+- [#4725](https://github.com/toptal/picasso/pull/4725) [`8f97160`](https://github.com/toptal/picasso/commit/8f971603cd8576c0a6485a3d310f04e18a8a1bc2) Thanks [@diogolessa](https://github.com/diogolessa)!
+- migrate PageTopBar component to tailwind
+
 ## 5.3.0
 
 ### Minor Changes
