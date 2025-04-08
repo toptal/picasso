@@ -6,22 +6,22 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoTopBar-wrapper"
+      class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
       >
         <div
-          class="PicassoTopBar-content"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
-            class="PicassoTopBar-left"
+            class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <svg
-                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logoEmblem"
+                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 21 30"
               >
@@ -31,7 +31,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
                 />
               </svg>
               <svg
-                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logo"
+                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -45,10 +45,10 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
                 />
               </svg>
               <div
-                class="items-center PicassoTopBar-title"
+                class="hidden lg:flex items-center"
               >
                 <div
-                  class="PicassoTopBar-divider"
+                  class="w-[1px] h-[1.5em] opacity-80 bg-white"
                 />
                 <div
                   class="ml-4"
@@ -63,7 +63,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTopBar-right"
+            class="flex items-center gap-6"
           />
         </div>
       </header>
@@ -78,22 +78,22 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoTopBar-wrapper"
+      class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
       >
         <div
-          class="PicassoTopBar-content"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
-            class="PicassoTopBar-left"
+            class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <svg
-                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logoEmblem"
+                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 21 30"
               >
@@ -103,7 +103,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
                 />
               </svg>
               <svg
-                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logo"
+                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -117,10 +117,10 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
                 />
               </svg>
               <div
-                class="items-center PicassoTopBar-title"
+                class="hidden lg:flex items-center"
               >
                 <div
-                  class="PicassoTopBar-divider"
+                  class="w-[1px] h-[1.5em] opacity-80 bg-white"
                 />
                 <div
                   class="ml-4"
@@ -135,7 +135,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTopBar-right"
+            class="flex items-center gap-6"
           />
         </div>
       </header>
@@ -150,28 +150,28 @@ exports[`PageTopBar renders with custom logo 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoTopBar-wrapper"
+      class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
       >
         <div
-          class="PicassoTopBar-content"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
-            class="PicassoTopBar-left"
+            class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <div>
                 Custom logo content
               </div>
               <div
-                class="items-center PicassoTopBar-title"
+                class="hidden lg:flex items-center"
               >
                 <div
-                  class="PicassoTopBar-divider"
+                  class="w-[1px] h-[1.5em] opacity-80 bg-white"
                 />
                 <div
                   class="ml-4"
@@ -186,7 +186,7 @@ exports[`PageTopBar renders with custom logo 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTopBar-right"
+            class="flex items-center gap-6"
           />
         </div>
       </header>
@@ -201,26 +201,26 @@ exports[`PageTopBar renders with link 1`] = `
     class="Picasso-root"
   >
     <div
-      class="PicassoTopBar-wrapper"
+      class="relative h-[var(--header min-h-[var(--header"
     >
       <header
-        class="mui-fixed PicassoTopBar-root PicassoTopBar-dark"
+        class="mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100] bg-blue"
       >
         <div
-          class="PicassoTopBar-content"
+          class="box-border flex items-center justify-between mx-auto my-0 h-[var(--header max-w-[var(--content py-0 px-[var(--content-padding md:px-[var(--content-padding"
         >
           <div
-            class="PicassoTopBar-left"
+            class="flex items-center gap-4"
           >
             <div
-              class="gap-4 items-center flex"
+              class="flex items-center gap-4"
             >
               <a
                 class="m-0 font-inherit font-inherit focus:outline-none hover:underline leading-[inherit] text-blue visited:text-purple no-underline cursor-pointer"
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logoEmblem"
+                  class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 21 30"
                 >
@@ -230,7 +230,7 @@ exports[`PageTopBar renders with link 1`] = `
                   />
                 </svg>
                 <svg
-                  class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem PicassoTopBar-logo"
+                  class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >
@@ -245,10 +245,10 @@ exports[`PageTopBar renders with link 1`] = `
                 </svg>
               </a>
               <div
-                class="items-center PicassoTopBar-title"
+                class="hidden lg:flex items-center"
               >
                 <div
-                  class="PicassoTopBar-divider"
+                  class="w-[1px] h-[1.5em] opacity-80 bg-white"
                 />
                 <div
                   class="ml-4"
@@ -263,7 +263,7 @@ exports[`PageTopBar renders with link 1`] = `
             </div>
           </div>
           <div
-            class="PicassoTopBar-right"
+            class="flex items-center gap-6"
           />
         </div>
       </header>

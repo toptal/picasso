@@ -1,7 +1,6 @@
 /* eslint-disable complexity */
 import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef, useEffect } from 'react'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
   usePageTopBar,
@@ -9,12 +8,10 @@ import {
   usePreventPageWidthChangeOnScrollbar,
   useScreenSize,
 } from '@toptal/picasso-provider'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import { Logo } from '@toptal/picasso-logo'
-import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
-import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { palette, useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
@@ -23,7 +20,6 @@ import {
   PageHamburgerPortal,
   useHamburgerContext,
 } from '../PageHamburger'
-import styles from './styles'
 
 const SMALL_SCREEN_WIDTH = 1280
 
@@ -56,10 +52,6 @@ export const PageTopBarContext = React.createContext<{ variant: VariantType }>({
   variant: 'dark',
 })
 
-const useStyles = makeStyles<Theme>(styles, {
-  name: 'PicassoTopBar',
-})
-
 export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   props,
   ref
@@ -78,7 +70,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     testIds,
     ...rest
   } = props
-  const classes = useStyles()
 
   const { setHasTopBar } = usePageTopBar()
   const { preventPageWidthChangeOnScrollbar } =
@@ -113,54 +104,59 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   const logoVariant = isDark ? 'white' : 'default'
   const logoDefault = (
     <>
-      <Logo variant={logoVariant} emblem className={classes.logoEmblem} />
-      <Logo variant={logoVariant} className={classes.logo} />
+      <Logo variant={logoVariant} emblem className='inline md:hidden' />
+      <Logo variant={logoVariant} className='hidden md:inline' />
     </>
   )
 
   const logoComponent = logo || logoDefault
 
   const titleComponent = title && (
-    <Container className={classes.title} alignItems='center'>
+    <div className='hidden lg:flex items-center'>
       <div
-        className={cx(classes.divider, { [classes.dividerBlue]: !isDark })}
+        className={twJoin(
+          'w-[1px] h-[1.5em] opacity-80',
+          isDark ? 'bg-white' : 'bg-blue-700'
+        )}
       />
-      <Container left='small'>
+      <div className='ml-4'>
         <Typography invert={isDark}>{title}</Typography>
-      </Container>
-    </Container>
+      </div>
+    </div>
   )
 
-  const innerClassName = cx(
-    {
-      [classes.fullWidth]: fullWidth || width === 'full',
-      [classes.wide]: width === 'wide',
-    },
-    classes.content
+  const innerClassName = twJoin(
+    fullWidth || width === 'full' ? 'max-w-full' : '',
+    width === 'wide' ? 'max-w-[var(--content-width-wide,90em)]' : '',
+    'box-border flex items-center justify-between mx-auto my-0 h-[var(--header-height,3.5rem)]',
+    'max-w-[var(--content-width,75em)] py-0 px-[var(--content-padding-horizontal,1em)] md:px-[var(--content-padding-horizontal,2em)]'
   )
 
   return (
     <PageTopBarContext.Provider value={{ variant }}>
-      <div className={classes.wrapper}>
+      <div className='relative h-[var(--header-height,3.5rem)] min-h-[var(--header-height,3.5rem)]'>
         <header
           {...rest}
           ref={ref}
-          className={cx(
-            'mui-fixed',
-            classes.root,
-            classes[variant],
+          className={twMerge(
+            'mui-fixed fixed top-0 left-0 right-0 w-full text-lg z-[1100]',
+            variant === 'light' ? 'bg-white' : '',
+            variant === 'dark' ? 'bg-blue-700' : '',
+            variant === 'grey' ? 'bg-graphite-800' : '',
+            variant === 'black' ? 'bg-black' : '',
             className,
-            {
-              [classes.preventPageWidthChangeOnScrollbar]:
-                preventPageWidthChangeOnScrollbar,
-            }
+            preventPageWidthChangeOnScrollbar ? 'md:w-screen' : ''
           )}
-          style={style}
+          style={{
+            boxShadow:
+              variant === 'light' ? `0 1px 0 0 ${palette.grey.lighter2}` : '',
+            ...style,
+          }}
         >
           <div className={innerClassName}>
             {/*  Left part: Hamburger, Logo, Tagline, Search bar */}
-            <div className={classes.left}>
-              <Container flex alignItems='center' gap='small'>
+            <div className='flex items-center gap-4'>
+              <div className='flex items-center gap-4'>
                 {showHamburger && (
                   <PageHamburger
                     id={hamburgerId}
@@ -171,7 +167,7 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
                   ? React.cloneElement(logoLink, {}, logoComponent)
                   : logoComponent}
                 {titleComponent}
-              </Container>
+              </div>
               {leftContent}
             </div>
 
@@ -179,18 +175,16 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
             {centerContent &&
               (isSmallScreen ? (
                 <PageHamburgerPortal>
-                  <div className={classes.centerContentPortal}>
+                  <div className='block min-[1280px]:hidden'>
                     {centerContent}
                   </div>
                 </PageHamburgerPortal>
               ) : (
-                <Container className={classes.centerContent}>
-                  {centerContent}
-                </Container>
+                <div className='hidden min-[1280px]:block'>{centerContent}</div>
               ))}
             {/* Right part: Action items, User menu, Notifications */}
 
-            <div className={classes.right}>
+            <div className='flex items-center gap-6'>
               {actionItems}
               {rightContent}
             </div>
