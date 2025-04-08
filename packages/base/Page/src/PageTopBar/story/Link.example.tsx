@@ -5,7 +5,7 @@ const Example = () => (
   <div style={{ height: '4.5rem' }}>
     <Page.TopBar
       title='Onboarding'
-      logoLink={<Link href='https://www.toptal.com' />}
+      logoLink={<Link href='https://www.toptal.com' className='flex' />}
     />
   </div>
 )
