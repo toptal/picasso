@@ -45,7 +45,7 @@
     "syncpack": "yarn syncpack:list & yarn syncpack:fix",
     "syncpack:fix": "syncpack fix-mismatches",
     "syncpack:list": "syncpack list-mismatches",
-    "test": "yarn test:unit && yarn test:integration",
+    "test": "NODE_OPTIONS='--no-experimental-require-module' yarn test:unit && yarn test:integration",
     "test:combine": "yarn istanbul-merge --out coverage/combined/report.json coverage/cypress/coverage-final.json coverage/jest/coverage-final.json && nyc report --temp-dir coverage/combined --report-dir coverage/combined --reporter html",
     "test:coverage": "yarn test:unit:coverage && yarn test:integration && yarn test:combine",
     "test:integration": "yarn build:package && yarn test:setup cypress run --component",

@@ -25,7 +25,7 @@ exports[`NumberInput renders 1`] = `
           type="button"
         >
           <svg
-            class="PicassoSvgArrowUpMinor16-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -39,7 +39,7 @@ exports[`NumberInput renders 1`] = `
           type="button"
         >
           <svg
-            class="PicassoSvgArrowDownMinor16-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

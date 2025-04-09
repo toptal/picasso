@@ -6,7 +6,7 @@ exports[`Rotate180 render with transformation 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Rotate180-transition Rotate180-rotate180"
+      class="transition-transform duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] rotate-180"
     >
       Rotating component
     </div>
@@ -20,7 +20,7 @@ exports[`Rotate180 render without transformation 1`] = `
     class="Picasso-root"
   >
     <div
-      class="Rotate180-transition"
+      class="transition-transform duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
     >
       Rotating component
     </div>

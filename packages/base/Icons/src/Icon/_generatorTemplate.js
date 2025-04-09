@@ -1,7 +1,10 @@
 const types = require('@babel/types')
 
+const baseIconClasses =
+  'fill-current inline-block text-inherit h-[1em] align-[-.125em]'
+
 /**
- * Add `className={cx(classes.root, className)}` to the svg tag
+ * Add className with base classes and color class to the svg tag
  */
 const decorateWithClassNameProp = svgElement => {
   svgElement.attributes = [
@@ -9,8 +12,18 @@ const decorateWithClassNameProp = svgElement => {
     types.jsxAttribute(
       types.jsxIdentifier('className'),
       types.jsxExpressionContainer(
-        types.callExpression(types.identifier('cx'), [
-          types.identifier('...classNames'),
+        types.callExpression(types.identifier('twMerge'), [
+          types.stringLiteral(baseIconClasses),
+          types.optionalMemberExpression(
+            types.identifier('classes'),
+            types.identifier('root'),
+            false,
+            true
+          ),
+          types.identifier('className'),
+          types.callExpression(types.identifier('getColorClass'), [
+            types.identifier('color'),
+          ]),
         ])
       )
     ),
@@ -45,11 +58,10 @@ const getBaseSize = (componentName = '') => {
 const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   const displayName = `'${componentName}'`
   const baseSize = `${getBaseSize(displayName)}`
-  const styleName = `Picasso${componentName}`
 
   const svgElement = jsx.openingElement
 
-  // add `className={cx(classes.root, classes[colorClassName], className)}` to svg root tag
+  // add `className={twMerge(getColorClass(className, color), className)}` to svg root tag
   decorateWithClassNameProp(svgElement)
   // add `style={style}` to svg root tag
   decorateWithProp(svgElement, 'style', 'svgStyle')
@@ -59,13 +71,13 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
   decorateWithProp(svgElement, 'data-testid', 'testId')
 
   return tpl`
-    import React, { forwardRef, Ref } from 'react'
-    import cx from 'classnames'
-    import { makeStyles } from '@material-ui/core/styles'
-    import { StandardProps } from '@toptal/picasso-shared'
+    import type { Ref } from 'react'
+    import React, { forwardRef } from 'react'
+    import type { StandardProps } from '@toptal/picasso-shared'
+    import { twMerge } from '@toptal/picasso-tailwind-merge'
     ${'\n'}
-    import { kebabToCamelCase } from '@toptal/picasso-utils'
-    import styles from './styles'
+    import { getColorClass } from './styles'
+    ${'\n'}
     const BASE_SIZE = ${baseSize}
     ${'\n'}
     type ScaleType =
@@ -76,27 +88,25 @@ const iconTemplate = ({ componentName, jsx }, { tpl }) => {
     export interface Props extends StandardProps {
       scale?: ScaleType,
       color?: string,
-      base?: number
+      base?: number,
+      classes?: { root?: string }
     }
-    const useStyles = makeStyles(styles, {
-      name: '${styleName}'
-    })
+    
     const ${componentName} = forwardRef(function ${componentName}(
       props: Props,
       ref: Ref<SVGSVGElement>
     ) {
-      const { className, style = {}, color, scale, base, 'data-testid': testId } = props
-
-      const classes: Record<string, string> = useStyles(props)
-      const classNames = [classes.root, className]
+      const { 
+        classes,
+        className, 
+        style = {}, 
+        color, 
+        scale, 
+        base, 
+        'data-testid': testId 
+      } = props
 
       const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
-      const colorClassName = kebabToCamelCase(\`\${color}\`)
-
-      if (classes[colorClassName]) {
-        classNames.push(classes[colorClassName])
-      }
-      ${'\n'}
       const svgStyle = {
         minWidth: \`\${scaledSize}px\`,
         minHeight: \`\${scaledSize}px\`,

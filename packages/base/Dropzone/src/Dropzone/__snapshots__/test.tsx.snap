@@ -21,7 +21,7 @@ exports[`Dropzone renders 1`] = `
           type="file"
         />
         <svg
-          class="PicassoSvgUpload24-root PicassoSvgUpload24-darkGrey"
+          class="fill-current inline-block h-[1em] align-[-.125em] text-graphite"
           style="min-width: 24px; min-height: 24px;"
           viewBox="0 0 24 24"
         >

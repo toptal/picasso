@@ -42,7 +42,7 @@ exports[`NativeSelect renders native select 1`] = `
           </option>
         </select>
         <svg
-          class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
+          class="fill-current inline-block h-[1em] align-[-.125em] absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >
@@ -97,7 +97,7 @@ exports[`NativeSelect renders native select with the empty option enabled when e
           </option>
         </select>
         <svg
-          class="PicassoSvgDropdownArrows16-root absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
+          class="fill-current inline-block h-[1em] align-[-.125em] absolute top-[calc(50%-0.5rem)] right-[0.3125rem] text-graphite text-[1rem] cursor-inherit pointer-events"
           style="min-width: 16px; min-height: 16px;"
           viewBox="0 0 16 16"
         >

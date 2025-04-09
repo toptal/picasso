@@ -21,7 +21,7 @@ exports[`FileList renders 1`] = `
               class="mr-2"
             >
               <svg
-                class="PicassoSvgAttachment16-root PicassoSvgAttachment16-darkGrey"
+                class="fill-current inline-block h-[1em] align-[-.125em] text-graphite"
                 fill="none"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"

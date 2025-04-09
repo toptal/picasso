@@ -15,7 +15,7 @@ exports[`DatePicker renders 1`] = `
           class="text-graphite h-auto flex items-center whitespace-nowrap max-h pointer-events"
         >
           <svg
-            class="PicassoSvgCalendar16-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

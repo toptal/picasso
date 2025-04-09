@@ -16,7 +16,7 @@ exports[`Alert renders 1`] = `
           class="mr-4 items-center flex h-[1.375em]"
         >
           <svg
-            class="PicassoSvgExclamation16-root PicassoSvgExclamation16-yellow"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
