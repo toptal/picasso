@@ -1,5 +1,17 @@
 # @toptal/picasso-date-picker
 
+## 3.1.0
+
+### Minor Changes
+
+- [#4728](https://github.com/toptal/picasso/pull/4728) [`5714528`](https://github.com/toptal/picasso/commit/5714528c24bdb19f66e2f728978b01a311d9b700) Thanks [@george-aidonidis](https://github.com/george-aidonidis)!
+- allow to disable specific days on date picker
+
+### Patch Changes
+
+- Updated dependencies [[`5714528`](https://github.com/toptal/picasso/commit/5714528c24bdb19f66e2f728978b01a311d9b700)]:
+  - @toptal/picasso-calendar@4.1.0
+
 ## 3.0.17
 
 ### Patch Changes
