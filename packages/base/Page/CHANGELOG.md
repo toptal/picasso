@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.4.1
+
+### Patch Changes
+
+- [#4695](https://github.com/toptal/picasso/pull/4695) [`ea49927`](https://github.com/toptal/picasso/commit/ea49927fb27852a89a50432cbec510bfc3706590) Thanks [@george-aidonidis](https://github.com/george-aidonidis)!
+- migrate Sidebar.Item to tailwind
+
 ## 5.4.0
 
 ### Minor Changes
