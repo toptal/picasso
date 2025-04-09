@@ -91,4 +91,28 @@ describe('Calendar', () => {
       })
     })
   })
+
+  describe('when disableDays is set', () => {
+    it('disables specified days', () => {
+      const minDate = new Date('2015-12-01')
+      const maxDate = new Date('2015-12-30')
+      const value = new Date('2015-12-10')
+      const onChange = jest.fn()
+
+      const { getByTestId } = render(
+        <Calendar
+          minDate={minDate}
+          maxDate={maxDate}
+          value={value}
+          onChange={onChange}
+          disableDays={{ dayOfWeek: [0, 6] }}
+        />
+      )
+
+      const disabledButton = getByTestId('day-button-12')
+
+      fireEvent.click(disabledButton)
+      expect(onChange).not.toHaveBeenCalled()
+    })
+  })
 })

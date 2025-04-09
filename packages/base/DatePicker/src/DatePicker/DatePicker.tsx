@@ -68,6 +68,8 @@ export interface Props
   hideOnSelect?: boolean
   /** Date format that user will see in the input */
   displayDateFormat?: string
+  /** Days to disable. e.g. Disable Sundays and Saturdays {dayOfWeek: [0, 6]} */
+  disableDays?: { dayOfWeek: number[] }
   /** Date range where selection is not allowed */
   disabledIntervals?: CalendarDateRange[]
   /** Date format that user will see during manual input */
@@ -122,6 +124,7 @@ export const DatePicker = (props: Props) => {
     icon,
     minDate,
     maxDate,
+    disableDays,
     disabledIntervals,
     popperContainer,
     renderDay,
@@ -442,6 +445,7 @@ export const DatePicker = (props: Props) => {
                 weekStartsOn={weekStartsOn}
                 numberOfMonths={numberOfMonths}
                 dropdownNavigation={dropdownNavigation}
+                disableDays={disableDays}
               />
               {footer && (
                 <div

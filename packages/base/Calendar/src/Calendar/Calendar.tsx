@@ -56,6 +56,8 @@ export interface Props
   renderMonthHeader?: RenderMonthHeader
   /** Custom day renderer */
   renderDay?: RenderDay
+  /** Days to disable. e.g. Disable Sundays and Saturdays {dayOfWeek: [0, 6]} */
+  disableDays?: { dayOfWeek: number[] }
   /** Intervals that should be indicated as disabled */
   disabledIntervals?: CalendarDateRange[]
   /** Intervals that should be indicated with orange dots */
@@ -100,6 +102,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
     renderRoot,
     numberOfMonths = 1,
     dropdownNavigation = false,
+    disableDays,
     ...rest
   } = props
 
@@ -237,7 +240,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(function Calendar(
             onMonthChange={month => setNavigationMonth(month)}
             toDate={maxDate}
             numberOfMonths={shouldRenderMultipleMonths ? numberOfMonths : 1}
-            disabled={disabledIntervalsFormatted}
+            disabled={disabledIntervalsFormatted || disableDays}
             weekStartsOn={weekStartsOn}
             formatters={{ formatWeekdayName: date => format(date, 'EEE') }}
             modifiers={modifiers}

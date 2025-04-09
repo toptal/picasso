@@ -111,6 +111,14 @@ page
     'base/DatePicker'
   )
   .addExample(
+    'DatePicker/story/WithDisabledDays.example.tsx',
+    {
+      title: 'With Disabled Days',
+      takeScreenshot: false,
+    },
+    'base/DatePicker'
+  )
+  .addExample(
     'DatePicker/story/WithCustomDayRendering.example.tsx',
     {
       title: 'With Custom Day rendering',

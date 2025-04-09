@@ -97,6 +97,23 @@ describe('DatePicker', () => {
     })
   })
 
+  it('prevents selection of disabled days', () => {
+    cy.mount(
+      <TestDatePicker
+        autoFocus
+        minDate={new Date('2015-12-01')}
+        maxDate={new Date('2015-12-30')}
+        value={new Date('2015-12-10')}
+        disableDays={{ dayOfWeek: [0, 2] }}
+      />
+    )
+
+    cy.get('body').happoScreenshot({
+      component,
+      variant: 'disabled-days',
+    })
+  })
+
   it('renders a customized footer', () => {
     cy.mount(
       <TestDatePicker
