@@ -3,7 +3,7 @@
 import type { BaseProps } from '@toptal/picasso-shared'
 import formatDate from 'date-fns/format'
 import type PopperJs from 'popper.js'
-import type { KeyboardEvent, ReactNode } from 'react'
+import type { ReactNode, KeyboardEvent } from 'react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Calendar16 } from '@toptal/picasso-icons'
 import { Popper } from '@toptal/picasso-popper'
@@ -251,9 +251,7 @@ export const DatePicker = (props: Props) => {
     setIsInputFocused(false)
   }
 
-  const handleCalendarClickOutside = (
-    event: React.MouseEvent<unknown, unknown>
-  ) => {
+  const handleCalendarClickOutside = (event: Event) => {
     if (!isInsideDatePicker(event.target as Node)) {
       hideCalendar()
       setIsInputFocused(false)

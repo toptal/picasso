@@ -11,9 +11,8 @@ import type {
 import { makeResponsiveSpacingProps } from '@toptal/picasso-provider'
 import { Popper } from '@toptal/picasso-popper'
 import { Paper } from '@toptal/picasso-paper'
-import { noop } from '@toptal/picasso-utils'
+import { ClickAwayListener, noop } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
-import { ClickAwayListener } from '@mui/base/ClickAwayListener'
 
 import { contentClass } from './styles'
 
@@ -240,7 +239,7 @@ export const Dropdown: DropdownProps = forwardRef<
     close: () => forceClose(),
   }
 
-  const handleClickAway = (event: MouseEvent | TouchEvent) => {
+  const handleClickAway = (event: MouseEvent | TouchEvent | FocusEvent) => {
     const target = event.target
 
     const isAnchorTapEvent =

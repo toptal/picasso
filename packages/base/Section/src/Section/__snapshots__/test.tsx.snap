@@ -29,7 +29,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
               class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] text-[1.2em] flex-1 Rotate180-transition"
+                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] text-[1.2em] flex-1 transition-transform duration-150 ease-[cubic-bezier(0.4,0,0.2,1)]"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
@@ -75,7 +75,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
               class="items-center inline-flex font-semibold whitespace-nowrap text-button"
             >
               <svg
-                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] text-[1.2em] flex-1 Rotate180-transition Rotate180-rotate180"
+                class="fill-current inline-block text-inherit h-[1em] align-[-.125em] text-[1.2em] flex-1 transition-transform duration-150 ease-[cubic-bezier(0.4,0,0.2,1)] rotate-180"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 16 16"
               >
