@@ -2,7 +2,6 @@ import type { ChangeEvent } from 'react'
 import React, { forwardRef, useCallback } from 'react'
 import { Accordion } from '@toptal/picasso-accordion'
 import { ArrowDownMinor16 } from '@toptal/picasso-icons'
-import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { SubMenuContextProvider } from './SubMenuContextProvider'
 import { ParentItemContextProvider } from './ParentItemContextProvider'
@@ -46,8 +45,8 @@ export const SidebarItemAccordion = forwardRef<HTMLElement, Props>(
         <Accordion
           onChange={handleAccordionChange}
           classes={{
-            summary: twMerge(styles.paddingLeft, styles.margin),
-            content: styles.content,
+            summary: 'p-0 pl-4 mx-4',
+            content: 'max-w-full',
           }}
           content={content}
           borders='none'
