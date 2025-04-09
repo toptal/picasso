@@ -28,7 +28,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               <div
                 aria-disabled="false"
                 aria-expanded="true"
-                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary pt-0 pr-0 pb-0 pl-4 mx-4 Mui-expanded"
+                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary p-0 pl-4 mx-4 Mui-expanded"
                 role="button"
                 tabindex="0"
               >
@@ -174,7 +174,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
               <div
                 aria-disabled="false"
                 aria-expanded="true"
-                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary pt-0 pr-0 pb-0 pl-4 mx-4 Mui-expanded"
+                class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary p-0 pl-4 mx-4 Mui-expanded"
                 role="button"
                 tabindex="0"
               >
@@ -484,7 +484,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
       <div
         aria-disabled="false"
         aria-expanded="false"
-        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary pt-0 pr-0 pb-0 pl-4 mx-4"
+        class="MuiButtonBase-root MuiAccordionSummary-root WithStyles(ForwardRef(AccordionSummary))-root PicassoAccordion-summary p-0 pl-4 mx-4"
         role="button"
         tabindex="0"
       >
