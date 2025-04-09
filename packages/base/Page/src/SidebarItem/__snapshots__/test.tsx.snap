@@ -68,8 +68,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
-                    class="fill-current inline-block text-inherit h-[1em] align-[-.125em] PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="fill-current inline-block h-[1em] align-[-.125em] text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -215,8 +214,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                     </div>
                   </li>
                   <svg
-                    class="PicassoSvgArrowDownMinor16-root text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
-                    class="fill-current inline-block text-inherit h-[1em] align-[-.125em] PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                    class="fill-current inline-block h-[1em] align-[-.125em] text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
                     style="min-width: 16px; min-height: 16px;"
                     viewBox="0 0 16 16"
                   >
@@ -535,8 +533,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
             </div>
           </li>
           <svg
-            class="PicassoSvgArrowDownMinor16-root text-base text-graphite PicassoAccordion-expandIcon"
-            class="fill-current inline-block text-inherit h-[1em] align-[-.125em] PicassoSidebarItemAccordion-expandIcon PicassoSidebarItemAccordion-lightExpandIcon PicassoAccordion-expandIcon"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-base text-graphite PicassoAccordion-expandIcon"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
