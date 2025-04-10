@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-grid",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "description": "Toptal UI components library - Grid",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.11.0",
+    "@toptal/picasso-icons": "1.12.0",
     "@toptal/picasso-typography": "4.0.2",
     "@toptal/picasso-utils": "3.0.0"
   },
