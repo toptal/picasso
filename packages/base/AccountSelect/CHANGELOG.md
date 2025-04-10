@@ -1,5 +1,14 @@
 # @toptal/picasso-account-select
 
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`d7ba29a`](https://github.com/toptal/picasso/commit/d7ba29af8935cc97ab7aa48fbe79d63a7403060a)]:
+  - @toptal/picasso-icons@1.12.0
+  - @toptal/picasso-menu@3.0.14
+  - @toptal/picasso-user-badge@5.1.10
+
 ## 3.0.14
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @toptal/picasso-icons
 
+## 1.12.0
+
+### Minor Changes
+
+- [#4722](https://github.com/toptal/picasso/pull/4722) [`d7ba29a`](https://github.com/toptal/picasso/commit/d7ba29af8935cc97ab7aa48fbe79d63a7403060a) Thanks [@vedrani](https://github.com/vedrani)!
+
+### Icons
+
+- migrate Icons to tailwind styling
+
 ## 1.11.0
 
 ### Minor Changes
