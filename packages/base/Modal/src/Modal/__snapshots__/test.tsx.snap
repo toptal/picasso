@@ -91,7 +91,7 @@ exports[`Modal renders 1`] = `
           class="items-center inline-flex font-semibold whitespace-nowrap text-button"
         >
           <svg
-            class="PicassoSvgCloseMinor16-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

@@ -38,7 +38,7 @@ exports[`ShowMore renders 1`] = `
           class="flex-1 w-4 h-4 text-graphite ml-[0.5rem] rotate-90 text-lg/none"
         >
           <svg
-            class="PicassoSvgChevronRight16-root text-graphite"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-graphite"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -91,7 +91,7 @@ exports[`ShowMore when custom lessText text is specified should render with cust
           class="flex-1 w-4 h-4 text-graphite ml-[0.5rem] rotate-90 text-lg/none"
         >
           <svg
-            class="PicassoSvgChevronRight16-root text-graphite"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-graphite"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -144,7 +144,7 @@ exports[`ShowMore when custom showMore text is specified should render with cust
           class="flex-1 w-4 h-4 text-graphite ml-[0.5rem] rotate-90 text-lg/none"
         >
           <svg
-            class="PicassoSvgChevronRight16-root text-graphite"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-graphite"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -211,7 +211,7 @@ exports[`ShowMore when initialExpanded prop is true should render expanded versi
           class="flex-1 w-4 h-4 text-graphite ml-[0.5rem] rotate-90 text-lg/none"
         >
           <svg
-            class="PicassoSvgChevronRight16-root text-graphite rotate-180"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-graphite rotate-180"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -264,7 +264,7 @@ exports[`ShowMore when initialExpanded prop is true when show less link is click
           class="flex-1 w-4 h-4 text-graphite ml-[0.5rem] rotate-90 text-lg/none"
         >
           <svg
-            class="PicassoSvgChevronRight16-root text-graphite"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-graphite"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -305,7 +305,7 @@ exports[`ShowMore when show more link is clicked should render expanded version 
           class="flex-1 w-4 h-4 text-graphite ml-[0.5rem] rotate-90 text-lg/none"
         >
           <svg
-            class="PicassoSvgChevronRight16-root text-graphite rotate-180"
+            class="fill-current inline-block h-[1em] align-[-.125em] text-graphite rotate-180"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

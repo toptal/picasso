@@ -67,7 +67,7 @@ exports[`AvatarUpload renders 1`] = `
         </svg>
       </div>
       <svg
-        class="PicassoSvgUpload24-root absolute pointer-events"
+        class="fill-current inline-block text-inherit h-[1em] align-[-.125em] absolute pointer-events"
         style="min-width: 24px; min-height: 24px;"
         viewBox="0 0 24 24"
       >

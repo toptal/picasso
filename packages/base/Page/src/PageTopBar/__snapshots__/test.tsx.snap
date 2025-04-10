@@ -21,7 +21,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
               class="flex items-center gap-4"
             >
               <svg
-                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
+                class="fill-current h-[1em] text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 21 30"
               >
@@ -31,7 +31,7 @@ exports[`PageTopBar renders hamburger on small screen 1`] = `
                 />
               </svg>
               <svg
-                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
+                class="fill-current h-[1em] text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -93,7 +93,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
               class="flex items-center gap-4"
             >
               <svg
-                class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
+                class="fill-current h-[1em] text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 21 30"
               >
@@ -103,7 +103,7 @@ exports[`PageTopBar renders normally on default screen size 1`] = `
                 />
               </svg>
               <svg
-                class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
+                class="fill-current h-[1em] text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
                 style="min-width: 16px; min-height: 16px;"
                 viewBox="0 0 109 30"
               >
@@ -220,7 +220,7 @@ exports[`PageTopBar renders with link 1`] = `
                 href="https://www.toptal.com"
               >
                 <svg
-                  class="PicassoSvgLogoEmblem-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
+                  class="fill-current h-[1em] text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem inline md:hidden"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 21 30"
                 >
@@ -230,7 +230,7 @@ exports[`PageTopBar renders with link 1`] = `
                   />
                 </svg>
                 <svg
-                  class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
+                  class="fill-current h-[1em] text-[1.875rem] align-baseline text-white [--logo-text [--logo-emblem hidden md:inline"
                   style="min-width: 16px; min-height: 16px;"
                   viewBox="0 0 109 30"
                 >

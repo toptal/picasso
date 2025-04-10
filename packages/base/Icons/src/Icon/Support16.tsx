@@ -1,11 +1,10 @@
 import type { Ref } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
-import { makeStyles } from '@material-ui/core/styles'
 import type { StandardProps } from '@toptal/picasso-shared'
-import { kebabToCamelCase } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
+import { getColorClass } from './styles'
+
 const BASE_SIZE = 16
 
 type ScaleType = 1 | 2 | 3 | 4
@@ -13,15 +12,16 @@ export interface Props extends StandardProps {
   scale?: ScaleType
   color?: string
   base?: number
+  classes?: {
+    root?: string
+  }
 }
-const useStyles = makeStyles(styles, {
-  name: 'PicassoSvgSupport16',
-})
 const SvgSupport16 = forwardRef(function SvgSupport16(
   props: Props,
   ref: Ref<SVGSVGElement>
 ) {
   const {
+    classes,
     className,
     style = {},
     color,
@@ -29,15 +29,7 @@ const SvgSupport16 = forwardRef(function SvgSupport16(
     base,
     'data-testid': testId,
   } = props
-  const classes: Record<string, string> = useStyles(props)
-  const classNames = [classes.root, className]
   const scaledSize = base || BASE_SIZE * Math.ceil(scale || 1)
-  const colorClassName = kebabToCamelCase(`${color}`)
-
-  if (classes[colorClassName]) {
-    classNames.push(classes[colorClassName])
-  }
-
   const svgStyle = {
     minWidth: `${scaledSize}px`,
     minHeight: `${scaledSize}px`,
@@ -48,7 +40,12 @@ const SvgSupport16 = forwardRef(function SvgSupport16(
     <svg
       fill='none'
       viewBox='0 0 16 16'
-      className={cx(...classNames)}
+      className={twMerge(
+        'fill-current inline-block text-inherit h-[1em] align-[-.125em]',
+        classes?.root,
+        className,
+        getColorClass(color)
+      )}
       style={svgStyle}
       ref={ref}
       data-testid={testId}

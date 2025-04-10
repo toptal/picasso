@@ -34,7 +34,7 @@ describe('TableCell', () => {
       const { container, getByRole } = renderTableCell()
       const button = getByRole('button')
 
-      expect(button).toContainHTML('PicassoSvgArrowLongUp16')
+      expect(button.querySelector('svg')).toBeTruthy()
       expect(container).toMatchSnapshot()
     })
   })
@@ -42,10 +42,11 @@ describe('TableCell', () => {
     it('renders with a sort button in the right direction', () => {
       const { container, getByRole } = renderTableCell({
         sortDirection: 'desc',
+        onSortClick: noop,
       })
       const button = getByRole('button')
 
-      expect(button).toContainHTML('PicassoSvgArrowLongDown16')
+      expect(button.querySelector('svg')).toBeTruthy()
       expect(container).toMatchSnapshot()
     })
   })
@@ -53,7 +54,10 @@ describe('TableCell', () => {
   it('executes the callback when clicked', () => {
     const mockOnClick = jest.fn()
 
-    const { getByRole } = renderTableCell({ onSortClick: mockOnClick })
+    const { getByRole } = renderTableCell({
+      onSortClick: mockOnClick,
+      sortDirection: 'asc',
+    })
 
     const button = getByRole('button')
 

@@ -15,7 +15,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -40,7 +40,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -65,7 +65,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -90,7 +90,7 @@ exports[`StepperVertical render with all steps completed 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -125,7 +125,7 @@ exports[`StepperVertical renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >
@@ -150,7 +150,7 @@ exports[`StepperVertical renders 1`] = `
           class="h-[1.5em] w-[1.5em] flex justify-center items-center rounded-[50%] shrink-0 text-green"
         >
           <svg
-            class="PicassoSvgCheckSolid24-root"
+            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
             style="min-width: 24px; min-height: 24px;"
             viewBox="0 0 24 24"
           >

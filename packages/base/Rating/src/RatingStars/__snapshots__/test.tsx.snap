@@ -14,7 +14,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStarSolid16-yellow"
+            class="fill-current inline-block h-[1em] align-[-.125em] transition-all duration-350 ease-out hover:scale-150 text-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -38,7 +38,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStarSolid16-yellow"
+            class="fill-current inline-block h-[1em] align-[-.125em] transition-all duration-350 ease-out hover:scale-150 text-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -62,7 +62,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStarSolid16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStarSolid16-yellow"
+            class="fill-current inline-block h-[1em] align-[-.125em] transition-all duration-350 ease-out hover:scale-150 text-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -87,7 +87,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
+            class="fill-current inline-block h-[1em] align-[-.125em] transition-all duration-350 ease-out hover:scale-150 text-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >
@@ -111,7 +111,7 @@ exports[`Rating.Stars renders 1`] = `
       >
         <span>
           <svg
-            class="PicassoSvgStar16-root transition-all duration-350 ease-out hover:scale-150 PicassoSvgStar16-yellow"
+            class="fill-current inline-block h-[1em] align-[-.125em] transition-all duration-350 ease-out hover:scale-150 text-yellow"
             style="min-width: 16px; min-height: 16px;"
             viewBox="0 0 16 16"
           >

@@ -9,7 +9,7 @@ exports[`SidebarLogo renders 1`] = `
       class="mb-2 ml-8 flex-shrink block overflow-hidden"
     >
       <svg
-        class="PicassoSvgLogo-root text-[1.875rem] align-baseline text-blue [--logo-text [--logo-emblem"
+        class="fill-current inline-block h-[1em] text-[1.875rem] align-baseline text-blue [--logo-text [--logo-emblem"
         style="min-width: 16px; min-height: 16px;"
         viewBox="0 0 109 30"
       >
