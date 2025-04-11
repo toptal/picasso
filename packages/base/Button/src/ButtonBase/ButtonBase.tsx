@@ -1,5 +1,11 @@
 /* eslint-disable complexity */
-import type { ReactNode, ReactElement, MouseEvent, ElementType } from 'react'
+import type {
+  ReactNode,
+  ReactElement,
+  MouseEvent,
+  ElementType,
+  Ref,
+} from 'react'
 import React, { forwardRef } from 'react'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type {
@@ -9,11 +15,10 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
-import { Button as MUIButtonBase } from '@mui/base/Button'
-import type { ButtonRootSlotProps } from '@mui/base/Button'
 import { Loader } from '@toptal/picasso-loader'
 import { Container } from '@toptal/picasso-container'
 import { noop, toTitleCase } from '@toptal/picasso-utils'
+import { Slot } from '@radix-ui/react-slot'
 
 import { createCoreClassNames } from './styles'
 
@@ -60,15 +65,6 @@ const getIcon = ({ icon }: { icon?: ReactElement }) => {
   })
 }
 
-const RootElement = forwardRef(
-  (props: ButtonRootSlotProps & { as: ElementType }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { ownerState, as: Root, ...rest } = props
-
-    return <Root {...rest} ref={ref} />
-  }
-)
-
 export const ButtonBase: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
@@ -86,14 +82,13 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     title,
     value,
     type,
-    as = 'button',
+    as,
     titleCase: propsTitleCase,
     ...rest
   } = props
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
-  const finalRootElementName = typeof as === 'string' ? as : 'a'
 
   if (icon) {
     const iconComponent = getIcon({ icon })
@@ -107,10 +102,13 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
 
   const finalClassName = twMerge(createCoreClassNames({ disabled }), className)
 
-  return (
-    <MUIButtonBase
+  const Component = as || 'button'
+  const asChild = !!as && Component !== 'button' && Component !== 'a'
+
+  const renderButton = (Comp: ElementType, buttonRef: Ref<any>) => (
+    <Comp
       {...rest}
-      ref={ref}
+      ref={buttonRef}
       onClick={getClickHandler(loading, onClick)}
       className={finalClassName}
       style={style}
@@ -122,10 +120,6 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
       data-component-type='button'
       tabIndex={rest.tabIndex ?? disabled ? -1 : 0}
       role={rest.role ?? 'button'}
-      rootElementName={finalRootElementName as keyof HTMLElementTagNameMap}
-      slots={{ root: RootElement }}
-      // @ts-ignore
-      slotProps={{ root: { as } }}
     >
       <Container
         as='span'
@@ -146,8 +140,15 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
           size='small'
         />
       )}
-    </MUIButtonBase>
+    </Comp>
   )
+
+  // Use Slot for custom components, otherwise use button/a directly
+  if (asChild) {
+    return <Slot ref={ref}>{renderButton(Component, null)}</Slot>
+  }
+
+  return renderButton(Component, ref)
 })
 
 ButtonBase.defaultProps = {

@@ -7,7 +7,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "butt
   >
     <span
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       href="/"
       role="button"
@@ -31,7 +31,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop does not equal "butt
   >
     <span
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       role="button"
       tabindex="0"
@@ -55,7 +55,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
   >
     <a
       aria-disabled="false"
-      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       href="URL"
       role="button"
@@ -79,9 +79,8 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
   >
     <a
       aria-disabled="true"
-      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events"
+      class="font-inherit focus:outline-none hover:underline text-gray underline text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events"
       data-component-type="button"
-      href="URL"
       role="button"
       tabindex="-1"
       type="button"
@@ -103,7 +102,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "Link" compon
   >
     <a
       aria-disabled="false"
-      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="font-inherit focus:outline-none hover:underline text-blue visited:text-purple no-underline text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       href=""
       role="button"
@@ -127,7 +126,7 @@ exports[`ButtonBase when "as" prop is passed when "as" prop equals "a" renders B
   >
     <a
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       href="/"
       role="button"
@@ -151,7 +150,7 @@ exports[`ButtonBase when "disabled" prop is false renders Button and does not tr
   >
     <button
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       role="button"
       tabindex="0"
@@ -174,7 +173,7 @@ exports[`ButtonBase when "disabled" prop is true renders Button and does not tri
   >
     <button
       aria-disabled="true"
-      class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events"
       data-component-type="button"
       disabled=""
       role="button"
@@ -198,7 +197,7 @@ exports[`ButtonBase when "loading" prop is true renders Button with loading stat
   >
     <button
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       role="button"
       tabindex="0"
@@ -248,7 +247,7 @@ exports[`ButtonBase when "role" prop is passed renders Button with a custom role
   >
     <button
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       role="custom"
       tabindex="0"
@@ -271,7 +270,7 @@ exports[`ButtonBase when "titleCase" prop is true renders Button with transforme
   >
     <button
       aria-disabled="false"
-      class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer"
       data-component-type="button"
       role="button"
       tabindex="0"
