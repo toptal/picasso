@@ -55,7 +55,7 @@ exports[`PromptModal renders 1`] = `
       >
         <button
           aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
           data-component-type="button"
           role="button"
           tabindex="0"
@@ -69,7 +69,7 @@ exports[`PromptModal renders 1`] = `
         </button>
         <button
           aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
           data-component-type="button"
           role="button"
           tabindex="0"
@@ -99,7 +99,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
     >
       <button
         aria-disabled="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -125,7 +125,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
       <button
         aria-disabled="false"
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -183,7 +183,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
           >
             <button
               aria-disabled="false"
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+              class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
               data-component-type="button"
               role="button"
               tabindex="0"
@@ -197,7 +197,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
             </button>
             <button
               aria-disabled="false"
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+              class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
               data-component-type="button"
               role="button"
               tabindex="0"
@@ -229,7 +229,7 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 3`] = `
     >
       <button
         aria-disabled="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -254,7 +254,7 @@ exports[`PromptModal showPrompt with input returns result on Submit action 1`] =
     >
       <button
         aria-disabled="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
