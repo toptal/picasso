@@ -1,14 +1,20 @@
-import { Switch as MUISwitch } from '@mui/base/Switch'
+// NOTE: You need to install this package:
+// npm install @radix-ui/react-switch
+import * as RadixSwitch from '@radix-ui/react-switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import React, { forwardRef } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import React, { forwardRef, useState } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form'
 import cx from 'classnames'
 
+// Extend with the props we need, exclude the ones that cause conflicts
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
+    Omit<
+      ComponentPropsWithoutRef<typeof RadixSwitch.Root>,
+      'onChange' | 'type'
+    > {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
@@ -40,57 +46,57 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     ...rest
   } = props
 
-  const onChangeCallback: React.ChangeEventHandler<
-    HTMLInputElement
-  > = event => {
+  // Track focus state
+  const [isFocused, setIsFocused] = useState(false)
+
+  const handleCheckedChange = (isChecked: boolean) => {
     if (onChange) {
-      onChange(event, event.target.checked)
+      // Create a synthetic event to maintain API compatibility
+      const syntheticEvent = {
+        target: { checked: isChecked },
+      } as React.ChangeEvent<HTMLInputElement>
+
+      onChange(syntheticEvent, isChecked)
     }
   }
 
+  // Define styles for different states
   const switchElement = (
-    <MUISwitch
-      {...rest}
-      color='primary'
-      ref={ref}
-      checked={checked}
-      className={className}
-      style={style}
-      disabled={disabled}
-      id={id}
-      onChange={onChangeCallback}
-      data-testid={label ? undefined : dataTestId}
-      slotProps={{
-        root: {
-          className:
-            'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
-        },
-        track: {
-          className: cx(
-            'w-full h-full border border-solid bg-gray-600 border-gray-600 opacity-100 rounded-[12px]',
-            'transition-colors duration-300 ease-out',
-            'group-[.base--checked]:bg-blue-500 group-[.base--checked]:border-blue-500',
-            'group-[.base--disabled]:opacity-40',
-            'group-[.base--disabled:not(.base--checked)]:bg-black'
-          ),
-        },
-        thumb: {
-          className: cx(
-            'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
+    <div className='relative'>
+      <RadixSwitch.Root
+        {...rest}
+        ref={ref}
+        checked={checked}
+        style={style}
+        className={cx(
+          'w-[40px] h-[24px] bg-gray-600 rounded-full relative cursor-pointer',
+          'data-[state=checked]:bg-blue-500',
+          'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
+          'outline-none border-0',
+          className
+        )}
+        disabled={disabled}
+        id={id}
+        onCheckedChange={handleCheckedChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        data-testid={label ? undefined : dataTestId}
+      >
+        <RadixSwitch.Thumb
+          className={cx(
+            'block w-[22px] h-[22px] bg-white rounded-full',
+            'absolute top-[1px] left-[1px]',
             'transition-transform duration-150 ease-out',
-            'group-[:not(.base--disabled):hover]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-[.base--focusVisible]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-[.base--checked]:translate-x-[16px]'
-          ),
-        },
-        input: {
-          className: cx(
-            'w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left-[50%] cursor-pointer z-20',
-            'group-[.base--disabled]:cursor-default'
-          ),
-        },
-      }}
-    />
+            'data-[state=checked]:translate-x-[16px]'
+          )}
+          style={{
+            boxShadow: isFocused
+              ? '0 0 0 3px rgba(59, 130, 246, 0.5), 0 0 0 5px rgba(59, 130, 246, 0.2)'
+              : 'none',
+          }}
+        />
+      </RadixSwitch.Root>
+    </div>
   )
 
   if (!label) {
