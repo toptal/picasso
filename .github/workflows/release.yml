@@ -29,13 +29,12 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.2.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
           secrets_name: |-
             DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
-            GCR_ACCOUNT_KEY:toptal-ci/GCR_ACCOUNT_KEY
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
             TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
@@ -50,11 +49,10 @@ jobs:
             JENKINS_DEPLOYMENT_URL:toptal-ci/JENKINS_DEPLOYMENT_URL
             JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
             JENKINS_URL:toptal-ci/JENKINS_URL
-            JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.2.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -67,8 +65,6 @@ jobs:
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo 'GCR_ACCOUNT_KEY<<EOF' >> $GITHUB_ENV
-          echo '${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}' >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
@@ -170,7 +166,7 @@ jobs:
           sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Build and push picasso image
-        uses: toptal/davinci-github-actions/build-push-image@v15.4.1
+        uses: toptal/davinci-github-actions/build-push-image@v17.2.0
         with:
           image-name: picasso
           registry-name: ${{ steps.parse_secrets.outputs.TOPTAL_DEFAULT_REGISTRY }}
@@ -185,7 +181,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
             {
@@ -230,7 +225,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.DEVBOT_TOKEN }}
           environment: production
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
