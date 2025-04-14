@@ -16,7 +16,7 @@ import type {
 } from '../SelectBase'
 import { flattenOptions, isOptionsType } from '../SelectBase'
 
-// TODO: Replace with a real component as soon as it's implemented
+// TODO: Replace with a real component as soon as it's implemented [FX-1479]
 // https://toptal-core.atlassian.net/browse/FX-1479
 // Note: In the current implementation children are siblings for the group node.
 // If in the new MenuGroup children are inside the group node, that will
@@ -64,6 +64,8 @@ export type Props = Pick<
   }
 }
 
+const MemoizedNonNativeSelectOption = React.memo(NonNativeSelectOption)
+
 const renderOptions = ({
   options,
   getItemProps,
@@ -76,17 +78,21 @@ const renderOptions = ({
   'getItemProps' | 'selection' | 'highlightedIndex' | 'renderOption'
 > & { options: Option[]; offset?: number }) => {
   return options.map((option, index) => {
+    const optionIndex = index + offset
+    const isHighlighted = highlightedIndex === optionIndex
+    const isSelected = selection.isOptionSelected(option)
+
     return (
-      <NonNativeSelectOption
+      <MemoizedNonNativeSelectOption
         key={option.key || option.value}
         option={option}
-        selected={selection.isOptionSelected(option)}
-        highlighted={highlightedIndex === index + offset}
+        selected={isSelected}
+        highlighted={isHighlighted}
         description={option.description}
-        {...getItemProps(option, index + offset)}
+        {...getItemProps(option, optionIndex)}
       >
         {renderOption?.(option)}
-      </NonNativeSelectOption>
+      </MemoizedNonNativeSelectOption>
     )
   })
 }
@@ -162,6 +168,43 @@ const NonNativeSelectOptions = ({
     [options]
   )
 
+  const renderedContent = useMemo(() => {
+    if (!flatOptions.length && filterOptionsValue) {
+      return (
+        <MenuItem titleCase={false} disabled>
+          {noOptionsText}
+        </MenuItem>
+      )
+    }
+
+    if (isOptionsType(options)) {
+      return renderOptions({
+        options,
+        getItemProps,
+        selection,
+        highlightedIndex,
+        renderOption,
+      })
+    }
+
+    return renderGroups({
+      groups: options,
+      getItemProps,
+      selection,
+      highlightedIndex,
+      renderOption,
+    })
+  }, [
+    options,
+    flatOptions,
+    filterOptionsValue,
+    getItemProps,
+    selection,
+    highlightedIndex,
+    renderOption,
+    noOptionsText,
+  ])
+
   if (!flatOptions.length && filterOptionsValue) {
     return (
       <SelectOptions
@@ -169,9 +212,7 @@ const NonNativeSelectOptions = ({
         role='listbox'
         fixedHeader={fixedHeader}
       >
-        <MenuItem titleCase={false} disabled>
-          {noOptionsText}
-        </MenuItem>
+        {renderedContent}
       </SelectOptions>
     )
   }
@@ -188,21 +229,7 @@ const NonNativeSelectOptions = ({
       fixedFooter={fixedFooter}
       role='listbox'
     >
-      {isOptionsType(options)
-        ? renderOptions({
-            options,
-            getItemProps,
-            selection,
-            highlightedIndex,
-            renderOption,
-          })
-        : renderGroups({
-            groups: options,
-            getItemProps,
-            selection,
-            highlightedIndex,
-            renderOption,
-          })}
+      {renderedContent}
     </SelectOptions>
   )
 }

@@ -12,30 +12,42 @@ export interface Props<T extends ValueType> extends ItemProps {
   option: Option<T>
 }
 
+const NonNativeSelectOptionComponent = <T extends ValueType>({
+  option,
+  selected,
+  highlighted,
+  description,
+  children,
+  ...itemProps
+}: Props<T>) => {
+  return (
+    <MenuItem
+      value={option.value}
+      selected={highlighted}
+      checkmarked={selected}
+      titleCase={false}
+      description={description}
+      role='option'
+      aria-selected={selected}
+      data-highlighted={highlighted}
+      disabled={option.disabled}
+      {...itemProps}
+    >
+      {children}
+    </MenuItem>
+  )
+}
+
 const NonNativeSelectOption = React.memo(
-  <T extends ValueType>({
-    option,
-    selected,
-    highlighted,
-    description,
-    children,
-    ...itemProps
-  }: Props<T>) => {
+  NonNativeSelectOptionComponent,
+  (prevProps, nextProps) => {
     return (
-      <MenuItem
-        value={option.value}
-        selected={highlighted}
-        checkmarked={selected}
-        titleCase={false}
-        description={description}
-        role='option'
-        aria-selected={selected}
-        data-highlighted={highlighted}
-        disabled={option.disabled}
-        {...itemProps}
-      >
-        {children}
-      </MenuItem>
+      prevProps.selected === nextProps.selected &&
+      prevProps.highlighted === nextProps.highlighted &&
+      prevProps.option === nextProps.option &&
+      prevProps.option.disabled === nextProps.option.disabled &&
+      prevProps.description === nextProps.description &&
+      prevProps.children === nextProps.children
     )
   }
 )
