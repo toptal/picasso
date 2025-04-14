@@ -1,11 +1,10 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import React, { useContext, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { PageContext } from '../Page'
-import type { PageContextProps } from '../Page/types'
 import { getMaxWidthClass } from './styles'
+import { usePageContext } from '../Page/Page'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   /** Content for copyright. You can override default if needed. */
@@ -19,7 +18,7 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
   ref
 ) {
   const { className, style, rightContent, copyrightContent, ...rest } = props
-  const { width, fullWidth } = useContext<PageContextProps>(PageContext)
+  const { width, fullWidth } = usePageContext()
 
   const contentClassnames = twJoin(
     getMaxWidthClass({ width, fullWidth }),
