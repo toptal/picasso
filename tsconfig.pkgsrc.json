@@ -11,6 +11,7 @@
     { "path": "packages/picasso-provider" },
     { "path": "packages/picasso-query-builder" },
     { "path": "packages/picasso-rich-text-editor" },
+    { "path": "packages/caliber-tailwind" },
     { "path": "packages/picasso-tailwind" },
     { "path": "packages/picasso-tailwind-merge" },
     { "path": "packages/shared" },

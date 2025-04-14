@@ -56,6 +56,40 @@ export const AvatarWrapper = (props: Props) => {
       <div
         className={twJoin(`relative`, showLogo(size, showEmblem) && 'bg-white')}
       >
+        <div>
+          <p className='text-xxl text-white'>Test text white</p>
+          <p className='text-xxl text-blue-100'>Test text blue 100</p>
+          <p className='text-xxl text-blue-150'>Test text blue 150</p>
+          <p className='text-xxl text-blue-200'>Test text blue 200</p>
+        </div>
+        <div>
+          <div
+            style={{ width: '100px', height: '100px' }}
+            className='bg-blue-150'
+          >
+            Color from Base preset, should be blue
+          </div>
+          <div
+            style={{ width: '100px', height: '100px' }}
+            className='bg-red-100'
+          >
+            Color from Picasso preset, should be red
+          </div>
+          <div
+            style={{ width: '100px', height: '100px' }}
+            className='bg-custom-9000'
+          >
+            Color from Caliber preset, should be pink
+          </div>
+        </div>
+        <div>
+          <div className='w-[300px] h-[100px] bg-blue-100 opacity-1'>
+            Opacity 1 (from Caliber)
+          </div>
+          <div className='w-[300px] h-[100px] bg-blue-100 opacity-10'>
+            Opacity 10 (from Picasso)
+          </div>
+        </div>
         <div
           style={style}
           data-testid={dataTestId}
