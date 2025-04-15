@@ -1,5 +1,3 @@
-// NOTE: You need to install this package:
-// npm install @radix-ui/react-switch
 import * as RadixSwitch from '@radix-ui/react-switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
@@ -46,8 +44,9 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     ...rest
   } = props
 
-  // Track focus state
+  // Track focus and hover states
   const [isFocused, setIsFocused] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleCheckedChange = (isChecked: boolean) => {
     if (onChange) {
@@ -62,41 +61,40 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
 
   // Define styles for different states
   const switchElement = (
-    <div className='relative'>
-      <RadixSwitch.Root
-        {...rest}
-        ref={ref}
-        checked={checked}
-        style={style}
+    <RadixSwitch.Root
+      {...rest}
+      ref={ref}
+      checked={checked}
+      style={style}
+      className={cx(
+        'relative w-[40px] h-[24px] bg-gray-600 rounded-full cursor-pointer',
+        'data-[state=checked]:bg-blue-500',
+        'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
+        'outline-none border-0',
+        className
+      )}
+      disabled={disabled}
+      id={id}
+      onCheckedChange={handleCheckedChange}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      data-testid={label ? undefined : dataTestId}
+    >
+      <RadixSwitch.Thumb
         className={cx(
-          'w-[40px] h-[24px] bg-gray-600 rounded-full relative cursor-pointer',
-          'data-[state=checked]:bg-blue-500',
-          'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
-          'outline-none border-0',
-          className
+          'block w-[22px] h-[22px] bg-white rounded-full',
+          'absolute top-[1px] left-[1px]',
+          'transition-transform duration-150 ease-out',
+          'data-[state=checked]:translate-x-[16px]'
         )}
-        disabled={disabled}
-        id={id}
-        onCheckedChange={handleCheckedChange}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        data-testid={label ? undefined : dataTestId}
-      >
-        <RadixSwitch.Thumb
-          className={cx(
-            'block w-[22px] h-[22px] bg-white rounded-full',
-            'absolute top-[1px] left-[1px]',
-            'transition-transform duration-150 ease-out',
-            'data-[state=checked]:translate-x-[16px]'
-          )}
-          style={{
-            boxShadow: isFocused
-              ? '0 0 0 3px rgba(59, 130, 246, 0.5), 0 0 0 5px rgba(59, 130, 246, 0.2)'
-              : 'none',
-          }}
-        />
-      </RadixSwitch.Root>
-    </div>
+        style={{
+          boxShadow:
+            isFocused || isHovered ? '0 0 0 4px rgba(32,78,207,0.48)' : 'none',
+        }}
+      />
+    </RadixSwitch.Root>
   )
 
   if (!label) {
