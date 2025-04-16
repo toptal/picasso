@@ -60,40 +60,44 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
 
   // Define styles for different states
   const switchElement = (
-    <RadixSwitch.Root
-      {...rest}
-      ref={ref}
-      checked={checked}
-      style={style}
-      className={cx(
-        'relative w-[40px] h-[24px] bg-gray-600 rounded-full cursor-pointer',
-        'data-[state=checked]:bg-blue-500',
-        'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
-        'outline-none border-0',
-        className
-      )}
-      disabled={disabled}
-      id={id}
-      onCheckedChange={handleCheckedChange}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      data-testid={label ? undefined : dataTestId}
-    >
-      <RadixSwitch.Thumb
+    <div className='leading-[0]'>
+      <RadixSwitch.Root
+        {...rest}
+        ref={ref}
+        checked={checked}
+        style={style}
         className={cx(
-          'block w-[22px] h-[22px] bg-white rounded-full',
-          'absolute top-[1px] left-[1px]',
-          'transition-transform duration-150 ease-out',
-          'data-[state=checked]:translate-x-[16px]'
+          'relative w-[40px] h-[24px] bg-gray-600 rounded-full cursor-pointer',
+          'data-[state=checked]:bg-blue-500',
+          'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
+          'outline-none border-0',
+          className
         )}
-        style={{
-          boxShadow:
-            isFocused || isHovered ? '0 0 0 4px rgba(32,78,207,0.48)' : 'none',
-        }}
-      />
-    </RadixSwitch.Root>
+        disabled={disabled}
+        id={id}
+        onCheckedChange={handleCheckedChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        data-testid={label ? undefined : dataTestId}
+      >
+        <RadixSwitch.Thumb
+          className={cx(
+            'block w-[22px] h-[22px] bg-white rounded-full',
+            'absolute top-[1px] left-[1px]',
+            'transition-transform duration-150 ease-out',
+            'data-[state=checked]:translate-x-[16px]'
+          )}
+          style={{
+            boxShadow:
+              isFocused || isHovered
+                ? '0 0 0 4px rgba(32,78,207,0.48)'
+                : 'none',
+          }}
+        />
+      </RadixSwitch.Root>
+    </div>
   )
 
   if (!label) {
