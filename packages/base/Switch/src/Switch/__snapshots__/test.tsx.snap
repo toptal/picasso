@@ -5,24 +5,20 @@ exports[`Switch behaves correctly when interacting 1`] = `
   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-pointer items-start text-lg"
   data-testid="switch"
 >
-  <div
-    class="relative"
+  <button
+    aria-checked="true"
+    class="relative w-[40px] h-[24px] bg-gray rounded-full cursor-pointer data-[state=checked]:bg-blue data-[disabled]:opacity-40 data-[disabled]:cursor-not outline-none border-0"
+    data-state="checked"
+    role="switch"
+    type="button"
+    value="on"
   >
-    <button
-      aria-checked="true"
-      class="w-[40px] h-[24px] bg-gray rounded-full relative cursor-pointer data-[state=checked]:bg-blue data-[disabled]:opacity-40 data-[disabled]:cursor-not outline-none border-0"
+    <span
+      class="block w-[22px] h-[22px] bg-white rounded-full absolute top-[1px] left-[1px] transition-transform duration-150 ease-out data-[state=checked]:translate-x"
       data-state="checked"
-      role="switch"
-      type="button"
-      value="on"
-    >
-      <span
-        class="block w-[22px] h-[22px] bg-white rounded-full absolute top-[1px] left-[1px] transition-transform duration-150 ease-out data-[state=checked]:translate-x"
-        data-state="checked"
-        style="box-shadow: none;"
-      />
-    </button>
-  </div>
+      style="box-shadow: none;"
+    />
+  </button>
   <span
     class="inline-block leading-[1em] mb-0 text-graphite ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
@@ -40,25 +36,21 @@ exports[`Switch renders default Switch without label 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
-      class="relative"
+    <button
+      aria-checked="false"
+      class="relative w-[40px] h-[24px] bg-gray rounded-full cursor-pointer data-[state=checked]:bg-blue data-[disabled]:opacity-40 data-[disabled]:cursor-not outline-none border-0"
+      data-state="unchecked"
+      data-testid="switch"
+      role="switch"
+      type="button"
+      value="on"
     >
-      <button
-        aria-checked="false"
-        class="w-[40px] h-[24px] bg-gray rounded-full relative cursor-pointer data-[state=checked]:bg-blue data-[disabled]:opacity-40 data-[disabled]:cursor-not outline-none border-0"
+      <span
+        class="block w-[22px] h-[22px] bg-white rounded-full absolute top-[1px] left-[1px] transition-transform duration-150 ease-out data-[state=checked]:translate-x"
         data-state="unchecked"
-        data-testid="switch"
-        role="switch"
-        type="button"
-        value="on"
-      >
-        <span
-          class="block w-[22px] h-[22px] bg-white rounded-full absolute top-[1px] left-[1px] transition-transform duration-150 ease-out data-[state=checked]:translate-x"
-          data-state="unchecked"
-          style="box-shadow: none;"
-        />
-      </button>
-    </div>
+        style="box-shadow: none;"
+      />
+    </button>
   </div>
 </div>
 `;
@@ -68,28 +60,23 @@ exports[`Switch renders disabled state 1`] = `
   class="inline-flex max-w align-middle -webkit-tap-highlight-color mx-0 cursor-default items-start text-lg"
   data-testid="switch"
 >
-  <div
-    class="relative"
+  <button
+    aria-checked="false"
+    class="relative w-[40px] h-[24px] bg-gray rounded-full cursor-pointer data-[state=checked]:bg-blue data-[disabled]:opacity-40 data-[disabled]:cursor-not outline-none border-0"
+    data-disabled=""
+    data-state="unchecked"
     disabled=""
+    role="switch"
+    type="button"
+    value="on"
   >
-    <button
-      aria-checked="false"
-      class="w-[40px] h-[24px] bg-gray rounded-full relative cursor-pointer data-[state=checked]:bg-blue data-[disabled]:opacity-40 data-[disabled]:cursor-not outline-none border-0"
+    <span
+      class="block w-[22px] h-[22px] bg-white rounded-full absolute top-[1px] left-[1px] transition-transform duration-150 ease-out data-[state=checked]:translate-x"
       data-disabled=""
       data-state="unchecked"
-      disabled=""
-      role="switch"
-      type="button"
-      value="on"
-    >
-      <span
-        class="block w-[22px] h-[22px] bg-white rounded-full absolute top-[1px] left-[1px] transition-transform duration-150 ease-out data-[state=checked]:translate-x"
-        data-disabled=""
-        data-state="unchecked"
-        style="box-shadow: none;"
-      />
-    </button>
-  </div>
+      style="box-shadow: none;"
+    />
+  </button>
   <span
     class="inline-block leading-[1em] mb-0 text-graphite pointer-events ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
