@@ -59,7 +59,6 @@ jobs:
       - name: Set ENV Variables
         run: |-
           echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
