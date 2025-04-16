@@ -7,9 +7,8 @@ exports[`Button disabled button as link renders disabled version 1`] = `
   >
     <a
       aria-disabled="true"
-      class="font-inherit focus:outline-none base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events no-underline hover:no-underline rounded-sm shadow-none border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"
+      class="font-inherit focus:outline-none text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events no-underline hover:no-underline rounded-sm shadow-none border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"
       data-component-type="button"
-      href="URL"
       role="button"
       tabindex="-1"
       type="button"
@@ -31,7 +30,7 @@ exports[`Button disabled button renders disabled version 1`] = `
   >
     <button
       aria-disabled="true"
-      class="base-Button base- text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events no-underline hover:no-underline rounded-sm shadow-none border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"
+      class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-default pointer-events no-underline hover:no-underline rounded-sm shadow-none border-none text-white visited:text-white bg-gray min-w h-8 py-0 px-4"
       data-component-type="button"
       disabled=""
       role="button"
