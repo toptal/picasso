@@ -5,7 +5,6 @@ import React, { forwardRef, useState } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form'
 import cx from 'classnames'
 
-// Extend with the props we need, exclude the ones that cause conflicts
 export interface Props
   extends BaseProps,
     TextLabelProps,
