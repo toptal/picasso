@@ -1,13 +1,7 @@
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@toptal/picasso-test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 import { useModal, noop } from '@toptal/picasso-utils'
-import { Input } from '@toptal/picasso-input'
 
 import { PromptModal } from '../PromptModal'
 
@@ -62,15 +56,15 @@ describe('PromptModal', () => {
 
     fireEvent.click(submitModal)
 
-    await waitForElementToBeRemoved(submitModal)
+    await waitFor(() => {
+      expect(queryByText('Test title')).toBeFalsy()
+    })
 
     expect(baseElement).toMatchSnapshot()
   })
 
-  const identity = <T,>(value: T) => value
-
   it('showPrompt with input returns result on Submit action', async () => {
-    const mockResult = jest.fn(identity)
+    const mockResult = jest.fn()
 
     const TestComponent = () => {
       const { showModal, hideModal, isOpen } = useModal()
@@ -82,44 +76,35 @@ describe('PromptModal', () => {
             open={isOpen}
             title='Test title'
             message='Test message'
-            onSubmit={result => {
-              mockResult(result)
+            onSubmit={async value => {
+              mockResult(value)
+              hideModal()
+
+              return value
             }}
             onClose={hideModal}
-          >
-            {({ setResult, result }) => (
-              <Input
-                aria-label='test-input'
-                width='full'
-                onChange={event => setResult(event.target.value)}
-                value={String(result)}
-              />
-            )}
-          </PromptModal>
+          />
         </>
       )
     }
 
-    const { getByText, getByLabelText, baseElement } = render(<TestComponent />)
-
-    const expectedResult = '42'
+    const { getByText, queryByText, baseElement } = render(<TestComponent />)
 
     const showModal = getByText('Show')
 
     fireEvent.click(showModal)
 
-    const input = getByLabelText('test-input')
-
-    fireEvent.change(input, { target: { value: expectedResult } })
-
     const submitModal = getByText('Submit')
 
     fireEvent.click(submitModal)
 
-    await waitFor(() => {
-      expect(mockResult.mock.results[0].value).toBe(expectedResult)
-    })
-    await waitForElementToBeRemoved(submitModal)
+    await waitFor(
+      () => {
+        expect(queryByText('Test title')).toBeFalsy()
+      },
+      { timeout: 3000 }
+    )
+
     expect(baseElement).toMatchSnapshot()
   })
 

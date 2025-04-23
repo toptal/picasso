@@ -2,92 +2,105 @@
 
 exports[`PromptModal renders 1`] = `
 <body>
-  <div
-    aria-hidden="true"
-  >
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
+  <div>
     <div
       class="Picasso-root"
     />
   </div>
   <div
-    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-    role="presentation"
+    class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
   >
     <div
-      aria-hidden="true"
-      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-      style="transition-duration: 300ms; opacity: 1;"
-    />
+      class="fixed inset-0 z-0"
+      data-disabled="false"
+    >
+      <div
+        aria-hidden="true"
+        class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+        style="transition-duration: 300ms; opacity: 1;"
+      />
+    </div>
     <div
-      data-testid="sentinelStart"
-      tabindex="0"
-    />
-    <div
-      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+      aria-describedby="radix-:r2:"
+      aria-labelledby="radix-:r1:"
+      class="outline-none pointer-events"
+      data-state="open"
+      id="radix-:r0:"
       role="dialog"
-      style="transition-duration: 300ms; opacity: 1;"
+      style="position: relative; z-index: 1; max-height: 100%; margin: auto; display: flex;"
       tabindex="-1"
     >
       <div
-        class="pr-6 mt-8 mx-8 mb-0"
+        class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+        role="dialog"
+        style="transition-duration: 300ms; opacity: 1; max-height: inherit; height: auto; overflow: auto;"
+        tabindex="-1"
       >
         <h2
-          class="m-0 text-xl text-black font-semibold"
+          class="m-0 text-xl text-black font-semibold pr-6 mt-8 mx-8 mb-0"
+          id="radix-:r1:"
         >
           Test title
         </h2>
-      </div>
-      <div
-        class="flex relative flex-auto overflow-y"
-      >
         <div
-          class="pt-6 px-8 pb-8 overflow-auto flex-auto"
+          class="flex relative flex-auto overflow-y"
         >
-          <p
-            class="m-0 text-md text-graphite font-regular"
+          <div
+            class="pt-6 px-8 pb-8 overflow-auto flex-auto pointer-events"
+            id="radix-:r2:"
           >
-            Test message
-          </p>
+            <p
+              class="m-0 text-md text-graphite font-regular"
+            >
+              Test message
+            </p>
+          </div>
+        </div>
+        <div
+          class="mt-0 mx-8 mb-8 text-right"
+        >
+          <button
+            aria-disabled="false"
+            class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+            data-component-type="button"
+            role="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+            >
+              Cancel
+            </span>
+          </button>
+          <button
+            aria-disabled="false"
+            class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+            data-component-type="button"
+            role="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+            >
+              Submit
+            </span>
+          </button>
         </div>
       </div>
-      <div
-        class="mt-0 mx-8 mb-8 text-right"
-      >
-        <button
-          aria-disabled="false"
-          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
-          data-component-type="button"
-          role="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-          >
-            Cancel
-          </span>
-        </button>
-        <button
-          aria-disabled="false"
-          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-          data-component-type="button"
-          role="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-          >
-            Submit
-          </span>
-        </button>
-      </div>
     </div>
-    <div
-      data-testid="sentinelEnd"
-      tabindex="0"
-    />
   </div>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
 </body>
 `;
 
@@ -118,13 +131,17 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 1`] = `
 
 exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
 <body>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
   <div>
     <div
       class="Picasso-root"
     >
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
@@ -138,86 +155,96 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         </span>
       </button>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-          style="transition-duration: 300ms; opacity: 1;"
-        />
+          class="fixed inset-0 z-0"
+          data-disabled="false"
+        >
+          <div
+            aria-hidden="true"
+            class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+            style="transition-duration: 300ms; opacity: 1;"
+          />
+        </div>
         <div
-          data-testid="sentinelStart"
-          tabindex="0"
-        />
-        <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          aria-describedby="radix-:r5:"
+          aria-labelledby="radix-:r4:"
+          class="outline-none pointer-events"
+          data-state="open"
+          id="radix-:r3:"
           role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
+          style="position: relative; z-index: 1; max-height: 100%; margin: auto; display: flex;"
           tabindex="-1"
         >
           <div
-            class="pr-6 mt-8 mx-8 mb-0"
+            class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            style="transition-duration: 300ms; opacity: 1; max-height: inherit; height: auto; overflow: auto;"
+            tabindex="-1"
           >
             <h2
-              class="m-0 text-xl text-black font-semibold"
+              class="m-0 text-xl text-black font-semibold pr-6 mt-8 mx-8 mb-0"
+              id="radix-:r4:"
             >
               Test title
             </h2>
-          </div>
-          <div
-            class="flex relative flex-auto overflow-y"
-          >
             <div
-              class="pt-6 px-8 pb-8 overflow-auto flex-auto"
+              class="flex relative flex-auto overflow-y"
             >
-              <p
-                class="m-0 text-md text-graphite font-regular"
+              <div
+                class="pt-6 px-8 pb-8 overflow-auto flex-auto pointer-events"
+                id="radix-:r5:"
               >
-                Test message
-              </p>
+                <p
+                  class="m-0 text-md text-graphite font-regular"
+                >
+                  Test message
+                </p>
+              </div>
+            </div>
+            <div
+              class="mt-0 mx-8 mb-8 text-right"
+            >
+              <button
+                aria-disabled="false"
+                class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+                data-component-type="button"
+                role="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+                >
+                  Cancel
+                </span>
+              </button>
+              <button
+                aria-disabled="false"
+                class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+                data-component-type="button"
+                role="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+                >
+                  Submit
+                </span>
+              </button>
             </div>
           </div>
-          <div
-            class="mt-0 mx-8 mb-8 text-right"
-          >
-            <button
-              aria-disabled="false"
-              class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
-              data-component-type="button"
-              role="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-              >
-                Cancel
-              </span>
-            </button>
-            <button
-              aria-disabled="false"
-              class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-              data-component-type="button"
-              role="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-              >
-                Submit
-              </span>
-            </button>
-          </div>
         </div>
-        <div
-          data-testid="sentinelEnd"
-          tabindex="0"
-        />
       </div>
     </div>
   </div>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
 </body>
 `;
 

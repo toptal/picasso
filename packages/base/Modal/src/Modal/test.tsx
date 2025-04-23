@@ -4,7 +4,7 @@ import {
   screen,
   cleanup,
   fireEvent,
-  waitForElementToBeRemoved,
+  waitFor,
 } from '@toptal/picasso-test-utils'
 import type { OmitInternalProps } from '@toptal/picasso-shared'
 import { useModal } from '@toptal/picasso-utils'
@@ -102,9 +102,10 @@ describe('Modal', () => {
     const hideModalButton = getByText('Hide')
 
     fireEvent.click(hideModalButton)
-    await waitForElementToBeRemoved(() => getByText('Hide'))
+    await waitFor(() => {
+      expect(queryByText('Modal content')).toBeFalsy()
+    })
 
-    expect(queryByText('Modal content')).toBeFalsy()
     expect(baseElement).toMatchSnapshot()
   })
 

@@ -5,53 +5,88 @@ exports[`Modal renders 1`] = `
   id="modal-root"
 >
   <div
-    aria-hidden="true"
-    class="Picasso-root"
-  />
-  <div
-    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-    role="presentation"
+    class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
   >
     <div
-      aria-hidden="true"
-      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-      style="transition-duration: 300ms; opacity: 1;"
-    />
+      class="fixed inset-0 z-0"
+      data-disabled="false"
+    >
+      <div
+        aria-hidden="true"
+        class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+        style="transition-duration: 300ms; opacity: 1;"
+      />
+    </div>
     <div
-      data-testid="sentinelStart"
-      tabindex="0"
-    />
-    <div
-      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+      aria-describedby="radix-:r2:"
+      aria-labelledby="radix-:r1:"
+      class="outline-none pointer-events"
+      data-state="open"
+      id="radix-:r0:"
       role="dialog"
-      style="transition-duration: 300ms; opacity: 1;"
+      style="position: relative; z-index: 1; max-height: 100%; margin: auto; display: flex;"
       tabindex="-1"
     >
       <div
-        class="pr-6 mt-8 mx-8 mb-0"
+        class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+        role="dialog"
+        style="transition-duration: 300ms; opacity: 1; max-height: inherit; height: auto; overflow: auto;"
+        tabindex="-1"
       >
         <h2
-          class="m-0 text-xl text-black font-semibold"
+          class="m-0 text-xl text-black font-semibold pr-6 mt-8 mx-8 mb-0"
+          id="radix-:r1:"
         >
           Title
         </h2>
-      </div>
-      <div
-        class="flex relative flex-auto overflow-y"
-      >
         <div
-          class="pt-6 px-8 pb-8 overflow-auto flex-auto"
+          class="flex relative flex-auto overflow-y"
         >
-          Modal test content
+          <div
+            class="pt-6 px-8 pb-8 overflow-auto flex-auto pointer-events"
+            id="radix-:r2:"
+          >
+            Modal test content
+          </div>
         </div>
-      </div>
-      <div
-        class="mt-0 mx-8 mb-8 text-right"
-      >
+        <div
+          class="mt-0 mx-8 mb-8 text-right"
+        >
+          <button
+            aria-disabled="false"
+            class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+            data-component-type="button"
+            role="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+            >
+              Cancel
+            </span>
+          </button>
+          <button
+            aria-disabled="false"
+            class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+            data-component-type="button"
+            role="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+            >
+              Update
+            </span>
+          </button>
+        </div>
         <button
           aria-disabled="false"
-          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+          aria-label="Close"
+          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent absolute top-8 right-8"
           data-component-type="button"
+          data-testid="close-modal"
           role="button"
           tabindex="0"
           type="button"
@@ -59,66 +94,39 @@ exports[`Modal renders 1`] = `
           <span
             class="items-center inline-flex font-semibold whitespace-nowrap text-button"
           >
-            Cancel
-          </span>
-        </button>
-        <button
-          aria-disabled="false"
-          class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-          data-component-type="button"
-          role="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-          >
-            Update
+            <svg
+              class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
+              style="min-width: 16px; min-height: 16px;"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
+              />
+            </svg>
           </span>
         </button>
       </div>
-      <button
-        aria-disabled="false"
-        aria-label="Close"
-        class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent absolute top-8 right-8"
-        data-component-type="button"
-        data-testid="close-modal"
-        role="button"
-        tabindex="0"
-        type="button"
-      >
-        <span
-          class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-        >
-          <svg
-            class="fill-current inline-block text-inherit h-[1em] align-[-.125em]"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="m8.707 8 3.5 3.5-.707.707-3.5-3.5-3.5 3.5-.707-.707 3.5-3.5-3.5-3.5.707-.707 3.5 3.5 3.5-3.5.707.707-3.5 3.5Z"
-            />
-          </svg>
-        </span>
-      </button>
     </div>
-    <div
-      data-testid="sentinelEnd"
-      tabindex="0"
-    />
   </div>
+  <div
+    class="Picasso-root"
+  />
 </div>
 `;
 
 exports[`Modal useModal opens and closes modal 1`] = `
 <body>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
   <div>
     <div
       class="Picasso-root"
     >
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
@@ -132,49 +140,61 @@ exports[`Modal useModal opens and closes modal 1`] = `
         </span>
       </button>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-          style="transition-duration: 300ms; opacity: 1;"
-        />
-        <div
-          data-testid="sentinelStart"
-          tabindex="0"
-        />
-        <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-          role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
-          tabindex="-1"
+          class="fixed inset-0 z-0"
+          data-disabled="false"
         >
-          <p>
-            Modal content
-          </p>
-          <button
-            aria-disabled="false"
-            class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
-            data-component-type="button"
-            role="button"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-            >
-              Hide
-            </span>
-          </button>
+          <div
+            aria-hidden="true"
+            class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+            style="transition-duration: 300ms; opacity: 1;"
+          />
         </div>
         <div
-          data-testid="sentinelEnd"
-          tabindex="0"
-        />
+          aria-describedby="radix-:r5:"
+          aria-labelledby="radix-:r4:"
+          class="outline-none pointer-events"
+          data-state="open"
+          id="radix-:r3:"
+          role="dialog"
+          style="position: relative; z-index: 1; max-height: 100%; margin: auto; display: flex;"
+          tabindex="-1"
+        >
+          <div
+            class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            style="transition-duration: 300ms; opacity: 1; max-height: inherit; height: auto; overflow: auto;"
+            tabindex="-1"
+          >
+            <p>
+              Modal content
+            </p>
+            <button
+              aria-disabled="false"
+              class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+              data-component-type="button"
+              role="button"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+              >
+                Hide
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
 </body>
 `;
 
@@ -205,13 +225,17 @@ exports[`Modal useModal opens and closes modal 2`] = `
 
 exports[`Modal useModal shows multiple modals at the same time 1`] = `
 <body>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
   <div>
     <div
       class="Picasso-root"
     >
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
@@ -226,7 +250,6 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       </button>
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
@@ -240,63 +263,81 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
         </span>
       </button>
       <div
-        aria-hidden="true"
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-          style="transition-duration: 300ms; opacity: 1;"
-        />
-        <div
-          data-testid="sentinelStart"
-          tabindex="0"
-        />
-        <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-          role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
-          tabindex="-1"
+          class="fixed inset-0 z-0"
+          data-disabled="false"
         >
-          <p>
-            First modal content
-          </p>
+          <div
+            aria-hidden="true"
+            class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+            style="transition-duration: 300ms; opacity: 1;"
+          />
         </div>
         <div
-          data-testid="sentinelEnd"
-          tabindex="0"
-        />
+          aria-describedby="radix-:re:"
+          aria-labelledby="radix-:rd:"
+          class="outline-none pointer-events"
+          data-state="open"
+          id="radix-:rc:"
+          role="dialog"
+          style="position: relative; z-index: 1; max-height: 100%; margin: auto; display: flex;"
+          tabindex="-1"
+        >
+          <div
+            class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            style="transition-duration: 300ms; opacity: 1; max-height: inherit; height: auto; overflow: auto;"
+            tabindex="-1"
+          >
+            <p>
+              First modal content
+            </p>
+          </div>
+        </div>
       </div>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
       >
         <div
-          aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
-          style="transition-duration: 300ms; opacity: 1;"
-        />
-        <div
-          data-testid="sentinelStart"
-          tabindex="0"
-        />
-        <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-          role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
-          tabindex="-1"
+          class="fixed inset-0 z-0"
+          data-disabled="false"
         >
-          <p>
-            Second modal content
-          </p>
+          <div
+            aria-hidden="true"
+            class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+            style="transition-duration: 300ms; opacity: 1;"
+          />
         </div>
         <div
-          data-testid="sentinelEnd"
-          tabindex="0"
-        />
+          aria-describedby="radix-:rh:"
+          aria-labelledby="radix-:rg:"
+          class="outline-none pointer-events"
+          data-state="open"
+          id="radix-:rf:"
+          role="dialog"
+          style="position: relative; z-index: 1; max-height: 100%; margin: auto; display: flex;"
+          tabindex="-1"
+        >
+          <div
+            class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            style="transition-duration: 300ms; opacity: 1; max-height: inherit; height: auto; overflow: auto;"
+            tabindex="-1"
+          >
+            <p>
+              Second modal content
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <span
+    data-radix-focus-guard=""
+    style="outline: none; opacity: 0; position: fixed; pointer-events: none;"
+    tabindex="0"
+  />
 </body>
 `;
