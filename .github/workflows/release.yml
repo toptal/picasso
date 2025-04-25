@@ -50,7 +50,6 @@ jobs:
             JENKINS_DEPLOYMENT_URL:toptal-ci/JENKINS_DEPLOYMENT_URL
             JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
             JENKINS_URL:toptal-ci/JENKINS_URL
-            JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
 
       - name: Parse secrets
         id: parse_secrets
@@ -185,7 +184,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_DEPLOYMENT_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           job_name: ${{ env.JENKINS_JOB_NAME }}
           job_params: |
             {
@@ -230,7 +228,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.DEVBOT_TOKEN }}
           environment: production
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions

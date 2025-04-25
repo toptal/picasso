@@ -30,7 +30,6 @@ jobs:
           secrets_name: |-
             JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
             JENKINS_URL:toptal-ci/JENKINS_URL
-            JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
@@ -157,7 +156,6 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          jenkins_sa_credentials: ${{ steps.parse_secrets.outputs.JENKINS_SA_CREDENTIALS }}
           token: ${{ env.GITHUB_TOKEN }}
           environment: development
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions

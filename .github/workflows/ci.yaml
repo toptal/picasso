@@ -59,7 +59,6 @@ jobs:
       - name: Set ENV Variables
         run: |-
           echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
@@ -246,7 +245,6 @@ jobs:
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
             JENKINS_URL:toptal-ci/JENKINS_URL
             JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
-            JENKINS_SA_CREDENTIALS:toptal-ci/JENKINS_SA_CREDENTIALS
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
 
       - name: Parse secrets
