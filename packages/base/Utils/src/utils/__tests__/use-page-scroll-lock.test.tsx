@@ -21,14 +21,14 @@ describe('usePageScrollLock', () => {
     it('drops scroll lock when mounted with true', () => {
       renderHook(() => usePageScrollLock(true))
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
     })
 
     describe('lifts scroll lock', () => {
       it('when unmounted', () => {
         const { unmount } = renderHook(() => usePageScrollLock(true))
 
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         unmount()
 
@@ -41,7 +41,7 @@ describe('usePageScrollLock', () => {
           { initialProps: true }
         )
 
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         rerender(false)
 
@@ -53,7 +53,7 @@ describe('usePageScrollLock', () => {
 
         const { unmount } = renderHook(() => usePageScrollLock(true))
 
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         unmount()
 
@@ -78,12 +78,12 @@ describe('usePageScrollLock', () => {
 
       hook1.rerender(true)
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
 
       hook2.rerender(true)
       hook3.rerender(true)
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
     })
 
     it('lifts scroll lock once no hook with isLocked=true left mounted', () => {
@@ -99,15 +99,15 @@ describe('usePageScrollLock', () => {
         initialProps: true,
       })
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
 
       hook3.unmount()
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
 
       hook2.rerender(false)
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
 
       hook1.rerender(false)
 

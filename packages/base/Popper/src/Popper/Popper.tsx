@@ -145,10 +145,10 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const anchorElWidthStyle = !isCompactLayout && widthStyle
 
   useIsomorphicLayoutEffect(() => {
-    if (isCompactLayout && open && document.body.style.overflow !== 'hidden') {
+    if (isCompactLayout && open && document.body.style.overflow !== 'clip') {
       const prev = document.body.style.overflow
 
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'clip'
 
       return () => {
         document.body.style.overflow = prev

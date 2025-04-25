@@ -47,7 +47,7 @@ const addPageScrollLock = () => {
     scrollLock = {
       prevHtmlOverflow: document.getElementsByTagName('html')[0].style.overflow,
     }
-    document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+    document.getElementsByTagName('html')[0].style.overflow = 'clip'
   }
 }
 
