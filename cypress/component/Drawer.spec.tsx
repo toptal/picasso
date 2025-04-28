@@ -176,7 +176,7 @@ describe('Drawer', () => {
           )
 
           cy.getByTestId('trigger').click()
-          cy.getByRole('presentation').should('be.visible')
+          cy.contains(`${variant} drawer title`).should('be.visible')
           cy.get('body').happoScreenshot({
             component,
             variant: `drawer-${variant}-width/${width}-default`,

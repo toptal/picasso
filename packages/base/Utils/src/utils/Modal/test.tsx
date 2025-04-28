@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  render,
-  fireEvent,
-  waitForElementToBeRemoved,
-} from '@toptal/picasso-test-utils'
+import { render, fireEvent, waitFor } from '@toptal/picasso-test-utils'
 import { Button } from '@toptal/picasso-button'
 import { Modal } from '@toptal/picasso-modal'
 
@@ -47,9 +43,10 @@ describe('Modal', () => {
     const hideModalButton = getByText('Hide')
 
     fireEvent.click(hideModalButton)
-    await waitForElementToBeRemoved(() => getByText('Hide'))
+    await waitFor(() => {
+      expect(queryByText('Modal content')).toBeFalsy()
+    })
 
-    expect(queryByText('Modal content')).toBeFalsy()
     expect(baseElement).toMatchSnapshot()
   })
 

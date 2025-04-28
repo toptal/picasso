@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react'
 import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { useCombinedRefs } from '@toptal/picasso-utils'
+import * as Dialog from '@radix-ui/react-dialog'
 
 import useScrollableShades from './hooks/use-scrollable-shades'
 
@@ -47,14 +48,19 @@ export const ModalContent = forwardRef<HTMLDivElement, Props>(
             )}
           />
         )}
-        <div
-          {...rest}
-          style={style}
-          ref={modalContentRef}
-          className={cx('pt-6 px-8 pb-8 overflow-auto flex-auto', className)}
-        >
-          {children}
-        </div>
+        <Dialog.Description asChild>
+          <div
+            {...rest}
+            style={style}
+            ref={modalContentRef}
+            className={cx(
+              'pt-6 px-8 pb-8 overflow-auto flex-auto pointer-events-auto',
+              className
+            )}
+          >
+            {children}
+          </div>
+        </Dialog.Description>
       </div>
     )
   }

@@ -1,14 +1,17 @@
-import { Switch as MUISwitch } from '@mui/base/Switch'
+import * as RadixSwitch from '@radix-ui/react-switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import React, { forwardRef } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+import React, { forwardRef, useState, useCallback } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form'
 import cx from 'classnames'
 
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
+    Omit<
+      ComponentPropsWithoutRef<typeof RadixSwitch.Root>,
+      'onChange' | 'type'
+    > {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
@@ -33,64 +36,81 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     style,
     disabled,
     onChange,
-    checked,
+    checked: controlledChecked,
     titleCase,
-    color, // eslint-disable-line
     'data-testid': dataTestId,
     ...rest
   } = props
 
-  const onChangeCallback: React.ChangeEventHandler<
-    HTMLInputElement
-  > = event => {
-    if (onChange) {
-      onChange(event, event.target.checked)
-    }
-  }
+  const [uncontrolledChecked, setUncontrolledChecked] = useState(false)
+  const checked =
+    controlledChecked !== undefined ? controlledChecked : uncontrolledChecked
+
+  const [isFocused, setIsFocused] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+
+  const preventFormSubmission = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+  }, [])
+
+  const handleCheckedChange = useCallback(
+    (isChecked: boolean) => {
+      if (controlledChecked === undefined) {
+        setUncontrolledChecked(isChecked)
+      }
+
+      if (onChange) {
+        const syntheticEvent = {
+          target: { checked: isChecked },
+        } as React.ChangeEvent<HTMLInputElement>
+
+        onChange(syntheticEvent, isChecked)
+      }
+    },
+    [controlledChecked, onChange]
+  )
 
   const switchElement = (
-    <MUISwitch
-      {...rest}
-      color='primary'
-      ref={ref}
-      checked={checked}
-      className={className}
-      style={style}
-      disabled={disabled}
-      id={id}
-      onChange={onChangeCallback}
-      data-testid={label ? undefined : dataTestId}
-      slotProps={{
-        root: {
-          className:
-            'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
-        },
-        track: {
-          className: cx(
-            'w-full h-full border border-solid bg-gray-600 border-gray-600 opacity-100 rounded-[12px]',
-            'transition-colors duration-300 ease-out',
-            'group-[.base--checked]:bg-blue-500 group-[.base--checked]:border-blue-500',
-            'group-[.base--disabled]:opacity-40',
-            'group-[.base--disabled:not(.base--checked)]:bg-black'
-          ),
-        },
-        thumb: {
-          className: cx(
-            'w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px]',
+    <div className='leading-[0]' onClick={preventFormSubmission}>
+      <RadixSwitch.Root
+        {...rest}
+        ref={ref}
+        checked={checked}
+        style={style}
+        className={cx(
+          'relative w-[40px] h-[24px] bg-gray-600 rounded-full cursor-pointer',
+          'data-[state=checked]:bg-blue-500',
+          'data-[disabled]:opacity-40 data-[disabled]:cursor-not-allowed',
+          'outline-none border-0',
+          className
+        )}
+        disabled={disabled}
+        id={id}
+        onCheckedChange={handleCheckedChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        type='button'
+        data-testid={label ? undefined : dataTestId}
+        asChild={false}
+      >
+        <RadixSwitch.Thumb
+          className={cx(
+            'block w-[22px] h-[22px] bg-white rounded-full',
+            'absolute top-[1px] left-[1px]',
             'transition-transform duration-150 ease-out',
-            'group-[:not(.base--disabled):hover]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-[.base--focusVisible]:shadow-[0_0_0_4px_rgba(32,78,207,0.48)]',
-            'group-[.base--checked]:translate-x-[16px]'
-          ),
-        },
-        input: {
-          className: cx(
-            'w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left-[50%] cursor-pointer z-20',
-            'group-[.base--disabled]:cursor-default'
-          ),
-        },
-      }}
-    />
+            'data-[state=checked]:translate-x-[16px]'
+          )}
+          style={{
+            boxShadow:
+              isFocused || isHovered
+                ? '0 0 0 4px rgba(32,78,207,0.48)'
+                : 'none',
+          }}
+        />
+      </RadixSwitch.Root>
+    </div>
   )
 
   if (!label) {
@@ -108,6 +128,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       label={label}
       titleCase={titleCase}
       data-testid={dataTestId}
+      onClick={preventFormSubmission}
     />
   )
 })

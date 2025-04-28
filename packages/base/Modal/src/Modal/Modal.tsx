@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from 'react'
-import { Modal as Dialog } from '@mui/base/Modal'
+import * as Dialog from '@radix-ui/react-dialog'
 import React, {
   forwardRef,
   useEffect,
@@ -65,15 +65,12 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const defaultManager = new ModalManager()
 
-// https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
-// found in https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
 const focusableElementsString =
   'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]'
 const tooltipContainerString = '[role=tooltip]'
 
 const focusFirstFocusableElement = (node: Element) => {
   const elements = node.querySelectorAll(focusableElementsString)
-  // Convert NodeList to Array
   const focusableElements = Array.prototype.slice.call(elements)
 
   if (focusableElements.length > 0) {
@@ -82,13 +79,7 @@ const focusFirstFocusableElement = (node: Element) => {
 }
 
 const isFocusInsideModal = (modalNode: Element) => {
-  const modalContainsFocusedElement = modalNode.contains(document.activeElement)
-
-  if (modalContainsFocusedElement) {
-    return true
-  }
-
-  return false
+  return modalNode.contains(document.activeElement)
 }
 
 const isFocusInsideTooltip = () => {
@@ -98,15 +89,23 @@ const isFocusInsideTooltip = () => {
     return false
   }
 
-  const tooltipContainsFocusedElement = Array.from(tooltipContainers).some(
-    container => container.contains(document.activeElement)
+  return Array.from(tooltipContainers).some(container =>
+    container.contains(document.activeElement)
+  )
+}
+
+const isFocusInPopoverOrPortal = () => {
+  const popoverElements = document.querySelectorAll(
+    '[role="dialog"], [role="listbox"], [role="menu"], [data-radix-popper-content-wrapper]'
   )
 
-  if (tooltipContainsFocusedElement) {
-    return true
+  if (popoverElements.length === 0) {
+    return false
   }
 
-  return false
+  return Array.from(popoverElements).some(element =>
+    element.contains(document.activeElement)
+  )
 }
 
 const generateKey = (() => {
@@ -115,7 +114,6 @@ const generateKey = (() => {
   return () => ++count
 })()
 
-// eslint-disable-next-line react/display-name
 export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   props,
   ref
@@ -135,10 +133,11 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     paperProps,
     align = 'centered',
     testIds,
-    transitionProps,
     disableBackdropClick = false,
+    transitionProps,
     ...rest
   } = props
+
   const picassoRootContainer = usePicassoRoot()
   const modalRef = useCombinedRefs<HTMLDivElement>(
     ref,
@@ -146,6 +145,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   )
   const modalId = useRef(generateKey())
   const { rootRef } = useContext(RootContext)
+  const paperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleDocumentFocus = () => {
@@ -168,6 +168,10 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
       }
 
       if (isFocusInsideTooltip()) {
+        return
+      }
+
+      if (isFocusInPopoverOrPortal()) {
         return
       }
 
@@ -199,73 +203,122 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
 
   usePageScrollLock(open)
 
-  const handleClose = useCallback(
-    (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
-      if (reason === 'escapeKeyDown' && onClose) {
-        onClose()
-      } else if (reason === 'backdropClick' && !disableBackdropClick) {
-        if (onBackdropClick) {
-          onBackdropClick()
-        }
+  const handleEscapeKeyDown = useCallback(() => {
+    if (onClose) {
+      onClose()
+    }
+  }, [onClose])
 
-        if (onClose) {
-          onClose()
-        }
-      }
-    },
-    [disableBackdropClick, onBackdropClick, onClose]
-  )
+  const containerElement = useCallback(() => {
+    if (typeof container === 'function') {
+      return container()
+    }
 
-  const duration = transitionProps?.timeout || transitionDuration
-  const backdropProps = { transitionDuration: duration }
+    return container || picassoRootContainer
+  }, [container, picassoRootContainer])
 
   return (
-    <Dialog
-      {...rest}
-      ref={modalRef}
-      className={cx(
-        className,
-        'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center'
-      )}
-      style={style}
-      slots={{
-        backdrop: Backdrop,
-      }}
-      closeAfterTransition
-      slotProps={{
-        backdrop: backdropProps,
-      }}
-      container={container || picassoRootContainer}
-      hideBackdrop={hideBackdrop}
-      onClose={handleClose}
+    <Dialog.Root
       open={open}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      disableScrollLock
+      modal={false}
+      onOpenChange={(state: boolean) => {
+        if (open && !state) {
+          if (disableBackdropClick) {
+            return
+          }
+
+          if (onBackdropClick) {
+            onBackdropClick()
+          }
+
+          if (onClose) {
+            onClose()
+          }
+        }
+      }}
     >
-      <Fade
-        in={open}
-        onEnter={onOpen}
-        onExited={transitionProps?.onExited}
-        timeout={transitionDuration}
-      >
-        <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
-          <ModalContext.Provider value>
-            {children}
-            {onClose && (
-              <ButtonCircular
-                aria-label='Close'
-                variant='flat'
-                className='absolute top-8 right-8'
-                onClick={onClose}
-                data-testid={testIds?.closeButton}
+      <Dialog.Portal container={containerElement()}>
+        <div
+          className={cx(
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center'
+          )}
+          ref={modalRef}
+          {...rest}
+        >
+          {!hideBackdrop && (
+            <div
+              className='fixed inset-0 z-0'
+              data-disabled={disableBackdropClick}
+            >
+              <Backdrop
+                open={open}
+                transitionDuration={transitionDuration}
+                aria-hidden='true'
+              />
+            </div>
+          )}
+
+          <Dialog.Content
+            onEscapeKeyDown={handleEscapeKeyDown}
+            onOpenAutoFocus={e => {
+              e.preventDefault()
+              if (onOpen) {
+                onOpen()
+              }
+            }}
+            onCloseAutoFocus={e => {
+              e.preventDefault()
+              if (transitionProps?.onExited) {
+                transitionProps.onExited(paperRef.current as HTMLElement)
+              }
+            }}
+            className='outline-none pointer-events-auto'
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              maxHeight: '100%',
+              margin: 'auto',
+              display: 'flex',
+            }}
+          >
+            <Fade in={open} timeout={transitionDuration}>
+              <ModalPaper
+                ref={paperRef}
+                size={size}
+                align={align}
+                tabIndex={-1}
+                className={className}
+                style={{
+                  ...style,
+                  maxHeight: 'inherit',
+                  height: 'auto',
+                  overflow: 'auto',
+                }}
+                {...paperProps}
               >
-                <CloseMinor16 />
-              </ButtonCircular>
-            )}
-          </ModalContext.Provider>
-        </ModalPaper>
-      </Fade>
-    </Dialog>
+                <ModalContext.Provider value={true}>
+                  {children}
+                  {onClose && (
+                    <ButtonCircular
+                      aria-label='Close'
+                      variant='flat'
+                      className='absolute top-8 right-8'
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation()
+                        onClose()
+                      }}
+                      data-testid={testIds?.closeButton}
+                    >
+                      <CloseMinor16 />
+                    </ButtonCircular>
+                  )}
+                </ModalContext.Provider>
+              </ModalPaper>
+            </Fade>
+          </Dialog.Content>
+        </div>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 })
 

@@ -29,13 +29,12 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v15.4.1
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.2.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
           secrets_name: |-
             DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
-            GCR_ACCOUNT_KEY:toptal-ci/GCR_ACCOUNT_KEY
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
             TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
@@ -53,7 +52,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v15.4.1
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.2.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -66,8 +65,6 @@ jobs:
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
           echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo 'GCR_ACCOUNT_KEY<<EOF' >> $GITHUB_ENV
-          echo '${{ steps.parse_secrets.outputs.GCR_ACCOUNT_KEY }}' >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
@@ -169,7 +166,7 @@ jobs:
           sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Build and push picasso image
-        uses: toptal/davinci-github-actions/build-push-image@v15.4.1
+        uses: toptal/davinci-github-actions/build-push-image@v17.2.0
         with:
           image-name: picasso
           registry-name: ${{ steps.parse_secrets.outputs.TOPTAL_DEFAULT_REGISTRY }}

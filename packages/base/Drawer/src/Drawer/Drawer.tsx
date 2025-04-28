@@ -1,5 +1,5 @@
-import React, { useRef } from 'react'
-import { Modal } from '@mui/base/Modal'
+import React, { useRef, useCallback } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
 import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
@@ -77,8 +77,9 @@ export const Drawer = (props: Props) => {
     'data-private': dataPrivate,
   } = props
   const { setHasDrawer } = useDrawer()
-  const container = usePicassoRoot()
+  const picassoRootContainer = usePicassoRoot()
   const ref = useRef<HTMLDivElement>(null)
+  const drawerRef = useRef<HTMLDivElement>(null)
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
@@ -98,56 +99,104 @@ export const Drawer = (props: Props) => {
     }
   }
 
-  const backdropProps = { invisible: transparentBackdrop }
+  const handleEscapeKeyDown = useCallback(() => {
+    if (onClose) {
+      onClose()
+    }
+  }, [onClose])
+
+  const containerElement = useCallback(() => {
+    return picassoRootContainer
+  }, [picassoRootContainer])
 
   return (
-    <Modal
+    <Dialog.Root
       open={open}
-      ref={ref}
-      className={cx(className, 'z-drawer inset-0', { fixed: !disableBackdrop })}
-      slots={{
-        backdrop: disableBackdrop ? undefined : Backdrop,
+      modal={false}
+      onOpenChange={(state: boolean) => {
+        if (open && !state) {
+          if (disableBackdrop) {
+            return
+          }
+
+          if (onClose) {
+            onClose()
+          }
+        }
       }}
-      slotProps={{
-        backdrop: backdropProps,
-      }}
-      data-testid={testId}
-      data-private={dataPrivate}
-      style={style}
-      closeAfterTransition
-      onClose={handleOnClose}
-      disablePortal={disablePortal}
-      container={container}
-      disableScrollLock
-      disableEscapeKeyDown={false}
     >
-      <Slide
-        in={open}
-        direction={oppositeDirection[anchor]}
-        timeout={transitionProps?.timeout}
-        onExited={transitionProps?.onExited}
+      <Dialog.Portal
+        container={!disablePortal ? containerElement() : undefined}
       >
-        <DrawerPaper anchor={anchor}>
-          <Container
-            flex
-            direction='column'
-            className={cx('max-w-full relative flex-1', widthClassName[width])}
+        <div
+          ref={ref}
+          className={cx(className, 'z-drawer inset-0 fixed', {
+            fixed: !disableBackdrop,
+          })}
+          data-testid={testId}
+          data-private={dataPrivate}
+          style={style}
+        >
+          {!disableBackdrop && (
+            <div className='fixed inset-0 z-0'>
+              <Backdrop
+                open={open}
+                invisible={transparentBackdrop}
+                aria-hidden='true'
+              />
+            </div>
+          )}
+
+          <Dialog.Content
+            onEscapeKeyDown={handleEscapeKeyDown}
+            className='outline-none pointer-events-auto'
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              maxHeight: '100%',
+              margin: 'auto',
+              display: 'flex',
+            }}
+            onCloseAutoFocus={e => {
+              e.preventDefault()
+              if (transitionProps?.onExited) {
+                transitionProps.onExited(drawerRef.current as HTMLElement)
+              }
+            }}
           >
-            <DrawerTitle title={title} />
-            <Container flex className='flex-1'>
-              {children}
-            </Container>
-            <ButtonCircular
-              variant='flat'
-              icon={<CloseMinor16 />}
-              onClick={handleOnClose}
-              className='absolute right-6 top-4'
-              aria-label='Close drawer'
-            />
-          </Container>
-        </DrawerPaper>
-      </Slide>
-    </Modal>
+            <Slide
+              in={open}
+              direction={oppositeDirection[anchor]}
+              timeout={transitionProps?.timeout}
+              onExited={transitionProps?.onExited}
+            >
+              <DrawerPaper anchor={anchor} ref={drawerRef}>
+                <Container
+                  flex
+                  direction='column'
+                  className={cx(
+                    'max-w-full relative flex-1',
+                    widthClassName[width]
+                  )}
+                >
+                  <DrawerTitle title={title} />
+                  <Container flex className='flex-1'>
+                    {children}
+                  </Container>
+                  <ButtonCircular
+                    variant='flat'
+                    icon={<CloseMinor16 />}
+                    onClick={handleOnClose}
+                    className='absolute right-6 top-4'
+                    aria-label='Close drawer'
+                  />
+                </Container>
+              </DrawerPaper>
+            </Slide>
+          </Dialog.Content>
+        </div>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 }
 
