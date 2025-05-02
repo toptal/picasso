@@ -121,6 +121,8 @@ export {
   FormActionsContainer,
   FormAutoSaveIndicator,
   FormError,
+  FormLevelError,
+  FormLevelWarning,
   FormField,
   FormHint,
   FormLabel,

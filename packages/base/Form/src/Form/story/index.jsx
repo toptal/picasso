@@ -25,4 +25,20 @@ page
   .addComponentDocs(formLabelStory.componentDocs)
   .addComponentDocs(formErrorStory.componentDocs)
 
+page.createChapter().addExample(
+  'Form/story/Error.example.tsx',
+  {
+    title: 'Form-Level Error',
+  },
+  'base/Form'
+)
+
+page.createChapter().addExample(
+  'Form/story/Warning.example.tsx',
+  {
+    title: 'Form-Level Warning',
+  },
+  'base/Form'
+)
+
 page.connect(formFieldStory.chapter)
