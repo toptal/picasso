@@ -9,7 +9,7 @@ import type {
   TextLabelProps,
 } from '@toptal/picasso-shared'
 import cx from 'classnames'
-import { FormControlLabel } from '@toptal/picasso-form'
+import { FormControlLabel } from '@toptal/picasso-form-label'
 
 import styles from './styles'
 

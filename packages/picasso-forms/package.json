@@ -38,6 +38,7 @@
     "@toptal/picasso-rating": "3.0.9",
     "@toptal/picasso-icons": "1.12.0",
     "@toptal/picasso-form": "6.1.8",
+    "@toptal/picasso-form-label": "1.0.0",
     "@toptal/picasso-file-input": "4.0.17",
     "@toptal/picasso-checkbox": "5.0.10",
     "@toptal/picasso-outlined-input": "4.0.18",

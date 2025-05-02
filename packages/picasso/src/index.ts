@@ -125,7 +125,6 @@ export {
   FormLevelWarning,
   FormField,
   FormHint,
-  FormLabel,
   useFieldsLayoutContext,
 } from '@toptal/picasso-form'
 export type {
@@ -136,12 +135,15 @@ export type {
   FormAutoSaveIndicatorProps,
   FormErrorProps,
   FormHintProps,
-  FormLabelProps,
   FormFieldProps,
   FormProps,
-  RequiredDecoration,
   LabelColumnSize,
 } from '@toptal/picasso-form'
+export type {
+  FormLabelProps,
+  RequiredDecoration,
+} from '@toptal/picasso-form-label'
+export { FormLabel } from '@toptal/picasso-form-label'
 export { GridCompound as Grid } from '@toptal/picasso-grid'
 export type {
   GridProps,

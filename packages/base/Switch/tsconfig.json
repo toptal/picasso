@@ -6,6 +6,6 @@
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind" },
     { "path": "../../shared" },
-    { "path": "../Form" }
+    { "path": "../FormLabel" }
   ]
 }

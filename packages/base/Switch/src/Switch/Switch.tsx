@@ -2,7 +2,7 @@ import { Switch as MUISwitch } from '@mui/base/Switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef } from 'react'
-import { FormControlLabel } from '@toptal/picasso-form'
+import { FormControlLabel } from '@toptal/picasso-form-label'
 import cx from 'classnames'
 
 export interface Props

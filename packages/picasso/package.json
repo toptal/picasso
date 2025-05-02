@@ -59,6 +59,7 @@
     "@toptal/picasso-environment-banner": "3.0.0",
     "@toptal/picasso-file-input": "4.0.17",
     "@toptal/picasso-form": "6.1.8",
+    "@toptal/picasso-form-label": "1.0.0",
     "@toptal/picasso-grid": "5.0.8",
     "@toptal/picasso-helpbox": "5.0.19",
     "@toptal/picasso-icons": "1.12.0",

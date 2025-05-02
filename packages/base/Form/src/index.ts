@@ -3,9 +3,18 @@ export * from './Form'
 export * from './FormError'
 export * from './FormHint'
 export * from './FormField'
-export * from './FormControlLabel'
-export * from './FormLabel'
-export * from './FieldsLayout'
+export type {
+  FieldsLayoutContextProviderProps,
+  FieldsLayoutContextValue,
+  FieldLayout,
+  LabelColumnSize,
+  ResponsiveLabelColumnSize,
+} from '@toptal/picasso-form-layout'
+export {
+  useFieldsLayoutContext,
+  FieldsLayoutContextProvider,
+} from '@toptal/picasso-form-layout'
+
 export * from './FormAutoSaveIndicator'
 export * from './FieldRequirements'
 export * from './FormActionsContainer'

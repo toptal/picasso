@@ -8,7 +8,7 @@
     { "path": "../../picasso-tailwind-merge" },
     { "path": "../../shared" },
     { "path": "../Container" },
-    { "path": "../Form" },
+    { "path": "../FormLabel" },
     { "path": "../Grid" },
     { "path": "../Utils" }
   ]

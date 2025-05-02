@@ -8,9 +8,9 @@ import type {
 import { useTitleCase } from '@toptal/picasso-shared'
 import { toTitleCase } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { useFieldsLayoutContext } from '@toptal/picasso-form-layout'
 
 import { classesBySize, getRootClasses } from './styles'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 type ComponentType = 'label' | 'span'
 export type RequiredDecoration = 'asterisk' | 'optional'
