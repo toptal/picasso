@@ -1,12 +1,12 @@
 import React from 'react'
 import { render } from '@toptal/picasso-test-utils'
-
-import { FormField } from './index'
-import { FieldsLayoutContextProvider } from '../FieldsLayout'
+import { FieldsLayoutContextProvider } from '@toptal/picasso-form-layout'
 import type {
   LabelColumnSize,
   ResponsiveLabelColumnSize,
-} from '../FieldsLayout'
+} from '@toptal/picasso-form-layout'
+
+import { FormField } from './index'
 
 const renderFormField = (
   layout: 'horizontal' | 'vertical' = 'vertical',
