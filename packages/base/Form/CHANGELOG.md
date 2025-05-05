@@ -1,5 +1,27 @@
 # @toptal/picasso-form
 
+## 6.2.0
+
+### Minor Changes
+
+- [#4743](https://github.com/toptal/picasso/pull/4743) [`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- new components FormLevelError and FormLevelWarning are introduced to establish the way to represent form-level errors and warnings in the forms.
+
+### Patch Changes
+
+- [#4743](https://github.com/toptal/picasso/pull/4743) [`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- introduced additional form-label and form-layout packages that are used internally to solve cross-package circular dependencies.
+- Updated dependencies [[`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638)]:
+  - @toptal/picasso-form-layout@1.0.1
+  - @toptal/picasso-form-label@1.0.1
+  - @toptal/picasso-alert@3.0.31
+
 ## 6.1.8
 
 ### Patch Changes
