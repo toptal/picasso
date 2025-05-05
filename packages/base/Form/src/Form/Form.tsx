@@ -2,12 +2,11 @@ import type { FormEventHandler, ReactNode, FormHTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import cx from 'classnames'
-
-import { FieldsLayoutContextProvider } from '../FieldsLayout'
+import { FieldsLayoutContextProvider } from '@toptal/picasso-form-layout'
 import type {
   LabelColumnSize,
   ResponsiveLabelColumnSize,
-} from '../FieldsLayout'
+} from '@toptal/picasso-form-layout'
 
 export interface Props extends BaseProps, FormHTMLAttributes<HTMLFormElement> {
   /** Content of Form constructed of Form elements */

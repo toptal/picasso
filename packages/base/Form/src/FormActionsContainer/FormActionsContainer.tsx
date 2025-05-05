@@ -2,8 +2,8 @@ import React from 'react'
 import type { ReactNode } from 'react'
 import type { ContainerProps } from '@toptal/picasso-container'
 import { Container } from '@toptal/picasso-container'
+import { useFieldsLayoutContext } from '@toptal/picasso-form-layout'
 
-import { useFieldsLayoutContext } from '../FieldsLayout'
 import {
   createLabelWidthStyles,
   horizontalLayoutClasses,

@@ -1,7 +1,8 @@
+import formLabelStory from '@toptal/picasso-form-label/src/FormLabel/story'
+
 import { Form } from '../Form'
 import formFieldStory from '../../FormField/story'
 import formHintStory from '../../FormHint/story'
-import formLabelStory from '../../FormLabel/story'
 import formErrorStory from '../../FormError/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
@@ -24,5 +25,21 @@ page
   .addComponentDocs(formHintStory.componentDocs)
   .addComponentDocs(formLabelStory.componentDocs)
   .addComponentDocs(formErrorStory.componentDocs)
+
+page.createChapter().addExample(
+  'Form/story/Error.example.tsx',
+  {
+    title: 'Form-Level Error',
+  },
+  'base/Form'
+)
+
+page.createChapter().addExample(
+  'Form/story/Warning.example.tsx',
+  {
+    title: 'Form-Level Warning',
+  },
+  'base/Form'
+)
 
 page.connect(formFieldStory.chapter)

@@ -3,10 +3,10 @@ import React, { forwardRef } from 'react'
 import type { FormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import type { StandardProps, TextLabelProps } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
+import { useFieldsLayoutContext } from '@toptal/picasso-form-layout'
 
 import type { RequiredDecoration } from '../FormLabel'
-import { FormCompound as Form } from '../FormCompound'
-import { useFieldsLayoutContext } from '../FieldsLayout'
+import { FormLabel } from '../FormLabel'
 
 export type FormControlLabelAttributesType =
   LabelHTMLAttributes<HTMLLabelElement> &
@@ -65,7 +65,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
         style={style}
       >
         {React.cloneElement(control, { disabled })}
-        <Form.Label
+        <FormLabel
           className={twMerge(disabled && 'pointer-events-auto', classes?.label)}
           as='span'
           requiredDecoration={requiredDecoration}
@@ -73,7 +73,7 @@ const FormControlLabel = forwardRef<HTMLLabelElement, Props>(
           titleCase={titleCase}
         >
           {label}
-        </Form.Label>
+        </FormLabel>
       </label>
     )
   }

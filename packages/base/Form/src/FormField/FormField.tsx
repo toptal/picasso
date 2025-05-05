@@ -3,11 +3,11 @@ import React, { forwardRef, Children } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { Container } from '@toptal/picasso-container'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
+import { useFieldsLayoutContext } from '@toptal/picasso-form-layout'
 
 import { FormHint } from '../FormHint'
 import { FormError } from '../FormError'
 import { createLabelWidthStyles, horizontalLayoutClasses } from './styles'
-import { useFieldsLayoutContext } from '../FieldsLayout'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */

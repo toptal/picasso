@@ -1,6 +1,6 @@
 import { twJoin } from '@toptal/picasso-tailwind-merge'
+import type { FieldLayout } from '@toptal/picasso-form-layout'
 
-import type { FieldLayout } from '../FieldsLayout/FieldsLayoutContext'
 import type { Alignment, Size } from './FormLabel'
 
 export const classesBySize: Record<Size, string> = {

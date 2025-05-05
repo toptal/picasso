@@ -12,6 +12,7 @@
     { "path": "../base/Dropzone" },
     { "path": "../base/FileInput" },
     { "path": "../base/Form" },
+    { "path": "../base/FormLabel" },
     { "path": "../base/Icons" },
     { "path": "../base/Input" },
     { "path": "../base/Notification" },

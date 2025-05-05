@@ -42,6 +42,8 @@
     { "path": "packages/base/Fade" },
     { "path": "packages/base/FileInput" },
     { "path": "packages/base/Form" },
+    { "path": "packages/base/FormLabel" },
+    { "path": "packages/base/FormLayout" },
     { "path": "packages/base/Grid" },
     { "path": "packages/base/Helpbox" },
     { "path": "packages/base/Icons" },

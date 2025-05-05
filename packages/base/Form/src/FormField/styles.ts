@@ -1,10 +1,9 @@
 import type { BreakpointKeys } from '@toptal/picasso-provider'
-
-import { DEFAULT_LABEL_WIDTH_SIZE } from '../FieldsLayout'
+import { DEFAULT_LABEL_WIDTH_SIZE } from '@toptal/picasso-form-layout'
 import type {
   LabelColumnSize,
   ResponsiveLabelColumnSize,
-} from '../FieldsLayout'
+} from '@toptal/picasso-form-layout'
 
 export const getLabelWithName = (breakpoint: BreakpointKeys) => {
   return `--form-label-width--${breakpoint}`
