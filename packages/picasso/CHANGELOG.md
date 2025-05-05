@@ -1,5 +1,60 @@
 # Change Log
 
+## 53.1.0
+
+### Minor Changes
+
+- [#4743](https://github.com/toptal/picasso/pull/4743) [`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- new components FormLevelError and FormLevelWarning are introduced to establish the way to represent form-level errors and warnings in the forms.
+
+### Patch Changes
+
+- [#4743](https://github.com/toptal/picasso/pull/4743) [`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638) Thanks [@denieler](https://github.com/denieler)!
+
+---
+
+- introduced additional form-label and form-layout packages that are used internally to solve cross-package circular dependencies.
+- Updated dependencies [[`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638), [`8d415f6`](https://github.com/toptal/picasso/commit/8d415f60ed7dc215ea26d0cd08085f3d38e42638)]:
+  - @toptal/picasso-form-label@1.0.1
+  - @toptal/picasso-checkbox@5.0.11
+  - @toptal/picasso-switch@4.0.10
+  - @toptal/picasso-radio@5.0.11
+  - @toptal/picasso-form@6.2.0
+  - @toptal/picasso-button@4.0.20
+  - @toptal/picasso-autocomplete@5.1.2
+  - @toptal/picasso-dropzone@5.0.19
+  - @toptal/picasso-file-input@4.0.18
+  - @toptal/picasso-input@4.0.19
+  - @toptal/picasso-number-input@4.1.3
+  - @toptal/picasso-outlined-input@4.0.19
+  - @toptal/picasso-select@4.0.19
+  - @toptal/picasso-tagselector@3.2.3
+  - @toptal/picasso-accordion@3.0.19
+  - @toptal/picasso-alert@3.0.31
+  - @toptal/picasso-application-update-notification@2.0.31
+  - @toptal/picasso-calendar@4.1.2
+  - @toptal/picasso-carousel@4.0.20
+  - @toptal/picasso-drawer@3.0.31
+  - @toptal/picasso-helpbox@5.0.20
+  - @toptal/picasso-modal@3.0.31
+  - @toptal/picasso-notification@4.0.20
+  - @toptal/picasso-page@5.4.3
+  - @toptal/picasso-pagination@4.0.21
+  - @toptal/picasso-password-input@5.0.19
+  - @toptal/picasso-prompt-modal@2.0.31
+  - @toptal/picasso-section@5.1.3
+  - @toptal/picasso-show-more@2.0.19
+  - @toptal/picasso-skeleton-loader@1.0.56
+  - @toptal/picasso-table@3.0.21
+  - @toptal/picasso-tree-view@3.0.32
+  - @toptal/picasso-date-picker@3.1.2
+  - @toptal/picasso-timepicker@4.0.20
+  - @toptal/picasso-avatar-upload@3.0.23
+  - @toptal/picasso-date-select@1.0.68
+
 ## 53.0.29
 
 ### Patch Changes

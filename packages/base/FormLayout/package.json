@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-form-layout",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Toptal UI components library - Form Layout",
   "publishConfig": {
     "access": "public"
