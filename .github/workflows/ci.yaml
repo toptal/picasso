@@ -35,7 +35,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.2.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -52,7 +52,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.2.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -94,7 +94,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.2.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -108,7 +108,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.2.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -173,7 +173,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.2.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -185,7 +185,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.2.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -232,7 +232,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.2.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -249,7 +249,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.2.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
