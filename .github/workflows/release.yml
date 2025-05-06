@@ -158,11 +158,11 @@ jobs:
           path: ./.github/actions/
           ref: 1676fab56944d64818d172779d3ad374c9948184
 
-      - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
+      - name: Replace toptal/actions references with local paths
         shell: bash
         run: |
-          sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
+          sed -i 's|toptal/actions/get-job-url@[^"]*|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
+          sed -i 's|toptal/actions/trigger-jenkins-job@[^"]*|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
 
       - name: Build and push picasso image
         uses: toptal/davinci-github-actions/build-push-image@v17.3.0
