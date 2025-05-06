@@ -1,4 +1,3 @@
-import { useSidebar, usePageTopBar } from '@toptal/picasso-provider'
 import type { BaseProps, SizeType } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { ReactNode } from 'react'
@@ -6,6 +5,7 @@ import React, { forwardRef, useCallback, useEffect, useState } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { noop } from '@toptal/picasso-utils'
 
+import { useSidebar, usePageTopBar } from '../Page/Page'
 import { PageHamburgerPortal, useHamburgerContext } from '../PageHamburger'
 import { SidebarItem } from '../SidebarItem'
 import { SidebarLogo } from '../SidebarLogo'

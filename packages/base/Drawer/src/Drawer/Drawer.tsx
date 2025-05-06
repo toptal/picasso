@@ -2,17 +2,14 @@ import React, { useRef } from 'react'
 import { Modal } from '@mui/base/Modal'
 import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
-import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
+import { usePicassoRoot } from '@toptal/picasso-provider'
 import type { ReactNode } from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Slide } from '@toptal/picasso-slide'
 import { Backdrop } from '@toptal/picasso-backdrop'
 import { Container } from '@toptal/picasso-container'
-import {
-  useIsomorphicLayoutEffect,
-  usePageScrollLock,
-} from '@toptal/picasso-utils'
+import { usePageScrollLock } from '@toptal/picasso-utils'
 
 import type { AnchorType, WidthType } from '../types'
 import { DrawerTitle } from '../DrawerTitle'
@@ -76,21 +73,10 @@ export const Drawer = (props: Props) => {
     'data-testid': testId,
     'data-private': dataPrivate,
   } = props
-  const { setHasDrawer } = useDrawer()
   const container = usePicassoRoot()
   const ref = useRef<HTMLDivElement>(null)
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
-
-  useIsomorphicLayoutEffect(() => {
-    setHasDrawer(open)
-
-    const cleanup = () => {
-      setHasDrawer(false)
-    }
-
-    return cleanup
-  }, [open, setHasDrawer])
 
   const handleOnClose = () => {
     if (onClose) {

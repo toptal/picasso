@@ -1,6 +1,6 @@
-import type { PageContextProps } from '../Page/types'
+import type { ViewportWidth } from '../Page/types'
 
-export const getMaxWidthClass = ({ fullWidth, width }: PageContextProps) => {
+export const getMaxWidthClass = ({ fullWidth, width }: ViewportWidth) => {
   if (fullWidth || width === 'full') {
     return 'max-w-full'
   }
