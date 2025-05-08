@@ -1,5 +1,23 @@
 # @toptal/picasso-modal
 
+## 3.1.0
+
+### Minor Changes
+
+- [#4738](https://github.com/toptal/picasso/pull/4738) [`6c0bb76`](https://github.com/toptal/picasso/commit/6c0bb760cb87de2e2225adcb2664de2a84ae2447) Thanks [@diogolessa](https://github.com/diogolessa)!
+- replace overflow hidden by overflow clip in Popper
+
+### Patch Changes
+
+- Updated dependencies [[`6c0bb76`](https://github.com/toptal/picasso/commit/6c0bb760cb87de2e2225adcb2664de2a84ae2447)]:
+  - @toptal/picasso-utils@3.1.0
+  - @toptal/picasso-backdrop@1.0.9
+  - @toptal/picasso-button@4.0.21
+  - @toptal/picasso-fade@1.0.8
+  - @toptal/picasso-icons@1.12.1
+  - @toptal/picasso-paper@4.0.3
+  - @toptal/picasso-typography@4.0.3
+
 ## 3.0.31
 
 ### Patch Changes

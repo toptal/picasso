@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-backdrop",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Toptal UI components library - Backdrop",
   "publishConfig": {
     "access": "public"
@@ -23,8 +23,8 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@mui/base": "5.0.0-beta.58",
-    "@toptal/picasso-utils": "3.0.0",
-    "@toptal/picasso-fade": "1.0.7",
+    "@toptal/picasso-utils": "3.1.0",
+    "@toptal/picasso-fade": "1.0.8",
     "classnames": "^2.5.1"
   },
   "sideEffects": false,

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-link",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Toptal UI components library - Link",
   "publishConfig": {
     "access": "public"
@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-utils": "3.0.0",
-    "@toptal/picasso-typography": "4.0.2"
+    "@toptal/picasso-utils": "3.1.0",
+    "@toptal/picasso-typography": "4.0.3"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -39,7 +39,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "2.0.2",
+    "@toptal/picasso-tailwind-merge": "2.0.3",
     "@toptal/picasso-provider": "5.0.0",
     "@toptal/picasso-test-utils": "1.1.1"
   },

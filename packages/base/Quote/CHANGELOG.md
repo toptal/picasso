@@ -1,5 +1,13 @@
 # @toptal/picasso-quote
 
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-container@3.1.2
+  - @toptal/picasso-typography@4.0.3
+
 ## 2.0.5
 
 ### Patch Changes

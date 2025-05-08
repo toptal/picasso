@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-container",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Toptal UI components library - Container",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "bugs": {
@@ -26,7 +26,7 @@
     "prepublishOnly": "yarn build:package"
   },
   "dependencies": {
-    "@toptal/picasso-utils": "3.0.0"
+    "@toptal/picasso-utils": "3.1.0"
   },
   "peerDependencies": {
     "@toptal/picasso-provider": "*",

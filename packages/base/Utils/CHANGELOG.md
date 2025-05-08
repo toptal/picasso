@@ -1,5 +1,12 @@
 # @toptal/picasso-utils
 
+## 3.1.0
+
+### Minor Changes
+
+- [#4738](https://github.com/toptal/picasso/pull/4738) [`6c0bb76`](https://github.com/toptal/picasso/commit/6c0bb760cb87de2e2225adcb2664de2a84ae2447) Thanks [@diogolessa](https://github.com/diogolessa)!
+- replace overflow hidden by overflow clip in Popper
+
 ## 3.0.0
 
 ### Major Changes
