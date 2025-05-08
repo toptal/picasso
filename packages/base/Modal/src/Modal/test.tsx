@@ -208,7 +208,7 @@ describe('Modal', () => {
     it('drops scroll lock when initially open modal is mounted', () => {
       render(<Modal open={true}>Hello from modal!</Modal>)
 
-      expect(getHtmlElement(document).style.overflow).toBe('hidden')
+      expect(getHtmlElement(document).style.overflow).toBe('clip')
     })
 
     it('does not drop scroll lock when closed modal is mounted', () => {
@@ -243,7 +243,7 @@ describe('Modal', () => {
         expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('close-first'))
         expect(getHtmlElement(document).style.overflow).toBe('')
@@ -275,7 +275,7 @@ describe('Modal', () => {
         expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('close-first'))
         expect(getHtmlElement(document).style.overflow).toBe('')
@@ -308,7 +308,7 @@ describe('Modal', () => {
         expect(getHtmlElement(document).style.overflow).toBe('visible')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('close-first'))
         expect(getHtmlElement(document).style.overflow).toBe('visible')
@@ -352,13 +352,13 @@ describe('Modal', () => {
         expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('open-second'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('close-first'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('close-second'))
         expect(getHtmlElement(document).style.overflow).toBe('')
@@ -404,10 +404,10 @@ describe('Modal', () => {
         expect(getHtmlElement(document).style.overflow).toBe('')
 
         fireEvent.click(screen.getByTestId('open-first'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('mount-second'))
-        expect(getHtmlElement(document).style.overflow).toBe('hidden')
+        expect(getHtmlElement(document).style.overflow).toBe('clip')
 
         fireEvent.click(screen.getByTestId('close-first'))
         expect(getHtmlElement(document).style.overflow).toBe('')
