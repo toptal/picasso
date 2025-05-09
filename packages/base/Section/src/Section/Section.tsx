@@ -40,7 +40,7 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const defaultChildMargin = '[&>:last-child:not(:first-child)]:mt-6'
+const defaultChildMargin = '[&>:last-child:not(:first-child)]'
 
 const classesByVariant: Record<VariantType, string | string[]> = {
   default: defaultChildMargin,
@@ -169,7 +169,6 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       className={twMerge(
         'pt-8',
         classesByVariant[variant],
-        variant === 'default' && isCollapsed && 'pb-8',
         collapsible && variant === 'bordered' && 'p-6',
         className
       )}
@@ -189,7 +188,7 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         </Container>
       )}
       <Collapse in={!isCollapsed} unmountOnExit>
-        <Container className={variant === 'withHeaderBar' ? 'p-6' : ''}>
+        <Container className={variant === 'withHeaderBar' ? 'p-6' : 'mt-6'}>
           {children}
         </Container>
       </Collapse>
