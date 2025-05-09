@@ -40,18 +40,6 @@ export interface Props extends BaseProps {
   titleSize?: SizeType<'small' | 'medium'>
 }
 
-const defaultChildMargin = '[&>:last-child:not(:first-child)]:mt-6'
-
-const classesByVariant: Record<VariantType, string | string[]> = {
-  default: defaultChildMargin,
-  bordered: [
-    defaultChildMargin,
-    'border rounded-md border-solid border-gray-300',
-    'p-8 [&>:last-child]:pb-0',
-  ],
-  withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
-}
-
 const headerBarClasses = [
   'pt-3 pb-3 pl-4 pr-4',
   'rounded-tl-md rounded-tr-md rounded-br-0 rounded-bl-0',
@@ -63,6 +51,41 @@ const classesByCollapsedHeader: Record<VariantType, string | string[]> = {
   default: 'pb-0',
   bordered: 'pb-0',
   withHeaderBar: ['border-b-0 rounded-md', 'transition delay-300'],
+}
+
+const getVariantClasses = (
+  variant: VariantType,
+  collapsible: boolean,
+  className: string | undefined
+) => {
+  const defaultChildMargin = collapsible
+    ? ''
+    : '[&>:last-child:not(:first-child)]:mt-6'
+
+  const classesByVariant: Record<VariantType, string | string[]> = {
+    default: defaultChildMargin,
+    bordered: [
+      defaultChildMargin,
+      'border rounded-md border-solid border-gray-300',
+      'p-8 [&>:last-child]:pb-0',
+    ],
+    withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
+  }
+
+  return twMerge(
+    'pt-8',
+    classesByVariant[variant],
+    collapsible && variant === 'bordered' && 'p-6',
+    className
+  )
+}
+
+const getHeaderClasses = (variant: VariantType, isCollapsed: boolean) => {
+  return twJoin(
+    'flex items-center',
+    variant === 'withHeaderBar' && headerBarClasses,
+    isCollapsed && classesByCollapsedHeader[variant]
+  )
 }
 
 export const Section = forwardRef<HTMLDivElement, Props>(function Section(
@@ -166,22 +189,12 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
       }
       style={style}
       {...rest}
-      className={twMerge(
-        'pt-8',
-        classesByVariant[variant],
-        variant === 'default' && isCollapsed && 'pb-8',
-        collapsible && variant === 'bordered' && 'p-6',
-        className
-      )}
+      className={getVariantClasses(variant, collapsible, className)}
     >
       {hasHeader && (
         <Container
           data-testid={testIds?.header}
-          className={twJoin(
-            'flex items-center',
-            variant === 'withHeaderBar' && headerBarClasses,
-            isCollapsed && classesByCollapsedHeader[variant]
-          )}
+          className={getHeaderClasses(variant, isCollapsed)}
         >
           {renderTitle()}
           {renderSubtitle()}
@@ -189,7 +202,11 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
         </Container>
       )}
       <Collapse in={!isCollapsed} unmountOnExit>
-        <Container className={variant === 'withHeaderBar' ? 'p-6' : ''}>
+        <Container
+          className={
+            variant === 'withHeaderBar' ? 'p-6' : collapsible ? 'mt-6' : ''
+          }
+        >
           {children}
         </Container>
       </Collapse>

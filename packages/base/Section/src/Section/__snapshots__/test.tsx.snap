@@ -6,7 +6,7 @@ exports[`Section renders collapsible initially collapsed 1`] = `
     class="Picasso-root"
   >
     <div
-      class="pt-8 [&>:last-child:not(:first-child)]:mt-6 pb-8"
+      class="pt-8"
     >
       <div
         class="flex items-center pb-0"
@@ -52,7 +52,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
     class="Picasso-root"
   >
     <div
-      class="pt-8 [&>:last-child:not(:first-child)]:mt-6"
+      class="pt-8"
     >
       <div
         class="flex items-center"
@@ -98,7 +98,7 @@ exports[`Section renders collapsible initially expanded 1`] = `
             class="w-full"
           >
             <div
-              class=""
+              class="mt-6"
             >
               <div
                 data-testid="content"
