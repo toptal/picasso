@@ -3,8 +3,6 @@ import type { ReactNode, ReactElement, HTMLAttributes } from 'react'
 import React, { useContext, forwardRef, useEffect } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import {
-  usePageTopBar,
-  useSidebar,
   usePreventPageWidthChangeOnScrollbar,
   useScreenSize,
 } from '@toptal/picasso-provider'
@@ -13,6 +11,7 @@ import { Typography } from '@toptal/picasso-typography'
 import { palette, useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
+import { useSidebar, usePageTopBar } from '../Page/Page'
 import { PageContext } from '../Page'
 import type { PageContextProps } from '../Page'
 import {
