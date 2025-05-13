@@ -1,5 +1,15 @@
 # @toptal/picasso-section
 
+## 5.1.5
+
+### Patch Changes
+
+- [#4755](https://github.com/toptal/picasso/pull/4755) [`899aaad`](https://github.com/toptal/picasso/commit/899aaade09a4a491d6ba8b1cd0ce8fcbd5533fc6) Thanks [@rafael-anachoreta](https://github.com/rafael-anachoreta)!
+
+### Section
+
+- fix abrupt animation on Section component when expanded and collapsed
+
 ## 5.1.4
 
 ### Patch Changes
