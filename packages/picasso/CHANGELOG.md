@@ -1,5 +1,13 @@
 # Change Log
 
+## 53.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`890ac65`](https://github.com/toptal/picasso/commit/890ac6591e17c7cabc5c22c7509a8164ef2d3944)]:
+  - @toptal/picasso-modal@3.2.0
+  - @toptal/picasso-prompt-modal@2.0.33
+
 ## 53.1.2
 
 ### Patch Changes

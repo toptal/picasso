@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-prompt-modal",
-  "version": "2.0.32",
+  "version": "2.0.33",
   "description": "Toptal UI components library - PromptModal",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-button": "4.0.21",
     "@toptal/picasso-container": "3.1.2",
-    "@toptal/picasso-modal": "3.1.0",
+    "@toptal/picasso-modal": "3.2.0",
     "@toptal/picasso-typography": "4.0.3",
     "@toptal/picasso-utils": "3.1.0"
   },

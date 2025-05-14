@@ -1,5 +1,12 @@
 # @toptal/picasso-query-builder
 
+## 8.0.20
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-prompt-modal@2.0.33
+
 ## 8.0.19
 
 ### Patch Changes
