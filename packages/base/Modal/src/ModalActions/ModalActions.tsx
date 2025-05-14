@@ -1,7 +1,7 @@
 import type { ReactNode, HTMLAttributes } from 'react'
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Action content (e.g. Buttons) */
@@ -16,7 +16,7 @@ export const ModalActions = forwardRef<HTMLDivElement, Props>(
       <div
         {...rest}
         ref={ref}
-        className={cx('mt-0 mx-8 mb-8 text-right', className)}
+        className={twMerge('mt-0 mx-8 mb-8 text-right', className)}
         style={style}
       >
         {children}
