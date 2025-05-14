@@ -1,5 +1,15 @@
 # @toptal/picasso-modal
 
+## 3.2.0
+
+### Minor Changes
+
+- [#4760](https://github.com/toptal/picasso/pull/4760) [`890ac65`](https://github.com/toptal/picasso/commit/890ac6591e17c7cabc5c22c7509a8164ef2d3944) Thanks [@pudek357](https://github.com/pudek357)!
+
+### Modal
+
+- allow overriding of classNames in Modal components
+
 ## 3.1.0
 
 ### Minor Changes
