@@ -7,7 +7,6 @@ import React, {
   useCallback,
   useContext,
 } from 'react'
-import cx from 'classnames'
 import type {
   BaseProps,
   SizeType,
@@ -24,6 +23,7 @@ import { ButtonCircular } from '@toptal/picasso-button'
 import { Fade } from '@toptal/picasso-fade'
 import { Backdrop } from '@toptal/picasso-backdrop'
 import ModalContext from '@toptal/picasso-modal-context'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { ModalPaper } from '../ModalPaper'
 
@@ -59,6 +59,9 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** used for specifying aria attributes, changing role, or customizing styles */
   paperProps?: React.HTMLAttributes<HTMLDivElement>
   testIds?: {
+    closeButton?: string
+  }
+  classes?: {
     closeButton?: string
   }
 }
@@ -137,6 +140,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     testIds,
     transitionProps,
     disableBackdropClick = false,
+    classes,
     ...rest
   } = props
   const picassoRootContainer = usePicassoRoot()
@@ -223,7 +227,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     <Dialog
       {...rest}
       ref={modalRef}
-      className={cx(
+      className={twMerge(
         className,
         'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center'
       )}
@@ -255,7 +259,10 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
               <ButtonCircular
                 aria-label='Close'
                 variant='flat'
-                className='absolute top-8 right-8'
+                className={twMerge(
+                  'absolute top-8 right-8',
+                  classes?.closeButton
+                )}
                 onClick={onClose}
                 data-testid={testIds?.closeButton}
               >

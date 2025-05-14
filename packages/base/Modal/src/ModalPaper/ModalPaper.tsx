@@ -1,7 +1,7 @@
 import React from 'react'
-import cx from 'classnames'
 import type { SizeType } from '@toptal/picasso-shared'
 import { Paper } from '@toptal/picasso-paper'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type PaperSize =
   | SizeType<'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'>
@@ -51,7 +51,7 @@ export const ModalPaper = React.forwardRef<HTMLDivElement, Props>(
         ref={ref}
         role='dialog'
         elevation={2}
-        className={cx(
+        className={twMerge(
           className,
           'outline-none overflow-y-auto',
           'flex flex-col',
