@@ -1,5 +1,12 @@
 # Change Log
 
+## 73.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`98d995a`](https://github.com/toptal/picasso/commit/98d995aae407d64aa4d5417294235a3e53b1c986)]:
+  - @toptal/picasso-rich-text-editor@17.1.0
+
 ## 73.1.5
 
 ### Patch Changes

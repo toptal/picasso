@@ -1,5 +1,15 @@
 # @toptal/picasso-rich-text-editor
 
+## 17.1.0
+
+### Minor Changes
+
+- [#4763](https://github.com/toptal/picasso/pull/4763) [`98d995a`](https://github.com/toptal/picasso/commit/98d995aae407d64aa4d5417294235a3e53b1c986) Thanks [@pudek357](https://github.com/pudek357)!
+
+### RichText
+
+- allow to customize RichText components
+
 ## 17.0.21
 
 ### Patch Changes
