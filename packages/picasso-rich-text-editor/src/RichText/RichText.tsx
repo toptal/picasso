@@ -1,7 +1,6 @@
 import React from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
-import { Container } from '@toptal/picasso-container'
-import { twJoin } from '@toptal/picasso-tailwind-merge'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { ASTType } from './types'
 import useRichText from './hooks/useRichText'
@@ -22,16 +21,13 @@ export const RichText = ({
   const richText = useRichText(value)
 
   return (
-    <Container
+    <div
       style={style}
       data-testid={dataTestId}
-      className={twJoin('break-words', className)}
-      gap='xsmall'
-      flex
-      direction='column'
+      className={twMerge('gap-2 flex flex-col break-words', className)}
     >
       {richText}
-    </Container>
+    </div>
   )
 }
 
