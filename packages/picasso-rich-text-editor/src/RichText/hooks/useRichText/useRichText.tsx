@@ -1,22 +1,19 @@
 import toH from 'hast-to-hyperscript'
 import type { ReactElement, ReactNode, FC } from 'react'
-import type { Theme } from '@material-ui/core/styles'
 import React, { useMemo, createElement, isValidElement } from 'react'
 import { Container } from '@toptal/picasso-container'
 import { Typography } from '@toptal/picasso-typography'
 import { List, ListItem } from '@toptal/picasso-list'
 import { Link } from '@toptal/picasso-link'
-import { makeStyles } from '@material-ui/core'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { ASTType } from '../../types'
 import { Emoji, Image, Code, CodeBlock } from '../../components'
 import { isCustomEmoji } from '../../../utils'
-import styles from './styles'
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoRichText' })
 
 type Props = {
   children?: React.ReactNode
+  className?: string
 }
 
 // List internaly passes another props to ListItem
@@ -25,39 +22,58 @@ const Li = ({ children, ...props }: Props) => (
 )
 
 /* eslint-disable id-length */
-const P = ({ children }: Props) => (
-  <Typography size='medium'>{children}</Typography>
+const P = ({ children, ...props }: Props) => (
+  <Typography size='medium' {...props}>
+    {children}
+  </Typography>
 )
-const Strong = ({ children }: Props) => (
-  <Typography size='inherit' as='strong' weight='semibold' color='inherit'>
+const Strong = ({ children, ...props }: Props) => (
+  <Typography
+    size='inherit'
+    as='strong'
+    weight='semibold'
+    color='inherit'
+    {...props}
+  >
     {children}
   </Typography>
 )
 
-const Em = ({ children }: Props) => (
-  <Typography size='inherit' as='em' color='inherit'>
+const Em = ({ children, ...props }: Props) => (
+  <Typography size='inherit' as='em' color='inherit' {...props}>
     {children}
   </Typography>
 )
 
-const H3 = ({ children }: Props) => (
-  <Container top='xsmall'>
+const H3 = ({ children, ...props }: Props) => (
+  <Container top='xsmall' {...props}>
     <Typography as='h3' variant='heading' size='medium'>
       {children}
     </Typography>
   </Container>
 )
-const Ul = ({ children }: Props) => <List variant='unordered'>{children}</List>
-const Ol = ({ children }: Props) => <List variant='ordered'>{children}</List>
-const A = ({ children, ...props }: Props) => {
-  const classes = useStyles()
 
-  return (
-    <Link {...props} className={classes.visitedLinkChild}>
-      {children}
-    </Link>
-  )
-}
+const Ul = ({ children, ...props }: Props) => (
+  <List variant='unordered' {...props}>
+    {children}
+  </List>
+)
+const Ol = ({ children, ...props }: Props) => (
+  <List variant='ordered' {...props}>
+    {children}
+  </List>
+)
+const A = ({ children, className, ...props }: Props) => (
+  <Link
+    {...props}
+    className={twMerge(
+      '[&:visited>strong]:text-purple-500 [&:visited>em]:text-purple-500',
+      className
+    )}
+  >
+    {children}
+  </Link>
+)
 
 const Img = ({ ...props }: Props) =>
   isCustomEmoji(props) ? <Emoji {...props} /> : <Image {...props} />
