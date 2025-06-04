@@ -5,9 +5,9 @@ import { TabsList } from '@mui/base/TabsList'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-type ValueType = string | number | null
+export type TabsValueType = string | number | null
 
-export interface Props<V extends ValueType> extends BaseProps {
+export interface Props<V extends TabsValueType> extends BaseProps {
   /** Tabs content containing Tab components */
   children: ReactNode
 
@@ -66,65 +66,64 @@ const classesByVariant = {
 }
 
 // eslint-disable-next-line react/display-name
-export const Tabs = forwardRef<HTMLDivElement, Props<ValueType>>(function Tabs(
-  props,
-  ref
-) {
-  const {
-    children,
-    orientation = 'horizontal',
-    onChange,
-    value,
-    variant = 'scrollable',
-    className,
-    ...rest
-  } = props
+export const Tabs = forwardRef<HTMLDivElement, Props<TabsValueType>>(
+  function Tabs(props, ref) {
+    const {
+      children,
+      orientation = 'horizontal',
+      onChange,
+      value,
+      variant = 'scrollable',
+      className,
+      ...rest
+    } = props
 
-  const contextValue = useMemo(
-    () => ({
-      orientation,
-      variant,
-    }),
-    [orientation, variant]
-  )
+    const contextValue = useMemo(
+      () => ({
+        orientation,
+        variant,
+      }),
+      [orientation, variant]
+    )
 
-  const isVertical = orientation === 'vertical'
+    const isVertical = orientation === 'vertical'
 
-  return (
-    <TabsContext.Provider value={contextValue}>
-      <MUITabs
-        {...rest}
-        data-component-type='tabs'
-        slotProps={{
-          root: {
-            ref,
-            className: twMerge(
-              'relative min-h-0 flex overflow-hidden',
-              classesByOrientation[orientation].root,
-              classesByVariant[variant].root,
-              className
-            ),
-          },
-        }}
-        onChange={onChange}
-        value={value}
-        orientation={orientation}
-      >
-        <div
-          className={twJoin(
-            classesByVariant[variant].scroller,
-            classesByOrientation[orientation].scroller,
-            'flex-auto inline-block relative whitespace-nowrap'
-          )}
+    return (
+      <TabsContext.Provider value={contextValue}>
+        <MUITabs
+          {...rest}
+          data-component-type='tabs'
+          slotProps={{
+            root: {
+              ref,
+              className: twMerge(
+                'relative min-h-0 flex overflow-hidden',
+                classesByOrientation[orientation].root,
+                classesByVariant[variant].root,
+                className
+              ),
+            },
+          }}
+          onChange={onChange}
+          value={value}
+          orientation={orientation}
         >
-          <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
-            {children}
-          </TabsList>
-        </div>
-      </MUITabs>
-    </TabsContext.Provider>
-  )
-})
+          <div
+            className={twJoin(
+              classesByVariant[variant].scroller,
+              classesByOrientation[orientation].scroller,
+              'flex-auto inline-block relative whitespace-nowrap'
+            )}
+          >
+            <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
+              {children}
+            </TabsList>
+          </div>
+        </MUITabs>
+      </TabsContext.Provider>
+    )
+  }
+)
 
 Tabs.displayName = 'Tabs'
 
