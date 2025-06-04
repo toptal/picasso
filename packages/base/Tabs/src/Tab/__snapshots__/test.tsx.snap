@@ -6,31 +6,28 @@ exports[`Tab Tab disabled tab 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden overflow-x"
       data-component-type="tabs"
     >
       <div
-        class="MuiTabs-scrollable"
-        style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-      />
-      <div
-        class="MuiTabs-scroller MuiTabs-scrollable"
-        style="margin-bottom: 0px;"
+        class="after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="MuiTabs-flexContainer"
+          class="base-TabsList base-TabsList flex"
           role="tablist"
+          tabindex="-1"
         >
           <button
+            aria-disabled="true"
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit Mui-disabled Mui-disabled"
-            disabled=""
+            class="base-Tab base- opacity-50 m-0 [&:not(:last-child)]:mr-8 pt-[0.5625rem] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none shrink-0 max-w text-gray pointer-events min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            id=":r1:"
             role="tab"
-            tabindex="-1"
+            tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper PicassoTab-wrapper"
+              class="w-full inline-flex items-center flex-col justify-center"
             >
               <div
                 class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
@@ -40,10 +37,6 @@ exports[`Tab Tab disabled tab 1`] = `
             </span>
           </button>
         </div>
-        <span
-          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
-          style="left: 0px; width: 0px;"
-        />
       </div>
     </div>
   </div>
@@ -56,30 +49,28 @@ exports[`Tab Tab renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden overflow-x"
       data-component-type="tabs"
     >
       <div
-        class="MuiTabs-scrollable"
-        style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-      />
-      <div
-        class="MuiTabs-scroller MuiTabs-scrollable"
-        style="margin-bottom: 0px;"
+        class="after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="MuiTabs-flexContainer"
+          class="base-TabsList base-TabsList flex"
           role="tablist"
+          tabindex="-1"
         >
           <button
+            aria-disabled="false"
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit"
+            class="base-Tab opacity-70 m-0 [&:not(:last-child)]:mr-8 pt-[0.5625rem] pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none text-black shrink-0 max-w min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            id=":r0:"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper PicassoTab-wrapper"
+              class="w-full inline-flex items-center flex-col justify-center"
             >
               <div
                 class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
@@ -89,10 +80,6 @@ exports[`Tab Tab renders 1`] = `
             </span>
           </button>
         </div>
-        <span
-          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
-          style="left: 0px; width: 0px;"
-        />
       </div>
     </div>
   </div>
@@ -105,46 +92,44 @@ exports[`Tab Tab tab with icon 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden overflow-x"
       data-component-type="tabs"
     >
       <div
-        class="MuiTabs-scrollable"
-        style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
-      />
-      <div
-        class="MuiTabs-scroller MuiTabs-scrollable"
-        style="margin-bottom: 0px;"
+        class="after:absolute after:content-[""] after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-gray after:z-0 flex-auto inline-block relative whitespace-nowrap"
       >
         <div
-          class="MuiTabs-flexContainer"
+          class="base-TabsList base-TabsList flex"
           role="tablist"
+          tabindex="-1"
         >
           <button
+            aria-disabled="false"
             aria-selected="false"
-            class="MuiButtonBase-root MuiTab-root PicassoTab-horizontal MuiTab-textColorInherit MuiTab-labelIcon"
+            class="base-Tab opacity-70 m-0 [&:not(:last-child)]:mr-8 pb-[0.4375rem] px-0 text-center bg-transparent transition-shadow z-10 rounded-none text-black shrink-0 max-w min-h pt-[0.5625rem] pr-6 min-w sm:min-w md:min-w border-0 cursor-pointer inline-flex outline-none items-center select-none align-middle appearance-none justify-center no-underline [-webkit-tap-highlight normal-case whitespace-normal leading-4 relative"
+            id=":r2:"
             role="tab"
             tabindex="0"
             type="button"
           >
             <span
-              class="MuiTab-wrapper PicassoTab-wrapper"
+              class="w-full inline-flex items-center flex-col justify-center"
             >
-              <div
-                id="Icon"
-              />
               <div
                 class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
               >
                 Tab Label
               </div>
+              <span
+                class="absolute right-0 mb-0 h-4"
+              >
+                <div
+                  id="Icon"
+                />
+              </span>
             </span>
           </button>
         </div>
-        <span
-          class="PrivateTabIndicator-root PrivateTabIndicator-colorSecondary MuiTabs-indicator"
-          style="left: 0px; width: 0px;"
-        />
       </div>
     </div>
   </div>

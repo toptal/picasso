@@ -6,7 +6,7 @@ exports[`Tabs renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden overflow-x"
       data-component-type="tabs"
     >
       <div
@@ -70,7 +70,7 @@ exports[`Tabs renders in full width 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden"
       data-component-type="tabs"
     >
       <div
@@ -134,7 +134,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-vertical MuiTabs-vertical"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden w-[200px] m-0 flex-col overflow-x"
       data-component-type="tabs"
     >
       <div
@@ -199,7 +199,7 @@ exports[`Tabs renders with a pre-selected option 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden overflow-x"
       data-component-type="tabs"
     >
       <div
@@ -270,7 +270,7 @@ exports[`Tabs renders with a pre-selected option using custom value 1`] = `
     class="Picasso-root"
   >
     <div
-      class="MuiTabs-root Tabs-horizontal"
+      class="base-Tabs base-Tabs relative min-h flex overflow-hidden overflow-x"
       data-component-type="tabs"
     >
       <div
