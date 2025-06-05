@@ -2,10 +2,12 @@ import React from 'react'
 import { Container, Tabs } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
 
-const Example = () => {
-  const [value, setValue] = React.useState(0)
+import type { TabsValueType } from '../TabsContext'
 
-  const handleChange = (_: React.ChangeEvent<{}> | null, newValue: number) => {
+const Example = () => {
+  const [value, setValue] = React.useState<TabsValueType>(0)
+
+  const handleChange = (_: React.ChangeEvent<{}>, newValue: TabsValueType) => {
     setValue(newValue)
   }
 

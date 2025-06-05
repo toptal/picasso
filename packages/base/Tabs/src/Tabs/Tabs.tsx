@@ -1,18 +1,16 @@
-import type { ReactNode } from 'react'
-import React, { forwardRef, useMemo } from 'react'
-import { Tabs as MUITabs } from '@mui/base/Tabs'
-import { TabsList } from '@mui/base/TabsList'
+import type { ReactNode, ChangeEvent } from 'react'
+import React, { forwardRef, useMemo, useCallback } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-export type TabsValueType = string | number | null
+import { TabsContext, type TabsValueType } from './TabsContext'
 
 export interface Props<V extends TabsValueType> extends BaseProps {
   /** Tabs content containing Tab components */
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: (event: React.ChangeEvent<{}> | null, value: V) => void
+  onChange?: (event: ChangeEvent<{}>, value: V) => void
 
   /**
    * The value of the currently selected Tab.
@@ -25,12 +23,13 @@ export interface Props<V extends TabsValueType> extends BaseProps {
 
   /** Determines additional display behavior of the tabs */
   variant?: 'scrollable' | 'fullWidth'
-}
 
-export const TabsContext = React.createContext<{
-  orientation: 'horizontal' | 'vertical'
-  variant: 'scrollable' | 'fullWidth'
-}>({ orientation: 'horizontal', variant: 'scrollable' })
+  /** The default value. Use when the component is not controlled. */
+  defaultValue?: V
+
+  /** The direction of the text. */
+  direction?: 'ltr' | 'rtl'
+}
 
 const indicatorClasses = [
   'after:absolute',
@@ -65,48 +64,77 @@ const classesByVariant = {
   },
 }
 
-// eslint-disable-next-line react/display-name
 export const Tabs = forwardRef<HTMLDivElement, Props<TabsValueType>>(
   function Tabs(props, ref) {
     const {
       children,
       orientation = 'horizontal',
       onChange,
-      value,
+      value: valueProp,
+      defaultValue,
       variant = 'scrollable',
+      direction = 'ltr',
       className,
       ...rest
     } = props
 
+    const [value, setValue] = React.useState<TabsValueType>(
+      defaultValue ?? null
+    )
+    const isControlled = valueProp !== undefined
+    const currentValue = isControlled ? valueProp : value
+
+    const handleChange = useCallback(
+      (event: ChangeEvent<{}>, newValue: TabsValueType) => {
+        if (!isControlled) {
+          setValue(newValue)
+        }
+        onChange?.(event, newValue as TabsValueType)
+      },
+      [isControlled, onChange]
+    )
+
     const contextValue = useMemo(
       () => ({
+        value: currentValue,
+        onChange: handleChange,
         orientation,
         variant,
+        direction,
       }),
-      [orientation, variant]
+      [currentValue, handleChange, orientation, variant, direction]
     )
 
     const isVertical = orientation === 'vertical'
 
+    const childrenWithIndex = React.Children.map(children, (child, idx) => {
+      if (
+        React.isValidElement(child) &&
+        // @ts-expect-error: type check for Picasso Tab
+        (child.type.displayName === 'Tab' || child.type.name === 'Tab') &&
+        child.props.value === undefined
+      ) {
+        return React.cloneElement(child as React.ReactElement<any>, {
+          value: idx,
+        })
+      }
+
+      return child
+    })
+
     return (
       <TabsContext.Provider value={contextValue}>
-        <MUITabs
+        <div
           {...rest}
+          ref={ref}
           data-component-type='tabs'
-          slotProps={{
-            root: {
-              ref,
-              className: twMerge(
-                'relative min-h-0 flex overflow-hidden',
-                classesByOrientation[orientation].root,
-                classesByVariant[variant].root,
-                className
-              ),
-            },
-          }}
-          onChange={onChange}
-          value={value}
-          orientation={orientation}
+          className={twMerge(
+            'relative min-h-0 flex overflow-hidden',
+            classesByOrientation[orientation].root,
+            classesByVariant[variant].root,
+            className
+          )}
+          aria-orientation={orientation}
         >
           <div
             className={twJoin(
@@ -115,11 +143,15 @@ export const Tabs = forwardRef<HTMLDivElement, Props<TabsValueType>>(
               'flex-auto inline-block relative whitespace-nowrap'
             )}
           >
-            <TabsList className={twJoin('flex', isVertical && 'flex-col')}>
-              {children}
-            </TabsList>
+            <div
+              className={twJoin('flex', isVertical && 'flex-col')}
+              role='tablist'
+              tabIndex={-1}
+            >
+              {childrenWithIndex}
+            </div>
           </div>
-        </MUITabs>
+        </div>
       </TabsContext.Provider>
     )
   }
