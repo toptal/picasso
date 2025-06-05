@@ -66,7 +66,7 @@ const wrapperClassesByOrientation = {
 
 const rootClassesByOrientation = (selected: boolean) => ({
   horizontal: [
-    'm-0 [&:not(:last-child)]:mr-8 pt-[0.5625rem] pb-[0.4375rem] px-0',
+    'm-0 [&:not(:last-child)]:mr-8 pt-0 pb-[0.4375rem] px-0',
     'text-center bg-transparent transition-shadow z-10 rounded-none',
     'text-black',
     selected && 'shadow-blue-500 shadow-[inset_0_-2px_0]',
@@ -151,7 +151,7 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
                 ? 'cursor-default text-gray-500'
                 : 'cursor-pointer',
               ownerState.disabled && 'pointer-events-none',
-              icon && isHorizontal && 'min-h-0 pt-[0.5625rem] pr-6',
+              icon && isHorizontal && 'min-h-0 pt-0 pr-6',
               'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
               'border-0 cursor-pointer inline-flex outline-none',
               'items-center select-none align-middle appearance-none',
