@@ -113,8 +113,8 @@ function TabsInner<T = number>(props: TabsProps<T>, ref: Ref<HTMLDivElement>) {
       child.type === Tab &&
       child.props.value === undefined
     ) {
-      return React.cloneElement(child as React.ReactElement<TabProps<T>>, {
-        value: idx as T,
+      return React.cloneElement(child as React.ReactElement<TabProps<number>>, {
+        value: idx,
       })
     }
 
