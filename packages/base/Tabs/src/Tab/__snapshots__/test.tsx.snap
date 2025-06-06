@@ -28,7 +28,7 @@ exports[`Tab Tab disabled tab 1`] = `
             type="button"
           >
             <span
-              class="w-full inline-flex items-center flex-col justify-center"
+              class="w-full inline-flex flex-row items-center justify-center"
             >
               <div
                 class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
@@ -70,7 +70,7 @@ exports[`Tab Tab renders 1`] = `
             type="button"
           >
             <span
-              class="w-full inline-flex items-center flex-col justify-center"
+              class="w-full inline-flex flex-row items-center justify-center"
             >
               <div
                 class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
@@ -112,7 +112,7 @@ exports[`Tab Tab tab with icon 1`] = `
             type="button"
           >
             <span
-              class="w-full inline-flex items-center flex-col justify-center"
+              class="w-full inline-flex flex-row items-center justify-center"
             >
               <div
                 class="m-0 text-sm text-inherit font-semibold leading-[1.1rem]"
