@@ -1,19 +1,19 @@
 import React from 'react'
 
-export type TabsValueType = string | number | null
-
-export interface TabsContextValue {
-  value: TabsValueType
-  onChange: (event: React.ChangeEvent<{}>, value: TabsValueType) => void
+export interface TabsContextValue<T> {
+  value: T
+  onChange: (event: React.ChangeEvent<{}>, value: T) => void
   orientation: 'horizontal' | 'vertical'
   variant: 'scrollable' | 'fullWidth'
+  direction?: 'ltr' | 'rtl'
 }
 
-export const TabsContext = React.createContext<TabsContextValue>({
-  value: null,
+export const TabsContext = React.createContext<TabsContextValue<any>>({
+  value: undefined,
   onChange: () => {},
   orientation: 'horizontal',
   variant: 'scrollable',
+  direction: 'ltr',
 })
 
 export const useTabsContext = () => {

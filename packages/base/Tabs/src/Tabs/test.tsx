@@ -4,14 +4,15 @@ import { render, fireEvent } from '@testing-library/react'
 import { TestingPicasso } from '@toptal/picasso-test-utils'
 
 import type { TabProps } from '../Tab'
-import type { Props, TabsValueType } from './Tabs'
+import type { TabsProps } from './Tabs'
 import { TabsCompound as Tabs } from '../TabsCompound'
 
-const renderTabContent = (
-  tab: TabProps,
+// eslint-disable-next-line func-style
+function renderTabContent<T = number>(
+  tab: TabProps<T>,
   index: number,
-  value: TabsValueType
-) => {
+  value: T
+) {
   const isTabActive = index + 1 === value || tab.value === value
   const testId = `tab-${index + 1}-content`
 
@@ -26,11 +27,12 @@ const renderTabContent = (
   return null
 }
 
-const renderTabs = (
-  tabs: TabProps[],
-  { value, onChange, variant }: Omit<Props<TabsValueType>, 'children'>,
+// eslint-disable-next-line func-style
+function renderTabs<T = number>(
+  tabs: TabProps<T>[],
+  { value, onChange, variant }: Omit<TabsProps<T>, 'children'>,
   orientation: 'horizontal' | 'vertical' = 'horizontal'
-) => {
+) {
   return render(
     <TestingPicasso>
       <Tabs
@@ -50,7 +52,7 @@ const renderTabs = (
         ))}
       </Tabs>
 
-      {tabs.map((tab, index) => renderTabContent(tab, index, value))}
+      {tabs.map((tab, index) => renderTabContent<T>(tab, index, value))}
     </TestingPicasso>
   )
 }

@@ -1,15 +1,15 @@
-import type { ReactNode, HTMLAttributes, ReactElement } from 'react'
+import type { ReactNode, HTMLAttributes, ReactElement, Ref } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { UserBadge } from '@toptal/picasso-user-badge'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { useTabsContext, type TabsValueType } from '../Tabs/TabsContext'
+import { useTabsContext } from '../Tabs/TabsContext'
 import { TabLabel } from '../TabLabel'
 import { TabDescription } from '../TabDescription'
 
-export interface Props
+export interface TabProps<T = number>
   extends BaseProps,
     TextLabelProps,
     Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
@@ -20,7 +20,7 @@ export interface Props
   disabled?: boolean
 
   /** The value of the tab */
-  value?: TabsValueType
+  value?: T
 
   /** The label element */
   label?: ReactNode
@@ -33,12 +33,6 @@ export interface Props
 
   /** Description */
   description?: string
-
-  // Properties below are managed by Tabs component
-
-  // selected?: boolean
-  // onChange?: TabProps['onChange']
-  // onClick?: TabProps['onClick']
 }
 
 const getOpacityClass = (
@@ -93,87 +87,6 @@ const classesByVariant = {
   fullWidth: 'shrink flex-grow basis-0',
 }
 
-export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
-  props,
-  ref
-) {
-  const {
-    disabled,
-    value,
-    label,
-    icon,
-    titleCase: propsTitleCase,
-    description,
-    avatar,
-    className,
-    onClick,
-    ...rest
-  } = props
-  const titleCase = useTitleCase(propsTitleCase)
-  const {
-    value: selectedValue,
-    onChange,
-    orientation,
-    variant,
-  } = useTabsContext()
-  const isHorizontal = orientation === 'horizontal'
-  const selected = value === selectedValue
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!disabled && onChange) {
-      onChange(event, value as TabsValueType)
-    }
-    onClick?.(event)
-  }
-
-  const renderLabel = getLabelComponent({
-    avatar,
-    description,
-    disabled,
-    label,
-    orientation,
-    titleCase,
-  })
-
-  return (
-    <button
-      className={twMerge(
-        getOpacityClass(selected, !!disabled, orientation),
-        rootClassesByOrientation(selected)[orientation],
-        classesByVariant[variant],
-        disabled ? 'cursor-default text-gray-500' : 'cursor-pointer',
-        disabled && 'pointer-events-none',
-        icon && isHorizontal && 'min-h-0 pt-0 pr-6',
-        'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
-        'border-0 cursor-pointer inline-flex outline-none',
-        'items-center select-none align-middle appearance-none',
-        'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
-        'normal-case whitespace-normal leading-4',
-        'relative ',
-        className
-      )}
-      ref={ref}
-      tabIndex={disabled ? -1 : 0}
-      disabled={disabled}
-      onClick={handleClick}
-      role='tab'
-      aria-selected={selected}
-      aria-disabled={disabled}
-      type='button'
-      {...rest}
-    >
-      <span
-        className={twJoin('w-full', wrapperClassesByOrientation[orientation])}
-      >
-        {renderLabel}
-        {icon && <span className='absolute right-0 mb-0'>{icon}</span>}
-      </span>
-    </button>
-  )
-})
-
-Tab.displayName = 'Tab'
-
 const getLabelComponent = ({
   avatar,
   description,
@@ -220,5 +133,92 @@ const getLabelComponent = ({
     </UserBadge>
   )
 }
+
+// eslint-disable-next-line func-style
+function TabInner<T = number>(props: TabProps<T>, ref: Ref<HTMLButtonElement>) {
+  const {
+    disabled,
+    value,
+    label,
+    icon,
+    titleCase: propsTitleCase,
+    description,
+    avatar,
+    className,
+    onClick,
+    ...rest
+  } = props
+  const titleCase = useTitleCase(propsTitleCase)
+  const {
+    value: selectedValue,
+    onChange,
+    orientation,
+    variant,
+  } = useTabsContext()
+  const isHorizontal = orientation === 'horizontal'
+  const selected = value === selectedValue
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!disabled && onChange) {
+      onChange(event, value as T)
+    }
+    onClick?.(event)
+  }
+
+  const renderLabel = getLabelComponent({
+    avatar,
+    description,
+    disabled,
+    label,
+    orientation,
+    titleCase,
+  })
+
+  return (
+    <button
+      className={twMerge(
+        getOpacityClass(selected, !!disabled, orientation),
+        rootClassesByOrientation(selected)[orientation],
+        classesByVariant[variant],
+        disabled ? 'cursor-default text-gray-500' : 'cursor-pointer',
+        disabled && 'pointer-events-none',
+        icon && isHorizontal && 'min-h-0 pt-0 pr-6',
+        'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
+        'border-0 cursor-pointer inline-flex outline-none',
+        'items-center select-none align-middle appearance-none',
+        'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
+        'normal-case whitespace-normal leading-4',
+        'relative ',
+        className
+      )}
+      ref={ref}
+      tabIndex={disabled ? -1 : 0}
+      disabled={disabled}
+      onClick={handleClick}
+      role='tab'
+      aria-selected={selected}
+      aria-disabled={disabled}
+      type='button'
+      {...rest}
+    >
+      <span
+        className={twJoin('w-full', wrapperClassesByOrientation[orientation])}
+      >
+        {renderLabel}
+        {icon && (
+          <span className='absolute top-0 right-0 mb-0 flex items-center'>
+            {icon}
+          </span>
+        )}
+      </span>
+    </button>
+  )
+}
+
+TabInner.displayName = 'Tab'
+
+export const Tab = forwardRef(TabInner) as <T = number>(
+  props: TabProps<T> & { ref?: Ref<HTMLButtonElement> }
+) => ReactElement | null
 
 export default Tab

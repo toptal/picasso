@@ -3,12 +3,10 @@ import { Container, Tabs, Tooltip, Badge } from '@toptal/picasso'
 import { SPACING_4 } from '@toptal/picasso-utils'
 import { Exclamation16 } from '@toptal/picasso-icons'
 
-import type { TabsValueType } from '../../Tabs/TabsContext'
-
 const Example = () => {
-  const [value, setValue] = React.useState<TabsValueType>(0)
+  const [value, setValue] = React.useState<number>(0)
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: TabsValueType) => {
+  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
   }
 
@@ -19,17 +17,14 @@ const Example = () => {
           label='Label'
           icon={
             <Tooltip content='Some content...' placement='top'>
-              <span>
+              <div>
                 <Exclamation16 color='red' />
-              </span>
+              </div>
             </Tooltip>
           }
         />
         <Tabs.Tab label='Label' />
-        <Tabs.Tab
-          label='Label'
-          icon={<Badge content={10} variant='white' className='mt-[1px]' />}
-        />
+        <Tabs.Tab label='Label' icon={<Badge content={10} variant='white' />} />
       </Tabs>
 
       {value === 0 && (
