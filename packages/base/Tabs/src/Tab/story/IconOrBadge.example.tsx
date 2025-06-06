@@ -26,7 +26,10 @@ const Example = () => {
           }
         />
         <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' icon={<Badge content={10} variant='white' />} />
+        <Tabs.Tab
+          label='Label'
+          icon={<Badge content={10} variant='white' className='mt-[1px]' />}
+        />
       </Tabs>
 
       {value === 0 && (

@@ -57,7 +57,7 @@ const getOpacityClass = (
 }
 
 const wrapperClassesByOrientation = {
-  horizontal: 'inline-flex items-center flex-col justify-center',
+  horizontal: 'inline-flex flex-row items-center justify-center',
   vertical: 'block',
 }
 
