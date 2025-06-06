@@ -4,7 +4,7 @@ import { SPACING_4 } from '@toptal/picasso-utils'
 import { Exclamation16 } from '@toptal/picasso-icons'
 
 const Example = () => {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = React.useState<number>(0)
 
   const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
@@ -17,9 +17,9 @@ const Example = () => {
           label='Label'
           icon={
             <Tooltip content='Some content...' placement='top'>
-              <span>
+              <div>
                 <Exclamation16 color='red' />
-              </span>
+              </div>
             </Tooltip>
           }
         />
