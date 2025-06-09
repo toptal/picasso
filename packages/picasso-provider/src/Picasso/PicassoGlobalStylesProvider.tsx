@@ -80,7 +80,16 @@ const PicassoGlobalStylesProvider = (
         currentBreakpointRange,
       })
     }
-  }, [currentBreakpointRange])
+  }, [currentBreakpointRange, contextValue])
+
+  useEffect(() => {
+    if (rootRef.current) {
+      setContextValue(context => ({
+        ...context,
+        rootRef,
+      }))
+    }
+  }, [rootRef])
 
   return (
     <RootComponent ref={rootRef}>
