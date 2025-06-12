@@ -126,6 +126,21 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
       },
     },
+    // Disallow importing from aggregate picasso package within individual sub-packages
+    {
+      files: ['packages/*/src/**'],
+      excludedFiles: ['*.example.jsx', '*.example.tsx'],
+      rules: {
+        'no-restricted-imports': [
+          'error',
+          {
+            name: '@toptal/picasso',
+            message:
+              'Do not import from the aggregate @toptal/picasso package. Import directly from the specific sub-package.',
+          },
+        ],
+      },
+    },
     ...generateConfig(),
   ],
 }
