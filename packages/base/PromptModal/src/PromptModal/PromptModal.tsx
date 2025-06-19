@@ -8,7 +8,10 @@ import type { Props as ModalProps } from '@toptal/picasso-modal'
 import { ModalCompound as Modal } from '@toptal/picasso-modal'
 import type { VariantType as ButtonVariantType } from '@toptal/picasso-button'
 
-export type VariantType = 'positive' | 'negative'
+export type VariantType = Extract<
+  ButtonVariantType,
+  'positive' | 'negative' | 'primary'
+>
 
 export type PromptOptions = {
   setResult: (newResult: unknown) => void
@@ -133,7 +136,7 @@ export const PromptModal = forwardRef<HTMLDivElement, Props>(
           <Button
             loading={loading}
             onClick={handleSubmit}
-            variant={`${variant}` as ButtonVariantType}
+            variant={variant}
             data-testid={testIds?.submitButton}
           >
             {submitText}

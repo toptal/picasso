@@ -16,6 +16,12 @@ const PromptModalDefaultExample = () => {
     isOpen: isOpenNegative,
   } = useModal()
 
+  const {
+    showModal: showModalPrimary,
+    hideModal: hideModalPrimary,
+    isOpen: isOpenPrimary,
+  } = useModal()
+
   const { showInfo } = useNotifications()
 
   return (
@@ -39,6 +45,16 @@ const PromptModalDefaultExample = () => {
           message='This is negative variant.'
           onSubmit={async () => showInfo('Submitted')}
           onClose={hideModalNegative}
+        />
+
+        <Button onClick={showModalPrimary}>Open primary</Button>
+        <PromptModal
+          variant='primary'
+          open={isOpenPrimary}
+          title='Primary variant'
+          message='This is primary variant.'
+          onSubmit={async () => showInfo('Submitted')}
+          onClose={hideModalPrimary}
         />
       </Container>
     </>
