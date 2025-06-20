@@ -129,6 +129,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
   useImperativeHandle(ref, () => divRef.current as HTMLElement, [])
 
   const isError = Boolean(status === 'error')
+  const isWarning = Boolean(status === 'warning')
 
   const inputClassName = getInputClassName({
     size,
@@ -152,6 +153,7 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     className,
     classes,
     isError,
+    isWarning,
   })
 
   const multilineProps = multiline
