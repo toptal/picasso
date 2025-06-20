@@ -34,8 +34,8 @@ export interface Props
     > {
   /** Time value that will be selected in TimePicker */
   value?: string
-  /** Indicate whether `TimePicker` is in `error` or `default` state */
-  status?: Extract<Status, 'error' | 'default'>
+  /** Indicate whether `TimePicker` is in `error`, `warning` or `default` state */
+  status?: Extract<Status, 'error' | 'warning' | 'default'>
   /** Called on input change */
   onChange?: (value: string) => void
 }

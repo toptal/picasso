@@ -20,7 +20,7 @@ export type ValueType =
   | boolean
   | object
 
-export type Status = 'error' | 'success' | 'default'
+export type Status = 'error' | 'success' | 'warning' | 'default'
 
 export type BaseInputProps = InputBaseComponentProps & {
   variant?: 'dark' | 'light'

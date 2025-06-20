@@ -30,8 +30,8 @@ export interface Props extends BaseProps {
   disabled?: boolean
   /** unique identifier */
   id: string
-  /** Indicate `RichTextEditor` is in `error` or `default` state */
-  status?: Extract<OutlinedInputStatus, 'error' | 'default'>
+  /** Indicate `RichTextEditor` is in `error`, `warning` or `default` state */
+  status?: Extract<OutlinedInputStatus, 'error' | 'warning' | 'default'>
   /** Used inside Form with combination of Label to enable forHtml functionality */
   hiddenInputId?: string
   /**
@@ -150,6 +150,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
               [classes.disabled]: disabled,
               [classes.focused]: hasFocus,
               [classes.error]: status === 'error',
+              [classes.warning]: status === 'warning',
               [classes.highlightAutofill]: highlight === 'autofill',
             },
             className

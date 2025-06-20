@@ -12,6 +12,12 @@ const chapter = PicassoBook.connectToPage(page =>
     .addExample('FormField/story/Default.example.tsx', 'Default', 'base/Form')
     .addExample('FormField/story/Required.example.tsx', 'Required', 'base/Form')
     .addExample('FormField/story/Error.example.tsx', 'Error', 'base/Form')
+    .addExample('FormField/story/Warning.example.tsx', 'Warning', 'base/Form')
+    .addExample(
+      'FormField/story/ErrorAndWarning.example.tsx',
+      'Error and Warning',
+      'base/Form'
+    )
     .addExample('FormField/story/Hint.example.tsx', 'Hint', 'base/Form')
     .addExample(
       'FormField/story/HintAndError.example.tsx',

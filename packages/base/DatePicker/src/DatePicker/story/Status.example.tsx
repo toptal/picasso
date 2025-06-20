@@ -28,6 +28,16 @@ const Example = () => {
         />
       </Form.Field>
       <Form.Field>
+        <Form.Label>Warning</Form.Label>
+        <DatePicker
+          value={datepickerValue}
+          onChange={date => {
+            setDatepickerValue(date)
+          }}
+          status='warning'
+        />
+      </Form.Field>
+      <Form.Field>
         <Form.Label>Success</Form.Label>
         <DatePicker
           value={datepickerValue}

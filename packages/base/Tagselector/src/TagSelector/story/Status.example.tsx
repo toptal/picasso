@@ -30,6 +30,10 @@ const Example = () => {
         </Container>
       </Container>
       <Container padded={SPACING_4}>
+        <Typography>Warning</Typography>
+        <TagSelector placeholder='warning' status='warning' value={value} />
+      </Container>
+      <Container padded={SPACING_4}>
         <Typography>Success with long placeholder</Typography>
         <TagSelector placeholder='Very long placeholder' status='success' />
       </Container>

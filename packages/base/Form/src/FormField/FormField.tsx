@@ -8,12 +8,15 @@ import { useFieldsLayoutContext } from '@toptal/picasso-form-layout'
 import { FormHint } from '../FormHint'
 import { FormError } from '../FormError'
 import { createLabelWidthStyles, horizontalLayoutClasses } from './styles'
+import { FormWarning } from '../FormWarning'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** The text of the hint */
-  hint?: string
+  hint?: string | ReactNode
   /** The text of the error */
-  error?: string
+  error?: string | ReactNode
+  /** The text of the warning */
+  warning?: string | ReactNode
   /** The content of the Form.Field */
   children: ReactNode
   /** Field requirements for this specific field */
@@ -79,6 +82,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
     hint,
     children,
     error,
+    warning,
     fieldRequirements,
     hasMultilineCounter,
     ...rest
@@ -108,6 +112,7 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
         hasMultilineCounter={hasMultilineCounter}
       >
         {error && <FormError>{error}</FormError>}
+        {warning && <FormWarning>{warning}</FormWarning>}
         {hint && (
           <FormHint className={twJoin(error && hint && 'mt-0')}>
             {hint}

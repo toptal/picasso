@@ -108,7 +108,7 @@ const componentDocs = PicassoBook.createComponentDocs(
       name: 'status',
       type: {
         name: 'OutlinedFieldStatus',
-        description: '"default" | "error" | "success"',
+        description: '"default" | "error" | "warning" | "success"',
       },
       description:
         'The status of the field to be used by the OutlinedInput component',
