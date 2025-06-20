@@ -13,6 +13,10 @@ const Example = () => {
         <Autocomplete value='Ukraine' status='error' />
       </Form.Field>
       <Form.Field>
+        <Form.Label>Warning</Form.Label>
+        <Autocomplete value='Ukraine' status='warning' />
+      </Form.Field>
+      <Form.Field>
         <Form.Label>Success</Form.Label>
         <Autocomplete value='Ukraine' status='success' />
       </Form.Field>

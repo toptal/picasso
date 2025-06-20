@@ -17,6 +17,13 @@ const Example = () => {
         status='error'
         name='error'
       />
+      <RichTextEditor
+        label='Warning'
+        id='editor-warning'
+        placeholder='Write some cool rich text'
+        status='warning'
+        name='warning'
+      />
     </FormNonCompound>
   )
 }

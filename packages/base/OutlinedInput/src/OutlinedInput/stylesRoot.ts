@@ -65,6 +65,10 @@ export const borderPseudoClassesByState = {
     default: ['after:border-gray-400', '[&:has(:focus)]:after:border-blue-500'],
     disabled: 'after:border-gray-400',
     error: ['after:border-red-500', '[&:has(:focus)]:after:border-red-500'],
+    warning: [
+      'after:border-yellow-500',
+      '[&:has(:focus)]:after:border-yellow-500',
+    ],
     hoverWithoutFocus: 'hover:[&:not(:has(:focus))]:after:border-gray-600',
   },
   border: {
@@ -72,6 +76,7 @@ export const borderPseudoClassesByState = {
     default: 'after:border',
     disabled: '',
     error: '',
+    warning: '',
   },
   shadow: {
     dark: '[&:has(:focus)]:after:shadow-0',
@@ -83,6 +88,10 @@ export const borderPseudoClassesByState = {
     error: [
       '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
       '[&:has(:focus)]:after:shadow-red-500/[.48]',
+    ],
+    warning: [
+      '[&:has(:focus)]:after:shadow-[0_0_0_3px]',
+      '[&:has(:focus)]:after:shadow-yellow-500/[.48]',
     ],
   },
 }
@@ -146,10 +155,11 @@ const getTextColorClass = (disabled: boolean | undefined) =>
 const getCursorClass = (disabled: boolean | undefined) =>
   disabled ? cursorClass.disabled : cursorClass.default
 
-type State = 'default' | 'disabled' | 'error' | 'dark'
+type State = 'default' | 'disabled' | 'error' | 'dark' | 'warning'
 type StateConditions = Partial<Record<State, boolean>> & {
   isDark: boolean
   isError: boolean
+  isWarning: boolean
 }
 
 const getClassForState = (
@@ -164,7 +174,7 @@ const getClassForState = (
 }
 
 const borderPseudoElement = (conditions: StateConditions) => {
-  const { disabled, isDark, isError } = conditions
+  const { disabled, isDark, isError, isWarning } = conditions
   const { borderColor } = borderPseudoClassesByState
   const primaryState = isError
     ? 'error'
@@ -172,9 +182,12 @@ const borderPseudoElement = (conditions: StateConditions) => {
     ? 'disabled'
     : isDark
     ? 'dark'
+    : isWarning
+    ? 'warning'
     : 'default'
 
-  const hoverClass = !disabled && !isError ? borderColor.hoverWithoutFocus : ''
+  const hoverClass =
+    !disabled && !isError && !isWarning ? borderColor.hoverWithoutFocus : ''
 
   return [
     borderPseudoCoreClasses,
@@ -193,19 +206,21 @@ export const getRootClassName = ({
   highlight,
   disabled,
   isError,
+  isWarning,
 }: Partial<Props> & {
   isDark: boolean
   layout: FieldLayout
   isError: boolean
   size: Size
   width: WidthType
+  isWarning: boolean
 }) => [
   rootBasicClasses,
   spacingBySize[size],
   getHeightClasses({ size, multiline }),
   getWidthClasses({ width, layout }),
   getBackgroundColorClasses({ isDark, disabled, highlight }),
-  borderPseudoElement({ isDark, disabled, isError }),
+  borderPseudoElement({ isDark, disabled, isError, isWarning }),
   getTextColorClass(disabled),
   getCursorClass(disabled),
   type === 'hidden' && 'hidden',

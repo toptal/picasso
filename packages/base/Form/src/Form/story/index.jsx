@@ -4,6 +4,7 @@ import { Form } from '../Form'
 import formFieldStory from '../../FormField/story'
 import formHintStory from '../../FormHint/story'
 import formErrorStory from '../../FormError/story'
+import formWarningStory from '../../FormWarning/story'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Forms').createPage(
@@ -25,6 +26,7 @@ page
   .addComponentDocs(formHintStory.componentDocs)
   .addComponentDocs(formLabelStory.componentDocs)
   .addComponentDocs(formErrorStory.componentDocs)
+  .addComponentDocs(formWarningStory.componentDocs)
 
 page.createChapter().addExample(
   'Form/story/Error.example.tsx',

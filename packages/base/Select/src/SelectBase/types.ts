@@ -31,8 +31,8 @@ export interface SelectProps<
   disabled?: boolean
   /** Whether to render select options in portal. Should be disabled in Modals */
   disablePortal?: boolean
-  /** Indicate whether `Select` is in `error` or `default` state */
-  status?: Extract<Status, 'error' | 'default'>
+  /** Indicate whether `Select` is in `error`, `warning` or `default` state */
+  status?: Extract<Status, 'error' | 'warning' | 'default'>
   /** Component ID */
   id?: string
   /** Width of the component */

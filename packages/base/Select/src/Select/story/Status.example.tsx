@@ -12,6 +12,10 @@ const Example = () => {
         <Form.Label>Error</Form.Label>
         <Select options={[]} status='error' width='auto' />
       </Form.Field>
+      <Form.Field>
+        <Form.Label>Warning</Form.Label>
+        <Select options={[]} status='warning' width='auto' />
+      </Form.Field>
     </Form>
   )
 }
