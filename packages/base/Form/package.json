@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-form",
-  "version": "6.2.1",
+  "version": "6.3.0",
   "description": "Toptal UI components library - Form",
   "publishConfig": {
     "access": "public"
