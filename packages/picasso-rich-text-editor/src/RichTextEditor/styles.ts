@@ -31,6 +31,14 @@ export default (theme: Theme) => {
       },
     },
 
+    warning: {
+      borderColor: palette.yellow.main,
+      '&$focused': {
+        borderColor: palette.yellow.main,
+        ...outline(palette.yellow.main),
+      },
+    },
+
     focused: {
       borderColor: palette.grey.main2,
       ...outline(palette.primary.main),

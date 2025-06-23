@@ -13,6 +13,10 @@ const Example = () => {
         <PasswordInput value='asd' status='error' />
       </Form.Field>
       <Form.Field>
+        <Form.Label>Warning</Form.Label>
+        <PasswordInput value='asd' status='warning' />
+      </Form.Field>
+      <Form.Field>
         <Form.Label>Success</Form.Label>
         <PasswordInput value='asd' status='success' />
       </Form.Field>

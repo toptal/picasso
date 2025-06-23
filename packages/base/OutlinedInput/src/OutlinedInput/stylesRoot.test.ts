@@ -17,6 +17,7 @@ describe('getRootClassName', () => {
     isDark: false,
     layout: 'vertical' as FieldLayout,
     isError: false,
+    isWarning: false,
     size: 'medium' as Size,
     width: 'auto' as WidthType,
   }

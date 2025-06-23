@@ -2,6 +2,7 @@ export * from './FormCompound'
 export * from './Form'
 export * from './FormError'
 export * from './FormHint'
+export * from './FormWarning'
 export * from './FormField'
 export type {
   FieldsLayoutContextProviderProps,

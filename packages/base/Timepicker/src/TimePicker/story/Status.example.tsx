@@ -12,6 +12,10 @@ const Example = () => {
         <Form.Label>Error</Form.Label>
         <TimePicker status='error' />
       </Form.Field>
+      <Form.Field>
+        <Form.Label>Warning</Form.Label>
+        <TimePicker status='warning' />
+      </Form.Field>
     </Form>
   )
 }
