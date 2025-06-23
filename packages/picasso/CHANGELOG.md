@@ -1,5 +1,17 @@
 # Change Log
 
+## 53.2.0
+
+### Minor Changes
+
+- [#4774](https://github.com/toptal/picasso/pull/4774) [`bd230dc`](https://github.com/toptal/picasso/commit/bd230dc10767f1318503c90523904a01bcd04e6a) Thanks [@ascrazy](https://github.com/ascrazy)!
+- Allowed variant=primary for the PromptModal
+
+### Patch Changes
+
+- Updated dependencies [[`bd230dc`](https://github.com/toptal/picasso/commit/bd230dc10767f1318503c90523904a01bcd04e6a)]:
+  - @toptal/picasso-prompt-modal@2.1.0
+
 ## 53.1.3
 
 ### Patch Changes
