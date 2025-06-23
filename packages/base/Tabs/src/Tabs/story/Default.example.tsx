@@ -1,20 +1,21 @@
 import React from 'react'
-import { Container, Tabs } from '@toptal/picasso'
+import { Container } from '@toptal/picasso'
+import { Tabs, Tab } from '@toptal/picasso-tabs'
 import { SPACING_4 } from '@toptal/picasso-utils'
 
 const Example = () => {
-  const [value, setValue] = React.useState(0)
+  const [value, setValue] = React.useState<number>(0)
 
-  const handleChange = (_: React.ChangeEvent<{}> | null, newValue: number) => {
+  const handleChange = (_: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue)
   }
 
   return (
     <div>
       <Tabs value={value} onChange={handleChange}>
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
-        <Tabs.Tab label='Label' />
+        <Tab label='Label' />
+        <Tab label='Label' />
+        <Tab label='Label' />
       </Tabs>
 
       {value === 0 && (
