@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.4.5
+
+### Patch Changes
+
+- Updated dependencies [[`290e2f4`](https://github.com/toptal/picasso/commit/290e2f4520f8675f7e29bca79d8cdea847078598)]:
+  - @toptal/picasso-autocomplete@5.2.0
+
 ## 5.4.4
 
 ### Patch Changes

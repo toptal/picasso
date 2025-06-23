@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-dropzone",
-  "version": "5.0.20",
+  "version": "5.0.21",
   "description": "Toptal UI components library - Dropzone",
   "publishConfig": {
     "access": "public"
@@ -23,8 +23,8 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "3.1.2",
-    "@toptal/picasso-file-input": "4.0.19",
-    "@toptal/picasso-form": "6.2.1",
+    "@toptal/picasso-file-input": "4.0.20",
+    "@toptal/picasso-form": "6.3.0",
     "@toptal/picasso-icons": "1.12.1",
     "@toptal/picasso-typography": "4.0.3",
     "@toptal/picasso-utils": "3.1.0",
