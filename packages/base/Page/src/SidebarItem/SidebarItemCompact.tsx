@@ -26,7 +26,7 @@ export const SidebarItemCompact = forwardRef<HTMLElement, Props>(
       <ParentItemContextProvider isOpened={isOpened}>
         <Container left='small' right='small'>
           <Dropdown
-            classes={{ popper: 'ml-2' }}
+            classes={{ popper: '[&]:ml-2' }}
             disabled={disabled}
             placement='right-start'
             content={subMenu}

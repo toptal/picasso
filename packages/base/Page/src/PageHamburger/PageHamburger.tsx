@@ -22,7 +22,7 @@ const PageHamburger = ({ id, 'data-testid': dataTestId }: Props) => {
       content={<div id={id} ref={hamburgerRef} />}
       classes={{
         content: `!shadow-[inset_-1px_0px_0px_0px] !shadow-gray-200 max-h-[calc(100vh-var(--header-height,3.5rem))] !bg-gray-100`,
-        popper: 'mt-4',
+        popper: '[&]:mt-4',
       }}
       // The "disablePortal" is needed for testing the dropdown hamburger menu in Cypress.
       // Without it, React fails to create portal inside of portal (via `createPortal()`), so

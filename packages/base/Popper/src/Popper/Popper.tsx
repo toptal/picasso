@@ -1,9 +1,6 @@
 import type { ReactNode } from 'react'
 import React, { forwardRef, useContext } from 'react'
-import cx from 'classnames'
 import { Popper as MUIPopper } from '@material-ui/core'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
 import type { ReferenceObject, PopperOptions } from 'popper.js'
 import type PopperJs from 'popper.js'
 import type { BaseProps } from '@toptal/picasso-shared'
@@ -11,8 +8,7 @@ import { useIsomorphicLayoutEffect } from '@toptal/picasso-shared'
 import { usePicassoRoot, useBreakpoint } from '@toptal/picasso-provider'
 import { useWidthOf } from '@toptal/picasso-utils'
 import ModalContext from '@toptal/picasso-modal-context'
-
-import styles from './styles'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export type PopperPlacementType =
   | 'bottom-end'
@@ -58,8 +54,6 @@ export interface Props extends BaseProps {
   /** Take full window width on small and medium screens */
   enableCompactMode?: boolean
 }
-
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoPopper' })
 
 const getAnchorEl = (
   anchorEl: null | ReferenceObject | (() => ReferenceObject)
@@ -138,7 +132,6 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
   const picassoRootContainer = usePicassoRoot()
   const isInsideModal = useContext(ModalContext)
 
-  const classes = useStyles()
   const isCompactLayoutResolution = useBreakpoint(['xs', 'sm', 'md'])
   const isCompactLayout = enableCompactMode && isCompactLayoutResolution
   const widthStyle = useWidthStyle({ autoWidth, width, anchorEl })
@@ -166,7 +159,12 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
       open={open}
       container={container || picassoRootContainer}
       anchorEl={anchorEl}
-      className={cx(classes.root, className)}
+      className={twMerge(
+        'z-modal',
+        'xs:max-md:w-screen xs:max-md:max-w-screen xs:max-md:p-0 xs:max-md:m-0',
+        '[&[x-out-of-boundaries]]:hidden',
+        className
+      )}
       popperRef={ref}
       popperOptions={memoizedPopperOptions}
       disablePortal={disablePortal}
