@@ -1,5 +1,17 @@
 # @toptal/picasso-popper
 
+## 2.0.0
+
+### Major Changes
+
+- [#4777](https://github.com/toptal/picasso/pull/4777) [`6aae8c6`](https://github.com/toptal/picasso/commit/6aae8c67f2f3c4979df322d30494b0f2958d6ccb) Thanks [@ascrazy](https://github.com/ascrazy)!
+
+### Popper
+
+- migrate to tailwind styling
+
+This affects priority of Popper's default `margin` and `padding` rules. Consumers that are supplying any overrides for these rules might need to increase specificity on their side. e.g. if you are using `<Popper className='mt-4' />`, after the upgrade `mt-4` will not have effect. In order to make it work you'll need to do `<Popper className='[&]:mt-4' />`
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,31 @@
 # @toptal/picasso-date-picker
 
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`6aae8c6`](https://github.com/toptal/picasso/commit/6aae8c67f2f3c4979df322d30494b0f2958d6ccb)]:
+  - @toptal/picasso-popper@2.0.0
+  - @toptal/picasso-calendar@4.1.4
+  - @toptal/picasso-outlined-input@4.1.1
+  - @toptal/picasso-input@4.1.1
+
+## 3.2.0
+
+### Minor Changes
+
+- [#4775](https://github.com/toptal/picasso/pull/4775) [`290e2f4`](https://github.com/toptal/picasso/commit/290e2f4520f8675f7e29bca79d8cdea847078598) Thanks [@dulishkovych](https://github.com/dulishkovych)!
+
+### Changes
+
+- added support for warning status on form fields
+
+### Patch Changes
+
+- Updated dependencies [[`290e2f4`](https://github.com/toptal/picasso/commit/290e2f4520f8675f7e29bca79d8cdea847078598)]:
+  - @toptal/picasso-outlined-input@4.1.0
+  - @toptal/picasso-input@4.1.0
+
 ## 3.1.3
 
 ### Patch Changes

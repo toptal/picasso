@@ -14,6 +14,16 @@ const Example = () => (
             placeholder='e.g., Sant Marti'
           />
         </Form.Field>
+
+        <Form.Field error={<span>This field is required</span>}>
+          <Form.Label htmlFor='region'>Region</Form.Label>
+          <Input
+            status='error'
+            id='region'
+            width='full'
+            placeholder='e.g., Catalonia'
+          />
+        </Form.Field>
       </Form>
     </Grid.Item>
   </Grid>

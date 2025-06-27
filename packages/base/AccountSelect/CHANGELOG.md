@@ -1,5 +1,12 @@
 # @toptal/picasso-account-select
 
+## 3.0.17
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-menu@3.0.16
+
 ## 3.0.16
 
 ### Patch Changes

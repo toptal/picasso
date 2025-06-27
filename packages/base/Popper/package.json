@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-popper",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Toptal UI components library - Popper",
   "publishConfig": {
     "access": "public"
@@ -24,17 +24,14 @@
   "dependencies": {
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "3.1.0",
-    "@toptal/picasso-modal-context": "1.0.1",
-    "classnames": "^2.5.1"
+    "@toptal/picasso-modal-context": "1.0.1"
   },
-  "sideEffects": [
-    "**/styles.ts",
-    "**/styles.js"
-  ],
   "peerDependencies": {
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
-    "react": ">=16.12.0 < 19.0.0"
+    "react": ">=16.12.0 < 19.0.0",
+    "@toptal/picasso-tailwind": ">=2.5.0",
+    "@toptal/picasso-tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
     "@toptal/picasso-provider": "5.0.0",

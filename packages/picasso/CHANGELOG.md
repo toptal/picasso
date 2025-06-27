@@ -1,5 +1,90 @@
 # Change Log
 
+## 54.0.0
+
+### Major Changes
+
+- [#4777](https://github.com/toptal/picasso/pull/4777) [`6aae8c6`](https://github.com/toptal/picasso/commit/6aae8c67f2f3c4979df322d30494b0f2958d6ccb) Thanks [@ascrazy](https://github.com/ascrazy)!
+
+### Popper
+
+- migrate to tailwind styling
+
+This affects priority of Popper's default `margin` and `padding` rules. Consumers that are supplying any overrides for these rules might need to increase specificity on their side. e.g. if you are using `<Popper className='mt-4' />`, after the upgrade `mt-4` will not have effect. In order to make it work you'll need to do `<Popper className='[&]:mt-4' />`
+
+### Patch Changes
+
+- Updated dependencies [[`6aae8c6`](https://github.com/toptal/picasso/commit/6aae8c67f2f3c4979df322d30494b0f2958d6ccb)]:
+  - @toptal/picasso-popper@2.0.0
+  - @toptal/picasso-autocomplete@5.2.1
+  - @toptal/picasso-date-picker@3.2.1
+  - @toptal/picasso-dropdown@4.2.3
+  - @toptal/picasso-menu@3.0.16
+  - @toptal/picasso-select@4.1.1
+  - @toptal/picasso-page@5.4.6
+  - @toptal/picasso-tagselector@3.3.1
+  - @toptal/picasso-button@4.0.22
+  - @toptal/picasso-account-select@3.0.17
+  - @toptal/picasso-date-select@1.0.71
+  - @toptal/picasso-accordion@3.0.21
+  - @toptal/picasso-alert@3.0.33
+  - @toptal/picasso-application-update-notification@2.0.33
+  - @toptal/picasso-calendar@4.1.4
+  - @toptal/picasso-carousel@4.0.22
+  - @toptal/picasso-drawer@3.0.33
+  - @toptal/picasso-file-input@4.0.21
+  - @toptal/picasso-helpbox@5.0.22
+  - @toptal/picasso-modal@3.2.1
+  - @toptal/picasso-notification@4.0.22
+  - @toptal/picasso-outlined-input@4.1.1
+  - @toptal/picasso-pagination@4.0.23
+  - @toptal/picasso-password-input@5.1.1
+  - @toptal/picasso-prompt-modal@2.1.1
+  - @toptal/picasso-section@5.1.6
+  - @toptal/picasso-show-more@2.0.21
+  - @toptal/picasso-skeleton-loader@1.0.58
+  - @toptal/picasso-table@3.0.23
+  - @toptal/picasso-tree-view@3.0.34
+  - @toptal/picasso-form@6.3.1
+  - @toptal/picasso-dropzone@5.0.22
+  - @toptal/picasso-avatar-upload@3.0.26
+  - @toptal/picasso-input@4.1.1
+  - @toptal/picasso-number-input@4.2.1
+  - @toptal/picasso-timepicker@4.1.1
+
+## 53.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`290e2f4`](https://github.com/toptal/picasso/commit/290e2f4520f8675f7e29bca79d8cdea847078598)]:
+  - @toptal/picasso-outlined-input@4.1.0
+  - @toptal/picasso-password-input@5.1.0
+  - @toptal/picasso-autocomplete@5.2.0
+  - @toptal/picasso-number-input@4.2.0
+  - @toptal/picasso-tagselector@3.3.0
+  - @toptal/picasso-date-picker@3.2.0
+  - @toptal/picasso-timepicker@4.1.0
+  - @toptal/picasso-select@4.1.0
+  - @toptal/picasso-input@4.1.0
+  - @toptal/picasso-form@6.3.0
+  - @toptal/picasso-avatar-upload@3.0.25
+  - @toptal/picasso-page@5.4.5
+  - @toptal/picasso-date-select@1.0.70
+  - @toptal/picasso-dropzone@5.0.21
+  - @toptal/picasso-file-input@4.0.20
+
+## 53.2.0
+
+### Minor Changes
+
+- [#4774](https://github.com/toptal/picasso/pull/4774) [`bd230dc`](https://github.com/toptal/picasso/commit/bd230dc10767f1318503c90523904a01bcd04e6a) Thanks [@ascrazy](https://github.com/ascrazy)!
+- Allowed variant=primary for the PromptModal
+
+### Patch Changes
+
+- Updated dependencies [[`bd230dc`](https://github.com/toptal/picasso/commit/bd230dc10767f1318503c90523904a01bcd04e6a)]:
+  - @toptal/picasso-prompt-modal@2.1.0
+
 ## 53.1.3
 
 ### Patch Changes

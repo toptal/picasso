@@ -1,5 +1,37 @@
 # @toptal/picasso-rich-text-editor
 
+## 17.2.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-select@4.1.1
+  - @toptal/picasso-button@4.0.22
+  - @toptal/picasso-file-input@4.0.21
+  - @toptal/picasso-modal@3.2.1
+  - @toptal/picasso-outlined-input@4.1.1
+  - @toptal/picasso-form@6.3.1
+  - @toptal/picasso-input@4.1.1
+
+## 17.2.0
+
+### Minor Changes
+
+- [#4775](https://github.com/toptal/picasso/pull/4775) [`290e2f4`](https://github.com/toptal/picasso/commit/290e2f4520f8675f7e29bca79d8cdea847078598) Thanks [@dulishkovych](https://github.com/dulishkovych)!
+
+### Changes
+
+- added support for warning status on form fields
+
+### Patch Changes
+
+- Updated dependencies [[`290e2f4`](https://github.com/toptal/picasso/commit/290e2f4520f8675f7e29bca79d8cdea847078598)]:
+  - @toptal/picasso-outlined-input@4.1.0
+  - @toptal/picasso-select@4.1.0
+  - @toptal/picasso-input@4.1.0
+  - @toptal/picasso-form@6.3.0
+  - @toptal/picasso-file-input@4.0.20
+
 ## 17.1.0
 
 ### Minor Changes

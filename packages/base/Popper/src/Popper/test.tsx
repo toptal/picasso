@@ -11,9 +11,6 @@ jest.mock('@toptal/picasso-provider', () => ({
   useBreakpoint: () => true,
   usePicassoRoot: jest.fn(),
 }))
-jest.mock('@material-ui/core/styles', () => ({
-  makeStyles: jest.fn(() => () => ({ root: 'TEST_CLASS_NAME+1' })),
-}))
 jest.mock('@toptal/picasso-utils', () => ({
   __esModule: true,
   useWidthOf: () => '300px',
@@ -30,7 +27,8 @@ rootDiv.setAttribute('id', 'root')
 
 const anchorEl = document.body
 const children = 'some children'
-const className = 'TEST_CLASS_NAME+1'
+const className =
+  'z-modal xs:max-md:w-screen xs:max-md:max-w-screen xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of-boundaries]]:hidden'
 const disablePortal = false
 const open = true
 const placement = 'top'

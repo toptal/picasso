@@ -1,5 +1,12 @@
 # @toptal/picasso-application-update-notification
 
+## 2.0.33
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.22
+
 ## 2.0.32
 
 ### Patch Changes
