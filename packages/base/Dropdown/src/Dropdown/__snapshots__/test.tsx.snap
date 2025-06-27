@@ -58,7 +58,7 @@ exports[`Dropdown should render menu 1`] = `
         </div>
       </div>
       <div
-        class="PicassoPopper-root shadow-2"
+        class="z-modal xs:max-md:w-screen xs:max-md:max-w xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of shadow-2"
         role="tooltip"
         style="position: absolute; top: 0px; left: 0px;"
         x-placement="bottom-end"
@@ -188,7 +188,7 @@ exports[`Dropdown should render menu with focus 1`] = `
         </div>
       </div>
       <div
-        class="PicassoPopper-root shadow-2"
+        class="z-modal xs:max-md:w-screen xs:max-md:max-w xs:max-md:p-0 xs:max-md:m-0 [&[x-out-of shadow-2"
         role="tooltip"
         style="position: absolute; top: 0px; left: 0px; transform: translate3d(NaNpx, NaNpx, 0); will-change: transform;"
         x-placement="bottom-end"
