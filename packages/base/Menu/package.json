@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-menu",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "description": "Toptal UI components library - Menu",
   "publishConfig": {
     "access": "public"
@@ -27,7 +27,7 @@
     "@toptal/picasso-icons": "1.12.1",
     "@toptal/picasso-link": "3.0.5",
     "@toptal/picasso-paper": "4.0.3",
-    "@toptal/picasso-popper": "1.1.0",
+    "@toptal/picasso-popper": "2.0.0",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.3",
     "@toptal/picasso-utils": "3.1.0",

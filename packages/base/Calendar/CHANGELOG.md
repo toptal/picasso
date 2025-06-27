@@ -1,5 +1,12 @@
 # @toptal/picasso-calendar
 
+## 4.1.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.22
+
 ## 4.1.3
 
 ### Patch Changes

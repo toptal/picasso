@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-skeleton-loader",
-  "version": "1.0.57",
+  "version": "1.0.58",
   "description": "Toptal UI components library - SkeletonLoader",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "4.0.21",
+    "@toptal/picasso-button": "4.0.22",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "3.1.0",
     "react-content-loader": "^6.2.1"
