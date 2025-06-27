@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 6.3.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-alert@3.0.33
+
 ## 6.3.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @toptal/picasso-menu
 
+## 3.0.16
+
+### Patch Changes
+
+- Updated dependencies [[`6aae8c6`](https://github.com/toptal/picasso/commit/6aae8c67f2f3c4979df322d30494b0f2958d6ccb)]:
+  - @toptal/picasso-popper@2.0.0
+
 ## 3.0.15
 
 ### Patch Changes
