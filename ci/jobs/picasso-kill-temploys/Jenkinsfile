@@ -14,14 +14,14 @@ pipeline {
   }
 
   environment {
-    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
+    GITHUB_TOKEN = credentials('TOPTAL_DEVBOT_TOKEN')
   }
 
   stages {
     stage('Kill outdated docs') {
         steps {
             script {
-              sshagent(credentials: ['e707ac4d-9c1a-43d1-a139-e3fd8c9ef412']) { //provbot (jenkins/provbot)
+              sshagent(credentials: ['SSH_PROVBOT_STAGING']) { //provbot (jenkins/provbot)
                 existingReleases = sh(returnStdout: true, script: 'ssh docs@docs.staging.toptal.net "find ~/docs/picasso/ -maxdepth 1 -mindepth 1 -type d | xargs basename -a"').split("\n")
                 openReleases = sh(returnStdout: true, script: "curl https://api.github.com/repos/toptal/picasso/pulls | jq -r '.[] | .head.ref'")
                 releasesToDelete = existingReleases.findAll { it != "master" && !openReleases.contains(it) }

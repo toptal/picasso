@@ -27,8 +27,8 @@ pipeline {
   }
 
   environment {
-    GITHUB_TOKEN = credentials('toptal-devbot-personal-token')
-    NPM_TOKEN = credentials('npm-token-for-toptal-private-registry-publish')
+    GITHUB_TOKEN = credentials('TOPTAL_DEVBOT_TOKEN')
+    NPM_TOKEN = credentials('NPM_TOKEN')
     GIT_AUTHOR_NAME = 'toptal-davinci-bot'
     GIT_COMMITTER_NAME = 'toptal-davinci-bot'
     GIT_AUTHOR_EMAIL = 'milos.mosovsky+davinci@toptal.com'
@@ -41,7 +41,7 @@ pipeline {
         info "== Checking out master"
           gitCheckout(
             branches: "$GIT_BRANCH",
-            credentials: [username: 'toptal-build', description: 'toptal-build-ssh-key'],
+            credentials: [id: 'SSH_KEY_TOPTAL_BUILD'],
             url: 'git@github.com:toptal/picasso.git',
             refspec: "+refs/heads/${GIT_BRANCH}:refs/remotes/origin/${GIT_BRANCH}",
             additionalBehaviours: [
@@ -82,7 +82,7 @@ pipeline {
           PWD = sh(returnStdout: true, script: 'pwd').trim()
         }
 
-        sshagent(credentials: ['toptal-build-ssh-key']) {
+        sshagent(credentials: ['SSH_KEY_TOPTAL_BUILD']) {
           // $SSH_AUTH_SOCK - is the ssh key passed from "picasso-ssh-deploy-key" credentials
           //
           // -u 469:469 \
