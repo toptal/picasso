@@ -35,7 +35,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v18.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -52,7 +52,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v18.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -70,7 +70,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
           echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
-      - uses: toptal/davinci-github-actions/build-push-image@v17.3.0
+      - uses: toptal/davinci-github-actions/build-push-image@v18.0.0
         with:
           sha: ${{ github.event.pull_request.head.sha }}
           image-name: picasso
@@ -94,7 +94,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v18.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -108,7 +108,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v18.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -127,7 +127,7 @@ jobs:
           node-version: 20.18
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v17.2.0
+        uses: toptal/davinci-github-actions/report-missing-changeset@v18.0.0
         with:
           github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
 
@@ -139,7 +139,7 @@ jobs:
         uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+        uses: toptal/davinci-github-actions/yarn-install@v18.0.0
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
@@ -173,7 +173,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v18.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -185,7 +185,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v18.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
@@ -202,7 +202,7 @@ jobs:
           node-version: 20.18
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+        uses: toptal/davinci-github-actions/yarn-install@v18.0.0
 
       - name: Visual Tests
         run: yarn happo:storybook
@@ -232,7 +232,7 @@ jobs:
 
       - name: GSM Secrets
         id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
+        uses: toptal/davinci-github-actions/gsm-secrets@v18.0.0
         with:
           workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
           service_account: ${{ secrets.SA_IDENTITY_POOL }}
@@ -249,7 +249,7 @@ jobs:
 
       - name: Parse secrets
         id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
+        uses: toptal/davinci-github-actions/expose-json-outputs@v18.0.0
         with:
           json: ${{ steps.secrets_manager.outputs.secrets }}
 
