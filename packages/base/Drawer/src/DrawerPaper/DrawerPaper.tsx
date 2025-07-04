@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
-import cx from 'classnames'
 import type { HTMLAttributes, Ref } from 'react'
 import { Paper } from '@toptal/picasso-paper'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AnchorType } from '../types'
 
@@ -20,18 +20,16 @@ const DrawerPaper = forwardRef(
         ref={ref}
         tabIndex={-1}
         elevation={16}
-        className={cx(
+        className={twMerge(
           className,
           'fixed top-0 h-full flex flex-col outline-0 z-drawer',
           'max-w-full overflow-y-auto webkit-overflow-scrolling-touch',
-          {
-            'left-0 right-auto': anchor === 'left',
-            'left-auto right-0': anchor === 'right',
-            'bottom-auto top-0 left-0 right-0 h-auto max-h-full':
-              anchor === 'top',
-            'bottom-0 top-auto left-0 right-0 h-auto max-h-full':
-              anchor === 'bottom',
-          }
+          anchor === 'left' && 'left-0 right-auto',
+          anchor === 'right' && 'left-auto right-0',
+          anchor === 'top' &&
+            'bottom-auto top-0 left-0 right-0 h-auto max-h-full',
+          anchor === 'bottom' &&
+            'bottom-0 top-auto left-0 right-0 h-auto max-h-full'
         )}
       >
         {children}

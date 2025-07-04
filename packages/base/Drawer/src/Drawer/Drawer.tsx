@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { Modal } from '@mui/base/Modal'
-import cx from 'classnames'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import type { ReactNode } from 'react'
@@ -13,6 +12,7 @@ import {
   useIsomorphicLayoutEffect,
   usePageScrollLock,
 } from '@toptal/picasso-utils'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AnchorType, WidthType } from '../types'
 import { DrawerTitle } from '../DrawerTitle'
@@ -104,7 +104,11 @@ export const Drawer = (props: Props) => {
     <Modal
       open={open}
       ref={ref}
-      className={cx(className, 'z-drawer inset-0', { fixed: !disableBackdrop })}
+      className={twMerge(
+        className,
+        'z-drawer inset-0',
+        !disableBackdrop && 'fixed'
+      )}
       slots={{
         backdrop: disableBackdrop ? undefined : Backdrop,
       }}
@@ -131,7 +135,10 @@ export const Drawer = (props: Props) => {
           <Container
             flex
             direction='column'
-            className={cx('max-w-full relative flex-1', widthClassName[width])}
+            className={twMerge(
+              'max-w-full relative flex-1',
+              widthClassName[width]
+            )}
           >
             <DrawerTitle title={title} />
             <Container flex className='flex-1'>
