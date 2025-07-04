@@ -1,6 +1,7 @@
 import type { ReactElement, HTMLAttributes, FunctionComponent } from 'react'
 import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
+import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import { TableSection, TableSectionContext } from '../Table'
 import { TableCell } from '../TableCell'
@@ -20,12 +21,15 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   HTMLTableSectionElement,
   Props
 >(function TableSectionHead(props, ref) {
-  const { colSpan, icon, children, style } = props
+  const { colSpan, icon, children, style, className } = props
 
   return (
     <TableBody ref={ref}>
       <TableRow
-        className='min-h-10 border-y border-solid border-gray-200'
+        className={twMerge(
+          'min-h-10 border-y border-solid border-gray-200',
+          className
+        )}
         style={style}
       >
         <TableSectionContext.Provider value={TableSection.HEAD}>

@@ -10,7 +10,7 @@ exports[`TableSectionHead renders 1`] = `
     >
       <tbody>
         <tr
-          class="border-0 min-h border-y border-solid border-gray"
+          class="border-0 min-h border-y border-solid border-gray bg-red"
         >
           <th
             class="h-10 py-2 border-none px-4 text-left"
