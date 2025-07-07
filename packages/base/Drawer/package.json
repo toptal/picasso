@@ -30,8 +30,7 @@
     "@toptal/picasso-container": "3.1.2",
     "@toptal/picasso-icons": "1.12.1",
     "@toptal/picasso-typography": "4.0.3",
-    "@toptal/picasso-utils": "3.1.0",
-    "classnames": "^2.5.1"
+    "@toptal/picasso-utils": "3.1.0"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -41,13 +40,15 @@
     "@material-ui/core": "4.12.4",
     "@toptal/picasso-provider": "*",
     "@toptal/picasso-tailwind": ">=2.7",
+    "@toptal/picasso-tailwind-merge": "^2.0.0",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.0"
+    "@toptal/picasso-provider": "5.0.0",
+    "@toptal/picasso-tailwind-merge": "2.0.3"
   },
   "files": [
     "dist-package/**",

@@ -5,6 +5,7 @@
   "references": [
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind" },
+    { "path": "../../picasso-tailwind-merge" },
     { "path": "../Backdrop" },
     { "path": "../Button" },
     { "path": "../Container" },
