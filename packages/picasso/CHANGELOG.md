@@ -1,5 +1,12 @@
 # Change Log
 
+## 54.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`54593ef`](https://github.com/toptal/picasso/commit/54593efdbe6cb655584e06023ea5e5378e0e2410)]:
+  - @toptal/picasso-drawer@3.0.34
+
 ## 54.0.1
 
 ### Patch Changes
