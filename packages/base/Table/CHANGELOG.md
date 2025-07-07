@@ -1,5 +1,12 @@
 # @toptal/picasso-table
 
+## 3.0.24
+
+### Patch Changes
+
+- [#4782](https://github.com/toptal/picasso/pull/4782) [`099f76c`](https://github.com/toptal/picasso/commit/099f76c548a70d6c5988515f6fe6b8ec15dc560c) Thanks [@ascrazy](https://github.com/ascrazy)!
+- update TableSectionHead to apply incoming className prop
+
 ## 3.0.23
 
 ### Patch Changes

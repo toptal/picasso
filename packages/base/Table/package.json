@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-table",
-  "version": "3.0.23",
+  "version": "3.0.24",
   "description": "Toptal UI components library - Table",
   "publishConfig": {
     "access": "public"
