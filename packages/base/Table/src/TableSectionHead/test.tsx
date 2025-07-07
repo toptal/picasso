@@ -7,7 +7,7 @@ import { TableCompound as Table } from '../TableCompound'
 const renderTableSectionHead = () => {
   return render(
     <Table>
-      <Table.SectionHead>Test</Table.SectionHead>
+      <Table.SectionHead className='bg-red-500'>Test</Table.SectionHead>
     </Table>
   )
 }
