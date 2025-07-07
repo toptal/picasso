@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso",
-  "version": "54.0.1",
+  "version": "54.0.2",
   "description": "Toptal UI components library",
   "main": "dist-package/src/index.js",
   "module": "dist-package/src/index.js",
@@ -52,7 +52,7 @@
     "@toptal/picasso-container": "3.1.2",
     "@toptal/picasso-date-picker": "3.2.1",
     "@toptal/picasso-date-select": "1.0.71",
-    "@toptal/picasso-drawer": "3.0.33",
+    "@toptal/picasso-drawer": "3.0.34",
     "@toptal/picasso-dropdown": "4.2.3",
     "@toptal/picasso-dropzone": "5.0.22",
     "@toptal/picasso-empty-state": "2.0.13",

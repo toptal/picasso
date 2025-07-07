@@ -1,5 +1,13 @@
 # @toptal/picasso-drawer
 
+## 3.0.34
+
+### Patch Changes
+
+- [#4781](https://github.com/toptal/picasso/pull/4781) [`54593ef`](https://github.com/toptal/picasso/commit/54593efdbe6cb655584e06023ea5e5378e0e2410) Thanks [@pudek357](https://github.com/pudek357)!
+- remove usage of Material-UI's "createStyles"
+  - use "@toptal/picasso-tailwind-merge" instead of "classnames"
+
 ## 3.0.33
 
 ### Patch Changes
