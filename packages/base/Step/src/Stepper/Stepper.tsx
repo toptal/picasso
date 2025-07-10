@@ -76,14 +76,6 @@ const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
   )
 })
 
-Stepper.defaultProps = {
-  active: 0,
-  hideLabels: false,
-  direction: 'horizontal',
-  overflowEllipsis: false,
-  steps: [],
-}
-
 Stepper.displayName = 'Stepper'
 
 export default Stepper

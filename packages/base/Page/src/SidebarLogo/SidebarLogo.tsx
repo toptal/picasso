@@ -40,8 +40,6 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-SidebarLogo.defaultProps = {}
-
 SidebarLogo.displayName = 'SidebarLogo'
 
 export default SidebarLogo

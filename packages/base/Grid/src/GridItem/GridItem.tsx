@@ -82,8 +82,6 @@ export const GridItem = forwardRef<HTMLDivElement, Props>(function GridItem(
   )
 })
 
-GridItem.defaultProps = {}
-
 GridItem.displayName = 'GridItem'
 
 export default GridItem
