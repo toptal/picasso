@@ -70,8 +70,6 @@ const FieldLabel = ({
   )
 }
 
-FieldLabel.defaultProps = {}
-
 FieldLabel.displayName = 'FieldLabel'
 
 export default FieldLabel

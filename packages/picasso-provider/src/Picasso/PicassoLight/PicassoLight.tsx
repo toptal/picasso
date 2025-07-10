@@ -19,8 +19,8 @@ type PicassoLightProps = Omit<
 >
 
 const PicassoLight = ({
-  reset,
-  responsive,
+  reset = true,
+  responsive = true,
   environment = 'development',
   children,
   RootComponent = PicassoRootNode,
@@ -69,14 +69,6 @@ const PicassoLight = ({
       </MuiThemeProvider>
     </StylesProvider>
   )
-}
-
-PicassoLight.defaultProps = {
-  environment: 'development',
-  responsive: true,
-  reset: true,
-  injectFirst: undefined,
-  RootComponent: PicassoRootNode,
 }
 
 export default PicassoLight
