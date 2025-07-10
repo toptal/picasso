@@ -27,14 +27,16 @@ const normalizeValue = (value: number) =>
   Math.min(Math.max(value, MIN_VALUE), MAX_VALUE)
 
 export const ProgressBar = forwardRef<HTMLDivElement, Props>(
-  function ProgressBar(props, ref) {
-    const {
+  function ProgressBar(
+    { value, showPercentage = false, 'data-testid': dataTestId, ...restProps },
+    ref
+  ) {
+    const classes = useStyles({
       value,
       showPercentage,
       'data-testid': dataTestId,
-      ...restProps
-    } = props
-    const classes = useStyles(props)
+      ...restProps,
+    })
 
     const percentage = normalizeValue(value)
 
@@ -51,7 +53,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
           <div
             className={cx(classes.progressIndicator)}
             style={{
-              width: `${props.value}%`,
+              width: `${value}%`,
             }}
           />
         </div>
@@ -72,9 +74,5 @@ export const ProgressBar = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-ProgressBar.defaultProps = {
-  showPercentage: false,
-}
 
 export default ProgressBar

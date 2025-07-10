@@ -42,10 +42,6 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
   )
 })
 
-Logo.defaultProps = {
-  variant: 'default',
-}
-
 Logo.displayName = 'Logo'
 
 export default Logo

@@ -43,11 +43,11 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     avatar,
     name,
     renderName,
-    size,
+    size = 'xsmall',
     title,
     renderTitle,
-    invert,
-    center,
+    invert = false,
+    center = 'auto',
     children,
     className,
     style,
@@ -115,12 +115,6 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     </Container>
   )
 })
-
-UserBadge.defaultProps = {
-  center: 'auto',
-  invert: false,
-  size: 'xsmall',
-}
 
 UserBadge.displayName = 'UserBadge'
 

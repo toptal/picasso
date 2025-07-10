@@ -74,7 +74,7 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
     disabled,
     loading,
     icon,
-    iconPosition,
+    iconPosition = 'left',
     onClick,
     ...rest
   } = props
@@ -102,10 +102,6 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
     />
   )
 })
-
-ButtonAction.defaultProps = {
-  iconPosition: 'left',
-}
 
 ButtonAction.displayName = 'ButtonAction'
 

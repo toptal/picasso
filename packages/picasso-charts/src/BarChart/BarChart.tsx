@@ -110,9 +110,9 @@ const DEFAULT_BAR_GAP = 2
 const BarChart = <T extends string>({
   data,
   className,
-  height,
-  width,
-  tooltip,
+  height = 200,
+  width = 'auto',
+  tooltip = false,
   customTooltip,
   allowTooltipEscapeViewBox,
   getBarColor = defaultGetBarColor,
@@ -120,9 +120,9 @@ const BarChart = <T extends string>({
   getBarLabelColor = defaultGetBarLabelColor,
   renderBarIndicators,
   testIds,
-  showBarLabel,
+  showBarLabel = true,
   isAnimationActive,
-  layout,
+  layout = 'horizontal',
   stackedBars,
   showEveryNthTickOnXAxis = 1,
   showEveryNthTickOnYAxis = 1,
@@ -258,15 +258,6 @@ const BarChart = <T extends string>({
       </ResponsiveContainer>
     </div>
   )
-}
-
-BarChart.defaultProps = {
-  height: 200,
-  width: 'auto',
-  tooltip: false,
-  showBarLabel: true,
-  labelKey: 'name',
-  layout: 'horizontal',
 }
 
 export default BarChart

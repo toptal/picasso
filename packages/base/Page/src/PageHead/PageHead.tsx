@@ -93,7 +93,7 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
   props,
   ref
 ) {
-  const { children, noBorder, rightPadding, className } = props
+  const { children, noBorder = false, rightPadding = false, className } = props
   const withBorder = !noBorder
 
   return (
@@ -110,11 +110,6 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
     </Container>
   )
 })
-
-PageHead.defaultProps = {
-  rightPadding: false,
-  noBorder: false,
-}
 
 PageHead.displayName = 'PageHead'
 

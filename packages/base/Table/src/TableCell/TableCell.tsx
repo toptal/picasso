@@ -60,7 +60,7 @@ const getTypographySettings = (
 export const TableCell = forwardRef<HTMLTableCellElement, Props>(
   function TableCell(props, ref) {
     const {
-      align,
+      align = 'inherit',
       className,
       style,
       children,
@@ -121,10 +121,6 @@ export const TableCell = forwardRef<HTMLTableCellElement, Props>(
     )
   }
 )
-
-TableCell.defaultProps = {
-  align: 'inherit',
-}
 
 TableCell.displayName = 'TableCell'
 

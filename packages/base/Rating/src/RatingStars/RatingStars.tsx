@@ -32,7 +32,7 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
     value,
     onChange,
     renderItem = (_, icon) => icon,
-    max,
+    max = 5,
     interactive = true,
     size = 'small',
     ...rest
@@ -104,12 +104,6 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
     </Container>
   )
 })
-
-RatingStars.defaultProps = {
-  interactive: true,
-  max: 5,
-  size: 'small',
-}
 
 RatingStars.displayName = 'RatingStars'
 

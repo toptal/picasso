@@ -215,10 +215,5 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
 })
 
 Section.displayName = 'Section'
-Section.defaultProps = {
-  collapsible: false,
-  defaultCollapsed: true,
-  titleSize: 'medium',
-}
 
 export default Section

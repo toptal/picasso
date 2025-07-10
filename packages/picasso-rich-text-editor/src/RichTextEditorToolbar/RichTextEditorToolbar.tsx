@@ -49,12 +49,17 @@ export const ALLOWED_HEADER_TYPE = '3'
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
   function RichTextEditorToolbar(props: Props, ref) {
     const {
-      format,
-      onBoldClick,
-      onItalicClick,
-      onHeaderChange,
-      onUnorderedClick,
-      onOrderedClick,
+      format = {
+        bold: false,
+        italic: false,
+        list: false,
+        header: '',
+      },
+      onBoldClick = () => {},
+      onItalicClick = () => {},
+      onHeaderChange = () => {},
+      onUnorderedClick = () => {},
+      onOrderedClick = () => {},
       testIds,
       id,
     } = props
@@ -131,20 +136,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-RichTextEditorToolbar.defaultProps = {
-  format: {
-    bold: false,
-    italic: false,
-    list: false,
-    header: '',
-  },
-  onBoldClick: () => {},
-  onItalicClick: () => {},
-  onHeaderChange: () => {},
-  onUnorderedClick: () => {},
-  onOrderedClick: () => {},
-}
 
 RichTextEditorToolbar.displayName = 'RichTextEditorToolbar'
 

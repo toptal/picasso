@@ -42,7 +42,7 @@ const getDefaultType = (
 
 export const List = (props: Props) => {
   const {
-    variant,
+    variant = 'unordered',
     children,
     start = 1,
     className,
@@ -89,11 +89,6 @@ export const List = (props: Props) => {
       </ListContextProvider>
     </ListTag>
   )
-}
-
-List.defaultProps = {
-  variant: 'unordered',
-  start: 1,
 }
 
 List.Item = ListItem

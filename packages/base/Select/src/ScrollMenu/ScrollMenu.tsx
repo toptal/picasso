@@ -62,7 +62,7 @@ const ScrollMenu = (props: Props) => {
     fixedHeader,
     fixedFooter,
     className,
-    role,
+    role = 'menu',
     testIds,
     'data-testid': dataTestId,
     ...rest
@@ -101,10 +101,6 @@ const ScrollMenu = (props: Props) => {
       </div>
     </Menu>
   )
-}
-
-ScrollMenu.defaultProps = {
-  role: 'menu',
 }
 
 ScrollMenu.displayName = 'ScrollMenu'

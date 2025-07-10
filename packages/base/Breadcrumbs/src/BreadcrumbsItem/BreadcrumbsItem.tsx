@@ -27,16 +27,18 @@ const Active = (props: { children: ReactNode }) => {
 export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function BreadcrumbsItem(props, ref) {
-  const {
-    as,
+>(function BreadcrumbsItem(
+  {
+    as = 'span',
     active,
     children,
     className,
     titleCase: propsTitleCase,
     ...rest
-  } = props
-  const Component = active ? Active : as || 'span'
+  },
+  ref
+) {
+  const Component = active ? Active : as
 
   const titleCase = useTitleCase(propsTitleCase)
 
@@ -50,10 +52,6 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
     </Component>
   )
 })
-
-BreadcrumbsItem.defaultProps = {
-  as: 'span',
-}
 
 BreadcrumbsItem.displayName = 'BreadcrumbsItem'
 

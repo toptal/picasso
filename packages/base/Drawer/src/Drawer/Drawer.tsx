@@ -61,9 +61,9 @@ const oppositeDirection = {
 export const Drawer = (props: Props) => {
   const {
     children,
-    disablePortal,
+    disablePortal = false,
     open,
-    onClose,
+    onClose = () => {},
     title,
     width = 'regular',
     transitionProps,
@@ -159,12 +159,5 @@ export const Drawer = (props: Props) => {
 }
 
 Drawer.displayName = 'Drawer'
-
-Drawer.defaultProps = {
-  anchor: 'right',
-  disablePortal: false,
-  onClose: () => {},
-  width: 'regular',
-}
 
 export default Drawer

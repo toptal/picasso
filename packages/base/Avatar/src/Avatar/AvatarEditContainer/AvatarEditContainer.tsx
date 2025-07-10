@@ -75,8 +75,4 @@ export const AvatarEditContainer = (props: Props) => {
 
 AvatarEditContainer.displayName = 'AvatarEditContainer'
 
-AvatarEditContainer.defaultProps = {
-  size: 'small',
-}
-
 export default AvatarEditContainer

@@ -128,7 +128,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     value,
     variant = 'light',
     role = 'menuitem',
-    nonSelectable,
+    nonSelectable = false,
     onClick,
     onMouseEnter,
     icon,
@@ -250,12 +250,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     </>
   )
 })
-
-MenuItem.defaultProps = {
-  as: 'li',
-  variant: 'light',
-  nonSelectable: false,
-}
 
 MenuItem.displayName = 'MenuItem'
 

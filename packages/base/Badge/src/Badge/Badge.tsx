@@ -82,11 +82,6 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   )
 })
 
-Badge.defaultProps = {
-  variant: 'white',
-  size: 'large',
-}
-
 Badge.displayName = 'Badge'
 
 export default Badge

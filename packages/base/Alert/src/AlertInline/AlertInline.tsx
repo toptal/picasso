@@ -33,7 +33,7 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
   props,
   ref
 ) {
-  const { variant, children, className } = props
+  const { variant = 'yellow', children, className } = props
   const icon = icons[variant!]
 
   let typographyColor = variant as ColorType
@@ -60,10 +60,6 @@ export const AlertInline = forwardRef<HTMLDivElement, Props>(function Alert(
     </Container>
   )
 })
-
-AlertInline.defaultProps = {
-  variant: 'yellow',
-}
 
 AlertInline.displayName = 'AlertInline'
 

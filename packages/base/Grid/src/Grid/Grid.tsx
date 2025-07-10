@@ -129,13 +129,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
   )
 })
 
-Grid.defaultProps = {
-  alignItems: 'flex-start',
-  direction: 'row',
-  justifyContent: 'flex-start',
-  wrap: 'wrap',
-}
-
 Grid.displayName = 'Grid'
 
 export default Grid

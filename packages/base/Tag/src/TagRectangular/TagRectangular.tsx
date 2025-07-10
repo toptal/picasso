@@ -57,10 +57,6 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-TagRectangular.defaultProps = {
-  variant: 'light-grey',
-}
-
 TagRectangular.displayName = 'TagRectangular'
 
 export default TagRectangular

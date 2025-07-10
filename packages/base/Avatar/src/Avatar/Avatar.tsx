@@ -37,7 +37,7 @@ export const Avatar = (props: Props) => {
     src,
     className,
     name,
-    size,
+    size = 'xsmall',
     style,
     showEmblem,
     testIds,
@@ -132,10 +132,6 @@ export const Avatar = (props: Props) => {
   }
 
   return avatar
-}
-
-Avatar.defaultProps = {
-  size: 'xsmall',
 }
 
 Avatar.displayName = 'Avatar'

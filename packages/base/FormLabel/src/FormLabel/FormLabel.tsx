@@ -52,7 +52,7 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     htmlFor,
     className,
     style,
-    inline,
+    inline = false,
     as: Component = 'label',
     titleCase: propsTitleCase,
     requiredDecoration,
@@ -94,12 +94,6 @@ export const FormLabel = forwardRef<HTMLLabelElement, Props>(function FormLabel(
     </Component>
   )
 })
-
-FormLabel.defaultProps = {
-  as: 'label',
-  inline: false,
-  size: 'medium',
-}
 
 FormLabel.displayName = 'FormLabel'
 

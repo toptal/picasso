@@ -27,7 +27,7 @@ const TimelineRow = ({
   children,
   icon,
   date,
-  hasConnector,
+  hasConnector = true,
   'data-testid': dataTestId,
   testIds = {},
 }: Props) => {
@@ -94,10 +94,6 @@ const TimelineRow = ({
       </Container>
     </Container>
   )
-}
-
-TimelineRow.defaultProps = {
-  hasConnector: true,
 }
 
 TimelineRow.displayName = 'TimelineRow'

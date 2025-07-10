@@ -6,16 +6,19 @@ import { Stepper } from '../Stepper'
 export type Props = StepperBaseProps
 
 export const StepperVertical = forwardRef(function StepperVertical(
-  props: Props,
+  { active = 0, steps = [], ...rest }: Props,
   ref: React.ForwardedRef<HTMLDivElement>
 ) {
-  return <Stepper ref={ref} {...props} direction='vertical' />
+  return (
+    <Stepper
+      ref={ref}
+      active={active}
+      steps={steps}
+      {...rest}
+      direction='vertical'
+    />
+  )
 })
-
-StepperVertical.defaultProps = {
-  active: 0,
-  steps: [],
-}
 
 StepperVertical.displayName = 'StepperVertical'
 

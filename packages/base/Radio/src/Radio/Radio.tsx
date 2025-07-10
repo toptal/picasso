@@ -44,7 +44,7 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       style,
       label,
       checked,
-      disabled,
+      disabled = false,
       value,
       onChange,
       titleCase,
@@ -103,10 +103,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     )
   }
 )
-
-Radio.defaultProps = {
-  disabled: false,
-}
 
 Radio.displayName = 'Radio'
 

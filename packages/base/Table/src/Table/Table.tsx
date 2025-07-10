@@ -49,11 +49,6 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
   )
 })
 
-Table.defaultProps = {
-  spacing: 'regular',
-  variant: 'bordered',
-}
-
 Table.displayName = 'Table'
 
 export default Table

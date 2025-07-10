@@ -21,7 +21,7 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
   HTMLTableSectionElement,
   Props
 >(function TableSectionHead(props, ref) {
-  const { colSpan, icon, children, style, className } = props
+  const { colSpan = MAX_COL_SPAN, icon, children, style, className } = props
 
   return (
     <TableBody ref={ref}>
@@ -46,10 +46,6 @@ export const TableSectionHead: FunctionComponent<Props> = forwardRef<
     </TableBody>
   )
 })
-
-TableSectionHead.defaultProps = {
-  colSpan: MAX_COL_SPAN,
-}
 
 TableSectionHead.displayName = 'TableSectionHead'
 

@@ -28,8 +28,8 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     children,
     className,
     style,
-    variant,
-    allowNestedNavigation,
+    variant = 'slide',
+    allowNestedNavigation = true,
     testIds,
     role = 'menu',
     ...rest
@@ -120,11 +120,6 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     </MenuContext.Provider>
   )
 })
-
-Menu.defaultProps = {
-  variant: 'slide',
-  allowNestedNavigation: true,
-}
 
 Menu.displayName = 'Menu'
 

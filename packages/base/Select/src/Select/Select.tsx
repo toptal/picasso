@@ -36,38 +36,79 @@ const purifyProps = (
 export const Select = documentable(
   forwardRef(
     <T extends ValueType, M extends boolean = false>(
-      { native, ...props }: SelectProps<T, M>,
+      {
+        native = false,
+        disabled = false,
+        getDisplayValue = getOptionText,
+        iconPosition = 'start',
+        loading = false,
+        noOptionsText = 'No matches found',
+        onChange = noop,
+        onBlur = noop,
+        renderOption: customRenderOption = renderOption,
+        size = 'medium',
+        width = 'full',
+        searchThreshold = DEFAULT_SEARCH_THRESHOLD,
+        limit = DEFAULT_LIMIT,
+        enableAutofill = false,
+        searchPlaceholder = 'Search',
+        status = 'default',
+        enableResetSearch = false,
+        ...props
+      }: SelectProps<T, M>,
       ref: React.Ref<HTMLInputElement> | null
     ) => {
       return native ? (
         // eslint-disable-next-line react/jsx-props-no-spreading
-        <NativeSelect {...purifyProps(props)} ref={ref} />
+        <NativeSelect
+          {...purifyProps({
+            disabled,
+            getDisplayValue,
+            iconPosition,
+            loading,
+            noOptionsText,
+            onChange,
+            onBlur,
+            renderOption: customRenderOption,
+            size,
+            width,
+            searchThreshold,
+            limit,
+            enableAutofill,
+            searchPlaceholder,
+            status,
+            enableResetSearch,
+            ...props,
+          })}
+          ref={ref}
+        />
       ) : (
         // eslint-disable-next-line react/jsx-props-no-spreading
-        <NonNativeSelect {...purifyProps(props)} ref={ref} />
+        <NonNativeSelect
+          {...purifyProps({
+            disabled,
+            getDisplayValue,
+            iconPosition,
+            loading,
+            noOptionsText,
+            onChange,
+            onBlur,
+            renderOption: customRenderOption,
+            size,
+            width,
+            searchThreshold,
+            limit,
+            enableAutofill,
+            searchPlaceholder,
+            status,
+            enableResetSearch,
+            ...props,
+          })}
+          ref={ref}
+        />
       )
     }
   )
 )
-
-Select.defaultProps = {
-  disabled: false,
-  getDisplayValue: getOptionText,
-  iconPosition: 'start',
-  loading: false,
-  noOptionsText: 'No matches found',
-  onChange: noop,
-  onBlur: noop,
-  renderOption: renderOption,
-  size: 'medium',
-  width: 'full',
-  searchThreshold: DEFAULT_SEARCH_THRESHOLD,
-  limit: DEFAULT_LIMIT,
-  enableAutofill: false,
-  searchPlaceholder: 'Search',
-  native: false,
-  status: 'default',
-  enableResetSearch: false,
-}
 
 export default Select

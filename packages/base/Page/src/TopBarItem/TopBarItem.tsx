@@ -41,7 +41,7 @@ const textColorClasses =
 
 export const TopBarItem: OverridableComponent<Props> = memo(
   forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
-    const { className, icon } = props
+    const { className, icon, selected = false, onClick = noop } = props
 
     return (
       <SidebarItem
@@ -57,15 +57,12 @@ export const TopBarItem: OverridableComponent<Props> = memo(
           className
         )}
         ref={ref}
+        onClick={onClick}
+        selected={selected}
       />
     )
   })
 )
-
-TopBarItem.defaultProps = {
-  onClick: noop,
-  selected: false,
-}
 
 TopBarItem.displayName = 'TopBarItem'
 

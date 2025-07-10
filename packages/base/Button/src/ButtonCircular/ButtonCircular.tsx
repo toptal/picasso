@@ -84,10 +84,6 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
   )
 })
 
-ButtonCircular.defaultProps = {
-  variant: 'primary',
-}
-
 ButtonCircular.displayName = 'ButtonCircular'
 
 export default ButtonCircular

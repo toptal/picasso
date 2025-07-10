@@ -156,11 +156,6 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-ButtonSplit.defaultProps = {
-  size: 'medium',
-  variant: 'primary',
-}
-
 ButtonSplit.displayName = 'ButtonSplit'
 
 export default ButtonSplit

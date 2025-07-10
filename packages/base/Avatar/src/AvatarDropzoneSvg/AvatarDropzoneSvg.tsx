@@ -124,8 +124,4 @@ export const DropzoneSvg = (props: Props) => {
 
 DropzoneSvg.displayName = 'DropzoneSvg'
 
-DropzoneSvg.defaultProps = {
-  size: 'small',
-}
-
 export default DropzoneSvg
