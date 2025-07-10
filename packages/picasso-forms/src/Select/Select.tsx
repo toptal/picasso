@@ -60,8 +60,6 @@ export const Select = <T extends SelectValueType, M extends boolean = false>(
   )
 }
 
-Select.defaultProps = {}
-
 Select.displayName = 'Select'
 
 export default Select

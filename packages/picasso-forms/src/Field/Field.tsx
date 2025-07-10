@@ -189,8 +189,6 @@ const Field = <
   )
 }
 
-Field.defaultProps = {}
-
 Field.displayName = 'Field'
 
 export default Field

@@ -27,9 +27,9 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
     const {
       children,
       content,
-      expanded,
+      expanded = false,
       defaultExpanded,
-      stripeEven,
+      stripeEven = false,
       className,
       style,
       ...rest
@@ -78,11 +78,6 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
     )
   }
 )
-
-TableExpandableRow.defaultProps = {
-  expanded: false,
-  stripeEven: false,
-}
 
 TableExpandableRow.displayName = 'TableExpandableRow'
 

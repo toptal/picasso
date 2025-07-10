@@ -61,8 +61,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   ref
 ) {
   const {
-    min,
-    max,
+    min = 0,
+    max = 100,
     marks,
     value,
     defaultValue = 0,
@@ -170,12 +170,5 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 })
 
 Slider.displayName = 'Slider'
-
-Slider.defaultProps = {
-  defaultValue: 0,
-  min: 0,
-  max: 100,
-  tooltip: 'off',
-}
 
 export default Slider

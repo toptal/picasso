@@ -111,8 +111,8 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
   function Notification(props, ref) {
     const {
       className,
-      variant,
-      elevated,
+      variant = 'yellow',
+      elevated = false,
       testIds,
       'data-testid': dataTestId,
       ...rest
@@ -148,11 +148,6 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
     )
   }
 )
-
-Notification.defaultProps = {
-  elevated: false,
-  variant: 'yellow',
-}
 
 Notification.displayName = 'Notification'
 

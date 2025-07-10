@@ -48,7 +48,7 @@ export const TimePicker = (props: Props) => {
     value: externalValue,
     width,
     className,
-    status,
+    status = 'default',
     highlight,
     size,
     ...rest
@@ -153,10 +153,6 @@ export const TimePicker = (props: Props) => {
       }}
     />
   )
-}
-
-TimePicker.defaultProps = {
-  status: 'default',
 }
 
 TimePicker.displayName = 'TimePicker'

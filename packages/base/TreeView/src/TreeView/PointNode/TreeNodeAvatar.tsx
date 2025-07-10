@@ -76,9 +76,4 @@ export const TreeNodeAvatar = (props: Props) => {
   )
 }
 
-TreeNodeAvatar.defaultProps = {
-  size: 'xxsmall',
-  objectFit: 'contain',
-}
-
 TreeNodeAvatar.displayName = 'TreeNodeAvatar'

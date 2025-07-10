@@ -64,8 +64,6 @@ const InputField = <
   )
 }
 
-InputField.defaultProps = {}
-
 InputField.displayName = 'InputField'
 
 export default InputField

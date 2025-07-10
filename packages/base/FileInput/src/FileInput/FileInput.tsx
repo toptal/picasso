@@ -40,7 +40,7 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     accept,
     disabled,
     value,
-    buttonLabel,
+    buttonLabel = 'Choose File',
     hint,
     maxFiles = 1,
     onChange,
@@ -88,11 +88,6 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     </Container>
   )
 })
-
-FileInput.defaultProps = {
-  maxFiles: 1,
-  buttonLabel: 'Choose File',
-}
 
 FileInput.displayName = 'FileInput'
 

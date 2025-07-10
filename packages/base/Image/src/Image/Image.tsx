@@ -47,10 +47,6 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
   )
 })
 
-Image.defaultProps = {
-  variant: 'rectangle',
-}
-
 Image.displayName = 'Image'
 
 export default Image

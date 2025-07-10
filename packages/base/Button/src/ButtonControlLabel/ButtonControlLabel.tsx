@@ -70,8 +70,6 @@ const ButtonControlLabel = ({
   )
 }
 
-ButtonControlLabel.defaultProps = {
-  size: 'medium',
-}
+ButtonControlLabel.displayName = 'ButtonControlLabel'
 
 export default ButtonControlLabel

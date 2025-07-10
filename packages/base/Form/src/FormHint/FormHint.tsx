@@ -31,8 +31,6 @@ export const FormHint = forwardRef<HTMLDivElement, Props>(function FormHint(
   )
 })
 
-FormHint.defaultProps = {}
-
 FormHint.displayName = 'FormHint'
 
 export default FormHint

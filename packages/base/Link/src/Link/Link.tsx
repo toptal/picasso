@@ -113,7 +113,7 @@ export const calculateViewModel = (props: Props): ViewModel => {
     rel,
     disabled,
     visited = false,
-    noUnderline,
+    noUnderline = false,
     'aria-disabled': ariaDisabled,
     ...nativeHTMLAttributes
   } = props
@@ -181,13 +181,6 @@ export const Link: OverridableComponent<Props> = forwardRef<
     </Typography>
   )
 })
-
-Link.defaultProps = {
-  as: 'a',
-  color: 'blue',
-  variant: 'anchor',
-  noUnderline: false,
-}
 
 Link.displayName = 'Link'
 

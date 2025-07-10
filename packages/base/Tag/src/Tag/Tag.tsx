@@ -67,13 +67,13 @@ const cloneIcon = (icon: ReactNode, disabled?: boolean) => {
   })
 }
 
-export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
-  const {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
+  {
     as: Root = 'div',
     className,
     disabled,
     endAdornment,
-    children,
+    children = '',
     icon,
     onDelete,
     onClick,
@@ -82,8 +82,9 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     variant = 'light-grey',
     role,
     ...rest
-  } = props
-
+  },
+  ref
+) {
   const titleCase = useTitleCase(propsTitleCase)
   const isInteractive = onDelete || onClick
 
@@ -140,12 +141,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     </Root>
   )
 })
-
-Tag.defaultProps = {
-  as: 'div',
-  children: '',
-  variant: 'light-grey',
-}
 
 Tag.displayName = 'Tag'
 

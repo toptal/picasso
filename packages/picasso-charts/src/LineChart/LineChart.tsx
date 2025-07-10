@@ -165,12 +165,12 @@ export const LineChart = (props: Props) => {
   const {
     data,
     lineConfig: lines,
-    unit,
+    unit = 'd',
     xAxisKey = 'x',
-    height,
-    tooltip,
+    height = 200,
+    tooltip = false,
     customTooltip,
-    allowTooltipEscapeViewBox,
+    allowTooltipEscapeViewBox = false,
     highlights,
     referenceLines,
     showBottomYAxisLabel,
@@ -306,14 +306,6 @@ export const LineChart = (props: Props) => {
       </ResponsiveContainer>
     </div>
   )
-}
-
-LineChart.defaultProps = {
-  height: 200,
-  unit: 'd',
-  tooltip: false,
-  allowTooltipEscapeViewBox: false,
-  xAxisKey: 'x',
 }
 
 LineChart.displayName = 'LineChart'

@@ -37,8 +37,6 @@ export const DatePicker = (props: Props) => {
   )
 }
 
-DatePicker.defaultProps = {}
-
 DatePicker.displayName = 'DatePicker'
 
 export default DatePicker

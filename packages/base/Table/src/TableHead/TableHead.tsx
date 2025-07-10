@@ -34,8 +34,6 @@ export const TableHead = forwardRef<HTMLTableSectionElement, Props>(
   }
 )
 
-TableHead.defaultProps = {}
-
 TableHead.displayName = 'TableHead'
 
 export default TableHead

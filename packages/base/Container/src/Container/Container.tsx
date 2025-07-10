@@ -81,7 +81,7 @@ export const Container: ContainerProps = documentable(
       const {
         children,
         className,
-        inline,
+        inline = false,
         flex,
         direction,
         alignItems,
@@ -169,7 +169,6 @@ Container.displayName = 'Container'
 
 Container.defaultProps = {
   as: 'div',
-  inline: false,
 }
 
 export default Container

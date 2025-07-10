@@ -162,10 +162,10 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     children,
     className,
     color,
-    inline,
+    inline = false,
     invert,
     lineThrough,
-    noWrap,
+    noWrap = false,
     size = 'inherit',
     style,
     titleCase,
@@ -212,13 +212,6 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
     </Component>
   )
 })
-
-Typography.defaultProps = {
-  inline: false,
-  noWrap: false,
-  size: 'inherit',
-  variant: 'body',
-}
 
 Typography.displayName = 'Typography'
 

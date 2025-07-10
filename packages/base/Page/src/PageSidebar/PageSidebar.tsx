@@ -141,11 +141,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
   )
 })
 
-PageSidebar.defaultProps = {
-  variant: 'light',
-  size: 'medium',
-}
-
 PageSidebar.displayName = 'PageSidebar'
 
 export default Object.assign(PageSidebar, {

@@ -5,15 +5,23 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { ButtonCircular } from '@toptal/picasso-button'
 
 type Props = BaseProps & {
-  active: boolean
-  disabled: boolean
+  active?: boolean
+  disabled?: boolean
   icon: ReactElement
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
   id?: string
 }
 
 const RichTextEditorButton = (props: Props) => {
-  const { icon, onClick, active, className, style, disabled, ...rest } = props
+  const {
+    icon,
+    onClick = () => {},
+    active = false,
+    className,
+    style,
+    disabled = false,
+    ...rest
+  } = props
 
   return (
     <ButtonCircular
@@ -30,12 +38,6 @@ const RichTextEditorButton = (props: Props) => {
       {...rest}
     />
   )
-}
-
-RichTextEditorButton.defaultProps = {
-  active: false,
-  disabled: false,
-  onClick: () => {},
 }
 
 RichTextEditorButton.displayName = 'RichTextEditorButton'

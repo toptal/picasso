@@ -15,7 +15,7 @@ const SelectOptions = (props: Props) => {
     fixedHeader,
     fixedFooter,
     className,
-    role,
+    role = 'menu',
     ...rest
   } = props
 
@@ -38,10 +38,6 @@ const SelectOptions = (props: Props) => {
       {children}
     </ScrollMenu>
   )
-}
-
-SelectOptions.defaultProps = {
-  role: 'menu',
 }
 
 SelectOptions.displayName = 'SelectOptions'

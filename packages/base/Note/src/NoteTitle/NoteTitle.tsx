@@ -20,8 +20,6 @@ export const NoteTitle = forwardRef<HTMLDivElement, Props>(function NoteTitle(
   )
 })
 
-NoteTitle.defaultProps = {}
-
 NoteTitle.displayName = 'NoteTitle'
 
 export default NoteTitle

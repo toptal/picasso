@@ -101,7 +101,7 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
   const {
     content,
     children: originalChildren,
-    placement,
+    placement = 'top',
     interactive,
     className,
     offset = {
@@ -115,11 +115,11 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     onTransitionExiting,
     onTransitionExited,
     disableListeners,
-    preventOverflow,
-    disablePortal,
+    preventOverflow = true,
+    disablePortal = false,
     delay = 'short',
     compact,
-    maxWidth,
+    maxWidth = 'default',
     followCursor = false,
     tooltipRef,
     container,
@@ -217,13 +217,5 @@ export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
     </MUITooltip>
   )
 })
-
-Tooltip.defaultProps = {
-  preventOverflow: true,
-  placement: 'top',
-  disablePortal: false,
-  maxWidth: 'default',
-  delay: 'short',
-}
 
 export default Tooltip

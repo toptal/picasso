@@ -19,7 +19,7 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
   props,
   ref
 ) {
-  const { active, hovered, interactive, size, ...rest } = props
+  const { active, hovered, interactive = true, size, ...rest } = props
 
   const iconColor = 'yellow'
   const iconClasses = twJoin(
@@ -38,10 +38,6 @@ const RatingIcon = forwardRef<HTMLDivElement, Props>(function RatingIcon(
     </span>
   )
 })
-
-RatingIcon.defaultProps = {
-  interactive: true,
-}
 
 RatingIcon.displayName = 'RatingIcon'
 

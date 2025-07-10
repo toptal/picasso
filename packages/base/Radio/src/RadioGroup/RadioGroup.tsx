@@ -16,7 +16,7 @@ export interface Props extends RadioGroupProps, GridSizeProps {
 }
 
 const RadioGroup = (props: Props) => {
-  const { horizontal, spacing, xs, sm, md, lg, xl, ...rest } = props
+  const { horizontal = false, spacing, xs, sm, md, lg, xl, ...rest } = props
   const { spacing: themeSpacing } = useTheme()
 
   const direction = horizontal ? 'row' : 'column'
@@ -47,10 +47,6 @@ const RadioGroup = (props: Props) => {
       </Grid>
     </MUIRadioGroup>
   )
-}
-
-RadioGroup.defaultProps = {
-  horizontal: false,
 }
 
 export default RadioGroup

@@ -71,11 +71,6 @@ export const MonthSelect = documentable(
   )
 )
 
-MonthSelect.defaultProps = {
-  from: 1,
-  to: 12,
-}
-
 MonthSelect.displayName = 'MonthSelect'
 
 export default MonthSelect

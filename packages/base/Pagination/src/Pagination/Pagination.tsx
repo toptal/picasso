@@ -48,11 +48,11 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
 ) {
   const {
     activePage,
-    disabled,
+    disabled = false,
     totalPages,
     onPageChange,
     siblingCount = 2,
-    variant,
+    variant = 'default',
     nextDisabled,
     ...rest
   } = props
@@ -122,12 +122,6 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     </Container>
   )
 })
-
-Pagination.defaultProps = {
-  disabled: false,
-  siblingCount: 2,
-  variant: 'default',
-}
 
 Pagination.displayName = 'Pagination'
 

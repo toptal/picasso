@@ -73,13 +73,13 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     children,
     content,
     expanded,
-    defaultExpanded,
+    defaultExpanded = false,
     expandIcon,
-    borders,
-    disabled,
+    borders = 'all',
+    disabled = false,
     className,
     style,
-    onChange,
+    onChange = () => {},
     testIds,
     transitionProps,
     ...rest
@@ -159,14 +159,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     </MUIAccordion>
   )
 })
-
-Accordion.defaultProps = {
-  borders: 'all',
-  defaultExpanded: false,
-  disabled: false,
-  expanded: undefined,
-  onChange: () => {},
-}
 
 Accordion.displayName = 'Accordion'
 

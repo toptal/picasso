@@ -29,8 +29,6 @@ export const HelpboxTitle = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-HelpboxTitle.defaultProps = {}
-
 HelpboxTitle.displayName = 'HelpboxTitle'
 
 export default HelpboxTitle

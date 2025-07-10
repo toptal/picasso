@@ -31,8 +31,8 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     id,
     className,
     style,
-    disabled,
-    onChange,
+    disabled = false,
+    onChange = () => {},
     checked,
     titleCase,
     color, // eslint-disable-line
@@ -111,11 +111,6 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     />
   )
 })
-
-Switch.defaultProps = {
-  disabled: false,
-  onChange: () => {},
-}
 
 Switch.displayName = 'Switch'
 

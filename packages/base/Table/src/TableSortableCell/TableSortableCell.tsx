@@ -13,9 +13,9 @@ export type Props = {
 } & Exclude<TableCellProps, 'adornment'>
 
 export const TableSortableCell = ({
+  align = 'inherit',
   sortDirection,
   onSortClick,
-
   ...rest
 }: Props) => {
   const Icon = sortDirection === 'desc' ? ArrowLongDown16 : ArrowLongUp16
@@ -31,13 +31,10 @@ export const TableSortableCell = ({
           className='ml-2 invisible group-hover:visible'
         />
       }
+      align={align}
       {...rest}
     />
   )
-}
-
-TableSortableCell.defaultProps = {
-  align: 'inherit',
 }
 
 TableSortableCell.displayName = 'TableSortableCell'

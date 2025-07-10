@@ -35,8 +35,4 @@ export const DropdownArrow = forwardRef<SVGSVGElement, Props>(
 
 DropdownArrow.displayName = 'DropdownArrow'
 
-DropdownArrow.defaultProps = {
-  size: 'medium',
-}
-
 export default DropdownArrow

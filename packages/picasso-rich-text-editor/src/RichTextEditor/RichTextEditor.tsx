@@ -96,7 +96,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       autoFocus = false,
       className,
       defaultValue,
-      disabled,
+      disabled = false,
       id,
       onChange = noop,
       onFocus = noop,
@@ -107,7 +107,7 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
       minLengthMessage,
       maxLengthMessage,
       style,
-      status,
+      status = 'default',
       testIds,
       hiddenInputId,
       setHasMultilineCounter,
@@ -191,15 +191,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-RichTextEditor.defaultProps = {
-  autoFocus: false,
-  onChange: noop,
-  onFocus: noop,
-  onBlur: noop,
-  disabled: false,
-  status: 'default',
-}
 
 RichTextEditor.displayName = 'RichTextEditor'
 

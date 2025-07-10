@@ -61,10 +61,6 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
   )
 })
 
-Paper.defaultProps = {
-  elevation: 1,
-}
-
 Paper.displayName = 'Paper'
 
 export default Paper

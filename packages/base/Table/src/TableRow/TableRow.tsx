@@ -24,9 +24,9 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
       className,
       style,
       children,
-      hover,
-      selected,
-      stripeEven,
+      hover = false,
+      selected = false,
+      stripeEven = false,
       onClick,
       ...rest
     } = props
@@ -53,12 +53,6 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
     )
   }
 )
-
-TableRow.defaultProps = {
-  hover: false,
-  selected: false,
-  stripeEven: false,
-}
 
 TableRow.displayName = 'TableRow'
 

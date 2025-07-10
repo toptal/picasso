@@ -20,8 +20,6 @@ export const NoteSubtitle = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-NoteSubtitle.defaultProps = {}
-
 NoteSubtitle.displayName = 'NoteSubtitle'
 
 export default NoteSubtitle

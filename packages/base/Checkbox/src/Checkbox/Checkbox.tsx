@@ -53,12 +53,12 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
       className,
       style,
       labelStyle,
-      disabled,
+      disabled = false,
       requiredDecoration,
-      onChange,
+      onChange = () => {},
       value,
       checked,
-      indeterminate,
+      indeterminate = false,
       titleCase,
       ...rest
     } = props
@@ -130,12 +130,6 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     )
   }
 )
-
-Checkbox.defaultProps = {
-  disabled: false,
-  indeterminate: false,
-  onChange: () => {},
-}
 
 Checkbox.displayName = 'Checkbox'
 

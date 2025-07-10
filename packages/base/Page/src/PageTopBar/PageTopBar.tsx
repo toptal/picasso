@@ -195,10 +195,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
   )
 })
 
-PageTopBar.defaultProps = {
-  variant: 'dark',
-}
-
 PageTopBar.displayName = 'PageTopBar'
 
 export default PageTopBar
