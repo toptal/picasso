@@ -17,8 +17,6 @@ export const NoteContent = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-NoteContent.defaultProps = {}
-
 NoteContent.displayName = 'NoteContent'
 
 export default NoteContent

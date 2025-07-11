@@ -66,20 +66,24 @@ const decorateWithExpandIconClasses = (
 
 /* eslint-disable complexity */
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
-  props,
+  {
+    borders = 'all',
+    defaultExpanded = false,
+    disabled = false,
+    onChange = () => {},
+    ...inputProps
+  },
   ref
 ) {
+  const props = { ...inputProps, borders, defaultExpanded, disabled, onChange }
+
   const {
     children,
     content,
     expanded,
-    defaultExpanded,
     expandIcon,
-    borders,
-    disabled,
     className,
     style,
-    onChange,
     testIds,
     transitionProps,
     ...rest
@@ -159,14 +163,6 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
     </MUIAccordion>
   )
 })
-
-Accordion.defaultProps = {
-  borders: 'all',
-  defaultExpanded: false,
-  disabled: false,
-  expanded: undefined,
-  onChange: () => {},
-}
 
 Accordion.displayName = 'Accordion'
 

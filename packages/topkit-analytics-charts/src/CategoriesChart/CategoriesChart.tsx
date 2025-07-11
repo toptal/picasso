@@ -48,8 +48,6 @@ export const CategoriesChart = ({
   )
 }
 
-CategoriesChart.defaultProps = {}
-
 CategoriesChart.displayName = 'CategoriesChart'
 
 export default CategoriesChart

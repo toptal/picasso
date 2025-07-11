@@ -96,8 +96,6 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
   )
 })
 
-Tab.defaultProps = {}
-
 Tab.displayName = 'Tab'
 
 type GetLabelComponentProps = {

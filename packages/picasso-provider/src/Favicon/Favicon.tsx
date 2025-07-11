@@ -66,8 +66,6 @@ export const Favicon = ({ environment }: Props) => {
   )
 }
 
-Favicon.defaultProps = {}
-
 Favicon.displayName = 'Favicon'
 
 export default Favicon

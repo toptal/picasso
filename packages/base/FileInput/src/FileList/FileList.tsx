@@ -55,8 +55,6 @@ export const FileList = forwardRef<HTMLDivElement, Props>(function FileList(
   )
 })
 
-FileList.defaultProps = {}
-
 FileList.displayName = 'FileList'
 
 export default FileList

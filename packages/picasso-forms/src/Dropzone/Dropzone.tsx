@@ -97,8 +97,6 @@ const Dropzone = ({ dropzoneHint, ...props }: Props) => {
   )
 }
 
-Dropzone.defaultProps = {}
-
 Dropzone.displayName = 'Dropzone'
 
 export default Dropzone
