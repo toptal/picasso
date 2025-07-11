@@ -137,8 +137,6 @@ export const PageTopBarMenu = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-PageTopBarMenu.defaultProps = {}
-
 PageTopBarMenu.displayName = 'PageTopBarMenu'
 
 export default PageTopBarMenu

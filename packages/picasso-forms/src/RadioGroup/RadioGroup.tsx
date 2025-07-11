@@ -50,8 +50,6 @@ export const RadioGroup = (props: Props) => {
   )
 }
 
-RadioGroup.defaultProps = {}
-
 RadioGroup.displayName = 'RadioGroup'
 
 export default RadioGroup

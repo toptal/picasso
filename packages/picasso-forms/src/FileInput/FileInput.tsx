@@ -82,8 +82,6 @@ export const FileInput = (props: Props) => {
   )
 }
 
-FileInput.defaultProps = {}
-
 FileInput.displayName = 'FileInput'
 
 export default FileInput

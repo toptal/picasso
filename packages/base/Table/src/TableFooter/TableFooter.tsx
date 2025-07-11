@@ -34,8 +34,6 @@ export const TableFooter = forwardRef<HTMLTableSectionElement, Props>(
   }
 )
 
-TableFooter.defaultProps = {}
-
 TableFooter.displayName = 'TableFooter'
 
 export default TableFooter

@@ -93,8 +93,6 @@ const AvatarUpload = (props: Props) => {
   )
 }
 
-AvatarUpload.defaultProps = {}
-
 AvatarUpload.displayName = 'AvatarUpload'
 
 export default AvatarUpload

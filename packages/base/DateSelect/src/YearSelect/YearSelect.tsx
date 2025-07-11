@@ -56,8 +56,6 @@ export const YearSelect = documentable(
   )
 )
 
-YearSelect.defaultProps = {}
-
 YearSelect.displayName = 'YearSelect'
 
 export default YearSelect

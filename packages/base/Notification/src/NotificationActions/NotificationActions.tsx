@@ -24,8 +24,6 @@ export const NotificationActions = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-NotificationActions.defaultProps = {}
-
 NotificationActions.displayName = 'NotificationActions'
 
 export default NotificationActions

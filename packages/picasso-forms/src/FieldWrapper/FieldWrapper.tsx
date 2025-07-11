@@ -41,8 +41,6 @@ const FieldWrapper = <
   )
 }
 
-FieldWrapper.defaultProps = {}
-
 FieldWrapper.displayName = 'FieldWrapper'
 
 export default FieldWrapper

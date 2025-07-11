@@ -157,8 +157,6 @@ export const Form = <T extends AnyObject = AnyObject>(props: Props<T>) => {
   )
 }
 
-Form.defaultProps = {}
-
 Form.displayName = 'Form'
 
 export default Form

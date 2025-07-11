@@ -27,8 +27,6 @@ export const PageArticle: OverridableComponent<Props> = forwardRef<
   )
 })
 
-PageArticle.defaultProps = {}
-
 PageArticle.displayName = 'PageArticle'
 
 export default PageArticle
