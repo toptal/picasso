@@ -24,8 +24,11 @@ export interface Props<V extends VariantType = VariantType>
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
-
-  /** Whether container should act as inline element `display: inline-block` */
+  /**
+   * Whether container should act as inline element `display: inline-block`
+   *
+   * @default false
+   */
   inline?: boolean
   /** Use flexbox */
   flex?: boolean
@@ -39,11 +42,19 @@ export interface Props<V extends VariantType = VariantType>
   wrap?: WrapType
   /** Whether (`white`, `transparent`) container has border or not */
   bordered?: V extends BorderableType ? boolean : never
-  /** Whether container has 8px border-radius applied or not */
+  /**
+   * Whether container has 8px border-radius applied or not
+   *
+   * @default false
+   */
   rounded?: boolean
   /** Style variant of Notification */
   variant?: V
-  /** Component used for the root node */
+  /**
+   * Component used for the root node
+   *
+   * @default div
+   */
   as?: ContainerType
   /** Text align of the inner text */
   align?: PropTypes.Alignment
@@ -75,34 +86,21 @@ type ContainerProps = {
 export const Container: ContainerProps = documentable(
   forwardRef<Props, HTMLDivElement>(
     <V extends VariantType>(
-      {
-        as: inputAs = 'div',
-        inline: inlineInput = false,
-        ...inputProps
-      }: Props<V>,
+      { as = 'div', inline = false, rounded = false, ...props }: Props<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
-      const props = {
-        ...inputProps,
-        as: inputAs,
-        inline: inlineInput,
-      }
-
       const {
         children,
         className,
-        inline,
         flex,
         direction,
         alignItems,
         justifyContent,
+        bordered = false,
         wrap,
         style,
-        bordered = false,
-        rounded = false,
         variant,
         align,
-        as: Component = inline ? 'span' : 'div',
         top,
         bottom,
         left,
@@ -114,6 +112,8 @@ export const Container: ContainerProps = documentable(
         classes: externalClasses,
         ...rest
       } = props
+
+      const Component = as
 
       const spacingProps = { gap, padded, top, bottom, right, left }
       const isBorderedVariant =

@@ -154,37 +154,25 @@ export interface Props
 
 export const Typography = forwardRef<HTMLElement, Props>(function Typography(
   {
-    inline: inlineInput = false,
-    noWrap: noWrapInput = false,
-    size: sizeInput = 'inherit',
-    variant: variantInput = 'body',
-    ...inputProps
+    inline = false,
+    noWrap = false,
+    size = 'inherit',
+    variant = 'body',
+    ...props
   }: Props,
   ref
 ) {
-  const props = {
-    ...inputProps,
-    inline: inlineInput,
-    noWrap: noWrapInput,
-    size: sizeInput,
-    variant: variantInput,
-  }
-
   const {
     align,
     as,
     children,
     className,
     color,
-    inline,
     invert,
     lineThrough,
-    noWrap,
-    size,
     style,
     titleCase,
     underline,
-    variant,
     weight,
     ...rest
   } = props
