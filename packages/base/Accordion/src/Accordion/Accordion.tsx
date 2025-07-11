@@ -67,23 +67,33 @@ const decorateWithExpandIconClasses = (
 /* eslint-disable complexity */
 export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
   {
-    borders = 'all',
-    defaultExpanded = false,
-    disabled = false,
-    onChange = () => {},
+    borders: inputBorders = 'all',
+    defaultExpanded: inputDefaultExpanded = false,
+    disabled: inputDisabled = false,
+    onChange: inputOnChange = () => {},
     ...inputProps
   },
   ref
 ) {
-  const props = { ...inputProps, borders, defaultExpanded, disabled, onChange }
+  const props = {
+    ...inputProps,
+    borders: inputBorders,
+    defaultExpanded: inputDefaultExpanded,
+    disabled: inputDisabled,
+    onChange: inputOnChange,
+  }
 
   const {
     children,
     content,
     expanded,
+    defaultExpanded,
     expandIcon,
+    borders,
+    disabled,
     className,
     style,
+    onChange,
     testIds,
     transitionProps,
     ...rest

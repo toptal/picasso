@@ -75,14 +75,23 @@ type ContainerProps = {
 export const Container: ContainerProps = documentable(
   forwardRef<Props, HTMLDivElement>(
     <V extends VariantType>(
-      { as = 'div', inline = false, ...inputProps }: Props<V>,
+      {
+        as: inputAs = 'div',
+        inline: inlineInput = false,
+        ...inputProps
+      }: Props<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
-      const props = { ...inputProps, as, inline }
+      const props = {
+        ...inputProps,
+        as: inputAs,
+        inline: inlineInput,
+      }
 
       const {
         children,
         className,
+        inline,
         flex,
         direction,
         alignItems,
