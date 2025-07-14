@@ -86,7 +86,13 @@ type ContainerProps = {
 export const Container: ContainerProps = documentable(
   forwardRef<Props, HTMLDivElement>(
     <V extends VariantType>(
-      { as = 'div', inline = false, rounded = false, ...props }: Props<V>,
+      {
+        as = 'div',
+        inline = false,
+        rounded = false,
+        bordered = false as V extends BorderableType ? boolean : never,
+        ...props
+      }: Props<V>,
       ref: Ref<HTMLDivElement> | null
     ) => {
       const {
@@ -96,7 +102,6 @@ export const Container: ContainerProps = documentable(
         direction,
         alignItems,
         justifyContent,
-        bordered = false,
         wrap,
         style,
         variant,
