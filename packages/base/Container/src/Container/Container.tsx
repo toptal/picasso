@@ -4,7 +4,7 @@ import type { SpacingType } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
 import React from 'react'
-import { documentable, forwardRef } from '@toptal/picasso-utils'
+import { forwardRef } from '@toptal/picasso-utils'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
@@ -19,16 +19,15 @@ type WrapType = 'wrap' | 'nowrap' | 'wrap-reverse'
 
 type BorderableType = 'transparent' | 'white'
 
+type BorderedType<V extends VariantType> = V extends BorderableType
+  ? boolean
+  : never
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
     HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
   /** Content of Container */
   children?: ReactNode
-  /**
-   * Whether container should act as inline element `display: inline-block`
-   *
-   * @default false
-   */
+  /** Whether container should act as inline element `display: inline-block` */
   inline?: boolean
   /** Use flexbox */
   flex?: boolean
@@ -41,20 +40,12 @@ export interface Props<V extends VariantType = VariantType>
   /** Defines flex-wrap style property */
   wrap?: WrapType
   /** Whether (`white`, `transparent`) container has border or not */
-  bordered?: V extends BorderableType ? boolean : never
-  /**
-   * Whether container has 8px border-radius applied or not
-   *
-   * @default false
-   */
+  bordered?: BorderedType<V>
+  /** Whether container has 8px border-radius applied or not */
   rounded?: boolean
   /** Style variant of Notification */
   variant?: V
-  /**
-   * Component used for the root node
-   *
-   * @default div
-   */
+  /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
   align?: PropTypes.Alignment
@@ -72,113 +63,116 @@ export interface Props<V extends VariantType = VariantType>
   gap?: SpacingType
 }
 
+/**
+ * Separate component is needed for proper Storybook props display
+ */
+export const ContainerFunction = function ContainerFunction<
+  V extends VariantType
+>({
+  as = 'div',
+  inline = false,
+  rounded = false,
+  bordered = false as BorderedType<V>,
+  ref,
+  ...props
+}: Props<V> & { ref?: Ref<HTMLDivElement> | null }) {
+  const {
+    children,
+    className,
+    flex,
+    direction,
+    alignItems,
+    justifyContent,
+    wrap,
+    style,
+    variant,
+    align,
+    top,
+    bottom,
+    left,
+    right,
+    padded,
+    gap,
+    // Avoid passing external classes inside the rest props
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    classes: externalClasses,
+    ...rest
+  } = props
+
+  const Component = as
+
+  const spacingProps = { gap, padded, top, bottom, right, left }
+  const isBorderedVariant =
+    !variant || variant === 'white' || variant === 'transparent'
+
+  const getDisplayValue = (
+    isInline: boolean | undefined,
+    isFlex: boolean | undefined
+  ) => {
+    return isFlex
+      ? isInline
+        ? 'inline-flex'
+        : 'flex'
+      : isInline
+      ? 'inline-block'
+      : ''
+  }
+
+  return (
+    <Component
+      {...rest}
+      ref={ref}
+      className={twMerge(
+        variant && variantClassesByColor[variant],
+
+        getSpacingClasses(spacingProps),
+
+        typeof align === 'string' && alignmentClasses.textAlign[align],
+
+        alignItems && alignmentClasses.alignItems[alignItems],
+
+        justifyContent && alignmentClasses.justifyContent[justifyContent],
+
+        wrap && alignmentClasses.wrap[wrap],
+
+        bordered && isBorderedVariant && 'border border-solid border-gray-200',
+        rounded && 'rounded-md',
+
+        getDisplayValue(inline, flex),
+
+        direction &&
+          direction !== 'row' &&
+          alignmentClasses.direction[direction],
+
+        className
+      )}
+      style={{
+        // used for deprecated spacing props (typeof number)
+        ...getSpacingStyles(spacingProps),
+        ...style,
+      }}
+    >
+      {children}
+    </Component>
+  )
+}
+
+ContainerFunction.displayName = 'ContainerFunction'
+
 type ContainerProps = {
   <V extends VariantType = VariantType>(
     props: Props<V> & { ref?: Ref<HTMLDivElement> | null }
   ): ReactElement
   displayName?: string
-  defaultProps?: Partial<Props<VariantType>>
 }
 
 /**
  * Container component used for spacing 2 elements
  */
-export const Container: ContainerProps = documentable(
-  forwardRef<Props, HTMLDivElement>(
-    <V extends VariantType>(
-      {
-        as = 'div',
-        inline = false,
-        rounded = false,
-        bordered = false as V extends BorderableType ? boolean : never,
-        ...props
-      }: Props<V>,
-      ref: Ref<HTMLDivElement> | null
-    ) => {
-      const {
-        children,
-        className,
-        flex,
-        direction,
-        alignItems,
-        justifyContent,
-        wrap,
-        style,
-        variant,
-        align,
-        top,
-        bottom,
-        left,
-        right,
-        padded,
-        gap,
-        // Avoid passing external classes inside the rest props
-        /* eslint-disable @typescript-eslint/no-unused-vars */
-        classes: externalClasses,
-        ...rest
-      } = props
-
-      const Component = as
-
-      const spacingProps = { gap, padded, top, bottom, right, left }
-      const isBorderedVariant =
-        !variant || variant === 'white' || variant === 'transparent'
-
-      const getDisplayValue = (
-        isInline: boolean | undefined,
-        isFlex: boolean | undefined
-      ) => {
-        return isFlex
-          ? isInline
-            ? 'inline-flex'
-            : 'flex'
-          : isInline
-          ? 'inline-block'
-          : ''
-      }
-
-      return (
-        <Component
-          {...rest}
-          ref={ref}
-          className={twMerge(
-            variant && variantClassesByColor[variant],
-
-            getSpacingClasses(spacingProps),
-
-            typeof align === 'string' && alignmentClasses.textAlign[align],
-
-            alignItems && alignmentClasses.alignItems[alignItems],
-
-            justifyContent && alignmentClasses.justifyContent[justifyContent],
-
-            wrap && alignmentClasses.wrap[wrap],
-
-            bordered &&
-              isBorderedVariant &&
-              'border border-solid border-gray-200',
-            rounded && 'rounded-md',
-
-            getDisplayValue(inline, flex),
-
-            direction &&
-              direction !== 'row' &&
-              alignmentClasses.direction[direction],
-
-            className
-          )}
-          style={{
-            // used for deprecated spacing props (typeof number)
-            ...getSpacingStyles(spacingProps),
-            ...style,
-          }}
-        >
-          {children}
-        </Component>
-      )
-    }
-  ) as ContainerProps
-)
+export const Container: ContainerProps = forwardRef<Props, HTMLDivElement>(
+  <V extends VariantType>(props: Props<V>, ref: Ref<HTMLDivElement> | null) =>
+    ContainerFunction({ ...props, ref })
+) as ContainerProps
 
 Container.displayName = 'Container'
 

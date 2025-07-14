@@ -1,4 +1,4 @@
-import { Container } from '../Container'
+import { ContainerFunction } from '../Container'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
 const page = PicassoBook.section('Layout').createPage(
@@ -9,9 +9,16 @@ const page = PicassoBook.section('Layout').createPage(
   `
 )
 
-page
-  .createTabChapter('Props')
-  .addComponentDocs({ component: Container, name: 'Container' })
+page.createTabChapter('Props').addComponentDocs({
+  component: ContainerFunction,
+  name: 'ContainerFunction',
+  additionalDocs: {
+    bordered: {
+      type: 'boolean',
+      defaultValue: 'false',
+    },
+  },
+})
 
 page
   .createChapter()
