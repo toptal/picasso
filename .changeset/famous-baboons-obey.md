@@ -6,7 +6,6 @@
 '@toptal/picasso-date-select': patch
 '@toptal/picasso-typography': patch
 '@toptal/picasso-accordion': patch
-'@toptal/picasso-container': patch
 '@toptal/picasso-file-input': patch
 '@toptal/picasso-forms': patch
 '@toptal/picasso-helpbox': patch

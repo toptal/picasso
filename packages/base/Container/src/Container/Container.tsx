@@ -10,12 +10,6 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 import type { AlignItemsType, JustifyContentType, VariantType } from './styles'
 import { alignmentClasses, variantClassesByColor } from './styles'
 import { getSpacingClasses, getSpacingStyles } from './utils'
-import {
-  DEFAULT_AS,
-  DEFAULT_BORDERED,
-  DEFAULT_ROUNDED,
-  DEFAULT_INLINE,
-} from './constants'
 
 type ContainerType = 'div' | 'span'
 
@@ -87,18 +81,18 @@ export const Container: ContainerProps = documentable(
       const {
         children,
         className,
-        inline = DEFAULT_INLINE,
+        inline,
         flex,
         direction,
         alignItems,
         justifyContent,
         wrap,
         style,
-        bordered = DEFAULT_BORDERED,
-        rounded = DEFAULT_ROUNDED,
+        bordered = false,
+        rounded = false,
         variant,
         align,
-        as: Component = DEFAULT_AS,
+        as: Component = inline ? 'span' : 'div',
         top,
         bottom,
         left,
@@ -172,6 +166,11 @@ export const Container: ContainerProps = documentable(
 )
 
 Container.displayName = 'Container'
+
+Container.defaultProps = {
+  as: 'div',
+  inline: false,
+}
 
 export default Container
 export type { VariantType }

@@ -1,11 +1,5 @@
 import { Container } from '../Container'
 import PicassoBook from '~/.storybook/components/PicassoBook'
-import {
-  DEFAULT_BORDERED,
-  DEFAULT_ROUNDED,
-  DEFAULT_INLINE,
-  DEFAULT_AS,
-} from '../constants'
 
 const page = PicassoBook.section('Layout').createPage(
   'Container',
@@ -15,24 +9,9 @@ const page = PicassoBook.section('Layout').createPage(
   `
 )
 
-page.createTabChapter('Props').addComponentDocs({
-  component: Container,
-  name: 'Container',
-  additionalDocs: {
-    inline: {
-      defaultValue: String(DEFAULT_INLINE),
-    },
-    as: {
-      defaultValue: DEFAULT_AS,
-    },
-    bordered: {
-      defaultValue: String(DEFAULT_BORDERED),
-    },
-    rounded: {
-      defaultValue: String(DEFAULT_ROUNDED),
-    },
-  },
-})
+page
+  .createTabChapter('Props')
+  .addComponentDocs({ component: Container, name: 'Container' })
 
 page
   .createChapter()
