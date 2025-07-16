@@ -1,5 +1,11 @@
-import { ContainerFunction } from '../Container'
+import { Container } from '../Container'
 import PicassoBook from '~/.storybook/components/PicassoBook'
+import {
+  DEFAULT_BORDERED,
+  DEFAULT_ROUNDED,
+  DEFAULT_INLINE,
+  DEFAULT_AS,
+} from '../constants'
 
 const page = PicassoBook.section('Layout').createPage(
   'Container',
@@ -10,12 +16,20 @@ const page = PicassoBook.section('Layout').createPage(
 )
 
 page.createTabChapter('Props').addComponentDocs({
-  component: ContainerFunction,
-  name: 'ContainerFunction',
+  component: Container,
+  name: 'Container',
   additionalDocs: {
+    inline: {
+      defaultValue: String(DEFAULT_INLINE),
+    },
+    as: {
+      defaultValue: DEFAULT_AS,
+    },
     bordered: {
-      type: 'boolean',
-      defaultValue: 'false',
+      defaultValue: String(DEFAULT_BORDERED),
+    },
+    rounded: {
+      defaultValue: String(DEFAULT_ROUNDED),
     },
   },
 })
