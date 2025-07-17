@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tag",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "description": "Toptal UI components library - Tag",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-icons": "1.12.1",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-typography": "4.0.3",
+    "@toptal/picasso-typography": "4.0.4",
     "@toptal/picasso-utils": "3.1.0",
     "ap-style-title-case": "^1.1.2"
   },
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "2.0.3",
-    "@toptal/picasso-provider": "5.0.0",
+    "@toptal/picasso-provider": "5.0.1",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [

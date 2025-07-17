@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "2.0.3",
-    "@toptal/picasso-provider": "5.0.0"
+    "@toptal/picasso-provider": "5.0.1"
   },
   "files": [
     "dist-package/**",

@@ -34,7 +34,7 @@
     "@toptal/picasso-tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.0",
+    "@toptal/picasso-provider": "5.0.1",
     "popper.js": "^1.16.1"
   },
   "exports": {

@@ -1,5 +1,18 @@
 # @toptal/picasso-tagselector
 
+## 3.3.2
+
+### Patch Changes
+
+- [#4788](https://github.com/toptal/picasso/pull/4788) [`dae5bce`](https://github.com/toptal/picasso/commit/dae5bce794a5c4f6406449c83a6e425cfcafff0f) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`dae5bce`](https://github.com/toptal/picasso/commit/dae5bce794a5c4f6406449c83a6e425cfcafff0f)]:
+  - @toptal/picasso-form@6.3.2
+  - @toptal/picasso-autocomplete@5.2.2
+  - @toptal/picasso-tag@4.0.11
+  - @toptal/picasso-outlined-input@4.1.2
+
 ## 3.3.1
 
 ### Patch Changes

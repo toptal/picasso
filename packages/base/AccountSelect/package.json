@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-account-select",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "description": "Toptal UI components library - AccountSelect",
   "publishConfig": {
     "access": "public"
@@ -24,10 +24,10 @@
   "dependencies": {
     "@toptal/picasso-container": "3.1.2",
     "@toptal/picasso-icons": "1.12.1",
-    "@toptal/picasso-link": "3.0.5",
-    "@toptal/picasso-menu": "3.0.16",
-    "@toptal/picasso-typography": "4.0.3",
-    "@toptal/picasso-user-badge": "5.1.11",
+    "@toptal/picasso-link": "3.0.6",
+    "@toptal/picasso-menu": "3.0.17",
+    "@toptal/picasso-typography": "4.0.4",
+    "@toptal/picasso-user-badge": "5.1.12",
     "@toptal/picasso-utils": "3.1.0"
   },
   "sideEffects": [
