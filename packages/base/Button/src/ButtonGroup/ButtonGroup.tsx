@@ -31,8 +31,6 @@ export const ButtonGroup = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-ButtonGroup.defaultProps = {}
-
 ButtonGroup.displayName = 'ButtonGroup'
 
 export default Object.assign(ButtonGroup, { Item: ButtonGroupItem })

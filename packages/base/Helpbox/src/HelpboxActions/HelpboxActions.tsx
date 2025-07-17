@@ -38,8 +38,6 @@ export const HelpboxActions = forwardRef<HTMLDivElement, Props>(
   }
 )
 
-HelpboxActions.defaultProps = {}
-
 HelpboxActions.displayName = 'HelpboxActions'
 
 export default HelpboxActions

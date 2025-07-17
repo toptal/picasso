@@ -21,9 +21,6 @@ export const <%= Name %> = forwardRef<HTMLElement, Props>(function <%= Name %>(p
   return null
 })
 
-<%= Name %>.defaultProps = {
-}
-
 <%= Name %>.displayName = '<%= Name %>'
 
 export default <%= Name %>

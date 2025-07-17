@@ -129,8 +129,6 @@ export const FormField = forwardRef<HTMLDivElement, Props>(function FormField(
   )
 })
 
-FormField.defaultProps = {}
-
 FormField.displayName = 'FormField'
 
 export default FormField

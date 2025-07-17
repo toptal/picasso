@@ -108,15 +108,25 @@ const renderNotificationContent = (props: PrivateProps) => {
 }
 
 export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
-  function Notification(props, ref) {
-    const {
+  function Notification(
+    {
+      className,
+      variant = 'yellow',
+      elevated = false,
+      testIds,
+      'data-testid': dataTestId,
+      ...rest
+    },
+    ref
+  ) {
+    const props = {
       className,
       variant,
       elevated,
       testIds,
       'data-testid': dataTestId,
-      ...rest
-    } = props
+      ...rest,
+    }
 
     const classByVariant: Classes = {
       notificationRed: 'bg-red-100',
@@ -148,11 +158,6 @@ export const Notification = forwardRef<HTMLDivElement, PrivateProps>(
     )
   }
 )
-
-Notification.defaultProps = {
-  elevated: false,
-  variant: 'yellow',
-}
 
 Notification.displayName = 'Notification'
 

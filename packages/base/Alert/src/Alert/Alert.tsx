@@ -98,10 +98,9 @@ const icons = {
 }
 
 export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
-  props,
+  { variant = 'yellow', children, onClose, className, actions },
   ref
 ) {
-  const { children, variant, onClose, className, actions } = props
   const icon = icons[variant!]
 
   return (
@@ -139,10 +138,6 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
     </Container>
   )
 })
-
-Alert.defaultProps = {
-  variant: 'yellow',
-}
 
 Alert.displayName = 'Alert'
 

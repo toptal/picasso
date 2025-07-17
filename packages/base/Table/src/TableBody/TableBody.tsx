@@ -43,8 +43,6 @@ export const TableBody = forwardRef<HTMLTableSectionElement, Props>(
   }
 )
 
-TableBody.defaultProps = {}
-
 TableBody.displayName = 'TableBody'
 
 export default TableBody

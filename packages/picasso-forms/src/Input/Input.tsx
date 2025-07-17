@@ -77,8 +77,6 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((props, ref) => {
   )
 })
 
-Input.defaultProps = {}
-
 Input.displayName = 'Input'
 
 export default Input

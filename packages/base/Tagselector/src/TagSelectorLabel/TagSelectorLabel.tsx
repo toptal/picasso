@@ -14,8 +14,6 @@ export const TagSelectorLabel = forwardRef<HTMLDivElement, TagProps>(
   }
 )
 
-TagSelectorLabel.defaultProps = {}
-
 TagSelectorLabel.displayName = 'TagSelectorLabel'
 
 export default TagSelectorLabel

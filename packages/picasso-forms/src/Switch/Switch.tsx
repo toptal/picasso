@@ -49,8 +49,6 @@ export const Switch = (props: Props) => (
   </PicassoField>
 )
 
-Switch.defaultProps = {}
-
 Switch.displayName = 'Switch'
 
 export default Switch

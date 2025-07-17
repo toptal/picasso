@@ -32,8 +32,6 @@ export const FormRenderer = (props: Props) => {
   )
 }
 
-FormRenderer.defaultProps = {}
-
 FormRenderer.displayName = 'FormRenderer'
 
 export default FormRenderer

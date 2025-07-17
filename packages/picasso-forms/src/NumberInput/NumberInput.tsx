@@ -65,8 +65,6 @@ export const NumberInput = (props: Props) => {
   )
 }
 
-NumberInput.defaultProps = {}
-
 NumberInput.displayName = 'NumberInput'
 
 export default NumberInput
