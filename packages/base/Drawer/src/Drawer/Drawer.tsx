@@ -162,11 +162,4 @@ export const Drawer = ({
 
 Drawer.displayName = 'Drawer'
 
-Drawer.defaultProps = {
-  anchor: 'right',
-  disablePortal: false,
-  onClose: () => {},
-  width: 'regular',
-}
-
 export default Drawer

@@ -112,19 +112,25 @@ const useWidthStyle = ({
   return {}
 }
 
-export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
+export const Popper = forwardRef<PopperJs, Props>(function Popper(
+  {
+    open = false,
+    disablePortal = false,
+    placement = 'bottom',
+    popperOptions = {},
+    autoWidth = true,
+    ...props
+  },
+  ref
+) {
   const {
     children,
-    open,
     anchorEl,
     className,
     container,
-    popperOptions = {},
     keepMounted,
-    autoWidth,
     width,
     enableCompactMode,
-    disablePortal,
     style,
     ...rest
   } = props
@@ -173,20 +179,13 @@ export const Popper = forwardRef<PopperJs, Props>(function Popper(props, ref) {
         ...style,
         ...anchorElWidthStyle,
       }}
+      placement={placement}
       {...rest}
     >
       {children}
     </MUIPopper>
   )
 })
-
-Popper.defaultProps = {
-  open: false,
-  disablePortal: false,
-  placement: 'bottom',
-  popperOptions: {},
-  autoWidth: true,
-}
 
 Popper.displayName = 'Popper'
 

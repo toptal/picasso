@@ -112,32 +112,39 @@ export interface Props
 }
 
 export const TagSelector = forwardRef<HTMLInputElement, Props>(
-  function TagSelector(props, ref) {
-    const {
-      disabled,
-      enableAutofill,
+  function TagSelector(
+    {
+      enableAutofill = false,
       getDisplayValue = getItemText,
-      getKey: customGetKey,
-      inputValue = '',
-      loading,
-      noOptionsText,
-      onBlur,
+      loading = false,
       onChange = noop,
-      onFocus,
+      closeOnSelect = true,
       onInputChange = noop,
       onOtherOptionSelect = noop,
       options = [],
-      otherOptionLabel,
-      placeholder,
+      otherOptionLabel = 'Add new option: ',
+      noOptionsText = 'No matches found',
+      placeholder = '',
+      showOtherOption = false,
+      status = 'default',
+      size = 'medium',
+      ...props
+    },
+    ref
+  ) {
+    const {
+      disabled,
+      getKey: customGetKey,
+      inputValue = '',
+      onBlur,
+      onFocus,
       renderLabel: customRenderLabel,
       renderOption,
       submitOtherOptionOnEnter,
-      showOtherOption,
       value: values = [],
       width,
       popperContainer,
       popperOptions,
-      status,
       testIds,
       highlight,
       ...rest
@@ -242,6 +249,8 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
         onOtherOptionSelect={handleOtherOptionSelect}
         onChange={onInputChange}
         onKeyDown={handleKeyDown}
+        size={size}
+        closeOnSelect={closeOnSelect}
         onFocus={onFocus}
         onBlur={onBlur}
         startAdornment={renderTags}
@@ -265,23 +274,6 @@ export const TagSelector = forwardRef<HTMLInputElement, Props>(
     )
   }
 )
-
-TagSelector.defaultProps = {
-  enableAutofill: false,
-  getDisplayValue: getItemText,
-  loading: false,
-  onChange: noop,
-  closeOnSelect: true,
-  onInputChange: noop,
-  onOtherOptionSelect: noop,
-  options: [],
-  otherOptionLabel: 'Add new option: ',
-  noOptionsText: 'No matches found',
-  placeholder: '',
-  showOtherOption: false,
-  status: 'default',
-  size: 'medium',
-}
 
 TagSelector.displayName = 'TagSelector'
 

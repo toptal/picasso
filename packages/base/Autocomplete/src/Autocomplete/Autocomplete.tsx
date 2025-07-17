@@ -126,44 +126,49 @@ const getItemText = (item: Item | null) =>
   (item && item.text) || EMPTY_INPUT_VALUE
 
 export const Autocomplete = forwardRef<HTMLInputElement, Props>(
-  function Autocomplete(props, customRef) {
+  function Autocomplete(
+    {
+      enableAutofill = false,
+      getDisplayValue = getItemText,
+      loading = false,
+      noOptionsText = 'No options',
+      onChange = () => {},
+      onKeyDown = () => {},
+      onFocus = () => {},
+      onBlur = () => {},
+      onOtherOptionSelect = () => {},
+      onResetClick = () => {},
+      onSelect = () => {},
+      options = [],
+      otherOptionText = 'Other option: ',
+      showOtherOption = false,
+      width = 'auto',
+      enableReset = true,
+      poweredByGoogle = false,
+      disabled = false,
+      status = 'default',
+      ...props
+    },
+    customRef
+  ) {
     const {
       autoComplete,
       className,
-      enableAutofill,
-      enableReset,
       endAdornment,
-      status,
-      getDisplayValue = getItemText,
       getKey,
       icon,
       inputComponent,
-      loading,
       menuWidth,
       name,
-      noOptionsText,
       closeOnSelect,
-      onBlur,
-      onChange,
-      onFocus,
-      onKeyDown,
-      onOtherOptionSelect,
-      onResetClick,
-      onSelect,
-      options,
-      otherOptionText = 'Other option: ',
       placeholder,
       popperContainer,
       popperOptions,
-      poweredByGoogle,
       renderOption,
       renderOtherOption,
-      showOtherOption,
       style,
       testIds,
       value,
-      width = 'auto',
-      disabled = false,
       highlight,
       ...rest
     } = props
@@ -298,28 +303,6 @@ export const Autocomplete = forwardRef<HTMLInputElement, Props>(
     )
   }
 )
-
-Autocomplete.defaultProps = {
-  enableAutofill: false,
-  getDisplayValue: getItemText,
-  loading: false,
-  noOptionsText: 'No options',
-  onChange: () => {},
-  onKeyDown: () => {},
-  onFocus: () => {},
-  onBlur: () => {},
-  onOtherOptionSelect: () => {},
-  onResetClick: () => {},
-  onSelect: () => {},
-  options: [],
-  otherOptionText: 'Other option: ',
-  showOtherOption: false,
-  width: 'auto',
-  enableReset: true,
-  poweredByGoogle: false,
-  disabled: false,
-  status: 'default',
-}
 
 Autocomplete.displayName = 'Autocomplete'
 
