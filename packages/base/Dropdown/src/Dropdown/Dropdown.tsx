@@ -125,29 +125,34 @@ export type Props = PropsWithBaseSpacing | PropsWithDeprecatedSpacing
 export const Dropdown: DropdownProps = forwardRef<
   HTMLDivElement,
   PropsWithBaseSpacing | PropsWithDeprecatedSpacing
->(function Dropdown(props, ref) {
+>(function Dropdown(
+  {
+    disableAutoClose = false,
+    disableAutoFocus = true,
+    disablePortal = false,
+    keepMounted = false,
+    onClose = noop,
+    onOpen = noop,
+    placement = 'bottom-end',
+    popperOptions = {},
+    contentOverflow = 'scroll',
+    ...props
+  },
+  ref
+) {
   const {
     className,
     style,
     children,
     content,
     offset,
-    placement,
     disabled,
-    disableAutoClose,
-    disableAutoFocus,
-    disablePortal,
-    popperOptions,
     popperProps,
-    keepMounted,
-    onOpen = noop,
     popperContainer,
-    onClose = noop,
     contentStyle,
     // Avoid passing external classes inside the rest props
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     classes: externalClasses,
-    contentOverflow = 'scroll',
     ...rest
   } = props
 
@@ -326,17 +331,6 @@ export const Dropdown: DropdownProps = forwardRef<
     </div>
   )
 }) as DropdownProps
-
-Dropdown.defaultProps = {
-  disableAutoClose: false,
-  disableAutoFocus: true,
-  disablePortal: false,
-  keepMounted: false,
-  onClose: noop,
-  onOpen: noop,
-  placement: 'bottom-end',
-  popperOptions: {},
-}
 
 Dropdown.displayName = 'Dropdown'
 

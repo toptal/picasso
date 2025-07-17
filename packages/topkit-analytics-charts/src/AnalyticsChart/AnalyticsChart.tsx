@@ -74,11 +74,6 @@ export const AnalyticsChart = ({
   )
 }
 
-AnalyticsChart.defaultProps = {
-  xAxisKey: 'x',
-  formatXAxisLabel: (label: string) => label,
-}
-
 AnalyticsChart.displayName = 'AnalyticsChart'
 
 export default AnalyticsChart

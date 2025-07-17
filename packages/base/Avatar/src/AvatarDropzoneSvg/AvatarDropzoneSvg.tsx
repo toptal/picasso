@@ -57,9 +57,8 @@ export interface Props extends BaseProps {
   hovered?: boolean
 }
 
-export const DropzoneSvg = (props: Props) => {
+export const DropzoneSvg = ({ size = 'small', ...props }: Props) => {
   const {
-    size = 'small',
     disabled,
     error,
     focused,
@@ -123,9 +122,5 @@ export const DropzoneSvg = (props: Props) => {
 }
 
 DropzoneSvg.displayName = 'DropzoneSvg'
-
-DropzoneSvg.defaultProps = {
-  size: 'small',
-}
 
 export default DropzoneSvg

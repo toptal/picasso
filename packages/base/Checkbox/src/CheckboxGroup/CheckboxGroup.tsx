@@ -16,8 +16,8 @@ export interface Props extends HTMLAttributes<HTMLDivElement>, GridSizeProps {
 
 const HORIZONTAL_SPACING = 16
 
-const CheckboxGroup = (props: Props) => {
-  const { horizontal, spacing, xs, sm, md, lg, xl, className, ...rest } = props
+const CheckboxGroup = ({ horizontal = false, ...props }: Props) => {
+  const { spacing, xs, sm, md, lg, xl, className, ...rest } = props
 
   const direction = horizontal ? 'row' : 'column'
   const gridSpacing = spacing ?? horizontal ? HORIZONTAL_SPACING : 0
@@ -54,10 +54,6 @@ const CheckboxGroup = (props: Props) => {
       </Grid>
     </div>
   )
-}
-
-CheckboxGroup.defaultProps = {
-  horizontal: false,
 }
 
 export default CheckboxGroup

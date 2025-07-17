@@ -45,8 +45,12 @@ const classes = {
   text: 'text-[1em] uppercase fill-white [dominant-baseline:middle] [text-anchor:middle]',
 }
 
-export const TreeNodeAvatar = (props: Props) => {
-  const { name, src, size = 'xxsmall', objectFit = 'contain', ...rest } = props
+export const TreeNodeAvatar = ({
+  size = 'xxsmall',
+  objectFit = 'contain',
+  ...props
+}: Props) => {
+  const { name, src, ...rest } = props
   const sizeValue = sizeValues[size]
 
   return (
@@ -74,11 +78,6 @@ export const TreeNodeAvatar = (props: Props) => {
       </mask>
     </svg>
   )
-}
-
-TreeNodeAvatar.defaultProps = {
-  size: 'xxsmall',
-  objectFit: 'contain',
 }
 
 TreeNodeAvatar.displayName = 'TreeNodeAvatar'

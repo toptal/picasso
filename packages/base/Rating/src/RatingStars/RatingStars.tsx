@@ -24,19 +24,16 @@ export interface Props extends BaseProps {
 }
 
 const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
-  props,
+  {
+    interactive = true,
+    max = 5,
+    size = 'small',
+    renderItem = (_, icon) => icon,
+    ...props
+  },
   ref
 ) {
-  const {
-    name,
-    value,
-    onChange,
-    renderItem = (_, icon) => icon,
-    max,
-    interactive = true,
-    size = 'small',
-    ...rest
-  } = props
+  const { name, value, onChange, ...rest } = props
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -104,12 +101,6 @@ const RatingStars = forwardRef<HTMLDivElement, Props>(function RatingStars(
     </Container>
   )
 })
-
-RatingStars.defaultProps = {
-  interactive: true,
-  max: 5,
-  size: 'small',
-}
 
 RatingStars.displayName = 'RatingStars'
 

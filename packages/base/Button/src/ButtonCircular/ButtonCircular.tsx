@@ -40,10 +40,9 @@ export interface Props extends BaseProps, ButtonOrAnchorProps {
 export const ButtonCircular: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function ButtonCircular(props, ref) {
+>(function ButtonCircular({ variant = 'primary', ...props }, ref) {
   const {
     className,
-    variant = 'primary',
     active,
     focused,
     hovered,
@@ -83,10 +82,6 @@ export const ButtonCircular: OverridableComponent<Props> = forwardRef<
     />
   )
 })
-
-ButtonCircular.defaultProps = {
-  variant: 'primary',
-}
 
 ButtonCircular.displayName = 'ButtonCircular'
 

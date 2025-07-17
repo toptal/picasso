@@ -19,17 +19,11 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
 }
 
 export const TableRow = forwardRef<HTMLTableRowElement, Props>(
-  function TableRow(props, ref) {
-    const {
-      className,
-      style,
-      children,
-      hover,
-      selected,
-      stripeEven,
-      onClick,
-      ...rest
-    } = props
+  function TableRow(
+    { hover = false, selected = false, stripeEven = false, ...props }: Props,
+    ref
+  ) {
+    const { className, style, children, onClick, ...rest } = props
 
     const { variant } = useContext(TableContext)
     const isBordered = variant === 'bordered' || variant === 'striped'
@@ -53,12 +47,6 @@ export const TableRow = forwardRef<HTMLTableRowElement, Props>(
     )
   }
 )
-
-TableRow.defaultProps = {
-  hover: false,
-  selected: false,
-  stripeEven: false,
-}
 
 TableRow.displayName = 'TableRow'
 

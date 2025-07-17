@@ -126,16 +126,6 @@ export const Carousel = ({
   )
 }
 
-Carousel.defaultProps = {
-  hasArrows: false,
-  hasDots: false,
-  rewind: false,
-  autoplay: false,
-  autoplayDelay: 3000,
-  slidesToScroll: 1,
-  slidesToShow: 1,
-}
-
 Carousel.displayName = 'Carousel'
 
 export default Carousel

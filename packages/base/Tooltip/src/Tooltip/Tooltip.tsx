@@ -97,133 +97,132 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTooltip' })
 
-export const Tooltip = forwardRef<unknown, Props>((props, ref) => {
-  const {
-    content,
-    children: originalChildren,
-    placement,
-    interactive,
-    className,
-    offset = {
-      left: SPACING_0,
-      top: SPACING_0,
+export const Tooltip = forwardRef<unknown, Props>(
+  (
+    {
+      preventOverflow = true,
+      placement = 'top',
+      disablePortal = false,
+      maxWidth = 'default',
+      delay = 'short',
+      followCursor = false,
+      offset = {
+        left: SPACING_0,
+        top: SPACING_0,
+      },
+      ...props
     },
-    style,
-    open,
-    onOpen,
-    onClose,
-    onTransitionExiting,
-    onTransitionExited,
-    disableListeners,
-    preventOverflow,
-    disablePortal,
-    delay = 'short',
-    compact,
-    maxWidth,
-    followCursor = false,
-    tooltipRef,
-    container,
-    'data-private': dataPrivate,
-    ...rest
-  } = props
+    ref
+  ) => {
+    const {
+      content,
+      children: originalChildren,
+      interactive,
+      className,
+      style,
+      open,
+      onOpen,
+      onClose,
+      onTransitionExiting,
+      onTransitionExited,
+      disableListeners,
+      compact,
+      tooltipRef,
+      container,
+      'data-private': dataPrivate,
+      ...rest
+    } = props
 
-  const classes = useStyles()
-  const picassoRootContainer = usePicassoRoot()
+    const classes = useStyles()
+    const picassoRootContainer = usePicassoRoot()
 
-  const tooltipState = useTooltipState({ externalOpen: open, followCursor })
+    const tooltipState = useTooltipState({ externalOpen: open, followCursor })
 
-  const delayDuration = getDelayDuration(delay, tooltipState.isTouchDevice)
+    const delayDuration = getDelayDuration(delay, tooltipState.isTouchDevice)
 
-  const followCursorTooltipData = useTooltipFollowCursor({
-    followCursor,
-    tooltipState,
-  })
+    const followCursorTooltipData = useTooltipFollowCursor({
+      followCursor,
+      tooltipState,
+    })
 
-  const { children, handleOpen, handleClose } = useTooltipHandlers({
-    children: originalChildren as ReactElement<ChildrenProps>,
-    tooltipState,
-    disableListeners,
-    onOpen,
-    onClose,
-    onMouseOver: followCursorTooltipData?.handleMouseOver,
-    onMouseMove: followCursorTooltipData?.handleMouseMove,
-    onClick: followCursorTooltipData?.handleClick,
-  })
+    const { children, handleOpen, handleClose } = useTooltipHandlers({
+      children: originalChildren as ReactElement<ChildrenProps>,
+      tooltipState,
+      disableListeners,
+      onOpen,
+      onClose,
+      onMouseOver: followCursorTooltipData?.handleMouseOver,
+      onMouseMove: followCursorTooltipData?.handleMouseMove,
+      onClick: followCursorTooltipData?.handleClick,
+    })
 
-  const title = (
-    <Typography
-      data-private={dataPrivate}
-      as='div'
-      size='small'
-      color='inherit'
-    >
-      {content}
-    </Typography>
-  )
+    const title = (
+      <Typography
+        data-private={dataPrivate}
+        as='div'
+        size='small'
+        color='inherit'
+      >
+        {content}
+      </Typography>
+    )
 
-  return (
-    <MUITooltip
-      {...rest}
-      ref={ref}
-      arrow={!compact && !followCursor}
-      PopperProps={{
-        ref: tooltipRef,
-        container: container || picassoRootContainer,
-        disablePortal,
-        popperOptions: {
-          modifiers: {
-            preventOverflow: {
-              enabled: preventOverflow,
-              boundariesElement: 'window',
-            },
-            hide: {
-              enabled: preventOverflow,
-            },
-            offset: {
-              offset: getOffset(placement, offset),
+    return (
+      <MUITooltip
+        {...rest}
+        ref={ref}
+        arrow={!compact && !followCursor}
+        PopperProps={{
+          ref: tooltipRef,
+          container: container || picassoRootContainer,
+          disablePortal,
+          popperOptions: {
+            modifiers: {
+              preventOverflow: {
+                enabled: preventOverflow,
+                boundariesElement: 'window',
+              },
+              hide: {
+                enabled: preventOverflow,
+              },
+              offset: {
+                offset: getOffset(placement, offset),
+              },
             },
           },
-        },
-        ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
-      }}
-      TransitionProps={{
-        // passing undefined onExiting or onExited changes Tooltip behavior
-        ...(onTransitionExiting && { onExiting: onTransitionExiting }),
-        ...(onTransitionExited && { onExiting: onTransitionExited }),
-      }}
-      classes={{
-        arrow: classes.arrow,
-        tooltip: cx(classes.tooltip, {
-          [classes.light]: !compact,
-          [classes.compact]: compact,
-          [classes.noMaxWidth]: maxWidth === 'none',
-        }),
-      }}
-      className={className}
-      style={style}
-      interactive={interactive}
-      onClose={handleClose}
-      onOpen={handleOpen}
-      open={tooltipState.isOpen}
-      placement={placement}
-      title={title}
-      disableHoverListener={disableListeners}
-      disableFocusListener={disableListeners}
-      disableTouchListener
-      enterDelay={delayDuration}
-      enterNextDelay={delayDuration}
-    >
-      {children as ReactElement}
-    </MUITooltip>
-  )
-})
-
-Tooltip.defaultProps = {
-  preventOverflow: true,
-  placement: 'top',
-  disablePortal: false,
-  maxWidth: 'default',
-  delay: 'short',
-}
+          ...(followCursor && followCursorTooltipData?.followCursorPopperProps),
+        }}
+        TransitionProps={{
+          // passing undefined onExiting or onExited changes Tooltip behavior
+          ...(onTransitionExiting && { onExiting: onTransitionExiting }),
+          ...(onTransitionExited && { onExiting: onTransitionExited }),
+        }}
+        classes={{
+          arrow: classes.arrow,
+          tooltip: cx(classes.tooltip, {
+            [classes.light]: !compact,
+            [classes.compact]: compact,
+            [classes.noMaxWidth]: maxWidth === 'none',
+          }),
+        }}
+        className={className}
+        style={style}
+        interactive={interactive}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        open={tooltipState.isOpen}
+        placement={placement}
+        title={title}
+        disableHoverListener={disableListeners}
+        disableFocusListener={disableListeners}
+        disableTouchListener
+        enterDelay={delayDuration}
+        enterNextDelay={delayDuration}
+      >
+        {children as ReactElement}
+      </MUITooltip>
+    )
+  }
+)
 
 export default Tooltip

@@ -81,19 +81,16 @@ const justifyContentClassNamesMapping: { [K in GridJustification]: string } = {
 }
 
 export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
-  props,
-  ref
-) {
-  const {
-    children,
-    spacing: userSpacing,
+  {
     direction = 'row',
     alignItems = 'flex-start',
     justifyContent = 'flex-start',
     wrap = 'wrap',
-    className,
-    ...rest
-  } = props
+    ...props
+  },
+  ref
+) {
+  const { children, spacing: userSpacing, className, ...rest } = props
 
   const responsiveSpacing = useResponsiveSpacing()
   const gridSpacing = userSpacing ?? responsiveSpacing
@@ -128,13 +125,6 @@ export const Grid = forwardRef<HTMLDivElement, Props>(function Grid(
     </GridContext.Provider>
   )
 })
-
-Grid.defaultProps = {
-  alignItems: 'flex-start',
-  direction: 'row',
-  justifyContent: 'flex-start',
-  wrap: 'wrap',
-}
 
 Grid.displayName = 'Grid'
 
