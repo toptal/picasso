@@ -15,9 +15,7 @@ exports[`useAdornments returns loading adornment 1`] = `
   position="end"
 >
   <Loader
-    inline={false}
     size="small"
-    variant="blue"
   />
 </InputAdornment>
 `;
@@ -44,9 +42,7 @@ Array [
     position="end"
   >
     <Loader
-      inline={false}
       size="small"
-      variant="blue"
     />
   </InputAdornment>,
 ]
