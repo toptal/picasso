@@ -111,8 +111,8 @@ export const MediaSkeletonLoader = ({
 }: Props) => {
   const { className, style, uniqueKey } = props
   const { width, height, borderRadius } = useMemo(
-    () => getAttributes({ variant, ...props }),
-    [props]
+    () => getAttributes({ variant, ...props } as Props),
+    [variant, props]
   )
 
   const viewBox = `0 0 ${width} ${height}`

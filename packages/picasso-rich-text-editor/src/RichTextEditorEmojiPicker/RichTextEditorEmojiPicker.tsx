@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core'
 import cx from 'classnames'
 import { Container } from '@toptal/picasso-container'
 
-import TextEditorButton from '../RichTextEditorButton'
+import RichTextEditorButton from '../RichTextEditorButton'
 import type { CustomEmojiGroup, Emoji } from '../plugins/EmojiPlugin'
 
 interface Props {
@@ -84,7 +84,7 @@ export const RichTextEditorEmojiPicker = ({
 
   return (
     <Container style={{ position: 'relative' }}>
-      <TextEditorButton
+      <RichTextEditorButton
         onClick={handleEmojiPickerClick}
         icon={<Container style={{ pointerEvents: 'none' }}>🙂</Container>}
         id={TRIGGER_EMOJI_PICKER_ID}

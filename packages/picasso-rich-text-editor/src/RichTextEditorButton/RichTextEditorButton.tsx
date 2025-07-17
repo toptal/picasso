@@ -5,10 +5,10 @@ import type { BaseProps } from '@toptal/picasso-shared'
 import { ButtonCircular } from '@toptal/picasso-button'
 
 type Props = BaseProps & {
-  active: boolean
-  disabled: boolean
+  active?: boolean
+  disabled?: boolean
   icon: ReactElement
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   id?: string
 }
 

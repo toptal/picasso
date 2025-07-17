@@ -31,7 +31,7 @@ export interface Props<TValueType> extends BaseProps {
 const ANIMATION_TIMEOUT = 500
 
 export const FieldRequirements = <TValueType,>({
-  value = '' as TValueType,
+  value,
   description,
   open = false,
   error,
