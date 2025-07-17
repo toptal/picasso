@@ -43,6 +43,7 @@ export const SidebarItem: OverridableComponent<Props> = memo(
       expand,
       variant,
       compact,
+      menu,
       ...rest,
     }
 
