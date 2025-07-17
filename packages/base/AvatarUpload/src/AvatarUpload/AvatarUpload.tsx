@@ -102,6 +102,8 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       alt,
       style,
       avatarStyle,
+
+      // dropzoneOptions
       onDrop,
       onDropAccepted,
       onDropRejected,

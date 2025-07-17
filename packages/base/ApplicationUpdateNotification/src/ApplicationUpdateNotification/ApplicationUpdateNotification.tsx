@@ -25,12 +25,12 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
       title = 'A New Update is Available',
       description = 'Get performance improvements and bug fixes with this update. Make sure to save any data on this page before updating.',
       onClose = () => {},
-      ...props
+      actions = null,
+      dismissable = false,
+      ...rest
     },
     ref
   ) {
-    const { actions = null, dismissable = false, ...rest } = props
-
     const notification = (
       <Container flex direction='column' gap='xsmall'>
         <svg
