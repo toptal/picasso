@@ -34,12 +34,12 @@ export interface Props
 }
 
 export const PasswordInput = forwardRef<HTMLInputElement, Props>(
-  function PasswordInput(props, ref) {
+  function PasswordInput(
+    { onChange = () => {}, value = '', status = 'default', ...props },
+    ref
+  ) {
     const {
-      value,
-      onChange,
       disabled,
-      status,
       size,
       width,
       style,
@@ -100,12 +100,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
     )
   }
 )
-
-PasswordInput.defaultProps = {
-  onChange: () => {},
-  value: '',
-  status: 'default',
-}
 
 PasswordInput.displayName = 'PasswordInput'
 

@@ -17,19 +17,9 @@ export interface Props extends BaseProps, ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export const Image = forwardRef<HTMLImageElement, Props>(function Image(
-  props,
+  { variant = 'rectangle', src, srcSet, alt, className, style, ...rest },
   ref
 ) {
-  const {
-    src,
-    srcSet,
-    alt,
-    className,
-    variant = 'rectangle',
-    style,
-    ...rest
-  } = props
-
   return (
     <img
       {...rest}
@@ -46,10 +36,6 @@ export const Image = forwardRef<HTMLImageElement, Props>(function Image(
     />
   )
 })
-
-Image.defaultProps = {
-  variant: 'rectangle',
-}
 
 Image.displayName = 'Image'
 

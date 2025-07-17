@@ -14,7 +14,10 @@ import {
   DEFAULT_SCALE_EXTENT,
   DEFAULT_TRANSITION_DURATION,
   ZERO_VECTOR2,
-  TreeViewPropsDefaults,
+  DEFAULT_WIDTH,
+  DEFAULT_HEIGHT,
+  DEFAULT_DIRECTION,
+  DEFAULT_VARIANT,
 } from './variables'
 import type { TreeViewPropsBase, Vector2 } from './types'
 import { TreeViewSvg } from './TreeViewSvg'
@@ -31,29 +34,30 @@ export interface Props extends TreeViewPropsBase {
   scaleCoefficient?: number
 }
 
-export const TreeView = (props: Props) => {
-  const {
-    data,
-    renderNode,
-    nodeWidth = TreeView.defaultProps.nodeWidth,
-    nodeHeight = TreeView.defaultProps.nodeHeight,
-    scaleExtent = TreeView.defaultProps.scaleExtent,
-    initialScale = TreeView.defaultProps.initialScale,
-    scaleCoefficient = TreeView.defaultProps.scaleCoefficient,
-    showZoom = TreeView.defaultProps.showZoom,
-  } = props
+export const TreeView = ({
+  nodeWidth = DEFAULT_WIDTH,
+  nodeHeight = DEFAULT_HEIGHT,
+  directionProps = {
+    direction: DEFAULT_DIRECTION,
+    variant: DEFAULT_VARIANT,
+  },
+  scaleExtent = DEFAULT_SCALE_EXTENT,
+  initialScale = 1,
+  scaleCoefficient = 0.5,
+  showZoom = true,
+  ...props
+}: Props) => {
+  const { data, renderNode } = props
 
-  const {
-    direction = TreeView.defaultProps.directionProps.direction,
-    variant = TreeView.defaultProps.directionProps.variant,
-  } = props.directionProps ?? TreeView.defaultProps.directionProps
+  const { direction = DEFAULT_DIRECTION, variant = DEFAULT_VARIANT } =
+    directionProps
 
   const rootRef = createRef<SVGSVGElement>()
 
   const [verticalMargin, horizontalMargin] = useFinalMargins(
     direction,
-    props.directionProps?.verticalMargin,
-    props.directionProps?.horizontalMargin
+    directionProps.verticalMargin,
+    directionProps.horizontalMargin
   )
 
   const { nodes, links, selectedNode } = useTree({
@@ -121,14 +125,6 @@ export const TreeView = (props: Props) => {
       />
     </div>
   )
-}
-
-TreeView.defaultProps = {
-  ...TreeViewPropsDefaults,
-  scaleExtent: DEFAULT_SCALE_EXTENT,
-  initialScale: 1,
-  scaleCoefficient: 0.5,
-  showZoom: true,
 }
 
 TreeView.displayName = 'TreeView'

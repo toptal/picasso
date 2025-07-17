@@ -42,13 +42,12 @@ export interface Props
 
 const VALID_TIME_REGEX = new RegExp(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/)
 
-export const TimePicker = (props: Props) => {
+export const TimePicker = ({ status = 'default', ...props }: Props) => {
   const {
     onChange: externalOnChange,
     value: externalValue,
     width,
     className,
-    status,
     highlight,
     size,
     ...rest
@@ -153,10 +152,6 @@ export const TimePicker = (props: Props) => {
       }}
     />
   )
-}
-
-TimePicker.defaultProps = {
-  status: 'default',
 }
 
 TimePicker.displayName = 'TimePicker'

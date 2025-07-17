@@ -62,7 +62,7 @@ const loaderIcon = <Loader size='small' variant='inherit' />
 export const ButtonAction: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function ButtonAction(props, ref) {
+>(function ButtonAction({ iconPosition = 'left', ...props }, ref) {
   const {
     /* eslint-disable @typescript-eslint/no-unused-vars */
     // We use these props only to determine styles
@@ -74,7 +74,6 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
     disabled,
     loading,
     icon,
-    iconPosition,
     onClick,
     ...rest
   } = props
@@ -102,10 +101,6 @@ export const ButtonAction: OverridableComponent<Props> = forwardRef<
     />
   )
 })
-
-ButtonAction.defaultProps = {
-  iconPosition: 'left',
-}
 
 ButtonAction.displayName = 'ButtonAction'
 

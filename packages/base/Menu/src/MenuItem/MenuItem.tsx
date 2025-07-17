@@ -112,9 +112,17 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
   // eslint-disable-next-line complexity
->(function MenuItem(props, ref) {
-  const {
+>(function MenuItem(
+  {
     as = 'li',
+    variant = 'light',
+    nonSelectable = false,
+    role = 'menuitem',
+    ...props
+  },
+  ref
+) {
+  const {
     children,
     description,
     className,
@@ -126,9 +134,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     checkmarked,
     style,
     value,
-    variant = 'light',
-    role = 'menuitem',
-    nonSelectable,
     onClick,
     onMouseEnter,
     icon,
@@ -250,12 +255,6 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
     </>
   )
 })
-
-MenuItem.defaultProps = {
-  as: 'li',
-  variant: 'light',
-  nonSelectable: false,
-}
 
 MenuItem.displayName = 'MenuItem'
 

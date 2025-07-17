@@ -8,7 +8,11 @@ export interface Props extends AutocompleteProps {
   testIds?: AutocompleteProps['testIds']
 }
 
-export const PageAutocomplete = ({ variant, testIds, ...rest }: Props) => (
+export const PageAutocomplete = ({
+  variant = 'dark',
+  testIds,
+  ...rest
+}: Props) => (
   <Autocomplete
     inputProps={{
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -20,9 +24,5 @@ export const PageAutocomplete = ({ variant, testIds, ...rest }: Props) => (
 )
 
 PageAutocomplete.displayName = 'PageAutocomplete'
-
-PageAutocomplete.defaultProps = {
-  variant: 'dark',
-}
 
 export default PageAutocomplete
