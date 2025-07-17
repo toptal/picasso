@@ -176,6 +176,7 @@ export const Button: OverridableComponent<Props> = forwardRef<
       as={as}
       type={type}
       onClick={onClick}
+      children={children}
     />
   )
 })

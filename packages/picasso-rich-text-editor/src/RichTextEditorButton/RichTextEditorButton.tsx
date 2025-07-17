@@ -16,26 +16,21 @@ const RichTextEditorButton = ({
   active = false,
   disabled = false,
   onClick = () => {},
-  ...props
-}: Props) => {
-  const { icon, className, style, ...rest } = props
-
-  return (
-    <ButtonCircular
-      variant='flat'
-      onClick={onClick}
-      icon={icon}
-      style={style}
-      className={twMerge(
-        'rounded-sm [&+&]:!ml-2',
-        active && 'bg-graphite-700 [&:not(:hover)_svg]:fill-white',
-        className
-      )}
-      disabled={disabled}
-      {...rest}
-    />
-  )
-}
+  className,
+  ...rest
+}: Props) => (
+  <ButtonCircular
+    variant='flat'
+    onClick={onClick}
+    className={twMerge(
+      'rounded-sm [&+&]:!ml-2',
+      active && 'bg-graphite-700 [&:not(:hover)_svg]:fill-white',
+      className
+    )}
+    disabled={disabled}
+    {...rest}
+  />
+)
 
 RichTextEditorButton.displayName = 'RichTextEditorButton'
 
