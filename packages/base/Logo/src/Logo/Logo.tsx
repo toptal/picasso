@@ -17,14 +17,11 @@ export interface Props extends BaseProps {
   variant?: VariantType
 }
 
-export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
-  const {
-    emblem,
-    variant = 'default',
-    style,
-    className,
-    'data-testid': testId,
-  } = props
+export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(
+  { variant = 'default', ...props },
+  ref
+) {
+  const { emblem, style, className, 'data-testid': testId } = props
 
   const LogoComponent = emblem ? LogoEmblemIcon : LogoIcon
 
@@ -41,10 +38,6 @@ export const Logo = forwardRef<SVGSVGElement, Props>(function Logo(props, ref) {
     />
   )
 })
-
-Logo.defaultProps = {
-  variant: 'default',
-}
 
 Logo.displayName = 'Logo'
 

@@ -33,21 +33,11 @@ export interface Props extends BaseProps {
 }
 
 export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
-  props,
+  { maxFiles = 1, buttonLabel = 'Choose File', ...props },
   ref
 ) {
-  const {
-    accept,
-    disabled,
-    value,
-    buttonLabel,
-    hint,
-    maxFiles = 1,
-    onChange,
-    onRemove,
-    onFocus,
-    onBlur,
-  } = props
+  const { accept, disabled, value, hint, onChange, onRemove, onFocus, onBlur } =
+    props
 
   const isUnlimitedFiles = maxFiles === null
   const preventAddingNewFiles =
@@ -88,11 +78,6 @@ export const FileInput = forwardRef<HTMLInputElement, Props>(function FileInput(
     </Container>
   )
 })
-
-FileInput.defaultProps = {
-  maxFiles: 1,
-  buttonLabel: 'Choose File',
-}
 
 FileInput.displayName = 'FileInput'
 

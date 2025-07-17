@@ -58,19 +58,21 @@ const oppositeDirection = {
   bottom: 'up',
 } as const
 
-export const Drawer = (props: Props) => {
+export const Drawer = ({
+  anchor = 'right',
+  disablePortal = false,
+  onClose = () => {},
+  width = 'regular',
+  ...props
+}: Props) => {
   const {
     children,
-    disablePortal,
     open,
-    onClose,
     title,
-    width = 'regular',
     transitionProps,
     maintainBodyScrollLock = true,
     transparentBackdrop,
     disableBackdrop,
-    anchor = 'right',
     className,
     style,
     'data-testid': testId,

@@ -63,12 +63,13 @@ const EventStopPropagation = ({ children }: { children: ReactNode }) => {
 }
 
 export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
-  function ButtonSplit(props, ref) {
+  function ButtonSplit(
+    { size = 'medium', variant = 'primary', ...props },
+    ref
+  ) {
     const {
-      size = 'medium',
       menu,
       children,
-      variant = 'primary',
       disabled,
       style,
       className,
@@ -155,11 +156,6 @@ export const ButtonSplit = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-ButtonSplit.defaultProps = {
-  size: 'medium',
-  variant: 'primary',
-}
 
 ButtonSplit.displayName = 'ButtonSplit'
 

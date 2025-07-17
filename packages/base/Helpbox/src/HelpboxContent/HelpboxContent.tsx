@@ -16,8 +16,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
 }
 
 export const HelpboxContent = forwardRef<HTMLElement, Props>(
-  function HelpboxContent(props, ref) {
-    const { width, className, style, children, ...rest } = props
+  function HelpboxContent({ width = 'full', ...props }, ref) {
+    const { className, style, children, ...rest } = props
 
     return (
       <Typography
@@ -35,10 +35,6 @@ export const HelpboxContent = forwardRef<HTMLElement, Props>(
     )
   }
 )
-
-HelpboxContent.defaultProps = {
-  width: 'full',
-}
 
 HelpboxContent.displayName = 'HelpboxContent'
 

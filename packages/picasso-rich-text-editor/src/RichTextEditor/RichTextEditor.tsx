@@ -89,25 +89,30 @@ const useStyles = makeStyles<Theme>(styles, {
 })
 
 export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
-  function RichTextEditor(props, ref) {
-    const {
-      'data-testid': dataTestId,
-      plugins,
+  function RichTextEditor(
+    {
       autoFocus = false,
-      className,
-      defaultValue,
-      disabled,
-      id,
       onChange = noop,
       onFocus = noop,
       onBlur = noop,
+      disabled = false,
+      status = 'default',
+      ...props
+    },
+    ref
+  ) {
+    const {
+      'data-testid': dataTestId,
+      plugins,
+      className,
+      defaultValue,
+      id,
       placeholder,
       minLength,
       maxLength,
       minLengthMessage,
       maxLengthMessage,
       style,
-      status,
       testIds,
       hiddenInputId,
       setHasMultilineCounter,
@@ -191,15 +196,6 @@ export const RichTextEditor = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-RichTextEditor.defaultProps = {
-  autoFocus: false,
-  onChange: noop,
-  onFocus: noop,
-  onBlur: noop,
-  disabled: false,
-  status: 'default',
-}
 
 RichTextEditor.displayName = 'RichTextEditor'
 

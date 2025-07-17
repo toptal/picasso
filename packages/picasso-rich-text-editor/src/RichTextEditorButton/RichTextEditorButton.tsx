@@ -12,8 +12,13 @@ type Props = BaseProps & {
   id?: string
 }
 
-const RichTextEditorButton = (props: Props) => {
-  const { icon, onClick, active, className, style, disabled, ...rest } = props
+const RichTextEditorButton = ({
+  active = false,
+  disabled = false,
+  onClick = () => {},
+  ...props
+}: Props) => {
+  const { icon, className, style, ...rest } = props
 
   return (
     <ButtonCircular
@@ -30,12 +35,6 @@ const RichTextEditorButton = (props: Props) => {
       {...rest}
     />
   )
-}
-
-RichTextEditorButton.defaultProps = {
-  active: false,
-  disabled: false,
-  onClick: () => {},
 }
 
 RichTextEditorButton.displayName = 'RichTextEditorButton'

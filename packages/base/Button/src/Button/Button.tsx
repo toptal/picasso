@@ -98,24 +98,29 @@ const getIcon = ({
 export const Button: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function Button(props, ref) {
-  const {
-    icon,
-    iconPosition,
-    loading,
-    className,
-    fullWidth,
-    variant = 'primary',
+>(function Button(
+  {
+    active = false,
+    as = 'button',
+    children = null,
+    disabled = false,
+    focused = false,
+    fullWidth = false,
+    hovered = false,
+    iconPosition = 'left',
+    loading = false,
+    onClick = noop,
     size = 'medium',
-    focused,
-    hovered,
-    disabled,
-    active,
-    ...rest
-  } = props
+    type = 'button',
+    variant = 'primary',
+    ...props
+  },
+  ref
+) {
+  const { icon, className, ...rest } = props
 
   const iconComponent = getIcon({
-    children: rest.children,
+    children,
     icon,
     iconPosition,
     size,
@@ -168,25 +173,12 @@ export const Button: OverridableComponent<Props> = forwardRef<
       iconPosition={iconPosition}
       loading={loading}
       disabled={disabled}
+      as={as}
+      type={type}
+      onClick={onClick}
     />
   )
 })
-
-Button.defaultProps = {
-  active: false,
-  as: 'button',
-  children: null,
-  disabled: false,
-  focused: false,
-  fullWidth: false,
-  hovered: false,
-  iconPosition: 'left',
-  loading: false,
-  onClick: noop,
-  size: 'medium',
-  type: 'button',
-  variant: 'primary',
-}
 
 Button.displayName = 'Button'
 

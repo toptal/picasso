@@ -105,10 +105,13 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
   return attributes
 }
 
-export const MediaSkeletonLoader = (props: Props) => {
+export const MediaSkeletonLoader = ({
+  variant = 'avatar',
+  ...props
+}: Props) => {
   const { className, style, uniqueKey } = props
   const { width, height, borderRadius } = useMemo(
-    () => getAttributes(props),
+    () => getAttributes({ variant, ...props }),
     [props]
   )
 
@@ -139,9 +142,5 @@ export const MediaSkeletonLoader = (props: Props) => {
 }
 
 MediaSkeletonLoader.displayName = 'MediaSkeletonLoader'
-
-MediaSkeletonLoader.defaultProps = {
-  variant: 'avatar',
-}
 
 export default MediaSkeletonLoader

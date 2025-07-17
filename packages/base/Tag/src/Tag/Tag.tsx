@@ -67,19 +67,19 @@ const cloneIcon = (icon: ReactNode, disabled?: boolean) => {
   })
 }
 
-export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
+  { as: Root = 'div', children = '', variant = 'light-grey', ...props },
+  ref
+) {
   const {
-    as: Root = 'div',
     className,
     disabled,
     endAdornment,
-    children,
     icon,
     onDelete,
     onClick,
     style,
     titleCase: propsTitleCase,
-    variant = 'light-grey',
     role,
     ...rest
   } = props
@@ -140,12 +140,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     </Root>
   )
 })
-
-Tag.defaultProps = {
-  as: 'div',
-  children: '',
-  variant: 'light-grey',
-}
 
 Tag.displayName = 'Tag'
 

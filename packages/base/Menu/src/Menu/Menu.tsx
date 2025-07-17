@@ -21,19 +21,11 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
 }
 
 export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
-  props,
+  { variant = 'slide', allowNestedNavigation = true, ...props },
   ref
 ) {
-  const {
-    children,
-    className,
-    style,
-    variant,
-    allowNestedNavigation,
-    testIds,
-    role = 'menu',
-    ...rest
-  } = props
+  const { children, className, style, testIds, role = 'menu', ...rest } = props
+
   const { context, innerMenu, hasBackButton } = useMenu({ variant })
   const { onBackClick, onMenuMouseLeave } = context
 
@@ -120,11 +112,6 @@ export const Menu = forwardRef<HTMLUListElement, Props>(function Menu(
     </MenuContext.Provider>
   )
 })
-
-Menu.defaultProps = {
-  variant: 'slide',
-  allowNestedNavigation: true,
-}
 
 Menu.displayName = 'Menu'
 

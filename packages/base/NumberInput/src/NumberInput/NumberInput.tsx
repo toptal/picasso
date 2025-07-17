@@ -37,23 +37,28 @@ export interface Props
 }
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
-  function NumberInput(props, ref) {
-    const {
+  function NumberInput(
+    {
+      onChange = () => {},
+      value = 0,
       step = 1,
       min = -Infinity,
       max = Infinity,
-      hideControls,
+      hideControls = false,
+      size = 'medium',
+      status = 'default',
+      ...props
+    },
+    ref
+  ) {
+    const {
       enableChangeOnMouseWheel,
-      value,
-      onChange,
       disabled,
-      status,
       onResetClick,
       enableReset,
       endAdornment: customEndAdornment = null,
       width,
       icon,
-      size,
       testIds,
       highlight,
       ...rest
@@ -129,17 +134,6 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
     )
   }
 )
-
-NumberInput.defaultProps = {
-  onChange: () => {},
-  value: 0,
-  step: 1,
-  min: -Infinity,
-  max: Infinity,
-  hideControls: false,
-  size: 'medium',
-  status: 'default',
-}
 
 NumberInput.displayName = 'NumberInput'
 

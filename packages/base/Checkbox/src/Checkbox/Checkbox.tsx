@@ -46,19 +46,19 @@ export interface Props
 }
 
 export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
-  function Checkbox(props, ref) {
+  function Checkbox(
+    { disabled = false, indeterminate = false, onChange = () => {}, ...props },
+    ref
+  ) {
     const {
       label,
       id,
       className,
       style,
       labelStyle,
-      disabled,
       requiredDecoration,
-      onChange,
       value,
       checked,
-      indeterminate,
       titleCase,
       ...rest
     } = props
@@ -130,12 +130,6 @@ export const Checkbox = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     )
   }
 )
-
-Checkbox.defaultProps = {
-  disabled: false,
-  indeterminate: false,
-  onChange: () => {},
-}
 
 Checkbox.displayName = 'Checkbox'
 

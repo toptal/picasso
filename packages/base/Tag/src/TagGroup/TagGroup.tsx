@@ -28,10 +28,6 @@ export const TagGroup = forwardRef<HTMLDivElement, Props>(function TagGroup(
   )
 })
 
-TagGroup.defaultProps = {
-  children: undefined,
-}
-
 TagGroup.displayName = 'TagGroup'
 
 export default TagGroup
