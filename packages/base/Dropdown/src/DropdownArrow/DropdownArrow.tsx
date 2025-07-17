@@ -9,9 +9,7 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLSpanElement> {
 }
 
 export const DropdownArrow = forwardRef<SVGSVGElement, Props>(
-  function DropdownArrow(props, ref) {
-    const { className, style, size = 'medium' } = props
-
+  function DropdownArrow({ className, style, size = 'medium', ...props }, ref) {
     return (
       <span className='flex'>
         <svg
@@ -34,9 +32,5 @@ export const DropdownArrow = forwardRef<SVGSVGElement, Props>(
 )
 
 DropdownArrow.displayName = 'DropdownArrow'
-
-DropdownArrow.defaultProps = {
-  size: 'medium',
-}
 
 export default DropdownArrow

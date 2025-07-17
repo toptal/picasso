@@ -53,7 +53,7 @@ export const PageTopBarContext = React.createContext<{ variant: VariantType }>({
 })
 
 export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
-  props,
+  { variant = 'dark', ...props },
   ref
 ) {
   const {
@@ -66,7 +66,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     leftContent,
     rightContent,
     actionItems,
-    variant = 'dark',
     testIds,
     ...rest
   } = props
@@ -194,10 +193,6 @@ export const PageTopBar = forwardRef<HTMLElement, Props>(function PageTopBar(
     </PageTopBarContext.Provider>
   )
 })
-
-PageTopBar.defaultProps = {
-  variant: 'dark',
-}
 
 PageTopBar.displayName = 'PageTopBar'
 
