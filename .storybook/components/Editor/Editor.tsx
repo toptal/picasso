@@ -18,9 +18,12 @@ interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEditor' })
 
-const Editor: FunctionComponent<Props> = ({ mode = 'jsx', ...rest }) => {
-  const { id, value } = rest
-
+const Editor: FunctionComponent<Props> = ({
+  mode = 'jsx',
+  id,
+  value,
+  ...rest
+}) => {
   const classes = useStyles()
 
   return (
