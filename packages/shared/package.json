@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.3.1",
-    "@toptal/picasso-provider": "5.0.0",
+    "@toptal/picasso-provider": "5.0.1",
     "notistack": "3.0.1"
   },
   "sideEffects": [

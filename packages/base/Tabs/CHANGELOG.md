@@ -1,5 +1,17 @@
 # @toptal/picasso-tabs
 
+## 5.0.15
+
+### Patch Changes
+
+- [#4788](https://github.com/toptal/picasso/pull/4788) [`dae5bce`](https://github.com/toptal/picasso/commit/dae5bce794a5c4f6406449c83a6e425cfcafff0f) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`dae5bce`](https://github.com/toptal/picasso/commit/dae5bce794a5c4f6406449c83a6e425cfcafff0f)]:
+  - @toptal/picasso-typography@4.0.4
+  - @toptal/picasso-typography-overflow@4.0.4
+  - @toptal/picasso-user-badge@5.1.12
+
 ## 5.0.14
 
 ### Patch Changes
