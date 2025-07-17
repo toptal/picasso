@@ -14,8 +14,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLUListElement> {
 }
 
 export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
-  function SidebarMenu(props, ref) {
-    const { bottom, style, className, children, ...rest } = props
+  function SidebarMenu({ bottom = false, ...props }, ref) {
+    const { style, className, children, ...rest } = props
     const { parentSidebarItemIndex, isSubMenu, parentMenu } =
       useSubMenuContext()
 
@@ -83,10 +83,6 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
     )
   }
 )
-
-SidebarMenu.defaultProps = {
-  bottom: false,
-}
 
 SidebarMenu.displayName = 'SidebarMenu'
 

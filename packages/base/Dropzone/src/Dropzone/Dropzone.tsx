@@ -91,7 +91,13 @@ const getBackgroundColorClasses: StateToClassMatcher = ({ isDisabled }) =>
   isDisabled ? 'bg-gray-200' : 'bg-white'
 
 export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
-  props,
+  {
+    disabled = false,
+    maxSize = Infinity,
+    minSize = 0,
+    multiple = true,
+    ...props
+  },
   ref
 ) {
   const {
@@ -107,10 +113,6 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
 
     // dropzoneOptions
     accept,
-    minSize,
-    maxSize,
-    multiple,
-    disabled,
     onDrop,
     onDropAccepted,
     onDropRejected,
@@ -195,12 +197,5 @@ export const Dropzone = forwardRef<HTMLInputElement, Props>(function Dropzone(
 })
 
 Dropzone.displayName = 'Dropzone'
-
-Dropzone.defaultProps = {
-  disabled: false,
-  maxSize: Infinity,
-  minSize: 0,
-  multiple: true,
-}
 
 export default Dropzone

@@ -18,17 +18,10 @@ export interface Props
 
 // eslint-disable-next-line react/display-name
 export const Table = forwardRef<HTMLTableElement, Props>(function Table(
-  props,
+  { spacing = 'regular', variant = 'bordered', ...props },
   ref
 ) {
-  const {
-    className,
-    style,
-    children,
-    spacing = 'regular',
-    variant = 'bordered',
-    ...rest
-  } = props
+  const { className, style, children, ...rest } = props
 
   const tableConfig = useMemo(() => ({ spacing, variant }), [spacing, variant])
 
@@ -48,11 +41,6 @@ export const Table = forwardRef<HTMLTableElement, Props>(function Table(
     </TableContext.Provider>
   )
 })
-
-Table.defaultProps = {
-  spacing: 'regular',
-  variant: 'bordered',
-}
 
 Table.displayName = 'Table'
 

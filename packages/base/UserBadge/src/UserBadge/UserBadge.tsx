@@ -36,18 +36,15 @@ export interface Props extends StandardProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
-  props,
+  { center = 'auto', invert = false, size = 'xsmall', ...props },
   ref
 ) {
   const {
     avatar,
     name,
     renderName,
-    size,
     title,
     renderTitle,
-    invert,
-    center,
     children,
     className,
     style,
@@ -115,12 +112,6 @@ export const UserBadge = forwardRef<HTMLDivElement, Props>(function UserBadge(
     </Container>
   )
 })
-
-UserBadge.defaultProps = {
-  center: 'auto',
-  invert: false,
-  size: 'xsmall',
-}
 
 UserBadge.displayName = 'UserBadge'
 

@@ -14,8 +14,8 @@ export interface Props extends BaseProps {
   onClick?: (event: React.MouseEvent) => void
 }
 
-export const AvatarEditContainer = (props: Props) => {
-  const { size = 'small', onClick, 'data-testid': dataTestId } = props
+export const AvatarEditContainer = ({ size = 'small', ...props }: Props) => {
+  const { onClick, 'data-testid': dataTestId } = props
   const [focused, setFocused] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -74,9 +74,5 @@ export const AvatarEditContainer = (props: Props) => {
 }
 
 AvatarEditContainer.displayName = 'AvatarEditContainer'
-
-AvatarEditContainer.defaultProps = {
-  size: 'small',
-}
 
 export default AvatarEditContainer

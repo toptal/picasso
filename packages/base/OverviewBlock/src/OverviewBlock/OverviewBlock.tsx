@@ -63,12 +63,11 @@ const getBlockWidthClassnames = (blockWidth: BlockWidth) => {
 export const OverviewBlock: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function OverviewBlock(props, ref) {
+>(function OverviewBlock({ as = 'button', ...props }, ref) {
   const {
     value,
     label,
     variant,
-    as,
     className,
     onClick,
     titleCase: propsTitleCase,
@@ -128,10 +127,6 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
     </Component>
   )
 })
-
-OverviewBlock.defaultProps = {
-  as: 'button',
-}
 
 OverviewBlock.displayName = 'OverviewBlock'
 

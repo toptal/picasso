@@ -35,10 +35,9 @@ export interface Props extends BaseProps {
 }
 
 export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
-  function PageSidebarDesktop(props, ref) {
+  function PageSidebarDesktop({ variant = 'light', ...props }, ref) {
     const {
       children,
-      variant = 'light',
       collapsible,
       testIds,
       wrapperMaxHeight,
@@ -104,10 +103,6 @@ export const PageSidebarDesktop = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-PageSidebarDesktop.defaultProps = {
-  variant: 'light',
-}
 
 PageSidebarDesktop.displayName = 'PageSidebarDesktop'
 

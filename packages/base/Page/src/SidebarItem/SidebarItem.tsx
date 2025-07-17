@@ -23,8 +23,29 @@ export const getSelectedSubMenu = (sidebarItem: ReactElement<Props>) => {
 }
 
 export const SidebarItem: OverridableComponent<Props> = memo(
-  forwardRef<HTMLElement, Props>(function SidebarItem(props, ref) {
-    const { compact, collapsible, menu } = props
+  forwardRef<HTMLElement, Props>(function SidebarItem(
+    {
+      collapsible = false,
+      onClick = noop,
+      selected = false,
+      expand = noop,
+      variant = 'light',
+      compact = false,
+      menu,
+      ...rest
+    },
+    ref
+  ) {
+    const props = {
+      collapsible,
+      onClick,
+      selected,
+      expand,
+      variant,
+      compact,
+      menu,
+      ...rest,
+    }
 
     const hasMenu = menu != null
 
@@ -39,15 +60,6 @@ export const SidebarItem: OverridableComponent<Props> = memo(
     return <SidebarItemImpl {...props} ref={ref} />
   })
 )
-
-SidebarItem.defaultProps = {
-  collapsible: false,
-  onClick: noop,
-  selected: false,
-  expand: noop,
-  variant: 'light',
-  compact: false,
-}
 
 SidebarItem.displayName = 'SidebarItem'
 

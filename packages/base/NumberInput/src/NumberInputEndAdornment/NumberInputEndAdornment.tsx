@@ -49,17 +49,15 @@ const classBySize: Record<Size, string> = {
   large: 'h-6 w-[2.125rem]',
 }
 
-export const NumberInputEndAdornment = (props: Props) => {
-  const {
-    step = 1,
-    min = -Infinity,
-    max = Infinity,
-    value,
-    disabled,
-    size = 'medium',
-    inputRef,
-  } = props
-
+export const NumberInputEndAdornment = ({
+  min = -Infinity,
+  max = Infinity,
+  value = 0,
+  step = 1,
+  disabled = false,
+  size = 'medium',
+  inputRef,
+}: Props) => {
   const normalizedStep = Number(step)
   const normalizedValue = Number(value)
   const normalizedMin = Number(min)
@@ -177,15 +175,6 @@ export const NumberInputEndAdornment = (props: Props) => {
       </Container>
     </InputAdornment>
   )
-}
-
-NumberInputEndAdornment.defaultProps = {
-  min: -Infinity,
-  max: Infinity,
-  value: 0,
-  step: 1,
-  disabled: false,
-  size: 'medium',
 }
 
 NumberInputEndAdornment.displayName = 'NumberInputEndAdornment'

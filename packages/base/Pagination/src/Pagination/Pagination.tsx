@@ -43,19 +43,10 @@ interface CompactVariantProps {
 export type Props = CommonProps & (DefaultVariantProps | CompactVariantProps)
 
 export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
-  props,
+  { disabled = false, siblingCount = 2, variant = 'default', ...props },
   ref
 ) {
-  const {
-    activePage,
-    disabled,
-    totalPages,
-    onPageChange,
-    siblingCount = 2,
-    variant,
-    nextDisabled,
-    ...rest
-  } = props
+  const { activePage, totalPages, onPageChange, nextDisabled, ...rest } = props
 
   const pages = useMemo(
     () =>
@@ -122,12 +113,6 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     </Container>
   )
 })
-
-Pagination.defaultProps = {
-  disabled: false,
-  siblingCount: 2,
-  variant: 'default',
-}
 
 Pagination.displayName = 'Pagination'
 
