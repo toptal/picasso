@@ -14,11 +14,15 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLElement> {
   rightContent?: ReactNode
 }
 
+const CopyrightContent = () => (
+  <>{`© Copyright 2010 – ${new Date().getFullYear()} Toptal, LLC`}</>
+)
+
 export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
-  props,
+  { rightContent = null, copyrightContent = <CopyrightContent />, ...props },
   ref
 ) {
-  const { className, style, rightContent, copyrightContent, ...rest } = props
+  const { className, style, ...rest } = props
   const { width, fullWidth } = useContext<PageContextProps>(PageContext)
 
   const contentClassnames = twJoin(
@@ -48,15 +52,6 @@ export const PageFooter = forwardRef<HTMLElement, Props>(function PageFooter(
     </footer>
   )
 })
-
-const CopyrightContent = () => (
-  <>{`© Copyright 2010 – ${new Date().getFullYear()} Toptal, LLC`}</>
-)
-
-PageFooter.defaultProps = {
-  rightContent: null,
-  copyrightContent: <CopyrightContent />,
-}
 
 PageFooter.displayName = 'PageFooter'
 

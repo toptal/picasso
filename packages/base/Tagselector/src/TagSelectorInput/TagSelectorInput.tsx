@@ -4,20 +4,26 @@ import { OutlinedInput } from '@toptal/picasso-outlined-input'
 import type { InputProps } from '@toptal/picasso-input'
 
 export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
-  function TagSelectorInput(props, ref) {
+  function TagSelectorInput(
+    {
+      multiline = false,
+      width = 'auto',
+      status = 'default',
+      size = 'medium',
+      ...props
+    },
+    ref
+  ) {
     const {
       id,
       name,
       defaultValue,
       value,
       placeholder,
-      status,
       disabled,
       autoFocus,
       autoComplete,
       children,
-      multiline,
-      width,
       style,
       rows,
       rowsMax,
@@ -32,7 +38,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
       inputProps,
       testIds,
       highlight,
-      size,
       ...rest
     } = props
 
@@ -88,13 +93,6 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
     )
   }
 )
-
-TagSelectorInput.defaultProps = {
-  multiline: false,
-  width: 'auto',
-  status: 'default',
-  size: 'medium',
-}
 
 TagSelectorInput.displayName = 'TagSelectorInput'
 

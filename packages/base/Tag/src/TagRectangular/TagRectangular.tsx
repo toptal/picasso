@@ -8,14 +8,12 @@ import { variantsRootClasses } from './styles'
 import type { Props } from './types'
 
 export const TagRectangular = forwardRef<HTMLDivElement, Props>(
-  function TagRectangular(props, ref) {
+  function TagRectangular({ variant = 'light-grey', ...props }, ref) {
     const {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       children,
       style,
       className,
       titleCase: propsTitleCase,
-      variant = 'light-grey',
       indicator,
       ...rest
     } = props
@@ -56,10 +54,6 @@ export const TagRectangular = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-TagRectangular.defaultProps = {
-  variant: 'light-grey',
-}
 
 TagRectangular.displayName = 'TagRectangular'
 

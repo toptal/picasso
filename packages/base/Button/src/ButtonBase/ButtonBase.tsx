@@ -72,21 +72,26 @@ const RootElement = forwardRef(
 export const ButtonBase: OverridableComponent<Props> = forwardRef<
   HTMLButtonElement,
   Props
->(function ButtonBase(props, ref) {
+>(function ButtonBase(
+  {
+    as = 'button',
+    children = null,
+    disabled = false,
+    iconPosition = 'left',
+    loading = false,
+    onClick = noop,
+    type = 'button',
+    ...props
+  },
+  ref
+) {
   const {
     icon,
-    iconPosition,
-    loading,
-    children,
     className,
     contentClassName,
     style,
-    disabled,
-    onClick,
     title,
     value,
-    type,
-    as = 'button',
     titleCase: propsTitleCase,
     ...rest
   } = props
@@ -149,16 +154,6 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     </MUIButtonBase>
   )
 })
-
-ButtonBase.defaultProps = {
-  as: 'button',
-  children: null,
-  disabled: false,
-  iconPosition: 'left',
-  loading: false,
-  onClick: noop,
-  type: 'button',
-}
 
 ButtonBase.displayName = 'ButtonBase'
 

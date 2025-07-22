@@ -58,14 +58,14 @@ export interface PicassoProps extends TextLabelProps {
 }
 
 const Picasso = ({
-  loadFonts,
-  loadFavicon,
-  reset,
-  responsive,
+  loadFonts = true,
+  loadFavicon = true,
+  reset = true,
+  responsive = true,
   environment = 'development',
   children,
-  preventPageWidthChangeOnScrollbar,
-  fixViewport,
+  preventPageWidthChangeOnScrollbar = true,
+  fixViewport = true,
   notificationContainer,
   RootComponent = PicassoRootNode,
   titleCase,
@@ -125,18 +125,6 @@ const Picasso = ({
       </MuiThemeProvider>
     </StylesProvider>
   )
-}
-
-Picasso.defaultProps = {
-  environment: 'development',
-  loadFonts: true,
-  loadFavicon: true,
-  responsive: true,
-  reset: true,
-  fixViewport: true,
-  preventPageWidthChangeOnScrollbar: true,
-  injectFirst: undefined,
-  RootComponent: PicassoRootNode,
 }
 
 export default Picasso
