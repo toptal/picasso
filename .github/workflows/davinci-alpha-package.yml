@@ -56,7 +56,7 @@ jobs:
             await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
 
       - id: branch
-        uses: xt0rted/pull-request-comment-branch@v2.0.0
+        uses: xt0rted/pull-request-comment-branch@v3.0.0
 
       - name: Specify branch
         id: get-branch
