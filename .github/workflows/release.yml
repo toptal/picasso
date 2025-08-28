@@ -18,6 +18,7 @@ jobs:
       actions: write
       issues: write
       pull-requests: write
+      deployments: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -37,10 +38,7 @@ jobs:
             DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
             SLACK_BOT_TOKEN:toptal-ci/SLACK_BOT_TOKEN
-            TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
-            TOPTAL_BUILD_BOT_TOKEN:toptal-ci/TOPTAL_BUILD_BOT_TOKEN
             TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN
@@ -64,11 +62,8 @@ jobs:
           echo "TOPTAL_BOT_USERNAME=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "TOPTAL_BOT_JENKINS_DEPLOYMENT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_DEPLOYMENT_TOKEN }}" >> $GITHUB_ENV
           echo "TOPTAL_JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
-          echo '${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_SSH_KEY }}' >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
+          echo "DEVBOT_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -106,7 +101,7 @@ jobs:
         with:
           publish: yarn release
         env:
-          GITHUB_TOKEN: ${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.parse_secrets.outputs.NPM_TOKEN_PUBLISH }}
 
       - name: Edit "Version Package" PR
@@ -224,7 +219,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          token: ${{ env.DEVBOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           environment: production
           environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
 

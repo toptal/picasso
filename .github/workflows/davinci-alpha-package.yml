@@ -31,7 +31,6 @@ jobs:
             JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
             JENKINS_URL:toptal-ci/JENKINS_URL
             NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
@@ -44,7 +43,7 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN_PUBLISH }}" >> $GITHUB_ENV
 
       - name: Feedback on action started

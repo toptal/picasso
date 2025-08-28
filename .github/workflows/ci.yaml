@@ -44,9 +44,7 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
             TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
 
@@ -59,16 +57,12 @@ jobs:
       - name: Set ENV Variables
         run: |-
           echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
           echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
           echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
-          echo '${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_SSH_KEY }}' >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+
 
       - uses: toptal/davinci-github-actions/build-push-image@v17.3.0
         with:
@@ -84,6 +78,8 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      issues: write
+      pull-requests: write
     timeout-minutes: 45
 
     steps:
@@ -102,7 +98,6 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
 
@@ -114,7 +109,6 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
@@ -129,7 +123,7 @@ jobs:
       - name: Check missing changeset
         uses: toptal/davinci-github-actions/report-missing-changeset@v17.2.0
         with:
-          github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # This Action will scan dependency manifest files that change as part of a Pull Request,
       # surfacing known-vulnerable versions of the packages declared or updated in the PR.
@@ -144,7 +138,7 @@ jobs:
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
         env:
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Syncpack check
         run: yarn syncpack:list
@@ -181,7 +175,6 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
 
       - name: Parse secrets
         id: parse_secrets
@@ -191,7 +184,6 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
@@ -225,6 +217,7 @@ jobs:
     permissions:
       contents: write
       id-token: write
+      deployments: write
     needs: [build-docker-image]
     steps:
       - name: Checkout
@@ -240,7 +233,6 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
             TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
             TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
             JENKINS_URL:toptal-ci/JENKINS_URL
@@ -255,7 +247,6 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
@@ -302,7 +293,7 @@ jobs:
           jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
           jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
           jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           environment: staging
           environment-url: ${{ steps.temploy.outputs.temployURL }}
           transient-environment: false

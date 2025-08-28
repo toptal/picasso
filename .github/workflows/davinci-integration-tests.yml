@@ -36,7 +36,6 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
 
       - name: Parse secrets
         id: parse_secrets
@@ -46,7 +45,6 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
@@ -95,7 +93,6 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
 
       - name: Parse secrets
         id: parse_secrets
@@ -105,7 +102,6 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
@@ -147,7 +143,6 @@ jobs:
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
             NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
 
       - name: Parse secrets
         id: parse_secrets
@@ -157,7 +152,6 @@ jobs:
 
       - name: Set ENV Variables
         run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV

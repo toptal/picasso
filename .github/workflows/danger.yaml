@@ -24,24 +24,9 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
       - name: Set ENV Variables
         run: |-
-          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
