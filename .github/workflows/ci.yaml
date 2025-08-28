@@ -63,7 +63,6 @@ jobs:
           echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
           echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
 
-
       - uses: toptal/davinci-github-actions/build-push-image@v17.3.0
         with:
           sha: ${{ github.event.pull_request.head.sha }}
