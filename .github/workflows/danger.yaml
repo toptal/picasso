@@ -19,6 +19,8 @@ jobs:
       actions: write
       issues: write
       pull-requests: write
+      statuses: write
+      checks: write
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     steps:
       - name: Checkout project
