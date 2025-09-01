@@ -9,7 +9,6 @@ if ! command -v yarn >/dev/null 2>&1; then
   exit 1
 fi
 
-# Build all Node.js GitHub Actions: expect entry at .github/actions/<action>/index.js
 find "$ACTIONS_DIR" -mindepth 2 -maxdepth 2 -type f -name index.js | while read -r entry; do
   action_root="$(dirname "$entry")"
   out_dir="$action_root/dist"
