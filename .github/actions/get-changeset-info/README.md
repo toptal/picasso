@@ -35,3 +35,22 @@ Not specified
     with:
       base-ref: origin/master
 ```
+
+### Building in this repository
+
+- Build all Node.js actions (recommended):
+
+```bash
+bash .github/build-actions.sh
+```
+
+- Build this action only:
+
+```bash
+yarn ncc build .github/actions/get-changeset-info/index.js -o .github/actions/get-changeset-info/dist
+git add .github/actions/get-changeset-info/dist
+```
+
+Notes:
+- Ensure dependencies are installed at repo root (`yarn install`).
+- `@vercel/ncc` is available via `yarn ncc` (declared in root devDependencies).

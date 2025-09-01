@@ -37,3 +37,22 @@ Not specified
     with:
       github-token: ${{ secrets.TOPTAL_DEVBOT_TOKEN }}
 ```
+
+### Building in this repository
+
+- Build all Node.js actions (recommended):
+
+```bash
+bash .github/build-actions.sh
+```
+
+- Build this action only:
+
+```bash
+yarn ncc build .github/actions/report-missing-changeset/index.js -o .github/actions/report-missing-changeset/dist
+git add .github/actions/report-missing-changeset/dist
+```
+
+Notes:
+- Ensure dependencies are installed at repo root (`yarn install`).
+- `@vercel/ncc` is available via `yarn ncc` (declared in root devDependencies).
