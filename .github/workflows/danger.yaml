@@ -33,6 +33,6 @@ jobs:
         with:
           node-version: 20.18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+      - uses: ./.github/actions/yarn-install
 
-      - uses: toptal/davinci-github-actions/danger@v15.4.1
+      - uses: ./.github/actions/danger
