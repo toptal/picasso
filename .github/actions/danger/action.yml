@@ -4,6 +4,15 @@ description: Checks if the PR title and and commit messages comply with Toptal's
 runs:
   using: composite
   steps:
+    - name: Resolve github-actions bot id
+      shell: bash
+      run: |-
+        set -euo pipefail
+        ID=$(curl -s https://api.github.com/users/github-actions%5Bbot%5D | jq -r .id)
+        if [ -n "$ID" ] && [ "$ID" != "null" ]; then
+          echo "PERIL_BOT_USER_ID=$ID" >> $GITHUB_ENV
+        fi
+
     - shell: bash
       env:
         # Self-hosted runners can override the GITHUB_URL environment variable
