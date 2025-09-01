@@ -54,7 +54,7 @@ jobs:
         with:
           node-version: 20.18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+      - uses: ./.github/actions/yarn-install
 
       - name: Build packages
         run: yarn build:package
@@ -111,7 +111,7 @@ jobs:
         with:
           node-version: 20.18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+      - uses: ./.github/actions/yarn-install
 
       - name: Get cached packages
         uses: actions/cache@v4
@@ -161,7 +161,7 @@ jobs:
         with:
           node-version: 20.18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+      - uses: ./.github/actions/yarn-install
 
       - name: Finalize Happo
         run: npx happo-e2e finalize
