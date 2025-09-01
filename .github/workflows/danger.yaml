@@ -14,13 +14,10 @@ jobs:
     name: Check
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      id-token: write
-      actions: write
+      contents: read
       issues: write
       pull-requests: write
       statuses: write
-      checks: write
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     steps:
       - name: Checkout project
