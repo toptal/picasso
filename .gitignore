@@ -5,6 +5,8 @@ dist-package/
 build/
 .swc
 dist/
+!.github/actions/report-missing-changeset/dist
+!.github/actions/get-changeset-info/dist
 .nx
 
 .envrc

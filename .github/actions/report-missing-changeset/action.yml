@@ -1,0 +1,41 @@
+name: Report Missing Changeset
+description: |
+  Tool for monorepos that use changesets for release.
+  It compares packages described in changesets with packages that have been changed and
+  issues a warning comment if there is a missing dependency.
+  Requires checked out repository with `fetch-depth: 0`
+
+inputs:
+  github-token:
+    required: true
+    description: Token for authorization
+  base-branch:
+    required: false
+    description: Base branch of the repository
+    default: master
+
+runs:
+  using: composite
+  steps:
+    - name: Set up git to work with changeset
+      env:
+        BASE_BRANCH: ${{ inputs.base-branch }}
+      shell: bash
+      run: |
+        # Necessary for branch comparison: https://github.com/changesets/changesets/issues/517
+        git fetch origin $BASE_BRANCH
+
+    - name: Get changeset status
+      id: changeset-info
+      uses: ./.github/actions/get-changeset-info
+      with:
+        base-ref: origin/${{ inputs.base-branch }}
+
+    - name: Report missing changeset
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        CHANGED_PACKAGES: ${{ steps.changeset-info.outputs.changed-packages }}
+        RELEASE_PACKAGES: ${{ steps.changeset-info.outputs.release-packages }}
+        MISSING_PACKAGES: ${{ steps.changeset-info.outputs.missing-packages }}
+      run: node ${{ github.action_path }}/dist/index.js
