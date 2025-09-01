@@ -26,29 +26,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -83,29 +60,6 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v4
 
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -120,7 +74,7 @@ jobs:
           key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
 
       - name: Run integration tests
-        uses: toptal/davinci-github-actions/integration-tests@v16.0.4
+        uses: ./.github/actions/integration-tests
 
   finalize-integration-tests:
     name: Finalize Integration Tests
@@ -132,29 +86,6 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
-
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

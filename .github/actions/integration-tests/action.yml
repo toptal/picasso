@@ -1,0 +1,45 @@
+name: Runs integration tests
+description: Action to conduct integration tests in a project using Cypress.
+
+inputs:
+  command:
+    description: Command to execute for integration tests
+    required: false
+    default: test:integration:ci
+
+runs:
+  using: composite
+  steps:
+    - name: Cache Cypress folder
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: '~/.cache/Cypress'
+        key: cypress-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Find Cypress cache folder
+      id: cypress
+      shell: bash
+      run: |
+        cypress_cache_folder=$(eval echo ~/.cache/Cypress)
+        echo "exists=$([ -d $cypress_cache_folder ] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+
+    - name: Get Cypress binary
+      if: ${{ steps.cache.outputs.cache-hit != 'true' && steps.cypress.outputs.exists != 'true' }}
+      shell: bash
+      run: npx cypress install
+
+    - name: Run Cypress tests
+      shell: bash
+      env:
+        COMMAND: ${{ inputs.command }}
+      run: yarn $COMMAND
+
+    - name: Store Cypress Screenshots Artifact
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: |
+          **/cypress/screenshots
+        retention-days: 3
