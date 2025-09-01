@@ -2,11 +2,6 @@ name: Integration Tests
 
 on:
   workflow_call:
-    secrets:
-      IDENTITY_POOL:
-        required: true
-      SA_IDENTITY_POOL:
-        required: true
 
 env:
   HAPPO_PROJECT: Picasso/Cypress
@@ -56,6 +51,8 @@ jobs:
     env:
       GROUP_INDEX: ${{ matrix.index }}
       PARALLEL_GROUPS: ${{ strategy.job-total }}
+      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
@@ -83,6 +80,9 @@ jobs:
       contents: read
       id-token: write
     needs: [integration-tests]
+    env:
+      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4

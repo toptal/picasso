@@ -97,15 +97,12 @@ jobs:
         run: yarn happo:storybook
         env:
           HAPPO_PROJECT: Picasso/Storybook
-          HAPPO_API_KEY: ${{ env.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ env.HAPPO_API_SECRET }}
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
   integration-tests:
     name: Integration Tests
     uses: ./.github/workflows/davinci-integration-tests.yml
-    secrets:
-      IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
-      SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}
 
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
