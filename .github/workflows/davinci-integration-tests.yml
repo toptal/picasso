@@ -51,8 +51,6 @@ jobs:
     env:
       GROUP_INDEX: ${{ matrix.index }}
       PARALLEL_GROUPS: ${{ strategy.job-total }}
-      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
@@ -72,6 +70,9 @@ jobs:
 
       - name: Run integration tests
         uses: ./.github/actions/integration-tests
+        env:
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
   finalize-integration-tests:
     name: Finalize Integration Tests
@@ -80,9 +81,6 @@ jobs:
       contents: read
       id-token: write
     needs: [integration-tests]
-    env:
-      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
-      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
@@ -96,3 +94,6 @@ jobs:
 
       - name: Finalize Happo
         run: npx happo-e2e finalize
+        env:
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
