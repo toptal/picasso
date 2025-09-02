@@ -18,65 +18,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-docker-image:
-    if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
-    name: Build Picasso docker image
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-      actions: write
-      issues: write
-      pull-requests: write
-    timeout-minutes: 45
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            DOCKER_BUILDX_ENDPOINT:toptal-ci/DOCKER_BUILDX_ENDPOINT
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_BUILD_BOT_SSH_KEY:toptal-ci/TOPTAL_BUILD_BOT_SSH_KEY
-            TOPTAL_DEFAULT_REGISTRY:toptal-ci/TOPTAL_DEFAULT_REGISTRY
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
-            TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
-            TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "DOCKER_BUILDX_ENDPOINT=${{ steps.parse_secrets.outputs.DOCKER_BUILDX_ENDPOINT }}" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-          echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
-          echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo 'TOPTAL_BUILD_BOT_SSH_KEY<<EOF' >> $GITHUB_ENV
-          echo '${{ steps.parse_secrets.outputs.TOPTAL_BUILD_BOT_SSH_KEY }}' >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-
-      - uses: toptal/davinci-github-actions/build-push-image@v17.3.0
-        with:
-          sha: ${{ github.event.pull_request.head.sha }}
-          image-name: picasso
-          environment: temploy
-          registry-name: ${{ steps.parse_secrets.outputs.TOPTAL_DEFAULT_REGISTRY }}
-
   static-checks:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Static checks
@@ -84,6 +25,8 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      issues: write
+      pull-requests: write
     timeout-minutes: 45
 
     steps:
@@ -92,44 +35,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
-            TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
-            TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-          echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
-          echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.18
 
       - name: Check missing changeset
-        uses: toptal/davinci-github-actions/report-missing-changeset@v17.2.0
+        uses: ./.github/actions/report-missing-changeset
         with:
-          github-token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # This Action will scan dependency manifest files that change as part of a Pull Request,
       # surfacing known-vulnerable versions of the packages declared or updated in the PR.
@@ -139,12 +53,12 @@ jobs:
         uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
-        uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+        uses: ./.github/actions/yarn-install
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
         env:
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Syncpack check
         run: yarn syncpack:list
@@ -171,52 +85,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.18
 
       - name: Install dependencies from cache
-        uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+        uses: ./.github/actions/yarn-install
 
       - name: Visual Tests
         run: yarn happo:storybook
         env:
           HAPPO_PROJECT: Picasso/Storybook
-          HAPPO_API_KEY: ${{ env.HAPPO_API_KEY }}
-          HAPPO_API_SECRET: ${{ env.HAPPO_API_SECRET }}
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
   integration-tests:
     name: Integration Tests
     uses: ./.github/workflows/davinci-integration-tests.yml
-    secrets:
-      IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
-      SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}
 
   deploy-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
@@ -225,85 +111,9 @@ jobs:
     permissions:
       contents: write
       id-token: write
-    needs: [build-docker-image]
+      deployments: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            NPM_TOKEN:toptal-ci/NPM_TOKEN
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
-            TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
-            TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
-            JENKINS_URL:toptal-ci/JENKINS_URL
-            JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
-            TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN }}" >> $GITHUB_ENV
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-          echo "JENKINS_USER=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}" >> $GITHUB_ENV
-          echo "JENKINS_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}" >> $GITHUB_ENV
-
-      - name: Get toptal/actions
-        uses: actions/checkout@v4
-        with:
-          repository: toptal/actions
-          token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
-          path: ./.github/actions/
-          ref: v1.0.5
-
-      - name: Replace toptal/actions/get-job-url@v1.0.5 from trigger-jenkins-job/action.yml
-        shell: bash
-        run: |
-          sed -i 's|toptal/actions/get-job-url@v1.0.5|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@v1.0.5|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
-
-      - name: Trigger doc deployment job
-        uses: ./.github/actions/trigger-jenkins-job
-        env:
-          BRANCH: ${{ github.event.pull_request.head.ref }}
-          PR_ID: ${{ github.event.pull_request.number }}
-        with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
-          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          job_name: picasso-docs
-          job_params: |
-            {
-              "BRANCH": "${{ env.BRANCH }}",
-              "PR_ID": "${{ env.PR_ID }}"
-            }
-          job_timeout: '3600'
-
-      - name: Create Jira Deployment
-        uses: ./.github/actions/create-jira-deployment/
-        if: ${{ always() }}
-        with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
-          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          token: ${{ env.TOPTAL_DEVBOT_TOKEN }}
-          environment: staging
-          environment-url: ${{ steps.temploy.outputs.temployURL }}
-          transient-environment: false
-          auto-inactive: false
+      # Some new deployment process is needed here

@@ -42,7 +42,6 @@ jobs:
           secrets_name: |-
             HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
             HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-            TOPTAL_DEVBOT_TOKEN:toptal-ci/TOPTAL_DEVBOT_TOKEN
 
       - name: Parse secrets
         id: parse_secrets
@@ -54,14 +53,13 @@ jobs:
         run: |-
           echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
           echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
-          echo "TOPTAL_DEVBOT_TOKEN=${{ steps.parse_secrets.outputs.TOPTAL_DEVBOT_TOKEN }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.18
 
-      - uses: toptal/davinci-github-actions/yarn-install@v16.0.4
+      - uses: ./.github/actions/yarn-install
 
       - name: Happo Tests
         run: yarn happo:storybook

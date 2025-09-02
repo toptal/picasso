@@ -1,0 +1,85 @@
+name: Install dependencies
+description: Install and cache node modules with yarn
+inputs:
+  npm-token:
+    description: Access token type **Read-only**. Required for repository with private dependencies. If undefined, `env.NPM_TOKEN` is used
+    required: false
+  cache-version:
+    description: "Cache version"
+    default: "0.0"
+    required: false
+  path:
+    description: Relative path under $GITHUB_WORKSPACE where to run `yarn install` command
+    default: .
+    required: false
+  npm-gar-token:
+    description: Repository npm Artifact Registry access token `NPM_GAR_TOKEN`. Required when using self-hosted runners with npm in GAR (Google Artifact Registry, the npm registry works as a proxy-cache, downloading and storing the public npm packages)
+    required: false
+  max-attempts:
+    description: How many times to retry installing. This is specially useful if the building of packages might fail because of network connections
+    default: "1"
+    required: false
+outputs:
+  cache-hit:
+    description: "Indicates an exact match was found for `node_modules` || boolean"
+    value: ${{ steps.node-modules-cache.outputs.cache-hit || steps.node-modules-cache-custom.outputs.cache-hit }}
+runs:
+  using: composite
+  steps:
+    - name: Set node version
+      id: set-node-version
+      run: echo version=$(node -v) >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Get yarn cache
+      id: yarn-cache
+      run: echo dir=$(yarn cache dir) >> $GITHUB_OUTPUT
+      shell: bash
+
+    # This step is needed only because we want to update the cache when a new workspace
+    # package has been added and we want symlinks to be presented in ./node_modules folder
+    - name: Generate workspaces info
+      working-directory: ${{ inputs.path }}
+      run: |
+        if grep -q "\"workspaces\":" package.json; then
+          yarn --no-default-rc workspaces --json info > tmp-workspaces.json
+        fi
+      shell: bash
+      
+    - name: Delete temporary tmp-workspaces.json
+      shell: bash
+      run: |
+        [ -e tmp-workspaces.json ] && rm tmp-workspaces.json || echo "OK"
+
+    - name: Capture yarn.lock file checksum
+      id: yarn-lock-checksum
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      run: |
+        echo "checksum=$(cksum yarn.lock)" >> $GITHUB_OUTPUT
+
+    - name: yarn install
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      env:
+        MAX_ATTEMPTS: ${{ inputs.max-attempts }}
+      run: |
+        for ((i=1; i<=MAX_ATTEMPTS; i++)); do
+          echo "Trying to install (${i}/${MAX_ATTEMPTS})..."
+          if yarn install --non-interactive; then
+            echo "Yarn install succeeded on attempt ${i}."
+            exit 0
+          fi
+          sleep 10
+        done
+        echo "All installation attempts failed. Exiting with error."
+        exit 1
+
+      # We are manually checking for the changes in yarn.lock file, because
+      # the `--frozen-lockfile` flag is not working correctly in workspaces with yarn v1
+      # we can remove this step when we upgrade yarn or migrate to other package manager
+    - name: Verify yarn.lock is unchanged
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      run: |
+        [ "${{ steps.yarn-lock-checksum.outputs.checksum }}" = "$(cksum yarn.lock)" ] || (echo 'yarn.lock changed after yarn install. Please make sure to commit yarn.lock changes.' && exit 1)

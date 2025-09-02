@@ -1,0 +1,21 @@
+name: Get Changeset info
+description: |
+  Uses changeset's power to return information about changed/release state of packages in monorepo for current branch.
+
+inputs:
+  base-ref:
+    description: Default ref/branch to use as base for comparison
+    required: false
+    default: origin/master
+
+outputs:
+  changed-packages:
+    description: Packages that have changed || Array<string>
+  release-packages:
+    description: Packages that have changeset || Array<string>
+  missing-packages:
+    description: Packages that have changed but are missing in changesets || Array<string>
+
+runs:
+  using: node20
+  main: dist/index.js

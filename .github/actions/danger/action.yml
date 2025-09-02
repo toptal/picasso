@@ -1,0 +1,23 @@
+name: Run davinci danger check
+description: Checks if the PR title and and commit messages comply with Toptal's standards
+
+runs:
+  using: composite
+  steps:
+    - name: Resolve github-actions bot id
+      shell: bash
+      run: |-
+        set -euo pipefail
+        ID=$(curl -s https://api.github.com/users/github-actions%5Bbot%5D | jq -r .id)
+        if [ -n "$ID" ] && [ "$ID" != "null" ]; then
+          echo "PERIL_BOT_USER_ID=$ID" >> $GITHUB_ENV
+        fi
+
+    - shell: bash
+      env:
+        # Self-hosted runners can override the GITHUB_URL environment variable
+        # to a potentially incorrect value, and this variable may also be used
+        # for other purposes beyond communicating with the GitHub API. 
+        # The DANGER_GITHUB_API_BASE_URL env variable takes higher priority 
+        DANGER_GITHUB_API_BASE_URL: https://api.github.com
+      run: yarn davinci-ci danger
