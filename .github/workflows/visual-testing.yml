@@ -13,6 +13,9 @@ jobs:
     name: Integration Tests
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     uses: ./.github/workflows/davinci-integration-tests.yml
+    secrets:
+      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
   
   storybook-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
