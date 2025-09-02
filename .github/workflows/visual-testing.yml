@@ -13,10 +13,7 @@ jobs:
     name: Integration Tests
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     uses: ./.github/workflows/davinci-integration-tests.yml
-    secrets:
-      IDENTITY_POOL: ${{ secrets.IDENTITY_POOL }}
-      SA_IDENTITY_POOL: ${{ secrets.SA_IDENTITY_POOL }}
-
+  
   storybook-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Tests
@@ -29,30 +26,11 @@ jobs:
       pull-requests: write
     env:
       HAPPO_PROJECT: Picasso/Storybook
+      HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+      HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
-
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            HAPPO_API_KEY:toptal-ci/PICASSO_HAPPO_API_KEY
-            HAPPO_API_SECRET:toptal-ci/PICASSO_HAPPO_API_SECRET
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "HAPPO_API_KEY=${{ steps.parse_secrets.outputs.HAPPO_API_KEY }}" >> $GITHUB_ENV
-          echo "HAPPO_API_SECRET=${{ steps.parse_secrets.outputs.HAPPO_API_SECRET }}" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
