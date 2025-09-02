@@ -79,7 +79,8 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Storybook Visual Tests
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: read
     needs: [static-checks]
     steps:
       - name: Checkout
@@ -109,9 +110,7 @@ jobs:
     name: Deploy Picasso docs
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      id-token: write
-      deployments: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
