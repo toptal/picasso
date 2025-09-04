@@ -12,6 +12,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-deployment
+      cancel-in-progress: false
     permissions:
       contents: write
       issues: write
