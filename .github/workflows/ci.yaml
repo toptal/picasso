@@ -116,6 +116,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      pages: write
+      id-token: write
     needs: [static-checks]
     steps:
       - name: Checkout
