@@ -133,11 +133,21 @@ jobs:
         run: yarn build:storybook
 
       - name: Checkout existing gh-pages content
+        id: checkout-gh-pages
         uses: actions/checkout@v4
+        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages-content
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create gh-pages directory if branch doesn't exist
+        if: steps.checkout-gh-pages.outcome == 'failure'
+        run: |
+          echo "🆕 gh-pages branch doesn't exist, creating empty directory structure"
+          mkdir -p gh-pages-content
+          echo "# Picasso Storybook" > gh-pages-content/README.md
+          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
 
       - name: Prepare preview deployment
         run: |
@@ -191,11 +201,21 @@ jobs:
       id-token: write
     steps:
       - name: Checkout gh-pages branch
+        id: checkout-gh-pages-cleanup
         uses: actions/checkout@v4
+        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages-content
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create gh-pages directory if branch doesn't exist
+        if: steps.checkout-gh-pages-cleanup.outcome == 'failure'
+        run: |
+          echo "🆕 gh-pages branch doesn't exist, creating empty directory structure"
+          mkdir -p gh-pages-content
+          echo "# Picasso Storybook" > gh-pages-content/README.md
+          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
 
       - name: Remove PR preview directory
         run: |

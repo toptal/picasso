@@ -146,11 +146,21 @@ jobs:
 
       - name: Checkout existing gh-pages content
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        id: checkout-gh-pages-release
         uses: actions/checkout@v4
+        continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages-content
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create gh-pages directory if branch doesn't exist
+        if: ${{ success() && steps.changesets.outputs.published == 'true' && steps.checkout-gh-pages-release.outcome == 'failure' }}
+        run: |
+          echo "🆕 gh-pages branch doesn't exist, creating empty directory structure"
+          mkdir -p gh-pages-content
+          echo "# Picasso Storybook" > gh-pages-content/README.md
+          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
 
       - name: Prepare production deployment (preserve PR previews)
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
