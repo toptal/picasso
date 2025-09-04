@@ -113,6 +113,7 @@ jobs:
           FALLBACK_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           # slack-message: ':x: <!here> Current master version of Picasso is <${{ env.FAILURE_URL || env.FALLBACK_URL }}|broken>.'
           payload: |
             text: ':x: <!here> Current master version of Picasso is <${{ env.FALLBACK_URL }}|broken>.'
@@ -122,6 +123,7 @@ jobs:
         uses: slackapi/slack-github-action@v2.1.1
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
             text: 'Current master version of Picasso successfully released :green_heart:'
 
@@ -130,6 +132,7 @@ jobs:
         uses: slackapi/slack-github-action@v2.1.1
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
           payload: |
             text: 'A new PR was merged to Picasso :parrotspin:'
 
