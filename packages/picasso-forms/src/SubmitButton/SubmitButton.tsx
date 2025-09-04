@@ -28,7 +28,7 @@ export type Props = Omit<ButtonProps, 'type' | 'variant' | 'children'> & {
 } & (CircularButtonTypeProps | ActionButtonTypeProps | ButtonTypeProps)
 
 export const SubmitButton = ({
-  buttonType,
+  buttonType = 'rectangular',
   variant,
   ...restOfProps
 }: Props) => {
@@ -60,10 +60,6 @@ export const SubmitButton = ({
         />
       )
   }
-}
-
-SubmitButton.defaultProps = {
-  buttonType: 'rectangular',
 }
 
 SubmitButton.displayName = 'SubmitButton'

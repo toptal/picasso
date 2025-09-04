@@ -18,9 +18,12 @@ interface Props extends BaseProps {
 
 const useStyles = makeStyles<Theme>(styles, { name: 'PicassoEditor' })
 
-const Editor: FunctionComponent<Props> = props => {
-  const { id, mode, value, ...rest } = props
-
+const Editor: FunctionComponent<Props> = ({
+  mode = 'jsx',
+  id,
+  value,
+  ...rest
+}) => {
   const classes = useStyles()
 
   return (
@@ -48,9 +51,5 @@ const Editor: FunctionComponent<Props> = props => {
 }
 
 Editor.displayName = 'Editor'
-
-Editor.defaultProps = {
-  mode: 'jsx'
-}
 
 export default Editor

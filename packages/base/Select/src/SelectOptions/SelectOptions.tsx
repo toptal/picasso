@@ -6,7 +6,7 @@ import { ScrollMenu } from '../ScrollMenu'
 
 export interface Props extends ScrollMenuProps {}
 
-const SelectOptions = (props: Props) => {
+const SelectOptions = ({ role = 'menu', ...props }: Props) => {
   const {
     selectedIndex,
     onBlur,
@@ -15,7 +15,6 @@ const SelectOptions = (props: Props) => {
     fixedHeader,
     fixedFooter,
     className,
-    role,
     ...rest
   } = props
 
@@ -38,10 +37,6 @@ const SelectOptions = (props: Props) => {
       {children}
     </ScrollMenu>
   )
-}
-
-SelectOptions.defaultProps = {
-  role: 'menu',
 }
 
 SelectOptions.displayName = 'SelectOptions'

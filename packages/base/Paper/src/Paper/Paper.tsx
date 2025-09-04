@@ -39,10 +39,10 @@ const shadowsMapping: Record<number, string> = {
 }
 
 export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
-  props,
+  { elevation = 1, ...props },
   ref
 ) {
-  const { className, elevation = 1, style, children, ...rest } = props
+  const { className, style, children, ...rest } = props
 
   return (
     <div
@@ -60,10 +60,6 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
     </div>
   )
 })
-
-Paper.defaultProps = {
-  elevation: 1,
-}
 
 Paper.displayName = 'Paper'
 

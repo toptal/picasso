@@ -120,26 +120,28 @@ const generateKey = (() => {
 
 // eslint-disable-next-line react/display-name
 export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
-  props,
+  {
+    hideBackdrop = false,
+    disableBackdropClick = false,
+    size = 'medium',
+    transitionDuration = 300,
+    align = 'centered',
+    ...props
+  },
   ref
 ) {
   const {
     children,
     open,
-    size = 'medium',
     onBackdropClick,
     onClose,
     onOpen,
     className,
     style,
     container,
-    hideBackdrop = false,
-    transitionDuration = 300,
     paperProps,
-    align = 'centered',
     testIds,
     transitionProps,
-    disableBackdropClick = false,
     classes,
     ...rest
   } = props
@@ -275,14 +277,6 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     </Dialog>
   )
 })
-
-Modal.defaultProps = {
-  hideBackdrop: false,
-  disableBackdropClick: false,
-  size: 'medium',
-  transitionDuration: 300,
-  align: 'centered',
-}
 
 Modal.displayName = 'Modal'
 

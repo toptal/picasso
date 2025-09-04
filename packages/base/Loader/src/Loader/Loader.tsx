@@ -30,19 +30,10 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
-  props,
+  { inline = false, size = 'medium', variant = 'blue', ...props },
   ref
 ) {
-  const {
-    children,
-    size = 'medium',
-    inline = false,
-    className,
-    value,
-    variant = 'blue',
-    style,
-    ...rest
-  } = props
+  const { children, className, value, style, ...rest } = props
 
   const { disableTransitions } = useAppConfig()
 
@@ -111,12 +102,6 @@ export const Loader = forwardRef<HTMLDivElement, Props>(function Loader(
     </div>
   )
 })
-
-Loader.defaultProps = {
-  inline: false,
-  size: 'medium',
-  variant: 'blue',
-}
 
 Loader.displayName = 'Loader'
 
