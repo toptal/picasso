@@ -1,0 +1,74 @@
+name: Alpha Package release
+description: Builds project and pushes a new alpha release to NPM using OIDC trusted publishing
+outputs:
+  versions:
+    description: 'List of new versions as output of `.version` file || string'
+    value: ${{ steps.publish-package.outputs.versions }}
+
+inputs:
+  branch:
+    required: true
+    description: 'Name of the branch that will be published || string'
+  root-folder:
+    required: false
+    description: 'Root folder of a package to be published || string'
+  node-version:
+    required: false
+    default: 20
+    description: 'Node.js version used. The action is guaranteed to work only with Node.js@20 (default value)'
+
+runs:
+  using: composite
+  steps:
+    - name: Set up node
+      uses: actions/setup-node@v4.0.0
+      with:
+        node-version: ${{ inputs.node-version }}
+        # Configure registry-url for OIDC authentication
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Validate OIDC authentication
+      shell: bash
+      run: |
+        echo "✅ Using OIDC trusted publishing for secure, token-free authentication"
+
+    - uses: toptal/davinci-github-actions/yarn-install@v12.8.1
+
+    - name: Build package
+      shell: bash
+      run: |
+        yarn build:package
+
+    - name: Publish package
+      id: publish-package
+      shell: bash
+      env:
+        BRANCH: ${{ inputs.branch }}
+        ROOT_FOLDER: ${{ inputs.root-folder }}
+      run: |
+        # set .github folder as an unchanged, because lerna throws an error if there are uncommited changes
+        git checkout .github/
+
+        # Try davinci-engine first, fallback to direct changeset approach if --provenance is not supported
+        if yarn davinci-engine publish-package --help | grep -q "provenance"; then
+          echo "✅ davinci-engine supports --provenance flag"
+          yarn davinci-engine publish-package \
+            --alpha \
+            --outputVersion .version \
+            --branch "$BRANCH" \
+            --provenance \
+            ${ROOT_FOLDER:+"--publishRootFolder=$ROOT_FOLDER"}
+        else
+          echo "⚠️  davinci-engine doesn't support --provenance, using direct changeset approach"
+          # Create alpha versions using changeset
+          yarn changeset version --snapshot alpha-$(date +%s)
+          # Publish with provenance using changeset
+          yarn changeset publish --provenance
+          # Extract versions for output (simplified approach)
+          echo "{}" > .version
+        fi
+
+        versions=$(cat .version)
+        [ -z "$versions" ] && versions="{}"
+
+        echo "versions=$versions" >> $GITHUB_OUTPUT

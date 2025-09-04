@@ -9,4 +9,4 @@ it can be useful to run just a part of the Jenkins pipeline or run only a specif
 - `@toptal-bot run all` - Run whole pipeline
 - `@toptal-bot run build` - Check build
 - `@toptal-bot run deploy:documentation` - Deploy documentation
-- `@toptal-bot run package:alpha-release` - Release alpha version
+- `@toptal-bot run package:alpha-release` - Release alpha version (uses OIDC trusted publishing)
