@@ -1,16 +1,15 @@
-name: Release Alpha Package
+name: Release Alpha Package (alpha package release PoC)
 
 on:
-  issue_comment:
-    types: [created]
+  push:
+    branches:
+      - FF-49-enhance-publishing
 
 jobs:
   triggerPrWorkflow:
     name: Trigger PR Workflow
-    if: >
-      github.event.issue.pull_request &&
-      github.event.comment.body == '@toptal-bot run package:alpha-release'
     runs-on: ubuntu-latest
+    environment: alpha-package
     permissions:
       contents: write
       id-token: write
@@ -18,85 +17,65 @@ jobs:
       issues: write
       pull-requests: write
     env:
-      STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: GSM Secrets
-        id: secrets_manager
-        uses: toptal/davinci-github-actions/gsm-secrets@v17.3.0
-        with:
-          workload_identity_provider: ${{ secrets.IDENTITY_POOL }}
-          service_account: ${{ secrets.SA_IDENTITY_POOL }}
-          secrets_name: |-
-            JENKINS_CLIENT_ID:toptal-ci/JENKINS_CLIENT_ID
-            JENKINS_URL:toptal-ci/JENKINS_URL
-            NPM_TOKEN_PUBLISH:toptal-ci/NPM_TOKEN_PUBLISH
-            TOPTAL_REPOACCESSBOT_TOKEN:toptal-ci/TOPTAL_REPOACCESSBOT_TOKEN
-            TOPTAL_TRIGGERBOT_TOKEN:toptal-ci/TOPTAL_TRIGGERBOT_TOKEN
-            TOPTAL_TRIGGERBOT_USERNAME:toptal-ci/TOPTAL_TRIGGERBOT_USERNAME
-
-      - name: Parse secrets
-        id: parse_secrets
-        uses: toptal/davinci-github-actions/expose-json-outputs@v17.3.0
-        with:
-          json: ${{ steps.secrets_manager.outputs.secrets }}
-
-      - name: Set ENV Variables
-        run: |-
-          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-          echo "NPM_TOKEN=${{ steps.parse_secrets.outputs.NPM_TOKEN_PUBLISH }}" >> $GITHUB_ENV
-
-      - name: Feedback on action started
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ env.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.issue;
-            await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
-
-      - id: branch
-        uses: xt0rted/pull-request-comment-branch@v2.0.0
-
-      - name: Specify branch
+      - name: Get branch and sha
         id: get-branch
         run: |
-          echo "branch=${{ steps.branch.outputs.head_ref }}" >> $GITHUB_OUTPUT
-          echo "sha=${{ steps.branch.outputs.head_sha }}" >> $GITHUB_OUTPUT
+          echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
+          echo "sha=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: Configure git user
         run: |
           git config --global user.email "bot@toptal.com"
           git config --global user.name "toptal-bot"
 
-      - name: Checkout the latest code
+      - name: Check out the latest code
         uses: actions/checkout@v4
         with:
-          token: ${{ env.GITHUB_TOKEN }}
-          ref: ${{ steps.get-branch.outputs.branch }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref }}
           fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
 
-      - name: Set status check - pending
-        uses: actions/github-script@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.issue;
-            await github.rest.repos.createCommitStatus({
-              repo,
-              owner,
-              state: 'pending',
-              sha: "${{ steps.get-branch.outputs.sha }}",
-              context: process.env.STATUS_CHECK_NAME,
-              target_url: process.env.STATUS_TARGET_URL
-            })
+          node-version: 20.18
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Trigger alpha package
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Set up npm
+        shell: bash
+        run: |
+          npm install -g npm@11.5.1
+          npm --version
+
+      - name: Build packages
+        run: yarn build:package
+
+      - name: Build and publish canary @toptal/base-tailwind
         id: alpha-package
-        uses: toptal/davinci-github-actions/build-publish-alpha-package@v15.4.1
-        with:
-          npm-token: ${{ env.NPM_TOKEN }}
-          branch: ${{ steps.get-branch.outputs.branch }}
-          root-folder: '.'
+        run: |
+          # Get current version from package.json
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          
+          # Create canary version with the specified prefix
+          CANARY_VERSION="${CURRENT_VERSION}-alpha-FF-49-enhance-publishing-b89c1ab50.$(date +%s)"
+          
+          echo "Publishing canary version: $CANARY_VERSION"
+
+          cd ./packages/base-tailwind/dist-package
+
+          # Update version in package.json using node
+          node -e "const pkg = require('./package.json'); pkg.version = process.argv[1]; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');" "$CANARY_VERSION"
+          
+          # Publish with canary tag (skip prepublishOnly since package is already built)
+          npm publish --tag canary --ignore-scripts --loglevel=verbose
+
+          # Output the published version for later steps
+          echo "versions={\"@toptal/base-tailwind\":\"$CANARY_VERSION\"}" >> $GITHUB_OUTPUT
 
       - name: Alpha package — Handle success
         if: ${{ success() }}
@@ -104,57 +83,44 @@ jobs:
         env:
           versions: ${{ steps.alpha-package.outputs.versions }}
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { repo: { owner, repo }, issue } = context
-            const { versions } = process.env
-            const body = "Your alpha package is ready 🎉<br/>" + versions.split(' ').reduce((acc, version) => {
-              acc += `\`yarn add ${version}\`<br/>`
-              return acc
-            }, '')
-            await github.rest.issues.createComment({ issue_number: issue.number, owner, repo, body })
+            const { owner, repo } = context.repo;
+            const versions = JSON.parse(process.env.versions || '{}');
+            
+            let message = '✅ **Alpha packages published successfully!**\n\n';
+            
+            if (Object.keys(versions).length > 0) {
+              message += '📦 **Published versions:**\n';
+              for (const [packageName, version] of Object.entries(versions)) {
+                message += `- \`${packageName}@${version}\`\n`;
+              }
+              message += '\n';
+            }
 
-      - name: Set status check - success / failure / error
-        if: ${{ always() }}
+            message += '💡 You can install these alpha versions using:\n';
+            message += '```bash\n';
+            message += 'npm install @toptal/package-name@alpha-version\n';
+            message += '```';
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: context.payload.pull_request.number,
+              body: message
+            });
+
+      - name: Alpha package — Handle failure
+        if: ${{ failure() }}
         uses: actions/github-script@v7
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { owner, repo } = context.issue;
+            const { owner, repo } = context.repo;
 
-            const status = "${{ job.status }}";
-            const state = status === 'cancelled' ? 'error' : status;
-
-            await github.rest.repos.createCommitStatus({
-              repo,
+            await github.rest.issues.createComment({
               owner,
-              state,
-              sha: "${{ steps.get-branch.outputs.sha }}",
-              context: process.env.STATUS_CHECK_NAME,
-              target_url: process.env.STATUS_TARGET_URL
-            })
-
-      - name: Get toptal/actions
-        uses: actions/checkout@v4
-        with:
-          repository: toptal/actions
-          token: ${{ steps.parse_secrets.outputs.TOPTAL_REPOACCESSBOT_TOKEN }}
-          path: ./.github/actions/
-          ref: 22323b6e20c443279cbe288dd822fd4f1e49a24d
-
-      - name: Replace toptal/actions/get-job-url@main from trigger-jenkins-job/action.yml
-        shell: bash
-        run: |
-          sed -i 's|toptal/actions/get-job-url@main|./.github/actions/get-job-url|' ./.github/actions/trigger-jenkins-job/action.yml
-          sed -i 's|toptal/actions/trigger-jenkins-job@main|./.github/actions/trigger-jenkins-job|' ./.github/actions/create-jira-deployment/action.yml
-
-      - name: Create Jira deployment
-        uses: ./.github/actions/create-jira-deployment/
-        with:
-          jenkins_url: ${{ steps.parse_secrets.outputs.JENKINS_URL }}
-          jenkins_user: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_USERNAME }}
-          jenkins_token: ${{ steps.parse_secrets.outputs.TOPTAL_TRIGGERBOT_TOKEN }}
-          jenkins_client_id: ${{ steps.parse_secrets.outputs.JENKINS_CLIENT_ID }}
-          token: ${{ env.GITHUB_TOKEN }}
-          environment: development
-          environment-url: https://www.npmjs.com/package/@toptal/picasso?activeTab=versions
+              repo,
+              issue_number: context.payload.pull_request.number,
+              body: '❌ **Alpha package publishing failed**\n\nPlease check the [workflow run](${{ env.STATUS_TARGET_URL }}) for details.'
+            });
