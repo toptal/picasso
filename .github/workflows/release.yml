@@ -149,10 +149,9 @@ jobs:
 
       - name: Build Storybook for Production
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: ./.github/actions/build-storybook
-        with:
-          add-summary: 'true'
-          summary-message: '📖 Building Storybook for production deployment...'
+        run: |
+          yarn build:storybook
+          echo "📖 Building Storybook for production deployment..." >> $GITHUB_STEP_SUMMARY
 
       - name: Prepare production deployment
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}

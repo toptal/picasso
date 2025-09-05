@@ -139,7 +139,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Storybook
-        uses: ./.github/actions/build-storybook
+        run: yarn build:storybook
 
       - name: Prepare PR preview deployment
         uses: ./.github/actions/prepare-deployment
