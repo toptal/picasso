@@ -108,14 +108,64 @@ jobs:
       HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
       HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
-  deploy-docs:
+  deploy-picasso-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Deploy Picasso docs
     runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-deployment
+      cancel-in-progress: false
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
+      pages: write
+      id-token: write
+    needs: [static-checks]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Some new deployment process is needed here
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18
+
+      - name: Install dependencies from cache
+        uses: ./.github/actions/yarn-install
+
+      - name: Setup GitHub Pages content
+        uses: ./.github/actions/setup-gh-pages
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: Prepare PR preview deployment
+        uses: ./.github/actions/prepare-deployment
+        with:
+          deployment-type: pr-preview
+          pr-number: ${{ github.event.pull_request.number }}
+          build-path: build/storybook
+          content-path: gh-pages-content
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'PR #${{ github.event.pull_request.number }} Preview'
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = '${{ github.event.pull_request.number }}';
+            const deployUrl = `https://toptal.github.io/picasso/prs/${prNumber}/`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '📖 **Storybook Preview**\n\n🚀 Your Storybook preview is ready: **[View Storybook](' + deployUrl + ')**\n\n📍 Preview URL: `' + deployUrl + '`\n\nThis preview is updated automatically when you push changes to this PR.'
+            });

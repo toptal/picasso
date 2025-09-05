@@ -1,0 +1,89 @@
+name: 'Prepare Storybook Deployment'
+description: 'Prepare Storybook content for different deployment types (PR preview or production)'
+
+inputs:
+  deployment-type:
+    description: 'Type of deployment: "pr-preview" or "production"'
+    required: true
+  pr-number:
+    description: 'PR number (required for pr-preview deployment)'
+    required: false
+  build-path:
+    description: 'Path to the built Storybook files'
+    required: true
+    default: 'build/storybook'
+  content-path:
+    description: 'Path to the gh-pages content directory'
+    required: true
+    default: 'gh-pages-content'
+
+outputs:
+  deployment-path:
+    description: 'Path where the content was deployed within gh-pages-content'
+    value: ${{ steps.prepare.outputs.deployment-path }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Prepare deployment
+      id: prepare
+      shell: bash
+      run: |
+        CONTENT_PATH="${{ inputs.content-path }}"
+        BUILD_PATH="${{ inputs.build-path }}"
+
+        if [ "${{ inputs.deployment-type }}" = "pr-preview" ]; then
+          if [ -z "${{ inputs.pr-number }}" ]; then
+            echo "❌ PR number is required for PR preview deployment"
+            exit 1
+          fi
+          
+          PR_DIR="$CONTENT_PATH/prs/${{ inputs.pr-number }}"
+          
+          echo "📂 Preparing PR preview deployment for PR #${{ inputs.pr-number }}"
+          
+          # Remove existing PR directory if it exists
+          rm -rf "$PR_DIR"
+          
+          # Create new PR directory and copy storybook build
+          mkdir -p "$PR_DIR"
+          cp -r "$BUILD_PATH"/* "$PR_DIR/"
+          
+          echo "📍 Prepared preview in: $PR_DIR"
+          ls -la "$PR_DIR"
+          echo "deployment-path=prs/${{ inputs.pr-number }}" >> $GITHUB_OUTPUT
+          
+        elif [ "${{ inputs.deployment-type }}" = "production" ]; then
+          echo "📦 Preparing production deployment"
+          
+          # Preserve prs directory if it exists
+          if [ -d "$CONTENT_PATH/prs" ]; then
+            echo "📁 Backing up prs directory"
+            mv "$CONTENT_PATH/prs" ./prs-backup
+          fi
+          
+          # Clear root content but preserve .git and prs
+          find "$CONTENT_PATH" -mindepth 1 -maxdepth 1 -not -name ".git" -not -name "prs" -exec rm -rf {} +
+          
+          # Deploy production to root
+          echo "📦 Deploying production Storybook to root"
+          cp -r "$BUILD_PATH"/* "$CONTENT_PATH/"
+          
+          # Restore prs
+          if [ -d "./prs-backup" ]; then
+            echo "🔄 Restoring prs directory"
+            mv ./prs-backup "$CONTENT_PATH/prs"
+          fi
+          
+          echo "📂 Production deployment prepared with preserved previews"
+          echo "Root content:"
+          ls -la "$CONTENT_PATH/"
+          echo "PR previews content:"
+          ls -la "$CONTENT_PATH/prs/" 2>/dev/null || echo "No prs directory"
+          echo "deployment-path=root" >> $GITHUB_OUTPUT
+          
+        else
+          echo "❌ Invalid deployment type: ${{ inputs.deployment-type }}"
+          echo "Valid types: pr-preview, production"
+          exit 1
+        fi

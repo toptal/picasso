@@ -1,0 +1,41 @@
+name: 'Deploy to GitHub Pages'
+description: 'Upload artifact and deploy to GitHub Pages'
+
+inputs:
+  content-path:
+    description: 'Path to the content to deploy'
+    required: true
+    default: 'gh-pages-content'
+  deployment-name:
+    description: 'Name for the deployment (for identification)'
+    required: false
+    default: 'GitHub Pages'
+
+outputs:
+  deployment-url:
+    description: 'URL of the deployed site'
+    value: ${{ steps.deployment.outputs.page_url }}
+  deployment-id:
+    description: 'ID of the deployment'
+    value: ${{ steps.deployment.outputs.deployment_id }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ${{ inputs.content-path }}
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+    - name: Deployment summary
+      shell: bash
+      run: |
+        echo "🚀 **${{ inputs.deployment-name }}** deployed successfully!" >> $GITHUB_STEP_SUMMARY
+        echo "📍 Deployment URL: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY

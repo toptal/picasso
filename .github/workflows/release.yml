@@ -12,10 +12,15 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-deployment
+      cancel-in-progress: false
     permissions:
       contents: write
       issues: write
       pull-requests: write
+      pages: write
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -136,7 +141,40 @@ jobs:
           payload: |
             text: 'A new PR was merged to Picasso :parrotspin:'
 
-      # Implement Storybook deployment here
+      - name: Setup GitHub Pages content
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        uses: ./.github/actions/setup-gh-pages
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Storybook for Production
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        run: |
+          yarn build:storybook
+          echo "📖 Building Storybook for production deployment..." >> $GITHUB_STEP_SUMMARY
+
+      - name: Prepare production deployment
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        uses: ./.github/actions/prepare-deployment
+        with:
+          deployment-type: production
+          build-path: build/storybook
+          content-path: gh-pages-content
+
+      - name: Deploy Production Storybook to GitHub Pages
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        id: storybook-deployment
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'Production Storybook'
+
+      - name: Storybook Deployment Success
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        run: |
+          echo "🚀 Production Storybook deployed to GitHub Pages!" >> $GITHUB_STEP_SUMMARY
+          echo "📖 Visit: https://toptal.github.io/picasso/" >> $GITHUB_STEP_SUMMARY
+          echo "✅ PR previews preserved during production deployment" >> $GITHUB_STEP_SUMMARY
 
   integration-tests:
     name: Integration Tests

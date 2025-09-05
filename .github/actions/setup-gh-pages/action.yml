@@ -1,0 +1,49 @@
+name: 'Setup GitHub Pages Content'
+description: 'Checkout existing gh-pages content and create directory structure if needed'
+
+inputs:
+  github-token:
+    description: 'GitHub token for accessing the repository'
+    required: true
+    default: ${{ github.token }}
+
+outputs:
+  checkout-outcome:
+    description: 'Outcome of the gh-pages checkout (success or failure)'
+    value: ${{ steps.checkout-gh-pages.outcome }}
+  content-path:
+    description: 'Path to the gh-pages content directory'
+    value: 'gh-pages-content'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout existing gh-pages content
+      id: checkout-gh-pages
+      uses: actions/checkout@v4
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages-content
+        token: ${{ inputs.github-token }}
+
+    - name: Create gh-pages directory if branch doesn't exist
+      if: steps.checkout-gh-pages.outcome == 'failure'
+      shell: bash
+      run: |
+        echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
+        mkdir -p gh-pages-content/prs
+        echo "# Picasso Storybook" > gh-pages-content/README.md
+        echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
+        echo "" >> gh-pages-content/README.md
+        echo "- Production: Root directory" >> gh-pages-content/README.md
+        echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
+
+    - name: Ensure prs directory exists
+      if: steps.checkout-gh-pages.outcome == 'success'
+      shell: bash
+      run: |
+        if [ ! -d "gh-pages-content/prs" ]; then
+          echo "📁 Creating prs directory in existing gh-pages content"
+          mkdir -p gh-pages-content/prs
+        fi
