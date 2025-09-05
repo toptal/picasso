@@ -109,9 +109,9 @@ jobs:
       HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
       HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
-  deploy-storybook-preview:
+  deploy-picasso-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
-    name: Deploy Storybook Preview
+    name: Deploy Picasso docs
     runs-on: ubuntu-latest
     concurrency:
       group: gh-pages-deployment
@@ -195,7 +195,7 @@ jobs:
               body: '📖 **Storybook Preview**\n\n🚀 Your Storybook preview is ready: **[View Storybook](' + deployUrl + ')**\n\n📍 Preview URL: `' + deployUrl + '`\n\nThis preview is updated automatically when you push changes to this PR.'
             });
 
-  cleanup-storybook-preview:
+  cleanup-picasso-docs:
     if: ${{ github.event.action == 'closed' }}
     name: Cleanup Storybook Preview
     runs-on: ubuntu-latest
