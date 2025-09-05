@@ -149,15 +149,18 @@ jobs:
       - name: Create gh-pages directory if branch doesn't exist
         if: steps.checkout-gh-pages.outcome == 'failure'
         run: |
-          echo "🆕 gh-pages branch doesn't exist, creating empty directory structure"
-          mkdir -p gh-pages-content
+          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
+          mkdir -p gh-pages-content/prs
           echo "# Picasso Storybook" > gh-pages-content/README.md
           echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
+          echo "" >> gh-pages-content/README.md
+          echo "- Production: Root directory" >> gh-pages-content/README.md
+          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
 
       - name: Prepare preview deployment
         run: |
-          # Create pr-{number} directory in existing gh-pages content
-          PR_DIR="gh-pages-content/pr-${{ github.event.pull_request.number }}"
+          # Create previews/pr-{number} directory in organized structure
+          PR_DIR="gh-pages-content/previews/pr-${{ github.event.pull_request.number }}"
 
           # Remove existing PR directory if it exists
           rm -rf "$PR_DIR"
@@ -186,7 +189,7 @@ jobs:
         with:
           script: |
             const prNumber = '${{ github.event.pull_request.number }}';
-            const deployUrl = `https://toptal.github.io/picasso/pr-${prNumber}/`;
+            const deployUrl = `https://toptal.github.io/picasso/previews/pr-${prNumber}/`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -220,19 +223,25 @@ jobs:
       - name: Create gh-pages directory if branch doesn't exist
         if: steps.checkout-gh-pages-cleanup.outcome == 'failure'
         run: |
-          echo "🆕 gh-pages branch doesn't exist, creating empty directory structure"
-          mkdir -p gh-pages-content
+          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
+          mkdir -p gh-pages-content/prs
           echo "# Picasso Storybook" > gh-pages-content/README.md
           echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
+          echo "" >> gh-pages-content/README.md
+          echo "- Production: Root directory" >> gh-pages-content/README.md
+          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
+          echo "" >> gh-pages-content/README.md
+          echo "- Production: Root directory" >> gh-pages-content/README.md
+          echo "- PR Previews: previews/pr-{number}/" >> gh-pages-content/README.md
 
       - name: Remove PR preview directory
         run: |
-          PR_DIR="gh-pages-content/pr-${{ github.event.pull_request.number }}"
+          PR_DIR="gh-pages-content/previews/pr-${{ github.event.pull_request.number }}"
           if [ -d "$PR_DIR" ]; then
             echo "🗑️ Removing preview directory: $PR_DIR"
             rm -rf "$PR_DIR"
-            echo "Remaining content after cleanup:"
-            ls -la gh-pages-content/
+            echo "Remaining previews after cleanup:"
+            ls -la gh-pages-content/previews/ || echo "No previews directory"
           else
             echo "Preview directory $PR_DIR does not exist"
           fi

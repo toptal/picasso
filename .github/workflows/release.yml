@@ -160,30 +160,41 @@ jobs:
       - name: Create gh-pages directory if branch doesn't exist
         if: ${{ success() && steps.changesets.outputs.published == 'true' && steps.checkout-gh-pages-release.outcome == 'failure' }}
         run: |
-          echo "🆕 gh-pages branch doesn't exist, creating empty directory structure"
-          mkdir -p gh-pages-content
+          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
+          mkdir -p gh-pages-content/prs
           echo "# Picasso Storybook" > gh-pages-content/README.md
           echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
+          echo "" >> gh-pages-content/README.md
+          echo "- Production: Root directory" >> gh-pages-content/README.md
+          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
 
       - name: Prepare production deployment (preserve PR previews)
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
         run: |
-          # Backup PR preview directories
-          mkdir -p pr-backups
-          find gh-pages-content -maxdepth 1 -name "pr-*" -type d -exec cp -r {} pr-backups/ \; 2>/dev/null || true
+          # Preserve prs directory if it exists
+          if [ -d "gh-pages-content/prs" ]; then
+            echo "📁 Backing up prs directory"
+            mv gh-pages-content/prs ./prs-backup
+          fi
 
-          # Clear gh-pages content but preserve .git
-          find gh-pages-content -mindepth 1 -not -path "*/\.git*" -exec rm -rf {} + 2>/dev/null || true
+          # Clear root content but preserve .git and prs
+          find gh-pages-content -mindepth 1 -maxdepth 1 -not -name ".git" -not -name "prs" -exec rm -rf {} +
 
-          # Copy new production build to root
+          # Deploy production to root
+          echo "📦 Deploying production Storybook to root"
           cp -r build/storybook/* gh-pages-content/
 
-          # Restore PR preview directories
-          find pr-backups -maxdepth 1 -name "pr-*" -type d -exec cp -r {} gh-pages-content/ \; 2>/dev/null || true
+          # Restore prs
+          if [ -d "./prs-backup" ]; then
+            echo "🔄 Restoring prs directory"
+            mv ./prs-backup gh-pages-content/prs
+          fi
 
-          echo "📂 Production content prepared, PR previews preserved"
-          echo "Content structure:"
+          echo "📂 Production deployment prepared with preserved previews"
+          echo "Root content:"
           ls -la gh-pages-content/
+          echo "PR previews content:"
+          ls -la gh-pages-content/prs/ 2>/dev/null || echo "No prs directory"
 
       - name: Setup Pages
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
