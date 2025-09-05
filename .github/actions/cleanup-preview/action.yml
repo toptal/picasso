@@ -1,0 +1,115 @@
+name: 'Cleanup Preview Directories'
+description: 'Remove PR preview directories and perform garbage collection'
+
+inputs:
+  cleanup-mode:
+    description: 'Cleanup mode: "single" (specific PR), "garbage-collection" (orphaned previews), or "force-all" (all previews)'
+    required: true
+  pr-number:
+    description: 'PR number to cleanup (required for single mode)'
+    required: false
+  content-path:
+    description: 'Path to the gh-pages content directory'
+    required: true
+    default: 'gh-pages-content'
+  github-token:
+    description: 'GitHub token for API access (required for garbage collection)'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  cleaned-count:
+    description: 'Number of preview directories cleaned up'
+    value: ${{ steps.cleanup.outputs.cleaned-count }}
+  cleanup-summary:
+    description: 'Summary of cleanup actions performed'
+    value: ${{ steps.cleanup.outputs.summary }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Cleanup preview directories
+      id: cleanup
+      shell: bash
+      run: |
+        CONTENT_PATH="${{ inputs.content-path }}"
+        PRS_DIR="$CONTENT_PATH/prs"
+        CLEANED_COUNT=0
+
+        if [ "${{ inputs.cleanup-mode }}" = "single" ]; then
+          if [ -z "${{ inputs.pr-number }}" ]; then
+            echo "❌ PR number is required for single cleanup mode"
+            exit 1
+          fi
+          
+          PR_DIR="$PRS_DIR/${{ inputs.pr-number }}"
+          if [ -d "$PR_DIR" ]; then
+            echo "🗑️ Removing preview directory: $PR_DIR"
+            rm -rf "$PR_DIR"
+            CLEANED_COUNT=1
+            echo "✅ Cleanup successful"
+          else
+            echo "ℹ️ Preview directory $PR_DIR does not exist"
+          fi
+          
+          echo "cleaned-count=$CLEANED_COUNT" >> $GITHUB_OUTPUT
+          echo "summary=Cleaned up PR #${{ inputs.pr-number }} preview directory" >> $GITHUB_OUTPUT
+          
+        elif [ "${{ inputs.cleanup-mode }}" = "garbage-collection" ] || [ "${{ inputs.cleanup-mode }}" = "force-all" ]; then
+          if [ ! -d "$PRS_DIR" ]; then
+            echo "ℹ️ No prs directory found"
+            echo "cleaned-count=0" >> $GITHUB_OUTPUT
+            echo "summary=No preview directories found" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Get list of existing preview directories
+          EXISTING_PREVIEWS=($(find "$PRS_DIR" -mindepth 1 -maxdepth 1 -type d -exec basename {} \;))
+          TOTAL_FOUND=${#EXISTING_PREVIEWS[@]}
+          
+          echo "📁 Found $TOTAL_FOUND preview directories: ${EXISTING_PREVIEWS[*]}"
+          
+          if [ "${{ inputs.cleanup-mode }}" = "force-all" ]; then
+            echo "🧹 Force cleanup mode: removing all preview directories"
+            for PR_DIR in "${EXISTING_PREVIEWS[@]}"; do
+              rm -rf "$PRS_DIR/$PR_DIR"
+              echo "🗑️ Cleaned up preview: $PR_DIR"
+              ((CLEANED_COUNT++))
+            done
+          else
+            # Garbage collection mode - only remove closed PRs
+            echo "🔍 Checking which PRs are still open..."
+            
+            # Use GitHub CLI or API to get open PRs
+            if command -v gh >/dev/null 2>&1; then
+              OPEN_PRS=$(gh pr list --state open --json number --jq '.[].number' || echo "")
+            else
+              echo "⚠️ GitHub CLI not available, assuming conservative cleanup"
+              OPEN_PRS=""
+            fi
+            
+            echo "📊 Open PRs: $OPEN_PRS"
+            
+            for PR_DIR in "${EXISTING_PREVIEWS[@]}"; do
+              PR_NUMBER="$PR_DIR"
+              
+              # Check if PR is in open list
+              if echo "$OPEN_PRS" | grep -q "^$PR_NUMBER$"; then
+                echo "⏭️ Skipping $PR_NUMBER (PR still open)"
+              else
+                echo "🗑️ Cleaning up preview: $PR_NUMBER (PR closed or not found)"
+                rm -rf "$PRS_DIR/$PR_DIR"
+                ((CLEANED_COUNT++))
+              fi
+            done
+          fi
+          
+          echo "✅ Garbage collection complete: $CLEANED_COUNT/$TOTAL_FOUND previews cleaned"
+          echo "cleaned-count=$CLEANED_COUNT" >> $GITHUB_OUTPUT
+          echo "summary=Garbage collection: $CLEANED_COUNT/$TOTAL_FOUND previews cleaned" >> $GITHUB_OUTPUT
+          
+        else
+          echo "❌ Invalid cleanup mode: ${{ inputs.cleanup-mode }}"
+          echo "Valid modes: single, garbage-collection, force-all"
+          exit 1
+        fi

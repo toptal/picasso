@@ -133,55 +133,28 @@ jobs:
       - name: Install dependencies from cache
         uses: ./.github/actions/yarn-install
 
+      - name: Setup GitHub Pages content
+        uses: ./.github/actions/setup-gh-pages
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Storybook
-        run: yarn build:storybook
+        uses: ./.github/actions/build-storybook
 
-      - name: Checkout existing gh-pages content
-        id: checkout-gh-pages
-        uses: actions/checkout@v4
-        continue-on-error: true
+      - name: Prepare PR preview deployment
+        uses: ./.github/actions/prepare-deployment
         with:
-          ref: gh-pages
-          path: gh-pages-content
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create gh-pages directory if branch doesn't exist
-        if: steps.checkout-gh-pages.outcome == 'failure'
-        run: |
-          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
-          mkdir -p gh-pages-content/prs
-          echo "# Picasso Storybook" > gh-pages-content/README.md
-          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
-          echo "" >> gh-pages-content/README.md
-          echo "- Production: Root directory" >> gh-pages-content/README.md
-          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
-
-      - name: Prepare preview deployment
-        run: |
-          # Create prs/{number} directory in organized structure
-          PR_DIR="gh-pages-content/prs/${{ github.event.pull_request.number }}"
-
-          # Remove existing PR directory if it exists
-          rm -rf "$PR_DIR"
-
-          # Create new PR directory and copy storybook build
-          mkdir -p "$PR_DIR"
-          cp -r build/storybook/* "$PR_DIR/"
-
-          echo "📂 Prepared preview in: $PR_DIR"
-          ls -la "$PR_DIR"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: gh-pages-content
+          deployment-type: pr-preview
+          pr-number: ${{ github.event.pull_request.number }}
+          build-path: build/storybook
+          content-path: gh-pages-content
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'PR #${{ github.event.pull_request.number }} Preview'
 
       - name: Comment on PR
         uses: actions/github-script@v7

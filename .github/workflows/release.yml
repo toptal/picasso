@@ -141,75 +141,34 @@ jobs:
           payload: |
             text: 'A new PR was merged to Picasso :parrotspin:'
 
+      - name: Setup GitHub Pages content
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        uses: ./.github/actions/setup-gh-pages
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Storybook for Production
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        run: |
-          yarn build:storybook
-          echo "📖 Building Storybook for production deployment..." >> $GITHUB_STEP_SUMMARY
-
-      - name: Checkout existing gh-pages content
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        id: checkout-gh-pages-release
-        uses: actions/checkout@v4
-        continue-on-error: true
+        uses: ./.github/actions/build-storybook
         with:
-          ref: gh-pages
-          path: gh-pages-content
-          token: ${{ secrets.GITHUB_TOKEN }}
+          add-summary: 'true'
+          summary-message: '📖 Building Storybook for production deployment...'
 
-      - name: Create gh-pages directory if branch doesn't exist
-        if: ${{ success() && steps.changesets.outputs.published == 'true' && steps.checkout-gh-pages-release.outcome == 'failure' }}
-        run: |
-          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
-          mkdir -p gh-pages-content/prs
-          echo "# Picasso Storybook" > gh-pages-content/README.md
-          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
-          echo "" >> gh-pages-content/README.md
-          echo "- Production: Root directory" >> gh-pages-content/README.md
-          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
-
-      - name: Prepare production deployment (preserve PR previews)
+      - name: Prepare production deployment
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        run: |
-          # Preserve prs directory if it exists
-          if [ -d "gh-pages-content/prs" ]; then
-            echo "📁 Backing up prs directory"
-            mv gh-pages-content/prs ./prs-backup
-          fi
-
-          # Clear root content but preserve .git and prs
-          find gh-pages-content -mindepth 1 -maxdepth 1 -not -name ".git" -not -name "prs" -exec rm -rf {} +
-
-          # Deploy production to root
-          echo "📦 Deploying production Storybook to root"
-          cp -r build/storybook/* gh-pages-content/
-
-          # Restore prs
-          if [ -d "./prs-backup" ]; then
-            echo "🔄 Restoring prs directory"
-            mv ./prs-backup gh-pages-content/prs
-          fi
-
-          echo "📂 Production deployment prepared with preserved previews"
-          echo "Root content:"
-          ls -la gh-pages-content/
-          echo "PR previews content:"
-          ls -la gh-pages-content/prs/ 2>/dev/null || echo "No prs directory"
-
-      - name: Setup Pages
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
-        uses: actions/upload-pages-artifact@v3
+        uses: ./.github/actions/prepare-deployment
         with:
-          path: gh-pages-content
+          deployment-type: production
+          build-path: build/storybook
+          content-path: gh-pages-content
 
       - name: Deploy Production Storybook to GitHub Pages
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
         id: storybook-deployment
-        uses: actions/deploy-pages@v4
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'Production Storybook'
 
       - name: Storybook Deployment Success
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}

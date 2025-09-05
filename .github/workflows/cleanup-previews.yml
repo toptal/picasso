@@ -40,39 +40,28 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: Checkout gh-pages branch
-        id: checkout-gh-pages
-        uses: actions/checkout@v4
-        continue-on-error: true
+      - name: Setup GitHub Pages content
+        uses: ./.github/actions/setup-gh-pages
         with:
-          ref: gh-pages
-          path: gh-pages-content
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Remove PR preview directory
-        if: steps.checkout-gh-pages.outcome == 'success'
-        run: |
-          PR_DIR="gh-pages-content/prs/${{ github.event.pull_request.number }}"
-          if [ -d "$PR_DIR" ]; then
-            echo "🗑️ Removing preview directory: $PR_DIR"
-            rm -rf "$PR_DIR"
-            echo "✅ Cleanup successful"
-          else
-            echo "ℹ️ Preview directory $PR_DIR does not exist"
-          fi
-
-      - name: Deploy cleanup to GitHub Pages
-        if: steps.checkout-gh-pages.outcome == 'success'
-        uses: actions/upload-pages-artifact@v3
+      - name: Cleanup PR preview
+        id: cleanup
+        uses: ./.github/actions/cleanup-preview
         with:
-          path: gh-pages-content
+          cleanup-mode: single
+          pr-number: ${{ github.event.pull_request.number }}
+          content-path: gh-pages-content
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy to GitHub Pages
-        if: steps.checkout-gh-pages.outcome == 'success'
-        uses: actions/deploy-pages@v4
+      - name: Deploy cleanup changes
+        if: steps.cleanup.outputs.cleaned-count > 0
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'Cleanup PR #${{ github.event.pull_request.number }}'
 
       - name: Comment cleanup notification
-        if: steps.checkout-gh-pages.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
@@ -92,84 +81,33 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (for API access)
         uses: actions/checkout@v4
 
-      - name: Checkout gh-pages branch
-        id: checkout-gh-pages
-        uses: actions/checkout@v4
-        continue-on-error: true
+      - name: Setup GitHub Pages content
+        uses: ./.github/actions/setup-gh-pages
         with:
-          ref: gh-pages
-          path: gh-pages-content
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Garbage collect orphaned previews
-        if: steps.checkout-gh-pages.outcome == 'success'
-        uses: actions/github-script@v7
+        id: cleanup
+        uses: ./.github/actions/cleanup-preview
         with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
+          cleanup-mode: ${{ github.event.inputs.cleanup_mode || 'garbage-collection' }}
+          content-path: gh-pages-content
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-            // Get all open PRs
-            const { data: openPRs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open'
-            });
-
-            const openPRNumbers = new Set(openPRs.map(pr => pr.number.toString()));
-            console.log(`📊 Found ${openPRNumbers.size} open PRs:`, Array.from(openPRNumbers).join(', '));
-
-            // Check prs directory
-            const prsDir = 'gh-pages-content/prs';
-            if (!fs.existsSync(prsDir)) {
-              console.log('ℹ️ No prs directory found');
-              return;
-            }
-
-            const existingPreviews = fs.readdirSync(prsDir);
-            console.log(`📁 Found ${existingPreviews.length} preview directories:`, existingPreviews.join(', '));
-
-            let cleanedCount = 0;
-            for (const prDir of existingPreviews) {
-              const prNumber = prDir;
-              
-              // Skip if PR is still open (unless force mode)
-              if (openPRNumbers.has(prNumber) && '${{ github.event.inputs.cleanup_mode }}' !== 'force_all') {
-                console.log(`⏭️ Skipping ${prNumber} (PR still open)`);
-                continue;
-              }
-
-              // Remove closed PR preview
-              const fullPath = path.join(prsDir, prDir);
-              try {
-                fs.rmSync(fullPath, { recursive: true, force: true });
-                console.log(`🗑️ Cleaned up preview: ${prNumber}`);
-                cleanedCount++;
-              } catch (error) {
-                console.error(`❌ Failed to clean ${prNumber}:`, error.message);
-              }
-            }
-
-            console.log(`✅ Garbage collection complete: ${cleanedCount} previews cleaned`);
-
-            // Set output for summary
-            core.setOutput('cleaned_count', cleanedCount);
-            core.setOutput('total_found', existingPreviews.length);
-
-      - name: Deploy cleanup to GitHub Pages
-        if: steps.checkout-gh-pages.outcome == 'success'
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy cleanup changes
+        if: steps.cleanup.outputs.cleaned-count > 0
+        uses: ./.github/actions/deploy-to-gh-pages
         with:
-          path: gh-pages-content
-
-      - name: Deploy to GitHub Pages
-        if: steps.checkout-gh-pages.outcome == 'success'
-        uses: actions/deploy-pages@v4
+          content-path: gh-pages-content
+          deployment-name: 'Garbage Collection'
 
       - name: Summary
         run: |
           echo "🧹 **Garbage Collection Summary**" >> $GITHUB_STEP_SUMMARY
           echo "- Trigger: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Mode: ${{ github.event.inputs.cleanup_mode || 'garbage-collection' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Cleaned: ${{ steps.cleanup.outputs.cleaned-count }} previews" >> $GITHUB_STEP_SUMMARY
+          echo "- Details: ${{ steps.cleanup.outputs.cleanup-summary }}" >> $GITHUB_STEP_SUMMARY
