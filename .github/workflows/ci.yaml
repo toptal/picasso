@@ -108,14 +108,91 @@ jobs:
       HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
       HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
-  deploy-docs:
+  deploy-picasso-docs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     name: Deploy Picasso docs
     runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages-deployment
+      cancel-in-progress: false
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
+      pages: write
+      id-token: write
+    needs: [static-checks]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Some new deployment process is needed here
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18
+
+      - name: Install dependencies from cache
+        uses: ./.github/actions/yarn-install
+
+      - name: Build Storybook
+        run: yarn build:storybook
+
+      - name: Checkout existing gh-pages content
+        id: checkout-gh-pages
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages-content
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create gh-pages directory if branch doesn't exist
+        if: steps.checkout-gh-pages.outcome == 'failure'
+        run: |
+          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
+          mkdir -p gh-pages-content/prs
+          echo "# Picasso Storybook" > gh-pages-content/README.md
+          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
+          echo "" >> gh-pages-content/README.md
+          echo "- Production: Root directory" >> gh-pages-content/README.md
+          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
+
+      - name: Prepare preview deployment
+        run: |
+          # Create prs/{number} directory in organized structure
+          PR_DIR="gh-pages-content/prs/${{ github.event.pull_request.number }}"
+
+          # Remove existing PR directory if it exists
+          rm -rf "$PR_DIR"
+
+          # Create new PR directory and copy storybook build
+          mkdir -p "$PR_DIR"
+          cp -r build/storybook/* "$PR_DIR/"
+
+          echo "📂 Prepared preview in: $PR_DIR"
+          ls -la "$PR_DIR"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: gh-pages-content
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = '${{ github.event.pull_request.number }}';
+            const deployUrl = `https://toptal.github.io/picasso/prs/${prNumber}/`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '📖 **Storybook Preview**\n\n🚀 Your Storybook preview is ready: **[View Storybook](' + deployUrl + ')**\n\n📍 Preview URL: `' + deployUrl + '`\n\nThis preview is updated automatically when you push changes to this PR.'
+            });
