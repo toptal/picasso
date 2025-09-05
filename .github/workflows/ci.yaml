@@ -159,8 +159,8 @@ jobs:
 
       - name: Prepare preview deployment
         run: |
-          # Create previews/pr-{number} directory in organized structure
-          PR_DIR="gh-pages-content/previews/pr-${{ github.event.pull_request.number }}"
+          # Create prs/{number} directory in organized structure
+          PR_DIR="gh-pages-content/prs/${{ github.event.pull_request.number }}"
 
           # Remove existing PR directory if it exists
           rm -rf "$PR_DIR"
@@ -189,82 +189,11 @@ jobs:
         with:
           script: |
             const prNumber = '${{ github.event.pull_request.number }}';
-            const deployUrl = `https://toptal.github.io/picasso/previews/pr-${prNumber}/`;
+            const deployUrl = `https://toptal.github.io/picasso/prs/${prNumber}/`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
               body: '📖 **Storybook Preview**\n\n🚀 Your Storybook preview is ready: **[View Storybook](' + deployUrl + ')**\n\n📍 Preview URL: `' + deployUrl + '`\n\nThis preview is updated automatically when you push changes to this PR.'
-            });
-
-  cleanup-picasso-docs:
-    if: ${{ github.event.action == 'closed' }}
-    name: Cleanup Storybook Preview
-    runs-on: ubuntu-latest
-    concurrency:
-      group: gh-pages-deployment
-      cancel-in-progress: false
-    permissions:
-      contents: write
-      pull-requests: write
-      pages: write
-      id-token: write
-    steps:
-      - name: Checkout gh-pages branch
-        id: checkout-gh-pages-cleanup
-        uses: actions/checkout@v4
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages-content
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create gh-pages directory if branch doesn't exist
-        if: steps.checkout-gh-pages-cleanup.outcome == 'failure'
-        run: |
-          echo "🆕 gh-pages branch doesn't exist, creating organized directory structure"
-          mkdir -p gh-pages-content/prs
-          echo "# Picasso Storybook" > gh-pages-content/README.md
-          echo "This directory contains Storybook deployments for Picasso." >> gh-pages-content/README.md
-          echo "" >> gh-pages-content/README.md
-          echo "- Production: Root directory" >> gh-pages-content/README.md
-          echo "- PR Previews: prs/{number}/" >> gh-pages-content/README.md
-          echo "" >> gh-pages-content/README.md
-          echo "- Production: Root directory" >> gh-pages-content/README.md
-          echo "- PR Previews: previews/pr-{number}/" >> gh-pages-content/README.md
-
-      - name: Remove PR preview directory
-        run: |
-          PR_DIR="gh-pages-content/previews/pr-${{ github.event.pull_request.number }}"
-          if [ -d "$PR_DIR" ]; then
-            echo "🗑️ Removing preview directory: $PR_DIR"
-            rm -rf "$PR_DIR"
-            echo "Remaining previews after cleanup:"
-            ls -la gh-pages-content/previews/ || echo "No previews directory"
-          else
-            echo "Preview directory $PR_DIR does not exist"
-          fi
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: gh-pages-content
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: Comment cleanup notification
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '🗑️ **Storybook preview cleaned up**\n\nThe preview deployment has been automatically removed since this PR was closed.'
             });
