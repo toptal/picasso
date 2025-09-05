@@ -12,7 +12,6 @@ on:
       - opened # PR was open
       - reopened # PR was closed and is now open again
       - ready_for_review # PR was converted from draft to open
-      - closed # PR was closed
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
