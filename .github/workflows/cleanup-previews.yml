@@ -1,0 +1,113 @@
+name: Cleanup PR Previews
+
+on:
+  # Immediate cleanup when PR closes
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+      - 'feature/**'
+
+  # Scheduled garbage collection (runs weekly on Sundays at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * 0'
+
+  # Manual trigger for emergency cleanup
+  workflow_dispatch:
+    inputs:
+      cleanup_mode:
+        description: 'Cleanup mode'
+        required: true
+        default: 'single'
+        type: choice
+        options:
+          - single
+          - all_closed
+          - force_all
+
+concurrency:
+  group: gh-pages-deployment
+  cancel-in-progress: false
+
+jobs:
+  cleanup-single-pr:
+    if: ${{ github.event_name == 'pull_request' }}
+    name: Cleanup Single PR Preview
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      pages: write
+      id-token: write
+    steps:
+      - name: Setup GitHub Pages content
+        uses: ./.github/actions/setup-gh-pages
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup PR preview
+        id: cleanup
+        uses: ./.github/actions/cleanup-preview
+        with:
+          cleanup-mode: single
+          pr-number: ${{ github.event.pull_request.number }}
+          content-path: gh-pages-content
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy cleanup changes
+        if: steps.cleanup.outputs.cleaned-count > 0
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'Cleanup PR #${{ github.event.pull_request.number }}'
+
+      - name: Comment cleanup notification
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '🗑️ **Storybook preview cleaned up**\n\nThe preview deployment has been automatically removed since this PR was closed.'
+            });
+
+  garbage-collection:
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
+    name: Garbage Collection
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout repository (for API access)
+        uses: actions/checkout@v4
+
+      - name: Setup GitHub Pages content
+        uses: ./.github/actions/setup-gh-pages
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Garbage collect orphaned previews
+        id: cleanup
+        uses: ./.github/actions/cleanup-preview
+        with:
+          cleanup-mode: ${{ github.event.inputs.cleanup_mode || 'garbage-collection' }}
+          content-path: gh-pages-content
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy cleanup changes
+        if: steps.cleanup.outputs.cleaned-count > 0
+        uses: ./.github/actions/deploy-to-gh-pages
+        with:
+          content-path: gh-pages-content
+          deployment-name: 'Garbage Collection'
+
+      - name: Summary
+        run: |
+          echo "🧹 **Garbage Collection Summary**" >> $GITHUB_STEP_SUMMARY
+          echo "- Trigger: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Mode: ${{ github.event.inputs.cleanup_mode || 'garbage-collection' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Cleaned: ${{ steps.cleanup.outputs.cleaned-count }} previews" >> $GITHUB_STEP_SUMMARY
+          echo "- Details: ${{ steps.cleanup.outputs.cleanup-summary }}" >> $GITHUB_STEP_SUMMARY
