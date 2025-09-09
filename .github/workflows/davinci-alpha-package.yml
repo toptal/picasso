@@ -95,7 +95,6 @@ jobs:
         uses: ./.github/actions/build-publish-alpha-package
         with:
           branch: ${{ steps.get-branch.outputs.branch }}
-          alpha: true
           root-folder: '.'
 
       - name: Alpha package — Handle success

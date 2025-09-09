@@ -21,5 +21,4 @@ jobs:
         uses: ./.github/actions/build-publish-alpha-package
         with:
           branch: FF-49-enhance-publishing
-          alpha: true
           root-folder: '.'
