@@ -40,6 +40,9 @@ jobs:
       pages: write
       id-token: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Setup GitHub Pages content
         uses: ./.github/actions/setup-gh-pages
         with:
