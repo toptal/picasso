@@ -10,7 +10,8 @@
     "./test-utils": "./dist-package/src/test-utils/index.js"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build:package": "tsc --build tsconfig.json",

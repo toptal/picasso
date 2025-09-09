@@ -11,6 +11,12 @@ jobs:
   publish-alpha-package:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+        with:
+          ref: FF-49-enhance-publishing
+          fetch-depth: 0
+
       - name: Publish alpha package
         uses: ./.github/actions/build-publish-alpha-package
         with:

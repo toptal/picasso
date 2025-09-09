@@ -3,7 +3,8 @@
   "version": "5.1.12",
   "description": "Toptal UI components library - UserBadge",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

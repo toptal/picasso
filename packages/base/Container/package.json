@@ -39,7 +39,8 @@
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "files": [
     "dist-package/**",

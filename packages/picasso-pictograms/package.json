@@ -11,7 +11,8 @@
     "url": "git+https://github.com/toptal/picasso.git"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "build:package": "tsc -b tsconfig.json",

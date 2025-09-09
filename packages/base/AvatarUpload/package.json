@@ -3,7 +3,8 @@
   "version": "3.0.27",
   "description": "Toptal UI components library - AvatarUpload",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

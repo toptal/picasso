@@ -3,7 +3,8 @@
   "version": "6.3.2",
   "description": "Toptal UI components library - Form",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

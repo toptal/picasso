@@ -3,7 +3,8 @@
   "version": "4.0.22",
   "description": "Toptal UI components library - FileInput",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

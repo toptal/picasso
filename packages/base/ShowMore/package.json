@@ -3,7 +3,8 @@
   "version": "2.0.22",
   "description": "Toptal UI components library - ShowMore",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

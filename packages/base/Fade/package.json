@@ -3,7 +3,8 @@
   "version": "1.0.8",
   "description": "Toptal UI components library - Fade",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

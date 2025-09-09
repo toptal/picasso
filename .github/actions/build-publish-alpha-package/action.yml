@@ -19,7 +19,6 @@ outputs:
   versions:
     description: 'List of new versions as output of `.version` file'
     value: ${{ steps.publish-package.outputs.versions }}
-    type: string
 
 runs:
   using: composite
@@ -48,6 +47,7 @@ runs:
       env:
         BRANCH: ${{ inputs.branch }}
         ROOT_FOLDER: ${{ inputs.root-folder }}
+        NPM_CONFIG_PROVENANCE: true
       run: |
         # set .github folder as an unchanged, because lerna throws an error if there are uncommitted changes
         git checkout .github/
