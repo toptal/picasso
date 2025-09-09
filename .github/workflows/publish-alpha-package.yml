@@ -1,0 +1,19 @@
+# This workflow is solely for testing the alpha package release in FF-49-enhance-publishing branch
+# Normally it is called from davinci-alpha-package.yml workflow.
+# TODO: delete this workflow before merge
+
+on:
+  push:
+    branches:
+      - FF-49-enhance-publishing
+
+jobs:
+  publish-alpha-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish alpha package
+        uses: ./.github/actions/build-publish-alpha-package
+        with:
+          branch: FF-49-enhance-publishing
+          alpha: true
+          root-folder: '.'

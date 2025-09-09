@@ -1,0 +1,52 @@
+name: Publish Packages to NPM
+description: |
+  Routes package publishing to the appropriate workflow. Trusted publishing is
+  tied to a single workflow, this is why the central publishing workflow is needed.
+
+on:
+  workflow_call:
+    inputs:
+      branch:
+        type: string
+        required: true
+        description: Name of the branch that will be published
+      alpha:
+        type: boolean
+        default: false
+        required: false
+        description: Publish alpha packages
+
+jobs:
+  publish-release-packages:
+    name: Publish release packages to NPM
+    if: ${{ !inputs.alpha }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: Empty step
+        run: echo "Release packages are not supported yet"
+
+  publish-alpha-packages:
+    name: Publish alpha packages to NPM
+    if: ${{ inputs.alpha }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    # TODO: remove this env variable before merge
+    env:
+      npm_config_loglevel: verbose
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Trigger alpha packages publishing
+        id: alpha-package
+        uses: ./.github/actions/build-publish-alpha-package
+        with:
+          branch: ${{ inputs.branch }}
+          root-folder: '.'

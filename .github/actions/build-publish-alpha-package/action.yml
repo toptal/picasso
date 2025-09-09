@@ -1,30 +1,29 @@
-name: Alpha Package release
-description: Builds project and pushes a new alpha release to NPM (copy paster from davinci-github-actions repo)
-outputs:
-  versions:
-    description: 'List of new versions as output of `.version` file || string'
-    value: ${{ steps.publish-package.outputs.versions }}
+name: Build and Publish Alpha Package
+description: Builds project and pushes alpha release to NPM (copy paste from davinci-github-actions repo)
 
 inputs:
   branch:
     required: true
-    description: 'Name of the branch that will be published || string'
+    description: Name of the branch that will be published
+    type: string
   root-folder:
     required: false
-    description: 'Root folder of a package to be published || string'
+    description: Root folder of a package to be published
+    type: string
   node-version:
     required: false
     default: 20
-    description: 'Node.js version used. The action is guaranteed to work only with Node.js@20 (default value)'
+    description: Node.js version used. The action is guaranteed to work only with Node.js@20 (default value)
+
+outputs:
+  versions:
+    description: 'List of new versions as output of `.version` file'
+    value: ${{ steps.publish-package.outputs.versions }}
+    type: string
 
 runs:
   using: composite
   steps:
-    - name: Log
-      shell: bash
-      run: |
-        echo "Starting to publish package"
-
     - name: Set up node
       uses: actions/setup-node@v4.0.0
       with:
@@ -33,16 +32,17 @@ runs:
 
     - name: Set up npm
       shell: bash
-      run: yarn global add npm@11.5.1
+      run: npm install -g npm@11.5.1
 
-    - name: Install dependencies and build package
+    - name: Install dependencies
       shell: bash
-      run: |
-        yarn install
-        yarn build:package
+      run: yarn install --frozen-lockfile
 
-    # TODO: remove "--nonMonorepo" before merge
-    - name: Publish package
+    - name: Build packages
+      shell: bash
+      run: yarn build:package
+
+    - name: Publish packages
       id: publish-package
       shell: bash
       env:
@@ -55,8 +55,7 @@ runs:
         yarn davinci-engine publish-package \
           --alpha \
           --outputVersion .version \
-          --branch "$BRANCH" ${ROOT_FOLDER:+"--publishRootFolder=$ROOT_FOLDER"} \
-          @toptal/base-tailwind
+          --branch "$BRANCH" ${ROOT_FOLDER:+"--publishRootFolder=$ROOT_FOLDER"}
 
         versions=$(cat .version)
         [ -z "$versions" ] && exit 1
