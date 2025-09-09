@@ -2,6 +2,7 @@
   "packages": ["packages/*", "packages/base/*"],
   "npmClient": "yarn",
   "version": "independent",
+  "loglevel": "silly",
   "command": {
     "publish": {
       "ignoreChanges": ["*.md"],
