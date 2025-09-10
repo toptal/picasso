@@ -23,7 +23,7 @@
   "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "echo 0"
   },
   "dependencies": {
     "@toptal/picasso-shared": "15.0.0",

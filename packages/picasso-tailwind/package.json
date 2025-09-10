@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build:package": "sh ./bin/build.sh",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "echo 0"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.10"

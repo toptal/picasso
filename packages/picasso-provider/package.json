@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build:package": "tsc -b tsconfig.json && node bin/build.cjs",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "echo 0"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"

@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build:package": "./bin/build.sh",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "echo 0"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
