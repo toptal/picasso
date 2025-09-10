@@ -23,17 +23,12 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLTableRowElement> {
 }
 
 export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
-  function TableExpandableRow(props, ref) {
-    const {
-      children,
-      content,
-      expanded,
-      defaultExpanded,
-      stripeEven,
-      className,
-      style,
-      ...rest
-    } = props
+  function TableExpandableRow(
+    { expanded = false, stripeEven = false, ...props },
+    ref
+  ) {
+    const { children, content, defaultExpanded, className, style, ...rest } =
+      props
 
     const wasExpandedOnce = useRef(false)
     const shouldTransition = !defaultExpanded || wasExpandedOnce.current
@@ -78,11 +73,6 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
     )
   }
 )
-
-TableExpandableRow.defaultProps = {
-  expanded: false,
-  stripeEven: false,
-}
 
 TableExpandableRow.displayName = 'TableExpandableRow'
 

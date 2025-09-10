@@ -35,8 +35,8 @@ const AvatarGroup = ({
   style,
   testIds,
   items,
-  limit,
-  size,
+  limit = 5,
+  size = 'xsmall',
   showEmblem = false,
 }: Props) => {
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
@@ -88,11 +88,6 @@ const AvatarGroup = ({
       ) : null}
     </Container>
   )
-}
-
-AvatarGroup.defaultProps = {
-  limit: 5,
-  size: 'xsmall',
 }
 
 export default AvatarGroup

@@ -234,11 +234,19 @@ const getOriginalSourceCode = ({
   return require(`!raw-loader!~/.storybook/stories/${src}`).default
 }
 
-const CodeExample = (props: Props) => {
-  const { permanentLink, showEditCode } = props
-
+const CodeExample = ({
+  showEditCode = true,
+  module = 'picasso',
+  permanentLink,
+  src,
+}: Props) => {
   const classes = useStyles()
-  const [sourceCode, setSourceCode] = useState(getOriginalSourceCode(props))
+  const [sourceCode, setSourceCode] = useState(
+    getOriginalSourceCode({
+      src,
+      module,
+    })
+  )
   const [isEditorVisible, setEditorVisible] = useState(false)
   const [copyLinkButtonText, setCopyLinkButtonText] = useState(
     COPY_LINK_DEFAULT_TEXT
@@ -362,10 +370,5 @@ const CodeExample = (props: Props) => {
 }
 
 CodeExample.displayName = 'CodeExample'
-
-CodeExample.defaultProps = {
-  showEditCode: true,
-  module: 'picasso',
-}
 
 export default CodeExample

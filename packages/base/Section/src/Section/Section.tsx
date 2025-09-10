@@ -89,7 +89,13 @@ const getHeaderClasses = (variant: VariantType, isCollapsed: boolean) => {
 }
 
 export const Section = forwardRef<HTMLDivElement, Props>(function Section(
-  props,
+  {
+    collapsible = false,
+    defaultCollapsed = true,
+    titleSize = 'medium',
+    variant = 'default',
+    ...props
+  },
   ref
 ) {
   const {
@@ -100,12 +106,8 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
     actions,
     children,
     testIds,
-    collapsible = false,
-    defaultCollapsed = true,
     collapsed,
     onToggle,
-    variant = 'default',
-    titleSize = 'medium',
     ...rest
   } = props
 
@@ -215,10 +217,5 @@ export const Section = forwardRef<HTMLDivElement, Props>(function Section(
 })
 
 Section.displayName = 'Section'
-Section.defaultProps = {
-  collapsible: false,
-  defaultCollapsed: true,
-  titleSize: 'medium',
-}
 
 export default Section

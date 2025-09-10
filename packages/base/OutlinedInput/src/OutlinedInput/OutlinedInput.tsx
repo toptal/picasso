@@ -70,7 +70,14 @@ const Textarea = forwardRef<
 )
 
 const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
-  props,
+  {
+    width = 'auto',
+    size = 'medium',
+    onResetClick = noop,
+    status = 'default',
+    type = 'text',
+    ...props
+  },
   ref
 ) {
   const {
@@ -81,20 +88,15 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     autoFocus,
     rows,
     rowsMax,
-    width = 'auto',
     inputComponent,
     inputProps,
     defaultValue,
     value,
-    type = 'text',
-    status,
     startAdornment,
     endAdornment: userDefinedEndAdornment,
     onChange,
-    size = 'medium',
     enableReset,
     disabled,
-    onResetClick = noop,
     inputRef,
     testIds,
     highlight,
@@ -200,13 +202,6 @@ const OutlinedInput = forwardRef<HTMLElement, Props>(function OutlinedInput(
     />
   )
 })
-
-OutlinedInput.defaultProps = {
-  width: 'auto',
-  size: 'medium',
-  onResetClick: noop,
-  status: 'default',
-}
 
 OutlinedInput.displayName = 'OutlinedInput'
 

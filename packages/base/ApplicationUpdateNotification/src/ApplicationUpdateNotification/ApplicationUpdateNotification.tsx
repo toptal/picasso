@@ -20,16 +20,17 @@ export interface Props extends BaseProps {
 }
 
 export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
-  function ApplicationUpdateNotification(props, ref) {
-    const {
-      title,
-      description,
+  function ApplicationUpdateNotification(
+    {
+      title = 'A New Update is Available',
+      description = 'Get performance improvements and bug fixes with this update. Make sure to save any data on this page before updating.',
+      onClose = () => {},
       actions = null,
       dismissable = false,
-      onClose,
       ...rest
-    } = props
-
+    },
+    ref
+  ) {
     const notification = (
       <Container flex direction='column' gap='xsmall'>
         <svg
@@ -88,13 +89,6 @@ export const ApplicationUpdateNotification = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-ApplicationUpdateNotification.defaultProps = {
-  title: 'A New Update is Available',
-  description:
-    'Get performance improvements and bug fixes with this update. Make sure to save any data on this page before updating.',
-  onClose: () => {},
-}
 
 ApplicationUpdateNotification.displayName = 'ApplicationUpdateNotification'
 
