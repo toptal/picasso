@@ -18,8 +18,7 @@
     "packages/base/*"
   ],
   "scripts": {
-    "patch-package-silently": "([ -f ./node_modules/.bin/patch-package ] && [ -d ./patches ] && patch-package) || true",
-    "postinstall": "yarn patch-package-silently",
+    "postinstall": "./scripts/override-davinci-files.sh",
     "tsc:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:package:watch": "lerna watch -- lerna run --scope=\\$LERNA_PACKAGE_NAME build:package --include-dependents",
@@ -171,7 +170,6 @@
     "lerna": "^8.1.2",
     "madge": "^6.1.0",
     "package-up": "^5.0.0",
-    "patch-package": "^8.0.0",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
     "raw-loader": "^4.0.2",

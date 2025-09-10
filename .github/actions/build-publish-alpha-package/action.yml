@@ -37,6 +37,10 @@ runs:
       shell: bash
       run: yarn install --frozen-lockfile
 
+    - name: Apply davinci-engine overrides
+      shell: bash
+      run: ./scripts/override-davinci-files.sh
+
     - name: Build packages
       shell: bash
       env:
@@ -54,6 +58,8 @@ runs:
       run: |
         # set .github folder as an unchanged, because lerna throws an error if there are uncommitted changes
         git checkout .github/
+
+        npm -v
 
         npx davinci-engine publish-package \
           --alpha \

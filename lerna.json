@@ -3,7 +3,7 @@
   "npmClient": "yarn",
   "concurrency": 1,
   "version": "independent",
-  "loglevel": "silly",
+  "loglevel": "debug",
   "command": {
     "publish": {
       "ignoreChanges": ["*.md"],
