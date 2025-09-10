@@ -37,10 +37,6 @@ runs:
       shell: bash
       run: yarn install --frozen-lockfile
 
-    - name: Apply davinci-engine patch
-      shell: bash
-      run: ./scripts/apply-davinci-patch.sh
-
     - name: Build packages
       shell: bash
       run: yarn build:package

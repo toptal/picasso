@@ -18,7 +18,8 @@
     "packages/base/*"
   ],
   "scripts": {
-    "postinstall": "./scripts/apply-davinci-patch.sh",
+    "patch-package-silently": "([ -f ./node_modules/.bin/patch-package ] && [ -d ./patches ] && patch-package) || true",
+    "postinstall": "yarn patch-package-silently",
     "tsc:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:package:watch": "lerna watch -- lerna run --scope=\\$LERNA_PACKAGE_NAME build:package --include-dependents",
