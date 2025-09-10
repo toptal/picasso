@@ -39,6 +39,8 @@ runs:
 
     - name: Build packages
       shell: bash
+      env:
+        NODE_OPTIONS: --max-old-space-size=8192
       run: yarn build:package
 
     - name: Publish packages
@@ -48,6 +50,7 @@ runs:
         BRANCH: ${{ inputs.branch }}
         ROOT_FOLDER: ${{ inputs.root-folder }}
         NPM_CONFIG_PROVENANCE: true
+        NODE_OPTIONS: --max-old-space-size=8192
       run: |
         # set .github folder as an unchanged, because lerna throws an error if there are uncommitted changes
         git checkout .github/
