@@ -11,12 +11,3 @@ index d357ec5..b8c7a8e 100644
 +  console.log('@@@ in patched publishMonorepoPackages', result)
  
    // prints the result
-   console.log(result.stdout)
-@@ -66,6 +68,7 @@ const getMonorepoPublishAlphaCommand = ({ branch, publishRootFolder }) => {
-     '--no-git-tag-version',
-     '--exact',
-     '--yes',
-+    '--concurrency 1',
-     `--contents ${contentsFolder}`,
-     '--force-publish',
-   ]
