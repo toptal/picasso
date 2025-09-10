@@ -38,7 +38,6 @@ jobs:
   test-publish-from-yesterday:
     name: Trigger PR Workflow
     runs-on: ubuntu-latest
-    environment: alpha-package
     permissions:
       contents: write
       id-token: write
