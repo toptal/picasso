@@ -3,44 +3,23 @@ description: |
   Routes package publishing to the appropriate workflow. Trusted publishing is
   tied to a single workflow, this is why the central publishing workflow is needed.
 
+# TODO: add workflow_dispatch with alpha parameter for starting from UI
 on:
-  workflow_call:
-    inputs:
-      branch:
-        type: string
-        required: true
-        description: Name of the branch that will be published
-      alpha:
-        type: boolean
-        default: false
-        required: false
-        description: Publish alpha packages
-  workflow_dispatch:
-    inputs:
-      branch:
-        type: string
-        required: true
-        description: Name of the branch that will be published
-      alpha:
-        type: boolean
-        default: false
-        required: false
-        description: Publish alpha packages
+  push:
+    branches:
+      - FF-49-enhance-publishing
 
 permissions:
   contents: write
   id-token: write
+  actions: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  test-publish-from-yesterday:
-    name: Trigger PR Workflow
+  test-publishing-single-package:
+    name: Test publishing single package via plain NPM
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-      actions: write
-      issues: write
-      pull-requests: write
     env:
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
@@ -102,22 +81,6 @@ jobs:
           # Output the published version for later steps
           echo "versions={\"@toptal/base-tailwind\":\"$CANARY_VERSION\"}" >> $GITHUB_OUTPUT
 
-  test-publish:
-    name: Test run
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Trigger alpha packages publishing
-        id: alpha-package
-        uses: ./.github/actions/build-publish-alpha-package
-        with:
-          branch: ${{ inputs.branch }}
-          root-folder: '.'
-
   publish-release-packages:
     name: Publish release packages to NPM
     if: false
@@ -129,7 +92,7 @@ jobs:
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM
-    if: false
+    if: true
     # if: ${{ inputs.alpha }}
     runs-on: ubuntu-latest
     steps:
@@ -142,5 +105,5 @@ jobs:
         id: alpha-package
         uses: ./.github/actions/build-publish-alpha-package
         with:
-          branch: ${{ inputs.branch }}
+          branch: FF-49-enhance-publishing
           root-folder: '.'
