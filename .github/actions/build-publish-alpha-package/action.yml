@@ -52,7 +52,7 @@ runs:
         # set .github folder as an unchanged, because lerna throws an error if there are uncommitted changes
         git checkout .github/
 
-        yarn davinci-engine publish-package \
+        npx davinci-engine publish-package \
           --alpha \
           --outputVersion .version \
           --branch "$BRANCH" ${ROOT_FOLDER:+"--publishRootFolder=$ROOT_FOLDER"}
