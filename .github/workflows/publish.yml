@@ -4,9 +4,6 @@ description: |
   tied to a single workflow, this is why the central publishing workflow is needed.
 
 on:
-  push:
-    branches:
-      - FF-49-enhance-publishing
   workflow_call:
     inputs:
       branch:
