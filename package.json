@@ -106,7 +106,9 @@
     "unset-value": "^2.0.1",
     "webpack": "^5.0.0",
     "yaml": "2",
-    "micromatch": "^4.0.8"
+    "micromatch": "^4.0.8",
+    "nx": "21.5.1",
+    "@nx/js": "21.5.1"
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",
