@@ -15,7 +15,12 @@ on:
         required: false
         default: true
         type: boolean
-  # TODO: delete this trigger before merge
+      branch:
+        description: Branch to publish
+        required: false
+        default: master
+        type: string
+  # TODO: delete trigger before merge
   push:
     branches:
       - FF-49-enhance-publishing
@@ -31,6 +36,7 @@ jobs:
   publish-release-packages:
     name: Publish release packages to NPM
     if: false
+    # TODO: use input alpha before merge
     #if: ${{ !inputs.alpha }}
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +46,8 @@ jobs:
   publish-alpha-packages:
     name: Publish alpha packages to NPM
     if: true
-    # if: ${{ inputs.alpha }}
+    # TODO: use input alpha before merge
+    #if: ${{ inputs.alpha }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -52,5 +59,7 @@ jobs:
         id: alpha-package
         uses: ./.github/actions/build-publish-alpha-package
         with:
+          # TODO: use input branch before merge
+          #branch: ${{ inputs.branch }}
           branch: FF-49-enhance-publishing
           root-folder: '.'

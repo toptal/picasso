@@ -26,13 +26,8 @@ const writeNewPackagesVersionsToFile = (outputVersionFile, result) => {
   }
 
   if (packageVersions.length > 0) {
-    // Write all package@version entries on the same line separated by whitespace
     const content = packageVersions.join(' ') + '\n'
     fs.writeFileSync(outputVersionFile, content, 'utf8')
-    console.log(`@@@ Wrote ${packageVersions.length} package versions to ${outputVersionFile}`)
-    console.log('@@@ Package versions:', packageVersions)
-  } else {
-    console.log('@@@ No package versions found in the output')
   }
 }
 
