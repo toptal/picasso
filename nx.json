@@ -17,7 +17,13 @@
     }
   },
   "release": {
-    "projects": ["packages/*", "packages/base/*"]
+    "projects": ["packages/*", "packages/base/*"],
+    "version": {
+      "git": {
+        "commit": false,
+        "stageChanges": false
+      }
+    }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
