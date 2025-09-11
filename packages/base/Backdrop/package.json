@@ -3,8 +3,7 @@
   "version": "1.0.9",
   "description": "Toptal UI components library - Backdrop",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

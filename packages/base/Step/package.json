@@ -3,8 +3,7 @@
   "version": "4.0.10",
   "description": "Toptal UI components library - Step",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

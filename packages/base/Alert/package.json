@@ -3,8 +3,7 @@
   "version": "3.0.34",
   "description": "Toptal UI components library - Alert",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

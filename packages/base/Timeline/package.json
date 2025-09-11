@@ -3,8 +3,7 @@
   "version": "5.0.5",
   "description": "Toptal UI components library - Timeline",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

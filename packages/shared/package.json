@@ -11,8 +11,7 @@
     ".": "./dist-package/src/index.js"
   },
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "repository": {
     "type": "git",

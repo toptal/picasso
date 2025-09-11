@@ -3,8 +3,7 @@
   "version": "2.1.2",
   "description": "Toptal UI components library - PromptModal",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",

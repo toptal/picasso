@@ -3,8 +3,7 @@
   "version": "3.0.6",
   "description": "Toptal UI components library - Link",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "access": "public"
   },
   "main": "./dist-package/src/index.js",
   "module": "./dist-package/src/index.js",
