@@ -11,16 +11,16 @@ echo "🔧 Overriding files with custom versions..."
 # Define file mappings as arrays
 TARGET_FILES=(
     "$PROJECT_ROOT/node_modules/@toptal/davinci-engine/src/utils/publish-packages/publish-monorepo-packages.js"
-    "$PROJECT_ROOT/node_modules/@toptal/davinci-cli-shared/src/utils/run.js"
-    "$PROJECT_ROOT/node_modules/libnpmpublish/lib/publish.js"
+    #"$PROJECT_ROOT/node_modules/@toptal/davinci-cli-shared/src/utils/run.js"
+    #"$PROJECT_ROOT/node_modules/libnpmpublish/lib/publish.js"
     #"$PROJECT_ROOT/node_modules/@nx/js/src/executors/release-publish/release-publish.impl.js"
     #"$PROJECT_ROOT/node_modules/nx/src/utils/package-manager.js"
 )
 
 SOURCE_FILES=(
     "$SCRIPT_DIR/overrides/publish-monorepo-packages.js"
-    "$SCRIPT_DIR/overrides/run.js"
-    "$SCRIPT_DIR/overrides/publish.js"
+    #"$SCRIPT_DIR/overrides/run.js"
+    #"$SCRIPT_DIR/overrides/publish.js"
     #"$SCRIPT_DIR/overrides/release-publish.impl.js"
     #"$SCRIPT_DIR/overrides/package-manager.js"
 )

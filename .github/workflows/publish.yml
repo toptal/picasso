@@ -3,9 +3,19 @@ description: |
   Routes package publishing to the appropriate workflow. Trusted publishing is
   tied to a single workflow, this is why the central publishing workflow is needed.
 
-# TODO: add workflow_dispatch with alpha parameter for starting from UI
+# TODO: replace all "@N" with shas, we do not trust tags
+# TODO: add workflow_dispatch with alpha parameter for starting from UI and comment from user
+# TODO: add issue_comment for starting from pull requests
 # TODO: restore alpha parameter
 on:
+  workflow_dispatch:
+    inputs:
+      alpha:
+        description: Whether to publish alpha packages
+        required: false
+        default: true
+        type: boolean
+  # TODO: delete this trigger before merge
   push:
     branches:
       - FF-49-enhance-publishing
@@ -33,7 +43,7 @@ jobs:
     # if: ${{ inputs.alpha }}
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
+      - name: Check out code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0

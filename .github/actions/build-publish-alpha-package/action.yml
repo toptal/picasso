@@ -13,7 +13,7 @@ inputs:
 
 outputs:
   versions:
-    description: 'List of new versions as output of `.version` file'
+    description: List of new versions as output of `.version` file (separated by space, e.g. "@package/a@1.2.3 @package/b@4.5.6")
     value: ${{ steps.publish-package.outputs.versions }}
 
 runs:
@@ -25,22 +25,12 @@ runs:
         node-version: 24
         registry-url: 'https://registry.npmjs.org'
 
-    - name: Verify npm version
-      shell: bash
-      run: npm --version
-
     - name: Install dependencies
       shell: bash
       run: yarn install --frozen-lockfile
 
-    - name: Apply davinci-engine overrides
-      shell: bash
-      run: ./scripts/override-davinci-files.sh
-
     - name: Build package
       shell: bash
-      env:
-        NODE_OPTIONS: --max-old-space-size=8192
       run: yarn build:package
 
     - name: Publish packages
@@ -50,12 +40,9 @@ runs:
         BRANCH: ${{ inputs.branch }}
         ROOT_FOLDER: ${{ inputs.root-folder }}
         NPM_CONFIG_PROVENANCE: true
-        NODE_OPTIONS: --max-old-space-size=8192
       run: |
         # set .github folder as an unchanged, because lerna throws an error if there are uncommitted changes
         git checkout .github/
-
-        npm -v
 
         npx davinci-engine publish-package \
           --alpha \
@@ -64,5 +51,7 @@ runs:
 
         versions=$(cat .version)
         [ -z "$versions" ] && exit 1
+
+        echo "New versions: $versions"
 
         echo "versions=$versions" >> $GITHUB_OUTPUT

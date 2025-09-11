@@ -1,3 +1,5 @@
+# TODO: this action will be fully moved to publish.yml
+
 name: Release Alpha Package
 
 on:
@@ -7,9 +9,11 @@ on:
 jobs:
   triggerPrWorkflow:
     name: Trigger PR Workflow
-    if: >
-      github.event.issue.pull_request &&
-      github.event.comment.body == '@toptal-bot run package:alpha-release'
+    # TODO: delete this action after publish.yml is fully migrated
+    if: false
+    #if: >
+    #  github.event.issue.pull_request &&
+    #  github.event.comment.body == '@toptal-bot run package:alpha-release'
     runs-on: ubuntu-latest
     permissions:
       contents: write
