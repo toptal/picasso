@@ -1,5 +1,6 @@
 /* eslint-disable */
 // TODO: Davinci needs to have the change (it has to support nx publishing)
+// This file is ready to be merged into Davinci
 import cliShared from '@toptal/davinci-cli-shared'
 import fs from 'fs'
 
@@ -64,8 +65,6 @@ export const publishMonorepoPackages = ({
     shell: true,
     stdio: 'pipe',
   })
-
-  console.log('@@@ releasePublishResult', outputVersionFile, releasePublishResult.stdout)
 
   if (outputVersionFile) {
     writeNewPackagesVersionsToFile(outputVersionFile, releasePublishResult.stdout)
