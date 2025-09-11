@@ -29,9 +29,15 @@ runs:
         node-version: ${{ inputs.node-version }}
         registry-url: 'https://registry.npmjs.org'
 
-    - name: Set up npm
+    - name: Install npm@11.5.1
       shell: bash
-      run: npm install -g npm@11.5.1
+      run: |
+        npm install -g npm@11.5.1
+        echo "$(npm root -g)/../bin" >> $GITHUB_PATH
+
+    - name: Verify npm version
+      shell: bash
+      run: npm --version
 
     - name: Install dependencies
       shell: bash
