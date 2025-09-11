@@ -28,6 +28,10 @@
         "stageChanges": false,
         "tag": false
       }
+    },
+    "changelog": {
+      "workspaceChangelog": false,
+      "projectChangelogs": false
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json"
