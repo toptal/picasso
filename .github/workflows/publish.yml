@@ -41,7 +41,8 @@ jobs:
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM
-    if: ${{ inputs.alpha || (github.event.issue.pull_request && github.event.comment.body == '@toptal-bot run package:alpha-release') }}
+    # TODO: restore trigger before merge
+    #if: ${{ inputs.alpha || (github.event.issue.pull_request && github.event.comment.body == '@toptal-bot run package:alpha-release') }}
     runs-on: ubuntu-latest
     env:
       STATUS_CHECK_NAME: Publish Alpha Package
