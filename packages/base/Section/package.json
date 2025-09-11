@@ -10,7 +10,7 @@
   "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
-    "prepublishOnly": "echo 0"
+    "prepublishOnly": "yarn build:package"
   },
   "repository": {
     "type": "git",
