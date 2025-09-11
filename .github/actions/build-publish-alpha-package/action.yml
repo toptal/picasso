@@ -26,14 +26,15 @@ runs:
     - name: Set up node
       uses: actions/setup-node@v4.0.0
       with:
-        node-version: ${{ inputs.node-version }}
+        #node-version: ${{ inputs.node-version }}
+        node-version: 24
         registry-url: 'https://registry.npmjs.org'
 
-    - name: Install npm@11.5.1
-      shell: bash
-      run: |
-        npm install -g npm@11.5.1
-        echo "$(npm root -g)/../bin" >> $GITHUB_PATH
+    #- name: Install npm@11.5.1
+    #  shell: bash
+    #  run: |
+    #    npm install -g npm@11.5.1
+    #    echo "$(npm root -g)/../bin" >> $GITHUB_PATH
 
     - name: Verify npm version
       shell: bash
@@ -47,11 +48,11 @@ runs:
       shell: bash
       run: ./scripts/override-davinci-files.sh
 
-    - name: Build packages
+    - name: Build package (ONLY ONE)
       shell: bash
       env:
         NODE_OPTIONS: --max-old-space-size=8192
-      run: yarn build:package
+      run: npx nx run @toptal/base-tailwind:build:package
 
     - name: Publish packages
       id: publish-package

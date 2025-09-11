@@ -31,7 +31,9 @@ export const publishMonorepoPackages = ({
   //  publishRootFolder,
   //})
 
-  const publishCommand = `npx nx release version --specifier prerelease --preid alpha-${new Date().getTime()} && npx nx release publish --tag=canary --verbose`
+  // update node + npm for free
+
+  const publishCommand = `npx nx release version --projects=@toptal/base-tailwind --specifier prerelease --preid alpha-${new Date().getTime()} && npx nx release publish --projects=@toptal/base-tailwind --tag=canary --verbose`
 
   console.log('@@@ overrides publishCommand', publishCommand)
 
