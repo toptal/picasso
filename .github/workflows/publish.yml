@@ -25,9 +25,8 @@ on:
       - FF-49-enhance-publishing
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
-  actions: write
   issues: write
   pull-requests: write
 
