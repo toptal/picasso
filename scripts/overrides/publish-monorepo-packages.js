@@ -1,3 +1,4 @@
+/* eslint-disable */
 // TODO: Davinci needs to have the change (it has to support nx publishing)
 import cliShared from '@toptal/davinci-cli-shared'
 import fs from 'fs'
