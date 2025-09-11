@@ -4,6 +4,7 @@ description: |
   tied to a single workflow, this is why the central publishing workflow is needed.
 
 # TODO: add workflow_dispatch with alpha parameter for starting from UI
+# TODO: restore alpha parameter
 on:
   push:
     branches:
@@ -17,70 +18,6 @@ permissions:
   pull-requests: write
 
 jobs:
-  test-publishing-single-package:
-    name: Test publishing single package via plain NPM
-    runs-on: ubuntu-latest
-    env:
-      STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    steps:
-      - name: Get branch and sha
-        id: get-branch
-        run: |
-          echo "branch=${{ github.head_ref }}" >> $GITHUB_OUTPUT
-          echo "sha=${{ github.sha }}" >> $GITHUB_OUTPUT
-
-      - name: Configure git user
-        run: |
-          git config --global user.email "bot@toptal.com"
-          git config --global user.name "toptal-bot"
-
-      - name: Check out the latest code
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0 # otherwise, you will fail to push refs to dest repo
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.18
-          registry-url: 'https://registry.npmjs.org'
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Set up npm
-        shell: bash
-        run: |
-          npm install -g npm@11.5.1
-          npm --version
-
-      - name: Build packages
-        run: yarn build:package
-
-      - name: Build and publish canary @toptal/base-tailwind
-        id: alpha-package
-        run: |
-          # Get current version from package.json
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          
-          # Create canary version with the specified prefix
-          CANARY_VERSION="${CURRENT_VERSION}-alpha-FF-49-enhance-publishing-b89c1ab50.$(date +%s)"
-          
-          echo "Publishing canary version: $CANARY_VERSION"
-
-          cd ./packages/base-tailwind/dist-package
-
-          # Update version in package.json using node
-          node -e "const pkg = require('./package.json'); pkg.version = process.argv[1]; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');" "$CANARY_VERSION"
-          
-          # Publish with canary tag (skip prepublishOnly since package is already built)
-          npm publish --tag canary --ignore-scripts --loglevel=verbose
-
-          # Output the published version for later steps
-          echo "versions={\"@toptal/base-tailwind\":\"$CANARY_VERSION\"}" >> $GITHUB_OUTPUT
-
   publish-release-packages:
     name: Publish release packages to NPM
     if: false

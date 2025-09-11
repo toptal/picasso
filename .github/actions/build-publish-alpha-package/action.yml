@@ -10,10 +10,6 @@ inputs:
     required: false
     description: Root folder of a package to be published
     type: string
-  node-version:
-    required: false
-    default: 20
-    description: Node.js version used. The action is guaranteed to work only with Node.js@20 (default value)
 
 outputs:
   versions:
@@ -24,17 +20,10 @@ runs:
   using: composite
   steps:
     - name: Set up node
-      uses: actions/setup-node@v4.0.0
+      uses: actions/setup-node@v5.0.0
       with:
-        #node-version: ${{ inputs.node-version }}
         node-version: 24
         registry-url: 'https://registry.npmjs.org'
-
-    #- name: Install npm@11.5.1
-    #  shell: bash
-    #  run: |
-    #    npm install -g npm@11.5.1
-    #    echo "$(npm root -g)/../bin" >> $GITHUB_PATH
 
     - name: Verify npm version
       shell: bash
@@ -48,11 +37,11 @@ runs:
       shell: bash
       run: ./scripts/override-davinci-files.sh
 
-    - name: Build package (ONLY ONE)
+    - name: Build package
       shell: bash
       env:
         NODE_OPTIONS: --max-old-space-size=8192
-      run: npx nx run @toptal/base-tailwind:build:package
+      run: yarn build:package
 
     - name: Publish packages
       id: publish-package

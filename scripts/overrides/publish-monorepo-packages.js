@@ -1,11 +1,40 @@
+// TODO: Davinci needs to have the change (it has to support nx publishing)
 import cliShared from '@toptal/davinci-cli-shared'
+import fs from 'fs'
 
-import { paths } from '../../configs/paths.js'
 import {
   getGITRef,
   normalizeBranchName,
-  writeNewPackagesVersionsToFile,
 } from './utils.js'
+
+const writeNewPackagesVersionsToFile = (outputVersionFile, result) => {
+  if (!outputVersionFile || !result) {
+    return
+  }
+
+  // Parse the result string to extract package versions
+  const lines = result.split('\n')
+  const packageVersions = []
+
+  for (const line of lines) {
+    // Look for lines starting with the package icon 📦
+    const packageMatch = line.match(/📦\s+(.+@.+)/)
+    if (packageMatch) {
+      const packageVersion = packageMatch[1].trim()
+      packageVersions.push(packageVersion)
+    }
+  }
+
+  if (packageVersions.length > 0) {
+    // Write all package@version entries on the same line separated by whitespace
+    const content = packageVersions.join(' ') + '\n'
+    fs.writeFileSync(outputVersionFile, content, 'utf8')
+    console.log(`@@@ Wrote ${packageVersions.length} package versions to ${outputVersionFile}`)
+    console.log('@@@ Package versions:', packageVersions)
+  } else {
+    console.log('@@@ No package versions found in the output')
+  }
+}
 
 /**
  *
@@ -26,73 +55,23 @@ export const publishMonorepoPackages = ({
     )
   }
 
-  //const publishCommand = getMonorepoPublishAlphaCommand({
-  //  branch,
-  //  publishRootFolder,
-  //})
-
-  // update node + npm for free
-
-  const publishCommand = `npx nx release version --projects=@toptal/base-tailwind --specifier prerelease --preid alpha-${new Date().getTime()} && npx nx release publish --projects=@toptal/base-tailwind --tag=canary --verbose`
-
-  console.log('@@@ overrides publishCommand', publishCommand)
-
-  let result
-
-  console.log('@@@ in patched publishMonorepoPackages', publishCommand)
-  try {
-    result = cliShared.runSync(publishCommand, [], {
-      shell: true,
-      stdio: 'pipe',
-      all: true,
-    })
-  } catch (error) {
-    console.log(
-      '@@@ error',
-      error,
-      JSON.stringify(error),
-      error.stdout,
-      error.stderr,
-      error.all
-    )
-  }
-
-  console.log('@@@ in patched publishMonorepoPackages', result)
-
-  // prints the result
-  console.log(result.stdout)
-
-  if (outputVersionFile) {
-    writeNewPackagesVersionsToFile(outputVersionFile, result.stdout)
-  }
-}
-
-/**
- * Generates a command to publish canary version of monorepo packages
- * @param {string} branch
- * @param {string} publishRootFolder
- * @returns {string}
- */
-const getMonorepoPublishAlphaCommand = ({ branch, publishRootFolder }) => {
   const normalizedBranchName = normalizeBranchName(branch)
   const shortRef = getGITRef()
+  const preId = `alpha-${normalizedBranchName}-${shortRef}`
 
-  const contentsFolder =
-    publishRootFolder ??
-    paths.appPackageBuild.slice(paths.appPackageBuild.lastIndexOf('/') + 1)
+  cliShared.runSync(`npx nx release version --specifier prerelease --preid ${preId}`, [], {
+    shell: true,
+    stdio: 'pipe',
+  })
 
-  const options = [
-    'lerna',
-    'publish',
-    '--canary',
-    `--preid alpha-${normalizedBranchName}-${shortRef}`,
-    '--no-git-tag-version',
-    '--exact',
-    '--yes',
-    '--concurrency 1',
-    `--contents ${contentsFolder}`,
-    '--force-publish',
-  ]
+  const releasePublishResult = cliShared.runSync(`npx nx release publish --tag=canary`, [], {
+    shell: true,
+    stdio: 'pipe',
+  })
 
-  return options.join(' ')
+  console.log('@@@ releasePublishResult', outputVersionFile, releasePublishResult.stdout)
+
+  if (outputVersionFile) {
+    writeNewPackagesVersionsToFile(outputVersionFile, releasePublishResult.stdout)
+  }
 }
