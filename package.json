@@ -122,6 +122,7 @@
     "@changesets/cli": "^2.27.7",
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
+    "@nx/js": "21.5.1",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",
     "@storybook/builder-webpack5": "^6.5.16",
@@ -172,6 +173,7 @@
     "json5": "^2.2.3",
     "lerna": "^8.1.2",
     "madge": "^6.1.0",
+    "nx": "21.5.1",
     "package-up": "^5.0.0",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
@@ -195,8 +197,6 @@
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
     "yarn-deduplicate": "^6.0.2",
-    "nx": "21.5.1",
-    "@nx/js": "21.5.1",
     "zx": "^8.0.2"
   },
   "engines": {
@@ -204,5 +204,8 @@
   },
   "files": [
     "src"
-  ]
+  ],
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
 }
