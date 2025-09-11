@@ -193,6 +193,8 @@
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
     "yarn-deduplicate": "^6.0.2",
+    "nx": "21.5.1",
+    "@nx/js": "21.5.1",
     "zx": "^8.0.2"
   },
   "engines": {

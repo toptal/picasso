@@ -16,5 +16,8 @@
       "dependsOn": ["^build:package"]
     }
   },
+  "release": {
+    "projects": ["packages/*", "packages/base/*"]
+  },
   "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }
