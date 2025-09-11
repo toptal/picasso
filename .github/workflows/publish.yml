@@ -3,11 +3,10 @@ description: |
   Routes package publishing to the appropriate workflow. Trusted publishing is
   tied to a single workflow, this is why the central publishing workflow is needed.
 
-# TODO: replace all "@N" with shas, we do not trust tags
-# TODO: add workflow_dispatch with alpha parameter for starting from UI and comment from user
-# TODO: add issue_comment for starting from pull requests
-# TODO: restore alpha parameter
+# TODO: add status check support (like in davinci-alpha-package.yml)
 on:
+  issue_comment:
+    types: [created]
   workflow_dispatch:
     inputs:
       alpha:
@@ -35,9 +34,7 @@ permissions:
 jobs:
   publish-release-packages:
     name: Publish release packages to NPM
-    if: false
-    # TODO: use input alpha before merge
-    #if: ${{ !inputs.alpha }}
+    if: ${{ !inputs.alpha }}
     runs-on: ubuntu-latest
     steps:
       - name: Empty step
@@ -45,21 +42,55 @@ jobs:
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM
-    if: true
-    # TODO: use input alpha before merge
-    #if: ${{ inputs.alpha }}
+    if: ${{ inputs.alpha || (github.event.issue.pull_request && github.event.comment.body == '@toptal-bot run package:alpha-release') }}
     runs-on: ubuntu-latest
+    env:
+      STATUS_CHECK_NAME: Publish Alpha Package
+      STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: Add reaction to issue comment (if triggered from issue comment)
+        if: ${{ github.event_name == 'issue_comment' }}
+        # Same as actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+            await github.rest.reactions.createForIssueComment({ owner, repo, comment_id: context.payload.comment.id, content: '+1' });
+
+      - name: Get branch info (if triggered from issue comment)
+        id: branch
+        if: ${{ github.event_name == 'issue_comment' }}
+        # Same as xt0rted/pull-request-comment-branch@v2.0.0
+        uses: xt0rted/pull-request-comment-branch@d97294d304604fa98a2600a6e2f916a84b596dc7
+
       - name: Trigger alpha packages publishing
         id: alpha-package
         uses: ./.github/actions/build-publish-alpha-package
         with:
-          # TODO: use input branch before merge
-          #branch: ${{ inputs.branch }}
-          branch: FF-49-enhance-publishing
+          branch: ${{ github.event_name == 'issue_comment' && steps.branch.outputs.head_ref || inputs.branch }}
           root-folder: '.'
+
+      - name: Post comment with package versions (if triggered from issue comment)
+        if: ${{ github.event_name == 'issue_comment' && success() }}
+        # Same as actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        env:
+          versions: ${{ steps.alpha-package.outputs.versions }}
+        with:
+          github-token: ${{ env.GITHUB_TOKEN }}
+          script: |
+            const { repo: { owner, repo }, issue } = context
+            const { versions } = process.env
+
+            const body = "Your alpha package is ready 🎉<br/>" + versions.split(' ').reduce((acc, version) => {
+              acc += `\`yarn add ${version}\`<br/>`
+              return acc
+            }, '')
+
+            await github.rest.issues.createComment({ issue_number: issue.number, owner, repo, body })
