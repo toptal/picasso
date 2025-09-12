@@ -18,7 +18,7 @@
     "packages/base/*"
   ],
   "scripts": {
-    "postinstall": "./scripts/override-files.sh",
+    "postinstall": "patch-package",
     "tsc:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:package:watch": "lerna watch -- lerna run --scope=\\$LERNA_PACKAGE_NAME build:package --include-dependents",
