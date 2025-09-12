@@ -18,10 +18,6 @@ on:
         required: false
         default: master
         type: string
-  # TODO: delete trigger before merge
-  push:
-    branches:
-      - FF-49-enhance-publishing
 
 permissions:
   contents: read
@@ -40,8 +36,7 @@ jobs:
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM
-    # TODO: restore trigger before merge
-    #if: ${{ inputs.alpha || (github.event.issue.pull_request && github.event.comment.body == '@toptal-bot run package:alpha-release') }}
+    if: ${{ inputs.alpha || (github.event.issue.pull_request && github.event.comment.body == '@toptal-bot run package:alpha-release') }}
     runs-on: ubuntu-latest
     env:
       STATUS_CHECK_NAME: Publish Alpha Package
