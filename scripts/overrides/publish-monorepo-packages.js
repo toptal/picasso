@@ -4,10 +4,7 @@
 import cliShared from '@toptal/davinci-cli-shared'
 import fs from 'fs'
 
-import {
-  getGITRef,
-  normalizeBranchName,
-} from './utils.js'
+import { getGITRef, normalizeBranchName } from './utils.js'
 
 const writeNewPackagesVersionsToFile = (outputVersionFile, result) => {
   if (!outputVersionFile || !result) {
@@ -38,13 +35,11 @@ const writeNewPackagesVersionsToFile = (outputVersionFile, result) => {
  * @param {string} branch
  * @param {boolean} isAlpha
  * @param {string} outputVersionFile filename to save published packages versions
- * @param {string} publishRootFolder folder to use as a base for package. If "." is passed, the publishing will happen in the package's root
  */
 export const publishMonorepoPackages = ({
   branch,
   isAlpha,
   outputVersionFile,
-  publishRootFolder,
 }) => {
   if (!isAlpha) {
     throw new Error(
@@ -56,17 +51,28 @@ export const publishMonorepoPackages = ({
   const shortRef = getGITRef()
   const preId = `alpha-${normalizedBranchName}-${shortRef}`
 
-  cliShared.runSync(`npx nx release version --specifier prerelease --preid ${preId}`, [], {
-    shell: true,
-    stdio: 'pipe',
-  })
+  cliShared.runSync(
+    `npx nx release version --specifier prerelease --preid ${preId}`,
+    [],
+    {
+      shell: true,
+      stdio: 'pipe',
+    }
+  )
 
-  const releasePublishResult = cliShared.runSync(`npx nx release publish --tag=canary`, [], {
-    shell: true,
-    stdio: 'pipe',
-  })
+  const releasePublishResult = cliShared.runSync(
+    `npx nx release publish --tag=canary`,
+    [],
+    {
+      shell: true,
+      stdio: 'pipe',
+    }
+  )
 
   if (outputVersionFile) {
-    writeNewPackagesVersionsToFile(outputVersionFile, releasePublishResult.stdout)
+    writeNewPackagesVersionsToFile(
+      outputVersionFile,
+      releasePublishResult.stdout
+    )
   }
 }
