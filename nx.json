@@ -21,7 +21,6 @@
     }
   },
   "release": {
-    "projects": ["packages/*", "packages/base/*"],
     "projectsRelationship": "independent",
     "version": {
       "git": {
