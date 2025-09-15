@@ -1,0 +1,23 @@
+name: Build and Publish Updated Package
+description: Builds project and pushes updated packages to NPM (copy paste from davinci-github-actions repo)
+
+runs:
+  using: composite
+  steps:
+    - name: Set up node
+      # Same as actions/setup-node@v5
+      uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+      with:
+        node-version: 24
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install dependencies
+      uses: ./.github/actions/yarn-install
+
+    - name: Publish to npm
+      # Same as changesets/action@v1.5.3
+      uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
+      with:
+        publish: yarn release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
