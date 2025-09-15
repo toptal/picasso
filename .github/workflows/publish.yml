@@ -58,7 +58,7 @@ jobs:
         # Same as actions/github-script@v7
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.issue;
             await github.rest.repos.createCommitStatus({
@@ -75,7 +75,7 @@ jobs:
         # Same as actions/github-script@v7
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.issue;
             await github.rest.reactions.createForIssueComment({
@@ -99,7 +99,7 @@ jobs:
         env:
           versions: ${{ steps.alpha-package.outputs.versions }}
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { repo: { owner, repo }, issue } = context
             const { versions } = process.env
@@ -116,7 +116,7 @@ jobs:
         # Same as actions/github-script@v7
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         with:
-          github-token: ${{ env.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.issue;
 
