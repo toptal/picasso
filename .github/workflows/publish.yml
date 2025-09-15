@@ -43,16 +43,18 @@ jobs:
       STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Get branch info
         id: branch
         if: ${{ github.event_name == 'issue_comment' }}
         # Same as xt0rted/pull-request-comment-branch@v2.0.0
         uses: xt0rted/pull-request-comment-branch@d97294d304604fa98a2600a6e2f916a84b596dc7
+
+      - name: Check out code
+        # Same as actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          ref: ${{ github.event_name == 'issue_comment' && steps.branch.outputs.head_ref || inputs.branch }}
+          fetch-depth: 0
 
       - name: Set status check - pending
         if: ${{ github.event_name == 'issue_comment' }}
