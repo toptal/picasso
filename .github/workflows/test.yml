@@ -1,0 +1,34 @@
+name: Test workflow
+
+on:
+  push:
+    branches: [FF-49-restore-publishing]
+
+permissions:
+  contents: read
+  id-token: write
+  issues: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      STATUS_CHECK_NAME: Test Check
+      STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Set pending status
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.issue;
+            await github.rest.repos.createCommitStatus({
+              repo,
+              owner,
+              state: 'pending',
+              sha: "${{ github.sha }}",
+              context: process.env.STATUS_CHECK_NAME,
+              target_url: process.env.STATUS_TARGET_URL
+            })
