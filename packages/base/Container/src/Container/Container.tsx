@@ -127,6 +127,7 @@ export const Container: ContainerProps = documentable(
           {...rest}
           ref={ref}
           className={twMerge(
+            'bg-red-500',
             variant && variantClassesByColor[variant],
 
             getSpacingClasses(spacingProps),
