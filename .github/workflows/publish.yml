@@ -34,6 +34,8 @@ jobs:
 
       - name: Trigger updated packages publishing
         uses: ./.github/actions/build-publish-updated-package
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM

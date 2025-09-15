@@ -1,6 +1,11 @@
 name: Build and Publish Updated Package
 description: Builds project and pushes updated packages to NPM (copy paste from davinci-github-actions repo)
 
+inputs:
+  github-token:
+    description: GitHub token for authentication
+    required: true
+
 runs:
   using: composite
   steps:
@@ -20,4 +25,4 @@ runs:
       with:
         publish: yarn release
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
