@@ -126,7 +126,32 @@ export const Container: ContainerProps = documentable(
         <Component
           {...rest}
           ref={ref}
-          className='bg-red-500'
+          className={twMerge(
+            variant && variantClassesByColor[variant],
+
+            getSpacingClasses(spacingProps),
+
+            typeof align === 'string' && alignmentClasses.textAlign[align],
+
+            alignItems && alignmentClasses.alignItems[alignItems],
+
+            justifyContent && alignmentClasses.justifyContent[justifyContent],
+
+            wrap && alignmentClasses.wrap[wrap],
+
+            bordered &&
+              isBorderedVariant &&
+              'border border-solid border-gray-200',
+            rounded && 'rounded-md',
+
+            getDisplayValue(inline, flex),
+
+            direction &&
+              direction !== 'row' &&
+              alignmentClasses.direction[direction],
+
+            className
+          )}
           style={{
             // used for deprecated spacing props (typeof number)
             ...getSpacingStyles(spacingProps),
