@@ -1,4 +1,8 @@
 {
+  "npmClient": "npm",
+  "cli": {
+    "packageManager": "npm"
+  },
   "namedInputs": {
     "source": [
       "{projectRoot}/**/*",
@@ -14,6 +18,20 @@
       "outputs": ["{projectRoot}/dist-package/**/*"],
       "cache": true,
       "dependsOn": ["^build:package"]
+    }
+  },
+  "release": {
+    "projectsRelationship": "independent",
+    "version": {
+      "git": {
+        "commit": false,
+        "stageChanges": false,
+        "tag": false
+      }
+    },
+    "changelog": {
+      "workspaceChangelog": false,
+      "projectChangelogs": false
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json"

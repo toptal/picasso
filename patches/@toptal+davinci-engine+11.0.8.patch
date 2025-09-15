@@ -1,0 +1,131 @@
+diff --git a/node_modules/@toptal/davinci-engine/src/utils/publish-packages/publish-monorepo-packages.js b/node_modules/@toptal/davinci-engine/src/utils/publish-packages/publish-monorepo-packages.js
+index 9405362..630a4d5 100644
+--- a/node_modules/@toptal/davinci-engine/src/utils/publish-packages/publish-monorepo-packages.js
++++ b/node_modules/@toptal/davinci-engine/src/utils/publish-packages/publish-monorepo-packages.js
+@@ -1,24 +1,45 @@
++/* eslint-disable */
++// TODO: Davinci needs to have the change (it has to support nx publishing)
++// This file is ready to be merged into Davinci
+ import cliShared from '@toptal/davinci-cli-shared'
++import fs from 'fs'
+ 
+-import { paths } from '../../configs/paths.js'
+-import {
+-  getGITRef,
+-  normalizeBranchName,
+-  writeNewPackagesVersionsToFile,
+-} from './utils.js'
++import { getGITRef, normalizeBranchName } from './utils.js'
++
++const writeNewPackagesVersionsToFile = (outputVersionFile, result) => {
++  if (!outputVersionFile || !result) {
++    return
++  }
++
++  // Parse the result string to extract package versions
++  const lines = result.split('\n')
++  const packageVersions = []
++
++  for (const line of lines) {
++    // Look for lines starting with the package icon 📦
++    const packageMatch = line.match(/📦\s+(.+@.+)/)
++    if (packageMatch) {
++      const packageVersion = packageMatch[1].trim()
++      packageVersions.push(packageVersion)
++    }
++  }
++
++  if (packageVersions.length > 0) {
++    const content = packageVersions.join(' ') + '\n'
++    fs.writeFileSync(outputVersionFile, content, 'utf8')
++  }
++}
+ 
+ /**
+  *
+  * @param {string} branch
+  * @param {boolean} isAlpha
+  * @param {string} outputVersionFile filename to save published packages versions
+- * @param {string} publishRootFolder folder to use as a base for package. If "." is passed, the publishing will happen in the package's root
+  */
+ export const publishMonorepoPackages = ({
+   branch,
+   isAlpha,
+   outputVersionFile,
+-  publishRootFolder,
+ }) => {
+   if (!isAlpha) {
+     throw new Error(
+@@ -26,49 +47,32 @@ export const publishMonorepoPackages = ({
+     )
+   }
+ 
+-  const publishCommand = getMonorepoPublishAlphaCommand({
+-    branch,
+-    publishRootFolder,
+-  })
+-
+-  const result = cliShared.runSync(publishCommand, [], {
+-    shell: true,
+-    stdio: 'pipe',
+-  })
+-
+-  // prints the result
+-  console.log(result.stdout)
+-
+-  if (outputVersionFile) {
+-    writeNewPackagesVersionsToFile(outputVersionFile, result.stdout)
+-  }
+-}
+-
+-/**
+- * Generates a command to publish canary version of monorepo packages
+- * @param {string} branch
+- * @param {string} publishRootFolder
+- * @returns {string}
+- */
+-const getMonorepoPublishAlphaCommand = ({ branch, publishRootFolder }) => {
+   const normalizedBranchName = normalizeBranchName(branch)
+   const shortRef = getGITRef()
++  const preId = `alpha-${normalizedBranchName}-${shortRef}`
+ 
+-  const contentsFolder =
+-    publishRootFolder ??
+-    paths.appPackageBuild.slice(paths.appPackageBuild.lastIndexOf('/') + 1)
++  cliShared.runSync(
++    `npx nx release version --specifier prerelease --preid ${preId}`,
++    [],
++    {
++      shell: true,
++      stdio: 'pipe',
++    }
++  )
+ 
+-  const options = [
+-    'lerna',
+-    'publish',
+-    '--canary',
+-    `--preid alpha-${normalizedBranchName}-${shortRef}`,
+-    '--no-git-tag-version',
+-    '--exact',
+-    '--yes',
+-    `--contents ${contentsFolder}`,
+-    '--force-publish',
+-  ]
++  const releasePublishResult = cliShared.runSync(
++    `npx nx release publish --tag=canary`,
++    [],
++    {
++      shell: true,
++      stdio: 'pipe',
++    }
++  )
+ 
+-  return options.join(' ')
++  if (outputVersionFile) {
++    writeNewPackagesVersionsToFile(
++      outputVersionFile,
++      releasePublishResult.stdout
++    )
++  }
+ }

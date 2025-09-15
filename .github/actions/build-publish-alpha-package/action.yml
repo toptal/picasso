@@ -1,0 +1,54 @@
+name: Build and Publish Alpha Package
+description: Builds project and pushes alpha release to NPM (copy paste from davinci-github-actions repo)
+
+inputs:
+  branch:
+    required: true
+    description: Name of the branch that will be published
+    type: string
+  root-folder:
+    required: false
+    description: Root folder of a package to be published
+    type: string
+
+outputs:
+  versions:
+    description: List of new versions as output of `.version` file (separated by space, e.g. "@package/a@1.2.3 @package/b@4.5.6")
+    value: ${{ steps.publish-package.outputs.versions }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up node
+      # Same as actions/setup-node@v5
+      uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+      with:
+        node-version: 24
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install dependencies
+      uses: ./.github/actions/yarn-install
+
+    - name: Build package
+      shell: bash
+      run: yarn build:package
+
+    - name: Publish packages
+      id: publish-package
+      shell: bash
+      env:
+        BRANCH: ${{ inputs.branch }}
+        ROOT_FOLDER: ${{ inputs.root-folder }}
+        NPM_CONFIG_PROVENANCE: true
+      run: |
+        npx davinci-engine publish-package \
+          --alpha \
+          --outputVersion .version \
+          --branch "$BRANCH" ${ROOT_FOLDER:+"--publishRootFolder=$ROOT_FOLDER"}
+
+        versions=$(cat .version)
+        [ -z "$versions" ] && exit 1
+
+        echo "New versions: $versions"
+
+        echo "versions=$versions" >> $GITHUB_OUTPUT
