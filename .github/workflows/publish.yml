@@ -2,15 +2,22 @@ name: Publish Packages to NPM
 description: |
   Routes package publishing to the appropriate workflow. Trusted publishing is
   tied to a single workflow, this is why the central publishing workflow is needed.
+  
+  Alpha packages can be published manually by triggering this workflow with a PR number.
+  Only repository maintainers can trigger manual workflows for security.
 
 on:
   # Publish updated packages on master branch push
   push:
     branches:
       - master
-  # Publish alpha packages on pull request comment
-  issue_comment:
-    types: [created]
+  # Publish alpha packages via manual dispatch
+  workflow_dispatch:
+    inputs:
+      pull_request_number:
+        description: Pull Request number to build alpha packages from
+        required: true
+        type: number
 
 permissions:
   contents: write
@@ -39,24 +46,83 @@ jobs:
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM
-    # TODO: will be restricted later
-    if: false
-    #if: ${{ github.event_name == 'issue_comment' && github.event.comment.body == '@toptal-bot run package:alpha-release' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     env:
       STATUS_CHECK_NAME: Publish Alpha Package
       STATUS_TARGET_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
     steps:
-      - name: Get branch info
-        id: branch
-        # Same as xt0rted/pull-request-comment-branch@v2.0.0
-        uses: xt0rted/pull-request-comment-branch@d97294d304604fa98a2600a6e2f916a84b596dc7
+      - name: Validate and sanitize PR number
+        id: validate-pr
+        # Same as actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const rawInput = `${{ github.event.inputs.pull_request_number }}`;
+            const sanitizedInput = rawInput.replace(/[^0-9]/g, '');
+
+            if (!sanitizedInput || sanitizedInput !== rawInput) {
+              core.setFailed(`🚨 SECURITY: Invalid characters detected in PR number input. Only positive integers allowed.`);
+              return;
+            }
+            
+            const prNumber = parseInt(sanitizedInput, 10);
+            
+            if (!Number.isInteger(prNumber)) {
+              core.setFailed(`🚨 SECURITY: PR number is not an integer.`);
+              return;
+            }
+
+            // Get PR information to validate it exists and get branch info
+            try {
+              const { data: pr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber
+              });
+
+              const sanitizeString = (str) => {
+                if (typeof str !== 'string') return str;
+
+                return str
+                  .replace(/[\x00-\x1F\x7F-\x9F]/g, '') // Remove control chars
+                  .substring(0, 500) // Limit length
+                  .replace(/[`$\\]/g, '\\$&'); // Escape backticks, dollars, backslashes
+              };
+
+              const sanitizedHeadRef = sanitizeString(pr.head.ref);
+              const sanitizedBaseRef = sanitizeString(pr.base.ref);
+
+              const branchNameRegex = /^[a-zA-Z0-9._/-]+$/;
+              if (!branchNameRegex.test(pr.head.ref) || !branchNameRegex.test(pr.base.ref)) {
+                core.setFailed(`🚨 SECURITY: Invalid characters in branch names.`);
+                return;
+              }
+
+              console.log(`✅ PR #${prNumber} validated:`);
+              console.log(`   Head branch: ${sanitizedHeadRef}`);
+              console.log(`   Head SHA: ${pr.head.sha}`);
+              console.log(`   Base branch: ${sanitizedBaseRef}`);
+
+              if (pr.head.repo.full_name !== context.repo.owner + '/' + context.repo.repo) {
+                core.setFailed(`🚨 SECURITY: PR is from fork.`);
+                return;
+              }
+
+              core.setOutput('pr_number', prNumber.toString());
+              core.setOutput('head_ref', sanitizedHeadRef);
+              core.setOutput('head_sha', pr.head.sha);
+              core.setOutput('base_ref', sanitizedBaseRef);
+            } catch (error) {
+              core.setFailed(`PR #${prNumber} not found or inaccessible.`);
+            }
 
       - name: Check out code
         # Same as actions/checkout@v5
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
         with:
-          ref: ${{ steps.branch.outputs.head_ref }}
+          ref: ${{ steps.validate-pr.outputs.head_ref }}
           fetch-depth: 0
 
       - name: Set status check - pending
@@ -65,35 +131,27 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { owner, repo } = context.issue;
+            const { owner, repo } = context.repo;
+            const prNumber = '${{ steps.validate-pr.outputs.pr_number }}';
+            const headSha = '${{ steps.validate-pr.outputs.head_sha }}';
+            
+            console.log(`🔄 Setting pending status for PR #${prNumber} (${headSha})`);
+            
             await github.rest.repos.createCommitStatus({
               repo,
               owner,
               state: 'pending',
-              sha: "${{ steps.branch.outputs.head_sha }}",
+              sha: headSha,
               context: process.env.STATUS_CHECK_NAME,
-              target_url: process.env.STATUS_TARGET_URL
+              target_url: process.env.STATUS_TARGET_URL,
+              description: `Building alpha packages for PR #${prNumber}`
             })
-
-      - name: Add reaction to issue comment
-        # Same as actions/github-script@v7
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { owner, repo } = context.issue;
-            await github.rest.reactions.createForIssueComment({
-              owner,
-              repo,
-              comment_id: context.payload.comment.id,
-              content: '+1'
-            });
 
       - name: Trigger alpha packages publishing
         id: alpha-package
         uses: ./.github/actions/build-publish-alpha-package
         with:
-          branch: ${{ steps.branch.outputs.head_ref }}
+          branch: ${{ steps.validate-pr.outputs.head_ref }}
           root-folder: '.'
 
       - name: Post comment with package versions
@@ -101,36 +159,72 @@ jobs:
         # Same as actions/github-script@v7
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
         env:
-          versions: ${{ steps.alpha-package.outputs.versions }}
+          VERSIONS: ${{ steps.alpha-package.outputs.versions }}
+          PR_NUMBER: ${{ steps.validate-pr.outputs.pr_number }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { repo: { owner, repo }, issue } = context
-            const { versions } = process.env
+            const { owner, repo } = context.repo;
+            const prNumber = parseInt(process.env.PR_NUMBER, 10);
+            const versions = process.env.VERSIONS || '';
+            const triggeredBy = context.actor;
 
-            const body = "Your alpha package is ready 🎉<br/>" + versions.split(' ').reduce((acc, version) => {
-              acc += `\`yarn add ${version}\`<br/>`
-              return acc
-            }, '')
+            if (!Number.isInteger(prNumber)) {
+              core.setFailed(`🚨 SECURITY: Invalid PR number in environment: ${process.env.PR_NUMBER}`);
+              return;
+            }
+            
+            console.log(`📦 Posting alpha package versions to PR #${prNumber}`);
 
-            await github.rest.issues.createComment({ issue_number: issue.number, owner, repo, body })
+            // SECURITY: Build comment safely without template literals
+            let body = '🎉 **Alpha packages are ready!**\n\n';
+            body += `**PR:** #${prNumber}\n`;
+            body += `**Triggered by:** @${triggeredBy}\n`;
+            body += `**Workflow run:** [${context.runId}](https://github.com/${owner}/${repo}/actions/runs/${context.runId})\n`;
+            
+            if (versions) {
+              body += '\n**Installation commands:**\n';
+              const versionList = versions.split(' ').filter(v => v.trim());
+              for (const version of versionList) {
+                // SECURITY: Validate version format before adding
+                if (/^@?[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+@[a-zA-Z0-9_.-]+$/.test(version.trim())) {
+                  body += `\`yarn add ${version.trim()}\`\n`;
+                }
+              }
+            }
+            
+            body += '\n*These alpha packages were built from the latest commit in this PR.*';
+
+            await github.rest.issues.createComment({ 
+              issue_number: prNumber, 
+              owner, 
+              repo, 
+              body 
+            });
 
       - name: Set status check - success / failure / error
+        if: always()
         # Same as actions/github-script@v7
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        env:
+          PR_NUMBER: ${{ steps.validate-pr.outputs.pr_number }}
+          HEAD_SHA: ${{ steps.validate-pr.outputs.head_sha }}
+          JOB_STATUS: ${{ job.status }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { owner, repo } = context.issue;
-
-            const status = "${{ job.status }}";
-            const state = status === 'cancelled' ? 'error' : status;
+            const { owner, repo } = context.repo;
+            const prNumber = parseInt(process.env.PR_NUMBER, 10);
+            const jobStatus = process.env.JOB_STATUS;
+            const headSha = process.env.HEAD_SHA;
+            const state = jobStatus === 'cancelled' ? 'error' : jobStatus;
 
             await github.rest.repos.createCommitStatus({
               repo,
               owner,
               state,
-              sha: "${{ steps.branch.outputs.head_sha }}",
+              sha: headSha,
               context: process.env.STATUS_CHECK_NAME,
-              target_url: process.env.STATUS_TARGET_URL
+              target_url: process.env.STATUS_TARGET_URL,
+              description: `Alpha package build ${state} for PR #${prNumber}`
             })

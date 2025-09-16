@@ -38,13 +38,10 @@ Describe the changes and motivations for the pull request.
 > **GitHub Bot: TODOLess** action
 
 <details>
-<summary>PR commands</summary>
+<summary>Alpha packages</summary>
 <br />
 
-List of available commands:
-
-- `@toptal-bot run package:alpha-release` - Release alpha version
-- `@toptal-anvil ping reviewers` - Ping for reviews
+Manually trigger the [publish.yml](https://github.com/toptal/picasso/actions/workflows/publish.yml) workflow to publish alpha packages. Specify pull request number as a parameter (only digits, e.g. `123`).
 
 </details>
 
