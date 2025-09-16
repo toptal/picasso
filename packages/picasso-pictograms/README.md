@@ -11,5 +11,3 @@ This package contains pictograms.
 ## Documentation
 
 Documentation and demos are available at [picasso.toptal.net](https://picasso.toptal.net/).
-
----
