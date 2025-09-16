@@ -39,7 +39,9 @@ jobs:
 
   publish-alpha-packages:
     name: Publish alpha packages to NPM
-    if: ${{ github.event_name == 'issue_comment' && github.event.comment.body == '@toptal-bot run package:alpha-release' }}
+    # TODO: will be restricted later
+    if: false
+    #if: ${{ github.event_name == 'issue_comment' && github.event.comment.body == '@toptal-bot run package:alpha-release' }}
     runs-on: ubuntu-latest
     env:
       STATUS_CHECK_NAME: Publish Alpha Package
