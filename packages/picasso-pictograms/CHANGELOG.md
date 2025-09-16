@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- [#4824](https://github.com/toptal/picasso/pull/4824) [`0ebc7ff`](https://github.com/toptal/picasso/commit/0ebc7ff71fb75c2feb1e5ef14b57fbe10157c2cd) Thanks [@sashuk](https://github.com/sashuk)!
+- clean up docs
+
 ## 5.1.1
 
 ### Patch Changes
