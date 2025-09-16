@@ -37,6 +37,18 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+  log-commenter-info:
+    name: Log commenter info
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'issue_comment' }}
+    steps:
+      - name: Log commenter info
+        run: |
+          echo "Commenter: ${{ github.event.comment.user.login }}"
+          echo "Commenter ID: ${{ github.event.comment.user.id }}"
+          echo "Comment: ${{ github.event.comment.body }}"
+          echo "Association: ${{ github.event.comment.author_association }}"
+
   publish-alpha-packages:
     name: Publish alpha packages to NPM
     # TODO: will be restricted later
