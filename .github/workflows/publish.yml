@@ -82,6 +82,12 @@ jobs:
                 pull_number: prNumber
               });
 
+              // Check if PR is closed
+              if (pr.state === 'closed') {
+                core.setFailed(`PR #${prNumber} is closed. Cannot publish alpha packages for closed PRs.`);
+                return;
+              }
+
               const sanitizeString = (str) => {
                 if (typeof str !== 'string') return str;
 
