@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { RootNode } from 'lexical'
+import { $getRoot, RootNode } from 'lexical'
 import { noop } from '@toptal/picasso-utils'
 
 export type TextLengthChangeHandler = (length: number) => void
@@ -16,6 +16,14 @@ const TextLengthPlugin = ({ onTextLengthChange = noop }: Props) => {
   const [editor] = useLexicalComposerContext()
 
   useEffect(() => {
+    // Set initial text length on mount
+    editor.getEditorState().read(() => {
+      const rootNode = $getRoot()
+      const initialTextContentSize = rootNode.getTextContentSize()
+
+      onTextLengthChange(initialTextContentSize)
+    })
+
     return editor.registerNodeTransform(RootNode, (rootNode: RootNode) => {
       const prevTextContentSize = editor
         .getEditorState()
