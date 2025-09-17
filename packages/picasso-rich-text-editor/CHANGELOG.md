@@ -1,5 +1,12 @@
 # @toptal/picasso-rich-text-editor
 
+## 17.2.3
+
+### Patch Changes
+
+- [#4823](https://github.com/toptal/picasso/pull/4823) [`d4431db`](https://github.com/toptal/picasso/commit/d4431db5b1f85dd4748ebf23763329cd66c14d05) Thanks [@danganiev-tt](https://github.com/danganiev-tt)!
+- text length plugin now counts the default value on mount
+
 ## 17.2.2
 
 ### Patch Changes
