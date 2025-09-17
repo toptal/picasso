@@ -63,14 +63,14 @@ jobs:
             const sanitizedInput = rawInput.replace(/[^0-9]/g, '');
 
             if (!sanitizedInput || sanitizedInput !== rawInput) {
-              core.setFailed(`🚨 SECURITY: Invalid characters detected in PR number input. Only positive integers allowed.`);
+              core.setFailed(`Invalid characters detected in PR number input. Only positive integers allowed.`);
               return;
             }
             
             const prNumber = parseInt(sanitizedInput, 10);
             
             if (!Number.isInteger(prNumber)) {
-              core.setFailed(`🚨 SECURITY: PR number is not an integer.`);
+              core.setFailed(`PR number is not an integer.`);
               return;
             }
 
@@ -96,17 +96,17 @@ jobs:
 
               const branchNameRegex = /^[a-zA-Z0-9._/-]+$/;
               if (!branchNameRegex.test(pr.head.ref) || !branchNameRegex.test(pr.base.ref)) {
-                core.setFailed(`🚨 SECURITY: Invalid characters in branch names.`);
+                core.setFailed(`Invalid characters in branch names.`);
                 return;
               }
 
               console.log(`✅ PR #${prNumber} validated:`);
-              console.log(`   Head branch: ${sanitizedHeadRef}`);
               console.log(`   Head SHA: ${pr.head.sha}`);
+              console.log(`   Head branch: ${sanitizedHeadRef}`);
               console.log(`   Base branch: ${sanitizedBaseRef}`);
 
               if (pr.head.repo.full_name !== context.repo.owner + '/' + context.repo.repo) {
-                core.setFailed(`🚨 SECURITY: PR is from fork.`);
+                core.setFailed(`PR is from fork.`);
                 return;
               }
 
@@ -135,7 +135,7 @@ jobs:
             const prNumber = '${{ steps.validate-pr.outputs.pr_number }}';
             const headSha = '${{ steps.validate-pr.outputs.head_sha }}';
             
-            console.log(`🔄 Setting pending status for PR #${prNumber} (${headSha})`);
+            console.log(`Set pending status for PR #${prNumber} (${headSha})`);
             
             await github.rest.repos.createCommitStatus({
               repo,
@@ -170,7 +170,7 @@ jobs:
             const triggeredBy = context.actor;
 
             if (!Number.isInteger(prNumber)) {
-              core.setFailed(`🚨 SECURITY: Invalid PR number in environment: ${process.env.PR_NUMBER}`);
+              core.setFailed(`Invalid PR number in environment: ${process.env.PR_NUMBER}`);
               return;
             }
             
