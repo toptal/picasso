@@ -1,5 +1,60 @@
 # Change Log
 
+## 54.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`66c575f`](https://github.com/toptal/picasso/commit/66c575f22b0a76f1d17c2d22918146f2cadd5d8b)]:
+  - @toptal/picasso-icons@1.13.0
+  - @toptal/picasso-accordion@3.0.23
+  - @toptal/picasso-account-select@3.0.19
+  - @toptal/picasso-alert@3.0.35
+  - @toptal/picasso-application-update-notification@2.0.35
+  - @toptal/picasso-avatar@6.1.12
+  - @toptal/picasso-avatar-upload@3.0.28
+  - @toptal/picasso-breadcrumbs@3.0.12
+  - @toptal/picasso-button@4.0.24
+  - @toptal/picasso-calendar@4.1.6
+  - @toptal/picasso-carousel@4.0.24
+  - @toptal/picasso-date-picker@3.2.3
+  - @toptal/picasso-drawer@3.0.36
+  - @toptal/picasso-dropzone@5.0.24
+  - @toptal/picasso-empty-state@2.0.15
+  - @toptal/picasso-file-input@4.0.23
+  - @toptal/picasso-form@6.3.3
+  - @toptal/picasso-grid@5.0.11
+  - @toptal/picasso-helpbox@5.0.24
+  - @toptal/picasso-input@4.1.3
+  - @toptal/picasso-input-adornment@3.0.11
+  - @toptal/picasso-list@5.0.12
+  - @toptal/picasso-logo@2.0.10
+  - @toptal/picasso-menu@3.0.18
+  - @toptal/picasso-modal@3.2.3
+  - @toptal/picasso-notification@4.0.24
+  - @toptal/picasso-number-input@4.2.3
+  - @toptal/picasso-outlined-input@4.1.3
+  - @toptal/picasso-page@5.4.8
+  - @toptal/picasso-password-input@5.1.3
+  - @toptal/picasso-rating@3.0.11
+  - @toptal/picasso-section@5.1.8
+  - @toptal/picasso-select@4.1.3
+  - @toptal/picasso-show-more@2.0.23
+  - @toptal/picasso-step@4.0.11
+  - @toptal/picasso-table@3.0.26
+  - @toptal/picasso-tabs@5.0.16
+  - @toptal/picasso-tag@4.0.12
+  - @toptal/picasso-timepicker@4.1.3
+  - @toptal/picasso-user-badge@5.1.13
+  - @toptal/picasso-pagination@4.0.25
+  - @toptal/picasso-prompt-modal@2.1.3
+  - @toptal/picasso-skeleton-loader@1.0.60
+  - @toptal/picasso-tree-view@3.0.36
+  - @toptal/picasso-autocomplete@5.2.3
+  - @toptal/picasso-tagselector@3.3.3
+  - @toptal/picasso-checkbox@5.0.14
+  - @toptal/picasso-radio@5.0.14
+  - @toptal/picasso-date-select@1.0.73
+
 ## 54.0.3
 
 ### Patch Changes

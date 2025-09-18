@@ -1,5 +1,13 @@
 # @toptal/picasso-show-more
 
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies [[`66c575f`](https://github.com/toptal/picasso/commit/66c575f22b0a76f1d17c2d22918146f2cadd5d8b)]:
+  - @toptal/picasso-icons@1.13.0
+  - @toptal/picasso-button@4.0.24
+
 ## 2.0.22
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-modal",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Toptal UI components library - Modal",
   "publishConfig": {
     "access": "public"
@@ -27,8 +27,8 @@
     "@toptal/picasso-fade": "1.0.8",
     "@toptal/picasso-paper": "4.0.3",
     "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-button": "4.0.23",
-    "@toptal/picasso-icons": "1.12.1",
+    "@toptal/picasso-button": "4.0.24",
+    "@toptal/picasso-icons": "1.13.0",
     "@toptal/picasso-typography": "4.0.4",
     "@toptal/picasso-utils": "3.1.0",
     "@toptal/picasso-modal-context": "1.0.1",
