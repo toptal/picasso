@@ -18,7 +18,6 @@
     "packages/base/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "tsc:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:package:watch": "lerna watch -- lerna run --scope=\\$LERNA_PACKAGE_NAME build:package --include-dependents",
@@ -107,12 +106,9 @@
     "unset-value": "^2.0.1",
     "webpack": "^5.0.0",
     "yaml": "2",
-    "micromatch": "^4.0.8",
-    "nx": "21.5.1",
-    "@nx/js": "21.5.1"
+    "micromatch": "^4.0.8"
   },
   "devDependencies": {
-    "patch-package": "^8.0.0",
     "@actions/core": "^1.10.0",
     "@actions/github": "^6.0.0",
     "@babel/core": "^7.26.8",
@@ -124,7 +120,6 @@
     "@changesets/cli": "^2.27.7",
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
-    "@nx/js": "21.5.1",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",
     "@storybook/builder-webpack5": "^6.5.16",
@@ -175,7 +170,6 @@
     "json5": "^2.2.3",
     "lerna": "^8.1.2",
     "madge": "^6.1.0",
-    "nx": "21.5.1",
     "package-up": "^5.0.0",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
