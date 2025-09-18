@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.13.0
+
+### Minor Changes
+
+- [#4805](https://github.com/toptal/picasso/pull/4805) [`66c575f`](https://github.com/toptal/picasso/commit/66c575f22b0a76f1d17c2d22918146f2cadd5d8b) Thanks [@Q-Man](https://github.com/Q-Man)!
+- add CertificationBadge icon
+
 ## 1.12.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tabs",
-  "version": "5.0.15",
+  "version": "5.0.16",
   "description": "Toptal UI components library - Tabs",
   "publishConfig": {
     "access": "public"
@@ -23,11 +23,11 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "3.1.2",
-    "@toptal/picasso-icons": "1.12.1",
+    "@toptal/picasso-icons": "1.13.0",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.4",
     "@toptal/picasso-typography-overflow": "4.0.4",
-    "@toptal/picasso-user-badge": "5.1.12",
+    "@toptal/picasso-user-badge": "5.1.13",
     "@toptal/picasso-utils": "3.1.0",
     "ap-style-title-case": "^1.1.2"
   },

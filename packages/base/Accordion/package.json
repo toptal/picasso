@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-accordion",
-  "version": "3.0.22",
+  "version": "3.0.23",
   "description": "Toptal UI components library - Accordion",
   "publishConfig": {
     "access": "public"
@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "4.0.23",
-    "@toptal/picasso-icons": "1.12.1",
+    "@toptal/picasso-button": "4.0.24",
+    "@toptal/picasso-icons": "1.13.0",
     "@toptal/picasso-utils": "3.1.0",
     "classnames": "^2.5.1"
   },

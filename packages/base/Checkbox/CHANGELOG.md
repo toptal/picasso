@@ -1,5 +1,12 @@
 # @toptal/picasso-checkbox
 
+## 5.0.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-grid@5.0.11
+
 ## 5.0.13
 
 ### Patch Changes

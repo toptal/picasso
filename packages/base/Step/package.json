@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-step",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "description": "Toptal UI components library - Step",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.12.1",
+    "@toptal/picasso-icons": "1.13.0",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.4",
     "@toptal/picasso-typography-overflow": "4.0.4",
