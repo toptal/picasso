@@ -82,6 +82,7 @@
     ]
   },
   "resolutions": {
+    "@swc/plugin-styled-components": "9.1.0",
     "axios": "1.12.0",
     "npm": "11.6.0",
     "**/@storybook/core-server/**/ip": "npm:@toptal/davinci-ip@2.0.3",
@@ -107,9 +108,7 @@
     "unset-value": "^2.0.1",
     "webpack": "^5.0.0",
     "yaml": "2",
-    "micromatch": "^4.0.8",
-    "nx": "21.5.1",
-    "@nx/js": "21.5.1"
+    "micromatch": "^4.0.8"
   },
   "devDependencies": {
     "patch-package": "^8.0.0",
@@ -124,7 +123,6 @@
     "@changesets/cli": "^2.29.7",
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
-    "@nx/js": "21.5.1",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",
     "@storybook/builder-webpack5": "^6.5.16",
@@ -136,7 +134,7 @@
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-ci": "6.0.0",
     "@toptal/davinci-code": "^2.0.15",
-    "@toptal/davinci-engine": "^11.0.8",
+    "@toptal/davinci-engine": "^12.1.10",
     "@toptal/davinci-qa": "^16.3.2",
     "@toptal/davinci-syntax": "^22.0.2",
     "@types/debounce": "^3.0.0",
@@ -175,7 +173,6 @@
     "json5": "^2.2.3",
     "lerna": "^8.1.2",
     "madge": "^6.1.0",
-    "nx": "21.5.1",
     "package-up": "^5.0.0",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
