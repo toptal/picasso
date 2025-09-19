@@ -5719,28 +5719,7 @@
     danger "^11.2.2"
     markdown-table "^2.0.0"
 
-"@toptal/davinci-cli-shared@2.5.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.59+fc4bbf9d":
-  version "2.5.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.59"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-2.5.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.59.tgz#e5f1fea1a13f77e30f3ce6b8a1461384ace8c71c"
-  integrity sha512-roZCmGspP+26O88dnkAULNXD2bVi1Z3wQ3H61H1GAVHMo00dvkIokkInoRhtEsaPXPPl0nNB7GkYVJOm6rZ/4g==
-  dependencies:
-    "@segment/analytics-node" "^2.1.3"
-    chalk "^4.1.2"
-    commander "^11.0.0"
-    execa "^5.1.1"
-    find-yarn-workspace-root "^2.0.0"
-    gradient-string "^2.0.0"
-    inquirer "^8.2.4"
-    isomorphic-git "^1.24.5"
-    js-yaml "^4.1.0"
-    lodash "^4.17.21"
-    ora "^5.4.1"
-    proper-lockfile "^4.1.2"
-    read-pkg-up "7.0.1"
-    semver "^7.5.3"
-    zx "^7.2.3"
-
-"@toptal/davinci-cli-shared@^2.3.9":
+"@toptal/davinci-cli-shared@^2.3.9", "@toptal/davinci-cli-shared@^2.5.1":
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/@toptal/davinci-cli-shared/-/davinci-cli-shared-2.5.1.tgz#012a1c10a79b81a3259ee80fb2e346c7dd47d381"
   integrity sha512-xYPLSwkd9o2Y+Pps7NIH1gdHbHrCSdeq4t7ZJHG4Lrg/OtHmlAPWAuY5NQ+XSB/AiJH7bGTEKutIERIA6s3NYw==
@@ -5761,10 +5740,10 @@
     semver "^7.5.3"
     zx "^7.2.3"
 
-"@toptal/davinci-cloudflare-requests-handler@0.1.3-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.285+fc4bbf9d":
-  version "0.1.3-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.285"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.3-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.285.tgz#9828fb10384d0db58feac763d51bcd869367a026"
-  integrity sha512-xYnz4dWsfK5tnwsHBMkEjk4A1Q9wCV+iGC8laHfgEoA6oFHs5h2eD1eGOw5WcTKen2N9osQufSqgrPieAiXMRQ==
+"@toptal/davinci-cloudflare-requests-handler@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-cloudflare-requests-handler/-/davinci-cloudflare-requests-handler-0.1.2.tgz#0e1dad6898f405b1d445c33fd0e11a77cd15e54a"
+  integrity sha512-XEdMNTm0ku2yB8VLPGrML+ZUxkHIrN2osH8ZlGZDJK3BU/yJ6dRRe6U20RA3yscVGTODppHBqCeK/mkjSPzL5Q==
 
 "@toptal/davinci-code@^2.0.15":
   version "2.0.15"
@@ -5784,10 +5763,10 @@
     globby "^11.0.1"
     lodash.kebabcase "^4.1.1"
 
-"@toptal/davinci-engine@12.1.11-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.13":
-  version "12.1.11-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.13"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-12.1.11-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.13.tgz#03d77711d50a27f51cfcc7f2e3b9f3ede6e5519d"
-  integrity sha512-sxohIS3ecoNbya4SD9xrZlgnPvI0jLVGiyNdKXx2x4puW9bSHFH1W9tDsenNWxrl4UDCHwHgKYqjTi8SQSSABw==
+"@toptal/davinci-engine@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-engine/-/davinci-engine-12.2.0.tgz#9bec90d2b9282da536e361aa28666616d98c469a"
+  integrity sha512-9AUj67VOsRe8cQsRXNcMIsHpuX+1sLXO7pq/0dhKv/M1UhzG4fIoqwwwO4HfN3E37y+Bl7k9BitkQZMyjmLr1g==
   dependencies:
     "@babel/cli" "^7.20.7"
     "@babel/core" "^7.23.3"
@@ -5810,9 +5789,9 @@
     "@svgr/webpack" "^8.1.0"
     "@swc/core" "^1.9.3"
     "@swc/plugin-styled-components" "^5.0.0"
-    "@toptal/davinci-cli-shared" "2.5.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.59+fc4bbf9d"
-    "@toptal/davinci-cloudflare-requests-handler" "0.1.3-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.285+fc4bbf9d"
-    "@toptal/davinci-monorepo" "12.0.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.11+fc4bbf9d"
+    "@toptal/davinci-cli-shared" "^2.5.1"
+    "@toptal/davinci-cloudflare-requests-handler" "0.1.2"
+    "@toptal/davinci-monorepo" "^12.0.0"
     autoprefixer "^10.4.15"
     babel-loader "^8.2.3"
     babel-plugin-graphql-tag "^3.3.0"
@@ -5861,14 +5840,14 @@
     webpackbar "^5.0.2"
     workbox-webpack-plugin "^7.1.0"
 
-"@toptal/davinci-monorepo@12.0.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.11+fc4bbf9d":
-  version "12.0.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.11"
-  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-12.0.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.11.tgz#40cca35435b71c29aee125a6b551be1e3574c9bb"
-  integrity sha512-2xiBoO9kTp94vuBNXxJnqiG6mgJgL/u4cH5TyO+ZhBXfAEIPW4FIwVJyBqjBbChXKNPMTcRKzDuo7nSKTIzFDA==
+"@toptal/davinci-monorepo@^12.0.0":
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/@toptal/davinci-monorepo/-/davinci-monorepo-12.0.1.tgz#1d3e020e160029bd93ecd8a9f6dedf1a58dbe2ba"
+  integrity sha512-NVbl5ej5TVt4GvfWuLrPDCBMcbm0/1KSKUnB8LSk3pvIYeFuMqHJuFnM4ezhmab1fuczYnUW5e/QWhtD4FUylA==
   dependencies:
     "@nodelib/fs.walk" "^1.2.6"
     "@oclif/core" "^1.16.1"
-    "@toptal/davinci-cli-shared" "2.5.2-alpha-refs-heads-FF-51-restore-davinci-CI-fc4bbf9d.59+fc4bbf9d"
+    "@toptal/davinci-cli-shared" "^2.5.1"
     chalk "^4.1.2"
     codeowners "5.1.1"
     dependency-cruiser "^16.3.0"
