@@ -11,6 +11,8 @@ on:
   push:
     branches:
       - master
+      # TODO: delete this before merge
+      - FF-NULL-update-engine
   # Publish alpha packages via manual dispatch
   workflow_dispatch:
     inputs:
@@ -27,6 +29,22 @@ permissions:
   statuses: write
 
 jobs:
+  temporary-alpha-publish:
+    name: Temporary alpha publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          ref: FF-NULL-update-engine
+          fetch-depth: 0
+
+      - name: Trigger alpha packages publishing
+        uses: ./.github/actions/build-publish-alpha-package
+        with:
+          branch: FF-NULL-update-engine
+          root-folder: '.'
+
   publish-updated-packages:
     name: Publish updated packages to NPM
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
