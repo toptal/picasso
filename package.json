@@ -18,7 +18,6 @@
     "packages/base/*"
   ],
   "scripts": {
-    "postinstall": "patch-package",
     "tsc:all": "tsc --build tsconfig.pkgsrc.json --verbose",
     "build:package": "lerna run build:package",
     "build:package:watch": "lerna watch -- lerna run --scope=\\$LERNA_PACKAGE_NAME build:package --include-dependents",
@@ -111,7 +110,6 @@
     "micromatch": "^4.0.8"
   },
   "devDependencies": {
-    "patch-package": "^8.0.0",
     "@actions/core": "^1.10.0",
     "@actions/github": "^6.0.0",
     "@babel/core": "^7.26.8",
