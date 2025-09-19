@@ -136,7 +136,7 @@
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-ci": "^7.4.6",
     "@toptal/davinci-code": "^2.0.18",
-    "@toptal/davinci-engine": "12.1.4",
+    "@toptal/davinci-engine": "12.1.5",
     "@toptal/davinci-qa": "^18.2.0",
     "@toptal/davinci-syntax": "^23.1.4",
     "@types/debounce": "^3.0.0",
