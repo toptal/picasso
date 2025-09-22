@@ -54,7 +54,7 @@ jobs:
     steps:
       - name: Validate and sanitize PR number
         id: validate-pr
-        # Same as actions/github-script@v7
+        # Same as actions/github-script@v8
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -132,7 +132,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set status check - pending
-        # Same as actions/github-script@v7
+        # Same as actions/github-script@v8
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -162,7 +162,7 @@ jobs:
 
       - name: Post comment with package versions
         if: ${{ success() }}
-        # Same as actions/github-script@v7
+        # Same as actions/github-script@v8
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           VERSIONS: ${{ steps.alpha-package.outputs.versions }}
@@ -210,7 +210,7 @@ jobs:
 
       - name: Set status check - success / failure / error
         if: always()
-        # Same as actions/github-script@v7
+        # Same as actions/github-script@v8
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           PR_NUMBER: ${{ steps.validate-pr.outputs.pr_number }}
