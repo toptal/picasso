@@ -157,7 +157,8 @@ jobs:
           deployment-name: 'PR #${{ github.event.pull_request.number }} Preview'
 
       - name: Comment on PR
-        uses: actions/github-script@v7
+        # Same as actions/github-script@v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         with:
           script: |
             const prNumber = '${{ github.event.pull_request.number }}';
