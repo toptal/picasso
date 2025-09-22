@@ -137,7 +137,7 @@
     "@toptal/davinci-ci": "6.0.0",
     "@toptal/davinci-code": "^2.0.15",
     "@toptal/davinci-engine": "^11.0.8",
-    "@toptal/davinci-qa": "^16.3.2",
+    "@toptal/davinci-qa": "^18.2.0",
     "@toptal/davinci-syntax": "^22.0.2",
     "@types/debounce": "^3.0.0",
     "@types/esprima": "^4.0.3",
