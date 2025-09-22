@@ -21,7 +21,7 @@ jobs:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
     steps:
       - name: Checkout project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set ENV Variables
         run: |-
