@@ -44,6 +44,7 @@ runs:
         npx davinci-engine publish-package \
           --alpha \
           --outputVersion .version \
+          --useNxForAlphaPublishing \
           --branch "$BRANCH" ${ROOT_FOLDER:+"--publishRootFolder=$ROOT_FOLDER"}
 
         versions=$(cat .version)
