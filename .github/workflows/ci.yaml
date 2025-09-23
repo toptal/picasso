@@ -31,7 +31,8 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
         with:
           fetch-depth: 0
 
@@ -84,7 +85,8 @@ jobs:
     needs: [static-checks]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -123,7 +125,8 @@ jobs:
     needs: [static-checks]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

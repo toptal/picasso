@@ -20,7 +20,9 @@ runs:
   steps:
     - name: Checkout existing gh-pages content
       id: checkout-gh-pages
-      uses: actions/checkout@v4
+
+      # Same as actions/checkout@v5
+      uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
       continue-on-error: true
       with:
         ref: gh-pages

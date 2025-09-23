@@ -24,7 +24,8 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -58,7 +59,8 @@ jobs:
       PARALLEL_GROUPS: ${{ strategy.job-total }}
     steps:
       - name: Checkout project
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -88,7 +90,8 @@ jobs:
     needs: [integration-tests]
     steps:
       - name: Checkout project
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

@@ -41,7 +41,8 @@ jobs:
       id-token: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Setup GitHub Pages content
         uses: ./.github/actions/setup-gh-pages
@@ -86,7 +87,8 @@ jobs:
       id-token: write
     steps:
       - name: Checkout repository (for API access)
-        uses: actions/checkout@v4
+        # Same as actions/checkout@v5
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
 
       - name: Setup GitHub Pages content
         uses: ./.github/actions/setup-gh-pages
