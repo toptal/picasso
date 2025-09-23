@@ -36,6 +36,7 @@ const getDefaultType = (
     case 'ordered':
       return getOrderedStyleType(level)
     case 'unordered':
+    default:
       return level % 2 === 0 ? 'disc' : 'circle'
   }
 }

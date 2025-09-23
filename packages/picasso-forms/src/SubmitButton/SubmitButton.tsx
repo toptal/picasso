@@ -5,7 +5,7 @@ import { ButtonCompound as Button } from '@toptal/picasso-button'
 import { useFormState } from 'react-final-form'
 
 type ButtonTypeProps = {
-  buttonType: 'rectangular'
+  buttonType?: 'rectangular'
   variant?: ButtonProps['variant']
   children: ReactNode
 }
