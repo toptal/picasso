@@ -32,8 +32,8 @@ export interface Props
 }
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(
-  function AccountSelect(props, ref) {
-    const { className, accounts, onSelect, style, ...rest } = props
+  function AccountSelect({ onSelect = () => {}, ...props }, ref) {
+    const { className, accounts, style, ...rest } = props
 
     return (
       <Menu
@@ -73,10 +73,6 @@ export const AccountSelect = forwardRef<HTMLUListElement, Props>(
     )
   }
 )
-
-AccountSelect.defaultProps = {
-  onSelect: () => {},
-}
 
 AccountSelect.displayName = 'AccountSelect'
 

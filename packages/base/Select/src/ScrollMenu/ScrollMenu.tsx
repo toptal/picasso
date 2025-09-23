@@ -53,7 +53,7 @@ const preventClick = (e: React.MouseEvent) => {
   e.preventDefault()
 }
 
-const ScrollMenu = (props: Props) => {
+const ScrollMenu = ({ role = 'menu', ...props }: Props) => {
   const {
     selectedIndex,
     onBlur,
@@ -62,7 +62,6 @@ const ScrollMenu = (props: Props) => {
     fixedHeader,
     fixedFooter,
     className,
-    role,
     testIds,
     'data-testid': dataTestId,
     ...rest
@@ -101,10 +100,6 @@ const ScrollMenu = (props: Props) => {
       </div>
     </Menu>
   )
-}
-
-ScrollMenu.defaultProps = {
-  role: 'menu',
 }
 
 ScrollMenu.displayName = 'ScrollMenu'

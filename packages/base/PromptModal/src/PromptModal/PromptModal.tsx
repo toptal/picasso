@@ -50,21 +50,20 @@ export interface Props extends Omit<ModalProps, 'children' | 'onSubmit'> {
 }
 
 export const PromptModal = forwardRef<HTMLDivElement, Props>(
-  function PromptModal(props, ref) {
-    const {
-      children,
-      title,
-      message,
-      variant,
-      submitText,
-      cancelText,
-      onSubmit,
-      onAfterSubmit = noop,
+  function PromptModal(
+    {
+      cancelText = 'Cancel',
       onCancel = noop,
-      onClose,
-      testIds,
-      ...rest
-    } = props
+      size = 'small',
+      submitText = 'Submit',
+      variant = 'positive',
+      onAfterSubmit = noop,
+      ...props
+    },
+    ref
+  ) {
+    const { children, title, message, onSubmit, onClose, testIds, ...rest } =
+      props
     const [result, setResult] = useSafeState<unknown>()
     const [loading, setLoading] = useSafeState(false)
     const [error, setError] = useSafeState(false)
@@ -103,7 +102,7 @@ export const PromptModal = forwardRef<HTMLDivElement, Props>(
     }
 
     return (
-      <Modal ref={ref} onClose={onClose && handleClose} {...rest}>
+      <Modal ref={ref} onClose={onClose && handleClose} size={size} {...rest}>
         {title && (
           <Modal.Title data-testid={testIds?.title}>{title}</Modal.Title>
         )}
@@ -146,15 +145,6 @@ export const PromptModal = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-PromptModal.defaultProps = {
-  cancelText: 'Cancel',
-  onCancel: noop,
-  size: 'small',
-  submitText: 'Submit',
-  variant: 'positive',
-  onAfterSubmit: noop,
-}
 
 PromptModal.displayName = 'PromptModal'
 

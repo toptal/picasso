@@ -90,10 +90,10 @@ const borderPseudoElement = [
 
 /** @deprecated Use `PageHeadBase` instead to conform to BASE. `PageHead` will be removed in a future major update of Picasso*/
 export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
-  props,
+  { rightPadding = false, noBorder = false, ...props },
   ref
 ) {
-  const { children, noBorder, rightPadding, className } = props
+  const { children, className } = props
   const withBorder = !noBorder
 
   return (
@@ -110,11 +110,6 @@ export const PageHead = forwardRef<HTMLDivElement, Props>(function PageHead(
     </Container>
   )
 })
-
-PageHead.defaultProps = {
-  rightPadding: false,
-  noBorder: false,
-}
 
 PageHead.displayName = 'PageHead'
 

@@ -25,64 +25,58 @@ export interface Props extends StepperBaseProps {
   direction?: 'vertical' | 'horizontal'
 }
 
-const Stepper = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {
-    active = 0,
-    steps = [],
-    hideLabels = false,
-    className,
-    style,
-    titleCase,
-    direction = 'horizontal',
-    overflowEllipsis = false,
-    ...rest
-  } = props
+const Stepper = forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      active = 0,
+      hideLabels = false,
+      direction = 'horizontal',
+      overflowEllipsis = false,
+      steps = [],
+      ...props
+    },
+    ref
+  ) => {
+    const { className, style, titleCase, ...rest } = props
 
-  return (
-    <div
-      className={twMerge(
-        'flex',
-        cx({
-          'flex-row items-center gap-1': direction === 'horizontal',
-          'flex-col': direction === 'vertical',
-        }),
-        className
-      )}
-      style={style}
-      ref={ref}
-      {...rest}
-    >
-      {steps.map((step, stepIndex) => {
-        const isStringStep = typeof step === 'string'
+    return (
+      <div
+        className={twMerge(
+          'flex',
+          cx({
+            'flex-row items-center gap-1': direction === 'horizontal',
+            'flex-col': direction === 'vertical',
+          }),
+          className
+        )}
+        style={style}
+        ref={ref}
+        {...rest}
+      >
+        {steps.map((step, stepIndex) => {
+          const isStringStep = typeof step === 'string'
 
-        return (
-          <Fragment key={isStringStep ? step : step.key}>
-            <Step
-              active={stepIndex === active}
-              completed={stepIndex < active}
-              expand={!hideLabels || stepIndex === active}
-              titleCase={titleCase}
-              withOverflowEllipsis={overflowEllipsis}
-            >
-              {isStringStep ? step : step.content}
-            </Step>
-            {stepIndex < steps.length - 1 && (
-              <StepConnector direction={direction} />
-            )}
-          </Fragment>
-        )
-      })}
-    </div>
-  )
-})
-
-Stepper.defaultProps = {
-  active: 0,
-  hideLabels: false,
-  direction: 'horizontal',
-  overflowEllipsis: false,
-  steps: [],
-}
+          return (
+            <Fragment key={isStringStep ? step : step.key}>
+              <Step
+                active={stepIndex === active}
+                completed={stepIndex < active}
+                expand={!hideLabels || stepIndex === active}
+                titleCase={titleCase}
+                withOverflowEllipsis={overflowEllipsis}
+              >
+                {isStringStep ? step : step.content}
+              </Step>
+              {stepIndex < steps.length - 1 && (
+                <StepConnector direction={direction} />
+              )}
+            </Fragment>
+          )
+        })}
+      </div>
+    )
+  }
+)
 
 Stepper.displayName = 'Stepper'
 

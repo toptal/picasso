@@ -26,8 +26,12 @@ const shouldInjectRow = (children?: ReactNode) => {
     .some(el => el.type.displayName === OverviewBlockRow.displayName)
 }
 
-const OverviewBlockGroup = (props: Props) => {
-  const { children, align = 'default', blockWidth = 'regular', ...rest } = props
+const OverviewBlockGroup = ({
+  align = 'default',
+  blockWidth = 'regular',
+  ...props
+}: Props) => {
+  const { children, ...rest } = props
 
   return (
     <section {...rest}>
@@ -43,10 +47,5 @@ const OverviewBlockGroup = (props: Props) => {
 }
 
 OverviewBlockGroup.displayName = 'OverviewBlockGroup'
-
-OverviewBlockGroup.defaultProps = {
-  align: 'default',
-  blockWidth: 'regular',
-}
 
 export default OverviewBlockGroup
