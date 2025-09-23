@@ -17,7 +17,7 @@ interface ImageProps extends MediaSkeletonBase {
 }
 
 interface AvatarProps extends MediaSkeletonBase {
-  variant: 'avatar'
+  variant?: 'avatar'
   size?: 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
 }
 
@@ -94,11 +94,12 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
     case 'icon':
       attributes = getIconAttributes(props)
       break
-    case 'avatar':
-      attributes = getAvatarAttributes(props)
-      break
     case 'image':
       attributes = getImageAttributes(props)
+      break
+    case 'avatar':
+    default:
+      attributes = getAvatarAttributes(props)
       break
   }
 
