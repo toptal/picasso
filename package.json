@@ -132,7 +132,7 @@
     "@svgr/cli": "^8.1.0",
     "@testing-library/jest-dom": "^6.2.0",
     "@toptal/browserslist-config": "^1.2.0",
-    "@toptal/davinci-ci": "6.0.0",
+    "@toptal/davinci-ci": "7.4.7-alpha-NEWOFF-170-security-updates-ec2c45e7.24+ec2c45e7",
     "@toptal/davinci-code": "^2.0.15",
     "@toptal/davinci-engine": "12.2.0",
     "@toptal/davinci-qa": "18.2.1-alpha-NEWOFF-170-security-updates-ec2c45e7.14+ec2c45e7",
