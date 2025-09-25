@@ -52,7 +52,7 @@
     "test:integration:ci": "yarn build:package && yarn happo-e2e -- -- yarn test:setup cypress run --component",
     "test:integration:open": "yarn build:package && concurrently --names build,test --raw yarn:build:package:watch 'yarn test:setup cypress open --browser=electron --component'",
     "test:setup": "cross-env TZ=UTC NODE_ENV=development",
-    "test:unit": "yarn build:package && davinci-qa unit --config=./jest.spec.mjs",
+    "test:unit": "NODE_OPTIONS='--no-experimental-require-module' yarn build:package && davinci-qa unit --config=./jest.spec.mjs",
     "test:unit:ci": "yarn test:unit --maxWorkers=4 --ci",
     "test:unit:coverage": "yarn test:unit:ci --collect-coverage --coverage true --collectCoverageFrom packages/**/*.{ts,tsx} --coverageDirectory coverage/jest",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk yarn test:unit",
