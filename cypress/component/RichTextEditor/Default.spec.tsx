@@ -118,7 +118,7 @@ describe('RichTextEditor', () => {
     setAliases()
 
     cy.get('@editor').click()
-    cy.get('body').happoScreenshot({ component, variant: 'focused' })
+    cy.get('body').happoScreenshot({ component, variant: 'focused-editor' })
   })
   it('focuses the editor with error state', () => {
     cy.mount(renderEditor({ ...defaultProps, status: 'error' }))
@@ -390,7 +390,9 @@ describe('RichTextEditor', () => {
 
       cy.get('label').realClick().type('foo')
       cy.contains('foo').should('be.visible')
-      cy.get('@wrapper').should('have.attr', 'class').and('include', 'focused')
+      cy.get('@wrapper')
+        .should('have.attr', 'class')
+        .and('include', 'focused-editor-on-label-click')
     })
   })
 
@@ -404,7 +406,7 @@ describe('RichTextEditor', () => {
 
       cy.get('@wrapper')
         .should('have.attr', 'class')
-        .and('not.include', 'focused')
+        .and('not.include', 'cannot-be-focused')
     })
   })
 
@@ -452,7 +454,10 @@ describe('RichTextEditor', () => {
       cy.get('@editor').realClick()
       cy.get('@ulButton').realClick()
       buttonShouldBeActive(cy.get('@ulButton'))
-      cy.get('body').happoScreenshot({ component, variant: 'focused' })
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'focused-list-from-scratch',
+      })
     })
   })
 
