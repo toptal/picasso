@@ -390,9 +390,7 @@ describe('RichTextEditor', () => {
 
       cy.get('label').realClick().type('foo')
       cy.contains('foo').should('be.visible')
-      cy.get('@wrapper')
-        .should('have.attr', 'class')
-        .and('include', 'focused-editor-on-label-click')
+      cy.get('@wrapper').should('have.attr', 'class').and('include', 'focused')
     })
   })
 
@@ -406,7 +404,7 @@ describe('RichTextEditor', () => {
 
       cy.get('@wrapper')
         .should('have.attr', 'class')
-        .and('not.include', 'cannot-be-focused')
+        .and('not.include', 'focused')
     })
   })
 
