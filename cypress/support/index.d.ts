@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+/// <reference types="cypress-real-events" />
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { mount } from 'cypress/react'
 import type { HappoScreenshotOptions } from 'happo-cypress'

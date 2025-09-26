@@ -187,6 +187,30 @@ const LinkTooltipExample = () => {
   )
 }
 
+const FocusTooltipExample = () => {
+  const tooltipContent = (
+    <span data-testid={testIds.tooltipContent}>Content</span>
+  )
+
+  return (
+    <Tooltip content={tooltipContent}>
+      <Button data-testid={testIds.tooltipTrigger}>Button</Button>
+    </Tooltip>
+  )
+}
+
+const InteractiveTooltipExample = () => {
+  const tooltipContent = (
+    <span data-testid={testIds.tooltipContent}>Interactive Content</span>
+  )
+
+  return (
+    <Tooltip content={tooltipContent} interactive>
+      <Button data-testid={testIds.tooltipTrigger}>Button</Button>
+    </Tooltip>
+  )
+}
+
 const CheckboxTooltipExample = () => {
   const tooltipContent = (
     <span data-testid={testIds.tooltipContent}>Content</span>
@@ -443,6 +467,46 @@ describe('Tooltip', () => {
     cy.get('body').happoScreenshot({
       component,
       variant: 'inside-dropdown',
+    })
+  })
+
+  describe('when focus is on the trigger', () => {
+    it('opens and closes tooltip on focus', () => {
+      cy.mount(<FocusTooltipExample />)
+
+      // Focus the trigger element using real events
+      cy.getByTestId(testIds.tooltipTrigger).realClick()
+
+      // Tooltip should appear
+      cy.getByTestId(testIds.tooltipContent).should('be.visible')
+
+      // Click elsewhere to blur the trigger element
+      cy.get('body').realClick({ position: { x: 0, y: 0 } })
+
+      // Tooltip should disappear
+      cy.getByTestId(testIds.tooltipContent).should('not.exist')
+    })
+  })
+
+  describe('when interactive content is used by the user', () => {
+    it('does not close tooltip', () => {
+      cy.mount(<InteractiveTooltipExample />)
+
+      // Focus the trigger to open tooltip using real events
+      cy.getByTestId(testIds.tooltipTrigger).realClick()
+      cy.getByTestId(testIds.tooltipContent).should('be.visible')
+
+      // Move mouse to tooltip content (interactive area) using real hover
+      cy.getByTestId(testIds.tooltipContent).realHover()
+
+      // Tooltip should still be visible when hovering over interactive content
+      cy.getByTestId(testIds.tooltipContent).should('be.visible')
+
+      // Move mouse away from tooltip content using real hover
+      cy.get('body').realHover({ position: { x: 0, y: 0 } })
+
+      // Tooltip should eventually disappear
+      cy.getByTestId(testIds.tooltipContent).should('not.exist')
     })
   })
 })
