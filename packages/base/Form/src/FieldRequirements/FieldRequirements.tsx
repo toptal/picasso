@@ -31,7 +31,7 @@ export interface Props<TValueType> extends BaseProps {
 const ANIMATION_TIMEOUT = 500
 
 export const FieldRequirements = <TValueType,>({
-  value,
+  value = '' as unknown as TValueType,
   description,
   open = false,
   error,
@@ -69,7 +69,7 @@ export const FieldRequirements = <TValueType,>({
             let status: FieldRequirementItemStatus = 'default'
 
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            if (requirement.validator(value!)) {
+            if (requirement.validator(value)) {
               status = 'success'
             } else if (error) {
               status = 'error'

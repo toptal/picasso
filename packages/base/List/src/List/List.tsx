@@ -8,6 +8,8 @@ import { listStyleTypeClass, getPaddingClasses } from './styles'
 import type { ListItemType } from './context'
 import type { Props } from './types'
 
+const DEFAULT_VARIANT = 'unordered'
+
 const Tags = {
   unordered: 'ul',
   ordered: 'ol',
@@ -29,19 +31,22 @@ const getOrderedStyleType = (level: number): ListItemType => {
 }
 
 const getDefaultType = (
-  variant: Props['variant'],
+  variant: Props['variant'] = DEFAULT_VARIANT,
   level: number
 ): ListItemType => {
   switch (variant) {
     case 'ordered':
       return getOrderedStyleType(level)
     case 'unordered':
-    default:
       return level % 2 === 0 ? 'disc' : 'circle'
   }
 }
 
-export const List = ({ variant = 'unordered', start = 1, ...props }: Props) => {
+export const List = ({
+  variant = DEFAULT_VARIANT,
+  start = 1,
+  ...props
+}: Props) => {
   const { children, className, styleType, 'data-testid': testId } = props
   const { level } = useListContext()
 

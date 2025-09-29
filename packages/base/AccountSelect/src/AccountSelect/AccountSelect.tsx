@@ -28,7 +28,7 @@ export interface Props
   /** List of available accounts */
   accounts: Account[]
   /** Callback invoked when specific role record is clicked in the list */
-  onSelect: (account: Account) => void
+  onSelect?: (account: Account) => void
 }
 
 export const AccountSelect = forwardRef<HTMLUListElement, Props>(

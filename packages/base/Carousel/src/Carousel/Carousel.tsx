@@ -25,7 +25,7 @@ export interface Props extends BaseProps {
   /**
    * If true, Carousel will scroll to the beginning/end when its respective endpoint is reached
    */
-  rewind: boolean
+  rewind?: boolean
   /**
    * Hide dots from the navigation bar
    */

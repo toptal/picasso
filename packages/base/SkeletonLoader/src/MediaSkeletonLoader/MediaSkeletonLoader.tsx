@@ -98,7 +98,7 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
       attributes = getImageAttributes(props)
       break
     case 'avatar':
-    default:
+    case undefined:
       attributes = getAvatarAttributes(props)
       break
   }

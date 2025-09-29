@@ -13,7 +13,7 @@ export type FontSize = SizeType<'small' | 'large'>
 interface Props extends BaseProps {
   children: ReactNode
   fontSize?: FontSize
-  size: Size
+  size?: Size
 }
 
 const TextAvatar = ({
