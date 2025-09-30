@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-grid",
-  "version": "5.0.11",
+  "version": "5.0.12",
   "description": "Toptal UI components library - Grid",
   "publishConfig": {
     "access": "public"
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "2.0.3",
-    "@toptal/picasso-provider": "5.0.1",
+    "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [

@@ -1,5 +1,17 @@
 # @toptal/picasso-account-select
 
+## 3.0.20
+
+### Patch Changes
+
+- [#4797](https://github.com/toptal/picasso/pull/4797) [`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-user-badge@5.1.14
+  - @toptal/picasso-link@3.0.7
+  - @toptal/picasso-menu@3.0.19
+
 ## 3.0.19
 
 ### Patch Changes

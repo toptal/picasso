@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-list",
-  "version": "5.0.12",
+  "version": "5.0.13",
   "description": "Toptal UI components library - List",
   "publishConfig": {
     "access": "public"
@@ -43,7 +43,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.1",
+    "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-test-utils": "1.1.1",
     "@toptal/picasso-tailwind-merge": "2.0.3"
   },

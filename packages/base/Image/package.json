@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-image",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Toptal UI components library - Image",
   "publishConfig": {
     "access": "public"

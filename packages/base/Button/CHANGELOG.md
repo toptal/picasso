@@ -1,5 +1,19 @@
 # @toptal/picasso-button
 
+## 4.0.25
+
+### Patch Changes
+
+- [#4797](https://github.com/toptal/picasso/pull/4797) [`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-checkbox@5.0.15
+  - @toptal/picasso-dropdown@4.2.4
+  - @toptal/picasso-loader@3.0.4
+  - @toptal/picasso-radio@5.0.15
+  - @toptal/picasso-link@3.0.7
+
 ## 4.0.24
 
 ### Patch Changes

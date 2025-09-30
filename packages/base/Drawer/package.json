@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-drawer",
-  "version": "3.0.36",
+  "version": "3.0.37",
   "description": "Toptal UI components library - Drawer",
   "publishConfig": {
     "access": "public"
@@ -25,8 +25,8 @@
     "@mui/base": "5.0.0-beta.58",
     "@toptal/picasso-slide": "1.0.3",
     "@toptal/picasso-backdrop": "1.0.9",
-    "@toptal/picasso-paper": "4.0.3",
-    "@toptal/picasso-button": "4.0.24",
+    "@toptal/picasso-paper": "4.0.4",
+    "@toptal/picasso-button": "4.0.25",
     "@toptal/picasso-container": "3.1.2",
     "@toptal/picasso-icons": "1.13.0",
     "@toptal/picasso-typography": "4.0.4",
@@ -47,7 +47,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.1",
+    "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-tailwind-merge": "2.0.3"
   },
   "files": [

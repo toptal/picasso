@@ -1,5 +1,35 @@
 # Change Log
 
+## 73.2.5
+
+### Patch Changes
+
+- [#4797](https://github.com/toptal/picasso/pull/4797) [`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-rich-text-editor@17.2.5
+  - @toptal/picasso-outlined-input@4.1.4
+  - @toptal/picasso-password-input@5.1.4
+  - @toptal/picasso-autocomplete@5.2.4
+  - @toptal/picasso-avatar-upload@3.0.29
+  - @toptal/picasso-number-input@4.2.4
+  - @toptal/picasso-tagselector@3.3.4
+  - @toptal/picasso-date-picker@3.2.4
+  - @toptal/picasso-timepicker@4.1.4
+  - @toptal/picasso-file-input@4.0.24
+  - @toptal/picasso-form-label@1.0.3
+  - @toptal/picasso-checkbox@5.0.15
+  - @toptal/picasso-dropzone@5.0.25
+  - @toptal/picasso-button@4.0.25
+  - @toptal/picasso-rating@3.0.12
+  - @toptal/picasso-select@4.1.4
+  - @toptal/picasso-switch@4.0.12
+  - @toptal/picasso-input@4.1.4
+  - @toptal/picasso-radio@5.0.15
+  - @toptal/picasso-form@6.3.4
+  - @toptal/picasso-notification@4.0.25
+
 ## 73.2.4
 
 ### Patch Changes

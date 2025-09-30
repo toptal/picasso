@@ -1,5 +1,16 @@
 # @toptal/picasso-timepicker
 
+## 4.1.4
+
+### Patch Changes
+
+- [#4797](https://github.com/toptal/picasso/pull/4797) [`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-outlined-input@4.1.4
+  - @toptal/picasso-input@4.1.4
+
 ## 4.1.3
 
 ### Patch Changes

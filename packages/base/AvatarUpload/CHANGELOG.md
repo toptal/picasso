@@ -1,5 +1,17 @@
 # @toptal/picasso-avatar-upload
 
+## 3.0.29
+
+### Patch Changes
+
+- [#4797](https://github.com/toptal/picasso/pull/4797) [`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-outlined-input@4.1.4
+  - @toptal/picasso-avatar@6.1.13
+  - @toptal/picasso-loader@3.0.4
+
 ## 3.0.28
 
 ### Patch Changes
