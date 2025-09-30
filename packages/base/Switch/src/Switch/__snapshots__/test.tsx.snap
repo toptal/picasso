@@ -16,7 +16,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
       class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
     />
     <input
-      class="base-Switch w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left cursor-pointer z-20 group-[.base--disabled]:cursor"
+      class="base-Switch w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20 group-[.base--disabled]:cursor"
       role="switch"
       type="checkbox"
     />
@@ -50,7 +50,7 @@ exports[`Switch renders default Switch without label 1`] = `
         class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
       />
       <input
-        class="base-Switch w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left cursor-pointer z-20 group-[.base--disabled]:cursor"
+        class="base-Switch w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20 group-[.base--disabled]:cursor"
         role="switch"
         type="checkbox"
       />
@@ -75,7 +75,7 @@ exports[`Switch renders disabled state 1`] = `
       class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
     />
     <input
-      class="base-Switch w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left cursor-pointer z-20 group-[.base--disabled]:cursor"
+      class="base-Switch w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20 group-[.base--disabled]:cursor"
       disabled=""
       role="switch"
       type="checkbox"
