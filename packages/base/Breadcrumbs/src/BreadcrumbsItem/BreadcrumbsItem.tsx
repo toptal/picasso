@@ -27,9 +27,8 @@ const Active = (props: { children: ReactNode }) => {
 export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
   HTMLElement,
   Props
->(function BreadcrumbsItem(props, ref) {
+>(function BreadcrumbsItem({ as = 'span', ...props }, ref) {
   const {
-    as,
     active,
     children,
     className,
@@ -50,10 +49,6 @@ export const BreadcrumbsItem: OverridableComponent<Props> = forwardRef<
     </Component>
   )
 })
-
-BreadcrumbsItem.defaultProps = {
-  as: 'span',
-}
 
 BreadcrumbsItem.displayName = 'BreadcrumbsItem'
 

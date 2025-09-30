@@ -25,7 +25,7 @@ export interface Props extends BaseProps {
   /**
    * If true, Carousel will scroll to the beginning/end when its respective endpoint is reached
    */
-  rewind: boolean
+  rewind?: boolean
   /**
    * Hide dots from the navigation bar
    */
@@ -124,16 +124,6 @@ export const Carousel = ({
       />
     </Container>
   )
-}
-
-Carousel.defaultProps = {
-  hasArrows: false,
-  hasDots: false,
-  rewind: false,
-  autoplay: false,
-  autoplayDelay: 3000,
-  slidesToScroll: 1,
-  slidesToShow: 1,
 }
 
 Carousel.displayName = 'Carousel'

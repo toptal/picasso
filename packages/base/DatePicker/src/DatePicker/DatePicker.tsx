@@ -110,13 +110,18 @@ export interface Props
   dropdownNavigation?: boolean
 }
 
-export const DatePicker = (props: Props) => {
+export const DatePicker = ({
+  range = false,
+  hideOnSelect = true,
+  onBlur = noop,
+  editDateFormat = DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
+  displayDateFormat = DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
+  autoComplete = 'off',
+  status = 'default',
+  numberOfMonths = 1,
+  ...props
+}: Props) => {
   const {
-    range,
-    hideOnSelect,
-    displayDateFormat = DEFAULT_DATE_PICKER_DISPLAY_DATE_FORMAT,
-    editDateFormat = DEFAULT_DATE_PICKER_EDIT_DATE_FORMAT,
-    onBlur = noop,
     onChange,
     onResetClick,
     value,
@@ -133,19 +138,20 @@ export const DatePicker = (props: Props) => {
     size,
     parseInputValue,
     testIds,
-    status,
     popperProps,
     disabled,
     footer,
     indicatedIntervals,
     footerBackgroundColor,
     highlight,
-    numberOfMonths = 1,
     dropdownNavigation,
     ...rest
   } = props
 
-  const inputProps = rest
+  const inputProps = {
+    ...rest,
+    autoComplete,
+  }
 
   const [calendarIsShown, setCalendarIsShown] = useState(false)
   const [isInputFocused, setIsInputFocused] = useState(false)
@@ -461,17 +467,6 @@ export const DatePicker = (props: Props) => {
       )}
     </>
   )
-}
-
-DatePicker.defaultProps = {
-  range: false,
-  hideOnSelect: true,
-  onBlur: noop,
-  editDateFormat: 'MM-dd-yyyy',
-  displayDateFormat: 'MMM d, yyyy',
-  autoComplete: 'off',
-  status: 'default',
-  numberOfMonths: 1,
 }
 
 DatePicker.displayName = 'DatePicker'

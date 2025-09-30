@@ -232,39 +232,42 @@ const purifyProps = (props: Props) => {
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>(function Input(
-  props,
+  {
+    autoComplete = 'none',
+    counter = 'remaining',
+    iconPosition = 'start',
+    multiline = false,
+    size = 'medium',
+    width = 'auto',
+    onResetClick = () => {},
+    status = 'default',
+    ...props
+  },
   ref
 ) {
   const {
     id,
     name,
     defaultValue,
+    onChange = () => {},
     value,
     placeholder,
-    status,
     disabled,
     icon,
-    iconPosition,
     inputProps,
     children,
-    multiline,
     multilineResizable,
     autoFocus,
-    width,
     className,
     style,
     rows,
     rowsMax,
     type,
-    onChange,
     onClick,
     startAdornment,
     endAdornment,
     limit,
-    counter,
-    size,
     enableReset,
-    onResetClick,
     outlineRef,
     testIds,
     setHasMultilineCounter,
@@ -306,6 +309,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
         inputProps={{
           ...rest,
           ...inputProps,
+          autoComplete,
         }}
         startAdornment={
           startAdornment || (
@@ -357,18 +361,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
     </>
   )
 })
-
-Input.defaultProps = {
-  autoComplete: 'none',
-  counter: 'remaining',
-  iconPosition: 'start',
-  multiline: false,
-  size: 'medium',
-  width: 'auto',
-  onChange: () => {},
-  onResetClick: () => {},
-  status: 'default',
-}
 
 Input.displayName = 'Input'
 

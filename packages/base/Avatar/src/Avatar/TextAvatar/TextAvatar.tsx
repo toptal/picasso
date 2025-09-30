@@ -13,7 +13,7 @@ export type FontSize = SizeType<'small' | 'large'>
 interface Props extends BaseProps {
   children: ReactNode
   fontSize?: FontSize
-  size: Size
+  size?: Size
 }
 
 const TextAvatar = ({
@@ -22,7 +22,7 @@ const TextAvatar = ({
   style,
   'data-testid': dataTestID,
   fontSize,
-  size,
+  size = 'large',
   'data-private': dataPrivate,
 }: Props) => (
   <div
@@ -42,9 +42,5 @@ const TextAvatar = ({
     </Typography>
   </div>
 )
-
-TextAvatar.defaultProps = {
-  size: 'large',
-}
 
 export default TextAvatar

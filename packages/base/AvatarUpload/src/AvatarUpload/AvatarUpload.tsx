@@ -74,13 +74,24 @@ export interface Props extends BaseProps {
 }
 
 export const AvatarUpload = forwardRef<HTMLElement, Props>(
-  function AvatarUpload(props, ref) {
+  function AvatarUpload(
+    {
+      size = 'small',
+      disabled = false,
+      uploading = false,
+      maxSize = 104857600, // 100MB in bytes (100 * 1024 * 1024)
+      minSize = 0,
+      accept = {
+        'image/*': [],
+      },
+      ...props
+    },
+    ref
+  ) {
     const {
       autoFocus,
       autoHover,
       defaultActive,
-      uploading = false,
-      size = 'small',
       onEdit,
       onFocus,
       onBlur,
@@ -93,10 +104,6 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
       avatarStyle,
 
       // dropzoneOptions
-      accept,
-      minSize,
-      maxSize,
-      disabled,
       onDrop,
       onDropAccepted,
       onDropRejected,
@@ -208,18 +215,5 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
 )
 
 AvatarUpload.displayName = 'AvatarUpload'
-
-const accept = {
-  'image/*': [],
-}
-
-AvatarUpload.defaultProps = {
-  size: 'small',
-  disabled: false,
-  uploading: false,
-  maxSize: 104857600, // 100MB in bytes (100 * 1024 * 1024)
-  minSize: 0,
-  accept,
-}
 
 export default AvatarUpload

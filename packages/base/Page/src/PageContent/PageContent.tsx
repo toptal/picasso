@@ -16,8 +16,8 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
 }
 
 export const PageContent = forwardRef<HTMLDivElement, Props>(
-  function PageContent(props, ref) {
-    const { children, className, style, flex, ...rest } = props
+  function PageContent({ flex = true, ...props }, ref) {
+    const { children, className, style, ...rest } = props
 
     const { width, fullWidth } = useContext<PageContextProps>(PageContext)
     const { hasSidebar } = useSidebar()
@@ -45,10 +45,6 @@ export const PageContent = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-PageContent.defaultProps = {
-  flex: true,
-}
 
 PageContent.displayName = 'PageContent'
 

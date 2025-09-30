@@ -38,20 +38,19 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 
 // eslint-disable-next-line react/display-name
 export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
-  function Radio(props, ref) {
+  function Radio({ disabled = false, ...props }, ref) {
     const {
       className,
       style,
       label,
       checked,
-      disabled,
       value,
       onChange,
       titleCase,
       'data-private': dataPrivate,
       ...rest
     } = props
-    const classes = useStyles(props)
+    const classes = useStyles({ disabled, ...props })
     const rootClasses = {
       root: classes.root,
       disabled: classes.disabled,
@@ -103,10 +102,6 @@ export const Radio = forwardRef<HTMLButtonElement | HTMLLabelElement, Props>(
     )
   }
 )
-
-Radio.defaultProps = {
-  disabled: false,
-}
 
 Radio.displayName = 'Radio'
 

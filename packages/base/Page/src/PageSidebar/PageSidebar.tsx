@@ -49,18 +49,16 @@ const classesBySize = {
 }
 
 export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
-  props,
+  { variant = 'light', size = 'medium', ...props },
   ref
 ) {
   const {
     children,
-    variant = 'light',
     className,
     style,
     collapsible,
     defaultCollapsed,
     testIds,
-    size = 'medium',
     wrapperMaxHeight,
     disableSticky,
     onCollapse = noop,
@@ -140,11 +138,6 @@ export const PageSidebar = forwardRef<HTMLDivElement, Props>(function Sidebar(
     </Container>
   )
 })
-
-PageSidebar.defaultProps = {
-  variant: 'light',
-  size: 'medium',
-}
 
 PageSidebar.displayName = 'PageSidebar'
 

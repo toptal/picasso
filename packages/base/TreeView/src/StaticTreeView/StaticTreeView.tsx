@@ -2,13 +2,14 @@ import React, { useState, useMemo, useRef } from 'react'
 import { useIsomorphicLayoutEffect } from '@toptal/picasso-utils'
 
 import type { TreeViewPropsBase } from '../TreeView/types'
-import {
-  useTree,
-  TreeViewPropsDefaults,
-  TreeViewSvg,
-  useFinalMargins,
-} from '../TreeView/shared'
+import { useTree, TreeViewSvg, useFinalMargins } from '../TreeView/shared'
 import { findExtremeNodes } from './utils/find-extreme-nodes'
+import {
+  DEFAULT_DIRECTION,
+  DEFAULT_HEIGHT,
+  DEFAULT_VARIANT,
+  DEFAULT_WIDTH,
+} from '../TreeView/variables'
 
 type SvgMeasurements = {
   width: number
@@ -19,23 +20,24 @@ type SvgMeasurements = {
 
 type Props = TreeViewPropsBase
 
-const StaticTreeView = (props: Props) => {
-  const {
-    data,
-    renderNode,
-    nodeWidth = StaticTreeView.defaultProps.nodeWidth,
-    nodeHeight = StaticTreeView.defaultProps.nodeHeight,
-  } = props
+const StaticTreeView = ({
+  nodeWidth = DEFAULT_WIDTH,
+  nodeHeight = DEFAULT_HEIGHT,
+  directionProps = {
+    direction: DEFAULT_DIRECTION,
+    variant: DEFAULT_VARIANT,
+  },
+  ...props
+}: Props) => {
+  const { data, renderNode } = props
 
-  const {
-    direction = StaticTreeView.defaultProps.directionProps.direction,
-    variant = StaticTreeView.defaultProps.directionProps.variant,
-  } = props.directionProps ?? StaticTreeView.defaultProps.directionProps
+  const { direction = DEFAULT_DIRECTION, variant = DEFAULT_VARIANT } =
+    directionProps
 
   const [verticalMargin, horizontalMargin] = useFinalMargins(
     direction,
-    props.directionProps?.verticalMargin,
-    props.directionProps?.horizontalMargin
+    directionProps.verticalMargin,
+    directionProps.horizontalMargin
   )
 
   const { nodes, links } = useTree({
@@ -98,8 +100,6 @@ const StaticTreeView = (props: Props) => {
     />
   )
 }
-
-StaticTreeView.defaultProps = TreeViewPropsDefaults
 
 StaticTreeView.displayName = 'StaticTreeView'
 

@@ -160,23 +160,25 @@ const defaultGetYAxisTicks = (domain: Domain) =>
 
 const TOOLTIP_WRAPPER_STYLE = { outline: 'none' }
 
-export const LineChart = (props: Props) => {
+export const LineChart = ({
+  height = 200,
+  unit = 'd',
+  tooltip = false,
+  allowTooltipEscapeViewBox = false,
+  xAxisKey = 'x',
+  getXAxisTicks = getChartTicks,
+  getYAxisTicks = defaultGetYAxisTicks,
+  ...props
+}: Props) => {
   const classes = useStyles()
   const {
     data,
     lineConfig: lines,
-    unit,
-    xAxisKey = 'x',
-    height,
-    tooltip,
     customTooltip,
-    allowTooltipEscapeViewBox,
     highlights,
     referenceLines,
     showBottomYAxisLabel,
     children,
-    getXAxisTicks = getChartTicks,
-    getYAxisTicks = defaultGetYAxisTicks,
     formatYAxisTick,
   } = props
 
@@ -306,14 +308,6 @@ export const LineChart = (props: Props) => {
       </ResponsiveContainer>
     </div>
   )
-}
-
-LineChart.defaultProps = {
-  height: 200,
-  unit: 'd',
-  tooltip: false,
-  allowTooltipEscapeViewBox: false,
-  xAxisKey: 'x',
 }
 
 LineChart.displayName = 'LineChart'

@@ -57,16 +57,12 @@ export interface Props extends BaseProps {
 }
 
 export const Slider = forwardRef<HTMLElement, Props>(function Slider(
-  props,
+  { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
   ref
 ) {
   const {
-    min,
-    max,
     marks,
     value,
-    defaultValue = 0,
-    tooltip = 'off',
     tooltipFormat,
     step,
     disabled,
@@ -170,12 +166,5 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
 })
 
 Slider.displayName = 'Slider'
-
-Slider.defaultProps = {
-  defaultValue: 0,
-  min: 0,
-  max: 100,
-  tooltip: 'off',
-}
 
 export default Slider

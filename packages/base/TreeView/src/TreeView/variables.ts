@@ -1,4 +1,4 @@
-import type { DirectionsType, TreeViewVariant, Vector2 } from './types'
+import type { Vector2 } from './types'
 
 export const DEFAULT_VERTICAL_MARGIN_H = 10
 export const DEFAULT_VERTICAL_MARGIN_V = 97
@@ -9,12 +9,5 @@ export const DEFAULT_HEIGHT = 59
 export const DEFAULT_SCALE_EXTENT: [number, number] = [0.1, 5]
 export const ZERO_VECTOR2: Vector2 = { x: 0, y: 0 }
 export const DEFAULT_TRANSITION_DURATION = 750
-
-export const TreeViewPropsDefaults = {
-  nodeWidth: DEFAULT_WIDTH,
-  nodeHeight: DEFAULT_HEIGHT,
-  directionProps: {
-    direction: 'vertical' as DirectionsType,
-    variant: 'normal' as TreeViewVariant,
-  },
-}
+export const DEFAULT_DIRECTION = 'vertical'
+export const DEFAULT_VARIANT = 'normal'

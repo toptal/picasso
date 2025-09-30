@@ -23,7 +23,7 @@ import type {
 
 type Props = {
   id: string
-  format: FormatType
+  format?: FormatType
   testIds?: {
     headerSelect?: string
     boldButton?: string
@@ -33,11 +33,11 @@ type Props = {
     linkButton?: string
     emojiButton?: string
   }
-  onBoldClick: ButtonHandlerType
-  onItalicClick: ButtonHandlerType
-  onHeaderChange: SelectOnChangeHandler
-  onUnorderedClick: ButtonHandlerType
-  onOrderedClick: ButtonHandlerType
+  onBoldClick?: ButtonHandlerType
+  onItalicClick?: ButtonHandlerType
+  onHeaderChange?: SelectOnChangeHandler
+  onUnorderedClick?: ButtonHandlerType
+  onOrderedClick?: ButtonHandlerType
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {
@@ -47,8 +47,30 @@ const useStyles = makeStyles<Theme, Props>(styles, {
 export const ALLOWED_HEADER_TYPE = '3'
 
 export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
-  function RichTextEditorToolbar(props: Props, ref) {
-    const {
+  function RichTextEditorToolbar(
+    {
+      format = {
+        bold: false,
+        italic: false,
+        list: false,
+        header: '',
+      },
+      onBoldClick = () => {},
+      onItalicClick = () => {},
+      onHeaderChange = () => {},
+      onUnorderedClick = () => {},
+      onOrderedClick = () => {},
+      testIds,
+      id,
+    }: Props,
+    ref
+  ) {
+    const { setToolbarPortalEl } = useToolbarPortalRegister()
+    const { disabledFormatting, disabled, focused } = useRTEPluginContext()
+
+    const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
+
+    const classes = useStyles({
       format,
       onBoldClick,
       onItalicClick,
@@ -57,14 +79,7 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
       onOrderedClick,
       testIds,
       id,
-    } = props
-
-    const { setToolbarPortalEl } = useToolbarPortalRegister()
-    const { disabledFormatting, disabled, focused } = useRTEPluginContext()
-
-    const toolbarRef = useMultipleForwardRefs([ref, setToolbarPortalEl])
-
-    const classes = useStyles(props)
+    })
 
     const isInlineFormattingDisabled =
       disabled || disabledFormatting || !focused
@@ -131,20 +146,6 @@ export const RichTextEditorToolbar = forwardRef<HTMLDivElement, Props>(
     )
   }
 )
-
-RichTextEditorToolbar.defaultProps = {
-  format: {
-    bold: false,
-    italic: false,
-    list: false,
-    header: '',
-  },
-  onBoldClick: () => {},
-  onItalicClick: () => {},
-  onHeaderChange: () => {},
-  onUnorderedClick: () => {},
-  onOrderedClick: () => {},
-}
 
 RichTextEditorToolbar.displayName = 'RichTextEditorToolbar'
 

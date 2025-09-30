@@ -24,7 +24,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Tag` component */
-  children: ReactNode
+  children?: ReactNode
   /** Specify the icon which should be rendered inside Tag */
   icon?: ReactElement
   /** Defines if `Tag` is disabled */
@@ -67,19 +67,19 @@ const cloneIcon = (icon: ReactNode, disabled?: boolean) => {
   })
 }
 
-export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
+export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(
+  { as: Root = 'div', children = '', variant = 'light-grey', ...props },
+  ref
+) {
   const {
-    as: Root = 'div',
     className,
     disabled,
     endAdornment,
-    children,
     icon,
     onDelete,
     onClick,
     style,
     titleCase: propsTitleCase,
-    variant = 'light-grey',
     role,
     ...rest
   } = props
@@ -140,12 +140,6 @@ export const Tag = forwardRef<HTMLDivElement, Props>(function Tag(props, ref) {
     </Root>
   )
 })
-
-Tag.defaultProps = {
-  as: 'div',
-  children: '',
-  variant: 'light-grey',
-}
 
 Tag.displayName = 'Tag'
 

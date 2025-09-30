@@ -40,20 +40,24 @@ const textColorClasses =
   'min-[1280px]:hover:text-gray-400 min-[1280px]:hover:text-white'
 
 export const TopBarItem: OverridableComponent<Props> = memo(
-  forwardRef<HTMLElement, Props>(function TopBarItem(props, ref) {
+  forwardRef<HTMLElement, Props>(function TopBarItem(
+    { onClick = noop, selected = false, ...props },
+    ref
+  ) {
     const { className, icon } = props
 
     return (
       <SidebarItem
         {...props}
+        onClick={onClick}
+        selected={selected}
         className={twMerge(
           rootClasses,
           separatorClasses,
           bgClasses,
           textColorClasses,
           icon && 'min-[1280px]:[&_svg]:w-[1em]',
-          props.selected &&
-            'min-[1280px]:bg-transparent min-[1280px]:text-white',
+          selected && 'min-[1280px]:bg-transparent min-[1280px]:text-white',
           className
         )}
         ref={ref}
@@ -61,11 +65,6 @@ export const TopBarItem: OverridableComponent<Props> = memo(
     )
   })
 )
-
-TopBarItem.defaultProps = {
-  onClick: noop,
-  selected: false,
-}
 
 TopBarItem.displayName = 'TopBarItem'
 

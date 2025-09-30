@@ -157,8 +157,23 @@ export const calculateViewModel = (props: Props): ViewModel => {
 export const Link: OverridableComponent<Props> = forwardRef<
   HTMLAnchorElement,
   Props
->(function Link(props, ref) {
-  const viewModel = calculateViewModel(props)
+>(function Link(
+  {
+    as = 'a',
+    color = 'blue',
+    variant = 'anchor',
+    noUnderline = false,
+    ...props
+  },
+  ref
+) {
+  const viewModel = calculateViewModel({
+    ...props,
+    as,
+    color,
+    variant,
+    noUnderline,
+  })
 
   return (
     <Typography
@@ -181,13 +196,6 @@ export const Link: OverridableComponent<Props> = forwardRef<
     </Typography>
   )
 })
-
-Link.defaultProps = {
-  as: 'a',
-  color: 'blue',
-  variant: 'anchor',
-  noUnderline: false,
-}
 
 Link.displayName = 'Link'
 

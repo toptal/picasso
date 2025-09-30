@@ -8,6 +8,8 @@ import { listStyleTypeClass, getPaddingClasses } from './styles'
 import type { ListItemType } from './context'
 import type { Props } from './types'
 
+const DEFAULT_VARIANT = 'unordered'
+
 const Tags = {
   unordered: 'ul',
   ordered: 'ol',
@@ -29,7 +31,7 @@ const getOrderedStyleType = (level: number): ListItemType => {
 }
 
 const getDefaultType = (
-  variant: Props['variant'],
+  variant: Props['variant'] = DEFAULT_VARIANT,
   level: number
 ): ListItemType => {
   switch (variant) {
@@ -40,15 +42,12 @@ const getDefaultType = (
   }
 }
 
-export const List = (props: Props) => {
-  const {
-    variant,
-    children,
-    start = 1,
-    className,
-    styleType,
-    'data-testid': testId,
-  } = props
+export const List = ({
+  variant = DEFAULT_VARIANT,
+  start = 1,
+  ...props
+}: Props) => {
+  const { children, className, styleType, 'data-testid': testId } = props
   const { level } = useListContext()
 
   const totalChildElements = React.Children.count(children)
@@ -89,11 +88,6 @@ export const List = (props: Props) => {
       </ListContextProvider>
     </ListTag>
   )
-}
-
-List.defaultProps = {
-  variant: 'unordered',
-  start: 1,
 }
 
 List.Item = ListItem

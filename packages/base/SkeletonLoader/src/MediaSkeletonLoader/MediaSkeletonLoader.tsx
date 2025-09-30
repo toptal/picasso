@@ -17,7 +17,7 @@ interface ImageProps extends MediaSkeletonBase {
 }
 
 interface AvatarProps extends MediaSkeletonBase {
-  variant: 'avatar'
+  variant?: 'avatar'
   size?: 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large'
 }
 
@@ -94,22 +94,26 @@ export const getAttributes = (props: React.PropsWithChildren<Props>) => {
     case 'icon':
       attributes = getIconAttributes(props)
       break
-    case 'avatar':
-      attributes = getAvatarAttributes(props)
-      break
     case 'image':
       attributes = getImageAttributes(props)
+      break
+    case 'avatar':
+    case undefined:
+      attributes = getAvatarAttributes(props)
       break
   }
 
   return attributes
 }
 
-export const MediaSkeletonLoader = (props: Props) => {
+export const MediaSkeletonLoader = ({
+  variant = 'avatar',
+  ...props
+}: Props) => {
   const { className, style, uniqueKey } = props
   const { width, height, borderRadius } = useMemo(
-    () => getAttributes(props),
-    [props]
+    () => getAttributes({ variant, ...props } as Props),
+    [variant, props]
   )
 
   const viewBox = `0 0 ${width} ${height}`
@@ -139,9 +143,5 @@ export const MediaSkeletonLoader = (props: Props) => {
 }
 
 MediaSkeletonLoader.displayName = 'MediaSkeletonLoader'
-
-MediaSkeletonLoader.defaultProps = {
-  variant: 'avatar',
-}
 
 export default MediaSkeletonLoader
