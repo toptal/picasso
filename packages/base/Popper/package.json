@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-popper",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Toptal UI components library - Popper",
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,7 @@
     "@toptal/picasso-tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.1",
+    "@toptal/picasso-provider": "5.0.2",
     "popper.js": "^1.16.1"
   },
   "exports": {

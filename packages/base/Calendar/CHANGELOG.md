@@ -1,5 +1,12 @@
 # @toptal/picasso-calendar
 
+## 4.1.7
+
+### Patch Changes
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-button@4.0.25
+
 ## 4.1.6
 
 ### Patch Changes

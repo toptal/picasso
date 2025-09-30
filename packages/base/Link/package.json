@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-link",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "Toptal UI components library - Link",
   "publishConfig": {
     "access": "public"
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "2.0.3",
-    "@toptal/picasso-provider": "5.0.1",
+    "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [

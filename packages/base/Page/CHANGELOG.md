@@ -1,5 +1,26 @@
 # @toptal/picasso-page
 
+## 5.4.9
+
+### Patch Changes
+
+- [#4797](https://github.com/toptal/picasso/pull/4797) [`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6) Thanks [@sashuk](https://github.com/sashuk)!
+- stop using deprecated way of specifying default component property values (`.defaultProps` will not be supported in the future, please see [this React issue](https://github.com/facebook/react/issues/29233) for details)
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-autocomplete@5.2.4
+  - @toptal/picasso-user-badge@5.1.14
+  - @toptal/picasso-dropdown@4.2.4
+  - @toptal/picasso-tooltip@2.0.4
+  - @toptal/picasso-avatar@6.1.13
+  - @toptal/picasso-button@4.0.25
+  - @toptal/picasso-badge@3.0.5
+  - @toptal/picasso-logo@2.0.11
+  - @toptal/picasso-menu@3.0.19
+  - @toptal/picasso-tag@4.0.13
+  - @toptal/picasso-accordion@3.0.24
+  - @toptal/picasso-notification@4.0.25
+
 ## 5.4.8
 
 ### Patch Changes

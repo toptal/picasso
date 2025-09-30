@@ -1,5 +1,71 @@
 # Change Log
 
+## 54.0.5
+
+### Patch Changes
+
+- Updated dependencies [[`c90ccde`](https://github.com/toptal/picasso/commit/c90ccdefa944fc3576bcccb060bb68119a7807e6)]:
+  - @toptal/picasso-application-update-notification@2.0.36
+  - @toptal/picasso-skeleton-loader@1.0.61
+  - @toptal/picasso-account-select@3.0.20
+  - @toptal/picasso-outlined-input@4.1.4
+  - @toptal/picasso-overview-block@4.0.6
+  - @toptal/picasso-password-input@5.1.4
+  - @toptal/picasso-autocomplete@5.2.4
+  - @toptal/picasso-avatar-upload@3.0.29
+  - @toptal/picasso-breadcrumbs@3.0.13
+  - @toptal/picasso-number-input@4.2.4
+  - @toptal/picasso-prompt-modal@2.1.4
+  - @toptal/picasso-tagselector@3.3.4
+  - @toptal/picasso-date-picker@3.2.4
+  - @toptal/picasso-pagination@4.0.26
+  - @toptal/picasso-timepicker@4.1.4
+  - @toptal/picasso-file-input@4.0.24
+  - @toptal/picasso-form-label@1.0.3
+  - @toptal/picasso-user-badge@5.1.14
+  - @toptal/picasso-carousel@4.0.25
+  - @toptal/picasso-checkbox@5.0.15
+  - @toptal/picasso-dropdown@4.2.4
+  - @toptal/picasso-dropzone@5.0.25
+  - @toptal/picasso-timeline@5.0.6
+  - @toptal/picasso-tree-view@3.0.37
+  - @toptal/picasso-helpbox@5.0.25
+  - @toptal/picasso-section@5.1.9
+  - @toptal/picasso-tooltip@2.0.4
+  - @toptal/picasso-avatar@6.1.13
+  - @toptal/picasso-button@4.0.25
+  - @toptal/picasso-drawer@3.0.37
+  - @toptal/picasso-loader@3.0.4
+  - @toptal/picasso-popper@2.0.1
+  - @toptal/picasso-rating@3.0.12
+  - @toptal/picasso-select@4.1.4
+  - @toptal/picasso-slider@4.0.6
+  - @toptal/picasso-switch@4.0.12
+  - @toptal/picasso-alert@3.0.36
+  - @toptal/picasso-badge@3.0.5
+  - @toptal/picasso-image@3.0.4
+  - @toptal/picasso-input@4.1.4
+  - @toptal/picasso-modal@3.2.4
+  - @toptal/picasso-paper@4.0.4
+  - @toptal/picasso-radio@5.0.15
+  - @toptal/picasso-table@3.0.27
+  - @toptal/picasso-form@6.3.4
+  - @toptal/picasso-grid@5.0.12
+  - @toptal/picasso-link@3.0.7
+  - @toptal/picasso-list@5.0.13
+  - @toptal/picasso-logo@2.0.11
+  - @toptal/picasso-menu@3.0.19
+  - @toptal/picasso-page@5.4.9
+  - @toptal/picasso-step@4.0.12
+  - @toptal/picasso-tag@4.0.13
+  - @toptal/picasso-accordion@3.0.24
+  - @toptal/picasso-calendar@4.1.7
+  - @toptal/picasso-notification@4.0.25
+  - @toptal/picasso-tabs@5.0.17
+  - @toptal/picasso-typography-overflow@4.0.5
+  - @toptal/picasso-show-more@2.0.24
+  - @toptal/picasso-date-select@1.0.74
+
 ## 54.0.4
 
 ### Patch Changes
