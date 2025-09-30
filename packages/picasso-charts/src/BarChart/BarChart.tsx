@@ -33,7 +33,7 @@ const {
 } = CHART_CONSTANTS
 const TOOLTIP_WRAPPER_STYLE = { outline: 'none' }
 
-type ShowEverytNthTickValue = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+type ShowEveryNthTickValue = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
 export interface Props<K extends string | number | symbol>
   extends BaseChartProps {
@@ -67,9 +67,9 @@ export interface Props<K extends string | number | symbol>
   /** List of bar groups to be stacked. i.e.: [ ['a', 'b'], ['c', 'd'] ] */
   stackedBars?: string[][]
   /** Makes X-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
-  showEveryNthTickOnXAxis?: ShowEverytNthTickValue
+  showEveryNthTickOnXAxis?: ShowEveryNthTickValue
   /** Makes Y-axis show only every Nth tick. `0` hides all ticks, `1` shows all ticks (default behavior), `2` shows every 2nd tick, and so on */
-  showEveryNthTickOnYAxis?: ShowEverytNthTickValue
+  showEveryNthTickOnYAxis?: ShowEveryNthTickValue
   /** If bars should fill all the empty space */
   autoSize?: boolean
   /** Maximum size for the bar */

@@ -5,7 +5,7 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** List of `Tag` components which you want to render inside `TagGroup` */
-  children: ReactNode
+  children?: ReactNode
 }
 
 export const TagGroup = forwardRef<HTMLDivElement, Props>(function TagGroup(

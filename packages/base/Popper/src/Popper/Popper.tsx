@@ -27,7 +27,7 @@ export type PopperPlacementType =
 export interface Props extends BaseProps {
   children?: ReactNode
   /** if true, the popper is visible */
-  open: boolean
+  open?: boolean
   /** Disable the portal behavior. The children stay within it's parent DOM hierarchy */
   disablePortal?: boolean
   /** Popper placement */

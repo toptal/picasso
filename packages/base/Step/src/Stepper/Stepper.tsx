@@ -14,7 +14,7 @@ export interface StepperBaseProps
   /** The index of the active step */
   active?: number
   /** Array of the step labels */
-  steps: string[] | { key: Key; content: ReactNode }[]
+  steps?: string[] | { key: Key; content: ReactNode }[]
   /** Enable overflow ellipsis for labels (it will not work when custom block-level `steps.content` element is provided (for example, steps={[{ key: 'foo', content: <div>Longstring</div> }]}) */
   overflowEllipsis?: boolean
 }

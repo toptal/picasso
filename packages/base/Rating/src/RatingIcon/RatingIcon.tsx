@@ -6,7 +6,7 @@ import { twJoin } from '@toptal/picasso-tailwind-merge'
 export interface Props {
   active: boolean
   hovered?: boolean
-  interactive: boolean
+  interactive?: boolean
   size: SizeType<'small' | 'large'>
 }
 

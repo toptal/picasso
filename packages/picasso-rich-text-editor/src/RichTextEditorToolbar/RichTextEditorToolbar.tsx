@@ -23,7 +23,7 @@ import type {
 
 type Props = {
   id: string
-  format: FormatType
+  format?: FormatType
   testIds?: {
     headerSelect?: string
     boldButton?: string
@@ -33,11 +33,11 @@ type Props = {
     linkButton?: string
     emojiButton?: string
   }
-  onBoldClick: ButtonHandlerType
-  onItalicClick: ButtonHandlerType
-  onHeaderChange: SelectOnChangeHandler
-  onUnorderedClick: ButtonHandlerType
-  onOrderedClick: ButtonHandlerType
+  onBoldClick?: ButtonHandlerType
+  onItalicClick?: ButtonHandlerType
+  onHeaderChange?: SelectOnChangeHandler
+  onUnorderedClick?: ButtonHandlerType
+  onOrderedClick?: ButtonHandlerType
 }
 
 const useStyles = makeStyles<Theme, Props>(styles, {

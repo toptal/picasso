@@ -24,7 +24,7 @@ export interface Props extends BaseProps, TextLabelProps, DivOrAnchorProps {
   /** The component used for the root node. Either a string to use a DOM element or a component. */
   as?: ElementType
   /** Text content of the `Tag` component */
-  children: ReactNode
+  children?: ReactNode
   /** Specify the icon which should be rendered inside Tag */
   icon?: ReactElement
   /** Defines if `Tag` is disabled */
