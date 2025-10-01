@@ -83,7 +83,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
         },
         input: {
           className: cx(
-            'w-[200%] h-full m-0 p-0 opacity-0 absolute top-0 -left-[50%] cursor-pointer z-20',
+            'w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20',
             'group-[.base--disabled]:cursor-default'
           ),
         },
