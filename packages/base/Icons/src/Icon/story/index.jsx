@@ -75,5 +75,5 @@ page
     },
     'base/Icons'
   )
-  .addExample('Icon/story/Color.example.tsx', 'Color', 'base/Icons')
   .addExample('Icon/story/WithText.example.tsx', 'With text', 'base/Icons')
+  .addExample('Icon/story/Color.example.tsx', 'Color', 'base/Icons')
