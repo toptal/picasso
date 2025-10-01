@@ -1,5 +1,12 @@
 # @toptal/picasso-tag
 
+## 4.0.14
+
+### Patch Changes
+
+- Updated dependencies [[`dc8fc52`](https://github.com/toptal/picasso/commit/dc8fc520aeabdae9f0c56f158915777b961bdbf6)]:
+  - @toptal/picasso-icons@1.13.1
+
 ## 4.0.13
 
 ### Patch Changes
