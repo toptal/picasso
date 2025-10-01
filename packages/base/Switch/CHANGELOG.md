@@ -1,5 +1,12 @@
 # @toptal/picasso-switch
 
+## 4.0.13
+
+### Patch Changes
+
+- [#4846](https://github.com/toptal/picasso/pull/4846) [`c6af93c`](https://github.com/toptal/picasso/commit/c6af93c03d5dafc15e3e2b9652a30be20a02b85b) Thanks [@sashuk](https://github.com/sashuk)!
+- fix the effective width of Switch control
+
 ## 4.0.12
 
 ### Patch Changes

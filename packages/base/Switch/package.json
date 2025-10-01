@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-switch",
-  "version": "4.0.12",
+  "version": "4.0.13",
   "description": "Toptal UI components library - Switch",
   "publishConfig": {
     "access": "public"

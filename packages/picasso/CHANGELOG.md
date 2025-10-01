@@ -1,5 +1,12 @@
 # Change Log
 
+## 54.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`c6af93c`](https://github.com/toptal/picasso/commit/c6af93c03d5dafc15e3e2b9652a30be20a02b85b)]:
+  - @toptal/picasso-switch@4.0.13
+
 ## 54.0.5
 
 ### Patch Changes
