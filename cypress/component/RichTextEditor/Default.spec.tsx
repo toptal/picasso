@@ -118,7 +118,7 @@ describe('RichTextEditor', () => {
     setAliases()
 
     cy.get('@editor').click()
-    cy.get('body').happoScreenshot({ component, variant: 'focused' })
+    cy.get('body').happoScreenshot({ component, variant: 'focused-editor' })
   })
   it('focuses the editor with error state', () => {
     cy.mount(renderEditor({ ...defaultProps, status: 'error' }))
@@ -452,7 +452,10 @@ describe('RichTextEditor', () => {
       cy.get('@editor').realClick()
       cy.get('@ulButton').realClick()
       buttonShouldBeActive(cy.get('@ulButton'))
-      cy.get('body').happoScreenshot({ component, variant: 'focused' })
+      cy.get('body').happoScreenshot({
+        component,
+        variant: 'focused-list-from-scratch',
+      })
     })
   })
 

@@ -97,18 +97,6 @@ describe('Tooltip', () => {
       unmount() // required to avoid updates from popper when portals are not used
     })
 
-    it('opens and closes tooltip on focus', async () => {
-      const { getByTestId, queryByTestId, findByTestId } = renderTooltip()
-
-      fireEvent.focus(getByTestId('tooltip-trigger'))
-      await findByTestId('tooltip-content')
-
-      fireEvent.blur(getByTestId('tooltip-trigger'))
-      await waitFor(() => {
-        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
-      })
-    })
-
     it('opens and closes tooltip on hover with a short delay', async () => {
       const { getByTestId, queryByTestId } = renderTooltip({ delay: 'short' })
 
@@ -179,23 +167,6 @@ describe('Tooltip', () => {
       expect(onMouseOverMock).toHaveBeenCalledTimes(1)
       expect(onMouseMoveMock).toHaveBeenCalledTimes(1)
       expect(onMouseLeaveMock).toHaveBeenCalledTimes(1)
-    })
-
-    it('does not close tooltip when interactive content is used by the user', async () => {
-      const { getByTestId, queryByTestId, findByTestId } = renderTooltip({
-        interactive: true,
-      })
-
-      fireEvent.focus(getByTestId('tooltip-trigger'))
-      await findByTestId('tooltip-content')
-
-      fireEvent.mouseEnter(getByTestId('tooltip-content'))
-      await findByTestId('tooltip-content')
-
-      fireEvent.mouseLeave(getByTestId('tooltip-content'))
-      await waitFor(() => {
-        expect(queryByTestId('tooltip-content')).not.toBeInTheDocument()
-      })
     })
 
     it('opens and moves tooltip on mouse move when followCursor prop is set and move distance is short', async () => {

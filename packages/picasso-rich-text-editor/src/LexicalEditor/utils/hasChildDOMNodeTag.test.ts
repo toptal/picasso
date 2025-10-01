@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { JSDOM } from 'jsdom'
 
 import hasChildDOMNodeTag from './hasChildDOMNodeTag'
