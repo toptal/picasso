@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.13.1
+
+### Patch Changes
+
+- [#4848](https://github.com/toptal/picasso/pull/4848) [`dc8fc52`](https://github.com/toptal/picasso/commit/dc8fc520aeabdae9f0c56f158915777b961bdbf6) Thanks [@sashuk](https://github.com/sashuk)!
+- add initiative and org unit icons
+
 ## 1.13.0
 
 ### Minor Changes

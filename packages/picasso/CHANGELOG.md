@@ -1,5 +1,60 @@
 # Change Log
 
+## 54.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`dc8fc52`](https://github.com/toptal/picasso/commit/dc8fc520aeabdae9f0c56f158915777b961bdbf6)]:
+  - @toptal/picasso-icons@1.13.1
+  - @toptal/picasso-accordion@3.0.25
+  - @toptal/picasso-account-select@3.0.21
+  - @toptal/picasso-alert@3.0.37
+  - @toptal/picasso-application-update-notification@2.0.37
+  - @toptal/picasso-avatar@6.1.14
+  - @toptal/picasso-avatar-upload@3.0.30
+  - @toptal/picasso-breadcrumbs@3.0.14
+  - @toptal/picasso-button@4.0.26
+  - @toptal/picasso-calendar@4.1.8
+  - @toptal/picasso-carousel@4.0.26
+  - @toptal/picasso-date-picker@3.2.5
+  - @toptal/picasso-drawer@3.0.38
+  - @toptal/picasso-dropzone@5.0.26
+  - @toptal/picasso-empty-state@2.0.16
+  - @toptal/picasso-file-input@4.0.25
+  - @toptal/picasso-form@6.3.5
+  - @toptal/picasso-grid@5.0.13
+  - @toptal/picasso-helpbox@5.0.26
+  - @toptal/picasso-input@4.1.5
+  - @toptal/picasso-input-adornment@3.0.12
+  - @toptal/picasso-list@5.0.14
+  - @toptal/picasso-logo@2.0.12
+  - @toptal/picasso-menu@3.0.20
+  - @toptal/picasso-modal@3.2.5
+  - @toptal/picasso-notification@4.0.26
+  - @toptal/picasso-number-input@4.2.5
+  - @toptal/picasso-outlined-input@4.1.5
+  - @toptal/picasso-page@5.4.10
+  - @toptal/picasso-password-input@5.1.5
+  - @toptal/picasso-rating@3.0.13
+  - @toptal/picasso-section@5.1.10
+  - @toptal/picasso-select@4.1.5
+  - @toptal/picasso-show-more@2.0.25
+  - @toptal/picasso-step@4.0.13
+  - @toptal/picasso-table@3.0.28
+  - @toptal/picasso-tabs@5.0.18
+  - @toptal/picasso-tag@4.0.14
+  - @toptal/picasso-timepicker@4.1.5
+  - @toptal/picasso-user-badge@5.1.15
+  - @toptal/picasso-pagination@4.0.27
+  - @toptal/picasso-prompt-modal@2.1.5
+  - @toptal/picasso-skeleton-loader@1.0.62
+  - @toptal/picasso-tree-view@3.0.38
+  - @toptal/picasso-autocomplete@5.2.5
+  - @toptal/picasso-tagselector@3.3.5
+  - @toptal/picasso-checkbox@5.0.16
+  - @toptal/picasso-radio@5.0.16
+  - @toptal/picasso-date-select@1.0.75
+
 ## 54.0.6
 
 ### Patch Changes
