@@ -81,6 +81,7 @@
     ]
   },
   "resolutions": {
+    "@types/node-fetch/form-data": "3.0.4",
     "@swc/plugin-styled-components": "9.1.0",
     "axios": "1.12.0",
     "npm": "11.6.0",
