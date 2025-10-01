@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.13.2
+
+### Patch Changes
+
+- [#4850](https://github.com/toptal/picasso/pull/4850) [`a4a1be2`](https://github.com/toptal/picasso/commit/a4a1be209b4a671dd660e103b4f91ade4e0d6bf9) Thanks [@sashuk](https://github.com/sashuk)!
+- technical changes to trigger release
+
 ## 1.13.1
 
 ### Patch Changes
