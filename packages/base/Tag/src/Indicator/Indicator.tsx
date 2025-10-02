@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
-import { classByColor } from './styles'
+import { classByColor, borderByColor } from './styles'
 
 export type ColorType =
   | 'red'
@@ -13,6 +13,7 @@ export type ColorType =
   | 'grey-darker'
   | 'light-grey'
   | 'light-blue'
+  | 'white'
 
 export interface Props extends BaseProps {
   /** Indicator color */
@@ -32,6 +33,7 @@ export const Indicator = forwardRef<HTMLDivElement, Props>(function Indicator(
       className={twMerge(
         'w-2 h-2 rounded-[50%]',
         classByColor[color],
+        borderByColor[color],
         className
       )}
       style={style}

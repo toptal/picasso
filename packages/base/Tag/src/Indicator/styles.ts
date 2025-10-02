@@ -9,4 +9,9 @@ export const classByColor: Record<ColorType, string> = {
   'blue-darker': 'bg-blue-700',
   'grey-darker': 'bg-graphite-800',
   'light-blue': 'bg-blue-400',
+  white: 'bg-white',
+}
+
+export const borderByColor: Partial<Record<ColorType, string>> = {
+  white: 'border border-solid border-gray-400',
 }

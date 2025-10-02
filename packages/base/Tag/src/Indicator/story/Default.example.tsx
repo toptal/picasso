@@ -49,11 +49,20 @@ const Example = () => (
       </Typography>
     </Container>
 
+    <Container bottom={SPACING_6}>
+      <Container inline right={SPACING_4}>
+        <Indicator color='blue' />
+      </Container>
+      <Typography inline size='medium'>
+        Low priority
+      </Typography>
+    </Container>
+
     <Container inline right={SPACING_4}>
-      <Indicator color='blue' />
+      <Indicator color='white' />
     </Container>
     <Typography inline size='medium'>
-      Low priority
+      White
     </Typography>
   </>
 )
