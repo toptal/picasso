@@ -9,7 +9,7 @@ export default defineConfig({
   ...davinciConfig,
   component: {
     ...davinciConfig.component,
-    retries: { openMode: null, runMode: 2 },
+    retries: { openMode: 0, runMode: 2 },
     setupNodeEvents: (on, config) => {
       davinciConfig.component.setupNodeEvents(on, config)
 
@@ -48,7 +48,7 @@ export default defineConfig({
             },
             {
               test: /\.(js)$/,
-              type: "javascript/auto",
+              type: 'javascript/auto',
               resolve: {
                 fullySpecified: false,
               },
@@ -59,20 +59,24 @@ export default defineConfig({
             },
             {
               test: /\.css$/i,
-              use: ['style-loader', 'css-loader', {
-                loader: 'postcss-loader',
-                options: {
-                  postcssOptions: {
-                    config: false,
-                    plugins: {
-                      tailwindcss: {
-                        config: './tailwind.config.js',
+              use: [
+                'style-loader',
+                'css-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    postcssOptions: {
+                      config: false,
+                      plugins: {
+                        tailwindcss: {
+                          config: './tailwind.config.js',
+                        },
+                        autoprefixer: {},
                       },
-                      autoprefixer: {},
                     },
                   },
                 },
-              }],
+              ],
             },
           ],
         },
