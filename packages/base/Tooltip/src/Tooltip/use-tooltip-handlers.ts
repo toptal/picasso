@@ -33,7 +33,7 @@ export const useTooltipHandlers = ({
     openTooltip,
     closeTooltip,
   } = tooltipState
-  // After closing with click the tooltip should not be opened againg until the mouse leave event
+  // After closing with click the tooltip should not be opened again until the mouse leave event
   const [ignoreOpening, setIgnoreOpening] = useState(false)
 
   if (isControlled) {

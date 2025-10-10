@@ -83,7 +83,7 @@ describe('TypographyOverflow', () => {
   it('renders', () => {
     cy.mount(<DefaultExample />)
 
-    cy.getByTestId('ellipsed-text').click()
+    cy.getByTestId('ellipsed-text').realHover()
     cy.get('body').happoScreenshot({
       component,
       variant: 'default/after-hovered-static-width',
