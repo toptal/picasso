@@ -328,7 +328,7 @@ describe('Select', () => {
     getOption(4).should('have.attr', 'data-highlighted').and('match', /true/)
   })
 
-  describe('when rendered in Drawer with search behaviour', () => {
+  describe('when rendered in Drawer with search behavior', () => {
     it('is possible to focus the search input by click', () => {
       cy.mount(
         <Drawer open>
@@ -370,25 +370,19 @@ describe('Select', () => {
       // focuses on the Search input by clicking on the input
       cy.getByTestId('search-input').click('center')
       cy.getByTestId('search-input').find('input').should('be.focused')
+      cy.get('body').click('topLeft')
 
       // focuses on by click on the input wrapper
       cy.getByTestId('select').click()
-      cy.getByTestId('select').getByTestId('search-input').click('bottom')
-      cy.getByTestId('select')
-        .getByTestId('search-input')
-        .find('input')
-        .should('be.focused')
+      cy.getByTestId('search-input').click('bottom')
+      cy.getByTestId('search-input').find('input').should('be.focused')
+      cy.get('body').click('topLeft')
 
       // focuses on by click on the search icon
       cy.getByTestId('select').click()
-      cy.getByTestId('select')
-        .getByTestId('search-input')
-        .closest('[role="menuitem"]')
-        .click(20, 20)
-      cy.getByTestId('select')
-        .getByTestId('search-input')
-        .find('input')
-        .should('be.focused')
+      cy.getByTestId('search-input').closest('[role="menuitem"]').click(20, 20)
+      cy.getByTestId('search-input').find('input').should('be.focused')
+      cy.get('body').click('topLeft')
 
       // focuses on by typing
       cy.getByTestId('select').click()
