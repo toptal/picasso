@@ -138,6 +138,7 @@ export const Tooltip = forwardRef<unknown, Props>(
 
     const tooltipState = useTooltipState({ externalOpen: open, followCursor })
 
+    console.log('@@@ tooltipState', tooltipState)
     const delayDuration = getDelayDuration(delay, tooltipState.isTouchDevice)
 
     const followCursorTooltipData = useTooltipFollowCursor({
@@ -166,6 +167,8 @@ export const Tooltip = forwardRef<unknown, Props>(
         {content}
       </Typography>
     )
+
+    console.log('@@@ refs', ref, tooltipRef)
 
     return (
       <MUITooltip

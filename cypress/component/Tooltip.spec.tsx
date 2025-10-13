@@ -32,7 +32,10 @@ const BasicTooltipExample = () => {
 
   return (
     <Tooltip content={tooltipContent}>
-      <Button data-testid={testIds.tooltipTrigger}>
+      <Button
+        data-testid={testIds.tooltipTrigger}
+        onMouseEnter={() => console.log('@@@ onMouseEnter')}
+      >
         <span style={{ padding: '20px' }}>Button</span>
       </Button>
     </Tooltip>
@@ -360,19 +363,25 @@ describe('Tooltip', () => {
     })
   })
 
-  it('renders on hover, and hides on click', () => {
+  it.only('renders on hover, and hides on click', () => {
     cy.mount(<BasicTooltipExample />)
     // hover outside trigger button to be sure that content shouldnt be seen
-    cy.getByTestId(testIds.tooltipTrigger).realHover({
+
+    cy.get(`[data-testid=${testIds.tooltipTrigger}]`).realHover({
       position: { x: 0, y: -200 },
     })
-    cy.getByTestId(testIds.tooltipContent).should('not.exist')
-    cy.getByTestId(testIds.tooltipTrigger).realHover()
+    cy.get(`[data-testid=${testIds.tooltipContent}]`).should('not.exist')
+    cy.get(`[data-testid=${testIds.tooltipTrigger}]`).realHover()
 
-    cy.getByTestId(testIds.tooltipContent).should('be.visible')
+    //cy.wait(1000)
 
-    cy.getByTestId(testIds.tooltipTrigger).click()
-    cy.getByTestId(testIds.tooltipContent).should('not.be.visible')
+    cy.get(`[data-testid=${testIds.tooltipContent}]`).should('be.visible')
+
+    cy.get(`[data-testid=${testIds.tooltipTrigger}]`).realClick()
+
+    //cy.wait(1000)
+
+    cy.get(`[data-testid=${testIds.tooltipContent}]`).should('not.be.visible')
   })
 
   it('renders on hover, and hides on click for Checkbox', () => {

@@ -44,10 +44,12 @@ export const useTooltipHandlers = ({
     }
   }
   const handleClose = (event: ChangeEvent<{}>) => {
+    console.log('@@@ handleClose')
     onClose?.(event)
     closeTooltip()
   }
   const handleOpen = (event: ChangeEvent<{}>) => {
+    console.log('@@@ handleOpen')
     if (ignoreOpening) {
       return
     }

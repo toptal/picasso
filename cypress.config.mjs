@@ -8,6 +8,7 @@ import davinciConfig from '@toptal/davinci-qa/src/configs/cypress.config.js'
 export default defineConfig({
   ...davinciConfig,
   component: {
+    justInTimeCompile: false,
     ...davinciConfig.component,
     retries: { openMode: 0, runMode: 2 },
     setupNodeEvents: (on, config) => {
@@ -22,6 +23,9 @@ export default defineConfig({
       framework: 'react',
       bundler: 'webpack',
       webpackConfig: {
+        devServer: {
+          allowedHosts: 'all',
+        },
         module: {
           rules: [
             {
