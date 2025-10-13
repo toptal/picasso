@@ -152,7 +152,7 @@
     "copy-to-clipboard": "^3.3.2",
     "core-js": "^3.33.2",
     "cross-env": "^7.0.3",
-    "cypress": "^15.4.0",
+    "cypress": "15.4.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-real-events": "^1.15.0",
     "date-fns": "^2.30.0",

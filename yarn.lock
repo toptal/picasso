@@ -10172,7 +10172,7 @@ cypress-real-events@^1.15.0:
   resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.15.0.tgz#b84ed97455238139ac3d0c8f803991b30f22fc8a"
   integrity sha512-in98xxTnnM9Z7lZBvvVozm99PBT2eEOjXRG5LKWyYvQnj9mGWXMiPNpfw7e7WiraBFh7XlXIxnE9Cu5o+52kQQ==
 
-cypress@15.4.0, cypress@>=6.4.0, cypress@^15.4.0:
+cypress@15.4.0, cypress@>=6.4.0:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-15.4.0.tgz#067c414830c98c561742a106d03813a5e0e82459"
   integrity sha512-+GC/Y/LXAcaMCzfuM7vRx5okRmonceZbr0ORUAoOrZt/5n2eGK8yh04bok1bWSjZ32wRHrZESqkswQ6biArN5w==
