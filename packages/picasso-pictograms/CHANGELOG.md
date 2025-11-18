@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- [#4859](https://github.com/toptal/picasso/pull/4859) [`8e06abe`](https://github.com/toptal/picasso/commit/8e06abe521f028cead85aeb2be3390e8fa35f1fd) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- add ExpiredLink pictograms (Blue and White variants)
+
 ## 5.1.2
 
 ### Patch Changes
