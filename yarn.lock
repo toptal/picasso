@@ -6600,7 +6600,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@>=20.12.5", "@types/node@^24.0.3":
+"@types/node@*", "@types/node@^24.0.3":
   version "24.5.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-24.5.2.tgz#52ceb83f50fe0fcfdfbd2a9fab6db2e9e7ef6446"
   integrity sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==
@@ -25929,10 +25929,7 @@ zx@^7.2.3:
     which "^3.0.0"
     yaml "^2.8.0"
 
-zx@^8.0.2:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/zx/-/zx-8.0.2.tgz#06b3769d814e83789e43a4d4da3790f7fc52b687"
-  integrity sha512-3g+ePtPYmyrjRuASlJiUhkje1je4a47woML/fzTKBb9PA5BzRQbSswwyJ8nlFWJjA1ORRi6TMyAdhuz/jK+Gaw==
-  optionalDependencies:
-    "@types/fs-extra" "^11.0.4"
-    "@types/node" ">=20.12.5"
+zx@^8.8.5:
+  version "8.8.5"
+  resolved "https://registry.yarnpkg.com/zx/-/zx-8.8.5.tgz#d092d8c0017aa7c5a276fda88ff19e4b1d91cc64"
+  integrity sha512-SNgDF5L0gfN7FwVOdEFguY3orU5AkfFZm9B5YSHog/UDHv+lvmd82ZAsOenOkQixigwH2+yyH198AwNdKhj+RA==
