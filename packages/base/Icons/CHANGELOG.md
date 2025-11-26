@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.14.1
+
+### Patch Changes
+
+- [#4865](https://github.com/toptal/picasso/pull/4865) [`b86c8e9`](https://github.com/toptal/picasso/commit/b86c8e9fcdcac1de21658a5cd9160b13ec67b626) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- fixed wifi icons
+
 ## 1.14.0
 
 ### Minor Changes
