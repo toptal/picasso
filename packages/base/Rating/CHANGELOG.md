@@ -1,5 +1,12 @@
 # @toptal/picasso-rating
 
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [[`e560451`](https://github.com/toptal/picasso/commit/e560451cadbe97ddf6f23d7bd7fc5f75939bbef0)]:
+  - @toptal/picasso-icons@1.14.0
+
 ## 3.0.14
 
 ### Patch Changes

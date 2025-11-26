@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-empty-state",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "description": "Toptal UI components library - EmptyState",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "3.1.2",
-    "@toptal/picasso-icons": "1.13.2",
+    "@toptal/picasso-icons": "1.14.0",
     "@toptal/picasso-typography": "4.0.4"
   },
   "sideEffects": [

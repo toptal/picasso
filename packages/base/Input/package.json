@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-input",
-  "version": "4.1.6",
+  "version": "4.1.7",
   "description": "Toptal UI components library - Input",
   "publishConfig": {
     "access": "public"
@@ -23,10 +23,10 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-container": "3.1.2",
-    "@toptal/picasso-form": "6.3.6",
-    "@toptal/picasso-icons": "1.13.2",
-    "@toptal/picasso-input-adornment": "3.0.13",
-    "@toptal/picasso-outlined-input": "4.1.6",
+    "@toptal/picasso-form": "6.3.7",
+    "@toptal/picasso-icons": "1.14.0",
+    "@toptal/picasso-input-adornment": "3.0.14",
+    "@toptal/picasso-outlined-input": "4.1.7",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "3.1.0"
   },
