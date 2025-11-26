@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.14.0
+
+### Minor Changes
+
+- [#4863](https://github.com/toptal/picasso/pull/4863) [`e560451`](https://github.com/toptal/picasso/commit/e560451cadbe97ddf6f23d7bd7fc5f75939bbef0) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- add new WiFi icons (Wifi16, Wifi24, WifiResponsive) to the icon library
+
 ## 1.13.2
 
 ### Patch Changes
