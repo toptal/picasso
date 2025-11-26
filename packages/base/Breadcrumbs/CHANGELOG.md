@@ -1,5 +1,12 @@
 # @toptal/picasso-breadcrumbs
 
+## 3.0.17
+
+### Patch Changes
+
+- Updated dependencies [[`b86c8e9`](https://github.com/toptal/picasso/commit/b86c8e9fcdcac1de21658a5cd9160b13ec67b626)]:
+  - @toptal/picasso-icons@1.14.1
+
 ## 3.0.16
 
 ### Patch Changes
