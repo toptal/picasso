@@ -21,15 +21,6 @@ const formatCurrency = (value?: number | string) => {
   })
 }
 
-const parseCurrency = (value?: string) => {
-  if (value === undefined || value === null) {
-    return undefined
-  }
-
-  // Keep raw input while typing; strip commas for consistency.
-  return value.replace(/,/g, '')
-}
-
 type CurrencyFormProps = {
   initialAmount?: number | string
 }
@@ -39,13 +30,7 @@ const CurrencyForm = ({ initialAmount = 10 }: CurrencyFormProps) => (
     onSubmit={() => undefined}
     initialValues={{ amount: initialAmount }}
   >
-    <Input
-      name='amount'
-      label='Amount'
-      format={formatCurrency}
-      parse={parseCurrency}
-      formatOnBlur
-    />
+    <Input name='amount' label='Amount' format={formatCurrency} formatOnBlur />
   </FormNonCompound>
 )
 
