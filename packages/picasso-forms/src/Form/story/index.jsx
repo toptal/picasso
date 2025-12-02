@@ -207,6 +207,11 @@ however, you may need custom validators for more complex types of fields.
     },
     'picasso-form'
   )
+  .addExample('Form/story/FormatOnBlurInitialValue.example.tsx', {
+    title: 'Formatted value',
+    description:
+      'You can format the value displayed in the input field. This is useful for formatting currency, phone numbers, etc.',
+  })
   .addExample(
     'Form/story/BackendCommunication.example.tsx',
     {

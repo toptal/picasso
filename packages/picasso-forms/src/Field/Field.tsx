@@ -55,6 +55,39 @@ const getValidators = (required: boolean, validate?: any) => {
 
 const isFirefox = detect()?.name === 'firefox'
 
+type FormatFn<TInputValue> = FinalFieldProps<
+  TInputValue,
+  FieldRenderProps<TInputValue, HTMLInputElement>,
+  HTMLInputElement
+>['format']
+
+const getInputValue = <TInputValue,>(
+  inputValue: TInputValue,
+  options: {
+    formatOnBlur?: boolean
+    format?: FormatFn<TInputValue>
+    name: string
+    isActive?: boolean
+    isPristine?: boolean
+    isModified?: boolean
+  }
+) => {
+  const { formatOnBlur, format, name, isActive, isPristine, isModified } =
+    options
+  const isActiveBoolean = Boolean(isActive)
+  const isPristineBoolean = Boolean(isPristine)
+  const isModifiedBoolean = Boolean(isModified)
+  const isInitialDisplay = isPristineBoolean && !isModifiedBoolean
+  const shouldFormat =
+    formatOnBlur && format && (!isActiveBoolean || isInitialDisplay)
+
+  if (shouldFormat) {
+    return format(inputValue, name)
+  }
+
+  return inputValue
+}
+
 const Field = <
   TWrappedComponentProps extends IFormComponentProps,
   TInputValue extends ValueType = TWrappedComponentProps['value']
@@ -126,11 +159,21 @@ const Field = <
   const shouldHighlightAutofill =
     highlightAutofill && !meta.visited && meta.pristine && input.value
 
+  const displayValue = getInputValue(input.value, {
+    formatOnBlur,
+    format,
+    name,
+    isActive: meta.active,
+    isPristine: meta.pristine,
+    isModified: meta.modified,
+  })
+
   const childProps: Record<string, unknown> = {
     id,
     status,
     ...rest,
     ...input,
+    value: displayValue,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onChange: (event: ChangeEvent<HTMLElement> | any) => {
       if (isFirefox && event?.target) {
