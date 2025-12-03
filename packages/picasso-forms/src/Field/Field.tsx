@@ -67,19 +67,12 @@ const getInputValue = <TInputValue,>(
     formatOnBlur?: boolean
     format?: FormatFn<TInputValue>
     name: string
-    isActive?: boolean
-    isPristine?: boolean
     isModified?: boolean
   }
 ) => {
-  const { formatOnBlur, format, name, isActive, isPristine, isModified } =
-    options
-  const isActiveBoolean = Boolean(isActive)
-  const isPristineBoolean = Boolean(isPristine)
+  const { formatOnBlur, format, name, isModified } = options
   const isModifiedBoolean = Boolean(isModified)
-  const isInitialDisplay = isPristineBoolean && !isModifiedBoolean
-  const shouldFormat =
-    formatOnBlur && format && (!isActiveBoolean || isInitialDisplay)
+  const shouldFormat = formatOnBlur && format && !isModifiedBoolean
 
   if (shouldFormat) {
     return format(inputValue, name)
@@ -163,8 +156,6 @@ const Field = <
     formatOnBlur,
     format,
     name,
-    isActive: meta.active,
-    isPristine: meta.pristine,
     isModified: meta.modified,
   })
 

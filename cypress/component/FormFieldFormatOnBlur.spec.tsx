@@ -21,6 +21,22 @@ const formatCurrency = (value?: number | string) => {
   })
 }
 
+const parseCurrency = (value: string | number) => {
+  const fractionalLimit = 2
+  const limit = 11
+  const limitRegexp = new RegExp(
+    `([0-9]{${limit}})([0-9]*)(.[0-9]{${fractionalLimit}})*([0-9]*)`
+  )
+
+  return value
+    .toString()
+    .replace(/[^0-9.]/g, '')
+    .replace(limitRegexp, '$1$3')
+    .split('.')
+    .slice(0, 2)
+    .join('.')
+}
+
 type CurrencyFormProps = {
   initialAmount?: number | string
 }
@@ -30,7 +46,13 @@ const CurrencyForm = ({ initialAmount = 10 }: CurrencyFormProps) => (
     onSubmit={() => undefined}
     initialValues={{ amount: initialAmount }}
   >
-    <Input name='amount' label='Amount' format={formatCurrency} formatOnBlur />
+    <Input
+      name='amount'
+      label='Amount'
+      format={formatCurrency}
+      parse={parseCurrency}
+      formatOnBlur
+    />
   </FormNonCompound>
 )
 

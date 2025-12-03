@@ -23,15 +23,33 @@ const formatCurrency = (value?: number | string) => {
   })
 }
 
+const parseCurrency = (value: string | number) => {
+  const fractionalLimit = 2
+  const limit = 11
+  const limitRegexp = new RegExp(
+    `([0-9]{${limit}})([0-9]*)(.[0-9]{${fractionalLimit}})*([0-9]*)`
+  )
+
+  return value
+    .toString()
+    .replace(/[^0-9.]/g, '')
+    .replace(limitRegexp, '$1$3')
+    .split('.')
+    .slice(0, 2)
+    .join('.')
+}
+
 const Example = () => (
   <FormNonCompound
     onSubmit={values => window.alert(JSON.stringify(values, null, 2))}
     initialValues={{ amount: 10 }}
   >
     <Input
+      autoFocus
       name='amount'
       label='Amount (formatted)'
       format={formatCurrency}
+      parse={parseCurrency}
       formatOnBlur
     />
 
