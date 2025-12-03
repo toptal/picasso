@@ -45,7 +45,6 @@ const Example = () => (
     initialValues={{ amount: 10 }}
   >
     <Input
-      autoFocus
       name='amount'
       label='Amount (formatted)'
       format={formatCurrency}
