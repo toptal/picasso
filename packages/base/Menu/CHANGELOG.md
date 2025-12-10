@@ -1,5 +1,13 @@
 # @toptal/picasso-menu
 
+## 3.0.24
+
+### Patch Changes
+
+- Updated dependencies [[`abcf8ba`](https://github.com/toptal/picasso/commit/abcf8ba420a61cef49b769cc06e3fc946b53587e)]:
+  - @toptal/picasso-icons@1.15.0
+  - @toptal/picasso-avatar@6.1.18
+
 ## 3.0.23
 
 ### Patch Changes

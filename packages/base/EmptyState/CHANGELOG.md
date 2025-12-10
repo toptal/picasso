@@ -1,5 +1,12 @@
 # @toptal/picasso-empty-state
 
+## 2.0.20
+
+### Patch Changes
+
+- Updated dependencies [[`abcf8ba`](https://github.com/toptal/picasso/commit/abcf8ba420a61cef49b769cc06e3fc946b53587e)]:
+  - @toptal/picasso-icons@1.15.0
+
 ## 2.0.19
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tag",
-  "version": "4.0.17",
+  "version": "4.0.18",
   "description": "Toptal UI components library - Tag",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.14.1",
+    "@toptal/picasso-icons": "1.15.0",
     "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "4.0.4",
     "@toptal/picasso-utils": "3.1.0",
