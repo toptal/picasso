@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Close Circle</title>
+    <defs>
+        <path d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15ZM10.5 4.79297L8.00001 7.29297L5.50001 4.79297L4.79291 5.50008L7.29291 8.00008L4.79291 10.5001L5.50001 11.2072L8.00001 8.70718L10.5 11.2072L11.2071 10.5001L8.70712 8.00008L11.2071 5.50008L10.5 4.79297Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Interface-/-16-/-Close-Circle">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Union" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <g id="Colors-/-Black" mask="url(#mask-2)" fill="#000000">
+                <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
