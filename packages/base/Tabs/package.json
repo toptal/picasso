@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
+    "@mui/base": "5.0.0-beta.58",
     "@toptal/picasso-container": "3.1.2",
     "@toptal/picasso-icons": "1.15.0",
     "@toptal/picasso-shared": "15.0.0",
@@ -36,9 +37,8 @@
     "**/styles.js"
   ],
   "peerDependencies": {
-    "@material-ui/core": "4.12.4",
-    "@toptal/picasso-provider": "*",
     "@toptal/picasso-tailwind-merge": "^2.0.0",
+    "@toptal/picasso-tailwind": ">=2.7",
     "react": ">=16.12.0 < 19.0.0"
   },
   "exports": {
@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "5.0.2",
-    "@material-ui/core": "4.12.4",
+    "@toptal/picasso-tailwind-merge": "2.0.3",
     "@toptal/picasso-test-utils": "1.1.1"
   },
   "files": [

@@ -1,22 +1,20 @@
 import type { ReactNode, HTMLAttributes, ReactElement } from 'react'
 import React, { forwardRef, useContext } from 'react'
-import type { Theme } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/core/styles'
-import type { TabProps } from '@material-ui/core'
-import { Tab as MUITab } from '@material-ui/core'
+import type { TabProps } from '@mui/base/Tab'
+import { Tab as MUITab } from '@mui/base/Tab'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
 import { useTitleCase } from '@toptal/picasso-shared'
 import { UserBadge } from '@toptal/picasso-user-badge'
+import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
-import styles from './styles'
-import { TabsOrientationContext } from '../Tabs/Tabs'
+import { TabsContext } from '../Tabs/Tabs'
 import { TabLabel } from '../TabLabel'
 import { TabDescription } from '../TabDescription'
 
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    Omit<HTMLAttributes<HTMLButtonElement>, 'onChange'> {
   /**
    * If true, the tab will be disabled
    * @default false
@@ -45,27 +43,81 @@ export interface Props
   onClick?: TabProps['onClick']
 }
 
-const useStyles = makeStyles<Theme>(styles, { name: 'PicassoTab' })
+const getOpacityClass = (
+  selected: boolean,
+  disabled: boolean,
+  orientation: 'horizontal' | 'vertical'
+) => {
+  if (disabled) {
+    return 'opacity-50'
+  }
 
-export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
+  if (selected || orientation === 'vertical') {
+    return 'opacity-100 '
+  }
+
+  return 'opacity-70'
+}
+
+const wrapperClassesByOrientation = {
+  horizontal: 'inline-flex items-center flex-col justify-center',
+  vertical: 'block',
+}
+
+const rootClassesByOrientation = (selected: boolean) => ({
+  horizontal: [
+    'm-0 [&:not(:last-child)]:mr-8 p-0 pb-[0.4375rem]',
+    'text-center bg-transparent transition-shadow z-10 rounded-none',
+    selected ? 'text-black' : 'text-inheritColor',
+    selected && 'shadow-blue-500 shadow-[inset_0_-2px_0]',
+  ],
+  vertical: [
+    'first:mt-4 last:mb-4 my-1 mx-0 py-2 px-4',
+    'text-left rounded-l-sm rounded-r-none transition-all',
+    'w-full overflow-hidden',
+    selected && 'shadow-1',
+    selected && [
+      'before:absolute',
+      'before:content-[""]',
+      'before:bottom-0',
+      'before:left-0',
+      'before:top-0',
+      'before:w-[3px]',
+      'before:bg-blue-500',
+    ],
+    selected
+      ? 'bg-gray-50 text-black'
+      : 'bg-gray-100 hover:bg-gray-200 text-graphite-700 hover:text-black',
+  ],
+})
+
+const classesByVariant = {
+  scrollable: 'shrink-0 max-w-[264px]',
+  fullWidth: 'shrink flex-grow basis-0',
+}
+
+export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
+  props,
+  ref
+) {
   const {
     disabled,
     value,
     label,
     icon,
-    selected,
     onChange,
     onClick,
     titleCase: propsTitleCase,
     description,
     avatar,
+    className,
     ...rest
   } = props
-  const classes = useStyles()
   const titleCase = useTitleCase(propsTitleCase)
-  const orientation = useContext(TabsOrientationContext)
+  const { orientation, variant } = useContext(TabsContext)
+  const isHorizontal = orientation === 'horizontal'
 
-  const labelComponent = getLabelComponent({
+  const renderLabel = getLabelComponent({
     avatar,
     description,
     disabled,
@@ -76,23 +128,53 @@ export const Tab = forwardRef<HTMLDivElement, Props>(function Tab(props, ref) {
 
   return (
     <MUITab
-      className=''
       {...rest}
+      className=''
       ref={ref}
       tabIndex={0}
       disabled={disabled}
-      label={labelComponent}
-      icon={icon}
       value={value}
-      selected={selected}
       onChange={onChange}
       onClick={onClick}
-      classes={{
-        root: classes[orientation],
-        selected: classes.selected,
-        wrapper: classes.wrapper,
+      slotProps={{
+        root: ownerState => {
+          return {
+            className: twMerge(
+              getOpacityClass(
+                ownerState.selected,
+                ownerState.disabled,
+                orientation
+              ),
+              rootClassesByOrientation(ownerState.selected)[orientation],
+              classesByVariant[variant],
+              ownerState.disabled
+                ? 'cursor-default text-gray-500'
+                : 'cursor-pointer',
+              ownerState.disabled && 'pointer-events-none',
+              icon && isHorizontal && 'min-h-0 pr-6',
+              'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
+              'border-0 cursor-pointer inline-flex outline-none',
+              'items-center select-none align-middle appearance-none',
+              'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
+              'normal-case whitespace-normal leading-4',
+              'relative ',
+              className
+            ),
+          }
+        },
       }}
-    />
+    >
+      <span
+        className={twJoin('w-full', wrapperClassesByOrientation[orientation])}
+      >
+        {renderLabel}
+        {icon && (
+          <span className='absolute right-0 h-4 leading-none flex items-center justify-center'>
+            {icon}
+          </span>
+        )}
+      </span>
+    </MUITab>
   )
 })
 
