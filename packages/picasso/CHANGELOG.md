@@ -1,5 +1,60 @@
 # Change Log
 
+## 54.0.11
+
+### Patch Changes
+
+- Updated dependencies [[`abcf8ba`](https://github.com/toptal/picasso/commit/abcf8ba420a61cef49b769cc06e3fc946b53587e)]:
+  - @toptal/picasso-icons@1.15.0
+  - @toptal/picasso-accordion@3.0.29
+  - @toptal/picasso-account-select@3.0.25
+  - @toptal/picasso-alert@3.0.41
+  - @toptal/picasso-application-update-notification@2.0.41
+  - @toptal/picasso-avatar@6.1.18
+  - @toptal/picasso-avatar-upload@3.0.34
+  - @toptal/picasso-breadcrumbs@3.0.18
+  - @toptal/picasso-button@4.0.30
+  - @toptal/picasso-calendar@4.1.12
+  - @toptal/picasso-carousel@4.0.30
+  - @toptal/picasso-date-picker@3.2.9
+  - @toptal/picasso-drawer@3.0.42
+  - @toptal/picasso-dropzone@5.0.30
+  - @toptal/picasso-empty-state@2.0.20
+  - @toptal/picasso-file-input@4.0.29
+  - @toptal/picasso-form@6.3.9
+  - @toptal/picasso-grid@5.0.17
+  - @toptal/picasso-helpbox@5.0.30
+  - @toptal/picasso-input@4.1.9
+  - @toptal/picasso-input-adornment@3.0.16
+  - @toptal/picasso-list@5.0.18
+  - @toptal/picasso-logo@2.0.16
+  - @toptal/picasso-menu@3.0.24
+  - @toptal/picasso-modal@3.2.9
+  - @toptal/picasso-notification@4.0.30
+  - @toptal/picasso-number-input@4.2.9
+  - @toptal/picasso-outlined-input@4.1.9
+  - @toptal/picasso-page@5.4.14
+  - @toptal/picasso-password-input@5.1.9
+  - @toptal/picasso-rating@3.0.17
+  - @toptal/picasso-section@5.1.14
+  - @toptal/picasso-select@4.1.9
+  - @toptal/picasso-show-more@2.0.29
+  - @toptal/picasso-step@4.0.17
+  - @toptal/picasso-table@3.0.32
+  - @toptal/picasso-tabs@5.0.22
+  - @toptal/picasso-tag@4.0.18
+  - @toptal/picasso-timepicker@4.1.9
+  - @toptal/picasso-user-badge@5.1.19
+  - @toptal/picasso-pagination@4.0.31
+  - @toptal/picasso-prompt-modal@2.1.9
+  - @toptal/picasso-skeleton-loader@1.0.66
+  - @toptal/picasso-tree-view@3.0.42
+  - @toptal/picasso-autocomplete@5.2.9
+  - @toptal/picasso-tagselector@3.3.9
+  - @toptal/picasso-checkbox@5.0.20
+  - @toptal/picasso-radio@5.0.20
+  - @toptal/picasso-date-select@1.0.79
+
 ## 54.0.10
 
 ### Patch Changes

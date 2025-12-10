@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.15.0
+
+### Minor Changes
+
+- [#4871](https://github.com/toptal/picasso/pull/4871) [`abcf8ba`](https://github.com/toptal/picasso/commit/abcf8ba420a61cef49b769cc06e3fc946b53587e) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- added CloseCircle icon in 16px and 24px sizes
+
 ## 1.14.1
 
 ### Patch Changes
