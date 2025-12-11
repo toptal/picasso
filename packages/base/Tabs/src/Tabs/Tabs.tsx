@@ -2,17 +2,20 @@ import type { ReactNode, ForwardedRef } from 'react'
 import React, { forwardRef, useMemo } from 'react'
 import { Tabs as MUITabs } from '@mui/base/Tabs'
 import { TabsList } from '@mui/base/TabsList'
+import type { TabsTypeMap } from '@mui/base/Tabs/Tabs.types'
+import type { PolymorphicComponent } from '@mui/base/utils/PolymorphicComponent'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
 export type TabsValueType = string | number | null
 
-export interface Props<V extends TabsValueType> extends BaseProps {
+export interface Props<V extends TabsValueType = TabsValueType>
+  extends BaseProps {
   /** Tabs content containing Tab components */
   children: ReactNode
 
   /** Callback fired when the value changes. */
-  onChange?: (event: React.ChangeEvent<{}> | null, value: V) => void
+  onChange?: (event: React.SyntheticEvent | null, value: V) => void
 
   /**
    * The value of the currently selected Tab.
@@ -65,9 +68,28 @@ const classesByVariant = {
   },
 } as const
 
+type BaseTabsTypeMap = TabsTypeMap<{}, 'div'>
+
+type TypedTabsProps<V extends TabsValueType> = Omit<
+  BaseTabsTypeMap['props'],
+  'value' | 'defaultValue' | 'onChange'
+> & {
+  value?: V
+  defaultValue?: V
+  onChange?: (event: React.SyntheticEvent | null, value: V) => void
+}
+
+type TypedTabs<V extends TabsValueType> = PolymorphicComponent<{
+  props: TypedTabsProps<V>
+  defaultComponent: BaseTabsTypeMap['defaultComponent']
+}>
+
 const Tabs = forwardRef(
   <V extends TabsValueType = TabsValueType>(
-    {
+    props: Props<V>,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    const {
       children,
       orientation = 'horizontal',
       onChange,
@@ -75,9 +97,8 @@ const Tabs = forwardRef(
       variant = 'scrollable',
       className,
       ...rest
-    }: Props<V>,
-    ref: ForwardedRef<HTMLDivElement>
-  ) => {
+    } = props
+
     const contextValue = useMemo(
       () => ({
         orientation,
@@ -87,10 +108,11 @@ const Tabs = forwardRef(
     )
 
     const isVertical = orientation === 'vertical'
+    const TypedMUITabs = MUITabs as TypedTabs<V>
 
     return (
       <TabsContext.Provider value={contextValue}>
-        <MUITabs
+        <TypedMUITabs
           {...rest}
           slotProps={{
             root: {
@@ -103,12 +125,7 @@ const Tabs = forwardRef(
               ),
             },
           }}
-          onChange={
-            onChange as (
-              event: React.ChangeEvent<{}> | null,
-              value: TabsValueType
-            ) => void
-          }
+          onChange={onChange}
           value={value}
           orientation={orientation}
         >
@@ -123,12 +140,12 @@ const Tabs = forwardRef(
               {children}
             </TabsList>
           </div>
-        </MUITabs>
+        </TypedMUITabs>
       </TabsContext.Provider>
     )
   }
 ) as <V extends TabsValueType = TabsValueType>(
   props: Props<V> & { ref?: ForwardedRef<HTMLDivElement> }
-) => ReturnType<typeof MUITabs>
+) => ReturnType<TypedTabs<V>>
 
 export default Tabs
