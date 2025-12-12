@@ -1,5 +1,12 @@
 # @toptal/picasso-form
 
+## 6.3.10
+
+### Patch Changes
+
+- Updated dependencies [[`553efbe`](https://github.com/toptal/picasso/commit/553efbe1c45e4d08f32600d3458b0dab1dd2a0c3)]:
+  - @toptal/picasso-alert@3.0.42
+
 ## 6.3.9
 
 ### Patch Changes

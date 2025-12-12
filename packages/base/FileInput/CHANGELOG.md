@@ -1,5 +1,12 @@
 # @toptal/picasso-file-input
 
+## 4.0.30
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.3.10
+
 ## 4.0.29
 
 ### Patch Changes

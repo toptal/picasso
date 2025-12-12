@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-file-input",
-  "version": "4.0.29",
+  "version": "4.0.30",
   "description": "Toptal UI components library - FileInput",
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
   "dependencies": {
     "@toptal/picasso-button": "4.0.30",
     "@toptal/picasso-container": "3.1.2",
-    "@toptal/picasso-form": "6.3.9",
+    "@toptal/picasso-form": "6.3.10",
     "@toptal/picasso-icons": "1.15.0",
     "@toptal/picasso-loader": "3.0.4",
     "@toptal/picasso-shared": "15.0.0",
