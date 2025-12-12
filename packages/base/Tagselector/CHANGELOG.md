@@ -1,5 +1,14 @@
 # @toptal/picasso-tagselector
 
+## 3.3.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.3.10
+  - @toptal/picasso-autocomplete@5.2.10
+  - @toptal/picasso-outlined-input@4.1.10
+
 ## 3.3.9
 
 ### Patch Changes

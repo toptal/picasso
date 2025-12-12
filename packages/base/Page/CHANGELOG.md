@@ -1,5 +1,12 @@
 # @toptal/picasso-page
 
+## 5.4.15
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-autocomplete@5.2.10
+
 ## 5.4.14
 
 ### Patch Changes
