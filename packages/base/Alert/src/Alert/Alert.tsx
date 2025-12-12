@@ -43,7 +43,7 @@ export interface Props extends BaseProps {
 }
 
 const renderAlertCloseButton = ({ onClose }: Pick<Props, 'onClose'>) => (
-  <Container left='small'>
+  <Container>
     <ButtonCircular
       variant='transparent'
       onClick={onClose}
@@ -113,21 +113,23 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       ref={ref}
       variant={variant}
       className={className}
+      gap={SPACING_4}
     >
-      <Container inline flex ref={ref} className='text-lg/[1.375em]'>
-        <Container
-          right='small'
-          flex
-          alignItems='center'
-          className='h-[1.375em]'
-        >
+      <Container
+        inline
+        flex
+        ref={ref}
+        className='text-lg/[1.375em]'
+        gap={SPACING_4}
+      >
+        <Container flex alignItems='center' className='h-[1.375em]'>
           {icon}
         </Container>
         <Typography size='medium' as='div' weight='regular' color='black'>
           {children}
         </Typography>
       </Container>
-      <Container inline flex>
+      <Container inline flex gap={SPACING_4}>
         <Container inline flex gap={SPACING_4}>
           {actions?.primary && renderActionButton('primary', actions.primary)}
           {actions?.secondary &&
