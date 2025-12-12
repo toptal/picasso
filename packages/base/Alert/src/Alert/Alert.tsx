@@ -130,11 +130,13 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
         </Typography>
       </Container>
       <Container inline flex gap={SPACING_4}>
-        <Container inline flex gap={SPACING_4}>
-          {actions?.primary && renderActionButton('primary', actions.primary)}
-          {actions?.secondary &&
-            renderActionButton('secondary', actions.secondary)}
-        </Container>
+        {actions && (
+          <Container inline flex gap={SPACING_4}>
+            {actions?.primary && renderActionButton('primary', actions.primary)}
+            {actions?.secondary &&
+              renderActionButton('secondary', actions.secondary)}
+          </Container>
+        )}
         {onClose && renderAlertCloseButton({ onClose })}
       </Container>
     </Container>
