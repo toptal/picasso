@@ -6,14 +6,14 @@ exports[`Alert renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="bg-yellow border border-solid border-yellow p-4 justify-between rounded-md flex"
+      class="bg-yellow border border-solid border-yellow gap-4 p-4 justify-between rounded-md flex"
       role="alert"
     >
       <div
-        class="inline-flex text-lg/[1.375em]"
+        class="gap-4 inline-flex text-lg/[1.375em]"
       >
         <div
-          class="mr-4 items-center flex h-[1.375em]"
+          class="items-center flex h-[1.375em]"
         >
           <svg
             class="fill-current inline-block h-[1em] align-[-.125em] text-yellow"
@@ -32,7 +32,7 @@ exports[`Alert renders 1`] = `
         </div>
       </div>
       <div
-        class="inline-flex"
+        class="gap-4 inline-flex"
       >
         <div
           class="gap-4 inline-flex"
