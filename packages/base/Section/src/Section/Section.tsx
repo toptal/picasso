@@ -43,7 +43,7 @@ export interface Props extends BaseProps {
 const headerBarClasses = [
   'pt-3 pb-3 pl-4 pr-4',
   'rounded-tl-md rounded-tr-md rounded-br-0 rounded-bl-0',
-  'border-solid border-l-0 border-r-0 border-t-0 border-b border-gray-400',
+  'border-solid border-l-0 border-r-0 border-t-0 border-b border-gray-300',
   'bg-gray-100',
 ]
 
@@ -69,7 +69,7 @@ const getVariantClasses = (
       'border rounded-md border-solid border-gray-300',
       'p-8 [&>:last-child]:pb-0',
     ],
-    withHeaderBar: 'p-0 rounded-md border border-solid border-gray-400',
+    withHeaderBar: 'p-0 rounded-md border border-solid border-gray-300',
   }
 
   return twMerge(
