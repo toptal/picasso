@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-page",
-  "version": "5.4.14",
+  "version": "5.4.15",
   "description": "Toptal UI components library - Page",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@toptal/picasso-accordion": "3.0.29",
-    "@toptal/picasso-autocomplete": "5.2.9",
+    "@toptal/picasso-autocomplete": "5.2.10",
     "@toptal/picasso-avatar": "6.1.18",
     "@toptal/picasso-badge": "3.0.5",
     "@toptal/picasso-button": "4.0.30",

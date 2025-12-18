@@ -1,5 +1,12 @@
 # @toptal/picasso-alert
 
+## 3.0.42
+
+### Patch Changes
+
+- [#4875](https://github.com/toptal/picasso/pull/4875) [`553efbe`](https://github.com/toptal/picasso/commit/553efbe1c45e4d08f32600d3458b0dab1dd2a0c3) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- fix absense of gap between text and action buttons
+
 ## 3.0.41
 
 ### Patch Changes
