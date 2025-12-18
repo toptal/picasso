@@ -1,5 +1,13 @@
 # @toptal/picasso-number-input
 
+## 4.2.10
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.3.10
+  - @toptal/picasso-outlined-input@4.1.10
+
 ## 4.2.9
 
 ### Patch Changes

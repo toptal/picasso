@@ -1,5 +1,12 @@
 # @toptal/picasso-section
 
+## 5.1.15
+
+### Patch Changes
+
+- [#4877](https://github.com/toptal/picasso/pull/4877) [`78c15a7`](https://github.com/toptal/picasso/commit/78c15a7b46ed833e7885a1c3767d6f4a9106c4b2) Thanks [@sashuk](https://github.com/sashuk)!
+- align border color with Base
+
 ## 5.1.14
 
 ### Patch Changes

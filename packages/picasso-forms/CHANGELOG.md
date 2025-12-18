@@ -1,5 +1,25 @@
 # Change Log
 
+## 73.2.12
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-form@6.3.10
+  - @toptal/picasso-autocomplete@5.2.10
+  - @toptal/picasso-dropzone@5.0.31
+  - @toptal/picasso-file-input@4.0.30
+  - @toptal/picasso-input@4.1.10
+  - @toptal/picasso-number-input@4.2.10
+  - @toptal/picasso-outlined-input@4.1.10
+  - @toptal/picasso-select@4.1.10
+  - @toptal/picasso-tagselector@3.3.10
+  - @toptal/picasso-rich-text-editor@17.2.11
+  - @toptal/picasso-date-picker@3.2.10
+  - @toptal/picasso-timepicker@4.1.10
+  - @toptal/picasso-avatar-upload@3.0.35
+  - @toptal/picasso-password-input@5.1.10
+
 ## 73.2.11
 
 ### Patch Changes
