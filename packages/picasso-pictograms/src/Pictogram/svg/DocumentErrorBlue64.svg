@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Layer_1-2">
+<g id="Vector">
+</g>
+<path id="Vector_2" opacity="0.15" d="M27.42 36.5H22.58L19.12 18.5H30.88L27.42 36.5Z" fill="#183A9C"/>
+<path id="Vector_3" opacity="0.15" d="M25 48.5C27.4853 48.5 29.5 46.4853 29.5 44C29.5 41.5147 27.4853 39.5 25 39.5C22.5147 39.5 20.5 41.5147 20.5 44C20.5 46.4853 22.5147 48.5 25 48.5Z" fill="#183A9C"/>
+<path id="Vector_4" opacity="0.15" d="M50 58H1V63H50V58Z" fill="#183A9C"/>
+<path id="Vector_5" opacity="0.15" d="M39 1V12H50L39 1Z" fill="#183A9C"/>
+<path id="Vector_6" opacity="0.15" d="M50 51.5L44.69 48.31L43.5 49.5L37.5 51.5L50 58V51.5Z" fill="#183A9C"/>
+<path id="Vector_7" d="M27.42 36.5H22.58L19.12 18.5H30.88L27.42 36.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+<path id="Vector_8" d="M25 48.5C27.4853 48.5 29.5 46.4853 29.5 44C29.5 41.5147 27.4853 39.5 25 39.5C22.5147 39.5 20.5 41.5147 20.5 44C20.5 46.4853 22.5147 48.5 25 48.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+<path id="Vector_9" d="M50.5 29V12.5L38.5 0.5H0.5V63.5H50.5V42.5" stroke="#204ECD" stroke-miterlimit="10"/>
+<path id="Vector_10" d="M38.5 1V12.5H50" stroke="#204ECD" stroke-miterlimit="10"/>
+<path id="Vector_11" d="M58.5 26.5L39.5 45.5L37.5 51.5L43.5 49.5L62.5 30.5C63.6 29.4 63.6 27.6 62.5 26.5C61.4 25.4 59.6 25.4 58.5 26.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+</g>
+</svg>
