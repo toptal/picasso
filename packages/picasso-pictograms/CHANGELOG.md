@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- [#4878](https://github.com/toptal/picasso/pull/4878) [`6ddf73d`](https://github.com/toptal/picasso/commit/6ddf73db103bcc0b7a62acee6c3f01ee6e342264) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- add SuccessCheckmark pictogram
+
 ## 5.2.0
 
 ### Minor Changes
