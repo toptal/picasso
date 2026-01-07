@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- [#4880](https://github.com/toptal/picasso/pull/4880) [`f3c2fa6`](https://github.com/toptal/picasso/commit/f3c2fa655468391562075a491bd64f578a0080fc) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- add DocumentError pictogram
+
 ## 5.3.0
 
 ### Minor Changes
