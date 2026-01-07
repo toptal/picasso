@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Layer_1-2">
+<g id="Vector">
+</g>
+<path id="Vector_2" opacity="0.3" d="M32 1L4.5 16.12V47.87L32 62.99L59.5 47.87V16.12L32 1ZM32 54C19.85 54 10 44.15 10 32C10 19.85 19.85 10 32 10C44.15 10 54 19.85 54 32C54 44.15 44.15 54 32 54Z" fill="black"/>
+<path id="Vector_3" d="M59.5 47.88V16.12L32 1L4.5 16.12V47.88L32 63L59.5 47.88Z" stroke="white" stroke-miterlimit="10"/>
+<path id="Vector_4" d="M21 31L29 39L43 25" stroke="white" stroke-miterlimit="10"/>
+</g>
+</svg>
