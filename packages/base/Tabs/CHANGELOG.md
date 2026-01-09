@@ -1,5 +1,12 @@
 # @toptal/picasso-tabs
 
+## 6.0.0
+
+### Major Changes
+
+- [#4874](https://github.com/toptal/picasso/pull/4874) [`2799ede`](https://github.com/toptal/picasso/commit/2799eded812f825829513122b1bd9261c1d4155f) Thanks [@rocodesign](https://github.com/rocodesign)!
+- migrated Tabs to tailwind css
+
 ## 5.0.22
 
 ### Patch Changes
