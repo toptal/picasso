@@ -66,7 +66,6 @@ type ContainerProps = {
     props: Props<V> & { ref?: Ref<HTMLDivElement> | null }
   ): ReactElement
   displayName?: string
-  defaultProps?: Partial<Props<VariantType>>
 }
 
 /**
@@ -166,11 +165,6 @@ export const Container: ContainerProps = documentable(
 )
 
 Container.displayName = 'Container'
-
-Container.defaultProps = {
-  as: 'div',
-  inline: false,
-}
 
 export default Container
 export type { VariantType }
