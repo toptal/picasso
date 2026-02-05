@@ -1,5 +1,61 @@
 # Change Log
 
+## 54.0.13
+
+### Patch Changes
+
+- [#4889](https://github.com/toptal/picasso/pull/4889) [`2adb04e`](https://github.com/toptal/picasso/commit/2adb04ec87a955ef8e6bf7631ea50f2e485418f2) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- remove deprecated defaultProps from Container, MonthSelect, and Select components
+
+- Updated dependencies [[`2adb04e`](https://github.com/toptal/picasso/commit/2adb04ec87a955ef8e6bf7631ea50f2e485418f2), [`2799ede`](https://github.com/toptal/picasso/commit/2799eded812f825829513122b1bd9261c1d4155f)]:
+  - @toptal/picasso-container@3.1.3
+  - @toptal/picasso-date-select@1.0.81
+  - @toptal/picasso-select@4.1.11
+  - @toptal/picasso-tabs@6.0.0
+  - @toptal/picasso-account-select@3.0.26
+  - @toptal/picasso-alert@3.0.43
+  - @toptal/picasso-application-update-notification@2.0.42
+  - @toptal/picasso-autocomplete@5.2.11
+  - @toptal/picasso-avatar@6.1.19
+  - @toptal/picasso-button@4.0.31
+  - @toptal/picasso-calendar@4.1.13
+  - @toptal/picasso-carousel@4.0.31
+  - @toptal/picasso-checkbox@5.0.21
+  - @toptal/picasso-date-picker@3.2.11
+  - @toptal/picasso-drawer@3.0.43
+  - @toptal/picasso-dropzone@5.0.32
+  - @toptal/picasso-empty-state@2.0.21
+  - @toptal/picasso-file-input@4.0.31
+  - @toptal/picasso-form@6.3.11
+  - @toptal/picasso-helpbox@5.0.31
+  - @toptal/picasso-input@4.1.11
+  - @toptal/picasso-input-adornment@3.0.17
+  - @toptal/picasso-list@5.0.19
+  - @toptal/picasso-menu@3.0.25
+  - @toptal/picasso-note@4.0.6
+  - @toptal/picasso-notification@4.0.31
+  - @toptal/picasso-number-input@4.2.11
+  - @toptal/picasso-overview-block@4.0.7
+  - @toptal/picasso-page@5.4.16
+  - @toptal/picasso-pagination@4.0.32
+  - @toptal/picasso-prompt-modal@2.1.10
+  - @toptal/picasso-quote@2.0.8
+  - @toptal/picasso-rating@3.0.18
+  - @toptal/picasso-section@5.1.16
+  - @toptal/picasso-timeline@5.0.7
+  - @toptal/picasso-tree-view@3.0.43
+  - @toptal/picasso-user-badge@5.1.20
+  - @toptal/picasso-tagselector@3.3.11
+  - @toptal/picasso-avatar-upload@3.0.36
+  - @toptal/picasso-accordion@3.0.30
+  - @toptal/picasso-modal@3.2.10
+  - @toptal/picasso-outlined-input@4.1.11
+  - @toptal/picasso-password-input@5.1.11
+  - @toptal/picasso-show-more@2.0.30
+  - @toptal/picasso-skeleton-loader@1.0.67
+  - @toptal/picasso-table@3.0.33
+  - @toptal/picasso-timepicker@4.1.11
+
 ## 54.0.12
 
 ### Patch Changes

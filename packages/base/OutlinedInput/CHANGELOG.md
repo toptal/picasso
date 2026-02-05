@@ -1,5 +1,14 @@
 # @toptal/picasso-outlined-input
 
+## 4.1.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.31
+  - @toptal/picasso-form@6.3.11
+  - @toptal/picasso-input-adornment@3.0.17
+
 ## 4.1.10
 
 ### Patch Changes

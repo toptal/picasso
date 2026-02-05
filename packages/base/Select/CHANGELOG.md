@@ -1,5 +1,20 @@
 # @toptal/picasso-select
 
+## 4.1.11
+
+### Patch Changes
+
+- [#4889](https://github.com/toptal/picasso/pull/4889) [`2adb04e`](https://github.com/toptal/picasso/commit/2adb04ec87a955ef8e6bf7631ea50f2e485418f2) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- remove deprecated defaultProps from Container, MonthSelect, and Select components
+
+- Updated dependencies [[`2adb04e`](https://github.com/toptal/picasso/commit/2adb04ec87a955ef8e6bf7631ea50f2e485418f2)]:
+  - @toptal/picasso-container@3.1.3
+  - @toptal/picasso-form@6.3.11
+  - @toptal/picasso-input@4.1.11
+  - @toptal/picasso-input-adornment@3.0.17
+  - @toptal/picasso-menu@3.0.25
+  - @toptal/picasso-outlined-input@4.1.11
+
 ## 4.1.10
 
 ### Patch Changes

@@ -1,5 +1,18 @@
 # @toptal/picasso-tabs
 
+## 6.0.0
+
+### Major Changes
+
+- [#4874](https://github.com/toptal/picasso/pull/4874) [`2799ede`](https://github.com/toptal/picasso/commit/2799eded812f825829513122b1bd9261c1d4155f) Thanks [@rocodesign](https://github.com/rocodesign)!
+- migrated Tabs to tailwind css
+
+### Patch Changes
+
+- Updated dependencies [[`2adb04e`](https://github.com/toptal/picasso/commit/2adb04ec87a955ef8e6bf7631ea50f2e485418f2)]:
+  - @toptal/picasso-container@3.1.3
+  - @toptal/picasso-user-badge@5.1.20
+
 ## 5.0.22
 
 ### Patch Changes
