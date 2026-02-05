@@ -1,5 +1,12 @@
 # @toptal/picasso-container
 
+## 3.1.3
+
+### Patch Changes
+
+- [#4889](https://github.com/toptal/picasso/pull/4889) [`2adb04e`](https://github.com/toptal/picasso/commit/2adb04ec87a955ef8e6bf7631ea50f2e485418f2) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- remove deprecated defaultProps from Container, MonthSelect, and Select components
+
 ## 3.1.2
 
 ### Patch Changes

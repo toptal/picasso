@@ -1,5 +1,12 @@
 # @toptal/picasso-show-more
 
+## 2.0.30
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-button@4.0.31
+
 ## 2.0.29
 
 ### Patch Changes
