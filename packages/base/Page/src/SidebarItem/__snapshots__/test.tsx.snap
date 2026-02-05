@@ -50,7 +50,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         <div
                           class="flex items-center"
                         >
-                          <div
+                          <span
                             class="gap-2 items-center inline-flex flex-1 min-w"
                           >
                             <div
@@ -62,7 +62,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                 Test item
                               </p>
                             </div>
-                          </div>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -114,7 +114,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                 <div
                                   class="flex items-center"
                                 >
-                                  <div
+                                  <span
                                     class="gap-2 items-center inline-flex flex-1 min-w"
                                   >
                                     <div
@@ -126,7 +126,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                         Menu item
                                       </p>
                                     </div>
-                                  </div>
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -196,7 +196,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         <div
                           class="flex items-center"
                         >
-                          <div
+                          <span
                             class="gap-2 items-center inline-flex flex-1 min-w"
                           >
                             <div
@@ -208,7 +208,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                 Test item
                               </p>
                             </div>
-                          </div>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -260,7 +260,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                 <div
                                   class="flex items-center"
                                 >
-                                  <div
+                                  <span
                                     class="gap-2 items-center inline-flex flex-1 min-w"
                                   >
                                     <div
@@ -272,7 +272,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                         Menu item
                                       </p>
                                     </div>
-                                  </div>
+                                  </span>
                                 </div>
                               </div>
                             </div>
@@ -312,7 +312,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
           <div
             class="flex items-center"
           >
-            <div
+            <span
               class="gap-2 items-center inline-flex flex-1 min-w"
             >
               <svg
@@ -333,7 +333,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                   Test item
                 </p>
               </div>
-            </div>
+            </span>
           </div>
         </div>
       </div>
@@ -359,7 +359,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
               <div
                 class="flex items-center"
               >
-                <div
+                <span
                   class="gap-2 items-center inline-flex flex-1 min-w"
                 >
                   <div
@@ -371,7 +371,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                       Menu item
                     </p>
                   </div>
-                </div>
+                </span>
               </div>
             </div>
           </div>
@@ -402,7 +402,7 @@ exports[`SidebarItem is selected 1`] = `
           <div
             class="flex items-center"
           >
-            <div
+            <span
               class="gap-2 items-center inline-flex flex-1 min-w"
             >
               <svg
@@ -423,7 +423,7 @@ exports[`SidebarItem is selected 1`] = `
                   Test item
                 </p>
               </div>
-            </div>
+            </span>
           </div>
         </div>
       </div>
@@ -452,7 +452,7 @@ exports[`SidebarItem renders 1`] = `
           <div
             class="flex items-center"
           >
-            <div
+            <span
               class="gap-2 items-center inline-flex flex-1 min-w"
             >
               <div
@@ -464,7 +464,7 @@ exports[`SidebarItem renders 1`] = `
                   Test item
                 </p>
               </div>
-            </div>
+            </span>
           </div>
         </div>
       </div>
@@ -506,7 +506,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 <div
                   class="flex items-center"
                 >
-                  <div
+                  <span
                     class="gap-2 items-center inline-flex flex-1 min-w"
                   >
                     <svg
@@ -527,7 +527,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                         Test item
                       </p>
                     </div>
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>
@@ -579,7 +579,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                         <div
                           class="flex items-center"
                         >
-                          <div
+                          <span
                             class="gap-2 items-center inline-flex flex-1 min-w"
                           >
                             <div
@@ -591,7 +591,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                                 Menu item
                               </p>
                             </div>
-                          </div>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -627,7 +627,7 @@ exports[`SidebarItem with icon 1`] = `
           <div
             class="flex items-center"
           >
-            <div
+            <span
               class="gap-2 items-center inline-flex flex-1 min-w"
             >
               <svg
@@ -648,7 +648,7 @@ exports[`SidebarItem with icon 1`] = `
                   Test item
                 </p>
               </div>
-            </div>
+            </span>
           </div>
         </div>
       </div>

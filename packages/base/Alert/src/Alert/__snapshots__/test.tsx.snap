@@ -9,7 +9,7 @@ exports[`Alert renders 1`] = `
       class="bg-yellow border border-solid border-yellow gap-4 p-4 justify-between rounded-md flex"
       role="alert"
     >
-      <div
+      <span
         class="gap-4 inline-flex text-lg/[1.375em]"
       >
         <div
@@ -30,14 +30,14 @@ exports[`Alert renders 1`] = `
         >
           test example string
         </div>
-      </div>
-      <div
+      </span>
+      <span
         class="gap-4 inline-flex"
       >
-        <div
+        <span
           class="gap-4 inline-flex"
         >
-          <div
+          <span
             class="inline-block"
           >
             <button
@@ -55,8 +55,8 @@ exports[`Alert renders 1`] = `
                 Primary
               </span>
             </button>
-          </div>
-          <div
+          </span>
+          <span
             class="inline-block"
           >
             <button
@@ -74,9 +74,9 @@ exports[`Alert renders 1`] = `
                 Secondary
               </span>
             </button>
-          </div>
-        </div>
-      </div>
+          </span>
+        </span>
+      </span>
     </div>
   </div>
 </div>

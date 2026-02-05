@@ -5,7 +5,7 @@ exports[`Pagination renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
       class="items-center inline-flex"
     >
       <button
@@ -159,7 +159,7 @@ exports[`Pagination renders 1`] = `
           Next
         </span>
       </button>
-    </div>
+    </span>
   </div>
 </div>
 `;
@@ -169,7 +169,7 @@ exports[`Pagination renders compact without totalPages 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
       class="items-center inline-flex"
     >
       <button
@@ -200,7 +200,7 @@ exports[`Pagination renders compact without totalPages 1`] = `
           Next
         </span>
       </button>
-    </div>
+    </span>
   </div>
 </div>
 `;
@@ -210,7 +210,7 @@ exports[`Pagination renders disabled 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
       class="items-center inline-flex"
     >
       <button
@@ -373,7 +373,7 @@ exports[`Pagination renders disabled 1`] = `
           Next
         </span>
       </button>
-    </div>
+    </span>
   </div>
 </div>
 `;
@@ -399,7 +399,7 @@ exports[`Pagination renders with next disabled 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
       class="items-center inline-flex"
     >
       <button
@@ -431,7 +431,7 @@ exports[`Pagination renders with next disabled 1`] = `
           Next
         </span>
       </button>
-    </div>
+    </span>
   </div>
 </div>
 `;
