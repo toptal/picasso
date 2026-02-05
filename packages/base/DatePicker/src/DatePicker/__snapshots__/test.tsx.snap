@@ -5,7 +5,7 @@ exports[`DatePicker renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
       class="inline-block"
     >
       <div
@@ -32,7 +32,7 @@ exports[`DatePicker renders 1`] = `
           value="Dec 12, 2019"
         />
       </div>
-    </div>
+    </span>
   </div>
 </div>
 `;

@@ -42,25 +42,24 @@ export const NativeSelect = documentable(
         className,
         style,
         width = 'full',
-        loading,
+        loading = false,
         id,
         icon,
         iconPosition = 'start',
         name,
         renderOption = defaultRenderOption,
         placeholder,
-        disabled,
-        status,
+        disabled = false,
+        status = 'default',
         multiple,
         value = multiple ? DEFAULT_EMPTY_ARRAY_VALUE : '',
-        size,
+        size = 'medium',
         enableReset,
-        onChange,
+        onChange = noop,
         options,
         getDisplayValue = getOptionText,
         /* eslint-disable @typescript-eslint/no-unused-vars */
         menuWidth,
-        noOptionsText,
         popperContainer,
         enableAutofill,
         autoComplete,
@@ -70,7 +69,6 @@ export const NativeSelect = documentable(
         native,
         testIds,
         highlight,
-        /* eslint-disable @typescript-eslint/no-unused-vars */
         enableResetSearch,
         /* eslint-enable @typescript-eslint/no-unused-vars */
         ...rest
@@ -178,23 +176,6 @@ export const NativeSelect = documentable(
     }
   )
 )
-
-NativeSelect.defaultProps = {
-  disabled: false,
-  getDisplayValue: getOptionText,
-  iconPosition: 'start',
-  loading: false,
-  noOptionsText: 'No matches found',
-  onChange: noop,
-  onBlur: noop,
-  renderOption: defaultRenderOption,
-  size: 'medium',
-  width: 'full',
-  searchThreshold: 10,
-  enableAutofill: false,
-  searchPlaceholder: 'Search',
-  status: 'default',
-}
 
 NativeSelect.displayName = 'NativeSelect'
 

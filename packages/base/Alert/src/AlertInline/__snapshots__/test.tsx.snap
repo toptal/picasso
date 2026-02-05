@@ -5,7 +5,7 @@ exports[`Alert renders 1`] = `
   <div
     class="Picasso-root"
   >
-    <div
+    <span
       class="inline-flex text-lg/[1.375em]"
     >
       <div
@@ -26,7 +26,7 @@ exports[`Alert renders 1`] = `
       >
         test example string
       </div>
-    </div>
+    </span>
   </div>
 </div>
 `;
