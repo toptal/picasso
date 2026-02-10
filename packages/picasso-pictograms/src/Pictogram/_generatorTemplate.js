@@ -27,8 +27,9 @@ const illustrationTemplate = ({ componentName, jsx }, { tpl }) => {
   decorateWithProp(svgElement, 'data-testid', 'testId')
 
   return tpl`
-    import React, { forwardRef, Ref } from 'react'
-    import { StandardProps } from '@toptal/picasso-shared'
+    import type { Ref } from 'react'
+    import React, { forwardRef } from 'react'
+    import type { StandardProps } from '@toptal/picasso-shared'
     ${'\n'}
     const SIZE = 64
     ${'\n'}

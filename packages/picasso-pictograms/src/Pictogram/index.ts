@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 export { default as Svg3DCubeScreenBlue64 } from './3DCubeScreenBlue64'
 export { default as Svg3DCubeScreenWhite64 } from './3DCubeScreenWhite64'
 export { default as Svg404ErrorBlue64 } from './404ErrorBlue64'
