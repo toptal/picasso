@@ -1,5 +1,12 @@
 # Change Log
 
+## 54.1.0
+
+### Minor Changes
+
+- [#4892](https://github.com/toptal/picasso/pull/4892) [`83b7e01`](https://github.com/toptal/picasso/commit/83b7e01d76a5014671efef4a5f9f9eb29e07a4d8) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- add missing pictograms
+
 ## 54.0.13
 
 ### Patch Changes
