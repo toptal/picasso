@@ -1,0 +1,37 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1187_1198)">
+<path opacity="0.3" d="M49 47H41V55H49V47Z" fill="black"/>
+<path d="M42.5 50.5L44.5 52.5L48.5 48.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M57 58H7V63H57V58Z" fill="black"/>
+<path opacity="0.3" d="M23 9H15V17H23V9Z" fill="black"/>
+<path opacity="0.3" d="M46 0.799805V11.9998H57.2L46 0.799805Z" fill="black"/>
+<path d="M57.5 12.41L45.57 0.5H7.5V63.5H57.5V12.41Z" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M49 17H41V9H46V12H49V17Z" fill="black"/>
+<path d="M45.5 1V12.5H57" stroke="white" stroke-miterlimit="10"/>
+<path d="M16.5 12.5L18.5 14.5L22.5 10.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M23 22H15V30H23V22Z" fill="black"/>
+<path d="M16.5 25.5L18.5 27.5L22.5 23.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M23 34H15V42H23V34Z" fill="black"/>
+<path d="M16.5 37.5L18.5 39.5L22.5 35.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M23 47H15V55H23V47Z" fill="black"/>
+<path d="M16.5 50.5L18.5 52.5L22.5 48.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M36 47H28V55H36V47Z" fill="black"/>
+<path d="M29.5 50.5L31.5 52.5L35.5 48.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M36 34H28V42H36V34Z" fill="black"/>
+<path d="M29.5 37.5L31.5 39.5L35.5 35.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M36 22H28V30H36V22Z" fill="black"/>
+<path d="M29.5 25.5L31.5 27.5L35.5 23.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M36 9H28V17H36V9Z" fill="black"/>
+<path d="M29.5 12.5L31.5 14.5L35.5 10.5" stroke="white" stroke-miterlimit="10"/>
+<path d="M42.5 12.5L44.5 14.5L46.5 12.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M49 22H41V30H49V22Z" fill="black"/>
+<path d="M42.5 25.5L44.5 27.5L48.5 23.5" stroke="white" stroke-miterlimit="10"/>
+<path opacity="0.3" d="M49 34H41V42H49V34Z" fill="black"/>
+<path d="M42.5 37.5L44.5 39.5L48.5 35.5" stroke="white" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_1187_1198">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>
