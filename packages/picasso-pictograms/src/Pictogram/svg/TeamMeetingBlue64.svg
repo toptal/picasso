@@ -1,0 +1,23 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1158_1976)">
+<path opacity="0.15" d="M54 32H11V60H54V32Z" fill="#183A9C"/>
+<path opacity="0.15" d="M32.5 14.5C34.7091 14.5 36.5 12.7091 36.5 10.5C36.5 8.29086 34.7091 6.5 32.5 6.5C30.2909 6.5 28.5 8.29086 28.5 10.5C28.5 12.7091 30.2909 14.5 32.5 14.5Z" fill="#183A9C"/>
+<path opacity="0.15" d="M32.5 14.5C28.63 14.5 25.5 17.63 25.5 21.5L26 22H39L39.5 21.5C39.5 17.63 36.37 14.5 32.5 14.5Z" fill="#183A9C"/>
+<path d="M1 63.5H64" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M19.67 28.5H7.5V63.5H57.5V28.5H45.08" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M8.5 14.5C10.7091 14.5 12.5 12.7091 12.5 10.5C12.5 8.29086 10.7091 6.5 8.5 6.5C6.29086 6.5 4.5 8.29086 4.5 10.5C4.5 12.7091 6.29086 14.5 8.5 14.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M1.5 21.5C1.5 17.63 4.63 14.5 8.5 14.5C12.37 14.5 15.5 17.63 15.5 21.5" stroke="#204ECD" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M56.5 14.5C58.7091 14.5 60.5 12.7091 60.5 10.5C60.5 8.29086 58.7091 6.5 56.5 6.5C54.2909 6.5 52.5 8.29086 52.5 10.5C52.5 12.7091 54.2909 14.5 56.5 14.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M49.5 21.5C49.5 17.63 52.63 14.5 56.5 14.5C60.37 14.5 63.5 17.63 63.5 21.5" stroke="#204ECD" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M32.5 14.5C34.7091 14.5 36.5 12.7091 36.5 10.5C36.5 8.29086 34.7091 6.5 32.5 6.5C30.2909 6.5 28.5 8.29086 28.5 10.5C28.5 12.7091 30.2909 14.5 32.5 14.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M25.5 21.5C25.5 17.63 28.63 14.5 32.5 14.5C36.37 14.5 39.5 17.63 39.5 21.5" stroke="#204ECD" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M32.5 28.5C40.232 28.5 46.5 22.232 46.5 14.5C46.5 6.76801 40.232 0.5 32.5 0.5C24.768 0.5 18.5 6.76801 18.5 14.5C18.5 22.232 24.768 28.5 32.5 28.5Z" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M32.5 29V46" stroke="#204ECD" stroke-miterlimit="10"/>
+<path d="M37 42L32.5 46.5L28 42" stroke="#204ECD" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_1158_1976">
+<rect width="64" height="64" fill="white"/>
+</clipPath>
+</defs>
+</svg>
