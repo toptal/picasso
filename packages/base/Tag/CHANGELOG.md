@@ -1,5 +1,12 @@
 # @toptal/picasso-tag
 
+## 4.0.19
+
+### Patch Changes
+
+- Updated dependencies [[`cacac17`](https://github.com/toptal/picasso/commit/cacac17c4d378c3250dc68ecfc111f6d82ebad0d)]:
+  - @toptal/picasso-icons@1.15.1
+
 ## 4.0.18
 
 ### Patch Changes

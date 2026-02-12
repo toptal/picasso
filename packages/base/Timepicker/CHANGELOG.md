@@ -1,5 +1,14 @@
 # @toptal/picasso-timepicker
 
+## 4.1.12
+
+### Patch Changes
+
+- Updated dependencies [[`cacac17`](https://github.com/toptal/picasso/commit/cacac17c4d378c3250dc68ecfc111f6d82ebad0d)]:
+  - @toptal/picasso-icons@1.15.1
+  - @toptal/picasso-input@4.1.12
+  - @toptal/picasso-outlined-input@4.1.12
+
 ## 4.1.11
 
 ### Patch Changes

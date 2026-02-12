@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-logo",
-  "version": "2.0.16",
+  "version": "2.0.17",
   "description": "Toptal UI components library - Logo",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-icons": "1.15.0",
+    "@toptal/picasso-icons": "1.15.1",
     "@toptal/picasso-utils": "3.1.0"
   },
   "sideEffects": [

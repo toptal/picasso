@@ -1,5 +1,60 @@
 # Change Log
 
+## 54.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`cacac17`](https://github.com/toptal/picasso/commit/cacac17c4d378c3250dc68ecfc111f6d82ebad0d)]:
+  - @toptal/picasso-icons@1.15.1
+  - @toptal/picasso-accordion@3.0.31
+  - @toptal/picasso-account-select@3.0.27
+  - @toptal/picasso-alert@3.0.44
+  - @toptal/picasso-application-update-notification@2.0.43
+  - @toptal/picasso-avatar@6.1.20
+  - @toptal/picasso-avatar-upload@3.0.37
+  - @toptal/picasso-breadcrumbs@3.0.19
+  - @toptal/picasso-button@4.0.32
+  - @toptal/picasso-calendar@4.1.14
+  - @toptal/picasso-carousel@4.0.32
+  - @toptal/picasso-date-picker@3.2.12
+  - @toptal/picasso-drawer@3.0.44
+  - @toptal/picasso-dropzone@5.0.33
+  - @toptal/picasso-empty-state@2.0.22
+  - @toptal/picasso-file-input@4.0.32
+  - @toptal/picasso-form@6.3.12
+  - @toptal/picasso-grid@5.0.18
+  - @toptal/picasso-helpbox@5.0.32
+  - @toptal/picasso-input@4.1.12
+  - @toptal/picasso-input-adornment@3.0.18
+  - @toptal/picasso-list@5.0.20
+  - @toptal/picasso-logo@2.0.17
+  - @toptal/picasso-menu@3.0.26
+  - @toptal/picasso-modal@3.2.11
+  - @toptal/picasso-notification@4.0.32
+  - @toptal/picasso-number-input@4.2.12
+  - @toptal/picasso-outlined-input@4.1.12
+  - @toptal/picasso-page@5.4.17
+  - @toptal/picasso-password-input@5.1.12
+  - @toptal/picasso-rating@3.0.19
+  - @toptal/picasso-section@5.1.17
+  - @toptal/picasso-select@4.1.12
+  - @toptal/picasso-show-more@2.0.31
+  - @toptal/picasso-step@4.0.18
+  - @toptal/picasso-table@3.0.34
+  - @toptal/picasso-tabs@6.0.1
+  - @toptal/picasso-tag@4.0.19
+  - @toptal/picasso-timepicker@4.1.12
+  - @toptal/picasso-user-badge@5.1.21
+  - @toptal/picasso-pagination@4.0.33
+  - @toptal/picasso-prompt-modal@2.1.11
+  - @toptal/picasso-skeleton-loader@1.0.68
+  - @toptal/picasso-tree-view@3.0.44
+  - @toptal/picasso-autocomplete@5.2.12
+  - @toptal/picasso-tagselector@3.3.12
+  - @toptal/picasso-checkbox@5.0.22
+  - @toptal/picasso-radio@5.0.21
+  - @toptal/picasso-date-select@1.0.82
+
 ## 54.1.0
 
 ### Minor Changes

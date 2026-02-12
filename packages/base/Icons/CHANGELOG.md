@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.15.1
+
+### Patch Changes
+
+- [#4895](https://github.com/toptal/picasso/pull/4895) [`cacac17`](https://github.com/toptal/picasso/commit/cacac17c4d378c3250dc68ecfc111f6d82ebad0d) Thanks [@OleksandrNechai](https://github.com/OleksandrNechai)!
+- add missing non-color icons
+
 ## 1.15.0
 
 ### Minor Changes
