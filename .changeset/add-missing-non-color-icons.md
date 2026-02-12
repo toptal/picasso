@@ -2,4 +2,4 @@
 '@toptal/picasso-icons': patch
 ---
 
-[TOP-6318] Add missing non-color icons
+- add missing non-color icons
