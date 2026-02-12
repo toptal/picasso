@@ -1,5 +1,15 @@
 # @toptal/picasso-number-input
 
+## 4.2.12
+
+### Patch Changes
+
+- Updated dependencies [[`cacac17`](https://github.com/toptal/picasso/commit/cacac17c4d378c3250dc68ecfc111f6d82ebad0d)]:
+  - @toptal/picasso-icons@1.15.1
+  - @toptal/picasso-form@6.3.12
+  - @toptal/picasso-input-adornment@3.0.18
+  - @toptal/picasso-outlined-input@4.1.12
+
 ## 4.2.11
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @toptal/picasso-accordion
 
+## 3.0.31
+
+### Patch Changes
+
+- Updated dependencies [[`cacac17`](https://github.com/toptal/picasso/commit/cacac17c4d378c3250dc68ecfc111f6d82ebad0d)]:
+  - @toptal/picasso-icons@1.15.1
+  - @toptal/picasso-button@4.0.32
+
 ## 3.0.30
 
 ### Patch Changes
