@@ -30,7 +30,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -145,7 +145,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -173,7 +173,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div

@@ -24,10 +24,10 @@
     "prepublishOnly": "yarn build:package"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "^4.2.1"
   },
   "peerDependencies": {
-    "tailwindcss": "^3.4.10"
+    "tailwindcss": "^4.2.1"
   },
   "sideEffects": false,
   "files": [

@@ -28,7 +28,7 @@ export const SidebarLogo = forwardRef<HTMLDivElement, Props>(
     return (
       <Container
         {...rest}
-        className={twMerge('flex-shrink-0 block overflow-hidden', className)}
+        className={twMerge('shrink-0 block overflow-hidden', className)}
         ref={ref}
         bottom='xsmall'
         left='large'

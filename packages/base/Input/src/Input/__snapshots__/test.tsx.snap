@@ -111,7 +111,7 @@ exports[`Input should show reset button 1`] = `
         value="Some value"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto invisible peer-focus:visible peer-active:visible group-hover:visible"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto invisible peer-focus:visible peer-active:visible group-hover:visible"
         data-testid="reset-adornment"
       >
         <button

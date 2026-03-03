@@ -202,7 +202,7 @@ export const MenuItem: OverridableComponent<Props> = forwardRef<
               {typeof children === 'string' ? (
                 <span
                   className={twJoin(
-                    'flex-1 text-md leading-5',
+                    'flex-1 text-md leading-[1.25rem]',
                     checkmarked && 'text-semibold'
                   )}
                   style={style}

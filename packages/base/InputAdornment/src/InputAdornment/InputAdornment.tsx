@@ -45,9 +45,8 @@ const InputAdornment = (props: Props) => {
       {...rest}
       className={twMerge(
         'text-graphite-700 h-auto flex items-center whitespace-nowrap max-h-[2em]',
-        disabled && 'text-opacity-[0.48]',
-        position === 'end' &&
-          'justify-end ml-auto flex-grow-0 flex-shrink-0 basis-auto',
+        disabled && 'text-graphite-700/48',
+        position === 'end' && 'justify-end ml-auto grow-0 shrink-0 basis-auto',
         disablePointerEvents && 'pointer-events-none',
         className
       )}

@@ -90,7 +90,7 @@ exports[`Dropdown should render menu 1`] = `
                         class="flex items-center"
                       >
                         <span
-                          class="flex-1 text-md leading-5"
+                          class="flex-1 text-md leading-[1.25rem]"
                         >
                           Item1
                         </span>
@@ -114,7 +114,7 @@ exports[`Dropdown should render menu 1`] = `
                         class="flex items-center"
                       >
                         <span
-                          class="flex-1 text-md leading-5"
+                          class="flex-1 text-md leading-[1.25rem]"
                         >
                           Item2
                         </span>
@@ -138,7 +138,7 @@ exports[`Dropdown should render menu 1`] = `
                         class="flex items-center"
                       >
                         <span
-                          class="flex-1 text-md leading-5"
+                          class="flex-1 text-md leading-[1.25rem]"
                         >
                           Item3
                         </span>
@@ -220,7 +220,7 @@ exports[`Dropdown should render menu with focus 1`] = `
                         class="flex items-center"
                       >
                         <span
-                          class="flex-1 text-md leading-5"
+                          class="flex-1 text-md leading-[1.25rem]"
                         >
                           Item1
                         </span>
@@ -244,7 +244,7 @@ exports[`Dropdown should render menu with focus 1`] = `
                         class="flex items-center"
                       >
                         <span
-                          class="flex-1 text-md leading-5"
+                          class="flex-1 text-md leading-[1.25rem]"
                         >
                           Item2
                         </span>
@@ -268,7 +268,7 @@ exports[`Dropdown should render menu with focus 1`] = `
                         class="flex items-center"
                       >
                         <span
-                          class="flex-1 text-md leading-5"
+                          class="flex-1 text-md leading-[1.25rem]"
                         >
                           Item3
                         </span>

@@ -30,7 +30,7 @@ const rootClasses = [
   'min-[1280px]:[&_p]:text-sm',
 ]
 const separatorClasses = [
-  'min-[1280px]:before:[&:not(:first-child)]:content-[""]',
+  'min-[1280px]:first:before:hidden min-[1280px]:before:content-[""]',
   'min-[1280px]:before:bg-gray-600 min-[1280px]:before:inline-block',
   'min-[1280px]:before:h-2 min-[1280px]:before:mx-2 min-[1280px]:before:w-[1px]',
 ]

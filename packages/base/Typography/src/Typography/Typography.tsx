@@ -200,9 +200,7 @@ export const Typography = forwardRef<HTMLElement, Props>(function Typography(
         weight ? WEIGHTS[weight] : VARIANT_WEIGHT[variant][size],
         align ? ALIGN[align] : undefined,
         underline ? UNDERLINE[underline] : undefined,
-        noWrap
-          ? 'whitespace-nowrap overflow-ellipsis overflow-hidden'
-          : undefined,
+        noWrap ? 'whitespace-nowrap text-ellipsis overflow-hidden' : undefined,
         lineThrough ? 'line-through' : undefined,
         inline ? 'inline' : undefined,
         className

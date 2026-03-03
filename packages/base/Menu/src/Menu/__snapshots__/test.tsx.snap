@@ -26,7 +26,7 @@ exports[`Menu renders 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 1
               </span>
@@ -50,7 +50,7 @@ exports[`Menu renders 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 2
               </span>
