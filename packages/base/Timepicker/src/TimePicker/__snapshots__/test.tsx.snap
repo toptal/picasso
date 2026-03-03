@@ -11,13 +11,13 @@ exports[`TimePicker renders 1`] = `
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg"
+        class="base-Input bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 -mr [&::-webkit-calendar-picker [&::-webkit-calendar-picker-indicator]:right [&::-webkit-calendar-picker-indicator]:cursor [&::-webkit-calendar-picker-indicator]:bg"
         step="60"
         type="time"
         value="21:00"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto pointer-events"
       >
         <svg
           class="fill-current inline-block text-inherit h-[1em] align-[-.125em] bg-white absolute right-[0.625rem] pointer-events m-0 select-none grow shrink basis-0"

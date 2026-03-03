@@ -2,7 +2,7 @@
 
 exports[`YearSelect render in descending order 1`] = `
 <ul
-  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm bg-white shadow-5"
+  class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm bg-white shadow-5"
   role="listbox"
   tabindex="-1"
 >
@@ -15,7 +15,7 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-blue hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
         data-highlighted="true"
         role="option"
         tabindex="-1"
@@ -45,7 +45,7 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
@@ -75,7 +75,7 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
@@ -105,7 +105,7 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
@@ -135,7 +135,7 @@ exports[`YearSelect render in descending order 1`] = `
       <li
         aria-disabled="false"
         aria-selected="false"
-        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-none appearance-none leading-4"
+        class="text-black bg-transparent hover:bg-blue focus:bg-blue px-4 py-[0.375rem] min-w w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden whitespace-normal text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4"
         data-highlighted="false"
         role="option"
         tabindex="-1"
@@ -185,7 +185,7 @@ exports[`YearSelect renders 1`] = `
           <input
             aria-invalid="false"
             autocomplete="off"
-            class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+            class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
             readonly=""
             size="1"
             type="text"

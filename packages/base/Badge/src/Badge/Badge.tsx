@@ -53,7 +53,7 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
       slotProps={{
         root: {
           className: twMerge(
-            `inline-flex flex-shrink-0 content-middle flex-nowrap justify-normal 
+            `inline-flex shrink-0 content-middle flex-nowrap justify-normal
             text-[10px] font-semibold leading-3 align-middle text-graphite-700`,
             hasChildren ? 'relative' : 'static',
             className

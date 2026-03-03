@@ -53,7 +53,7 @@ export const ModalPaper = React.forwardRef<HTMLDivElement, Props>(
         elevation={2}
         className={twMerge(
           className,
-          'outline-none overflow-y-auto',
+          'outline-hidden overflow-y-auto',
           'flex flex-col',
           sizeBasedClasses[size],
           alignBasedClasses[align],

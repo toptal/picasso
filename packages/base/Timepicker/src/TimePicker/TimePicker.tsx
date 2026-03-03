@@ -126,7 +126,7 @@ export const TimePicker = ({ status = 'default', ...props }: Props) => {
             maskPlaceholder='-'
             value={value}
             onChange={onChange}
-            className={'text-sm border-none p-0 m-0 outline-none'}
+            className={'text-sm border-none p-0 m-0 outline-hidden'}
           />
         }
       />

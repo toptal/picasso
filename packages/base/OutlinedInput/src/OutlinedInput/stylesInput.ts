@@ -57,7 +57,7 @@ export const inputClasses = [
   'box-border',
   'cursor-[inherit]',
   'h-full',
-  'outline-none',
+  'outline-hidden',
   'p-0',
   'peer',
   'resize-none',

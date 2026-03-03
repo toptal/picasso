@@ -36,7 +36,7 @@ export const AvatarEditContainer = ({ size = 'small', ...props }: Props) => {
     <button
       className={twJoin(
         'border-none cursor-pointer absolute left-0 top-0 flex justify-center',
-        'items-center outline-none bg-transparent',
+        'items-center outline-hidden bg-transparent',
         rootClassBySize[size]
       )}
       data-testid={dataTestId}

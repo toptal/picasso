@@ -30,7 +30,7 @@ const COLOR_DISABLED_MAP: Record<
 > = {
   blue: {
     action: {
-      disabled: 'text-blue-500 no-underline opacity-50 hover:!no-underline',
+      disabled: 'text-blue-500 no-underline opacity-50 hover:no-underline!',
       normal: 'text-blue-500 visited:text-purple-500 no-underline',
     },
     anchor: {
@@ -128,10 +128,10 @@ export const calculateViewModel = (props: Props): ViewModel => {
 
   return {
     className: twMerge(
-      'focus:outline-none hover:underline leading-[inherit]',
+      'focus:outline-hidden hover:underline leading-[inherit]',
       COLOR_DISABLED_MAP[color][variant][disabled ? 'disabled' : 'normal'],
       disabled ? 'cursor-not-allowed' : '',
-      noUnderline ? '!no-underline' : '',
+      noUnderline ? 'no-underline!' : '',
       visited
         ? color === 'blue'
           ? 'visited text-purple-500'

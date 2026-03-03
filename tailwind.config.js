@@ -11,7 +11,4 @@ module.exports = {
     require('@toptal/base-tailwind'),
     require('@toptal/picasso-tailwind'),
   ],
-  corePlugins: {
-    preflight: false,
-  },
 }

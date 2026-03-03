@@ -15,7 +15,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
           class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
           >
             Angular JS
           </span>
@@ -28,7 +28,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
           class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
           >
             React JS
           </span>
@@ -41,7 +41,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
           class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
           >
             Ember JS
           </span>
@@ -54,7 +54,7 @@ exports[`TagGroup should render label group with 4 labels 1`] = `
           class="flex gap-2 px-3 overflow-hidden items-center"
         >
           <span
-            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+            class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
           >
             Vue JS
           </span>

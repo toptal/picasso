@@ -95,8 +95,7 @@ export const DropzoneSvg = ({ size = 'small', ...props }: Props) => {
         />
         <path
           className={twJoin(
-            'hidden',
-            focused && !isDragActive && '[display:initial]',
+            focused && !isDragActive ? '[display:initial]' : 'hidden',
             error ? 'stroke-red-500' : 'stroke-blue-500'
           )}
           fillRule='evenodd'

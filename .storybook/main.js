@@ -73,10 +73,7 @@ module.exports = {
         postcssOptions: {
           config: false,
           plugins: {
-            tailwindcss: {
-              config: require.resolve('../tailwind.config.js'),
-            },
-            autoprefixer: {},
+            '@tailwindcss/postcss': {},
           },
         },
       },

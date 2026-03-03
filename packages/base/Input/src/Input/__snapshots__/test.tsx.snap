@@ -24,7 +24,7 @@ exports[`Input renders icon in the beginning 1`] = `
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
@@ -57,7 +57,7 @@ exports[`Input renders icon in the end 1`] = `
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />
@@ -77,7 +77,7 @@ exports[`Input should show manual resize handler 1`] = `
       <textarea
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
         style="height: 0px; overflow: hidden;"
         type="text"
       >
@@ -85,7 +85,7 @@ exports[`Input should show manual resize handler 1`] = `
       </textarea>
       <textarea
         aria-hidden="true"
-        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100 resize-y"
         readonly=""
         style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding-top: 0px; padding-bottom: 0px;"
         tabindex="-1"
@@ -106,17 +106,17 @@ exports[`Input should show reset button 1`] = `
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value="Some value"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto invisible peer-focus:visible peer-active:visible group-hover:visible"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto invisible peer-focus:visible peer-active:visible group-hover:visible"
         data-testid="reset-adornment"
       >
         <button
           aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent"
           data-component-type="button"
           role="reset"
           tabindex="-1"
@@ -153,13 +153,13 @@ exports[`Input shows counter for multiline input 1`] = `
       <textarea
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         style="height: 0px; overflow: hidden;"
         type="text"
       />
       <textarea
         aria-hidden="true"
-        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         readonly=""
         style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding-top: 0px; padding-bottom: 0px;"
         tabindex="-1"
@@ -183,7 +183,7 @@ exports[`Input shows counter for regular input 1`] = `
       <input
         aria-invalid="false"
         autocomplete="none"
-        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-none p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
+        class="base-Input [&::-webkit-calendar-picker-indicator]:bg bg-transparent border-none box-border cursor-[inherit] h-full outline-hidden p-0 peer resize-none w-full text-md leading-4 text-black [&::placeholder]:text-gray [&::placeholder]:opacity-100"
         type="text"
         value=""
       />

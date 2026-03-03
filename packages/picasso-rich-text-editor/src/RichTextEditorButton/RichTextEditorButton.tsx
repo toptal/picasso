@@ -23,7 +23,7 @@ const RichTextEditorButton = ({
     variant='flat'
     onClick={onClick}
     className={twMerge(
-      'rounded-sm [&+&]:!ml-2',
+      'rounded-sm [&+&]:ml-2!',
       active && 'bg-graphite-700 [&:not(:hover)_svg]:fill-white',
       className
     )}

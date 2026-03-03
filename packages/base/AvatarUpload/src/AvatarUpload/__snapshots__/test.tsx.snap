@@ -6,7 +6,7 @@ exports[`AvatarUpload renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="relative flex justify-center items-center text-blue outline-none cursor-pointer w-[5rem] h-[5rem]"
+      class="relative flex justify-center items-center text-blue outline-hidden cursor-pointer w-[5rem] h-[5rem]"
       role="presentation"
       tabindex="0"
     >

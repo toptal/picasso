@@ -21,7 +21,7 @@ export const createCoreClassNames = ({
     'duration-350',
     'ease-out',
     'shrink-0',
-    'outline-none',
+    'outline-hidden',
     '[[data-component-type="button"]+&]:ml-4',
   ]
 
