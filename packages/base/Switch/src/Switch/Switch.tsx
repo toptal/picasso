@@ -55,7 +55,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       ref={ref as React.Ref<HTMLElement>}
       checked={checked}
       className={cx(
-        'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer',
+        'w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer',
         '[&[data-checked]_.picasso-switch-track]:bg-blue-500 [&[data-checked]_.picasso-switch-track]:border-blue-500',
         '[&[data-disabled]_.picasso-switch-track]:opacity-40',
         '[&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg-black',

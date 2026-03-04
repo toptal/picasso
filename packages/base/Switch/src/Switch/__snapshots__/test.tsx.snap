@@ -7,7 +7,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
 >
   <span
     aria-checked="true"
-    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
+    class="w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
     data-checked=""
     id="base-ui-:ra:"
     role="switch"
@@ -47,7 +47,7 @@ exports[`Switch renders default Switch without label 1`] = `
   >
     <span
       aria-checked="false"
-      class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
+      class="w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
       data-testid="switch"
       data-unchecked=""
       id="base-ui-:r0:"
@@ -81,7 +81,7 @@ exports[`Switch renders disabled state 1`] = `
   <span
     aria-checked="false"
     aria-disabled="true"
-    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
+    class="w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
     data-disabled=""
     data-unchecked=""
     id="base-ui-:r4:"
