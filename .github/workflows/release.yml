@@ -143,25 +143,25 @@ jobs:
             text: 'A new PR was merged to Picasso :parrotspin:'
 
       - name: Setup GitHub Pages content
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        if: ${{ success() }}
         uses: ./.github/actions/setup-gh-pages
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Storybook for Production
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        if: ${{ success() }}
         run: |
           yarn build:storybook
           echo "📖 Building Storybook for production deployment..." >> $GITHUB_STEP_SUMMARY
 
       - name: Generate LLM docs
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        if: ${{ success() }}
         run: |
           yarn generate:llm-docs
           cp -r llm-docs build/storybook/llm-docs
 
       - name: Prepare production deployment
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        if: ${{ success() }}
         uses: ./.github/actions/prepare-deployment
         with:
           deployment-type: production
@@ -169,7 +169,7 @@ jobs:
           content-path: gh-pages-content
 
       - name: Deploy Production Storybook to GitHub Pages
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        if: ${{ success() }}
         id: storybook-deployment
         uses: ./.github/actions/deploy-to-gh-pages
         with:
@@ -177,7 +177,7 @@ jobs:
           deployment-name: 'Production Storybook'
 
       - name: Storybook Deployment Success
-        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        if: ${{ success() }}
         run: |
           echo "🚀 Production Storybook deployed to GitHub Pages!" >> $GITHUB_STEP_SUMMARY
           echo "📖 Visit: https://toptal.github.io/picasso/" >> $GITHUB_STEP_SUMMARY
