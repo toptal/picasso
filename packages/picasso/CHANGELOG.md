@@ -1,5 +1,15 @@
 # Change Log
 
+## 54.1.3
+
+### Patch Changes
+
+- [#4902](https://github.com/toptal/picasso/pull/4902) [`67075f0`](https://github.com/toptal/picasso/commit/67075f02b9d7e3d0e0742013d90d4b880c94afa6) Thanks [@denieler](https://github.com/denieler)!
+
+### LLM Docs
+
+- trigger release for LLM docs deployment
+
 ## 54.1.2
 
 ### Patch Changes
