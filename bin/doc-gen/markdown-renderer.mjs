@@ -334,6 +334,7 @@ const renderLlmsHeader = () => [
   '',
   '## Docs',
   '',
+  '- [Initial Setup](./initial-setup.md): Installation, setup, and getting started',
   '- [Component Index](./components/index.md): Full list of all UI components',
   '- [Tutorial Index](./tutorials/index.md): Step-by-step usage guides',
   '',

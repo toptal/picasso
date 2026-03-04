@@ -2,7 +2,7 @@
 
 /* eslint-disable no-console */
 
-import { writeFileSync, mkdirSync } from 'fs'
+import { writeFileSync, readFileSync, mkdirSync } from 'fs'
 import { resolve, dirname } from 'path'
 
 import { discoverStories } from './doc-gen/story-resolver.mjs'
@@ -22,7 +22,6 @@ const ROOT = resolve(import.meta.dirname, '..')
 const DOCS_ROOT = resolve(ROOT, 'llm-docs')
 const DOCS_COMPONENTS = resolve(DOCS_ROOT, 'components')
 const DOCS_TUTORIALS = resolve(DOCS_ROOT, 'tutorials')
-
 /**
  * Resolve an import source path to the absolute directory of the story file.
  */
@@ -168,7 +167,6 @@ const writePage = (page, componentPages, tutorialPages) => {
 
 mkdirSync(DOCS_COMPONENTS, { recursive: true })
 mkdirSync(DOCS_TUTORIALS, { recursive: true })
-
 console.log('Discovering story files...')
 const stories = discoverStories()
 
@@ -239,7 +237,13 @@ for (const page of parsed) {
   writePage(page, componentPages, tutorialPages)
 }
 
-// Step 7: Generate index files and root llms.txt
+// Step 7: Copy introduction (README)
+const readmePath = resolve(ROOT, 'packages/picasso/README.md')
+const readmeContent = readFileSync(readmePath, 'utf-8')
+
+writeFileSync(resolve(DOCS_ROOT, 'initial-setup.md'), readmeContent)
+
+// Step 8: Generate index files and root llms.txt
 const indexMarkdown = renderComponentIndex(componentPages)
 
 writeFileSync(resolve(DOCS_COMPONENTS, 'index.md'), indexMarkdown)
