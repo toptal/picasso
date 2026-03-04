@@ -57,7 +57,8 @@
     "test:unit:coverage": "yarn test:unit:ci --collect-coverage --coverage true --collectCoverageFrom packages/**/*.{ts,tsx} --coverageDirectory coverage/jest",
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk yarn test:unit",
     "test:unit:watch": "yarn test:unit --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:llm-docs": "node bin/generate-docs.mjs"
   },
   "lint-staged": {
     "{**/*.{js,jsx,ts,tsx},.changeset/*.md}": [
