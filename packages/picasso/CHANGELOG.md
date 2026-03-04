@@ -1,5 +1,15 @@
 # Change Log
 
+## 54.1.2
+
+### Patch Changes
+
+- [#4900](https://github.com/toptal/picasso/pull/4900) [`c1b0fa0`](https://github.com/toptal/picasso/commit/c1b0fa0569bc66d9dcaf39fe7828bc1438e09950) Thanks [@denieler](https://github.com/denieler)!
+
+### LLM Docs
+
+- add LLM-optimized markdown documentation generation from Storybook stories
+
 ## 54.1.1
 
 ### Patch Changes
