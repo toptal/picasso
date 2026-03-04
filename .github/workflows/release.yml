@@ -154,6 +154,12 @@ jobs:
           yarn build:storybook
           echo "📖 Building Storybook for production deployment..." >> $GITHUB_STEP_SUMMARY
 
+      - name: Generate LLM docs
+        if: ${{ success() && steps.changesets.outputs.published == 'true' }}
+        run: |
+          yarn generate:llm-docs
+          cp -r llm-docs build/storybook/llm-docs
+
       - name: Prepare production deployment
         if: ${{ success() && steps.changesets.outputs.published == 'true' }}
         uses: ./.github/actions/prepare-deployment

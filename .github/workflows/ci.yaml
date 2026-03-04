@@ -147,6 +147,11 @@ jobs:
       - name: Build Storybook
         run: yarn build:storybook
 
+      - name: Generate LLM docs
+        run: |
+          yarn generate:llm-docs
+          cp -r llm-docs build/storybook/llm-docs
+
       - name: Prepare PR preview deployment
         uses: ./.github/actions/prepare-deployment
         with:
