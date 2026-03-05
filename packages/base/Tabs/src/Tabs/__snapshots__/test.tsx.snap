@@ -157,7 +157,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="w-full block"
             >
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block"
+                class="m-0 text-md text-inherit font-semibold whitespace-nowrap [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block"
               >
                 Tab 1
               </div>
@@ -177,7 +177,7 @@ exports[`Tabs renders in vertical orientation 1`] = `
               class="w-full block"
             >
               <div
-                class="m-0 text-md text-inherit font-semibold whitespace-nowrap overflow-ellipsis [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block"
+                class="m-0 text-md text-inherit font-semibold whitespace-nowrap [-webkit-box overflow-hidden text-ellipsis pr-[0.9px] block"
               >
                 Tab 2
               </div>

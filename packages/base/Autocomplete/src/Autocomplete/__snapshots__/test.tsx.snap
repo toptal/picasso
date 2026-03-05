@@ -31,7 +31,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 Belarus
               </span>
@@ -57,7 +57,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 Croatia
               </span>
@@ -83,7 +83,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 Lithuania
               </span>
@@ -109,7 +109,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 Slovakia
               </span>
@@ -135,7 +135,7 @@ exports[`Autocomplete dynamic behavior on focus 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 Ukraine
               </span>
@@ -251,7 +251,7 @@ exports[`Autocomplete static behavior renders 1`] = `
             value=""
           />
           <div
-            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto invisible"
+            class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto invisible"
             data-testid="reset-adornment"
           >
             <button
@@ -289,7 +289,7 @@ exports[`Autocomplete static behavior renders 1`] = `
 
 exports[`Autocomplete static behavior renders a loading indicator 1`] = `
 <div
-  class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
+  class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto pointer-events"
   data-testid="loading-adornment"
 >
   <div
@@ -353,7 +353,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 BelarusBY
               </span>
@@ -379,7 +379,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 CroatiaHR
               </span>
@@ -405,7 +405,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 LithuaniaLU
               </span>
@@ -431,7 +431,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 SlovakiaSK
               </span>
@@ -457,7 +457,7 @@ exports[`Autocomplete static behavior renders custom display value 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 UkraineUA
               </span>

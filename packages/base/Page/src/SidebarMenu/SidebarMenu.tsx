@@ -72,7 +72,7 @@ export const SidebarMenu = forwardRef<HTMLUListElement, Props>(
         ref={ref}
         style={style}
         className={twMerge(
-          'shadow-0 order-1 [&_&]:flex-1 flex-grow-0 flex-shrink-1 max-w-full',
+          'shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w-full',
           bottom && 'order-[99]',
           parentMenu?.compact && 'p-2',
           className

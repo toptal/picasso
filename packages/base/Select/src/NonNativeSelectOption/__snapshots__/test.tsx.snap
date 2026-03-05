@@ -27,7 +27,7 @@ exports[`NonNativeSelectOption renders 1`] = `
               class="w-4 inline-flex mr-2"
             />
             <span
-              class="flex-1 text-md leading-5"
+              class="flex-1 text-md leading-[1.25rem]"
             >
               Test
             </span>
@@ -81,7 +81,7 @@ exports[`NonNativeSelectOption sets attributes correctly 1`] = `
               </svg>
             </div>
             <span
-              class="flex-1 text-md leading-5 text-semibold"
+              class="flex-1 text-md leading-[1.25rem] text-semibold"
             >
               Test
             </span>

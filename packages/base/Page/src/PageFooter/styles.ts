@@ -6,8 +6,8 @@ export const getMaxWidthClass = ({ fullWidth, width }: PageContextProps) => {
   }
 
   if (width === 'wide') {
-    return 'max-w-[--content-width-wide]'
+    return 'max-w-[var(--content-width-wide)]'
   }
 
-  return 'max-w-[--content-width]'
+  return 'max-w-[var(--content-width)]'
 }

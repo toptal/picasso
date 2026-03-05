@@ -17,7 +17,7 @@ exports[`TimePicker renders 1`] = `
         value="21:00"
       />
       <div
-        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto flex-grow flex-shrink basis-auto pointer-events"
+        class="text-graphite h-auto flex items-center whitespace-nowrap max-h justify-end ml-auto grow-0 shrink-0 basis-auto pointer-events"
       >
         <svg
           class="fill-current inline-block text-inherit h-[1em] align-[-.125em] bg-white absolute right-[0.625rem] pointer-events m-0 select-none grow shrink basis-0"

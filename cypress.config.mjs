@@ -65,10 +65,7 @@ export default defineConfig({
                   postcssOptions: {
                     config: false,
                     plugins: {
-                      tailwindcss: {
-                        config: './tailwind.config.js',
-                      },
-                      autoprefixer: {},
+                      '@tailwindcss/postcss': {},
                     },
                   },
                 },

@@ -11,6 +11,7 @@ dist/
 
 .envrc
 .DS_Store
+.nvmrc
 
 # CI needs this to publish lerna
 .npmrc

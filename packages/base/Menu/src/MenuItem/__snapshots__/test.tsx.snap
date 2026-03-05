@@ -21,7 +21,7 @@ exports[`MenuItem renders 1`] = `
             class="flex items-center"
           >
             <span
-              class="flex-1 text-md leading-5"
+              class="flex-1 text-md leading-[1.25rem]"
             >
               1
             </span>
@@ -67,7 +67,7 @@ exports[`MenuItem renders checkmarked 1`] = `
               </svg>
             </div>
             <span
-              class="flex-1 text-md leading-5 text-semibold"
+              class="flex-1 text-md leading-[1.25rem] text-semibold"
             >
               1
             </span>
@@ -103,7 +103,7 @@ exports[`MenuItem renders in title case with global prop 1`] = `
               class="flex items-center"
             >
               <span
-                class="flex-1 text-md leading-5"
+                class="flex-1 text-md leading-[1.25rem]"
               >
                 Arrow
               </span>
@@ -137,7 +137,7 @@ exports[`MenuItem renders in title case with local prop 1`] = `
             class="flex items-center"
           >
             <span
-              class="flex-1 text-md leading-5"
+              class="flex-1 text-md leading-[1.25rem]"
             >
               Arrow
             </span>
@@ -170,7 +170,7 @@ exports[`MenuItem renders with a sub menu arrow 1`] = `
             class="flex items-center"
           >
             <span
-              class="flex-1 text-md leading-5"
+              class="flex-1 text-md leading-[1.25rem]"
             >
               1
             </span>
@@ -216,7 +216,7 @@ exports[`MenuItem renders with description 1`] = `
             class="flex items-center"
           >
             <span
-              class="flex-1 text-md leading-5"
+              class="flex-1 text-md leading-[1.25rem]"
             >
               1
             </span>
