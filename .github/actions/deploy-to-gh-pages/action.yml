@@ -34,6 +34,37 @@ runs:
       id: deployment
       uses: actions/deploy-pages@v4
 
+    - name: Sync content to gh-pages branch
+      shell: bash
+      run: |
+        cd "${{ inputs.content-path }}"
+
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        if [ ! -d ".git" ]; then
+          git init -b gh-pages
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+        else
+          # Ensure we're on gh-pages branch (the failed checkout may have
+          # left us on 'master' after git init with no gh-pages ref)
+          CURRENT_BRANCH=$(git branch --show-current 2>/dev/null || echo "")
+          if [ "$CURRENT_BRANCH" != "gh-pages" ]; then
+            git checkout -B gh-pages
+          fi
+          # Ensure remote URL uses the token for authentication
+          git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" 2>/dev/null || \
+            git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+        fi
+
+        git add -A
+        if git diff --cached --quiet; then
+          echo "gh-pages branch already up to date"
+        else
+          git commit -m "Sync: ${{ inputs.deployment-name }}"
+          git push origin gh-pages
+        fi
+
     - name: Deployment summary
       shell: bash
       run: |
