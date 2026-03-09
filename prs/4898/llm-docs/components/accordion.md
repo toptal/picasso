@@ -41,12 +41,15 @@ Accordion is uncontrolled until the `expanded` prop is specified.
 
 ```tsx
 import React from 'react'
-import { Accordion, Grid } from '@toptal/picasso'
+import { Accordion, Check16, Grid } from '@toptal/picasso'
 
 const Example = () => (
   <Grid>
     <Grid.Item sm={6}>
-      <Accordion content={<DetailsDogDefinitionPanel />}>
+      <Accordion
+        content={<DetailsDogDefinitionPanel />}
+        expandIcon={<Check16 />}
+      >
         <Accordion.Summary>What is a dog?</Accordion.Summary>
       </Accordion>
     </Grid.Item>
