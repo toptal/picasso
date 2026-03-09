@@ -117,7 +117,7 @@ jobs:
     name: Deploy Picasso docs
     runs-on: ubuntu-latest
     concurrency:
-      group: gh-pages-deployment-pr
+      group: gh-pages-deployment
       cancel-in-progress: false
     permissions:
       contents: write

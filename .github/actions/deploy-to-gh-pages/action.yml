@@ -34,6 +34,31 @@ runs:
       id: deployment
       uses: actions/deploy-pages@v4
 
+    - name: Sync content to gh-pages branch
+      shell: bash
+      run: |
+        cd "${{ inputs.content-path }}"
+
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        if [ ! -d ".git" ]; then
+          git init -b gh-pages
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+        fi
+
+        git add -A
+        if git diff --cached --quiet; then
+          echo "gh-pages branch already up to date"
+        else
+          git commit -m "Sync: ${{ inputs.deployment-name }}"
+          if git push origin gh-pages; then
+            echo "gh-pages branch synced with deployment"
+          else
+            echo "::warning::Failed to sync gh-pages branch (concurrent deployment?). Next deployment will self-heal."
+          fi
+        fi
+
     - name: Deployment summary
       shell: bash
       run: |
