@@ -52,11 +52,7 @@ runs:
           echo "gh-pages branch already up to date"
         else
           git commit -m "Sync: ${{ inputs.deployment-name }}"
-          if git push origin gh-pages; then
-            echo "gh-pages branch synced with deployment"
-          else
-            echo "::warning::Failed to sync gh-pages branch (concurrent deployment?). Next deployment will self-heal."
-          fi
+          git push origin gh-pages
         fi
 
     - name: Deployment summary
