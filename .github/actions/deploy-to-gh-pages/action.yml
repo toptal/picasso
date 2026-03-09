@@ -45,6 +45,16 @@ runs:
         if [ ! -d ".git" ]; then
           git init -b gh-pages
           git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+        else
+          # Ensure we're on gh-pages branch (the failed checkout may have
+          # left us on 'master' after git init with no gh-pages ref)
+          CURRENT_BRANCH=$(git branch --show-current 2>/dev/null || echo "")
+          if [ "$CURRENT_BRANCH" != "gh-pages" ]; then
+            git checkout -B gh-pages
+          fi
+          # Ensure remote URL uses the token for authentication
+          git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" 2>/dev/null || \
+            git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
         fi
 
         git add -A
