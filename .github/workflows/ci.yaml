@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Checkout
         # Same as actions/checkout@v5
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
         with:
           fetch-depth: 0
 
@@ -87,7 +87,7 @@ jobs:
     steps:
       - name: Checkout
         # Same as actions/checkout@v5
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
 
       - name: Set up Node.js
         # Same as actions/setup-node@v6.1
@@ -128,7 +128,7 @@ jobs:
     steps:
       - name: Checkout
         # Same as actions/checkout@v5
-        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
 
       - name: Set up Node.js
         # Same as actions/setup-node@v6.1
