@@ -9,7 +9,7 @@ Picasso is Toptal's component library, based on Toptal's design system - BASE. U
 ## Installation instructions
 
 ```js
-yarn add @toptal/picasso @toptal/picasso-provider @toptal/picasso-tailwind tailwindcss @tailwindcss/postcss
+yarn add @toptal/picasso @toptal/picasso-provider @toptal/picasso-tailwind tailwindcss @tailwindcss/postcss postcss autoprefixer
 ```
 
 ## Create `tailwind.config.js` in the root of the project
