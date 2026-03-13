@@ -170,7 +170,7 @@ export const AvatarUpload = forwardRef<HTMLElement, Props>(
         style={style}
         {...getRootProps({
           className: twJoin(
-            'relative flex justify-center items-center text-blue-500 outline-none cursor-pointer',
+            'relative flex justify-center items-center text-blue-500 outline-hidden cursor-pointer',
             rootClassBySize[size],
             disabled && 'cursor-no-drop',
             showAvatar && 'cursor-default'

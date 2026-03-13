@@ -481,7 +481,7 @@ describe('Tooltip', () => {
       cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
       // Click elsewhere to blur the trigger element
-      cy.get('body').realClick({ position: { x: 0, y: 0 } })
+      cy.get('body').realClick({ position: { x: 500, y: 500 } })
 
       // Tooltip should disappear
       cy.getByTestId(testIds.tooltipContent).should('not.exist')
@@ -503,7 +503,7 @@ describe('Tooltip', () => {
       cy.getByTestId(testIds.tooltipContent).should('be.visible')
 
       // Move mouse away from tooltip content using real hover
-      cy.get('body').realHover({ position: { x: 0, y: 0 } })
+      cy.get('body').realHover({ position: { x: 500, y: 500 } })
 
       // Tooltip should eventually disappear
       cy.getByTestId(testIds.tooltipContent).should('not.exist')

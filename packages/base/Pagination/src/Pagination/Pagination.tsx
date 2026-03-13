@@ -78,7 +78,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
     return (
       <PaginationButton
         key={index}
-        className='[&+&]:!ml-2'
+        className='[&+&]:ml-2!'
         page={Number(page)}
         activePage={activePage}
         disabled={disabled}
@@ -90,7 +90,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
   return (
     <Container {...rest} ref={ref} flex inline alignItems='center'>
       <Button
-        className='[&+&]:!ml-2'
+        className='[&+&]:ml-2!'
         disabled={isFirstActive || disabled}
         onClick={handlePrevClick}
         variant='secondary'
@@ -102,7 +102,7 @@ export const Pagination = forwardRef<HTMLDivElement, Props>(function Pagination(
       {variant === 'compact' ? null : pageButtons}
 
       <Button
-        className='[&+&]:!ml-2'
+        className='[&+&]:ml-2!'
         disabled={isLastActive || disabled || nextDisabled}
         onClick={handleNextClick}
         variant='secondary'

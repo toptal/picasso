@@ -1,4 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  theme: {},
+  theme: {
+    extend: {
+      lineHeight: {
+        5: '1.25rem',
+      },
+    },
+  },
 }

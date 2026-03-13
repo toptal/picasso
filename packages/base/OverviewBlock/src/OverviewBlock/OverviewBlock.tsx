@@ -102,8 +102,8 @@ export const OverviewBlock: OverridableComponent<Props> = forwardRef<
       ref={ref}
       className={twMerge(
         isClickable
-          ? 'cursor-pointer outline-none hover:bg-blue-100'
-          : 'outline-none',
+          ? 'cursor-pointer outline-hidden hover:bg-blue-100'
+          : 'outline-hidden',
         getAlignmentClassnames(align),
         getBlockWidthClassnames(blockWidth),
         'flex flex-col bg-white m-0 min-w-[9.375rem] border-none no-underline',

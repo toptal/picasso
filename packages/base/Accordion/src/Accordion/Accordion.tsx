@@ -145,7 +145,9 @@ export const Accordion = forwardRef<HTMLElement, Props>(function Accordion(
         >
           {children}
           {expandIcon ? (
-            decorateWithExpandIconClasses(expandIcon, expandIconClass)
+            <ButtonAction
+              icon={decorateWithExpandIconClasses(expandIcon, expandIconClass)}
+            />
           ) : (
             <div className={classes.expandIconAlignTop}>
               <ButtonAction

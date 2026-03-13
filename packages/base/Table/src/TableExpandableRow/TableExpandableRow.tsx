@@ -56,10 +56,7 @@ export const TableExpandableRow = forwardRef<HTMLTableRowElement, Props>(
         {row}
         {expanded && (
           <TableRow
-            className={twJoin(
-              className,
-              stripeEven && 'bg-gray-200 bg-opacity-[32]'
-            )}
+            className={twJoin(className, stripeEven && 'bg-gray-200/[0.32]')}
             style={style}
           >
             <TableCell className='p-0 last:pr-0' colSpan={MAX_COL_SPAN}>

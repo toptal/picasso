@@ -14,7 +14,7 @@ exports[`Modal renders 1`] = `
   >
     <div
       aria-hidden="true"
-      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
       style="transition-duration: 300ms; opacity: 1;"
     />
     <div
@@ -22,7 +22,7 @@ exports[`Modal renders 1`] = `
       tabindex="0"
     />
     <div
-      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
       role="dialog"
       style="transition-duration: 300ms; opacity: 1;"
       tabindex="-1"
@@ -50,7 +50,7 @@ exports[`Modal renders 1`] = `
       >
         <button
           aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
           data-component-type="button"
           role="button"
           tabindex="0"
@@ -64,7 +64,7 @@ exports[`Modal renders 1`] = `
         </button>
         <button
           aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
           data-component-type="button"
           role="button"
           tabindex="0"
@@ -80,7 +80,7 @@ exports[`Modal renders 1`] = `
       <button
         aria-disabled="false"
         aria-label="Close"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent absolute top-8 right-8"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer rounded-full p-0 w-[1.5em] h-[1.5em] border-none text-graphite hover:bg-gray active:bg-gray focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] bg-transparent absolute top-8 right-8"
         data-component-type="button"
         data-testid="close-modal"
         role="button"
@@ -119,7 +119,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
       <button
         aria-disabled="false"
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -137,7 +137,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -145,7 +145,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
           role="dialog"
           style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
@@ -155,7 +155,7 @@ exports[`Modal useModal opens and closes modal 1`] = `
           </p>
           <button
             aria-disabled="false"
-            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
             data-component-type="button"
             role="button"
             tabindex="0"
@@ -186,7 +186,7 @@ exports[`Modal useModal opens and closes modal 2`] = `
     >
       <button
         aria-disabled="false"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -212,7 +212,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       <button
         aria-disabled="false"
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -227,7 +227,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       <button
         aria-disabled="false"
         aria-hidden="true"
-        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-none [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -246,7 +246,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -254,7 +254,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
           role="dialog"
           style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"
@@ -274,7 +274,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-opacity"
+          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
           style="transition-duration: 300ms; opacity: 1;"
         />
         <div
@@ -282,7 +282,7 @@ exports[`Modal useModal shows multiple modals at the same time 1`] = `
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-none overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[40.625rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
           role="dialog"
           style="transition-duration: 300ms; opacity: 1;"
           tabindex="-1"

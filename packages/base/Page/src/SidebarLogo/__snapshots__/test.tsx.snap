@@ -6,7 +6,7 @@ exports[`SidebarLogo renders 1`] = `
     class="Picasso-root"
   >
     <div
-      class="mb-2 ml-8 flex-shrink block overflow-hidden"
+      class="mb-2 ml-8 shrink-0 block overflow-hidden"
     >
       <svg
         class="fill-current inline-block h-[1em] text-[1.875rem] align-baseline text-blue [--logo-text [--logo-emblem"

@@ -55,7 +55,7 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
         style={style}
         className={cx(
           `flex flex-wrap h-auto cursor-pointer
-          [&>input]:min-w-[3em] [&>input]:flex-grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
+          [&>input]:min-w-[3em] [&>input]:grow [&>input]:w-0 [&>input]:h-6 [&>input]:pl-1 [&>input]:pr-0 [&>input]:mb-0`,
           {
             'pr-[2.25em]': Boolean(endAdornment),
             'py-1 pl-1': size === 'medium',

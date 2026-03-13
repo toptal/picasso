@@ -36,7 +36,7 @@ exports[`PageTopBarMenu renders 1`] = `
               class="items-center flex"
             >
               <h4
-                class="m-0 text-md text-white inline font-[400] max-w whitespace-nowrap overflow-hidden overflow-ellipsis"
+                class="m-0 text-md text-white inline font-[400] max-w whitespace-nowrap overflow-hidden text-ellipsis"
               >
                 Jacqueline Roque
               </h4>

@@ -98,6 +98,7 @@ const FileListItem = ({ file, index, disabled, onRemove, testIds }: Props) => {
           content={error ? 'Dismiss' : 'Remove File'}
         >
           <ButtonCircular
+            className='shrink-0'
             variant='flat'
             onClick={handleRemove}
             disabled={disabled}

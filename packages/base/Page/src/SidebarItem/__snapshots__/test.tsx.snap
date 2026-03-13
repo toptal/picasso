@@ -18,7 +18,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             class="order-[50] flex-1 h-full"
           />
           <ul
-            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
+            class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
             role="menu"
             tabindex="-1"
           >
@@ -37,7 +37,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <li
                     aria-disabled="false"
-                    class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
+                    class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -57,7 +57,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                               class="items-center flex flex-1 min-w"
                             >
                               <p
-                                class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                                class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                               >
                                 Test item
                               </p>
@@ -67,15 +67,28 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                       </div>
                     </div>
                   </li>
-                  <svg
-                    class="fill-current inline-block h-[1em] align-[-.125em] text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
-                    style="min-width: 16px; min-height: 16px;"
-                    viewBox="0 0 16 16"
+                  <button
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+                    data-component-type="button"
+                    role="button"
+                    tabindex="0"
+                    type="button"
                   >
-                    <path
-                      d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
-                    />
-                  </svg>
+                    <span
+                      class="items-center inline-flex font-semibold text-blue text-md"
+                    >
+                      <svg
+                        class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                        style="min-width: 16px; min-height: 16px;"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
                 </div>
               </div>
               <div
@@ -95,13 +108,13 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         class="flex p-0"
                       >
                         <ul
-                          class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
+                          class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
                           role="menu"
                           tabindex="-1"
                         >
                           <li
                             aria-disabled="false"
-                            class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-8 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+                            class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-8 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
                             role="menuitem"
                             tabindex="0"
                           >
@@ -121,7 +134,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                       class="items-center flex flex-1 min-w"
                                     >
                                       <p
-                                        class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                                        class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                                       >
                                         Menu item
                                       </p>
@@ -164,7 +177,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
             class="order-[50] flex-1 h-full"
           />
           <ul
-            class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
+            class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
             role="menu"
             tabindex="-1"
           >
@@ -183,7 +196,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                 >
                   <li
                     aria-disabled="false"
-                    class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
+                    class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -203,7 +216,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                               class="items-center flex flex-1 min-w"
                             >
                               <p
-                                class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                                class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                               >
                                 Test item
                               </p>
@@ -213,15 +226,28 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                       </div>
                     </div>
                   </li>
-                  <svg
-                    class="fill-current inline-block h-[1em] align-[-.125em] text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
-                    style="min-width: 16px; min-height: 16px;"
-                    viewBox="0 0 16 16"
+                  <button
+                    aria-disabled="false"
+                    class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+                    data-component-type="button"
+                    role="button"
+                    tabindex="0"
+                    type="button"
                   >
-                    <path
-                      d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
-                    />
-                  </svg>
+                    <span
+                      class="items-center inline-flex font-semibold text-blue text-md"
+                    >
+                      <svg
+                        class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-base text-graphite PicassoAccordion-expandIcon PicassoAccordion-expandIconExpanded"
+                        style="min-width: 16px; min-height: 16px;"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
                 </div>
               </div>
               <div
@@ -241,13 +267,13 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                         class="flex p-0"
                       >
                         <ul
-                          class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
+                          class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
                           role="menu"
                           tabindex="-1"
                         >
                           <li
                             aria-disabled="false"
-                            class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-8 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+                            class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-8 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
                             role="menuitem"
                             tabindex="0"
                           >
@@ -267,7 +293,7 @@ exports[`SidebarItem collapsible menu is expanded when one of the children is se
                                       class="items-center flex flex-1 min-w"
                                     >
                                       <p
-                                        class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                                        class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                                       >
                                         Menu item
                                       </p>
@@ -299,7 +325,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
   >
     <li
       aria-disabled="false"
-      class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+      class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -328,7 +354,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                 class="items-center flex flex-1 min-w ml-[.375rem]"
               >
                 <p
-                  class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                  class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>
@@ -340,13 +366,13 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
     </li>
     <div>
       <ul
-        class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
+        class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
         role="menu"
         tabindex="-1"
       >
         <li
           aria-disabled="false"
-          class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-[2.875rem] pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+          class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-[2.875rem] pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
           role="menuitem"
           tabindex="0"
         >
@@ -366,7 +392,7 @@ exports[`SidebarItem don't use accordion for non-collapsible with menu 1`] = `
                     class="items-center flex flex-1 min-w"
                   >
                     <p
-                      class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                      class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                     >
                       Menu item
                     </p>
@@ -389,7 +415,7 @@ exports[`SidebarItem is selected 1`] = `
   >
     <li
       aria-disabled="false"
-      class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+      class="px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-blue hover:text-blue focus:text-blue bg-gray hover:bg-gray focus:bg-gray pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -418,7 +444,7 @@ exports[`SidebarItem is selected 1`] = `
                 class="items-center flex flex-1 min-w ml-[.375rem]"
               >
                 <p
-                  class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                  class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>
@@ -439,7 +465,7 @@ exports[`SidebarItem renders 1`] = `
   >
     <li
       aria-disabled="false"
-      class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+      class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -459,7 +485,7 @@ exports[`SidebarItem renders 1`] = `
                 class="items-center flex flex-1 min-w"
               >
                 <p
-                  class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                  class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>
@@ -493,7 +519,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
         >
           <li
             aria-disabled="false"
-            class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
+            class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-0 pr-0 pt-0 pb-0 mt-0 mb-0 mr-0 ml-0"
             role="menuitem"
             tabindex="-1"
           >
@@ -522,7 +548,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                       class="items-center flex flex-1 min-w ml-[.375rem]"
                     >
                       <p
-                        class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                        class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                       >
                         Test item
                       </p>
@@ -532,15 +558,28 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
               </div>
             </div>
           </li>
-          <svg
-            class="fill-current inline-block h-[1em] align-[-.125em] text-base text-graphite PicassoAccordion-expandIcon"
-            style="min-width: 16px; min-height: 16px;"
-            viewBox="0 0 16 16"
+          <button
+            aria-disabled="false"
+            class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer border-none px-0 bg-transparent h-[1.5em] hover:text-blue hover:underline active:text-blue active:underline focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-visible:rounded-sm"
+            data-component-type="button"
+            role="button"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
-            />
-          </svg>
+            <span
+              class="items-center inline-flex font-semibold text-blue text-md"
+            >
+              <svg
+                class="fill-current inline-block align-[-.125em] flex-1 w-4 h-4 text-base text-graphite PicassoAccordion-expandIcon"
+                style="min-width: 16px; min-height: 16px;"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="m11.997 5.29.707.707-4 4-.707.707-.707-.707-4-4 .707-.707 4 4 4-4Z"
+                />
+              </svg>
+            </span>
+          </button>
         </div>
       </div>
       <div
@@ -560,13 +599,13 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                 class="flex p-0"
               >
                 <ul
-                  class="relative list-none outline-none py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 flex-grow flex-shrink max-w"
+                  class="relative list-none outline-hidden py-2 px-0 m-0 rounded-sm shadow-0 order-1 [&_&]:flex-1 grow-0 shrink-1 max-w"
                   role="menu"
                   tabindex="-1"
                 >
                   <li
                     aria-disabled="false"
-                    class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-[2.875rem] pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+                    class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-[2.875rem] pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
                     role="menuitem"
                     tabindex="0"
                   >
@@ -586,7 +625,7 @@ exports[`SidebarItem use accordion for collapsible with menu 1`] = `
                               class="items-center flex flex-1 min-w"
                             >
                               <p
-                                class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                                class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                               >
                                 Menu item
                               </p>
@@ -614,7 +653,7 @@ exports[`SidebarItem with icon 1`] = `
   >
     <li
       aria-disabled="false"
-      class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-none appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
+      class="bg-transparent px-4 py-[0.375rem] w-auto min-h sm:min-h md:min-h relative cursor-pointer transition-colors duration-150 ease-in overflow-hidden text-left no-underline flex items-center justify-start outline-hidden appearance-none leading-4 h-[2.75rem] whitespace-nowrap rounded-sm flex-1 min-w text-graphite hover:text-blue focus:text-blue pl-4 pr-4 pt-0 pb-0 mt-0 mb-0 mr-4 ml-4"
       role="menuitem"
       tabindex="-1"
     >
@@ -643,7 +682,7 @@ exports[`SidebarItem with icon 1`] = `
                 class="items-center flex flex-1 min-w ml-[.375rem]"
               >
                 <p
-                  class="m-0 text-md text-inherit font-regular whitespace-nowrap overflow-ellipsis overflow-hidden"
+                  class="m-0 text-md text-inherit font-regular whitespace-nowrap text-ellipsis overflow-hidden"
                 >
                   Test item
                 </p>

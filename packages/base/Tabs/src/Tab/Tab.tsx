@@ -93,7 +93,7 @@ const rootClassesByOrientation = (selected: boolean) => ({
 
 const classesByVariant = {
   scrollable: 'shrink-0 max-w-[264px]',
-  fullWidth: 'shrink flex-grow basis-0',
+  fullWidth: 'shrink grow basis-0',
 }
 
 export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
@@ -153,7 +153,7 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
               ownerState.disabled && 'pointer-events-none',
               icon && isHorizontal && 'min-h-0 pr-6',
               'min-w-0 sm:min-w-[160px] md:min-w-[auto]',
-              'border-0 cursor-pointer inline-flex outline-none',
+              'border-0 cursor-pointer inline-flex outline-hidden',
               'items-center select-none align-middle appearance-none',
               'justify-center no-underline [-webkit-tap-highlight-color:transparent]',
               'normal-case whitespace-normal leading-4',

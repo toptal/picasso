@@ -12,7 +12,7 @@ import { twJoin } from '@toptal/picasso-tailwind-merge'
 import { PageTopBarContext } from '../PageTopBar'
 
 const truncateTextClasses =
-  'max-w-[11.5rem] whitespace-nowrap overflow-hidden overflow-ellipsis'
+  'max-w-[11.5rem] whitespace-nowrap overflow-hidden text-ellipsis'
 
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** User full name to display */

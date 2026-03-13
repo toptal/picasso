@@ -109,7 +109,7 @@ const CalendarDay = (dayProps: DayProps): JSX.Element => {
         'text-[0.75rem]',
         'flex items-center justify-center vertical-align-middle relative',
         'user-select-none',
-        'outline-none',
+        'outline-hidden',
         stateDependentClasses
       )}
       onClick={isDisabled ? undefined : event => buttonProps?.onClick?.(event)}

@@ -186,7 +186,7 @@ describe('calculateViewModel', () => {
       const whiteResult = calculateViewModel(whiteProps)
 
       expect(blueResult.className).toContain(
-        'focus:outline-none hover:underline leading-[inherit] text-gray-600 underline cursor-not-allowed'
+        'focus:outline-hidden hover:underline leading-[inherit] text-gray-600 underline cursor-not-allowed'
       )
       expect(whiteResult.className).toContain('text-gray-600')
     })
@@ -222,7 +222,7 @@ describe('calculateViewModel', () => {
       }
       const result = calculateViewModel(props)
 
-      expect(result.className).toContain('!no-underline')
+      expect(result.className).toContain('no-underline!')
     })
   })
 

@@ -15,7 +15,7 @@ exports[`Tag dismissable label should render dismissable label 1`] = `
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -53,7 +53,7 @@ exports[`Tag renders \`blue\` variant 1`] = `
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -76,7 +76,7 @@ exports[`Tag renders \`light-grey\` variant 1`] = `
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
         >
           Tag
         </span>
@@ -99,7 +99,7 @@ exports[`Tag renders with adornment 1`] = `
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
         >
           foobar
         </span>
@@ -145,7 +145,7 @@ exports[`Tag renders with connection and icon 1`] = `
         class="flex gap-2 px-3 overflow-hidden items-center"
       >
         <span
-          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap overflow-ellipsis overflow-hidden leading-[inherit]"
+          class="m-0 text-xxs text-inherit font-semibold whitespace-nowrap text-ellipsis overflow-hidden leading-[inherit]"
         >
           foobar
         </span>

@@ -16,7 +16,7 @@ describe('Backdrop component', () => {
         <Backdrop data-testid='backdrop' open={true} invisible={true} />
       )
 
-      expect(getByTestId('backdrop')).toHaveClass('bg-opacity-0')
+      expect(getByTestId('backdrop')).toHaveClass('bg-black/0')
     })
   })
 
@@ -26,7 +26,7 @@ describe('Backdrop component', () => {
         <Backdrop data-testid='backdrop' open={true} />
       )
 
-      expect(getByTestId('backdrop')).toHaveClass('bg-opacity-50')
+      expect(getByTestId('backdrop')).toHaveClass('bg-black/50')
     })
   })
 

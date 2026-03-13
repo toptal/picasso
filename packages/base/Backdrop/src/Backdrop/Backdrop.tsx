@@ -33,8 +33,8 @@ export const Backdrop = React.forwardRef<HTMLDivElement, Props>(
           className={cx(
             'fixed -z-[1] inset-0 bg-black ',
             '-webkit-tap-highlight-color-transparent',
-            { 'bg-opacity-0': invisible },
-            { 'bg-opacity-50': !invisible }
+            { 'bg-black/0': invisible },
+            { 'bg-black/50': !invisible }
           )}
           ref={ref}
           {...rest}
