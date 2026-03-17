@@ -48,7 +48,7 @@ module.exports = {
 @layer theme, base, components;
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css';
-@config "../tailwind.config.js";
+@config "./tailwind.config.js";
 ```
 
 ## Setup webpack to use PostCSS loader with tailwindcss plugin
