@@ -3,9 +3,13 @@ import React, { forwardRef } from 'react'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
+export type PaperBorderRadius = 'none' | 'sm' | 'md' | 'full'
+
 export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   /** Paper elevation shadow */
   elevation?: number
+  /** Border radius of the Paper surface */
+  borderRadius?: PaperBorderRadius
   children: ReactNode
 }
 
@@ -38,8 +42,15 @@ const shadowsMapping: Record<number, string> = {
   24: 'shadow-24',
 }
 
+const borderRadiusMapping: Record<PaperBorderRadius, string> = {
+  none: 'rounded-none',
+  sm: 'rounded-sm',
+  md: 'rounded-md',
+  full: 'rounded-full',
+}
+
 export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
-  { elevation = 1, ...props },
+  { elevation = 1, borderRadius, ...props },
   ref
 ) {
   const { className, style, children, ...rest } = props
@@ -51,6 +62,7 @@ export const Paper = forwardRef<HTMLDivElement, Props>(function Paper(
         'bg-white',
         shadowsMapping[elevation],
         'transition-shadow duration-300 delay-0',
+        borderRadius !== undefined ? borderRadiusMapping[borderRadius] : undefined,
         className
       )}
       style={style}
