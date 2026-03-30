@@ -1,5 +1,13 @@
 # @toptal/picasso-skeleton-loader
 
+## 1.0.69
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-button@5.0.0
+  - @toptal/picasso-utils@4.0.0
+
 ## 1.0.68
 
 ### Patch Changes

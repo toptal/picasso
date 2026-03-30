@@ -1,5 +1,21 @@
 # @toptal/picasso-link
 
+## 4.0.0
+
+### Major Changes
+
+- [#4898](https://github.com/toptal/picasso/pull/4898) [`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1) Thanks [@javier-delgado](https://github.com/javier-delgado)!
+  Upgraded Tailwind CSS from v3 to v4:
+  - updated `tailwindcss` peer dependency from `^3.4.10` to `^4.2.1`
+  - updated deprecated utility classes
+  - min node version is 20 or higher
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-typography@5.0.0
+  - @toptal/picasso-utils@4.0.0
+
 ## 3.0.7
 
 ### Patch Changes

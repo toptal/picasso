@@ -1,5 +1,12 @@
 # @toptal/picasso-fade
 
+## 1.0.9
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-utils@4.0.0
+
 ## 1.0.8
 
 ### Patch Changes

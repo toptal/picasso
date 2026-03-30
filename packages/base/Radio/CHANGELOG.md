@@ -1,5 +1,14 @@
 # @toptal/picasso-radio
 
+## 5.0.22
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-utils@4.0.0
+  - @toptal/picasso-form-label@1.0.4
+  - @toptal/picasso-grid@5.0.19
+
 ## 5.0.21
 
 ### Patch Changes

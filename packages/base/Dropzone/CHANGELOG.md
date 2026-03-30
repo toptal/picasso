@@ -1,5 +1,17 @@
 # @toptal/picasso-dropzone
 
+## 5.0.34
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-typography@5.0.0
+  - @toptal/picasso-file-input@5.0.0
+  - @toptal/picasso-utils@4.0.0
+  - @toptal/picasso-form@7.0.0
+  - @toptal/picasso-container@3.1.4
+  - @toptal/picasso-icons@1.15.2
+
 ## 5.0.33
 
 ### Patch Changes

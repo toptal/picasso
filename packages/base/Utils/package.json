@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-utils",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Toptal UI components library - Utils",
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "bugs": {
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "5.0.2",
-    "@toptal/picasso-test-utils": "1.1.1",
+    "@toptal/picasso-test-utils": "2.0.0",
     "styled-components": "^6.1.1"
   },
   "peerDependencies": {

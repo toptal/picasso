@@ -1,5 +1,13 @@
 # @toptal/picasso-amount
 
+## 1.0.12
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-typography@5.0.0
+  - @toptal/picasso-utils@4.0.0
+
 ## 1.0.11
 
 ### Patch Changes

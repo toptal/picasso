@@ -1,5 +1,13 @@
 # @toptal/picasso-form
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-utils@4.0.0
+  - @toptal/picasso-form-layout@1.0.3
+
 ## 1.0.3
 
 ### Patch Changes
