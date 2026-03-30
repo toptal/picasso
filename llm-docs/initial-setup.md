@@ -9,8 +9,7 @@ Picasso is Toptal's component library, based on Toptal's design system - BASE. U
 ## Installation instructions
 
 ```js
-yarn add @toptal/picasso @toptal/picasso-provider @toptal/picasso-tailwind
- tailwindcss postcss autoprefixer
+yarn add @toptal/picasso @toptal/picasso-provider @toptal/picasso-tailwind tailwindcss @tailwindcss/postcss postcss autoprefixer
 ```
 
 ## Create `tailwind.config.js` in the root of the project
@@ -46,9 +45,10 @@ module.exports = {
 
 ```css
 /* index.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer theme, base, components;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css';
+@config "./tailwind.config.js";
 ```
 
 ## Setup webpack to use PostCSS loader with tailwindcss plugin
@@ -72,13 +72,7 @@ module.exports = {
         postcssOptions: {
           config: false,
           plugins: {
-            tailwindcss: {
-              config: require.resolve(
-                // update with actual path to tailwind config
-                './tailwind.config.js'
-              ),
-            },
-            autoprefixer: {},
+            '@tailwindcss/postcss': {},
           },
         },
       },
