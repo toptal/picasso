@@ -1,5 +1,27 @@
 # @toptal/picasso-menu
 
+## 4.0.0
+
+### Major Changes
+
+- [#4898](https://github.com/toptal/picasso/pull/4898) [`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1) Thanks [@javier-delgado](https://github.com/javier-delgado)!
+  Upgraded Tailwind CSS from v3 to v4:
+  - updated `tailwindcss` peer dependency from `^3.4.10` to `^4.2.1`
+  - updated deprecated utility classes
+  - min node version is 20 or higher
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-typography@5.0.0
+  - @toptal/picasso-avatar@7.0.0
+  - @toptal/picasso-utils@4.0.0
+  - @toptal/picasso-link@4.0.0
+  - @toptal/picasso-container@3.1.4
+  - @toptal/picasso-paper@4.0.5
+  - @toptal/picasso-icons@1.15.2
+  - @toptal/picasso-popper@2.0.2
+
 ## 3.0.26
 
 ### Patch Changes

@@ -1,5 +1,43 @@
 # Change Log
 
+## 74.0.0
+
+### Major Changes
+
+- [#4898](https://github.com/toptal/picasso/pull/4898) [`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1) Thanks [@javier-delgado](https://github.com/javier-delgado)!
+  Upgraded Tailwind CSS from v3 to v4:
+  - updated `tailwindcss` peer dependency from `^3.4.10` to `^4.2.1`
+  - updated deprecated utility classes
+  - min node version is 20 or higher
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-rich-text-editor@18.0.0
+  - @toptal/picasso-outlined-input@5.0.0
+  - @toptal/picasso-autocomplete@6.0.0
+  - @toptal/picasso-avatar-upload@4.0.0
+  - @toptal/picasso-notification@5.0.0
+  - @toptal/picasso-number-input@5.0.0
+  - @toptal/picasso-tagselector@4.0.0
+  - @toptal/picasso-date-picker@4.0.0
+  - @toptal/picasso-timepicker@5.0.0
+  - @toptal/picasso-file-input@5.0.0
+  - @toptal/picasso-button@5.0.0
+  - @toptal/picasso-select@5.0.0
+  - @toptal/picasso-input@5.0.0
+  - @toptal/picasso-utils@4.0.0
+  - @toptal/picasso-form@7.0.0
+  - @toptal/picasso-password-input@5.1.13
+  - @toptal/picasso-switch@5.0.0
+  - @toptal/picasso-checkbox@5.0.23
+  - @toptal/picasso-container@3.1.4
+  - @toptal/picasso-dropzone@5.0.34
+  - @toptal/picasso-form-label@1.0.4
+  - @toptal/picasso-radio@5.0.22
+  - @toptal/picasso-rating@3.0.20
+  - @toptal/picasso-icons@1.15.2
+
 ## 73.2.14
 
 ### Patch Changes

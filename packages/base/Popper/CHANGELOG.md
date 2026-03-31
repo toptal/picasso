@@ -1,5 +1,12 @@
 # @toptal/picasso-popper
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-utils@4.0.0
+
 ## 2.0.1
 
 ### Patch Changes

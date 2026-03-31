@@ -1,5 +1,81 @@
 # Change Log
 
+## 54.1.4
+
+### Patch Changes
+
+- Updated dependencies [[`e93f40b`](https://github.com/toptal/picasso/commit/e93f40bf03c4ea943ff9561c2dd032125a05ffc1)]:
+  - @toptal/picasso-input-adornment@4.0.0
+  - @toptal/picasso-account-select@4.0.0
+  - @toptal/picasso-outlined-input@5.0.0
+  - @toptal/picasso-overview-block@5.0.0
+  - @toptal/picasso-autocomplete@6.0.0
+  - @toptal/picasso-avatar-upload@4.0.0
+  - @toptal/picasso-notification@5.0.0
+  - @toptal/picasso-number-input@5.0.0
+  - @toptal/picasso-prompt-modal@3.0.0
+  - @toptal/picasso-tagselector@4.0.0
+  - @toptal/picasso-date-picker@4.0.0
+  - @toptal/picasso-date-select@2.0.0
+  - @toptal/picasso-pagination@5.0.0
+  - @toptal/picasso-test-utils@2.0.0
+  - @toptal/picasso-timepicker@5.0.0
+  - @toptal/picasso-typography@5.0.0
+  - @toptal/picasso-accordion@4.0.0
+  - @toptal/picasso-file-input@5.0.0
+  - @toptal/picasso-calendar@5.0.0
+  - @toptal/picasso-dropdown@5.0.0
+  - @toptal/picasso-show-more@3.0.0
+  - @toptal/picasso-helpbox@6.0.0
+  - @toptal/picasso-section@6.0.0
+  - @toptal/picasso-avatar@7.0.0
+  - @toptal/picasso-button@5.0.0
+  - @toptal/picasso-select@5.0.0
+  - @toptal/picasso-slider@5.0.0
+  - @toptal/picasso-alert@4.0.0
+  - @toptal/picasso-badge@4.0.0
+  - @toptal/picasso-input@5.0.0
+  - @toptal/picasso-modal@4.0.0
+  - @toptal/picasso-table@4.0.0
+  - @toptal/picasso-utils@4.0.0
+  - @toptal/picasso-form@7.0.0
+  - @toptal/picasso-link@4.0.0
+  - @toptal/picasso-menu@4.0.0
+  - @toptal/picasso-page@6.0.0
+  - @toptal/picasso-tabs@7.0.0
+  - @toptal/picasso-tag@5.0.0
+  - @toptal/picasso-password-input@5.1.13
+  - @toptal/picasso-switch@5.0.0
+  - @toptal/picasso-amount@1.0.12
+  - @toptal/picasso-application-update-notification@2.0.44
+  - @toptal/picasso-breadcrumbs@3.0.20
+  - @toptal/picasso-checkbox@5.0.23
+  - @toptal/picasso-container@3.1.4
+  - @toptal/picasso-dropzone@5.0.34
+  - @toptal/picasso-form-label@1.0.4
+  - @toptal/picasso-grid@5.0.19
+  - @toptal/picasso-list@5.0.21
+  - @toptal/picasso-note@4.0.7
+  - @toptal/picasso-paper@4.0.5
+  - @toptal/picasso-quote@2.0.9
+  - @toptal/picasso-radio@5.0.22
+  - @toptal/picasso-rating@3.0.20
+  - @toptal/picasso-skeleton-loader@1.0.69
+  - @toptal/picasso-step@4.0.19
+  - @toptal/picasso-timeline@5.0.8
+  - @toptal/picasso-tooltip@2.0.5
+  - @toptal/picasso-typography-overflow@4.0.6
+  - @toptal/picasso-user-badge@5.1.22
+  - @toptal/picasso-drawer@3.0.45
+  - @toptal/picasso-empty-state@2.0.23
+  - @toptal/picasso-carousel@4.0.33
+  - @toptal/picasso-tree-view@3.0.45
+  - @toptal/picasso-icons@1.15.2
+  - @toptal/picasso-image@3.0.5
+  - @toptal/picasso-loader@3.0.5
+  - @toptal/picasso-logo@2.0.18
+  - @toptal/picasso-popper@2.0.2
+
 ## 54.1.3
 
 ### Patch Changes

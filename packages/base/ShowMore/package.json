@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-show-more",
-  "version": "2.0.31",
+  "version": "3.0.0",
   "description": "Toptal UI components library - ShowMore",
   "publishConfig": {
     "access": "public"
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-button": "4.0.32",
-    "@toptal/picasso-icons": "1.15.1",
-    "@toptal/picasso-typography": "4.0.4",
+    "@toptal/picasso-button": "5.0.0",
+    "@toptal/picasso-icons": "1.15.2",
+    "@toptal/picasso-typography": "5.0.0",
     "react-truncate": "^2.4.0"
   },
   "sideEffects": [
@@ -40,8 +40,8 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "1.1.1",
-    "@toptal/picasso-tailwind-merge": "2.0.3"
+    "@toptal/picasso-test-utils": "2.0.0",
+    "@toptal/picasso-tailwind-merge": "2.0.4"
   },
   "files": [
     "dist-package/**",
