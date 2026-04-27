@@ -165,4 +165,37 @@ describe('Tabs', () => {
 
     expect(container).toMatchSnapshot()
   })
+
+  it('fires onChange when re-clicking the already-selected tab', () => {
+    const onChange = jest.fn()
+    const { getByTestId } = renderTabs(
+      [{ label: 'Tab 1' }, { label: 'Tab 2' }],
+      {
+        value: 0,
+        onChange,
+      }
+    )
+
+    fireEvent.click(getByTestId('tab-1'))
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith(expect.anything(), 0)
+  })
+
+  it('fires onChange when re-clicking the already-selected tab with custom value', () => {
+    const onChange = jest.fn()
+    const { getByTestId } = renderTabs(
+      [
+        { label: 'Tab 1', value: 'first' },
+        { label: 'Tab 2', value: 'second' },
+      ],
+      {
+        value: 'first',
+        onChange,
+      }
+    )
+
+    fireEvent.click(getByTestId('tab-1'))
+    expect(onChange).toHaveBeenCalledTimes(1)
+    expect(onChange).toHaveBeenCalledWith(expect.anything(), 'first')
+  })
 })

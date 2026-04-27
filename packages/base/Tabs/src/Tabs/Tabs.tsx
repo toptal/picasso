@@ -30,7 +30,9 @@ export interface Props<V extends TabsValueType> extends BaseProps {
 export const TabsContext = React.createContext<{
   orientation: 'horizontal' | 'vertical'
   variant: 'scrollable' | 'fullWidth'
-}>({ orientation: 'horizontal', variant: 'scrollable' })
+  value: TabsValueType
+  onChange?: (event: React.SyntheticEvent | null, value: TabsValueType) => void
+}>({ orientation: 'horizontal', variant: 'scrollable', value: null })
 
 const indicatorClasses = [
   'after:absolute',
@@ -82,8 +84,12 @@ const Tabs = forwardRef(
       () => ({
         orientation,
         variant,
+        value: value as TabsValueType,
+        onChange: onChange as
+          | ((event: React.SyntheticEvent | null, value: TabsValueType) => void)
+          | undefined,
       }),
-      [orientation, variant]
+      [orientation, variant, value, onChange]
     )
 
     const isVertical = orientation === 'vertical'

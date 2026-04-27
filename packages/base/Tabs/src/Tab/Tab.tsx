@@ -114,7 +114,12 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
     ...rest
   } = props
   const titleCase = useTitleCase(propsTitleCase)
-  const { orientation, variant } = useContext(TabsContext)
+  const {
+    orientation,
+    variant,
+    value: contextValue,
+    onChange: contextOnChange,
+  } = useContext(TabsContext)
   const isHorizontal = orientation === 'horizontal'
 
   const renderLabel = getLabelComponent({
@@ -135,7 +140,6 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
       disabled={disabled}
       value={value}
       onChange={onChange}
-      onClick={onClick}
       slotProps={{
         root: ownerState => {
           return {
@@ -160,6 +164,12 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
               'relative ',
               className
             ),
+            onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+              onClick?.(event)
+              if (ownerState.selected) {
+                contextOnChange?.(event, contextValue)
+              }
+            },
           }
         },
       }}
