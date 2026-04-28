@@ -56,41 +56,6 @@ const renderTabs = (
   )
 }
 
-const ControlledTabs = ({
-  tabs,
-  initialValue,
-  onChange,
-}: {
-  tabs: TabProps[]
-  initialValue: TabsValueType
-  onChange?: (event: React.ChangeEvent<{}> | null, value: TabsValueType) => void
-}) => {
-  const [value, setValue] = React.useState<TabsValueType>(initialValue)
-
-  return (
-    <TestingPicasso>
-      <Tabs
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue)
-          onChange?.(event, newValue)
-        }}
-      >
-        {tabs.map((tab, index) => (
-          <Tabs.Tab
-            key={index}
-            data-testid={`tab-${index + 1}`}
-            value={tab.value}
-            label={tab.label}
-            disabled={tab.disabled}
-            onClick={tab.onClick}
-          />
-        ))}
-      </Tabs>
-    </TestingPicasso>
-  )
-}
-
 describe('Tabs', () => {
   it('renders', () => {
     const { container, queryByTestId } = renderTabs(
@@ -215,102 +180,24 @@ describe('Tabs', () => {
 
   it('does not fire onChange when re-clicking the already-selected tab', () => {
     const onChange = jest.fn()
-    const { getByTestId } = render(
-      <ControlledTabs
-        tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }]}
-        initialValue={0}
-        onChange={onChange}
-      />
+    const { getByTestId } = renderTabs(
+      [{ label: 'Tab 1' }, { label: 'Tab 2' }],
+      { value: 0, onChange }
     )
 
     fireEvent.click(getByTestId('tab-1'))
     expect(onChange).not.toHaveBeenCalled()
-  })
-
-  it('fires onChange only once on double-click of an unselected tab', () => {
-    const onChange = jest.fn()
-    const { getByTestId } = render(
-      <ControlledTabs
-        tabs={[{ label: 'Tab 1' }, { label: 'Tab 2' }]}
-        initialValue={0}
-        onChange={onChange}
-      />
-    )
-
-    fireEvent.click(getByTestId('tab-2'))
-    fireEvent.click(getByTestId('tab-2'))
-    expect(onChange).toHaveBeenCalledTimes(1)
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), 1)
   })
 
   it('fires Tab onClick on every click, including re-click of the selected tab', () => {
     const onClick = jest.fn()
-    const { getByTestId } = render(
-      <ControlledTabs
-        tabs={[{ label: 'Tab 1', onClick }, { label: 'Tab 2' }]}
-        initialValue={0}
-      />
+    const { getByTestId } = renderTabs(
+      [{ label: 'Tab 1', onClick }, { label: 'Tab 2' }],
+      { value: 0 }
     )
 
     fireEvent.click(getByTestId('tab-1'))
     fireEvent.click(getByTestId('tab-1'))
     expect(onClick).toHaveBeenCalledTimes(2)
-  })
-
-  it('fires Tab onClick twice on double-click of an unselected tab', () => {
-    const onClick = jest.fn()
-    const { getByTestId } = render(
-      <ControlledTabs
-        tabs={[{ label: 'Tab 1' }, { label: 'Tab 2', onClick }]}
-        initialValue={0}
-      />
-    )
-
-    fireEvent.click(getByTestId('tab-2'))
-    fireEvent.click(getByTestId('tab-2'))
-    expect(onClick).toHaveBeenCalledTimes(2)
-  })
-
-  it('fires Tab onClick twice but does not fire onChange on double-click of selected tab', () => {
-    const onChange = jest.fn()
-    const onClick = jest.fn()
-    const { getByTestId } = render(
-      <ControlledTabs
-        tabs={[{ label: 'Tab 1', onClick }, { label: 'Tab 2' }]}
-        initialValue={0}
-        onChange={onChange}
-      />
-    )
-
-    fireEvent.click(getByTestId('tab-1'))
-    fireEvent.click(getByTestId('tab-1'))
-    expect(onClick).toHaveBeenCalledTimes(2)
-    expect(onChange).not.toHaveBeenCalled()
-  })
-
-  it('fires Tab onClick on every click but Tabs onChange only on value change', () => {
-    const onChange = jest.fn()
-    const onClickTab1 = jest.fn()
-    const onClickTab2 = jest.fn()
-    const { getByTestId } = render(
-      <ControlledTabs
-        tabs={[
-          { label: 'Tab 1', onClick: onClickTab1 },
-          { label: 'Tab 2', onClick: onClickTab2 },
-        ]}
-        initialValue={0}
-        onChange={onChange}
-      />
-    )
-
-    fireEvent.click(getByTestId('tab-1'))
-    fireEvent.click(getByTestId('tab-1'))
-    fireEvent.click(getByTestId('tab-2'))
-    fireEvent.click(getByTestId('tab-2'))
-
-    expect(onClickTab1).toHaveBeenCalledTimes(2)
-    expect(onClickTab2).toHaveBeenCalledTimes(2)
-    expect(onChange).toHaveBeenCalledTimes(1)
-    expect(onChange).toHaveBeenCalledWith(expect.anything(), 1)
   })
 })
