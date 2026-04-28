@@ -46,6 +46,7 @@ const renderTabs = (
             value={tab.value}
             label={tab.label}
             disabled={tab.disabled}
+            onClick={tab.onClick}
           />
         ))}
       </Tabs>
@@ -164,5 +165,39 @@ describe('Tabs', () => {
     })
 
     expect(container).toMatchSnapshot()
+  })
+
+  it('does not fire Tab onClick when the tab is disabled', () => {
+    const onClick = jest.fn()
+    const { getByTestId } = renderTabs(
+      [{ label: 'Tab 1' }, { label: 'Tab 2', disabled: true, onClick }],
+      { value: 0 }
+    )
+
+    fireEvent.click(getByTestId('tab-2'))
+    expect(onClick).not.toHaveBeenCalled()
+  })
+
+  it('does not fire onChange when re-clicking the already-selected tab', () => {
+    const onChange = jest.fn()
+    const { getByTestId } = renderTabs(
+      [{ label: 'Tab 1' }, { label: 'Tab 2' }],
+      { value: 0, onChange }
+    )
+
+    fireEvent.click(getByTestId('tab-1'))
+    expect(onChange).not.toHaveBeenCalled()
+  })
+
+  it('fires Tab onClick on every click, including re-click of the selected tab', () => {
+    const onClick = jest.fn()
+    const { getByTestId } = renderTabs(
+      [{ label: 'Tab 1', onClick }, { label: 'Tab 2' }],
+      { value: 0 }
+    )
+
+    fireEvent.click(getByTestId('tab-1'))
+    fireEvent.click(getByTestId('tab-1'))
+    expect(onClick).toHaveBeenCalledTimes(2)
   })
 })

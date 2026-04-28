@@ -135,7 +135,6 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
       disabled={disabled}
       value={value}
       onChange={onChange}
-      onClick={onClick}
       slotProps={{
         root: ownerState => {
           return {
@@ -160,6 +159,7 @@ export const Tab = forwardRef<HTMLButtonElement, Props>(function Tab(
               'relative ',
               className
             ),
+            ...(onClick && { onClick }),
           }
         },
       }}
