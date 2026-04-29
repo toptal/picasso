@@ -40,7 +40,7 @@ jobs:
         # Same as actions/setup-node@v6.1
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 22.20
+          node-version: 22.20.0
 
       - name: Check missing changeset
         uses: ./.github/actions/report-missing-changeset
@@ -93,7 +93,7 @@ jobs:
         # Same as actions/setup-node@v6.1
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 22.20
+          node-version: 22.20.0
 
       - name: Install dependencies from cache
         uses: ./.github/actions/yarn-install
@@ -134,7 +134,7 @@ jobs:
         # Same as actions/setup-node@v6.1
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 22.20
+          node-version: 22.20.0
 
       - name: Install dependencies from cache
         uses: ./.github/actions/yarn-install
