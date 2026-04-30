@@ -2,7 +2,7 @@
 
 **Parent:** [PI-4318 — Picasso Modernization + AI Developer Experience](https://toptal-core.atlassian.net/browse/PI-4318)
 **Source:** [PI-4318-phases.md](./PI-4318-phases.md)
-**Status:** Draft for Vedran's review — not yet added to Jira.
+**Status:** v12 — split out **Pilot Measurement** as its own track. PF-1998 + PF-2000 move from Agent Experience to a new Pilot Measurement track because the A1 → A2 lift is jointly produced by AIC + Figma artifacts. Story IDs renumbered: P1-AIC-02 → P1-MEAS-01 (PF-1998), P1-AIC-04 → P1-MEAS-02 (PF-2000). See [PI-4318-tickets-by-track.md Epic E](./PI-4318-tickets-by-track.md#epic-e--pilot-measurement-track) for the new track. Per-ticket estimates unchanged from v11. Program start: May 4. Range: 76-117 man-days.
 
 ## Structure
 
@@ -25,54 +25,54 @@
 
 ---
 
-# Epic 1 — Phase 1: Picasso AI Pipeline Pilot (gated)
+# Epic 1 — Phase 1: Hybrid Foundation (5-page baseline + agent infra)
 
 **Type:** Epic
 **Parent:** PI-4318
-**Labels:** `picasso-ai-dx`, `phase-1`, `pilot`, `gated`
+**Labels:** `picasso-ai-dx`, `phase-1`, `hybrid-foundation`
 **Phase doc ref:** [Phase 1 — Pilot (GATED)](./PI-4318-phases.md#phase-1--pilot-gated--3-weeks)
 
-## Goal
+## Goal (v10)
 
-Prove that Picasso + sufficient Agent Experience + Code Connect + Figma MCP lets an AI agent produce great, brand-accurate Picasso frontend implementations from Figma designs.
+**Hybrid Phase 1 — no Go/No-Go gate.** Deliver a measurable A1 → A2 AI-DX lift number on 5 Staff Portal pages while modernization runs in parallel. Phase 2 starts the moment PF-1992 lands; no gate decision blocks it.
 
 ## Scope
 
-- **Gating:** Agent Experience (4 tasks) + Figma Design-to-Code (3 tasks). All items here count toward the Go/No-Go gate.
-- **Non-gating parallel:** Modernization prep + pnpm execution + Figma Middleware PoC. Runs alongside the pilot, does not count toward the gate, must not delay it.
+- **5-page baseline (Agent Experience):** PF-1998 (5-page selection + Picasso component extraction + baseline H + A1) + PF-1997 (`.picasso/` v2) + PF-1999 (patterns).
+- **Code Connect + BASE for the 5-page subset (Figma):** PF-2005 + PF-2006 + PF-2007 — scoped to ~12-18 components used in the 5 pages, not top-20.
+- **Modernization (parallel):** PF-1992 migration plan + agent infra + 5-page measurement protocol; PF-1993 pnpm. Tier 1 autonomous run starts as soon as PF-1992 lands.
+- **Maestro PoC (parallel):** PF-2011.
 
-## Success criteria (Go/No-Go gate)
+## Success criteria (Phase 1 wrap)
 
-Measured only against gating stories, on the fixed reference set (R1 + R2):
+Measured against the 5 Staff Portal pages:
 
-- M1 Component accuracy > 85%
-- M2 Prop accuracy > 75%
-- M3 Token fidelity: measurable lift over baseline
-- M4 Visual fidelity (Happo): measurable lift
-- M5 Brand-fidelity score: measurable lift (= O3 PI-level metric)
-- M6 Time-to-UI: 50%+ reduction on reference screens
-- M9 Pilot engineer sentiment ≥ 4/5 and "would keep using"
+- **Baseline H** scored — score the 5 shipped human implementations against the rubric (M1 component, M2 prop, M3 token, M4 visual, M5 brand-fidelity).
+- **Baseline A1** scored — AI agent + Figma MCP, no Code Connect, no `.picasso/`.
+- (Phase 2) **Baseline A2** scored — AI agent + Code Connect (PF-2005) + Agent Experience (PF-1997 + PF-2001a). The A1 → A2 lift is the program's headline AI-DX number.
+- Pilot engineer sentiment ≥ 4/5 and "would keep using"
 
 ## Deliverables
 
-- Baseline report (wk1) + Gate report (wk3) with all pipeline metrics + sentiment survey
-- `picasso-pilot-harness` tool (runner + scoring scripts + aggregator)
-- Code Connect for top 20 components (BASE + Picasso)
+- 5-page selection (`pilot/5-pages.md`), Picasso component-set (`pilot/component-set.md`), baseline pre-pipeline report (`pilot/reports/baseline-pre-pipeline.md` with H + A1)
+- Code Connect for the 5-page component subset (~12-18 components)
+- BASE spec gaps closed for the 5-page subset, design token mapping verified
 - Agent Experience v2: optimized LLM index, `.picasso/` rules v2, pattern inventory
-- BASE spec gaps closed for top 20, design token mapping verified
-- (Non-gating): Migration plan, Picasso on pnpm, Figma Middleware PoC
+- Migration plan + agent infrastructure scaffolds + 5-page measurement protocol
+- Picasso on pnpm
+- Figma Middleware PoC
 
 ## Exit
 
-Phase 1 exits at the Go/No-Go meeting at end of wk3. Outcomes: **GO** (fund Phase 2 + 3) / **ADJUST** (extend 2-3 wks) / **NO-GO** (stop AI pipeline investment; Modernization may still proceed independently).
+Phase 1 has no Go/No-Go gate in v10 — Phase 2 begins the moment PF-1992 ships (Tier 1 autonomous run starts immediately). Phase 1 "wraps" when the H + A1 numbers are published (~end of week 4).
 
 ---
 
-## Phase 1 Stories — Gating
+## Phase 1 Stories — Foundation (hybrid, not gated)
 
 ### P1-AIC-01 — Optimize LLM index and `.picasso/` folder
 
-**Track:** Agent Experience · **Estimate:** M · **Blocked by:** Phase 0 `.picasso/` v1 adoption learnings · **Blocks:** P1-AIC-03 (patterns feed rules), measurement runs
+**Track:** Agent Experience · **Estimate:** XS (1.5-2.5d) · **Blocked by:** Phase 0 `.picasso/` v1 adoption learnings · **Blocks:** P1-AIC-03 (patterns feed rules), measurement runs
 **Phase doc ref:** [Phase 1 Gated scope — Agent Experience row 1](./PI-4318-phases.md#phase-1--gated-scope)
 
 **Description**
@@ -86,25 +86,26 @@ Decrease size and increase usability of the LLM index (`llms.txt`) and `.picasso
 
 ---
 
-### P1-AIC-02 — Select top 20 Picasso components by real-world usage frequency
+### P1-MEAS-01 — Select 5 Staff Portal pages + extract Picasso component set
 
-**Track:** Agent Experience · **Estimate:** S · **Blocks:** P1-FIG-01, P1-FIG-02, P1-FIG-03
+**Track:** Pilot Measurement (NEW in v12) · **Estimate:** XS (1-1.5d) · **Blocks:** P1-FIG-01, P1-FIG-02, P1-FIG-03, P1-MEAS-02 (PF-2000), PF-2001a
 **Phase doc ref:** [Phase 1 Gated scope — Agent Experience row 2](./PI-4318-phases.md#phase-1--gated-scope)
 
 **Description**
-Identify the 20 Picasso components used as pilot scope. Mined from import counts across the 23 actively developed repos, reusing the Phase 0 Storybook parser. This list locks scope for Code Connect, BASE audit, token mapping, and all Phase 1 measurement.
+**Rescoped in v11** to selection + extraction only. Pick 5 Staff Portal pages with shipped implementations *and* Figma design specs. Extract the Picasso component set used in those pages (typically 12-18 components). Hand off the component set to PF-2000 (measurement runs), PF-2005 (Code Connect), PF-2006 (BASE), PF-2001a (docs polish).
 
 **Acceptance criteria**
-- [ ] Ranked list of Picasso components by import count across 23 active repos; raw data committed to the pilot harness repo
-- [ ] Final top-20 list published as `pilot/top-20.md` with rationale
-- [ ] Top-20 reviewed and signed off by Vedran + designer
-- [ ] Any top-20 component without a clean BASE counterpart flagged (input to P1-FIG-01)
+- [ ] 5 Staff Portal pages selected covering forms, layouts, data-display, navigation, feedback patterns; rationale published as `pilot/5-pages.md`
+- [ ] Each page has both a shipped implementation (file path) and a Figma spec link
+- [ ] Picasso components used in those 5 pages extracted; published as `pilot/component-set.md`
+- [ ] Any 5-page component without a clean BASE counterpart flagged (input to P1-FIG-01)
+- [ ] Selection signed off by Vedran + designer
 
 ---
 
 ### P1-AIC-03 — Extract patterns from existing usage of Picasso
 
-**Track:** Agent Experience · **Estimate:** M · **Blocked by:** P1-AIC-02 · **Blocks:** P2-AIC-01 (Skills reuse patterns)
+**Track:** Agent Experience · **Estimate:** XS (1.5-2.5d) · **Blocked by:** P1-MEAS-01 · **Blocks:** P2-AIC-01 (Skills reuse patterns)
 **Phase doc ref:** [Phase 1 Gated scope — Agent Experience row 3](./PI-4318-phases.md#phase-1--gated-scope)
 
 **Description**
@@ -118,59 +119,58 @@ AI-assisted mining of how Picasso is actually composed in Portal apps — forms,
 
 ---
 
-### P1-AIC-04 — Collect measurements (harness + baseline + gate runs)
+### P1-MEAS-02 — Measurement protocol + 3-condition runner + H + A1 + A2 + final A2 re-run
 
-**Track:** Agent Experience / Measurement · **Estimate:** L · **Blocked by:** P1-AIC-02, R1/R2 ready · **Blocks:** Phase 1 Go/No-Go gate
+**Track:** Pilot Measurement (NEW in v12) · **Estimate:** S (3-5d) · **Blocked by:** P1-MEAS-01 (component set), PF-1997, PF-2005, PF-2001a (for A2 run); PF-2001b + PF-2027 + PF-2009 (for final A2 re-run) · **Blocks:** —
 **Phase doc ref:** [Phase 1 Gated scope — Agent Experience row 4](./PI-4318-phases.md#phase-1--gated-scope) · [Measurement harness — implementation](./PI-4318-phases.md#measurement-harness--implementation)
 
 **Description**
-Build the measurement harness and use it to collect component accuracy, prop accuracy, time-to-UI, and visual diff on the reference set. Covers: runner + scoring scripts + Happo visual diff + designer's rubric + timing tracker + aggregator. Executes both the Week-1 baseline (no Code Connect / no Agent Experience) and the Week-3 gate run (full pipeline).
+**Expanded in v11** to own the entire measurement chain. Build the 5-page measurement protocol (protocol authoring + 3-condition runner + scoring rubric M1-M5 + reporting templates), then execute all three baseline conditions and the final re-run.
 
-**Acceptance criteria — harness**
-- [ ] `picasso-pilot-harness` folder/repo with: reference-set loader, runner (Cursor + Claude Code CLI), `score-component.ts` (M1), `score-props.ts` (M2), `score-tokens.ts` (M3), `score-lint.ts` (M7), Happo integration (M4), designer's rubric form linked (M5), `pnpm pilot:time` CLI (M6), `pnpm pilot:report` aggregator
-- [ ] Ground-truth mappings format documented and validated on 1 reference design
-- [ ] R1 + R2 frozen by mid-pilot (anti-pattern: no slipping the reference set)
-
-**Acceptance criteria — baseline (wk1)**
-- [ ] Baseline runs captured for R1 for every canonical prompt, no Code Connect / no Agent Experience
-- [ ] designer scored brand-fidelity rubric on all R1 designs (M5 / O3 baseline)
-- [ ] `pilot/reports/baseline-wk1.md` published with M1-M8 numbers
-
-**Acceptance criteria — gate (wk3)**
-- [ ] Full pipeline runs captured for R1 + R2
-- [ ] All pipeline metrics (M1-M8) computed and published in `pilot/reports/gate-wk3.md`
-- [ ] designer's brand-fidelity rubric re-scored (M5 / O3 post-pipeline)
-- [ ] Pilot engineer sentiment survey run and results published (M9)
-- [ ] Report compares to baseline with % lift for every applicable metric
-- [ ] No cherry-picking, no hidden re-runs (anti-patterns enforced)
+**Acceptance criteria**
+- [ ] **5-page measurement protocol committed:** `pilot/protocol.md` (selection criteria + scoring rubric M1-M5), `bin/extract-picasso-components.ts`, `bin/measurement-runner.ts` (3-condition H/A1/A2 runner), `pilot/reports/_template.md`
+- [ ] **Baseline H run** — score the 5 shipped human implementations against the Figma specs (M1-M5); raw scores committed to `pilot/runs/h/`
+- [ ] **Baseline A1 run** — AI agent + Figma MCP, no Code Connect, no `.picasso/`; raw outputs + scores committed to `pilot/runs/a1/`
+- [ ] `pilot/reports/baseline-pre-pipeline.md` published comparing H vs A1
+- [ ] **A2 baseline run** — feed the 5 Figma specs to AI agent + Code Connect (PF-2005) + Agent Experience (PF-1997 + PF-2001a). Raw outputs + scores committed to `pilot/runs/a2-mid/`.
+- [ ] `pilot/reports/post-pipeline.md` published comparing H, A1, A2 numbers with % lift per metric
+- [ ] **Final A2 re-run** at end of Phase 2 (after PF-2001b + PF-2027 + PF-2009 land); committed to `pilot/runs/a2-final/`.
+- [ ] Pilot engineer sentiment survey run and results published
+- [ ] No cherry-picking, no hidden re-runs
 
 ---
 
-### P1-FIG-01 — Cover BASE Design System + Picasso with Code Connect (top 20)
+### P1-FIG-01 — Build agentic Code Connect generator + Code Connect for 5-page subset
 
-**Track:** Figma Design-to-Code · **Estimate:** L · **Blocked by:** P1-AIC-02, P1-FIG-02, P1-FIG-03 · **Blocks:** P1-AIC-04 gate runs
+**Track:** Figma Design-to-Code · **Estimate:** S (3-4.5d) · **Blocked by:** P1-MEAS-01 (PF-1998 component-set), P1-FIG-02, P1-FIG-03 · **Blocks:** PF-2000 A2 measurement run, PF-2009
 **Phase doc ref:** [Phase 1 Gated scope — Figma Design-to-Code row 1](./PI-4318-phases.md#phase-1--gated-scope)
 
 **Description**
-Create `.figma.tsx` files for the top-20 components, mapping Figma (BASE) properties to Picasso props at prop level, and publish via Figma Code Connect CLI. Includes audit of BASE Figma Product Library against the top-20 so mapping doesn't hit walls mid-pilot.
+**v11 expanded** — engineer authors `bin/generate-code-connect.ts` (template + Figma MCP integration + Dev Mode snippet verification + iteration loop, max 3) on the way to running it on the 5-page subset. Then `.figma.tsx` files for the 12-18 components in `pilot/component-set.md`. Generator is reused unchanged by PF-2009 for the remaining ~60.
 
 **Acceptance criteria**
-- [ ] BASE audit spreadsheet for top-20: BASE component name, variant coverage, prop-mapping cleanliness (green / yellow / red); gap list routed to designer (input to P1-FIG-02)
-- [ ] 20 `.figma.tsx` files committed and published
-- [ ] Each component verified in Figma Dev Mode — correct snippet shown for a sample of variants
-- [ ] Each component verified via Figma MCP — CodeConnectSnippets returned for sample queries
-- [ ] M10 (Code Connect coverage) reports 20/20
+- [ ] `bin/generate-code-connect.ts` committed: template + Figma MCP integration + Dev Mode snippet verification + iteration loop (max 3)
+- [ ] `.figma.tsx` files committed and published for every component in `pilot/component-set.md` (~12-18 files)
+- [ ] Each component verified in Figma Dev Mode and via Figma MCP
 - [ ] Figma MCP configured for named pilot engineers (3-5 engineers, Cursor + Claude Code)
+- [ ] Generator script reusable unchanged by PF-2009 (no Picasso-specific tweaks)
+- [ ] Available for PF-2000 A2 measurement run
 
 ---
 
-### P1-FIG-02 — Update BASE Design System specification gaps (top 20)
+### P1-FIG-02 — Build BASE audit script + Update BASE spec gaps for 5-page subset
 
-**Track:** Figma Design-to-Code · **Estimate:** M · **Blocked by:** P1-AIC-02 · **Blocks:** P1-FIG-01
+**Track:** Figma Design-to-Code · **Estimate:** S (2.5-3.5d) · **Blocked by:** P1-MEAS-01 (PF-1998 component-set) · **Blocks:** P1-FIG-01, PF-2027
 **Phase doc ref:** [Phase 1 Gated scope — Figma Design-to-Code row 2](./PI-4318-phases.md#phase-1--gated-scope)
 
 **Description**
-Close specification gaps surfaced by the BASE audit: component/variant names, prop naming, prop completeness. Alignment is required for the Code Connect parser to generate accurate snippets. Owned with designer.
+**v11 expanded** — engineer authors `bin/base-audit.ts` (TypeScript AST parser + Figma MCP integration + RAG-status output, ~1d) on the way to running the audit. Script reads Picasso source + BASE schemas, compares programmatically, outputs RAG-status spreadsheet with per-component fix recommendations. Designer reviews flagged items only and applies fixes in Figma (~2d). Audit script reused unchanged by PF-2027.
+
+**Acceptance criteria**
+- [ ] `bin/base-audit.ts` committed: TypeScript AST parser + Figma MCP integration + RAG-status output
+- [ ] Audit run on the 12-18 components in `pilot/component-set.md`; spreadsheet published with per-component fix recommendations
+- [ ] Designer applies flagged fixes in BASE Figma; change-log committed to DS space
+- [ ] Audit script reusable unchanged by PF-2027
 
 **Acceptance criteria**
 - [ ] Gap list from P1-FIG-01 audit reviewed with designer
@@ -182,7 +182,7 @@ Close specification gaps surfaced by the BASE audit: component/variant names, pr
 
 ### P1-FIG-03 — Verify design token mapping between BASE and Picasso
 
-**Track:** Figma Design-to-Code · **Estimate:** S · **Blocked by:** P1-AIC-02 · **Blocks:** P1-FIG-01
+**Track:** Figma Design-to-Code · **Estimate:** S · **Blocked by:** P1-MEAS-01 · **Blocks:** P1-FIG-01
 **Phase doc ref:** [Phase 1 Gated scope — Figma Design-to-Code row 3](./PI-4318-phases.md#phase-1--gated-scope)
 
 **Description**
@@ -196,23 +196,28 @@ Confirm colors, spacing, and typography tokens used in BASE Figma are traceable 
 
 ---
 
-## Phase 1 Stories — Non-gating parallel
+## Phase 1 Stories — Modernization + Maestro PoC (parallel)
 
-### P1-MOD-01 — Create migration plan for AI-assisted Picasso migration
+### P1-MOD-01 — Migration plan + autonomous-loop infrastructure
 
-**Track:** Modernization · **Estimate:** M
+**Track:** Modernization · **Estimate:** S (3-4d)
 **Phase doc ref:** [Phase 1 Secondary parallel scope — Modernization row 1](./PI-4318-phases.md#phase-1--secondary-parallel-scope)
 
 **Description**
-Define the scope and execution plan for migrating Picasso to Base UI + Tailwind so Phase 2 can start day 1 if the gate passes. Covers: defined scope of migration, top-level plan + plan per component, testbed setup, AI migration prompt.
+Define the scope and execution plan for migrating Picasso to Base UI + Tailwind, and stand up **only the autonomous-migration-loop infrastructure** that PF-1994/2024/2025 will use. Covers: migration plan content (scope, top-level plan, per-component plans, testbed, AI prompt); autonomous migration loop scaffolds (`bin/migration-orchestrator.ts`, `bin/migration-gate.sh`, `bin/migration-diff.sh`, `docs/migration/manifest.json`, `docs/migration/ORCHESTRATOR.md`, `gh` CLI auth setup).
+
+**v11 scope changes:** the agentic Code Connect generator (`bin/generate-code-connect.ts`) **moves to PF-2005**. The BASE audit script (`bin/base-audit.ts`) **moves to PF-2006**. The 5-page measurement protocol **moves to PF-2000**. PF-1992 ships as a normal Picasso PR — full test suite + Happo + standard PR review approval.
 
 **Acceptance criteria**
 - [ ] `docs/migration-plan.md` committed in Picasso repo
 - [ ] Top-level plan with complexity tiering for all 75 components (16 MUI v4 pkgs / 11 @mui/base / ~48 remaining)
-- [ ] Per-component plan template + 2-3 worked examples
+- [ ] Per-component plan template + 2-3 worked examples; per-component plan files for all Tier 1 (7) committed
 - [ ] Testbed setup documented (how a migrated component is validated: Happo, Jest, Cypress, React 19 smoke)
 - [ ] AI migration prompt documented (reusing Phase 0 Codex prompt, revised)
 - [ ] Risk register + rollback strategy
+- [ ] **Autonomous-loop scaffolds committed:** `bin/migration-orchestrator.ts`, `bin/migration-gate.sh`, `bin/migration-diff.sh`, `docs/migration/manifest.json` schema, `docs/migration/ORCHESTRATOR.md`, `gh` CLI auth set up
+- [ ] **Sandboxed Note migration validates the orchestrator** end-to-end (agent picks Note, applies prompt, runs gates, opens PR, polls CI)
+- [ ] PR for PF-1992 itself ships through full test suite + Happo + standard reviewer approval
 - [ ] Reviewed by at least one engineer outside the pilot team
 
 ---
@@ -302,12 +307,14 @@ Execute on everything validated in Phase 1 and scope-prepared in parallel: start
 
 #### PF-1994 — Migrate `packages/base/*` Tier 1 (foundation primitives)
 
-**Estimate:** S (~3.5d effort) · **Blocked by:** P1-MOD-01, P1-MOD-02 · **Blocks:** PF-2024, P2-MOD-02..04 (sibling packages depend on Tier 1)
+**Estimate:** XS (2-3d effort) · **Blocked by:** P1-MOD-01, P1-MOD-02 · **Blocks:** PF-2024, P2-MOD-02..04 (sibling packages depend on Tier 1)
 
 
 Components: Form, FormLabel, FormLayout, Note, Typography, ModalContext, Utils (7).
 
 These are leaf-level foundation primitives. Sibling-package migrations (charts, RTE, query-builder) and Tier 2/3 composites all depend on them. Eng A prioritizes Typography + FormLabel + Form first within this batch so RTE/QB can start in parallel.
+
+**AI leverage.** Driven by the autonomous migration loop from PF-1992 (`bin/migration-orchestrator.ts`): agent picks Tier 1 components from `manifest.json`, applies the migration prompt, runs `yarn migrate:component <Name>` until gates pass, opens PR via `gh pr create`, polls CI, classifies review comments, merges via `gh pr merge --squash --auto` on approval. Engineer reviews PRs; agent handles orchestration. Hard cap of 3 iterations per component; escalation path documented. See [PI-4318-ai-leverage-tickets.md §PF-1994](./PI-4318-ai-leverage-tickets.md#pf-1994--2024--2025--autonomous-component-migration-with-agent-orchestration).
 
 **Acceptance criteria**
 - [ ] All 7 Tier 1 units migrated; per-component DoD met
@@ -321,10 +328,12 @@ These are leaf-level foundation primitives. Sibling-package migrations (charts, 
 
 #### PF-2024 — Migrate `packages/base/*` Tier 2 (compound)
 
-**Estimate:** S (~4.5d effort) · **Blocked by:** PF-1994 · **Blocks:** PF-2025, P2-MOD-05
+**Estimate:** S (3-4d effort) · **Blocked by:** PF-1994 · **Blocks:** PF-2025, P2-MOD-05
 
 
-Components: Checkbox, Radio, Tooltip, FileInput, Popper, Notification, Grid (7). Compound, medium surface, 2-5 subcomponents each. Per-component AI prompt + 1-2 iterations.
+Components: Checkbox, Radio, Tooltip, FileInput, Popper, Notification, Grid (7). Compound, medium surface, 2-5 subcomponents each.
+
+**AI leverage.** Same autonomous migration loop as PF-1994, with prompt + reference examples sharpened by Tier 1 lessons. Agent escalation rate is the leading indicator: if Tier 1 ran clean, expect Tier 2 to compress further.
 
 **Acceptance criteria**
 - [ ] All 7 Tier 2 units migrated; per-component DoD met
@@ -338,10 +347,12 @@ Components: Checkbox, Radio, Tooltip, FileInput, Popper, Notification, Grid (7).
 
 #### PF-2025 — Migrate `packages/base/*` Tier 3 + type-leak fixes
 
-**Estimate:** S (~6d effort) · **Blocked by:** PF-2024 · **Blocks:** P2-MOD-05
+**Estimate:** S (4-6d effort) · **Blocked by:** PF-2024 · **Blocks:** P2-MOD-05
 
 
 Components: Dropdown, Accordion, Page (3 composite). Plus cleanup of type-only MUI v4 leaks in Container, OutlinedInput, Notification. Highest-surface migration units; expect manual touch-up on JSS parent-refs and theme overrides.
+
+**AI leverage.** Autonomous loop assists, but Tier 3 has an architecture floor: agent stops at architectural decisions (`PicassoProvider.override` chains, JSS parent-ref unwinding) and escalates. Engineer drives architecture step manually, agent does per-file rewrite. Less compression than Tier 1/2.
 
 **Acceptance criteria**
 - [ ] All 3 Tier 3 units migrated; per-component DoD met
@@ -363,6 +374,8 @@ Components: Dropdown, Accordion, Page (3 composite). Plus cleanup of type-only M
 **Description**
 Migrate `packages/picasso-charts` — a single component (LineChart) using `makeStyles` + `createStyles` + `Theme` from `@material-ui/core`. Smallest of the sibling-package migrations; treat as a warm-up for the larger siblings.
 
+**AI leverage.** Same autonomous orchestrator as PF-1994; LineChart is a clean single-component PR — expected zero-touch.
+
 **Acceptance criteria**
 - [ ] LineChart migrated: no `@material-ui/core` imports, no JSS primitives in source
 - [ ] `@material-ui/core` removed from `packages/picasso-charts/package.json`
@@ -373,12 +386,14 @@ Migrate `packages/picasso-charts` — a single component (LineChart) using `make
 
 ### P2-MOD-03 — Migrate `@toptal/picasso-query-builder` (11 components)
 
-**Track:** Modernization · **Estimate:** L · **Blocked by:** P2-MOD-01 · **Blocks:** P2-MOD-05, P2-MOD-06
+**Track:** Modernization · **Estimate:** S (4-6d) · **Blocked by:** P2-MOD-01 · **Blocks:** P2-MOD-05, P2-MOD-06
 **Phase doc ref:** [Phase 2 — Modernization row 1](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 **Deep dive:** [PI-4318-P1-MOD-01-migration-plan.md §3 Tier 4](./PI-4318-P1-MOD-01-migration-plan.md#tier-4--sibling-packages-outside-packagesbase)
 
 **Description**
 Migrate `packages/picasso-query-builder` — 11 components across 21 source files on MUI v4 + JSS: AutoComplete, CombinatorSelector, FieldSelector, MultiSelect, OperatorSelector, QueryBuilder, RangeInput, RunQueryButton, Select, TextInput, ValueEditor. Batch into 3–4 PRs by component cluster.
+
+**AI leverage.** Autonomous orchestrator drives 11 components in sequence; per-cluster batching keeps PR review-able. Same agent prompt as Tier 1/2.
 
 **Acceptance criteria**
 - [ ] All 11 QB components migrated
@@ -391,12 +406,14 @@ Migrate `packages/picasso-query-builder` — 11 components across 21 source file
 
 ### P2-MOD-04 — Migrate `@toptal/picasso-rich-text-editor` (8 components)
 
-**Track:** Modernization · **Estimate:** L · **Blocked by:** P2-MOD-01 · **Blocks:** P2-MOD-05, P2-MOD-06
+**Track:** Modernization · **Estimate:** S (5-7d) · **Blocked by:** P2-MOD-01 · **Blocks:** P2-MOD-05, P2-MOD-06
 **Phase doc ref:** [Phase 2 — Modernization row 1](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 **Deep dive:** [PI-4318-P1-MOD-01-migration-plan.md §3 Tier 4](./PI-4318-P1-MOD-01-migration-plan.md#tier-4--sibling-packages-outside-packagesbase)
 
 **Description**
 Migrate `packages/picasso-rich-text-editor` — 8 components across 23 source files on MUI v4 + JSS: LexicalEditor, LexicalEditorView, RichText (Code/CodeBlock/Emoji/Image), RichTextEditor, RichTextEditorEmojiPicker, RichTextEditorToolbar, plugins/FocusOnLabelClickPlugin, plugins/Toolbar. `create-lexical-theme.ts` and `typographyStyles.ts` need a Tailwind-token-based rewrite. Batch into 2–3 PRs.
+
+**AI leverage.** Autonomous orchestrator handles the 8 components; the Lexical theme rewrite is the architecture floor and stays human-led (agent will escalate via manifest).
 
 **Acceptance criteria**
 - [ ] All 8 RTE components migrated
@@ -435,7 +452,7 @@ Rewrite `packages/picasso-provider` off the MUI v4 runtime and remove `@material
 
 ### P2-MOD-06 — AI-assisted consumer migration (with optional codemods)
 
-**Track:** Modernization · **Estimate:** S (2-3d) · **Blocked by:** PF-2025, P2-MOD-02, P2-MOD-03, P2-MOD-04, P2-MOD-05 (progressive) · **Blocks:** P3-MOD-01
+**Track:** Modernization · **Estimate:** XS (1.5-2.5d) · **Blocked by:** PF-2025, P2-MOD-02, P2-MOD-03, P2-MOD-04, P2-MOD-05 (progressive) · **Blocks:** P3-MOD-01
 **Phase doc ref:** [Phase 2 — Modernization row 2](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 
 **Description**
@@ -452,35 +469,46 @@ Why the scope cut: AI migration agents (Claude Code, Codex per PR #4906) handle 
 
 ---
 
-### P2-AIC-01 — Full-scope AI documentation for Picasso components (split into 2 sub-tickets)
+### P2-AIC-01 — Full-scope AI documentation for Picasso components (split into 3 sub-tickets in v10)
 
-**Track:** Agent Experience · **Estimate:** ~14d total (split: 10 + 4) · **Blocked by:** P1-AIC-01, P1-AIC-02, P1-AIC-03
+**Track:** Agent Experience · **Estimate:** ~5-9d total (split: 1-2 + 4-5 + 2-4) · **Blocked by:** P1-AIC-01, P1-MEAS-01, P1-AIC-03
 **Phase doc ref:** [Phase 2 — Agent Experience row 1](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 
-**Split note.** Original PF-2001 covered AI docs + Skills + tokens + llms-full.txt + designer review in one XL ticket. Split into 2 sub-tickets to unblock parallelism (Skills can start before all 75 component docs land). **designer's dos/don'ts review pass is now integrated into PF-2001** rather than running as a separate PF-2001c ticket — designer reviews each component's dos/don'ts during the docs-generation work, and engineer absorbs feedback iteratively.
+**Split note (v10).** v9 had PF-2001 as a single 7-9d ticket. v10 splits chronologically into **PF-2001a** (5-page subset, lands in Phase 1, ~12-18 components, 1-2d) and **PF-2001b** (remaining ~60 + tokens + `llms-full.txt` + full designer review, runs Phase 2, 4-5d) with the AI multiplier tightened from 0.1d/component to 0.05d/component (justified because docs are highly templated once the 5-page batch locks the format). PF-2026 (Skills) remains a separate Phase 2 sub-ticket. Designer's dos/don'ts review remains integrated.
 
 ---
 
-#### PF-2001 — Component-level AI documentation (75 components + tokens + llms-full.txt + designer review)
+#### PF-2001a — Polish 5-page-subset auto-generated docs (Phase 1)
 
-**Estimate:** XS (~10d engineer effort + designer wall-clock) · **Blocked by:** P1-AIC-01, P1-AIC-02, P1-AIC-03 · **Blocks:** PF-2026, P2-FIG-01, PF-2027
+**Estimate:** XS (0.5-1d engineer effort + designer wall-clock) · **Blocked by:** P1-AIC-01 (`.picasso/` v2 + lean Storybook docs), P1-MEAS-01 (PF-1998 component-set), P1-AIC-03 (patterns merged into `.picasso/`) · **Blocks:** PF-2000 A2 measurement run
 
-
-Generate 75 component `.md` files (API, extracted snippets, Storybook-derived examples) + tokens docs + `llms-full.txt` CI integration. AI-driven bulk for the docs themselves; **designer reviews dos/don'ts on each component during the work**, and engineer absorbs feedback iteratively. (Originally split out as PF-2001c, now integrated to avoid the round-trip handoff.)
+**Polish-only in v11.** Bulk doc generation already happens in PF-1997 (Storybook → llms.txt → lean component docs) and PF-1999 (patterns merged into `.picasso/`). PF-2001a refines the auto-generated docs for the 12-18 components used in the 5 baseline pages and gets designer's quick dos/don'ts pass. Lands before A2 baseline run.
 
 **Acceptance criteria**
-- [ ] 75/75 component `.md` files published (API, snippets, examples, dos/don'ts)
-- [ ] designer reviewed dos/don'ts + variant guidance on each component (in-flight, not a separate review pass)
-- [ ] `tokens/colors.md`, `tokens/spacing.md`, `tokens/typography.md` committed
+- [ ] Auto-generated docs for the 5-page subset reviewed and polished (rough edges, missing dos/don'ts, ambiguous variant guidance)
+- [ ] designer's quick pass on flagged dos/don'ts complete
+- [ ] Available to PF-2000 for A2 measurement run
+
+---
+
+#### PF-2001b — Polish remaining ~60 docs + tokens + llms-full.txt + designer review (Phase 2)
+
+**Estimate:** S (1.5-2.5d engineer effort + designer wall-clock) · **Blocked by:** PF-2001a (canonical polish format locked) · **Blocks:** PF-2026, P2-FIG-01, PF-2027, PF-2000 final A2 re-run
+
+**Polish-only in v11.** Refine the auto-generated docs for the remaining ~60 components; build `tokens/colors.md` + `tokens/spacing.md` + `tokens/typography.md` (full set); wire `llms-full.txt` CI integration alongside `llms.txt`; designer reviews AI-pre-filtered dos/don'ts on the remaining components.
+
+**Acceptance criteria**
+- [ ] 75/75 component `.md` files polished (5-page from PF-2001a + remaining ~60)
+- [ ] designer reviewed AI-pre-filtered dos/don'ts on the remaining ~60 components
+- [ ] `tokens/colors.md`, `tokens/spacing.md`, `tokens/typography.md` committed (full set)
 - [ ] `llms-full.txt` built in CI and published alongside `llms.txt`
-- [ ] 4-6 additional pattern docs committed (extending P1-AIC-03 inventory)
 - [ ] M11 Agent Experience coverage reports 75/75
 
 ---
 
 #### PF-2026 — Picasso Skills package (4 Skills)
 
-**Estimate:** S (~4d effort) · **Blocked by:** PF-2001 (Skills reference component docs) · **Blocks:** P3-AIC-02 (distribution)
+**Estimate:** S (2-4d effort) · **Blocked by:** PF-2001b (Skills reference component docs) · **Blocks:** P3-AIC-02 (distribution)
 
 
 Author 4 Skills: `picasso-component`, `picasso-page`, `picasso-review`, `picasso-migration`. Each is a packaged Skill validated against ≥2 AI tools (Cursor, Claude Code, Cowork, Lovable, Windsurf).
@@ -494,7 +522,7 @@ Author 4 Skills: `picasso-component`, `picasso-page`, `picasso-review`, `picasso
 
 ### P2-FIG-01 — Define Figma Make guidelines and project template
 
-**Track:** Figma Design-to-Code · **Estimate:** S (~3d) · **Blocked by:** PF-2001 (guidelines reuse component docs)
+**Track:** Figma Design-to-Code · **Estimate:** S (2-3d) · **Blocked by:** PF-2001b (guidelines reuse component docs)
 **Phase doc ref:** [Phase 2 — Figma Design-to-Code row 1](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 
 **Description**
@@ -510,16 +538,18 @@ Author 4 Skills: `picasso-component`, `picasso-page`, `picasso-review`, `picasso
 
 ---
 
-### PF-2027 — Update BASE Design System spec gaps (remaining 55)
+### PF-2027 — Update BASE Design System spec gaps (remaining ~60 components)
 
-**Track:** Figma Design-to-Code · **Estimate:** XS (10-12d total, mostly designer time) · **Blocked by:** PF-2001 (Picasso component docs ready) · **Blocks:** P2-FIG-02
+**Track:** Figma Design-to-Code · **Estimate:** S (7-10d, mostly designer time) · **Blocked by:** PF-2001b (Picasso component docs ready) · **Blocks:** P2-FIG-02
 **Phase doc ref:** [Phase 2 — Figma Design-to-Code row 2 (new in v6)](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 
 
 **Description**
-Symmetric with P1-FIG-02 (which closed BASE spec gaps for the top 20). For the remaining 55 components: audit BASE Figma Product Library against the Picasso component docs (PF-2001 output), close gaps in component naming, prop naming, prop completeness, and variant coverage. The Code Connect parser needs prop-name alignment between BASE and Picasso to generate accurate snippets — without this work, P2-FIG-02's `.figma.tsx` files would emit incorrect snippets for some of the 55.
+**Rescoped in v10** — covers the components NOT in the 5-page subset (~60 instead of 55). Symmetric with P1-FIG-02 (which closed BASE spec gaps for the 5-page subset). Audit BASE Figma Product Library against the Picasso component docs (PF-2001b output), close gaps in component naming, prop naming, prop completeness, and variant coverage. Without this work, P2-FIG-02's `.figma.tsx` files would emit incorrect snippets for some of the ~60.
 
 Owned with designer (same shape as PF-2006). Picasso component docs from PF-2001 (which now includes designer's reviewed dos/don'ts) are the primary input.
+
+**AI leverage.** Reuses `bin/base-audit.ts` from PF-2006 unchanged — runs against the remaining 55 components, designer reviews flagged items. Highest-leverage AI deliverable in the program: transforms designer's role from "audit + fix" to "review-flagged + fix" at scale. ~70% audit-time reduction (~3-4 designer-day savings).
 
 **Acceptance criteria**
 - [ ] BASE audit spreadsheet for the remaining 55 components: BASE component name, variant coverage, prop-mapping cleanliness (green / yellow / red); gap list reviewed with designer
@@ -530,13 +560,15 @@ Owned with designer (same shape as PF-2006). Picasso component docs from PF-2001
 
 ---
 
-### P2-FIG-02 — Code Connect for all remaining Picasso components (55)
+### P2-FIG-02 — Code Connect for remaining ~60 Picasso components
 
-**Track:** Figma Design-to-Code · **Estimate:** L · **Blocked by:** P1-FIG-01, PF-2027 (BASE spec gaps for the 55), P2-MOD-01, P2-MOD-02, P2-MOD-03, P2-MOD-04 (per-batch for migrated components)
+**Track:** Figma Design-to-Code · **Estimate:** S (4-5d) · **Blocked by:** P1-FIG-01, PF-2027, P2-MOD-01, P2-MOD-02, P2-MOD-03, P2-MOD-04 (per-batch for migrated components)
 **Phase doc ref:** [Phase 2 — Figma Design-to-Code row 2](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
 
 **Description**
-Author `.figma.tsx` for the remaining 55 components, reaching full library coverage (75/75). Full-library verification pass for Dev Mode snippets and MCP CodeConnectSnippets.
+**Rescoped in v10** — covers the components NOT in the 5-page subset (~60 instead of 55). Author `.figma.tsx` for the remaining ~60, reaching full library coverage (75/75). Full-library verification pass for Dev Mode snippets and MCP CodeConnectSnippets.
+
+**AI leverage.** Reuses the agentic Code Connect generator from PF-2005 unchanged. Generator playbook is stable after the 5-page subset locks the format; expected per-component cost ~0.05d. Engineer batches review across the ~60.
 
 **Acceptance criteria**
 - [ ] 55 `.figma.tsx` files committed and published
@@ -611,11 +643,13 @@ Migrate the 23 actively developed consumer repos to modern Picasso, roll Agent E
 
 ### P3-MOD-01 — Migrate Staff Portal to modernized Picasso
 
-**Track:** Modernization · **Estimate:** S (~2d) · **Blocked by:** PF-2025, P2-MOD-02, P2-MOD-03, P2-MOD-04, P2-MOD-05, P2-MOD-06
+**Track:** Modernization · **Estimate:** XS (1-1.5d) · **Blocked by:** PF-2025, P2-MOD-02, P2-MOD-03, P2-MOD-04, P2-MOD-05, P2-MOD-06
 **Phase doc ref:** [Phase 3 — Modernization row 1](./PI-4318-phases.md#phase-3--rollout--4-6-weeks)
 
 **Description**
 **Scope reduced from 7 Portal apps to 1.** Migrate **Staff Portal only**. Other Portal apps (platform, client-portal, hire-global, client-signup, talent-portal, screening-wizard) are out of scope for this PI — their teams will run their own migrations using the AI agent + migration prompt deliverables from P2-MOD-06.
+
+**AI leverage.** Run the autonomous migration loop on Staff Portal as one of its first external-repo applications. Engineer reviews PRs + handles edge cases; agent handles bulk.
 
 **Acceptance criteria**
 - [ ] Staff Portal on modernized Picasso
@@ -645,7 +679,7 @@ Migrate testing-platform, tracker-front, topteam, top-scheduler, and remaining a
 
 ### P3-AIC-01 — Adopt Picasso rules in Staff Portal
 
-**Track:** Agent Experience · **Estimate:** XS (~1d) · **Blocked by:** P2-AIC-01 (PF-2001 + PF-2026)
+**Track:** Agent Experience · **Estimate:** XS (~1d) · **Blocked by:** PF-2001b + PF-2026
 **Phase doc ref:** [Phase 3 — Agent Experience row 1](./PI-4318-phases.md#phase-3--rollout--4-6-weeks)
 
 **Description**
@@ -660,7 +694,7 @@ Migrate testing-platform, tracker-front, topteam, top-scheduler, and remaining a
 
 ### P3-AIC-02 — Bundle Agent Experience into `@toptal/picasso` npm package
 
-**Track:** Agent Experience · **Estimate:** XS (~1d) · **Blocked by:** PF-2001, PF-2026
+**Track:** Agent Experience · **Estimate:** XS (~1d) · **Blocked by:** PF-2001b, PF-2026
 **Phase doc ref:** [Phase 3 — Agent Experience row 2](./PI-4318-phases.md#phase-3--rollout--4-6-weeks)
 
 **Description**
@@ -703,10 +737,12 @@ Discovery via convention: `.cursorrules` / `CLAUDE.md` in consumer repos point t
 # Summary
 
 - **3 Epics:** Phase 1 (gated pilot), Phase 2 (execution), Phase 3 (rollout).
-- **Phase 1:** 7 gating stories (4 Agent Experience + 3 Figma Design-to-Code) + 3 non-gating parallel stories (2 Modernization + 1 Maestro Integration) = 10 stories.
-- **Phase 2:** 8 Modernization (PF-1994 + PF-2024 + PF-2025 + PF-2020/2021/2022/2023 + PF-1995) + 2 Agent Experience (PF-2001 + PF-2026 — PF-2001c folded into PF-2001) + 3 Figma Design-to-Code (P2-FIG-01, **PF-2027 [new]**, P2-FIG-02) + 2 Maestro Integration = 15 stories.
+- **Phase 1 (hybrid):** 4 Agent Experience (PF-1997, PF-1998 [rescoped to 5-page baseline], PF-1999, PF-2001a [new in v10]) + 3 Figma Design-to-Code (PF-2005/2006 [rescoped to 5-page subset], PF-2007) + 2 Modernization (PF-1992 [+1d for 5-page protocol], PF-1993) + 1 Maestro Integration (PF-2011) = 10 stories.
+- **Phase 2:** 8 Modernization (PF-1994 + PF-2024 + PF-2025 + PF-2020/2021/2022/2023 + PF-1995) + 3 Agent Experience (PF-2001b [new in v10], PF-2026, PF-2000 [A2 measurement]) + 3 Figma Design-to-Code (PF-2008, PF-2027, PF-2009) + 2 Maestro Integration = 16 stories.
 - **Phase 3:** 1 Modernization (PF-1996 Staff Portal; P3-MOD-02 excluded) + 2 Agent Experience (PF-2002 Staff Portal + PF-2003 npm-bundled distribution; P3-AIC-03 excluded) + 0 Figma (PF-2010 excluded) + 0 Maestro Integration (P3-MAE-01 + P3-MAE-02 excluded) = 3 stories.
-- **Total:** 3 epics + 28 stories after splits, exclusions, and the new PF-2027 ticket.
+- **Total:** 3 epics + 29 stories after PF-2001 split into PF-2001a + PF-2001b.
+- **Program total: 76-117 man-days** (v12, unchanged from v11 — same work, reorganized). Per-track v12 totals: Modernization 35-53, Agent Experience 8.5-15.5, Figma Design-to-Code 19.5-28, Maestro Integration 9-14, **Pilot Measurement 4-6.5 (NEW)**.
+- **Program start: May 4, 2026.** See [PI-4318-estimates.md](./PI-4318-estimates.md) for the per-ticket breakdown and [PI-4318-timeline-v4.md](./PI-4318-timeline-v4.md) for the calendar.
 
 **Excluded from PI-4318 scope:** PF-2004 (P3-AIC-03 feedback collection), PF-2010 (P3-FIG-01 designer onboarding), P3-MOD-02 (other-repo migrations — handled by other teams via self-service AI prompt), P3-MAE-01 (Maestro onboarding), P3-MAE-02 (Maestro defaults to Picasso).
 
@@ -716,6 +752,6 @@ Discovery via convention: `.cursorrules` / `CLAUDE.md` in consumer repos point t
 - [ ] Story titles read well as Jira summaries?
 - [ ] Dependencies (`blocked by` / `blocks`) match expected sequencing?
 - [ ] T-shirt estimates reasonable?
-- [ ] Any stories that should be split or merged (e.g., P1-AIC-04 and P2-AIC-01 are XL — split along natural seams)?
+- [ ] Any stories that should be split or merged (e.g., P1-MEAS-02 and P2-AIC-01 are XL — split along natural seams)?
 - [ ] Track labels correct throughout?
 - [ ] Phase doc references point to the right anchors?
