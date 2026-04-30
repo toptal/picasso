@@ -1,7 +1,12 @@
 import { Collapse } from '../Collapse'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Transitions').createPage('Collapse')
+const page = PicassoBook.section('Transitions').createPage(
+  'Collapse',
+  `
+    ${PicassoBook.createSourceLink(__filename)}
+  `
+)
 
 page.createTabChapter('Props').addComponentDocs({
   component: Collapse,

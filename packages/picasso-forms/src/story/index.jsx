@@ -12,7 +12,14 @@ section.createDocPage('CHANGELOG', createMarkdownPage(CHANGELOG), {
   alwaysOnTop: true,
 })
 
-const page = section.createPage('Final Form', 'Final Form')
+const page = section.createPage(
+  'Final Form',
+  `
+    Final Form
+
+    ${PicassoBook.createSourceLink(__filename)}
+  `
+)
 
 page
   .createChapter()

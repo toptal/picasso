@@ -1,7 +1,12 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 import { Carousel } from '../Carousel'
 
-const page = PicassoBook.section('Components').createPage('Carousel')
+const page = PicassoBook.section('Components').createPage(
+  'Carousel',
+  `
+    ${PicassoBook.createSourceLink(__filename)}
+  `
+)
 
 page
   .createTabChapter('Props')

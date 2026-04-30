@@ -1,6 +1,11 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Utils').createPage('Transitions')
+const page = PicassoBook.section('Utils').createPage(
+  'Transitions',
+  `
+    ${PicassoBook.createSourceLink(__filename)}
+  `
+)
 
 page.createChapter().addExample(
   'utils/Transitions/Rotate180/story/Default.example.tsx',

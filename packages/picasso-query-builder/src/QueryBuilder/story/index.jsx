@@ -2,7 +2,10 @@ import PicassoBook from '~/.storybook/components/PicassoBook'
 import QueryBuilder from '../QueryBuilder'
 
 const page = PicassoBook.section('Picasso Query Builder').createPage(
-  'QueryBuilder'
+  'QueryBuilder',
+  `
+    ${PicassoBook.createSourceLink(__filename)}
+  `
 )
 
 page.createTabChapter('Props').addComponentDocs({

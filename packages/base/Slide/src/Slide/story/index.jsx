@@ -1,7 +1,12 @@
 import { Slide } from '../Slide'
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Components').createPage('Slide')
+const page = PicassoBook.section('Components').createPage(
+  'Slide',
+  `
+    ${PicassoBook.createSourceLink(__filename)}
+  `
+)
 
 page.createTabChapter('Props').addComponentDocs({
   component: Slide,
