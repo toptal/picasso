@@ -9,7 +9,7 @@
   "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "glider-js": "^1.7.8"
   },
   "devDependencies": {
+    "@toptal/picasso": "54.1.5",
     "@toptal/picasso-tailwind-merge": "2.0.4"
   },
   "sideEffects": [

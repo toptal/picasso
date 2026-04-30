@@ -9,7 +9,7 @@
   "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "@mui/base": "5.0.0-beta.58",
     "@toptal/picasso-paper": "4.0.5",
     "@toptal/picasso-popper": "2.0.2",
+    "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "4.0.0",
     "classnames": "^2.5.1"
   },
@@ -39,6 +40,9 @@
     "react": ">=16.12.0 < 19.0.0"
   },
   "devDependencies": {
+    "@toptal/picasso": "54.1.5",
+    "@toptal/picasso-container": "3.1.4",
+    "@toptal/picasso-menu": "4.0.0",
     "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-tailwind-merge": "2.0.4",
     "@toptal/picasso-test-utils": "2.0.0",

@@ -52,7 +52,7 @@ We try to have everything inside `Picasso` synced with latest design proposal ca
 
 ## How can I contribute?
 
-- Make sure tests pass by running `yarn test`
+- Make sure tests pass by running `pnpm test`
 
 - You can also use `@toptal-anvil ping reviewers` to ping the reviewers back to get their approvals after resolving the stated issues
 
@@ -87,7 +87,7 @@ We use [changesets](https://github.com/atlassian/changesets) to manage releases 
 As a contributor, we expect you to create a "changeset" file for the changes you've made. You can do it by running:
 
 ```
-yarn changeset
+pnpm changeset
 ```
 
 The "changeset" file should:

@@ -49,10 +49,10 @@ bash .github/build-actions.sh
 - Build this action only:
 
 ```bash
-yarn ncc build .github/actions/report-missing-changeset/index.js -o .github/actions/report-missing-changeset/dist
+pnpm exec ncc build .github/actions/report-missing-changeset/index.js -o .github/actions/report-missing-changeset/dist
 git add .github/actions/report-missing-changeset/dist
 ```
 
 Notes:
-- Ensure dependencies are installed at repo root (`yarn install`).
-- `@vercel/ncc` is available via `yarn ncc` (declared in root devDependencies).
+- Ensure dependencies are installed at repo root (`pnpm install`).
+- `@vercel/ncc` is available via `pnpm exec ncc` (declared in root devDependencies).

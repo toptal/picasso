@@ -66,14 +66,18 @@ module.exports = {
       rule => rule.test && rule.test.toString().includes('.css')
     )
 
-    // Use the 'postcss-loader' to process TailwindCSS
+    // Use the 'postcss-loader' to process TailwindCSS. Pass `base` so
+    // pnpm's plugin resolution finds the workspace root tailwind.config.js
+    // even when @tailwindcss/postcss is loaded through a symlinked path.
     cssRule.use.push({
       loader: 'postcss-loader',
       options: {
         postcssOptions: {
           config: false,
           plugins: {
-            '@tailwindcss/postcss': {},
+            '@tailwindcss/postcss': {
+              base: path.resolve(__dirname, '..'),
+            },
           },
         },
       },

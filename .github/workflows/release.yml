@@ -37,30 +37,8 @@ jobs:
         with:
           node-version: 22.20.0
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Check yarn cache
-        uses: actions/cache@v4
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Dependencies (from network)
-        if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
-        run: |
-          yarn policies set-version
-          yarn install --frozen-lockfile
-
-      - name: Install Dependencies (from cache)
-        if: ${{ steps.yarn-cache.outputs.cache-hit == 'true' }}
-        run: |
-          yarn policies set-version
-          yarn install --frozen-lockfile --offline
+      - name: Install Dependencies
+        uses: ./.github/actions/pnpm-install
 
       - name: Create Release Pull Request
         id: changesets
@@ -151,13 +129,13 @@ jobs:
       - name: Build Storybook for Production
         if: ${{ success() }}
         run: |
-          yarn build:storybook
+          pnpm build:storybook
           echo "📖 Building Storybook for production deployment..." >> $GITHUB_STEP_SUMMARY
 
       - name: Generate LLM docs
         if: ${{ success() }}
         run: |
-          yarn generate:llm-docs
+          pnpm generate:llm-docs
           cp -r llm-docs build/storybook/llm-docs
 
       - name: Prepare production deployment

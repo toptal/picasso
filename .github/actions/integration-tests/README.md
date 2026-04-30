@@ -6,7 +6,7 @@ Action to conduct integration tests in a project using Cypress.
 
 Action to conduct integration tests in a project using Cypress.
 
-By default it executes `yarn test:integration:ci` command.
+By default it executes `pnpm test:integration:ci` command.
 
 ### Inputs
 

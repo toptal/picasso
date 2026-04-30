@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build:package": "tsc --build tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "repository": {
     "type": "git",
@@ -138,10 +138,6 @@
     "popper.js": "^1.16.1",
     "react-router-dom": "^5.3.4",
     "styled-components": "^6.1.1"
-  },
-  "resolutions": {
-    "js-yaml": "^3.13.1",
-    "lodash": "^4.17.21"
   },
   "sideEffects": [
     "**/styles.ts",

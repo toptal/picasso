@@ -9,7 +9,7 @@
   "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "repository": {
     "type": "git",
@@ -38,8 +38,10 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "2.0.4",
-    "@toptal/picasso-provider": "5.0.2"
+    "@toptal/picasso": "54.1.5",
+    "@toptal/picasso-icons": "1.15.2",
+    "@toptal/picasso-provider": "5.0.2",
+    "@toptal/picasso-tailwind-merge": "2.0.4"
   },
   "files": [
     "dist-package/**",

@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build:package": "sh ./bin/build.sh",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "devDependencies": {
     "tailwindcss": "^4.2.1"

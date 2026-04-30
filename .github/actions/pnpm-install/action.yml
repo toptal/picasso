@@ -1,0 +1,77 @@
+name: Install dependencies
+description: Install and cache node modules with pnpm
+inputs:
+  npm-token:
+    description: Access token type **Read-only**. Required for repository with private dependencies. If undefined, `env.NPM_TOKEN` is used
+    required: false
+  cache-version:
+    description: "Cache version"
+    default: "0.0"
+    required: false
+  path:
+    description: Relative path under $GITHUB_WORKSPACE where to run `pnpm install` command
+    default: .
+    required: false
+  max-attempts:
+    description: How many times to retry installing. Useful when package builds fail due to flaky network connections
+    default: "1"
+    required: false
+  pnpm-version:
+    description: Explicit pnpm version to install via corepack. If omitted, corepack reads the `packageManager` field from `package.json`
+    required: false
+outputs:
+  cache-hit:
+    description: "Indicates an exact match was found for the pnpm store || boolean"
+    value: ${{ steps.pnpm-store-cache.outputs.cache-hit }}
+runs:
+  using: composite
+  steps:
+    - name: Set node version
+      id: set-node-version
+      run: echo version=$(node -v) >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Enable corepack and activate pnpm
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      run: |
+        corepack enable
+        if [ -n "${{ inputs.pnpm-version }}" ]; then
+          corepack prepare pnpm@${{ inputs.pnpm-version }} --activate
+        elif ! grep -q '"packageManager"' package.json 2>/dev/null; then
+          echo "::error::Neither pnpm-version input nor packageManager field in package.json is set."
+          exit 1
+        fi
+
+    - name: Get pnpm store path
+      id: pnpm-store
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      run: echo "path=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - name: Cache pnpm store
+      uses: actions/cache@v4
+      id: pnpm-store-cache
+      with:
+        path: ${{ steps.pnpm-store.outputs.path }}
+        key: ${{ runner.os }}-${{ runner.arch }}-node-${{ steps.set-node-version.outputs.version }}-pnpm-store-${{ hashFiles(format('{0}/pnpm-lock.yaml', inputs.path)) }}-${{ inputs.cache-version }}
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-node-${{ steps.set-node-version.outputs.version }}-pnpm-store-
+
+    - name: pnpm install
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      env:
+        NPM_TOKEN: ${{ inputs.npm-token || env.NPM_TOKEN }}
+        MAX_ATTEMPTS: ${{ inputs.max-attempts }}
+      run: |
+        for ((i=1; i<=MAX_ATTEMPTS; i++)); do
+          echo "Trying to install (${i}/${MAX_ATTEMPTS})..."
+          if pnpm install --frozen-lockfile; then
+            echo "pnpm install succeeded on attempt ${i}."
+            exit 0
+          fi
+          sleep 10
+        done
+        echo "All installation attempts failed. Exiting with error."
+        exit 1

@@ -20,4 +20,4 @@ runs:
         # for other purposes beyond communicating with the GitHub API. 
         # The DANGER_GITHUB_API_BASE_URL env variable takes higher priority 
         DANGER_GITHUB_API_BASE_URL: https://api.github.com
-      run: yarn davinci-ci danger
+      run: pnpm davinci-ci danger

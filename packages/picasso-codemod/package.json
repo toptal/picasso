@@ -16,7 +16,7 @@
   },
   "scripts": {
     "build:package": "./bin/build.sh",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "bugs": {
     "url": "https://github.com/toptal/picasso/issues"
@@ -26,12 +26,17 @@
     "typescript": "~4.7.0"
   },
   "devDependencies": {
+    "@toptal/picasso-forms": "74.0.0",
+    "@toptal/picasso-provider": "5.0.2",
+    "@toptal/picasso-rich-text-editor": "18.0.0",
+    "@toptal/picasso-shared": "15.0.0",
     "@types/jscodeshift": "^0.11.6"
   },
   "bin": {
     "picasso-codemod": "./bin/picasso-codemod.mjs"
   },
   "dependencies": {
+    "@toptal/picasso": "54.1.5",
     "execa": "^7.1.1",
     "globby": "^14.0.0",
     "jscodeshift": "^0.13.1",

@@ -55,7 +55,7 @@ jobs:
         uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
-        uses: ./.github/actions/yarn-install
+        uses: ./.github/actions/pnpm-install
 
       - name: Update PR Body
         run: node ./.github/actions/update-body.js
@@ -63,19 +63,19 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Syncpack check
-        run: yarn syncpack:list
+        run: pnpm syncpack:list
 
       - name: Circularity Check
-        run: yarn circularity
+        run: pnpm circularity
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Type Check
-        run: yarn typecheck
+        run: pnpm typecheck
 
       - name: Jest Tests
-        run: yarn test:unit:ci
+        run: pnpm test:unit:ci
 
   storybook-visual-tests:
     if: ${{ github.event.pull_request.head.ref != 'changeset-release/master' }}
@@ -96,10 +96,10 @@ jobs:
           node-version: 22.20.0
 
       - name: Install dependencies from cache
-        uses: ./.github/actions/yarn-install
+        uses: ./.github/actions/pnpm-install
 
       - name: Visual Tests
-        run: yarn happo:storybook
+        run: pnpm happo:storybook
         env:
           HAPPO_PROJECT: Picasso/Storybook
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
@@ -137,7 +137,7 @@ jobs:
           node-version: 22.20.0
 
       - name: Install dependencies from cache
-        uses: ./.github/actions/yarn-install
+        uses: ./.github/actions/pnpm-install
 
       - name: Setup GitHub Pages content
         uses: ./.github/actions/setup-gh-pages
@@ -145,11 +145,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Storybook
-        run: yarn build:storybook
+        run: pnpm build:storybook
 
       - name: Generate LLM docs
         run: |
-          yarn generate:llm-docs
+          pnpm generate:llm-docs
           cp -r llm-docs build/storybook/llm-docs
 
       - name: Prepare PR preview deployment

@@ -9,7 +9,7 @@
   "module": "./dist-package/src/index.js",
   "scripts": {
     "build:package": "tsc -b tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
+    "@toptal/picasso": "54.1.5",
     "@toptal/picasso-test-utils": "2.0.0"
   },
   "files": [

@@ -7,4 +7,4 @@ Part of `Picasso` is also a scaffolding tool which helps you to create a new com
 * Component styles
 * Component test
 
-To invoke new component creation just invoke `yarn generate:component` and follow CLI. It will scaffold everything needed for a quick start and followed by our guidelines. 
+To invoke new component creation just invoke `pnpm generate:component` and follow CLI. It will scaffold everything needed for a quick start and followed by our guidelines. 

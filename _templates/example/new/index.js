@@ -3,9 +3,9 @@ const AVAILABLE_PACKAGES = ['picasso', 'picasso-forms', 'picasso-charts']
 const DEFAULT_EXAMPLE_COMMAND = 'example'
 
 /**
- * @example yarn generate:example ComponentName ExampleName Package
- * @example yarn generate:example --component=ComponentName --example=ExampleName --package=Package
- * @example yarn generate:example
+ * @example pnpm generate:example ComponentName ExampleName Package
+ * @example pnpm generate:example --component=ComponentName --example=ExampleName --package=Package
+ * @example pnpm generate:example
  */
 module.exports = {
   prompt: ({ prompter, args }) => {

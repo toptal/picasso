@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Update README.md version
-yarn build:storybook
+pnpm build:storybook
 
 # archive ./build/storybook folder to the shared folder with docker root
 mkdir -p $DEPLOY_DOCS_PATH
