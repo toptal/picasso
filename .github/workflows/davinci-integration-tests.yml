@@ -31,7 +31,7 @@ jobs:
         # Same as actions/setup-node@v6.1
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 20.18
+          node-version: 22.20.0
 
       - uses: ./.github/actions/yarn-install
 
@@ -67,7 +67,7 @@ jobs:
         # Same as actions/setup-node@v6.1
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 20.18
+          node-version: 22.20.0
 
       - uses: ./.github/actions/yarn-install
 
@@ -99,7 +99,7 @@ jobs:
         # Same as actions/setup-node@v6.1
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 20.18
+          node-version: 22.20.0
 
       - uses: ./.github/actions/yarn-install
 
