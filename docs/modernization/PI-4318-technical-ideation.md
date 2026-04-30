@@ -110,7 +110,7 @@ Rework the Phase 0 Storybook parser to emit a smaller, denser `llms.txt` and a s
 ### Integration points
 
 - Produces the core input for Cursor / Claude Code + Figma MCP pipeline.
-- Consumes from P1-AIC-03 (patterns) and P1-AIC-02 (top-20 selection).
+- Consumes from P1-AIC-03 (patterns) and P1-MEAS-01 (top-20 selection).
 - Rules reference tokens verified in P1-FIG-03.
 
 ### Risks & open questions
@@ -121,7 +121,7 @@ Rework the Phase 0 Storybook parser to emit a smaller, denser `llms.txt` and a s
 
 ---
 
-## P1-AIC-02 — Select top 20 Picasso components
+## P1-MEAS-01 — Select top 20 Picasso components
 
 ### Approach
 
@@ -152,7 +152,7 @@ Static-analysis script that crawls the 23 active consumer repos, counts unique i
 
 ### Approach
 
-Reuse the analyzer from P1-AIC-02 to collect top composition patterns — sequences of Picasso components that co-occur (e.g., `Form → Input → Select → Button`). For each cluster, emit a pattern doc with: description, when-to-use, real-world file-path citations, recommended Picasso snippet. AI-assisted summarization, designer review.
+Reuse the analyzer from P1-MEAS-01 to collect top composition patterns — sequences of Picasso components that co-occur (e.g., `Form → Input → Select → Button`). For each cluster, emit a pattern doc with: description, when-to-use, real-world file-path citations, recommended Picasso snippet. AI-assisted summarization, designer review.
 
 ### Key technical choices
 
@@ -173,7 +173,7 @@ Reuse the analyzer from P1-AIC-02 to collect top composition patterns — sequen
 
 ---
 
-## P1-AIC-04 — Collect measurements (harness + baseline + gate)
+## P1-MEAS-02 — Collect measurements (harness + baseline + gate)
 
 ### Approach
 
@@ -221,8 +221,8 @@ Staged: (1) one-day BASE audit against top-20, producing a green/yellow/red tabl
 
 ### Integration points
 
-- Blocked by P1-AIC-02 (scope), P1-FIG-02 (spec gaps), P1-FIG-03 (tokens).
-- Blocks P1-AIC-04 gate run.
+- Blocked by P1-MEAS-01 (scope), P1-FIG-02 (spec gaps), P1-FIG-03 (tokens).
+- Blocks P1-MEAS-02 gate run.
 - Extends to 75/75 in P2-FIG-02.
 
 ### Risks & open questions
