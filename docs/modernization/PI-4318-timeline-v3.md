@@ -3,7 +3,7 @@
 **Parent:** [PI-4318 — Picasso Modernization + AI Developer Experience](https://toptal-core.atlassian.net/browse/PI-4318)
 **Cross-references:** [PI-4318-timeline.md](./PI-4318-timeline.md) (v1, 2-engineer baseline), [PI-4318-timeline-v2.md](./PI-4318-timeline-v2.md) (v10, single-owner-per-track 3-engineer), [PI-4318-estimates.md](./PI-4318-estimates.md), [PI-4318-tickets-by-track.md](./PI-4318-tickets-by-track.md)
 **ID convention:** Jira keys (PF-XXXX) used throughout. P3-MOD-02, P3-MAE-01, P3-MAE-02 explicitly excluded from PI scope.
-**Status:** v3 — same resourcing as timeline-v2 but reorganized around explicit engineer collaboration patterns. Program end **~Jul 17** (saves 5 days vs v2's Jul 22).
+**Status:** v4 — collaboration patterns from v3 + AI-leverage tactics from [PI-4318-ai-leverage-tickets.md](./PI-4318-ai-leverage-tickets.md) applied. Program end **~Jul 13** (saves 4 days more vs v3, 9 days vs v2).
 
 ---
 
@@ -19,25 +19,35 @@ Timeline-v3 keeps the same total capacity (Eng A 100% + Eng B 50% + Eng C 50%) b
 - **Final-stretch help** — Eng A joins Eng B on PF-2000 measurement once Mod chain finishes
 - **Daily standup + weekly design review** — coordination overhead absorbed
 
-**Program end shifts Jul 22 → ~Jul 17.** Saves ~5 days. Plus higher quality on the canary and critical-path tickets, plus more resilience to single-engineer absence.
+**Program end shifts Jul 22 → ~Jul 13** (5 days from collab patterns + 4 days from AI leverage).
+
+In v4, on top of the v3 collaboration patterns, we apply five AI-leverage tactics from [PI-4318-ai-leverage-tickets.md](./PI-4318-ai-leverage-tickets.md):
+
+1. **Autonomous per-component migration loop** — agent reads per-component plan, runs gate scripts, opens PR via `gh` CLI, polls CI, iterates on review feedback. Compresses Tier 1+2 + sibling migrations.
+2. **Agentic Code Connect generator** — Figma MCP + AI auto-maps BASE↔Picasso props. Compresses PF-2005 + PF-2009.
+3. **AI-driven BASE audit script** — comparing Picasso docs vs BASE schema, flagging gaps. Compresses PF-2006 + PF-2027 (mostly designer time).
+4. **AI-pre-filtered docs review** — AI classifies dos/don'ts as high-confidence vs uncertain; designer reviews flagged subset only. Compresses PF-2001.
+5. **AI-authored measurement harness** — Claude Code writes M1-M8 scoring scripts end-to-end. Compresses PF-2000.
+
+PF-1992 grows from 3d to 4-5d to absorb the orchestrator + audit script + generator setup (one-time cost paid back many times in Phase 2).
 
 ---
 
 ## Key dates
 
-| Milestone | v2 (single-owner) | v3 (collaboration) |
-|---|---|---|
-| Program start | 2026-04-27 | 2026-04-27 |
-| Eng B starts (50%) | May 1 | May 1 |
-| Eng C starts (50%) | May 1 | May 1 |
-| PF-1994 starts | May 6 | May 6 |
-| Eng C wraps Maestro core | Jul 7 | Jul 7 (unchanged) |
-| Eng C joins PF-2009 swarm | — | **Jul 8** |
-| Eng A wraps Mod chain (incl. PF-2009 swarm) | Jul 20 | **Jul 15** |
-| Eng A joins PF-2000 final stretch | — | **Jul 16** |
-| Eng B done (with PF-2000 + Eng A help) | Jul 22 | **Jul 17** |
-| **Program end** | **Jul 22** | **~Jul 17** (or Jul 13 if PF-2000 descoped) |
-| Total wall-clock | ~12.5 weeks | **~11.5 weeks** |
+| Milestone | v2 (single-owner) | v3 (collab) | v4 (collab + AI leverage) |
+|---|---|---|---|
+| Program start | 2026-04-27 | 2026-04-27 | 2026-04-27 |
+| Eng B starts (50%) | May 1 | May 1 | May 1 |
+| Eng C starts (50%) | May 1 | May 1 | May 1 |
+| PF-1992 ends (with agent infra setup) | Apr 29 | Apr 29 | **Apr 30** (+1d) |
+| PF-1994 starts | May 6 | May 6 | **May 7** (+1d) |
+| Eng C wraps Maestro core | Jul 7 | Jul 7 | Jul 7 |
+| Eng A wraps Mod chain (incl. PF-2009 swarm) | Jul 20 | Jul 15 | **Jul 10** |
+| Eng A joins PF-2000 final stretch | — | Jul 16 | **Jul 13** |
+| Eng B done | Jul 22 | Jul 17 | **Jul 13** |
+| **Program end** | **Jul 22** | **~Jul 17** | **~Jul 13** (or Jul 10 if PF-2000 descoped) |
+| Total wall-clock | ~12.5 weeks | ~11.5 weeks | **~11 weeks** |
 
 ---
 
@@ -129,12 +139,12 @@ gantt
     excludes weekends
 
     section Eng A
-    PF-1992 Plan            :mod1, 2026-04-27, 3d
+    PF-1992 Plan + infra    :mod1, 2026-04-27, 4d
     PF-1993 pnpm            :mod2, after mod1, 4d
-    PF-1994 Tier 1          :mod3, after mod2, 4d
-    PF-2024 Tier 2          :mod3b, after mod3, 5d
+    PF-1994 Tier 1 (auto)   :mod3, after mod2, 3d
+    PF-2024 Tier 2 (auto)   :mod3b, after mod3, 4d
     PF-2025 Tier 3          :mod3c, after mod3b, 6d
-    PF-2005 CC top 20       :done, fig1, after mod3c, 7d
+    PF-2005 CC 20 (gen)     :done, fig1, after mod3c, 5d
     PF-2021 query-builder   :mod5, after fig1, 7d
     PF-2023 provider pair   :mod7, after mod5 mod6, 7d
     PF-1995 AI prompt       :mod8, after mod7, 3d
@@ -142,16 +152,16 @@ gantt
     PF-2002 Adopt rules     :active, aic6, after mod9, 1d
     PF-2003 npm distrib     :active, aic7, after aic6, 1d
     PF-2008 Figma Make      :done, fig4, after aic7, 3d
-    PF-2009 CC 55 swarm     :done, fig5, after fig4 mod6 fig2b, 6d
-    PF-2000 final help      :active, aic4b, after fig5, 2d
+    PF-2009 CC 55 (gen)     :done, fig5, after fig4 mod6 fig2b, 4d
+    PF-2000 final help      :active, aic4b, after fig5, 1d
 
     section Eng B
     PF-1998 Top 20          :active, aic2, 2026-05-01, 3d
     PF-1997 LLM index v2    :active, aic1, after aic2, 5d
     PF-1999 Patterns        :active, aic3, after aic1, 5d
-    PF-2001 Docs + review   :active, aic5a, after aic3, 20d
-    PF-2026 Skills package  :active, aic5b, after aic5a, 8d
-    PF-2000 Measurement     :active, aic4, after aic5b, 11d
+    PF-2001 Docs (filtered) :active, aic5a, after aic3, 18d
+    PF-2026 Skills package  :active, aic5b, after aic5a, 7d
+    PF-2000 Measure (AI)    :active, aic4, after aic5b, 8d
 
     section Eng C
     PF-2011 Middleware PoC  :crit, mae1, 2026-05-01, 6d
@@ -159,12 +169,12 @@ gantt
     PF-2022 RTE             :mod6, after mod4, 18d
     PF-2012 Middleware prod :crit, mae2, after mod6, 16d
     PF-2013 Maestro audit   :crit, mae3, after mae2, 4d
-    PF-2009 swarm           :done, fig5c, after mae3, 6d
+    PF-2009 swarm (gen)     :done, fig5c, after mae3, 4d
 
     section Designer
     PF-2007 Token mapping   :done, fig3, after aic2, 3d
-    PF-2006 BASE top 20     :done, fig2, after aic2, 8d
-    PF-2027 BASE 55         :done, fig2b, after aic5a, 9d
+    PF-2006 BASE 20 (audit) :done, fig2, after aic2, 6d
+    PF-2027 BASE 55 (audit) :done, fig2b, after aic5a, 7d
 ```
 
 **How to read the chart:**
@@ -365,4 +375,5 @@ If the collaboration model is not delivering (no quality wins, schedule not comp
 
 ## Changelog
 
+- **v4 (2026-04-28)** — **AI-leverage tactics from [PI-4318-ai-leverage-tickets.md](./PI-4318-ai-leverage-tickets.md) applied on top of v3 collaboration patterns.** PF-1992 expanded 3d → 4d (absorbs agent orchestrator + audit + generator setup). PF-1994 Tier 1 4d → 3d, PF-2024 Tier 2 5d → 4d (autonomous loop). PF-2005 7d → 5d, PF-2009 swarm 6d → 4d (agentic Code Connect generator). PF-2006 8d → 6d, PF-2027 9d → 7d (AI audit script). PF-2001 20d → 18d (AI-pre-filtered review). PF-2000 11d → 8d (AI-authored scoring scripts). PF-2000 final help 2d → 1d. Program end Jul 17 → **Jul 13** (saves 4 days). Total program savings vs v2 baseline (Jul 22): 9 days.
 - **v3 (2026-04-28)** — New scenario doc, sibling to timeline-v2 (v10). Same resourcing, reorganized around explicit collaboration patterns: PF-2009 swarm (Eng A + Eng C parallel), PF-2023 pair (Eng A + Eng C architecture review), PF-2000 final help (Eng A joins Eng B), distributed cross-track PR review, daily standup + weekly design review. Program end Jul 22 → Jul 17 (saves 5 days). Quality + resilience emphasis; coordination overhead absorbed in existing 15% buffer.

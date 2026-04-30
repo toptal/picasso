@@ -540,7 +540,7 @@ packages/picasso-codemod/src/v<next>/<change-name>/
 
 ### 7.3 Testing real usage
 
-Each codemod gets smoke-tested on 2–3 real usage patterns mined from the 23 active repos (reusing the P1-AIC-02 usage analyzer). Add those as fixtures.
+Each codemod gets smoke-tested on 2–3 real usage patterns mined from the 23 active repos (reusing the P1-MEAS-01 usage analyzer). Add those as fixtures.
 
 ---
 
