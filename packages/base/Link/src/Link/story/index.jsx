@@ -6,10 +6,6 @@ const page = PicassoBook.section('Components').createPage(
   `
     The Link component allows you to easily customize anchor elements with your theme colors and typography styles.
 
-    ${PicassoBook.createBaseDocsLink(
-      'https://app.abstract.com/projects/1b06c884-06af-482a-bf12-a82f521a19a1/branches/master/commits/c1f02ee345bc43e9617f5339aaa3eff1b2501d85/files/e67e971a-851c-4375-9821-686c7d4c57e6/layers/BA5476AB-47D9-414D-9FCA-59021BC47C92?mode=design&present=true&sha=c1f02ee345bc43e9617f5339aaa3eff1b2501d85'
-    )}
-
     ${PicassoBook.createSourceLink(__filename)}
   `
 )

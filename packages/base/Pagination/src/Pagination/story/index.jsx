@@ -5,10 +5,6 @@ const page = PicassoBook.section('Components').createPage(
   'Pagination',
   `
     Component which allows navigating long data lists.
-    
-    ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/e3bd043d-067c-45b1-9fd2-374b8fbf1d2e?collectionLayerId=090b6339-904f-4cd9-b77e-7aff15f93638&mode=design&present=true'
-    )}
 
     ${PicassoBook.createSourceLink(__filename)}
   `

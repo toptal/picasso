@@ -6,6 +6,8 @@ const page = PicassoBook.section('Utils').createPage(
       For optimal user experience, we need to be able to adapt layout
       at various breakpoints. Each breakpoint matches with a fixed screen
       width.
+
+      ${PicassoBook.createSourceLink(__filename)}
     `
 )
 

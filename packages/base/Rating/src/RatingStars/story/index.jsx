@@ -8,10 +8,6 @@ const page = PicassoBook.section('Forms').createPage(
     Ratings provide a way for users to express their opinion
     and experience about features or services.
 
-    ${PicassoBook.createBaseDocsLink(
-      'https://share.goabstract.com/39a488dc-44bc-4b37-b3c8-d14ca483b7b8?collectionLayerId=7df019cf-ec27-4ce9-af5b-76b5921644d5&mode=build'
-    )}
-
     ${PicassoBook.createSourceLink(__filename)}
   `
 )

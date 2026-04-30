@@ -4,6 +4,8 @@ const page = PicassoBook.section('Utils').createPage(
   'Formatters',
   `
       For consistent user experience, we need to standardize formatters.
+
+      ${PicassoBook.createSourceLink(__filename)}
   `
 )
 

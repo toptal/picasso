@@ -6,7 +6,9 @@ const page = PicassoBook.section('Utils').createPage(
   
   These are the recommended gradients.
   
-  Our gradients are made using our brand colors, always keeping a 200 points interval. For example: Blue 500 to Blue 700.`
+  Our gradients are made using our brand colors, always keeping a 200 points interval. For example: Blue 500 to Blue 700.
+
+  ${PicassoBook.createSourceLink(__filename)}`
 )
 
 page

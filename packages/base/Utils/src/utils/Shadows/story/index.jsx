@@ -1,6 +1,11 @@
 import PicassoBook from '~/.storybook/components/PicassoBook'
 
-const page = PicassoBook.section('Utils').createPage('Shadows')
+const page = PicassoBook.section('Utils').createPage(
+  'Shadows',
+  `
+    ${PicassoBook.createSourceLink(__filename)}
+  `
+)
 
 page
   .createChapter()
