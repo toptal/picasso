@@ -67,16 +67,13 @@ Optimized `llms.txt`, `.picasso/` rules v2, polished component docs, Skills, npm
 |---|---|---|
 | [PF-1997](https://toptal-core.atlassian.net/browse/PF-1997) | Optimize LLM index + `.picasso/` v2; produces lean Storybook-derived component docs | 1.5 – 2.5 |
 | [PF-1999](https://toptal-core.atlassian.net/browse/PF-1999) | Extract usage patterns; merge into `.picasso/` rules | 1.5 – 2.5 |
-| [PF-2001a](https://toptal-core.atlassian.net/browse/PF-2001) | Polish 5-page-subset auto-generated docs (refinement only) | 0.5 – 1 |
-| [PF-2001b](https://toptal-core.atlassian.net/browse/PF-2001) | Polish remaining ~60 docs + tokens + `llms-full.txt` + designer review | 1.5 – 2.5 |
+| [PF-2001](https://toptal-core.atlassian.net/browse/PF-2001) | Polish and Review component-level AI documentation (two phases: 5-page subset Phase 1 + remaining ~60 + tokens + `llms-full.txt` + designer review Phase 2) | 2 – 3.5 |
 | [PF-2026](https://toptal-core.atlassian.net/browse/PF-2026) | Picasso Skills package (4 Skills) | 2 – 4 |
 | [PF-2002](https://toptal-core.atlassian.net/browse/PF-2002) | Adopt Picasso rules in Staff Portal | 0.5 – 1.5 |
 | [PF-2003](https://toptal-core.atlassian.net/browse/PF-2003) | Bundle Agent Experience artifacts into `@toptal/picasso` npm package | 1 – 1.5 |
 | **Track total** | | **8.5 – 15.5 (S)** |
 
 **Track exit criteria.** 75/75 component docs polished. 4 Skills published. Tokens docs + `llms-full.txt` CI integration live. Staff Portal wired with `.cursorrules` / `CLAUDE.md`. npm distribution live.
-
-> **Note:** PF-2001 is one Jira ticket but plans for two doc-polish passes (PF-2001a in Phase 1 for the 5-page subset, PF-2001b in Phase 2 for the remainder). The Jira ticket lists both passes in its acceptance criteria.
 
 ---
 
