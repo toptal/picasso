@@ -114,6 +114,8 @@ Tasks are coloured by Jira epic. The `★` marker identifies tasks on the critic
 | Maestro Integration (PF-1991) | Purple | `crit` |
 | Picasso/BASE AI Benchmark (PF-2030) | Green + `[M]` prefix | `active` (shares colour with AIC; `[M]` distinguishes) |
 
+> **Note on Jira-key alignment.** Some Jira tickets show as multiple bars in the chart because the work splits cleanly into phases — Jira ticket count is unchanged. Specifically: **PF-2001** appears as two bars (`PF-2001a polish 5pg` Phase 1 + `PF-2001b polish rest` Phase 2) but is a single Jira ticket with two acceptance phases. **PF-2012** appears as three bars (`PF-2012a/b/c` per the post-PoC sub-ticket split — Jira sub-tickets to be created after PF-2011 PoC ships ~May 19). **PF-2000** appears as four bars (H+A1 baseline, A2 baseline run, final A2 re-run; plus protocol authoring is rolled into the H+A1 bar) but is a single Jira ticket with multiple measurement runs as acceptance criteria. **PF-2013** shows as one bar on Eng C's row (lead) but Eng A pairs on it Jul 10-14 as documented in the Engineer A schedule prose below.
+
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'taskBkgColor':'#3498DB','taskBorderColor':'#1F618D','taskTextColor':'#FFFFFF','taskTextOutsideColor':'#1B2631','activeTaskBkgColor':'#27AE60','activeTaskBorderColor':'#196F3D','doneTaskBkgColor':'#E67E22','doneTaskBorderColor':'#A04000','critBkgColor':'#8E44AD','critBorderColor':'#5B2C6F','sectionBkgColor':'#F4F6F7','altSectionBkgColor':'#FBFCFC'}}}%%
 gantt
@@ -137,7 +139,6 @@ gantt
     PF-2012c arch spike ★       :crit, a10b, after a10, 7d
     PF-2009 CC swarm A ★        :done, a11, after a10b d3, 4d
     PF-2012c finalize ★         :crit, a12, after a11, 3d
-    PF-2013 audit pair ★        :crit, a13, after a12, 3d
 
     section B
     M PF-1998 5pg select        :active, b1, 2026-05-04, 3d
