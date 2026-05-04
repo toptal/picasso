@@ -41,8 +41,12 @@ jobs:
       - name: Cache built packages
         uses: actions/cache@v4
         with:
-          path: "packages/**/dist-package"
-          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
+          # Explicit globs (no **) to avoid pnpm's workspace-symlink loops
+          # under packages/<x>/node_modules/@toptal/<y> -> packages/<y>.
+          path: |
+            packages/*/dist-package
+            packages/base/*/dist-package
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }}
 
   integration-tests:
     name: Run Integration Tests
@@ -74,8 +78,10 @@ jobs:
       - name: Get cached packages
         uses: actions/cache@v4
         with:
-          path: "packages/**/dist-package"
-          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
+          path: |
+            packages/*/dist-package
+            packages/base/*/dist-package
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }}
 
       - name: Run integration tests
         uses: ./.github/actions/integration-tests
