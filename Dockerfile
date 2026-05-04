@@ -50,6 +50,3 @@ RUN pnpm install --frozen-lockfile
 
 # COPY sources to workdir
 COPY --chown=node:node . /app
-
-# Need this file for publishing packages to npm
-RUN printf '//registry.npmjs.org/:_authToken=${NPM_TOKEN}\nalways-auth=true\n' > .npmrc
