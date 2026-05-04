@@ -4,6 +4,7 @@
   "include": ["src"],
   "references": [
     { "path": "../../picasso-tailwind" },
+    { "path": "../../shared" },
     { "path": "../Calendar" },
     { "path": "../Container" },
     { "path": "../Icons" },

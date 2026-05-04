@@ -11,9 +11,9 @@ overrides:
   axios: 1.12.0
   npm: 11.6.0
   webpack-dev-middleware: 5.3.4
+  '@storybook/core-server>ip': npm:@toptal/davinci-ip@2.0.3
   '@types/unist': 3.0.0
   meow>trim-newlines: ^3
-  js-yaml: ^3.13.1
   find-babel-config>json5: '1'
   marksy>marked: ^0.7.0
   '@storybook/react': ^6.5.15
@@ -104,6 +104,12 @@ importers:
       '@testing-library/jest-dom':
         specifier: ^6.2.0
         version: 6.8.0
+      '@topkit/analytics-charts':
+        specifier: 56.0.10
+        version: link:packages/topkit-analytics-charts
+      '@toptal/base-tailwind':
+        specifier: 2.0.0
+        version: link:packages/base-tailwind
       '@toptal/browserslist-config':
         specifier: ^1.2.0
         version: 1.2.0
@@ -122,6 +128,270 @@ importers:
       '@toptal/davinci-syntax':
         specifier: ^24.0.0
         version: 24.0.0(encoding@0.1.13)(eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.11.0(eslint@8.37.0)(typescript@4.7.4))(eslint@8.37.0))(eslint-plugin-n@16.6.2(eslint@8.37.0))(eslint-plugin-promise@6.1.1(eslint@8.37.0))(eslint@8.37.0))(jest@29.7.0(@types/node@24.5.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@4.7.4)))(postcss@8.4.32)(typescript@4.7.4)
+      '@toptal/picasso':
+        specifier: 54.1.5
+        version: link:packages/picasso
+      '@toptal/picasso-accordion':
+        specifier: 4.0.0
+        version: link:packages/base/Accordion
+      '@toptal/picasso-account-select':
+        specifier: 4.0.0
+        version: link:packages/base/AccountSelect
+      '@toptal/picasso-alert':
+        specifier: 4.0.0
+        version: link:packages/base/Alert
+      '@toptal/picasso-amount':
+        specifier: 1.0.12
+        version: link:packages/base/Amount
+      '@toptal/picasso-application-update-notification':
+        specifier: 2.0.44
+        version: link:packages/base/ApplicationUpdateNotification
+      '@toptal/picasso-autocomplete':
+        specifier: 6.0.0
+        version: link:packages/base/Autocomplete
+      '@toptal/picasso-avatar':
+        specifier: 7.0.0
+        version: link:packages/base/Avatar
+      '@toptal/picasso-avatar-upload':
+        specifier: 4.0.0
+        version: link:packages/base/AvatarUpload
+      '@toptal/picasso-backdrop':
+        specifier: 2.0.0
+        version: link:packages/base/Backdrop
+      '@toptal/picasso-badge':
+        specifier: 4.0.0
+        version: link:packages/base/Badge
+      '@toptal/picasso-breadcrumbs':
+        specifier: 3.0.20
+        version: link:packages/base/Breadcrumbs
+      '@toptal/picasso-button':
+        specifier: 5.0.0
+        version: link:packages/base/Button
+      '@toptal/picasso-calendar':
+        specifier: 5.0.0
+        version: link:packages/base/Calendar
+      '@toptal/picasso-carousel':
+        specifier: 4.0.33
+        version: link:packages/base/Carousel
+      '@toptal/picasso-charts':
+        specifier: 59.0.6
+        version: link:packages/picasso-charts
+      '@toptal/picasso-checkbox':
+        specifier: 5.0.23
+        version: link:packages/base/Checkbox
+      '@toptal/picasso-codemod':
+        specifier: 6.0.0
+        version: link:packages/picasso-codemod
+      '@toptal/picasso-collapse':
+        specifier: 3.0.4
+        version: link:packages/base/Collapse
+      '@toptal/picasso-container':
+        specifier: 3.1.4
+        version: link:packages/base/Container
+      '@toptal/picasso-date-picker':
+        specifier: 4.0.0
+        version: link:packages/base/DatePicker
+      '@toptal/picasso-date-select':
+        specifier: 2.0.0
+        version: link:packages/base/DateSelect
+      '@toptal/picasso-drawer':
+        specifier: 3.0.45
+        version: link:packages/base/Drawer
+      '@toptal/picasso-dropdown':
+        specifier: 5.0.0
+        version: link:packages/base/Dropdown
+      '@toptal/picasso-dropzone':
+        specifier: 5.0.34
+        version: link:packages/base/Dropzone
+      '@toptal/picasso-empty-state':
+        specifier: 2.0.23
+        version: link:packages/base/EmptyState
+      '@toptal/picasso-environment-banner':
+        specifier: 3.0.0
+        version: link:packages/base/EnvironmentBanner
+      '@toptal/picasso-fade':
+        specifier: 1.0.9
+        version: link:packages/base/Fade
+      '@toptal/picasso-file-input':
+        specifier: 5.0.0
+        version: link:packages/base/FileInput
+      '@toptal/picasso-form':
+        specifier: 7.0.0
+        version: link:packages/base/Form
+      '@toptal/picasso-form-label':
+        specifier: 1.0.4
+        version: link:packages/base/FormLabel
+      '@toptal/picasso-form-layout':
+        specifier: 1.0.3
+        version: link:packages/base/FormLayout
+      '@toptal/picasso-forms':
+        specifier: 74.0.0
+        version: link:packages/picasso-forms
+      '@toptal/picasso-grid':
+        specifier: 5.0.19
+        version: link:packages/base/Grid
+      '@toptal/picasso-helpbox':
+        specifier: 6.0.0
+        version: link:packages/base/Helpbox
+      '@toptal/picasso-icons':
+        specifier: 1.15.2
+        version: link:packages/base/Icons
+      '@toptal/picasso-image':
+        specifier: 3.0.5
+        version: link:packages/base/Image
+      '@toptal/picasso-input':
+        specifier: 5.0.0
+        version: link:packages/base/Input
+      '@toptal/picasso-input-adornment':
+        specifier: 4.0.0
+        version: link:packages/base/InputAdornment
+      '@toptal/picasso-link':
+        specifier: 4.0.0
+        version: link:packages/base/Link
+      '@toptal/picasso-list':
+        specifier: 5.0.21
+        version: link:packages/base/List
+      '@toptal/picasso-loader':
+        specifier: 3.0.5
+        version: link:packages/base/Loader
+      '@toptal/picasso-logo':
+        specifier: 2.0.18
+        version: link:packages/base/Logo
+      '@toptal/picasso-menu':
+        specifier: 4.0.0
+        version: link:packages/base/Menu
+      '@toptal/picasso-modal':
+        specifier: 4.0.0
+        version: link:packages/base/Modal
+      '@toptal/picasso-modal-context':
+        specifier: 1.0.1
+        version: link:packages/base/ModalContext
+      '@toptal/picasso-note':
+        specifier: 4.0.7
+        version: link:packages/base/Note
+      '@toptal/picasso-notification':
+        specifier: 5.0.0
+        version: link:packages/base/Notification
+      '@toptal/picasso-number-input':
+        specifier: 5.0.0
+        version: link:packages/base/NumberInput
+      '@toptal/picasso-outlined-input':
+        specifier: 5.0.0
+        version: link:packages/base/OutlinedInput
+      '@toptal/picasso-overview-block':
+        specifier: 5.0.0
+        version: link:packages/base/OverviewBlock
+      '@toptal/picasso-page':
+        specifier: 6.0.0
+        version: link:packages/base/Page
+      '@toptal/picasso-pagination':
+        specifier: 5.0.0
+        version: link:packages/base/Pagination
+      '@toptal/picasso-paper':
+        specifier: 4.0.5
+        version: link:packages/base/Paper
+      '@toptal/picasso-password-input':
+        specifier: 5.1.13
+        version: link:packages/base/PasswordInput
+      '@toptal/picasso-pictograms':
+        specifier: 5.5.1
+        version: link:packages/picasso-pictograms
+      '@toptal/picasso-popper':
+        specifier: 2.0.2
+        version: link:packages/base/Popper
+      '@toptal/picasso-prompt-modal':
+        specifier: 3.0.0
+        version: link:packages/base/PromptModal
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:packages/picasso-provider
+      '@toptal/picasso-query-builder':
+        specifier: 8.0.35
+        version: link:packages/picasso-query-builder
+      '@toptal/picasso-quote':
+        specifier: 2.0.9
+        version: link:packages/base/Quote
+      '@toptal/picasso-radio':
+        specifier: 5.0.22
+        version: link:packages/base/Radio
+      '@toptal/picasso-rating':
+        specifier: 3.0.20
+        version: link:packages/base/Rating
+      '@toptal/picasso-rich-text-editor':
+        specifier: 18.0.0
+        version: link:packages/picasso-rich-text-editor
+      '@toptal/picasso-section':
+        specifier: 6.0.0
+        version: link:packages/base/Section
+      '@toptal/picasso-select':
+        specifier: 5.0.0
+        version: link:packages/base/Select
+      '@toptal/picasso-shared':
+        specifier: 15.0.0
+        version: link:packages/shared
+      '@toptal/picasso-show-more':
+        specifier: 3.0.0
+        version: link:packages/base/ShowMore
+      '@toptal/picasso-skeleton-loader':
+        specifier: 1.0.69
+        version: link:packages/base/SkeletonLoader
+      '@toptal/picasso-slide':
+        specifier: 1.0.4
+        version: link:packages/base/Slide
+      '@toptal/picasso-slider':
+        specifier: 5.0.0
+        version: link:packages/base/Slider
+      '@toptal/picasso-step':
+        specifier: 4.0.19
+        version: link:packages/base/Step
+      '@toptal/picasso-switch':
+        specifier: 5.0.0
+        version: link:packages/base/Switch
+      '@toptal/picasso-table':
+        specifier: 4.0.0
+        version: link:packages/base/Table
+      '@toptal/picasso-tabs':
+        specifier: 7.0.1
+        version: link:packages/base/Tabs
+      '@toptal/picasso-tag':
+        specifier: 5.0.0
+        version: link:packages/base/Tag
+      '@toptal/picasso-tagselector':
+        specifier: 4.0.0
+        version: link:packages/base/Tagselector
+      '@toptal/picasso-tailwind':
+        specifier: 4.0.0
+        version: link:packages/picasso-tailwind
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:packages/picasso-tailwind-merge
+      '@toptal/picasso-test-utils':
+        specifier: 2.0.0
+        version: link:packages/base/Test-Utils
+      '@toptal/picasso-timeline':
+        specifier: 5.0.8
+        version: link:packages/base/Timeline
+      '@toptal/picasso-timepicker':
+        specifier: 5.0.0
+        version: link:packages/base/Timepicker
+      '@toptal/picasso-tooltip':
+        specifier: 2.0.5
+        version: link:packages/base/Tooltip
+      '@toptal/picasso-tree-view':
+        specifier: 3.0.45
+        version: link:packages/base/TreeView
+      '@toptal/picasso-typography':
+        specifier: 5.0.0
+        version: link:packages/base/Typography
+      '@toptal/picasso-typography-overflow':
+        specifier: 4.0.6
+        version: link:packages/base/TypographyOverflow
+      '@toptal/picasso-user-badge':
+        specifier: 5.1.22
+        version: link:packages/base/UserBadge
+      '@toptal/picasso-utils':
+        specifier: 4.0.0
+        version: link:packages/base/Utils
       '@types/debounce':
         specifier: ^3.0.0
         version: 3.0.0
@@ -7364,6 +7634,9 @@ packages:
       tailwindcss: ^4.2.1
       typescript: ^4.8.4
 
+  '@toptal/davinci-ip@2.0.3':
+    resolution: {integrity: sha512-j4dTVXhb4omC12NSZPQN0aNHiY+47H7FaeqGrTI8aSg8Sf2MjRzctXWn3IlLvc7h+XEviRPktBX3tmENS9HBAg==}
+
   '@toptal/davinci-monorepo@13.0.0':
     resolution: {integrity: sha512-fVMI2qJRNRSWbmvNIrvBNcZSWOKjzWP0bmTKAHbdDTgrxyzzF0zOor9i21/KvH7XIwj68+D7Tp166SdPxwX1tw==}
     hasBin: true
@@ -12038,9 +12311,6 @@ packages:
     resolution: {integrity: sha512-NWv9YLW4PoW2B7xtzaS3NCot75m6nK7Icdv0o3lfMceJVRfSoQwqD4wEH5rLwoKJwUiZ/rfpiVBhnaF0FK4HoA==}
     engines: {node: '>= 12'}
 
-  ip@2.0.1:
-    resolution: {integrity: sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ==}
-
   ipaddr.js@1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
     engines: {node: '>= 0.10'}
@@ -12712,6 +12982,14 @@ packages:
 
   js-yaml@3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
+    hasBin: true
+
+  js-yaml@4.1.0:
+    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
+    hasBin: true
+
+  js-yaml@4.1.1:
+    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
   jsbn@0.1.1:
@@ -19449,7 +19727,7 @@ snapshots:
       execa: 4.1.0
       globby: 11.1.0
       istanbul-lib-coverage: 3.0.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.0
       nyc: 15.1.0
       webpack: 5.98.0(@swc/core@1.13.5)
     transitivePeerDependencies:
@@ -19637,7 +19915,7 @@ snapshots:
       globals: 13.20.0
       ignore: 5.2.4
       import-fresh: 3.3.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -20161,7 +20439,7 @@ snapshots:
       inquirer: 8.2.4
       is-ci: 3.0.1
       is-stream: 2.0.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.0
       libnpmpublish: 9.0.9
       load-json-file: 6.2.0
       lodash: 4.17.21
@@ -22133,7 +22411,7 @@ snapshots:
       fs-extra: 9.1.0
       global: 4.4.0
       globby: 11.1.0
-      ip: 2.0.1
+      ip: '@toptal/davinci-ip@2.0.3'
       lodash: 4.17.21
       node-fetch: 2.6.7(encoding@0.1.13)
       open: 8.4.2
@@ -22938,7 +23216,7 @@ snapshots:
       gradient-string: 2.0.2
       inquirer: 8.2.4
       isomorphic-git: 1.24.5
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       lodash: 4.17.21
       ora: 5.4.1
       proper-lockfile: 4.1.2
@@ -22958,7 +23236,7 @@ snapshots:
       gradient-string: 2.0.2
       inquirer: 8.2.4
       isomorphic-git: 1.24.5
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       lodash: 4.17.21
       ora: 5.4.1
       proper-lockfile: 4.1.2
@@ -23088,6 +23366,8 @@ snapshots:
       - webpack-cli
       - webpack-hot-middleware
       - webpack-plugin-serve
+
+  '@toptal/davinci-ip@2.0.3': {}
 
   '@toptal/davinci-monorepo@13.0.0(@swc/core@1.13.5)(@types/node@24.5.2)(babel-plugin-macros@3.1.0)(encoding@0.1.13)':
     dependencies:
@@ -25640,7 +25920,7 @@ snapshots:
   cosmiconfig@8.3.6(typescript@4.7.4):
     dependencies:
       import-fresh: 3.3.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
@@ -25649,7 +25929,7 @@ snapshots:
   cosmiconfig@8.3.6(typescript@5.2.2):
     dependencies:
       import-fresh: 3.3.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
@@ -25659,7 +25939,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 4.7.4
@@ -26928,7 +27208,7 @@ snapshots:
       ignore: 5.2.4
       is-builtin-module: 3.2.1
       is-core-module: 2.16.1
-      minimatch: 3.1.2
+      minimatch: 3.1.4
       resolve: 1.22.10
       semver: 7.7.2
 
@@ -27057,7 +27337,7 @@ snapshots:
       is-glob: 4.0.3
       is-path-inside: 3.0.3
       js-sdsl: 4.4.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
       lodash.merge: 4.6.2
@@ -28833,8 +29113,6 @@ snapshots:
 
   ip-address@10.0.1: {}
 
-  ip@2.0.1: {}
-
   ipaddr.js@1.9.1: {}
 
   ipaddr.js@2.1.0: {}
@@ -29695,6 +29973,14 @@ snapshots:
       argparse: 1.0.10
       esprima: 4.0.1
 
+  js-yaml@4.1.0:
+    dependencies:
+      argparse: 2.0.1
+
+  js-yaml@4.1.1:
+    dependencies:
+      argparse: 2.0.1
+
   jsbn@0.1.1: {}
 
   jscodeshift@0.13.1(@babel/preset-env@7.24.0(@babel/core@7.28.4)):
@@ -30092,7 +30378,7 @@ snapshots:
       is-ci: 3.0.1
       is-stream: 2.0.0
       jest-diff: 29.7.0
-      js-yaml: 3.14.1
+      js-yaml: 4.1.0
       libnpmaccess: 8.0.6
       libnpmpublish: 9.0.9
       load-json-file: 6.2.0
@@ -30179,7 +30465,7 @@ snapshots:
       inquirer: 12.9.6(@types/node@24.5.2)
       is-ci: 3.0.1
       jest-diff: 30.1.2
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       libnpmaccess: 10.0.3
       libnpmpublish: 11.1.2
       load-json-file: 6.2.0
@@ -31622,7 +31908,7 @@ snapshots:
       globby: 11.1.0
       hosted-git-info: 5.2.1
       ini: 4.1.1
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       json-parse-helpfulerror: 1.0.3
       jsonlines: 0.1.1
       lodash: 4.17.21
@@ -32933,7 +33219,7 @@ snapshots:
   rc-config-loader@4.1.3:
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       json5: 2.2.3
       require-from-string: 2.0.2
     transitivePeerDependencies:
@@ -33429,7 +33715,7 @@ snapshots:
 
   read-yaml-file@2.1.0:
     dependencies:
-      js-yaml: 3.14.1
+      js-yaml: 4.1.1
       strip-bom: 4.0.0
 
   read@2.1.0:

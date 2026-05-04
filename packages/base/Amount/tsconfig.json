@@ -2,5 +2,9 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": { "outDir": "dist-package" },
   "include": ["src"],
-  "references": [{ "path": "../Typography" }, { "path": "../Utils" }]
+  "references": [
+    { "path": "../../shared" },
+    { "path": "../Typography" },
+    { "path": "../Utils" }
+  ]
 }

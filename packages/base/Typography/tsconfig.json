@@ -5,6 +5,7 @@
   "references": [
     { "path": "../../picasso-provider" },
     { "path": "../../picasso-tailwind-merge" },
+    { "path": "../../shared" },
     { "path": "../Utils" }
   ]
 }
