@@ -52,6 +52,11 @@ jobs:
       # Once installed, if the workflow run is marked as required, PRs introducing known-vulnerable
       # packages will be blocked from merging.
       - name: Dependency Review
+        # Skip on the pnpm migration PR: GitHub's dependency-graph compare
+        # API returns 502 when diffing yarn.lock <-> pnpm-lock.yaml. Once
+        # this branch lands, master will have pnpm-lock.yaml and subsequent
+        # PRs will diff cleanly. Tracked in actions/dependency-review-action#398.
+        if: ${{ github.head_ref != 'bill-migrate-to-pnpm' }}
         uses: actions/dependency-review-action@v4
 
       - name: Install Dependencies
