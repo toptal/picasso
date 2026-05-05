@@ -2231,7 +2231,6 @@ async function shellLine(
 const manifest = {
   read(absPath: string): Manifest {
     const parsed = JSON.parse(readFileSync(absPath, 'utf8')) as Manifest
-
     // Inject `id` from the keys so consumers can rely on `item.id` everywhere.
     // The on-disk format keeps id as the map key for compactness; in-memory we
     // want a self-describing object. **Non-enumerable** so JSON.stringify in
@@ -2244,14 +2243,12 @@ const manifest = {
         configurable: false,
       })
     }
-
     return parsed
   },
 
   /** Atomic write: tmp file + rename. */
   write(absPath: string, m: Manifest): void {
     const tmp = `${absPath}.tmp.${process.pid}`
-
     writeFileSync(tmp, JSON.stringify(m, null, 2) + '\n', 'utf8')
     // fs.rename is atomic on POSIX as long as src/dst are on the same filesystem.
     // require sync version because we use this in error paths.
@@ -2750,7 +2747,6 @@ const worktree = {
       worktreePath,
       base,
     ])
-
     if (result.exitCode !== 0) {
       throw new Error(
         `git worktree add failed: ${result.stderr || result.stdout}`
@@ -3879,7 +3875,6 @@ const gate = {
       }
       stages = parsed
       const compositeMatch = body.match(/\*\*Composite:\*\*\s+(PASS|FAIL)/)
-
       if (compositeMatch) {
         composite = compositeMatch[1] as 'PASS' | 'FAIL'
       }
@@ -3897,7 +3892,6 @@ const gh = {
   /** Pre-flight: ensure auth + scopes. */
   async assertAuth(): Promise<void> {
     const out = await shell('gh', ['auth', 'status'])
-
     if (out.exitCode !== 0) {
       throw new Error(`gh auth status failed: ${out.stderr || out.stdout}`)
     }
@@ -4562,7 +4556,6 @@ const gh = {
       ['pr', 'merge', numberOrUrl, '--squash', '--auto', '--delete-branch'],
       { cwd }
     )
-
     if (result.exitCode !== 0) {
       throw new Error(`gh pr merge failed: ${result.stderr || result.stdout}`)
     }
@@ -4578,7 +4571,6 @@ const gh = {
       ['pr', 'comment', numberOrUrl, '--body', body],
       { cwd }
     )
-
     if (result.exitCode !== 0) {
       throw new Error(`gh pr comment failed: ${result.stderr || result.stdout}`)
     }
@@ -5072,7 +5064,6 @@ const agent = {
     // 1. Canonical prompt — workflow picks the path per item (e.g. light vs heavy).
     const promptFile = workflow.promptFor(item)
     const promptAbs = path.join(repoRootDir, promptFile)
-
     if (existsSync(promptAbs)) {
       sections.push(
         `# ${workflow.displayName} — canonical prompt (${promptFile})\n\n` +
@@ -5101,7 +5092,6 @@ const agent = {
 
     // 3. Per-item plan.
     const planPath = path.join(repoRootDir, workflow.perItemPlan(item.id))
-
     if (existsSync(planPath)) {
       sections.push(
         `# Per-item plan: ${item.id}\n\n${await fs.readFile(planPath, 'utf8')}`
@@ -5110,7 +5100,6 @@ const agent = {
 
     // 4. Tier-aware extras (complexityFor decides depth).
     const complexity = workflow.complexityFor(item)
-
     if (complexity >= 2) {
       // Include subagent playbook for compound work.
       const sp = path.join(
@@ -10873,7 +10862,6 @@ export async function run(
 ): Promise<RunResult> {
   const rootDir = repoRoot()
   const manifestAbs = path.join(rootDir, workflow.manifestPath)
-
   if (!existsSync(manifestAbs)) {
     throw new Error(`Manifest not found at ${manifestAbs}`)
   }
