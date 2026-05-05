@@ -11,8 +11,8 @@
 
 | | |
 |---|---|
-| **Total program effort** | **78 – 119 man-days** (Toptal portfolio size: **M**) |
-| With +15% coordination overhead | 90 – 137 man-days |
+| **Total program effort** | **80 – 123 man-days** (Toptal portfolio size: **M**) |
+| With +15% coordination overhead | 92 – 141 man-days |
 | Story count | 28 Jira tickets across 5 epics |
 | Out-of-scope tickets | 3 (P3-MOD-02, P3-MAE-01, P3-MAE-02) |
 | Largest single ticket | PF-2027 (BASE remaining ~60), 7-10d, mostly designer time |
@@ -27,35 +27,52 @@
 
 | Epic | Track | Stories | Man-days | Toptal size |
 |---|---|---|---|---|
-| [PF-1988](https://toptal-core.atlassian.net/browse/PF-1988) | Modernization | 11 | 36 – 54 | S |
+| [PF-1988](https://toptal-core.atlassian.net/browse/PF-1988) | Modernization | 11 | 38 – 58 | S |
 | [PF-1989](https://toptal-core.atlassian.net/browse/PF-1989) | Agent Experience | 6 | 8.5 – 15.5 | S |
 | [PF-1990](https://toptal-core.atlassian.net/browse/PF-1990) | Figma Design-to-Code | 6 | 19.5 – 28 | S |
 | [PF-1991](https://toptal-core.atlassian.net/browse/PF-1991) | Maestro Integration | 3 | 9 – 14 | XS (BAU) — split across A+B+C |
 | [PF-2030](https://toptal-core.atlassian.net/browse/PF-2030) | Picasso/BASE AI Benchmark | 2 | 5 – 7.5 | XS (BAU) |
-| | **Total** | **28** | **78 – 119** | **M** |
+| | **Total** | **28** | **80 – 123** | **M** |
 
 ---
 
 ## Modernization track — PF-1988 (11 stories)
 
-Migrate Picasso from MUI v4 + JSS to Base UI + Tailwind. Autonomous agent (built in PF-1992) does the bulk of the per-component rewrite work; engineers review PRs.
+Migrate Picasso from **MUI v4 (`@material-ui/core` 4.12.4) + `@mui/base` + JSS** to **`@base-ui/react` v1.4.1 ([base-ui.com](https://base-ui.com/react/overview/quick-start), stable since Dec 2025) + Tailwind 4**. Tier inventory grounded in May 2026 source-stack re-audit (full breakdown in [migration plan §3](./PI-4318-P1-MOD-01-migration-plan.md#3-tier-inventory-v3--may-2026-re-audit)):
+
+- **Heavy path** (full rewrite — MUI v4 + JSS → `@base-ui/react` + Tailwind): 8 base/* components (5 Tier 2 + 3 Tier 3) + 4 sibling packages + provider runtime. Per-component cost ~0.5-2d depending on tier.
+- **Light path** (package swap + API alignment — `@mui/base` → `@base-ui/react`): 8 base/* components (Tier 0) + OutlinedInput mixed-state PR (bundled with Tier 3). Tailwind already in place. Per-component cost ~0.25-0.5d (calibrated against PR #4906).
+- **Cleanup-only** (peer-dep + React 19 cap + type-only import replacement): 11 components (Tier 1 — 5 already-clean + 5 with type-only/trivial fixes + Menu pkg cleanup; Utils included). ~0.1d each.
+
+The autonomous orchestrator (built in PF-1992) does the bulk of per-component rewrites on both paths; engineers review PRs.
 
 | Jira | Summary | Man-days |
 |---|---|---|
 | [PF-1992](https://toptal-core.atlassian.net/browse/PF-1992) | Migration plan + autonomous-loop infrastructure | 4 – 5 |
 | [PF-1993](https://toptal-core.atlassian.net/browse/PF-1993) | Migrate Picasso to pnpm | 3 – 5 |
-| [PF-1994](https://toptal-core.atlassian.net/browse/PF-1994) | base/* Tier 1 migration (foundation primitives, 7 components) — autonomous | 2 – 3 |
-| [PF-2024](https://toptal-core.atlassian.net/browse/PF-2024) | base/* Tier 2 migration (compound, 7 components) — autonomous | 3 – 4 |
-| [PF-2025](https://toptal-core.atlassian.net/browse/PF-2025) | base/* Tier 3 migration (composite + type-leak fixes, 3 components) | 5 – 7 |
+| [PF-1994](https://toptal-core.atlassian.net/browse/PF-1994) | base/* Tier 1 cleanup (11 components) + Tier 0 light-path batch (8 components) — autonomous | 3 – 5 |
+| [PF-2024](https://toptal-core.atlassian.net/browse/PF-2024) | base/* Tier 2 heavy migration (5 components — Checkbox, Radio, Tooltip, FileInput, Popper) — autonomous | 4 – 7 |
+| [PF-2025](https://toptal-core.atlassian.net/browse/PF-2025) | base/* Tier 3 composite migration (3 — Accordion, Dropdown, Page) + OutlinedInput mixed-state | 5 – 7 |
 | [PF-2020](https://toptal-core.atlassian.net/browse/PF-2020) | picasso-charts (LineChart) — autonomous | 1 – 2 |
 | [PF-2021](https://toptal-core.atlassian.net/browse/PF-2021) | picasso-query-builder (11 components) — autonomous | 4 – 6 |
 | [PF-2022](https://toptal-core.atlassian.net/browse/PF-2022) | picasso-rich-text-editor (8 components) — autonomous + Lexical theme rewrite | 5 – 7 |
-| [PF-2023](https://toptal-core.atlassian.net/browse/PF-2023) | picasso-provider canary — system rewrite, removes root MUI v4 peer-dep | 6 – 9 |
+| [PF-2023](https://toptal-core.atlassian.net/browse/PF-2023) | picasso-provider canary — system rewrite, removes root MUI v4 peer-dep + sweeps ~50 transitive consumers | 6 – 9 |
 | [PF-1995](https://toptal-core.atlassian.net/browse/PF-1995) | AI-assisted consumer migration prompt + worked examples | 1.5 – 2.5 |
 | [PF-1996](https://toptal-core.atlassian.net/browse/PF-1996) | Migrate Staff Portal to modernized Picasso (canary) | 2 – 3 |
-| **Track total** | | **36 – 54 (S)** |
+| **Track total** | | **38 – 58 (S)** |
 
-**Track exit criteria.** Zero `@material-ui/core` and zero JSS imports inside Picasso. Root `@material-ui/core` peer-dep removed from `packages/picasso/package.json`. React 19 validated. Staff Portal migrated as the canary.
+**Tier inventory** (per [migration plan §3](./PI-4318-P1-MOD-01-migration-plan.md#3-tier-inventory-v3--may-2026-re-audit)):
+
+- **Tier 0** (light path, 8): Backdrop, Badge, Button, Drawer, Modal, Slider, Switch, Tabs. Direct `@base-ui/react` matches except Backdrop (no standalone primitive — see §9.8) and Badge (keep custom).
+- **Tier 1** (cleanup-only, 11): 5 already-clean (Form, FormLayout, ModalContext, Note, Typography) + 5 type-only/trivial fixes (Container, FormLabel, Grid, Notification, Menu pkg) + Utils (replace 2 small re-exports + 1 Tailwind transition).
+- **Tier 2** (heavy, 5): Checkbox, Radio, Tooltip, FileInput, Popper. Real MUI v4 + JSS rewrites. Targets: `@base-ui/react/checkbox` + `/checkbox-group`, `/radio`, `/tooltip`. FileInput stays custom. **Popper architectural decision** (Floating-UI vs `@base-ui/react/popover`) per migration plan §9.8.
+- **Tier 3** (heavy composites, 3 + OutlinedInput): Accordion (`@base-ui/react/accordion`), Dropdown (mixed-state — `@base-ui/react/menu` + `@base-ui/react/popover`), Page (keep custom — pure Tailwind), OutlinedInput mixed-state PR.
+- **Tier 4** (sibling packages, 4): picasso-charts, picasso-query-builder, picasso-rich-text-editor (+ provider in Tier 5).
+- **Tier 5** (provider canary): picasso-provider system rewrite, final commit removes root MUI v4 peer-dep + sweeps ~50 transitive-consumer base/* packages (peer-dep cleanup only).
+
+**v3 reclassification (May 2026 re-audit):** FormLabel, Container, Grid, Notification, Utils were previously listed as Tier 2 heavy migrations but only have type-only or trivial re-export imports of MUI v4. Reclassified to Tier 1 cleanup. Page reclassified from Tier 2 to Tier 3 (high-surface composite consuming most of base/*). Net effect: PF-2024 narrows from 9 to 5 truly-heavy components but range preserved (4-7d) for Popper architectural decision and Tooltip viability headroom.
+
+**Track exit criteria.** Zero `@material-ui/core`, zero `@mui/base`, and zero JSS imports inside Picasso. All components on `@base-ui/react` + Tailwind. Root `@material-ui/core` peer-dep removed from `packages/picasso/package.json`. React 19 validated. Staff Portal migrated as the canary.
 
 ---
 
@@ -142,8 +159,8 @@ The **A1 → A2 lift** is the program's headline AI-DX number. The split into it
 
 | Phase | Stories | Man-days |
 |---|---|---|
-| Phase 1 — Hybrid foundation (5-page baseline + agent infra + initial Code Connect/BASE) | 10 | ~21 – 31 |
-| Phase 2 — Modernization scale-up + full-scope coverage + A2 measurement | 16 | ~54 – 82 |
+| Phase 1 — Hybrid foundation (5-page baseline + agent infra + initial Code Connect/BASE) | 10 | ~22 – 33 |
+| Phase 2 — Modernization scale-up + full-scope coverage + A2 measurement | 16 | ~55 – 84 |
 | Phase 3 — Rollout + Maestro production tail (3-engineer collaboration) | 3 | ~3 – 6 |
 
 Phase 2 carries ~70% of total program effort (modernization migrations + full-scope BASE/CC + Skills package + Maestro production).
@@ -187,7 +204,7 @@ These are **engineer-days, not calendar days.** Wall-clock is shaped by:
 6. **Designer availability.** If designer's allocation drops below 30% during the M5 scoring window or PF-2001b / PF-2027 review windows, those calendar dates stretch; rest of program is unaffected.
 7. **Tier 3 architectural surprises.** Estimates for Page, Accordion, Dropdown assume mechanical JSS parent-ref unwinding. If we hit `PicassoProvider.override` chains we didn't audit, per-component cost can double. Mitigation: front-load `PicassoProvider.override` audit in PF-1992.
 8. **PF-2012 sub-ticket split after PF-2011 PoC ships (~May 19).** Confirm scope split for PF-2012a (Eng C deploy lead, ~3-4d), PF-2012b (Eng B monitoring + guide, ~1-2d), PF-2012c (Eng A integration + hardening, ~2-3d). Confirm by ~May 26 so all three engineers can prepare.
-9. **Tier 1 calibration (post-PF-1994 wrap, ~May 11).** Per-component multipliers are calibrated against PR #4906 (`@mui/base` → `@base-ui/react`), which is a smaller second-step migration than Phase 2's full MUI v4 → Tailwind. After Tier 1 wraps, recalibrate Tier 2/3/sibling estimates from real data before locking Phase 2 commitments.
+9. **Tier 0/1 calibration (post-PF-1994 wrap, ~May 13).** Per-component multipliers for the **light path** are calibrated against PR #4906 (`@mui/base` → `@base-ui/react`, Button + Switch). Multipliers for the **heavy path** (MUI v4 + JSS → `@base-ui/react` + Tailwind) are extrapolated and have higher variance. After Tier 0 + Tier 1 wrap, recalibrate Tier 2 heavy estimates from real data before locking PF-2024/2025 commitments. R12 (Tier 0 multiplier generalisation), R13 (mixed-state Dropdown/OutlinedInput), R14 (Backdrop has no standalone `@base-ui/react` equivalent), and R15 (Popper has no standalone `@base-ui/react` equivalent) are the specific risks to watch. R5 + R8 (`@base-ui/react` API churn) downgraded after migration plan v3 audit confirmed `@base-ui/react` is at stable v1.4.1 (Apr 2026).
 
 ---
 

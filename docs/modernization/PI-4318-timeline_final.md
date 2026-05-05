@@ -39,7 +39,7 @@ All three engineers and the designer start the week of May 4:
 | Program start | **2026-05-04** |
 | PF-1992 Migration plan + autonomous-loop infra ships (Eng A) | May 6 |
 | PF-1998 5-page component-set published (Eng B) | May 6 |
-| PF-1994 Tier 1 autonomous run starts | May 7 |
+| PF-1994 Tier 1 cleanup + Tier 0 light-path autonomous run starts | May 7 |
 | PF-2005 Code Connect generator + 5-page CC done (Eng B) | May 15 |
 | PF-2011 Maestro PoC done (Eng C) | May 19 |
 | **PF-2000 Baseline H + A1 measured (5 pages)** | **~May 22** |
@@ -69,7 +69,7 @@ Phase 1 — Foundation     May 4 – Jun 5  (5 weeks)
   Code Connect generator + 5-page CC (PF-2005)
   Token mapping + BASE 5-page audit (PF-2007 + PF-2006)
   Maestro PoC (PF-2011)
-  Tier 1/2/3 autonomous runs (PF-1994/PF-2024/PF-2025)
+  Tier 1 cleanup + Tier 0 light-path + Tier 2/3 autonomous runs (PF-1994/PF-2024/PF-2025)
   Baseline H + A1 measured (PF-2000)  ← informs design of .picasso/ + patterns
   .picasso/ v2 + patterns merged (PF-1997 + PF-1999)
 
@@ -127,7 +127,7 @@ gantt
 
     section A
     PF-1992 plan + infra ★      :a1, 2026-05-04, 4d
-    PF-1994 Tier 1 ★            :a2, after a1, 3d
+    PF-1994 T1+T0 ★             :a2, after a1, 3d
     PF-2024 Tier 2 ★            :a3, after a2, 4d
     PF-2025 Tier 3 ★            :a4, after a3, 6d
     PF-2023 provider ★          :a5, after a4, 7d
@@ -224,9 +224,9 @@ The full 3-engineer parallel execution on PF-2012 (with Eng A's arch spike absor
 
 ```
 May 4  - May 7   PF-1992 Migration plan + autonomous-loop infra (4d)
-May 8  - May 12  PF-1994 base/* Tier 1 (3d, autonomous run)
-May 13 - May 18  PF-2024 base/* Tier 2 (4d, autonomous)
-May 19 - May 26  PF-2025 base/* Tier 3 (6d)
+May 8  - May 12  PF-1994 base/* Tier 1 cleanup (11) + Tier 0 light path (8) (3-5d, autonomous; 3d nominal)
+May 13 - May 18  PF-2024 base/* Tier 2 heavy (5: Checkbox, Radio, Tooltip, FileInput, Popper) (4-7d, autonomous; 4d nominal)
+May 19 - May 26  PF-2025 base/* Tier 3 composites (3: Accordion, Dropdown, Page) + OutlinedInput mixed (5-7d; 6d nominal)
 May 27 - Jun 4   PF-2023 picasso-provider canary (7d)              [PAIR with Eng C]
 Jun 5  - Jun 9   PF-1995 AI migration prompt (3d)
 Jun 10 - Jun 11  PF-1996 Staff Portal migration (2d)
@@ -315,8 +315,11 @@ Dependencies that cross epic boundaries (the ones to watch in Jira link views):
 |---|---|---|---|---|
 | 1 | 5-page selection misrepresents Picasso breadth → A1/A2 numbers don't generalize | Medium | Medium | Pick pages spanning forms, layouts, data-display, navigation, feedback. Vedran + designer sign-off on selection. |
 | 2 | PF-2012 sub-ticket split mis-scoped — Eng A/B/C can't actually parallelise | Medium | Medium (program ends ~Jul 23 instead of ~Jul 16) | Lock the split by ~May 26 (after PF-2011 PoC). Validate that each sub-ticket has bounded scope without dependency cycles between A/B/C work. |
-| 3 | Modernization scale-up fails (autonomous agent escalation rate >50% on Tier 1) | Low | High (Phase 2 stretches) | Note (Tier 1 sandbox) validates by May 6. Pause + improve prompt before scaling. |
+| 3 | Modernization scale-up fails (autonomous agent escalation rate >50% on Tier 0/1) | Low | High (Phase 2 stretches) | Note (Tier 1 cleanup sandbox) validates by May 6. Pause + improve prompt before scaling. |
+| 3a | Tier 0 light-path multipliers don't generalise — Drawer/Modal/Slider have more `@base-ui/react` API drift than Button/Switch did in PR #4906 | Medium | Medium (PF-1994 stretches by 1-3d) | Run first 2-3 Tier 0 components serially before parallelising orchestrator. Recalibrate multipliers post-batch (gates PF-2024/2025 commitments). |
 | 4 | Tier 3 architectural surprises (PicassoProvider.override chains we didn't audit) | Medium | Medium (per-component cost can double) | Front-load `PicassoProvider.override` audit in PF-1992. |
+| 4a | Backdrop has no standalone `@base-ui/react` equivalent — Picasso's standalone Backdrop needs custom replacement | Medium | Low | v3 migration plan R14. Decision in PF-1992 spike: small custom `<div>` + Tailwind recommended (bounded blast radius). Modal + Drawer depend on Backdrop, so unblocks them. |
+| 4b | Popper has no standalone `@base-ui/react` equivalent — positioning is internal to Tooltip/Popover/Menu/Dialog | Medium | Medium | v3 migration plan R15. Decision in PF-1992 spike: `@floating-ui/react` direct dep (preferred — already a transitive dep) OR refactor consumers onto `@base-ui/react/popover`. Affects PF-2024 Popper migration. |
 | 5 | A2 measurement at end of Phase 1 shows little A1 → A2 lift | Medium | Medium (program loses headline AI-DX value) | Re-run A2 incrementally (after PF-2005, after PF-1997, after PF-2001a) to catch the lift gap early. |
 | 6 | Designer availability drops during M5 scoring or PF-2001b / PF-2027 review | Low | Medium (those calendars stretch) | Schedule designer time explicitly for the M5 window (Jun 1-5 + Jun 10-11 + Jun 30) and PF-2027 (Jun 19-30). |
 | 7 | Maestro production hardening hits unforeseen integration issues | Medium | Medium (PF-2012 stretches) | PF-2011 PoC includes a productionization estimate; review by ~May 19 before locking PF-2012 scope. |
@@ -329,7 +332,8 @@ Dependencies that cross epic boundaries (the ones to watch in Jira link views):
 2. **5-page selection** (Vedran + designer). **Decide by May 6** (gates PF-2005, PF-2006, PF-2000 H baseline).
 3. **Figma MCP access** for 3-5 pilot engineers. **Wire by May 7** (gates PF-2005 generator build).
 4. **Local Happo from a branch** (vs CI). If feasible, fold into PF-1992 deliverables; potentially compresses per-component cycle 10-20%. **Decide by May 4** (start of PF-1992).
-5. **Tier 1 calibration review** (after PF-1994 wraps ~May 12). Recalibrate Tier 2/3 + sibling-package estimates from real data before locking Phase 2 commitments.
+5. **Tier 0/1 calibration review** (after PF-1994 wraps ~May 13). PF-1994 covers Tier 1 cleanup (11 components — 5 already-clean + 5 type-only fixes + Menu pkg + Utils) + Tier 0 light-path batch (8 `@mui/base` → `@base-ui/react`, calibrated against PR #4906). Recalibrate Tier 2 (5 heavy: Checkbox, Radio, Tooltip, FileInput, Popper) and Tier 3 (3 composites + OutlinedInput) estimates from real data before locking Phase 2 commitments. Specific risks to watch: (a) Tier 0 light-path multipliers may not generalise from PR #4906's Button + Switch to Drawer/Modal/Slider; (b) Backdrop has no standalone `@base-ui/react` analog — replacement strategy locked in PF-1992 spike (R14); (c) Popper has no standalone `@base-ui/react` analog — `@floating-ui/react` direct dep recommended (R15).
+6. **Backdrop + Popper architectural decisions** (in PF-1992 spike, completed by ~May 7). Both primitives have no standalone `@base-ui/react` equivalent. Backdrop → small custom `<div>` (recommended). Popper → `@floating-ui/react` direct dep (recommended) or refactor consumers to `@base-ui/react/popover`. Lock both before PF-1994 starts.
 
 ---
 
@@ -339,7 +343,7 @@ Update this doc when:
 - A milestone slips by >3 working days
 - Eng allocation changes
 - A new ticket lands in scope (or one is cut)
-- After PF-1994 Tier 1 wraps (recalibrate Tier 2/3 multipliers from real data)
+- After PF-1994 Tier 1 cleanup + Tier 0 light-path batch wraps (recalibrate Tier 2/3 multipliers from real data; verify v13 retiering estimates)
 - The 5-page A2 measurement publishes (~Jun 11) — confirm headline lift number
 
 ---

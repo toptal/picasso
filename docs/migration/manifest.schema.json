@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://picasso.toptal.com/docs/migration/manifest.schema.json",
+  "title": "Picasso Migration Manifest",
+  "description": "State of the autonomous migration queue. The orchestrator reads this to find the next component, respect dependency order, and not duplicate work. v3 — May 2026 re-audit; targets @base-ui/react v1.4.1 + Tailwind 4.",
+  "type": "object",
+  "required": ["version", "components"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Pointer to this schema (relative or absolute) for editor tooling."
+    },
+    "version": {
+      "type": "string",
+      "description": "Semver of the manifest format. Bump on breaking schema changes."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp the manifest was last regenerated from scratch."
+    },
+    "components": {
+      "type": "object",
+      "description": "Map of component ID -> ComponentEntry. ID is the canonical key the orchestrator uses (e.g. \"Note\", \"query-builder/AutoComplete\").",
+      "additionalProperties": { "$ref": "#/definitions/ComponentEntry" }
+    }
+  },
+  "definitions": {
+    "ComponentEntry": {
+      "type": "object",
+      "required": ["tier", "package", "status", "depends_on", "target_path", "iterations"],
+      "additionalProperties": false,
+      "properties": {
+        "tier": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Migration complexity tier. 0=light (@mui/base→@base-ui/react package swap), 1=cleanup-only (peer-dep + type-only fixes), 2=heavy (MUI v4+JSS rewrite), 3=heavy composite, 4=sibling package, 5=provider runtime canary."
+        },
+        "package": {
+          "type": "string",
+          "description": "Repo-relative path to the package directory (e.g. \"packages/base/Note\")."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["queued", "in_progress", "done", "needs_human", "blocked"],
+          "description": "queued = ready to claim; in_progress = orchestrator owns it; done = merged; needs_human = orchestrator escalated; blocked = waiting on a dependency."
+        },
+        "depends_on": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Component IDs that must reach status=done before this can be picked. Sourced from migration plan §3.7."
+        },
+        "target_path": {
+          "type": "string",
+          "description": "@base-ui/react import path the migrated component targets (e.g. \"@base-ui/react/tooltip\"). Use \"none\" for components that stay custom (Backdrop, Badge, Container, FileInput, Grid, Notification, Page; all already-clean Tier 1). Use \"decision-pending\" for components awaiting a Step 8 architectural decision (Popper). Use \" + \" to join multi-target paths (e.g. \"@base-ui/react/menu + @base-ui/react/popover\")."
+        },
+        "pr": {
+          "type": ["string", "null"],
+          "description": "GitHub PR URL once opened.",
+          "format": "uri"
+        },
+        "branch": {
+          "type": ["string", "null"],
+          "description": "Git branch name once created (e.g. \"migrate-Note\")."
+        },
+        "worktree": {
+          "type": ["string", "null"],
+          "description": "Repo-relative path to the active worktree (e.g. \"migration-runs/2026-05-04/Note/worktree\"). Cleared after merge."
+        },
+        "iterations": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of agent attempts on this component. Hard cap defaults to 3; see references/escalation.md."
+        },
+        "merged_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO-8601 timestamp when the PR merged. Drives downstream depends_on satisfaction."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form annotation visible to the orchestrator and human reviewers (e.g. \"PF-1992 sandbox canary\")."
+        },
+        "escalation_reason": {
+          "type": "string",
+          "description": "Set when status=needs_human; concise reason the orchestrator gave up."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,264 @@
+#!/usr/bin/env bash
+# bin/migration-diff.sh — autonomous-migration diff reporter
+# Produces a markdown diff report covering: prop surface, imports, package.json delta,
+# Happo summary (if available). Invoked by bin/migration-orchestrator.ts after gates pass.
+#
+# Usage:
+#   bin/migration-diff.sh snapshot <ComponentName>     # capture pre-migration state
+#   bin/migration-diff.sh report   <ComponentName>     # produce post-migration diff report
+#
+# The orchestrator calls `snapshot` BEFORE the agent runs (after worktree creation)
+# and `report` AFTER the gate passes.
+#
+# Output: migration-runs/<date>/<Component>/{pre/, post/, diff.md}
+
+set -uo pipefail
+
+# ---------- args -----------------------------------------------------------
+
+if [ $# -ne 2 ]; then
+  echo "usage: bin/migration-diff.sh {snapshot|report} <ComponentName>" >&2
+  exit 64
+fi
+
+MODE="$1"
+COMPONENT="$2"
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+DATE="${MIGRATION_RUN_DATE:-$(date +%Y-%m-%d)}"
+RUN_DIR="migration-runs/$DATE/$COMPONENT"
+mkdir -p "$RUN_DIR/pre" "$RUN_DIR/post"
+
+# ---------- path resolution ------------------------------------------------
+
+resolve_package_path() {
+  local id="$1"
+  case "$id" in
+    charts/*)            echo "packages/picasso-charts/src/${id#charts/}" ;;
+    query-builder/*)     echo "packages/picasso-query-builder/src/${id#query-builder/}" ;;
+    rich-text-editor/*)  echo "packages/picasso-rich-text-editor/src/${id#rich-text-editor/}" ;;
+    *)                   echo "packages/base/$id" ;;
+  esac
+}
+
+resolve_pkgjson_path() {
+  local id="$1"
+  case "$id" in
+    charts/*)            echo "packages/picasso-charts/package.json" ;;
+    query-builder/*)     echo "packages/picasso-query-builder/package.json" ;;
+    rich-text-editor/*)  echo "packages/picasso-rich-text-editor/package.json" ;;
+    *)                   echo "packages/base/$id/package.json" ;;
+  esac
+}
+
+PKG_PATH="$(resolve_package_path "$COMPONENT")"
+PKG_JSON="$(resolve_pkgjson_path "$COMPONENT")"
+
+if [ ! -d "$PKG_PATH" ]; then
+  echo "error: cannot find package at '$PKG_PATH'" >&2
+  exit 65
+fi
+
+# ---------- snapshot mode --------------------------------------------------
+
+snapshot() {
+  local out="$RUN_DIR/pre"
+
+  # 1. .d.ts dump for prop-surface diff.
+  #    Limit to the component's package; faster than whole-repo.
+  if [ -d "$PKG_PATH/dist-package/src" ]; then
+    cp -R "$PKG_PATH/dist-package/src" "$out/dist-src" 2>/dev/null || true
+  fi
+
+  # 2. Import surface (greppable list).
+  grep -rE "^(import|export)\s.*from\s+['\"][^'\"]+['\"]" "$PKG_PATH" \
+    --include="*.ts" --include="*.tsx" 2>/dev/null \
+    | grep -vE '\.test\.|\.spec\.|/test\.|\.example\.|/story/|/__snapshots__/' \
+    | sort -u >"$out/imports.txt" || true
+
+  # 3. package.json snapshot.
+  if [ -f "$PKG_JSON" ]; then
+    cp "$PKG_JSON" "$out/package.json"
+  fi
+
+  # 4. Source LOC + file list.
+  find "$PKG_PATH/src" -type f \( -name "*.ts" -o -name "*.tsx" \) 2>/dev/null \
+    | grep -vE '\.test\.|\.spec\.|/test\.|\.example\.|/story/|/__snapshots__/' \
+    | sort >"$out/files.txt" || true
+
+  echo "Snapshot at $out"
+}
+
+# ---------- report mode ----------------------------------------------------
+
+report() {
+  local pre="$RUN_DIR/pre"
+  local post="$RUN_DIR/post"
+  local diff="$RUN_DIR/diff.md"
+
+  # Capture post-migration state in the same shape as snapshot
+  if [ -d "$PKG_PATH/dist-package/src" ]; then
+    cp -R "$PKG_PATH/dist-package/src" "$post/dist-src" 2>/dev/null || true
+  fi
+  grep -rE "^(import|export)\s.*from\s+['\"][^'\"]+['\"]" "$PKG_PATH" \
+    --include="*.ts" --include="*.tsx" 2>/dev/null \
+    | grep -vE '\.test\.|\.spec\.|/test\.|\.example\.|/story/|/__snapshots__/' \
+    | sort -u >"$post/imports.txt" || true
+  if [ -f "$PKG_JSON" ]; then
+    cp "$PKG_JSON" "$post/package.json"
+  fi
+  find "$PKG_PATH/src" -type f \( -name "*.ts" -o -name "*.tsx" \) 2>/dev/null \
+    | grep -vE '\.test\.|\.spec\.|/test\.|\.example\.|/story/|/__snapshots__/' \
+    | sort >"$post/files.txt" || true
+
+  # Build the markdown report.
+  {
+    echo "# $COMPONENT migration diff"
+    echo
+    echo "Generated: $(date '+%Y-%m-%d %H:%M:%S %Z')"
+    echo
+    echo "**Package:** \`$PKG_PATH\`"
+    echo
+
+    echo "## Files"
+    if diff -u "$pre/files.txt" "$post/files.txt" >/dev/null 2>&1; then
+      echo "_No file additions, deletions, or renames._"
+    else
+      echo
+      echo '```diff'
+      diff -u "$pre/files.txt" "$post/files.txt" 2>/dev/null \
+        | tail -n +3 | grep -E '^[+-]' || true
+      echo '```'
+    fi
+    echo
+
+    echo "## Imports"
+    if [ -f "$pre/imports.txt" ] && [ -f "$post/imports.txt" ]; then
+      added="$(comm -13 "$pre/imports.txt" "$post/imports.txt")"
+      removed="$(comm -23 "$pre/imports.txt" "$post/imports.txt")"
+      if [ -z "$added" ] && [ -z "$removed" ]; then
+        echo "_No import changes._"
+      else
+        if [ -n "$removed" ]; then
+          echo
+          echo "**Removed:**"
+          echo
+          echo '```'
+          echo "$removed"
+          echo '```'
+        fi
+        if [ -n "$added" ]; then
+          echo
+          echo "**Added:**"
+          echo
+          echo '```'
+          echo "$added"
+          echo '```'
+        fi
+      fi
+    else
+      echo "_(snapshot missing — diff unavailable)_"
+    fi
+    echo
+
+    echo "## MUI v4 / JSS residue check"
+    mui_remaining=$(grep -rE '@material-ui/' "$PKG_PATH/src" --include="*.ts" --include="*.tsx" 2>/dev/null \
+      | grep -vE '\.test\.|/test\.|\.example\.|/story/|\.spec\.' | wc -l | tr -d ' ')
+    jss_remaining=$(grep -rE 'makeStyles|createStyles|withStyles' "$PKG_PATH/src" --include="*.ts" --include="*.tsx" 2>/dev/null \
+      | grep -vE '\.test\.|/test\.|\.example\.|/story/|\.spec\.' | wc -l | tr -d ' ')
+    pkgmui=$(grep -c '@material-ui/core' "$PKG_JSON" 2>/dev/null || echo 0)
+    if [ "$mui_remaining" = "0" ] && [ "$jss_remaining" = "0" ] && [ "$pkgmui" = "0" ]; then
+      echo "✅ Clean: 0 \`@material-ui/*\` source imports, 0 JSS calls, 0 \`@material-ui/core\` package.json entries."
+    else
+      echo
+      echo "| Check | Count |"
+      echo "|---|---|"
+      echo "| \`@material-ui/*\` source imports | $mui_remaining |"
+      echo "| JSS calls (makeStyles/createStyles/withStyles) | $jss_remaining |"
+      echo "| \`@material-ui/core\` in package.json | $pkgmui |"
+      if [ "$mui_remaining" != "0" ] || [ "$jss_remaining" != "0" ] || [ "$pkgmui" != "0" ]; then
+        echo
+        echo "_Migration is **NOT complete** until all three are 0._"
+      fi
+    fi
+    echo
+
+    echo "## package.json delta"
+    if [ -f "$pre/package.json" ] && [ -f "$post/package.json" ]; then
+      if diff -q "$pre/package.json" "$post/package.json" >/dev/null 2>&1; then
+        echo "_No package.json changes._"
+      else
+        echo
+        echo '```diff'
+        diff -u "$pre/package.json" "$post/package.json" 2>/dev/null \
+          | tail -n +3 || true
+        echo '```'
+      fi
+    else
+      echo "_(snapshot missing)_"
+    fi
+    echo
+
+    echo "## Prop-surface diff"
+    if [ -d "$pre/dist-src" ] && [ -d "$post/dist-src" ]; then
+      pre_dts="$(find "$pre/dist-src" -name "*.d.ts" | sort)"
+      post_dts="$(find "$post/dist-src" -name "*.d.ts" | sort)"
+      if diff -ur "$pre/dist-src" "$post/dist-src" --include="*.d.ts" >/dev/null 2>&1; then
+        echo "_No public type changes._"
+      else
+        echo
+        echo '<details><summary>Click to expand .d.ts diff</summary>'
+        echo
+        echo '```diff'
+        diff -ur "$pre/dist-src" "$post/dist-src" --include="*.d.ts" 2>/dev/null \
+          | head -n 500 || true
+        echo '```'
+        echo
+        echo '</details>'
+        echo
+        echo "_Review carefully: any \`-\` line on a public export is a breaking change. See \`docs/migration/rules/api-preservation.md\`._"
+      fi
+    else
+      echo "_(no dist-package output to compare — was the package built before snapshot?)_"
+    fi
+    echo
+
+    echo "## Happo"
+    happo_log="$RUN_DIR/happo.log"
+    if [ -f "$happo_log" ]; then
+      diff_count=$(grep -cE '^(Diff|✗|FAIL)' "$happo_log" 2>/dev/null || echo "?")
+      echo "Happo log: \`$happo_log\` ($diff_count flagged lines)."
+      echo
+      echo "_Designer: review screen diffs >0.5% per \`docs/migration/migration-plan.md\` §6.3._"
+    else
+      echo "_(no happo log — gate skipped or full happo run hasn't completed)_"
+    fi
+    echo
+
+    echo "## React 19 smoke"
+    react19_log="$RUN_DIR/react19.log"
+    if [ -f "$react19_log" ] && grep -q "pending PF-1994" "$react19_log" 2>/dev/null; then
+      echo "_Stubbed (pending PF-1994). The real smoke wires up during PF-1994's first migration._"
+    elif [ -f "$react19_log" ]; then
+      warnings=$(grep -ciE 'warning' "$react19_log" 2>/dev/null || echo 0)
+      errors=$(grep -ciE 'error' "$react19_log" 2>/dev/null || echo 0)
+      echo "Warnings: $warnings · Errors: $errors · Log: \`$react19_log\`"
+    else
+      echo "_(no react19 log)_"
+    fi
+  } >"$diff"
+
+  echo "Diff report: $diff"
+}
+
+# ---------- dispatch -------------------------------------------------------
+
+case "$MODE" in
+  snapshot) snapshot ;;
+  report)   report ;;
+  *)
+    echo "error: unknown mode '$MODE' (expected: snapshot | report)" >&2
+    exit 64
+    ;;
+esac

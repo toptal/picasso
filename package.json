@@ -58,7 +58,9 @@
     "test:unit:debug": "cross-env NODE_OPTIONS=--inspect-brk pnpm test:unit",
     "test:unit:watch": "pnpm test:unit --watch",
     "typecheck": "tsc --noEmit",
-    "generate:llm-docs": "node bin/generate-docs.mjs"
+    "generate:llm-docs": "node bin/generate-docs.mjs",
+    "migrate:component": "bash -c 'bin/migration-gate.sh \"$0\" && bin/migration-diff.sh report \"$0\"'",
+    "orchestrate": "tsx bin/migration-orchestrator.ts"
   },
   "lint-staged": {
     "{**/*.{js,jsx,ts,tsx},.changeset/*.md}": [
@@ -305,6 +307,7 @@
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "tsx": "^4.21.0",
     "typescript": "~4.7.0",
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
