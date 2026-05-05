@@ -33,9 +33,3 @@ Migration must be applied AFTER:
 ## Reviewer notes
 - **This component is the PF-1992 orchestrator sandbox.** The intentionally minimal source-diff is the design — this run validates the orchestrator's wiring (worktree, gates, PR open, CI poll, manual review handoff), not the migration logic itself. The first *real* source migration happens on FormLabel (1 type import) or Utils (5 imports + 4 JSS calls) under PF-1994.
 - After PF-1992 ships, Note converts to a normal Tier 1 component in PF-1994's queue.
-
-## Slot keys
-
-**Not applicable.** Per the May 2026 audit, Note does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
-
-Implementation note: Tier 1 already-clean (the orchestrator sandbox component); migration is package.json delta only.
