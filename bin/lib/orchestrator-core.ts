@@ -1,9 +1,24 @@
+/* eslint-disable max-lines */
+/* eslint-disable max-statements */
+/* eslint-disable max-params */
+/* eslint-disable complexity */
+/* eslint-disable func-style */
+/* eslint-disable id-length */
+/* eslint-disable max-statements-per-line */
+/* eslint-disable no-console */
+/* eslint-disable todo-plz/ticket-ref */
 /**
  * bin/lib/orchestrator-core.ts
  *
  * Workflow-agnostic orchestrator core. Implements the 14-step agent loop from
  * `docs/migration/references/agent-loop.md`. Per-workflow logic plugs in via
  * the `Workflow` descriptor (`./workflow.ts`).
+ *
+ * Lint exemptions above match the precedent set by `bin/build.js`:
+ * tooling-style files (CLIs, dispatchers) carry inline-doc comments and
+ * monolithic submodule layouts that don't fit Picasso's product-code rules
+ * (`max-lines: 300`, `max-statements: 20`, `max-params: 3`, etc.). The
+ * orchestrator is reviewed for correctness, not style conformance.
  *
  * NO migration-specific vocabulary appears in this file — search for the word
  * "migration" and you should find it only in comments / log strings, never in
@@ -50,9 +65,11 @@ function repoRoot(): string {
   const out = spawnSync('git', ['rev-parse', '--show-toplevel'], {
     encoding: 'utf8',
   })
+
   if (out.status !== 0) {
     throw new Error(`Not in a git repo: ${out.stderr}`)
   }
+
   return out.stdout.trim()
 }
 
@@ -71,6 +88,7 @@ function shell(
     const child = spawn(cmd, args, { ...opts, stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
     let stderr = ''
+
     child.stdout?.on('data', (d) => {
       stdout += d
     })
@@ -98,6 +116,7 @@ async function shellLine(
 const manifest = {
   read(absPath: string): Manifest {
     const parsed = JSON.parse(readFileSync(absPath, 'utf8')) as Manifest
+
     // Inject `id` from the keys so consumers can rely on `item.id` everywhere.
     // The on-disk format keeps id as the map key for compactness; in-memory we
     // want a self-describing object. **Non-enumerable** so JSON.stringify in
@@ -110,12 +129,14 @@ const manifest = {
         configurable: false,
       })
     }
+
     return parsed
   },
 
   /** Atomic write: tmp file + rename. */
   write(absPath: string, m: Manifest): void {
     const tmp = `${absPath}.tmp.${process.pid}`
+
     writeFileSync(tmp, JSON.stringify(m, null, 2) + '\n', 'utf8')
     // fs.rename is atomic on POSIX as long as src/dst are on the same filesystem.
     // require sync version because we use this in error paths.
@@ -130,21 +151,25 @@ const manifest = {
     // Direct selection by --component flag.
     if (opts.component) {
       const item = m.components[opts.component]
+
       if (!item) {
         throw new Error(`No manifest entry for --component=${opts.component}`)
       }
+
       return item
     }
 
     const candidates = items.filter((item) => {
-      if (item.status !== 'queued') return false
-      if (opts.tier !== null && item.tier !== opts.tier) return false
+      if (item.status !== 'queued') {return false}
+      if (opts.tier !== null && item.tier !== opts.tier) {return false}
+
       // All dependencies must be done.
       return item.depends_on.every((dep) => m.components[dep]?.status === 'done')
     })
 
     // Tier order, then alphabetical for stability.
     candidates.sort((a, b) => a.tier - b.tier || a.id.localeCompare(b.id))
+
     return candidates[0] ?? null
   },
 
@@ -156,9 +181,11 @@ const manifest = {
   ): Manifest {
     const m = manifest.read(absPath)
     const current = m.components[id]
-    if (!current) throw new Error(`No manifest entry for ${id}`)
+
+    if (!current) {throw new Error(`No manifest entry for ${id}`)}
     m.components[id] = { ...current, ...patch }
     manifest.write(absPath, m)
+
     return m
   },
 }
@@ -206,16 +233,38 @@ const worktree = {
       worktreePath,
       base,
     ])
+
     if (result.exitCode !== 0) {
       throw new Error(
         `git worktree add failed: ${result.stderr || result.stdout}`
       )
     }
+    // Bootstrap: symlink node_modules from the main repo so the worktree's
+    // gate stages (eslint, tsc, jest, cypress, happo) can resolve their
+    // binaries via node_modules/.bin and so type-resolution finds @types/*.
+    //
+    // Trade-off: yarn workspaces' internal symlinks under node_modules/@toptal/*
+    // point at the main repo's `packages/`, NOT the worktree's. For Tier 1
+    // cleanup migrations (package.json delta only, no source change) this is
+    // correct — main and worktree carry identical source. For source-changing
+    // migrations (Tier 0 / 2 / 3 / 4 / 5) the bootstrap should instead run
+    // `yarn install --frozen-lockfile` in the worktree so internal symlinks
+    // resolve to the worktree's packages.
+    //
+    // TODO(PF-1994): add a `workflow.bootstrapWorktree(worktreePath)` hook so
+    // each workflow descriptor can choose between the symlink (fast, correct
+    // for cleanup-only) and a real install (slow, correct for source changes).
+    const mainRepoModules = path.join(repoRoot(), 'node_modules')
+    const worktreeModules = path.join(worktreePath, 'node_modules')
+
+    if (existsSync(mainRepoModules) && !existsSync(worktreeModules)) {
+      await fs.symlink(mainRepoModules, worktreeModules, 'dir')
+    }
   },
 
   /** Remove the worktree on success. Leave it for inspection on escalation. */
   async remove(worktreePath: string): Promise<void> {
-    if (!existsSync(worktreePath)) return
+    if (!existsSync(worktreePath)) {return}
     await shell('git', ['worktree', 'remove', '--force', worktreePath])
   },
 }
@@ -241,6 +290,7 @@ const gate = {
       cwd,
       env: { ...process.env, MIGRATION_RUN_DATE: runDate },
     })
+
     log(
       'gate',
       `exit=${result.exitCode} (${result.stdout.length} bytes stdout, ${result.stderr.length} bytes stderr)`
@@ -262,6 +312,7 @@ const gate = {
       // Parse "| <name> | <status> | <Ns> | `<log>` |" rows.
       const tableRegex = /^\|\s*([^|]+?)\s*\|\s*(PASS|FAIL|SKIP)\s*\|\s*(\d+)s\s*\|\s*`([^`]+)`\s*\|/gm
       const parsed: typeof stages = []
+
       for (let m: RegExpExecArray | null; (m = tableRegex.exec(body)); ) {
         parsed.push({
           name: m[1],
@@ -272,6 +323,7 @@ const gate = {
       }
       stages = parsed
       const compositeMatch = body.match(/\*\*Composite:\*\*\s+(PASS|FAIL)/)
+
       if (compositeMatch) {
         composite = compositeMatch[1] as 'PASS' | 'FAIL'
       }
@@ -289,6 +341,7 @@ const gh = {
   /** Pre-flight: ensure auth + scopes. */
   async assertAuth(): Promise<void> {
     const out = await shell('gh', ['auth', 'status'])
+
     if (out.exitCode !== 0) {
       throw new Error(`gh auth status failed: ${out.stderr || out.stdout}`)
     }
@@ -317,9 +370,11 @@ const gh = {
       ],
       { cwd: opts.cwd }
     )
+
     if (result.exitCode !== 0) {
       throw new Error(`gh pr create failed: ${result.stderr || result.stdout}`)
     }
+
     return result.stdout.trim()
   },
 
@@ -333,9 +388,11 @@ const gh = {
       ['pr', 'view', numberOrUrl, '--json', fields],
       { cwd }
     )
+
     if (result.exitCode !== 0) {
       throw new Error(`gh pr view failed: ${result.stderr || result.stdout}`)
     }
+
     return JSON.parse(result.stdout)
   },
 
@@ -345,6 +402,7 @@ const gh = {
       ['pr', 'merge', numberOrUrl, '--squash', '--auto', '--delete-branch'],
       { cwd }
     )
+
     if (result.exitCode !== 0) {
       throw new Error(`gh pr merge failed: ${result.stderr || result.stdout}`)
     }
@@ -360,6 +418,7 @@ const gh = {
       ['pr', 'comment', numberOrUrl, '--body', body],
       { cwd }
     )
+
     if (result.exitCode !== 0) {
       throw new Error(`gh pr comment failed: ${result.stderr || result.stdout}`)
     }
@@ -396,6 +455,7 @@ const agent = {
     // 1. Canonical prompt — workflow picks the path per item (e.g. light vs heavy).
     const promptFile = workflow.promptFor(item)
     const promptAbs = path.join(repoRootDir, promptFile)
+
     if (existsSync(promptAbs)) {
       sections.push(
         `# ${workflow.displayName} — canonical prompt (${promptFile})\n\n` +
@@ -412,6 +472,7 @@ const agent = {
     // 2. Always-on context pack (rule docs, references).
     for (const file of workflow.contextPack) {
       const abs = path.join(repoRootDir, file)
+
       if (existsSync(abs)) {
         sections.push(`# ${file}\n\n${await fs.readFile(abs, 'utf8')}`)
       }
@@ -419,6 +480,7 @@ const agent = {
 
     // 3. Per-item plan.
     const planPath = path.join(repoRootDir, workflow.perItemPlan(item.id))
+
     if (existsSync(planPath)) {
       sections.push(
         `# Per-item plan: ${item.id}\n\n${await fs.readFile(planPath, 'utf8')}`
@@ -427,12 +489,14 @@ const agent = {
 
     // 4. Tier-aware extras (complexityFor decides depth).
     const complexity = workflow.complexityFor(item)
+
     if (complexity >= 2) {
       // Include subagent playbook for compound work.
       const sp = path.join(
         repoRootDir,
         'docs/migration/references/subagent-playbook.md'
       )
+
       if (existsSync(sp)) {
         sections.push(
           `# references/subagent-playbook.md\n\n${await fs.readFile(sp, 'utf8')}`
@@ -487,12 +551,14 @@ const agent = {
     })()
 
     await fs.writeFile(logPath, `# prompt\n${inv.prompt}\n\n# stdout\n`, 'utf8')
+
     return new Promise((resolve) => {
       const child = spawn(cmd.bin, cmd.args, {
         cwd: inv.cwd,
         stdio: ['pipe', 'pipe', 'pipe'],
         env: process.env,
       })
+
       child.stdin?.write(inv.prompt)
       child.stdin?.end()
       child.stdout?.on('data', (d) => {
@@ -530,6 +596,7 @@ async function escalate(
   rootDir: string
 ): Promise<RunResult> {
   const reason = decision.reason ?? 'unspecified'
+
   log('escalate', `${item.id}: ${reason}`)
   manifest.update(manifestPath, item.id, {
     status: 'needs_human',
@@ -557,6 +624,7 @@ async function escalate(
     'See `docs/migration/references/escalation.md` for the full handoff procedure.',
     '',
   ].join('\n')
+
   await fs.writeFile(escPath, block, 'utf8')
 
   if (item.pr) {
@@ -566,6 +634,7 @@ async function escalate(
       log('escalate', `gh pr comment failed (non-fatal): ${(e as Error).message}`)
     }
   }
+
   return { status: 'escalated', reason }
 }
 
@@ -575,16 +644,19 @@ export async function run(
 ): Promise<RunResult> {
   const rootDir = repoRoot()
   const manifestAbs = path.join(rootDir, workflow.manifestPath)
+
   if (!existsSync(manifestAbs)) {
     throw new Error(`Manifest not found at ${manifestAbs}`)
   }
 
-  if (!opts.dryRun) await gh.assertAuth()
+  if (!opts.dryRun) {await gh.assertAuth()}
 
   const m = manifest.read(manifestAbs)
   const item = manifest.pickNext(m, opts)
+
   if (!item) {
     log('loop', 'no queued items match selection criteria')
+
     return { status: 'no-work' }
   }
 
@@ -612,7 +684,9 @@ export async function run(
         : `12-13. Poll CI; classify reviews; gh pr merge --squash --auto`,
       `14. On any escalation trigger: status=needs_human, post block, stop`,
     ]
+
     planned.forEach((p) => log('loop', p))
+
     return { status: 'dry-run' }
   }
 
@@ -621,6 +695,7 @@ export async function run(
   const branch = workflow.branchName(item.id)
   const wtPath = path.join(rootDir, worktree.pathFor(item.id, runDate))
   const runDir = path.dirname(wtPath)
+
   await fs.mkdir(runDir, { recursive: true })
 
   // Step 4: worktree.
@@ -641,8 +716,10 @@ export async function run(
     cwd: wtPath,
     env: { ...process.env, MIGRATION_RUN_DATE: runDate },
   })
+
   if (snapshotResult.exitCode !== 0) {
     log('loop', `snapshot failed: ${snapshotResult.stderr}`)
+
     return escalate(
       workflow,
       item,
@@ -671,6 +748,7 @@ export async function run(
   }
 
   let lastFeedback: string | null = null
+
   while (state.iterations < opts.maxIterations) {
     state.iterations += 1
     log('loop', `iteration ${state.iterations}/${opts.maxIterations}`)
@@ -684,16 +762,19 @@ export async function run(
       rootDir
     )
     const promptPath = path.join(runDir, item.id, `prompt.${state.iterations}.txt`)
+
     await fs.mkdir(path.dirname(promptPath), { recursive: true })
     await fs.writeFile(promptPath, prompt, 'utf8')
 
     // Invoke agent.
     const agentLogPath = path.join(runDir, item.id, `agent.${state.iterations}.log`)
+
     log('loop', `invoking agent (${opts.agent}); log=${agentLogPath}`)
     const agentResult = await agent.invoke(
       { prompt, cwd: wtPath, agent: opts.agent },
       agentLogPath
     )
+
     if (agentResult.exitCode !== 0) {
       log('loop', `agent exited non-zero (${agentResult.exitCode})`)
       lastFeedback = `Agent invocation failed (exit ${agentResult.exitCode}). See ${agentLogPath}.`
@@ -707,6 +788,7 @@ export async function run(
       wtPath,
       runDate
     )
+
     state.lastGate = gateReport
     manifest.update(manifestAbs, item.id, { iterations: state.iterations })
 
@@ -722,6 +804,7 @@ export async function run(
     }
 
     const decision = workflow.escalationCriteria(state)
+
     if (decision.shouldEscalate) {
       return escalate(workflow, item, state, decision, manifestAbs, rootDir)
     }
@@ -750,6 +833,7 @@ export async function run(
   // Step 10: commit + push.
   const commitMsg = workflow.commitMessage(item.id, item)
   const commitMsgFile = path.join(os.tmpdir(), `commit-msg-${item.id}.${process.pid}`)
+
   await fs.writeFile(commitMsgFile, commitMsg, 'utf8')
 
   await shell('git', ['add', '-A'], { cwd: wtPath })
@@ -757,6 +841,7 @@ export async function run(
   const pushResult = await shell('git', ['push', '-u', 'origin', branch], {
     cwd: wtPath,
   })
+
   if (pushResult.exitCode !== 0) {
     return escalate(
       workflow,
@@ -777,10 +862,12 @@ export async function run(
     bodyFile: diffPath,
     cwd: wtPath,
   })
+
   manifest.update(manifestAbs, item.id, { pr: prUrl })
 
   if (opts.noMerge) {
     log('loop', `--no-merge: PR opened (${prUrl}); stopping at sandbox boundary`)
+
     return { status: 'pr-opened', prUrl }
   }
 
@@ -792,6 +879,7 @@ export async function run(
     'loop',
     `--no-merge not set, but CI/review polling is deferred to PF-1994; stopping after PR open`
   )
+
   return { status: 'pr-opened', prUrl }
 }
 
@@ -803,9 +891,12 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const args = argv.slice(2)
   const get = (name: string): string | undefined => {
     const idx = args.findIndex((a) => a === name || a.startsWith(`${name}=`))
-    if (idx === -1) return undefined
+
+    if (idx === -1) {return undefined}
     const eq = args[idx].indexOf('=')
-    if (eq !== -1) return args[idx].slice(eq + 1)
+
+    if (eq !== -1) {return args[idx].slice(eq + 1)}
+
     return args[idx + 1]
   }
   const has = (name: string): boolean => args.includes(name)

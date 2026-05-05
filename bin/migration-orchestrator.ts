@@ -1,4 +1,7 @@
 #!/usr/bin/env -S yarn tsx
+/* eslint-disable func-style */
+/* eslint-disable max-statements-per-line */
+/* eslint-disable no-console */
 /**
  * bin/migration-orchestrator.ts
  *
@@ -75,6 +78,7 @@ const migrationWorkflow: Workflow = {
         ? 'Source is already MUI-clean. This commit drops the vestigial @material-ui/core\n' +
           'peer-dep and lifts the React 19 peer-dep cap.'
         : 'See PR description for prop-surface diff, import diff, and Happo summary.'
+
     return [
       `migrate(${scope}): ${subject}`,
       '',
@@ -105,6 +109,7 @@ const migrationWorkflow: Workflow = {
         reason: `${state.ciFailures.length} distinct CI failure modes; not making progress`,
       }
     }
+
     return { shouldEscalate: false }
   },
 }
@@ -112,9 +117,10 @@ const migrationWorkflow: Workflow = {
 async function main(): Promise<void> {
   const opts = parseOptions(process.argv)
   const result = await run(migrationWorkflow, opts)
+
   // eslint-disable-next-line no-console
   console.log(`\nResult: ${JSON.stringify(result, null, 2)}`)
-  if (result.status === 'escalated') process.exit(2)
+  if (result.status === 'escalated') {process.exit(2)}
 }
 
 main().catch((err) => {
