@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@toptal/picasso": "54.1.5",
-    "@toptal/picasso-tailwind": "4.0.0",
     "@toptal/picasso-test-utils": "2.0.0",
     "popper.js": "^1.16.1"
   },

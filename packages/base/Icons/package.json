@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "@babel/types": "^7.26.8",
-    "@toptal/picasso": "54.1.5",
     "@toptal/picasso-provider": "5.0.2"
   },
   "files": [

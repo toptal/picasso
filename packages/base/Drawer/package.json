@@ -48,8 +48,6 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso": "54.1.5",
-    "@toptal/picasso-notification": "5.0.0",
     "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-tailwind-merge": "2.0.4"
   },

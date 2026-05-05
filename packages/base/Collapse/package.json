@@ -36,7 +36,6 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso": "54.1.5",
     "@toptal/picasso-tailwind-merge": "2.0.4",
     "@toptal/picasso-test-utils": "2.0.0"
   },

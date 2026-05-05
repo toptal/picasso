@@ -43,7 +43,6 @@
     "./styles": "./dist-package/src/styles.js"
   },
   "devDependencies": {
-    "@toptal/picasso": "54.1.5",
     "@toptal/picasso-test-utils": "2.0.0"
   },
   "files": [

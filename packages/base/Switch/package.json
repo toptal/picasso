@@ -40,8 +40,6 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso": "54.1.5",
-    "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-test-utils": "2.0.0"
   },
   "files": [

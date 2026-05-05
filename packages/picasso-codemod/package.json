@@ -27,9 +27,6 @@
   },
   "devDependencies": {
     "@toptal/picasso-forms": "74.0.0",
-    "@toptal/picasso-provider": "5.0.2",
-    "@toptal/picasso-rich-text-editor": "18.0.0",
-    "@toptal/picasso-shared": "15.0.0",
     "@types/jscodeshift": "^0.11.6"
   },
   "bin": {

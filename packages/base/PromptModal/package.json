@@ -41,10 +41,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso": "54.1.5",
-    "@toptal/picasso-autocomplete": "6.0.0",
     "@toptal/picasso-input": "5.0.0",
-    "@toptal/picasso-notification": "5.0.0",
     "@toptal/picasso-test-utils": "2.0.0"
   },
   "files": [

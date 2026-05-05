@@ -27,8 +27,7 @@
     "classnames": "^2.5.1"
   },
   "devDependencies": {
-    "@testing-library/react": "^14.1.2",
-    "@toptal/picasso": "54.1.5"
+    "@testing-library/react": "^14.1.2"
   },
   "sideEffects": false,
   "peerDependencies": {

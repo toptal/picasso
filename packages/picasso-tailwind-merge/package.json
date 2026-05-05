@@ -34,8 +34,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind": "4.0.0",
-    "@toptal/picasso-test-utils": "2.0.0"
+    "@toptal/picasso-tailwind": "4.0.0"
   },
   "files": [
     "dist-package/**",

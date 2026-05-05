@@ -35,9 +35,7 @@
   "exports": {
     ".": "./dist-package/src/index.js"
   },
-  "devDependencies": {
-    "@toptal/picasso-test-utils": "2.0.0"
-  },
+  "devDependencies": {},
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
