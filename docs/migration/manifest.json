@@ -152,16 +152,15 @@
     "Note": {
       "tier": 1,
       "package": "packages/base/Note",
-      "status": "needs_human",
+      "status": "queued",
       "depends_on": [],
       "target_path": "none",
       "pr": null,
-      "branch": "migrate-Note",
-      "worktree": "migration-runs/2026-05-05/Note/worktree",
+      "branch": null,
+      "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "PF-1992 orchestrator sandbox. Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap.",
-      "escalation_reason": "pre-state snapshot failed"
+      "notes": "PF-1992 orchestrator sandbox. Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap."
     },
     "Typography": {
       "tier": 1,

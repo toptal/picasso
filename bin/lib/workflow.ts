@@ -50,12 +50,12 @@ export interface Manifest {
 export interface GateReport {
   /** Overall outcome derived from per-stage statuses. */
   composite: 'PASS' | 'FAIL'
-  stages: ReadonlyArray<{
+  stages: readonly {
     name: string
     status: 'PASS' | 'FAIL' | 'SKIP'
     durationSeconds: number
     logPath: string
-  }>
+  }[]
   /** Path to the markdown report file emitted by the gate script. */
   reportPath: string
 }
