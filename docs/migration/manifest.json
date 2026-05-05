@@ -152,13 +152,13 @@
     "Note": {
       "tier": 1,
       "package": "packages/base/Note",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [],
       "target_path": "none",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4922",
+      "branch": "migrate-Note",
+      "worktree": "migration-runs/2026-05-05/Note/worktree",
+      "iterations": 1,
       "merged_at": null,
       "notes": "PF-1992 orchestrator sandbox. Already-clean source. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap."
     },
