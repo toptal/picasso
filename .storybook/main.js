@@ -85,6 +85,10 @@ module.exports = {
 
     return {
       ...config,
+      // Skip source maps for production storybook builds. They cost ~2-3 GB
+      // peak heap and 20-30% wall time on the 90-package preview bundle, and
+      // they aren't useful in the gh-pages output or in happo screenshots.
+      devtool: isDevelopment ? config.devtool : false,
       module: {
         ...config.module,
         // supress an error with dynamic path e.g. require(`${url}`)
