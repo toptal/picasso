@@ -29,9 +29,3 @@ Per migration plan v3 §3.1 (Tier 0 table footnote) + §3.2 (Tier 1 table): **so
 
 ## Reviewer notes
 - The smallest of all Tier 1 units. This entry exists in the manifest mainly for hygiene — without it, the next package-deps audit would still flag Menu's package.json. Quick win.
-
-## Slot keys
-
-**Not applicable.** Per the May 2026 audit, Menu does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
-
-Implementation note: Tier 1 cleanup-only — Menu source is already migrated; this PR drops the stale `@mui/base` package.json declaration.

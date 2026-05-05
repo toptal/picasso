@@ -31,9 +31,3 @@ Per migration plan v3 §3.2 + audit §1.4: **single MUI v4 type re-export**, no 
 
 ## Reviewer notes
 - Grid stays custom (no `@base-ui/react` Grid analog). The migration is genuinely just a type-import replacement plus peer-dep cleanup.
-
-## Slot keys
-
-**Not applicable.** Per the May 2026 audit, Grid does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
-
-Implementation note: Tier 1 type-only fix — replace MUI v4 `GridSize` type-only re-export with a local `GridSize` literal type union.

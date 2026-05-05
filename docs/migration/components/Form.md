@@ -33,9 +33,3 @@ Migration must be applied AFTER:
 ## Reviewer notes
 - The Cypress spec is load-bearing for Form. If it asserts on class names (bad practice but possible), flag and fix as a separate change before merge.
 - ARIA semantics matter to a11y compliance audits — review any class changes around live-regions carefully.
-
-## Slot keys
-
-**Not applicable.** Per the May 2026 audit, Form does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
-
-Implementation note: already-clean (Tier 1 cleanup); migration is package.json delta only.

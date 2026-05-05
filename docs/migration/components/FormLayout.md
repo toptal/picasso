@@ -23,9 +23,3 @@ Migration must be applied AFTER:
 ## Acceptance criteria (component-specific)
 - [ ] `packages/base/FormLayout/package.json` has no `@material-ui/core` entry.
 - [ ] Happo: 0 pixel diff vs baseline.
-
-## Slot keys
-
-**Not applicable.** Per the May 2026 audit, FormLayout does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
-
-Implementation note: already-clean (Tier 1 cleanup); migration is package.json delta only.
