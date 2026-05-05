@@ -3277,6 +3277,9 @@ importers:
       '@toptal/picasso-prompt-modal':
         specifier: 3.0.0
         version: link:../base/PromptModal
+      '@toptal/picasso-provider':
+        specifier: '*'
+        version: link:../picasso-provider
       '@toptal/picasso-quote':
         specifier: 2.0.9
         version: link:../base/Quote
@@ -3422,9 +3425,6 @@ importers:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
         version: 8.0.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react-test-renderer@19.2.3(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-provider':
-        specifier: 5.0.2
-        version: link:../picasso-provider
       '@types/classnames':
         specifier: ^2.3.1
         version: 2.3.1
