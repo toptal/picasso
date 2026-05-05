@@ -26,7 +26,6 @@
     "@toptal/picasso-icons": "1.15.2",
     "@toptal/picasso-input-adornment": "4.0.0",
     "@toptal/picasso-outlined-input": "5.0.0",
-    "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "4.0.0"
   },
   "sideEffects": [

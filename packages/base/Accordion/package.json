@@ -24,7 +24,6 @@
   "dependencies": {
     "@toptal/picasso-button": "5.0.0",
     "@toptal/picasso-icons": "1.15.2",
-    "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "4.0.0",
     "classnames": "^2.5.1"
   },

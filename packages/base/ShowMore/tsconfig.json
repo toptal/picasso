@@ -5,7 +5,6 @@
   "references": [
     { "path": "../../picasso-tailwind" },
     { "path": "../../picasso-tailwind-merge" },
-    { "path": "../../shared" },
     { "path": "../Button" },
     { "path": "../Icons" },
     { "path": "../Typography" }

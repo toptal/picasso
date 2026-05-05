@@ -6,7 +6,6 @@
     { "path": "../base/Autocomplete" },
     { "path": "../base/AvatarUpload" },
     { "path": "../base/Button" },
-    { "path": "../base/Calendar" },
     { "path": "../base/Checkbox" },
     { "path": "../base/Container" },
     { "path": "../base/DatePicker" },

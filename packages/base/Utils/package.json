@@ -31,8 +31,6 @@
     "classnames": "^2.5.1"
   },
   "devDependencies": {
-    "@toptal/picasso-button": "5.0.0",
-    "@toptal/picasso-modal": "4.0.0",
     "@toptal/picasso-provider": "5.0.2",
     "@toptal/picasso-test-utils": "2.0.0",
     "styled-components": "^6.1.1"

@@ -26,7 +26,6 @@
     "@toptal/picasso-file-input": "5.0.0",
     "@toptal/picasso-form": "7.0.0",
     "@toptal/picasso-icons": "1.15.2",
-    "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-typography": "5.0.0",
     "@toptal/picasso-utils": "4.0.0",
     "classnames": "^2.5.1",

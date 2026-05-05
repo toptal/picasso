@@ -601,9 +601,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.6.0'
         version: link:../../picasso-tailwind
@@ -638,9 +635,6 @@ importers:
       '@toptal/picasso-menu':
         specifier: 4.0.0
         version: link:../Menu
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -675,9 +669,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -700,9 +691,6 @@ importers:
 
   packages/base/Amount:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-typography':
         specifier: 5.0.0
         version: link:../Typography
@@ -728,9 +716,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -897,9 +882,6 @@ importers:
       '@toptal/picasso-fade':
         specifier: 1.0.9
         version: link:../Fade
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>2.1.0'
         version: link:../../picasso-tailwind
@@ -944,9 +926,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -969,6 +948,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
@@ -996,9 +978,6 @@ importers:
       '@toptal/picasso-loader':
         specifier: 3.0.5
         version: link:../Loader
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-radio':
         specifier: 5.0.22
         version: link:../Radio
@@ -1021,9 +1000,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-menu':
-        specifier: 4.0.0
-        version: link:../Menu
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -1153,9 +1132,6 @@ importers:
 
   packages/base/Collapse:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.1.0'
         version: link:../../picasso-tailwind
@@ -1178,9 +1154,6 @@ importers:
 
   packages/base/Container:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -1194,9 +1167,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso':
-        specifier: 54.1.5
-        version: link:../../picasso
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
@@ -1227,9 +1197,6 @@ importers:
       '@toptal/picasso-popper':
         specifier: 2.0.2
         version: link:../Popper
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -1246,12 +1213,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-test-utils':
-        specifier: 2.0.0
-        version: link:../Test-Utils
-      '@toptal/picasso-tooltip':
-        specifier: 2.0.5
-        version: link:../Tooltip
       popper.js:
         specifier: ^1.16.1
         version: 1.16.1
@@ -1295,9 +1256,6 @@ importers:
       '@toptal/picasso-paper':
         specifier: 4.0.5
         version: link:../Paper
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-slide':
         specifier: 1.0.4
         version: link:../Slide
@@ -1335,9 +1293,6 @@ importers:
       '@toptal/picasso-popper':
         specifier: 2.0.2
         version: link:../Popper
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-utils':
         specifier: 4.0.0
         version: link:../Utils
@@ -1348,12 +1303,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-container':
-        specifier: 3.1.4
-        version: link:../Container
-      '@toptal/picasso-menu':
-        specifier: 4.0.0
-        version: link:../Menu
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
@@ -1381,9 +1330,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -1446,15 +1392,12 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-test-utils':
-        specifier: 2.0.0
-        version: link:../Test-Utils
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
 
   packages/base/Fade:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.1.0'
         version: link:../../picasso-tailwind
@@ -1572,9 +1515,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-input':
-        specifier: 5.0.0
-        version: link:../Input
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
@@ -1609,9 +1549,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-form':
-        specifier: 7.0.0
-        version: link:../Form
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -1630,9 +1567,6 @@ importers:
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
-      '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
-        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: 4.0.0
         version: link:../Utils
@@ -1642,6 +1576,13 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+    devDependencies:
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../../picasso-tailwind-merge
+      '@toptal/picasso-test-utils':
+        specifier: 2.0.0
+        version: link:../Test-Utils
 
   packages/base/Grid:
     dependencies:
@@ -1688,9 +1629,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -1713,9 +1651,6 @@ importers:
 
   packages/base/Icons:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
@@ -1741,9 +1676,6 @@ importers:
 
   packages/base/Image:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -1828,12 +1760,6 @@ importers:
 
   packages/base/Link:
     dependencies:
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
@@ -1847,6 +1773,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -1862,9 +1791,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -1884,6 +1810,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -1893,9 +1822,6 @@ importers:
 
   packages/base/Loader:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>2.5.0'
         version: link:../../picasso-tailwind
@@ -1918,9 +1844,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind-merge':
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
@@ -1970,6 +1893,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2040,6 +1966,10 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
+    devDependencies:
+      '@toptal/picasso-test-utils':
+        specifier: 2.0.0
+        version: link:../Test-Utils
 
   packages/base/Note:
     dependencies:
@@ -2049,9 +1979,6 @@ importers:
       '@toptal/picasso-container':
         specifier: 3.1.4
         version: link:../Container
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2083,9 +2010,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -2108,6 +2032,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2197,9 +2124,6 @@ importers:
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
-      '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
-        version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: 5.0.0
         version: link:../Typography
@@ -2213,6 +2137,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-tailwind':
+        specifier: 4.0.0
+        version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2289,9 +2216,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-link':
-        specifier: 4.0.0
-        version: link:../Link
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
@@ -2316,9 +2240,6 @@ importers:
       '@toptal/picasso-container':
         specifier: 3.1.4
         version: link:../Container
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2341,12 +2262,6 @@ importers:
 
   packages/base/Paper:
     dependencies:
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.0.1'
         version: link:../../picasso-tailwind
@@ -2357,15 +2272,15 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
-      '@toptal/picasso-typography':
-        specifier: 5.0.0
-        version: link:../Typography
 
   packages/base/PasswordInput:
     dependencies:
@@ -2381,9 +2296,6 @@ importers:
       '@toptal/picasso-outlined-input':
         specifier: 5.0.0
         version: link:../OutlinedInput
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
@@ -2443,9 +2355,6 @@ importers:
       '@toptal/picasso-modal':
         specifier: 4.0.0
         version: link:../Modal
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2459,9 +2368,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-input':
-        specifier: 5.0.0
-        version: link:../Input
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
@@ -2471,9 +2377,6 @@ importers:
       '@toptal/picasso-container':
         specifier: 3.1.4
         version: link:../Container
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2505,9 +2408,6 @@ importers:
       '@toptal/picasso-tailwind':
         specifier: '>=2.4.0'
         version: link:../../picasso-tailwind
-      '@toptal/picasso-tailwind-merge':
-        specifier: ^2.0.0
-        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-utils':
         specifier: 4.0.0
         version: link:../Utils
@@ -2524,6 +2424,9 @@ importers:
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
@@ -2539,9 +2442,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2573,9 +2473,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2628,9 +2525,6 @@ importers:
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
-      '@toptal/picasso-tailwind':
-        specifier: '>=2.7'
-        version: link:../../picasso-tailwind
       '@toptal/picasso-typography':
         specifier: 5.0.0
         version: link:../Typography
@@ -2644,6 +2538,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-tailwind':
+        specifier: 4.0.0
+        version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2662,9 +2559,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -2709,9 +2603,6 @@ importers:
 
   packages/base/Slide:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>2.1.0'
         version: link:../../picasso-tailwind
@@ -2734,9 +2625,6 @@ importers:
       '@mui/base':
         specifier: 5.0.0-beta.58
         version: 5.0.0-beta.58(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -2753,6 +2641,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2762,9 +2653,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -2787,6 +2675,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2805,9 +2696,6 @@ importers:
       '@toptal/picasso-form-label':
         specifier: 1.0.4
         version: link:../FormLabel
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -2821,6 +2709,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
@@ -2836,9 +2727,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -2858,6 +2746,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2904,6 +2795,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2916,9 +2810,6 @@ importers:
       '@toptal/picasso-icons':
         specifier: 1.15.2
         version: link:../Icons
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
       '@toptal/picasso-shared':
         specifier: 15.0.0
         version: link:../../shared
@@ -2938,9 +2829,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-link':
-        specifier: 4.0.0
-        version: link:../Link
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
@@ -2956,9 +2847,6 @@ importers:
       '@toptal/picasso-form':
         specifier: 7.0.0
         version: link:../Form
-      '@toptal/picasso-input':
-        specifier: 5.0.0
-        version: link:../Input
       '@toptal/picasso-outlined-input':
         specifier: 5.0.0
         version: link:../OutlinedInput
@@ -2968,9 +2856,6 @@ importers:
       '@toptal/picasso-tag':
         specifier: 5.0.0
         version: link:../Tag
-      '@toptal/picasso-tailwind':
-        specifier: '>=2.6.0'
-        version: link:../../picasso-tailwind
       '@toptal/picasso-utils':
         specifier: 4.0.0
         version: link:../Utils
@@ -2981,9 +2866,9 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso':
-        specifier: 54.1.5
-        version: link:../../picasso
+      '@toptal/picasso-tailwind':
+        specifier: 4.0.0
+        version: link:../../picasso-tailwind
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
@@ -3046,9 +2931,6 @@ importers:
       '@toptal/picasso-outlined-input':
         specifier: 5.0.0
         version: link:../OutlinedInput
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.5.0'
         version: link:../../picasso-tailwind
@@ -3114,9 +2996,6 @@ importers:
       '@toptal/picasso-container':
         specifier: 3.1.4
         version: link:../Container
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -3139,12 +3018,6 @@ importers:
       '@material-ui/core':
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../../picasso-provider
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind-merge':
         specifier: ^2.0.0
         version: link:../../picasso-tailwind-merge
@@ -3158,15 +3031,15 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../../picasso-provider
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../Test-Utils
 
   packages/base/TypographyOverflow:
     dependencies:
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -3201,9 +3074,6 @@ importers:
       '@toptal/picasso-container':
         specifier: 3.1.4
         version: link:../Container
-      '@toptal/picasso-shared':
-        specifier: 15.0.0
-        version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
@@ -3248,12 +3118,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
-      '@toptal/picasso-button':
-        specifier: 5.0.0
-        version: link:../Button
-      '@toptal/picasso-modal':
-        specifier: 4.0.0
-        version: link:../Modal
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
@@ -3413,9 +3277,6 @@ importers:
       '@toptal/picasso-prompt-modal':
         specifier: 3.0.0
         version: link:../base/PromptModal
-      '@toptal/picasso-provider':
-        specifier: '*'
-        version: link:../picasso-provider
       '@toptal/picasso-quote':
         specifier: 2.0.9
         version: link:../base/Quote
@@ -3561,6 +3422,9 @@ importers:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
         version: 8.0.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react-test-renderer@19.2.3(react@18.2.0))(react@18.2.0)
+      '@toptal/picasso-provider':
+        specifier: 5.0.2
+        version: link:../picasso-provider
       '@types/classnames':
         specifier: ^2.3.1
         version: 2.3.1
@@ -3625,9 +3489,6 @@ importers:
 
   packages/picasso-codemod:
     dependencies:
-      '@toptal/picasso':
-        specifier: 54.1.5
-        version: link:../picasso
       execa:
         specifier: ^7.1.1
         version: 7.2.0
@@ -3647,9 +3508,6 @@ importers:
         specifier: ~4.7.0
         version: 4.7.4
     devDependencies:
-      '@toptal/picasso-forms':
-        specifier: 74.0.0
-        version: link:../picasso-forms
       '@types/jscodeshift':
         specifier: ^0.11.6
         version: 0.11.6
@@ -3665,9 +3523,6 @@ importers:
       '@toptal/picasso-button':
         specifier: 5.0.0
         version: link:../base/Button
-      '@toptal/picasso-calendar':
-        specifier: 5.0.0
-        version: link:../base/Calendar
       '@toptal/picasso-checkbox':
         specifier: 5.0.23
         version: link:../base/Checkbox
@@ -3805,6 +3660,9 @@ importers:
       '@babel/types':
         specifier: ^7.26.8
         version: 7.28.4
+      '@toptal/picasso':
+        specifier: 54.1.5
+        version: link:../picasso
 
   packages/picasso-provider:
     dependencies:
@@ -3833,9 +3691,6 @@ importers:
         specifier: ~4.7.0
         version: 4.7.4
     devDependencies:
-      '@toptal/picasso-notification':
-        specifier: 5.0.0
-        version: link:../base/Notification
       '@toptal/picasso-test-utils':
         specifier: 2.0.0
         version: link:../base/Test-Utils
@@ -4103,6 +3958,9 @@ importers:
       '@toptal/picasso-tailwind':
         specifier: 4.0.0
         version: link:../picasso-tailwind
+      '@toptal/picasso-test-utils':
+        specifier: 2.0.0
+        version: link:../base/Test-Utils
 
   packages/shared:
     dependencies:

@@ -36,11 +36,10 @@
   },
   "devDependencies": {
     "@toptal/picasso-tailwind-merge": "2.0.4",
-    "@toptal/picasso-test-utils": "2.0.0",
-    "@toptal/picasso-typography": "5.0.0"
+    "@toptal/picasso-provider": "5.0.2",
+    "@toptal/picasso-test-utils": "2.0.0"
   },
   "dependencies": {
-    "@toptal/picasso-shared": "15.0.0",
     "@toptal/picasso-utils": "4.0.0"
   },
   "files": [

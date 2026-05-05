@@ -7,7 +7,6 @@
     { "path": "../../shared" },
     { "path": "../Autocomplete" },
     { "path": "../Form" },
-    { "path": "../Input" },
     { "path": "../OutlinedInput" },
     { "path": "../Tag" },
     { "path": "../Utils" }
