@@ -14,7 +14,7 @@ Paste this whole file as your first message in the new Cowork instance.
 
 **PI-4318 — Picasso Modernization + AI Developer Experience.** A program-increment plan with four parallel tracks:
 
-1. **Modernization** — Migrate Picasso from MUI v4 (`@material-ui/core` 4.12.4) + JSS (`makeStyles`/`createStyles`/`withStyles`) → **Base UI** (`@mui/base`'s successor, the new headless library) + **Tailwind 4**. Target stack: `@toptal/base-tailwind` + `@toptal/picasso-tailwind` + `@toptal/picasso-tailwind-merge`.
+1. **Modernization** — Migrate Picasso from three source stacks (MUI v4 / `@material-ui/core` 4.12.4 + JSS via `makeStyles`/`createStyles`/`withStyles` + `@mui/base`) to **`@base-ui/react`** ([base-ui.com](https://base-ui.com/react/overview/quick-start)) + **Tailwind 4**. Target stack: `@base-ui/react` for primitives, `@toptal/base-tailwind` + `@toptal/picasso-tailwind` + `@toptal/picasso-tailwind-merge` for styling. Two paths: heavy (MUI v4 + JSS components, full rewrite) and light (`@mui/base` components, package swap + API alignment per PR #4906 baseline). Note: `@mui/base` is `@base-ui/react`'s predecessor and is also a migration source, NOT the target.
 2. **Agent Experience** — `.picasso/` rules, Skills (`picasso-component`, `picasso-page`, `picasso-review`, `picasso-migration`), org-wide AI dev experience.
 3. **Figma Design-to-Code** — Figma Make + Code Connect coverage (75/75 components).
 4. **Maestro Integration** — Figma Middleware PoC → production, default library = Picasso.
@@ -26,7 +26,7 @@ Paste this whole file as your first message in the new Cowork instance.
 | `PI-4318-phases.md` | High-level 3-phase roadmap (Phase 1 pilot/gated, Phase 2 execute, Phase 3 rollout). |
 | `PI-4318-tickets.md` | Phase-organized ticket list (3 epics — one per phase, 29 stories total). |
 | `PI-4318-tickets-by-track.md` | Track-organized ticket list (4 epics — one per track, 29 stories total). Same stories as `tickets.md`, different epic grouping. |
-| `PI-4318-P1-MOD-01-migration-plan.md` | Deep dive deliverable for ticket P1-MOD-01. The Base UI + Tailwind migration plan. Includes per-component tier table, sequence, escape hatches. |
+| `PI-4318-P1-MOD-01-migration-plan.md` | Deep dive deliverable for ticket P1-MOD-01. The `@base-ui/react` + Tailwind migration plan with two-path model. Includes per-component tier table (Tier 0 light, Tier 1 cleanup, Tier 2-3 heavy, Tier 4 siblings, Tier 5 provider), sequence, AI prompts, risk register. |
 | `PI-4318-technical-ideation.md` | Original brain-dump that fed the above. |
 | `pi-description-proposed.md`, `pi-metrics-proposal.md`, `pi-ticket-review.md` | Earlier drafts / supporting material. |
 

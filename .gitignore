@@ -26,3 +26,8 @@ reports
 gha-creds-*.json
 
 llm-docs
+
+# Per-run artifacts emitted by bin/migration-orchestrator.ts (PF-1992).
+# Worktrees, gate logs, diff reports, agent prompts/responses, escalation
+# blocks. Reproducible per run; do not commit.
+migration-runs

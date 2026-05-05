@@ -62,7 +62,7 @@ Preparation for full scope execution in Phase 2. Runs alongside the pilot, does 
 
 | Track | Task | Scope |
 |---|---|---|
-| **Modernization** | Create migration plan for AI migration | Defined scope of migration to Base UI and Tailwind · Top-level plan + plan per component · Defined testbed setup · Defined plan and prompt for AI migration. |
+| **Modernization** | Create migration plan for AI migration | Defined scope of migration to `@base-ui/react` ([base-ui.com](https://base-ui.com/react/overview/quick-start)) and Tailwind 4 — three source stacks (MUI v4 + JSS + `@mui/base`), two paths (heavy + light) · Top-level plan + plan per component · Defined testbed setup · Two AI migration prompts (`PROMPT-light.md`, `PROMPT-heavy.md`). |
 | | Migrate Picasso to pnpm | Follow pnpm migration tutorial to migrate Picasso to pnpm. Prerequisite for Tailwind 4; co-dependent with PI-4278. |
 | **Maestro Integration** | Implement PoC of Figma Middleware based on API | Make working PoC and use it for implementing AI-assisted frontend as Figma Middleware. |
 
@@ -93,8 +93,8 @@ Measured only against the **gated scope** above, using the fixed reference set R
 
 | Track | Task | Outcome |
 |---|---|---|
-| **Modernization** | Migrate `packages/base/*` components | All base primitives on Base UI + Tailwind · Minimal breaking changes · Per-component DoD: Happo baseline unchanged, Jest + Cypress green, React 19 smoke-tested, Storybook updated, `.figma.tsx` still valid. |
-| | Migrate sibling packages (`picasso-charts`, `picasso-query-builder`, `picasso-rich-text-editor`) | All consumer-facing sibling packages on Base UI + Tailwind — same per-component DoD. |
+| **Modernization** | Migrate `packages/base/*` components | All base primitives on `@base-ui/react` + Tailwind (heavy path), or already-clean / light-path swapped where applicable · Minimal breaking changes · Per-component DoD: Happo baseline unchanged, Jest + Cypress green, React 19 smoke-tested, Storybook updated, `.figma.tsx` still valid. |
+| | Migrate sibling packages (`picasso-charts`, `picasso-query-builder`, `picasso-rich-text-editor`) | All consumer-facing sibling packages on `@base-ui/react` + Tailwind (all heavy path) — same per-component DoD. |
 | | Decommission `@toptal/picasso-provider` MUI v4 runtime | Theme runtime fully Tailwind-based · `@material-ui/core` peer dep removed from root · canary Portal app green. |
 | | Define product migration plans | AI-assisted migration of products to new Picasso · Codemods for breaking changes. |
 | **Agent Experience** | Full scope documentation for Picasso components | API · Extracted snippets · Storybook · Optimized for AI · Skills development (`picasso-component`, `picasso-page`, `picasso-review`, `picasso-migration`). |

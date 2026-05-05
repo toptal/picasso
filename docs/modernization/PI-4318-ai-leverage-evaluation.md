@@ -55,9 +55,9 @@ This doc looks for opportunities to push further into:
 |---|---|---|---|---|---|
 | **PF-1992** Migration plan | 2-3d | already drafted | Use AI to scaffold the prompt pack + tiering audit script in one go | **1.5-2.5d** | Tight; mostly already done |
 | **PF-1993** pnpm migration | 3-5d | 0.55× (debugging-bound) | AI debugging assistant: feed CI errors → suggested fixes. Modest gain. | **2.5-4d** | Hoisting differences need human judgment |
-| **PF-1994** Tier 1 (foundation) | 3-4d | 0.10× (Tier 1 thin wrappers) | **Autonomous gate loop** — AI runs `yarn migrate:component <Name>`, reads gate failures, fixes, retries until green. Removes human-in-the-loop between iterations. | **2-3d** | First-component ramp-up, peer review |
-| **PF-2024** Tier 2 (compound) | 4-5d | 0.15× | Same autonomous loop. Tier 2 has more JSS so iteration count higher. | **3-4d** | JSS parent-ref edge cases need review |
-| **PF-2025** Tier 3 (composite + type-leaks) | 5-7d | 0.25× | Autonomous loop helps less here — Page/Accordion/Dropdown have architecture decisions (theme overrides). | **4-6d** | Architecture decisions stay human |
+| **PF-1994** Tier 1 cleanup (11) + Tier 0 light path (8) | 4-6d | 0.05-0.10× (cleanup-only + `@mui/base`→`@base-ui/react` swap) | **Autonomous gate loop** — AI runs `yarn migrate:component <Name>`, reads gate failures, fixes, retries until green. Light path calibrated against PR #4906 (Button + Switch). v14: 11 cleanup includes 5 already-clean + 5 type-only fixes + Menu pkg + Utils. | **3-5d** | Cleanup-only is trivial; light-path multipliers may not generalise to Drawer/Modal/Slider; Backdrop has no standalone @base-ui/react primitive |
+| **PF-2024** Tier 2 heavy (5 — Checkbox, Radio, Tooltip, FileInput, Popper) | 5-8d | 0.15× | Same autonomous loop with `PROMPT-heavy.md`. Heavy path: full MUI v4 + JSS rewrite to `@base-ui/react` + Tailwind. v14: narrowed from 9 to 5 truly-heavy (FormLabel/Utils/Container/Grid/Notification moved to Tier 1; Page moved to Tier 3). | **4-7d** | JSS parent-ref edge cases; Tooltip viability + Popper primitive choice (`@floating-ui/react` vs `@base-ui/react/popover`) need PF-1992 spike; FileInput keeps custom |
+| **PF-2025** Tier 3 composite (3 — Accordion, Dropdown, Page) + OutlinedInput mixed | 5-7d | 0.25× | Autonomous loop helps less here — Accordion/Dropdown/Page have architecture decisions (theme overrides, JSS parent-refs). Mixed-state Dropdown + OutlinedInput PRs cover both light + heavy passes. Page rewritten in pure Tailwind (no `@base-ui/react` analog). | **5-7d** | Architecture decisions stay human |
 | **PF-2020** picasso-charts | 1-2d | 0.10× | Already minimal. | **1-1.5d** | One component (LineChart); already tight |
 | **PF-2021** picasso-query-builder (11 cmp) | 6-8d | 0.15× | Autonomous loop scales well across 11 components. | **4-6d** | First-cluster ramp; PR review |
 | **PF-2022** picasso-rich-text-editor | 7-10d | 0.15× | Per-component loop helps; **theme bridge rewrite (`create-lexical-theme.ts`) is architecture and stays human**. | **5-7d** | Lexical theme architecture decision |
@@ -67,7 +67,7 @@ This doc looks for opportunities to push further into:
 
 **Modernization track total** (current 38-58d → compressed **~30-46d**, saves ~8-12d).
 
-The biggest gains are from the autonomous per-component loop on Tier 1+2 batches. Tier 3 and provider rewrite have architectural floors that AI can't compress further.
+The biggest gains are from the autonomous per-component loop on Tier 0 (light path) + Tier 1 (cleanup) + Tier 2 batches. Tier 3 and provider rewrite have architectural floors that AI can't compress further.
 
 ---
 

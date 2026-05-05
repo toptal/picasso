@@ -209,27 +209,35 @@ These are the implementation tasks for PF-1994. Some can fit inside PF-1992 (mig
 | Per-component plan files (17 base/* + 11 QB + 8 RTE = 36 plans) | Eng A | 1d (AI-generated, manual review) | PF-1992 |
 | `docs/migration/manifest.json` schema + initial state | Eng A | 0.25d | PF-1992 |
 | `docs/migration/ORCHESTRATOR.md` (the loop spec, runbook) | Eng A | 0.5d | PF-1992 |
-| `bin/migration-orchestrator.ts` (the agent runner) | Eng A | 1d | PF-1994 (Tier 1 first run validates) |
+| `bin/migration-orchestrator.ts` (the agent runner) | Eng A | 1d | PF-1994 (Tier 1 cleanup-only batch first; Note as sandbox) |
 | GitHub `gh` CLI integration patterns + auth setup | Eng A | 0.25d | PF-1994 |
 
 **Net: ~5 days of upfront infrastructure** (mostly absorbed in PF-1992 which is currently 2-3d). The marginal cost is ~2d.
 
 ### How the engineer interacts
 
-**During Tier 1 (first 7 components):**
-- Engineer kicks off the agent: `bin/migration-orchestrator.ts --tier=1`
+**During PF-1994 Tier 1 cleanup + Tier 0 light path (11 cleanup + 8 light components, per migration plan v3):**
+- Engineer kicks off the agent: `bin/migration-orchestrator.ts --tier=1` (cleanup batch first, Note as sandbox), then `--tier=0` for the 8 light-path components.
+- Tier 1 sequence: Note (sandbox) → Form, FormLayout, ModalContext, Typography (clean) → Container, Grid, Notification, FormLabel (type-only fixes) → Menu (pkg cleanup) → Utils (replace 2 small re-exports + 1 Tailwind transition).
+- Tier 0 sequence: Backdrop first (Modal + Drawer depend on it) → Badge → Button → Slider → Switch → Tabs → Modal → Drawer.
 - Engineer monitors PRs as they open
 - Engineer reviews each PR within ~24h SLA
 - Engineer approves, agent merges automatically
 - Engineer fixes the ~1-2 components where the agent escalates
+- After batch wraps, recalibrate light-path multipliers (PR #4906 baseline may not generalise to Drawer/Modal/Slider — see migration plan R12)
 
-**During Tier 2 (next 7 components):**
-- Same pattern. Agent improvements (better prompt, more examples) compound from Tier 1 lessons.
+**During PF-2024 Tier 2 (5 truly-heavy components — Checkbox, Radio, Tooltip, FileInput, Popper):**
+- Same pattern but with `PROMPT-heavy.md`. Agent improvements (better prompt, more examples) compound from Tier 0 lessons.
+- Order: **Tooltip first** (FileInput depends on it). Checkbox + Radio in parallel (FormLabel already shipped in PF-1994). FileInput last.
+- Risk concentrates on Tooltip (`@base-ui/react/tooltip` viability), Popper (primitive choice — `@floating-ui/react` vs `@base-ui/react/popover`, locked in PF-1992 spike per R15).
+- v14 reclassification: FormLabel + Utils + Container + Grid + Notification moved to Tier 1 (type-only fixes); Page moved to Tier 3.
 
-**During Tier 3 (3 components — Page, Accordion, Dropdown):**
+**During PF-2025 Tier 3 (3 composite components — Accordion, Dropdown, Page — plus OutlinedInput mixed-state):**
 - More engineer involvement expected
-- Agent may stop at architecture decisions (e.g., `PicassoProvider.override` chains)
+- Agent may stop at architecture decisions (e.g., `PicassoProvider.override` chains, JSS `&$expanded` parent-ref unwinding)
 - Engineer drives the architecture step manually, agent does the per-file rewrite after
+- Mixed-state Dropdown + OutlinedInput: single PR per component covers both light + heavy passes
+- Page is custom Tailwind rewrite (no `@base-ui/react` analog); migrate last in `base/*` since it depends on most of Tier 0 + Tier 2
 
 ### Trust + safety mechanisms
 
@@ -244,13 +252,16 @@ These are the implementation tasks for PF-1994. Some can fit inside PF-1992 (mig
 ### Acceptance criteria (paste into Jira)
 
 - [ ] `bin/migration-orchestrator.ts` implemented with the loop above
-- [ ] `docs/migration/manifest.json` populated with all 36 components (17 base + 11 QB + 8 RTE)
-- [ ] Per-component plan files committed for all Tier 1 (7) — required to start Tier 1
-- [ ] First component (Note) successfully migrated end-to-end: agent created PR, CI passed, human approved, agent merged
-- [ ] All 7 Tier 1 components migrated via the agent (with up to 2 needing human takeover on Tier 1)
+- [ ] `docs/migration/manifest.json` populated with all 28 component-migration units (11 Tier 1 cleanup + 8 Tier 0 light + 5 Tier 2 heavy + 3 Tier 3 composite + 1 OutlinedInput mixed-state + 4 sibling packages + provider; with 11 QB + 8 RTE inside the sibling packages)
+- [ ] Per-component plan files committed for all Tier 1 cleanup (11) + Tier 0 light path (8) — required to start PF-1994
+- [ ] Two prompt files committed: `PROMPT-light.md` (Tier 0) + `PROMPT-heavy.md` (Tier 2-5)
+- [ ] `base-ui-react-api-crib.md` rule doc lists per-Picasso-component target paths (per migration plan §3 mapping)
+- [ ] First component (Note, Tier 1 cleanup) successfully migrated end-to-end: agent created PR, CI passed, human approved, agent merged
+- [ ] All 11 Tier 1 cleanup units complete + all 8 Tier 0 light-path components migrated via the agent (with up to 2 needing human takeover)
 - [ ] Iteration cap respected (no PR with > 3 agent-driven force-pushes after CI green)
 - [ ] Manifest accurately reflects state at all times
-- [ ] Per-component DoD met (Happo pixel-perfect, Jest+Cypress green, React 19 smoke, no MUI v4 imports)
+- [ ] Per-component DoD met (Happo pixel-perfect, Jest+Cypress green, React 19 smoke, no MUI v4 imports, no `@mui/base` imports)
+- [ ] Backdrop + Popper architectural decisions locked (R14, R15)
 
 ### Risks specific to this approach
 
