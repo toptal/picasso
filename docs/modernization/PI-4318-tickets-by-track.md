@@ -2,7 +2,7 @@
 
 **Parent:** [PI-4318 — Picasso Modernization + AI Developer Experience](https://toptal-core.atlassian.net/browse/PI-4318)
 **Source:** [PI-4318-phases.md](./PI-4318-phases.md) · [PI-4318-tickets.md](./PI-4318-tickets.md) (phase-organized version)
-**Status:** v12 — split out **Pilot Measurement** as its own track (Epic E). PF-1998 + PF-2000 move from Agent Experience to Measurement because the A1 → A2 lift jointly tests AIC + Figma artifacts and isn't attributable to either track alone. Story IDs renumbered: P1-AIC-02 → P1-MEAS-01 (PF-1998), P1-AIC-04 → P1-MEAS-02 (PF-2000). Track totals shift: AIC 8.5-15.5, Figma unchanged 19.5-28, new Measurement track 4-6.5; program total unchanged 76-117 man-days.
+**Status:** v14 — Modernization-track refinement after [migration plan v3 re-audit (May 4, 2026)](./PI-4318-P1-MOD-01-migration-plan.md). v13 had moved FormLabel + Utils to Tier 2 heavy, but the May 2026 file-level audit found those (plus Container, Grid, Notification) only have **type-only or trivial re-export** imports — they're cleanup-fixes, not rewrites. v14 reorganises: Tier 1 grows from 5 to 11 components (cleanup-only); Tier 2 narrows from 9 to 5 truly-heavy (Checkbox, Radio, Tooltip, FileInput, Popper); Page moves from Tier 2 to Tier 3 (high-surface composite); Tier 3 stays at 3 composites + OutlinedInput mixed-state. **Per-component target paths verified against `@base-ui/react` v1.4.1** (stable, Apr 2026). Per-ticket effort ranges unchanged (PF-1994 3-5d, PF-2024 4-7d, PF-2025 5-7d). Track total unchanged (38-58d); program total unchanged (80-123d). Internal redistribution only. Earlier v12 changes still in force: Pilot Measurement is its own track (Epic E); PF-1998 + PF-2000 sit there.
 
 ## Structure
 
@@ -53,7 +53,7 @@ Recommended Jira saved filters:
 
 ## Goal
 
-Migrate Picasso from MUI v4 / JSS to Base UI (`@mui/base`) + Tailwind, with **AI doing the bulk of the per-component rewrites via the autonomous orchestrator** built in PF-1992. Roll the migration into Staff Portal as the canary; other consumer repos adopt via self-service AI prompt. Unblocks React 19 adoption org-wide (O2) and closes out O1 (deprecated deps = 0) inside Picasso.
+Migrate Picasso from MUI v4 (`@material-ui/core`) + `@mui/base` + JSS to **`@base-ui/react` + Tailwind 4**, with **AI doing the bulk of the per-component rewrites via the autonomous orchestrator** built in PF-1992. Note: `@mui/base` is the *predecessor* of `@base-ui/react` and is also a migration source — components on `@mui/base` take a lighter "second-step" migration path (per PR #4906 baseline). Roll the migration into Staff Portal as the canary; other consumer repos adopt via self-service AI prompt. Unblocks React 19 adoption org-wide (O2) and closes out O1 (deprecated deps = 0) inside Picasso.
 
 ## Track arc (v11)
 
@@ -81,14 +81,17 @@ Migrate Picasso from MUI v4 / JSS to Base UI (`@mui/base`) + Tailwind, with **AI
 **Deep dive:** [PI-4318-P1-MOD-01-migration-plan.md](./PI-4318-P1-MOD-01-migration-plan.md) · [PI-4318-ai-leverage-tickets.md](./PI-4318-ai-leverage-tickets.md)
 
 **Description**
-Define the scope and execution plan for migrating Picasso to Base UI + Tailwind, and stand up **only the autonomous-migration-loop infrastructure** that PF-1994/2024/2025 will use. Covers: migration plan content (scope, top-level plan, per-component plans, testbed, AI prompt); autonomous migration loop scaffolds (`bin/migration-orchestrator.ts`, `bin/migration-gate.sh`, `bin/migration-diff.sh`, `docs/migration/manifest.json`, `docs/migration/ORCHESTRATOR.md`, `gh` CLI auth setup).
+Define the scope and execution plan for migrating Picasso to `@base-ui/react` + Tailwind, and stand up **only the autonomous-migration-loop infrastructure** that PF-1994/2024/2025 will use. Covers: migration plan content (scope, top-level plan, per-component plans, testbed, AI prompt); autonomous migration loop scaffolds (`bin/migration-orchestrator.ts`, `bin/migration-gate.sh`, `bin/migration-diff.sh`, `docs/migration/manifest.json`, `docs/migration/ORCHESTRATOR.md`, `gh` CLI auth setup).
 
 **v11 scope changes:** the agentic Code Connect generator (`bin/generate-code-connect.ts`) **moves to PF-2005** (the first user). The BASE audit script (`bin/base-audit.ts`) **moves to PF-2006**. The 5-page baseline measurement protocol **moves to PF-2000**. PF-1992 ships as a normal Picasso PR — full test suite + Happo + standard PR review approval.
 
 **Acceptance criteria**
 - [ ] `docs/migration-plan.md` committed in Picasso repo
 - [ ] Top-level plan with complexity tiering for all 75 components (16 MUI v4 pkgs / 11 @mui/base / ~48 remaining)
-- [ ] Per-component plan template + 2-3 worked examples; per-component plan files for all Tier 1 (7) committed
+- [ ] Per-component plan template + 2-3 worked examples; per-component plan files for all Tier 1 cleanup-only (5) + Tier 0 light path (9) committed
+- [ ] Two AI migration prompts committed: `PROMPT-light.md` (`@mui/base` → `@base-ui/react`) and `PROMPT-heavy.md` (MUI v4 + JSS → `@base-ui/react` + Tailwind)
+- [ ] Four rule docs committed: `styling.md`, `api-preservation.md`, `jss-to-tailwind-crib.md`, `base-ui-react-api-crib.md`
+- [ ] PR #4906 status verified; reference implementations confirmed on `@base-ui/react`
 - [ ] Testbed setup documented (how a migrated component is validated: Happo, Jest, Cypress, React 19 smoke)
 - [ ] AI migration prompt documented (reusing Phase 0 Codex prompt, revised)
 - [ ] Risk register + rollback strategy
@@ -118,11 +121,11 @@ Execute the pnpm migration for the Picasso monorepo following the existing pnpm 
 
 ### P2-MOD-01 — Migrate `packages/base/*` components (split into 3 tier-tickets)
 
-**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** ~14d total (split: 3.5 + 4.5 + 6) · **Blocked by:** P1-MOD-01, P1-MOD-02 · **Blocks:** P2-MOD-02, P2-MOD-03, P2-MOD-04, P2-MOD-06
+**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** ~12-19d total (split: 3-5 + 4-7 + 5-7) · **Blocked by:** P1-MOD-01, P1-MOD-02 · **Blocks:** P2-MOD-02, P2-MOD-03, P2-MOD-04, P2-MOD-06
 **Phase doc ref:** [Phase 2 — Modernization row 1](./PI-4318-phases.md#phase-2--execute--6-8-weeks-post-gate)
-**Deep dive:** [PI-4318-P1-MOD-01-migration-plan.md §3 Tiers 1–3](./PI-4318-P1-MOD-01-migration-plan.md#3-component-inventory--tiering)
+**Deep dive:** [PI-4318-P1-MOD-01-migration-plan.md §3 Tier inventory (v3, May 2026)](./PI-4318-P1-MOD-01-migration-plan.md#3-tier-inventory-v3--may-2026-re-audit)
 
-**Split note.** Original PF-1994 covered all 17 units in one XL ticket. Split into 3 tier-tickets to match migration plan §10 cadence and unblock parallelism with sibling-package migrations once Tier 1 lands.
+**Split note.** Original PF-1994 covered all units in one XL ticket. Split into 3 tier-tickets to match migration plan §10 cadence and unblock parallelism with sibling-package migrations once the first batch lands. **v14 retiering** (after migration plan v3 file-level re-audit): PF-1994 covers Tier 1 cleanup (11 components — 5 already-clean + 5 type-only fixes + Menu pkg + Utils) + Tier 0 light path (8 `@mui/base` components, calibrated against PR #4906); PF-2024 covers Tier 2 heavy (5 components — Checkbox, Radio, Tooltip, FileInput, Popper); PF-2025 covers Tier 3 composites (3 — Accordion, Dropdown, Page) + OutlinedInput mixed-state PR. v13's misclassification of FormLabel + Utils + Container + Grid + Notification as Tier 2 corrected — they have only type-only or trivial re-export imports.
 
 **Per-component Definition of Done (applies to all three sub-tickets)**
 - Happo baseline pixel-perfect (any visual diff is a bug to fix; no designer sign-off needed)
@@ -133,61 +136,96 @@ Execute the pnpm migration for the Picasso monorepo following the existing pnpm 
 
 ---
 
-#### PF-1994 — Migrate `packages/base/*` Tier 1 (foundation primitives)
+#### PF-1994 — Migrate `packages/base/*` Tier 1 cleanup + Tier 0 light-path batch
 
-**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** XS (2-3d) · **Blocked by:** P1-MOD-01, P1-MOD-02 · **Blocks:** PF-2024, P2-MOD-02..04
+**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** XS (3-5d) · **Blocked by:** P1-MOD-01, P1-MOD-02 · **Blocks:** PF-2024, P2-MOD-02..04
 
 
-Components: Form, FormLabel, FormLayout, Note, Typography, ModalContext, Utils (7). Foundation primitives — sibling-package migrations and Tier 2/3 composites all depend on them. Eng A prioritizes Typography + FormLabel + Form first within this batch so RTE/QB can start in parallel.
+Two passes via the autonomous orchestrator from PF-1992:
 
-**AI leverage.** Driven by the autonomous migration loop from PF-1992 (`bin/migration-orchestrator.ts`): agent picks Tier 1 components from `manifest.json`, applies the migration prompt, runs `yarn migrate:component <Name>` until gates pass, opens PR via `gh pr create`, polls CI, classifies review comments, merges via `gh pr merge --squash --auto` on approval. Engineer reviews PRs; agent handles orchestration. Hard cap of 3 iterations per component; escalation path documented. See [PI-4318-ai-leverage-tickets.md §PF-1994](./PI-4318-ai-leverage-tickets.md#pf-1994--2024--2025--autonomous-component-migration-with-agent-orchestration).
+**Tier 1 cleanup (11 components, ~1.1d total):** 5 already-clean (Form, FormLayout, ModalContext, Note, Typography) + 5 type-only/trivial fixes (Container, FormLabel, Grid, Notification, Menu pkg cleanup) + Utils (replace 2 small re-exports — `capitalize` 1-line + `ClickAwayListener` ~15-line custom hook — and 1 Tailwind transition for `Rotate180`). Per migration plan §3.2. Just `package.json` cleanup (remove `@material-ui/core` peer-dep), React 19 peer-dep cap lift, and minimal type-import replacements. **Note runs first** as the orchestrator sandbox.
+
+**Tier 0 light path (8 components, ~2.5-4d total):** Backdrop, Badge, Button, Drawer, Modal, Slider, Switch, Tabs. All currently on `@mui/base`; Tailwind already in place via `cx`/`twMerge`. Migration is package swap + API alignment per `PROMPT-light.md`. Calibrated against PR #4906 (Button + Switch). Order: Backdrop first (Modal + Drawer depend on it). **Backdrop note**: `@base-ui/react` has no standalone Backdrop primitive — recommended replacement is small custom `<div>` + Tailwind (R14, decision in PF-1992 spike). Mixed-state Dropdown + OutlinedInput Tier 0 portion handled in PF-2025.
+
+Eng A prioritizes Note (orchestrator sandbox) → other Tier 1 cleanups → Tier 0 batch in dependency order.
+
+**AI leverage.** Driven by the autonomous migration loop from PF-1992 (`bin/migration-orchestrator.ts`): agent picks components from `manifest.json`, applies the path-specific prompt (`PROMPT-light.md` for Tier 0), runs `yarn migrate:component <Name>` until gates pass, opens PR via `gh pr create`, polls CI, classifies review comments, merges via `gh pr merge --squash --auto` on approval. Engineer reviews PRs; agent handles orchestration. Hard cap of 3 iterations per component; escalation path documented. See [PI-4318-ai-leverage-tickets.md §PF-1994](./PI-4318-ai-leverage-tickets.md#pf-1994--2024--2025--autonomous-component-migration-with-agent-orchestration).
 
 **Acceptance criteria**
-- [ ] All 7 Tier 1 units migrated; per-component DoD met
-- [ ] Zero `@material-ui/core` / `@material-ui/styles` imports in those packages' `src/**`
-- [ ] Zero JSS in those packages' `src/**`
-- [ ] Zero `@material-ui/core` entries in those packages' `package.json`
+- [ ] All 11 Tier 1 cleanup units complete (peer-dep removed, React 19 cap lifted, type-only imports replaced with native React types or Picasso-own types)
+- [ ] All 8 Tier 0 light-path units migrated; per-component DoD met
+- [ ] Zero `@mui/base` imports in those packages' `src/**`
+- [ ] Zero `@material-ui/core` peer-deps in those packages' `package.json`
+- [ ] `@base-ui/react` added as dependency in Tier 0 packages
+- [ ] Backdrop replacement strategy implemented per PF-1992 spike outcome (R14)
 - [ ] React 19 smoke suite green
 - [ ] Happo baselines regenerated
+- [ ] Tier 0 multipliers recalibrated post-batch (feeds PF-2024/2025 estimates per migration plan R12)
 
 ---
 
-#### PF-2024 — Migrate `packages/base/*` Tier 2 (compound)
+#### PF-2024 — Migrate `packages/base/*` Tier 2 (heavy)
 
-**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** S (3-4d) · **Blocked by:** PF-1994 · **Blocks:** PF-2025, P2-MOD-05
+**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** S (4-7d) · **Blocked by:** PF-1994 · **Blocks:** PF-2025, P2-MOD-05
 
 
-Components: Checkbox, Radio, Tooltip, FileInput, Popper, Notification, Grid (7). Compound, medium surface, 2-5 subcomponents each.
+Components (5 truly heavy): **Checkbox, Radio, Tooltip, FileInput, Popper**. All use MUI v4 + JSS at runtime; full rewrite per `PROMPT-heavy.md`. Per-component target mapping per [migration plan §3.3](./PI-4318-P1-MOD-01-migration-plan.md#33-tier-2--heavy-migrations-5-components):
 
-**AI leverage.** Same autonomous migration loop as PF-1994, with prompt + reference examples sharpened by Tier 1 lessons. Agent escalation rate is the leading indicator: if Tier 1 ran clean, expect Tier 2 to compress further.
+- **Checkbox + CheckboxGroup** → `@base-ui/react/checkbox` + `@base-ui/react/checkbox-group`
+- **Radio + RadioGroup** → `@base-ui/react/radio` + own group wrapper using `@base-ui/react/field`
+- **Tooltip** → `@base-ui/react/tooltip` (direct match)
+- **FileInput** → keep custom (no `@base-ui/react` analog)
+- **Popper** → `@floating-ui/react` (preferred) OR consumers refactor to `@base-ui/react/popover` (locked in PF-1992 spike per §9.8, R15)
+
+> **v14 reclassification:** FormLabel, Utils, Container, Grid, Notification (previously listed in Tier 2) moved to Tier 1 cleanup — they have only type-only or trivial re-export imports. Page moved to Tier 3 (it depends on most of base/* and should land last).
+
+Heavy path: full rewrite per `PROMPT-heavy.md` — replace `@material-ui/core` primitives with `@base-ui/react`, replace JSS with Tailwind utility classes, preserve public prop surface. Order: **Tooltip first** (FileInput depends on it). Checkbox + Radio in parallel (both depend only on FormLabel which already shipped in PF-1994 Tier 1).
+
+Risk concentrates on (a) Tooltip — `@base-ui/react/tooltip` viability check, (b) Popper — architectural decision (R15), (c) FileInput — fully custom rewrite without primitive backing.
+
+**AI leverage.** Same autonomous migration loop as PF-1994, with prompt + reference examples sharpened by Tier 0/1 lessons. Agent escalation rate is the leading indicator: if Tier 0 ran clean, expect Tier 2 to compress; if Tier 0 hit `@base-ui/react` API gaps, expect Tier 2 to inherit them.
 
 **Acceptance criteria**
-- [ ] All 7 Tier 2 units migrated; per-component DoD met
+- [ ] All 5 Tier 2 units migrated; per-component DoD met
 - [ ] Zero `@material-ui/core` / `@material-ui/styles` imports
 - [ ] Zero JSS
 - [ ] Zero `@material-ui/core` entries in those packages' `package.json`
+- [ ] `@base-ui/react` added as dependency for Checkbox, Radio, Tooltip
+- [ ] Popper architectural decision implemented per PF-1992 spike outcome
 - [ ] React 19 smoke suite green
 - [ ] Happo baselines regenerated
 
 ---
 
-#### PF-2025 — Migrate `packages/base/*` Tier 3 + type-leak fixes
+#### PF-2025 — Migrate `packages/base/*` Tier 3 composites + OutlinedInput mixed-state
 
-**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** S (4-6d) · **Blocked by:** PF-2024 · **Blocks:** P2-MOD-05
+**Phase:** 2 · **Labels:** `phase-2`, `post-gate`, `track-modernization` · **Estimate:** S (5-7d) · **Blocked by:** PF-2024 · **Blocks:** P2-MOD-05
 
 
-Components: Dropdown, Accordion, Page (3 composite). Plus cleanup of type-only MUI v4 leaks in Container, OutlinedInput, Notification. Highest-surface units; expect manual touch-up on JSS parent-refs and theme overrides.
+Components (3 composites + 1 mixed-state PR), per [migration plan §3.4](./PI-4318-P1-MOD-01-migration-plan.md#34-tier-3--heavy-composites-3-components):
 
-**AI leverage.** Autonomous loop assists, but Tier 3 has an architecture floor: agent stops at architectural decisions (e.g. `PicassoProvider.override` chains, JSS parent-ref unwinding) and escalates. Engineer drives architecture step manually, agent does per-file rewrite. Less compression than Tier 1/2.
+- **Accordion** → `@base-ui/react/accordion` (direct match; JSS `&$expanded` parent-refs unwind to `data-[state=open]` Tailwind selectors; `PicassoProvider.override` removed once migrated)
+- **Dropdown** → `@base-ui/react/menu` + `@base-ui/react/popover` (mixed-state — single PR covers both `@mui/base` portion AND `@material-ui/core/Grow` transition replacement)
+- **Page** → keep custom (pure Tailwind rewrite; depends on most of Tier 0 + Tier 2 — migrated absolutely last in `base/*`; no `@base-ui/react` analog)
+- **OutlinedInput** (mixed-state, ~0.5d single PR) → `@base-ui/react/input` + `@base-ui/react/field`; type-leak fix bundled in
+
+> **v14 simplification:** type-leak fixes for Container, FormLabel, Grid, Notification — previously listed in PF-2025 — moved to PF-1994 Tier 1 cleanup. Only OutlinedInput mixed-state remains here (it bundles cleanly with Tier 3 work).
+
+Highest-surface units; expect manual touch-up on JSS parent-refs and theme overrides.
+
+**AI leverage.** Autonomous loop assists, but Tier 3 has an architecture floor: agent stops at architectural decisions (e.g. `PicassoProvider.override` chains, JSS parent-ref unwinding) and escalates. Engineer drives architecture step manually, agent does per-file rewrite. Less compression than Tier 0-2.
 
 **Acceptance criteria**
 - [ ] All 3 Tier 3 units migrated; per-component DoD met
-- [ ] Container, OutlinedInput, Notification type-only leaks resolved
+- [ ] Mixed-state Dropdown + OutlinedInput fully migrated (both light + heavy passes complete in single PR per component)
+- [ ] Page rewritten in pure Tailwind; consumes migrated primitives
 - [ ] Zero `@material-ui/core` / `@material-ui/styles` imports anywhere in `packages/base/*/src/**`
+- [ ] Zero `@mui/base` imports anywhere in `packages/base/*/src/**`
 - [ ] Zero JSS anywhere in `packages/base/*/src/**`
-- [ ] Zero `@material-ui/core` entries in any `packages/base/*/package.json`
+- [ ] Zero `@material-ui/core` and zero `@mui/base` entries in any `packages/base/*/package.json`
 - [ ] React 19 smoke suite green on the entire base/* set
 - [ ] Happo baselines regenerated
+- [ ] `PicassoProvider.override` calls removed for migrated components
 
 ---
 
@@ -863,13 +901,13 @@ The **A1 → A2 lift** per metric is the program's headline AI-DX number. A2 →
 
 # Summary
 
-- **5 Epics** by track. Track totals after v12 Measurement-track split:
-  - **Modernization:** 11 stories — **35-53 man-days** (unchanged from v11).
-  - **Agent Experience:** 6 stories — **8.5-15.5 man-days** (PF-1998 + PF-2000 moved to Epic E, removing 4-6.5d from this track).
+- **5 Epics** by track. Track totals after v13 Modernization retiering:
+  - **Modernization:** 11 stories — **38-58 man-days** (unchanged from v13; v14 internal redistribution after migration plan v3 re-audit — Tier 1 cleanup grew from 5 to 11; Tier 2 narrowed from 9 to 5; Page moved to Tier 3).
+  - **Agent Experience:** 6 stories — **8.5-15.5 man-days** (PF-1998 + PF-2000 moved to Epic E in v12, removing 4-6.5d from this track).
   - **Figma Design-to-Code:** 6 stories — **19.5-28 man-days** (unchanged).
   - **Maestro Integration:** 3 stories — **9-14 man-days** (unchanged).
-  - **Pilot Measurement:** 2 stories — **4-6.5 man-days** (NEW: PF-1998 + PF-2000).
-- **Program total: 76-117 man-days** (v12, unchanged from v11 — same work, reorganized).
+  - **Pilot Measurement:** 2 stories — **4-6.5 man-days** (PF-1998 + PF-2000 since v12).
+- **Program total: 80-123 man-days** (v13).
 - **Program start: May 4, 2026.** See [PI-4318-timeline-v4.md](./PI-4318-timeline-v4.md) for the calendar.
 - **29 Stories total**. Exclusions unchanged.
 - **Phase is a label.** `phase-1` / `phase-2` / `phase-3` + `gated` / `non-gating-parallel` / `post-gate` for the Phase 1 gate filter. With v6 timeline optimization, the Phase 1 gate is treated as informational (parallel), not a hard go/no-go blocker on Phase 2 modernization.

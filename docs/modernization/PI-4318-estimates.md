@@ -3,7 +3,7 @@
 **Parent:** [PI-4318 — Picasso Modernization + AI Developer Experience](https://toptal-core.atlassian.net/browse/PI-4318)
 **Source tickets:** 28 Jira stories (29 after the doc-side PF-2001 → PF-2001a + PF-2001b chronological split) across 5 epics: [PF-1988](https://toptal-core.atlassian.net/browse/PF-1988) Modernization, [PF-1989](https://toptal-core.atlassian.net/browse/PF-1989) Agent Experience, [PF-1990](https://toptal-core.atlassian.net/browse/PF-1990) Figma Design-to-Code, [PF-1991](https://toptal-core.atlassian.net/browse/PF-1991) Maestro Integration, [PF-2030](https://toptal-core.atlassian.net/browse/PF-2030) Pilot Measurement (NEW in v12)
 **Cross-references:** [PI-4318-tickets-by-track.md](./PI-4318-tickets-by-track.md), [PI-4318-P1-MOD-01-migration-plan.md](./PI-4318-P1-MOD-01-migration-plan.md)
-**Status:** v12 — split out **Pilot Measurement** as its own track. PF-1998 + PF-2000 move from Agent Experience to Measurement because the A1 → A2 lift is jointly produced by AIC + Figma artifacts and isn't attributable to either track alone. Story IDs renumbered: P1-AIC-02 → P1-MEAS-01 (PF-1998), P1-AIC-04 → P1-MEAS-02 (PF-2000). Per-ticket estimates unchanged from v11; only track allocation shifts. Program total unchanged: 76-117 man-days.
+**Status:** v14 — Modernization-track refinement after [migration plan v3 re-audit (May 4, 2026)](./PI-4318-P1-MOD-01-migration-plan.md). v13 had moved FormLabel + Utils to Tier 2 heavy, but the May 2026 re-audit found those (plus Container, Grid, Notification) only have **type-only or trivial re-export** imports — they're cleanup-fixes, not rewrites. Plan reorganized: Tier 1 grows to 11 (cleanup-only), Tier 2 narrows to 5 (truly heavy), Page moves to Tier 3. **Per-component target paths** against `@base-ui/react` v1.4.1 (stable, Apr 2026) verified against [base-ui.com/llms.txt](https://base-ui.com/llms.txt). Track total unchanged (38-58d) but PF-1994 scope expands to 11+8 components and PF-2024 narrows to 5. Program total unchanged: 80-123 man-days.
 
 ---
 
@@ -25,15 +25,17 @@ At Toptal's portfolio T-shirt scale, **every individual Jira ticket is XS** (≤
 
 | Level | Man-days (low – high) | Toptal size |
 |---|---|---|
-| Modernization track (PF-1988, 11 tickets) | 35 – 53 | **S** |
+| Modernization track (PF-1988, 11 tickets) | 38 – 58 ↑ vs v12 | **S** |
 | Agent Experience track (PF-1989, 7 tickets — PF-2004 excluded; PF-1998 + PF-2000 moved to Measurement) | 8.5 – 15.5 | **S** |
 | Figma Design-to-Code track (PF-1990, 6 tickets — PF-2010 excluded) | 19.5 – 28 | **S** |
 | Maestro Integration track (PF-1991, 3 tickets — P3-MAE-01/02 excluded) | 9 – 14 | **XS** (BAU) |
 | Pilot Measurement track (NEW in v12, 2 tickets — PF-1998 + PF-2000) | 4 – 6.5 | **XS** (BAU) |
-| **PI-4318 program (29 tickets, v12 5-track structure)** | **76 – 117** | **M** |
-| With +15% coordination overhead | 87 – 135 | M |
+| **PI-4318 program (29 tickets, v14 5-track structure)** | **80 – 123** (unchanged from v13) | **M** |
+| With +15% coordination overhead | 92 – 141 | M |
 
 **P3-MOD-02, P3-MAE-01, P3-MAE-02 excluded from PI scope** — other-team migrations and Maestro adoption deferred to post-PI work.
+
+**v14 Modernization-track refinement** — after [migration plan v3 re-audit](./PI-4318-P1-MOD-01-migration-plan.md). Same three source stacks (MUI v4 + JSS + `@mui/base`) and two paths as v13, but the per-component file-level audit found that v13 over-classified FormLabel + Utils + Container + Grid + Notification as heavy migrations — they only have type-only or trivial re-export imports. **Reclassification**: those 5 components move from Tier 2 to Tier 1 cleanup-only. Page moves from Tier 2 to Tier 3 (high-surface composite). Tier 1 grows to 11 components, Tier 2 narrows to 5 (Checkbox, Radio, Tooltip, FileInput, Popper), Tier 3 stays at 3 + OutlinedInput mixed-state PR. PF-1994 covers 11 cleanup + 8 light path; PF-2024 covers 5 truly-heavy; PF-2025 covers 3 composites + OutlinedInput. Track total unchanged (38-58d) — internal redistribution only.
 
 **PF-2027 added in v6 (~7-10d after v10 rescope)** — closes the BASE Design System spec gaps for the remaining ~60 components (the components not in the 5-page subset). Symmetric with PF-2006 (P1-FIG-02) for the 5-page subset. Required for clean Code Connect snippet generation by PF-2009. Reuses `bin/base-audit.ts` built in PF-2006.
 
@@ -41,18 +43,18 @@ At Toptal's portfolio T-shirt scale, **every individual Jira ticket is XS** (≤
 
 **Caveat on XS-as-BAU.** The footnote says "Opportunities of the XS size should not be viewed as projects, but rather as business as usual." Every individual ticket in PI-4318 is BAU at the portfolio scale; the **PI itself** is the project.
 
-> **Coverage caveat.** Three Phase-3 stories are explicitly **excluded from PI scope**: P3-MOD-02 (other-repo migration — handled by other teams via self-service AI prompts), P3-MAE-01 (Maestro onboarding — deferred to post-PI), P3-MAE-02 (Maestro defaults to Picasso — deferred to post-PI). Total program effort 76-117 reflects in-scope tickets only with v12 5-track structure applied.
+> **Coverage caveat.** Three Phase-3 stories are explicitly **excluded from PI scope**: P3-MOD-02 (other-repo migration — handled by other teams via self-service AI prompts), P3-MAE-01 (Maestro onboarding — deferred to post-PI), P3-MAE-02 (Maestro defaults to Picasso — deferred to post-PI). Total program effort 80-123 reflects in-scope tickets only with v13 5-track structure applied.
 
 ### Version deltas
 
-| Track | v1 | v2 | v5 | v8 | v9 | v10 | v11 | v12 (current) | Size |
-|---|---|---|---|---|---|---|---|---|---|
-| Modernization | 170 – 207 | 50 – 72 | 38 – 58 | 38 – 58 | 35 – 53 | 36 – 54 | 35 – 53 | 35 – 53 | S |
-| Agent Experience | 84 – 108 | 33 – 49 | 25 – 37 | 24 – 35 | 21 – 30 | 18 – 27 | 12.5 – 22 | 8.5 – 15.5 | S |
-| Figma | 46 – 59 | 25 – 37 | 21 – 30 | 31 – 42 | 23 – 32 | 19 – 27 | 19.5 – 28 | 19.5 – 28 | S |
-| Maestro | 19 – 26 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | XS |
-| Pilot Measurement | — | — | — | — | — | — | (in AIC) | 4 – 6.5 | XS |
-| **Total** | **319 – 400** | **117 – 172** | **93 – 139** | **102 – 149** | **88 – 129** | **82 – 122** | **76 – 117** | **76 – 117** | **M** |
+| Track | v1 | v2 | v5 | v8 | v9 | v10 | v11 | v12 | v13 | v14 (current) | Size |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Modernization | 170 – 207 | 50 – 72 | 38 – 58 | 38 – 58 | 35 – 53 | 36 – 54 | 35 – 53 | 35 – 53 | 38 – 58 | 38 – 58 | S |
+| Agent Experience | 84 – 108 | 33 – 49 | 25 – 37 | 24 – 35 | 21 – 30 | 18 – 27 | 12.5 – 22 | 8.5 – 15.5 | 8.5 – 15.5 | 8.5 – 15.5 | S |
+| Figma | 46 – 59 | 25 – 37 | 21 – 30 | 31 – 42 | 23 – 32 | 19 – 27 | 19.5 – 28 | 19.5 – 28 | 19.5 – 28 | 19.5 – 28 | S |
+| Maestro | 19 – 26 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | 9 – 14 | XS |
+| Pilot Measurement | — | — | — | — | — | — | (in AIC) | 4 – 6.5 | 4 – 6.5 | 4 – 6.5 | XS |
+| **Total** | **319 – 400** | **117 – 172** | **93 – 139** | **102 – 149** | **88 – 129** | **82 – 122** | **76 – 117** | **76 – 117** | **80 – 123** | **80 – 123** | **M** |
 
 - **v1 → v2** — per-component multipliers recalibrated against PR #4906 (~2.4× compression).
 - **v3** — man-days unchanged; switched to Toptal's portfolio T-shirt scale.
@@ -62,6 +64,8 @@ At Toptal's portfolio T-shirt scale, **every individual Jira ticket is XS** (≤
 - **v10** — Hybrid 5-page baseline approach (per timeline-v4): PF-1998 rescoped from top-20 selection to 5-page baseline H + A1 measurement (1-1.5d → 2.5-3.5d, absorbs PF-2000 harness work). PF-2005 + PF-2006 scoped to 5-page subset (~12-18 components, smaller than top-20). PF-2009 + PF-2027 grow to cover remaining ~60. PF-2001 split into PF-2001a (5-page subset, lands Phase 1, 1-2d) + PF-2001b (remaining ~60 + tokens + llms-full.txt + designer review, Phase 2, 4-5d) with tighter 0.05d/component multiplier. PF-2000 shrinks to 1.5-2.5d (most harness primitives moved to PF-1992 + PF-1998). PF-1992 grows by 1d to absorb 5-page measurement protocol. Net program range tightens to 82-122 man-days. Bigger shift is *what* is delivered when (5-page A1 → A2 lift number at end of Phase 1).
 - **v11** — Scope rearrangement on top of v10. Each AI-leverage scaffold moves to the ticket that uses it: PF-1992 keeps only autonomous-loop infra (3-4d, was 4-5d); PF-2005 owns the agentic Code Connect generator build (3-4.5d, was 2.5-4d); PF-2006 owns the BASE audit script build (2.5-3.5d, was 2-3d). PF-2000 absorbs the entire measurement chain (3-5d, was 1.5-2.5d). PF-1998 narrows to selection + extraction only (1-1.5d, was 2.5-3.5d). PF-2001a/b collapse to polish-only on top of PF-1997 + PF-1999 outputs (PF-2001a 0.5-1d, PF-2001b 1.5-2.5d, was 1-2d + 4-5d). Net program range: 76-117 man-days (~6d savings vs v10, mostly from PF-2001 polish-only). Per-track shifts: Mod 35-53 (PF-1992 -1d), AIC 12.5-22 (PF-2001 polish-only saves ~5-6d), Figma 19.5-28 (PF-2005/2006 grow by ~1d). Calendar shift: program now starts May 4 (was Apr 27).
 - **v12** — Split out Pilot Measurement as its own track. PF-1998 + PF-2000 move from Agent Experience to Measurement because the A1 → A2 lift is jointly produced by AIC + Figma artifacts and isn't attributable to either track alone. Story IDs renumbered: P1-AIC-02 → P1-MEAS-01 (PF-1998), P1-AIC-04 → P1-MEAS-02 (PF-2000). Per-ticket estimates unchanged from v11; only track allocation shifts. Track totals: Mod 35-53, AIC 8.5-15.5 (was 12.5-22), Figma 19.5-28, Maestro 9-14, **Pilot Measurement 4-6.5 (new)**. Program total unchanged: 76-117 man-days.
+- **v13** — Modernization-track retiering driven by [migration plan rewrite](./PI-4318-P1-MOD-01-migration-plan.md). Three source stacks identified (MUI v4 + JSS + `@mui/base`); two migration paths (heavy full-rewrite, light package swap). The April 2026 audit revealed FormLabel + Utils were misclassified as Tier 1 cleanup-only — both actually use MUI v4 + JSS and need heavy migration, so they move to Tier 2. New Tier 0 added for the 11 `@mui/base` light-path components (calibrated against PR #4906). PF-1994 expands to cover Tier 1 cleanup (5) + Tier 0 light path (9): 2-3d → 3-5d. PF-2024 expands from 7 to 9 components: 3-4d → 4-7d. PF-2025 unchanged (3 composite + 3 type-leaks): 5-7d. Track total +3-5d. Program total: 80-123 man-days. Calendar likely unchanged (per-tier durations don't shift materially within the existing parallel windows).
+- **v14** — May 2026 file-level re-audit (migration plan v3) found v13 over-classified FormLabel + Utils + Container + Grid + Notification as heavy migrations. Each only has **1 type-only or trivial re-export** import of MUI v4 (e.g. `import type { PropTypes }`, `export type { GridSize }`). Reclassified as Tier 1 cleanup. Tier 2 narrows from 9 to 5 truly-heavy components (Checkbox, Radio, Tooltip, FileInput, Popper). Page moves from Tier 2 to Tier 3 (depends on most of base/* — should be migrated last). Tier 3 = 3 composites + OutlinedInput mixed-state PR. **Per-component target paths verified against `@base-ui/react` v1.4.1 (stable, Apr 2026)** via [base-ui.com/llms.txt](https://base-ui.com/llms.txt). Two architectural decisions surfaced: Backdrop has no standalone `@base-ui/react` primitive (R14), Popper has no standalone `@base-ui/react` primitive (R15) — Floating-UI direct dep recommended. PF-1994 scope grows to 11+8 components; PF-2024 narrows to 5; PF-2025 stays at 3 composites + OutlinedInput. Track total unchanged (38-58d); program total unchanged (80-123d). Internal redistribution only.
 
 ---
 
@@ -94,7 +98,8 @@ Calibrated against PR #4906 actuals (~2-3 hours active engineer time per migrate
 | Per-component MUI v4 → Tailwind (Tier 1 — thin wrapper, minimal JSS) | **0.10 ×** | ~2-3 hours |
 | Per-component (Tier 2 — JSS + variants + sub-components) | **0.15 ×** | ~4-6 hours |
 | Per-component (Tier 3 — composite, JSS parent-refs, theme overrides) | **0.25 ×** | ~1-2 days |
-| `@mui/base` → `@base-ui/react` second-step migration | **0.10 ×** | ~2 hours (PR #4906 baseline) |
+| `@mui/base` → `@base-ui/react` light-path migration (Tier 0) | **0.10 ×** | ~2-4 hours (PR #4906 baseline) |
+| MUI v4 + JSS → `@base-ui/react` + Tailwind (Tier 1 cleanup-only) | **0.05 ×** | ~1-2 hours (peer-dep + React 19 cap) |
 | System rewrite (provider, theme runtime, SSR) | **0.45 ×** | ~5 days minimum (architecture is human) |
 | Codemod authoring (jscodeshift) | **0.20 ×** | ~0.5 day per codemod |
 | `.figma.tsx` Code Connect authoring | **0.20 ×** | ~1.5 hours per component |
@@ -139,18 +144,36 @@ All tickets XS at the Toptal scale; ranked here by man-days for sequencing.
 |---|---|---|---|
 | [PF-1992](https://toptal-core.atlassian.net/browse/PF-1992) | P1-MOD-01 | Migration plan + autonomous-loop infra (orchestrator, gate, diff, manifest) | **3 – 4** ↓ vs v10 |
 | [PF-1993](https://toptal-core.atlassian.net/browse/PF-1993) | P1-MOD-02 | Migrate Picasso to pnpm | 3 – 5 |
-| PF-1994* | PF-1994 | base/* Tier 1 — autonomous agent loop | **2 – 3** ↓ |
-| PF-2024* | PF-2024 | base/* Tier 2 — autonomous agent loop | **3 – 4** ↓ |
-| PF-2025* | PF-2025 | base/* Tier 3 + type-leak fixes (architecture floor) | **4 – 6** ↓ |
+| PF-1994* | PF-1994 | base/* Tier 1 cleanup (11 components) + Tier 0 light path batch (8 components) — autonomous loop | **3 – 5** (v14: scope expanded vs v13) |
+| PF-2024* | PF-2024 | base/* Tier 2 heavy migration (5 components — Checkbox, Radio, Tooltip, FileInput, Popper) — autonomous agent loop | **4 – 7** (v14: narrowed from 9 to 5; range preserved for Popper architectural headroom) |
+| PF-2025* | PF-2025 | base/* Tier 3 composites (3 — Accordion, Dropdown, Page) + OutlinedInput mixed-state | **5 – 7** (v14: type-leak fixes moved to PF-1994 Tier 1) |
 | [PF-2020](https://toptal-core.atlassian.net/browse/PF-2020) | P2-MOD-02 | picasso-charts (LineChart) — autonomous loop | 1 – 2 |
 | [PF-2021](https://toptal-core.atlassian.net/browse/PF-2021) | P2-MOD-03 | picasso-query-builder (11 components) — autonomous loop | **4 – 6** ↓ |
 | [PF-2022](https://toptal-core.atlassian.net/browse/PF-2022) | P2-MOD-04 | picasso-rich-text-editor (8 components) — autonomous loop + theme floor | **5 – 7** ↓ |
 | [PF-2023](https://toptal-core.atlassian.net/browse/PF-2023) | P2-MOD-05 | Decommission picasso-provider + remove root peer-dep (canary) | 5 – 7 |
 | [PF-1995](https://toptal-core.atlassian.net/browse/PF-1995) | P2-MOD-06 | AI-assisted consumer migration (with optional codemods) | **1.5 – 2.5** ↓ |
 | [PF-1996](https://toptal-core.atlassian.net/browse/PF-1996) | P3-MOD-01 | Migrate **Staff Portal only** — autonomous loop | **1 – 1.5** ↓ |
-| **Track total** | | | **35 – 53 (S)** ↓ vs v10 |
+| **Track total** | | | **38 – 58 (S)** (unchanged from v13; internal redistribution only) |
 
-\* PF-1994 (Tier 1) was kept under its original key; PF-2024 (Tier 2) and PF-2025 (Tier 3) are new Jira tickets created for the split.
+\* PF-1994 (Tier 1 + Tier 0) was kept under its original key; PF-2024 (Tier 2) and PF-2025 (Tier 3) are new Jira tickets created for the split.
+
+**v14 retiering** (driven by [migration plan v3 re-audit](./PI-4318-P1-MOD-01-migration-plan.md#3-tier-inventory-v3--may-2026-re-audit)). The May 2026 file-level audit found that v13's Tier 2 over-classified five components as heavy when they only have type-only or trivial re-export imports. v14 reorganises:
+
+- **Tier 0** (light path, ~0.25-0.5d/component): 8 pure `@mui/base` components (Backdrop, Badge, Button, Drawer, Modal, Slider, Switch, Tabs). Direct `@base-ui/react` matches for most; Backdrop has no standalone primitive (custom `<div>` recommended); Badge stays custom.
+- **Tier 1** (cleanup-only, ~0.1d/component, ~1.1d total for 11): 5 already-clean (Form, FormLayout, ModalContext, Note, Typography) + 5 with type-only/trivial fixes (Container, FormLabel, Grid, Notification, Menu pkg cleanup) + Utils (replace 2 small re-exports + 1 Tailwind transition).
+- **Tier 2** (heavy path, ~0.5-1d/component, 5 components): Checkbox, Radio, Tooltip (direct `@base-ui/react` matches), FileInput (keep custom), Popper (Floating-UI or Popover refactor — architectural decision in PF-1992 spike).
+- **Tier 3** (heavy composites, ~1.5-2d/component, 3 + OutlinedInput): Accordion (`@base-ui/react/accordion`), Dropdown (mixed-state, single PR), Page (custom Tailwind — depends on most of base/*), OutlinedInput mixed-state PR.
+
+**v14 vs v13 deltas:**
+- FormLabel, Utils, Container, Grid, Notification: **moved Tier 2 → Tier 1** (they have only type-only or 1-line re-export imports, ~0.1d each)
+- Page: **moved Tier 2 → Tier 3** (high-surface composite that should land last)
+- Menu pkg cleanup: explicitly listed in Tier 1 (was implicit before)
+- Tier 2 component count: 9 → 5
+- Tier 1 component count: 5 → 11
+- Per-component target paths now mapped to specific `@base-ui/react` modules per migration plan §3
+- Backdrop + Popper architectural decisions surfaced (no standalone `@base-ui/react` equivalents)
+
+Track total unchanged (38-58d). PF-1994 scope grows; PF-2024 narrows but range preserved for architectural headroom.
 
 ### Notes
 
@@ -158,10 +181,10 @@ All tickets XS at the Toptal scale; ranked here by man-days for sequencing.
 
 **PF-1993 — P1-MOD-02 (M, 3–5 d).** Pnpm migrations are debugging-bound, not coding-bound. AI accelerates the conversion scripts; CI breakage and hoisting differences burn wall-clock. Co-dependent with PI-4278.
 
-**PF-1994 (split into PF-1994 + PF-2024 + PF-2025, total 12–16d).** Now split into three tier-tickets to match migration plan §10 cadence and unblock parallelism with sibling-package migrations:
-- **PF-1994 Tier 1 (3–4d).** 7 components × ~0.5d = 3.5d. Foundation primitives (Form, FormLabel, FormLayout, Note, Typography, ModalContext, Utils). Eng A prioritizes Typography + FormLabel + Form first so RTE/QB sibling work can ramp up.
-- **PF-2024 Tier 2 (4–5d).** 7 components × ~0.65d = 4.5d. Compound (Checkbox, Radio, Tooltip, FileInput, Popper, Notification, Grid).
-- **PF-2025 Tier 3 + type-leaks (5–7d).** 3 composite × ~1.5d + 3 type-leak fixes × ~0.2d = ~6d. Time concentrates on Page / Accordion / Dropdown JSS parent-refs and theme-override unwinding.
+**PF-1994 (split into PF-1994 + PF-2024 + PF-2025, total 12–19d after v14 retiering).** Three tier-tickets matching [migration plan §10](./PI-4318-P1-MOD-01-migration-plan.md#10-sequence-proposal-phase-2) cadence:
+- **PF-1994 Tier 1 cleanup + Tier 0 light path (3–5d).** 11 cleanup × ~0.1d = ~1.1d (peer-dep cleanup, React 19 cap, type-only import replacement, Utils re-export rewrite, Menu pkg cleanup) + 8 `@mui/base` light-path × ~0.25-0.5d = ~2-4d. Note runs first as orchestrator sandbox. Tier 1 sequence: Note → Form → FormLayout → ModalContext → Typography → Container (type fix) → Grid (type fix) → Notification (type fix) → FormLabel (type fix) → Menu (pkg) → Utils (full). Tier 0 sequence: Backdrop first (Modal + Drawer depend on it) → Badge → Button → Slider → Switch → Tabs → Modal → Drawer. Calibrated against PR #4906 baseline. Mixed-state Dropdown + OutlinedInput handled in PF-2025.
+- **PF-2024 Tier 2 heavy (4–7d).** 5 heavy-path components × ~0.5-1d = ~2.5-5d. **Tooltip first** (FileInput depends on it). **Popper** (Floating-UI or Popover refactor — architectural decision locked in PF-1992 spike). **Checkbox + Radio** in parallel (both depend on FormLabel which already shipped in PF-1994). **FileInput** custom (no `@base-ui/react` analog). Range preserved at 4-7d for Popper architectural headroom and Tooltip viability check, even though component count narrowed from 9 → 5 vs v13.
+- **PF-2025 Tier 3 composite + OutlinedInput mixed-state (5–7d).** 3 composite × ~1.5-2d = ~4.5-6d, + OutlinedInput mixed-state ~0.5d. Time concentrates on Accordion JSS `&$expanded` parent-refs (unwind to `data-[state=open]` Tailwind selectors), Dropdown mixed-state migration (`@mui/base` swap + `@material-ui/core/Grow` transition replacement in single PR), Page custom Tailwind rewrite (depends on most of base/*, lands last). `PicassoProvider.override` chain decommissioning bundled in.
 
 **PF-2020 — P2-MOD-02 (S, 1–2 d).** Single component (LineChart), 2 source files. Excellent first sibling-package run.
 
@@ -342,7 +365,7 @@ All three Phase-3 stories are explicitly excluded from PI-4318 scope:
 | ~~P3-MAE-01~~ | ~~Maestro onboarding sessions + quick-start + docs~~ | Out of PI scope — deferred to post-PI |
 | ~~P3-MAE-02~~ | ~~Maestro defaults to Picasso for new projects~~ | Out of PI scope — deferred to post-PI |
 
-Program in-scope total (v12): **76 – 117 man-days = ~15–23 person-weeks** — solidly **M** at the Toptal scale.
+Program in-scope total (v14): **80 – 123 man-days = ~16–25 person-weeks** — solidly **M** at the Toptal scale.
 
 ---
 
@@ -364,7 +387,7 @@ Program in-scope total (v12): **76 – 117 man-days = ~15–23 person-weeks** �
 This doc is a snapshot. Update when:
 
 - A ticket completes — replace estimate with actuals; track variance.
-- After P2-MOD-01 (PF-1994) finishes Tier 1 (first 7 components) — re-calibrate Tier 2/3 multipliers from real data.
+- After PF-1994 finishes Tier 1 cleanup (11 components) + Tier 0 light path (8 components) — re-calibrate light-path multipliers (R12: PR #4906 baseline may not generalise to Drawer/Modal/Slider) and Tier 2/3 heavy-path multipliers from real data.
 - When the 3 missing Phase-3 stories land in Jira — fold their estimates into the totals.
 - If the AI agent stack or Happo workflow changes materially — re-derive multipliers.
 
