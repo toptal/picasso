@@ -32,13 +32,13 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
-      "pr": "https://github.com/toptal/picasso/pull/4906",
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4923",
+      "branch": "migrate-Button",
+      "worktree": "migration-runs/2026-05-05/Button/worktree",
+      "iterations": 3,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Reference for the light path; verify status before scaling."
     },

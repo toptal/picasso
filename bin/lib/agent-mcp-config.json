@@ -1,0 +1,9 @@
+{
+  "_comment": "Claude MCP config loaded by `bin/lib/orchestrator-core.ts` agent.invoke when the orchestrator is run with --with-mcp. The agent gets Playwright MCP tools (browser_navigate, browser_screenshot, browser_console_logs, etc.) for visual verification against a locally-running Storybook (the orchestrator starts Storybook on :9001 before invoking the agent and tears it down on exit). Out-of-the-box Storybook URL pattern: http://localhost:9001/?path=/story/<group>--<story>. See bin/lib/orchestrator-core.ts run() and ORCHESTRATOR.md §Visual feedback for usage.",
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    }
+  }
+}

@@ -170,4 +170,14 @@ export interface OrchestratorOptions {
   readonly tier: number | null
   readonly component: string | null
   readonly maxIterations: number
+  /**
+   * If true, the orchestrator starts Storybook in the worktree before
+   * invoking the agent and grants the agent Playwright MCP tools (visual
+   * verification). Adds ~30-60s to canary startup; recommended for Tier 0
+   * / 2 / 3 components where pixel-perfect Happo is load-bearing. Tier 1
+   * cleanup migrations should leave this off.
+   *
+   * Default: false. CLI: `--with-mcp`.
+   */
+  readonly withMcp: boolean
 }
