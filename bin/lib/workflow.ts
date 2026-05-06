@@ -23,7 +23,27 @@ export interface ManifestItem {
   readonly tier: 1 | 2 | 3 | 4 | 5
   /** Repo-relative package directory. */
   readonly package: string
-  status: 'queued' | 'in_progress' | 'done' | 'needs_human' | 'blocked'
+  status:
+    | 'queued'
+    | 'in_progress'
+    /**
+     * Phase 3.5 redesign — set after CI is green and the orchestrator has
+     * stopped iterating on the migration. The PR is open, awaiting human
+     * review. `--review-sweep` walks items in this status to fetch + react
+     * to new review comments asynchronously, decoupling human-paced
+     * review cadence from the (CPU-paced) migration loop.
+     */
+    | 'awaiting_review'
+    /**
+     * Phase 3.5 redesign — set when review-sweep classifies the latest
+     * reviews as approval-only (no nits, no architectural concerns) and
+     * CI is still green. Operator merges manually. Orchestrator never
+     * auto-merges (per operator preference: "I will merge manually").
+     */
+    | 'ready_to_merge'
+    | 'done'
+    | 'needs_human'
+    | 'blocked'
   readonly depends_on: readonly string[]
   pr: string | null
   branch: string | null
@@ -32,6 +52,25 @@ export interface ManifestItem {
   merged_at: string | null
   notes?: string
   escalation_reason?: string
+  /** Phase 3 — ISO timestamp of last successful CI completion. */
+  last_ci_green_at?: string | null
+  /**
+   * Phase 3.5 — ISO timestamp of the latest review/comment processed by
+   * the most recent --review-sweep. Reviews older than this marker are
+   * skipped on subsequent sweeps; only NEW review activity triggers
+   * agent iteration. Reset to null when the item is escalated or
+   * progresses to ready_to_merge.
+   */
+  last_review_seen_at?: string | null
+  /** Phase 3.5 — count of agent iterations driven by review feedback. */
+  review_iterations?: number
+  /**
+   * Phase 3.5 — Anthropic session ID generated at first migration
+   * iteration. Reused on subsequent migration iterations + review-sweep
+   * iterations so the agent retains context across hours/days. Cleared
+   * when the item terminates (done / escalated).
+   */
+  session_id?: string | null
 }
 
 /**
@@ -217,6 +256,85 @@ export interface OrchestratorOptions {
    * Default: 15. CLI: `--ci-timeout-minutes=N`.
    */
   readonly ciTimeoutMinutes: number
+
+  /**
+   * Phase 3 Happo-flake mitigation — retry budget per failed check name.
+   *
+   * When a check failure classifies as `auto-fix-rerun` (currently only
+   * Happo failures), the orchestrator triggers an empty-commit push to
+   * re-run CI without source changes. The same check is allowed to fail
+   * up to `maxReruns` times before reclassifying as `escalate`.
+   *
+   * Rationale: Happo upload jitter, network timeouts, and CI infra blips
+   * occasionally produce false-positive failures. A single rerun
+   * catches the common case without burning iteration budget on real
+   * visual regressions (those still escalate after the second failure).
+   *
+   * Default: 1 (one rerun → escalate on second failure).
+   */
+  readonly maxReruns: number
+
+  /**
+   * Phase 3.5 — wall-clock budget for polling PR reviews after CI is green.
+   *
+   * 0 → skip review polling entirely (current behavior — proceed to merge
+   *     immediately on CI-green when `--no-merge` is not set).
+   * > 0 → poll `gh pr view --json reviews` every minute up to N minutes.
+   *      First non-empty review batch is classified; classifier decides
+   *      merge / iterate-on-nits / escalate. Timeout with no reviews →
+   *      escalate.
+   *
+   * For canary / sandbox runs, leave at 0. For production migrations
+   * pending designer + engineer sign-off, set to e.g. 60-120.
+   *
+   * Default: 0. CLI: `--review-timeout-minutes=N`.
+   */
+  readonly reviewTimeoutMinutes: number
+
+  /**
+   * Phase 3.5 — cap on how many times the orchestrator can iterate on
+   * review feedback (nits) before escalating. High-quality reviewers
+   * usually need 1-2 rounds; >3 indicates either runaway nits or a
+   * deeper miscommunication that humans should sort out.
+   *
+   * Default: 3.
+   */
+  readonly maxReviewIterations: number
+
+  /**
+   * Phase 3.5 — override the workflow's `reviewTimeoutMinutes`.
+   * 0 disables review polling. CLI: `--review-timeout-minutes=N`.
+   *
+   * NOTE: this option is dormant after the Phase 3.5 redesign — review
+   * polling is no longer synchronous. Kept for forward-compat in case
+   * a future workflow descriptor wants synchronous wait semantics.
+   */
+  readonly reviewTimeoutMinutes: number | null
+
+  /**
+   * Phase 3.5 redesign — process every queued item in the selected tier
+   * sequentially, instead of just the next-queued item. Each item is
+   * driven to `awaiting_review` (or escalated) before the next one
+   * starts. CLI: `--batch`.
+   *
+   * Combine with `--tier=N` to process a whole tier; combine with
+   * `--no-merge` for sandbox runs.
+   */
+  readonly batch: boolean
+
+  /**
+   * Phase 3.5 redesign — review-sweep mode. The orchestrator reads the
+   * manifest, walks every `awaiting_review` item, fetches new review
+   * activity since `last_review_seen_at`, classifies it, and reacts:
+   *
+   *   - approval-only        → status = ready_to_merge (operator merges manually)
+   *   - any architectural / question / unclear → status = needs_human
+   *   - nits                 → agent edits, push, status remains awaiting_review
+   *
+   * Designed to run on a cron (or manual) cadence independent of the
+   * migrate-mode loop. CLI: `--review-sweep`.
+   */
+  readonly reviewSweep: boolean
 
   /**
    * Override the branch name that the orchestrator creates for this run.
