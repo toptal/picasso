@@ -285,6 +285,100 @@ const worktree = {
     }
   },
 
+  /**
+   * Phase 2.5 fix — workspace shadowing for source-changing migrations.
+   *
+   * Background. The default `worktree.add` symlinks `worktree/node_modules ->
+   * main/node_modules`. Yarn's workspace symlinks under
+   * `node_modules/@toptal/<pkg>` are stored as RELATIVE targets like
+   * `../../packages/base/Button`. Relative symlinks resolve from their
+   * physical location — not from the access path — so even though we access
+   * via the worktree, the package resolves to MAIN's `packages/base/Button`,
+   * not the worktree's. For Tier 1 cleanup migrations (no source change), this
+   * is correct; main and worktree carry identical source. For source-changing
+   * migrations (Tier 0 / 2 / 3 / 4 / 5), this is a silent correctness bug:
+   * consumer-package tests that import via `@toptal/picasso-<migrating>` see
+   * the OLD source from main, masking real ripple-effect regressions until
+   * full-repo CI runs against a clean checkout.
+   *
+   * Empirically validated on canary 20 (PR #4927): Phase 2.5's consumer-stage
+   * jest passed against 17 Button consumers locally; CI fresh-checkout caught
+   * the same 2 Pagination snapshot regressions canary 19 had hit.
+   *
+   * Fix. Convert `worktree/node_modules` from a top-level symlink-to-main to
+   * a real directory with absolute symlinks for each top-level entry pointing
+   * at main's node_modules. Then carve out a real `@toptal/` overlay where
+   * the migrating workspace points at the worktree's own source and the rest
+   * point back at main. Cost ~2-3s for ~1500 top-level symlinks + ~50 @toptal
+   * entries. Vastly cheaper than `yarn install --frozen-lockfile` (~3-5min)
+   * and surgical (no main-repo state touched).
+   *
+   * Idempotent: if `worktree/node_modules` is already a real dir, skips.
+   */
+  async overlayWorkspaceForSourceChange(
+    worktreePath: string,
+    workspaceShortName: string,
+    workspacePackagePath: string,
+  ): Promise<void> {
+    const mainNodeModules = path.join(repoRoot(), 'node_modules')
+    const wtNodeModules = path.join(worktreePath, 'node_modules')
+
+    if (!existsSync(mainNodeModules)) {return}
+
+    // If wtNodeModules is a symlink, convert to real dir.
+    const stat = await fs.lstat(wtNodeModules).catch(() => null)
+
+    if (stat?.isSymbolicLink()) {
+      await fs.unlink(wtNodeModules)
+    } else if (stat?.isDirectory()) {
+      // Already a real dir — assume previously overlaid; idempotent skip.
+      return
+    }
+
+    await fs.mkdir(wtNodeModules, { recursive: true })
+
+    // Top-level absolute-symlink overlay (skip @toptal — handled below).
+    const topEntries = await fs.readdir(mainNodeModules)
+
+    await Promise.all(
+      topEntries.map(async (name) => {
+        if (name === '@toptal') {return}
+        const target = path.join(mainNodeModules, name)
+        const link = path.join(wtNodeModules, name)
+
+        await fs.symlink(target, link).catch(() => {})
+      })
+    )
+
+    // @toptal/ overlay: real dir; absolute-symlink each entry except the
+    // migrating workspace which is symlinked to the worktree's source.
+    const wtAtToptal = path.join(wtNodeModules, '@toptal')
+
+    await fs.mkdir(wtAtToptal, { recursive: true })
+    const mainAtToptal = path.join(mainNodeModules, '@toptal')
+
+    if (existsSync(mainAtToptal)) {
+      const toptalEntries = await fs.readdir(mainAtToptal)
+
+      await Promise.all(
+        toptalEntries.map(async (name) => {
+          const link = path.join(wtAtToptal, name)
+
+          if (name === workspaceShortName) {
+            // Migrating workspace -> worktree's own source.
+            await fs.symlink(
+              path.join(worktreePath, workspacePackagePath),
+              link,
+            ).catch(() => {})
+          } else {
+            // All other @toptal/* -> main repo's symlink target.
+            await fs.symlink(path.join(mainAtToptal, name), link).catch(() => {})
+          }
+        })
+      )
+    }
+  },
+
   /** Remove the worktree on success. Leave it for inspection on escalation. */
   async remove(worktreePath: string): Promise<void> {
     if (!existsSync(worktreePath)) {return}
@@ -376,23 +470,31 @@ const gh = {
     head: string
     bodyFile: string
     cwd: string
+    /**
+     * GitHub usernames to assign to the new PR. `@me` is supported by gh and
+     * resolves to the authenticated user. Picasso's Danger CI requires at
+     * least one assignee before merge.
+     */
+    assignees?: readonly string[]
   }): Promise<string> {
-    const result = await shell(
-      'gh',
-      [
-        'pr',
-        'create',
-        '--title',
-        opts.title,
-        '--base',
-        opts.base,
-        '--head',
-        opts.head,
-        '--body-file',
-        opts.bodyFile,
-      ],
-      { cwd: opts.cwd }
-    )
+    const args: string[] = [
+      'pr',
+      'create',
+      '--title',
+      opts.title,
+      '--base',
+      opts.base,
+      '--head',
+      opts.head,
+      '--body-file',
+      opts.bodyFile,
+    ]
+
+    for (const assignee of opts.assignees ?? []) {
+      args.push('--assignee', assignee)
+    }
+
+    const result = await shell('gh', args, { cwd: opts.cwd })
 
     if (result.exitCode !== 0) {
       throw new Error(`gh pr create failed: ${result.stderr || result.stdout}`)
@@ -964,7 +1066,7 @@ export async function run(
       `8. On gate fail: feed report back, retry up to cap`,
       `9. On gate pass: produce diff via ${workflow.diff(item.id, 'report')}`,
       `10. git commit -m "${workflow.commitMessage(item.id, item).split('\n')[0]}"; git push`,
-      `11. gh pr create --title "${workflow.prTitle(item.id, item)}"`,
+      `11. gh pr create --title "${workflow.prTitle(item.id, item)}" --base ${workflow.baseBranch}${workflow.assignees.length ? ` --assignee ${workflow.assignees.join(',')}` : ''}`,
       opts.noMerge
         ? `12-13. (--no-merge: stop here; manual review/merge expected)`
         : `12-13. Poll CI; classify reviews; gh pr merge --squash --auto`,
@@ -987,6 +1089,42 @@ export async function run(
   // Step 4: worktree.
   log('loop', `creating worktree at ${wtPath}`)
   await worktree.add(branch, wtPath)
+
+  // Step 4b (Phase 2.5 fix): for source-changing migrations, overlay
+  // node_modules/@toptal/<migrating> to point at the worktree's own source.
+  // See worktree.overlayWorkspaceForSourceChange JSDoc for context.
+  // We always run this — for cleanup-only migrations (target_path === 'none')
+  // the worktree source and main source are identical, so the overlay is a
+  // ~2-3s no-op behaviorally.
+  try {
+    const pkgJsonPath = path.join(wtPath, item.package, 'package.json')
+
+    if (existsSync(pkgJsonPath)) {
+      const pkgJson = JSON.parse(await fs.readFile(pkgJsonPath, 'utf8')) as {
+        name?: string
+      }
+
+      if (pkgJson.name?.startsWith('@toptal/')) {
+        const shortName = pkgJson.name.slice('@toptal/'.length)
+
+        log(
+          'loop',
+          `overlaying node_modules/@toptal/${shortName} → worktree source`
+        )
+        await worktree.overlayWorkspaceForSourceChange(
+          wtPath,
+          shortName,
+          item.package,
+        )
+      }
+    }
+  } catch (err) {
+    log(
+      'loop',
+      `warn: workspace overlay skipped (${(err as Error).message}); ` +
+        `consumer-stage may produce false positives`
+    )
+  }
 
   // Step 5: manifest update.
   manifest.update(manifestAbs, item.id, {
@@ -1268,10 +1406,11 @@ export async function run(
   const diffPath = path.join(wtPath, 'migration-runs', runDate, item.id, 'diff.md')
   const prUrl = await gh.createPR({
     title: workflow.prTitle(item.id, item),
-    base: 'master',
+    base: workflow.baseBranch,
     head: branch,
     bodyFile: diffPath,
     cwd: wtPath,
+    assignees: workflow.assignees,
   })
 
   manifest.update(manifestAbs, item.id, { pr: prUrl })

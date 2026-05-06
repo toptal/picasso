@@ -61,19 +61,46 @@ const migrationWorkflow: Workflow = {
   gate: (id) => `bin/migration-gate.sh "${id}"`,
   diff: (id, mode) => `bin/migration-diff.sh ${mode} "${id}"`,
   branchName: (id) => `migrate-${id.replace(/\//g, '-')}`,
-  prTitle: (id, item) =>
-    `[Tier ${item.tier}] migrate ${id} to @base-ui/react + Tailwind`,
+  // Long-running migration effort lands on the integration branch, NOT
+  // master, so the batch can be reviewed/staged together. Master sees a
+  // single squash-merge once the whole modernization wave is green.
+  // The branch must already exist on origin (created manually before the
+  // first canary run).
+  baseBranch: 'picasso-modernization',
+  // Picasso's Danger CI rejects unassigned PRs ("Please assign someone to
+  // this PR before merging"). Assigning to the operator (`@me` in gh)
+  // satisfies the rule and keeps responsibility with whoever started the
+  // run. For unattended/CI-driven runs, this should be replaced with the
+  // designated PF-1994 owner.
+  assignees: ['@me'],
+  // Phase 2.5 fix — Danger-compliant title.
+  // Picasso's `dangerJS` enforces:
+  //   - Title starts with a capital letter (the leading `[` is allowed
+  //     because the first letter inside the bracket is `P`).
+  //   - No trailing full-stop.
+  //   - PR title contains a Jira issue code (`[XXX-NNNN]`).
+  // `[Tier <N>]` does NOT count as a Jira code, so the prior format
+  // (`[Tier 0] migrate Button …`) failed Danger. We use `[PF-1994]`
+  // (the umbrella ticket) as the prefix and demote the tier label into
+  // the body via PR description, where it's still visible without
+  // tripping CI. Validated against the existing Picasso PR style
+  // (`[TAPS-0000] Migrate Button and Switch to BASE UI`, PR #4906).
+  prTitle: (id) => `[PF-1994] Migrate ${id} to @base-ui/react + Tailwind`,
   commitMessage: (id, item) => {
-    const scope = id
     const isCanary = item.notes?.includes('orchestrator sandbox')
     // Tier 1 already-clean components: just the dep cleanup, no source migration.
     const isAlreadyClean =
       item.tier === 1 && item.target_path === 'none' && item.notes?.includes('Already-clean source')
+    // Subject must start with a capital letter and not end with a full-stop
+    // (Picasso Danger rules). The `[PF-1994]` prefix is also required so the
+    // commit-title check finds a Jira issue code. The verb is capitalized
+    // ("Drop", "Migrate") to satisfy "Title should start with capital
+    // letter" once Danger strips the prefix.
     const subject = isCanary || isAlreadyClean
-      ? 'drop @material-ui/core peer-dep, lift React 19 cap'
+      ? `[PF-1994] Drop @material-ui/core peer-dep from ${id}, lift React 19 cap`
       : item.tier === 0
-        ? 'migrate from @mui/base to @base-ui/react'
-        : 'migrate to @base-ui/react + Tailwind'
+        ? `[PF-1994] Migrate ${id} from @mui/base to @base-ui/react`
+        : `[PF-1994] Migrate ${id} to @base-ui/react + Tailwind`
     const body = isCanary
       ? 'Source is already MUI-clean (Phase 0 carry-over). This commit removes\n' +
         'the vestigial peer-dep and unblocks React 19 testing for downstream\n' +
@@ -81,15 +108,10 @@ const migrationWorkflow: Workflow = {
       : isAlreadyClean
         ? 'Source is already MUI-clean. This commit drops the vestigial @material-ui/core\n' +
           'peer-dep and lifts the React 19 peer-dep cap.'
-        : 'See PR description for prop-surface diff, import diff, and Happo summary.'
+        : `Tier ${item.tier} component. See PR description for prop-surface diff,\n` +
+          'import diff, and Happo summary.'
 
-    return [
-      `migrate(${scope}): ${subject}`,
-      '',
-      body,
-      '',
-      'Refs: PF-1994',
-    ].join('\n')
+    return [subject, '', body, '', 'Refs: PF-1994'].join('\n')
   },
   complexityFor: (item: ManifestItem) =>
     (item.tier <= 1 ? 1 : item.tier === 2 ? 2 : 3) as 1 | 2 | 3,
