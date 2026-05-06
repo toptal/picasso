@@ -143,9 +143,13 @@ run_stage "build" \
 run_stage "tsc" \
   yarn typecheck
 
-# 3. Lint (repo-wide).
+# 3. Lint, scoped to the migrating package's src.
+#    Repo-wide lint runs in CI; the gate only needs to validate the agent's
+#    edits cleanly compile + lint. ~2s scoped vs ~24s repo-wide.
+#    Per migration plan v3 §4.3 (gate sequence) + Tier 1.2 of post-canary-15
+#    improvements plan: scoped fast feedback for inner-loop iteration.
 run_stage "lint" \
-  yarn lint
+  yarn davinci-syntax lint code --check "$PKG_PATH/src"
 
 # 4. Jest, scoped to the package directory.
 #    Skip the test:unit prelude (build) since stage 1 already covers it.

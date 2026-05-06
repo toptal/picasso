@@ -50,6 +50,10 @@ const migrationWorkflow: Workflow = {
     'docs/migration/rules/jss-to-tailwind-crib.md',
     'docs/migration/rules/base-ui-react-api-crib.md',
     'docs/migration/tokens/picasso-tailwind-tokens.md',
+    // Tier 1.3: lessons auto-accumulated by post-success hook. Future
+    // migrations inherit patterns from earlier ones (e.g. Switch reads
+    // Button's lessons re polymorphic / nativeButton / onClick cast).
+    'docs/migration/references/lessons-learned.md',
     // reference/* is currently empty — see ORCHESTRATOR.md §References for the
     // re-introduction policy. The orchestrator skips missing files gracefully.
   ],
