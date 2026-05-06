@@ -167,6 +167,88 @@ run_stage "jest" \
   env NODE_OPTIONS='--no-experimental-require-module' \
   yarn davinci-qa unit --config=./jest.spec.mjs --testPathPattern "$PKG_PATH"
 
+# 4b. Consumer-snapshot stage. Catches DOM-ripple snapshot drift in packages
+#     that include the migrating component in their `__snapshots__/*.snap`.
+#
+#     Why this exists: stage 4's jest scope covers only the migrating package's
+#     own tests. A Tier 0 base component (Button, Switch, Modal, etc.) renders
+#     into many sibling-package snapshots — when its DOM changes, those
+#     consumer snapshots drift. The narrow stage 4 misses it; full-repo CI
+#     catches it post-PR-open. Canary 19 (PR #4926, closed) hit this exact
+#     mode: Button's DOM cleanup ('base-' empty class removal + new
+#     data-disabled attr) broke 2 Pagination snapshots while stage 4 was
+#     green. See ORCHESTRATOR.md §Known integration gaps for the full
+#     write-up.
+#
+#     Detection heuristic: Picasso's convention is that every base component
+#     emits a `base-<Name>` className on its root, so consumer snapshots
+#     containing the migrating component's DOM contain `base-<COMPONENT_LEAF>`
+#     literally. We grep snapshot files for that string and run jest scoped
+#     to the matching packages.
+#
+#     Auto-fix: jest is idempotent for non-snapshot failures, so we attempt
+#     `jest -u` once. If a real assertion regression exists, the post--u
+#     re-verify still fails; if only snapshots drifted, the re-verify passes
+#     and the orchestrator's `git add .` picks up the regenerated `.snap`
+#     files in the migration commit.
+
+COMPONENT_LEAF="${COMPONENT##*/}"
+CONSUMER_PATHS=$(git grep -l "base-${COMPONENT_LEAF}" -- 'packages/**/__snapshots__/*.snap' 2>/dev/null \
+  | sed 's|/src/.*||' \
+  | grep -v "^${PKG_PATH}\$" \
+  | sort -u)
+
+if [ -z "$CONSUMER_PATHS" ]; then
+  run_stage_skip "consumers" "no consumer packages with base-${COMPONENT_LEAF} in snapshots"
+else
+  CONSUMER_PATTERN=$(echo "$CONSUMER_PATHS" | tr '\n' '|' | sed 's/|$//')
+  CONSUMER_LOG="$RUN_DIR/consumers.log"
+  CONSUMER_COUNT=$(echo "$CONSUMER_PATHS" | wc -l | tr -d ' ')
+  CONSUMER_STARTED=$(date +%s)
+
+  echo "→ [consumers] $CONSUMER_COUNT packages match base-${COMPONENT_LEAF}; running scoped jest" \
+    | tee -a "$RUN_DIR/console.log"
+
+  if env NODE_OPTIONS='--no-experimental-require-module' \
+       yarn davinci-qa unit --config=./jest.spec.mjs \
+       --testPathPattern "($CONSUMER_PATTERN)" \
+       >"$CONSUMER_LOG" 2>&1; then
+    CONSUMER_STATUS="PASS"
+  else
+    echo "  failed; attempting one round of jest -u snapshot regeneration" \
+      | tee -a "$RUN_DIR/console.log"
+    env NODE_OPTIONS='--no-experimental-require-module' \
+      yarn davinci-qa unit --config=./jest.spec.mjs \
+      --testPathPattern "($CONSUMER_PATTERN)" -u \
+      >>"$CONSUMER_LOG" 2>&1 || true
+
+    # Re-verify. If only snapshots were drifted, this passes; if a real
+    # assertion regression exists, this fails (jest -u is a no-op for non-
+    # snapshot failures).
+    if env NODE_OPTIONS='--no-experimental-require-module' \
+         yarn davinci-qa unit --config=./jest.spec.mjs \
+         --testPathPattern "($CONSUMER_PATTERN)" \
+         >>"$CONSUMER_LOG" 2>&1; then
+      CONSUMER_STATUS="PASS"
+      SNAP_REGEN_COUNT=$(git status --short \
+        | grep -E '__snapshots__/.+\.snap$' | wc -l | tr -d ' ')
+      echo "  snapshots regenerated ($SNAP_REGEN_COUNT files); gate continuing" \
+        | tee -a "$RUN_DIR/console.log"
+    else
+      CONSUMER_STATUS="FAIL"
+      echo "  re-verify still failing after jest -u; real regression — see log" \
+        | tee -a "$RUN_DIR/console.log"
+    fi
+  fi
+
+  CONSUMER_ELAPSED=$(( $(date +%s) - CONSUMER_STARTED ))
+  STAGES+=("consumers")
+  STATUSES+=("$CONSUMER_STATUS")
+  DURATIONS+=("$CONSUMER_ELAPSED")
+  echo "  $CONSUMER_STATUS (${CONSUMER_ELAPSED}s, log: $CONSUMER_LOG)" \
+    | tee -a "$RUN_DIR/console.log"
+fi
+
 # 5. Cypress component spec, only if it exists.
 #    When HAPPO_API_KEY + HAPPO_API_SECRET are present, wrap with `happo-e2e`
 #    to also produce Cypress visual diffs (matches `test:integration:ci`).
