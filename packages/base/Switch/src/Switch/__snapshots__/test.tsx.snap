@@ -6,21 +6,28 @@ exports[`Switch behaves correctly when interacting 1`] = `
   data-testid="switch"
 >
   <span
-    class="base-Switch base- w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
-    color="primary"
+    aria-checked="true"
+    class="w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&+input]:!absolute [&+input]:!w-0 [&+input]:!h-0 [&+input]:!m-0 [&+input]:!p-0 [&+input]:!border-0 [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
+    data-checked=""
+    id="base-ui-:ra:"
+    role="switch"
+    tabindex="0"
   >
     <span
-      class="base-Switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-[.base--checked]:bg-blue group-[.base--checked]:border-blue group-[.base--disabled]:opacity group-[.base--disabled:not(.base--checked)]:bg"
+      class="picasso-switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out"
     />
     <span
-      class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
-    />
-    <input
-      class="base-Switch w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20 group-[.base--disabled]:cursor"
-      role="switch"
-      type="checkbox"
+      class="picasso-switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out"
+      data-checked=""
     />
   </span>
+  <input
+    aria-hidden="true"
+    id="base-ui-:rb:"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    type="checkbox"
+  />
   <span
     class="inline-block leading-[1em] mb-0 text-graphite ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
@@ -39,22 +46,29 @@ exports[`Switch renders default Switch without label 1`] = `
     class="Picasso-root"
   >
     <span
-      class="base-Switch w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
-      color="primary"
+      aria-checked="false"
+      class="w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&+input]:!absolute [&+input]:!w-0 [&+input]:!h-0 [&+input]:!m-0 [&+input]:!p-0 [&+input]:!border-0 [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
       data-testid="switch"
+      data-unchecked=""
+      id="base-ui-:r0:"
+      role="switch"
+      tabindex="0"
     >
       <span
-        class="base-Switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-[.base--checked]:bg-blue group-[.base--checked]:border-blue group-[.base--disabled]:opacity group-[.base--disabled:not(.base--checked)]:bg"
+        class="picasso-switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out"
       />
       <span
-        class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
-      />
-      <input
-        class="base-Switch w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20 group-[.base--disabled]:cursor"
-        role="switch"
-        type="checkbox"
+        class="picasso-switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out"
+        data-unchecked=""
       />
     </span>
+    <input
+      aria-hidden="true"
+      id="base-ui-:r1:"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      tabindex="-1"
+      type="checkbox"
+    />
   </div>
 </div>
 `;
@@ -65,22 +79,32 @@ exports[`Switch renders disabled state 1`] = `
   data-testid="switch"
 >
   <span
-    class="base-Switch base- w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
-    color="primary"
+    aria-checked="false"
+    aria-disabled="true"
+    class="w-[40px] h-[24px] p-0 m-0 border-none appearance-none bg-transparent relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer [&+input]:!absolute [&+input]:!w-0 [&+input]:!h-0 [&+input]:!m-0 [&+input]:!p-0 [&+input]:!border-0 [&[data-checked]_.picasso-switch-track]:bg-blue [&[data-checked]_.picasso-switch-track]:border-blue [&[data-disabled]_.picasso-switch-track]:opacity [&[data-disabled]:not([data-checked])_.picasso-switch-track]:bg [&:not([data-disabled]):hover_.picasso-switch-thumb]:shadow [&:focus-visible_.picasso-switch-thumb]:shadow [&[data-checked]_.picasso-switch-thumb]:translate-x [&[data-disabled]]:cursor-default"
+    data-disabled=""
+    data-unchecked=""
+    id="base-ui-:r4:"
+    role="switch"
+    tabindex="-1"
   >
     <span
-      class="base-Switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out group-[.base--checked]:bg-blue group-[.base--checked]:border-blue group-[.base--disabled]:opacity group-[.base--disabled:not(.base--checked)]:bg"
+      class="picasso-switch w-full h-full border border-solid bg-gray border-gray opacity-100 rounded-[12px] transition-colors duration-300 ease-out"
     />
     <span
-      class="base-Switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out group-[:not(.base--disabled):hover]:shadow group-[.base--focusVisible]:shadow group-[.base--checked]:translate-x"
-    />
-    <input
-      class="base-Switch w-[100%] h-full m-0 p-0 opacity-0 absolute top-0 cursor-pointer z-20 group-[.base--disabled]:cursor"
-      disabled=""
-      role="switch"
-      type="checkbox"
+      class="picasso-switch w-[22px] h-[22px] bg-current text-white block rounded-full shadow-1 absolute z-10 p-0 top-[1px] left-[1px] transition-transform duration-150 ease-out"
+      data-disabled=""
+      data-unchecked=""
     />
   </span>
+  <input
+    aria-hidden="true"
+    disabled=""
+    id="base-ui-:r5:"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    tabindex="-1"
+    type="checkbox"
+  />
   <span
     class="inline-block leading-[1em] mb-0 text-graphite pointer-events ml-[0.5em] mt-[0.25em] max-w-[calc(100%-1em"
   >
