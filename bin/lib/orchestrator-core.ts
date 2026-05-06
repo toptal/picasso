@@ -194,6 +194,19 @@ const NO_PROGRESS_PATTERNS: readonly (readonly [RegExp, string])[] = [
   [/Invalid API key[^\n]{0,100}/i, 'Invalid API key'],
   [/(?:not logged in|please log in)[^\n]{0,100}/i, 'CLI not logged in'],
   [/Model (?:.*?)not (?:available|found)[^\n]{0,100}/i, 'Model unavailable'],
+  // Anthropic API 529 "Overloaded" — transient capacity issue. Retrying
+  // immediately rarely helps (capacity is shared); a re-run 5-10 min
+  // later usually succeeds. We escalate so the orchestrator stops
+  // burning iterations (canary 28 wasted 5/10 iters on this) — the
+  // operator decides when to re-run.
+  [
+    /API Error:\s*529[^\n]{0,200}/i,
+    'Anthropic API overloaded (529) — retry the canary in a few minutes',
+  ],
+  [
+    /"type":"overloaded_error"[^\n]{0,100}/,
+    'Anthropic API overloaded — retry the canary in a few minutes',
+  ],
 ]
 
 /**
