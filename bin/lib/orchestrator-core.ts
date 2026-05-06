@@ -164,6 +164,129 @@ function shell(
 }
 
 /** Spawn a shell command via `bash -c` so the workflow can pass complex command lines. */
+/**
+ * Patterns indicating an agent failure where retrying makes no sense — the
+ * external constraint blocks every subsequent invocation identically.
+ *
+ * Covers:
+ *   - Anthropic spending cap (per canary 25: "Spending cap reached resets 3:10pm")
+ *   - API quota / rate-limit surfaces (Anthropic, OpenAI variants)
+ *   - Auth failures (revoked or missing API keys, OAuth token expiry)
+ *   - Model availability (deprecated/unavailable model errors)
+ *   - Local CLI auth ("not logged in") — claude / cursor / codex variants
+ *
+ * Returned string is the matched substring + ~60 chars of context, used as
+ * the escalation reason. Empty string means "no known fast-fail pattern".
+ */
+const NO_PROGRESS_PATTERNS: readonly (readonly [RegExp, string])[] = [
+  [/Spending cap reached[^\n]{0,100}/i, 'Anthropic spending cap reached'],
+  [/quota (?:exceeded|exhausted)[^\n]{0,100}/i, 'API quota exhausted'],
+  [/rate limit (?:exceeded|reached)[^\n]{0,100}/i, 'API rate limit exceeded'],
+  [/insufficient_quota[^\n]{0,100}/i, 'Insufficient API quota'],
+  [/401 Unauthorized[^\n]{0,100}/i, 'API auth failure (401)'],
+  [/403 Forbidden[^\n]{0,100}/i, 'API auth failure (403)'],
+  [/Authentication (?:failed|error)[^\n]{0,100}/i, 'API authentication failed'],
+  [/Invalid API key[^\n]{0,100}/i, 'Invalid API key'],
+  [/(?:not logged in|please log in)[^\n]{0,100}/i, 'CLI not logged in'],
+  [/Model (?:.*?)not (?:available|found)[^\n]{0,100}/i, 'Model unavailable'],
+]
+
+/**
+ * Phase 3 resilience — direnv-aware env bootstrapping.
+ *
+ * Picasso operators store secrets (HAPPO_API_KEY, NPM_TOKEN, ...) in
+ * `~/Projects/.envrc` and rely on the `direnv hook` to inject them into
+ * their interactive shell. When the orchestrator runs from a non-direnv-
+ * hooked shell (e.g. an automation runner, an LLM Bash tool, a cron job),
+ * those vars are missing → the gate's Happo / Cypress-Happo stages SKIP
+ * silently → CI catches problems the gate could have caught locally.
+ *
+ * Workaround: walk up from `cwd` looking for `.envrc`. If found and
+ * `direnv` is on PATH, exec `direnv export bash` and parse its output
+ * into `process.env`. Vars that are already set in the parent env take
+ * precedence (we never overwrite). Idempotent + best-effort: any error
+ * (no direnv, .envrc not allowed, parse failure) is a silent no-op
+ * because the original "skip Happo" behavior is still safe.
+ *
+ * Returns the list of newly-injected variable names so the orchestrator
+ * can log a one-liner for transparency.
+ */
+async function loadEnvrcUpwards(cwd: string): Promise<readonly string[]> {
+  // Skip if already populated by parent shell.
+  if (process.env.HAPPO_API_KEY && process.env.HAPPO_API_SECRET) {
+    return []
+  }
+
+  // Find nearest .envrc walking up.
+  let dir = cwd
+  let envrcDir: string | null = null
+
+  while (dir && dir !== '/') {
+    if (existsSync(path.join(dir, '.envrc'))) {
+      envrcDir = dir
+      break
+    }
+    const parent = path.dirname(dir)
+
+    if (parent === dir) {break}
+    dir = parent
+  }
+  if (!envrcDir) {return []}
+
+  // Bail if direnv unavailable.
+  const direnvCheck = await shell('which', ['direnv'])
+
+  if (direnvCheck.exitCode !== 0) {return []}
+
+  // Run `direnv export bash` from the .envrc's directory. Output is a
+  // sequence of `export KEY=$'value';` statements.
+  const exportResult = await shell('direnv', ['export', 'bash'], {
+    cwd: envrcDir,
+  })
+
+  if (exportResult.exitCode !== 0 || !exportResult.stdout) {return []}
+
+  const injected: string[] = []
+  const exportRe = /export\s+([A-Z_][A-Z0-9_]*)=\$?'((?:[^'\\]|\\.)*)'/gi
+  let match
+
+  while ((match = exportRe.exec(exportResult.stdout)) !== null) {
+    const [, key, rawValue] = match
+
+    if (process.env[key]) {continue} // never overwrite an existing var
+    // ANSI-C decoding is partial: \\, \', \n. Sufficient for direnv's
+    // typical output (most secrets are alphanumeric).
+    const value = rawValue
+      .replace(/\\'/g, "'")
+      .replace(/\\\\/g, '\\')
+      .replace(/\\n/g, '\n')
+
+    process.env[key] = value
+    injected.push(key)
+  }
+
+  return injected
+}
+
+async function detectNoProgressFailure(
+  agentLogPath: string
+): Promise<string | null> {
+  if (!existsSync(agentLogPath)) {return null}
+  const log_ = await fs.readFile(agentLogPath, 'utf8').catch(() => '')
+
+  if (!log_) {return null}
+
+  for (const [pattern, label] of NO_PROGRESS_PATTERNS) {
+    const match = log_.match(pattern)
+
+    if (match) {
+      return `${label}: ${match[0].trim()}`
+    }
+  }
+
+  return null
+}
+
 async function shellLine(
   line: string,
   opts: SpawnOptions = {}
@@ -1240,6 +1363,19 @@ export async function run(
 
   if (!opts.dryRun) {await gh.assertAuth()}
 
+  // Phase 3 — auto-load .envrc when running outside an interactive direnv-
+  // hooked shell. Lets local Happo (HAPPO_API_KEY/SECRET) fire correctly
+  // for canaries launched from CI/automation/LLM tools instead of silently
+  // skipping. No-op when vars already set.
+  const injected = await loadEnvrcUpwards(rootDir)
+
+  if (injected.length > 0) {
+    log(
+      'env',
+      `loaded from .envrc: ${injected.sort().join(', ')} (use direnv hook to skip this)`
+    )
+  }
+
   const m = manifest.read(manifestAbs)
   const item = manifest.pickNext(m, opts)
 
@@ -1498,6 +1634,29 @@ export async function run(
 
     if (agentResult.exitCode !== 0) {
       log('loop', `agent exited non-zero (${agentResult.exitCode})`)
+
+      // Resilience: detect "no progress possible" failures and escalate
+      // immediately instead of burning the iteration budget on the same
+      // re-failing call. Triggered by canary 25 (PR #4906 spending cap
+      // hit at iter 1 → 10 retries × ~6s each → escalation, ~60s wasted).
+      // Patterns are matched against the agent log (the CLI tends to emit
+      // these to stdout, not stderr).
+      const noProgressReason = await detectNoProgressFailure(agentLogPath)
+
+      if (noProgressReason) {
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: `agent failure not retry-recoverable: ${noProgressReason}`,
+          },
+          manifestAbs,
+          rootDir
+        )
+      }
+
       lastFeedback = `Agent invocation failed (exit ${agentResult.exitCode}). See ${agentLogPath}.`
       continue
     }
