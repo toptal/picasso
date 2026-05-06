@@ -52,6 +52,17 @@
 export type FailureClass =
   | 'auto-fix-snapshot'
   | 'auto-fix-lint'
+  /**
+   * Phase 3 Happo-flake mitigation. Re-trigger CI without code changes
+   * (empty commit + push) up to a configurable retry budget. After the
+   * budget is exhausted, the classifier escalates instead. Used for:
+   *   - Happo network/upload jitter (e.g. timeouts hitting happo.io)
+   *   - Transient CI infrastructure errors (runner setup, npm registry
+   *     blips, GitHub Actions rate limits)
+   * Caller (orchestrator-core Phase 3.3) tracks the retry count per check
+   * name across CI iterations and escalates when it exceeds the budget.
+   */
+  | 'auto-fix-rerun'
   | 'feed-to-agent'
   | 'escalate'
 
@@ -179,11 +190,21 @@ export function classifyCIFailure(
 ): FailureClassification {
   const name = check.name.toLowerCase()
 
-  // 1. Happo — name-based hint is strongest. Visual diffs need a designer.
+  // 1. Happo — first failure: classify as auto-fix-rerun (assume flake).
+  //    Phase 3.3's loop tracks retry count per check name; if Happo fails
+  //    again post-rerun the loop reclassifies as escalate (genuine diff
+  //    or persistent infra). This trades one cheap CI cycle (~10min) for
+  //    automatic recovery from upload jitter / network timeouts / Happo
+  //    service blips, which empirically dominate Happo failures during
+  //    Tier 0 batch runs.
+  //
+  //    Visual diffs (real) ALSO get rerun-once; that's a feature, not a
+  //    bug — designer review only after we've confirmed the diff is
+  //    deterministic. Worst case: 1 extra CI cycle wasted per real diff.
   if (name.includes('happo') || HAPPO_MARKERS.some((re) => re.test(log))) {
     return {
-      class: 'escalate',
-      reason: 'Happo visual diff — designer review required',
+      class: 'auto-fix-rerun',
+      reason: 'Happo failure — retrying once to filter transient flake',
       stage: 'happo',
       paths: [],
     }
