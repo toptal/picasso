@@ -66,18 +66,13 @@ module.exports = {
       rule => rule.test && rule.test.toString().includes('.css')
     )
 
-    // Use the 'postcss-loader' to process TailwindCSS. Pass `base` so
-    // pnpm's plugin resolution finds the workspace root tailwind.config.js
-    // even when @tailwindcss/postcss is loaded through a symlinked path.
     cssRule.use.push({
       loader: 'postcss-loader',
       options: {
         postcssOptions: {
           config: false,
           plugins: {
-            '@tailwindcss/postcss': {
-              base: path.resolve(__dirname, '..'),
-            },
+            '@tailwindcss/postcss': {},
           },
         },
       },
@@ -85,23 +80,6 @@ module.exports = {
 
     return {
       ...config,
-      // Skip source maps for production storybook builds. They cost ~2-3 GB
-      // peak heap and 20-30% wall time on the 90-package preview bundle, and
-      // they aren't useful in the gh-pages output or in happo screenshots.
-      devtool: isDevelopment ? config.devtool : false,
-      // Stop webpack's FileSystemInfo from chasing pnpm's circular workspace
-      // symlinks (packages/<x>/node_modules/@toptal/<y> -> packages/<y>).
-      // Without this, _resolveContextTimestamp recurses indefinitely and the
-      // build silently hangs ("Compiling preview.." with no output until the
-      // runner times out). Same fix as cypress.config.mjs.
-      // Order matters — packages/base/<Comp> wins over packages/<x>.
-      snapshot: {
-        managedPaths: [
-          /^(.+?[\\/]node_modules[\\/])/,
-          path.resolve(__dirname, '../packages/base') + path.sep,
-          path.resolve(__dirname, '../packages') + path.sep,
-        ],
-      },
       module: {
         ...config.module,
         // supress an error with dynamic path e.g. require(`${url}`)
