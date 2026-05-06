@@ -952,7 +952,7 @@ export async function run(
     log('loop', '--dry-run: planned 14 steps follow:')
     const planned = [
       `1. Verify deps merged for: ${item.depends_on.join(', ') || '(none)'}`,
-      `2. git worktree add ${worktree.pathFor(item.id, TODAY())} -b ${workflow.branchName(item.id)}`,
+      `2. git worktree add ${worktree.pathFor(item.id, TODAY())} -b ${opts.branch ?? workflow.branchName(item.id)}${opts.branch ? ' (--branch override)' : ''}`,
       `3. Snapshot pre-state: ${workflow.diff(item.id, 'snapshot')}`,
       `4. Update manifest: status=in_progress`,
       ...(opts.withMcp
@@ -978,7 +978,7 @@ export async function run(
 
   // Real run.
   const runDate = TODAY()
-  const branch = workflow.branchName(item.id)
+  const branch = opts.branch ?? workflow.branchName(item.id)
   const wtPath = path.join(rootDir, worktree.pathFor(item.id, runDate))
   const runDir = path.dirname(wtPath)
 
@@ -1323,6 +1323,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const componentRaw = get('--component')
   const agentRaw = get('--agent')
   const iterStr = get('--max-iterations')
+  const branchRaw = get('--branch')
 
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
@@ -1335,5 +1336,6 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     component: componentRaw ?? null,
     maxIterations: iterStr ? Number(iterStr) : 3,
     withMcp: has('--with-mcp'),
+    branch: branchRaw ?? null,
   }
 }

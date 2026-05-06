@@ -180,4 +180,20 @@ export interface OrchestratorOptions {
    * Default: false. CLI: `--with-mcp`.
    */
   readonly withMcp: boolean
+
+  /**
+   * Override the branch name that the orchestrator creates for this run.
+   *
+   * Default: `null` (use `workflow.branchName(item.id)`). CLI: `--branch=<name>`.
+   *
+   * Use case: when the workflow's default branch name (e.g. `migrate-Button`)
+   * already exists on origin from a prior run, a fresh canary needs a
+   * non-colliding name (`migrate-Button-canary-18`). This flag avoids
+   * mutating the workflow descriptor for one-off canary runs and keeps the
+   * existing PR around as evidence of the prior attempt.
+   *
+   * The override applies to the worktree-attached branch and the
+   * `git push -u origin <branch>` target. PR head also picks this up.
+   */
+  readonly branch: string | null
 }
