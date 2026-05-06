@@ -1,11 +1,8 @@
-import path from 'path'
 import happoTask from 'happo-cypress/task.js'
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'cypress'
 import davinciConfig from '@toptal/davinci-qa/src/configs/cypress.config.js'
 /* eslint-enable */
-
-const ROOT = path.dirname(new URL(import.meta.url).pathname)
 
 export default defineConfig({
   ...davinciConfig,
