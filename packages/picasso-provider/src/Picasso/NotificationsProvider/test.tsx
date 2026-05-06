@@ -1,11 +1,25 @@
 import type { PropsWithChildren } from 'react'
 import React from 'react'
-import { render, screen, fireEvent } from '@toptal/picasso-test-utils'
+import { render as baseRender, screen, fireEvent } from '@testing-library/react'
 import { useNotifications } from '@toptal/picasso-notification'
 import { Button } from '@material-ui/core'
 
+import Picasso from '..'
 import NotificationsProvider from './'
 import type { NotificationsProviderProps } from './'
+
+const render: typeof baseRender = ui =>
+  baseRender(
+    <Picasso
+      loadFavicon={false}
+      loadFonts={false}
+      fixViewport={false}
+      preventPageWidthChangeOnScrollbar={false}
+      disableTransitions
+    >
+      {ui}
+    </Picasso>
+  )
 
 const App = ({ children }: PropsWithChildren<{}>) => {
   const { showInfo } = useNotifications()

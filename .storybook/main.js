@@ -80,6 +80,10 @@ module.exports = {
 
     return {
       ...config,
+      watchOptions: {
+        ...config.watchOptions,
+        ignored: /[\\/](node_modules|coverage|\.nyc_output)[\\/]/,
+      },
       module: {
         ...config.module,
         // supress an error with dynamic path e.g. require(`${url}`)
@@ -116,6 +120,9 @@ module.exports = {
         new webpack.DefinePlugin({
           TEST_ENV: JSON.stringify(env.TEST_ENV),
         }),
+        // Avoid recursive require.context('~/packages', true, ...) scans
+        // descending into package-local pnpm workspace symlinks.
+        new webpack.ContextExclusionPlugin(/^node_modules$/),
         // https://github.com/TypeStrong/ts-loader/issues/653
         new IgnoreNotFoundPlugin(['OverridableComponent', 'BaseProps']),
         // until we use docs or control addon, we need custom webpack plugin for docgen

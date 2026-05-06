@@ -36,6 +36,7 @@ overrides:
   micromatch: ^4.0.8
   nx: 21.5.1
   '@nx/js': 21.5.1
+  '@types/react': '17'
 
 importers:
 
@@ -121,10 +122,10 @@ importers:
         version: 2.0.15(encoding@0.1.13)
       '@toptal/davinci-engine':
         specifier: ^14.0.0
-        version: 14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1)
+        version: 14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/react@17.0.39)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1)
       '@toptal/davinci-qa':
         specifier: ^19.0.0
-        version: 19.0.0(@swc/core@1.13.5)(@toptal/davinci-engine@14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1))(@types/node@24.5.2)(babel-loader@9.1.2(@babel/core@7.28.4)(webpack@5.98.0(@swc/core@1.13.5)))(babel-plugin-macros@3.1.0)(cypress@13.6.0)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@4.7.4))(webpack@5.98.0(@swc/core@1.13.5))
+        version: 19.0.0(@swc/core@1.13.5)(@toptal/davinci-engine@14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/react@17.0.39)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1))(@types/node@24.5.2)(babel-loader@9.1.2(@babel/core@7.28.4)(webpack@5.98.0(@swc/core@1.13.5)))(babel-plugin-macros@3.1.0)(cypress@13.6.0)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@4.7.4))(webpack@5.98.0(@swc/core@1.13.5))
       '@toptal/davinci-syntax':
         specifier: ^24.0.0
         version: 24.0.0(encoding@0.1.13)(eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@6.11.0(eslint@8.37.0)(typescript@4.7.4))(eslint@8.37.0))(eslint-plugin-n@16.6.2(eslint@8.37.0))(eslint-plugin-promise@6.1.1(eslint@8.37.0))(eslint@8.37.0))(jest@29.7.0(@types/node@24.5.2)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@4.7.4)))(postcss@8.4.32)(typescript@4.7.4)
@@ -532,7 +533,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-markdown:
         specifier: ^9.0.0
-        version: 9.0.0(react@18.2.0)
+        version: 9.0.0(@types/react@17.0.39)(react@18.2.0)
       react-router-dom:
         specifier: ^5.3.4
         version: 5.3.4(react@18.2.0)
@@ -541,7 +542,7 @@ importers:
         version: 3.0.0-5(@babel/standalone@7.23.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-storybook-addon-chapters:
         specifier: ^3.1.7
-        version: 3.1.7(@babel/core@7.28.4)(@emotion/core@10.3.1(react@18.2.0))(@storybook/builder-webpack5@6.5.16(@swc/core@1.13.5)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@storybook/manager-webpack5@6.5.16(@swc/core@1.13.5)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@swc/core@1.13.5)(@types/webpack@4.41.32)(encoding@0.1.13)(eslint@8.37.0)(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)(require-from-string@2.0.2)(type-fest@4.15.0)(typescript@4.7.4)(webpack-dev-server@4.15.1(webpack@5.98.0(@swc/core@1.13.5)))(webpack-hot-middleware@2.25.1)
+        version: 3.1.7(@babel/core@7.28.4)(@emotion/core@10.3.1(react@18.2.0))(@storybook/builder-webpack5@6.5.16(@swc/core@1.13.5)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@storybook/manager-webpack5@6.5.16(@swc/core@1.13.5)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@swc/core@1.13.5)(@types/react@17.0.39)(@types/webpack@4.41.32)(encoding@0.1.13)(eslint@8.37.0)(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)(require-from-string@2.0.2)(type-fest@4.15.0)(typescript@4.7.4)(webpack-dev-server@4.15.1(webpack@5.98.0(@swc/core@1.13.5)))(webpack-hot-middleware@2.25.1)
       react-test-renderer:
         specifier: ^19.2.0
         version: 19.2.3(react@18.2.0)
@@ -3686,9 +3687,9 @@ importers:
         specifier: ~4.7.0
         version: 4.7.4
     devDependencies:
-      '@toptal/picasso-test-utils':
-        specifier: 2.0.0
-        version: link:../base/Test-Utils
+      '@testing-library/react':
+        specifier: ^14.1.2
+        version: 14.3.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/classnames':
         specifier: ^2.3.1
         version: 2.3.1
@@ -5693,7 +5694,7 @@ packages:
     engines: {node: '>=8.0.0'}
     deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
     peerDependencies:
-      '@types/react': ^16.8.6 || ^17.0.0
+      '@types/react': '17'
       react: ^18.2.0
       react-dom: ^18.2.0
     peerDependenciesMeta:
@@ -5705,7 +5706,7 @@ packages:
     engines: {node: '>=8.0.0'}
     deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
     peerDependencies:
-      '@types/react': ^16.8.6 || ^17.0.0
+      '@types/react': '17'
       react: ^18.2.0
       react-dom: ^18.2.0
     peerDependenciesMeta:
@@ -5716,7 +5717,7 @@ packages:
     resolution: {integrity: sha512-6CSKu2MtmiJgcCGf6nBQpM8fLkuB9F55EKfbdTC80NND5wpTmKzwdhLYLH3zL4cLlK0gVaaltW7/wMuyTnN0Lw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
-      '@types/react': ^16.8.6 || ^17.0.0
+      '@types/react': '17'
       react: ^18.2.0
       react-dom: ^18.2.0
     peerDependenciesMeta:
@@ -5726,7 +5727,7 @@ packages:
   '@material-ui/types@5.1.0':
     resolution: {integrity: sha512-7cqRjrY50b8QzRSYyhSpx4WRw2YuO0KKIGQEVk5J8uoz2BanawykgZGoWEqKm7pVIbzFDN0SpPcVV4IhOFkl8A==}
     peerDependencies:
-      '@types/react': '*'
+      '@types/react': '17'
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -5753,7 +5754,7 @@ packages:
     engines: {node: '>=14.0.0'}
     deprecated: This package has been replaced by @base-ui/react
     peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0
+      '@types/react': '17'
       react: ^18.2.0
       react-dom: ^18.2.0
     peerDependenciesMeta:
@@ -5763,7 +5764,7 @@ packages:
   '@mui/types@7.2.16':
     resolution: {integrity: sha512-qI8TV3M7ShITEEc8Ih15A2vLzZGLhD+/UPNwck/hcls2gwg7dyRjNGXcQYHKLB5Q7PuTRfrTkAoPa2VV1s67Ag==}
     peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': '17'
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -5772,7 +5773,7 @@ packages:
     resolution: {integrity: sha512-tBp0ILEXDL0bbDDT8PnZOjCqSm5Dfk2N0Z45uzRw+wVl6fVvloC9zw8avl+OdX1Bg3ubs/ttKn8nRNv17bpM5A==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@types/react': '17'
       react: ^18.2.0
     peerDependenciesMeta:
       '@types/react':
@@ -7154,7 +7155,7 @@ packages:
     resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
     engines: {node: '>=12'}
     peerDependencies:
-      '@types/react': ^16.9.0 || ^17.0.0
+      '@types/react': '17'
       react: ^18.2.0
       react-dom: ^18.2.0
       react-test-renderer: ^19.2.0
@@ -15149,7 +15150,7 @@ packages:
     peerDependencies:
       '@types/hoist-non-react-statics': '>= 3.3.1'
       '@types/node': '>= 12'
-      '@types/react': '>= 16'
+      '@types/react': '17'
       react: ^18.2.0
     peerDependenciesMeta:
       '@types/hoist-non-react-statics':
@@ -15244,7 +15245,7 @@ packages:
     resolution: {integrity: sha512-ZlqCfVRqDJmMXTulUGic4lN7Ic1SXgHAFw7y/Jb7t25GBgTR0fYAJ8uY4mrpxjRyWGWmqw77qJQGnYbzCvBU7g==}
     engines: {node: '>= 6'}
     peerDependencies:
-      '@types/react': ^15.0.0 || ^16.0.0 || ^17.0.0
+      '@types/react': '17'
       react: ^18.2.0
       react-dom: ^18.2.0
     peerDependenciesMeta:
@@ -15275,7 +15276,7 @@ packages:
   react-markdown@9.0.0:
     resolution: {integrity: sha512-v6yNf3AB8GfJ8lCpUvzxAXKxgsHpdmWPlcVRQ6Nocsezp255E/IDrF31kLQsPJeB/cKto/geUwjU36wH784FCA==}
     peerDependencies:
-      '@types/react': '>=18'
+      '@types/react': '17'
       react: ^18.2.0
 
   react-popper-tooltip@2.11.1:
@@ -17224,7 +17225,7 @@ packages:
     resolution: {integrity: sha512-gN3vgMISAgacF7sqsLPByqoePooY3n2emTH59Ur5d/M8eg4WTWu1xp8i8DHjohftIyEx0S08RiYxbffr4j8Peg==}
     engines: {node: '>=8.5.0'}
     peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0
+      '@types/react': '17'
       react: ^18.2.0
     peerDependenciesMeta:
       '@types/react':
@@ -21485,11 +21486,11 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@storybook/addon-info@5.3.21(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)':
+  '@storybook/addon-info@5.3.21(@types/react@17.0.39)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)':
     dependencies:
       '@storybook/addons': 5.3.21(react-dom@18.2.0(react@18.2.0))(regenerator-runtime@0.13.11)
       '@storybook/client-logger': 5.3.21
-      '@storybook/components': 5.3.21(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/components': 5.3.21(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/theming': 5.3.21(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       core-js: 3.33.2
       global: 4.4.0
@@ -21787,7 +21788,7 @@ snapshots:
       core-js: 3.33.2
       global: 4.4.0
 
-  '@storybook/components@5.3.21(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@storybook/components@5.3.21(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/client-logger': 5.3.21
       '@storybook/theming': 5.3.21(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -21803,7 +21804,7 @@ snapshots:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-focus-lock: 2.6.0(react@18.2.0)
+      react-focus-lock: 2.6.0(@types/react@17.0.39)(react@18.2.0)
       react-helmet-async: 1.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-popper-tooltip: 2.11.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-syntax-highlighter: 11.0.3(react@18.2.0)
@@ -21814,7 +21815,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@storybook/components@5.3.22(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@storybook/components@5.3.22(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/client-logger': 5.3.22
       '@storybook/theming': 5.3.22(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -21830,7 +21831,7 @@ snapshots:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-focus-lock: 2.6.0(react@18.2.0)
+      react-focus-lock: 2.6.0(@types/react@17.0.39)(react@18.2.0)
       react-helmet-async: 1.3.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-popper-tooltip: 2.11.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-syntax-highlighter: 11.0.3(react@18.2.0)
@@ -22838,7 +22839,7 @@ snapshots:
       globby: 11.1.0
       lodash.kebabcase: 4.1.1
 
-  '@toptal/davinci-engine@14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1)':
+  '@toptal/davinci-engine@14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/react@17.0.39)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1)':
     dependencies:
       '@babel/cli': 7.23.0(@babel/core@7.28.4)
       '@babel/core': 7.28.4
@@ -22897,7 +22898,7 @@ snapshots:
       postcss: 8.4.32
       postcss-loader: 7.3.3(postcss@8.4.32)(typescript@4.7.4)(webpack@5.98.0(@swc/core@1.13.5))
       react-dev-utils: 12.0.1(eslint@8.37.0)(typescript@4.7.4)(webpack@5.98.0(@swc/core@1.13.5))
-      react-hot-loader: 4.13.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react-hot-loader: 4.13.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-refresh: 0.14.0
       resolve-ts-aliases: 1.0.1
       semantic-release: 24.2.8(typescript@4.7.4)
@@ -22977,7 +22978,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@toptal/davinci-qa@19.0.0(@swc/core@1.13.5)(@toptal/davinci-engine@14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1))(@types/node@24.5.2)(babel-loader@9.1.2(@babel/core@7.28.4)(webpack@5.98.0(@swc/core@1.13.5)))(babel-plugin-macros@3.1.0)(cypress@13.6.0)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@4.7.4))(webpack@5.98.0(@swc/core@1.13.5))':
+  '@toptal/davinci-qa@19.0.0(@swc/core@1.13.5)(@toptal/davinci-engine@14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/react@17.0.39)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1))(@types/node@24.5.2)(babel-loader@9.1.2(@babel/core@7.28.4)(webpack@5.98.0(@swc/core@1.13.5)))(babel-plugin-macros@3.1.0)(cypress@13.6.0)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(ts-node@10.9.2(@swc/core@1.13.5)(@types/node@24.5.2)(typescript@4.7.4))(webpack@5.98.0(@swc/core@1.13.5))':
     dependencies:
       '@babel/core': 7.28.4
       '@babel/preset-env': 7.24.0(@babel/core@7.28.4)
@@ -22990,7 +22991,7 @@ snapshots:
       '@testing-library/jest-dom': 6.8.0
       '@testing-library/react': 14.3.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/davinci-cli-shared': 3.0.0(encoding@0.1.13)
-      '@toptal/davinci-engine': 14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1)
+      '@toptal/davinci-engine': 14.0.0(@tailwindcss/postcss@4.2.1)(@types/babel__core@7.1.19)(@types/node@24.5.2)(@types/react@17.0.39)(@types/webpack@4.41.32)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(tailwindcss@4.2.1)(type-fest@4.15.0)(typescript@4.7.4)(webpack-hot-middleware@2.25.1)
       '@toptal/davinci-monorepo': 13.0.0(@swc/core@1.13.5)(@types/node@24.5.2)(babel-plugin-macros@3.1.0)(encoding@0.1.13)
       '@types/jest': 28.1.8
       babel-jest: 28.1.3(@babel/core@7.28.4)
@@ -32964,14 +32965,14 @@ snapshots:
       final-form: 4.20.9
       react: 18.2.0
 
-  react-focus-lock@2.6.0(react@18.2.0):
+  react-focus-lock@2.6.0(@types/react@17.0.39)(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.28.4
       focus-lock: 0.9.2
       prop-types: 15.8.1
       react: 18.2.0
       react-clientside-effect: 1.2.5(react@18.2.0)
-      use-callback-ref: 1.2.5(react@18.2.0)
+      use-callback-ref: 1.2.5(@types/react@17.0.39)(react@18.2.0)
       use-sidecar: 1.0.5(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
@@ -32994,7 +32995,7 @@ snapshots:
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 
-  react-hot-loader@4.13.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-hot-loader@4.13.1(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       fast-levenshtein: 2.0.6
       global: 4.4.0
@@ -33006,6 +33007,8 @@ snapshots:
       react-lifecycles-compat: 3.0.4
       shallowequal: 1.1.0
       source-map: 0.7.4
+    optionalDependencies:
+      '@types/react': 17.0.39
 
   react-input-mask@3.0.0-alpha.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
@@ -33025,9 +33028,10 @@ snapshots:
 
   react-lifecycles-compat@3.0.4: {}
 
-  react-markdown@9.0.0(react@18.2.0):
+  react-markdown@9.0.0(@types/react@17.0.39)(react@18.2.0):
     dependencies:
       '@types/hast': 3.0.1
+      '@types/react': 17.0.39
       devlop: 1.1.0
       hast-util-to-jsx-runtime: 2.2.0
       html-url-attributes: 3.0.0
@@ -33120,13 +33124,13 @@ snapshots:
       react-fast-compare: 2.0.4
       react-is: 16.13.1
 
-  react-storybook-addon-chapters@3.1.7(@babel/core@7.28.4)(@emotion/core@10.3.1(react@18.2.0))(@storybook/builder-webpack5@6.5.16(@swc/core@1.13.5)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@storybook/manager-webpack5@6.5.16(@swc/core@1.13.5)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@swc/core@1.13.5)(@types/webpack@4.41.32)(encoding@0.1.13)(eslint@8.37.0)(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)(require-from-string@2.0.2)(type-fest@4.15.0)(typescript@4.7.4)(webpack-dev-server@4.15.1(webpack@5.98.0(@swc/core@1.13.5)))(webpack-hot-middleware@2.25.1):
+  react-storybook-addon-chapters@3.1.7(@babel/core@7.28.4)(@emotion/core@10.3.1(react@18.2.0))(@storybook/builder-webpack5@6.5.16(@swc/core@1.13.5)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@storybook/manager-webpack5@6.5.16(@swc/core@1.13.5)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@swc/core@1.13.5)(@types/react@17.0.39)(@types/webpack@4.41.32)(encoding@0.1.13)(eslint@8.37.0)(prop-types@15.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)(require-from-string@2.0.2)(type-fest@4.15.0)(typescript@4.7.4)(webpack-dev-server@4.15.1(webpack@5.98.0(@swc/core@1.13.5)))(webpack-hot-middleware@2.25.1):
     dependencies:
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.28.4)
       '@babel/polyfill': 7.12.1
       '@emotion/styled': 10.3.0(@emotion/core@10.3.1(react@18.2.0))(react@18.2.0)
-      '@storybook/addon-info': 5.3.21(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)
-      '@storybook/components': 5.3.22(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/addon-info': 5.3.21(@types/react@17.0.39)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(regenerator-runtime@0.13.11)
+      '@storybook/components': 5.3.22(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/react': 6.5.16(@babel/core@7.28.4)(@storybook/builder-webpack5@6.5.16(@swc/core@1.13.5)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@storybook/manager-webpack5@6.5.16(@swc/core@1.13.5)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@4.7.4))(@swc/core@1.13.5)(@types/webpack@4.41.32)(encoding@0.1.13)(eslint@8.37.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(require-from-string@2.0.2)(type-fest@4.15.0)(typescript@4.7.4)(webpack-dev-server@4.15.1(webpack@5.98.0(@swc/core@1.13.5)))(webpack-hot-middleware@2.25.1)
       marksy: 2.0.1
       prop-types: 15.8.1
@@ -35417,9 +35421,11 @@ snapshots:
       querystringify: 2.2.0
       requires-port: 1.0.0
 
-  use-callback-ref@1.2.5(react@18.2.0):
+  use-callback-ref@1.2.5(@types/react@17.0.39)(react@18.2.0):
     dependencies:
       react: 18.2.0
+    optionalDependencies:
+      '@types/react': 17.0.39
 
   use-debounce@10.0.0(react@18.2.0):
     dependencies:

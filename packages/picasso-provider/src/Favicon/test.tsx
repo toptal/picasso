@@ -1,7 +1,21 @@
 import React from 'react'
-import { render, waitFor } from '@toptal/picasso-test-utils'
+import { render as baseRender, waitFor } from '@testing-library/react'
 
+import Picasso from '../Picasso'
 import { Favicon } from './Favicon'
+
+const render: typeof baseRender = ui =>
+  baseRender(
+    <Picasso
+      loadFavicon={false}
+      loadFonts={false}
+      fixViewport={false}
+      preventPageWidthChangeOnScrollbar={false}
+      disableTransitions
+    >
+      {ui}
+    </Picasso>
+  )
 
 describe('Favicon', () => {
   it('renders', async () => {

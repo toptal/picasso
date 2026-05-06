@@ -36,14 +36,9 @@
     "react-helmet-async": "2.0.3"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "2.0.0",
+    "@testing-library/react": "^14.1.2",
     "@types/classnames": "^2.3.1",
     "shelljs": "^0.8.5"
-  },
-  "nx": {
-    "implicitDependencies": [
-      "!@toptal/picasso-test-utils"
-    ]
   },
   "files": [
     "dist-package/**",
