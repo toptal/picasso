@@ -682,13 +682,72 @@ const gh = {
       args.push('--assignee', assignee)
     }
 
-    const result = await shell('gh', args, { cwd: opts.cwd })
+    // Resilience — `gh pr create` IS retry-safe despite being a write API:
+    //   1. GitHub's REST/GraphQL idempotently rejects a second create for
+    //      the same branch with "a pull request for branch X already
+    //      exists" (no duplicate-PR hazard).
+    //   2. If the server committed but the response 504'd (canary 27),
+    //      the duplicate-detection branch finds the existing PR and we
+    //      return its URL via `gh pr list --head <branch>`.
+    // Same retry budget + transient-error filter as gh.viewPR.
+    const maxAttempts = 4
+    const baseDelayMs = 3000
 
-    if (result.exitCode !== 0) {
-      throw new Error(`gh pr create failed: ${result.stderr || result.stdout}`)
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      const result = await shell('gh', args, { cwd: opts.cwd })
+
+      if (result.exitCode === 0) {
+        return result.stdout.trim()
+      }
+      const msg = result.stderr || result.stdout
+
+      // "PR already exists" — server accepted a previous (504-truncated)
+      // attempt. Recover the URL via list lookup.
+      if (/already exists/i.test(msg)) {
+        log('gh', `PR for ${opts.head} already exists; recovering URL`)
+        const list = await shell(
+          'gh',
+          [
+            'pr',
+            'list',
+            '--head',
+            opts.head,
+            '--json',
+            'url',
+            '--state',
+            'open',
+          ],
+          { cwd: opts.cwd }
+        )
+
+        if (list.exitCode === 0) {
+          const parsed = JSON.parse(list.stdout) as { url: string }[]
+
+          if (parsed.length > 0) {return parsed[0].url}
+        }
+        throw new Error(
+          `gh pr create reported "already exists" but lookup failed: ${msg}`
+        )
+      }
+
+      const isTransient = /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
+        msg
+      )
+
+      if (!isTransient || attempt === maxAttempts) {
+        throw new Error(
+          `gh pr create failed (attempt ${attempt}/${maxAttempts}): ${msg}`
+        )
+      }
+      const backoffMs = baseDelayMs * 2 ** (attempt - 1)
+
+      log(
+        'gh',
+        `transient error on gh pr create (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms: ${msg.slice(0, 120).replace(/\n.*/s, '')}`
+      )
+      await sleep(backoffMs)
     }
-
-    return result.stdout.trim()
+    throw new Error('gh pr create: exhausted retries (unreachable)')
   },
 
   async viewPR(
@@ -696,17 +755,48 @@ const gh = {
     fields: string,
     cwd: string
   ): Promise<unknown> {
-    const result = await shell(
-      'gh',
-      ['pr', 'view', numberOrUrl, '--json', fields],
-      { cwd }
-    )
+    // Resilience — read API calls retry on GitHub transient errors (504
+    // Gateway Timeout, 502 Bad Gateway, 503 Service Unavailable,
+    // ECONNRESET, etc.). The CI poll loop calls this 30+ times per cycle;
+    // a single transient blip otherwise kills the whole run. Empirically
+    // hit on canary 26 (PR #4932): one 504 mid-poll → orchestrator died
+    // → wasted iter budget on what was just GitHub having a moment.
+    //
+    // Write APIs (createPR, mergePR, comment) are NOT wrapped — retrying
+    // could create duplicate PRs / stack merge attempts. Read-only calls
+    // are safe to retry.
+    const maxAttempts = 4
+    const baseDelayMs = 3000
 
-    if (result.exitCode !== 0) {
-      throw new Error(`gh pr view failed: ${result.stderr || result.stdout}`)
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      const result = await shell(
+        'gh',
+        ['pr', 'view', numberOrUrl, '--json', fields],
+        { cwd }
+      )
+
+      if (result.exitCode === 0) {
+        return JSON.parse(result.stdout)
+      }
+      const msg = result.stderr || result.stdout
+      const isTransient = /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
+        msg
+      )
+
+      if (!isTransient || attempt === maxAttempts) {
+        throw new Error(
+          `gh pr view failed (attempt ${attempt}/${maxAttempts}): ${msg}`
+        )
+      }
+      const backoffMs = baseDelayMs * 2 ** (attempt - 1)
+
+      log(
+        'gh',
+        `transient error on gh pr view (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms: ${msg.slice(0, 120).replace(/\n.*/s, '')}`
+      )
+      await sleep(backoffMs)
     }
-
-    return JSON.parse(result.stdout)
+    throw new Error('gh pr view: exhausted retries (unreachable)')
   },
 
   /**
@@ -807,7 +897,13 @@ const gh = {
       await sleep(intervalMs)
     }
 
-    // Timeout: snapshot whatever we have at exit.
+    // Wall-clock budget exhausted. Take a final snapshot — if all
+    // checks reached a terminal state during the last sleep window, the
+    // run is actually success/failure (deadline fired between poll and
+    // sleep, missing the natural exit). Empirically observed on canary
+    // 25 (PR #4931): Happo transitioned PENDING → SUCCESS in the final
+    // ~60s of a 15min window; without this branch the orchestrator
+    // wrongly escalated as "timeout with 0 pending".
     const view = (await gh.viewPR(
       numberOrUrl,
       'statusCheckRollup',
@@ -821,6 +917,16 @@ const gh = {
       detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
     }))
     const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+
+    if (pending.length === 0) {
+      const failed = snapshot.filter((c) =>
+        FAILURE_CONCLUSIONS.has(c.conclusion)
+      )
+
+      return failed.length === 0
+        ? { state: 'success', checks: snapshot }
+        : { state: 'failure', failed, checks: snapshot }
+    }
 
     return { state: 'timeout', pending, checks: snapshot }
   },
@@ -858,6 +964,10 @@ const gh = {
    * normalize into the `Review` shape the classifier expects, and return
    * deduplicated entries. We treat formal reviews and issue comments
    * uniformly: both can carry signal (LGTM, nit, question).
+   *
+   * Each entry carries an `at` timestamp (ISO) so the sweep can filter
+   * to only NEW reviews since `last_review_seen_at`. Reviews use
+   * `submittedAt`; issue comments use `createdAt`.
    */
   async fetchReviews(numberOrUrl: string, cwd: string): Promise<RawReview[]> {
     const view = (await gh.viewPR(
@@ -865,8 +975,17 @@ const gh = {
       'reviews,comments',
       cwd
     )) as {
-      reviews?: { state?: string; body?: string; author?: { login?: string } }[]
-      comments?: { body?: string; author?: { login?: string } }[]
+      reviews?: {
+        state?: string
+        body?: string
+        submittedAt?: string
+        author?: { login?: string }
+      }[]
+      comments?: {
+        body?: string
+        createdAt?: string
+        author?: { login?: string }
+      }[]
     } | null
 
     const reviews = view?.reviews ?? []
@@ -878,6 +997,7 @@ const gh = {
         state: r.state ?? '',
         body: r.body ?? '',
         author: r.author?.login ?? '',
+        at: r.submittedAt ?? '',
       })
     }
     for (const c of comments) {
@@ -885,6 +1005,7 @@ const gh = {
         state: '',
         body: c.body ?? '',
         author: c.author?.login ?? '',
+        at: c.createdAt ?? '',
       })
     }
 
@@ -1516,8 +1637,16 @@ export async function runReviewSweep(
   await loadEnvrcUpwards(rootDir)
 
   const m = manifest.read(manifestAbs)
+  // Sweep candidates: any item that's been pushed to GitHub and could
+  // have a state change. ready_to_merge items are included so the
+  // operator's manual merge is detected on the next sweep tick (Tier
+  // 2.4: post-merge reference populate).
   const candidates = Object.values(m.components).filter(
-    (i) => i.status === 'awaiting_review' && i.pr && i.branch && i.worktree
+    (i) =>
+      (i.status === 'awaiting_review' || i.status === 'ready_to_merge') &&
+      i.pr &&
+      i.branch &&
+      i.worktree
   )
 
   if (candidates.length === 0) {
@@ -1559,9 +1688,55 @@ async function sweepOne(
   const wtPath = path.join(rootDir, item.worktree as string)
   const prUrl = item.pr as string
 
-  // Worktree must still exist; if not, escalate (extending sweep to
-  // re-create worktrees is out of scope for the first cut — operator
-  // can manually re-create or run migrate again).
+  // Tier 2.4 — first, check if the operator already merged the PR.
+  // If yes, transition to done + run post-merge hook (reference copy)
+  // and skip review processing for this sweep tick.
+  const prState = (await gh.viewPR(prUrl, 'state,mergedAt', wtPath).catch(() => null)) as
+    | { state?: string; mergedAt?: string | null }
+    | null
+
+  if (prState?.state === 'MERGED') {
+    manifest.update(manifestAbs, item.id, {
+      status: 'done',
+      merged_at: prState.mergedAt ?? ISO(),
+    })
+    log('sweep', `${item.id}: PR merged — status=done`)
+    if (workflow.onPostMerge) {
+      try {
+        await workflow.onPostMerge(item, rootDir)
+      } catch (err) {
+        log('sweep', `${item.id}: onPostMerge hook failed (non-fatal): ${(err as Error).message}`)
+      }
+    }
+
+    return
+  }
+
+  if (prState?.state === 'CLOSED') {
+    // PR closed without merge — operator decided not to ship. Mark
+    // blocked so subsequent sweeps don't keep checking.
+    manifest.update(manifestAbs, item.id, {
+      status: 'blocked',
+      escalation_reason: 'PR closed without merge',
+    })
+    log('sweep', `${item.id}: PR closed without merge — status=blocked`)
+
+    return
+  }
+
+  // PR is still open. ready_to_merge items just keep waiting; nothing
+  // for sweep to do beyond merge-detection (operator merges manually
+  // per their preference).
+  if (item.status === 'ready_to_merge') {
+    log('sweep', `${item.id}: ready_to_merge, awaiting operator merge`)
+
+    return
+  }
+
+  // Worktree must still exist for review-driven iteration; if not,
+  // escalate (extending sweep to re-create worktrees is out of scope
+  // for the first cut — operator can manually re-create or run migrate
+  // again).
   if (!existsSync(wtPath)) {
     manifest.update(manifestAbs, item.id, {
       status: 'needs_human',
@@ -1572,21 +1747,26 @@ async function sweepOne(
     return
   }
 
-  // Fetch reviews. Filter to those newer than last_review_seen_at.
+  // Fetch reviews. Filter to those newer than last_review_seen_at via
+  // each review's `submittedAt` / `createdAt` ISO timestamp (now exposed
+  // by gh.fetchReviews). On the first sweep tick (no marker), all
+  // reviews are processed.
   const allReviews = await gh.fetchReviews(prUrl, wtPath)
-  const since = item.last_review_seen_at ? Date.parse(item.last_review_seen_at) : 0
+  const since = item.last_review_seen_at
+    ? Date.parse(item.last_review_seen_at)
+    : 0
   const newReviews = allReviews.filter((r) => {
-    // gh.fetchReviews doesn't currently return timestamps — extend below.
-    // For first cut: when last_review_seen_at is set, treat ALL fetched
-    // reviews as already-seen. Operator clears the marker (or the
-    // orchestrator does on iteration) to re-process.
-    return since === 0 || (r as { _ts?: number })._ts === undefined
-      ? since === 0
-      : ((r as { _ts?: number })._ts as number) > since
+    if (!r.at) {return true} // missing timestamp → process (safe default)
+    const t = Date.parse(r.at)
+
+    return Number.isNaN(t) ? true : t > since
   })
 
   if (newReviews.length === 0) {
-    log('sweep', `${item.id}: no new reviews since ${item.last_review_seen_at ?? 'never'}`)
+    log(
+      'sweep',
+      `${item.id}: ${allReviews.length} review(s) total, 0 newer than ${item.last_review_seen_at ?? 'never'}`
+    )
 
     return
   }
@@ -1914,6 +2094,7 @@ export async function run(
         item,
         iterations: 0,
         lastGate: null,
+        gateHistory: [],
         ciFailures: [],
         architecturalReviews: 0,
         startedAt: ISO(),
@@ -1966,6 +2147,7 @@ export async function run(
           item,
           iterations: 0,
           lastGate: null,
+          gateHistory: [],
           ciFailures: [],
           architecturalReviews: 0,
           startedAt: ISO(),
@@ -1983,6 +2165,7 @@ export async function run(
     item,
     iterations: 0,
     lastGate: null,
+    gateHistory: [],
     ciFailures: [],
     architecturalReviews: 0,
     startedAt: ISO(),
@@ -2088,6 +2271,7 @@ export async function run(
     )
 
     state.lastGate = gateReport
+    state.gateHistory = [...state.gateHistory, gateReport]
     manifest.update(manifestAbs, item.id, { iterations: state.iterations })
 
     if (workflow.successCriteria(gateReport)) {
