@@ -47,6 +47,7 @@ import {
   aggregateReviewDecisions,
   type Review as RawReview,
 } from './review-classifier'
+import { appendCostSnapshot } from './token-telemetry'
 import type {
   EscalationDecision,
   GateReport,
@@ -284,6 +285,39 @@ async function loadEnvrcUpwards(cwd: string): Promise<readonly string[]> {
   }
 
   return injected
+}
+
+/**
+ * Tier 2 batch B / Slice 3 — log a non-fatal warning if telemetry fails.
+ * Token snapshots are best-effort: if Claude Code didn't write a session
+ * jsonl (yet), or our jsonl parser hits a malformed line, we'd rather
+ * carry on than abort the canary.
+ */
+async function recordTokenSnapshot(
+  runDir: string,
+  itemId: string,
+  sessionId: string,
+  iteration: number,
+  cwd: string
+): Promise<void> {
+  try {
+    const usage = await appendCostSnapshot({
+      runDir,
+      itemId,
+      sessionId,
+      iteration,
+      cwd,
+    })
+
+    if (usage) {
+      log(
+        'cost',
+        `iter ${iteration}: total $${usage.costUsd.toFixed(3)} (in=${usage.inputTokens}, out=${usage.outputTokens}, cache_read=${usage.cacheReadTokens})`
+      )
+    }
+  } catch (err) {
+    log('cost', `snapshot failed (non-fatal): ${(err as Error).message}`)
+  }
 }
 
 async function detectNoProgressFailure(
@@ -593,9 +627,12 @@ const worktree = {
 
 const gate = {
   /**
-   * Run the workflow's gate command and parse the resulting report.md.
-   * Looks for a "**Composite:** PASS" / "FAIL" marker emitted by
-   * `bin/migration-gate.sh`.
+   * Run the workflow's gate command and consume its report.
+   *
+   * Tier 2.2 — prefers `report.json` (structured, schema-stable) when
+   * present; falls back to regex-parsing `report.md` for backward-compat
+   * with worktrees forked before the JSON emit landed. Both formats
+   * carry the same data; JSON just removes the parser brittleness.
    */
   async run(
     workflowGateCmd: string,
@@ -614,17 +651,40 @@ const gate = {
       `exit=${result.exitCode} (${result.stdout.length} bytes stdout, ${result.stderr.length} bytes stderr)`
     )
 
-    const reportPath = path.join(
-      cwd,
-      'migration-runs',
-      runDate,
-      itemId,
-      'report.md'
-    )
+    const reportDir = path.join(cwd, 'migration-runs', runDate, itemId)
+    const reportPath = path.join(reportDir, 'report.md')
+    const jsonReportPath = path.join(reportDir, 'report.json')
 
     let stages: GateReport['stages'] = []
     let composite: GateReport['composite'] = result.exitCode === 0 ? 'PASS' : 'FAIL'
 
+    // Tier 2.2 — prefer JSON.
+    if (existsSync(jsonReportPath)) {
+      try {
+        const body = readFileSync(jsonReportPath, 'utf8')
+        const parsed = JSON.parse(body) as {
+          composite: 'PASS' | 'FAIL'
+          stages: {
+            name: string
+            status: 'PASS' | 'FAIL' | 'SKIP'
+            durationSeconds: number
+            logPath: string
+          }[]
+        }
+
+        composite = parsed.composite
+        stages = parsed.stages
+
+        return { composite, stages, reportPath }
+      } catch (err) {
+        log(
+          'gate',
+          `report.json parse failed (${(err as Error).message}); falling back to report.md`
+        )
+      }
+    }
+
+    // Fallback: parse the markdown report.
     if (existsSync(reportPath)) {
       const body = readFileSync(reportPath, 'utf8')
       // Parse "| <name> | <status> | <Ns> | `<log>` |" rows.
@@ -952,9 +1012,11 @@ const gh = {
    * detailsUrl format: `https://github.com/<owner>/<repo>/actions/runs/<run>/job/<jobId>`
    * `gh api repos/<owner>/<repo>/actions/jobs/<jobId>/logs` → text.
    *
-   * Returns empty string on any error (best-effort; the caller will handle a
-   * missing log gracefully — a missing log just leads to "unclassified" →
-   * escalation, which is the safe default).
+   * Returns empty string on any error after retry exhaustion (best-effort
+   * — caller handles missing log gracefully via classifier's "unclassified
+   * → escalate" branch). Transient 5xx / network failures retried up to
+   * `maxAttempts` with exp backoff; unrecoverable errors (404, malformed
+   * URL) return empty immediately.
    */
   async fetchJobLog(detailsUrl: string, cwd: string): Promise<string> {
     const m = detailsUrl.match(
@@ -963,13 +1025,44 @@ const gh = {
 
     if (!m) {return ''}
     const [, owner, repo, jobId] = m
-    const result = await shell(
-      'gh',
-      ['api', `repos/${owner}/${repo}/actions/jobs/${jobId}/logs`],
-      { cwd }
-    )
+    const maxAttempts = 4
+    const baseDelayMs = 3000
 
-    return result.exitCode === 0 ? result.stdout : ''
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      const result = await shell(
+        'gh',
+        ['api', `repos/${owner}/${repo}/actions/jobs/${jobId}/logs`],
+        { cwd }
+      )
+
+      if (result.exitCode === 0) {return result.stdout}
+      const msg = result.stderr || result.stdout
+
+      // Permanent errors (404 — job deleted/not found, malformed) → bail
+      // immediately. Transient errors retry.
+      if (/HTTP 404|Not Found/i.test(msg)) {return ''}
+      const isTransient = /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
+        msg
+      )
+
+      if (!isTransient || attempt === maxAttempts) {
+        log(
+          'gh',
+          `fetchJobLog gave up (attempt ${attempt}/${maxAttempts}): ${msg.slice(0, 120).replace(/\n.*/s, '')}`
+        )
+
+        return ''
+      }
+      const backoffMs = baseDelayMs * 2 ** (attempt - 1)
+
+      log(
+        'gh',
+        `transient error on fetchJobLog (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms`
+      )
+      await sleep(backoffMs)
+    }
+
+    return ''
   },
 
   /**
@@ -1691,6 +1784,134 @@ export async function runReviewSweep(
   return { status: 'no-work' }
 }
 
+/**
+ * Tier 2 batch B / Slice 4 — sweep-driven Happo-only-flake retry.
+ *
+ * Returns:
+ *   - `'not-applicable'` — CI not in the Happo-only-failure shape, or
+ *     pending checks still running, or no worktree to push from.
+ *     Caller should continue with normal review processing.
+ *   - `'rerun-pushed'` — empty commit pushed; status stays awaiting_review
+ *     for the next sweep tick to re-evaluate.
+ *   - `'budget-exhausted'` — Happo failed once too often; status flipped
+ *     to needs_human.
+ *
+ * The "Happo-only" shape is checked strictly: ALL non-Happo checks must
+ * be in a non-failure terminal state, and at least one Happo check must
+ * be in a failure conclusion. If non-Happo checks are pending, we wait
+ * (return not-applicable; sweep will retry next tick).
+ */
+async function tryHappoOnlyRerun(
+  workflow: Workflow,
+  item: ManifestItem,
+  manifestAbs: string,
+  wtPath: string
+): Promise<'not-applicable' | 'rerun-pushed' | 'budget-exhausted'> {
+  const prUrl = item.pr as string
+  const view = (await gh.viewPR(prUrl, 'statusCheckRollup', wtPath).catch(
+    () => null
+  )) as { statusCheckRollup?: readonly RawCheckEntry[] } | null
+
+  const rollup = view?.statusCheckRollup ?? []
+
+  if (rollup.length === 0) {return 'not-applicable'}
+  const isHappo = (name: string): boolean => /^Happo\b/i.test(name)
+  const isTerminalConclusion = (s: string): boolean =>
+    FAILURE_CONCLUSIONS.has(s) ||
+    s === 'SUCCESS' ||
+    s === 'NEUTRAL' ||
+    s === 'SKIPPED'
+  const norm = rollup.map((c) => ({
+    name: c.name ?? c.context ?? '(unnamed)',
+    status: (c.status ?? c.state ?? '').toUpperCase(),
+    conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
+  }))
+  // Any pending non-Happo? Wait next sweep.
+  const pendingNonHappo = norm.filter(
+    (c) => !isHappo(c.name) && !isTerminalConclusion(c.conclusion)
+  )
+
+  if (pendingNonHappo.length > 0) {return 'not-applicable'}
+
+  const failingNonHappo = norm.filter(
+    (c) => !isHappo(c.name) && FAILURE_CONCLUSIONS.has(c.conclusion)
+  )
+
+  if (failingNonHappo.length > 0) {return 'not-applicable'}
+  const failingHappo = norm.filter(
+    (c) => isHappo(c.name) && FAILURE_CONCLUSIONS.has(c.conclusion)
+  )
+
+  if (failingHappo.length === 0) {return 'not-applicable'}
+
+  // Happo-only-flake shape confirmed.
+  const seenReruns = item.sweep_happo_reruns ?? 0
+
+  if (seenReruns >= workflow.maxSweepHappoReruns) {
+    manifest.update(manifestAbs, item.id, {
+      status: 'needs_human',
+      escalation_reason: `Happo Cypress failed after ${seenReruns} sweep rerun(s) — likely a real visual regression`,
+    })
+    log(
+      'sweep',
+      `${item.id}: Happo-only failure persists after ${seenReruns} sweep rerun(s); escalated`
+    )
+
+    return 'budget-exhausted'
+  }
+
+  log(
+    'sweep',
+    `${item.id}: Happo-only failure detected; pushing empty-commit retrigger (${seenReruns + 1}/${workflow.maxSweepHappoReruns})`
+  )
+  const emptyMsg =
+    `chore(${item.id}): retrigger Happo [sweep-rerun ${seenReruns + 1}]\n\n` +
+    `Sweep detected Happo (Picasso/Cypress) as the sole failing check ` +
+    `with all other CI green. Pushing an empty commit to filter transient flake.\n\n` +
+    'Refs: PF-1994'
+  const msgFile = path.join(
+    os.tmpdir(),
+    `commit-msg-sweep-${item.id.replace(/\//g, '__')}.${seenReruns + 1}.${process.pid}`
+  )
+
+  await fs.writeFile(msgFile, emptyMsg, 'utf8')
+  const commit = await shell(
+    'git',
+    ['commit', '--allow-empty', '--no-verify', '--file', msgFile],
+    { cwd: wtPath }
+  )
+
+  if (commit.exitCode !== 0) {
+    log(
+      'sweep',
+      `${item.id}: empty commit failed (exit ${commit.exitCode}); skipping rerun this tick`
+    )
+
+    return 'not-applicable'
+  }
+  const push = await shell(
+    'git',
+    ['push', '--no-verify', 'origin', item.branch as string],
+    { cwd: wtPath }
+  )
+
+  if (push.exitCode !== 0) {
+    log(
+      'sweep',
+      `${item.id}: push failed: ${push.stderr.slice(0, 200)}; skipping rerun this tick`
+    )
+
+    return 'not-applicable'
+  }
+
+  manifest.update(manifestAbs, item.id, {
+    sweep_happo_reruns: seenReruns + 1,
+  })
+  log('sweep', `${item.id}: pushed Happo retrigger; CI will re-evaluate`)
+
+  return 'rerun-pushed'
+}
+
 async function sweepOne(
   workflow: Workflow,
   opts: OrchestratorOptions,
@@ -1744,6 +1965,29 @@ async function sweepOne(
     log('sweep', `${item.id}: ready_to_merge, awaiting operator merge`)
 
     return
+  }
+
+  // Tier 2 batch B / Slice 4 — Happo-only flake detection.
+  // If the only failing check is Happo (Cypress) AND every other check
+  // is green, retry once via empty-commit push. Bounded by
+  // workflow.maxSweepHappoReruns to prevent infinite retries on real
+  // visual regressions. Skipped when worktree is gone (we'd need it to
+  // push from).
+  if (existsSync(wtPath)) {
+    const happoRerun = await tryHappoOnlyRerun(
+      workflow,
+      item,
+      manifestAbs,
+      wtPath
+    )
+
+    if (happoRerun === 'rerun-pushed' || happoRerun === 'budget-exhausted') {
+      // Either we kicked CI off again (status stays awaiting_review for
+      // next sweep tick) or we marked needs_human. Either way, no
+      // review-iteration this sweep tick.
+      return
+    }
+    // happoRerun === 'not-applicable' → fall through to review processing
   }
 
   // Worktree must still exist for review-driven iteration; if not,
@@ -1861,6 +2105,18 @@ async function sweepOne(
       isFirstIteration,
     },
     agentLogPath
+  )
+
+  // Slice 3 — token snapshot for the sweep iteration's agent call.
+  // We use a synthetic iteration number (review-iter offset by 1000)
+  // so cost.json's snapshot list distinguishes inner-loop iters from
+  // review-driven iters.
+  await recordTokenSnapshot(
+    runDir,
+    item.id,
+    sessionId,
+    1000 + reviewIters,
+    wtPath
   )
 
   if (agentResult.exitCode !== 0) {
@@ -2244,6 +2500,17 @@ export async function run(
         isFirstIteration: state.iterations === 1,
       },
       agentLogPath
+    )
+
+    // Tier 2 batch B / Slice 3 — token telemetry. Snapshot the session
+    // log AFTER every agent.invoke (success or failure) so cost.json
+    // tracks the full canary cost including failed iters.
+    await recordTokenSnapshot(
+      runDir,
+      item.id,
+      sessionId,
+      state.iterations,
+      wtPath
     )
 
     if (agentResult.exitCode !== 0) {
@@ -2682,6 +2949,15 @@ export async function run(
           isFirstIteration: false,
         },
         agentLogPath
+      )
+
+      // Slice 3 — token snapshot for the CI iteration's agent call.
+      await recordTokenSnapshot(
+        runDir,
+        item.id,
+        sessionId,
+        state.iterations,
+        wtPath
       )
 
       if (agentResult.exitCode !== 0) {
