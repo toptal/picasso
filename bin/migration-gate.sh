@@ -307,9 +307,29 @@ else
 fi
 
 # ---------- report ---------------------------------------------------------
+#
+# Two parallel formats. Tier 2.2 (structured JSON gate report).
+#   - report.md  — human-readable; surfaces failed-log tails for review.
+#   - report.json — machine-readable; orchestrator + classifier consume
+#                   this directly instead of regex-parsing the markdown.
+#                   Schema mirrors `GateReport` in bin/lib/workflow.ts.
+#
+# Stable JSON is more important than pretty markdown for downstream
+# automation (CI poll-loop, lessons extraction, future telemetry). The
+# orchestrator prefers report.json when present; falls back to report.md
+# parsing for backward-compat with worktrees that still have the old
+# gate.sh.
 
 REPORT="$RUN_DIR/report.md"
+JSON_REPORT="$RUN_DIR/report.json"
 EXIT=0
+
+# Determine composite first (loops below depend on it).
+for i in "${!STAGES[@]}"; do
+  if [ "${STATUSES[$i]}" = "FAIL" ]; then EXIT=1; fi
+done
+
+# --- markdown ---
 {
   echo "# $COMPONENT — gate report"
   echo
@@ -322,9 +342,7 @@ EXIT=0
   echo "| Stage | Status | Duration | Log |"
   echo "|---|---|---|---|"
   for i in "${!STAGES[@]}"; do
-    local_status="${STATUSES[$i]}"
-    if [ "$local_status" = "FAIL" ]; then EXIT=1; fi
-    echo "| ${STAGES[$i]} | $local_status | ${DURATIONS[$i]}s | \`$RUN_DIR/${STAGES[$i]}.log\` |"
+    echo "| ${STAGES[$i]} | ${STATUSES[$i]} | ${DURATIONS[$i]}s | \`$RUN_DIR/${STAGES[$i]}.log\` |"
   done
   echo
   if [ $EXIT -eq 0 ]; then
@@ -346,6 +364,38 @@ EXIT=0
   fi
 } >"$REPORT"
 
+# --- JSON ---
+# Hand-rolled to avoid a jq dependency. All values controlled inputs; no
+# user content goes into the JSON keys. Stage names + log paths are
+# orchestrator-controlled.
+composite_str="PASS"
+[ $EXIT -ne 0 ] && composite_str="FAIL"
+
+{
+  echo "{"
+  echo "  \"component\": \"$COMPONENT\","
+  echo "  \"package\": \"$PKG_PATH\","
+  echo "  \"workspace\": \"$WORKSPACE_NAME\","
+  echo "  \"runDate\": \"$DATE\","
+  echo "  \"composite\": \"$composite_str\","
+  echo "  \"stages\": ["
+  last_idx=$(( ${#STAGES[@]} - 1 ))
+  for i in "${!STAGES[@]}"; do
+    sep=","
+    [ "$i" -eq "$last_idx" ] && sep=""
+    echo "    {"
+    echo "      \"name\": \"${STAGES[$i]}\","
+    echo "      \"status\": \"${STATUSES[$i]}\","
+    echo "      \"durationSeconds\": ${DURATIONS[$i]},"
+    echo "      \"logPath\": \"$RUN_DIR/${STAGES[$i]}.log\""
+    echo "    }$sep"
+  done
+  echo "  ],"
+  echo "  \"reportPath\": \"$REPORT\""
+  echo "}"
+} >"$JSON_REPORT"
+
 echo
-echo "Report: $REPORT"
+echo "Report (md):   $REPORT"
+echo "Report (json): $JSON_REPORT"
 exit $EXIT

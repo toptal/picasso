@@ -71,6 +71,15 @@ export interface ManifestItem {
   /** Phase 3.5 — count of agent iterations driven by review feedback. */
   review_iterations?: number
   /**
+   * Tier 2 batch B / Slice 4 — count of Happo-only-flake reruns
+   * triggered by `--review-sweep` (separate budget from the inner-loop
+   * `maxReruns` consumed during canary creation). Caps the number of
+   * times sweep will push an empty-commit retrigger when only Happo
+   * Cypress fails. Beyond this cap, Happo is treated as a persistent
+   * regression → escalate to `needs_human`.
+   */
+  sweep_happo_reruns?: number
+  /**
    * Phase 3.5 — Anthropic session ID generated at first migration
    * iteration. Reused on subsequent migration iterations + review-sweep
    * iterations so the agent retains context across hours/days. Cleared
@@ -302,6 +311,20 @@ export interface OrchestratorOptions {
    * Default: 1 (one rerun → escalate on second failure).
    */
   readonly maxReruns: number
+
+  /**
+   * Tier 2 batch B / Slice 4 — sweep-driven Happo-rerun budget.
+   *
+   * `--review-sweep` periodically checks each `awaiting_review` item.
+   * If the only failing check is Happo (Cypress) AND every other check
+   * is green, sweep pushes an empty commit to retrigger CI. This is a
+   * second-line defense against Happo flake (the first being Phase
+   * 3.3's `auto-fix-rerun` during canary creation). Each sweep rerun
+   * burns one slot from this budget; exhaustion → status=needs_human.
+   *
+   * Default: 2 (two sweep retries before giving up).
+   */
+  readonly maxSweepHappoReruns: number
 
   /**
    * Phase 3.5 — wall-clock budget for polling PR reviews after CI is green.
