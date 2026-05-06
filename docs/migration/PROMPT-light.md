@@ -61,7 +61,17 @@ Output: file edits only. No explanations.
 
 ### Acceptance criteria — iterate to working, then run full
 
-You have Bash access for **verification only** (`yarn typecheck`, `yarn workspace:*`, `yarn davinci-qa:*`, `yarn lint:*`, `git diff/status/log`). Use it to self-verify between edits — don't wait for the orchestrator's outer-loop gate.
+You have Bash access for **verification only** (`yarn typecheck`, `yarn workspace:*`, `yarn davinci-qa:*`, `yarn lint:*`, `yarn cypress:*`, `yarn happo:*`, `yarn info:*`, `npm view:*`, `git diff/status/log/show/blame`). Use it to self-verify between edits — don't wait for the orchestrator's outer-loop gate.
+
+For the fastest inner-loop feedback on lint, scope to the migrating package's src instead of running repo-wide:
+
+```bash
+yarn davinci-syntax lint code --check packages/base/<NAME>/src
+# Auto-fix on the same scope:
+yarn davinci-syntax lint code packages/base/<NAME>/src
+```
+
+This is ~12x faster than `yarn lint` (which lints the whole repo). Use the scoped form for iterative fixing; the orchestrator's outer-loop gate runs the same scoped command for its lint stage.
 
 If `--with-mcp` was passed to the orchestrator, you also have **Playwright MCP** tools and a Storybook server running at `http://localhost:9001`. Use them to verify visual + runtime behavior:
 

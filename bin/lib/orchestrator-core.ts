@@ -36,6 +36,7 @@
  */
 
 import { spawn, spawnSync, type SpawnOptions } from 'node:child_process'
+import { randomUUID } from 'node:crypto'
 import { promises as fs, existsSync, readFileSync, writeFileSync } from 'node:fs'
 import * as path from 'node:path'
 import * as os from 'node:os'
@@ -464,19 +465,35 @@ interface AgentInvocation {
    * Storybook is running before invoke and tearing it down after.
    */
   withMcp?: boolean
+  /**
+   * Session continuity across iterations — Tier 2.1 of post-canary-15 plan.
+   * Iteration 1: pass `--session-id <uuid>` so claude tags the conversation.
+   * Iteration 2+: pass `--resume <uuid>` so claude continues the same
+   * conversation with prior message history in context. Cuts re-sent token
+   * count + preserves the agent's reasoning state across attempts.
+   */
+  sessionId?: string
+  /** True for iter 1 (use --session-id); false for iter 2+ (use --resume). */
+  isFirstIteration?: boolean
 }
 
 const agent = {
   /**
    * Assemble a prompt by concatenating the workflow's promptFor(item) result,
    * contextPack, the per-item plan, and tier-conditional extras.
+   *
+   * On iteration 2+, also embeds the agent's accumulated diff (`git diff` in
+   * the worktree vs its HEAD) so the agent sees what it already changed
+   * across prior iterations and doesn't repeat or undo edits — Tier 1.1 of
+   * the post-canary-15 improvements plan.
    */
   async assemblePrompt(
     workflow: Workflow,
     item: ManifestItem,
     iteration: number,
     feedback: string | null,
-    repoRootDir: string
+    repoRootDir: string,
+    worktreePath?: string
   ): Promise<string> {
     const sections: string[] = []
 
@@ -540,12 +557,82 @@ const agent = {
       )
     }
 
+    // 5b. Accumulated diff so far — Tier 1.1.
+    // On iter 2+, run `git diff` inside the worktree to show all accumulated
+    // edits from prior iterations. The worktree's HEAD is the pre-iteration
+    // baseline (orchestrator commits only after gates pass). Truncate if huge
+    // to avoid context bloat.
+    if (iteration > 0 && worktreePath) {
+      const stat = await shell('git', ['diff', '--stat'], { cwd: worktreePath })
+      const patch = await shell('git', ['diff'], { cwd: worktreePath })
+
+      if (stat.exitCode === 0 && patch.exitCode === 0 && stat.stdout.trim()) {
+        const MAX_PATCH_BYTES = 50_000
+        const truncated = patch.stdout.length > MAX_PATCH_BYTES
+        const patchBody = truncated
+          ? patch.stdout.slice(0, MAX_PATCH_BYTES) +
+            `\n\n[truncated; full patch is ${patch.stdout.length} bytes — view via \`git diff\` in the worktree]`
+          : patch.stdout
+
+        sections.push(
+          `# Your diff so far (accumulated across ${iteration} prior iteration${iteration === 1 ? '' : 's'})\n\n` +
+            `Stats:\n\n\`\`\`\n${stat.stdout}\n\`\`\`\n\n` +
+            `Full patch:\n\n\`\`\`diff\n${patchBody}\n\`\`\`\n\n` +
+            `This is what you've already changed. Don't repeat or undo edits unless the gate report explicitly says they're wrong. Build on this state.`
+        )
+      }
+    }
+
     // 6. The item itself.
     sections.push(
       `# Item to migrate\n\n` +
         `Package directory: \`${item.package}\`\n` +
         `Manifest ID: \`${item.id}\`\n` +
         `Tier: ${item.tier}\n`
+    )
+
+    return sections.join('\n\n---\n\n')
+  },
+
+  /**
+   * Build a delta-only prompt for iter 2+ when session resume is in use.
+   * Claude keeps the iter-1 canonical prompt + rules + per-item plan in
+   * conversation memory; the orchestrator only needs to send the gate
+   * feedback + accumulated diff. Tier 2.1 of post-canary-15 plan.
+   */
+  async assembleDeltaPrompt(
+    iteration: number,
+    feedback: string | null,
+    worktreePath: string
+  ): Promise<string> {
+    const sections: string[] = []
+
+    sections.push(
+      `# Iteration ${iteration + 1} feedback\n\n` +
+        `The orchestrator ran the gate on your previous iteration. Failures:\n\n` +
+        (feedback ?? '_(no feedback available)_')
+    )
+
+    const stat = await shell('git', ['diff', '--stat'], { cwd: worktreePath })
+    const patch = await shell('git', ['diff'], { cwd: worktreePath })
+
+    if (stat.exitCode === 0 && patch.exitCode === 0 && stat.stdout.trim()) {
+      const MAX_PATCH_BYTES = 50_000
+      const patchBody = patch.stdout.length > MAX_PATCH_BYTES
+        ? patch.stdout.slice(0, MAX_PATCH_BYTES) +
+          `\n\n[truncated; full patch is ${patch.stdout.length} bytes — view via \`git diff\` in the worktree]`
+        : patch.stdout
+
+      sections.push(
+        `# Your accumulated diff so far\n\n` +
+          `Stats:\n\n\`\`\`\n${stat.stdout}\n\`\`\`\n\n` +
+          `Full patch:\n\n\`\`\`diff\n${patchBody}\n\`\`\``
+      )
+    }
+
+    sections.push(
+      `# What to do\n\n` +
+        `Apply the fixes implied by the gate report. Use Bash for self-verification before exiting (yarn typecheck, yarn davinci-syntax lint code --check packages/base/<NAME>/src, etc.). Don't fall back to \`any\` to placate lint warnings — preserve the public type and cast at the call site instead (per rules/api-preservation.md).`
     )
 
     return sections.join('\n\n---\n\n')
@@ -591,16 +678,26 @@ const agent = {
             'Read',
             'Glob',
             'Grep',
+            // Self-verification: yarn build / typecheck / lint / unit / cypress / happo
             'Bash(yarn typecheck)',
             'Bash(yarn typecheck:*)',
             'Bash(yarn lint:*)',
             'Bash(yarn workspace:*)',
+            'Bash(yarn workspaces info)',
             'Bash(yarn davinci-qa:*)',
             'Bash(yarn build:package)',
+            'Bash(yarn cypress:*)',
+            'Bash(yarn test:integration:*)',
             'Bash(yarn happo:*)',
+            // Live npm-registry lookups for "what does package X export at v Y"
+            'Bash(yarn info:*)',
+            'Bash(npm view:*)',
+            // Read-only git inspection (diff/status/log/show/blame)
             'Bash(git diff:*)',
             'Bash(git status:*)',
             'Bash(git log:*)',
+            'Bash(git show:*)',
+            'Bash(git blame:*)',
           ]
           const mcpTools = inv.withMcp
             ? [
@@ -621,6 +718,18 @@ const agent = {
 
           if (inv.withMcp) {
             args.push('--mcp-config', 'bin/lib/agent-mcp-config.json')
+          }
+
+          // Session continuity (Tier 2.1). On iter 1, set the session id so
+          // claude tags the conversation. On iter 2+, resume it — claude has
+          // the full prior message history in context, so the orchestrator
+          // sends only the delta (gate report + new diff).
+          if (inv.sessionId) {
+            if (inv.isFirstIteration) {
+              args.push('--session-id', inv.sessionId)
+            } else {
+              args.push('--resume', inv.sessionId)
+            }
           }
 
           return { bin: 'claude', args }
@@ -657,6 +766,91 @@ const agent = {
         resolve({ exitCode: 127 })
       })
     })
+  },
+}
+
+// ---------------------------------------------------------------------------
+// lessons (Tier 1.3: auto-accumulate migration patterns across components)
+// ---------------------------------------------------------------------------
+
+const lessons = {
+  /**
+   * After a successful migration (PR open), spawn a tiny claude subprocess to
+   * extract 2–3 reusable patterns from the agent's diff and append them to
+   * `docs/migration/references/lessons-learned.md`. Subsequent migrations
+   * include that file in their context pack and inherit the patterns.
+   *
+   * Failures here are non-fatal — a missed lesson doesn't block the PR.
+   */
+  async append(
+    workflow: Workflow,
+    item: ManifestItem,
+    prUrl: string,
+    iterations: number,
+    worktreePath: string,
+    rootDir: string
+  ): Promise<void> {
+    const lessonsAbs = path.join(rootDir, 'docs/migration/references/lessons-learned.md')
+
+    if (!existsSync(lessonsAbs)) {
+      log('lessons', `lessons file missing at ${lessonsAbs}; skipping append`)
+
+      return
+    }
+
+    // Capture the agent's diff (vs worktree HEAD's pre-iteration baseline).
+    const diffResult = await shell('git', ['diff', 'HEAD~1', 'HEAD'], { cwd: worktreePath })
+    const diffBody = diffResult.stdout.length > 30_000
+      ? diffResult.stdout.slice(0, 30_000) + '\n[truncated]'
+      : diffResult.stdout
+
+    if (!diffBody.trim()) {
+      log('lessons', 'no diff to summarize; skipping')
+
+      return
+    }
+
+    // Cheap claude call to extract patterns.
+    const extractPrompt =
+      `Below is the diff that successfully migrated component "${item.id}" to ${item.target_path ?? 'a new stack'}. ` +
+      `Extract the 2–3 most useful patterns this migration applied — patterns that future similar migrations of OTHER components should reuse. ` +
+      `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
+      `\`\`\`diff\n${diffBody}\n\`\`\``
+
+    const child = spawn('claude', ['-p', '--allowedTools', 'Read'], {
+      cwd: rootDir,
+      stdio: ['pipe', 'pipe', 'pipe'],
+      env: process.env,
+    })
+
+    let bullets = ''
+
+    child.stdin?.write(extractPrompt)
+    child.stdin?.end()
+    child.stdout?.on('data', (chunk) => {
+      bullets += chunk
+    })
+
+    const exitCode: number = await new Promise((resolve) => {
+      child.on('close', (code) => resolve(code ?? 1))
+      child.on('error', () => resolve(127))
+    })
+
+    if (exitCode !== 0 || !bullets.trim()) {
+      log('lessons', `extraction failed (exit ${exitCode}); skipping append`)
+
+      return
+    }
+
+    const date = TODAY()
+    const entry =
+      `\n## ${item.id} — ${date}\n\n` +
+      `- Tier ${item.tier} · target_path: \`${item.target_path ?? 'none'}\` · iterations: ${iterations}\n` +
+      bullets.trim() + '\n' +
+      `- Reference: ${prUrl}\n`
+
+    await fs.appendFile(lessonsAbs, entry, 'utf8')
+    log('lessons', `appended ${item.id} entry to ${lessonsAbs}`)
   },
 }
 
@@ -888,19 +1082,41 @@ export async function run(
   }
 
   let lastFeedback: string | null = null
+  // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
+  // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
+  // keeps the full canonical-prompt + rules + per-item-plan context from
+  // iter 1 in conversation memory and the orchestrator sends only the delta.
+  const sessionId = randomUUID()
+
+  await fs.writeFile(
+    path.join(runDir, 'session.id'),
+    sessionId + '\n',
+    'utf8'
+  )
+  log('loop', `session id: ${sessionId} (iter 1 tags, iter 2+ resumes)`)
 
   while (state.iterations < opts.maxIterations) {
     state.iterations += 1
     log('loop', `iteration ${state.iterations}/${opts.maxIterations}`)
 
     // Assemble prompt.
-    const prompt = await agent.assemblePrompt(
-      workflow,
-      item,
-      state.iterations - 1,
-      lastFeedback,
-      rootDir
-    )
+    // Iter 1: full canonical prompt + rules + per-item-plan + tier extras.
+    // Iter 2+: delta only (gate feedback + accumulated diff). Claude keeps
+    //         the iter-1 context via --resume.
+    const prompt = state.iterations === 1
+      ? await agent.assemblePrompt(
+          workflow,
+          item,
+          0,
+          null,
+          rootDir,
+          wtPath
+        )
+      : await agent.assembleDeltaPrompt(
+          state.iterations - 1,
+          lastFeedback,
+          wtPath
+        )
     // runDir is already `<repo>/migration-runs/<date>/<itemId>/` (since
     // dirname(wtPath) strips the trailing `worktree`); don't append item.id again.
     const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
@@ -911,9 +1127,19 @@ export async function run(
     // Invoke agent.
     const agentLogPath = path.join(runDir, `agent.${state.iterations}.log`)
 
-    log('loop', `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}); log=${agentLogPath}`)
+    log(
+      'loop',
+      `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}, ${state.iterations === 1 ? 'session-start' : 'session-resume'}); log=${agentLogPath}`
+    )
     const agentResult = await agent.invoke(
-      { prompt, cwd: wtPath, agent: opts.agent, withMcp: opts.withMcp },
+      {
+        prompt,
+        cwd: wtPath,
+        agent: opts.agent,
+        withMcp: opts.withMcp,
+        sessionId,
+        isFirstIteration: state.iterations === 1,
+      },
       agentLogPath
     )
 
@@ -1043,6 +1269,13 @@ export async function run(
   })
 
   manifest.update(manifestAbs, item.id, { pr: prUrl })
+
+  // Tier 1.3: append lessons-learned entry. Non-fatal if it errors.
+  try {
+    await lessons.append(workflow, item, prUrl, state.iterations, wtPath, rootDir)
+  } catch (err) {
+    log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
+  }
 
   if (opts.noMerge) {
     log('loop', `--no-merge: PR opened (${prUrl}); stopping at sandbox boundary`)
