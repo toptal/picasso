@@ -130,6 +130,29 @@ export interface Workflow {
   /** Branch name for an item (e.g. "migrate-Note"). */
   branchName: (id: string) => string
 
+  /**
+   * Base branch the orchestrator opens PRs against.
+   *
+   * For long-running migration efforts this is typically an integration
+   * branch (e.g. `picasso-modernization`) rather than `master`, so that PR
+   * lands stack against the integration branch and master only sees a single
+   * squash-merge once the whole batch is green.
+   *
+   * The orchestrator also pushes the migration branch to this base's remote
+   * (origin) and passes `--base <branch>` to `gh pr create`.
+   */
+  readonly baseBranch: string
+
+  /**
+   * GitHub usernames to add as assignees on every PR the orchestrator opens.
+   *
+   * Use `@me` to assign the operator running the orchestrator. Picasso's
+   * Danger CI requires every PR to have at least one assignee before merge,
+   * so production workflows should set this to a non-empty array. Empty
+   * means "assign nobody" (Danger will then fail).
+   */
+  readonly assignees: readonly string[]
+
   /** PR title. */
   prTitle: (id: string, item: ManifestItem) => string
 
