@@ -33,6 +33,9 @@
  * `./lib/orchestrator-core.ts` for new workflows.
  */
 
+import { promises as fs, existsSync } from 'node:fs'
+import * as path from 'node:path'
+
 import {
   run,
   runBatch,
@@ -167,7 +170,70 @@ const migrationWorkflow: Workflow = {
       }
     }
 
+    // Tier 2.2 — diff-aware (stuck) escalation. If the last 2 inner-loop
+    // gate reports failed on the IDENTICAL set of stages, the agent is
+    // not making progress on the remaining failures even though it had
+    // a feedback round between iters. Cut losses early instead of
+    // burning the whole `--max-iterations` budget.
+    //
+    // Counter-rule: if the failure-set SHRANK between iters (agent
+    // resolved at least one stage), we keep iterating — that's making
+    // progress. The 2-iter window is the sweet spot empirically: 1 is
+    // too aggressive (agent legitimately needs feedback rounds), 3+
+    // wastes too much time on stuck loops.
+    const recent = state.gateHistory.slice(-2)
+
+    if (recent.length === 2) {
+      const failedStages = (report: GateReport): string =>
+        report.stages
+          .filter((stage) => stage.status === 'FAIL')
+          .map((stage) => stage.name)
+          .sort()
+          .join(',')
+      const prev = failedStages(recent[0])
+      const curr = failedStages(recent[1])
+
+      if (prev !== '' && prev === curr) {
+        return {
+          shouldEscalate: true,
+          reason: `2 consecutive iterations failed on the same gate stages (${prev}); agent is stuck`,
+        }
+      }
+    }
+
     return { shouldEscalate: false }
+  },
+  // Tier 2.4 — reference auto-populate. When a Tier 0 PR merges, copy
+  // its leaf component file into `docs/migration/reference/` so future
+  // Tier 0 migrations have a worked, real-world example. Compounds
+  // across the batch: Switch's prompt context inherits Button's merged
+  // result; Tabs inherits Switch's; etc. Light-path components benefit
+  // most because the patterns generalize.
+  //
+  // Tier 1+ items are skipped: cleanup-only migrations (target_path ===
+  // 'none') don't change source meaningfully, and heavy/sibling-package
+  // migrations are too workflow-specific to standardize as references.
+  onPostMerge: async (item: ManifestItem, rootDir: string) => {
+    if (item.tier !== 0) {return}
+    if (item.target_path === 'none') {return}
+    const leaf = item.id.split('/').pop() || item.id
+    const sourcePath = path.join(
+      rootDir,
+      item.package,
+      'src',
+      leaf,
+      `${leaf}.tsx`
+    )
+
+    if (!existsSync(sourcePath)) {return}
+    const refDir = path.join(rootDir, 'docs/migration/reference')
+
+    await fs.mkdir(refDir, { recursive: true })
+    const refPath = path.join(refDir, `${leaf}.tsx`)
+
+    await fs.copyFile(sourcePath, refPath)
+    // eslint-disable-next-line no-console
+    console.log(`[reference] copied ${item.package}/src/${leaf}/${leaf}.tsx → ${path.relative(rootDir, refPath)}`)
   },
 }
 
