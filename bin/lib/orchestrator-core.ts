@@ -2780,7 +2780,14 @@ export async function run(
         .filter(Boolean)
         .join(' + ')
 
-      log('ci', `iter ${state.iterations}: pushed ${what}; re-polling`)
+      log('ci', `iter ${state.iterations}: pushed ${what}; waiting 60s for CI to register new commit, then re-polling`)
+      // Without this delay, the next pollChecks call returns stale rollup
+      // state for the OLD commit (canary 29 / PR #4935: re-poll fired
+      // 570ms after push and saw the prior failure → instant escalate
+      // before auto-fix-rerun got a chance). 60s is long enough for
+      // GitHub Actions to enqueue a new run for the pushed SHA, short
+      // enough not to bloat happy-path runs.
+      await sleep(60_000)
     } else {
       log(
         'ci',
