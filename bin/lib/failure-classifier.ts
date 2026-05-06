@@ -122,11 +122,24 @@ const MAX_EXCERPT_BYTES = 6000
 /**
  * Parse "FAIL packages/.../test.tsx" lines into deduplicated test paths.
  * Used for both snapshot and assertion failure scoping.
+ *
+ * Match strategy: the FAIL marker can appear with various leading content
+ * depending on log source.
+ *   - Local jest stdout: line starts with `FAIL packages/...`
+ *   - GitHub Actions log via `gh api .../jobs/<id>/logs`: line starts with
+ *     an ISO timestamp like `2026-05-06T11:47:20.1234567Z FAIL packages/...`
+ *   - GitHub Actions log via `gh run view --log-failed`: prefixes with
+ *     `<job-name>\t<step-name>\t<timestamp> ...`
+ *
+ * Anchoring to `^FAIL` (canary 28 PR #4934) silently dropped paths from the
+ * timestamped CI log → empty paths → no auto-fix-snapshot action → escalate.
+ * Use a permissive look-behind that accepts whitespace or end-of-line before
+ * FAIL to handle all three formats.
  */
 function extractFailedTestPaths(log: string): readonly string[] {
-  const matches = log.match(/^FAIL\s+(\S+\.(?:test|spec)\.[a-z]+)/gm) ?? []
+  const matches = log.match(/(?:^|\s)FAIL\s+(\S+\.(?:test|spec)\.[a-z]+)/g) ?? []
   const paths = matches
-    .map((line) => line.replace(/^FAIL\s+/, '').trim())
+    .map((line) => line.replace(/^.*FAIL\s+/, '').trim())
     .filter(Boolean)
 
   return [...new Set(paths)]
