@@ -96,6 +96,12 @@ const migrationWorkflow: Workflow = {
   // one rerun are likely real visual regressions and should escalate to
   // a designer.
   maxReruns: 1,
+  // Tier 2 batch B / Slice 4 — sweep can ALSO rerun Happo on its own
+  // cadence after canary creation has finished, since Happo flakes
+  // sometimes only show up after a few hours / runs. 2 sweep retries
+  // past Phase 3.3's initial budget covers the long-tail flake without
+  // letting persistent regressions hide indefinitely.
+  maxSweepHappoReruns: 2,
   // Phase 3.5 — review polling. Default 0 (canary / sandbox runs proceed
   // straight to merge or stop on --no-merge). Set via
   // `--review-timeout-minutes=N` for production migrations awaiting
