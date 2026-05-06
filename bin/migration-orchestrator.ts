@@ -33,7 +33,12 @@
  * `./lib/orchestrator-core.ts` for new workflows.
  */
 
-import { run, parseOptions } from './lib/orchestrator-core'
+import {
+  run,
+  runBatch,
+  runReviewSweep,
+  parseOptions,
+} from './lib/orchestrator-core'
 import type { GateReport, ManifestItem, RunState, Workflow } from './lib/workflow'
 
 const migrationWorkflow: Workflow = {
@@ -83,6 +88,17 @@ const migrationWorkflow: Workflow = {
   // via `--ci-timeout-minutes=N` if CI queue contention or slow shards
   // push past the budget.
   ciTimeoutMinutes: 15,
+  // Phase 3 Happo-flake mitigation. One rerun is enough for the common
+  // case (network/upload jitter on happo.io). Persistent failures after
+  // one rerun are likely real visual regressions and should escalate to
+  // a designer.
+  maxReruns: 1,
+  // Phase 3.5 — review polling. Default 0 (canary / sandbox runs proceed
+  // straight to merge or stop on --no-merge). Set via
+  // `--review-timeout-minutes=N` for production migrations awaiting
+  // human review.
+  reviewTimeoutMinutes: 0,
+  maxReviewIterations: 3,
   // Picasso's Danger CI rejects unassigned PRs ("Please assign someone to
   // this PR before merging"). Assigning to the operator (`@me` in gh)
   // satisfies the rule and keeps responsibility with whoever started the
@@ -157,7 +173,16 @@ const migrationWorkflow: Workflow = {
 
 async function main(): Promise<void> {
   const opts = parseOptions(process.argv)
-  const result = await run(migrationWorkflow, opts)
+  // Phase 3.5 redesign — three modes, mutually exclusive in priority order:
+  //   --review-sweep  → walk all awaiting_review items, process new
+  //                     review activity, persist state, exit
+  //   --batch         → loop run() over every queued item in tier
+  //   default         → single-component / single-next-queued migration
+  const result = opts.reviewSweep
+    ? await runReviewSweep(migrationWorkflow, opts)
+    : opts.batch
+      ? await runBatch(migrationWorkflow, opts)
+      : await run(migrationWorkflow, opts)
 
   // eslint-disable-next-line no-console
   console.log(`\nResult: ${JSON.stringify(result, null, 2)}`)
