@@ -77,6 +77,12 @@ const migrationWorkflow: Workflow = {
   // The branch must already exist on origin (created manually before the
   // first canary run).
   baseBranch: 'feature/picasso-modernization',
+  // Phase 3.1 — CI poll budget. Picasso's full pipeline on the integration
+  // branch runs in ~7-12min (canary 24: Static checks 7:39, Integration
+  // Tests 5:30 + sharded e2e ~7min). 15min covers it with headroom; bump
+  // via `--ci-timeout-minutes=N` if CI queue contention or slow shards
+  // push past the budget.
+  ciTimeoutMinutes: 15,
   // Picasso's Danger CI rejects unassigned PRs ("Please assign someone to
   // this PR before merging"). Assigning to the operator (`@me` in gh)
   // satisfies the rule and keeps responsibility with whoever started the
