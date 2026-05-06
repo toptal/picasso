@@ -318,7 +318,7 @@ const worktree = {
   async overlayWorkspaceForSourceChange(
     worktreePath: string,
     workspaceShortName: string,
-    workspacePackagePath: string,
+    workspacePackagePath: string
   ): Promise<void> {
     const mainNodeModules = path.join(repoRoot(), 'node_modules')
     const wtNodeModules = path.join(worktreePath, 'node_modules')
@@ -368,7 +368,7 @@ const worktree = {
             // Migrating workspace -> worktree's own source.
             await fs.symlink(
               path.join(worktreePath, workspacePackagePath),
-              link,
+              link
             ).catch(() => {})
           } else {
             // All other @toptal/* -> main repo's symlink target.
@@ -1114,7 +1114,7 @@ export async function run(
         await worktree.overlayWorkspaceForSourceChange(
           wtPath,
           shortName,
-          item.package,
+          item.package
         )
       }
     }
