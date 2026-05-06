@@ -148,6 +148,16 @@ run_stage "tsc" \
 #    edits cleanly compile + lint. ~2s scoped vs ~24s repo-wide.
 #    Per migration plan v3 §4.3 (gate sequence) + Tier 1.2 of post-canary-15
 #    improvements plan: scoped fast feedback for inner-loop iteration.
+#
+#    Auto-fix pass (silent): runs `yarn davinci-syntax lint code <path>` (no
+#    --check) before the strict --check stage. Fixes formatting / blank-line /
+#    import-order rules that don't merit an iteration loop. Output suppressed
+#    so the run log isn't cluttered. Rationale: in canaries 16+17 the agent
+#    repeatedly hit single-line `padding-line-between-statements` errors and
+#    failed to self-fix despite mandatory instructions — auto-fix in the gate
+#    skips that whole class of rules.
+yarn davinci-syntax lint code "$PKG_PATH/src" >/dev/null 2>&1 || true
+
 run_stage "lint" \
   yarn davinci-syntax lint code --check "$PKG_PATH/src"
 

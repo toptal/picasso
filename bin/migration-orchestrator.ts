@@ -95,12 +95,11 @@ const migrationWorkflow: Workflow = {
     (item.tier <= 1 ? 1 : item.tier === 2 ? 2 : 3) as 1 | 2 | 3,
   successCriteria: (report: GateReport) => report.composite === 'PASS',
   escalationCriteria: (state: RunState) => {
-    if (state.iterations >= 3) {
-      return {
-        shouldEscalate: true,
-        reason: `iteration cap (3) hit; last gate=${state.lastGate?.composite ?? 'unknown'}`,
-      }
-    }
+    // Iteration-cap escalation is handled by the orchestrator's main loop
+    // (`while (state.iterations < opts.maxIterations)`) and the post-loop
+    // check that triggers when the loop exits without a green gate. Don't
+    // hardcode it here — that would override the operator's `--max-iterations=N`
+    // flag (which canary 16 hit, escalating at iter 3 even with N=10).
     if (state.architecturalReviews > 0) {
       return {
         shouldEscalate: true,
