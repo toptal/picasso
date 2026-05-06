@@ -120,8 +120,11 @@ module.exports = {
         new webpack.DefinePlugin({
           TEST_ENV: JSON.stringify(env.TEST_ENV),
         }),
-        // Avoid recursive require.context('~/packages', true, ...) scans
-        // descending into package-local pnpm workspace symlinks.
+        // Applies only to require.context() directory scans, not normal imports.
+        // Current scans in .storybook/load-stories.js and
+        // .storybook/components/CodeExample/CodeExample.tsx read ~/packages for
+        // stories/source examples; package-local node_modules are pnpm symlink
+        // noise for those contexts.
         new webpack.ContextExclusionPlugin(/^node_modules$/),
         // https://github.com/TypeStrong/ts-loader/issues/653
         new IgnoreNotFoundPlugin(['OverridableComponent', 'BaseProps']),
