@@ -1,5 +1,4 @@
 /* eslint-disable complexity */
-import type { PropTypes } from '@material-ui/core'
 import type { SpacingType } from '@toptal/picasso-provider'
 import type { StandardProps } from '@toptal/picasso-shared'
 import type { HTMLAttributes, ReactElement, ReactNode, Ref } from 'react'
@@ -18,6 +17,8 @@ type DirectionType = 'row' | 'column' | 'row-reverse' | 'column-reverse'
 type WrapType = 'wrap' | 'nowrap' | 'wrap-reverse'
 
 type BorderableType = 'transparent' | 'white'
+
+type AlignmentType = 'left' | 'right' | 'center' | 'justify' | 'inherit'
 
 export interface Props<V extends VariantType = VariantType>
   extends StandardProps,
@@ -46,7 +47,7 @@ export interface Props<V extends VariantType = VariantType>
   /** Component used for the root node */
   as?: ContainerType
   /** Text align of the inner text */
-  align?: PropTypes.Alignment
+  align?: AlignmentType
   /** margin-top for the container transformed to `rem` */
   top?: SpacingType
   /** margin-bottom for the container transformed to `rem` */
