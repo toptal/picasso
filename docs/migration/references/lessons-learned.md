@@ -21,3 +21,11 @@ Auto-accumulated by the orchestrator after each successful component migration. 
 ---
 
 <!-- Entries appended below by orchestrator. Do not delete this marker. -->
+
+## Button — 2026-05-06
+
+- Tier 0 · target_path: `@base-ui/react/button` · iterations: 1
+- Updated package.json to replace `@mui/base` with `@base-ui/react` and removed the React version upper-bound constraint.
+- Replaced `MUIButtonBase` with `BaseUIButton` and switched from the deprecated `slots`/`slotProps`/`rootElementName` API to the new `render` + `nativeButton` props for custom element rendering.
+- Added `'base-Button-root'` class and a `data-disabled` attribute to align with Base UI's new DOM contract.
+- Reference: https://github.com/toptal/picasso/pull/4925
