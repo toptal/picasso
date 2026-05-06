@@ -83,18 +83,18 @@ If `--with-mcp` was passed to the orchestrator, you also have **Playwright MCP**
 Inspect at minimum the default + hover + focused + disabled stories. If `console.error` fires during render, the migration is wrong even if the gate passes.
 
 **Working acceptance** (run for regular feedback during iteration):
-- `yarn workspace @toptal/picasso-<NAME> build:package` passes
+- `yarn workspace @toptal/picasso-<NAME> build:package` passes (types + emit)
 - `yarn davinci-qa unit --testPathPattern packages/base/<NAME>` passes
+- `yarn davinci-syntax lint code --check packages/base/<NAME>/src` passes (zero errors)
 - (if Storybook + Playwright MCP available) story renders cleanly: default + hover + focused + disabled states without `console.error`
 
 **Full acceptance** (run before declaring done):
 - working acceptance passes
-- `yarn typecheck` passes
-- `yarn lint` passes (entire repo)
+- `yarn typecheck` passes (full repo)
 - (if applicable) cypress component spec passes
 - Happo report green or designer-approved diffs only
 
-Iterate freely against working acceptance. Lint warnings during iteration are normal; clean them up as a final pass — **do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the call-site cast pattern (`as ComponentName.Props['key']`) instead, per `rules/api-preservation.md`.
+**Mandatory before exit:** run `yarn davinci-syntax lint code packages/base/<NAME>/src` (auto-fix mode, no `--check`) once, then `yarn davinci-syntax lint code --check packages/base/<NAME>/src` to verify zero errors. The orchestrator's outer-loop gate runs the same scoped command — if you exit before lint passes, the gate fails identically and you've wasted an iteration. **Do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the call-site cast pattern (`as ComponentName.Props['key']`) instead, per `rules/api-preservation.md`.
 
 ---
 

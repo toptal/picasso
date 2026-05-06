@@ -632,7 +632,13 @@ const agent = {
 
     sections.push(
       `# What to do\n\n` +
-        `Apply the fixes implied by the gate report. Use Bash for self-verification before exiting (yarn typecheck, yarn davinci-syntax lint code --check packages/base/<NAME>/src, etc.). Don't fall back to \`any\` to placate lint warnings — preserve the public type and cast at the call site instead (per rules/api-preservation.md).`
+        `Apply the fixes implied by the gate report. **Before exiting, you MUST run these self-verification commands and confirm each exits 0:**\n\n` +
+        `1. \`yarn davinci-syntax lint code packages/base/<NAME>/src\` — auto-fix mode (no --check). Resolves padding/blank-line/import-order rules automatically.\n` +
+        `2. \`yarn davinci-syntax lint code --check packages/base/<NAME>/src\` — verify zero errors remain. If non-zero, read the actual error rule name and fix manually.\n` +
+        `3. \`yarn workspace @toptal/picasso-<NAME> build:package\` — confirm types still compile.\n\n` +
+        `**Do not exit if step 2 reports any error.** Iterate locally until the scoped lint passes. The orchestrator's outer-loop gate runs the same scoped lint command — if you exit before lint passes, the gate fails identically and you've wasted an iteration.\n\n` +
+        `If you see a "padding-line-between-statements" or similar formatting error, step 1's auto-fix resolves it. Don't try to manually re-jig type imports — those aren't the cause.\n\n` +
+        `Don't fall back to \`any\` to placate lint warnings — preserve the public type and cast at the call site instead (per rules/api-preservation.md).`
     )
 
     return sections.join('\n\n---\n\n')
