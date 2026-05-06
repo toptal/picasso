@@ -52,6 +52,12 @@ export interface ManifestItem {
   merged_at: string | null
   notes?: string
   escalation_reason?: string
+  /**
+   * Migration target. `none` = cleanup-only (drop @material-ui peer-dep,
+   * no source change). Otherwise the @base-ui/react primitive being
+   * adopted (e.g. `@base-ui/react/button`).
+   */
+  target_path?: string
   /** Phase 3 — ISO timestamp of last successful CI completion. */
   last_ci_green_at?: string | null
   /**
@@ -107,6 +113,14 @@ export interface RunState {
   item: ManifestItem
   iterations: number
   lastGate: GateReport | null
+  /**
+   * Tier 2.2 — gate report history across inner-loop iterations. Used by
+   * `escalationCriteria` to detect stuck states (same failure set 2+
+   * iterations in a row) before the iteration cap fires. Lets workflows
+   * cut losses early on convergent-but-stuck loops without giving up too
+   * fast on convergent-and-progressing ones.
+   */
+  gateHistory: readonly GateReport[]
   /** Distinct CI failure modes seen across iterations. */
   ciFailures: readonly string[]
   /** Review comments that have been classified as "architectural concern". */
@@ -218,6 +232,21 @@ export interface Workflow {
    * `shouldEscalate: true`.
    */
   escalationCriteria: (state: RunState) => EscalationDecision
+
+  /**
+   * Tier 2.4 — post-merge hook. Called by `--review-sweep` when an item
+   * transitions from `ready_to_merge` (or `awaiting_review`) to merged
+   * (the operator manually clicked Merge on GitHub). Use this to copy
+   * source into `docs/migration/reference/`, run post-merge migrations,
+   * trigger downstream notifications, etc.
+   *
+   * Optional. The orchestrator marks the item `done` regardless; this
+   * hook adds workflow-specific side effects.
+   *
+   * Errors thrown from the hook are logged but don't roll back the
+   * status transition (the merge is already permanent on GitHub).
+   */
+  onPostMerge?: (item: ManifestItem, rootDir: string) => Promise<void>
 }
 
 /**

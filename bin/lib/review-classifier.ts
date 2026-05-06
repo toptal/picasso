@@ -47,11 +47,16 @@ export interface ReviewClassification {
  *   or empty/undefined for issue comments.
  * - `body` is the comment text. May be empty for an APPROVED review with
  *   no message (still counts as approval).
+ * - `at` is the ISO timestamp (review.submittedAt or comment.createdAt).
+ *   Used by `--review-sweep` to filter to reviews newer than the
+ *   `last_review_seen_at` marker on the manifest item. Empty string is
+ *   treated as "before the dawn of time" (always processed).
  */
 export interface Review {
   state?: string
   body: string
   author?: string
+  at?: string
 }
 
 const APPROVAL_PHRASES = [
