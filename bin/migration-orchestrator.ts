@@ -64,9 +64,19 @@ const migrationWorkflow: Workflow = {
   // Long-running migration effort lands on the integration branch, NOT
   // master, so the batch can be reviewed/staged together. Master sees a
   // single squash-merge once the whole modernization wave is green.
+  //
+  // Branch name is `feature/picasso-modernization` rather than the simpler
+  // `picasso-modernization` because Picasso's CI workflows are configured
+  // to trigger only on PRs targeting `master` or `feature/**`. A bare
+  // `picasso-modernization` base bypasses the full Static-checks pipeline
+  // (Jest, lint, etc.), opening PRs as orphaned-CI surfaces. Empirically
+  // hit on canary 22 (PR #4928): only Check + Danger reported, full Jest
+  // never ran. Renamed via `git push origin <sha>:refs/heads/feature/...`
+  // 2026-05-06.
+  //
   // The branch must already exist on origin (created manually before the
   // first canary run).
-  baseBranch: 'picasso-modernization',
+  baseBranch: 'feature/picasso-modernization',
   // Picasso's Danger CI rejects unassigned PRs ("Please assign someone to
   // this PR before merging"). Assigning to the operator (`@me` in gh)
   // satisfies the rule and keeps responsibility with whoever started the
