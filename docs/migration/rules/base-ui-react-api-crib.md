@@ -132,11 +132,14 @@ JSS `&$expanded` parent-refs translate to **`data-[state=open]:` Tailwind varian
 
 ## `render` prop (slot-style composition)
 
-Most `@base-ui/react` parts accept a `render` prop that lets you pass your own element / component. This replaces the `as` / `component` / class-key prop patterns in MUI v4.
+Most `@base-ui/react` parts accept a `render` prop that lets you pass your own element / component. This replaces the `as` / `component` / class-key prop patterns in MUI v4 AND the `slots`/`slotProps`/`rootElementName` patterns in `@mui/base`.
 
 ```tsx
 // MUI v4
 <Button component={Link} to="/foo">Go</Button>
+
+// @mui/base (predecessor — what Picasso has today)
+<Button slots={{ root: Link }} slotProps={{ root: { to: "/foo" } }} rootElementName="a">Go</Button>
 
 // @base-ui/react
 import { Button } from '@base-ui/react/button'
@@ -148,6 +151,51 @@ Or as a function for prop merging:
 ```tsx
 <Button render={(props) => <Link {...props} to="/foo">Go</Link>} />
 ```
+
+### Polymorphic Button: `nativeButton` + `render`
+
+`@base-ui/react/button` is **stricter** than `@mui/base/Button` about what it renders. It has a `nativeButton: boolean` prop (default: `true`) that asserts whether the rendered root is a native `<button>` element. If you render anything other than `<button>` (e.g., `<a>` for an Picasso Button with `href` or `as="a"`) and leave `nativeButton: true`, Base UI emits a runtime warning that breaks tests:
+
+> `Base UI: A component that acts as a button expected a native <button> because the nativeButton prop is true.`
+
+The correct pattern for a polymorphic component (Picasso Button, ButtonBase) that may render either `<button>` or `<a>` (or any other element):
+
+```tsx
+import { Button as BaseUIButton } from '@base-ui/react/button'
+
+const isNativeButton = finalAs === 'button'
+
+<BaseUIButton
+  nativeButton={isNativeButton}
+  render={isNativeButton ? undefined : React.createElement(finalAs)}
+  // ...rest
+>
+```
+
+When `finalAs === 'button'`: `nativeButton: true` (default), `render: undefined` — Base UI renders the native `<button>` itself.
+When `finalAs !== 'button'` (e.g., `'a'`): `nativeButton: false`, `render: React.createElement('a')` — Base UI renders the alternative element via the `render` prop and skips the native-button warning.
+
+This same pattern applies to other polymorphic Picasso components migrating off `@mui/base` (e.g., other `as`-prop primitives if they exist).
+
+### Type alignment at the call site (don't weaken the public API)
+
+When `@base-ui/react` types narrow vs Picasso's wider public types (common for polymorphic components — Picasso's `MouseEvent<HTMLButtonElement & HTMLAnchorElement>` vs Base UI's `BaseUIEvent<MouseEvent<HTMLButtonElement>>`), **preserve the public type unchanged** and cast at the call site using indexed-type access:
+
+```ts
+// In the public Props interface — unchanged from MUI v4 era:
+onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
+
+// In the render — cast at the boundary:
+<BaseUIButton onClick={onClick as BaseUIButton.Props['onClick']} ... />
+```
+
+The `as ComponentName.Props['<key>']` pattern is the canonical narrow-cast for `@base-ui/react`. Same for `ref`:
+
+```tsx
+<BaseUIButton ref={ref as React.Ref<HTMLElement>} ... />
+```
+
+**Do NOT** change the public type to `any` to "fix" the type mismatch — that violates `rules/api-preservation.md` (no broadening of public types).
 
 ---
 

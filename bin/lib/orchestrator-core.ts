@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+/* eslint-disable max-lines-per-function */
 /* eslint-disable max-statements */
 /* eslint-disable max-params */
 /* eslint-disable complexity */
@@ -107,6 +108,27 @@ async function shellLine(
   opts: SpawnOptions = {}
 ): Promise<ShellResult> {
   return shell('bash', ['-c', line], opts)
+}
+
+/**
+ * Poll an HTTP URL until it responds 200 OR timeout. Used to wait for
+ * Storybook to be ready before invoking the agent with `--with-mcp`.
+ */
+async function waitForUrl(url: string, timeoutMs: number): Promise<boolean> {
+  const deadline = Date.now() + timeoutMs
+
+  while (Date.now() < deadline) {
+    try {
+      const res = await fetch(url, { method: 'GET' })
+
+      if (res.ok || res.status === 304) {return true}
+    } catch {
+      // network not ready yet — wait + retry
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+  }
+
+  return false
 }
 
 // ---------------------------------------------------------------------------
@@ -436,6 +458,12 @@ interface AgentInvocation {
   cwd: string
   /** Agent vendor. */
   agent: OrchestratorOptions['agent']
+  /**
+   * If true, pass `--mcp-config bin/lib/agent-mcp-config.json` to claude and
+   * grant `mcp__playwright__*` tools. Caller is responsible for ensuring
+   * Storybook is running before invoke and tearing it down after.
+   */
+  withMcp?: boolean
 }
 
 const agent = {
@@ -530,18 +558,73 @@ const agent = {
   ): Promise<{ exitCode: number }> {
     const cmd = ((): { bin: string; args: string[] } => {
       switch (inv.agent) {
-        case 'claude':
+        case 'claude': {
           // `claude -p` reads prompt from stdin and runs non-interactively.
-          // `--allowedTools` grants Edit/Write/Read/Glob/Grep so the agent can
-          // modify files in the worktree. Bash is intentionally NOT granted —
-          // shell commands (yarn build, jest, etc.) belong to the gate stage,
-          // which the orchestrator drives separately. The worktree provides
-          // physical isolation; no external network access is needed beyond
-          // claude's own API. See ORCHESTRATOR.md §Known integration gaps #2.
-          return {
-            bin: 'claude',
-            args: ['-p', '--allowedTools', 'Edit Write Read Glob Grep'],
+          // `--allowedTools` is a curated allowlist matching Picasso's gate
+          // stages plus read-only git inspection. Rationale (per the PR #4906
+          // comparison documented in `docs/migration/components/Button.md`):
+          //
+          //   - File ops (Edit/Write/Read/Glob/Grep): the agent edits source.
+          //   - Bash(yarn typecheck...) / Bash(yarn workspace:*) / etc.: the
+          //     agent verifies its own work between edits within a single
+          //     `claude -p` session. Without these, the agent edits blind
+          //     and depends on the orchestrator's outer-loop gate (~90s/cycle)
+          //     for feedback. With them the agent runs typecheck → reads the
+          //     error → edits → re-runs typecheck within seconds, mirroring
+          //     how a human dev iterates.
+          //
+          // EXCLUDED on purpose:
+          //   - Bash(yarn add | install): orchestrator owns dep management.
+          //   - Bash(git commit | push): orchestrator owns commit lifecycle
+          //     (Fix G `--no-verify` lives at the orchestrator layer).
+          //   - Bash(gh:*): orchestrator owns PR lifecycle.
+          //   - bare Bash(*) / --dangerously-skip-permissions: too broad for
+          //     non-Docker host runs. Worktree provides physical isolation
+          //     for state mutations; this allowlist provides the verification
+          //     surface the agent needs without unbounded shell.
+          //
+          // When `inv.withMcp === true`, also pass `--mcp-config` and grant
+          // Playwright MCP tools. Caller is responsible for Storybook lifecycle.
+          const baseTools = [
+            'Edit',
+            'Write',
+            'Read',
+            'Glob',
+            'Grep',
+            'Bash(yarn typecheck)',
+            'Bash(yarn typecheck:*)',
+            'Bash(yarn lint:*)',
+            'Bash(yarn workspace:*)',
+            'Bash(yarn davinci-qa:*)',
+            'Bash(yarn build:package)',
+            'Bash(yarn happo:*)',
+            'Bash(git diff:*)',
+            'Bash(git status:*)',
+            'Bash(git log:*)',
+          ]
+          const mcpTools = inv.withMcp
+            ? [
+                'mcp__playwright__browser_navigate',
+                'mcp__playwright__browser_screenshot',
+                'mcp__playwright__browser_console_logs',
+                'mcp__playwright__browser_click',
+                'mcp__playwright__browser_hover',
+                'mcp__playwright__browser_evaluate',
+                'mcp__playwright__browser_snapshot',
+              ]
+            : []
+          const args = [
+            '-p',
+            '--allowedTools',
+            [...baseTools, ...mcpTools].join(' '),
+          ]
+
+          if (inv.withMcp) {
+            args.push('--mcp-config', 'bin/lib/agent-mcp-config.json')
           }
+
+          return { bin: 'claude', args }
+        }
         case 'cursor':
           // Placeholder — Cursor's CLI shape differs; document and stub.
           return { bin: 'cursor', args: ['agent'] }
@@ -672,8 +755,11 @@ export async function run(
       `2. git worktree add ${worktree.pathFor(item.id, TODAY())} -b ${workflow.branchName(item.id)}`,
       `3. Snapshot pre-state: ${workflow.diff(item.id, 'snapshot')}`,
       `4. Update manifest: status=in_progress`,
-      `5. Assemble prompt (path=${workflow.promptFor(item)}, complexity=${workflow.complexityFor(item)}, agent=${opts.agent})`,
-      `6. Invoke ${opts.agent}; iteration cap=${opts.maxIterations}`,
+      ...(opts.withMcp
+        ? [`4b. Start Storybook in worktree; wait for http://localhost:9001 ready`]
+        : []),
+      `5. Assemble prompt (path=${workflow.promptFor(item)}, complexity=${workflow.complexityFor(item)}, agent=${opts.agent}${opts.withMcp ? ' +mcp' : ''})`,
+      `6. Invoke ${opts.agent}; iteration cap=${opts.maxIterations}; allowedTools=Edit Write Read Glob Grep + Bash(yarn ...)${opts.withMcp ? ' + mcp__playwright__*' : ''}`,
       `7. Run gate: ${workflow.gate(item.id)}`,
       `8. On gate fail: feed report back, retry up to cap`,
       `9. On gate pass: produce diff via ${workflow.diff(item.id, 'report')}`,
@@ -737,6 +823,60 @@ export async function run(
     )
   }
 
+  // Optional: start Storybook in the worktree so the agent can use Playwright
+  // MCP for visual verification (--with-mcp). Tier 1 cleanup migrations don't
+  // need this; Tier 0 / 2 / 3 do (any component where Happo is load-bearing).
+  let storybookProc: ReturnType<typeof spawn> | null = null
+
+  if (opts.withMcp) {
+    log('loop', 'starting Storybook (--with-mcp); polling http://localhost:9001')
+    storybookProc = spawn('yarn', ['start:storybook'], {
+      cwd: wtPath,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      detached: false,
+      env: process.env,
+    })
+    // Ensure Storybook is killed on any orchestrator exit path. Synchronous
+    // handler is fine; SIGTERM is fire-and-forget.
+    const killStorybook = (): void => {
+      if (storybookProc && !storybookProc.killed) {storybookProc.kill('SIGTERM')}
+    }
+
+    process.once('exit', killStorybook)
+    process.once('SIGINT', () => {
+      killStorybook()
+      process.exit(130)
+    })
+    process.once('SIGTERM', () => {
+      killStorybook()
+      process.exit(143)
+    })
+
+    const ready = await waitForUrl('http://localhost:9001', 60_000)
+
+    if (!ready) {
+      log('loop', 'Storybook did not become ready within 60s; killing and escalating')
+      storybookProc.kill('SIGTERM')
+
+      return escalate(
+        workflow,
+        item,
+        {
+          item,
+          iterations: 0,
+          lastGate: null,
+          ciFailures: [],
+          architecturalReviews: 0,
+          startedAt: ISO(),
+        },
+        { shouldEscalate: true, reason: 'Storybook failed to start within 60s' },
+        manifestAbs,
+        rootDir
+      )
+    }
+    log('loop', 'Storybook ready at http://localhost:9001')
+  }
+
   // Steps 6–9: agent + gate + iterate.
   const state: RunState = {
     item,
@@ -771,9 +911,9 @@ export async function run(
     // Invoke agent.
     const agentLogPath = path.join(runDir, `agent.${state.iterations}.log`)
 
-    log('loop', `invoking agent (${opts.agent}); log=${agentLogPath}`)
+    log('loop', `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}); log=${agentLogPath}`)
     const agentResult = await agent.invoke(
-      { prompt, cwd: wtPath, agent: opts.agent },
+      { prompt, cwd: wtPath, agent: opts.agent, withMcp: opts.withMcp },
       agentLogPath
     )
 
@@ -955,5 +1095,6 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     tier: tierStr ? Number(tierStr) : null,
     component: componentRaw ?? null,
     maxIterations: iterStr ? Number(iterStr) : 3,
+    withMcp: has('--with-mcp'),
   }
 }
