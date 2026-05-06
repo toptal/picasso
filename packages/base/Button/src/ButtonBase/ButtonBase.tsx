@@ -45,8 +45,11 @@ export interface Props
   type?: 'button' | 'reset' | 'submit'
 }
 
-const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
-  loading ? noop : handler
+const getClickHandler = (
+  loading?: boolean,
+  handler?: Props['onClick']
+): BaseUIButton.Props['onClick'] =>
+  (loading ? noop : handler) as BaseUIButton.Props['onClick']
 
 const getIcon = ({ icon }: { icon?: ReactElement }) => {
   if (!icon) {
@@ -57,16 +60,6 @@ const getIcon = ({ icon }: { icon?: ReactElement }) => {
     className: twMerge('text-[1.2em] flex-1', icon.props.className),
     key: 'button-icon',
   })
-}
-
-const isValidAs = (value: Props['as']) => {
-  const valueType = typeof value
-
-  return (
-    valueType === 'string' ||
-    valueType === 'function' ||
-    (valueType === 'object' && value !== null)
-  )
 }
 
 export const ButtonBase: OverridableComponent<Props> = forwardRef<
@@ -98,7 +91,6 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
 
   const titleCase = useTitleCase(propsTitleCase)
   const finalChildren = [titleCase ? toTitleCase(children) : children]
-  const finalAs: ElementType = isValidAs(as) ? as : 'a'
 
   if (icon) {
     const iconComponent = getIcon({ icon })
@@ -115,19 +107,17 @@ export const ButtonBase: OverridableComponent<Props> = forwardRef<
     createCoreClassNames({ disabled }),
     className
   )
-  const isNativeButton = finalAs === 'button'
+  const isNativeButton = as === 'button'
 
   return (
     <BaseUIButton
       {...rest}
       ref={ref as React.Ref<HTMLElement>}
-      onClick={
-        getClickHandler(loading, onClick) as BaseUIButton.Props['onClick']
-      }
+      onClick={getClickHandler(loading, onClick)}
       className={finalClassName}
       style={style}
       nativeButton={isNativeButton}
-      render={isNativeButton ? undefined : React.createElement(finalAs)}
+      render={isNativeButton ? undefined : React.createElement(as)}
       aria-disabled={disabled}
       disabled={disabled}
       title={title}
