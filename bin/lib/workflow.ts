@@ -205,6 +205,20 @@ export interface OrchestratorOptions {
   readonly withMcp: boolean
 
   /**
+   * Phase 3.1 — wall-clock budget for the post-PR CI poll loop, in minutes.
+   *
+   * After `gh pr create` the orchestrator polls `pr view --json
+   * statusCheckRollup` until every check completes or this timeout fires.
+   * Picasso's full pipeline on `feature/picasso-modernization` runs in
+   * ~7-12 min; default 15 covers it with headroom for CI queue contention.
+   *
+   * Set to `0` to skip polling entirely (legacy behavior — exit at PR open).
+   *
+   * Default: 15. CLI: `--ci-timeout-minutes=N`.
+   */
+  readonly ciTimeoutMinutes: number
+
+  /**
    * Override the branch name that the orchestrator creates for this run.
    *
    * Default: `null` (use `workflow.branchName(item.id)`). CLI: `--branch=<name>`.

@@ -41,6 +41,7 @@ import { promises as fs, existsSync, readFileSync, writeFileSync } from 'node:fs
 import * as path from 'node:path'
 import * as os from 'node:os'
 
+import { classifyCIFailure } from './failure-classifier'
 import type {
   EscalationDecision,
   GateReport,
@@ -57,6 +58,65 @@ import type {
 
 const ISO = (): string => new Date().toISOString()
 const TODAY = (): string => new Date().toISOString().slice(0, 10)
+const sleep = (ms: number): Promise<void> =>
+  new Promise((resolve) => setTimeout(resolve, ms))
+
+// Phase 3.1 — gh status-check-rollup terminology bridge.
+// CheckRun (Actions): status ∈ {QUEUED,IN_PROGRESS,COMPLETED};
+//                     conclusion ∈ {SUCCESS,FAILURE,SKIPPED,NEUTRAL,
+//                                   CANCELLED,TIMED_OUT,ACTION_REQUIRED}.
+// StatusContext (commit-status API used by Happo + a few others):
+//                     state ∈ {PENDING,SUCCESS,FAILURE,ERROR}.
+// We normalize everything to uppercase and treat the StatusContext `state`
+// as both `status` and `conclusion`. PENDING means "still running".
+const TERMINAL_STATUSES = new Set([
+  'COMPLETED',
+  'SUCCESS',
+  'FAILURE',
+  'ERROR',
+  'NEUTRAL',
+  'SKIPPED',
+  'CANCELLED',
+  'TIMED_OUT',
+  'ACTION_REQUIRED',
+])
+const FAILURE_CONCLUSIONS = new Set([
+  'FAILURE',
+  'ERROR',
+  'CANCELLED',
+  'TIMED_OUT',
+  'ACTION_REQUIRED',
+])
+
+interface RawCheckEntry {
+  name?: string
+  context?: string
+  status?: string
+  state?: string
+  conclusion?: string
+  detailsUrl?: string
+  targetUrl?: string
+}
+
+interface CheckSnapshot {
+  name: string
+  status: string
+  conclusion: string
+  detailsUrl: string
+}
+
+type PollChecksResult =
+  | { state: 'success'; checks: readonly CheckSnapshot[] }
+  | {
+      state: 'failure'
+      failed: readonly CheckSnapshot[]
+      checks: readonly CheckSnapshot[]
+    }
+  | {
+      state: 'timeout'
+      pending: readonly CheckSnapshot[]
+      checks: readonly CheckSnapshot[]
+    }
 
 function log(prefix: string, message: string): void {
   // eslint-disable-next-line no-console
@@ -519,6 +579,150 @@ const gh = {
     }
 
     return JSON.parse(result.stdout)
+  },
+
+  /**
+   * Poll the PR's check rollup until every check completes or the timeout
+   * fires. Phase 3.1 — Steps 12-13 of the agent loop. Until this lands the
+   * orchestrator stops at PR-creation, leaving CI feedback on the floor and
+   * forcing the operator to manually retry on snapshot drift, lint slip-ups,
+   * Happo diffs, etc.
+   *
+   * Return shape:
+   *   { state: 'success' }           — every check COMPLETED with a non-failure
+   *                                    conclusion (SUCCESS, NEUTRAL, SKIPPED).
+   *   { state: 'failure', failed }   — at least one check FAILED / CANCELLED /
+   *                                    TIMED_OUT / ACTION_REQUIRED.
+   *   { state: 'timeout', pending }  — wall-clock budget exhausted before all
+   *                                    checks completed.
+   *
+   * Failure / pending lists carry per-check {name, conclusion, detailsUrl} so
+   * downstream classification + iteration logic (Phase 3.2 / 3.3) can decide
+   * how to react without re-querying gh.
+   *
+   * Polling cadence: 30s by default. Picasso CI on the integration branch
+   * runs in ~7-12 minutes; 30s × ~30 polls covers the 15-minute default
+   * timeout with low API pressure (gh's rate limit is 5000/hr).
+   */
+  async pollChecks(
+    numberOrUrl: string,
+    cwd: string,
+    opts: {
+      timeoutMinutes: number
+      intervalSeconds: number
+      onTick?: (snapshot: readonly CheckSnapshot[]) => void
+    }
+  ): Promise<PollChecksResult> {
+    const deadline = Date.now() + opts.timeoutMinutes * 60_000
+    const intervalMs = Math.max(5_000, opts.intervalSeconds * 1_000)
+    // GitHub Actions registers workflow runs ~5-30s after the PR is opened.
+    // Polling immediately can return an empty rollup that would otherwise be
+    // interpreted as "all checks done — success". Require at least one
+    // observation that checks exist before honoring an empty rollup as a
+    // genuine "no CI configured" success.
+    let everSawChecks = false
+    let pollNumber = 0
+    const WARMUP_POLLS = 3
+
+    while (Date.now() < deadline) {
+      pollNumber++
+      const view = (await gh.viewPR(
+        numberOrUrl,
+        'statusCheckRollup',
+        cwd
+      )) as { statusCheckRollup?: readonly RawCheckEntry[] } | null
+
+      const rollup = view?.statusCheckRollup ?? []
+      const snapshot: CheckSnapshot[] = rollup.map((c) => ({
+        name: c.name ?? c.context ?? '(unnamed)',
+        // CheckRun uses `status` (QUEUED/IN_PROGRESS/COMPLETED) +
+        // `conclusion` (SUCCESS/FAILURE/...). Statuses use lower-case
+        // `state` (PENDING/SUCCESS/FAILURE) without the split. Normalize.
+        status: (c.status ?? c.state ?? '').toUpperCase(),
+        conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
+        detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
+      }))
+
+      if (snapshot.length > 0) {everSawChecks = true}
+
+      opts.onTick?.(snapshot)
+
+      // Empty rollup during warmup → keep polling; might be Actions still
+      // spinning up. After warmup, an empty rollup is treated as "no CI
+      // configured for this PR" → success (downstream merge/escalation
+      // logic decides whether that's acceptable per workflow).
+      if (snapshot.length === 0 && pollNumber < WARMUP_POLLS) {
+        await sleep(intervalMs)
+        continue
+      }
+
+      // Done = every check has a terminal conclusion.
+      const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+
+      if (pending.length === 0) {
+        const failed = snapshot.filter((c) =>
+          FAILURE_CONCLUSIONS.has(c.conclusion)
+        )
+
+        // Empty + post-warmup + never-saw-checks = "no CI" → success.
+        // Empty + post-warmup + saw-then-disappeared shouldn't happen, but
+        // if it does, treat as success (best-effort).
+        if (snapshot.length === 0 && !everSawChecks) {
+          return { state: 'success', checks: [] }
+        }
+
+        return failed.length === 0
+          ? { state: 'success', checks: snapshot }
+          : { state: 'failure', failed, checks: snapshot }
+      }
+
+      await sleep(intervalMs)
+    }
+
+    // Timeout: snapshot whatever we have at exit.
+    const view = (await gh.viewPR(
+      numberOrUrl,
+      'statusCheckRollup',
+      cwd
+    )) as { statusCheckRollup?: readonly RawCheckEntry[] } | null
+    const rollup = view?.statusCheckRollup ?? []
+    const snapshot: CheckSnapshot[] = rollup.map((c) => ({
+      name: c.name ?? c.context ?? '(unnamed)',
+      status: (c.status ?? c.state ?? '').toUpperCase(),
+      conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
+      detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
+    }))
+    const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+
+    return { state: 'timeout', pending, checks: snapshot }
+  },
+
+  /**
+   * Fetch the raw log of a single Actions job, given its detailsUrl from the
+   * status-check rollup. Used by Phase 3.2/3.3 to feed CI failure context
+   * into the failure classifier.
+   *
+   * detailsUrl format: `https://github.com/<owner>/<repo>/actions/runs/<run>/job/<jobId>`
+   * `gh api repos/<owner>/<repo>/actions/jobs/<jobId>/logs` → text.
+   *
+   * Returns empty string on any error (best-effort; the caller will handle a
+   * missing log gracefully — a missing log just leads to "unclassified" →
+   * escalation, which is the safe default).
+   */
+  async fetchJobLog(detailsUrl: string, cwd: string): Promise<string> {
+    const m = detailsUrl.match(
+      /github\.com\/([^/]+)\/([^/]+)\/actions\/runs\/\d+\/job\/(\d+)/
+    )
+
+    if (!m) {return ''}
+    const [, owner, repo, jobId] = m
+    const result = await shell(
+      'gh',
+      ['api', `repos/${owner}/${repo}/actions/jobs/${jobId}/logs`],
+      { cwd }
+    )
+
+    return result.exitCode === 0 ? result.stdout : ''
   },
 
   async mergePR(numberOrUrl: string, cwd: string): Promise<void> {
@@ -1067,9 +1271,14 @@ export async function run(
       `9. On gate pass: produce diff via ${workflow.diff(item.id, 'report')}`,
       `10. git commit -m "${workflow.commitMessage(item.id, item).split('\n')[0]}"; git push`,
       `11. gh pr create --title "${workflow.prTitle(item.id, item)}" --base ${workflow.baseBranch}${workflow.assignees.length ? ` --assignee ${workflow.assignees.join(',')}` : ''}`,
+      ...(opts.ciTimeoutMinutes > 0
+        ? [
+            `12. Poll CI on PR; timeout=${opts.ciTimeoutMinutes}min, interval=30s; on failure escalate (Phase 3.2/3.3 will iterate)`,
+          ]
+        : [`12. CI poll skipped (--ci-timeout-minutes=0)`]),
       opts.noMerge
-        ? `12-13. (--no-merge: stop here; manual review/merge expected)`
-        : `12-13. Poll CI; classify reviews; gh pr merge --squash --auto`,
+        ? `13. (--no-merge: CI green = stop; CI fail = escalate)`
+        : `13. On CI green: gh pr merge --auto --squash --delete-branch (review-classifier deferred to Phase 3.4)`,
       `14. On any escalation trigger: status=needs_human, post block, stop`,
     ]
 
@@ -1422,20 +1631,351 @@ export async function run(
     log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
   }
 
-  if (opts.noMerge) {
-    log('loop', `--no-merge: PR opened (${prUrl}); stopping at sandbox boundary`)
+  // Phase 3.1 — CI poll. Both `--no-merge` (sandbox) and merge-mode go
+  // through the poll; `--no-merge` just skips the eventual merge call. The
+  // poll is gated by `opts.ciTimeoutMinutes > 0` so operators can opt out
+  // (e.g. when CI is known to be down for maintenance, or for ultra-fast
+  // dry-canaries that don't care about CI).
+  const ciTimeout = opts.ciTimeoutMinutes ?? workflow.ciTimeoutMinutes
+
+  if (ciTimeout <= 0) {
+    log('loop', `CI poll disabled (--ci-timeout-minutes=0); PR=${prUrl}`)
 
     return { status: 'pr-opened', prUrl }
   }
 
-  // Steps 11–13 (CI poll, review, merge) are intentionally **not implemented**
-  // in PF-1992. The Note canary uses --no-merge; PF-1994's first migration
-  // wires polling. Marking this as a sandbox-completion result so callers
-  // know the orchestrator is at the documented stop point.
   log(
     'loop',
-    `--no-merge not set, but CI/review polling is deferred to PF-1994; stopping after PR open`
+    `polling CI on ${prUrl} (timeout=${ciTimeout}min, interval=30s)`
   )
+  let lastSummary = ''
+  let pollResult = await gh.pollChecks(prUrl, wtPath, {
+    timeoutMinutes: ciTimeout,
+    intervalSeconds: 30,
+    onTick: (snapshot) => {
+      const summary = snapshot
+        .map((c) => `${c.name}=${c.conclusion || c.status || '?'}`)
+        .sort()
+        .join(' ')
+
+      if (summary !== lastSummary) {
+        log('ci', `${snapshot.length} checks: ${summary}`)
+        lastSummary = summary
+      }
+    },
+  })
+
+  if (pollResult.state === 'timeout') {
+    log(
+      'ci',
+      `timed out after ${ciTimeout}min with ${pollResult.pending.length} ` +
+        `pending: ${pollResult.pending.map((c) => c.name).join(', ')}`
+    )
+
+    return escalate(
+      workflow,
+      item,
+      state,
+      {
+        shouldEscalate: true,
+        reason: `CI timeout after ${ciTimeout}min; pending: ${pollResult.pending.map((c) => c.name).join(', ')}`,
+      },
+      manifestAbs,
+      rootDir
+    )
+  }
+
+  // Phase 3.3 — CI iteration loop. While CI is failing AND we have
+  // budget, classify each failed check, react (auto-fix or feed agent),
+  // push, re-poll. Escalate when classification recommends it or budget
+  // is exhausted.
+  while (
+    pollResult.state === 'failure' &&
+    state.iterations < opts.maxIterations
+  ) {
+    state.iterations += 1
+    log(
+      'ci',
+      `iter ${state.iterations}: ${pollResult.failed.length}/${pollResult.checks.length} checks failed: ${pollResult.failed.map((c) => `${c.name}(${c.conclusion})`).join(', ')}`
+    )
+
+    // Fetch logs + classify in parallel.
+    const classifications = await Promise.all(
+      pollResult.failed.map(async (failed) => {
+        const log_ = await gh.fetchJobLog(failed.detailsUrl, wtPath)
+
+        return {
+          check: failed,
+          log: log_,
+          decision: classifyCIFailure(
+            { name: failed.name, conclusion: failed.conclusion },
+            log_,
+            { repoRoot: rootDir }
+          ),
+        }
+      })
+    )
+
+    classifications.forEach((c) =>
+      log(
+        'ci',
+        `classify "${c.check.name}" → ${c.decision.class} (${c.decision.reason})`
+      )
+    )
+
+    // Escalate on the first escalate-class decision. We don't try to
+    // partially fix failures in this iteration; the simpler invariant
+    // is "any escalate ⇒ stop the whole run".
+    const escalateDecision = classifications.find(
+      (c) => c.decision.class === 'escalate'
+    )
+
+    if (escalateDecision) {
+      return escalate(
+        workflow,
+        item,
+        state,
+        {
+          shouldEscalate: true,
+          reason: `CI failure on "${escalateDecision.check.name}" (${escalateDecision.decision.reason})`,
+        },
+        manifestAbs,
+        rootDir
+      )
+    }
+
+    // Apply auto-fix paths (snapshot regen, lint --fix). These run on the
+    // worktree; afterwards we commit + push to update the PR branch.
+    let didAutoFix = false
+
+    for (const c of classifications) {
+      if (
+        c.decision.class === 'auto-fix-snapshot' &&
+        c.decision.paths.length > 0
+      ) {
+        const pattern = c.decision.paths.join('|')
+
+        log('ci', `auto-fix snapshot: jest -u --testPathPattern "${pattern}"`)
+        await shell(
+          'yarn',
+          [
+            'davinci-qa',
+            'unit',
+            '--config=./jest.spec.mjs',
+            '--testPathPattern',
+            pattern,
+            '-u',
+          ],
+          {
+            cwd: wtPath,
+            env: {
+              ...process.env,
+              NODE_OPTIONS: '--no-experimental-require-module',
+            },
+          }
+        )
+        didAutoFix = true
+      } else if (
+        c.decision.class === 'auto-fix-lint' &&
+        c.decision.paths.length > 0
+      ) {
+        log('ci', `auto-fix lint: davinci-syntax lint code ${c.decision.paths.join(' ')}`)
+        await shell(
+          'yarn',
+          ['davinci-syntax', 'lint', 'code', ...c.decision.paths],
+          { cwd: wtPath }
+        )
+        didAutoFix = true
+      }
+    }
+
+    // Feed-to-agent classifications: assemble a CI-feedback delta prompt
+    // and invoke the agent (session-resume). The agent edits files; gate
+    // runs locally afterwards as a sanity check.
+    const feedDecisions = classifications.filter(
+      (c) => c.decision.class === 'feed-to-agent'
+    )
+
+    if (feedDecisions.length > 0) {
+      const ciFeedback =
+        '# CI failures (post-PR-open)\n\n' +
+        feedDecisions
+          .map(
+            (c) =>
+              `## ${c.check.name}\n\n` +
+              `**Reason:** ${c.decision.reason}\n\n` +
+              (c.decision.paths.length
+                ? `**Affected paths:** ${c.decision.paths.join(', ')}\n\n`
+                : '') +
+              '**Log excerpt:**\n```\n' +
+              (c.decision.excerpt ?? '(no excerpt)') +
+              '\n```\n'
+          )
+          .join('\n')
+      const ciPrompt = await agent.assembleDeltaPrompt(
+        state.iterations - 1,
+        ciFeedback,
+        wtPath
+      )
+      const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
+
+      await fs.writeFile(promptPath, ciPrompt, 'utf8')
+      const agentLogPath = path.join(runDir, `agent.${state.iterations}.log`)
+
+      log(
+        'ci',
+        `iter ${state.iterations}: feed-to-agent on ${feedDecisions.map((d) => d.check.name).join(', ')}`
+      )
+      const agentResult = await agent.invoke(
+        {
+          prompt: ciPrompt,
+          cwd: wtPath,
+          agent: opts.agent,
+          withMcp: opts.withMcp,
+          sessionId,
+          isFirstIteration: false,
+        },
+        agentLogPath
+      )
+
+      if (agentResult.exitCode !== 0) {
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: `agent invocation failed during CI iteration: exit ${agentResult.exitCode}`,
+          },
+          manifestAbs,
+          rootDir
+        )
+      }
+
+      // Sanity gate locally before pushing.
+      const gateReport = await gate.run(
+        workflow.gate(item.id),
+        item.id,
+        wtPath,
+        runDate
+      )
+
+      state.lastGate = gateReport
+
+      if (!workflow.successCriteria(gateReport)) {
+        log(
+          'ci',
+          `iter ${state.iterations}: local gate still failing after agent edit; pushing anyway and letting CI re-evaluate`
+        )
+      }
+    }
+
+    if (!didAutoFix && feedDecisions.length === 0) {
+      // Nothing to do — every classification was something we didn't act
+      // on (shouldn't happen given the escalate-first guard, but be safe).
+      return escalate(
+        workflow,
+        item,
+        state,
+        {
+          shouldEscalate: true,
+          reason: 'no actionable CI classifications; aborting',
+        },
+        manifestAbs,
+        rootDir
+      )
+    }
+
+    // Stage + commit + push the iteration's changes.
+    const ciCommitMsg = workflow.commitMessage(item.id, item) + `\n\n[ci-iter ${state.iterations}]`
+    const ciCommitMsgFile = path.join(
+      os.tmpdir(),
+      `commit-msg-${item.id}.ci.${state.iterations}.${process.pid}`
+    )
+
+    await fs.writeFile(ciCommitMsgFile, ciCommitMsg, 'utf8')
+    await shell('git', ['add', '-A'], { cwd: wtPath })
+    const commitResult = await shell(
+      'git',
+      ['commit', '--no-verify', '--file', ciCommitMsgFile],
+      { cwd: wtPath }
+    )
+
+    if (commitResult.exitCode !== 0) {
+      log(
+        'ci',
+        `iter ${state.iterations}: nothing to commit (exit ${commitResult.exitCode}); CI will re-evaluate the existing tip`
+      )
+    } else {
+      const pushResult = await shell(
+        'git',
+        ['push', '--no-verify', 'origin', branch],
+        { cwd: wtPath }
+      )
+
+      if (pushResult.exitCode !== 0) {
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: `git push failed during CI iteration: ${pushResult.stderr}`,
+          },
+          manifestAbs,
+          rootDir
+        )
+      }
+      log('ci', `iter ${state.iterations}: pushed delta commit; re-polling`)
+    }
+
+    // Re-poll. CI may need a few seconds to register the new run for the
+    // pushed commit; pollChecks's warmup handles that.
+    pollResult = await gh.pollChecks(prUrl, wtPath, {
+      timeoutMinutes: ciTimeout,
+      intervalSeconds: 30,
+      onTick: (snapshot) => {
+        const summary = snapshot
+          .map((c) => `${c.name}=${c.conclusion || c.status || '?'}`)
+          .sort()
+          .join(' ')
+
+        if (summary !== lastSummary) {
+          log('ci', `${snapshot.length} checks: ${summary}`)
+          lastSummary = summary
+        }
+      },
+    })
+  }
+
+  if (pollResult.state === 'failure') {
+    return escalate(
+      workflow,
+      item,
+      state,
+      {
+        shouldEscalate: true,
+        reason: `CI still failing after ${state.iterations}/${opts.maxIterations} iterations: ${pollResult.failed.map((c) => c.name).join(', ')}`,
+      },
+      manifestAbs,
+      rootDir
+    )
+  }
+
+  log('ci', `all ${pollResult.checks.length} checks PASS`)
+
+  if (opts.noMerge) {
+    log('loop', `--no-merge: CI green; stopping before merge`)
+
+    return { status: 'pr-opened', prUrl }
+  }
+
+  // Steps 13–14 (review classification, merge) deferred to Phase 3.4 / 3.5.
+  // For now: CI green + not --no-merge means the orchestrator hands off to
+  // gh's `--auto --squash` which honors branch protection (merge happens
+  // when reviews are also green).
+  log('loop', `CI green; gh pr merge --auto --squash --delete-branch`)
+  await gh.mergePR(prUrl, wtPath)
 
   return { status: 'pr-opened', prUrl }
 }
@@ -1463,6 +2003,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const agentRaw = get('--agent')
   const iterStr = get('--max-iterations')
   const branchRaw = get('--branch')
+  const ciTimeoutStr = get('--ci-timeout-minutes')
 
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
@@ -1476,5 +2017,6 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     maxIterations: iterStr ? Number(iterStr) : 3,
     withMcp: has('--with-mcp'),
     branch: branchRaw ?? null,
+    ciTimeoutMinutes: ciTimeoutStr ? Number(ciTimeoutStr) : 15,
   }
 }
