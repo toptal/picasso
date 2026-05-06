@@ -142,15 +142,19 @@ Originally surfaced by the PF-1992 Note canary attempt (2026-05-04, logs: `migra
 
 Trade-off: in-PF-1992 sandbox PRs forked from PF-1992's branch will show PF-1992 commits in their diff against master. Acceptable for sandbox validation; the canary PR is reviewed and closed/ignored, not merged.
 
-### 2. Claude permission flags — FIXED
+### 2. Claude permission flags — FIXED (twice; expanded after PR #4906 lessons)
 
-`agent.invoke` now spawns:
+After the canary 12 (Button) escalation surfaced the inner-loop gap (the agent edited blind without `yarn typecheck`/`yarn lint` access), the allowlist was widened to match what Codex's PR #4906 implicitly relied on. `agent.invoke` now spawns:
 
 ```ts
-{ bin: 'claude', args: ['-p', '--allowedTools', 'Edit Write Read Glob Grep'] }
+'-p', '--allowedTools',
+'Edit Write Read Glob Grep ' +
+'Bash(yarn typecheck) Bash(yarn typecheck:*) Bash(yarn lint:*) ' +
+'Bash(yarn workspace:*) Bash(yarn davinci-qa:*) Bash(yarn build:package) Bash(yarn happo:*) ' +
+'Bash(git diff:*) Bash(git status:*) Bash(git log:*)'
 ```
 
-The agent can edit, write, read, glob, and grep within the worktree. Bash is intentionally **not** granted — shell commands (yarn build, jest, etc.) are the orchestrator's job via the gate stage. The worktree provides physical isolation; no internet calls beyond the Anthropic API are required for the agent to do its task.
+Verification-only Bash. Excluded on purpose: `Bash(yarn add | install)`, `Bash(git commit | push)`, `Bash(gh:*)`, bare `Bash(*)`. Worktree provides physical isolation for state mutations; this allowlist provides the verification surface the agent needs without unbounded shell. See `bin/lib/orchestrator-core.ts` `agent.invoke` for the full rationale block + the PR #4906 comparison documented in `docs/migration/components/Button.md`.
 
 For future Docker-isolated runners (post-PF-1994), the orchestrator can switch to `--dangerously-skip-permissions` matching `.thunderbot/`'s pattern, since the Docker boundary replaces the need for fine-grained tool restrictions.
 
@@ -169,6 +173,25 @@ The current design has `gate.sh` and `diff.sh` in the worktree's filesystem (bec
 ### 6. CI polling + review classification + merge — INTENTIONALLY DEFERRED
 
 `bin/lib/orchestrator-core.ts` → loop steps 11–13 are documented as intentionally not implemented in PF-1992 (see the `// Steps 11–13 (CI poll, review, merge) are intentionally **not implemented**` comment). The orchestrator currently stops at PR creation regardless of `--no-merge`. **Wires in PF-1994's first migration.**
+
+### 7. Visual feedback during iteration — FIXED (opt-in via `--with-mcp`)
+
+After comparing canary 12 (Button) against PR #4906, the second gap was visual feedback. Codex's agent inspected live Storybook via Playwright MCP during iteration and caught Base UI's `nativeButton` runtime warning by reading console output. Our agent had no equivalent.
+
+Now, when the operator passes `--with-mcp`:
+
+1. The orchestrator spawns `yarn start:storybook` in the worktree (post-snapshot, pre-iteration).
+2. Polls `http://localhost:9001` until ready (60s timeout; escalates on failure).
+3. Passes `--mcp-config bin/lib/agent-mcp-config.json` to `claude -p` and grants `mcp__playwright__browser_*` tools.
+4. Registers signal handlers (`exit`, `SIGINT`, `SIGTERM`) to kill the Storybook subprocess on any orchestrator exit path.
+
+The MCP config (`bin/lib/agent-mcp-config.json`) points at `@playwright/mcp@latest` via `npx -y`. The agent can navigate to story URLs, screenshot, observe console logs, and exercise interaction states (hover/focus/click).
+
+**Default: off.** Tier 1 cleanup migrations (peer-dep + type-only) don't need visual feedback. Tier 0 / 2 / 3 / 4 should opt in for any pixel-perfect-critical run. Adds ~30–60s startup per canary.
+
+### 8. Working vs full acceptance criteria — FIXED (prompt-only)
+
+`PROMPT-light.md` and `PROMPT-heavy.md` now split acceptance into "working" (build + unit + visual) for iteration feedback and "full" (working + typecheck + lint + cypress + happo) for declaring done. Mirrors the Codex prompt structure from PR #4906. Tells the agent that lint/typecheck warnings during iteration are normal — clean them up at the end rather than panic-editing public types into `any`. Direct response to canary 12's `any` regression.
 
 ### Validation summary (post-fix)
 

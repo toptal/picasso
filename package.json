@@ -124,10 +124,12 @@
     "@babel/preset-react": "^7.24.1",
     "@babel/preset-typescript": "^7.22.5",
     "@babel/standalone": "^7.23.1",
+    "@base-ui/react": "^1.4.1",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.29.7",
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
+    "@nx/js": "21.5.1",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",
     "@storybook/builder-webpack5": "^6.5.16",
@@ -135,6 +137,7 @@
     "@storybook/react": "^6.5.15",
     "@storybook/theming": "^6.5.15",
     "@svgr/cli": "^8.1.0",
+    "@tailwindcss/postcss": "^4.2.1",
     "@testing-library/jest-dom": "^6.2.0",
     "@toptal/browserslist-config": "^1.2.0",
     "@toptal/davinci-ci": "^7.4.7",
@@ -178,6 +181,7 @@
     "json5": "^2.2.3",
     "lerna": "^8.1.2",
     "madge": "^6.1.0",
+    "nx": "21.5.1",
     "package-up": "^5.0.0",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
@@ -194,7 +198,6 @@
     "remark-gfm": "^4.0.0",
     "syncpack": "^13.0.2",
     "tailwindcss": "^4.2.1",
-    "@tailwindcss/postcss": "^4.2.1",
     "thread-loader": "^4.0.2",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
@@ -204,9 +207,7 @@
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
     "yarn-deduplicate": "^6.0.2",
-    "zx": "^8.8.5",
-    "nx": "21.5.1",
-    "@nx/js": "21.5.1"
+    "zx": "^8.8.5"
   },
   "engines": {
     "node": ">=20"

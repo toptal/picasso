@@ -62,6 +62,33 @@ Your task:
 
 Output: file edits only. No explanations.
 
+### Acceptance criteria — iterate to working, then run full
+
+You have Bash access for **verification only** (`yarn typecheck`, `yarn workspace:*`, `yarn davinci-qa:*`, `yarn lint:*`, `git diff/status/log`). Use it to self-verify between edits — don't wait for the orchestrator's outer-loop gate.
+
+If `--with-mcp` was passed to the orchestrator, you also have **Playwright MCP** tools and a Storybook server running at `http://localhost:9001`. Use them to verify visual + runtime behavior:
+
+- `mcp__playwright__browser_navigate` to load story URLs (e.g. `http://localhost:9001/?path=/story/components-button--default`).
+- `mcp__playwright__browser_screenshot` for pixel-level inspection.
+- `mcp__playwright__browser_console_logs` to catch runtime warnings.
+- `mcp__playwright__browser_hover` / `browser_click` to exercise interaction states (default / hover / focused / disabled).
+
+Inspect at minimum the default + hover + focused + disabled stories. If `console.error` fires during render, the migration is wrong even if the gate passes.
+
+**Working acceptance** (run for regular feedback during iteration):
+- `yarn workspace @toptal/picasso-<NAME> build:package` passes
+- `yarn davinci-qa unit --testPathPattern packages/base/<NAME>` passes
+- (if Storybook + Playwright MCP available) story renders cleanly: default + hover + focused + disabled states without `console.error`
+
+**Full acceptance** (run before declaring done):
+- working acceptance passes
+- `yarn typecheck` passes
+- `yarn lint` passes (entire repo)
+- (if applicable) cypress component spec passes
+- Happo report green or designer-approved diffs only
+
+Iterate freely against working acceptance. Lint warnings during iteration are normal; clean them up as a final pass — **do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the call-site cast pattern (`as ComponentName.Props['key']`) instead, per `rules/api-preservation.md`.
+
 ---
 
 ## Changelog
