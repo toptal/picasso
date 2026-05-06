@@ -193,13 +193,25 @@ run_stage "jest" \
 #     files in the migration commit.
 
 COMPONENT_LEAF="${COMPONENT##*/}"
-CONSUMER_PATHS=$(git grep -l "base-${COMPONENT_LEAF}" -- 'packages/**/__snapshots__/*.snap' 2>/dev/null \
-  | sed 's|/src/.*||' \
-  | grep -v "^${PKG_PATH}\$" \
-  | sort -u)
 
-if [ -z "$CONSUMER_PATHS" ]; then
+# Operator-driven skip — primarily used by Phase 3 validation canaries that
+# WANT the consumer-stage to NOT pre-fix downstream snapshot drift, so CI's
+# Jest catches it and Phase 3.3's auto-fix-snapshot path gets exercised
+# end-to-end. Default unset → run normally.
+if [ "${MIGRATION_GATE_CONSUMERS:-run}" = "skip" ]; then
+  run_stage_skip "consumers" "MIGRATION_GATE_CONSUMERS=skip"
+  CONSUMER_PATHS=""
+else
+  CONSUMER_PATHS=$(git grep -l "base-${COMPONENT_LEAF}" -- 'packages/**/__snapshots__/*.snap' 2>/dev/null \
+    | sed 's|/src/.*||' \
+    | grep -v "^${PKG_PATH}\$" \
+    | sort -u)
+fi
+
+if [ -z "$CONSUMER_PATHS" ] && [ "${MIGRATION_GATE_CONSUMERS:-run}" != "skip" ]; then
   run_stage_skip "consumers" "no consumer packages with base-${COMPONENT_LEAF} in snapshots"
+elif [ -z "$CONSUMER_PATHS" ]; then
+  : # already handled by skip branch above
 else
   CONSUMER_PATTERN=$(echo "$CONSUMER_PATHS" | tr '\n' '|' | sed 's/|$//')
   CONSUMER_LOG="$RUN_DIR/consumers.log"
