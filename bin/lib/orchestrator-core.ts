@@ -1390,8 +1390,19 @@ const agent = {
           //     error → edits → re-runs typecheck within seconds, mirroring
           //     how a human dev iterates.
           //
+          // ALLOWED for dep management (since 2026-05-07 — see PR #4940
+          // post-mortem):
+          //   - Bash(yarn install): when the agent edits a package.json's
+          //     dependencies, it must refresh yarn.lock so CI's "Build
+          //     packages" step can resolve the new dep. Previously excluded
+          //     under "orchestrator owns dep management", but the new
+          //     `lockfile-drift` gate stage made that ownership untenable —
+          //     the agent edits package.json, the agent must update the lock.
+          //
           // EXCLUDED on purpose:
-          //   - Bash(yarn add | install): orchestrator owns dep management.
+          //   - Bash(yarn add): orchestrator avoids ad-hoc adds; package.json
+          //     edits are explicit. The agent uses Edit on package.json, not
+          //     `yarn add`, so the dep set stays auditable in the diff.
           //   - Bash(git commit | push): orchestrator owns commit lifecycle
           //     (Fix G `--no-verify` lives at the orchestrator layer).
           //   - Bash(gh:*): orchestrator owns PR lifecycle.
@@ -1419,6 +1430,9 @@ const agent = {
             'Bash(yarn cypress:*)',
             'Bash(yarn test:integration:*)',
             'Bash(yarn happo:*)',
+            // Lockfile maintenance — required when agent edits package.json deps
+            'Bash(yarn install)',
+            'Bash(yarn install:*)',
             // Live npm-registry lookups for "what does package X export at v Y"
             'Bash(yarn info:*)',
             'Bash(npm view:*)',
@@ -1483,15 +1497,81 @@ const agent = {
 
       child.stdin?.write(inv.prompt)
       child.stdin?.end()
-      child.stdout?.on('data', (d) => {
-        // Append, don't replace.
+
+      // Visibility: track per-tool-call activity so the orchestrator can
+      // surface "agent is doing X right now" in heartbeat ticks. We parse
+      // claude's stream-json output for `tool_use` events, but also fall
+      // back to a regex scan of textual content for unrecognised shapes.
+      let lastTool = '(thinking)'
+      let lastActivityAt = Date.now()
+      let bytesWritten = 0
+      const tag = (() => {
+        // Derive a short tag like "agent.1" / "agent.2" from the log path.
+        const m = /agent\.(\d+)\.log$/.exec(logPath)
+
+        return m ? `agent.${m[1]}` : 'agent'
+      })()
+      let toolCallCount = 0
+      const detectTool = (chunk: string): void => {
+        // claude stream-json emits one JSON object per line. Cheap path:
+        // just regex for `"name":"<Tool>"` near `"type":"tool_use"`. We also
+        // try to extract a single-line summary of the tool's input (e.g.
+        // file_path for Edit/Read, or the first ~80 chars of a Bash command)
+        // so the operator sees what's actually happening.
+        const matches = chunk.matchAll(/"type"\s*:\s*"tool_use"[^}]*?"name"\s*:\s*"([^"]+)"[^}]*?"input"\s*:\s*\{([^}]{0,400})/g)
+
+        for (const m of matches) {
+          const name = m[1] ?? '?'
+          const inputBlob = m[2] ?? ''
+          // Common shapes: file_path / path / command / pattern / query.
+          const fp = /"file_path"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
+            ?? /"path"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
+          const cmd = /"command"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
+          const pattern = /"pattern"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
+          const summary = fp ?? cmd ?? pattern ?? ''
+          const trimmed = summary.length > 80 ? summary.slice(0, 77) + '...' : summary
+          const display = trimmed ? `${name} ${trimmed}` : name
+
+          lastTool = display
+          toolCallCount += 1
+          // Announce inline so operator sees activity in real time.
+          log(tag, `tool_use[${toolCallCount}]: ${display}`)
+        }
+      }
+
+      child.stdout?.on('data', (d: Buffer) => {
         require('node:fs').appendFileSync(logPath, d)
+        bytesWritten += d.length
+        lastActivityAt = Date.now()
+        detectTool(d.toString('utf8'))
       })
-      child.stderr?.on('data', (d) => {
+      child.stderr?.on('data', (d: Buffer) => {
         require('node:fs').appendFileSync(logPath, `[stderr] ${d}`)
+        bytesWritten += d.length
+        lastActivityAt = Date.now()
       })
-      child.on('close', (code) => resolve({ exitCode: code ?? 1 }))
+
+      // Heartbeat tick every 30s — log progress to orchestrator stderr so
+      // the operator sees "agent is alive" without tailing the log file.
+      // Stuck detection: if no log growth for >120s, escalate the warning.
+      const startedAt = Date.now()
+      const heartbeat = setInterval(() => {
+        const elapsed = Math.round((Date.now() - startedAt) / 1000)
+        const idle = Math.round((Date.now() - lastActivityAt) / 1000)
+        const kb = (bytesWritten / 1024).toFixed(1)
+        const stuck = idle > 120 ? ` ⚠️  no progress ${idle}s` : ''
+
+        log(tag, `alive (${elapsed}s elapsed, ${kb}KB written, last tool: ${lastTool})${stuck}`)
+      }, 30_000)
+
+      const cleanup = () => clearInterval(heartbeat)
+
+      child.on('close', (code) => {
+        cleanup()
+        resolve({ exitCode: code ?? 1 })
+      })
       child.on('error', (err) => {
+        cleanup()
         require('node:fs').appendFileSync(logPath, `[spawn-error] ${err}\n`)
         resolve({ exitCode: 127 })
       })
