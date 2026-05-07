@@ -3191,7 +3191,13 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     component: componentRaw ?? null,
     maxIterations: iterStr ? Number(iterStr) : 3,
     maxCIIterations: maxCIIterStr ? Number(maxCIIterStr) : 5,
-    withMcp: has('--with-mcp'),
+    // MCP (Playwright + Storybook) is opt-OUT as of 2026-05-07: default ON,
+    // disable with `--no-mcp`. Visual feedback on the migrating component
+    // helps the agent catch issues invisible to text-based gates (Base UI's
+    // `nativeButton` runtime warning, hover/focus state regressions, etc.).
+    // Cost: ~30-60s for Storybook spin-up per migration. Tier 1 cleanups
+    // (no source change) get little benefit; pass `--no-mcp` for those.
+    withMcp: !has('--no-mcp'),
     branch: branchRaw ?? null,
     ciTimeoutMinutes: ciTimeoutStr ? Number(ciTimeoutStr) : 15,
     reviewTimeoutMinutes: reviewTimeoutStr ? Number(reviewTimeoutStr) : null,
