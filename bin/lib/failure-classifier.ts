@@ -187,6 +187,23 @@ function tail(s: string, bytes: number): string {
 }
 
 /**
+ * Extract the package.json paths from syncpack's `list-mismatches` output.
+ * syncpack output shape (one line per mismatch):
+ *   ✘ <name> <wrote> → <expected> <packageJsonPath> > <depsField> [<reason>]
+ */
+function extractPackageJsonsFromSyncpack(log: string): readonly string[] {
+  const out = new Set<string>()
+  const re = /(packages\/[^\s>]+\/package\.json)/g
+  let m: RegExpExecArray | null
+
+  while ((m = re.exec(log)) !== null) {
+    if (m[1]) {out.add(m[1])}
+  }
+
+  return [...out]
+}
+
+/**
  * Classify a failed check. Order matters: more specific patterns are checked
  * before more general ones (e.g. Happo before generic Cypress). Also: name-
  * based hints win over log-based hints (e.g. a check named "Happo (Picasso/
@@ -319,7 +336,38 @@ export function classifyCIFailure(
     }
   }
 
-  // 10. Default: escalate. Better to surface to a human than to flail.
+  // 10. Syncpack mismatches — feed to agent with explicit guidance.
+  // CI's "Static checks" job runs `yarn syncpack list-mismatches`; if any
+  // mismatches exist, the job fails. The agent can fix these by editing
+  // package.json with the correct version (caret-prefix for npm deps,
+  // exact version for workspace deps). See PROMPT-light/heavy §2/§4.
+  if (/HighestSemverMismatch|LocalPackageMismatch|syncpack[: ]list-mismatches/.test(log)) {
+    return {
+      class: 'feed-to-agent',
+      reason: 'Syncpack dependency-version mismatch (npm: use ^x.y.z; workspace: use exact version)',
+      stage: 'syncpack',
+      excerpt: tail(log, MAX_EXCERPT_BYTES),
+      paths: extractPackageJsonsFromSyncpack(log),
+    }
+  }
+
+  // 11. "Static checks" / generic CI catch-all — try to feed to agent if
+  // the log has anything actionable. Many "Static checks" failures are
+  // syncpack, lint, or yarn-install issues that look generic at the job-
+  // name level but classify cleanly once we read the log. If we got here
+  // without matching a specific pattern, give the agent the log tail and
+  // let it figure it out — better than escalating without trying.
+  if (/static checks|build packages/.test(name)) {
+    return {
+      class: 'feed-to-agent',
+      reason: `Generic "${check.name}" failure — feeding log tail to agent`,
+      stage: check.name,
+      excerpt: tail(log, MAX_EXCERPT_BYTES),
+      paths: [],
+    }
+  }
+
+  // 12. Default: escalate. Better to surface to a human than to flail.
   return {
     class: 'escalate',
     reason: `unclassified CI failure on "${check.name}" (${check.conclusion})`,

@@ -414,6 +414,16 @@ const manifest = {
         throw new Error(`No manifest entry for --component=${opts.component}`)
       }
 
+      // If the explicit item has already been processed (escalated, done,
+      // awaiting_*), don't re-select it inside a batch loop. Returning null
+      // makes runBatch terminate cleanly with "no-work" — operator can
+      // re-run with `--force` (or reset manifest) to retry. Without this,
+      // the batch loop would re-process the same just-escalated item and
+      // print confusing "another orchestrator run" lock messages.
+      if (item.status !== 'queued' && item.status !== 'in_progress') {
+        return null
+      }
+
       return item
     }
 
@@ -1381,6 +1391,15 @@ const agent = {
             'Bash(yarn typecheck)',
             'Bash(yarn typecheck:*)',
             'Bash(yarn lint:*)',
+            // Picasso's actual lint binary is `yarn davinci-syntax lint code
+            // <path>` (auto-fix) and `... --check <path>` (verify). PROMPT-
+            // light/heavy explicitly mandates this command. The yarn lint:*
+            // pattern doesn't match because the script name is `davinci-
+            // syntax`, not `lint:*`. Without this entry, the agent burns
+            // entire iterations re-trying alternative shapes (npx eslint,
+            // node ./node_modules/.bin/eslint, etc.) — see PR #4941 iter 2
+            // post-mortem: $7.17 burned, 17 permission_denials.
+            'Bash(yarn davinci-syntax:*)',
             'Bash(yarn workspace:*)',
             'Bash(yarn workspaces info)',
             'Bash(yarn davinci-qa:*)',
@@ -1388,6 +1407,11 @@ const agent = {
             'Bash(yarn cypress:*)',
             'Bash(yarn test:integration:*)',
             'Bash(yarn happo:*)',
+            // Syncpack — CI's "Static checks" runs `yarn syncpack list-
+            // mismatches`. Gate stage 0.5 runs it too. Letting the agent
+            // verify locally (after editing deps) closes the loop without
+            // a gate cycle.
+            'Bash(yarn syncpack:*)',
             // Lockfile maintenance — required when agent edits package.json deps
             'Bash(yarn install)',
             'Bash(yarn install:*)',
@@ -1610,8 +1634,22 @@ const lessons = {
       return
     }
 
-    // Capture the agent's diff (vs worktree HEAD's pre-iteration baseline).
-    const diffResult = await shell('git', ['diff', 'HEAD~1', 'HEAD'], { cwd: worktreePath })
+    // Capture the full migration diff (initial commit + any CI-fix
+    // commits). `git merge-base HEAD origin/<base-branch>` finds the
+    // last common ancestor; everything after that is "the migration's
+    // work". This replaces the previous `HEAD~1..HEAD` scope which
+    // captured only the latest commit and missed CI-fix iterations.
+    const baseRef = workflow.baseBranch
+      ? `origin/${workflow.baseBranch}`
+      : 'origin/master'
+    const mergeBaseResult = await shell(
+      'git',
+      ['merge-base', 'HEAD', baseRef],
+      { cwd: worktreePath }
+    )
+    const mergeBase = mergeBaseResult.stdout.trim()
+    const diffRange = mergeBase ? `${mergeBase}..HEAD` : 'HEAD~1..HEAD'
+    const diffResult = await shell('git', ['diff', diffRange], { cwd: worktreePath })
     const diffBody = diffResult.stdout.length > 30_000
       ? diffResult.stdout.slice(0, 30_000) + '\n[truncated]'
       : diffResult.stdout
@@ -1633,9 +1671,12 @@ const lessons = {
     //   - call-site type casts (canonical: api-crib §"Type alignment at the boundary")
     //   - any pattern already documented in rules/* — point to the rule instead.
     const extractPrompt =
-      `Below is the diff that opened a PR migrating component "${item.id}" to ${item.target_path ?? 'a new stack'}. ` +
-      `The PR is OPEN and not yet reviewed — patterns may change in review. ` +
-      `Extract 2–3 patterns that future migrations of OTHER components should reuse. ` +
+      `Below is the END-TO-END diff that migrated component "${item.id}" to ${item.target_path ?? 'a new stack'} and got CI green. ` +
+      `The diff includes both the initial migration AND any CI-fix iterations the agent went through to land green checks. ` +
+      `Extract 2–3 patterns future migrations of OTHER components should reuse. ` +
+      `**Especially valuable: CI-fix patterns** — non-obvious things the agent had to do post-PR-open to make CI pass ` +
+      `(e.g. dependency version policy, project reference adjustments, snapshot regenerations on consumer packages). ` +
+      `These represent learnings the agent didn't know upfront — capturing them means the next migration won't re-discover. ` +
       `Prefer merge-quality, durable patterns. Avoid prescribing patterns that ` +
       `human reviewers commonly trim (runtime type guards, sprinkled inline casts) — ` +
       `if the pattern is already in rules/base-ui-react-api-crib.md or rules/api-preservation.md, ` +
@@ -2595,12 +2636,11 @@ export async function run(
 
   manifest.update(manifestAbs, item.id, { pr: prUrl })
 
-  // Tier 1.3: append lessons-learned entry. Non-fatal if it errors.
-  try {
-    await lessons.append(workflow, item, prUrl, state.iterations, wtPath, rootDir)
-  } catch (err) {
-    log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
-  }
+  // Lessons-learned append moved post-CI (2026-05-07). Previously this
+  // ran right after PR-open, which captured ONLY the initial migration
+  // diff and missed any patterns the agent applied while iterating on
+  // CI failures. Now it runs once after CI settles green so the diff
+  // captures end-to-end behaviour (initial migration + CI fixes).
 
   // Phase 3.1 — CI poll. Both `--no-merge` (sandbox) and merge-mode go
   // through the poll; `--no-merge` just skips the eventual merge call. The
@@ -2665,14 +2705,22 @@ export async function run(
   // replaces flake retries; auto-fix-rerun classification was retired
   // in failure-classifier.ts.)
 
-  while (
-    pollResult.state === 'failure' &&
-    state.iterations < opts.maxIterations
-  ) {
+  // CI-iteration budget. Decoupled from --max-iterations (which gates the
+  // migrate-loop) because CI fixes are typically cheap (~$0.50-1 / cycle)
+  // and we want the orchestrator to be STUBBORN about fixing failures
+  // before escalating to a human. Default 5 cycles; override with
+  // --max-ci-iterations=N. Stuck detection (same failure-set twice
+  // consecutively) triggers earlier escalation regardless of budget.
+  const maxCIIterations = opts.maxCIIterations ?? 5
+  let ciIteration = 0
+  let lastFailureSet = ''
+
+  while (pollResult.state === 'failure' && ciIteration < maxCIIterations) {
+    ciIteration += 1
     state.iterations += 1
     log(
       'ci',
-      `iter ${state.iterations}: ${pollResult.failed.length}/${pollResult.checks.length} checks failed: ${pollResult.failed.map((c) => `${c.name}(${c.conclusion})`).join(', ')}`
+      `iter ${ciIteration}/${maxCIIterations}: ${pollResult.failed.length}/${pollResult.checks.length} checks failed: ${pollResult.failed.map((c) => `${c.name}(${c.conclusion})`).join(', ')}`
     )
 
     // Fetch logs + classify in parallel.
@@ -2699,26 +2747,61 @@ export async function run(
       )
     )
 
-    // (auto-fix-rerun budget override removed — v4 Step 4 strict gate.)
+    // Stuck detection: same failure set as last iteration ⇒ no progress.
+    const failureSet = classifications
+      .map((c) => `${c.check.name}:${c.decision.class}`)
+      .sort()
+      .join('|')
 
-    // Escalate on the first escalate-class decision. We don't try to
-    // partially fix failures in this iteration; the simpler invariant
-    // is "any escalate ⇒ stop the whole run".
-    const escalateDecision = classifications.find(
-      (c) => c.decision.class === 'escalate'
-    )
+    if (ciIteration >= 2 && failureSet === lastFailureSet) {
+      log('ci', `stuck on same failure set as last iter — escalating`)
+      const stuckOn = classifications.map((c) => c.check.name).join(', ')
 
-    if (escalateDecision) {
       return escalate(
         workflow,
         item,
         state,
         {
           shouldEscalate: true,
-          reason: `CI failure on "${escalateDecision.check.name}" (${escalateDecision.decision.reason})`,
+          reason: `CI iteration stuck: same failure-set after ${ciIteration} cycles (${stuckOn})`,
         },
         manifestAbs,
         rootDir
+      )
+    }
+    lastFailureSet = failureSet
+
+    // Non-poison-pill: only escalate if EVERY classification is `escalate`.
+    // If at least one is fixable, attempt the fixables and re-poll —
+    // unfixed escalate-class items will resurface next iteration.
+    const fixables = classifications.filter(
+      (c) => c.decision.class !== 'escalate'
+    )
+    const escalates = classifications.filter(
+      (c) => c.decision.class === 'escalate'
+    )
+
+    if (fixables.length === 0) {
+      // All classifications are escalate. Surface the first one as the reason.
+      const first = escalates[0]
+
+      return escalate(
+        workflow,
+        item,
+        state,
+        {
+          shouldEscalate: true,
+          reason: `CI failure on "${first?.check.name ?? '?'}" (${first?.decision.reason ?? 'all unclassified'})`,
+        },
+        manifestAbs,
+        rootDir
+      )
+    }
+
+    if (escalates.length > 0) {
+      log(
+        'ci',
+        `mixed: ${escalates.length} escalate-class + ${fixables.length} fixable; attempting fixables first`
       )
     }
 
@@ -2997,6 +3080,14 @@ export async function run(
     `${item.id}: status=awaiting_review (CI green; run --review-sweep when reviews land)`
   )
 
+  // Lessons append (moved here from PR-open). Captures the full
+  // migration diff including any CI-fix iterations. Non-fatal on error.
+  try {
+    await lessons.append(workflow, item, prUrl, state.iterations, wtPath, rootDir)
+  } catch (err) {
+    log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
+  }
+
   await releaseLock(rootDir, item.id)
 
   return { status: 'pr-opened', prUrl }
@@ -3029,6 +3120,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const ciTimeoutStr = get('--ci-timeout-minutes')
   const reviewTimeoutStr = get('--review-timeout-minutes')
   const maxItemsStr = get('--max-items')
+  const maxCIIterStr = get('--max-ci-iterations')
 
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
@@ -3040,6 +3132,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     tier: tierStr ? Number(tierStr) : null,
     component: componentRaw ?? null,
     maxIterations: iterStr ? Number(iterStr) : 3,
+    maxCIIterations: maxCIIterStr ? Number(maxCIIterStr) : 5,
     withMcp: has('--with-mcp'),
     branch: branchRaw ?? null,
     ciTimeoutMinutes: ciTimeoutStr ? Number(ciTimeoutStr) : 15,

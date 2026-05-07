@@ -160,6 +160,20 @@ check_lockfile_drift() {
 }
 run_stage "lockfile-drift" check_lockfile_drift
 
+# 0.5. Syncpack — validate dependency-version policy (catches CI's
+#      "Static checks" failure mode locally). Picasso enforces:
+#        - npm deps use caret prefix: "1.4.1" → must be "^1.4.1"
+#        - workspace package deps use exact local version (no caret/tilde).
+#      Both rules are validated by `yarn syncpack list-mismatches` in CI;
+#      if it exits non-zero, "Static checks" fails. Run locally to give
+#      the agent feedback before the push.
+check_syncpack() {
+  if ! command -v yarn >/dev/null 2>&1; then return 0; fi
+  yarn --silent syncpack list-mismatches 2>&1
+  return $?
+}
+run_stage "syncpack" check_syncpack
+
 # 1. Build (workspace-scoped — fast).
 run_stage "build" \
   yarn workspace "$WORKSPACE_NAME" build:package
