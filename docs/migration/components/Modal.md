@@ -35,3 +35,17 @@ Per migration plan v3 §3.1: Picasso's "Modal" is the dialog primitive. Replace 
 
 ## Reviewer notes
 - Modal + Drawer are the highest-impact Tier 0 migrations (downstream composites depend on both). Sequence carefully: Backdrop → Modal → Drawer.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Modal preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type ModalClassKey = 'root' | 'backdrop' | 'popup' | 'title' | 'description'
+```
+
+- `root` — the outermost portal/positioner wrapper (`Dialog.Root`)
+- `backdrop` — the dimmed overlay (`Dialog.Backdrop`)
+- `popup` — the dialog panel itself (`Dialog.Popup`)
+- `title` — the dialog title element (`Dialog.Title`)
+- `description` — the dialog description text (`Dialog.Description`)

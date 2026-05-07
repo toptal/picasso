@@ -34,3 +34,18 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react/slider` exists wit
 
 ## Reviewer notes
 - Slider has 2 `@mui/base` source imports per audit §1.4 — slightly more touch than Switch/Tabs. Expect a clean migration but budget an extra iteration if the value-label API differs.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Slider preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type SliderClassKey = 'root' | 'rail' | 'track' | 'thumb' | 'mark' | 'valueLabel'
+```
+
+- `root` — the outermost container
+- `rail` — the full-length background track (Slider.Rail)
+- `track` — the active filled portion (Slider.Track)
+- `thumb` — the draggable handle (Slider.Thumb)
+- `mark` — discrete tick mark (Slider.Mark; only rendered when `marks` prop is present)
+- `valueLabel` — the floating value tooltip above the thumb (Picasso-specific)

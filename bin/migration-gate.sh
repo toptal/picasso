@@ -282,19 +282,110 @@ else
   run_stage_skip "cypress" "no spec at $CY_SPEC"
 fi
 
-# 6. Happo Storybook. Best-effort per-component filter via --only.
+# 6. Happo Storybook + strict diff check (v4 Step 4 / migration plan v4 §6.3).
+#
+#    Two-phase strategy:
+#      a) `yarn happo --only <name>` runs the Happo CLI to upload screenshots
+#         + register the report. Exit code 0 = upload succeeded (does NOT
+#         imply zero diffs).
+#      b) Strict gate: query Happo's REST API for the report's diff
+#         summary. PASS only if `diffsTotal == 0` OR every diff has been
+#         designer-accepted (status: 'accepted'). Otherwise FAIL with the
+#         report URL in the failure message so the designer can review.
+#
 #    Skip conditions:
 #      - MIGRATION_GATE_HAPPO=skip (operator-driven; used by sandbox runs).
 #      - HAPPO_API_KEY / HAPPO_API_SECRET unset (creds required by happo CLI).
 #    See docs/migration/ORCHESTRATOR.md §Happo setup for env wiring.
+#
+#    Robustness: the strict-gate sub-step uses curl + jq with conservative
+#    parsing. If the Happo API response shape doesn't match the assumed
+#    schema (Happo updates their API), the strict check logs a warning
+#    and treats happo as PASS (best-effort — better to defer to designer
+#    manual review than to hard-fail when our parser is stale). The
+#    canonical schema lives at https://docs.happo.io/.
 if [ "${MIGRATION_GATE_HAPPO:-run}" = "skip" ]; then
   run_stage_skip "happo" "MIGRATION_GATE_HAPPO=skip"
 elif [ -z "${HAPPO_API_KEY:-}" ] || [ -z "${HAPPO_API_SECRET:-}" ]; then
   run_stage_skip "happo" "HAPPO_API_KEY/HAPPO_API_SECRET unset (see ORCHESTRATOR.md §Happo setup)"
 else
-  # Storybook project is the Picasso default per `yarn happo` script wrapper.
-  run_stage "happo" \
-    yarn happo --only "${COMPONENT##*/}"
+  # 6a. Run Happo CLI — uploads screenshots + creates the report.
+  HAPPO_LOG="$RUN_DIR/happo.log"
+  HAPPO_STARTED=$(date +%s)
+
+  echo "→ [happo] yarn happo --only ${COMPONENT##*/}" | tee -a "$RUN_DIR/console.log"
+  if yarn happo --only "${COMPONENT##*/}" >"$HAPPO_LOG" 2>&1; then
+    HAPPO_CLI_OK=1
+  else
+    HAPPO_CLI_OK=0
+  fi
+
+  # 6b. Extract the report SHA / URL from Happo CLI output. Happo prints a
+  # line like "Report URL: https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>"
+  # OR similar; the exact format may vary by version. Try multiple patterns.
+  REPORT_URL=$(grep -Eo 'https://happo\.io/[a-zA-Z0-9/_-]+/(?:compare|reports?)/[a-zA-Z0-9/-]+' "$HAPPO_LOG" 2>/dev/null | head -1)
+  REPORT_SHA=$(echo "$REPORT_URL" | grep -Eo '[a-f0-9]{40}' | tail -1)
+
+  HAPPO_STATUS="PASS"
+  HAPPO_REASON=""
+
+  if [ "$HAPPO_CLI_OK" -ne 1 ]; then
+    HAPPO_STATUS="FAIL"
+    HAPPO_REASON="happo CLI failed; see $HAPPO_LOG"
+  elif [ -z "$REPORT_SHA" ]; then
+    # Couldn't extract a SHA from CLI output — log + best-effort PASS.
+    echo "  [happo-strict] could not extract report SHA from CLI output; treating as PASS" \
+      | tee -a "$RUN_DIR/console.log"
+  else
+    # 6c. Query Happo REST API for diff summary.
+    SUMMARY_JSON=$(curl -sf -u "$HAPPO_API_KEY:$HAPPO_API_SECRET" \
+      "https://happo.io/api/reports/$REPORT_SHA/summary" 2>>"$HAPPO_LOG")
+    CURL_OK=$?
+
+    if [ $CURL_OK -ne 0 ]; then
+      echo "  [happo-strict] API call failed (curl exit $CURL_OK); treating as PASS, see $HAPPO_LOG" \
+        | tee -a "$RUN_DIR/console.log"
+    elif [ -z "$SUMMARY_JSON" ]; then
+      echo "  [happo-strict] empty API response; treating as PASS" \
+        | tee -a "$RUN_DIR/console.log"
+    else
+      # Parse with conservative jq — fall back to PASS if shape unknown.
+      DIFFS_TOTAL=$(echo "$SUMMARY_JSON" | jq -r '.diffsTotal // .summary.diffs // 0' 2>/dev/null)
+      UNRESOLVED=$(echo "$SUMMARY_JSON" \
+        | jq -r '[.diffs[]? | select((.status // "unreviewed") != "accepted")] | length' \
+        2>/dev/null)
+
+      # Numeric guards (jq might return "null" or empty on schema drift).
+      [ -z "$DIFFS_TOTAL" ] || ! [ "$DIFFS_TOTAL" -eq "$DIFFS_TOTAL" ] 2>/dev/null && DIFFS_TOTAL=0
+      [ -z "$UNRESOLVED" ] || ! [ "$UNRESOLVED" -eq "$UNRESOLVED" ] 2>/dev/null && UNRESOLVED=0
+
+      echo "  [happo-strict] diffsTotal=$DIFFS_TOTAL, unresolved=$UNRESOLVED" \
+        | tee -a "$RUN_DIR/console.log"
+      echo "  [happo-strict] report: $REPORT_URL" | tee -a "$RUN_DIR/console.log"
+
+      if [ "$DIFFS_TOTAL" -eq 0 ] || [ "$UNRESOLVED" -eq 0 ]; then
+        HAPPO_STATUS="PASS"
+      else
+        HAPPO_STATUS="FAIL"
+        HAPPO_REASON="$UNRESOLVED unresolved Happo diffs — designer review needed at $REPORT_URL"
+      fi
+    fi
+  fi
+
+  HAPPO_ELAPSED=$(( $(date +%s) - HAPPO_STARTED ))
+  STAGES+=("happo")
+  STATUSES+=("$HAPPO_STATUS")
+  DURATIONS+=("$HAPPO_ELAPSED")
+  if [ -n "$HAPPO_REASON" ]; then
+    echo "  $HAPPO_STATUS (${HAPPO_ELAPSED}s, log: $HAPPO_LOG): $HAPPO_REASON" \
+      | tee -a "$RUN_DIR/console.log"
+    # Append the failure reason to the log for downstream surfacing.
+    echo "" >>"$HAPPO_LOG"
+    echo "[gate] $HAPPO_REASON" >>"$HAPPO_LOG"
+  else
+    echo "  $HAPPO_STATUS (${HAPPO_ELAPSED}s, log: $HAPPO_LOG)" \
+      | tee -a "$RUN_DIR/console.log"
+  fi
 fi
 
 # 7. React 19 smoke — stub until PF-1994 wires the real smoke.

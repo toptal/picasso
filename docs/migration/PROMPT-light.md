@@ -52,7 +52,48 @@ Your task:
 4. Tailwind class composition (cx/twMerge usage) stays as-is — that
    was the win of the @mui/base era. Don't rewrite styles.
 
-5. Do NOT change:
+5. **Required output shape: `classes` prop preservation (v4 §2.3).**
+   Every Picasso component must accept and route a `classes` prop via
+   the Tailwind class-composition shim. This preserves the consumer API
+   surface that 23 downstream repos depend on.
+
+   Pattern:
+   ```ts
+   import { withClasses } from '@toptal/picasso-utils'
+
+   // Declare the slot keys this component exposes (see the per-component
+   // plan file's "Slot keys" section for the canonical list).
+   export type ButtonClassKey = 'root' | 'label' | 'icon'
+
+   const baseClasses: Record<ButtonClassKey, string> = {
+     root: 'inline-flex items-center px-4 py-2',
+     label: 'font-semibold',
+     icon: 'mr-2',
+   }
+
+   export interface Props {
+     // ... other props ...
+     classes?: Partial<Record<ButtonClassKey, string>>
+   }
+
+   export const Button: React.FC<Props> = ({ classes, ...rest }) => {
+     const merged = withClasses(baseClasses, classes)
+     return (
+       <BaseUIButton className={merged.root}>
+         <span className={merged.icon}>...</span>
+         <span className={merged.label}>...</span>
+       </BaseUIButton>
+     )
+   }
+   ```
+
+   Rules:
+   - **Slot keys come from the per-component plan file** (`docs/migration/components/<NAME>.md`, "Slot keys" section). Do NOT invent new keys.
+   - The `classes` prop is `Partial<Record<*ClassKey, string>>` — every key is optional; values are Tailwind class strings.
+   - `withClasses` is dependency-light (only `@toptal/picasso-tailwind-merge`); add `@toptal/picasso-utils` to deps if not already present.
+   - The shim does NOT cover MUI nested-state selectors (`& .Mui-disabled`, `&$expanded`) or generated MUI classes (`.MuiButton-root`). Those rare cases need codemods or manual consumer fixes; flag them in the diff JSON instead of trying to preserve them here.
+
+6. Do NOT change:
    - test.tsx assertions (snapshots OK to regenerate)
    - story files (they exercise the public API)
    - file locations or export names

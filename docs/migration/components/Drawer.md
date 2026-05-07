@@ -37,3 +37,15 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react` newly ships a Dra
 ## Reviewer notes
 - Drawer is the more complex Tier 0 component (after Modal). It ships swipe-to-dismiss new — flag that to the design + product reviewers before approval.
 - Sibling: Modal (Tier 0) shares the dialog-primitive backing. Migrate Drawer + Modal in close succession after Backdrop lands.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Drawer preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type DrawerClassKey = 'root' | 'backdrop' | 'paper'
+```
+
+- `root` — the outermost wrapper (typically the `Drawer.Root` portal target)
+- `backdrop` — the dimmed overlay behind the drawer panel
+- `paper` — the drawer panel itself (slides in from edge)

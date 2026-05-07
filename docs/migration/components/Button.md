@@ -114,3 +114,17 @@ This protects against the runtime case where `as` is undefined / null / a primit
 ## Reviewer notes
 - Light-path multipliers are calibrated against Button + Switch. After Button + ~2 more Tier 0 components ship, recalibrate per migration plan §10 R12.
 - These four patterns generalise to other polymorphic components (`as`-prop or `component`-prop). When migrating Drawer / Dialog / Tabs (also Tier 0), check whether they have polymorphic semantics and apply the same shape.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Button preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type ButtonClassKey = 'root' | 'label' | 'icon'
+```
+
+- `root` — outermost element (the rendered `<button>` or polymorphic `as`-element)
+- `label` — text-content wrapper inside the button
+- `icon` — icon slot (covers both leading/trailing icon positions; consumer disambiguates via the `icon` prop's position)
+
+Refine during migration if the actual rendered DOM exposes additional internal regions worth surfacing as slots. Do NOT add MUI v4 variant-specific keys (`text`, `outlined`, `contained`) — those are now styling concerns, not slot-routing concerns.

@@ -33,3 +33,16 @@ Migration must be applied AFTER:
 ## Reviewer notes
 - **This component is the PF-1992 orchestrator sandbox.** The intentionally minimal source-diff is the design — this run validates the orchestrator's wiring (worktree, gates, PR open, CI poll, manual review handoff), not the migration logic itself. The first *real* source migration happens on FormLabel (1 type import) or Utils (5 imports + 4 JSS calls) under PF-1994.
 - After PF-1992 ships, Note converts to a normal Tier 1 component in PF-1994's queue.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Note preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type NoteClassKey = 'root' | 'content'
+```
+
+- `root` — the outermost wrapper (with variant-driven background + border classes)
+- `content` — the inner text-content container
+
+Tier 1 already-clean (the orchestrator sandbox component); migration is package.json delta only — `classes` contract unchanged from baseline.

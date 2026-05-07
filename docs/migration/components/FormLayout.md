@@ -23,3 +23,15 @@ Migration must be applied AFTER:
 ## Acceptance criteria (component-specific)
 - [ ] `packages/base/FormLayout/package.json` has no `@material-ui/core` entry.
 - [ ] Happo: 0 pixel diff vs baseline.
+
+## Slot keys
+
+Per migration plan v4 §2.3, FormLayout preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type FormLayoutClassKey = 'root'
+```
+
+- `root` — the layout container
+
+FormLayout is already-clean (Tier 1 cleanup); no internal slots beyond root.

@@ -33,3 +33,15 @@ Migration must be applied AFTER:
 ## Reviewer notes
 - The Cypress spec is load-bearing for Form. If it asserts on class names (bad practice but possible), flag and fix as a separate change before merge.
 - ARIA semantics matter to a11y compliance audits — review any class changes around live-regions carefully.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Form preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type FormClassKey = 'root'
+```
+
+- `root` — the `<form>` element itself
+
+Form is already-clean (Tier 1 cleanup); no internal slots beyond root. The migration is package.json delta only — `classes` API contract unchanged.
