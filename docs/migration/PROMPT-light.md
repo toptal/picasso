@@ -32,18 +32,55 @@ Your task:
 
 2. Update package.json:
    - Remove @mui/base from dependencies.
-   - Add @base-ui/react.
+   - Add @base-ui/react (current pin: 1.4.1).
+   - **Drop the `react: < 19.0.0` upper bound** from `peerDependencies`
+     if present. Replace with `react: ">=16.12.0"` (or current floor).
+     Per v4 §2.6, `@base-ui/react` supports React 19 and Picasso lifts
+     the React 18-era cap as part of every Tier 0/1 migration.
+   - **After editing any package.json deps, run `yarn install` from
+     the repo root and stage `yarn.lock` in the same commit.** Missing
+     yarn.lock is the single most common reason CI's "Build packages"
+     step fails on dep-bumping migrations. Validate before commit:
+     `git status` shows `yarn.lock` modified IFF you touched any
+     `dependencies` / `devDependencies` / `peerDependencies`. If deps
+     changed but yarn.lock didn't, the resolution didn't move — verify
+     the new dep is already in the lockfile (`grep '"@base-ui/react@' yarn.lock`).
 
 3. Preserve the public prop surface. When @base-ui/react's types narrow
    vs Picasso's wider public types (e.g. polymorphic components where
    Picasso accepts MouseEvent<HTMLButtonElement & HTMLAnchorElement>
    but @base-ui/react accepts MouseEvent<HTMLButtonElement>), do NOT
-   change the public type. Cast at the call site instead:
-       onClick={handler as BaseUIButton.Props['onClick']}
-       ref={ref as React.Ref<HTMLElement>}
-   The `as ComponentName.Props['<key>']` indexed-type-access pattern is
-   the canonical narrow-cast for @base-ui/react. NEVER fall back to
-   `any` — that violates api-preservation.md and triggers lint errors.
+   change the public type. Cast at the **type boundary** — hoisted
+   into a helper's return type or a local typed binding — NOT sprinkled
+   inline in JSX:
+
+       // Preferred — hoist the cast into the helper's return type:
+       const getClickHandler = (
+         loading?: boolean,
+         handler?: Props['onClick']
+       ): BaseUIButton.Props['onClick'] =>
+         (loading ? noop : handler) as BaseUIButton.Props['onClick']
+       // Then in JSX, no cast needed:
+       <BaseUIButton onClick={getClickHandler(loading, onClick)} />
+
+       // Avoid — call-site casts proliferate and re-open the trust
+       // question at every render:
+       <BaseUIButton onClick={getClickHandler(loading, onClick) as BaseUIButton.Props['onClick']} />
+       <BaseUIButton {...(rest as BaseUIButton.Props)} ref={ref as React.Ref<HTMLElement>} />
+
+   `forwardRef<HTMLButtonElement, Props>(...)` already types `ref`
+   correctly — don't cast it at the JSX site. Spreading `{...rest}`
+   with a cast (`{...(rest as BaseUIButton.Props)}`) is `// @ts-ignore`
+   in disguise; if `rest` doesn't conform, drop the offending Picasso-only
+   prop before spreading. NEVER fall back to `any` — that violates
+   api-preservation.md and triggers lint errors.
+
+   See `rules/base-ui-react-api-crib.md` §"Polymorphic Button" for
+   the `nativeButton + render` pattern and §"Type alignment at the
+   boundary" for the hoisted-cast pattern. **Do not add a runtime
+   `typeof`/`isValidAs` guard for the `as` prop** — TypeScript already
+   constrains it; reviewers will ask you to remove it (see api-crib
+   §"Don't add runtime `typeof` guards").
 
    If a prop genuinely must change (a public type that cannot be
    preserved even with casting), add it to
@@ -52,10 +89,29 @@ Your task:
 4. Tailwind class composition (cx/twMerge usage) stays as-is — that
    was the win of the @mui/base era. Don't rewrite styles.
 
-5. **Required output shape: `classes` prop preservation (v4 §2.3).**
-   Every Picasso component must accept and route a `classes` prop via
-   the Tailwind class-composition shim. This preserves the consumer API
-   surface that 23 downstream repos depend on.
+5. **Conditional output shape: `classes` prop preservation (v4 §2.3, scoped).**
+   `withClasses` is a **preservation** mechanism, not a NET ADD. Apply
+   it only if the component currently exposes `classes` in its public
+   Props interface — directly (`classes?: { ... }`) or by extending
+   `StandardProps` (which bundles `classes: Classes` via `JssProps`).
+   If the component has no `classes` prop today, **skip this step
+   entirely** — adding it would be net-new API, not preservation.
+
+   Quick check before deciding:
+   - `grep -rE '^\s*classes\??:' packages/base/<NAME>/src` — direct
+   - `grep -rE 'extends.*StandardProps' packages/base/<NAME>/src` — inherited
+   If both come up empty, skip §5 and move on.
+
+   Components that need this (per the manifest audit): Button, Modal,
+   Container, Notification, FormLabel, Typography, Radio, Accordion,
+   Dropdown, OutlinedInput. Components that **don't** (skip): Backdrop,
+   Badge, Drawer, Slider, Switch, Tabs, ModalContext, Grid, Menu, Utils,
+   Form, FormLayout, Note, Checkbox, Tooltip, FileInput, Popper, Page.
+
+   When applicable, expose `classes` on the **public** component (e.g.
+   `Button.tsx`), not just the internal Base (e.g. `ButtonBase.tsx`).
+   Re-export the `*ClassKey` type from the public component so consumers
+   can type their overrides.
 
    Pattern:
    ```ts

@@ -177,25 +177,68 @@ When `finalAs !== 'button'` (e.g., `'a'`): `nativeButton: false`, `render: React
 
 This same pattern applies to other polymorphic Picasso components migrating off `@mui/base` (e.g., other `as`-prop primitives if they exist).
 
-### Type alignment at the call site (don't weaken the public API)
+### Don't add runtime `typeof` guards for `as`
 
-When `@base-ui/react` types narrow vs Picasso's wider public types (common for polymorphic components — Picasso's `MouseEvent<HTMLButtonElement & HTMLAnchorElement>` vs Base UI's `BaseUIEvent<MouseEvent<HTMLButtonElement>>`), **preserve the public type unchanged** and cast at the call site using indexed-type access:
+A pattern you may see in early migrations or copy from older lessons:
+
+```ts
+const isValidAs = (value: Props['as']) => {
+  const valueType = typeof value
+  return valueType === 'string' || valueType === 'function' ||
+    (valueType === 'object' && value !== null)
+}
+const finalAs: ElementType = isValidAs(as) ? as : 'a'
+```
+
+**Don't write this.** TypeScript's `as?: ElementType` already constrains the input to acceptable values. The runtime guard is dead code; reviewers will ask you to remove it (see [PR #4906 review thread](https://github.com/toptal/picasso/pull/4906)). Use the simple form:
+
+```ts
+const finalAs: ElementType = as ?? 'a'
+```
+
+### Type alignment at the boundary (don't weaken the public API)
+
+When `@base-ui/react` types narrow vs Picasso's wider public types (common for polymorphic components — Picasso's `MouseEvent<HTMLButtonElement & HTMLAnchorElement>` vs Base UI's `BaseUIEvent<MouseEvent<HTMLButtonElement>>`), **preserve the public type unchanged** and cast at *one* boundary point — hoisted into a helper return type or a local typed binding. Don't sprinkle inline casts at the JSX call site.
+
+**Preferred — hoist the cast into a helper's return type:**
 
 ```ts
 // In the public Props interface — unchanged from MUI v4 era:
 onClick?: (event: MouseEvent<HTMLButtonElement & HTMLAnchorElement>) => void
 
-// In the render — cast at the boundary:
-<BaseUIButton onClick={onClick as BaseUIButton.Props['onClick']} ... />
+// One cast, in the helper, at the boundary into Base UI types:
+const getClickHandler = (
+  loading?: boolean,
+  handler?: Props['onClick']
+): BaseUIButton.Props['onClick'] =>
+  (loading ? noop : handler) as BaseUIButton.Props['onClick']
+
+// In JSX — no cast, reads as ordinary TypeScript:
+<BaseUIButton onClick={getClickHandler(loading, onClick)} />
 ```
 
-The `as ComponentName.Props['<key>']` pattern is the canonical narrow-cast for `@base-ui/react`. Same for `ref`:
+**Acceptable when there's no helper — local typed binding before render:**
+
+```ts
+const handler: BaseUIButton.Props['onClick'] = onClick as BaseUIButton.Props['onClick']
+return <BaseUIButton onClick={handler} ... />
+```
+
+**Avoid — call-site casts proliferate and re-open the trust question every render:**
 
 ```tsx
-<BaseUIButton ref={ref as React.Ref<HTMLElement>} ... />
+<BaseUIButton
+  {...(rest as BaseUIButton.Props)}
+  ref={ref as React.Ref<HTMLElement>}
+  onClick={getClickHandler(loading, onClick) as BaseUIButton.Props['onClick']}
+  // ...
+/>
 ```
 
-**Do NOT** change the public type to `any` to "fix" the type mismatch — that violates `rules/api-preservation.md` (no broadening of public types).
+Specifically:
+- `forwardRef<HTMLButtonElement, Props>(...)` already types `ref` correctly. Casting `ref as React.Ref<HTMLElement>` at the JSX site is dead.
+- `{...(rest as BaseUIButton.Props)}` is `// @ts-ignore` in disguise. If `rest` doesn't conform to `BaseUIButton.Props`, that's a real type mismatch — drop the offending Picasso-only prop *before* spreading, don't paper over.
+- The `as ComponentName.Props['<key>']` indexed-type-access pattern is still canonical — just hoist it. **Do NOT** change the public type to `any` to "fix" the type mismatch — that violates `rules/api-preservation.md` (no broadening of public types).
 
 ---
 
@@ -220,6 +263,15 @@ For animations on enter/exit:
 | Leaving (CSS keyframe origin) | `data-ending-style` |
 
 These replace MUI v4's `Grow` / `Fade` / `Slide` transition components — used in Dropdown's mixed-state migration.
+
+### Jest snapshot impact
+
+When migrating from `@mui/base` (Tier 0), the rendered DOM changes shape in two predictable ways. Both surface in Jest snapshot tests:
+
+1. **`@base-ui/react` parts emit `data-disabled=""`** (empty-string attribute) on the disabled root element. The MUI v4 era didn't have this attribute.
+2. **The stale `base-` class literal disappears.** This was a side-effect of `@mui/base`'s `slots`/`slotProps` system — it injected a `base-Component-` class prefix that the post-migration root no longer produces. Both `<Button class="... base-Button base- ...">` and `<Button class="... base-Button-root base- ...">` collapse to `<Button class="... base-Button ...">`.
+
+Run `yarn davinci-qa unit -u --testPathPattern packages/base/<NAME>` (or `jest -u <path>`) to regenerate snapshots — don't try to preserve the old DOM shape by injecting fake attributes or adding back the stale `base-` literal. The new shape is correct; the old shape was the artifact.
 
 ---
 

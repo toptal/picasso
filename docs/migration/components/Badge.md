@@ -34,11 +34,4 @@ Per migration plan v3 §3.1 + audit §1.4: source has 1 `@mui/base` import (`Bad
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Badge preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
-
-```ts
-export type BadgeClassKey = 'root' | 'badge'
-```
-
-- `root` — the wrapper element (typically a `<span>`) holding the children + the badge dot/count
-- `badge` — the floating count/dot indicator
+**Not applicable.** Per the May 2026 audit, Badge does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.

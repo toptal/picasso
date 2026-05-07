@@ -69,9 +69,18 @@ export interface ContainerProps {
 }
 ```
 
-## `classes` prop (preserved via Tailwind-routing shim — v4 §2.3)
+## `classes` prop (preserved via Tailwind-routing shim — v4 §2.3, scoped)
 
-**Walks back the v3-era plan to remove `classes` universally.** Per migration plan v4 §2.3, every Picasso component **preserves** a `classes` prop after migration via `withClasses` from `@toptal/picasso-utils`. Pattern:
+**Strict-preservation policy.** `withClasses` is a *preservation* mechanism, not a NET ADD. Apply it only if the component currently exposes `classes` in its public Props interface — directly (`classes?: { ... }`) or by extending `StandardProps` (which bundles `classes: Classes` via `JssProps`). If the component has no `classes` prop today, **do not add one** — that's net-new API, not preservation. (This walks back the v4 §2.3 wording "every component" to align with the audit.)
+
+**Scope (per the manifest audit, May 2026):**
+
+- ✅ Apply `withClasses`: Button, Modal, Container, Notification, FormLabel, Typography, Radio, Accordion, Dropdown, OutlinedInput
+- ❌ Skip `withClasses`: Backdrop, Badge, Drawer, Slider, Switch, Tabs, ModalContext, Grid, Menu, Utils, Form, FormLayout, Note, Checkbox, Tooltip, FileInput, Popper, Page
+
+Verify with the grep before you apply: `grep -rE '^\s*classes\??:|extends.*StandardProps' packages/base/<NAME>/src --include='*.ts' --include='*.tsx'`. Empty result → skip §5.
+
+When applicable, the pattern is:
 
 ```ts
 import { withClasses } from '@toptal/picasso-utils'

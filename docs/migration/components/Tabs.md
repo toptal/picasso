@@ -40,13 +40,4 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react/tabs` exists with 
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Tabs preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
-
-```ts
-export type TabsClassKey = 'root' | 'list' | 'indicator' | 'tab'
-```
-
-- `root` — the outermost Tabs.Root container
-- `list` — the Tabs.List wrapper holding individual tabs
-- `indicator` — the moving underline/highlight tracking the active tab
-- `tab` — individual Tab triggers (per-tab styling)
+**Not applicable.** Per the May 2026 audit, Tabs does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.

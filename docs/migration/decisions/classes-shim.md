@@ -1,9 +1,9 @@
 # Decision — `classes` prop preservation via Tailwind-routing shim
 
-**Status:** **LOCKED** (PF-1992 design conversations, May 2026).
-**Date:** 2026-05-04.
+**Status:** **LOCKED** (PF-1992 design conversations, May 2026; **scope amended 2026-05-07** — see "Scope amendment" below).
+**Date:** 2026-05-04 (amended 2026-05-07).
 **Risk reference:** [migration plan v4 §2.3](../../modernization/PI-4318-P1-MOD-01-migration-plan.md#23-api-preservation-default), [`PI-4318-PF-1992-design-decisions.md` §7](../../modernization/PI-4318-PF-1992-design-decisions.md).
-**Affected manifest entries:** all 28 component-migration units (universal — every Tier 0+ migration must implement this pattern).
+**Affected manifest entries:** **10 of 28** component-migration units that currently expose `classes` in their public Props (per the May 2026 audit). The remaining 18 components migrate without `withClasses`.
 
 ---
 
@@ -76,6 +76,40 @@ Three options were considered:
 
 Option A walks back the v3-era plan to "remove `classes` universally". The cost (~30 LOC of utility + per-component slot-key declarations) is dramatically lower than the cost of forcing every consumer repo to absorb a coordinated codemod release.
 
+## Scope amendment (2026-05-07)
+
+The original v4 §2.3 wording was "every Picasso component must preserve `classes`". The May 2026 manifest audit revealed this is too aggressive: `withClasses` is a *preservation* mechanism, and many components in the manifest **do not currently expose `classes`** in their public Props. Forcing the shim onto those is NET-ADD of new API, not preservation.
+
+**Strict policy** (effective 2026-05-07):
+
+- **Apply `withClasses`** if the component currently exposes `classes` — either directly (`classes?: { ... }` in Props) or by extending `StandardProps` (which bundles `classes: Classes` via `JssProps`).
+- **Skip `withClasses`** if neither condition holds. The migration is a clean swap; no slot routing, no `*ClassKey` type, no `baseClasses` plumbing.
+
+**Manifest classification** (May 2026 audit, `grep -rE '^\s*classes\??:|extends.*StandardProps' packages/base/<NAME>/src`):
+
+| Apply (10) | Skip (18) |
+|---|---|
+| Button (StandardProps) | Backdrop |
+| Modal (direct) | Badge |
+| Container (direct) | Drawer |
+| Notification (StandardProps) | Slider |
+| FormLabel (direct) | Switch |
+| Typography (StandardProps) | Tabs |
+| Radio (StandardProps) | ModalContext |
+| Accordion (direct) | Grid |
+| Dropdown (direct) | Menu |
+| OutlinedInput (direct) | Utils |
+| | Form |
+| | FormLayout |
+| | Note |
+| | Checkbox |
+| | Tooltip |
+| | FileInput |
+| | Popper |
+| | Page |
+
+For components in "Apply" that inherit `classes` via `StandardProps`, the public Props must narrow the inherited `Classes` type to `Partial<Record<*ClassKey, string>>`. This is a real API narrowing — consumers using arbitrary string keys break. Document keys-to-drop in `docs/migration/<Component>-diff.json` with `codemod: required`.
+
 ## Limits
 
 The shim covers the dominant pattern: "consumer wants to add a class to slot X". It does NOT cover three rare patterns that still break:
@@ -88,13 +122,14 @@ For (1) and (2), the migration's per-component diff JSON (`docs/migration/<Compo
 
 ## How agents apply this
 
+0. **First, check whether to apply at all.** Run `grep -rE '^\s*classes\??:|extends.*StandardProps' packages/base/<NAME>/src --include='*.ts' --include='*.tsx'`. If empty, the component has no `classes` prop in its current API — **skip steps 1–5 entirely**. Migrate without slot routing.
 1. Read the component's "Slot keys" section in `docs/migration/components/<Component>.md`. The slot list is canonical.
 2. Declare `<Component>ClassKey = 'root' | ...` literal-union type at the top of the component file.
 3. Build `baseClasses: Record<<Component>ClassKey, string>` mapping each slot to its Tailwind class string.
-4. Add `classes?: Partial<Record<<Component>ClassKey, string>>` to the public Props interface.
-5. Inside the component, call `withClasses(baseClasses, classes)` once and use the result's per-slot strings as the `className` for each slot's element.
+4. Add `classes?: Partial<Record<<Component>ClassKey, string>>` to the public Props interface (or *narrow* the inherited `Classes` type if the component extends `StandardProps`).
+5. Inside the component, call `withClasses(baseClasses, classes)` once and use the result's per-slot strings as the `className` for each slot's element. Apply on the **public** component (e.g. `Button.tsx`), not just the internal Base (e.g. `ButtonBase.tsx`).
 
-Both `PROMPT-light.md` and `PROMPT-heavy.md` codify this as a "Required output shape" section so the agent applies it on every Tier 0+ migration. `rules/api-preservation.md` documents the policy at the rule-doc level.
+Both `PROMPT-light.md` and `PROMPT-heavy.md` codify this as a "Conditional output shape" section. `rules/api-preservation.md` documents the policy at the rule-doc level.
 
 ## Verification
 

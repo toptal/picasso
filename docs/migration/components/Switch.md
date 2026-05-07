@@ -39,14 +39,6 @@ Per migration plan v3 §3.1: direct match. Replace `@mui/base/Switch` with `@bas
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Switch preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, Switch does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type SwitchClassKey = 'root' | 'thumb' | 'track'
-```
-
-- `root` — the outermost element (the `Switch.Root` container)
-- `thumb` — the moving knob (Switch.Thumb)
-- `track` — the background track that the thumb slides on
-
-Light-path migration; Switch depends on FormLabel (Tier 1) — sequence after FormLabel cleanup ships.
+Sequencing note: Switch depends on FormLabel (Tier 1) — sequence after FormLabel cleanup ships.

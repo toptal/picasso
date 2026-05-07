@@ -40,12 +40,4 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react` newly ships a Dra
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Drawer preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
-
-```ts
-export type DrawerClassKey = 'root' | 'backdrop' | 'paper'
-```
-
-- `root` — the outermost wrapper (typically the `Drawer.Root` portal target)
-- `backdrop` — the dimmed overlay behind the drawer panel
-- `paper` — the drawer panel itself (slides in from edge)
+**Not applicable.** Per the May 2026 audit, Drawer does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.

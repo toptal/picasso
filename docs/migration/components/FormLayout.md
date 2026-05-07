@@ -26,12 +26,6 @@ Migration must be applied AFTER:
 
 ## Slot keys
 
-Per migration plan v4 §2.3, FormLayout preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, FormLayout does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type FormLayoutClassKey = 'root'
-```
-
-- `root` — the layout container
-
-FormLayout is already-clean (Tier 1 cleanup); no internal slots beyond root.
+Implementation note: already-clean (Tier 1 cleanup); migration is package.json delta only.
