@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@toptal/picasso-provider": "workspace:*",
+    "@toptal/picasso-tailwind-merge": "workspace:*",
     "@toptal/picasso-test-utils": "workspace:*",
     "styled-components": "^6.1.1"
   },
