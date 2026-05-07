@@ -574,6 +574,43 @@ const worktree = {
       )
     }
     log('bootstrap', `yarn install completed in ${elapsed}s`)
+
+    // Pre-build all dist-packages. Required for the gate's `consumers` stage
+    // — that stage runs jest on consumer packages (Page, Section, Modal,
+    // picasso-forms, etc.), and those consumers import workspace packages
+    // (`@toptal/picasso-form`, `@toptal/picasso-input`, …) whose package.json
+    // `main` points at `dist-package/src/index.js`. If dist-package isn't
+    // built, jest fails with "Cannot find module '@toptal/picasso-X'".
+    //
+    // The gate's `build` stage only builds the migrating component + its
+    // tsc-referenced deps — not the consumers' deps. Building all packages
+    // here once at bootstrap ensures every subsequent stage finds dist-
+    // package directories everywhere it looks.
+    //
+    // `yarn build:package` runs `lerna run build:package` which respects
+    // workspace dependency order. ~60-120s on first build (warm tsc cache
+    // afterwards). Worth the cost: without this, consumers stage fails on
+    // every Tier 0+ migration.
+    const buildStartedAt = Date.now()
+
+    log('bootstrap', `running yarn build:package (lerna; all workspaces) in ${worktreePath}`)
+    const buildResult = await shell('yarn', ['build:package'], {
+      cwd: worktreePath,
+    })
+    const buildElapsed = Math.round((Date.now() - buildStartedAt) / 1000)
+
+    if (buildResult.exitCode !== 0) {
+      log(
+        'bootstrap',
+        `yarn build:package failed in ${buildElapsed}s — continuing anyway (consumers stage may fail). Stderr tail:`
+      )
+      log('bootstrap', buildResult.stderr.slice(-1000))
+      // Don't throw — partial builds are still better than no builds, and
+      // the migrating component might not depend on whichever package
+      // failed. The gate's downstream stages will surface real failures.
+    } else {
+      log('bootstrap', `yarn build:package completed in ${buildElapsed}s`)
+    }
   },
 
   // overlayWorkspaceForSourceChange (formerly Phase 2.5) was removed
