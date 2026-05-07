@@ -152,7 +152,14 @@ function extractFailedTestPaths(log: string): readonly string[] {
  * absolute paths.
  */
 function extractLintFiles(log: string, repoRoot?: string): readonly string[] {
-  const lines = log.split('\n')
+  // Strip ANSI escape sequences first. CI's color-on lint output wraps file
+  // paths and error markers in `[Xm` codes, breaking the line-shape
+  // regexes below. Local lint (`yarn davinci-syntax lint code --check ...`)
+  // emits plain text without ANSI, so this only matters for CI logs — but
+  // we strip universally for safety.
+  // eslint-disable-next-line no-control-regex
+  const stripped = log.replace(/\u001b\[[0-9;]*m/g, '')
+  const lines = stripped.split('\n')
   const files: string[] = []
   let currentFile: string | null = null
 
