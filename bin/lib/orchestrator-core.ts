@@ -1617,9 +1617,19 @@ const agent = {
             logPath,
             `\n[orchestrator] hard-timeout kill: no output for ${idle}s\n`
           )
-          try { child.kill('SIGTERM') } catch {}
+          try {
+            child.kill('SIGTERM')
+          } catch {
+            /* child may already be dead; SIGTERM throw is fine */
+          }
           // Backstop: SIGKILL after 5s if SIGTERM doesn't take.
-          setTimeout(() => { try { child.kill('SIGKILL') } catch {} }, 5000)
+          setTimeout(() => {
+            try {
+              child.kill('SIGKILL')
+            } catch {
+              /* child may already be dead; SIGKILL throw is fine */
+            }
+          }, 5000)
         }
       }, 30_000)
 
@@ -2894,8 +2904,19 @@ export async function run(
     // Feed-to-agent classifications: assemble a CI-feedback delta prompt
     // and invoke the agent (session-resume). The agent edits files; gate
     // runs locally afterwards as a sanity check.
+    //
+    // Bug 5 fix (2026-05-07): also include `auto-fix-lint` decisions whose
+    // `paths` array is empty. Empty paths means `extractLintFiles` couldn't
+    // parse file paths from CI's ANSI-coloured lint output (different format
+    // than local `yarn davinci-syntax`). Without this fallback, the orches-
+    // trator had no path forward — auto-fix loop skipped (paths empty),
+    // feed-to-agent loop didn't include them (wrong class), and the early-
+    // bail at "no actionable CI classifications" escalated. Now we pass the
+    // log excerpt to the agent and let it figure out which files to fix.
     const feedDecisions = classifications.filter(
-      (c) => c.decision.class === 'feed-to-agent'
+      (c) =>
+        c.decision.class === 'feed-to-agent' ||
+        (c.decision.class === 'auto-fix-lint' && c.decision.paths.length === 0)
     )
 
     if (feedDecisions.length > 0) {
