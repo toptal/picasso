@@ -1,0 +1,14 @@
+{
+  "component": "Button",
+  "removed": [],
+  "renamed": [],
+  "narrowed": [
+    {
+      "prop": "classes",
+      "from": "Classes",
+      "to": "Partial<Record<ButtonClassKey, string>>",
+      "reason": "v4 §2.3 strict-preservation routing — Button inherits classes: Classes via StandardProps from @toptal/picasso-shared; per the May 2026 audit Button is in the apply-withClasses set, so the public Props narrows the inherited Record<string, string> to a slot-keyed Partial<Record<'root' | 'label' | 'icon', string>>. Consumer call-sites passing classes={{ root: '...' }} continue to work; previously-allowed unknown keys now error at the consumer's TS site (unknown keys were silently ignored at runtime in MUI v4 too).",
+      "codemod": "not-required"
+    }
+  ]
+}
