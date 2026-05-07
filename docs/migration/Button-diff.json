@@ -1,0 +1,14 @@
+{
+  "component": "Button",
+  "removed": [],
+  "renamed": [],
+  "narrowed": [
+    {
+      "prop": "classes",
+      "from": "Classes (Record<string, string>) — inherited from StandardProps via JssProps",
+      "to": "Partial<Record<ButtonClassKey, string>> where ButtonClassKey = 'root' | 'label' | 'icon'",
+      "reason": "Migration plan v4 §2.3 strict-preservation: re-route the historical `classes` prop through Tailwind via the `withClasses` shim. Slot keys are explicit (root, label, icon) instead of the open-ended Record<string, string>. Consumer overrides with these key names continue to work; consumers passing other keys see a TS error at the call-site (silently no-op at runtime).",
+      "codemod": "not-required"
+    }
+  ]
+}
