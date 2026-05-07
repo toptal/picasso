@@ -114,7 +114,8 @@
       "micromatch": "^4.0.8",
       "nx": "21.5.1",
       "@nx/js": "21.5.1",
-      "@types/react": "17"
+      "@types/react": "17",
+      "js-yaml": "^3.13.1"
     },
     "onlyBuiltDependencies": [
       "@sentry/cli",
