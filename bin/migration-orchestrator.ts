@@ -91,17 +91,8 @@ const migrationWorkflow: Workflow = {
   // via `--ci-timeout-minutes=N` if CI queue contention or slow shards
   // push past the budget.
   ciTimeoutMinutes: 15,
-  // Phase 3 Happo-flake mitigation. One rerun is enough for the common
-  // case (network/upload jitter on happo.io). Persistent failures after
-  // one rerun are likely real visual regressions and should escalate to
-  // a designer.
-  maxReruns: 1,
-  // Tier 2 batch B / Slice 4 — sweep can ALSO rerun Happo on its own
-  // cadence after canary creation has finished, since Happo flakes
-  // sometimes only show up after a few hours / runs. 2 sweep retries
-  // past Phase 3.3's initial budget covers the long-tail flake without
-  // letting persistent regressions hide indefinitely.
-  maxSweepHappoReruns: 2,
+  // (maxReruns + maxSweepHappoReruns removed in v4 Step 4 — strict
+  // Happo gate replaces flake retries.)
   // Phase 3.5 — review polling. Default 0 (canary / sandbox runs proceed
   // straight to merge or stop on --no-merge). Set via
   // `--review-timeout-minutes=N` for production migrations awaiting

@@ -70,15 +70,7 @@ export interface ManifestItem {
   last_review_seen_at?: string | null
   /** Phase 3.5 — count of agent iterations driven by review feedback. */
   review_iterations?: number
-  /**
-   * Tier 2 batch B / Slice 4 — count of Happo-only-flake reruns
-   * triggered by `--review-sweep` (separate budget from the inner-loop
-   * `maxReruns` consumed during canary creation). Caps the number of
-   * times sweep will push an empty-commit retrigger when only Happo
-   * Cypress fails. Beyond this cap, Happo is treated as a persistent
-   * regression → escalate to `needs_human`.
-   */
-  sweep_happo_reruns?: number
+  // sweep_happo_reruns removed (v4 Step 4 strict Happo gate).
   /**
    * Phase 3.5 — Anthropic session ID generated at first migration
    * iteration. Reused on subsequent migration iterations + review-sweep
@@ -295,36 +287,12 @@ export interface OrchestratorOptions {
    */
   readonly ciTimeoutMinutes: number
 
-  /**
-   * Phase 3 Happo-flake mitigation — retry budget per failed check name.
-   *
-   * When a check failure classifies as `auto-fix-rerun` (currently only
-   * Happo failures), the orchestrator triggers an empty-commit push to
-   * re-run CI without source changes. The same check is allowed to fail
-   * up to `maxReruns` times before reclassifying as `escalate`.
-   *
-   * Rationale: Happo upload jitter, network timeouts, and CI infra blips
-   * occasionally produce false-positive failures. A single rerun
-   * catches the common case without burning iteration budget on real
-   * visual regressions (those still escalate after the second failure).
-   *
-   * Default: 1 (one rerun → escalate on second failure).
-   */
-  readonly maxReruns: number
-
-  /**
-   * Tier 2 batch B / Slice 4 — sweep-driven Happo-rerun budget.
-   *
-   * `--review-sweep` periodically checks each `awaiting_review` item.
-   * If the only failing check is Happo (Cypress) AND every other check
-   * is green, sweep pushes an empty commit to retrigger CI. This is a
-   * second-line defense against Happo flake (the first being Phase
-   * 3.3's `auto-fix-rerun` during canary creation). Each sweep rerun
-   * burns one slot from this budget; exhaustion → status=needs_human.
-   *
-   * Default: 2 (two sweep retries before giving up).
-   */
-  readonly maxSweepHappoReruns: number
+  // Phase 3 Happo-flake mitigation (`maxReruns`) and Tier 2 batch B Slice 4
+  // (`maxSweepHappoReruns`) were removed as part of v4 Step 4 (strict
+  // Happo gate). The gate script's `bin/migration-gate.sh` now enforces
+  // zero-diff OR designer-accepted via Happo's REST API at gate time —
+  // flake retries become unnecessary. See `decisions/classes-shim.md`'s
+  // sibling decision and migration plan v4 §6.3 for the policy.
 
   /**
    * Phase 3.5 — wall-clock budget for polling PR reviews after CI is green.
@@ -373,6 +341,14 @@ export interface OrchestratorOptions {
    * `--no-merge` for sandbox runs.
    */
   readonly batch: boolean
+
+  /**
+   * Optional cap on items processed by `--batch`. `null` = unbounded (all
+   * queued items in tier). Set via `--max-items=N` to bound canary runs
+   * (e.g. Validate C wants exactly 2 items, not the whole tier). Counted
+   * by successful `pickNext` returns; escalated items still count.
+   */
+  readonly maxItems: number | null
 
   /**
    * Phase 3.5 redesign — review-sweep mode. The orchestrator reads the

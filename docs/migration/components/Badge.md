@@ -31,3 +31,14 @@ Per migration plan v3 §3.1 + audit §1.4: source has 1 `@mui/base` import (`Bad
 
 ## Reviewer notes
 - Lowest-risk Tier 0 component. Good early candidate after Backdrop ships.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Badge preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type BadgeClassKey = 'root' | 'badge'
+```
+
+- `root` — the wrapper element (typically a `<span>`) holding the children + the badge dot/count
+- `badge` — the floating count/dot indicator

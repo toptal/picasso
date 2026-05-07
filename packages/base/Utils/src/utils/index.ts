@@ -33,6 +33,7 @@ export {
 export { default as ClickAwayListener } from '@material-ui/core/ClickAwayListener'
 
 export { capitalize } from './capitalize'
+export { withClasses } from './with-classes'
 export { default as disableUnsupportedProps } from './disable-unsupported-props'
 export { type FeatureOptions } from './disable-unsupported-props'
 export { forwardRef, documentable } from './forward-ref'

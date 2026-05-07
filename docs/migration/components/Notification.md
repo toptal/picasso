@@ -41,3 +41,17 @@ Per migration plan v3 §3.2 + audit §1.4: **single MUI v4 type import**, no JSS
 ## Reviewer notes
 - The `@base-ui/react/toast` migration is **not** in PF-1992 scope per the v3 plan's §12 decision — Picasso keeps `notistack` for minimal blast radius. Revisit post-PI.
 - One of 5 type-only fixes in the Tier 1 batch.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Notification preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type NotificationClassKey = 'root' | 'content' | 'action'
+```
+
+- `root` — the outermost notification surface
+- `content` — the message text region
+- `action` — the action / close-button slot (right side)
+
+Tier 1 type-only fix: replace `import type { SnackbarOrigin }` from MUI v4 with a local `{ vertical, horizontal }` shape. Note: notistack integration is preserved (per migration plan v4 §9.9 — keep `notistack`).

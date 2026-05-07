@@ -30,3 +30,15 @@ Per migration plan v3 §3.2 + audit §1.4: **single MUI v4 type import**, no JSS
 
 ## Reviewer notes
 - One of 5 type-only fixes in the Tier 1 batch (Container, FormLabel, Grid, Notification, OutlinedInput). Pattern is the same: replace MUI-leaked type with own type or React's built-in. Watch for `classes` props that might leak from MUI v4's `StandardProps` extension.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Container preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type ContainerClassKey = 'root'
+```
+
+- `root` — the layout wrapper element
+
+Container is a layout primitive; no internal slots beyond root. Tier 1 type-only fix (replace `import type { PropTypes }` from MUI v4) doesn't change this contract.

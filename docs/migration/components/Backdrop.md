@@ -40,3 +40,15 @@ Per migration plan v3 §3.1 (Tier 0 table) + §9.8 R14: `@base-ui/react` does **
 ## Reviewer notes
 - This is the Tier 0 component most likely to need designer + engineer pairing. The replacement strategy is small (~30 LOC) but the Happo cascade through Modal/Drawer is real.
 - If `@base-ui/react` ships a standalone Backdrop in a future minor (v1.5+), revisit per `rules/base-ui-react-api-crib.md` refresh checklist.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Backdrop preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type BackdropClassKey = 'root'
+```
+
+- `root` — the backdrop overlay `<div>` itself
+
+Backdrop is a single-element component; no internal slots beyond the root. Per `decisions/backdrop-replacement.md`, it's a custom `<div>` + Tailwind + scroll-lock (no `@base-ui/react` analog).
