@@ -39,6 +39,15 @@ const generateSameSettingRules = (ruleNames, setting) => {
 }
 
 module.exports = {
+  // root: true stops ESLint from walking up the directory tree looking for
+  // ancestor configs. Required for `git worktree`-based dev flows
+  // (orchestrator's worktrees live under `migration-runs/<date>/<comp>/worktree/`,
+  // and without `root: true`, ESLint walks up from the worktree's source
+  // through `migration-runs/`, eventually re-discovering this same config in
+  // the main repo via a different filesystem path. That double-load registers
+  // `eslint-plugin-ssr-friendly` from two node_modules paths and fails with
+  // "ESLint couldn't determine the plugin uniquely". Fixed 2026-05-07.)
+  root: true,
   extends: [
     './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc.cjs',
     'plugin:ssr-friendly/recommended',

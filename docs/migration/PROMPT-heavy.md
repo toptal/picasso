@@ -51,7 +51,14 @@ Your task:
 
 4. Update package.json:
    - Remove @material-ui/core from dependencies AND peerDependencies.
-   - Add @base-ui/react if used (current pin: 1.4.1).
+   - Add @base-ui/react if used (current pin: 1.4.1) — **use `"^1.4.1"`,
+     NOT `"1.4.1"`**. Picasso's syncpack rule requires caret-prefix for
+     npm deps (`HighestSemverMismatch` failure otherwise).
+   - **Workspace package deps use exact version, no caret/tilde.** When
+     adding a `@toptal/picasso-*` dependency, use the package's
+     published version verbatim (e.g. `"2.0.4"`). Caret on a workspace
+     dep fails CI with `LocalPackageMismatch`. Look up the version with
+     `cat packages/<pkg>/package.json | jq .version` first.
    - Add @toptal/picasso-tailwind-merge (peer) and
      @toptal/picasso-tailwind (peer) if not already present.
    - **Drop the `react: < 19.0.0` upper bound** from `peerDependencies`

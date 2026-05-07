@@ -263,6 +263,15 @@ export interface OrchestratorOptions {
   readonly component: string | null
   readonly maxIterations: number
   /**
+   * Per-PR cap on CI-failure iterations (post-PR-open). Decoupled from
+   * `maxIterations` (which gates the migrate-loop) because CI fixes are
+   * typically cheap (~$0.50-1 / cycle) and the orchestrator should be
+   * stubborn about fixing failures before escalating. Stuck detection
+   * (same failure-set twice consecutively) triggers earlier escalation.
+   * Default 5. CLI: `--max-ci-iterations=N`.
+   */
+  readonly maxCIIterations: number
+  /**
    * If true, the orchestrator starts Storybook in the worktree before
    * invoking the agent and grants the agent Playwright MCP tools (visual
    * verification). Adds ~30-60s to canary startup; recommended for Tier 0
