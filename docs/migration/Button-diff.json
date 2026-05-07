@@ -1,0 +1,15 @@
+{
+  "component": "Button",
+  "removed": [],
+  "renamed": [],
+  "narrowed": [
+    {
+      "prop": "classes",
+      "from": "Record<string, string>",
+      "to": "Partial<Record<'root' | 'label' | 'icon', string>>",
+      "reason": "Migration replaces MUI v4 JSS-based `classes` map with the `withClasses` Tailwind-routing shim (per docs/migration/decisions/classes-shim.md). The public Button now declares an explicit slot-key set; consumer code that previously assigned arbitrary string keys is narrowed to the declared slots. Per the audit (May 2026) Button is in the strict-preservation set: it was already exposing `classes` via StandardProps, and consumers in the 23-repo portfolio rely on this prop.",
+      "codemod": "not-required",
+      "notes": "Slot keys: 'root' (outermost button element), 'label' (text-content wrapper inside the button), 'icon' (cloned icon element regardless of position). Consumers using only these keys see no behavioral change. Consumers using non-slot keys silently no-op at runtime (TS catches at the consumer call-site)."
+    }
+  ]
+}
