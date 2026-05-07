@@ -84,7 +84,12 @@ const migrationWorkflow: Workflow = {
   //
   // The branch must already exist on origin (created manually before the
   // first canary run).
-  baseBranch: 'feature/picasso-modernization',
+  // 2026-05-07: changed from `feature/picasso-modernization` to the
+  // orchestrator's own branch. Migration PRs now target the orchestrator
+  // branch directly so the PR diff stays clean (only migration changes,
+  // not orchestrator commits). Eventually the orchestrator branch as a
+  // whole will be PR'd into `feature/picasso-modernization` or master.
+  baseBranch: 'feature/pf-1992-migration-orchestrator',
   // Phase 3.1 — CI poll budget. Picasso's full pipeline on the integration
   // branch runs in ~7-12min (canary 24: Static checks 7:39, Integration
   // Tests 5:30 + sharded e2e ~7min). 15min covers it with headroom; bump
