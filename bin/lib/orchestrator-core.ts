@@ -483,6 +483,31 @@ const worktree = {
    */
   async add(branch: string, worktreePath: string, base = 'HEAD'): Promise<void> {
     await fs.mkdir(path.dirname(worktreePath), { recursive: true })
+
+    // Defensive cleanup: a previous run that crashed mid-flight (e.g. the
+    // worktree-add half-succeeded by creating the branch but failed on the
+    // checkout step) can leave a stale branch + partial worktree. Without
+    // this cleanup, every retry would fail with "branch already exists" or
+    // "directory already exists" until the operator manually purges. Detect
+    // and remove both before retrying. This is safe because an in-flight
+    // orchestrator holds an exclusive lock on the manifest item — if we
+    // got here, no other run is using these refs.
+    if (existsSync(worktreePath)) {
+      log('worktree', `pre-existing path ${worktreePath} — removing stale partial`)
+      await shell('git', ['worktree', 'remove', '--force', worktreePath]).catch(() => {})
+      // shell-out can leave the dir if `git worktree remove` failed (e.g.
+      // worktree was never registered with git); fall back to rm -rf.
+      if (existsSync(worktreePath)) {
+        await fs.rm(worktreePath, { recursive: true, force: true })
+      }
+    }
+    const branchCheck = await shell('git', ['show-ref', '--verify', '--quiet', `refs/heads/${branch}`])
+
+    if (branchCheck.exitCode === 0) {
+      log('worktree', `pre-existing branch ${branch} — deleting stale ref`)
+      await shell('git', ['branch', '-D', branch]).catch(() => {})
+    }
+
     const result = await shell('git', [
       'worktree',
       'add',
