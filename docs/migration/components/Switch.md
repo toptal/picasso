@@ -36,3 +36,17 @@ Per migration plan v3 §3.1: direct match. Replace `@mui/base/Switch` with `@bas
 ## Reviewer notes
 - If PR #4906 lands the Switch portion before this entry runs, the orchestrator should detect the `pr` URL pre-filled in the manifest and either fast-forward or run a verification pass. Coordinate to avoid double-migration.
 - Light-path multipliers feed PF-2024 / PF-2025 estimates per migration plan §10 R12 — calibrate carefully here.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Switch preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type SwitchClassKey = 'root' | 'thumb' | 'track'
+```
+
+- `root` — the outermost element (the `Switch.Root` container)
+- `thumb` — the moving knob (Switch.Thumb)
+- `track` — the background track that the thumb slides on
+
+Light-path migration; Switch depends on FormLabel (Tier 1) — sequence after FormLabel cleanup ships.

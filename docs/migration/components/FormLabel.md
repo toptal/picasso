@@ -31,3 +31,16 @@ Per migration plan v3 §3.2: **Tier 1 type-only fix**. No primitive change; `tar
 
 ## Reviewer notes
 - The type-only import is the smallest possible "real source migration" in Tier 1 — useful as the agent's first iteration after Note's dep-only canary. Watch for the agent picking up subtle differences in the type shape (MUI v4's `FormControlLabelProps` extends `StandardProps` which carries `classes` — strip that).
+
+## Slot keys
+
+Per migration plan v4 §2.3, FormLabel preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type FormLabelClassKey = 'root' | 'label'
+```
+
+- `root` — the wrapper element (e.g., a `<label>` or container)
+- `label` — the label text node (when wrapped distinctly from the form-control)
+
+Tier 1 type-only fix (replace `FormControlLabelProps` import from MUI v4 with own type). The `classes` contract is preserved verbatim.

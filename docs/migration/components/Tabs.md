@@ -37,3 +37,16 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react/tabs` exists with 
 ## Reviewer notes
 - Tabs is one of the more API-rich Tier 0 components (active state, indicator, keyboard nav). Budget an extra iteration if the indicator logic needs custom work.
 - After Tabs ships, query-builder (Tier 4) can start consuming the migrated Tabs primitive transitively — though that's not a hard dep.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Tabs preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type TabsClassKey = 'root' | 'list' | 'indicator' | 'tab'
+```
+
+- `root` — the outermost Tabs.Root container
+- `list` — the Tabs.List wrapper holding individual tabs
+- `indicator` — the moving underline/highlight tracking the active tab
+- `tab` — individual Tab triggers (per-tab styling)

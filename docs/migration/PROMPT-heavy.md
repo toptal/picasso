@@ -55,7 +55,48 @@ Your task:
    - Add @toptal/picasso-tailwind-merge (peer) and
      @toptal/picasso-tailwind (peer) if not already present.
 
-5. Do NOT change:
+5. **Required output shape: `classes` prop preservation (v4 §2.3).**
+   Every Picasso component must accept and route a `classes` prop via
+   the Tailwind class-composition shim. This preserves the consumer API
+   surface that 23 downstream repos depend on. **Especially load-bearing
+   for heavy migrations** because the original MUI v4 `classes` prop
+   accepted MUI's slot keys; v4 §2.3 is the migration of that contract
+   into the Tailwind world.
+
+   Pattern:
+   ```ts
+   import { withClasses } from '@toptal/picasso-utils'
+
+   // Declare the slot keys this component exposes (see the per-component
+   // plan file's "Slot keys" section for the canonical list).
+   export type AccordionClassKey = 'root' | 'header' | 'panel' | 'expanded'
+
+   const baseClasses: Record<AccordionClassKey, string> = {
+     root: 'border border-gray-200 rounded',
+     header: 'flex items-center justify-between p-4 cursor-pointer',
+     panel: 'p-4 border-t border-gray-200',
+     expanded: 'bg-gray-50',
+   }
+
+   export interface Props {
+     // ... other props ...
+     classes?: Partial<Record<AccordionClassKey, string>>
+   }
+
+   export const Accordion: React.FC<Props> = ({ classes, ...rest }) => {
+     const merged = withClasses(baseClasses, classes)
+     // Use merged.root, merged.header, merged.panel, etc. when composing
+     // Tailwind classNames per slot.
+   }
+   ```
+
+   Rules:
+   - **Slot keys come from the per-component plan file** (`docs/migration/components/<NAME>.md`, "Slot keys" section). Do NOT invent new keys; keep the migration's API alignable with the v3 plan.
+   - For JSS parent-refs (`'&$expanded': { ... }`) the slot key replaces the parent-ref name. Heavy migrations of Accordion/Page/etc. exemplify this.
+   - The shim does NOT cover MUI nested-state selectors (`& .Mui-disabled`, `&$expanded` chains). For Tier 2/3 components migrating from JSS that USED these, prefer Tailwind data-attribute selectors driven by the `@base-ui/react` component's `data-state` (e.g. `data-[state=open]:bg-blue-500` on the slot's class string).
+   - `withClasses` lives in `@toptal/picasso-utils`; ensure the migrating package depends on it (`@toptal/picasso-utils` is already a transitive dep across most base/* via picasso-shared/picasso-provider).
+
+6. Do NOT change:
    - test.tsx assertions
    - story files
    - file locations or export names

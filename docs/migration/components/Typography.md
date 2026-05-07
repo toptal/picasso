@@ -34,3 +34,15 @@ Migration must be applied AFTER:
 ## Reviewer notes
 - Typography is the highest-impact Tier 1 component because of downstream Happo cascading. Land it under careful Happo review — the diff isn't just "this component," it's "every component that renders Typography."
 - If `useTheme()` is found, that's a sign the migration touches `picasso-provider` internals; flag and consider deferring to PF-2023 (provider rewrite) if non-trivial.
+
+## Slot keys
+
+Per migration plan v4 §2.3, Typography preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+
+```ts
+export type TypographyClassKey = 'root'
+```
+
+- `root` — the rendered text element (varies by `as` / variant prop: `<h1>`/`<p>`/`<span>` etc.)
+
+Tier 1 already-clean — Typography is foundational + many consumers; migration is package.json delta only. Single slot beyond root would be inconsistent with text being a leaf semantic.

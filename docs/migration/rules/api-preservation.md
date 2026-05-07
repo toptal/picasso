@@ -52,25 +52,67 @@ The orchestrator collects these into PR descriptions and feeds them to PF-2024 (
 
 ## MUI-leaked types
 
-Some legacy props expose MUI v4 types directly (`MuiSwitchClassKey`, `Classes`, `PropTypes.Color`). These cannot be preserved on the new stack.
+Some legacy props expose MUI v4 types directly (`MuiSwitchClassKey`, `PropTypes.Color`, `SnackbarOrigin`). These cannot be preserved on the new stack as imports — replace with Picasso-native equivalents.
 
-Pattern: replace with a Picasso-native equivalent and keep the old name as a deprecated alias for one major:
+Pattern: replace with a Picasso-native equivalent. Keep the old name as a deprecated alias only when the prop semantics genuinely change.
 
 ```ts
-// Old
-export interface NoteProps {
-  classes?: Classes  // <- MUI v4 leak
+// Old (MUI v4 type leak)
+import type { PropTypes } from '@material-ui/core'
+export interface ContainerProps {
+  align?: PropTypes.Alignment  // <- MUI v4 leak
 }
 
 // New
-export interface NoteProps {
-  /** @deprecated Use className for Tailwind-utility overrides. Will be removed in vNext. */
-  classes?: undefined
-  className?: string
+export interface ContainerProps {
+  align?: 'left' | 'center' | 'right' | 'inherit' | 'justify'
 }
 ```
 
-The deprecation line carries to the codemod so consumers get a clear migration message.
+## `classes` prop (preserved via Tailwind-routing shim — v4 §2.3)
+
+**Walks back the v3-era plan to remove `classes` universally.** Per migration plan v4 §2.3, every Picasso component **preserves** a `classes` prop after migration via `withClasses` from `@toptal/picasso-utils`. Pattern:
+
+```ts
+import { withClasses } from '@toptal/picasso-utils'
+
+// Per-component slot keys — see the component's plan file
+// (`docs/migration/components/<Name>.md`, "Slot keys" section).
+export type ButtonClassKey = 'root' | 'label' | 'icon'
+
+const baseClasses: Record<ButtonClassKey, string> = {
+  root: 'inline-flex items-center px-4 py-2',
+  label: 'font-semibold',
+  icon: 'mr-2',
+}
+
+export interface ButtonProps {
+  classes?: Partial<Record<ButtonClassKey, string>>
+  // ...
+}
+
+export const Button: React.FC<ButtonProps> = ({ classes, ...rest }) => {
+  const merged = withClasses(baseClasses, classes)
+  return (
+    <BaseUIButton className={merged.root}>
+      <span className={merged.icon}>...</span>
+      <span className={merged.label}>...</span>
+    </BaseUIButton>
+  )
+}
+```
+
+**Rationale.** `classes` is the headline consumer API in the 23-repo portfolio; preserving ~80% of usage avoids a coordinated breaking change. The shim is dependency-light (only `@toptal/picasso-tailwind-merge`).
+
+**What the shim does NOT cover** (rare cases that still need codemods or manual fixes):
+
+- MUI v4 nested-state selectors: `'& .Mui-disabled'`, `'&$expanded': { ... }`
+- Generated MUI class names like `.MuiButton-root` referenced from consumer CSS
+- `classes` keys that don't match the component's declared slot type — silently ignored at runtime; TS catches at the consumer call-site
+
+If a consumer's `classes` usage relies on any of these, the migration's prop-surface diff (`docs/migration/<Component>-diff.json`) flags them with `codemod: required`. Codemod authoring lives in PF-1995, not in the per-component PR.
+
+The full decision rationale is in `docs/migration/decisions/classes-shim.md`.
 
 ## Reviewer-flagged preferences
 

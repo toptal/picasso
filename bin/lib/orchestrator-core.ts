@@ -1702,7 +1702,10 @@ export async function runBatch(
   // Bound the batch to manifest size; the no-work + escalate paths
   // already terminate normally, but a hard cap prevents accidental
   // infinite loops if pickNext somehow keeps returning the same item.
-  const maxIterations = 100
+  // Operator-supplied `--max-items=N` overrides the safety cap downward.
+  const safetyCap = 100
+  const userCap = opts.maxItems ?? Infinity
+  const maxIterations = Math.min(safetyCap, userCap)
 
   for (let i = 0; i < maxIterations; i++) {
     const result = await run(workflow, opts)
@@ -1720,6 +1723,12 @@ export async function runBatch(
     // Continue to next item even on escalate (operator can review later).
     // Stop only on dry-run (which never produces no-work).
     if (result.status === 'dry-run') {break}
+  }
+  if (opts.maxItems !== null && processed >= opts.maxItems) {
+    log(
+      'batch',
+      `--max-items=${opts.maxItems} cap reached after ${processed} item(s); stopping`
+    )
   }
 
   return lastResult
@@ -1784,134 +1793,6 @@ export async function runReviewSweep(
   return { status: 'no-work' }
 }
 
-/**
- * Tier 2 batch B / Slice 4 — sweep-driven Happo-only-flake retry.
- *
- * Returns:
- *   - `'not-applicable'` — CI not in the Happo-only-failure shape, or
- *     pending checks still running, or no worktree to push from.
- *     Caller should continue with normal review processing.
- *   - `'rerun-pushed'` — empty commit pushed; status stays awaiting_review
- *     for the next sweep tick to re-evaluate.
- *   - `'budget-exhausted'` — Happo failed once too often; status flipped
- *     to needs_human.
- *
- * The "Happo-only" shape is checked strictly: ALL non-Happo checks must
- * be in a non-failure terminal state, and at least one Happo check must
- * be in a failure conclusion. If non-Happo checks are pending, we wait
- * (return not-applicable; sweep will retry next tick).
- */
-async function tryHappoOnlyRerun(
-  workflow: Workflow,
-  item: ManifestItem,
-  manifestAbs: string,
-  wtPath: string
-): Promise<'not-applicable' | 'rerun-pushed' | 'budget-exhausted'> {
-  const prUrl = item.pr as string
-  const view = (await gh.viewPR(prUrl, 'statusCheckRollup', wtPath).catch(
-    () => null
-  )) as { statusCheckRollup?: readonly RawCheckEntry[] } | null
-
-  const rollup = view?.statusCheckRollup ?? []
-
-  if (rollup.length === 0) {return 'not-applicable'}
-  const isHappo = (name: string): boolean => /^Happo\b/i.test(name)
-  const isTerminalConclusion = (s: string): boolean =>
-    FAILURE_CONCLUSIONS.has(s) ||
-    s === 'SUCCESS' ||
-    s === 'NEUTRAL' ||
-    s === 'SKIPPED'
-  const norm = rollup.map((c) => ({
-    name: c.name ?? c.context ?? '(unnamed)',
-    status: (c.status ?? c.state ?? '').toUpperCase(),
-    conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
-  }))
-  // Any pending non-Happo? Wait next sweep.
-  const pendingNonHappo = norm.filter(
-    (c) => !isHappo(c.name) && !isTerminalConclusion(c.conclusion)
-  )
-
-  if (pendingNonHappo.length > 0) {return 'not-applicable'}
-
-  const failingNonHappo = norm.filter(
-    (c) => !isHappo(c.name) && FAILURE_CONCLUSIONS.has(c.conclusion)
-  )
-
-  if (failingNonHappo.length > 0) {return 'not-applicable'}
-  const failingHappo = norm.filter(
-    (c) => isHappo(c.name) && FAILURE_CONCLUSIONS.has(c.conclusion)
-  )
-
-  if (failingHappo.length === 0) {return 'not-applicable'}
-
-  // Happo-only-flake shape confirmed.
-  const seenReruns = item.sweep_happo_reruns ?? 0
-
-  if (seenReruns >= workflow.maxSweepHappoReruns) {
-    manifest.update(manifestAbs, item.id, {
-      status: 'needs_human',
-      escalation_reason: `Happo Cypress failed after ${seenReruns} sweep rerun(s) — likely a real visual regression`,
-    })
-    log(
-      'sweep',
-      `${item.id}: Happo-only failure persists after ${seenReruns} sweep rerun(s); escalated`
-    )
-
-    return 'budget-exhausted'
-  }
-
-  log(
-    'sweep',
-    `${item.id}: Happo-only failure detected; pushing empty-commit retrigger (${seenReruns + 1}/${workflow.maxSweepHappoReruns})`
-  )
-  const emptyMsg =
-    `chore(${item.id}): retrigger Happo [sweep-rerun ${seenReruns + 1}]\n\n` +
-    `Sweep detected Happo (Picasso/Cypress) as the sole failing check ` +
-    `with all other CI green. Pushing an empty commit to filter transient flake.\n\n` +
-    'Refs: PF-1994'
-  const msgFile = path.join(
-    os.tmpdir(),
-    `commit-msg-sweep-${item.id.replace(/\//g, '__')}.${seenReruns + 1}.${process.pid}`
-  )
-
-  await fs.writeFile(msgFile, emptyMsg, 'utf8')
-  const commit = await shell(
-    'git',
-    ['commit', '--allow-empty', '--no-verify', '--file', msgFile],
-    { cwd: wtPath }
-  )
-
-  if (commit.exitCode !== 0) {
-    log(
-      'sweep',
-      `${item.id}: empty commit failed (exit ${commit.exitCode}); skipping rerun this tick`
-    )
-
-    return 'not-applicable'
-  }
-  const push = await shell(
-    'git',
-    ['push', '--no-verify', 'origin', item.branch as string],
-    { cwd: wtPath }
-  )
-
-  if (push.exitCode !== 0) {
-    log(
-      'sweep',
-      `${item.id}: push failed: ${push.stderr.slice(0, 200)}; skipping rerun this tick`
-    )
-
-    return 'not-applicable'
-  }
-
-  manifest.update(manifestAbs, item.id, {
-    sweep_happo_reruns: seenReruns + 1,
-  })
-  log('sweep', `${item.id}: pushed Happo retrigger; CI will re-evaluate`)
-
-  return 'rerun-pushed'
-}
-
 async function sweepOne(
   workflow: Workflow,
   opts: OrchestratorOptions,
@@ -1967,28 +1848,10 @@ async function sweepOne(
     return
   }
 
-  // Tier 2 batch B / Slice 4 — Happo-only flake detection.
-  // If the only failing check is Happo (Cypress) AND every other check
-  // is green, retry once via empty-commit push. Bounded by
-  // workflow.maxSweepHappoReruns to prevent infinite retries on real
-  // visual regressions. Skipped when worktree is gone (we'd need it to
-  // push from).
-  if (existsSync(wtPath)) {
-    const happoRerun = await tryHappoOnlyRerun(
-      workflow,
-      item,
-      manifestAbs,
-      wtPath
-    )
-
-    if (happoRerun === 'rerun-pushed' || happoRerun === 'budget-exhausted') {
-      // Either we kicked CI off again (status stays awaiting_review for
-      // next sweep tick) or we marked needs_human. Either way, no
-      // review-iteration this sweep tick.
-      return
-    }
-    // happoRerun === 'not-applicable' → fall through to review processing
-  }
+  // (Tier 2 batch B Slice 4 — sweep-driven Happo-only-flake retry —
+  // removed as part of v4 Step 4. Strict Happo gate at gate-time now
+  // enforces zero-diff or designer-accepted via the Happo REST API
+  // BEFORE the orchestrator opens a PR; flake retries are unnecessary.)
 
   // Worktree must still exist for review-driven iteration; if not,
   // escalate (extending sweep to re-create worktrees is out of scope
@@ -2731,11 +2594,9 @@ export async function run(
   // push, re-poll. Escalate when classification recommends it or budget
   // is exhausted.
   //
-  // Phase 3 Happo-flake mitigation: rerunCounts tracks how many times
-  // each check name has been rerun via empty commit. When the count
-  // exceeds workflow.maxReruns, the auto-fix-rerun classification is
-  // overridden to escalate (the failure is persistent, not transient).
-  const rerunCounts = new Map<string, number>()
+  // (Phase 3 Happo-flake mitigation removed in v4 Step 4 — strict gate
+  // replaces flake retries; auto-fix-rerun classification was retired
+  // in failure-classifier.ts.)
 
   while (
     pollResult.state === 'failure' &&
@@ -2771,27 +2632,7 @@ export async function run(
       )
     )
 
-    // Phase 3 Happo-flake mitigation — override auto-fix-rerun → escalate
-    // for checks that have already exhausted their rerun budget. We mutate
-    // the decision in place because this rule is a runtime budget check,
-    // not classifier-knowable (the classifier is pure / per-call).
-    for (const c of classifications) {
-      if (c.decision.class === 'auto-fix-rerun') {
-        const seen = rerunCounts.get(c.check.name) ?? 0
-
-        if (seen >= workflow.maxReruns) {
-          c.decision = {
-            ...c.decision,
-            class: 'escalate',
-            reason: `${c.check.name} failed after ${seen} rerun(s) — likely real regression, not flake`,
-          }
-          log(
-            'ci',
-            `override "${c.check.name}": auto-fix-rerun → escalate (budget exhausted: ${seen}/${workflow.maxReruns})`
-          )
-        }
-      }
-    }
+    // (auto-fix-rerun budget override removed — v4 Step 4 strict gate.)
 
     // Escalate on the first escalate-class decision. We don't try to
     // partially fix failures in this iteration; the simpler invariant
@@ -2859,48 +2700,9 @@ export async function run(
       }
     }
 
-    // Phase 3 Happo-flake mitigation — empty-commit rerun for transient
-    // CI failures (Happo upload jitter, etc.). We don't touch any source;
-    // just push a marker commit so GitHub Actions re-evaluates the same
-    // tree against an updated SHA. The rerun budget guard above already
-    // promoted any check past `maxReruns` to escalate.
-    const rerunDecisions = classifications.filter(
-      (c) => c.decision.class === 'auto-fix-rerun'
-    )
-    let didRerun = false
-
-    if (rerunDecisions.length > 0) {
-      for (const c of rerunDecisions) {
-        rerunCounts.set(c.check.name, (rerunCounts.get(c.check.name) ?? 0) + 1)
-      }
-      const checkNames = rerunDecisions.map((c) => c.check.name).join(', ')
-
-      log('ci', `auto-fix-rerun: empty-commit retrigger for ${checkNames}`)
-      const emptyCommitMsg =
-        `chore(${item.id}): retrigger CI [auto-fix-rerun ${state.iterations}]\n\n` +
-        `Retrying ${checkNames} (likely transient flake).\n\nRefs: PF-1994`
-      const emptyCommitMsgFile = path.join(
-        os.tmpdir(),
-        `commit-msg-rerun-${item.id}.${state.iterations}.${process.pid}`
-      )
-
-      await fs.writeFile(emptyCommitMsgFile, emptyCommitMsg, 'utf8')
-      const emptyCommit = await shell(
-        'git',
-        [
-          'commit',
-          '--allow-empty',
-          '--no-verify',
-          '--file',
-          emptyCommitMsgFile,
-        ],
-        { cwd: wtPath }
-      )
-
-      if (emptyCommit.exitCode === 0) {
-        didRerun = true
-      }
-    }
+    // (auto-fix-rerun empty-commit branch removed — v4 Step 4 strict
+    // Happo gate replaces flake retries.)
+    const didRerun = false
 
     // Feed-to-agent classifications: assemble a CI-feedback delta prompt
     // and invoke the agent (session-resume). The agent edits files; gate
@@ -3159,6 +2961,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const branchRaw = get('--branch')
   const ciTimeoutStr = get('--ci-timeout-minutes')
   const reviewTimeoutStr = get('--review-timeout-minutes')
+  const maxItemsStr = get('--max-items')
 
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
@@ -3176,5 +2979,6 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     reviewTimeoutMinutes: reviewTimeoutStr ? Number(reviewTimeoutStr) : null,
     batch: has('--batch'),
     reviewSweep: has('--review-sweep'),
+    maxItems: maxItemsStr ? Number(maxItemsStr) : null,
   }
 }
