@@ -135,28 +135,24 @@ run_stage_skip() {
 
 # ---------- stages ---------------------------------------------------------
 
-# 0. Lockfile drift — detect package.json edits without yarn.lock update.
-#    This is the cheapest stage and catches the most common dep-bump CI fail
-#    ("Build packages" failing because new dep isn't resolved in lockfile).
-#    Run before `build` so we fail in 1s instead of after a 60s+ build.
+# 0. Lockfile drift — verify yarn.lock satisfies package.json by running
+#    `yarn install --frozen-lockfile`, which exits non-zero if any dep in
+#    package.json can't be resolved against the existing lockfile.
+#
+#    Earlier version used a diff-based check (package.json changed && yarn.lock
+#    didn't → FAIL), but produced false positives: when an agent adds a dep
+#    that's already resolved in the lockfile (e.g. `@base-ui/react@^1.4.1`
+#    already pulled in by some other path), yarn install doesn't need to
+#    touch yarn.lock — but the diff check flagged it as drift. CI also
+#    runs yarn install and would NOT fail in that case.
+#
+#    Running --frozen-lockfile mirrors what CI does: succeeds iff every
+#    required dep is present in the lockfile. Cost: ~5-15s when warm
+#    (no network, just verification).
 check_lockfile_drift() {
-  # Compare staged + unstaged changes against the worktree's HEAD.
-  local pkg_changed lock_changed
-  pkg_changed=$(git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json' 2>/dev/null | head -1)
-  lock_changed=$(git -C "$ROOT" diff --name-only HEAD -- 'yarn.lock' 2>/dev/null | head -1)
-
-  if [ -n "$pkg_changed" ] && [ -z "$lock_changed" ]; then
-    echo "package.json modified but yarn.lock unchanged."
-    echo "Modified package.json files:"
-    git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json'
-    echo ""
-    echo "Run 'yarn install' from repo root to refresh the lockfile,"
-    echo "then 'git add yarn.lock' before committing. CI's 'Build packages'"
-    echo "step will fail otherwise (new dep not resolved in lockfile)."
-    return 1
-  fi
-
-  return 0
+  if ! command -v yarn >/dev/null 2>&1; then return 0; fi
+  yarn install --frozen-lockfile --non-interactive 2>&1
+  return $?
 }
 run_stage "lockfile-drift" check_lockfile_drift
 
@@ -164,12 +160,15 @@ run_stage "lockfile-drift" check_lockfile_drift
 #      "Static checks" failure mode locally). Picasso enforces:
 #        - npm deps use caret prefix: "1.4.1" → must be "^1.4.1"
 #        - workspace package deps use exact local version (no caret/tilde).
-#      Both rules are validated by `yarn syncpack list-mismatches` in CI;
-#      if it exits non-zero, "Static checks" fails. Run locally to give
-#      the agent feedback before the push.
+#      Picasso's `package.json` defines:
+#        "syncpack": "yarn syncpack:list & yarn syncpack:fix"
+#        "syncpack:list": "syncpack list-mismatches"
+#      So invoking `yarn syncpack <args>` runs the COMPOUND script with extra
+#      args appended → "too many arguments" error from syncpack CLI. Use the
+#      explicit `:list` subscript to call syncpack list-mismatches directly.
 check_syncpack() {
   if ! command -v yarn >/dev/null 2>&1; then return 0; fi
-  yarn --silent syncpack list-mismatches 2>&1
+  yarn --silent syncpack:list 2>&1
   return $?
 }
 run_stage "syncpack" check_syncpack
