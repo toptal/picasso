@@ -32,7 +32,15 @@ Your task:
 
 2. Update package.json:
    - Remove @mui/base from dependencies.
-   - Add @base-ui/react (current pin: 1.4.1).
+   - Add @base-ui/react (current pin: 1.4.1) — **use `"^1.4.1"`, NOT
+     `"1.4.1"`**. Picasso's syncpack rule requires caret-prefix for npm
+     deps; an exact pin will fail the CI "Static checks" job
+     (`HighestSemverMismatch`).
+   - **Workspace package deps use exact version, no caret.** When adding
+     a `@toptal/picasso-*` dependency, use the package's published
+     version verbatim (e.g. `"2.0.4"`, not `"^2.0.0"`). Caret on a
+     workspace dep fails CI with `LocalPackageMismatch`. Look up the
+     version with `cat packages/<pkg>/package.json | jq .version` first.
    - **Drop the `react: < 19.0.0` upper bound** from `peerDependencies`
      if present. Replace with `react: ">=16.12.0"` (or current floor).
      Per v4 §2.6, `@base-ui/react` supports React 19 and Picasso lifts
