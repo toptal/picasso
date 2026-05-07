@@ -33,4 +33,4 @@ fi
 
 # format all generated code with prettier and eslint
 davinci-syntax lint code $COMPONENTS_FULL_PATH
-yarn prettier --write $COMPONENTS_FULL_PATH/*.tsx $COMPONENTS_FULL_PATH/**/*.tsx $COMPONENTS_FULL_PATH/index.ts
+pnpm exec prettier --write $COMPONENTS_FULL_PATH/*.tsx $COMPONENTS_FULL_PATH/**/*.tsx $COMPONENTS_FULL_PATH/index.ts

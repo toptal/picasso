@@ -34,10 +34,10 @@ jobs:
         with:
           node-version: 22.20.0
 
-      - uses: ./.github/actions/yarn-install
+      - uses: ./.github/actions/pnpm-install
 
       - name: Happo Tests
-        run: yarn happo:storybook
+        run: pnpm happo:storybook
         env:
           HAPPO_PROJECT: Picasso/Storybook
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}

@@ -10,14 +10,14 @@ const { log } = require('./utils')
 const PACKAGES_DIR = path.join(__dirname, '../packages/')
 
 const link = function (name) {
-  exec(`yarn link ${name}`, {
+  exec(`pnpm link --global ${name}`, {
     stdio: 'inherit'
   })
 }
 
 const unlink = function (name) {
   try {
-    exec(`yarn unlink ${name}`, {
+    exec(`pnpm unlink --global ${name}`, {
       stdio: 'ignore',
       stderr: 'ignore'
     })
@@ -28,7 +28,7 @@ const unlink = function (name) {
 
 const createLink = function (name, cwd) {
   log(`Linking ${name}...`)
-  exec('yarn link', {
+  exec('pnpm link --global', {
     cwd,
     stdio: 'inherit'
   })
@@ -37,7 +37,7 @@ const createLink = function (name, cwd) {
 const removeLink = function (name, cwd) {
   try {
     log(`Unlinking ${name}...`)
-    exec('yarn unlink', {
+    exec('pnpm unlink --global', {
       cwd,
       stdio: 'ignore',
       stderr: 'ignore'
@@ -82,7 +82,7 @@ const setup = function () {
   if (yargs.link) {
     log('Firt build dist versions of all the packages')
 
-    exec('yarn build:package', { stdio: 'inherit' })
+    exec('pnpm build:package', { stdio: 'inherit' })
 
     log('Linking process started...')
 
@@ -91,7 +91,7 @@ const setup = function () {
 
     linkPackages.forEach(({ name, outputDir }) => createLink(name, outputDir))
     createLink('react', './node_modules/react')
-    // because we are using yarn workspaces
+    // because we are using pnpm workspaces
     // we have default symlinks set up to /src folders of packages
     // so we need to override them and reffer to /build folders
     linkPackages.forEach(({ name }) => link(name))
@@ -106,8 +106,8 @@ const setup = function () {
     linkPackages.forEach(({ name, outputDir }) => removeLink(name, outputDir))
     removeLink('react', './node_modules/react')
 
-    log('Re-running "yarn install" to restore links for workspaces...')
-    exec('yarn install --force')
+    log('Re-running "pnpm install" to restore links for workspaces...')
+    exec('pnpm install --force')
 
     log('Unlinking process finished.')
   }

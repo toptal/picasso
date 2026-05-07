@@ -33,16 +33,20 @@ jobs:
         with:
           node-version: 22.20.0
 
-      - uses: ./.github/actions/yarn-install
+      - uses: ./.github/actions/pnpm-install
 
       - name: Build packages
-        run: yarn build:package
+        run: pnpm build:package
 
       - name: Cache built packages
         uses: actions/cache@v4
         with:
-          path: "packages/**/dist-package"
-          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
+          # Explicit globs (no **) to avoid pnpm's workspace-symlink loops
+          # under packages/<x>/node_modules/@toptal/<y> -> packages/<y>.
+          path: |
+            packages/*/dist-package
+            packages/base/*/dist-package
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }}
 
   integration-tests:
     name: Run Integration Tests
@@ -69,13 +73,15 @@ jobs:
         with:
           node-version: 22.20.0
 
-      - uses: ./.github/actions/yarn-install
+      - uses: ./.github/actions/pnpm-install
 
       - name: Get cached packages
         uses: actions/cache@v4
         with:
-          path: "packages/**/dist-package"
-          key: ${{ runner.os }}-pkgs-${{ github.run_id }} }}
+          path: |
+            packages/*/dist-package
+            packages/base/*/dist-package
+          key: ${{ runner.os }}-pkgs-${{ github.run_id }}
 
       - name: Run integration tests
         uses: ./.github/actions/integration-tests
@@ -101,10 +107,10 @@ jobs:
         with:
           node-version: 22.20.0
 
-      - uses: ./.github/actions/yarn-install
+      - uses: ./.github/actions/pnpm-install
 
       - name: Finalize Happo
-        run: npx happo-e2e finalize
+        run: pnpm exec happo-e2e finalize
         env:
           HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
           HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}

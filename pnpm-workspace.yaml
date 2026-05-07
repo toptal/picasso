@@ -1,0 +1,12 @@
+packages:
+  - 'packages/*'
+  - 'packages/base/*'
+
+# Supply-chain safeguard: refuse to install any public package published
+# less than this many minutes ago. Internal scopes are excluded so we can
+# still consume freshly-published @toptal/* and @topkit/*.
+# 7 days = 60 * 24 * 7 = 10080 minutes
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - '@toptal/*'
+  - '@topkit/*'

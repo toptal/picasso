@@ -17,12 +17,12 @@ runs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install dependencies
-      uses: ./.github/actions/yarn-install
+      uses: ./.github/actions/pnpm-install
 
     - name: Publish to npm
       # Same as changesets/action@v1.5.3
       uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
       with:
-        publish: yarn release
+        publish: pnpm release
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}

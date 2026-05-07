@@ -3,9 +3,9 @@ const DEFAULT_NEWCOMPONENT_COMMAND = 'new'
 const AVAILABLE_PACKAGES = ['picasso', 'picasso-forms', 'picasso-charts']
 
 /**
- * @example yarn generate:component ComponentName picasso
- * @example yarn generate:component --name=ComponentName --package=picasso
- * @example yarn generate:component
+ * @example pnpm generate:component ComponentName picasso
+ * @example pnpm generate:component --name=ComponentName --package=picasso
+ * @example pnpm generate:component
  */
 module.exports = {
   prompt: ({ prompter, args }) => {

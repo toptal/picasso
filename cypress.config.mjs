@@ -1,4 +1,3 @@
-import path from 'path'
 import happoTask from 'happo-cypress/task.js'
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'cypress'
@@ -22,6 +21,9 @@ export default defineConfig({
       framework: 'react',
       bundler: 'webpack',
       webpackConfig: {
+        watchOptions: {
+          ignored: /[\\/](node_modules|coverage|\.nyc_output)[\\/]/,
+        },
         module: {
           rules: [
             {

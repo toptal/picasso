@@ -27,11 +27,11 @@ runs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install dependencies
-      uses: ./.github/actions/yarn-install
+      uses: ./.github/actions/pnpm-install
 
     - name: Build package
       shell: bash
-      run: yarn build:package
+      run: pnpm build:package
 
     - name: Publish packages
       id: publish-package
@@ -41,7 +41,7 @@ runs:
         ROOT_FOLDER: ${{ inputs.root-folder }}
         NPM_CONFIG_PROVENANCE: true
       run: |
-        npx davinci-engine publish-package \
+        pnpm exec davinci-engine publish-package \
           --alpha \
           --outputVersion .version \
           --useNxForAlphaPublishing \

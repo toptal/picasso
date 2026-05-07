@@ -4,7 +4,7 @@ To provide better a visual experience to end users and simplify workflow with cr
 
 One of the main reasons was that the code wasn’t DRY, it required a lot of boilerplate and you are not able to provide _pretty_ examples to end users. 
 
-To help you creating sample examples you can leverage our scaffolding tool `yarn generate:example` which will scaffold skeleton of an example story.
+To help you creating sample examples you can leverage our scaffolding tool `pnpm generate:example` which will scaffold skeleton of an example story.
 
 ## PicassoBook
 `PicassoBook` is our own API for writing Storybook stories. It is a simple chain API builder which collects all metadata for creating the following important things:

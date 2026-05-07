@@ -12,7 +12,7 @@ const {
   // copyLicense,
   safeExec,
 } = require('./utils')
-const tscPath = path.resolve(__dirname, '../node_modules/.bin/tsc')
+const tscPath = require.resolve('typescript/bin/tsc')
 
 const compile = function (tsConfig, packageJson, packageRootDir) {
   const args = []
@@ -20,7 +20,7 @@ const compile = function (tsConfig, packageJson, packageRootDir) {
   log(`Building ${packageJson.name}:${packageJson.version}`)
 
   function build() {
-    const cmd = `${tscPath} -p tsconfig.build.json ${args.join(' ')}`
+    const cmd = `node ${tscPath} -p tsconfig.build.json ${args.join(' ')}`
 
     safeExec(cmd)
     log(`Build ready in: ${tsConfig.compilerOptions.outDir}`, 'green')

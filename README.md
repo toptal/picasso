@@ -31,7 +31,7 @@ Changes in dev dependencies, component HTML structure, or visual changes are not
 
 ## Running storybook
 
-In order to run storybook you need to execute `yarn start` which will spin up storybook server on <http://localhost:9001>.
+In order to run storybook you need to execute `pnpm start` which will spin up storybook server on <http://localhost:9001>.
 
 ## Running visual tests locally
 
@@ -40,13 +40,13 @@ In order to run storybook you need to execute `yarn start` which will spin up st
 1. Go to https://happo.io/a/675/account (`toptal-picasso` account)
 2. Set environment variable `HAPPO_API_KEY` same as API key (`export HAPPO_API_KEY=...` in Unix)
 3. Set environment variable `HAPPO_API_SECRET` same as API secret (`export HAPPO_API_SECRET=...` in Unix)
-4. Run `yarn happo (run|debug|compare|…)` depending on you goals
+4. Run `pnpm happo (run|debug|compare|…)` depending on you goals
 
 For example, in order to compare two commits (`abc123` and `def456`), follow the steps below
 
-1. Generate report for `abc123` commit via `yarn happo run abc123` and get link to the report (something like https://happo.io/a/675/p/1189/report/abc123)
-2. Generate report for `def456` commit via `yarn happo run def456` and get link to the report (something like https://happo.io/a/675/p/1189/report/def456)
-3. Compare commits via `yarn happo compare abc123 def456` and get link to the comparison result (something like https://happo.io/a/675/p/1189/compare/abc123/def456)
+1. Generate report for `abc123` commit via `pnpm happo run abc123` and get link to the report (something like https://happo.io/a/675/p/1189/report/abc123)
+2. Generate report for `def456` commit via `pnpm happo run def456` and get link to the report (something like https://happo.io/a/675/p/1189/report/def456)
+3. Compare commits via `pnpm happo compare abc123 def456` and get link to the comparison result (something like https://happo.io/a/675/p/1189/compare/abc123/def456)
 
 ### Run Happo locally for Cypress
 
@@ -56,10 +56,10 @@ For example, in order to compare two commits (`abc123` and `def456`), follow the
 4. Set environment variable `HAPPO_PROJECT` to match Cypress project (`export HAPPO_PROJECT=Picasso/Cypress` in Unix)
 5. Set environment variable `HAPPO_PREVIOUS_SHA`, it should be the sha of the last `master` commit that passed Happo (Picasso/Cypress) check ([documentation for environment variable](https://docs.happo.io/docs/cypress#continuous-integration))
 6. Set environment variable `HAPPO_CURRENT_SHA`, it should be [the sha of the commit](https://github.com/toptal/picasso/commits/master/) that is compared to `master` ([documentation for environment variable](https://docs.happo.io/docs/cypress#continuous-integration))
-7. Run `yarn test:integration:ci` and get link to the comparison result, something like
+7. Run `pnpm test:integration:ci` and get link to the comparison result, something like
 
 ```bash
-yarn test:integration:ci
+pnpm test:integration:ci
 ...
 [HAPPO] https://happo.io/a/675/jobs/1104613
 ✨  Done in 378.45s.
@@ -112,9 +112,9 @@ To add a new icon to `@toptal/picasso` or pictogram to `@toptal/picasso-pictogra
 3. Run the command
 
    ```bash
-   yarn generate:svg-components # runs generation for icons and pictograms
-   yarn generate:icons          # generates icons
-   yarn generate:pictograms     # generates pictograms
+   pnpm generate:svg-components # runs generation for icons and pictograms
+   pnpm generate:icons          # generates icons
+   pnpm generate:pictograms     # generates pictograms
    ```
 
    This command will prepare corresponding react components and add export statements index files.
@@ -175,13 +175,13 @@ To link Picasso follow these steps:
 In Picasso project directory:
 
 1. Checkout Picasso project from [GitHub](https://github.com/toptal/picasso)
-2. Install Picasso dependencies with `yarn install`
-3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `yarn build:package`
-4. Create a link with running in the root path `yarn symlink` (creates all links to Picasso packages and React link)
+2. Install Picasso dependencies with `pnpm install`
+3. Build Picasso inside Picasso package folder (`./packages/picasso/`) with `pnpm build:package`
+4. Create a link with running in the root path `pnpm symlink` (creates all links to Picasso packages and React link)
 
 In your project directory:
 
-1. Link Picasso and React with `yarn link @toptal/picasso react`
+1. Link Picasso and React with `pnpm link @toptal/picasso react`
 2. Start your project and changes in Picasso will be visible in your project!
 
 ### Unlink
@@ -190,13 +190,13 @@ To unlink Picasso follow these steps:
 
 In your project directory:
 
-1. Unlink Picasso with `yarn unlink @toptal/picasso react`
-2. Re-install dependencies with `yarn install --force`
+1. Unlink Picasso with `pnpm unlink @toptal/picasso react`
+2. Re-install dependencies with `pnpm install --force`
 
 (Optional) In Picasso project directory:
 
-1. Unlink with `yarn symlink:off`
-2. Re-install dependencies with `yarn install --force`
+1. Unlink with `pnpm symlink:off`
+2. Re-install dependencies with `pnpm install --force`
 
 ### Tree shaking
 

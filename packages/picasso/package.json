@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build:package": "tsc --build tsconfig.json",
-    "prepublishOnly": "yarn build:package"
+    "prepublishOnly": "pnpm build:package"
   },
   "repository": {
     "type": "git",
@@ -129,7 +129,6 @@
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/react-hooks": "^8.0.1",
-    "@toptal/picasso-provider": "5.0.2",
     "@types/classnames": "^2.3.1",
     "@types/d3": "^7.4.0",
     "@types/glider-js": "^1.7.8",
@@ -138,10 +137,6 @@
     "popper.js": "^1.16.1",
     "react-router-dom": "^5.3.4",
     "styled-components": "^6.1.1"
-  },
-  "resolutions": {
-    "js-yaml": "^3.13.1",
-    "lodash": "^4.17.21"
   },
   "sideEffects": [
     "**/styles.ts",

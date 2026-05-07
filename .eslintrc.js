@@ -40,7 +40,7 @@ const generateSameSettingRules = (ruleNames, setting) => {
 
 module.exports = {
   extends: [
-    './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc.cjs',
+    require.resolve('@toptal/davinci-syntax/src/configs/.eslintrc.cjs'),
     'plugin:ssr-friendly/recommended',
   ],
   plugins: ['ssr-friendly', 'eslint-plugin-local-rules'],

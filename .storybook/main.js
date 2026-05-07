@@ -66,7 +66,6 @@ module.exports = {
       rule => rule.test && rule.test.toString().includes('.css')
     )
 
-    // Use the 'postcss-loader' to process TailwindCSS
     cssRule.use.push({
       loader: 'postcss-loader',
       options: {
@@ -81,6 +80,10 @@ module.exports = {
 
     return {
       ...config,
+      watchOptions: {
+        ...config.watchOptions,
+        ignored: /[\\/](node_modules|coverage|\.nyc_output)[\\/]/,
+      },
       module: {
         ...config.module,
         // supress an error with dynamic path e.g. require(`${url}`)
@@ -117,6 +120,12 @@ module.exports = {
         new webpack.DefinePlugin({
           TEST_ENV: JSON.stringify(env.TEST_ENV),
         }),
+        // Applies only to require.context() directory scans, not normal imports.
+        // Current scans in .storybook/load-stories.js and
+        // .storybook/components/CodeExample/CodeExample.tsx read ~/packages for
+        // stories/source examples; package-local node_modules are pnpm symlink
+        // noise for those contexts.
+        new webpack.ContextExclusionPlugin(/^node_modules$/),
         // https://github.com/TypeStrong/ts-loader/issues/653
         new IgnoreNotFoundPlugin(['OverridableComponent', 'BaseProps']),
         // until we use docs or control addon, we need custom webpack plugin for docgen
