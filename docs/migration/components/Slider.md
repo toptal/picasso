@@ -37,15 +37,4 @@ Per migration plan v3 §3.1: direct match — `@base-ui/react/slider` exists wit
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Slider preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
-
-```ts
-export type SliderClassKey = 'root' | 'rail' | 'track' | 'thumb' | 'mark' | 'valueLabel'
-```
-
-- `root` — the outermost container
-- `rail` — the full-length background track (Slider.Rail)
-- `track` — the active filled portion (Slider.Track)
-- `thumb` — the draggable handle (Slider.Thumb)
-- `mark` — discrete tick mark (Slider.Mark; only rendered when `marks` prop is present)
-- `valueLabel` — the floating value tooltip above the thumb (Picasso-specific)
+**Not applicable.** Per the May 2026 audit, Slider does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.

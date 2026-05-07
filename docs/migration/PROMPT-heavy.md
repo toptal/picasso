@@ -51,17 +51,56 @@ Your task:
 
 4. Update package.json:
    - Remove @material-ui/core from dependencies AND peerDependencies.
-   - Add @base-ui/react if used.
+   - Add @base-ui/react if used (current pin: 1.4.1).
    - Add @toptal/picasso-tailwind-merge (peer) and
      @toptal/picasso-tailwind (peer) if not already present.
+   - **Drop the `react: < 19.0.0` upper bound** from `peerDependencies`
+     if present. Replace with `react: ">=16.12.0"` (or current floor).
+     Per v4 §2.6, Picasso lifts the React 18-era cap as part of every
+     Tier 0/1/2/3 migration.
+   - **After editing any package.json deps, run `yarn install` from
+     the repo root and stage `yarn.lock` in the same commit.** Missing
+     yarn.lock is the single most common reason CI's "Build packages"
+     step fails on dep-bumping migrations. If a runtime dep used at
+     compile time is added (e.g. `withClasses` consuming
+     `@toptal/picasso-tailwind-merge`), the package needs it as a
+     `devDependency` for its own `tsc -b` resolution, not just as a
+     `peerDependency` — peerDeps are only seen by *consumers* of the
+     package, not by the package's own build.
 
-5. **Required output shape: `classes` prop preservation (v4 §2.3).**
-   Every Picasso component must accept and route a `classes` prop via
-   the Tailwind class-composition shim. This preserves the consumer API
-   surface that 23 downstream repos depend on. **Especially load-bearing
-   for heavy migrations** because the original MUI v4 `classes` prop
-   accepted MUI's slot keys; v4 §2.3 is the migration of that contract
-   into the Tailwind world.
+5. **Conditional output shape: `classes` prop preservation (v4 §2.3, scoped).**
+   `withClasses` is a **preservation** mechanism, not a NET ADD. Apply
+   it only if the component currently exposes `classes` in its public
+   Props interface — directly (`classes?: { ... }`) or by extending
+   `StandardProps` (which bundles `classes: Classes` via `JssProps`).
+   If the component has no `classes` prop today, **skip this step
+   entirely** — adding it would be net-new API, not preservation.
+
+   Heavy-path migrations are **more likely** to need this than light
+   path: Tier 2/3 components still on MUI v4 + JSS often have `classes`
+   either directly or via StandardProps, and the original MUI v4
+   contract accepted MUI's slot keys. v4 §2.3 is the migration of that
+   contract into the Tailwind world — but only where the contract
+   actually existed.
+
+   Quick check before deciding:
+   - `grep -rE '^\s*classes\??:' packages/base/<NAME>/src` — direct
+   - `grep -rE 'extends.*StandardProps' packages/base/<NAME>/src` — inherited
+   If both come up empty, skip §5 and move on.
+
+   Components that need this (per the manifest audit): Button, Modal,
+   Container, Notification, FormLabel, Typography, Radio, Accordion,
+   Dropdown, OutlinedInput. Components that **don't** (skip): Backdrop,
+   Badge, Drawer, Slider, Switch, Tabs, ModalContext, Grid, Menu, Utils,
+   Form, FormLayout, Note, Checkbox, Tooltip, FileInput, Popper, Page.
+
+   When applicable, expose `classes` on the **public** component (not
+   just an internal Base). For components currently inheriting `classes:
+   Classes` via `StandardProps`, narrow the type at the public Props
+   interface to `Partial<Record<*ClassKey, string>>` — this is a real
+   API narrowing (consumers using arbitrary string keys break). Document
+   the slot-key set in `docs/migration/<Component>-diff.json` with
+   `codemod=required`.
 
    Pattern:
    ```ts
@@ -138,7 +177,7 @@ Inspect at minimum the default + hover + focused + disabled stories. If `console
 - (if applicable) cypress component spec passes
 - Happo report green or designer-approved diffs only
 
-**Mandatory before exit:** run `yarn davinci-syntax lint code packages/base/<NAME>/src` (auto-fix mode, no `--check`) once, then `yarn davinci-syntax lint code --check packages/base/<NAME>/src` to verify zero errors. The orchestrator's outer-loop gate runs the same scoped command — if you exit before lint passes, the gate fails identically and you've wasted an iteration. **Do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the call-site cast pattern (`as ComponentName.Props['key']`) instead, per `rules/api-preservation.md`.
+**Mandatory before exit:** run `yarn davinci-syntax lint code packages/base/<NAME>/src` (auto-fix mode, no `--check`) once, then `yarn davinci-syntax lint code --check packages/base/<NAME>/src` to verify zero errors. The orchestrator's outer-loop gate runs the same scoped command — if you exit before lint passes, the gate fails identically and you've wasted an iteration. **Do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the **boundary-cast** pattern (`as ComponentName.Props['key']`) hoisted into a helper return type or local typed binding instead — see `rules/base-ui-react-api-crib.md` §"Type alignment at the boundary". Avoid sprinkling inline casts at the JSX call site; reviewers will ask you to consolidate them.
 
 ---
 

@@ -1541,10 +1541,25 @@ const lessons = {
     }
 
     // Cheap claude call to extract patterns.
+    //
+    // IMPORTANT: lessons must be merge-quality, not first-pass. The PR is open
+    // but not yet reviewed; reviewers may request changes that invalidate
+    // patterns the agent applied. Prefer pointer-style entries ("see <doc>
+    // §X for the canonical pattern") over prescriptive how-to lines that bake
+    // in a soon-to-be-regretted choice. Do NOT include patterns about:
+    //   - runtime `typeof`/`isValidAs` guards (canonical: api-crib §"Don't add runtime typeof guards")
+    //   - call-site type casts (canonical: api-crib §"Type alignment at the boundary")
+    //   - any pattern already documented in rules/* — point to the rule instead.
     const extractPrompt =
-      `Below is the diff that successfully migrated component "${item.id}" to ${item.target_path ?? 'a new stack'}. ` +
-      `Extract the 2–3 most useful patterns this migration applied — patterns that future similar migrations of OTHER components should reuse. ` +
-      `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
+      `Below is the diff that opened a PR migrating component "${item.id}" to ${item.target_path ?? 'a new stack'}. ` +
+      `The PR is OPEN and not yet reviewed — patterns may change in review. ` +
+      `Extract 2–3 patterns that future migrations of OTHER components should reuse. ` +
+      `Prefer merge-quality, durable patterns. Avoid prescribing patterns that ` +
+      `human reviewers commonly trim (runtime type guards, sprinkled inline casts) — ` +
+      `if the pattern is already in rules/base-ui-react-api-crib.md or rules/api-preservation.md, ` +
+      `point to the doc section instead of restating the how-to. ` +
+      `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. ` +
+      `No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
       `\`\`\`diff\n${diffBody}\n\`\`\``
 
     const child = spawn('claude', ['-p', '--allowedTools', 'Read'], {

@@ -135,6 +135,31 @@ run_stage_skip() {
 
 # ---------- stages ---------------------------------------------------------
 
+# 0. Lockfile drift — detect package.json edits without yarn.lock update.
+#    This is the cheapest stage and catches the most common dep-bump CI fail
+#    ("Build packages" failing because new dep isn't resolved in lockfile).
+#    Run before `build` so we fail in 1s instead of after a 60s+ build.
+check_lockfile_drift() {
+  # Compare staged + unstaged changes against the worktree's HEAD.
+  local pkg_changed lock_changed
+  pkg_changed=$(git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json' 2>/dev/null | head -1)
+  lock_changed=$(git -C "$ROOT" diff --name-only HEAD -- 'yarn.lock' 2>/dev/null | head -1)
+
+  if [ -n "$pkg_changed" ] && [ -z "$lock_changed" ]; then
+    echo "package.json modified but yarn.lock unchanged."
+    echo "Modified package.json files:"
+    git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json'
+    echo ""
+    echo "Run 'yarn install' from repo root to refresh the lockfile,"
+    echo "then 'git add yarn.lock' before committing. CI's 'Build packages'"
+    echo "step will fail otherwise (new dep not resolved in lockfile)."
+    return 1
+  fi
+
+  return 0
+}
+run_stage "lockfile-drift" check_lockfile_drift
+
 # 1. Build (workspace-scoped — fast).
 run_stage "build" \
   yarn workspace "$WORKSPACE_NAME" build:package

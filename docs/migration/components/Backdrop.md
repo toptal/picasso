@@ -43,12 +43,6 @@ Per migration plan v3 §3.1 (Tier 0 table) + §9.8 R14: `@base-ui/react` does **
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Backdrop preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, Backdrop does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type BackdropClassKey = 'root'
-```
-
-- `root` — the backdrop overlay `<div>` itself
-
-Backdrop is a single-element component; no internal slots beyond the root. Per `decisions/backdrop-replacement.md`, it's a custom `<div>` + Tailwind + scroll-lock (no `@base-ui/react` analog).
+Implementation note: per `decisions/backdrop-replacement.md`, Backdrop is a custom `<div>` + Tailwind + scroll-lock (no `@base-ui/react` analog).
