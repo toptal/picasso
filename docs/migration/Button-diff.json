@@ -1,0 +1,14 @@
+{
+  "component": "Button",
+  "removed": [],
+  "renamed": [],
+  "narrowed": [
+    {
+      "prop": "classes",
+      "from": "Classes (Record<string, string>)",
+      "to": "Partial<Record<'root' | 'label' | 'icon', string>>",
+      "reason": "Per migration plan v4 §2.3 / decisions/classes-shim.md, the inherited classes prop from StandardProps (which bundles JssProps -> Classes) is narrowed to the component's declared slot keys. The withClasses shim routes consumer overrides to baseClasses for each slot via twMerge. Wider arbitrary string keys are silently ignored, which is now caught at the consumer call-site by TS.",
+      "codemod": "not-required"
+    }
+  ]
+}

@@ -139,16 +139,68 @@ run_stage_skip() {
 #    This is the cheapest stage and catches the most common dep-bump CI fail
 #    ("Build packages" failing because new dep isn't resolved in lockfile).
 #    Run before `build` so we fail in 1s instead of after a 60s+ build.
+#
+#    Heuristic v2: if package.json changed but yarn.lock did not, verify
+#    every newly-added/changed npm dep has a matching yarn.lock entry. If so,
+#    the lockfile is genuinely consistent (often because the dep was already
+#    resolved from prior orchestrator state). If a dep is missing from
+#    yarn.lock, fail loudly. v1 just checked diff existence — false-positive
+#    on Button's migration when @base-ui/react@^1.4.1 was already in the
+#    lockfile from a previous orchestrator iteration.
 check_lockfile_drift() {
   # Compare staged + unstaged changes against the worktree's HEAD.
   local pkg_changed lock_changed
   pkg_changed=$(git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json' 2>/dev/null | head -1)
   lock_changed=$(git -C "$ROOT" diff --name-only HEAD -- 'yarn.lock' 2>/dev/null | head -1)
 
-  if [ -n "$pkg_changed" ] && [ -z "$lock_changed" ]; then
-    echo "package.json modified but yarn.lock unchanged."
-    echo "Modified package.json files:"
-    git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json'
+  if [ -z "$pkg_changed" ] || [ -n "$lock_changed" ]; then
+    return 0
+  fi
+
+  # package.json moved but yarn.lock didn't. Verify each non-workspace dep
+  # in every modified package.json has a yarn.lock entry. Workspace deps
+  # (@toptal/picasso-*) are linked, not resolved, so they're not in
+  # yarn.lock and don't need to be checked here.
+  local missing=""
+  local pkg_files
+  pkg_files=$(git -C "$ROOT" diff --name-only HEAD -- '**/package.json' 'package.json' 2>/dev/null)
+
+  for pkg_file in $pkg_files; do
+    [ -f "$ROOT/$pkg_file" ] || continue
+
+    # Extract dep names from dependencies / devDependencies / peerDependencies.
+    # node -e is safer than jq for parsing nested JSON without dep on jq.
+    local deps
+    deps=$(node -e "
+      const pkg = require('$ROOT/$pkg_file');
+      const all = { ...pkg.dependencies, ...pkg.devDependencies, ...pkg.peerDependencies };
+      for (const [name, range] of Object.entries(all)) {
+        if (name.startsWith('@toptal/picasso-') || name === 'react' || name === 'react-dom') continue;
+        process.stdout.write(name + '\t' + range + '\n');
+      }
+    " 2>/dev/null)
+
+    while IFS=$'\t' read -r name range; do
+      [ -z "$name" ] && continue
+      # yarn.lock entry shapes — we accept any of:
+      #   "@scope/name@range":          (quoted, scoped)
+      #   name@range:                   (unquoted)
+      #   ..., name@range, ...:         (unquoted, multi-key)
+      #   "@scope/name@range", ...:     (quoted, multi-key)
+      # Use grep -F (fixed-string) for each shape to sidestep regex escaping
+      # of `^`, `~`, `*`, `(`, `)`, etc. in semver ranges.
+      local needle="${name}@${range}"
+      if ! grep -qF "\"${needle}\"" "$ROOT/yarn.lock" 2>/dev/null \
+         && ! grep -qF "${needle}:" "$ROOT/yarn.lock" 2>/dev/null \
+         && ! grep -qF "${needle}," "$ROOT/yarn.lock" 2>/dev/null; then
+        missing="${missing}  ${pkg_file}: ${needle}\n"
+      fi
+    done <<< "$deps"
+  done
+
+  if [ -n "$missing" ]; then
+    echo "package.json deps missing from yarn.lock:"
+    printf "%b" "$missing"
     echo ""
     echo "Run 'yarn install' from repo root to refresh the lockfile,"
     echo "then 'git add yarn.lock' before committing. CI's 'Build packages'"
@@ -156,6 +208,8 @@ check_lockfile_drift() {
     return 1
   fi
 
+  echo "package.json modified but yarn.lock unchanged — verified all deps"
+  echo "are already resolved in yarn.lock (no drift)."
   return 0
 }
 run_stage "lockfile-drift" check_lockfile_drift

@@ -39,6 +39,7 @@ const generateSameSettingRules = (ruleNames, setting) => {
 }
 
 module.exports = {
+  root: true,
   extends: [
     './node_modules/@toptal/davinci-syntax/src/configs/.eslintrc.cjs',
     'plugin:ssr-friendly/recommended',

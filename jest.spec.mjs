@@ -18,6 +18,10 @@ const NODE_MODULES_TO_IGNORE_TRANSFORM = [
 const config = {
   ...davinciJestConfig,
   roots: ['<rootDir>/packages'],
+  modulePathIgnorePatterns: [
+    ...(davinciJestConfig.modulePathIgnorePatterns ?? []),
+    '<rootDir>/migration-runs/',
+  ],
 
   moduleNameMapper: {
     ...davinciJestConfig.moduleNameMapper,
