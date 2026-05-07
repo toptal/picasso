@@ -32,14 +32,6 @@ Per migration plan v3 §3.1 (Tier 0 table footnote) + §3.2 (Tier 1 table): **so
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Menu preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, Menu does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type MenuClassKey = 'root' | 'paper' | 'list'
-```
-
-- `root` — the outermost portal/positioner wrapper
-- `paper` — the menu surface (background, border, shadow)
-- `list` — the inner list of menu items
-
-Tier 1 cleanup-only — Menu source is already migrated; this PR drops the stale `@mui/base` package.json declaration.
+Implementation note: Tier 1 cleanup-only — Menu source is already migrated; this PR drops the stale `@mui/base` package.json declaration.

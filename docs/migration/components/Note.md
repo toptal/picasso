@@ -36,13 +36,6 @@ Migration must be applied AFTER:
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Note preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, Note does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type NoteClassKey = 'root' | 'content'
-```
-
-- `root` — the outermost wrapper (with variant-driven background + border classes)
-- `content` — the inner text-content container
-
-Tier 1 already-clean (the orchestrator sandbox component); migration is package.json delta only — `classes` contract unchanged from baseline.
+Implementation note: Tier 1 already-clean (the orchestrator sandbox component); migration is package.json delta only.

@@ -34,12 +34,6 @@ Per migration plan v3 §3.2 + audit §1.4: **single MUI v4 type re-export**, no 
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Grid preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, Grid does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type GridClassKey = 'root'
-```
-
-- `root` — the grid container element
-
-Tier 1 type-only fix (replace MUI v4 `GridSize` type-only re-export with a local `GridSize` literal type union). The `classes` contract is preserved verbatim.
+Implementation note: Tier 1 type-only fix — replace MUI v4 `GridSize` type-only re-export with a local `GridSize` literal type union.

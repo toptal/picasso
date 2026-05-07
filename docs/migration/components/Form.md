@@ -36,12 +36,6 @@ Migration must be applied AFTER:
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Form preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+**Not applicable.** Per the May 2026 audit, Form does not currently expose a `classes` prop in its public Props (neither directly nor via `StandardProps`). The migration is a clean swap; do not add `withClasses`. Adding it would be net-new API, not preservation. See `decisions/classes-shim.md` for the strict-preservation policy.
 
-```ts
-export type FormClassKey = 'root'
-```
-
-- `root` — the `<form>` element itself
-
-Form is already-clean (Tier 1 cleanup); no internal slots beyond root. The migration is package.json delta only — `classes` API contract unchanged.
+Implementation note: already-clean (Tier 1 cleanup); migration is package.json delta only.

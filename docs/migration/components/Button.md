@@ -117,7 +117,7 @@ This protects against the runtime case where `as` is undefined / null / a primit
 
 ## Slot keys
 
-Per migration plan v4 §2.3, Button preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+Button currently inherits `classes: Classes` via `StandardProps` (from `@toptal/picasso-shared`'s `JssProps`). Per the May 2026 audit, this puts Button in the "apply `withClasses`" set — preserve via slot routing. See `decisions/classes-shim.md` for the strict-preservation policy.
 
 ```ts
 export type ButtonClassKey = 'root' | 'label' | 'icon'
@@ -126,5 +126,7 @@ export type ButtonClassKey = 'root' | 'label' | 'icon'
 - `root` — outermost element (the rendered `<button>` or polymorphic `as`-element)
 - `label` — text-content wrapper inside the button
 - `icon` — icon slot (covers both leading/trailing icon positions; consumer disambiguates via the `icon` prop's position)
+
+**Apply on the public `Button.tsx`, not just `ButtonBase.tsx`.** The orchestrator's first attempt (PR #4940) added `withClasses` to ButtonBase only — consumers of `<Button>` (the public component) couldn't reach the new prop. Re-export `ButtonClassKey` from `Button.tsx`, declare `classes?: Partial<Record<ButtonClassKey, string>>` on the public Props (this also *narrows* the inherited `Classes` type from `StandardProps` — document the narrowing in `docs/migration/Button-diff.json`), and pass `classes` through to ButtonBase.
 
 Refine during migration if the actual rendered DOM exposes additional internal regions worth surfacing as slots. Do NOT add MUI v4 variant-specific keys (`text`, `outlined`, `contained`) — those are now styling concerns, not slot-routing concerns.
