@@ -1,0 +1,15 @@
+{
+  "component": "Button",
+  "removed": [],
+  "renamed": [],
+  "narrowed": [
+    {
+      "prop": "classes",
+      "from": "Classes (Record<string, string>) — inherited from StandardProps via JssProps",
+      "to": "Partial<Record<ButtonClassKey, string>> where ButtonClassKey = 'root' | 'label' | 'icon'",
+      "reason": "Tailwind-routing shim (withClasses) replaces MUI v4 JSS classes. Slot keys narrowed to the canonical Button slots per migration plan v4 §2.3 strict-preservation policy.",
+      "codemod": "not-required",
+      "consumer-impact": "Consumers passing `classes` with keys other than 'root' | 'label' | 'icon' will now fail TS compilation. Runtime: extra keys are silently ignored by withClasses. Values are now Tailwind class strings instead of generated MUI class names; consumers relying on .MuiButton-root selectors or '&$disabled' nested-state selectors need codemods (handled separately in PF-1995)."
+    }
+  ]
+}

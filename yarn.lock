@@ -1327,7 +1327,7 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@base-ui/react@^1.4.1":
+"@base-ui/react@1.4.1", "@base-ui/react@^1.4.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@base-ui/react/-/react-1.4.1.tgz#42afd3733893bc26611f6ebb28efabc67e6866f1"
   integrity sha512-Ab5/LIhcmL8BQcsBUYiOfkSDRdLpvgUBzMK30cu684JPcLclYlztharvCZyNNgzJtbAiREzI9q0pI5erHCMgCw==
