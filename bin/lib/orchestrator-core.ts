@@ -1479,8 +1479,22 @@ const agent = {
                 'mcp__playwright__browser_snapshot',
               ]
             : []
+          // Streaming flags (added 2026-05-07 — see hung-agent post-mortem):
+          //   - `--output-format stream-json` + `--verbose`: emit JSONL as
+          //     content + tool_use events generate, so the orchestrator can
+          //     parse tool calls in real time and the operator sees activity
+          //     in the heartbeat log instead of a 5-15min black box.
+          //   - `--include-partial-messages`: also emit partial content
+          //     blocks (text chunks before a content_block_stop), so even
+          //     long thinking passes show byte growth in the log.
+          // Without these, `claude -p` buffers ALL output until generation
+          // finishes, which produces the observed "0.0KB written" hang
+          // signature even though the agent is alive and working.
           const args = [
             '-p',
+            '--output-format', 'stream-json',
+            '--verbose',
+            '--include-partial-messages',
             '--allowedTools',
             [...baseTools, ...mcpTools].join(' '),
           ]
@@ -1579,7 +1593,15 @@ const agent = {
       // Heartbeat tick every 30s — log progress to orchestrator stderr so
       // the operator sees "agent is alive" without tailing the log file.
       // Stuck detection: if no log growth for >120s, escalate the warning.
+      // Hard timeout: if no growth for >600s, kill the subprocess. This
+      // catches genuine hangs (e.g. silent network drop, Anthropic 529
+      // without retry headers) that would otherwise burn the whole
+      // ci-timeout budget. 600s is generous for legitimate long-thinking
+      // passes once `--include-partial-messages` is on (typical iter
+      // emits content within the first 10-30s).
+      const HARD_TIMEOUT_MS = 600_000
       const startedAt = Date.now()
+      let killed = false
       const heartbeat = setInterval(() => {
         const elapsed = Math.round((Date.now() - startedAt) / 1000)
         const idle = Math.round((Date.now() - lastActivityAt) / 1000)
@@ -1587,13 +1609,29 @@ const agent = {
         const stuck = idle > 120 ? ` ⚠️  no progress ${idle}s` : ''
 
         log(tag, `alive (${elapsed}s elapsed, ${kb}KB written, last tool: ${lastTool})${stuck}`)
+
+        if (idle * 1000 > HARD_TIMEOUT_MS && !killed) {
+          killed = true
+          log(tag, `🛑 hard timeout: no output for ${idle}s — killing subprocess`)
+          require('node:fs').appendFileSync(
+            logPath,
+            `\n[orchestrator] hard-timeout kill: no output for ${idle}s\n`
+          )
+          try { child.kill('SIGTERM') } catch {}
+          // Backstop: SIGKILL after 5s if SIGTERM doesn't take.
+          setTimeout(() => { try { child.kill('SIGKILL') } catch {} }, 5000)
+        }
       }, 30_000)
 
       const cleanup = () => clearInterval(heartbeat)
 
       child.on('close', (code) => {
         cleanup()
-        resolve({ exitCode: code ?? 1 })
+        if (killed) {
+          resolve({ exitCode: 124 }) // standard "timeout" exit code
+        } else {
+          resolve({ exitCode: code ?? 1 })
+        }
       })
       child.on('error', (err) => {
         cleanup()
