@@ -2,13 +2,5 @@
   "component": "Button",
   "removed": [],
   "renamed": [],
-  "narrowed": [
-    {
-      "prop": "classes",
-      "from": "Classes (Record<string, string>)",
-      "to": "Partial<Record<ButtonClassKey, string>> where ButtonClassKey = 'root' | 'label' | 'icon'",
-      "reason": "Strict-preservation classes shim (v4 §2.3): the inherited Classes type from StandardProps allowed any string key, but the migrated component routes only the documented slots (root, label, icon). Consumers passing unrecognized keys will now see TS errors at the call-site.",
-      "codemod": "not-required"
-    }
-  ]
+  "narrowed": []
 }

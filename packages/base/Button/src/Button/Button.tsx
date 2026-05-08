@@ -9,7 +9,7 @@ import type {
   OverridableComponent,
   TextLabelProps,
 } from '@toptal/picasso-shared'
-import { noop, withClasses } from '@toptal/picasso-utils'
+import { noop } from '@toptal/picasso-utils'
 // we need to ensure the correct order of styles import
 // TODO: [FX-4614] To be removed when Link component is migrated to tailwind
 import { Link } from '@toptal/picasso-link'
@@ -34,23 +34,13 @@ export type VariantType =
 
 export type IconPositionType = 'left' | 'right'
 
-export type ButtonClassKey = 'root' | 'label' | 'icon'
-
-const baseClasses: Record<ButtonClassKey, string> = {
-  root: '',
-  label: '',
-  icon: '',
-}
-
 export interface Props
-  extends Omit<StandardProps, 'classes'>,
+  extends StandardProps,
     TextLabelProps,
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
   active?: boolean
   as?: ElementType
-  /** Override or extend per-slot classes (root, label, icon) */
-  classes?: Partial<Record<ButtonClassKey, string>>
   /** Disables button */
   disabled?: boolean
   /** Content of Button component */
@@ -85,13 +75,11 @@ const getIcon = ({
   icon,
   iconPosition,
   size,
-  iconClassName,
 }: {
   children: ReactNode
   icon?: ReactElement
   iconPosition?: IconPositionType
   size: SizeType<'small' | 'medium' | 'large'>
-  iconClassName?: string
 }) => {
   if (!icon) {
     return undefined
@@ -103,7 +91,7 @@ const getIcon = ({
   })
 
   return React.cloneElement(icon, {
-    className: twMerge(iconClassNames, iconClassName, icon.props.className),
+    className: twMerge(iconClassNames, icon.props.className),
   })
 }
 
@@ -115,7 +103,6 @@ export const Button: OverridableComponent<Props> = forwardRef<
     active = false,
     as = 'button',
     children = null,
-    classes,
     disabled = false,
     focused = false,
     fullWidth = false,
@@ -132,14 +119,11 @@ export const Button: OverridableComponent<Props> = forwardRef<
 ) {
   const { icon, className, ...rest } = props
 
-  const merged = withClasses(baseClasses, classes)
-
   const iconComponent = getIcon({
     children,
     icon,
     iconPosition,
     size,
-    iconClassName: merged.icon,
   })
   const coreClassNames = createCoreClassNames({
     disabled,
@@ -161,7 +145,6 @@ export const Button: OverridableComponent<Props> = forwardRef<
     variantClassNames,
     sizeClassNames,
     fullWidth ? 'w-full' : '',
-    merged.root,
     className
   )
 
@@ -174,13 +157,10 @@ export const Button: OverridableComponent<Props> = forwardRef<
     large: ['text-button-large'],
   }
 
-  const contentClassName = twMerge(
-    cx(
-      'font-semibold whitespace-nowrap',
-      contentSizeClassNames[size],
-      loading ? 'opacity-0' : ''
-    ),
-    merged.label
+  const contentClassName = cx(
+    'font-semibold whitespace-nowrap',
+    contentSizeClassNames[size],
+    loading ? 'opacity-0' : ''
   )
 
   return (
