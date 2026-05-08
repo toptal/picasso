@@ -1243,8 +1243,12 @@ const agent = {
       )
     }
 
-    // 2. Always-on context pack (rule docs, references).
-    for (const file of workflow.contextPack) {
+    // 2. Tier-aware context pack (rule docs, references). Workflow returns
+    //    a per-item subset so cheap migrations (Tier 1 cleanup) get a tiny
+    //    prompt and heavy migrations (Tier 2/3 JSS rewrites) get the full
+    //    cribsheet. See workflow.contextPack JSDoc + `migrationWorkflow` in
+    //    `bin/migration-orchestrator.ts` for the per-tier rules.
+    for (const file of workflow.contextPack(item)) {
       const abs = path.join(repoRootDir, file)
 
       if (existsSync(abs)) {
