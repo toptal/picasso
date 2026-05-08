@@ -52,19 +52,65 @@ const migrationWorkflow: Workflow = {
     item.tier === 0
       ? 'docs/migration/PROMPT-light.md'
       : 'docs/migration/PROMPT-heavy.md',
-  contextPack: [
-    'docs/migration/rules/styling.md',
-    'docs/migration/rules/api-preservation.md',
-    'docs/migration/rules/jss-to-tailwind-crib.md',
-    'docs/migration/rules/base-ui-react-api-crib.md',
-    'docs/migration/tokens/picasso-tailwind-tokens.md',
-    // Tier 1.3: lessons auto-accumulated by post-success hook. Future
-    // migrations inherit patterns from earlier ones (e.g. Switch reads
-    // Button's lessons re polymorphic / nativeButton / onClick cast).
-    'docs/migration/references/lessons-learned.md',
-    // reference/* is currently empty — see ORCHESTRATOR.md §References for the
-    // re-introduction policy. The orchestrator skips missing files gracefully.
-  ],
+  // Tier-aware contextPack (added 2026-05-08 — see PR #4945 post-mortem).
+  //
+  // The original flat-list contextPack inlined ~62 KB into every iter-1
+  // prompt regardless of tier. ~30 KB of that was the JSS-to-Tailwind
+  // cribsheet — relevant for Tier 2/3 heavy migrations (MUI v4 + JSS →
+  // Tailwind 4) but completely irrelevant for Tier 0 components (which
+  // migrate from `@mui/base`, an already class-based predecessor with no
+  // JSS to translate). Loading the cribsheet on every iter doubled cache
+  // reads (~$2 in notional cost) for nothing.
+  //
+  // Per-tier rules:
+  //  - `always`: api-preservation + lessons-learned (every migration needs
+  //    these). Plan file is added separately by `assemblePrompt`.
+  //  - Tier 0 (light path, @mui/base → @base-ui/react): + base-ui-crib
+  //    (the canonical compound-parts / nativeButton patterns) + styling
+  //    (Tailwind class composition).
+  //  - Tier 1 cleanup-only (`target_path === 'none'`, no source change):
+  //    skip everything else — these PRs are package.json-only deltas.
+  //  - Tier 2/3 (heavy MUI v4 + JSS → Base UI + Tailwind): everything,
+  //    including JSS-to-Tailwind cribsheet + token reference.
+  //
+  // Empirical sizes (May 2026): jss-to-tailwind-crib 24.7 KB,
+  // picasso-tailwind-tokens 5.4 KB, base-ui-react-api-crib ~7 KB,
+  // styling 3.3 KB, api-preservation 6.2 KB, lessons-learned ~1-2 KB
+  // (grows). Tier 0 prompt drops ~62 KB → ~32 KB. Tier 1 cleanup ~62 KB
+  // → ~17 KB. Tier 2/3 unchanged.
+  contextPack: (item) => {
+    const always = [
+      'docs/migration/rules/api-preservation.md',
+      // Tier 1.3: lessons auto-accumulated by post-success hook. Future
+      // migrations inherit patterns from earlier ones (e.g. Switch reads
+      // Button's lessons re polymorphic / nativeButton / onClick cast).
+      'docs/migration/references/lessons-learned.md',
+    ]
+    const baseUI = [
+      'docs/migration/rules/base-ui-react-api-crib.md',
+      'docs/migration/rules/styling.md',
+    ]
+    const tailwindHeavy = [
+      'docs/migration/rules/jss-to-tailwind-crib.md',
+      'docs/migration/tokens/picasso-tailwind-tokens.md',
+    ]
+
+    // Tier 1 with target_path === 'none' is cleanup-only (no source change,
+    // peerDep + React 19 cap-lift). Doesn't need any of the migration
+    // pattern docs.
+    if (item.tier === 1 && item.target_path === 'none') {
+      return always
+    }
+
+    // Tier 0: @mui/base → @base-ui/react. Needs Base UI patterns + Tailwind
+    // composition. Doesn't need JSS-to-Tailwind cribsheet (no JSS source).
+    if (item.tier === 0) {
+      return [...always, ...baseUI]
+    }
+
+    // Tier 2/3 (and any Tier 1 with a real target_path): full context.
+    return [...always, ...baseUI, ...tailwindHeavy]
+  },
   perItemPlan: (id) => `docs/migration/components/${id.replace(/\//g, '__')}.md`,
   gate: (id) => `bin/migration-gate.sh "${id}"`,
   diff: (id, mode) => `bin/migration-diff.sh ${mode} "${id}"`,

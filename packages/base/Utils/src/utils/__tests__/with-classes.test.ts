@@ -58,6 +58,7 @@ describe('withClasses', () => {
     const baseCopy = { ...base }
 
     withClasses(base, { root: 'something-else' })
+
     expect(base).toEqual(baseCopy)
   })
 
@@ -66,8 +67,10 @@ describe('withClasses', () => {
       root: '',
       label: undefined,
     } as Partial<Record<Key, string>>)
+
     // Empty string and undefined skipped → base preserved
     expect(result.root).toBe(base.root)
+
     expect(result.label).toBe(base.label)
   })
 

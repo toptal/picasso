@@ -166,11 +166,19 @@ export interface Workflow {
   promptFor: (item: ManifestItem) => string
 
   /**
-   * File globs (relative to repo root) that always feed the agent's prompt
-   * regardless of tier. The orchestrator reads these files and concatenates
-   * their contents into the prompt context block.
+   * Files (relative to repo root) that feed the agent's prompt context block,
+   * resolved per-item to allow tier-aware filtering. The orchestrator reads
+   * these files and concatenates them into the prompt.
+   *
+   * Returning an item-specific subset lets workflows trim context for cheap
+   * migrations (Tier 1 cleanup-only) and keep heavier docs (JSS-to-Tailwind
+   * cribsheet, full token reference) only for migrations that actually need
+   * them (Tier 2/3 heavy rewrites). On a 62 KB iter-1 prompt, ~30 KB was the
+   * JSS cribsheet — irrelevant for Tier 0 components migrating from
+   * `@mui/base` (no JSS in their source). Per-tier filtering halves the
+   * iter-1 prompt for Tier 0 and cuts ~70 % for Tier 1.
    */
-  readonly contextPack: readonly string[]
+  readonly contextPack: (item: ManifestItem) => readonly string[]
 
   /** Resolves to the per-item plan file path. */
   perItemPlan: (id: string) => string

@@ -40,11 +40,13 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
  * (already a peer dep across base/* components). Returns a fresh object
  * to avoid mutating the input `base` map.
  */
-export function withClasses<K extends string>(
+export const withClasses = <K extends string>(
   base: Record<K, string>,
   overrides: Partial<Record<K, string>> | undefined
-): Record<K, string> {
-  if (!overrides) {return base}
+): Record<K, string> => {
+  if (!overrides) {
+    return base
+  }
   const out = { ...base } as Record<K, string>
 
   for (const key in base) {
