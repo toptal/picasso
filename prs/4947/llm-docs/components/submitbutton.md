@@ -8,9 +8,6 @@ SubmitButton reacts to the submission state of the form.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| classes | `Partial<Record<ButtonClassKey, string>>` | - | Override or extend per-slot classes (root, label, icon) |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
 | active | `boolean` | - | Show button in the active state (left mouse button down) |
 | disabled | `boolean` | - | Disables button |
 | fullWidth | `boolean` | - | Take the full width of a container |
@@ -22,6 +19,8 @@ SubmitButton reacts to the submission state of the form.
 | size | `"small" \| "medium" \| "large"` | - | A button can have different sizes |
 | value | `string \| number` | - | HTML Value of Button component |
 | title | `string` | - | HTML title of Button component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | buttonType | `string` | `rectangular` | The button type to use |
 | variant | `string` | - | The variant to use. Depending on the "buttonType" property value, the "variant" property accepts circular or action button "variant" property values. |
