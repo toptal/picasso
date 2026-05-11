@@ -41,6 +41,19 @@ export interface ManifestItem {
      * auto-merges (per operator preference: "I will merge manually").
      */
     | 'ready_to_merge'
+    /**
+     * Phase 3.5+ (2026-05-11) — set when reviewer approval has landed but
+     * the head commit's status-check rollup is still pending (not all
+     * checks reported terminal). The PR isn't yet safe to merge. Sweep
+     * re-checks the rollup on each tick:
+     *   - rollup success → ready_to_merge
+     *   - rollup failure → awaiting_review (agent re-engages on the
+     *     failed checks; see CI-failure feedback in sweepOne)
+     *   - still pending → stay
+     * Reviewer's approval is preserved across these transitions — we don't
+     * make the agent re-process review comments while just waiting on CI.
+     */
+    | 'awaiting_ci'
     | 'done'
     | 'needs_human'
     | 'blocked'
