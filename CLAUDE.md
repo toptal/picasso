@@ -14,11 +14,11 @@ Planning docs: `docs/modernization/`
 Active migration tooling: `docs/migration/`
 - Orchestrator runbook: `docs/migration/ORCHESTRATOR.md`
 - Operational migration plan: `docs/migration/migration-plan.md`
-- Run: `yarn orchestrate --component=<Name>` (or `--tier=N`, `--dry-run`, `--no-merge`)
+- Run: `pnpm orchestrate --component=<Name>` (or `--tier=N`, `--dry-run`, `--no-merge`)
 
 ## Code style for orchestrator (`bin/lib/*.ts` and `bin/*.ts`)
 
-Picasso's ESLint config (root `.eslintrc.js`) extends `@toptal/davinci-syntax` and adds `ssr-friendly` + `eslint-plugin-local-rules`. CI's "Static checks" job lints the WHOLE repo (`yarn eslint --ext=.ts,.tsx,.js,.jsx .`), so any error in `bin/lib/*.ts` blocks the migration PR's CI.
+Picasso's ESLint config (root `.eslintrc.js`) extends `@toptal/davinci-syntax` and adds `ssr-friendly` + `eslint-plugin-local-rules`. CI's "Static checks" job lints the WHOLE repo (`pnpm eslint --ext=.ts,.tsx,.js,.jsx .`), so any error in `bin/lib/*.ts` blocks the migration PR's CI. Note: `.eslintignore` excludes `bin/` locally, so reproduce CI's behavior with `--no-ignore` when sanity-checking orchestrator changes.
 
 Rules I have personally hit while editing the orchestrator:
 
@@ -32,7 +32,7 @@ Rules I have personally hit while editing the orchestrator:
 Before declaring orchestrator changes done, ALWAYS run:
 
 ```bash
-yarn eslint --ext=.ts bin/lib/<edited-files>.ts
+pnpm eslint --ext=.ts --no-ignore bin/lib/<edited-files>.ts
 ```
 
 ESLint scoped to bin/lib runs in <2s. Don't ship orchestrator code that fails this. Local migration runs scope lint to the migrating package's src so they don't catch orchestrator-level violations — the safety net is CI, but failing CI on orchestrator-side lint blocks every migration PR until fixed (we hit this in PR #4943 with empty `catch {}` in `orchestrator-core.ts`).

@@ -154,7 +154,7 @@ function extractFailedTestPaths(log: string): readonly string[] {
 function extractLintFiles(log: string, repoRoot?: string): readonly string[] {
   // Strip ANSI escape sequences first. CI's color-on lint output wraps file
   // paths and error markers in `[Xm` codes, breaking the line-shape
-  // regexes below. Local lint (`yarn davinci-syntax lint code --check ...`)
+  // regexes below. Local lint (`pnpm davinci-syntax lint code --check ...`)
   // emits plain text without ANSI, so this only matters for CI logs — but
   // we strip universally for safety.
   // eslint-disable-next-line no-control-regex
@@ -344,7 +344,7 @@ export function classifyCIFailure(
   }
 
   // 10. Syncpack mismatches — feed to agent with explicit guidance.
-  // CI's "Static checks" job runs `yarn syncpack list-mismatches`; if any
+  // CI's "Static checks" job runs `pnpm syncpack list-mismatches`; if any
   // mismatches exist, the job fails. The agent can fix these by editing
   // package.json with the correct version (caret-prefix for npm deps,
   // exact version for workspace deps). See PROMPT-light/heavy §2/§4.
@@ -360,7 +360,7 @@ export function classifyCIFailure(
 
   // 11. "Static checks" / generic CI catch-all — try to feed to agent if
   // the log has anything actionable. Many "Static checks" failures are
-  // syncpack, lint, or yarn-install issues that look generic at the job-
+  // syncpack, lint, or pnpm-install issues that look generic at the job-
   // name level but classify cleanly once we read the log. If we got here
   // without matching a specific pattern, give the agent the log tail and
   // let it figure it out — better than escalating without trying.

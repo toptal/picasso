@@ -44,8 +44,17 @@
         },
         "status": {
           "type": "string",
-          "enum": ["queued", "in_progress", "done", "needs_human", "blocked"],
-          "description": "queued = ready to claim; in_progress = orchestrator owns it; done = merged; needs_human = orchestrator escalated; blocked = waiting on a dependency."
+          "enum": [
+            "queued",
+            "in_progress",
+            "awaiting_ci",
+            "awaiting_review",
+            "ready_to_merge",
+            "done",
+            "needs_human",
+            "blocked"
+          ],
+          "description": "queued = ready to claim; in_progress = orchestrator owns it; awaiting_ci = PR open, CI pending; awaiting_review = CI green, waiting on human review; ready_to_merge = approved + CI clean, operator merges manually; done = merged; needs_human = orchestrator escalated; blocked = waiting on a dependency."
         },
         "depends_on": {
           "type": "array",
@@ -84,8 +93,27 @@
           "description": "Free-form annotation visible to the orchestrator and human reviewers (e.g. \"PF-1992 sandbox canary\")."
         },
         "escalation_reason": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Set when status=needs_human; concise reason the orchestrator gave up."
+        },
+        "session_id": {
+          "type": ["string", "null"],
+          "description": "Claude session ID for the most recent agent invocation on this item. Used by the review-sweep loop to resume the same conversation."
+        },
+        "last_ci_green_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of the most recent CI-green transition. Set when the orchestrator flips status → awaiting_review."
+        },
+        "last_review_seen_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of the most recent reviewer activity the orchestrator has processed. Drives the review-sweep loop's incremental delta."
+        },
+        "review_iterations": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of review-sweep ticks that have processed this item since it entered awaiting_review."
         }
       }
     }

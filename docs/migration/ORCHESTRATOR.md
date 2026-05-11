@@ -26,16 +26,16 @@ Compact runbook for `bin/migration-orchestrator.ts`. Detailed knowledge lives in
 
 ```bash
 # Dry run (no writes, no PRs)
-yarn orchestrate --component=Note --dry-run
+pnpm orchestrate --component=Note --dry-run
 
 # Sandbox: open a PR, do not merge (PF-1992 canary)
-yarn orchestrate --component=Note --no-merge
+pnpm orchestrate --component=Note --no-merge
 
 # Real run, single component
-yarn orchestrate --component=Note
+pnpm orchestrate --component=Note
 
 # Real run, all queued items in a tier
-yarn orchestrate --tier=1
+pnpm orchestrate --tier=1
 ```
 
 CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent=claude|cursor|codex`, `--max-iterations=<N>` (default 3).
@@ -43,7 +43,7 @@ CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent
 ## Prerequisites
 
 - `gh` authenticated with `repo` + `read:org` scopes. Verify: `gh auth status`.
-- `yarn install` clean.
+- `pnpm install` clean.
 - Working tree clean. Worktree base defaults to `HEAD` (current branch tip) — see [bin/lib/orchestrator-core.ts `worktree.add`](../../bin/lib/orchestrator-core.ts) for the rationale.
 - For full gate including Happo: `HAPPO_API_KEY` + `HAPPO_API_SECRET` set in env (see §Happo setup below).
 - For sandbox / smoke runs: set `MIGRATION_GATE_HAPPO=skip` to bypass Happo.
@@ -52,8 +52,8 @@ CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent
 
 The gate runs Happo on two paths when applicable:
 
-1. **Storybook visual regression** — `yarn happo --only <Component>`. Runs against the `Picasso/Storybook` project. Required env: `HAPPO_API_KEY`, `HAPPO_API_SECRET`. Per-component filtering via `--only` matches example names (case-sensitive substring on the story descriptor).
-2. **Cypress visual regression** — `yarn happo-e2e -- -- yarn test:setup cypress run --component --spec <SPEC>`. Runs against the `Picasso/Cypress` project. Only fires when the component has a Cypress spec at `cypress/component/<Component>.spec.tsx` AND Happo creds are present. The gate auto-sets `HAPPO_PROJECT=Picasso/Cypress` for this stage.
+1. **Storybook visual regression** — `pnpm happo --only <Component>`. Runs against the `Picasso/Storybook` project. Required env: `HAPPO_API_KEY`, `HAPPO_API_SECRET`. Per-component filtering via `--only` matches example names (case-sensitive substring on the story descriptor).
+2. **Cypress visual regression** — `pnpm happo-e2e -- pnpm test:setup cypress run --component --spec <SPEC>`. Runs against the `Picasso/Cypress` project. Only fires when the component has a Cypress spec at `cypress/component/<Component>.spec.tsx` AND Happo creds are present. The gate auto-sets `HAPPO_PROJECT=Picasso/Cypress` for this stage.
 
 If Happo creds are unset, the gate's Happo stage skips with a clear log line; the Cypress stage degrades to plain Cypress (no visual diff). The gate's other stages (build/tsc/lint/jest/react19) are unaffected.
 
@@ -61,14 +61,14 @@ If Happo creds are unset, the gate's Happo stage skips with a clear log line; th
 
 ```bash
 # 1. Inline (one-shot):
-HAPPO_API_KEY=... HAPPO_API_SECRET=... yarn orchestrate --component=Note
+HAPPO_API_KEY=... HAPPO_API_SECRET=... pnpm orchestrate --component=Note
 
 # 2. Source from a project-level .envrc (direnv users — direnv hook may not
 #    propagate to non-interactive subprocesses; source explicitly per run):
-source /Users/<you>/Projects/.envrc && yarn orchestrate --component=Note
+source /Users/<you>/Projects/.envrc && pnpm orchestrate --component=Note
 
 # 3. Wrap with direnv exec (loads .envrc automatically):
-direnv exec . yarn orchestrate --component=Note
+direnv exec . pnpm orchestrate --component=Note
 ```
 
 For the `HAPPO_PREVIOUS_SHA` / `HAPPO_CURRENT_SHA` env vars (Cypress-Happo CI mode per [README §Run Happo locally for Cypress](../../README.md#run-happo-locally-for-cypress)): the gate does **not** set these — they're optional and only matter for cross-commit comparison reports. The orchestrator's per-component runs produce a single Happo report per iteration, not a comparison.
@@ -144,17 +144,17 @@ Trade-off: in-PF-1992 sandbox PRs forked from PF-1992's branch will show PF-1992
 
 ### 2. Claude permission flags — FIXED (twice; expanded after PR #4906 lessons)
 
-After the canary 12 (Button) escalation surfaced the inner-loop gap (the agent edited blind without `yarn typecheck`/`yarn lint` access), the allowlist was widened to match what Codex's PR #4906 implicitly relied on. `agent.invoke` now spawns:
+After the canary 12 (Button) escalation surfaced the inner-loop gap (the agent edited blind without `pnpm typecheck`/`pnpm lint` access), the allowlist was widened to match what Codex's PR #4906 implicitly relied on. `agent.invoke` now spawns:
 
 ```ts
 '-p', '--allowedTools',
 'Edit Write Read Glob Grep ' +
-'Bash(yarn typecheck) Bash(yarn typecheck:*) Bash(yarn lint:*) ' +
-'Bash(yarn workspace:*) Bash(yarn davinci-qa:*) Bash(yarn build:package) Bash(yarn happo:*) ' +
+'Bash(pnpm typecheck) Bash(pnpm typecheck:*) Bash(pnpm lint:*) ' +
+'Bash(pnpm --filter:*) Bash(pnpm davinci-qa:*) Bash(pnpm build:package) Bash(pnpm happo:*) ' +
 'Bash(git diff:*) Bash(git status:*) Bash(git log:*)'
 ```
 
-Verification-only Bash. Excluded on purpose: `Bash(yarn add | install)`, `Bash(git commit | push)`, `Bash(gh:*)`, bare `Bash(*)`. Worktree provides physical isolation for state mutations; this allowlist provides the verification surface the agent needs without unbounded shell. See `bin/lib/orchestrator-core.ts` `agent.invoke` for the full rationale block + the PR #4906 comparison documented in `docs/migration/components/Button.md`.
+Verification-only Bash. Excluded on purpose: `Bash(pnpm add)`, `Bash(git commit | push)`, `Bash(gh:*)`, bare `Bash(*)`. `Bash(pnpm install)` is allowed (since 2026-05-07) so the agent can refresh `pnpm-lock.yaml` after editing package.json deps. Worktree provides physical isolation for state mutations; this allowlist provides the verification surface the agent needs without unbounded shell. See `bin/lib/orchestrator-core.ts` `agent.invoke` for the full rationale block + the PR #4906 comparison documented in `docs/migration/components/Button.md`.
 
 For future Docker-isolated runners (post-PF-1994), the orchestrator can switch to `--dangerously-skip-permissions` matching `.thunderbot/`'s pattern, since the Docker boundary replaces the need for fine-grained tool restrictions.
 
@@ -164,7 +164,7 @@ For future Docker-isolated runners (post-PF-1994), the orchestrator can switch t
 
 ### 4. Cypress + Happo wiring — FIXED
 
-`bin/migration-gate.sh` step 5 (Cypress) now wraps with `yarn happo-e2e -- --` when `HAPPO_API_KEY` + `HAPPO_API_SECRET` are present in env, producing Cypress visual diffs alongside the standard Cypress component run. The gate auto-sets `HAPPO_PROJECT=Picasso/Cypress` for this stage. Without Happo creds, Cypress runs plain (no visual diff). Step 6 (Happo Storybook) gates on the same creds; logs a clear skip message when unset rather than failing inscrutably.
+`bin/migration-gate.sh` step 5 (Cypress) now wraps with `pnpm happo-e2e --` when `HAPPO_API_KEY` + `HAPPO_API_SECRET` are present in env, producing Cypress visual diffs alongside the standard Cypress component run. The gate auto-sets `HAPPO_PROJECT=Picasso/Cypress` for this stage. Without Happo creds, Cypress runs plain (no visual diff). Step 6 (Happo Storybook) gates on the same creds; logs a clear skip message when unset rather than failing inscrutably.
 
 ### 5. Gate / diff scripts run inside the worktree (long-term refactor opportunity)
 
@@ -180,7 +180,7 @@ After comparing canary 12 (Button) against PR #4906, the second gap was visual f
 
 Now, when the operator passes `--with-mcp`:
 
-1. The orchestrator spawns `yarn start:storybook` in the worktree (post-snapshot, pre-iteration).
+1. The orchestrator spawns `pnpm start:storybook` in the worktree (post-snapshot, pre-iteration).
 2. Polls `http://localhost:9001` until ready (60s timeout; escalates on failure).
 3. Passes `--mcp-config bin/lib/agent-mcp-config.json` to `claude -p` and grants `mcp__playwright__browser_*` tools.
 4. Registers signal handlers (`exit`, `SIGINT`, `SIGTERM`) to kill the Storybook subprocess on any orchestrator exit path.
@@ -249,7 +249,7 @@ npx ajv-cli validate --strict=false \
   -d docs/migration/manifest.json
 
 # 2. Dry-run prints planned 14 steps
-yarn orchestrate --component=Note --dry-run
+pnpm orchestrate --component=Note --dry-run
 
 # 3. gh auth confirmed
 gh auth status

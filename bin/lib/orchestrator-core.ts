@@ -44,7 +44,6 @@ import * as os from 'node:os'
 import { classifyCIFailure } from './failure-classifier'
 import {
   classifyReview,
-  aggregateReviewDecisions,
   type Review as RawReview,
 } from './review-classifier'
 import { appendCostSnapshot } from './token-telemetry'
@@ -97,7 +96,7 @@ const FAILURE_CONCLUSIONS = new Set([
 // Review-sweep author trust gating. Only comments from authors with one of
 // these GitHub `author_association` values are forwarded to the agent. The
 // threat model: anyone with PR-comment access could otherwise inject prompt-
-// injection content that the local agent acts on (Edit/Write/yarn install).
+// injection content that the local agent acts on (Edit/Write/pnpm install).
 // `MEMBER` covers org members of the repo-owning org (Toptal). `OWNER` is
 // the operator on their own repo. `COLLABORATOR` is an explicit add. Bots
 // and external contributors are filtered out by default.
@@ -579,35 +578,37 @@ const worktree = {
     }
     // Bootstrap is now handled by `worktree.bootstrap()` — see that method's
     // JSDoc for the rationale (replaced symlink overlay 2026-05-07 after the
-    // overlay was destroyed by the agent's own `yarn install` invocations).
+    // overlay was destroyed by the agent's own `pnpm install` invocations).
   },
 
   /**
-   * Bootstrap a worktree's node_modules with a real `yarn install`. Replaces
+   * Bootstrap a worktree's node_modules with a real `pnpm install`. Replaces
    * the previous symlink-overlay approach (now removed) which couldn't survive
-   * the agent running its own `yarn install` to refresh yarn.lock on dep
-   * changes — yarn would partially clobber our absolute symlinks, leaving
-   * the worktree in a half-broken state.
+   * the agent running its own `pnpm install` to refresh pnpm-lock.yaml on dep
+   * changes — the package manager would partially clobber our absolute
+   * symlinks, leaving the worktree in a half-broken state.
    *
-   * Performance. With `~/.yarn/cache` warm from prior installs in main repo,
-   * this typically runs in 30-90s (no network downloads, just unpack + link).
-   * Cold cache is 3-5min. The cost is paid once per worktree creation; the
-   * agent's subsequent `yarn install` calls are incremental and fast.
+   * Performance. With the pnpm store warm (`~/.local/share/pnpm/store/` or
+   * platform equivalent), this typically runs in 30-90s (no network
+   * downloads, just hardlink from store). Cold store is 3-5min. The cost is
+   * paid once per worktree creation; the agent's subsequent `pnpm install`
+   * calls are incremental and fast.
    *
-   * Why yarn handles workspaces correctly here. yarn workspaces creates the
-   * `node_modules/@toptal/<pkg>` symlinks as RELATIVE paths (e.g.
-   * `../../packages/base/Button`). When yarn install runs in the worktree,
-   * those relative symlinks resolve to the worktree's `packages/`, which IS
-   * what we want for source-changing migrations.
+   * Why pnpm handles workspaces correctly here. pnpm hardlinks packages from
+   * the global store into `node_modules/.pnpm/<pkg>@<ver>/node_modules/<pkg>`
+   * and then symlinks `node_modules/<pkg>` → that location. Workspace
+   * packages (`@toptal/picasso-*`) symlink to the worktree's own
+   * `packages/<name>` via relative paths, so source-changing migrations
+   * resolve against the worktree's source — which is what we want.
    *
-   * Idempotent: if `node_modules/.yarn-integrity` exists and matches the
-   * lockfile, `--frozen-lockfile` returns ~instantly.
+   * Idempotent: with `--frozen-lockfile`, if `node_modules/.modules.yaml`
+   * is in sync with `pnpm-lock.yaml`, the command returns ~instantly.
    */
   async bootstrap(worktreePath: string): Promise<void> {
     const startedAt = Date.now()
 
-    log('bootstrap', `running yarn install --frozen-lockfile in ${worktreePath}`)
-    const result = await shell('yarn', ['install', '--frozen-lockfile'], {
+    log('bootstrap', `running pnpm install --frozen-lockfile in ${worktreePath}`)
+    const result = await shell('pnpm', ['install', '--frozen-lockfile'], {
       cwd: worktreePath,
     })
 
@@ -615,10 +616,10 @@ const worktree = {
 
     if (result.exitCode !== 0) {
       throw new Error(
-        `yarn install failed in worktree (${elapsed}s): ${result.stderr.slice(-2000) || result.stdout.slice(-2000)}`
+        `pnpm install failed in worktree (${elapsed}s): ${result.stderr.slice(-2000) || result.stdout.slice(-2000)}`
       )
     }
-    log('bootstrap', `yarn install completed in ${elapsed}s`)
+    log('bootstrap', `pnpm install completed in ${elapsed}s`)
 
     // Pre-build all dist-packages. Required for the gate's `consumers` stage
     // — that stage runs jest on consumer packages (Page, Section, Modal,
@@ -632,14 +633,14 @@ const worktree = {
     // here once at bootstrap ensures every subsequent stage finds dist-
     // package directories everywhere it looks.
     //
-    // `yarn build:package` runs `lerna run build:package` which respects
+    // `pnpm build:package` runs `lerna run build:package` which respects
     // workspace dependency order. ~60-120s on first build (warm tsc cache
     // afterwards). Worth the cost: without this, consumers stage fails on
     // every Tier 0+ migration.
     const buildStartedAt = Date.now()
 
-    log('bootstrap', `running yarn build:package (lerna; all workspaces) in ${worktreePath}`)
-    const buildResult = await shell('yarn', ['build:package'], {
+    log('bootstrap', `running pnpm build:package (lerna; all workspaces) in ${worktreePath}`)
+    const buildResult = await shell('pnpm', ['build:package'], {
       cwd: worktreePath,
     })
     const buildElapsed = Math.round((Date.now() - buildStartedAt) / 1000)
@@ -647,22 +648,23 @@ const worktree = {
     if (buildResult.exitCode !== 0) {
       log(
         'bootstrap',
-        `yarn build:package failed in ${buildElapsed}s — continuing anyway (consumers stage may fail). Stderr tail:`
+        `pnpm build:package failed in ${buildElapsed}s — continuing anyway (consumers stage may fail). Stderr tail:`
       )
       log('bootstrap', buildResult.stderr.slice(-1000))
       // Don't throw — partial builds are still better than no builds, and
       // the migrating component might not depend on whichever package
       // failed. The gate's downstream stages will surface real failures.
     } else {
-      log('bootstrap', `yarn build:package completed in ${buildElapsed}s`)
+      log('bootstrap', `pnpm build:package completed in ${buildElapsed}s`)
     }
   },
 
   // overlayWorkspaceForSourceChange (formerly Phase 2.5) was removed
   // 2026-05-07. The symlink overlay couldn't survive the agent running its
-  // own `yarn install` to refresh yarn.lock — yarn would partially clobber
-  // our absolute symlinks, leaving node_modules half-broken. Replaced with
-  // `worktree.bootstrap` (real `yarn install --frozen-lockfile`) above.
+  // own `pnpm install` to refresh pnpm-lock.yaml — the package manager would
+  // partially clobber our absolute symlinks, leaving node_modules half-broken.
+  // Replaced with `worktree.bootstrap` (real `pnpm install --frozen-lockfile`)
+  // above.
 
   /** Remove the worktree on success. Leave it for inspection on escalation. */
   async remove(worktreePath: string): Promise<void> {
@@ -1549,9 +1551,9 @@ const agent = {
     sections.push(
       `# What to do\n\n` +
         `Apply the fixes implied by the gate report. **Before exiting, you MUST run these self-verification commands and confirm each exits 0:**\n\n` +
-        `1. \`yarn davinci-syntax lint code packages/base/<NAME>/src\` — auto-fix mode (no --check). Resolves padding/blank-line/import-order rules automatically.\n` +
-        `2. \`yarn davinci-syntax lint code --check packages/base/<NAME>/src\` — verify zero errors remain. If non-zero, read the actual error rule name and fix manually.\n` +
-        `3. \`yarn workspace @toptal/picasso-<NAME> build:package\` — confirm types still compile.\n\n` +
+        `1. \`pnpm davinci-syntax lint code packages/base/<NAME>/src\` — auto-fix mode (no --check). Resolves padding/blank-line/import-order rules automatically.\n` +
+        `2. \`pnpm davinci-syntax lint code --check packages/base/<NAME>/src\` — verify zero errors remain. If non-zero, read the actual error rule name and fix manually.\n` +
+        `3. \`pnpm --filter @toptal/picasso-<NAME> build:package\` — confirm types still compile.\n\n` +
         `**Do not exit if step 2 reports any error.** Iterate locally until the scoped lint passes. The orchestrator's outer-loop gate runs the same scoped lint command — if you exit before lint passes, the gate fails identically and you've wasted an iteration.\n\n` +
         `If you see a "padding-line-between-statements" or similar formatting error, step 1's auto-fix resolves it. Don't try to manually re-jig type imports — those aren't the cause.\n\n` +
         `Don't fall back to \`any\` to placate lint warnings — preserve the public type and cast at the call site instead (per rules/api-preservation.md).`
@@ -1574,7 +1576,7 @@ const agent = {
           // comparison documented in `docs/migration/components/Button.md`):
           //
           //   - File ops (Edit/Write/Read/Glob/Grep): the agent edits source.
-          //   - Bash(yarn typecheck...) / Bash(yarn workspace:*) / etc.: the
+          //   - Bash(pnpm typecheck...) / Bash(pnpm --filter:*) / etc.: the
           //     agent verifies its own work between edits within a single
           //     `claude -p` session. Without these, the agent edits blind
           //     and depends on the orchestrator's outer-loop gate (~90s/cycle)
@@ -1584,17 +1586,17 @@ const agent = {
           //
           // ALLOWED for dep management (since 2026-05-07 — see PR #4940
           // post-mortem):
-          //   - Bash(yarn install): when the agent edits a package.json's
-          //     dependencies, it must refresh yarn.lock so CI's "Build
+          //   - Bash(pnpm install): when the agent edits a package.json's
+          //     dependencies, it must refresh pnpm-lock.yaml so CI's "Build
           //     packages" step can resolve the new dep. Previously excluded
           //     under "orchestrator owns dep management", but the new
           //     `lockfile-drift` gate stage made that ownership untenable —
           //     the agent edits package.json, the agent must update the lock.
           //
           // EXCLUDED on purpose:
-          //   - Bash(yarn add): orchestrator avoids ad-hoc adds; package.json
+          //   - Bash(pnpm add): orchestrator avoids ad-hoc adds; package.json
           //     edits are explicit. The agent uses Edit on package.json, not
-          //     `yarn add`, so the dep set stays auditable in the diff.
+          //     `pnpm add`, so the dep set stays auditable in the diff.
           //   - Bash(git commit | push): orchestrator owns commit lifecycle
           //     (Fix G `--no-verify` lives at the orchestrator layer).
           //   - Bash(gh:*): orchestrator owns PR lifecycle.
@@ -1611,36 +1613,41 @@ const agent = {
             'Read',
             'Glob',
             'Grep',
-            // Self-verification: yarn build / typecheck / lint / unit / cypress / happo
-            'Bash(yarn typecheck)',
-            'Bash(yarn typecheck:*)',
-            'Bash(yarn lint:*)',
-            // Picasso's actual lint binary is `yarn davinci-syntax lint code
+            // Self-verification: pnpm build / typecheck / lint / unit / cypress / happo
+            'Bash(pnpm typecheck)',
+            'Bash(pnpm typecheck:*)',
+            'Bash(pnpm lint:*)',
+            // Picasso's actual lint binary is `pnpm davinci-syntax lint code
             // <path>` (auto-fix) and `... --check <path>` (verify). PROMPT-
-            // light/heavy explicitly mandates this command. The yarn lint:*
+            // light/heavy explicitly mandates this command. The pnpm lint:*
             // pattern doesn't match because the script name is `davinci-
             // syntax`, not `lint:*`. Without this entry, the agent burns
             // entire iterations re-trying alternative shapes (npx eslint,
             // node ./node_modules/.bin/eslint, etc.) — see PR #4941 iter 2
             // post-mortem: $7.17 burned, 17 permission_denials.
-            'Bash(yarn davinci-syntax:*)',
-            'Bash(yarn workspace:*)',
-            'Bash(yarn workspaces info)',
-            'Bash(yarn davinci-qa:*)',
-            'Bash(yarn build:package)',
-            'Bash(yarn cypress:*)',
-            'Bash(yarn test:integration:*)',
-            'Bash(yarn happo:*)',
-            // Syncpack — CI's "Static checks" runs `yarn syncpack list-
+            'Bash(pnpm davinci-syntax:*)',
+            // pnpm workspace selection uses `--filter <name>` (yarn used
+            // `yarn workspace <name>`). Both shapes:
+            //   `pnpm --filter @toptal/picasso-button build:package`
+            //   `pnpm -F @toptal/picasso-button build:package`
+            'Bash(pnpm --filter:*)',
+            'Bash(pnpm -F:*)',
+            'Bash(pnpm list:*)',
+            'Bash(pnpm davinci-qa:*)',
+            'Bash(pnpm build:package)',
+            'Bash(pnpm cypress:*)',
+            'Bash(pnpm test:integration:*)',
+            'Bash(pnpm happo:*)',
+            // Syncpack — CI's "Static checks" runs `pnpm syncpack list-
             // mismatches`. Gate stage 0.5 runs it too. Letting the agent
             // verify locally (after editing deps) closes the loop without
             // a gate cycle.
-            'Bash(yarn syncpack:*)',
+            'Bash(pnpm syncpack:*)',
             // Lockfile maintenance — required when agent edits package.json deps
-            'Bash(yarn install)',
-            'Bash(yarn install:*)',
+            'Bash(pnpm install)',
+            'Bash(pnpm install:*)',
             // Live npm-registry lookups for "what does package X export at v Y"
-            'Bash(yarn info:*)',
+            'Bash(pnpm info:*)',
             'Bash(npm view:*)',
             // Read-only git inspection (diff/status/log/show/blame)
             'Bash(git diff:*)',
@@ -1656,7 +1663,7 @@ const agent = {
             // Mid-pattern asterisks (`Bash(gh api repos/*/pulls/*/comments)`)
             // do NOT wildcard — they're literal. So the broader `Bash(gh
             // api:*)` is needed for threaded line-comment replies. This is
-            // safer than it looks: the agent already has Edit/Write/Bash(yarn
+            // safer than it looks: the agent already has Edit/Write/Bash(pnpm
             // install) which are more powerful. We exclude `gh pr merge`,
             // `gh pr close`, `gh repo *` etc. via NOT listing them.
             //   - `gh pr view <url>` : fetch PR state + reviews.
@@ -2598,7 +2605,7 @@ async function sweepOne(
         'How to investigate:\n' +
         '- `gh run view <run-id> --log-failed` — print only the failed-step output (run-id is in the `detailsUrl` below as `.../actions/runs/<run-id>/...`).\n' +
         '- `gh api repos/<owner>/<repo>/actions/jobs/<job-id>/logs` — raw log of a single job.\n' +
-        '- Reproduce locally before pushing: run the equivalent `yarn` script (typecheck / davinci-syntax / unit / cypress / happo) inside this worktree.\n\n' +
+        '- Reproduce locally before pushing: run the equivalent `pnpm` script (typecheck / davinci-syntax / unit / cypress / happo) inside this worktree.\n\n' +
         'Constraints (do NOT shortcut):\n' +
         '- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don\'t loosen API preservation, classes shim handling, or any other documented constraint just to make CI green.\n' +
         '- Do NOT delete or skip failing tests to make them pass.\n' +
@@ -2802,7 +2809,7 @@ export async function run(
         ? [`4b. Start Storybook in worktree; wait for http://localhost:9001 ready`]
         : []),
       `5. Assemble prompt (path=${workflow.promptFor(item)}, complexity=${workflow.complexityFor(item)}, agent=${opts.agent}${opts.withMcp ? ' +mcp' : ''})`,
-      `6. Invoke ${opts.agent}; iteration cap=${opts.maxIterations}; allowedTools=Edit Write Read Glob Grep + Bash(yarn ...)${opts.withMcp ? ' + mcp__playwright__*' : ''}`,
+      `6. Invoke ${opts.agent}; iteration cap=${opts.maxIterations}; allowedTools=Edit Write Read Glob Grep + Bash(pnpm ...)${opts.withMcp ? ' + mcp__playwright__*' : ''}`,
       `7. Run gate: ${workflow.gate(item.id)}`,
       `8. On gate fail: feed report back, retry up to cap`,
       `9. On gate pass: produce diff via ${workflow.diff(item.id, 'report')}`,
@@ -2844,9 +2851,9 @@ export async function run(
   log('loop', `creating worktree at ${wtPath}`)
   await worktree.add(branch, wtPath)
 
-  // Step 4b: bootstrap worktree's node_modules with a real `yarn install`.
+  // Step 4b: bootstrap worktree's node_modules with a real `pnpm install`.
   // Replaces the symlink-overlay approach (was destroyed by the agent's own
-  // yarn install on dep-bumping migrations). See worktree.bootstrap JSDoc
+  // pnpm install on dep-bumping migrations). See worktree.bootstrap JSDoc
   // for the full rationale.
   await worktree.bootstrap(wtPath)
 
@@ -2893,7 +2900,7 @@ export async function run(
 
   if (opts.withMcp) {
     log('loop', 'starting Storybook (--with-mcp); polling http://localhost:9001')
-    storybookProc = spawn('yarn', ['start:storybook'], {
+    storybookProc = spawn('pnpm', ['start:storybook'], {
       cwd: wtPath,
       stdio: ['ignore', 'pipe', 'pipe'],
       detached: false,
@@ -3359,7 +3366,7 @@ export async function run(
 
         log('ci', `auto-fix snapshot: jest -u --testPathPattern "${pattern}"`)
         await shell(
-          'yarn',
+          'pnpm',
           [
             'davinci-qa',
             'unit',
@@ -3383,7 +3390,7 @@ export async function run(
       ) {
         log('ci', `auto-fix lint: davinci-syntax lint code ${c.decision.paths.join(' ')}`)
         await shell(
-          'yarn',
+          'pnpm',
           ['davinci-syntax', 'lint', 'code', ...c.decision.paths],
           { cwd: wtPath }
         )
@@ -3402,7 +3409,7 @@ export async function run(
     // Bug 5 fix (2026-05-07): also include `auto-fix-lint` decisions whose
     // `paths` array is empty. Empty paths means `extractLintFiles` couldn't
     // parse file paths from CI's ANSI-coloured lint output (different format
-    // than local `yarn davinci-syntax`). Without this fallback, the orches-
+    // than local `pnpm davinci-syntax`). Without this fallback, the orches-
     // trator had no path forward — auto-fix loop skipped (paths empty),
     // feed-to-agent loop didn't include them (wrong class), and the early-
     // bail at "no actionable CI classifications" escalated. Now we pass the
@@ -3614,7 +3621,7 @@ export async function run(
   //
   // Migration mode never blocks waiting for human review. After CI is
   // green, transition the item to `awaiting_review` and exit. A separate
-  // command (`yarn orchestrate --review-sweep`) walks all
+  // command (`pnpm orchestrate --review-sweep`) walks all
   // `awaiting_review` items on its own cadence (cron, manual) to fetch
   // new review activity, classify it, and react. This decouples the
   // CPU-paced migration loop from the human-paced review cadence.
