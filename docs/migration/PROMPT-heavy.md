@@ -75,72 +75,109 @@ Your task:
      `peerDependency` — peerDeps are only seen by *consumers* of the
      package, not by the package's own build.
 
-5. **Conditional output shape: `classes` prop preservation (v4 §2.3, scoped).**
-   `withClasses` is a **preservation** mechanism, not a NET ADD. Apply
-   it only if the component currently exposes `classes` in its public
-   Props interface — directly (`classes?: { ... }`) or by extending
-   `StandardProps` (which bundles `classes: Classes` via `JssProps`).
-   If the component has no `classes` prop today, **skip this step
-   entirely** — adding it would be net-new API, not preservation.
+5. **The `classes` prop — research your component, then act (revised 2026-05-11).**
 
-   Heavy-path migrations are **more likely** to need this than light
-   path: Tier 2/3 components still on MUI v4 + JSS often have `classes`
-   either directly or via StandardProps, and the original MUI v4
-   contract accepted MUI's slot keys. v4 §2.3 is the migration of that
-   contract into the Tailwind world — but only where the contract
-   actually existed.
+   Cross-tier audit (`docs/migration/decisions/classes-audit.md`) ran 2026-05-11. The audit is your **starting hypothesis**, not a script — Tier 2/3 components have richer slot vocabularies and more potential edge cases than Tier 0/1. Verify per-component before editing.
 
-   Quick check before deciding:
-   - `grep -rE '^\s*classes\??:' packages/base/<NAME>/src` — direct
-   - `grep -rE 'extends.*StandardProps' packages/base/<NAME>/src` — inherited
-   If both come up empty, skip §5 and move on.
+   ### Audit hypothesis for Tier 2 + Tier 3 (your starting context)
 
-   Components that need this (per the manifest audit): Button, Modal,
-   Container, Notification, FormLabel, Typography, Radio, Accordion,
-   Dropdown, OutlinedInput. Components that **don't** (skip): Backdrop,
-   Badge, Drawer, Slider, Switch, Tabs, ModalContext, Grid, Menu, Utils,
-   Form, FormLayout, Note, Checkbox, Tooltip, FileInput, Popper, Page.
+   - **Tier 2** (Checkbox, Radio, Tooltip, FileInput, Popper): all extend `StandardProps` (open-ended `classes` inherited). Internal usage is **plumbing-only** (component-to-MUI bridges that disappear with @base-ui/react). External real consumer usage: **0** across all 5.
+   - **Tier 3.a** (Accordion, Page): open-ended `StandardProps`. Internal: Accordion has 3 self-callsites (root/summary/content/details to MUI/sub-components); Page sub-components pass to Dropdown/Accordion. External real: 0.
+   - **Tier 3.b** (Dropdown, OutlinedInput): **locally narrowed `classes?: { ... }`** in the public Props (Dropdown: `{ popper?, content? }`; OutlinedInput: `{ input?, root? }`). The narrowed prop IS read in the body (Dropdown lines 282 + 317; OutlinedInput lines 178 + 185). External real usage CONFIRMED: Dropdown 2 callsites (`content` + `popper`); OutlinedInput 4 callsites (`input` × 3, `root` × 2).
 
-   When applicable, expose `classes` on the **public** component (not
-   just an internal Base). For components currently inheriting `classes:
-   Classes` via `StandardProps`, narrow the type at the public Props
-   interface to `Partial<Record<*ClassKey, string>>` — this is a real
-   API narrowing (consumers using arbitrary string keys break). Document
-   the slot-key set in `docs/migration/<Component>-diff.json` with
-   `codemod=required`.
+   ### Required research steps — perform BEFORE editing
 
-   Pattern:
+   1. **Read the public `Props` interface** in the component's main `.tsx` (and `types.ts` if separate):
+      - Does it `extends StandardProps`? (Open-ended `classes` inherited.)
+      - Does it declare LOCAL `classes?: { ... }`? (Narrowed surface — KEEP.)
+      - Both? Local declaration shadows the inherited one.
+
+   2. **Read `styles.ts`** for the JSS slot vocabulary. `createStyles({ root: {...}, summary: {...}, ... })` keys are the historical slot keys.
+
+   3. **Grep the component body** for `classes.` / `classes?.` / `externalClasses?.` access. Each access site is a slot that's actually consumed.
+
+   4. **Multiline rg internal callsites** that pass `<Component classes={{...}}>`:
+      ```bash
+      rg --multiline --multiline-dotall -U \
+        '<<Name>\b[^>]*?\bclasses\s*=\s*\{\{' \
+        -g '*.tsx' -g '*.ts' packages/
+      ```
+
+   5. **Cross-reference with audit** (`docs/migration/decisions/classes-audit.md` §4 + §5 + §6). Confirm your row matches. If it doesn't — stop and update the audit.
+
+   6. **(For narrowed Tier 3.b components — Dropdown, OutlinedInput)** Sanity-check external real usage with a fresh gh search before deciding:
+      ```bash
+      gh search code '<Dropdown classes={{ -repo:toptal/picasso' --owner toptal --limit 30 --json textMatches
+      ```
+      Manually inspect each `textMatches[].fragment` to confirm `classes=` is on the target component, not coincidence. Audit's count was 2 — if you find materially more, escalate (this changes the migration shape).
+
+   ### Decision matrix (apply based on YOUR findings)
+
+   | Your finding | Action |
+   |---|---|
+   | Extends `StandardProps` only, body reads `classes` for slots that disappear under @base-ui/react (e.g. consumed by MUI v4 wrapper being replaced), audit says 0 external | **Drop public `classes`** via `extends Omit<StandardProps, 'classes'>` + destructure `classes: _classes` runtime backstop. Rewrite internal slot-routing during the @base-ui/react migration — slots map to part-level `className`. No diff JSON. Note in PR description. |
+   | Extends `StandardProps` only, body doesn't read `classes`, vestigial | Drop public `classes` via `Omit`. Internal plumbing already empty. |
+   | Locally narrowed `classes?: { slotA, slotB }`, body reads them, audit shows external real usage (Dropdown, OutlinedInput) | **KEEP narrowed surface unchanged.** Port slot routing: each narrowed slot maps to an @base-ui/react part's `className`. E.g. `classes?.popper` → `<Popover.Positioner className={cx(base, classes?.popper)}>`. |
+   | Sub-components (AccordionSummary, AccordionDetails, FileList, ProgressBar) that extend StandardProps but their `classes` is plumbing-only | Drop via `Omit` on sub-component too. Rewrite internal use during migration. |
+   | Audit contradicts source state (e.g. audit says narrowed but it's actually open-ended) | STOP. Update `classes-audit.md`. Don't proceed. |
+   | Fresh gh search finds NEW external real usage that wasn't in the 2026-05-11 audit | STOP. Update audit §3/§4/§5 with new finding. If the new external usage targets a slot you were planning to drop, escalate — drop becomes a breaking change. |
+
+   ### Reference patterns
+
+   **A. Drop public `classes` via `Omit`** (Tier 0, Tier 1 vestigial, Tier 2, Tier 3.a):
+
    ```ts
-   import { withClasses } from '@toptal/picasso-utils'
-
-   // Declare the slot keys this component exposes (see the per-component
-   // plan file's "Slot keys" section for the canonical list).
-   export type AccordionClassKey = 'root' | 'header' | 'panel' | 'expanded'
-
-   const baseClasses: Record<AccordionClassKey, string> = {
-     root: 'border border-gray-200 rounded',
-     header: 'flex items-center justify-between p-4 cursor-pointer',
-     panel: 'p-4 border-t border-gray-200',
-     expanded: 'bg-gray-50',
+   export interface Props
+     extends Omit<StandardProps, 'classes'>,
+             /* other extensions */ {
+     // ... your props ...
+     // NO `classes?` declaration. Don't add one back.
    }
 
-   export interface Props {
-     // ... other props ...
-     classes?: Partial<Record<AccordionClassKey, string>>
-   }
-
-   export const Accordion: React.FC<Props> = ({ classes, ...rest }) => {
-     const merged = withClasses(baseClasses, classes)
-     // Use merged.root, merged.header, merged.panel, etc. when composing
-     // Tailwind classNames per slot.
-   }
+   const Component = forwardRef<HTMLDivElement, Props>(function Component(props, ref) {
+     const {
+       /* ... your destructured props ... */
+       // eslint-disable-next-line @typescript-eslint/no-unused-vars
+       classes: _classes,    // runtime backstop
+       ...rest
+     } = props
+     // ...
+   })
    ```
 
-   Rules:
-   - **Slot keys come from the per-component plan file** (`docs/migration/components/<NAME>.md`, "Slot keys" section). Do NOT invent new keys; keep the migration's API alignable with the v3 plan.
-   - For JSS parent-refs (`'&$expanded': { ... }`) the slot key replaces the parent-ref name. Heavy migrations of Accordion/Page/etc. exemplify this.
-   - The shim does NOT cover MUI nested-state selectors (`& .Mui-disabled`, `&$expanded` chains). For Tier 2/3 components migrating from JSS that USED these, prefer Tailwind data-attribute selectors driven by the `@base-ui/react` component's `data-state` (e.g. `data-[state=open]:bg-blue-500` on the slot's class string).
-   - `withClasses` lives in `@toptal/picasso-utils`; ensure the migrating package depends on it (`@toptal/picasso-utils` is already a transitive dep across most base/* via picasso-shared/picasso-provider).
+   **B. Preserve narrowed `classes` surface** (Tier 3.b — Dropdown, OutlinedInput):
+
+   ```ts
+   export interface Props
+     extends Omit<StandardProps, 'classes'>,    // drop open-ended
+             /* other extensions */ {
+     // ... your props ...
+     /** Override per-slot Tailwind classes */
+     classes?: { popper?: string; content?: string }   // ← keep the same narrowed shape
+   }
+
+   const Component = forwardRef<HTMLDivElement, Props>(function Component(props, ref) {
+     const { classes, ...rest } = props
+     return (
+       <Popover.Positioner className={twMerge(baseClasses.popper, classes?.popper)}>
+         <Popover.Popup className={twMerge(baseClasses.content, classes?.content)}>
+           {/* ... */}
+         </Popover.Popup>
+       </Popover.Positioner>
+     )
+   })
+   ```
+
+   Note for **B**: also `Omit<StandardProps, 'classes'>` to drop the open-ended inherited type, then re-add the narrowed declaration. This way TypeScript narrows correctly — consumers passing `classes={{ wrong: '...' }}` get an error.
+
+   ### Forbidden patterns
+
+   - Don't add `withClasses` helper from `@toptal/picasso-utils` — deprecated.
+   - Don't add `*ClassKey` slot-key types or `Partial<Record<*ClassKey, string>>` declarations — also deprecated. Use the literal slot keys inline.
+   - Don't drop Dropdown's `{ popper, content }` or OutlinedInput's `{ input, root }` — they have confirmed external consumers.
+   - Don't generate `<Component>-diff.json` for a "we dropped classes" change when the prop was already vestigial. If you ARE narrowing a previously-open-ended type to a tighter one with real impact (rare), generate the diff JSON.
+
+   **Long-term direction**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` are removed from `@toptal/picasso-shared`. Dropdown + OutlinedInput retain their locally narrowed `classes?: { ... }` permanently.
 
 6. Do NOT change:
    - test.tsx assertions

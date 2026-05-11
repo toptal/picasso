@@ -1,13 +1,97 @@
-# Decision — `classes` prop preservation via Tailwind-routing shim
+# Decision — `classes` prop strategy across the migration
 
-**Status:** **LOCKED** (PF-1992 design conversations, May 2026; **scope amended 2026-05-07** — see "Scope amendment" below).
-**Date:** 2026-05-04 (amended 2026-05-07).
-**Risk reference:** [migration plan v4 §2.3](../../modernization/PI-4318-P1-MOD-01-migration-plan.md#23-api-preservation-default), [`PI-4318-PF-1992-design-decisions.md` §7](../../modernization/PI-4318-PF-1992-design-decisions.md).
-**Affected manifest entries:** **10 of 28** component-migration units that currently expose `classes` in their public Props (per the May 2026 audit). The remaining 18 components migrate without `withClasses`.
+**Status:** **LOCKED 2026-05-11** for all tiers. Decisions are data-driven by `decisions/classes-audit.md` (cross-tier audit).
+**Date:** 2026-05-04 (rev 2026-05-07 scope amendment; rev 2026-05-11 Tier-0 lock; rev 2026-05-11 Tier-1/2/3 audit-driven lock).
+**Risk reference:** [migration plan v4 §2.3](../../modernization/PI-4318-P1-MOD-01-migration-plan.md#23-api-preservation-default), [`PI-4318-PF-1992-design-decisions.md` §7](../../modernization/PI-4318-PF-1992-design-decisions.md), PR #4947 review threads r3207767115 + r3207780637.
+**Supporting research:** `decisions/classes-audit.md` — source-level inspection + internal rg + external `gh search code` with manual textMatches verification across all 28 components.
 
 ---
 
-## Decision
+## Revision 2026-05-11 — per-tier locked decision
+
+Cross-tier audit (`decisions/classes-audit.md`) measured each component's actual `classes` API surface — source-level (StandardProps extension vs. local narrowing), internal callsite usage, and external consumer usage. The data overturned the original "three pending options" framing: real-world usage is concentrated on **two specific Tier 3 components** (Dropdown + OutlinedInput). Everything else is either vestigial or plumbing.
+
+**Per-tier decision matrix**:
+
+| Tier | Action | Affected components | Why |
+|---|---|---|---|
+| **Tier 0** | `extends Omit<StandardProps, 'classes'>` drop. Destructure `classes: _classes` runtime backstop. No diff JSON. | Backdrop, Badge, Button ✅, Drawer, Slider, Switch, Tabs. **Modal: re-verify** (external uses `closeButton` slot per audit §6/§9). | `classes` broken since @mui/base step. 0 internal usage. Audit-verified 0 external real usage (except Modal). |
+| **Tier 1 cleanup** | Same `Omit` drop on Container / Typography / Notification (zero blast radius — audit-verified 0 callsites internal AND external). KEEP `FormControlLabel` narrowed surface (used by Switch/Radio/Checkbox). No-op on FormLabel / Grid / Form / Note / Menu / FormLayout / ModalContext / Utils (no `classes` API). | Container, Typography, Notification, FormControlLabel | Audit confirmed `classes` on these is vestigial — declared via inherited StandardProps but never read in source, never used externally. |
+| **Tier 2** | `Omit` drop on all 5 public APIs. Rewrite internal MUI plumbing during @base-ui/react migration (plumbing-only slots disappear with the wrapper). | Checkbox, Radio, Tooltip, FileInput (+ subs), Popper | Audit-verified 0 external real consumer usage. Internal callsites are component-to-MUI plumbing that the migration replaces anyway. |
+| **Tier 3.a** | `Omit` drop public. Rewrite internal slot-routing on @base-ui/react part-level `className`. | Accordion (+ subs), Page (+ subs) | Open-ended `StandardProps`, no external usage. Internal callsites use slots (root/summary/content/etc.) that map to @base-ui/react parts under migration. |
+| **Tier 3.b** | **KEEP locally narrowed `classes?: { ... }` surface unchanged.** Port slot routing to @base-ui/react part `className`. | Dropdown (`{ popper, content }`), OutlinedInput (`{ input, root }`) | Audit confirmed real external consumer usage on these slots: Dropdown 2 callsites (staff-portal, topcall-desktop), OutlinedInput 4 callsites (topteam-frontend). Dropping breaks live consumers. |
+
+**End-state target (after all 28 components migrate)**:
+- `StandardProps`, `JssProps`, `Classes` types removed from `@toptal/picasso-shared`.
+- Dropdown + OutlinedInput permanently retain their locally narrowed `classes?: { ... }` declarations.
+- Every other migrated component has no `classes` prop in its public type.
+
+---
+
+## Reference patterns
+
+### Pattern A — `Omit<StandardProps, 'classes'>` drop (Tier 0, Tier 1 vestigial, Tier 2, Tier 3.a)
+
+```ts
+export interface Props
+  extends Omit<StandardProps, 'classes'>,
+          /* other extensions */ {
+  // ... other props (no `classes`) ...
+}
+
+const Component = forwardRef<HTMLDivElement, Props>(function Component(props, ref) {
+  const {
+    /* ... your destructured props ... */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    classes: _classes,    // runtime backstop for {...rest} spreads
+    ...rest
+  } = props
+  // ...
+})
+```
+
+Reference implementation: `packages/base/Button/src/Button/Button.tsx` (post-PR-#4947).
+
+### Pattern B — Preserve narrowed `classes` surface (Tier 3.b — Dropdown, OutlinedInput)
+
+```ts
+export interface Props
+  extends Omit<StandardProps, 'classes'>,    // drop open-ended
+          /* other extensions */ {
+  // ... other props ...
+  /** Override per-slot Tailwind classes */
+  classes?: { popper?: string; content?: string }   // ← narrowed shape, unchanged from pre-migration
+}
+
+const Component = forwardRef<HTMLDivElement, Props>(function Component(props, ref) {
+  const { classes, ...rest } = props
+  return (
+    <Popover.Positioner className={twMerge(baseClasses.popper, classes?.popper)}>
+      <Popover.Popup className={twMerge(baseClasses.content, classes?.content)}>
+        {/* ... */}
+      </Popover.Popup>
+    </Popover.Positioner>
+  )
+})
+```
+
+Both `Omit<StandardProps, 'classes'>` AND the local narrow re-declaration. This way TypeScript narrows — consumers passing `classes={{ wrong: '...' }}` get a type error.
+
+---
+
+## Withdrawn options (kept for historical context)
+
+The earlier 2026-05-11 draft proposed three options for Tier 2/3: (a) `SlottedProps<K>` shared type, (b) per-component `Omit + Partial<Record<*ClassKey, string>>`, (c) drop entirely. The audit overturned the framing — option (c) is now the default for Tier 2 and Tier 3.a (because external usage is 0). Option (b)-shape is used for Tier 3.b but inline, without a shared `SlottedProps<K>` generic. The shared-type generic (a) wasn't needed because only 2 components retain a narrowed `classes` and they each declare their own slot shape inline.
+
+`withClasses` helper at `packages/base/Utils/src/utils/with-classes.ts` is **deprecated** as of 2026-05-11. Tier 3.b uses direct `twMerge(base, classes?.slot)` instead. The helper can be deleted once the Tier 0/1/2/3 migrations all land.
+
+---
+
+## Historical context (SUPERSEDED — kept for audit trail)
+
+> The sections below predate the 2026-05-11 audit and lock. They describe a `withClasses`-based universal-preservation strategy that was overscoped and is now deprecated. They're preserved so that future readers can trace why earlier prompts and PRs reference `withClasses` / `*ClassKey` patterns. **For new migration work, follow the locked decision above and `decisions/classes-audit.md`.**
+
+### (Superseded) Original decision — preserve `classes` via `withClasses`
 
 Every migrated Picasso component **preserves** a `classes` prop after the migration via a Tailwind-routing compatibility shim. The implementation lives at `packages/base/Utils/src/utils/with-classes.ts` and is re-exported from `@toptal/picasso-utils`:
 

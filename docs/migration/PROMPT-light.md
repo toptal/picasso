@@ -97,65 +97,85 @@ Your task:
 4. Tailwind class composition (cx/twMerge usage) stays as-is — that
    was the win of the @mui/base era. Don't rewrite styles.
 
-5. **Conditional output shape: `classes` prop preservation (v4 §2.3, scoped).**
-   `withClasses` is a **preservation** mechanism, not a NET ADD. Apply
-   it only if the component currently exposes `classes` in its public
-   Props interface — directly (`classes?: { ... }`) or by extending
-   `StandardProps` (which bundles `classes: Classes` via `JssProps`).
-   If the component has no `classes` prop today, **skip this step
-   entirely** — adding it would be net-new API, not preservation.
+5. **The `classes` prop — research your component, then act (revised 2026-05-11).**
 
-   Quick check before deciding:
-   - `grep -rE '^\s*classes\??:' packages/base/<NAME>/src` — direct
-   - `grep -rE 'extends.*StandardProps' packages/base/<NAME>/src` — inherited
-   If both come up empty, skip §5 and move on.
+   Cross-tier audit (`docs/migration/decisions/classes-audit.md`) ran 2026-05-11 and catalogued each component's `classes` API surface. The audit is your **starting hypothesis**, not a script — sources drift, edge cases exist. Verify per-component before editing.
 
-   Components that need this (per the manifest audit): Button, Modal,
-   Container, Notification, FormLabel, Typography, Radio, Accordion,
-   Dropdown, OutlinedInput. Components that **don't** (skip): Backdrop,
-   Badge, Drawer, Slider, Switch, Tabs, ModalContext, Grid, Menu, Utils,
-   Form, FormLayout, Note, Checkbox, Tooltip, FileInput, Popper, Page.
+   ### Audit hypothesis for Tier 0 + Tier 1 (your starting context)
 
-   When applicable, expose `classes` on the **public** component (e.g.
-   `Button.tsx`), not just the internal Base (e.g. `ButtonBase.tsx`).
-   Re-export the `*ClassKey` type from the public component so consumers
-   can type their overrides.
+   - **Tier 0 components** (Backdrop, Badge, Button, Drawer, Modal, Slider, Switch, Tabs): `classes` was already broken since the @mui/base migration step (`@mui/base/Button` etc. removed `classes` in favor of `slots`/`slotProps`). Consumer's classes silently dropped + React DOM-leak warning (`Invalid value for prop \`classes\` on <button>`). Internal Picasso usage: 0. External real usage: 0 in the audit (exception: Modal — see audit §6 / §9).
+   - **Tier 1 cleanup-only components with `classes`** (Container, Typography, Notification): inherited from `StandardProps` but vestigial — the component bodies don't read it. Internal Picasso: 0. External real usage: 0.
+   - **Tier 1 — `FormControlLabel`**: locally narrows to `classes?: { root?, label? }` and IS used internally by Switch/Radio/Checkbox. KEEP this surface unchanged during the cleanup migration.
+   - **Tier 1 components without `classes`** (FormLabel, Grid, Form, Note, Menu, FormLayout, ModalContext, Utils): no `classes` API exists. No-op.
 
-   Pattern:
+   ### Required research steps — perform BEFORE editing
+
+   1. **Read the public `Props` interface** in the component's main `.tsx`:
+      - Does it `extends StandardProps`? (Open-ended `classes` inherited.)
+      - Does it declare LOCAL `classes?: { ... }`? (Narrowed surface — KEEP.)
+      - Both? Local declaration shadows the inherited one.
+
+   2. **Read `styles.ts` (if any)**. `createStyles({ root: {...}, ... })` keys are the historical slot vocabulary.
+
+   3. **Grep the component body** for `classes.` / `classes?.` access. Declared but never read = vestigial. Read = actually consumed.
+
+   4. **Multiline rg internal callsites**:
+      ```bash
+      rg --multiline --multiline-dotall -U \
+        '<<Name>\b[^>]*?\bclasses\s*=\s*\{\{' \
+        -g '*.tsx' -g '*.ts' packages/
+      ```
+
+   5. **Cross-reference with audit** (`docs/migration/decisions/classes-audit.md` §3 + §6). Confirm your component's row matches your findings. If it DOESN'T match, stop and update the audit doc — don't proceed on a stale assumption.
+
+   ### Decision matrix (apply based on YOUR findings)
+
+   | Your finding | Action |
+   |---|---|
+   | Extends `StandardProps` only, body never reads `classes`, 0 internal callsites, audit says 0 external | **Drop public `classes`** via `extends Omit<StandardProps, 'classes'>` + destructure `classes: _classes` runtime backstop. No diff JSON. Pattern: PR #4947 (Button). |
+   | Extends `StandardProps`, body reads `classes` but for slots that disappear under the new stack (MUI v4 wrapper being replaced) | Drop public `classes` via `Omit`. Rewrite internal slot-routing during the migration (slots → @base-ui/react part-level `className`). Note in PR description. |
+   | Locally narrowed `classes?: { slotA, slotB }` AND read in body AND audit shows external real usage | **KEEP narrowed surface**. Don't change the type signature. Port the slot-routing to @base-ui/react part `className`. |
+   | Doesn't extend `StandardProps` (only `BaseProps`) | **No-op for classes**. Continue the rest of the migration. |
+   | Audit contradicts source state | STOP. Update `classes-audit.md`. Don't proceed. |
+   | Audit says vestigial but you find non-trivial real usage (internal or external — re-run gh search code + inspect textMatches) | STOP. Audit is stale. Update §3 / §5 / §6 of `classes-audit.md` with the new finding and re-evaluate. |
+
+   ### Reference pattern — `Omit<StandardProps, 'classes'>` drop
+
    ```ts
-   import { withClasses } from '@toptal/picasso-utils'
+   import type { StandardProps, ButtonOrAnchorProps, TextLabelProps } from '@toptal/picasso-shared'
 
-   // Declare the slot keys this component exposes (see the per-component
-   // plan file's "Slot keys" section for the canonical list).
-   export type ButtonClassKey = 'root' | 'label' | 'icon'
-
-   const baseClasses: Record<ButtonClassKey, string> = {
-     root: 'inline-flex items-center px-4 py-2',
-     label: 'font-semibold',
-     icon: 'mr-2',
-   }
-
-   export interface Props {
+   export interface Props
+     extends Omit<StandardProps, 'classes'>,    // ← Omit classes here
+             TextLabelProps,
+             ButtonOrAnchorProps {
      // ... other props ...
-     classes?: Partial<Record<ButtonClassKey, string>>
-   }
-
-   export const Button: React.FC<Props> = ({ classes, ...rest }) => {
-     const merged = withClasses(baseClasses, classes)
-     return (
-       <BaseUIButton className={merged.root}>
-         <span className={merged.icon}>...</span>
-         <span className={merged.label}>...</span>
-       </BaseUIButton>
-     )
+     // NO `classes?` declaration. Don't add one back.
    }
    ```
 
-   Rules:
-   - **Slot keys come from the per-component plan file** (`docs/migration/components/<NAME>.md`, "Slot keys" section). Do NOT invent new keys.
-   - The `classes` prop is `Partial<Record<*ClassKey, string>>` — every key is optional; values are Tailwind class strings.
-   - `withClasses` is dependency-light (only `@toptal/picasso-tailwind-merge`); add `@toptal/picasso-utils` to deps if not already present.
-   - The shim does NOT cover MUI nested-state selectors (`& .Mui-disabled`, `&$expanded`) or generated MUI classes (`.MuiButton-root`). Those rare cases need codemods or manual consumer fixes; flag them in the diff JSON instead of trying to preserve them here.
+   Apply Omit in BOTH the public component and any internal Base wrapper (e.g. `Button.tsx` AND `ButtonBase.tsx`) if both extend `StandardProps`.
+
+   **Runtime backstop for `{...rest}` spreading**:
+
+   ```ts
+   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   const { icon, className, classes: _classes, ...rest } = props
+   ```
+
+   `Omit` removes from the TYPE; the destructure prevents runtime leakage if `props` was spread from an untyped source. Defense in depth.
+
+   **No `<Component>-diff.json`** for components in the "drop public classes" path — there was no real API change to document (the prop was already broken or vestigial).
+
+   **Reference**: PR #4947 (Button) for canonical shape. See `packages/base/Button/src/Button/Button.tsx` + `ButtonBase.tsx`.
+
+   ### Forbidden patterns
+
+   - Don't add `withClasses` helper from `@toptal/picasso-utils` — deprecated since 2026-05-11.
+   - Don't add `*ClassKey` slot-key types or `Partial<Record<*ClassKey, string>>` declarations.
+   - Don't drop a locally narrowed `classes?: { ... }` API on a component where consumers depend on it (FormControlLabel in Tier 1, Dropdown / OutlinedInput in Tier 3 — even if you only see Tier 0/1 in your scope, the principle applies).
+   - Don't generate `<Component>-diff.json` for a "we dropped classes" change if there was no real API change (vestigial → drop is type-level only).
+
+   **Long-term direction**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` are removed from `@toptal/picasso-shared`. Dropdown + OutlinedInput permanently retain their locally narrowed `classes?: { ... }` surface.
 
 6. Do NOT change:
    - test.tsx assertions (snapshots OK to regenerate)

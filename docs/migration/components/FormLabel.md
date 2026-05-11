@@ -32,15 +32,43 @@ Per migration plan v3 §3.2: **Tier 1 type-only fix**. No primitive change; `tar
 ## Reviewer notes
 - The type-only import is the smallest possible "real source migration" in Tier 1 — useful as the agent's first iteration after Note's dep-only canary. Watch for the agent picking up subtle differences in the type shape (MUI v4's `FormControlLabelProps` extends `StandardProps` which carries `classes` — strip that).
 
-## Slot keys
+## `classes` handling — KEEP FormControlLabel's narrowed surface (audit-verified used)
 
-Per migration plan v4 §2.3, FormLabel preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+Cross-tier audit (`decisions/classes-audit.md` §3) found:
+- **FormLabel** (`FormLabel.tsx`): extends `BaseProps` only — **no `classes` API**. No-op.
+- **FormControlLabel** (`FormControlLabel.tsx`): locally narrows `classes?: { root?, label? }` at lines 27–30. The narrow IS used internally by 3 Picasso components:
+  - `packages/base/Switch/src/Switch/Switch.tsx:100`
+  - `packages/base/Radio/src/Radio/Radio.tsx:92`
+  - `packages/base/Checkbox/src/Checkbox/Checkbox.tsx:114`
+- External real callsites: 0.
 
-```ts
-export type FormLabelClassKey = 'root' | 'label'
-```
+### Hypothesis to verify
 
-- `root` — the wrapper element (e.g., a `<label>` or container)
-- `label` — the label text node (when wrapped distinctly from the form-control)
+KEEP the FormControlLabel narrowed `classes?: { root?, label? }` surface unchanged during the cleanup migration. FormLabel itself: no-op for `classes`.
 
-Tier 1 type-only fix (replace `FormControlLabelProps` import from MUI v4 with own type). The `classes` contract is preserved verbatim.
+### Verify per migration (DO this)
+
+1. **FormLabel.tsx**:
+   - Open `packages/base/FormLabel/src/FormLabel/FormLabel.tsx`.
+   - Confirm it extends `BaseProps` only (no `StandardProps`).
+   - Confirm no `classes` prop declared.
+   - Action: no `classes` change.
+
+2. **FormControlLabel.tsx**:
+   - Open `packages/base/FormLabel/src/FormControlLabel/FormControlLabel.tsx`.
+   - Confirm local `classes?: { root?: string; label?: string }` declaration intact (audit says lines 27–30).
+   - Confirm body reads `classes` (audit says line 43 destructure → twMerge usage downstream).
+
+3. **Internal callsite check**:
+   ```bash
+   rg --multiline --multiline-dotall -U '<FormControlLabel\b[^>]*?\bclasses\s*=\s*\{\{' -g '*.tsx' packages/
+   ```
+   Expected: 3 hits in Switch/Radio/Checkbox sources, all using `{ root, label }`. If fewer (callers migrated away) or more (new caller) — note in PR.
+
+4. **Action**: NONE for `classes`. The Tier 1 migration is type-only (replace `import type { FormControlLabelProps }` from MUI v4 with local type). Don't touch the `classes` shape on FormControlLabel.
+
+5. **Defensive check** — if you find the local `classes?: { root, label }` declaration was lost in some past edit and FormControlLabel now extends `StandardProps` without override: STOP, this is a regression. Restore the narrowed declaration.
+
+### Future sunset
+
+FormControlLabel's `classes` surface will eventually be sunset alongside its consumers' migrations (Switch — Tier 0; Radio + Checkbox — Tier 2). Those migrations decide whether to keep the slot API or rewrite callers to use `className`. NOT a concern for this Tier 1 cleanup PR.

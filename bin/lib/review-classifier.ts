@@ -57,6 +57,14 @@ export interface Review {
   body: string
   author?: string
   at?: string
+  /**
+   * GitHub comment-payload `author_association` (uppercase enum):
+   * OWNER / MEMBER / COLLABORATOR / CONTRIBUTOR / FIRST_TIME_CONTRIBUTOR /
+   * NONE / MANNEQUIN. Used by `--review-sweep` to gate which authors'
+   * comments are forwarded to the agent. Undefined for legacy payloads or
+   * comments fetched before this field was wired through.
+   */
+  authorAssociation?: string
 }
 
 const APPROVAL_PHRASES = [

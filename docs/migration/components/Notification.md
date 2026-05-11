@@ -42,16 +42,44 @@ Per migration plan v3 §3.2 + audit §1.4: **single MUI v4 type import**, no JSS
 - The `@base-ui/react/toast` migration is **not** in PF-1992 scope per the v3 plan's §12 decision — Picasso keeps `notistack` for minimal blast radius. Revisit post-PI.
 - One of 5 type-only fixes in the Tier 1 batch.
 
-## Slot keys
+## `classes` handling — drop public surface (audit-verified vestigial)
 
-Per migration plan v4 §2.3, Notification preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+Cross-tier audit (`decisions/classes-audit.md` §3) flagged Notification's `classes` prop as **vestigial**:
+- Source `extends StandardProps` (line 20) — open-ended inherited.
+- Body never reads `classes` (Tailwind-based; `classByVariant` at line 131 is a LOCAL type-annotated map, unrelated to the prop).
+- Internal Picasso callsites: 0.
+- External real callsites: 0 (file-level matches were all notistack's `<SnackbarProvider classes={...}>` in tests).
 
-```ts
-export type NotificationClassKey = 'root' | 'content' | 'action'
-```
+### Hypothesis to verify
 
-- `root` — the outermost notification surface
-- `content` — the message text region
-- `action` — the action / close-button slot (right side)
+Drop the public `classes` via `extends Omit<StandardProps, 'classes'>` + destructure `classes: _classes` runtime backstop.
 
-Tier 1 type-only fix: replace `import type { SnackbarOrigin }` from MUI v4 with a local `{ vertical, horizontal }` shape. Note: notistack integration is preserved (per migration plan v4 §9.9 — keep `notistack`).
+### Verify per migration (DO this — don't assume)
+
+1. **Source verification**:
+   - Open `packages/base/Notification/src/Notification/Notification.tsx`.
+   - Confirm `extends StandardProps` (audit says line 20).
+   - Note: `Classes` IS imported (line 3) but used as the TYPE of a local `classByVariant` map (line 131) — keep that import. Don't conflate with the prop drop.
+   - Grep for `classes\.|classes\?\.` access on the PROP (`props.classes` or via destructuring) — confirm zero hits.
+
+2. **Internal callsite verification**:
+   ```bash
+   rg --multiline --multiline-dotall -U '<Notification\b[^>]*?\bclasses\s*=\s*\{\{' -g '*.tsx' -g '*.ts' packages/
+   ```
+   Expected: 0 hits.
+
+3. **Subcomponent check**: NotificationGrowl, NotificationBanner, NotificationContent (if they exist as separate files) — verify each one's `classes` handling separately. Audit says they don't exist as exportable components, but verify.
+
+4. **Action if hypothesis confirmed**:
+   ```ts
+   export interface Props
+     extends Omit<StandardProps, 'classes'>,
+             /* other extensions unchanged */ {
+     // ...
+   }
+   ```
+   Plus `classes: _classes` runtime destructure backstop. KEEP the `Classes` type import — it's used by `classByVariant`.
+
+5. **If hypothesis contradicted**: STOP. Update `classes-audit.md` §3.
+
+6. **No `<Component>-diff.json`** — vestigial drop.
