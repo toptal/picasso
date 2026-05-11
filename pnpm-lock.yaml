@@ -3065,6 +3065,9 @@ importers:
       '@toptal/picasso-provider':
         specifier: workspace:*
         version: link:../../picasso-provider
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../../picasso-tailwind-merge
       '@toptal/picasso-test-utils':
         specifier: workspace:*
         version: link:../Test-Utils
