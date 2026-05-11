@@ -1,4 +1,4 @@
-#!/usr/bin/env -S yarn tsx
+#!/usr/bin/env -S pnpm exec tsx
 /* eslint-disable func-style */
 /* eslint-disable max-statements-per-line */
 /* eslint-disable no-console */
@@ -20,10 +20,10 @@
  *   - Tier 1, 2, 3, 4, 5 → docs/migration/PROMPT-heavy.md (full rewrite)
  *
  * Usage:
- *   yarn orchestrate                           # next queued item across all tiers
- *   yarn orchestrate --tier=1                  # only Tier 1 items (sequence Tier 1 first per §3.7)
- *   yarn orchestrate --component=Note          # named item (PF-1992 sandbox)
- *   yarn orchestrate --component=Note --no-merge --dry-run
+ *   pnpm orchestrate                           # next queued item across all tiers
+ *   pnpm orchestrate --tier=1                  # only Tier 1 items (sequence Tier 1 first per §3.7)
+ *   pnpm orchestrate --component=Note          # named item (PF-1992 sandbox)
+ *   pnpm orchestrate --component=Note --no-merge --dry-run
  *
  * See docs/migration/ORCHESTRATOR.md for the runbook and
  * docs/migration/references/agent-loop.md for the loop spec.

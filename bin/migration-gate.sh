@@ -60,7 +60,7 @@ resolve_package_path() {
   esac
 }
 
-# Manifest ID -> package npm name (for `yarn workspace`).
+# Manifest ID -> package npm name (for `pnpm --filter`).
 # "Note" -> "@toptal/picasso-note"
 # "FormLabel" -> "@toptal/picasso-form-label"
 # Sibling components return their parent package name.
@@ -135,23 +135,23 @@ run_stage_skip() {
 
 # ---------- stages ---------------------------------------------------------
 
-# 0. Lockfile drift — verify yarn.lock satisfies package.json by running
-#    `yarn install --frozen-lockfile`, which exits non-zero if any dep in
+# 0. Lockfile drift — verify pnpm-lock.yaml satisfies package.json by running
+#    `pnpm install --frozen-lockfile`, which exits non-zero if any dep in
 #    package.json can't be resolved against the existing lockfile.
 #
-#    Earlier version used a diff-based check (package.json changed && yarn.lock
+#    Earlier version used a diff-based check (package.json changed && lockfile
 #    didn't → FAIL), but produced false positives: when an agent adds a dep
 #    that's already resolved in the lockfile (e.g. `@base-ui/react@^1.4.1`
-#    already pulled in by some other path), yarn install doesn't need to
-#    touch yarn.lock — but the diff check flagged it as drift. CI also
-#    runs yarn install and would NOT fail in that case.
+#    already pulled in by some other path), pnpm install doesn't need to
+#    touch the lockfile — but the diff check flagged it as drift. CI also
+#    runs pnpm install and would NOT fail in that case.
 #
 #    Running --frozen-lockfile mirrors what CI does: succeeds iff every
 #    required dep is present in the lockfile. Cost: ~5-15s when warm
 #    (no network, just verification).
 check_lockfile_drift() {
-  if ! command -v yarn >/dev/null 2>&1; then return 0; fi
-  yarn install --frozen-lockfile --non-interactive 2>&1
+  if ! command -v pnpm >/dev/null 2>&1; then return 0; fi
+  pnpm install --frozen-lockfile 2>&1
   return $?
 }
 run_stage "lockfile-drift" check_lockfile_drift
@@ -161,25 +161,25 @@ run_stage "lockfile-drift" check_lockfile_drift
 #        - npm deps use caret prefix: "1.4.1" → must be "^1.4.1"
 #        - workspace package deps use exact local version (no caret/tilde).
 #      Picasso's `package.json` defines:
-#        "syncpack": "yarn syncpack:list & yarn syncpack:fix"
+#        "syncpack": "pnpm syncpack:list & pnpm syncpack:fix"
 #        "syncpack:list": "syncpack list-mismatches"
-#      So invoking `yarn syncpack <args>` runs the COMPOUND script with extra
+#      So invoking `pnpm syncpack <args>` runs the COMPOUND script with extra
 #      args appended → "too many arguments" error from syncpack CLI. Use the
 #      explicit `:list` subscript to call syncpack list-mismatches directly.
 check_syncpack() {
-  if ! command -v yarn >/dev/null 2>&1; then return 0; fi
-  yarn --silent syncpack:list 2>&1
+  if ! command -v pnpm >/dev/null 2>&1; then return 0; fi
+  pnpm --silent syncpack:list 2>&1
   return $?
 }
 run_stage "syncpack" check_syncpack
 
 # 1. Build (workspace-scoped — fast).
 run_stage "build" \
-  yarn workspace "$WORKSPACE_NAME" build:package
+  pnpm --filter "$WORKSPACE_NAME" build:package
 
 # 2. Type-check (repo-wide — there's no per-package tsc:noEmit script).
 run_stage "tsc" \
-  yarn typecheck
+  pnpm typecheck
 
 # 3. Lint, scoped to the migrating package's src.
 #    Repo-wide lint runs in CI; the gate only needs to validate the agent's
@@ -187,23 +187,23 @@ run_stage "tsc" \
 #    Per migration plan v3 §4.3 (gate sequence) + Tier 1.2 of post-canary-15
 #    improvements plan: scoped fast feedback for inner-loop iteration.
 #
-#    Auto-fix pass (silent): runs `yarn davinci-syntax lint code <path>` (no
+#    Auto-fix pass (silent): runs `pnpm davinci-syntax lint code <path>` (no
 #    --check) before the strict --check stage. Fixes formatting / blank-line /
 #    import-order rules that don't merit an iteration loop. Output suppressed
 #    so the run log isn't cluttered. Rationale: in canaries 16+17 the agent
 #    repeatedly hit single-line `padding-line-between-statements` errors and
 #    failed to self-fix despite mandatory instructions — auto-fix in the gate
 #    skips that whole class of rules.
-yarn davinci-syntax lint code "$PKG_PATH/src" >/dev/null 2>&1 || true
+pnpm davinci-syntax lint code "$PKG_PATH/src" >/dev/null 2>&1 || true
 
 run_stage "lint" \
-  yarn davinci-syntax lint code --check "$PKG_PATH/src"
+  pnpm davinci-syntax lint code --check "$PKG_PATH/src"
 
 # 4. Jest, scoped to the package directory.
 #    Skip the test:unit prelude (build) since stage 1 already covers it.
 run_stage "jest" \
   env NODE_OPTIONS='--no-experimental-require-module' \
-  yarn davinci-qa unit --config=./jest.spec.mjs --testPathPattern "$PKG_PATH"
+  pnpm davinci-qa unit --config=./jest.spec.mjs --testPathPattern "$PKG_PATH"
 
 # 4b. Consumer-snapshot stage. Catches DOM-ripple snapshot drift in packages
 #     that include the migrating component in their `__snapshots__/*.snap`.
@@ -260,7 +260,7 @@ else
     | tee -a "$RUN_DIR/console.log"
 
   if env NODE_OPTIONS='--no-experimental-require-module' \
-       yarn davinci-qa unit --config=./jest.spec.mjs \
+       pnpm davinci-qa unit --config=./jest.spec.mjs \
        --testPathPattern "($CONSUMER_PATTERN)" \
        >"$CONSUMER_LOG" 2>&1; then
     CONSUMER_STATUS="PASS"
@@ -268,7 +268,7 @@ else
     echo "  failed; attempting one round of jest -u snapshot regeneration" \
       | tee -a "$RUN_DIR/console.log"
     env NODE_OPTIONS='--no-experimental-require-module' \
-      yarn davinci-qa unit --config=./jest.spec.mjs \
+      pnpm davinci-qa unit --config=./jest.spec.mjs \
       --testPathPattern "($CONSUMER_PATTERN)" -u \
       >>"$CONSUMER_LOG" 2>&1 || true
 
@@ -276,7 +276,7 @@ else
     # assertion regression exists, this fails (jest -u is a no-op for non-
     # snapshot failures).
     if env NODE_OPTIONS='--no-experimental-require-module' \
-         yarn davinci-qa unit --config=./jest.spec.mjs \
+         pnpm davinci-qa unit --config=./jest.spec.mjs \
          --testPathPattern "($CONSUMER_PATTERN)" \
          >>"$CONSUMER_LOG" 2>&1; then
       CONSUMER_STATUS="PASS"
@@ -311,10 +311,10 @@ if [ -f "$CY_SPEC" ]; then
     # locally for Cypress". Operator can override via env.
     export HAPPO_PROJECT="${HAPPO_PROJECT:-Picasso/Cypress}"
     run_stage "cypress" \
-      yarn happo-e2e -- -- yarn test:setup cypress run --component --spec "$CY_SPEC"
+      pnpm happo-e2e -- pnpm test:setup cypress run --component --spec "$CY_SPEC"
   else
     run_stage "cypress" \
-      yarn test:setup cypress run --component --spec "$CY_SPEC"
+      pnpm test:setup cypress run --component --spec "$CY_SPEC"
   fi
 else
   run_stage_skip "cypress" "no spec at $CY_SPEC"
@@ -323,7 +323,7 @@ fi
 # 6. Happo Storybook + strict diff check (v4 Step 4 / migration plan v4 §6.3).
 #
 #    Two-phase strategy:
-#      a) `yarn happo --only <name>` runs the Happo CLI to upload screenshots
+#      a) `pnpm happo --only <name>` runs the Happo CLI to upload screenshots
 #         + register the report. Exit code 0 = upload succeeded (does NOT
 #         imply zero diffs).
 #      b) Strict gate: query Happo's REST API for the report's diff
@@ -351,8 +351,8 @@ else
   HAPPO_LOG="$RUN_DIR/happo.log"
   HAPPO_STARTED=$(date +%s)
 
-  echo "→ [happo] yarn happo --only ${COMPONENT##*/}" | tee -a "$RUN_DIR/console.log"
-  if yarn happo --only "${COMPONENT##*/}" >"$HAPPO_LOG" 2>&1; then
+  echo "→ [happo] pnpm happo --only ${COMPONENT##*/}" | tee -a "$RUN_DIR/console.log"
+  if pnpm happo --only "${COMPONENT##*/}" >"$HAPPO_LOG" 2>&1; then
     HAPPO_CLI_OK=1
   else
     HAPPO_CLI_OK=0
@@ -428,9 +428,11 @@ fi
 
 # 7. React 19 smoke — stub until PF-1994 wires the real smoke.
 #    See docs/migration/migration-plan.md §6.2.
-if yarn run --silent | grep -q "^   - test:react19"; then
+#    Detect by reading package.json directly — `pnpm run` (no args) output
+#    format differs from yarn 1's so a grep against the listing isn't portable.
+if grep -q '"test:react19"' package.json 2>/dev/null; then
   run_stage "react19" \
-    yarn test:react19 --only "${COMPONENT##*/}"
+    pnpm test:react19 --only "${COMPONENT##*/}"
 else
   run_stage_skip "react19" "no test:react19 script (pending PF-1994)"
 fi

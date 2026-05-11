@@ -65,9 +65,9 @@ Your task:
      if present. Replace with `react: ">=16.12.0"` (or current floor).
      Per v4 §2.6, Picasso lifts the React 18-era cap as part of every
      Tier 0/1/2/3 migration.
-   - **After editing any package.json deps, run `yarn install` from
-     the repo root and stage `yarn.lock` in the same commit.** Missing
-     yarn.lock is the single most common reason CI's "Build packages"
+   - **After editing any package.json deps, run `pnpm install` from
+     the repo root and stage `pnpm-lock.yaml` in the same commit.** Missing
+     lockfile update is the single most common reason CI's "Build packages"
      step fails on dep-bumping migrations. If a runtime dep used at
      compile time is added (e.g. `withClasses` consuming
      `@toptal/picasso-tailwind-merge`), the package needs it as a
@@ -188,17 +188,17 @@ Output: file edits only. No explanations.
 
 ### Acceptance criteria — iterate to working, then run full
 
-You have Bash access for **verification only** (`yarn typecheck`, `yarn workspace:*`, `yarn davinci-qa:*`, `yarn lint:*`, `yarn cypress:*`, `yarn happo:*`, `yarn info:*`, `npm view:*`, `git diff/status/log/show/blame`). Use it to self-verify between edits — don't wait for the orchestrator's outer-loop gate.
+You have Bash access for **verification only** (`pnpm typecheck`, `pnpm --filter:*`, `pnpm davinci-qa:*`, `pnpm lint:*`, `pnpm cypress:*`, `pnpm happo:*`, `pnpm info:*`, `npm view:*`, `git diff/status/log/show/blame`). Use it to self-verify between edits — don't wait for the orchestrator's outer-loop gate.
 
 For the fastest inner-loop feedback on lint, scope to the migrating package's src instead of running repo-wide:
 
 ```bash
-yarn davinci-syntax lint code --check packages/base/<NAME>/src
+pnpm davinci-syntax lint code --check packages/base/<NAME>/src
 # Auto-fix on the same scope:
-yarn davinci-syntax lint code packages/base/<NAME>/src
+pnpm davinci-syntax lint code packages/base/<NAME>/src
 ```
 
-This is ~12x faster than `yarn lint` (which lints the whole repo). Use the scoped form for iterative fixing; the orchestrator's outer-loop gate runs the same scoped command for its lint stage.
+This is ~12x faster than `pnpm lint` (which lints the whole repo). Use the scoped form for iterative fixing; the orchestrator's outer-loop gate runs the same scoped command for its lint stage.
 
 If `--with-mcp` was passed to the orchestrator, you also have **Playwright MCP** tools and a Storybook server running at `http://localhost:9001`. Use them to verify visual + runtime behavior:
 
@@ -210,18 +210,18 @@ If `--with-mcp` was passed to the orchestrator, you also have **Playwright MCP**
 Inspect at minimum the default + hover + focused + disabled stories. If `console.error` fires during render, the migration is wrong even if the gate passes.
 
 **Working acceptance** (run for regular feedback during iteration):
-- `yarn workspace @toptal/picasso-<NAME> build:package` passes (types + emit)
-- `yarn davinci-qa unit --testPathPattern packages/base/<NAME>` passes
-- `yarn davinci-syntax lint code --check packages/base/<NAME>/src` passes (zero errors)
+- `pnpm --filter @toptal/picasso-<NAME> build:package` passes (types + emit)
+- `pnpm davinci-qa unit --testPathPattern packages/base/<NAME>` passes
+- `pnpm davinci-syntax lint code --check packages/base/<NAME>/src` passes (zero errors)
 - (if Storybook + Playwright MCP available) story renders cleanly: default + hover + focused + disabled states without `console.error`
 
 **Full acceptance** (run before declaring done):
 - working acceptance passes
-- `yarn typecheck` passes (full repo)
+- `pnpm typecheck` passes (full repo)
 - (if applicable) cypress component spec passes
 - Happo report green or designer-approved diffs only
 
-**Mandatory before exit:** run `yarn davinci-syntax lint code packages/base/<NAME>/src` (auto-fix mode, no `--check`) once, then `yarn davinci-syntax lint code --check packages/base/<NAME>/src` to verify zero errors. The orchestrator's outer-loop gate runs the same scoped command — if you exit before lint passes, the gate fails identically and you've wasted an iteration. **Do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the **boundary-cast** pattern (`as ComponentName.Props['key']`) hoisted into a helper return type or local typed binding instead — see `rules/base-ui-react-api-crib.md` §"Type alignment at the boundary". Avoid sprinkling inline casts at the JSX call site; reviewers will ask you to consolidate them.
+**Mandatory before exit:** run `pnpm davinci-syntax lint code packages/base/<NAME>/src` (auto-fix mode, no `--check`) once, then `pnpm davinci-syntax lint code --check packages/base/<NAME>/src` to verify zero errors. The orchestrator's outer-loop gate runs the same scoped command — if you exit before lint passes, the gate fails identically and you've wasted an iteration. **Do not** weaken public types (e.g. fall back to `any`) just to placate a lint warning. Use the **boundary-cast** pattern (`as ComponentName.Props['key']`) hoisted into a helper return type or local typed binding instead — see `rules/base-ui-react-api-crib.md` §"Type alignment at the boundary". Avoid sprinkling inline casts at the JSX call site; reviewers will ask you to consolidate them.
 
 ---
 

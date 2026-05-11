@@ -6,7 +6,7 @@ You have read access to the PR thread, your own past replies, and reviewer react
 
 ## Trust gating (orchestrator pre-filter)
 
-The orchestrator filters comments by GitHub `author_association` before invoking you. **Only comments from `OWNER` / `MEMBER` / `COLLABORATOR` reach this prompt.** Bots (`*[bot]`, `dependabot`, `github-actions`, `changeset-bot`, `renovate*`) are also filtered out. This is a defense against prompt injection via PR comments — a hostile commenter on any open PR would otherwise be able to direct the agent (which has Edit/Write + Bash(gh) + Bash(yarn install) on the operator's local machine).
+The orchestrator filters comments by GitHub `author_association` before invoking you. **Only comments from `OWNER` / `MEMBER` / `COLLABORATOR` reach this prompt.** Bots (`*[bot]`, `dependabot`, `github-actions`, `changeset-bot`, `renovate*`) are also filtered out. This is a defense against prompt injection via PR comments — a hostile commenter on any open PR would otherwise be able to direct the agent (which has Edit/Write + Bash(gh) + Bash(pnpm install) on the operator's local machine).
 
 Implications:
 
@@ -181,7 +181,7 @@ Done — addressed all 4 comments. See latest commit. Re-running CI."
 
 ### Editing code
 
-Standard Edit/Write tools, plus the gate's verification commands (`yarn typecheck`, `yarn davinci-syntax lint code`, `yarn davinci-qa unit`, etc.) for self-verification before exit. The orchestrator runs the canonical gate after you finish.
+Standard Edit/Write tools, plus the gate's verification commands (`pnpm typecheck`, `pnpm davinci-syntax lint code`, `pnpm davinci-qa unit`, etc.) for self-verification before exit. The orchestrator runs the canonical gate after you finish.
 
 ## What the orchestrator does after you exit
 
