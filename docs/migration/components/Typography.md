@@ -35,14 +35,48 @@ Migration must be applied AFTER:
 - Typography is the highest-impact Tier 1 component because of downstream Happo cascading. Land it under careful Happo review — the diff isn't just "this component," it's "every component that renders Typography."
 - If `useTheme()` is found, that's a sign the migration touches `picasso-provider` internals; flag and consider deferring to PF-2023 (provider rewrite) if non-trivial.
 
-## Slot keys
+## `classes` handling — drop public surface (audit-verified vestigial)
 
-Per migration plan v4 §2.3, Typography preserves a `classes` prop via the `withClasses` shim from `@toptal/picasso-utils`.
+Cross-tier audit (`decisions/classes-audit.md` §3) flagged Typography's `classes` prop as **vestigial**:
+- Source `extends StandardProps` (line 124) — open-ended `classes` inherited.
+- Body never reads `classes` (Tailwind-based, no JSS plumbing).
+- Internal Picasso callsites: 0.
+- External real callsites: 0 (file-level matches were all `<SnackbarProvider classes={...}>` in snapshot files).
 
-```ts
-export type TypographyClassKey = 'root'
-```
+### Hypothesis to verify
 
-- `root` — the rendered text element (varies by `as` / variant prop: `<h1>`/`<p>`/`<span>` etc.)
+Drop the public `classes` via `extends Omit<StandardProps, 'classes'>` + destructure `classes: _classes` runtime backstop. Zero blast radius.
 
-Tier 1 already-clean — Typography is foundational + many consumers; migration is package.json delta only. Single slot beyond root would be inconsistent with text being a leaf semantic.
+### Verify per migration (DO this — don't assume)
+
+1. **Source verification**:
+   - Open `packages/base/Typography/src/Typography/Typography.tsx`.
+   - Confirm `extends StandardProps` (audit says line 124).
+   - Confirm no local `classes?: { ... }` declaration.
+   - Grep the file for `classes\.|classes\?\.` — confirm zero hits in body.
+
+2. **Internal callsite verification**:
+   ```bash
+   rg --multiline --multiline-dotall -U '<Typography\b[^>]*?\bclasses\s*=\s*\{\{' -g '*.tsx' -g '*.ts' packages/
+   ```
+   Expected: 0 hits.
+
+3. **Special concern — Typography is foundational**: Many other components render `<Typography>`. None pass `classes={{...}}` to it, but if you find any internal callsite passing `classes` to Typography, that's evidence of legacy MUI v4 reach-through that should be cleaned up alongside this migration.
+
+4. **Action if hypothesis confirmed**:
+   ```ts
+   export interface Props
+     extends Omit<StandardProps, 'classes'>,
+             /* other extensions unchanged */ {
+     // ...
+   }
+   ```
+   Plus `classes: _classes` runtime destructure backstop.
+
+5. **If hypothesis contradicted**: STOP. Update `classes-audit.md` §3. Don't proceed.
+
+6. **No `<Component>-diff.json`** — vestigial drop, no real change.
+
+### Cascade concern
+
+Typography is rendered by ~10+ downstream components. Dropping its public `classes` type means: any downstream that types `<Typography classes={...}>` gets a TS error. Audit found 0 such internal callsites, but verify with the rg above. Update the audit if you find any.

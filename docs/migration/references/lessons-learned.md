@@ -21,3 +21,20 @@ Auto-accumulated by the orchestrator after each successful component migration. 
 ---
 
 <!-- Entries appended below by orchestrator. Do not delete this marker. -->
+
+## Button — 2026-05-08
+
+- Tier 0 · target_path: `@base-ui/react/button` · iterations: 1
+- Pin `@base-ui/react` to `^1.4.1` and widen the React peer to `>=16.12.0` (drop the `<19.0.0` upper bound) when swapping out `@mui/base`, since Base UI's peer range and the migration's React-19 readiness were both required for CI to resolve installs.
+- Expect snapshot churn in *consumer* packages too (e.g. `Pagination`) from Base UI's added `data-disabled=""` attribute and the dropped trailing `base-` token — regenerate snapshots across every package that renders Button, not just Button's own.
+- Replace MUI's `slots`/`slotProps`/`rootElementName` polymorphism with Base UI's `nativeButton` + `render={React.createElement(as)}` pattern (see `rules/base-ui-react-api-crib.md`).
+- Reference: https://github.com/toptal/picasso/pull/4947
+
+## `classes` prop strategy — 2026-05-11 (revoked withClasses mandate)
+
+- Scope · target_path: cross-tier policy · iterations: post-PR-#4947 review
+- **Tier 0**: drop `classes` from public Props via `extends Omit<StandardProps, 'classes'>` (precedent: Button PR #4947). The prop was already broken since the @mui/base era — no real API change, no `<Component>-diff.json`. Also destructure `classes: _classes` as runtime backstop for `{...rest}` spreads.
+- **Tier 1 cleanup-only**: don't touch `classes` — no source change.
+- **Tier 2/3**: ⚠️ DECISION PENDING (due 2026-05-11 week) — three options: `SlottedProps<K>` shared type / per-component Omit+narrow / drop entirely. Escalate any Tier 2/3 migration until decision lands. Don't apply the old `withClasses` pattern.
+- See `decisions/classes-shim.md` for full revision history + pending Tier 2/3 options.
+- Reference: PR #4947 review threads r3207767115 + r3207780637

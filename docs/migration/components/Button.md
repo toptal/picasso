@@ -115,18 +115,30 @@ This protects against the runtime case where `as` is undefined / null / a primit
 - Light-path multipliers are calibrated against Button + Switch. After Button + ~2 more Tier 0 components ship, recalibrate per migration plan §10 R12.
 - These four patterns generalise to other polymorphic components (`as`-prop or `component`-prop). When migrating Drawer / Dialog / Tabs (also Tier 0), check whether they have polymorphic semantics and apply the same shape.
 
-## Slot keys
+## `classes` handling — DROPPED (Tier 0, applied PR #4947)
 
-Button currently inherits `classes: Classes` via `StandardProps` (from `@toptal/picasso-shared`'s `JssProps`). Per the May 2026 audit, this puts Button in the "apply `withClasses`" set — preserve via slot routing. See `decisions/classes-shim.md` for the strict-preservation policy.
+**No `withClasses`, no `*ClassKey` types, no slot-routing.** The earlier "apply withClasses to Button" mandate was revoked 2026-05-11 — see `decisions/classes-shim.md` for the full revision.
+
+Background: `<Button classes={...}>` has been **functionally broken since the @mui/base era** — `@mui/base/Button` removed the `classes` API in favor of `slots`/`slotProps`. Consumer's classes silently dropped, React DOM warned. No internal Picasso usage. Adding `withClasses` would have been net-new API, not preservation.
+
+**Pattern applied in PR #4947** (canonical for all Tier 0 migrations):
 
 ```ts
-export type ButtonClassKey = 'root' | 'label' | 'icon'
+// packages/base/Button/src/Button/Button.tsx
+export interface Props
+  extends Omit<StandardProps, 'classes'>,    // ← drop classes from public type
+          TextLabelProps,
+          ButtonOrAnchorProps {
+  /* ... no classes? declaration anywhere ... */
+}
+
+// In the component body — runtime backstop for {...rest} spreads:
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { icon, className, classes: _classes, ...rest } = props
 ```
 
-- `root` — outermost element (the rendered `<button>` or polymorphic `as`-element)
-- `label` — text-content wrapper inside the button
-- `icon` — icon slot (covers both leading/trailing icon positions; consumer disambiguates via the `icon` prop's position)
+Both `Button.tsx` AND `ButtonBase.tsx` apply the Omit + destructure backstop. See `packages/base/Button/src/{Button,ButtonBase}/*.tsx` post-PR-#4947 for the reference shape.
 
-**Apply on the public `Button.tsx`, not just `ButtonBase.tsx`.** The orchestrator's first attempt (PR #4940) added `withClasses` to ButtonBase only — consumers of `<Button>` (the public component) couldn't reach the new prop. Re-export `ButtonClassKey` from `Button.tsx`, declare `classes?: Partial<Record<ButtonClassKey, string>>` on the public Props (this also *narrows* the inherited `Classes` type from `StandardProps` — document the narrowing in `docs/migration/Button-diff.json`), and pass `classes` through to ButtonBase.
+**No `Button-diff.json`** — `classes` was already broken pre-migration; no real API change to document. The file (if present in the migration PR) should be empty or deleted.
 
-Refine during migration if the actual rendered DOM exposes additional internal regions worth surfacing as slots. Do NOT add MUI v4 variant-specific keys (`text`, `outlined`, `contained`) — those are now styling concerns, not slot-routing concerns.
+**End-state**: once all 28 components migrate, `classes`, `StandardProps`, `JssProps`, and `Classes` are removed from `@toptal/picasso-shared`. Button's drop is one step toward that.

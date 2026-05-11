@@ -32,15 +32,20 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4947",
+      "branch": "migrate-Button",
+      "worktree": "migration-runs/2026-05-08/Button/worktree",
+      "iterations": 1,
       "merged_at": null,
-      "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Reference for the light path; verify status before scaling."
+      "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Reference for the light path; verify status before scaling.",
+      "last_ci_green_at": "2026-05-08T07:02:21.508Z",
+      "session_id": "79714792-6765-420a-9660-f1385fda0739",
+      "last_review_seen_at": "2026-05-11T08:13:19.861Z",
+      "escalation_reason": null,
+      "review_iterations": 5
     },
     "Drawer": {
       "tier": 0,
