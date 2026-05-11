@@ -19,7 +19,7 @@ import { createCoreClassNames } from './styles'
 export type IconPositionType = 'left' | 'right'
 
 export interface Props
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     TextLabelProps,
     ButtonOrAnchorProps {
   as?: ElementType

@@ -1,6 +1,12 @@
 {
   "component": "Button",
-  "removed": [],
+  "removed": [
+    {
+      "prop": "classes",
+      "reason": "Type-level removal via Omit<StandardProps, 'classes'> on both Button.Props and ButtonBase.Props. Pre-migration the prop was vestigial — inherited via StandardProps/JssProps but never extracted by either component, so it leaked through {...rest} to @mui/base/Button (no public classes prop on MUIButtonBase), which dropped it as an unknown HTML attribute (React dev warning + silent prod drop). Post-migration the leak path was identical against @base-ui/react/button. Reviewer asked us to make the API honest about not using it. Zero internal call-sites pass classes={...} to picasso Button (verified by grep across packages/**). External 23-repo portfolio not audited — if any consumer types classes={...}, they will see a TS error and need to remove the prop.",
+      "codemod": "required"
+    }
+  ],
   "renamed": [],
   "narrowed": []
 }
