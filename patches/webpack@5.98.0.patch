@@ -1,0 +1,73 @@
+diff --git a/lib/FileSystemInfo.js b/lib/FileSystemInfo.js
+index c338d53349038b4c0b0cb1bd344d8437601b6530..bf71b35416e6b1ca57795918dbdc37c2085a3c4f 100644
+--- a/lib/FileSystemInfo.js
++++ b/lib/FileSystemInfo.js
+@@ -3583,6 +3583,9 @@ class FileSystemInfo {
+ 		/** @type {string[]} */
+ 		const hashes = [];
+ 		let safeTime = 0;
++		const processedSymlinks = new Set(
++			/** @type {NonNullable<ContextHash["symlinks"]>} */ (entry.symlinks)
++		);
+ 		processAsyncTree(
+ 			/** @type {NonNullable<ContextHash["symlinks"]>} */ (entry.symlinks),
+ 			10,
+@@ -3595,7 +3598,11 @@ class FileSystemInfo {
+ 							safeTime = Math.max(safeTime, entry.safeTime);
+ 						}
+ 						if (entry.symlinks !== undefined) {
+-							for (const target of entry.symlinks) push(target);
++							for (const target of entry.symlinks) {
++								if (processedSymlinks.has(target)) continue;
++								processedSymlinks.add(target);
++								push(target);
++							}
+ 						}
+ 					}
+ 					callback();
+@@ -3702,6 +3709,9 @@ class FileSystemInfo {
+ 	_resolveContextHash(entry, callback) {
+ 		/** @type {string[]} */
+ 		const hashes = [];
++		const processedSymlinks = new Set(
++			/** @type {NonNullable<ContextHash["symlinks"]>} */ (entry.symlinks)
++		);
+ 		processAsyncTree(
+ 			/** @type {NonNullable<ContextHash["symlinks"]>} */ (entry.symlinks),
+ 			10,
+@@ -3711,7 +3721,11 @@ class FileSystemInfo {
+ 					if (hash) {
+ 						hashes.push(hash.hash);
+ 						if (hash.symlinks !== undefined) {
+-							for (const target of hash.symlinks) push(target);
++							for (const target of hash.symlinks) {
++								if (processedSymlinks.has(target)) continue;
++								processedSymlinks.add(target);
++								push(target);
++							}
+ 						}
+ 					}
+ 					callback();
+@@ -3870,6 +3884,9 @@ class FileSystemInfo {
+ 		/** @type {string[]} */
+ 		const tsHashes = [];
+ 		let safeTime = 0;
++		const processedSymlinks = new Set(
++			/** @type {NonNullable<ContextHash["symlinks"]>} */ (entry.symlinks)
++		);
+ 		processAsyncTree(
+ 			/** @type {NonNullable<ContextHash["symlinks"]>} */ (entry.symlinks),
+ 			10,
+@@ -3883,7 +3900,11 @@ class FileSystemInfo {
+ 							safeTime = Math.max(safeTime, entry.safeTime);
+ 						}
+ 						if (entry.symlinks !== undefined) {
+-							for (const target of entry.symlinks) push(target);
++							for (const target of entry.symlinks) {
++								if (processedSymlinks.has(target)) continue;
++								processedSymlinks.add(target);
++								push(target);
++							}
+ 						}
+ 					}
+ 					callback();

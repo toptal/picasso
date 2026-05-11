@@ -1649,12 +1649,18 @@ const agent = {
             // Live npm-registry lookups for "what does package X export at v Y"
             'Bash(pnpm info:*)',
             'Bash(npm view:*)',
-            // Read-only git inspection (diff/status/log/show/blame)
+            // Read-only git inspection (diff/status/log/show/blame/check-ignore)
             'Bash(git diff:*)',
             'Bash(git status:*)',
             'Bash(git log:*)',
             'Bash(git show:*)',
             'Bash(git blame:*)',
+            'Bash(git check-ignore:*)',
+            // ripgrep fallback for multiline/dotall patterns that the Grep
+            // tool can't easily express (`--multiline --multiline-dotall`).
+            // Read-only; Grep tool covers the common case but `rg` is the
+            // escape hatch when the agent needs cross-line regex.
+            'Bash(rg:*)',
             // Conversational review-response (sweep mode, 2026-05-08).
             // Agent reads PR threads and posts replies. Code edits + commits
             // remain orchestrator-driven (no `gh pr merge`, no `git commit`).
