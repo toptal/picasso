@@ -151,16 +151,22 @@ interface CheckSnapshot {
 }
 
 type PollChecksResult =
-  | { state: 'success'; checks: readonly CheckSnapshot[] }
+  | {
+      state: 'success'
+      checks: readonly CheckSnapshot[]
+      mergeStateStatus?: string
+    }
   | {
       state: 'failure'
       failed: readonly CheckSnapshot[]
       checks: readonly CheckSnapshot[]
+      mergeStateStatus?: string
     }
   | {
       state: 'timeout'
       pending: readonly CheckSnapshot[]
       checks: readonly CheckSnapshot[]
+      mergeStateStatus?: string
     }
 
 function log(prefix: string, message: string): void {
@@ -1049,6 +1055,74 @@ const gh = {
   },
 
   /**
+   * One-shot read of the head commit's status-check rollup combined with
+   * GitHub's computed `mergeStateStatus`. The rollup alone is NOT a
+   * sufficient signal for "the PR is mergeable" — it returns only checks
+   * that have *reported* status. Required-but-not-yet-reported checks
+   * (declared by branch protection) are invisible to rollup, so a PR with
+   * all-green-but-incomplete rollup will read as `success` here when
+   * GitHub actually has it as `BLOCKED`. We treat `mergeStateStatus` as
+   * the source of truth for the success branch:
+   *
+   *   CLEAN / HAS_HOOKS              → state='success'
+   *   any reported failure           → state='failure' (regardless of
+   *                                    mergeStateStatus; agent investigates)
+   *   anything else (BLOCKED, DIRTY, → state='timeout' (treat as pending;
+   *     BEHIND, UNSTABLE, UNKNOWN,     caller decides whether to flip to
+   *     DRAFT)                         awaiting_ci or escalate)
+   *
+   * `mergeStateStatus` is included in the result so callers can log it /
+   * branch on DIRTY/BEHIND if they want a more granular response than
+   * "just stay pending."
+   */
+  async snapshotChecks(
+    numberOrUrl: string,
+    cwd: string
+  ): Promise<PollChecksResult> {
+    const view = (await gh.viewPR(
+      numberOrUrl,
+      'statusCheckRollup,mergeStateStatus',
+      cwd
+    ).catch(() => null)) as
+      | {
+          statusCheckRollup?: readonly RawCheckEntry[]
+          mergeStateStatus?: string
+        }
+      | null
+
+    const rollup = view?.statusCheckRollup ?? []
+    const snapshot: CheckSnapshot[] = rollup.map((c) => ({
+      name: c.name ?? c.context ?? '(unnamed)',
+      status: (c.status ?? c.state ?? '').toUpperCase(),
+      conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
+      detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
+    }))
+    const mergeStateStatus = (view?.mergeStateStatus ?? '').toUpperCase()
+    const failed = snapshot.filter((c) =>
+      FAILURE_CONCLUSIONS.has(c.conclusion)
+    )
+    const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+
+    if (failed.length > 0) {
+      return { state: 'failure', failed, checks: snapshot, mergeStateStatus }
+    }
+
+    if (mergeStateStatus === 'CLEAN' || mergeStateStatus === 'HAS_HOOKS') {
+      return { state: 'success', checks: snapshot, mergeStateStatus }
+    }
+
+    // BLOCKED, UNSTABLE, DIRTY, BEHIND, UNKNOWN, DRAFT, or empty:
+    // treat as "not green yet." Caller logs mergeStateStatus and decides
+    // whether to flip to awaiting_ci, escalate (DIRTY/BEHIND), or retry
+    // (UNKNOWN). UNSTABLE without rollup failures shouldn't normally
+    // happen — UNSTABLE means a non-required check failed, which our
+    // rollup would surface as `failed`. If it does land here (e.g.,
+    // GitHub computed UNSTABLE before all events propagated), treating
+    // as pending is the safe default.
+    return { state: 'timeout', pending, checks: snapshot, mergeStateStatus }
+  },
+
+  /**
    * Fetch the raw log of a single Actions job, given its detailsUrl from the
    * status-check rollup. Used by Phase 3.2/3.3 to feed CI failure context
    * into the failure classifier.
@@ -1591,9 +1665,13 @@ const agent = {
             //     `in_reply_to`) : threaded line-comment reply.
             //   - `gh api repos/.../pulls/comments/<id>/reactions` : read
             //     reactions on past replies (👍 detection).
+            //   - `gh run view <run-id> --log-failed` : ergonomic CI log
+            //     fetch when sweep hands the agent failed-check context
+            //     (`awaiting_ci` → red rollup path; see sweepOne).
             'Bash(gh pr view:*)',
             'Bash(gh pr comment:*)',
             'Bash(gh api:*)',
+            'Bash(gh run view:*)',
           ]
           const mcpTools = inv.withMcp
             ? [
@@ -2083,19 +2161,21 @@ export async function runReviewSweep(
   // 2.4: post-merge reference populate).
   const candidates = Object.values(m.components).filter(
     (i) =>
-      (i.status === 'awaiting_review' || i.status === 'ready_to_merge') &&
+      (i.status === 'awaiting_review' ||
+        i.status === 'ready_to_merge' ||
+        i.status === 'awaiting_ci') &&
       i.pr &&
       i.branch &&
       i.worktree
   )
 
   if (candidates.length === 0) {
-    log('sweep', 'no items in awaiting_review state — nothing to sweep')
+    log('sweep', 'no items in awaiting_review / awaiting_ci / ready_to_merge — nothing to sweep')
 
     return { status: 'no-work' }
   }
 
-  log('sweep', `${candidates.length} item(s) in awaiting_review`)
+  log('sweep', `${candidates.length} item(s) to sweep (awaiting_review / awaiting_ci / ready_to_merge)`)
   let processed = 0
 
   for (const item of candidates) {
@@ -2164,13 +2244,83 @@ async function sweepOne(
     return
   }
 
-  // PR is still open. ready_to_merge items just keep waiting; nothing
-  // for sweep to do beyond merge-detection (operator merges manually
-  // per their preference).
-  if (item.status === 'ready_to_merge') {
-    log('sweep', `${item.id}: ready_to_merge, awaiting operator merge`)
+  // CI-failure context (failed CheckSnapshot list) that the conversational
+  // agent should address on this tick. Populated either here (ready_to_merge
+  // demotion to awaiting_review, or awaiting_ci flip back to awaiting_review)
+  // or in the LGTM-only short-circuit below. When set, the agent prompt
+  // below includes a "CI failures" feedback block and the early-exit for
+  // "no new comments, no pending proposals" is bypassed so the agent runs.
+  let ciFailureContext: readonly CheckSnapshot[] | null = null
 
-    return
+  // PR is still open. ready_to_merge items just keep waiting for the
+  // operator's manual merge — but we re-validate CI on each tick.
+  // Otherwise a `ready_to_merge` flip from a prior tick stays cached
+  // even if a required check later transitions pending → red or a new
+  // required check was added in branch protection (BLOCKED again).
+  // Demote back to awaiting_ci or awaiting_review as appropriate; the
+  // operator sees the correct state in the manifest without manual
+  // intervention.
+  if (item.status === 'ready_to_merge') {
+    const checks = await gh.snapshotChecks(prUrl, wtPath)
+
+    if (checks.state === 'success') {
+      log('sweep', `${item.id}: ready_to_merge (still CLEAN), awaiting operator merge`)
+
+      return
+    }
+
+    if (checks.state === 'failure') {
+      log(
+        'sweep',
+        `${item.id}: ready_to_merge → awaiting_review (CI failed: ${checks.failed.length} check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'})`
+      )
+      manifest.update(manifestAbs, item.id, { status: 'awaiting_review' })
+      // Fall through so the agent engages on the failure this tick.
+      ciFailureContext = checks.failed
+    } else {
+      log(
+        'sweep',
+        `${item.id}: ready_to_merge → awaiting_ci (mergeStateStatus=${checks.mergeStateStatus ?? '?'}, ${checks.pending.length} reported check(s) pending)`
+      )
+      manifest.update(manifestAbs, item.id, { status: 'awaiting_ci' })
+
+      return
+    }
+  }
+
+  // awaiting_ci: reviewer approval already landed, but rollup was pending
+  // on a prior tick. Re-check the rollup now:
+  //   success → ready_to_merge (CI greened up).
+  //   timeout (still pending) → log + return; no agent work needed.
+  //   failure → flip back to awaiting_review + thread failures into the
+  //     agent's next invocation so it can investigate logs and push a fix.
+  if (item.status === 'awaiting_ci') {
+    const checks = await gh.snapshotChecks(prUrl, wtPath)
+
+    if (checks.state === 'success') {
+      manifest.update(manifestAbs, item.id, { status: 'ready_to_merge' })
+      log(
+        'sweep',
+        `${item.id}: CI green after waiting (${checks.checks.length} check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'}) — status=ready_to_merge`
+      )
+
+      return
+    }
+    if (checks.state === 'timeout') {
+      log(
+        'sweep',
+        `${item.id}: awaiting_ci — ${checks.pending.length} reported check(s) pending, mergeStateStatus=${checks.mergeStateStatus ?? '?'}`
+      )
+
+      return
+    }
+    // state === 'failure'
+    log(
+      'sweep',
+      `${item.id}: CI failed while awaiting_ci (${checks.failed.length} failed check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'}) — handing back to agent for fixes`
+    )
+    manifest.update(manifestAbs, item.id, { status: 'awaiting_review' })
+    ciFailureContext = checks.failed
   }
 
   // (Tier 2 batch B Slice 4 — sweep-driven Happo-only-flake retry —
@@ -2252,10 +2402,33 @@ async function sweepOne(
     return Number.isNaN(t) ? true : t > since
   })
 
-  if (newReviews.length === 0 && pendingProposals.length === 0) {
+  // CI rollup snapshot — taken once per tick, reused by the LGTM-only
+  // short-circuit AND used to engage the agent on red CI regardless of
+  // approval state. Rationale: a flaky test, a lint regression from a
+  // recent merge into the base branch, or a broken Happo run should
+  // prompt the agent to investigate IMMEDIATELY — it shouldn't have to
+  // wait for a reviewer's approval first.
+  //
+  // The awaiting_ci-at-head handler may have already snapshotted and set
+  // ciFailureContext on this tick (status was awaiting_ci, CI flipped to
+  // red, status flipped back to awaiting_review). In that case we reuse
+  // the result instead of paying for another API call.
+  const checks: PollChecksResult = ciFailureContext
+    ? { state: 'failure', failed: ciFailureContext, checks: ciFailureContext }
+    : await gh.snapshotChecks(prUrl, wtPath)
+
+  if (checks.state === 'failure' && ciFailureContext === null) {
+    ciFailureContext = checks.failed
+  }
+
+  if (
+    newReviews.length === 0 &&
+    pendingProposals.length === 0 &&
+    ciFailureContext === null
+  ) {
     log(
       'sweep',
-      `${item.id}: ${allReviews.length} review(s) total, 0 newer than ${item.last_review_seen_at ?? 'never'} (and 0 pending orchestrator proposals)`
+      `${item.id}: ${allReviews.length} review(s) total, 0 newer than ${item.last_review_seen_at ?? 'never'} (and 0 pending orchestrator proposals; CI state=${checks.state})`
     )
 
     return
@@ -2265,6 +2438,13 @@ async function sweepOne(
     log(
       'sweep',
       `${item.id}: no new reviewer comments, but ${pendingProposals.length} pending proposal(s) — agent will check for reactions/follow-ups`
+    )
+  }
+
+  if (newReviews.length === 0 && pendingProposals.length === 0 && ciFailureContext) {
+    log(
+      'sweep',
+      `${item.id}: no new comments, but ${ciFailureContext.length} CI failure(s) — agent will investigate`
     )
   }
 
@@ -2285,23 +2465,60 @@ async function sweepOne(
 
   // LGTM-only short-circuit: every new review is an approval with no
   // body content (no nits, no questions, no architectural concerns).
-  // Skip the agent invocation entirely and transition straight to
-  // ready_to_merge — operator merges manually per their preference.
+  // Skip the agent invocation entirely and transition to ready_to_merge
+  // — operator merges manually per their preference.
+  //
+  // The classifier's enum value is 'approval' (see review-classifier.ts
+  // `ReviewClass`). Prior versions of this file checked the string
+  // `'LGTM'`, which never matched and silently disabled the short-circuit
+  // — every approval-only sweep tick fell through to the conversational
+  // agent invocation instead of advancing status. Fixed 2026-05-11.
   const onlyApprovals = classifications.every(
-    (c) => c.class === 'LGTM'
+    (c) => c.class === 'approval'
   )
 
   if (onlyApprovals && classifications.length > 0) {
-    manifest.update(manifestAbs, item.id, {
-      status: 'ready_to_merge',
-      last_review_seen_at: nowIso,
-    })
+    // Gate the transition on the head commit's CI rollup (`checks` above).
+    // An approval alone is not enough to call the PR mergeable; the
+    // operator (rightly) wants visibility that CI is green too.
+    //   success → ready_to_merge (today's behavior).
+    //   pending → awaiting_ci; subsequent ticks re-check rollup and
+    //     advance to ready_to_merge or back to awaiting_review.
+    //   failure → don't transition; ciFailureContext is already set
+    //     (populated when `checks` was taken above), agent will engage.
+    if (checks.state === 'success') {
+      manifest.update(manifestAbs, item.id, {
+        status: 'ready_to_merge',
+        last_review_seen_at: nowIso,
+      })
+      log(
+        'sweep',
+        `${item.id}: ready_to_merge (${classifications.length} approval(s) only; CI clean, mergeStateStatus=${checks.mergeStateStatus ?? '?'}); operator merges manually`
+      )
+
+      return
+    }
+
+    if (checks.state === 'timeout') {
+      manifest.update(manifestAbs, item.id, {
+        status: 'awaiting_ci',
+        last_review_seen_at: nowIso,
+      })
+      log(
+        'sweep',
+        `${item.id}: awaiting_ci (${classifications.length} approval(s) only; ${checks.pending.length} reported check(s) pending, mergeStateStatus=${checks.mergeStateStatus ?? '?'})`
+      )
+
+      return
+    }
+
+    // state === 'failure' — approval landed but CI is red. Fall through
+    // to the conversational agent path with failure context attached
+    // (ciFailureContext was set when `checks` was taken above).
     log(
       'sweep',
-      `${item.id}: ready_to_merge (${classifications.length} approval(s) only; no body content); operator merges manually`
+      `${item.id}: approval(s) landed but CI failed (${checks.failed.length} failed check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'}) — invoking agent to investigate`
     )
-
-    return
   }
 
   // Conversational review-response (2026-05-08 redesign).
@@ -2371,6 +2588,31 @@ async function sweepOne(
               `Posted at: ${r.at || '(unknown time)'}\n\n` +
               `Body:\n\`\`\`\n${(r.body ?? '').slice(0, 1000)}${(r.body ?? '').length > 1000 ? '\n[...truncated]' : ''}\n\`\`\`\n\n` +
               `Action: fetch reactions on this comment via gh api. If 👍 by a human reviewer → ACT on the proposal now. If 👎 → post brief "Ok, leaving as-is." If no reaction → no-op this tick.\n`
+            )
+          })
+          .join('\n')
+      : '') +
+    (ciFailureContext && ciFailureContext.length > 0
+      ? `\n## CI failures to address (post-approval)\n\n` +
+        'The reviewer has already approved this PR but the head commit\'s CI rollup is RED. Investigate each failed check below, fix the underlying issue in the code, and let the orchestrator push the fix.\n\n' +
+        'How to investigate:\n' +
+        '- `gh run view <run-id> --log-failed` — print only the failed-step output (run-id is in the `detailsUrl` below as `.../actions/runs/<run-id>/...`).\n' +
+        '- `gh api repos/<owner>/<repo>/actions/jobs/<job-id>/logs` — raw log of a single job.\n' +
+        '- Reproduce locally before pushing: run the equivalent `yarn` script (typecheck / davinci-syntax / unit / cypress / happo) inside this worktree.\n\n' +
+        'Constraints (do NOT shortcut):\n' +
+        '- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don\'t loosen API preservation, classes shim handling, or any other documented constraint just to make CI green.\n' +
+        '- Do NOT delete or skip failing tests to make them pass.\n' +
+        '- Do NOT modify CI workflows (`.github/workflows/*`).\n' +
+        '- If a failure looks like a flake (passes locally, network/timeout in CI), reply with a brief diagnosis and DO NOT push — the operator will re-run.\n' +
+        '- If the fix conflicts with the reviewer\'s prior approval (changes the API surface they signed off on), reply with the proposed fix as a MEDIUM-confidence proposal (👍 to confirm) instead of editing.\n\n' +
+        'Failed checks:\n\n' +
+        ciFailureContext
+          .map((c, idx) => {
+            return (
+              `### CI failure ${idx + 1} — ${c.name}\n\n` +
+              `- status: ${c.status}\n` +
+              `- conclusion: ${c.conclusion}\n` +
+              `- detailsUrl: ${c.detailsUrl || '(none)'}\n`
             )
           })
           .join('\n')
