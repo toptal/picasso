@@ -3970,6 +3970,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const agentRaw = get('--agent')
   const iterStr = get('--max-iterations')
   const branchRaw = get('--branch')
+  const baseBranchRaw = get('--base-branch')
   const ciTimeoutStr = get('--ci-timeout-minutes')
   const reviewTimeoutStr = get('--review-timeout-minutes')
   const maxItemsStr = get('--max-items')
@@ -3994,6 +3995,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     // (no source change) get little benefit; pass `--no-mcp` for those.
     withMcp: !has('--no-mcp'),
     branch: branchRaw ?? null,
+    baseBranch: baseBranchRaw ?? null,
     ciTimeoutMinutes: ciTimeoutStr ? Number(ciTimeoutStr) : 15,
     reviewTimeoutMinutes: reviewTimeoutStr ? Number(reviewTimeoutStr) : null,
     batch: has('--batch'),

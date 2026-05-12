@@ -38,7 +38,7 @@ pnpm orchestrate --component=Note
 pnpm orchestrate --tier=1
 ```
 
-CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent=claude|cursor|codex`, `--max-iterations=<N>` (default 3).
+CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent=claude|cursor|codex`, `--max-iterations=<N>` (default 3), `--base-branch=<ref>` (override the workflow's PR target for this run).
 
 ## Prerequisites
 
