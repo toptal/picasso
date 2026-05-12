@@ -135,6 +135,46 @@ run_stage_skip() {
 
 # ---------- stages ---------------------------------------------------------
 
+# 0a. Changeset presence — the agent must author .changeset/<component>-migration.md
+#    so that `feature/picasso-modernization` accumulates per-PR changesets that the
+#    final `pnpm changeset version` aggregates into a per-package CHANGELOG. See
+#    docs/migration/PROMPT-light.md / PROMPT-heavy.md §7 (Changeset) for the
+#    template + the versionBump rules.
+#
+#    Detection scans the worktree's `.changeset/` for any new `*.md` (either
+#    uncommitted in the working tree OR added on the current branch since base)
+#    that isn't the boilerplate README.md / config files. Cheap filesystem +
+#    git check — runs first so the agent gets fast feedback if it skipped the
+#    step.
+#
+#    Opt-out: MIGRATION_GATE_CHANGESET=skip (used by orchestrator self-tests +
+#    sandbox runs that exercise the gate without authoring real changesets).
+check_changeset() {
+  local uncommitted committed total
+  uncommitted=$(git status --porcelain -- .changeset/ 2>/dev/null \
+    | awk '{ print $NF }' \
+    | grep -E '^\.changeset/[^/]+\.md$' \
+    | grep -v 'README\.md' \
+    | grep -v 'changelog\.config\.js' || true)
+  committed=$(git log --diff-filter=A --name-only --format= HEAD ^"$(git merge-base HEAD master 2>/dev/null || echo HEAD)" -- .changeset/ 2>/dev/null \
+    | grep -E '^\.changeset/[^/]+\.md$' \
+    | grep -v 'README\.md' || true)
+  total=$(printf '%s\n%s\n' "$uncommitted" "$committed" | grep -v '^$' | sort -u | wc -l | tr -d ' ')
+  if [ "$total" -eq 0 ]; then
+    echo "FAIL: no new .changeset/<component>-migration.md found." >&2
+    echo "      Agent must author the changeset before the gate runs." >&2
+    echo "      Template + rules: docs/migration/PROMPT-light.md / PROMPT-heavy.md §7 (Changeset)." >&2
+    echo "      versionBump value is locked per-component in docs/migration/manifest.json." >&2
+    return 1
+  fi
+  return 0
+}
+if [ "${MIGRATION_GATE_CHANGESET:-run}" = "skip" ]; then
+  run_stage_skip "changeset" "MIGRATION_GATE_CHANGESET=skip"
+else
+  run_stage "changeset" check_changeset
+fi
+
 # 0. Lockfile drift — verify pnpm-lock.yaml satisfies package.json by running
 #    `pnpm install --frozen-lockfile`, which exits non-zero if any dep in
 #    package.json can't be resolved against the existing lockfile.

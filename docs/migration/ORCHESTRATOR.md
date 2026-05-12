@@ -106,11 +106,21 @@ migration-runs/<YYYY-MM-DD>/<id>/
 ├── post/                     # snapshot after migration
 ├── prompt.<iter>.txt         # the assembled prompt for iteration N
 ├── agent.<iter>.log          # agent stdout/stderr
-├── <stage>.log               # build, tsc, lint, jest, cypress, happo, react19
+├── <stage>.log               # changeset, lockfile-drift, syncpack, build, tsc, lint, jest, consumers, cypress, happo, react19
 ├── report.md                 # gate report (PASS/FAIL summary)
 ├── diff.md                   # diff report (PR body)
 └── escalation.md             # written only on escalation
 ```
+
+## Changesets
+
+Every migration PR must include a `.changeset/<component-kebab>-migration.md` file. The agent authors it during the migration loop (see [PROMPT-light.md](./PROMPT-light.md) / [PROMPT-heavy.md](./PROMPT-heavy.md) §7); the gate's `changeset` stage (first stage, fail-fast) blocks PR creation if it's missing.
+
+Why per-PR: `.changeset/*.md` files accumulate on `feature/picasso-modernization` as migrations merge through `feature/picasso-modernization-temp`. At release time, `pnpm changeset version` aggregates every per-PR file into one consolidated CHANGELOG entry per workspace package — no manual changelog editing needed. Per-PR files avoid the merge-conflict cost of a single growing file.
+
+**Version bump source of truth.** Each component's `versionBump` is locked in [`manifest.json`](./manifest.json) (`patch` | `minor` | `major`) and enforced by [`manifest.schema.json`](./manifest.schema.json). The decision matrix was set per the [classes-audit decisions](./decisions/) cross-referenced with [`docs/contribution/changeset-guidelines.md`](../contribution/changeset-guidelines.md) — Tier 0 components dropping public `classes` are `major`; Tier 1 no-op cleanup (peer-dep + React 19 cap) is `patch`; Tier 3.b components keeping locally narrowed `classes` (Dropdown, OutlinedInput) are `patch`. Agents must read the manifest value and not deviate; if the value looks wrong for a specific migration, escalate rather than override.
+
+**Opt-out:** `MIGRATION_GATE_CHANGESET=skip` bypasses the gate stage. Used by orchestrator self-tests + `--dry-run` sandbox runs that exercise the gate without authoring real changesets. Not for production migrations.
 
 ## Kill switch
 

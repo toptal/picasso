@@ -193,6 +193,36 @@ Your task:
    - story files (they exercise the public API)
    - file locations or export names
 
+7. **Author a changeset (mandatory).** Create `.changeset/<component-kebab>-migration.md` at the repo root before declaring done. The file accumulates on `feature/picasso-modernization`; the final `pnpm changeset version` at release time aggregates all per-PR files into a per-package CHANGELOG.
+
+   Template:
+
+   ```markdown
+   ---
+   '<workspace-package-name>': <versionBump from manifest>
+   ---
+
+   ### <ComponentName>
+
+   - <one-line present-simple description of what changed>
+   - <additional bullets if applicable>
+   ```
+
+   Rules:
+   - **Read the `versionBump` value from `docs/migration/manifest.json`** for this component. Do NOT pick your own — the level is locked per-component using the rules in [`docs/contribution/changeset-guidelines.md`](../contribution/changeset-guidelines.md) against the per-tier classes-audit decision matrix. If you think the manifest's value is wrong, stop and escalate; don't override.
+   - **Workspace package name** = the migrating package's `package.json` `name` field. For Tier 0 cleanup that drops a public typed prop (`classes`), no other package is affected — single frontmatter line. If the migration also edits a sibling package (rare in Tier 0), add a second frontmatter line with that package's own versionBump.
+   - **Present simple tense.** "Migrate Button internals to @base-ui/react", not "Migrated…" / "Migrating…".
+   - **Body content** describes user-observable changes. For Tier 0 light-path migrations the canonical body is:
+     ```markdown
+     ### Button
+
+     - Migrate internals from @mui/base to @base-ui/react (behavioral parity)
+     - Drop the inherited `classes` prop from public types (was vestigial since the @mui/base step — see docs/migration/decisions/classes-audit.md)
+     ```
+     Adjust per component — e.g. omit the `classes` bullet for components that don't drop it.
+   - **Filename** is kebab-case: `button-migration.md`, `outlined-input-migration.md`. Avoid timestamps or PR numbers.
+   - Format is enforced by lint-staged (prettier runs on `.changeset/*.md`); no need to hand-format.
+
 Output: file edits only. No explanations.
 
 ### Acceptance criteria — iterate to working, then run full
