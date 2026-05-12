@@ -98,6 +98,7 @@
     "@changesets/get-github-info": "^0.6.0",
     "@cypress/skip-test": "^2.6.1",
     "@nx/js": "22.7.5",
+    "@playwright/mcp": "0.0.75",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-viewport": "^6.5.15",
     "@storybook/builder-webpack5": "^6.5.16",

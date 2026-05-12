@@ -16,6 +16,9 @@ minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
   - '@toptal/*'
   - '@topkit/*'
+  - '@playwright/*'
+  - 'playwright'
+  - 'playwright-core'
 
 overrides:
   '@types/node-fetch>form-data': '3.0.4'
