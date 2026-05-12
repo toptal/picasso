@@ -37,15 +37,17 @@
 
 import { spawn, spawnSync, type SpawnOptions } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
-import { promises as fs, existsSync, readFileSync, writeFileSync } from 'node:fs'
+import {
+  promises as fs,
+  existsSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs'
 import * as path from 'node:path'
 import * as os from 'node:os'
 
 import { classifyCIFailure } from './failure-classifier'
-import {
-  classifyReview,
-  type Review as RawReview,
-} from './review-classifier'
+import { classifyReview, type Review as RawReview } from './review-classifier'
 import { appendCostSnapshot } from './token-telemetry'
 import type {
   EscalationDecision,
@@ -64,7 +66,7 @@ import type {
 const ISO = (): string => new Date().toISOString()
 const TODAY = (): string => new Date().toISOString().slice(0, 10)
 const sleep = (ms: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, ms))
+  new Promise(resolve => setTimeout(resolve, ms))
 
 // Phase 3.1 — gh status-check-rollup terminology bridge.
 // CheckRun (Actions): status ∈ {QUEUED,IN_PROGRESS,COMPLETED};
@@ -105,11 +107,7 @@ const FAILURE_CONCLUSIONS = new Set([
 // and will be filtered. Fix is operational: publish their org membership
 // via `gh api -X PUT orgs/toptal/public_members/<self>`. See
 // docs/migration/PROMPT-review-response.md for the operator-facing notes.
-const TRUSTED_REVIEW_ASSOCIATIONS = new Set([
-  'OWNER',
-  'MEMBER',
-  'COLLABORATOR',
-])
+const TRUSTED_REVIEW_ASSOCIATIONS = new Set(['OWNER', 'MEMBER', 'COLLABORATOR'])
 
 // Bot logins to exclude unconditionally. GitHub appends `[bot]` to App-
 // backed accounts, so the suffix catches new bots automatically. Explicit
@@ -196,15 +194,18 @@ function shell(
   args: string[],
   opts: SpawnOptions = {}
 ): Promise<ShellResult> {
-  return new Promise((resolve) => {
-    const child = spawn(cmd, args, { ...opts, stdio: ['ignore', 'pipe', 'pipe'] })
+  return new Promise(resolve => {
+    const child = spawn(cmd, args, {
+      ...opts,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
     let stdout = ''
     let stderr = ''
 
-    child.stdout?.on('data', (d) => {
+    child.stdout?.on('data', d => {
       stdout += d
     })
-    child.stderr?.on('data', (d) => {
+    child.stderr?.on('data', d => {
       stderr += d
     })
     // ENOENT here means EITHER the executable wasn't found OR opts.cwd doesn't
@@ -222,7 +223,7 @@ function shell(
 
       resolve({ exitCode: 1, stdout, stderr: stderr + detail })
     })
-    child.on('close', (code) => {
+    child.on('close', code => {
       resolve({ exitCode: code ?? 1, stdout, stderr })
     })
   })
@@ -306,15 +307,21 @@ async function loadEnvrcUpwards(cwd: string): Promise<readonly string[]> {
     }
     const parent = path.dirname(dir)
 
-    if (parent === dir) {break}
+    if (parent === dir) {
+      break
+    }
     dir = parent
   }
-  if (!envrcDir) {return []}
+  if (!envrcDir) {
+    return []
+  }
 
   // Bail if direnv unavailable.
   const direnvCheck = await shell('which', ['direnv'])
 
-  if (direnvCheck.exitCode !== 0) {return []}
+  if (direnvCheck.exitCode !== 0) {
+    return []
+  }
 
   // Run `direnv export bash` from the .envrc's directory. Output is a
   // sequence of `export KEY=$'value';` statements.
@@ -322,7 +329,9 @@ async function loadEnvrcUpwards(cwd: string): Promise<readonly string[]> {
     cwd: envrcDir,
   })
 
-  if (exportResult.exitCode !== 0 || !exportResult.stdout) {return []}
+  if (exportResult.exitCode !== 0 || !exportResult.stdout) {
+    return []
+  }
 
   const injected: string[] = []
   const exportRe = /export\s+([A-Z_][A-Z0-9_]*)=\$?'((?:[^'\\]|\\.)*)'/gi
@@ -331,13 +340,25 @@ async function loadEnvrcUpwards(cwd: string): Promise<readonly string[]> {
   while ((match = exportRe.exec(exportResult.stdout)) !== null) {
     const [, key, rawValue] = match
 
-    if (process.env[key]) {continue} // never overwrite an existing var
+    if (process.env[key]) {
+      continue
+    } // never overwrite an existing var
     // ANSI-C decoding is partial: \\, \', \n. Sufficient for direnv's
-    // typical output (most secrets are alphanumeric).
-    const value = rawValue
-      .replace(/\\'/g, "'")
-      .replace(/\\\\/g, '\\')
-      .replace(/\\n/g, '\n')
+    // typical output (most secrets are alphanumeric). Single-pass so
+    // `\\n` (backslash + n) is not double-unescaped into a newline.
+    const value = rawValue.replace(/\\(.)/g, (_match, char) => {
+      if (char === "'") {
+        return "'"
+      }
+      if (char === '\\') {
+        return '\\'
+      }
+      if (char === 'n') {
+        return '\n'
+      }
+
+      return `\\${char}`
+    })
 
     process.env[key] = value
     injected.push(key)
@@ -371,7 +392,9 @@ async function recordTokenSnapshot(
     if (usage) {
       log(
         'cost',
-        `iter ${iteration}: total $${usage.costUsd.toFixed(3)} (in=${usage.inputTokens}, out=${usage.outputTokens}, cache_read=${usage.cacheReadTokens})`
+        `iter ${iteration}: total $${usage.costUsd.toFixed(3)} (in=${
+          usage.inputTokens
+        }, out=${usage.outputTokens}, cache_read=${usage.cacheReadTokens})`
       )
     }
   } catch (err) {
@@ -382,10 +405,14 @@ async function recordTokenSnapshot(
 async function detectNoProgressFailure(
   agentLogPath: string
 ): Promise<string | null> {
-  if (!existsSync(agentLogPath)) {return null}
+  if (!existsSync(agentLogPath)) {
+    return null
+  }
   const log_ = await fs.readFile(agentLogPath, 'utf8').catch(() => '')
 
-  if (!log_) {return null}
+  if (!log_) {
+    return null
+  }
 
   for (const [pattern, label] of NO_PROGRESS_PATTERNS) {
     const match = log_.match(pattern)
@@ -416,11 +443,13 @@ async function waitForUrl(url: string, timeoutMs: number): Promise<boolean> {
     try {
       const res = await fetch(url, { method: 'GET' })
 
-      if (res.ok || res.status === 304) {return true}
+      if (res.ok || res.status === 304) {
+        return true
+      }
     } catch {
       // network not ready yet — wait + retry
     }
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 1000))
   }
 
   return false
@@ -486,12 +515,16 @@ const manifest = {
       return item
     }
 
-    const candidates = items.filter((item) => {
-      if (item.status !== 'queued') {return false}
-      if (opts.tier !== null && item.tier !== opts.tier) {return false}
+    const candidates = items.filter(item => {
+      if (item.status !== 'queued') {
+        return false
+      }
+      if (opts.tier !== null && item.tier !== opts.tier) {
+        return false
+      }
 
       // All dependencies must be done.
-      return item.depends_on.every((dep) => m.components[dep]?.status === 'done')
+      return item.depends_on.every(dep => m.components[dep]?.status === 'done')
     })
 
     // Tier order, then alphabetical for stability.
@@ -501,15 +534,13 @@ const manifest = {
   },
 
   /** Mark an item with status + extra fields, persist immediately. */
-  update(
-    absPath: string,
-    id: string,
-    patch: Partial<ManifestItem>
-  ): Manifest {
+  update(absPath: string, id: string, patch: Partial<ManifestItem>): Manifest {
     const m = manifest.read(absPath)
     const current = m.components[id]
 
-    if (!current) {throw new Error(`No manifest entry for ${id}`)}
+    if (!current) {
+      throw new Error(`No manifest entry for ${id}`)
+    }
     m.components[id] = { ...current, ...patch }
     manifest.write(absPath, m)
 
@@ -550,7 +581,11 @@ const worktree = {
    * For workflows that need a different base (e.g. always master regardless of
    * operator's current branch), pass `base` explicitly. CLI: `--base=<ref>`.
    */
-  async add(branch: string, worktreePath: string, base = 'HEAD'): Promise<void> {
+  async add(
+    branch: string,
+    worktreePath: string,
+    base = 'HEAD'
+  ): Promise<void> {
     await fs.mkdir(path.dirname(worktreePath), { recursive: true })
 
     // Defensive cleanup: a previous run that crashed mid-flight (e.g. the
@@ -562,15 +597,25 @@ const worktree = {
     // orchestrator holds an exclusive lock on the manifest item — if we
     // got here, no other run is using these refs.
     if (existsSync(worktreePath)) {
-      log('worktree', `pre-existing path ${worktreePath} — removing stale partial`)
-      await shell('git', ['worktree', 'remove', '--force', worktreePath]).catch(() => {})
+      log(
+        'worktree',
+        `pre-existing path ${worktreePath} — removing stale partial`
+      )
+      await shell('git', ['worktree', 'remove', '--force', worktreePath]).catch(
+        () => {}
+      )
       // shell-out can leave the dir if `git worktree remove` failed (e.g.
       // worktree was never registered with git); fall back to rm -rf.
       if (existsSync(worktreePath)) {
         await fs.rm(worktreePath, { recursive: true, force: true })
       }
     }
-    const branchCheck = await shell('git', ['show-ref', '--verify', '--quiet', `refs/heads/${branch}`])
+    const branchCheck = await shell('git', [
+      'show-ref',
+      '--verify',
+      '--quiet',
+      `refs/heads/${branch}`,
+    ])
 
     if (branchCheck.exitCode === 0) {
       log('worktree', `pre-existing branch ${branch} — deleting stale ref`)
@@ -622,7 +667,10 @@ const worktree = {
   async bootstrap(worktreePath: string): Promise<void> {
     const startedAt = Date.now()
 
-    log('bootstrap', `running pnpm install --frozen-lockfile in ${worktreePath}`)
+    log(
+      'bootstrap',
+      `running pnpm install --frozen-lockfile in ${worktreePath}`
+    )
     const result = await shell('pnpm', ['install', '--frozen-lockfile'], {
       cwd: worktreePath,
     })
@@ -631,7 +679,9 @@ const worktree = {
 
     if (result.exitCode !== 0) {
       throw new Error(
-        `pnpm install failed in worktree (${elapsed}s): ${result.stderr.slice(-2000) || result.stdout.slice(-2000)}`
+        `pnpm install failed in worktree (${elapsed}s): ${
+          result.stderr.slice(-2000) || result.stdout.slice(-2000)
+        }`
       )
     }
     log('bootstrap', `pnpm install completed in ${elapsed}s`)
@@ -654,7 +704,10 @@ const worktree = {
     // every Tier 0+ migration.
     const buildStartedAt = Date.now()
 
-    log('bootstrap', `running pnpm build:package (lerna; all workspaces) in ${worktreePath}`)
+    log(
+      'bootstrap',
+      `running pnpm build:package (lerna; all workspaces) in ${worktreePath}`
+    )
     const buildResult = await shell('pnpm', ['build:package'], {
       cwd: worktreePath,
     })
@@ -683,7 +736,9 @@ const worktree = {
 
   /** Remove the worktree on success. Leave it for inspection on escalation. */
   async remove(worktreePath: string): Promise<void> {
-    if (!existsSync(worktreePath)) {return}
+    if (!existsSync(worktreePath)) {
+      return
+    }
     await shell('git', ['worktree', 'remove', '--force', worktreePath])
   },
 }
@@ -723,7 +778,8 @@ const gate = {
     const jsonReportPath = path.join(reportDir, 'report.json')
 
     let stages: GateReport['stages'] = []
-    let composite: GateReport['composite'] = result.exitCode === 0 ? 'PASS' : 'FAIL'
+    let composite: GateReport['composite'] =
+      result.exitCode === 0 ? 'PASS' : 'FAIL'
 
     // Tier 2.2 — prefer JSON.
     if (existsSync(jsonReportPath)) {
@@ -746,7 +802,9 @@ const gate = {
       } catch (err) {
         log(
           'gate',
-          `report.json parse failed (${(err as Error).message}); falling back to report.md`
+          `report.json parse failed (${
+            (err as Error).message
+          }); falling back to report.md`
         )
       }
     }
@@ -755,7 +813,8 @@ const gate = {
     if (existsSync(reportPath)) {
       const body = readFileSync(reportPath, 'utf8')
       // Parse "| <name> | <status> | <Ns> | `<log>` |" rows.
-      const tableRegex = /^\|\s*([^|]+?)\s*\|\s*(PASS|FAIL|SKIP)\s*\|\s*(\d+)s\s*\|\s*`([^`]+)`\s*\|/gm
+      const tableRegex =
+        /^\|\s*([^|]+?)\s*\|\s*(PASS|FAIL|SKIP)\s*\|\s*(\d+)s\s*\|\s*`([^`]+)`\s*\|/gm
       const parsed: typeof stages = []
 
       for (let m: RegExpExecArray | null; (m = tableRegex.exec(body)); ) {
@@ -863,16 +922,19 @@ const gh = {
         if (list.exitCode === 0) {
           const parsed = JSON.parse(list.stdout) as { url: string }[]
 
-          if (parsed.length > 0) {return parsed[0].url}
+          if (parsed.length > 0) {
+            return parsed[0].url
+          }
         }
         throw new Error(
           `gh pr create reported "already exists" but lookup failed: ${msg}`
         )
       }
 
-      const isTransient = /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
-        msg
-      )
+      const isTransient =
+        /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
+          msg
+        )
 
       if (!isTransient || attempt === maxAttempts) {
         throw new Error(
@@ -883,7 +945,9 @@ const gh = {
 
       log(
         'gh',
-        `transient error on gh pr create (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms: ${msg.slice(0, 120).replace(/\n.*/s, '')}`
+        `transient error on gh pr create (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms: ${msg
+          .slice(0, 120)
+          .replace(/\n.*/s, '')}`
       )
       await sleep(backoffMs)
     }
@@ -919,9 +983,10 @@ const gh = {
         return JSON.parse(result.stdout)
       }
       const msg = result.stderr || result.stdout
-      const isTransient = /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
-        msg
-      )
+      const isTransient =
+        /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
+          msg
+        )
 
       if (!isTransient || attempt === maxAttempts) {
         throw new Error(
@@ -932,7 +997,9 @@ const gh = {
 
       log(
         'gh',
-        `transient error on gh pr view (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms: ${msg.slice(0, 120).replace(/\n.*/s, '')}`
+        `transient error on gh pr view (attempt ${attempt}/${maxAttempts}); retrying in ${backoffMs}ms: ${msg
+          .slice(0, 120)
+          .replace(/\n.*/s, '')}`
       )
       await sleep(backoffMs)
     }
@@ -984,14 +1051,12 @@ const gh = {
 
     while (Date.now() < deadline) {
       pollNumber++
-      const view = (await gh.viewPR(
-        numberOrUrl,
-        'statusCheckRollup',
-        cwd
-      )) as { statusCheckRollup?: readonly RawCheckEntry[] } | null
+      const view = (await gh.viewPR(numberOrUrl, 'statusCheckRollup', cwd)) as {
+        statusCheckRollup?: readonly RawCheckEntry[]
+      } | null
 
       const rollup = view?.statusCheckRollup ?? []
-      const snapshot: CheckSnapshot[] = rollup.map((c) => ({
+      const snapshot: CheckSnapshot[] = rollup.map(c => ({
         name: c.name ?? c.context ?? '(unnamed)',
         // CheckRun uses `status` (QUEUED/IN_PROGRESS/COMPLETED) +
         // `conclusion` (SUCCESS/FAILURE/...). Statuses use lower-case
@@ -1001,7 +1066,9 @@ const gh = {
         detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
       }))
 
-      if (snapshot.length > 0) {everSawChecks = true}
+      if (snapshot.length > 0) {
+        everSawChecks = true
+      }
 
       opts.onTick?.(snapshot)
 
@@ -1015,10 +1082,10 @@ const gh = {
       }
 
       // Done = every check has a terminal conclusion.
-      const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+      const pending = snapshot.filter(c => !TERMINAL_STATUSES.has(c.status))
 
       if (pending.length === 0) {
-        const failed = snapshot.filter((c) =>
+        const failed = snapshot.filter(c =>
           FAILURE_CONCLUSIONS.has(c.conclusion)
         )
 
@@ -1044,24 +1111,20 @@ const gh = {
     // 25 (PR #4931): Happo transitioned PENDING → SUCCESS in the final
     // ~60s of a 15min window; without this branch the orchestrator
     // wrongly escalated as "timeout with 0 pending".
-    const view = (await gh.viewPR(
-      numberOrUrl,
-      'statusCheckRollup',
-      cwd
-    )) as { statusCheckRollup?: readonly RawCheckEntry[] } | null
+    const view = (await gh.viewPR(numberOrUrl, 'statusCheckRollup', cwd)) as {
+      statusCheckRollup?: readonly RawCheckEntry[]
+    } | null
     const rollup = view?.statusCheckRollup ?? []
-    const snapshot: CheckSnapshot[] = rollup.map((c) => ({
+    const snapshot: CheckSnapshot[] = rollup.map(c => ({
       name: c.name ?? c.context ?? '(unnamed)',
       status: (c.status ?? c.state ?? '').toUpperCase(),
       conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
       detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
     }))
-    const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+    const pending = snapshot.filter(c => !TERMINAL_STATUSES.has(c.status))
 
     if (pending.length === 0) {
-      const failed = snapshot.filter((c) =>
-        FAILURE_CONCLUSIONS.has(c.conclusion)
-      )
+      const failed = snapshot.filter(c => FAILURE_CONCLUSIONS.has(c.conclusion))
 
       return failed.length === 0
         ? { state: 'success', checks: snapshot }
@@ -1096,29 +1159,23 @@ const gh = {
     numberOrUrl: string,
     cwd: string
   ): Promise<PollChecksResult> {
-    const view = (await gh.viewPR(
-      numberOrUrl,
-      'statusCheckRollup,mergeStateStatus',
-      cwd
-    ).catch(() => null)) as
-      | {
-          statusCheckRollup?: readonly RawCheckEntry[]
-          mergeStateStatus?: string
-        }
-      | null
+    const view = (await gh
+      .viewPR(numberOrUrl, 'statusCheckRollup,mergeStateStatus', cwd)
+      .catch(() => null)) as {
+      statusCheckRollup?: readonly RawCheckEntry[]
+      mergeStateStatus?: string
+    } | null
 
     const rollup = view?.statusCheckRollup ?? []
-    const snapshot: CheckSnapshot[] = rollup.map((c) => ({
+    const snapshot: CheckSnapshot[] = rollup.map(c => ({
       name: c.name ?? c.context ?? '(unnamed)',
       status: (c.status ?? c.state ?? '').toUpperCase(),
       conclusion: (c.conclusion ?? c.state ?? '').toUpperCase(),
       detailsUrl: c.detailsUrl ?? c.targetUrl ?? '',
     }))
     const mergeStateStatus = (view?.mergeStateStatus ?? '').toUpperCase()
-    const failed = snapshot.filter((c) =>
-      FAILURE_CONCLUSIONS.has(c.conclusion)
-    )
-    const pending = snapshot.filter((c) => !TERMINAL_STATUSES.has(c.status))
+    const failed = snapshot.filter(c => FAILURE_CONCLUSIONS.has(c.conclusion))
+    const pending = snapshot.filter(c => !TERMINAL_STATUSES.has(c.status))
 
     if (failed.length > 0) {
       return { state: 'failure', failed, checks: snapshot, mergeStateStatus }
@@ -1158,7 +1215,9 @@ const gh = {
       /github\.com\/([^/]+)\/([^/]+)\/actions\/runs\/\d+\/job\/(\d+)/
     )
 
-    if (!m) {return ''}
+    if (!m) {
+      return ''
+    }
     const [, owner, repo, jobId] = m
     const maxAttempts = 4
     const baseDelayMs = 3000
@@ -1170,20 +1229,27 @@ const gh = {
         { cwd }
       )
 
-      if (result.exitCode === 0) {return result.stdout}
+      if (result.exitCode === 0) {
+        return result.stdout
+      }
       const msg = result.stderr || result.stdout
 
       // Permanent errors (404 — job deleted/not found, malformed) → bail
       // immediately. Transient errors retry.
-      if (/HTTP 404|Not Found/i.test(msg)) {return ''}
-      const isTransient = /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
-        msg
-      )
+      if (/HTTP 404|Not Found/i.test(msg)) {
+        return ''
+      }
+      const isTransient =
+        /HTTP 5\d\d|Gateway Timeout|timeout|ECONNRESET|ECONNREFUSED|ETIMEDOUT/i.test(
+          msg
+        )
 
       if (!isTransient || attempt === maxAttempts) {
         log(
           'gh',
-          `fetchJobLog gave up (attempt ${attempt}/${maxAttempts}): ${msg.slice(0, 120).replace(/\n.*/s, '')}`
+          `fetchJobLog gave up (attempt ${attempt}/${maxAttempts}): ${msg
+            .slice(0, 120)
+            .replace(/\n.*/s, '')}`
         )
 
         return ''
@@ -1211,11 +1277,7 @@ const gh = {
    * `submittedAt`; issue comments use `createdAt`.
    */
   async fetchReviews(numberOrUrl: string, cwd: string): Promise<RawReview[]> {
-    const view = (await gh.viewPR(
-      numberOrUrl,
-      'reviews,comments',
-      cwd
-    )) as {
+    const view = (await gh.viewPR(numberOrUrl, 'reviews,comments', cwd)) as {
       reviews?: {
         state?: string
         body?: string
@@ -1312,12 +1374,20 @@ const gh = {
         }
       } catch (err) {
         // Malformed JSON from gh api — non-fatal.
-        log('gh', `fetchReviews: line-comments parse failed (${(err as Error).message}); ignoring`)
+        log(
+          'gh',
+          `fetchReviews: line-comments parse failed (${
+            (err as Error).message
+          }); ignoring`
+        )
       }
     } else if (lineCommentsResult.exitCode !== 0) {
       // 404 (PR not found) or auth error. Non-fatal: top-level reviews
       // + issue comments still flow through.
-      log('gh', `fetchReviews: line-comments fetch failed (exit ${lineCommentsResult.exitCode}); top-level reviews still classified`)
+      log(
+        'gh',
+        `fetchReviews: line-comments fetch failed (exit ${lineCommentsResult.exitCode}); top-level reviews still classified`
+      )
     }
 
     return result
@@ -1341,7 +1411,9 @@ const gh = {
     while (Date.now() < deadline) {
       const reviews = await gh.fetchReviews(numberOrUrl, cwd)
 
-      if (reviews.length > 0) {return reviews}
+      if (reviews.length > 0) {
+        return reviews
+      }
       await sleep(intervalMs)
     }
 
@@ -1477,7 +1549,10 @@ const agent = {
 
       if (existsSync(sp)) {
         sections.push(
-          `# references/subagent-playbook.md\n\n${await fs.readFile(sp, 'utf8')}`
+          `# references/subagent-playbook.md\n\n${await fs.readFile(
+            sp,
+            'utf8'
+          )}`
         )
       }
     }
@@ -1508,7 +1583,9 @@ const agent = {
           : patch.stdout
 
         sections.push(
-          `# Your diff so far (accumulated across ${iteration} prior iteration${iteration === 1 ? '' : 's'})\n\n` +
+          `# Your diff so far (accumulated across ${iteration} prior iteration${
+            iteration === 1 ? '' : 's'
+          })\n\n` +
             `Stats:\n\n\`\`\`\n${stat.stdout}\n\`\`\`\n\n` +
             `Full patch:\n\n\`\`\`diff\n${patchBody}\n\`\`\`\n\n` +
             `This is what you've already changed. Don't repeat or undo edits unless the gate report explicitly says they're wrong. Build on this state.`
@@ -1551,10 +1628,11 @@ const agent = {
 
     if (stat.exitCode === 0 && patch.exitCode === 0 && stat.stdout.trim()) {
       const MAX_PATCH_BYTES = 50_000
-      const patchBody = patch.stdout.length > MAX_PATCH_BYTES
-        ? patch.stdout.slice(0, MAX_PATCH_BYTES) +
-          `\n\n[truncated; full patch is ${patch.stdout.length} bytes — view via \`git diff\` in the worktree]`
-        : patch.stdout
+      const patchBody =
+        patch.stdout.length > MAX_PATCH_BYTES
+          ? patch.stdout.slice(0, MAX_PATCH_BYTES) +
+            `\n\n[truncated; full patch is ${patch.stdout.length} bytes — view via \`git diff\` in the worktree]`
+          : patch.stdout
 
       sections.push(
         `# Your accumulated diff so far\n\n` +
@@ -1725,7 +1803,8 @@ const agent = {
           // signature even though the agent is alive and working.
           const args = [
             '-p',
-            '--output-format', 'stream-json',
+            '--output-format',
+            'stream-json',
             '--verbose',
             '--include-partial-messages',
             '--allowedTools',
@@ -1760,7 +1839,7 @@ const agent = {
 
     await fs.writeFile(logPath, `# prompt\n${inv.prompt}\n\n# stdout\n`, 'utf8')
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       const child = spawn(cmd.bin, cmd.args, {
         cwd: inv.cwd,
         stdio: ['pipe', 'pipe', 'pipe'],
@@ -1791,23 +1870,31 @@ const agent = {
         // has a stable `id` (e.g. "toolu_01ABC..."), so we dedupe on id
         // to count each call exactly once. Without this, a single Bash
         // invocation appears twice in the heartbeat log.
-        const matches = chunk.matchAll(/"type"\s*:\s*"tool_use"[^}]*?"id"\s*:\s*"([^"]+)"[^}]*?"name"\s*:\s*"([^"]+)"[^}]*?"input"\s*:\s*\{([^}]{0,400})/g)
+        const matches = chunk.matchAll(
+          /"type"\s*:\s*"tool_use"[^}]*?"id"\s*:\s*"([^"]+)"[^}]*?"name"\s*:\s*"([^"]+)"[^}]*?"input"\s*:\s*\{([^}]{0,400})/g
+        )
 
         for (const m of matches) {
           const id = m[1] ?? ''
           const name = m[2] ?? '?'
 
-          if (id && seenToolIds.has(id)) {continue}
-          if (id) {seenToolIds.add(id)}
+          if (id && seenToolIds.has(id)) {
+            continue
+          }
+          if (id) {
+            seenToolIds.add(id)
+          }
 
           const inputBlob = m[3] ?? ''
           // Common shapes: file_path / path / command / pattern / query.
-          const fp = /"file_path"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
-            ?? /"path"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
+          const fp =
+            /"file_path"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1] ??
+            /"path"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
           const cmd = /"command"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
           const pattern = /"pattern"\s*:\s*"([^"]+)"/.exec(inputBlob)?.[1]
           const summary = fp ?? cmd ?? pattern ?? ''
-          const trimmed = summary.length > 80 ? summary.slice(0, 77) + '...' : summary
+          const trimmed =
+            summary.length > 80 ? summary.slice(0, 77) + '...' : summary
           const display = trimmed ? `${name} ${trimmed}` : name
 
           lastTool = display
@@ -1847,11 +1934,17 @@ const agent = {
         const kb = (bytesWritten / 1024).toFixed(1)
         const stuck = idle > 120 ? ` ⚠️  no progress ${idle}s` : ''
 
-        log(tag, `alive (${elapsed}s elapsed, ${kb}KB written, last tool: ${lastTool})${stuck}`)
+        log(
+          tag,
+          `alive (${elapsed}s elapsed, ${kb}KB written, last tool: ${lastTool})${stuck}`
+        )
 
         if (idle * 1000 > HARD_TIMEOUT_MS && !killed) {
           killed = true
-          log(tag, `🛑 hard timeout: no output for ${idle}s — killing subprocess`)
+          log(
+            tag,
+            `🛑 hard timeout: no output for ${idle}s — killing subprocess`
+          )
           require('node:fs').appendFileSync(
             logPath,
             `\n[orchestrator] hard-timeout kill: no output for ${idle}s\n`
@@ -1874,7 +1967,7 @@ const agent = {
 
       const cleanup = () => clearInterval(heartbeat)
 
-      child.on('close', (code) => {
+      child.on('close', code => {
         cleanup()
         if (killed) {
           resolve({ exitCode: 124 }) // standard "timeout" exit code
@@ -1882,7 +1975,7 @@ const agent = {
           resolve({ exitCode: code ?? 1 })
         }
       })
-      child.on('error', (err) => {
+      child.on('error', err => {
         cleanup()
         require('node:fs').appendFileSync(logPath, `[spawn-error] ${err}\n`)
         resolve({ exitCode: 127 })
@@ -1912,7 +2005,10 @@ const lessons = {
     worktreePath: string,
     rootDir: string
   ): Promise<void> {
-    const lessonsAbs = path.join(rootDir, 'docs/migration/references/lessons-learned.md')
+    const lessonsAbs = path.join(
+      rootDir,
+      'docs/migration/references/lessons-learned.md'
+    )
 
     if (!existsSync(lessonsAbs)) {
       log('lessons', `lessons file missing at ${lessonsAbs}; skipping append`)
@@ -1935,10 +2031,13 @@ const lessons = {
     )
     const mergeBase = mergeBaseResult.stdout.trim()
     const diffRange = mergeBase ? `${mergeBase}..HEAD` : 'HEAD~1..HEAD'
-    const diffResult = await shell('git', ['diff', diffRange], { cwd: worktreePath })
-    const diffBody = diffResult.stdout.length > 30_000
-      ? diffResult.stdout.slice(0, 30_000) + '\n[truncated]'
-      : diffResult.stdout
+    const diffResult = await shell('git', ['diff', diffRange], {
+      cwd: worktreePath,
+    })
+    const diffBody =
+      diffResult.stdout.length > 30_000
+        ? diffResult.stdout.slice(0, 30_000) + '\n[truncated]'
+        : diffResult.stdout
 
     if (!diffBody.trim()) {
       log('lessons', 'no diff to summarize; skipping')
@@ -1957,7 +2056,9 @@ const lessons = {
     //   - call-site type casts (canonical: api-crib §"Type alignment at the boundary")
     //   - any pattern already documented in rules/* — point to the rule instead.
     const extractPrompt =
-      `Below is the END-TO-END diff that migrated component "${item.id}" to ${item.target_path ?? 'a new stack'} and got CI green. ` +
+      `Below is the END-TO-END diff that migrated component "${item.id}" to ${
+        item.target_path ?? 'a new stack'
+      } and got CI green. ` +
       `The diff includes both the initial migration AND any CI-fix iterations the agent went through to land green checks. ` +
       `Extract 2–3 patterns future migrations of OTHER components should reuse. ` +
       `**Especially valuable: CI-fix patterns** — non-obvious things the agent had to do post-PR-open to make CI pass ` +
@@ -1981,12 +2082,12 @@ const lessons = {
 
     child.stdin?.write(extractPrompt)
     child.stdin?.end()
-    child.stdout?.on('data', (chunk) => {
+    child.stdout?.on('data', chunk => {
       bullets += chunk
     })
 
-    const exitCode: number = await new Promise((resolve) => {
-      child.on('close', (code) => resolve(code ?? 1))
+    const exitCode: number = await new Promise(resolve => {
+      child.on('close', code => resolve(code ?? 1))
       child.on('error', () => resolve(127))
     })
 
@@ -1999,8 +2100,11 @@ const lessons = {
     const date = TODAY()
     const entry =
       `\n## ${item.id} — ${date}\n\n` +
-      `- Tier ${item.tier} · target_path: \`${item.target_path ?? 'none'}\` · iterations: ${iterations}\n` +
-      bullets.trim() + '\n' +
+      `- Tier ${item.tier} · target_path: \`${
+        item.target_path ?? 'none'
+      }\` · iterations: ${iterations}\n` +
+      bullets.trim() +
+      '\n' +
       `- Reference: ${prUrl}\n`
 
     await fs.appendFile(lessonsAbs, entry, 'utf8')
@@ -2062,7 +2166,10 @@ async function escalate(
     try {
       await gh.commentPR(item.pr, block, rootDir)
     } catch (e) {
-      log('escalate', `gh pr comment failed (non-fatal): ${(e as Error).message}`)
+      log(
+        'escalate',
+        `gh pr comment failed (non-fatal): ${(e as Error).message}`
+      )
     }
   }
 
@@ -2092,7 +2199,9 @@ async function acquireLock(rootDir: string, id: string): Promise<boolean> {
     const pidStr = await fs.readFile(lockPath, 'utf8').catch(() => '')
     const pid = Number(pidStr.trim())
 
-    if (!pid) {return false}
+    if (!pid) {
+      return false
+    }
     try {
       process.kill(pid, 0) // signal 0 = liveness probe
 
@@ -2142,11 +2251,15 @@ export async function runBatch(
     processed += 1
     log(
       'batch',
-      `[${processed}] ${result.status}${result.prUrl ? ` ${result.prUrl}` : ''}${result.reason ? ` (${result.reason})` : ''}`
+      `[${processed}] ${result.status}${
+        result.prUrl ? ` ${result.prUrl}` : ''
+      }${result.reason ? ` (${result.reason})` : ''}`
     )
     // Continue to next item even on escalate (operator can review later).
     // Stop only on dry-run (which never produces no-work).
-    if (result.status === 'dry-run') {break}
+    if (result.status === 'dry-run') {
+      break
+    }
   }
   if (opts.maxItems !== null && processed >= opts.maxItems) {
     log(
@@ -2188,7 +2301,7 @@ export async function runReviewSweep(
   // operator's manual merge is detected on the next sweep tick (Tier
   // 2.4: post-merge reference populate).
   const candidates = Object.values(m.components).filter(
-    (i) =>
+    i =>
       (i.status === 'awaiting_review' ||
         i.status === 'ready_to_merge' ||
         i.status === 'awaiting_ci') &&
@@ -2198,12 +2311,18 @@ export async function runReviewSweep(
   )
 
   if (candidates.length === 0) {
-    log('sweep', 'no items in awaiting_review / awaiting_ci / ready_to_merge — nothing to sweep')
+    log(
+      'sweep',
+      'no items in awaiting_review / awaiting_ci / ready_to_merge — nothing to sweep'
+    )
 
     return { status: 'no-work' }
   }
 
-  log('sweep', `${candidates.length} item(s) to sweep (awaiting_review / awaiting_ci / ready_to_merge)`)
+  log(
+    'sweep',
+    `${candidates.length} item(s) to sweep (awaiting_review / awaiting_ci / ready_to_merge)`
+  )
   let processed = 0
 
   for (const item of candidates) {
@@ -2253,9 +2372,9 @@ async function sweepOne(
   // Tier 2.4 — first, check if the operator already merged the PR.
   // If yes, transition to done + run post-merge hook (reference copy)
   // and skip review processing for this sweep tick.
-  const prState = (await gh.viewPR(prUrl, 'state,mergedAt', wtPath).catch(() => null)) as
-    | { state?: string; mergedAt?: string | null }
-    | null
+  const prState = (await gh
+    .viewPR(prUrl, 'state,mergedAt', wtPath)
+    .catch(() => null)) as { state?: string; mergedAt?: string | null } | null
 
   if (prState?.state === 'MERGED') {
     manifest.update(manifestAbs, item.id, {
@@ -2267,7 +2386,12 @@ async function sweepOne(
       try {
         await workflow.onPostMerge(item, rootDir)
       } catch (err) {
-        log('sweep', `${item.id}: onPostMerge hook failed (non-fatal): ${(err as Error).message}`)
+        log(
+          'sweep',
+          `${item.id}: onPostMerge hook failed (non-fatal): ${
+            (err as Error).message
+          }`
+        )
       }
     }
 
@@ -2306,7 +2430,10 @@ async function sweepOne(
     const checks = await gh.snapshotChecks(prUrl, wtPath)
 
     if (checks.state === 'success') {
-      log('sweep', `${item.id}: ready_to_merge (still CLEAN), awaiting operator merge`)
+      log(
+        'sweep',
+        `${item.id}: ready_to_merge (still CLEAN), awaiting operator merge`
+      )
 
       return
     }
@@ -2314,7 +2441,9 @@ async function sweepOne(
     if (checks.state === 'failure') {
       log(
         'sweep',
-        `${item.id}: ready_to_merge → awaiting_review (CI failed: ${checks.failed.length} check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'})`
+        `${item.id}: ready_to_merge → awaiting_review (CI failed: ${
+          checks.failed.length
+        } check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'})`
       )
       manifest.update(manifestAbs, item.id, { status: 'awaiting_review' })
       // Fall through so the agent engages on the failure this tick.
@@ -2322,7 +2451,9 @@ async function sweepOne(
     } else {
       log(
         'sweep',
-        `${item.id}: ready_to_merge → awaiting_ci (mergeStateStatus=${checks.mergeStateStatus ?? '?'}, ${checks.pending.length} reported check(s) pending)`
+        `${item.id}: ready_to_merge → awaiting_ci (mergeStateStatus=${
+          checks.mergeStateStatus ?? '?'
+        }, ${checks.pending.length} reported check(s) pending)`
       )
       manifest.update(manifestAbs, item.id, { status: 'awaiting_ci' })
 
@@ -2343,7 +2474,11 @@ async function sweepOne(
       manifest.update(manifestAbs, item.id, { status: 'ready_to_merge' })
       log(
         'sweep',
-        `${item.id}: CI green after waiting (${checks.checks.length} check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'}) — status=ready_to_merge`
+        `${item.id}: CI green after waiting (${
+          checks.checks.length
+        } check(s), mergeStateStatus=${
+          checks.mergeStateStatus ?? '?'
+        }) — status=ready_to_merge`
       )
 
       return
@@ -2351,7 +2486,11 @@ async function sweepOne(
     if (checks.state === 'timeout') {
       log(
         'sweep',
-        `${item.id}: awaiting_ci — ${checks.pending.length} reported check(s) pending, mergeStateStatus=${checks.mergeStateStatus ?? '?'}`
+        `${item.id}: awaiting_ci — ${
+          checks.pending.length
+        } reported check(s) pending, mergeStateStatus=${
+          checks.mergeStateStatus ?? '?'
+        }`
       )
 
       return
@@ -2359,7 +2498,11 @@ async function sweepOne(
     // state === 'failure'
     log(
       'sweep',
-      `${item.id}: CI failed while awaiting_ci (${checks.failed.length} failed check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'}) — handing back to agent for fixes`
+      `${item.id}: CI failed while awaiting_ci (${
+        checks.failed.length
+      } failed check(s), mergeStateStatus=${
+        checks.mergeStateStatus ?? '?'
+      }) — handing back to agent for fixes`
     )
     manifest.update(manifestAbs, item.id, { status: 'awaiting_review' })
     ciFailureContext = checks.failed
@@ -2403,13 +2546,17 @@ async function sweepOne(
   const PROPOSAL_PATTERN = /👍\s*to confirm/i
   const isOrchestratorReply = (body: string | undefined): boolean =>
     !!body && ORCH_HEADER_PATTERN.test(body)
-  const orchestratorReplies = allReviews.filter((r) => isOrchestratorReply(r.body))
-  const externalReviews = allReviews.filter((r) => !isOrchestratorReply(r.body))
+  const orchestratorReplies = allReviews.filter(r =>
+    isOrchestratorReply(r.body)
+  )
+  const externalReviews = allReviews.filter(r => !isOrchestratorReply(r.body))
 
   // Pending proposals — orchestrator replies that explicitly ask for 👍
   // confirmation (MEDIUM-confidence path). On next sweep, the agent should
   // re-read these and check for confirming reactions/replies.
-  const pendingProposals = orchestratorReplies.filter((r) => PROPOSAL_PATTERN.test(r.body ?? ''))
+  const pendingProposals = orchestratorReplies.filter(r =>
+    PROPOSAL_PATTERN.test(r.body ?? '')
+  )
 
   // Author-trust gate. Comments from authors outside TRUSTED_REVIEW_ASSOCIATIONS
   // (and from bots) are skipped — they never reach the agent prompt. The
@@ -2428,7 +2575,7 @@ async function sweepOne(
 
   if (untrustedExternal.length > 0) {
     const summary = untrustedExternal
-      .map((r) => `${r.author || '?'}(${r.authorAssociation ?? 'unknown'})`)
+      .map(r => `${r.author || '?'}(${r.authorAssociation ?? 'unknown'})`)
       .join(', ')
 
     log(
@@ -2437,8 +2584,10 @@ async function sweepOne(
     )
   }
 
-  const newReviews = trustedExternal.filter((r) => {
-    if (!r.at) {return true}
+  const newReviews = trustedExternal.filter(r => {
+    if (!r.at) {
+      return true
+    }
     const t = Date.parse(r.at)
 
     return Number.isNaN(t) ? true : t > since
@@ -2470,7 +2619,9 @@ async function sweepOne(
   ) {
     log(
       'sweep',
-      `${item.id}: ${allReviews.length} review(s) total, 0 newer than ${item.last_review_seen_at ?? 'never'} (and 0 pending orchestrator proposals; CI state=${checks.state})`
+      `${item.id}: ${allReviews.length} review(s) total, 0 newer than ${
+        item.last_review_seen_at ?? 'never'
+      } (and 0 pending orchestrator proposals; CI state=${checks.state})`
     )
 
     return
@@ -2483,7 +2634,11 @@ async function sweepOne(
     )
   }
 
-  if (newReviews.length === 0 && pendingProposals.length === 0 && ciFailureContext) {
+  if (
+    newReviews.length === 0 &&
+    pendingProposals.length === 0 &&
+    ciFailureContext
+  ) {
     log(
       'sweep',
       `${item.id}: no new comments, but ${ciFailureContext.length} CI failure(s) — agent will investigate`
@@ -2494,12 +2649,14 @@ async function sweepOne(
   // LGTM-only short-circuit. But the per-comment decision authority is
   // now the AGENT, not the classifier — see the conversational protocol
   // in `docs/migration/PROMPT-review-response.md`.
-  const classifications = newReviews.map((r) => classifyReview(r))
+  const classifications = newReviews.map(r => classifyReview(r))
 
   classifications.forEach((c, i) =>
     log(
       'sweep',
-      `${item.id}: [${i}] by ${newReviews[i].author || '?'}: ${c.class} (conf=${c.confidence.toFixed(2)}, ${c.reason})`
+      `${item.id}: [${i}] by ${newReviews[i].author || '?'}: ${
+        c.class
+      } (conf=${c.confidence.toFixed(2)}, ${c.reason})`
     )
   )
 
@@ -2515,9 +2672,7 @@ async function sweepOne(
   // `'LGTM'`, which never matched and silently disabled the short-circuit
   // — every approval-only sweep tick fell through to the conversational
   // agent invocation instead of advancing status. Fixed 2026-05-11.
-  const onlyApprovals = classifications.every(
-    (c) => c.class === 'approval'
-  )
+  const onlyApprovals = classifications.every(c => c.class === 'approval')
 
   if (onlyApprovals && classifications.length > 0) {
     // Gate the transition on the head commit's CI rollup (`checks` above).
@@ -2535,7 +2690,11 @@ async function sweepOne(
       })
       log(
         'sweep',
-        `${item.id}: ready_to_merge (${classifications.length} approval(s) only; CI clean, mergeStateStatus=${checks.mergeStateStatus ?? '?'}); operator merges manually`
+        `${item.id}: ready_to_merge (${
+          classifications.length
+        } approval(s) only; CI clean, mergeStateStatus=${
+          checks.mergeStateStatus ?? '?'
+        }); operator merges manually`
       )
 
       return
@@ -2548,7 +2707,11 @@ async function sweepOne(
       })
       log(
         'sweep',
-        `${item.id}: awaiting_ci (${classifications.length} approval(s) only; ${checks.pending.length} reported check(s) pending, mergeStateStatus=${checks.mergeStateStatus ?? '?'})`
+        `${item.id}: awaiting_ci (${classifications.length} approval(s) only; ${
+          checks.pending.length
+        } reported check(s) pending, mergeStateStatus=${
+          checks.mergeStateStatus ?? '?'
+        })`
       )
 
       return
@@ -2559,7 +2722,11 @@ async function sweepOne(
     // (ciFailureContext was set when `checks` was taken above).
     log(
       'sweep',
-      `${item.id}: approval(s) landed but CI failed (${checks.failed.length} failed check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'}) — invoking agent to investigate`
+      `${item.id}: approval(s) landed but CI failed (${
+        checks.failed.length
+      } failed check(s), mergeStateStatus=${
+        checks.mergeStateStatus ?? '?'
+      }) — invoking agent to investigate`
     )
   }
 
@@ -2579,7 +2746,10 @@ async function sweepOne(
   //
   // Status stays `awaiting_review` after sweep — only operator escalation
   // OR a follow-up sweep that observes LGTM-only state moves it forward.
-  log('sweep', `${item.id}: ${newReviews.length} new comment(s) → conversational agent invocation`)
+  log(
+    'sweep',
+    `${item.id}: ${newReviews.length} new comment(s) → conversational agent invocation`
+  )
 
   const reviewIters = (item.review_iterations ?? 0) + 1
   const reviewProtocolPath = path.join(
@@ -2595,7 +2765,9 @@ async function sweepOne(
     reviewProtocol +
     '\n\n---\n\n' +
     `# This sweep tick — PR ${prUrl}\n\n` +
-    `${newReviews.length} new comment(s) since ${item.last_review_seen_at ?? 'never'}` +
+    `${newReviews.length} new comment(s) since ${
+      item.last_review_seen_at ?? 'never'
+    }` +
     (pendingProposals.length > 0
       ? `, plus ${pendingProposals.length} pending orchestrator proposal(s) awaiting 👍 confirmation.\n\n`
       : '.\n\n') +
@@ -2612,10 +2784,19 @@ async function sweepOne(
             const assocLabel = r.authorAssociation ?? 'unknown'
 
             return (
-              `### Comment ${idx + 1} — by ${r.author || '?'} [${assocLabel}]${stateNote}\n\n` +
-              `Classifier: ${cls.class} (conf=${cls.confidence.toFixed(2)}, ${cls.reason})\n\n` +
-              `<comment-body author="${r.author || '?'}" association="${assocLabel}">\n` +
-              `${r.body || '(empty body — possibly approval-only or line-comments-only review; check PR thread)'}\n` +
+              `### Comment ${idx + 1} — by ${
+                r.author || '?'
+              } [${assocLabel}]${stateNote}\n\n` +
+              `Classifier: ${cls.class} (conf=${cls.confidence.toFixed(2)}, ${
+                cls.reason
+              })\n\n` +
+              `<comment-body author="${
+                r.author || '?'
+              }" association="${assocLabel}">\n` +
+              `${
+                r.body ||
+                '(empty body — possibly approval-only or line-comments-only review; check PR thread)'
+              }\n` +
               `</comment-body>\n`
             )
           })
@@ -2628,7 +2809,9 @@ async function sweepOne(
             return (
               `### Proposal ${idx + 1}\n\n` +
               `Posted at: ${r.at || '(unknown time)'}\n\n` +
-              `Body:\n\`\`\`\n${(r.body ?? '').slice(0, 1000)}${(r.body ?? '').length > 1000 ? '\n[...truncated]' : ''}\n\`\`\`\n\n` +
+              `Body:\n\`\`\`\n${(r.body ?? '').slice(0, 1000)}${
+                (r.body ?? '').length > 1000 ? '\n[...truncated]' : ''
+              }\n\`\`\`\n\n` +
               `Action: fetch reactions on this comment via gh api. If 👍 by a human reviewer → ACT on the proposal now. If 👎 → post brief "Ok, leaving as-is." If no reaction → no-op this tick.\n`
             )
           })
@@ -2636,17 +2819,17 @@ async function sweepOne(
       : '') +
     (ciFailureContext && ciFailureContext.length > 0
       ? `\n## CI failures to address (post-approval)\n\n` +
-        'The reviewer has already approved this PR but the head commit\'s CI rollup is RED. Investigate each failed check below, fix the underlying issue in the code, and let the orchestrator push the fix.\n\n' +
+        "The reviewer has already approved this PR but the head commit's CI rollup is RED. Investigate each failed check below, fix the underlying issue in the code, and let the orchestrator push the fix.\n\n" +
         'How to investigate:\n' +
         '- `gh run view <run-id> --log-failed` — print only the failed-step output (run-id is in the `detailsUrl` below as `.../actions/runs/<run-id>/...`).\n' +
         '- `gh api repos/<owner>/<repo>/actions/jobs/<job-id>/logs` — raw log of a single job.\n' +
         '- Reproduce locally before pushing: run the equivalent `pnpm` script (typecheck / davinci-syntax / unit / cypress / happo) inside this worktree.\n\n' +
         'Constraints (do NOT shortcut):\n' +
-        '- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don\'t loosen API preservation, classes shim handling, or any other documented constraint just to make CI green.\n' +
+        "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes shim handling, or any other documented constraint just to make CI green.\n" +
         '- Do NOT delete or skip failing tests to make them pass.\n' +
         '- Do NOT modify CI workflows (`.github/workflows/*`).\n' +
         '- If a failure looks like a flake (passes locally, network/timeout in CI), reply with a brief diagnosis and DO NOT push — the operator will re-run.\n' +
-        '- If the fix conflicts with the reviewer\'s prior approval (changes the API surface they signed off on), reply with the proposed fix as a MEDIUM-confidence proposal (👍 to confirm) instead of editing.\n\n' +
+        "- If the fix conflicts with the reviewer's prior approval (changes the API surface they signed off on), reply with the proposed fix as a MEDIUM-confidence proposal (👍 to confirm) instead of editing.\n\n" +
         'Failed checks:\n\n' +
         ciFailureContext
           .map((c, idx) => {
@@ -2734,7 +2917,9 @@ async function sweepOne(
     `\n\n[review-iter ${reviewIters}] address review feedback`
   const reviewCommitMsgFile = path.join(
     os.tmpdir(),
-    `commit-msg-${item.id.replace(/\//g, '__')}.review.${reviewIters}.${process.pid}`
+    `commit-msg-${item.id.replace(/\//g, '__')}.review.${reviewIters}.${
+      process.pid
+    }`
   )
 
   await fs.writeFile(reviewCommitMsgFile, reviewCommitMsg, 'utf8')
@@ -2761,14 +2946,20 @@ async function sweepOne(
 
       return
     }
-    log('sweep', `${item.id}: pushed code changes; CI will re-evaluate; status remains awaiting_review`)
+    log(
+      'sweep',
+      `${item.id}: pushed code changes; CI will re-evaluate; status remains awaiting_review`
+    )
   } else {
     // No commit — agent replied without editing (MEDIUM/LOW confidence),
     // OR agent decided the comment didn't warrant action. Replies are
     // already posted on GitHub; nothing to push. Status stays
     // awaiting_review for the next sweep tick to pick up reviewer's
     // response (👍 reaction or follow-up reply).
-    log('sweep', `${item.id}: no code changes — agent replied via gh; awaiting reviewer response`)
+    log(
+      'sweep',
+      `${item.id}: no code changes — agent replied via gh; awaiting reviewer response`
+    )
   }
 
   // Persist iteration state. Status remains awaiting_review — next sweep
@@ -2791,7 +2982,9 @@ export async function run(
     throw new Error(`Manifest not found at ${manifestAbs}`)
   }
 
-  if (!opts.dryRun) {await gh.assertAuth()}
+  if (!opts.dryRun) {
+    await gh.assertAuth()
+  }
 
   // Phase 3 — auto-load .envrc when running outside an interactive direnv-
   // hooked shell. Lets local Happo (HAPPO_API_KEY/SECRET) fire correctly
@@ -2802,7 +2995,9 @@ export async function run(
   if (injected.length > 0) {
     log(
       'env',
-      `loaded from .envrc: ${injected.sort().join(', ')} (use direnv hook to skip this)`
+      `loaded from .envrc: ${injected
+        .sort()
+        .join(', ')} (use direnv hook to skip this)`
     )
   }
 
@@ -2824,10 +3019,7 @@ export async function run(
   // Skipped on dry-run since dry-run doesn't mutate state.
   if (!opts.dryRun) {
     if (!(await acquireLock(rootDir, item.id))) {
-      log(
-        'loop',
-        `${item.id} locked by another orchestrator run; skipping`
-      )
+      log('loop', `${item.id} locked by another orchestrator run; skipping`)
 
       return { status: 'no-work' }
     }
@@ -2837,39 +3029,60 @@ export async function run(
     log('loop', '--dry-run: planned 14 steps follow:')
     const planned = [
       `1. Verify deps merged for: ${item.depends_on.join(', ') || '(none)'}`,
-      `2. git worktree add ${worktree.pathFor(item.id, TODAY())} -b ${opts.branch ?? workflow.branchName(item.id)}${opts.branch ? ' (--branch override)' : ''}`,
+      `2. git worktree add ${worktree.pathFor(item.id, TODAY())} -b ${
+        opts.branch ?? workflow.branchName(item.id)
+      }${opts.branch ? ' (--branch override)' : ''}`,
       `3. Snapshot pre-state: ${workflow.diff(item.id, 'snapshot')}`,
       `4. Update manifest: status=in_progress`,
       ...(opts.withMcp
-        ? [`4b. Start Storybook in worktree; wait for http://localhost:9001 ready`]
+        ? [
+            `4b. Start Storybook in worktree; wait for http://localhost:9001 ready`,
+          ]
         : []),
-      `5. Assemble prompt (path=${workflow.promptFor(item)}, complexity=${workflow.complexityFor(item)}, agent=${opts.agent}${opts.withMcp ? ' +mcp' : ''})`,
-      `6. Invoke ${opts.agent}; iteration cap=${opts.maxIterations}; allowedTools=Edit Write Read Glob Grep + Bash(pnpm ...)${opts.withMcp ? ' + mcp__playwright__*' : ''}`,
+      `5. Assemble prompt (path=${workflow.promptFor(
+        item
+      )}, complexity=${workflow.complexityFor(item)}, agent=${opts.agent}${
+        opts.withMcp ? ' +mcp' : ''
+      })`,
+      `6. Invoke ${opts.agent}; iteration cap=${
+        opts.maxIterations
+      }; allowedTools=Edit Write Read Glob Grep + Bash(pnpm ...)${
+        opts.withMcp ? ' + mcp__playwright__*' : ''
+      }`,
       `7. Run gate: ${workflow.gate(item.id)}`,
       `8. On gate fail: feed report back, retry up to cap`,
       `9. On gate pass: produce diff via ${workflow.diff(item.id, 'report')}`,
-      `10. git commit -m "${workflow.commitMessage(item.id, item).split('\n')[0]}"; git push`,
-      `11. gh pr create --title "${workflow.prTitle(item.id, item)}" --base ${workflow.baseBranch}${workflow.assignees.length ? ` --assignee ${workflow.assignees.join(',')}` : ''}`,
+      `10. git commit -m "${
+        workflow.commitMessage(item.id, item).split('\n')[0]
+      }"; git push`,
+      `11. gh pr create --title "${workflow.prTitle(item.id, item)}" --base ${
+        workflow.baseBranch
+      }${
+        workflow.assignees.length
+          ? ` --assignee ${workflow.assignees.join(',')}`
+          : ''
+      }`,
       ...(opts.ciTimeoutMinutes > 0
         ? [
             `12. Poll CI on PR; timeout=${opts.ciTimeoutMinutes}min, interval=30s; on failure escalate (Phase 3.2/3.3 will iterate)`,
           ]
         : [`12. CI poll skipped (--ci-timeout-minutes=0)`]),
-      ...(((): string[] => {
+      ...((): string[] => {
         const rt = opts.reviewTimeoutMinutes ?? workflow.reviewTimeoutMinutes
-        const rtMsg = rt > 0
-          ? `13a. CI green → poll reviews up to ${rt}min; classify each (LGTM/nit/architectural/question/unclear); aggregate → merge / iterate-on-nits / escalate`
-          : `13a. CI green → review polling skipped (--review-timeout-minutes=0)`
+        const rtMsg =
+          rt > 0
+            ? `13a. CI green → poll reviews up to ${rt}min; classify each (LGTM/nit/architectural/question/unclear); aggregate → merge / iterate-on-nits / escalate`
+            : `13a. CI green → review polling skipped (--review-timeout-minutes=0)`
 
         return [rtMsg]
-      })()),
+      })(),
       opts.noMerge
         ? `13b. (--no-merge: stop on green or escalate on fail)`
         : `13b. On final green: gh pr merge --auto --squash --delete-branch`,
       `14. On any escalation trigger: status=needs_human, post block, stop`,
     ]
 
-    planned.forEach((p) => log('loop', p))
+    planned.forEach(p => log('loop', p))
 
     return { status: 'dry-run' }
   }
@@ -2934,7 +3147,10 @@ export async function run(
   let storybookProc: ReturnType<typeof spawn> | null = null
 
   if (opts.withMcp) {
-    log('loop', 'starting Storybook (--with-mcp); polling http://localhost:9001')
+    log(
+      'loop',
+      'starting Storybook (--with-mcp); polling http://localhost:9001'
+    )
     storybookProc = spawn('pnpm', ['start:storybook'], {
       cwd: wtPath,
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -2944,7 +3160,9 @@ export async function run(
     // Ensure Storybook is killed on any orchestrator exit path. Synchronous
     // handler is fine; SIGTERM is fire-and-forget.
     const killStorybook = (): void => {
-      if (storybookProc && !storybookProc.killed) {storybookProc.kill('SIGTERM')}
+      if (storybookProc && !storybookProc.killed) {
+        storybookProc.kill('SIGTERM')
+      }
     }
 
     process.once('exit', killStorybook)
@@ -2960,7 +3178,10 @@ export async function run(
     const ready = await waitForUrl('http://localhost:9001', 60_000)
 
     if (!ready) {
-      log('loop', 'Storybook did not become ready within 60s; killing and escalating')
+      log(
+        'loop',
+        'Storybook did not become ready within 60s; killing and escalating'
+      )
       storybookProc.kill('SIGTERM')
 
       return escalate(
@@ -2975,7 +3196,10 @@ export async function run(
           architecturalReviews: 0,
           startedAt: ISO(),
         },
-        { shouldEscalate: true, reason: 'Storybook failed to start within 60s' },
+        {
+          shouldEscalate: true,
+          reason: 'Storybook failed to start within 60s',
+        },
         manifestAbs,
         rootDir
       )
@@ -3001,11 +3225,7 @@ export async function run(
   // iter 1 in conversation memory and the orchestrator sends only the delta.
   const sessionId = randomUUID()
 
-  await fs.writeFile(
-    path.join(runDir, 'session.id'),
-    sessionId + '\n',
-    'utf8'
-  )
+  await fs.writeFile(path.join(runDir, 'session.id'), sessionId + '\n', 'utf8')
   log('loop', `session id: ${sessionId} (iter 1 tags, iter 2+ resumes)`)
 
   while (state.iterations < opts.maxIterations) {
@@ -3016,20 +3236,14 @@ export async function run(
     // Iter 1: full canonical prompt + rules + per-item-plan + tier extras.
     // Iter 2+: delta only (gate feedback + accumulated diff). Claude keeps
     //         the iter-1 context via --resume.
-    const prompt = state.iterations === 1
-      ? await agent.assemblePrompt(
-          workflow,
-          item,
-          0,
-          null,
-          rootDir,
-          wtPath
-        )
-      : await agent.assembleDeltaPrompt(
-          state.iterations - 1,
-          lastFeedback,
-          wtPath
-        )
+    const prompt =
+      state.iterations === 1
+        ? await agent.assemblePrompt(workflow, item, 0, null, rootDir, wtPath)
+        : await agent.assembleDeltaPrompt(
+            state.iterations - 1,
+            lastFeedback,
+            wtPath
+          )
     // runDir is already `<repo>/migration-runs/<date>/<itemId>/` (since
     // dirname(wtPath) strips the trailing `worktree`); don't append item.id again.
     const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
@@ -3042,7 +3256,9 @@ export async function run(
 
     log(
       'loop',
-      `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}, ${state.iterations === 1 ? 'session-start' : 'session-resume'}); log=${agentLogPath}`
+      `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}, ${
+        state.iterations === 1 ? 'session-start' : 'session-resume'
+      }); log=${agentLogPath}`
     )
     const agentResult = await agent.invoke(
       {
@@ -3114,7 +3330,10 @@ export async function run(
       break
     }
 
-    log('loop', `gate composite=${gateReport.composite}; preparing next iteration`)
+    log(
+      'loop',
+      `gate composite=${gateReport.composite}; preparing next iteration`
+    )
     if (existsSync(gateReport.reportPath)) {
       lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
     }
@@ -3161,7 +3380,10 @@ export async function run(
   // Pre-push hooks (`pre-push`) are also skipped via `git push --no-verify`
   // for the same reasons.
   const commitMsg = workflow.commitMessage(item.id, item)
-  const commitMsgFile = path.join(os.tmpdir(), `commit-msg-${item.id}.${process.pid}`)
+  const commitMsgFile = path.join(
+    os.tmpdir(),
+    `commit-msg-${item.id}.${process.pid}`
+  )
 
   await fs.writeFile(commitMsgFile, commitMsg, 'utf8')
 
@@ -3179,7 +3401,9 @@ export async function run(
       state,
       {
         shouldEscalate: true,
-        reason: `git commit failed: ${commitResult.stderr || commitResult.stdout}`,
+        reason: `git commit failed: ${
+          commitResult.stderr || commitResult.stdout
+        }`,
       },
       manifestAbs,
       rootDir
@@ -3207,7 +3431,13 @@ export async function run(
   // diff.sh writes its report inside the worktree (its $ROOT is the worktree
   // when invoked with cwd=wtPath). Read from the worktree-internal path so
   // the gh PR body picks up the agent's actual diff for this iteration.
-  const diffPath = path.join(wtPath, 'migration-runs', runDate, item.id, 'diff.md')
+  const diffPath = path.join(
+    wtPath,
+    'migration-runs',
+    runDate,
+    item.id,
+    'diff.md'
+  )
   const prUrl = await gh.createPR({
     title: workflow.prTitle(item.id, item),
     base: workflow.baseBranch,
@@ -3238,17 +3468,14 @@ export async function run(
     return { status: 'pr-opened', prUrl }
   }
 
-  log(
-    'loop',
-    `polling CI on ${prUrl} (timeout=${ciTimeout}min, interval=30s)`
-  )
+  log('loop', `polling CI on ${prUrl} (timeout=${ciTimeout}min, interval=30s)`)
   let lastSummary = ''
   let pollResult = await gh.pollChecks(prUrl, wtPath, {
     timeoutMinutes: ciTimeout,
     intervalSeconds: 30,
-    onTick: (snapshot) => {
+    onTick: snapshot => {
       const summary = snapshot
-        .map((c) => `${c.name}=${c.conclusion || c.status || '?'}`)
+        .map(c => `${c.name}=${c.conclusion || c.status || '?'}`)
         .sort()
         .join(' ')
 
@@ -3263,7 +3490,7 @@ export async function run(
     log(
       'ci',
       `timed out after ${ciTimeout}min with ${pollResult.pending.length} ` +
-        `pending: ${pollResult.pending.map((c) => c.name).join(', ')}`
+        `pending: ${pollResult.pending.map(c => c.name).join(', ')}`
     )
 
     return escalate(
@@ -3272,7 +3499,9 @@ export async function run(
       state,
       {
         shouldEscalate: true,
-        reason: `CI timeout after ${ciTimeout}min; pending: ${pollResult.pending.map((c) => c.name).join(', ')}`,
+        reason: `CI timeout after ${ciTimeout}min; pending: ${pollResult.pending
+          .map(c => c.name)
+          .join(', ')}`,
       },
       manifestAbs,
       rootDir
@@ -3303,12 +3532,16 @@ export async function run(
     state.iterations += 1
     log(
       'ci',
-      `iter ${ciIteration}/${maxCIIterations}: ${pollResult.failed.length}/${pollResult.checks.length} checks failed: ${pollResult.failed.map((c) => `${c.name}(${c.conclusion})`).join(', ')}`
+      `iter ${ciIteration}/${maxCIIterations}: ${pollResult.failed.length}/${
+        pollResult.checks.length
+      } checks failed: ${pollResult.failed
+        .map(c => `${c.name}(${c.conclusion})`)
+        .join(', ')}`
     )
 
     // Fetch logs + classify in parallel.
     const classifications = await Promise.all(
-      pollResult.failed.map(async (failed) => {
+      pollResult.failed.map(async failed => {
         const log_ = await gh.fetchJobLog(failed.detailsUrl, wtPath)
 
         return {
@@ -3323,7 +3556,7 @@ export async function run(
       })
     )
 
-    classifications.forEach((c) =>
+    classifications.forEach(c =>
       log(
         'ci',
         `classify "${c.check.name}" → ${c.decision.class} (${c.decision.reason})`
@@ -3332,13 +3565,13 @@ export async function run(
 
     // Stuck detection: same failure set as last iteration ⇒ no progress.
     const failureSet = classifications
-      .map((c) => `${c.check.name}:${c.decision.class}`)
+      .map(c => `${c.check.name}:${c.decision.class}`)
       .sort()
       .join('|')
 
     if (ciIteration >= 2 && failureSet === lastFailureSet) {
       log('ci', `stuck on same failure set as last iter — escalating`)
-      const stuckOn = classifications.map((c) => c.check.name).join(', ')
+      const stuckOn = classifications.map(c => c.check.name).join(', ')
 
       return escalate(
         workflow,
@@ -3358,10 +3591,10 @@ export async function run(
     // If at least one is fixable, attempt the fixables and re-poll —
     // unfixed escalate-class items will resurface next iteration.
     const fixables = classifications.filter(
-      (c) => c.decision.class !== 'escalate'
+      c => c.decision.class !== 'escalate'
     )
     const escalates = classifications.filter(
-      (c) => c.decision.class === 'escalate'
+      c => c.decision.class === 'escalate'
     )
 
     if (fixables.length === 0) {
@@ -3374,7 +3607,9 @@ export async function run(
         state,
         {
           shouldEscalate: true,
-          reason: `CI failure on "${first?.check.name ?? '?'}" (${first?.decision.reason ?? 'all unclassified'})`,
+          reason: `CI failure on "${first?.check.name ?? '?'}" (${
+            first?.decision.reason ?? 'all unclassified'
+          })`,
         },
         manifestAbs,
         rootDir
@@ -3423,7 +3658,12 @@ export async function run(
         c.decision.class === 'auto-fix-lint' &&
         c.decision.paths.length > 0
       ) {
-        log('ci', `auto-fix lint: davinci-syntax lint code ${c.decision.paths.join(' ')}`)
+        log(
+          'ci',
+          `auto-fix lint: davinci-syntax lint code ${c.decision.paths.join(
+            ' '
+          )}`
+        )
         await shell(
           'pnpm',
           ['davinci-syntax', 'lint', 'code', ...c.decision.paths],
@@ -3450,7 +3690,7 @@ export async function run(
     // bail at "no actionable CI classifications" escalated. Now we pass the
     // log excerpt to the agent and let it figure out which files to fix.
     const feedDecisions = classifications.filter(
-      (c) =>
+      c =>
         c.decision.class === 'feed-to-agent' ||
         (c.decision.class === 'auto-fix-lint' && c.decision.paths.length === 0)
     )
@@ -3460,7 +3700,7 @@ export async function run(
         '# CI failures (post-PR-open)\n\n' +
         feedDecisions
           .map(
-            (c) =>
+            c =>
               `## ${c.check.name}\n\n` +
               `**Reason:** ${c.decision.reason}\n\n` +
               (c.decision.paths.length
@@ -3483,7 +3723,9 @@ export async function run(
 
       log(
         'ci',
-        `iter ${state.iterations}: feed-to-agent on ${feedDecisions.map((d) => d.check.name).join(', ')}`
+        `iter ${state.iterations}: feed-to-agent on ${feedDecisions
+          .map(d => d.check.name)
+          .join(', ')}`
       )
       const agentResult = await agent.invoke(
         {
@@ -3558,7 +3800,9 @@ export async function run(
     // agent edits). The empty-commit rerun was already created above (if
     // applicable) so we may end up with two commits per iteration: the
     // rerun marker + the auto-fix delta. That's fine — both push together.
-    const ciCommitMsg = workflow.commitMessage(item.id, item) + `\n\n[ci-iter ${state.iterations}]`
+    const ciCommitMsg =
+      workflow.commitMessage(item.id, item) +
+      `\n\n[ci-iter ${state.iterations}]`
     const ciCommitMsgFile = path.join(
       os.tmpdir(),
       `commit-msg-${item.id}.ci.${state.iterations}.${process.pid}`
@@ -3602,7 +3846,10 @@ export async function run(
         .filter(Boolean)
         .join(' + ')
 
-      log('ci', `iter ${state.iterations}: pushed ${what}; waiting 60s for CI to register new commit, then re-polling`)
+      log(
+        'ci',
+        `iter ${state.iterations}: pushed ${what}; waiting 60s for CI to register new commit, then re-polling`
+      )
       // Without this delay, the next pollChecks call returns stale rollup
       // state for the OLD commit (canary 29 / PR #4935: re-poll fired
       // 570ms after push and saw the prior failure → instant escalate
@@ -3622,9 +3869,9 @@ export async function run(
     pollResult = await gh.pollChecks(prUrl, wtPath, {
       timeoutMinutes: ciTimeout,
       intervalSeconds: 30,
-      onTick: (snapshot) => {
+      onTick: snapshot => {
         const summary = snapshot
-          .map((c) => `${c.name}=${c.conclusion || c.status || '?'}`)
+          .map(c => `${c.name}=${c.conclusion || c.status || '?'}`)
           .sort()
           .join(' ')
 
@@ -3643,7 +3890,9 @@ export async function run(
       state,
       {
         shouldEscalate: true,
-        reason: `CI still failing after ${state.iterations}/${opts.maxIterations} iterations: ${pollResult.failed.map((c) => c.name).join(', ')}`,
+        reason: `CI still failing after ${state.iterations}/${
+          opts.maxIterations
+        } iterations: ${pollResult.failed.map(c => c.name).join(', ')}`,
       },
       manifestAbs,
       rootDir
@@ -3677,7 +3926,14 @@ export async function run(
   // Lessons append (moved here from PR-open). Captures the full
   // migration diff including any CI-fix iterations. Non-fatal on error.
   try {
-    await lessons.append(workflow, item, prUrl, state.iterations, wtPath, rootDir)
+    await lessons.append(
+      workflow,
+      item,
+      prUrl,
+      state.iterations,
+      wtPath,
+      rootDir
+    )
   } catch (err) {
     log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
   }
@@ -3687,7 +3943,6 @@ export async function run(
   return { status: 'pr-opened', prUrl }
 }
 
-
 // ---------------------------------------------------------------------------
 // CLI argument parsing helper (reused by workflow entrypoints)
 // ---------------------------------------------------------------------------
@@ -3695,12 +3950,16 @@ export async function run(
 export function parseOptions(argv: string[]): OrchestratorOptions {
   const args = argv.slice(2)
   const get = (name: string): string | undefined => {
-    const idx = args.findIndex((a) => a === name || a.startsWith(`${name}=`))
+    const idx = args.findIndex(a => a === name || a.startsWith(`${name}=`))
 
-    if (idx === -1) {return undefined}
+    if (idx === -1) {
+      return undefined
+    }
     const eq = args[idx].indexOf('=')
 
-    if (eq !== -1) {return args[idx].slice(eq + 1)}
+    if (eq !== -1) {
+      return args[idx].slice(eq + 1)
+    }
 
     return args[idx + 1]
   }
