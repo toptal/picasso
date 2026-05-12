@@ -29,7 +29,7 @@
   "definitions": {
     "ComponentEntry": {
       "type": "object",
-      "required": ["tier", "package", "status", "depends_on", "target_path", "iterations"],
+      "required": ["tier", "package", "status", "depends_on", "target_path", "iterations", "versionBump"],
       "additionalProperties": false,
       "properties": {
         "tier": {
@@ -64,6 +64,11 @@
         "target_path": {
           "type": "string",
           "description": "@base-ui/react import path the migrated component targets (e.g. \"@base-ui/react/tooltip\"). Use \"none\" for components that stay custom (Backdrop, Badge, Container, FileInput, Grid, Notification, Page; all already-clean Tier 1). Use \"decision-pending\" for components awaiting a Step 8 architectural decision (Popper). Use \" + \" to join multi-target paths (e.g. \"@base-ui/react/menu + @base-ui/react/popover\")."
+        },
+        "versionBump": {
+          "type": "string",
+          "enum": ["patch", "minor", "major"],
+          "description": "Semver level for the migration PR's changeset. Drives the frontmatter of `.changeset/<component>-migration.md` (see docs/migration/PROMPT-light.md / PROMPT-heavy.md §Changeset). Locked per-component using the rules in docs/contribution/changeset-guidelines.md applied against the per-tier classes-audit decision matrix; agents must not deviate."
         },
         "pr": {
           "type": ["string", "null"],

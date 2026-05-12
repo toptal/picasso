@@ -193,6 +193,59 @@ Your task:
    - story files
    - file locations or export names
 
+7. **Author a changeset (mandatory).** Create `.changeset/<component-kebab>-migration.md` at the repo root before declaring done. The file accumulates on `feature/picasso-modernization`; the final `pnpm changeset version` at release time aggregates all per-PR files into a per-package CHANGELOG.
+
+   Template:
+
+   ```markdown
+   ---
+   '<workspace-package-name>': <versionBump from manifest>
+   ---
+
+   ### <ComponentName>
+
+   - <one-line present-simple description of what changed>
+   - <additional bullets if applicable>
+   ```
+
+   Rules:
+   - **Read the `versionBump` value from `docs/migration/manifest.json`** for this component. Do NOT pick your own — the level is locked per-component using the rules in [`docs/contribution/changeset-guidelines.md`](../contribution/changeset-guidelines.md) against the per-tier classes-audit decision matrix. If you think the manifest's value is wrong, stop and escalate; don't override.
+   - **Workspace package name** = the migrating package's `package.json` `name` field. Heavy-path migrations frequently touch multiple packages (sibling packages picasso-charts / picasso-query-builder / picasso-rich-text-editor migrate clusters of internal components; Tier 5 picasso-provider sweeps ~50 transitive consumers). Add one frontmatter line per affected package with its own versionBump if more than one is touched in the same PR.
+   - **Present simple tense.** "Rewrite Checkbox onto @base-ui/react/checkbox", not "Rewrote…" / "Rewriting…".
+   - **Body content** describes user-observable changes. Examples:
+     - Tier 1 cleanup-only (Note, Form, FormLayout, ModalContext, Menu, Utils, FormLabel, Grid):
+       ```markdown
+       ### Note
+
+       - Drop the @material-ui/core peer-dependency (no longer required at runtime)
+       - Lift the React 19 peerDependency upper bound
+       ```
+     - Tier 1 vestigial classes drop (Container, Typography, Notification):
+       ```markdown
+       ### Typography
+
+       - Drop the @material-ui/core peer-dependency and lift the React 19 cap
+       - Drop the inherited `classes` prop from public types (was vestigial; see docs/migration/decisions/classes-audit.md)
+       ```
+     - Tier 2 / Tier 3.a heavy rewrites (Checkbox, Radio, Tooltip, FileInput, Popper, Accordion, Page):
+       ```markdown
+       ### Tooltip
+
+       - Rewrite internals onto @base-ui/react/tooltip + Tailwind (no public API change)
+       - Drop the inherited `classes` prop from public types (internal slot vocabulary moved to per-part `className`)
+       - Drop @material-ui/core peer-dep and JSS dependencies
+       ```
+     - Tier 3.b that keep narrowed `classes` (Dropdown, OutlinedInput):
+       ```markdown
+       ### Dropdown
+
+       - Rewrite internals onto @base-ui/react/menu + @base-ui/react/popover with Tailwind
+       - `classes?: { popper, content }` slot routing preserved (existing API surface unchanged)
+       - Replace @material-ui/core/Grow transition with CSS data-starting-style / data-ending-style
+       ```
+   - **Filename** is kebab-case: `note-migration.md`, `outlined-input-migration.md`, `picasso-rich-text-editor-migration.md`. Avoid timestamps or PR numbers.
+   - Format is enforced by lint-staged (prettier runs on `.changeset/*.md`); no need to hand-format.
+
 Output: file edits only. No explanations.
 
 ### Acceptance criteria — iterate to working, then run full

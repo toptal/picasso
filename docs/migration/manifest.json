@@ -9,6 +9,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -22,6 +23,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -35,6 +37,7 @@
       "status": "awaiting_ci",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
+      "versionBump": "major",
       "pr": "https://github.com/toptal/picasso/pull/4947",
       "branch": "migrate-Button",
       "worktree": "migration-runs/2026-05-08/Button/worktree",
@@ -55,6 +58,7 @@
         "Backdrop"
       ],
       "target_path": "@base-ui/react/drawer",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -69,12 +73,13 @@
         "Backdrop"
       ],
       "target_path": "@base-ui/react/dialog",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup."
+      "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor."
     },
     "Slider": {
       "tier": 0,
@@ -82,6 +87,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "@base-ui/react/slider",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -96,6 +102,7 @@
         "FormLabel"
       ],
       "target_path": "@base-ui/react/switch",
+      "versionBump": "major",
       "pr": "https://github.com/toptal/picasso/pull/4906",
       "branch": null,
       "worktree": null,
@@ -109,6 +116,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "@base-ui/react/tabs",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -121,6 +129,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -134,6 +143,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -147,6 +157,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -160,6 +171,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -173,12 +185,13 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Already-clean source. Foundational primitive — many components depend on it. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap."
+      "notes": "Already-clean source. Foundational primitive — many components depend on it. Migration scope: drop @material-ui/core peer-dep + lift React 19 cap. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>); see docs/migration/decisions/classes-audit.md."
     },
     "Container": {
       "tier": 1,
@@ -186,12 +199,13 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Type-only fix: replace `import type { PropTypes } from '@material-ui/core'` with own type or React.HTMLAttributes."
+      "notes": "Type-only fix: replace `import type { PropTypes } from '@material-ui/core'` with own type or React.HTMLAttributes. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>)."
     },
     "FormLabel": {
       "tier": 1,
@@ -199,6 +213,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -212,6 +227,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -225,12 +241,13 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Type-only fix: replace `import type { SnackbarOrigin } from '@material-ui/core/Snackbar'` with own type ({ vertical, horizontal }). Keep notistack integration."
+      "notes": "Type-only fix: replace `import type { SnackbarOrigin } from '@material-ui/core/Snackbar'` with own type ({ vertical, horizontal }). Keep notistack integration. versionBump=major because audit-verified vestigial `classes` is formally dropped (Omit<StandardProps,'classes'>)."
     },
     "Menu": {
       "tier": 1,
@@ -238,6 +255,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -251,6 +269,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "none",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -266,6 +285,7 @@
         "FormLabel"
       ],
       "target_path": "@base-ui/react/checkbox + @base-ui/react/checkbox-group",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -281,6 +301,7 @@
         "FormLabel"
       ],
       "target_path": "@base-ui/react/radio + @base-ui/react/field",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -294,6 +315,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "@base-ui/react/tooltip",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -309,6 +331,7 @@
         "Tooltip"
       ],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -322,6 +345,7 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "@floating-ui/react",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -337,6 +361,7 @@
         "Utils"
       ],
       "target_path": "@base-ui/react/accordion",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -352,12 +377,13 @@
         "Popper"
       ],
       "target_path": "@base-ui/react/menu + @base-ui/react/popover",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Heavy composite + mixed-state PR. Single PR covers @mui/base portion + @material-ui/core/Grow transition replacement. Replace Grow with CSS data-starting-style/data-ending-style transitions."
+      "notes": "Heavy composite + mixed-state PR. Single PR covers @mui/base portion + @material-ui/core/Grow transition replacement. Replace Grow with CSS data-starting-style/data-ending-style transitions. versionBump=patch: locally narrowed `classes?: { popper, content }` is preserved (2 external callsites — see classes-audit §6). Promote to minor if new functionality is added in the rewrite."
     },
     "Page": {
       "tier": 3,
@@ -376,6 +402,7 @@
         "Accordion"
       ],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -389,12 +416,13 @@
       "status": "queued",
       "depends_on": [],
       "target_path": "@base-ui/react/input + @base-ui/react/field",
+      "versionBump": "patch",
       "pr": null,
       "branch": null,
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Mixed-state PR (~0.5d). Bundles light-path swap of @mui/base portion + type-only fix (`import type { InputBaseComponentProps }` → React.InputHTMLAttributes) in single PR."
+      "notes": "Mixed-state PR (~0.5d). Bundles light-path swap of @mui/base portion + type-only fix (`import type { InputBaseComponentProps }` → React.InputHTMLAttributes) in single PR. versionBump=patch: locally narrowed `classes?: { input, root }` is preserved (4 external callsites — see classes-audit §6). Promote to minor if new functionality is added."
     },
     "picasso-charts": {
       "tier": 4,
@@ -404,6 +432,7 @@
         "Typography"
       ],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -424,6 +453,7 @@
         "Typography"
       ],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -442,6 +472,7 @@
         "Button"
       ],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
@@ -487,6 +518,7 @@
         "picasso-rich-text-editor"
       ],
       "target_path": "none",
+      "versionBump": "major",
       "pr": null,
       "branch": null,
       "worktree": null,
