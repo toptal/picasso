@@ -31,3 +31,12 @@ llm-docs
 # Worktrees, gate logs, diff reports, agent prompts/responses, escalation
 # blocks. Reproducible per run; do not commit.
 migration-runs
+
+# Playwright MCP runtime artifacts emitted into the worktree when the
+# orchestrator runs with `--with-mcp` (page snapshots, console logs, etc.).
+# Captured by the agent for inspection during iter but should not land in
+# the migration PR. Without this entry the agent's `git add -A` step
+# (orchestrator-driven) sweeps them into the commit. See PR #4949 for the
+# debris example.
+.playwright-mcp
+
