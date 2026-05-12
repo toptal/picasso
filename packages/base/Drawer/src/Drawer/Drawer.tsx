@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Modal } from '@mui/base/Modal'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
@@ -9,6 +9,8 @@ import { Slide } from '@toptal/picasso-slide'
 import { Backdrop } from '@toptal/picasso-backdrop'
 import { Container } from '@toptal/picasso-container'
 import {
+  defaultModalManager,
+  generateModalId,
   useIsomorphicLayoutEffect,
   usePageScrollLock,
 } from '@toptal/picasso-utils'
@@ -81,6 +83,7 @@ export const Drawer = ({
   const { setHasDrawer } = useDrawer()
   const container = usePicassoRoot()
   const ref = useRef<HTMLDivElement>(null)
+  const drawerId = useRef(generateModalId())
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
@@ -93,6 +96,20 @@ export const Drawer = ({
 
     return cleanup
   }, [open, setHasDrawer])
+
+  // Register with the shared overlay manager so a Picasso Modal below
+  // yields focus enforcement to this Drawer (see ER-49165).
+  useEffect(() => {
+    const id = drawerId.current
+
+    if (open) {
+      defaultModalManager.add(id)
+    }
+
+    return () => {
+      defaultModalManager.remove(id)
+    }
+  }, [open])
 
   const handleOnClose = () => {
     if (onClose) {
