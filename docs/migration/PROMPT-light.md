@@ -219,13 +219,17 @@ Available tools:
 
 **Mandatory runtime check (required when `--with-mcp` is active — non-optional):**
 
-1. `browser_navigate` to the component's default story (the URL pattern is `http://localhost:9001/?path=/story/<group>-<name>--<example>`; if you don't know the exact path, `browser_navigate` to `http://localhost:9001/` first and read the sidebar).
-2. `browser_console_messages` and confirm **zero entries with `type: "error"`**. React 18 `ReactDOM.render` warnings are acceptable for now (Picasso-wide); any other error is a fail — investigate and fix before exiting.
-3. `browser_take_screenshot` once for sanity (component visible, not a blank/error box).
-4. **If the component has interactive states** (Button, Modal, Drawer, Dropdown, Switch, Backdrop, Tabs, anything with `onClick`/hover behavior): use `browser_hover` or `browser_click` on the primary trigger, then re-run `browser_console_messages` to catch interaction-time errors.
-5. Repeat steps 1–3 for any other story the migration touches (e.g. an `Invisible` variant of a backdrop, a `Disabled` story for a button).
+1. **Discover the story URLs.** `browser_navigate` to `http://localhost:9001/` and read the left sidebar to find your component's stories under `Components / <Name>`. URL pattern is `http://localhost:9001/?path=/story/components-<lowercase-name>--<story-id>` but the `<story-id>` part is **per-component** — for Backdrop it's `--backdrop` (default) + `--invisible` (variant), not `--default`. Inspect the story tree by reading `mcp__playwright__browser_snapshot` of the sidebar or just navigating into `Components` group to enumerate them.
 
-Skipping this is exiting with an unverified migration. The orchestrator's gate does NOT catch runtime-only errors — Happo only compares pixel diffs against a baseline, which passes if a runtime exception causes an empty render with no baseline yet, or if the visual is unchanged but a console error fires.
+2. **Render the actual component, not just the trigger.** Many stories show only a trigger button (e.g. Backdrop's default story shows an "Open Backdrop" button — the backdrop itself is hidden until clicked). After `browser_navigate`, look at the screenshot/snapshot: if you only see a placeholder button or instruction text, you have NOT verified the migrated component yet. `browser_click` the trigger (or whatever action makes the component visible), then re-screenshot. The thing you're migrating must be on screen before you call this check done.
+
+3. **`browser_console_messages` and confirm zero `[error]` entries.** React 18's `ReactDOM.render` deprecation warning is acceptable for now (Picasso-wide); any other error is a fail — investigate and fix before exiting. Capture console BOTH on initial render AND after every interaction (click/hover/focus) — many errors only fire when the component mounts in response to user action.
+
+4. **Use judgment on which interactions to exercise.** Don't run a script — think about what would prove the migration works. For Backdrop: open + close (verify mount/unmount), and the `Invisible` variant. For Button: hover, focus, click, plus disabled state if it's a separate story. For Modal: open, close via backdrop click, close via Escape, scroll inside. The bar is "would a reasonable reviewer think I actually verified this works", not "I clicked one button".
+
+5. `browser_take_screenshot` once per meaningful state (default trigger view, component-open view, key variants). These are sanity checks, not the gate — Happo handles pixel-perfect comparison. You're confirming the component renders and reacts; not that pixels are identical.
+
+Skipping this is exiting with an unverified migration. The orchestrator's gate does NOT catch runtime-only errors — Happo only compares pixel diffs against a baseline, which passes if a runtime exception causes an empty render with no baseline yet, or if the visual is unchanged but a console error fires. And **viewing only the trigger button** is the most common false-positive: the migrated component never rendered, console was clean, but you verified nothing.
 
 **Working acceptance** (run for regular feedback during iteration):
 - `pnpm --filter @toptal/picasso-<NAME> build:package` passes (types + emit)

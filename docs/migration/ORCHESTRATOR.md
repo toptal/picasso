@@ -43,10 +43,34 @@ CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent
 ## Prerequisites
 
 - `gh` authenticated with `repo` + `read:org` scopes. Verify: `gh auth status`.
+- `ssh-add -l` shows your GitHub SSH key loaded (the orchestrator's `git push` step uses SSH per Picasso's `origin` remote). On macOS after reboot, run `ssh-add --apple-use-keychain ~/.ssh/id_ed25519` (or whichever key) to load from Keychain.
 - `pnpm install` clean.
+- **`NPM_TOKEN` set in env** — without it, pnpm silently drops the `.npmrc` parse on the `${NPM_TOKEN}` substitution failure and falls back to `nodeLinker: isolated` mode, which doesn't hoist `@types/*` to top-level `node_modules` (tsc then can't resolve react types). Picasso operators typically have it via `direnv` on `~/Projects/.envrc` (the orchestrator's `loadEnvrcUpwards` finds it automatically). Without direnv, set `NPM_TOKEN=dummy` is sufficient — pnpm only uses the token to authenticate fetches, not for layout decisions.
+- Node v22.20.0 (per `.nvmrc` + `engines`). `nvm use 22.20.0`. The webpack patch this branch ships (`patches/webpack@5.98.0.patch`) fixes the symlink-dedup `RangeError` in `FileSystemInfo.js` that crashes Storybook startup on Node 22; the patch lands automatically via `pnpm.patchedDependencies`.
 - Working tree clean. Worktree base defaults to `HEAD` (current branch tip) — see [bin/lib/orchestrator-core.ts `worktree.add`](../../bin/lib/orchestrator-core.ts) for the rationale.
 - For full gate including Happo: `HAPPO_API_KEY` + `HAPPO_API_SECRET` set in env (see §Happo setup below).
 - For sandbox / smoke runs: set `MIGRATION_GATE_HAPPO=skip` to bypass Happo.
+
+### Known lockfile-cascade caveat
+
+`.npmrc` has `link-workspace-packages=true`. The committed `pnpm-lock.yaml` uses **npm-fetched** specs for workspace deps (e.g. `'@toptal/picasso-shared': version: 15.0.0(...)` — not `link:packages/shared`). Master CI's `pnpm install --frozen-lockfile` preserves this. The orchestrator's bootstrap does the same.
+
+But: when the **agent edits a `package.json`'s deps** (legitimately, e.g. to drop `@mui/base`) and runs `pnpm install` to refresh the lockfile, pnpm honors `link-workspace-packages=true` and **cascade-rewrites** dozens of workspace dep entries from versioned specs to `link:packages/<X>`. The cascade alters tsc's transitive resolution graph and exposes latent type errors in downstream packages (the canonical example is `BreadcrumbsItem.tsx` failing with TS2322 on `OverridableComponent<Props>`), which then breaks the gate's `happo` stage.
+
+**Fix in [PROMPT-light.md](PROMPT-light.md) / [PROMPT-heavy.md](PROMPT-heavy.md):** the agent is now instructed to run `pnpm install --config.link-workspace-packages=false` instead of plain `pnpm install`. With the flag, pnpm refreshes only what the agent's edit actually changed (e.g. removes `@mui/base` from the lockfile) and leaves the rest of the workspace deps at their npm-fetched specs. Lockfile diff stays small and focused.
+
+If you see hundreds of `link:packages/<X>` substitutions in the diff during local debugging, the flag was omitted somewhere — reset with `git checkout HEAD -- pnpm-lock.yaml` and re-run with the flag.
+
+### Mandatory Playwright runtime check (when `--with-mcp` is active)
+
+[PROMPT-light.md](PROMPT-light.md) / [PROMPT-heavy.md](PROMPT-heavy.md) now require the agent to use Playwright MCP for runtime verification before exiting. Specifically:
+
+- Navigate to `http://localhost:9001/` and discover the component's story URLs (Picasso's story IDs don't follow a fixed `--default` pattern — e.g. Backdrop is `--backdrop` + `--invisible`).
+- **Trigger the component**, not just the story's wrapper button. Many stories show only an "Open X" button; the migrated thing is hidden until clicked. The agent must click to mount and then verify.
+- `browser_console_messages` after initial render AND after each interaction; zero `[error]` entries (React 18's `ReactDOM.render` deprecation excepted).
+- Use judgment on which interactions to exercise — the bar is "would a reasonable reviewer think the migration was verified".
+
+This complements (not replaces) Happo. Happo catches pixel regressions vs. baselines; the Playwright check catches runtime errors that never reach a Happo baseline (silent throws, hydration mismatches, console.error during interaction).
 
 ## Happo setup
 
