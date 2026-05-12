@@ -1,0 +1,63 @@
+- generic [ref=e2]:
+  - img
+  - 'link "Storybook 10.3.6 is available! Your current version is: 6.5.16" [ref=e4] [cursor=pointer]':
+    - /url: /?path=/settings/about
+    - img [ref=e6]
+    - generic [ref=e8]:
+      - generic "Storybook 10.3.6 is available!" [ref=e9]
+      - generic [ref=e10]: "Your current version is: 6.5.16"
+    - button "Dismiss notification" [ref=e11]:
+      - img [ref=e12]
+  - navigation [ref=e16]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - link "Skip to canvas" [ref=e23] [cursor=pointer]:
+          - /url: "#storybook-preview-wrapper"
+        - link "Picasso" [ref=e25] [cursor=pointer]:
+          - /url: ./
+          - img "Picasso" [ref=e26]
+        - button "Shortcuts" [ref=e28] [cursor=pointer]:
+          - img
+      - generic [ref=e29]: Search for components
+      - combobox "Search for components" [ref=e30]:
+        - img
+        - searchbox "Search for components" [ref=e31]
+        - code: /
+  - main [ref=e54]:
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - button "Remount component" [disabled] [ref=e63]:
+              - img [ref=e64]
+            - button "Zoom in" [ref=e66] [cursor=pointer]:
+              - img [ref=e67]
+            - button "Zoom out" [ref=e69] [cursor=pointer]:
+              - img [ref=e70]
+            - button "Reset zoom" [ref=e72] [cursor=pointer]:
+              - img [ref=e73]
+            - button "Change the size of the preview" [ref=e77] [cursor=pointer]:
+              - img [ref=e78]
+            - button "Vision simulator" [ref=e81] [cursor=pointer]:
+              - img [ref=e82]
+            - generic:
+              - img
+          - generic [ref=e84]:
+            - button "Show addons" [ref=e85] [cursor=pointer]:
+              - img [ref=e86]
+            - button "Go full screen [F]" [ref=e88] [cursor=pointer]:
+              - img [ref=e89]
+        - generic [ref=e91]:
+          - progressbar "Content is loading..." [ref=e93]
+          - iframe [ref=e95]:
+            
+      - generic [ref=e97]:
+        - generic [ref=e102]:
+          - tablist [ref=e104]:
+            - tab "Accessibility" [ref=e105] [cursor=pointer]
+          - generic [ref=e106]:
+            - button "Change addon orientation [D]" [ref=e107] [cursor=pointer]:
+              - img [ref=e108]
+            - button "Hide addons [A]" [ref=e110] [cursor=pointer]:
+              - img [ref=e111]
+        - generic [ref=e114]: Initializing...

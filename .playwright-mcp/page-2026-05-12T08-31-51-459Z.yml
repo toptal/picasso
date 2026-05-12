@@ -1,0 +1,73 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - img
+    - 'link "Storybook 10.3.6 is available! Your current version is: 6.5.16" [ref=e4] [cursor=pointer]':
+      - /url: /?path=/settings/about
+      - img [ref=e6]
+      - generic [ref=e8]:
+        - generic "Storybook 10.3.6 is available!" [ref=e9]
+        - generic [ref=e10]: "Your current version is: 6.5.16"
+      - button "Dismiss notification" [ref=e11]:
+        - img [ref=e12]
+    - navigation [ref=e16]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - link "Skip to canvas" [ref=e23] [cursor=pointer]:
+            - /url: "#storybook-preview-wrapper"
+          - link "Picasso" [ref=e25] [cursor=pointer]:
+            - /url: ./
+            - img "Picasso"
+          - button "Shortcuts" [ref=e27] [cursor=pointer]:
+            - img
+        - generic [ref=e28]: Search for components
+        - combobox "Search for components" [ref=e29]:
+          - img
+          - searchbox "Search for components" [ref=e30]
+          - code: /
+    - main [ref=e53]:
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e60]:
+            - generic [ref=e61]:
+              - button "Remount component" [ref=e62] [cursor=pointer]:
+                - img [ref=e63]
+              - button "Zoom in" [ref=e65] [cursor=pointer]:
+                - img [ref=e66]
+              - button "Zoom out" [ref=e68] [cursor=pointer]:
+                - img [ref=e69]
+              - button "Reset zoom" [ref=e71] [cursor=pointer]:
+                - img [ref=e72]
+              - button "Change the size of the preview" [ref=e76] [cursor=pointer]:
+                - img [ref=e77]
+              - button "Vision simulator" [ref=e80] [cursor=pointer]:
+                - img [ref=e81]
+              - generic:
+                - img
+            - generic [ref=e83]:
+              - button "Show addons" [ref=e84] [cursor=pointer]:
+                - img [ref=e85]
+              - button "Go full screen [F]" [ref=e87] [cursor=pointer]:
+                - img [ref=e88]
+              - link "Open canvas in new tab" [ref=e90] [cursor=pointer]:
+                - /url: iframe.html?id=components-backdrop--default
+                - img [ref=e91]
+              - button "Copy canvas link" [ref=e93] [cursor=pointer]:
+                - img [ref=e94]
+          - generic [ref=e96]:
+            - progressbar "Content is loading..." [ref=e98]
+            - generic [ref=e99]:
+              - link "Skip to sidebar" [ref=e100] [cursor=pointer]:
+                - /url: "#components-backdrop--default"
+              - iframe [ref=e101]:
+                
+        - generic [ref=e103]:
+          - generic [ref=e108]:
+            - tablist [ref=e110]:
+              - tab "Accessibility" [ref=e111] [cursor=pointer]
+            - generic [ref=e112]:
+              - button "Change addon orientation [D]" [ref=e113] [cursor=pointer]:
+                - img [ref=e114]
+              - button "Hide addons [A]" [ref=e116] [cursor=pointer]:
+                - img [ref=e117]
+          - generic [ref=e120]: Initializing...
+  - status [ref=e121]

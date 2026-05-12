@@ -1,0 +1,43 @@
+[     125ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:9001/vendors-node_modules_storybook_addon-a11y_manager_js-node_modules_storybook_addon-viewport_re-3df1b8.manager.bundle.js:92562
+[     128ms] [WARNING] register.js is deprecated see https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#deprecated-registerjs @ http://localhost:9001/vendors-node_modules_storybook_addon-a11y_manager_js-node_modules_storybook_addon-viewport_re-3df1b8.manager.bundle.js:6797
+[     128ms] [ERROR] Warning: ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot @ http://localhost:9001/vendors-node_modules_storybook_addon-a11y_manager_js-node_modules_storybook_addon-viewport_re-3df1b8.manager.bundle.js:62813
+[     495ms] [ERROR] Unexpected error while loading ./load-stories.js: Module parse failed: Unexpected token (1:12)
+File was processed with these loaders:
+ * ./node_modules/cache-loader/dist/cjs.js
+ * ./node_modules/thread-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+> import type { HTMLAttributes, ReactNode } from 'react'
+| import React, { forwardRef } from 'react'
+| import type {
+ Error: Module parse failed: Unexpected token (1:12)
+File was processed with these loaders:
+ * ./node_modules/cache-loader/dist/cjs.js
+ * ./node_modules/thread-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+> import type { HTMLAttributes, ReactNode } from 'react'
+| import React, { forwardRef } from 'react'
+| import type {
+    at ./node_modules/@toptal/picasso-form-label/src/FormLabel/FormLabel.tsx (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:266957:7)
+    at options.factory (http://localhost:9001/runtime~main.iframe.bundle.js:717:30)
+    at __webpack_require__ (http://localhost:9001/runtime~main.iframe.bundle.js:28:33)
+    at fn (http://localhost:9001/runtime~main.iframe.bundle.js:345:21)
+    at hotRequire (http://localhost:9001/runtime~main.iframe.bundle.js:700:47)
+    at ./node_modules/@toptal/picasso-form-label/src/FormLabel/story/index.jsx (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:266972:68)
+    at options.factory (http://localhost:9001/runtime~main.iframe.bundle.js:717:30)
+    at __webpack_require__ (http://localhost:9001/runtime~main.iframe.bundle.js:28:33)
+    at fn (http://localhost:9001/runtime~main.iframe.bundle.js:345:21)
+    at hotRequire (http://localhost:9001/runtime~main.iframe.bundle.js:700:47) @ http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:207894
+[     496ms] [ERROR] Unable to load story '*': @ http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:207894
+[     496ms] [ERROR] Error: Couldn't find any stories in your Storybook.
+- Please check your stories field of your main.js config.
+- Also check the browser console and terminal for error messages.
+    at PreviewWeb._callee2$ (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:235637:68)
+    at tryCatch (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:519060:25)
+    at Generator.invoke [as _invoke] (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:519236:30)
+    at Generator.next (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:519108:29)
+    at asyncGeneratorStep (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:235475:103)
+    at _next (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:235477:194)
+    at http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:235477:364
+    at new Promise (<anonymous>)
+    at PreviewWeb.<anonymous> (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:235477:97)
+    at PreviewWeb.selectSpecifiedStory (http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:235665:38) @ http://localhost:9001/vendors-node_modules_pmmmwh_react-refresh-webpack-plugin_client_ErrorOverlayEntry_js-node_mod-279103.iframe.bundle.js:207894
