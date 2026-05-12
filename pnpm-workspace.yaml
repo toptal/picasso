@@ -10,3 +10,6 @@ minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
   - '@toptal/*'
   - '@topkit/*'
+  - '@playwright/*'
+  - 'playwright'
+  - 'playwright-core'
