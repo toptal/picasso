@@ -76,6 +76,6 @@ Full audit + per-component data: `docs/migration/decisions/classes-audit.md`. De
 
 ## Branch hygiene
 
-- **Active orchestrator branch**: `feature/pf-1992-migration-orchestrator` (renamed from `pf-1992-migration-orchestrator` 2026-05-07 — `feature/` prefix triggers Picasso's CI workflow)
-- **Migration PR target**: `feature/pf-1992-migration-orchestrator` itself — migration worktrees fork from + target this branch so PR diffs are clean (only migration changes, not orchestrator commits)
+- **Active orchestrator branch**: `feature/pf-1992-migration-orchestrator` (operator's working branch; worktrees fork from its HEAD)
+- **Migration PR target**: `feature/picasso-modernization-temp` (set 2026-05-12). Worktrees still fork from the orchestrator branch's HEAD, so PR diffs may include orchestrator commits not yet on the target.
 - **Eventual merge target**: this branch as a whole rolls up into `feature/picasso-modernization` or master after all 28 migrations land

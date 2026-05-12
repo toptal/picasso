@@ -42,11 +42,17 @@ import {
   runReviewSweep,
   parseOptions,
 } from './lib/orchestrator-core'
-import type { GateReport, ManifestItem, RunState, Workflow } from './lib/workflow'
+import type {
+  GateReport,
+  ManifestItem,
+  RunState,
+  Workflow,
+} from './lib/workflow'
 
 const migrationWorkflow: Workflow = {
   id: 'migration',
-  displayName: 'Migration (MUI v4 + @mui/base + JSS → @base-ui/react + Tailwind 4)',
+  displayName:
+    'Migration (MUI v4 + @mui/base + JSS → @base-ui/react + Tailwind 4)',
   manifestPath: 'docs/migration/manifest.json',
   promptFor: (item: ManifestItem) =>
     item.tier === 0
@@ -78,7 +84,7 @@ const migrationWorkflow: Workflow = {
   // styling 3.3 KB, api-preservation 6.2 KB, lessons-learned ~1-2 KB
   // (grows). Tier 0 prompt drops ~62 KB → ~32 KB. Tier 1 cleanup ~62 KB
   // → ~17 KB. Tier 2/3 unchanged.
-  contextPack: (item) => {
+  contextPack: item => {
     const always = [
       'docs/migration/rules/api-preservation.md',
       // Tier 1.3: lessons auto-accumulated by post-success hook. Future
@@ -111,10 +117,10 @@ const migrationWorkflow: Workflow = {
     // Tier 2/3 (and any Tier 1 with a real target_path): full context.
     return [...always, ...baseUI, ...tailwindHeavy]
   },
-  perItemPlan: (id) => `docs/migration/components/${id.replace(/\//g, '__')}.md`,
-  gate: (id) => `bin/migration-gate.sh "${id}"`,
+  perItemPlan: id => `docs/migration/components/${id.replace(/\//g, '__')}.md`,
+  gate: id => `bin/migration-gate.sh "${id}"`,
   diff: (id, mode) => `bin/migration-diff.sh ${mode} "${id}"`,
-  branchName: (id) => `migrate-${id.replace(/\//g, '-')}`,
+  branchName: id => `migrate-${id.replace(/\//g, '-')}`,
   // Long-running migration effort lands on the integration branch, NOT
   // master, so the batch can be reviewed/staged together. Master sees a
   // single squash-merge once the whole modernization wave is green.
@@ -135,7 +141,11 @@ const migrationWorkflow: Workflow = {
   // branch directly so the PR diff stays clean (only migration changes,
   // not orchestrator commits). Eventually the orchestrator branch as a
   // whole will be PR'd into `feature/picasso-modernization` or master.
-  baseBranch: 'feature/pf-1992-migration-orchestrator',
+  // 2026-05-12: changed to `feature/picasso-modernization-temp` per
+  // operator request — temporary integration branch. Worktrees still
+  // fork from local HEAD (the orchestrator branch), so PR diffs may
+  // include orchestrator commits not yet present on the target.
+  baseBranch: 'feature/picasso-modernization-temp',
   // Phase 3.1 — CI poll budget. Picasso's full pipeline on the integration
   // branch runs in ~7-12min (canary 24: Static checks 7:39, Integration
   // Tests 5:30 + sharded e2e ~7min). 15min covers it with headroom; bump
@@ -168,20 +178,23 @@ const migrationWorkflow: Workflow = {
   // the body via PR description, where it's still visible without
   // tripping CI. Validated against the existing Picasso PR style
   // (`[TAPS-0000] Migrate Button and Switch to BASE UI`, PR #4906).
-  prTitle: (id) => `[PF-1994] Migrate ${id} to @base-ui/react + Tailwind`,
+  prTitle: id => `[PF-1994] Migrate ${id} to @base-ui/react + Tailwind`,
   commitMessage: (id, item) => {
     const isCanary = item.notes?.includes('orchestrator sandbox')
     // Tier 1 already-clean components: just the dep cleanup, no source migration.
     const isAlreadyClean =
-      item.tier === 1 && item.target_path === 'none' && item.notes?.includes('Already-clean source')
+      item.tier === 1 &&
+      item.target_path === 'none' &&
+      item.notes?.includes('Already-clean source')
     // Subject must start with a capital letter and not end with a full-stop
     // (Picasso Danger rules). The `[PF-1994]` prefix is also required so the
     // commit-title check finds a Jira issue code. The verb is capitalized
     // ("Drop", "Migrate") to satisfy "Title should start with capital
     // letter" once Danger strips the prefix.
-    const subject = isCanary || isAlreadyClean
-      ? `[PF-1994] Drop @material-ui/core peer-dep from ${id}, lift React 19 cap`
-      : item.tier === 0
+    const subject =
+      isCanary || isAlreadyClean
+        ? `[PF-1994] Drop @material-ui/core peer-dep from ${id}, lift React 19 cap`
+        : item.tier === 0
         ? `[PF-1994] Migrate ${id} from @mui/base to @base-ui/react`
         : `[PF-1994] Migrate ${id} to @base-ui/react + Tailwind`
     const body = isCanary
@@ -189,10 +202,10 @@ const migrationWorkflow: Workflow = {
         'the vestigial peer-dep and unblocks React 19 testing for downstream\n' +
         'consumers. Validates the orchestrator end-to-end as the PF-1992 sandbox.'
       : isAlreadyClean
-        ? 'Source is already MUI-clean. This commit drops the vestigial @material-ui/core\n' +
-          'peer-dep and lifts the React 19 peer-dep cap.'
-        : `Tier ${item.tier} component. See PR description for prop-surface diff,\n` +
-          'import diff, and Happo summary.'
+      ? 'Source is already MUI-clean. This commit drops the vestigial @material-ui/core\n' +
+        'peer-dep and lifts the React 19 peer-dep cap.'
+      : `Tier ${item.tier} component. See PR description for prop-surface diff,\n` +
+        'import diff, and Happo summary.'
 
     return [subject, '', body, '', 'Refs: PF-1994'].join('\n')
   },
@@ -234,8 +247,8 @@ const migrationWorkflow: Workflow = {
     if (recent.length === 2) {
       const failedStages = (report: GateReport): string =>
         report.stages
-          .filter((stage) => stage.status === 'FAIL')
-          .map((stage) => stage.name)
+          .filter(stage => stage.status === 'FAIL')
+          .map(stage => stage.name)
           .sort()
           .join(',')
       const prev = failedStages(recent[0])
@@ -262,8 +275,12 @@ const migrationWorkflow: Workflow = {
   // 'none') don't change source meaningfully, and heavy/sibling-package
   // migrations are too workflow-specific to standardize as references.
   onPostMerge: async (item: ManifestItem, rootDir: string) => {
-    if (item.tier !== 0) {return}
-    if (item.target_path === 'none') {return}
+    if (item.tier !== 0) {
+      return
+    }
+    if (item.target_path === 'none') {
+      return
+    }
     const leaf = item.id.split('/').pop() || item.id
     const sourcePath = path.join(
       rootDir,
@@ -273,7 +290,9 @@ const migrationWorkflow: Workflow = {
       `${leaf}.tsx`
     )
 
-    if (!existsSync(sourcePath)) {return}
+    if (!existsSync(sourcePath)) {
+      return
+    }
     const refDir = path.join(rootDir, 'docs/migration/reference')
 
     await fs.mkdir(refDir, { recursive: true })
@@ -281,29 +300,42 @@ const migrationWorkflow: Workflow = {
 
     await fs.copyFile(sourcePath, refPath)
     // eslint-disable-next-line no-console
-    console.log(`[reference] copied ${item.package}/src/${leaf}/${leaf}.tsx → ${path.relative(rootDir, refPath)}`)
+    console.log(
+      `[reference] copied ${
+        item.package
+      }/src/${leaf}/${leaf}.tsx → ${path.relative(rootDir, refPath)}`
+    )
   },
 }
 
 async function main(): Promise<void> {
   const opts = parseOptions(process.argv)
+  // `--base-branch=<ref>` lets the operator route this run's PR to a
+  // different integration branch without editing the workflow descriptor.
+  // Applied once here so every downstream read of `workflow.baseBranch`
+  // (merge-base scope, dry-run plan, `gh pr create --base`) picks it up.
+  const workflow: Workflow = opts.baseBranch
+    ? { ...migrationWorkflow, baseBranch: opts.baseBranch }
+    : migrationWorkflow
   // Phase 3.5 redesign — three modes, mutually exclusive in priority order:
   //   --review-sweep  → walk all awaiting_review items, process new
   //                     review activity, persist state, exit
   //   --batch         → loop run() over every queued item in tier
   //   default         → single-component / single-next-queued migration
   const result = opts.reviewSweep
-    ? await runReviewSweep(migrationWorkflow, opts)
+    ? await runReviewSweep(workflow, opts)
     : opts.batch
-      ? await runBatch(migrationWorkflow, opts)
-      : await run(migrationWorkflow, opts)
+    ? await runBatch(workflow, opts)
+    : await run(workflow, opts)
 
   // eslint-disable-next-line no-console
   console.log(`\nResult: ${JSON.stringify(result, null, 2)}`)
-  if (result.status === 'escalated') {process.exit(2)}
+  if (result.status === 'escalated') {
+    process.exit(2)
+  }
 }
 
-main().catch((err) => {
+main().catch(err => {
   // eslint-disable-next-line no-console
   console.error('Orchestrator failed:', err)
   process.exit(1)

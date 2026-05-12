@@ -409,4 +409,15 @@ export interface OrchestratorOptions {
    * `git push -u origin <branch>` target. PR head also picks this up.
    */
   readonly branch: string | null
+
+  /**
+   * Override the workflow's `baseBranch` (PR target / merge-base ref).
+   *
+   * Default: `null` (use `workflow.baseBranch`). CLI: `--base-branch=<ref>`.
+   *
+   * Use case: routing migration PRs to a different integration branch
+   * for a specific run (e.g. a fork of the orchestrator branch for an
+   * isolated batch) without editing the workflow descriptor.
+   */
+  readonly baseBranch: string | null
 }
