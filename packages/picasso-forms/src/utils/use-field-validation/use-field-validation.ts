@@ -8,7 +8,7 @@ import { useFormContext } from '../../Form/FormContext'
 export type Props<T extends ValueType> = {
   name: string
   meta: FieldMetaState<T>
-  validators: FieldValidator<T>
+  validators: FieldValidator<T> | undefined
   shouldValidateOnSubmit?: boolean
 }
 
@@ -48,7 +48,7 @@ const useFieldValidation = <T extends ValueType>({
   const { setValidators, clearValidators } = useFormContext()
 
   useEffect(() => {
-    if (shouldValidateOnSubmit) {
+    if (shouldValidateOnSubmit && validators) {
       setValidators(name, validators)
     }
 

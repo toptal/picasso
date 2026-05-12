@@ -1,4 +1,17 @@
-import type { ASTPath, Core, ImportDeclaration, JSCodeshift } from 'jscodeshift'
+import type {
+  ASTPath,
+  Core,
+  ImportDeclaration,
+  ImportDefaultSpecifier,
+  ImportNamespaceSpecifier,
+  ImportSpecifier,
+  JSCodeshift,
+} from 'jscodeshift'
+
+type Specifier =
+  | ImportSpecifier
+  | ImportDefaultSpecifier
+  | ImportNamespaceSpecifier
 
 const warnUsersAbout = (
   unsolvableImportDeclarations: ASTPath<ImportDeclaration>[],
@@ -29,11 +42,11 @@ const warnUsersAbout = (
   }
 }
 
-const getSpecifierName = (specifier: any) => {
+const getSpecifierName = (specifier: Specifier) => {
   const name = specifier.local!.name
 
   if (specifier.type === 'ImportSpecifier') {
-    const identifierName = specifier.imported.loc!.identifierName
+    const identifierName = specifier.imported.name
 
     return identifierName && identifierName === name
       ? name

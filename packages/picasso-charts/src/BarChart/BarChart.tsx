@@ -75,7 +75,9 @@ export interface Props<K extends string | number | symbol>
   /** Maximum size for the bar */
   maxBarSize?: number
   /** Function to format ticks of the value axis */
-  valueAxisTickFormatter?: ((value: any, index: number) => string) | undefined
+  valueAxisTickFormatter?:
+    | ((value: string | number, index: number) => string)
+    | undefined
 }
 
 const StyleOverrides = () => (

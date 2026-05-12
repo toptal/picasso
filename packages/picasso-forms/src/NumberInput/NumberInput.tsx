@@ -32,10 +32,10 @@ export const NumberInput = (props: Props) => {
   const validateNumberLimits: FieldValidator<
     NumberInputProps['value']
   > = value => {
-    if (Number(value) > max) {
+    if (Number(value) > Number(max)) {
       return `Must be less than or equal to ${max}.`
     }
-    if (Number(value) < min) {
+    if (Number(value) < Number(min)) {
       return `Must be greater than or equal to ${min}.`
     }
   }

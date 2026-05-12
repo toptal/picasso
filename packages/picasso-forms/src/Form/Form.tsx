@@ -25,10 +25,10 @@ export type Props<T = AnyObject> = FinalFormProps<T> & {
   'data-testid'?: string
 }
 
-const getValidationErrors = (
+const getValidationErrors = <T extends AnyObject>(
   validators: Validators,
-  formValues: any,
-  form: FormApi<any>
+  formValues: T,
+  form: FormApi<T>
 ): SubmissionErrors | void => {
   let errors: SubmissionErrors
 

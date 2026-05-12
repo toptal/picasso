@@ -1,10 +1,18 @@
-const composeValidators = (validators: any[]) => (value: any, allValues: any) =>
-  validators
-    .filter(Boolean)
-    .reduce(
-      (error, validator) => error || validator(value, allValues),
-      undefined
-    )
+import type { FieldValidator } from 'final-form'
+
+const composeValidators =
+  <TValue = unknown>(
+    validators: (FieldValidator<TValue> | undefined | null | false)[]
+  ): FieldValidator<TValue> =>
+  (value, allValues, meta) =>
+    validators
+      .filter((validator): validator is FieldValidator<TValue> =>
+        Boolean(validator)
+      )
+      .reduce<unknown>(
+        (error, validator) => error || validator(value, allValues, meta),
+        undefined
+      )
 
 const required = (value: unknown) =>
   value === undefined ||

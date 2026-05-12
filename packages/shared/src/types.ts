@@ -4,6 +4,7 @@ import type {
   ButtonHTMLAttributes,
   ElementType,
   ComponentPropsWithRef,
+  RefAttributes,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -57,6 +58,12 @@ interface NamedComponent<P> {
   displayName?: string
 }
 export interface OverridableComponent<P = {}> extends NamedComponent<P> {
+  // forwardRef-style overload: `R` is bound per call, allowing any specific
+  // ref element type (HTMLButtonElement, HTMLDivElement, etc.) to satisfy
+  // assignment. Required for TS 5.x's stricter assignability when P has
+  // required fields — see PR PF-2031 for context.
+  <R = unknown>(props: P & RefAttributes<R>): JSX.Element | null
+  // Overridable polymorphic signature — used by callers via the `as` prop.
   <T extends ElementType = ElementType<Omit<P, 'as'>>>(
     props: PropsWithOverridableAs<T, P>
   ): JSX.Element | null
