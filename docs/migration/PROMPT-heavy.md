@@ -65,15 +65,24 @@ Your task:
      if present. Replace with `react: ">=16.12.0"` (or current floor).
      Per v4 §2.6, Picasso lifts the React 18-era cap as part of every
      Tier 0/1/2/3 migration.
-   - **After editing any package.json deps, run `pnpm install` from
+   - **After editing any package.json deps, run `pnpm install --config.link-workspace-packages=false` from
      the repo root and stage `pnpm-lock.yaml` in the same commit.** Missing
      lockfile update is the single most common reason CI's "Build packages"
-     step fails on dep-bumping migrations. If a runtime dep used at
-     compile time is added (e.g. `withClasses` consuming
-     `@toptal/picasso-tailwind-merge`), the package needs it as a
-     `devDependency` for its own `tsc -b` resolution, not just as a
-     `peerDependency` — peerDeps are only seen by *consumers* of the
-     package, not by the package's own build.
+     step fails on dep-bumping migrations. The `--config.link-workspace-packages=false`
+     flag is **mandatory**: without it, pnpm honors the repo's `.npmrc`
+     setting (`link-workspace-packages=true`) and cascade-rewrites dozens
+     of workspace dep entries from npm-fetched specs to `link:packages/<X>`.
+     That cascade exposes latent type errors in downstream packages
+     (e.g. `BreadcrumbsItem.tsx` TS2322 on `OverridableComponent<Props>`)
+     and breaks the orchestrator's `pnpm happo` gate. CI is unaffected
+     because it always uses `--frozen-lockfile`. If it's hundreds of
+     `link:packages/` substitutions in the diff, you forgot the flag;
+     reset with `git checkout HEAD -- pnpm-lock.yaml` and re-run with
+     the flag. If a runtime dep used at compile time is added (e.g.
+     `withClasses` consuming `@toptal/picasso-tailwind-merge`), the
+     package needs it as a `devDependency` for its own `tsc -b` resolution,
+     not just as a `peerDependency` — peerDeps are only seen by *consumers*
+     of the package, not by the package's own build.
 
 5. **The `classes` prop — research your component, then act (revised 2026-05-11).**
 
@@ -200,24 +209,34 @@ pnpm davinci-syntax lint code packages/base/<NAME>/src
 
 This is ~12x faster than `pnpm lint` (which lints the whole repo). Use the scoped form for iterative fixing; the orchestrator's outer-loop gate runs the same scoped command for its lint stage.
 
-If `--with-mcp` was passed to the orchestrator, you also have **Playwright MCP** tools and a Storybook server running at `http://localhost:9001`. Use them to verify visual + runtime behavior:
+If `--with-mcp` was passed to the orchestrator (default for Tier 0/2/3), you also have **Playwright MCP** tools and a Storybook server running at `http://localhost:9001`. **Runtime verification is required** — `pnpm typecheck` and the gate stages catch type/build errors but miss the class of bugs that fire only at render time: React 18/19 console warnings, `ReactDOM.render` deprecations, Base UI's `nativeButton` warning, broken `ref` forwarding, hydration mismatches, and components that throw silently and render blank (which Happo passes as "small diff"). The runtime check catches these before commit.
 
+Available tools:
 - `mcp__playwright__browser_navigate` to load story URLs (e.g. `http://localhost:9001/?path=/story/components-button--default`).
-- `mcp__playwright__browser_screenshot` for pixel-level inspection.
-- `mcp__playwright__browser_console_logs` to catch runtime warnings.
-- `mcp__playwright__browser_hover` / `browser_click` to exercise interaction states (default / hover / focused / disabled).
+- `mcp__playwright__browser_take_screenshot` for pixel-level confirmation.
+- `mcp__playwright__browser_console_messages` to capture runtime warnings + errors.
+- `mcp__playwright__browser_hover` / `browser_click` to exercise interaction states.
 
-Inspect at minimum the default + hover + focused + disabled stories. If `console.error` fires during render, the migration is wrong even if the gate passes.
+**Mandatory runtime check (required when `--with-mcp` is active — non-optional):**
+
+1. `browser_navigate` to the component's default story (the URL pattern is `http://localhost:9001/?path=/story/<group>-<name>--<example>`; if you don't know the exact path, `browser_navigate` to `http://localhost:9001/` first and read the sidebar).
+2. `browser_console_messages` and confirm **zero entries with `type: "error"`**. React 18 `ReactDOM.render` warnings are acceptable for now (Picasso-wide); any other error is a fail — investigate and fix before exiting.
+3. `browser_take_screenshot` once for sanity (component visible, not a blank/error box).
+4. **If the component has interactive states** (Button, Modal, Drawer, Dropdown, Switch, Backdrop, Tabs, anything with `onClick`/hover behavior): use `browser_hover` or `browser_click` on the primary trigger, then re-run `browser_console_messages` to catch interaction-time errors.
+5. Repeat steps 1–3 for any other story the migration touches (e.g. an `Invisible` variant of a backdrop, a `Disabled` story for a button).
+
+Skipping this is exiting with an unverified migration. The orchestrator's gate does NOT catch runtime-only errors — Happo only compares pixel diffs against a baseline, which passes if a runtime exception causes an empty render with no baseline yet, or if the visual is unchanged but a console error fires.
 
 **Working acceptance** (run for regular feedback during iteration):
 - `pnpm --filter @toptal/picasso-<NAME> build:package` passes (types + emit)
 - `pnpm davinci-qa unit --testPathPattern packages/base/<NAME>` passes
 - `pnpm davinci-syntax lint code --check packages/base/<NAME>/src` passes (zero errors)
-- (if Storybook + Playwright MCP available) story renders cleanly: default + hover + focused + disabled states without `console.error`
+- (when `--with-mcp`) all stories render cleanly with zero `[error]` console messages across default + interactive states
 
 **Full acceptance** (run before declaring done):
 - working acceptance passes
 - `pnpm typecheck` passes (full repo)
+- (when `--with-mcp`) mandatory runtime check above completed
 - (if applicable) cypress component spec passes
 - Happo report green or designer-approved diffs only
 
