@@ -207,6 +207,21 @@ function shell(
     child.stderr?.on('data', (d) => {
       stderr += d
     })
+    // ENOENT here means EITHER the executable wasn't found OR opts.cwd doesn't
+    // exist — Node's syscall string says `spawn <cmd>` for both cases, which
+    // makes it look like a PATH problem even when it's a missing cwd (e.g. a
+    // stale `worktree` reference in the manifest pointing at a directory that
+    // got cleaned up). Without this handler, Node propagates the 'error' event
+    // as Unhandled and crashes the whole orchestrator with a cryptic stack.
+    child.on('error', (err: NodeJS.ErrnoException) => {
+      const cwd = (opts as { cwd?: string }).cwd ?? process.cwd()
+      const detail =
+        err.code === 'ENOENT'
+          ? `spawn ${cmd}: ENOENT — either '${cmd}' is not on PATH OR cwd '${cwd}' doesn't exist`
+          : `spawn ${cmd}: ${err.message}`
+
+      resolve({ exitCode: 1, stdout, stderr: stderr + detail })
+    })
     child.on('close', (code) => {
       resolve({ exitCode: code ?? 1, stdout, stderr })
     })
@@ -2218,7 +2233,21 @@ async function sweepOne(
   manifestAbs: string,
   rootDir: string
 ): Promise<void> {
-  const wtPath = path.join(rootDir, item.worktree as string)
+  // Worktrees from older runs can disappear (operator cleanup, disk space
+  // sweep, git worktree prune). The manifest still references them. gh-driven
+  // operations don't actually need a local worktree — they query GitHub by
+  // URL — so fall back to rootDir as cwd when the declared worktree is gone.
+  // git-driven operations later in the flow will still fail cleanly if they
+  // really need the worktree.
+  const declaredWtPath = path.join(rootDir, item.worktree as string)
+  const wtPath = existsSync(declaredWtPath) ? declaredWtPath : rootDir
+
+  if (wtPath !== declaredWtPath) {
+    log(
+      'sweep',
+      `${item.id}: declared worktree '${item.worktree}' is missing — using rootDir as cwd for gh-only operations`
+    )
+  }
   const prUrl = item.pr as string
 
   // Tier 2.4 — first, check if the operator already merged the PR.
