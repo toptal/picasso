@@ -1,4 +1,3 @@
-import type { SliderValueLabelSlotProps } from '@mui/base/Slider'
 import type { RefObject } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { twJoin } from '@toptal/picasso-tailwind-merge'
@@ -26,21 +25,26 @@ const yPlacementClasses = {
   top: 'bottom-[calc(100%+2px)]',
 } as const
 
+export type SliderValueLabelProps = {
+  value: number
+  index: number
+  tooltip: ValueLabelDisplay
+  tooltipFormat?: string | ((value: number, index: number) => React.ReactNode)
+  /** indicates if there are two SliderValueLabels that overlap each other */
+  isOverlaped: boolean
+  yPlacement: 'top' | 'bottom'
+  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
+}
+
 const SliderValueLabel = ({
-  children,
-  index = -1,
+  value,
+  index,
   tooltip = 'off',
+  tooltipFormat,
   onRender,
   yPlacement,
   isOverlaped,
-  ownerState: { value },
-}: SliderValueLabelSlotProps & {
-  tooltip: ValueLabelDisplay
-  yPlacement: 'top' | 'bottom'
-  /** indicates if there are two SliderValueLabels that overlap each other */
-  isOverlaped: boolean
-  onRender: (index: number, ref: RefObject<HTMLSpanElement>) => void
-}) => {
+}: SliderValueLabelProps) => {
   const ref = useRef<HTMLSpanElement>(null)
 
   // we need to change the placement of the label if it is overlaped
@@ -69,6 +73,11 @@ const SliderValueLabel = ({
     // we need to recalculate on value change to get new rect
   }, [isOverlaped, index, xPlacement, value, tooltip])
 
+  const formattedValue =
+    typeof tooltipFormat === 'function'
+      ? tooltipFormat(value, index)
+      : tooltipFormat ?? value
+
   return (
     <span
       ref={ref}
@@ -85,7 +94,7 @@ const SliderValueLabel = ({
           'm-1 rounded-sm py-[2px] px-2 max-w-[300px] break-words'
         )}
       >
-        {children}
+        {formattedValue}
       </span>
     </span>
   )
