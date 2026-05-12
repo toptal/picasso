@@ -62,6 +62,28 @@ module.exports = {
 
     const { reactDocgen, reactDocgenTypescriptOptions } = typescriptOptions
 
+    // Storybook's default rule for .(mjs|tsx?|jsx?) uses babel-loader with
+    // `exclude: /node_modules/`. That's correct for normal npm packages but
+    // wrong for `@toptal/picasso-*` workspace packages, which ship their
+    // `src/` directory alongside `dist-package/` in the published tarball.
+    // Picasso has at least one cross-package story import (Form's story
+    // pulls in FormLabel's story via `@toptal/picasso-form-label/src/...`)
+    // that resolves through node_modules into raw TypeScript source. Without
+    // babel applied, webpack tries to parse `import type` and fails with
+    // ModuleParseError. Narrow the exclude so workspace package sources go
+    // through babel even when resolved through node_modules.
+    const babelRule = config.module.rules.find(
+      rule => rule.test && rule.test.toString() === '/\\.(mjs|tsx?|jsx?)$/'
+    )
+
+    if (babelRule) {
+      babelRule.exclude = filePath =>
+        filePath.includes('/node_modules/') &&
+        !/[/\\]node_modules[/\\]@toptal[/\\]picasso-[^/\\]+[/\\]src[/\\]/.test(
+          filePath
+        )
+    }
+
     const cssRule = config.module.rules.find(
       rule => rule.test && rule.test.toString().includes('.css')
     )
