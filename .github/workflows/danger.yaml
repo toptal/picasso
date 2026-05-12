@@ -3,7 +3,7 @@ name: Danger
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited, assigned, unassigned]
-    branches: [master]
+    branches: [master, 'feature/**']
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
