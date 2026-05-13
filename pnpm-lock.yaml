@@ -39,6 +39,11 @@ overrides:
   '@types/react': '17'
   js-yaml: ^3.13.1
 
+patchedDependencies:
+  '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0':
+    hash: 3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a
+    path: patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch
+
 importers:
 
   .:
@@ -22424,7 +22429,7 @@ snapshots:
       unfetch: 4.2.0
       util-deprecate: 1.0.2
 
-  '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0(typescript@5.5.4)(webpack@5.98.0(@swc/core@1.13.5))':
+  '@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0(patch_hash=3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a)(typescript@5.5.4)(webpack@5.98.0(@swc/core@1.13.5))':
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       endent: 2.1.0
@@ -22450,7 +22455,7 @@ snapshots:
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/docs-tools': 6.5.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/node-logger': 6.5.16
-      '@storybook/react-docgen-typescript-plugin': 1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0(typescript@5.5.4)(webpack@5.98.0(@swc/core@1.13.5))
+      '@storybook/react-docgen-typescript-plugin': 1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0(patch_hash=3a803b2ccc5ad4e7f8e8870883868ad8f4f8343d06c7021e31ba4ad10928251a)(typescript@5.5.4)(webpack@5.98.0(@swc/core@1.13.5))
       '@storybook/semver': 7.3.2
       '@storybook/store': 6.5.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/estree': 0.0.51
@@ -24955,7 +24960,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.4
 
   byte-size@8.1.1: {}
 
@@ -26838,7 +26843,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@8.57.1):
     dependencies:
       eslint: 8.57.1
-      semver: 7.7.2
+      semver: 7.7.4
 
   eslint-config-prettier-standard@4.0.1(eslint-config-prettier@8.5.0(eslint@8.57.1))(eslint-config-standard@17.1.0(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.59.2(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1))(eslint-plugin-n@16.6.2(eslint@8.57.1))(eslint-plugin-promise@6.1.1(eslint@8.57.1))(eslint@8.57.1))(eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.5.0(eslint@8.57.1))(eslint@8.57.1)(prettier@2.8.8))(prettier-config-standard@5.0.0(prettier@2.8.8)):
     dependencies:
@@ -26883,7 +26888,7 @@ snapshots:
 
   eslint-plugin-es-x@7.8.0(eslint@8.57.1):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
+      '@eslint-community/eslint-utils': 4.9.1(eslint@8.57.1)
       '@eslint-community/regexpp': 4.12.2
       eslint: 8.57.1
       eslint-compat-utils: 0.5.1(eslint@8.57.1)
@@ -26945,7 +26950,7 @@ snapshots:
 
   eslint-plugin-n@16.6.2(eslint@8.57.1):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
+      '@eslint-community/eslint-utils': 4.9.1(eslint@8.57.1)
       builtins: 5.1.0
       eslint: 8.57.1
       eslint-plugin-es-x: 7.8.0(eslint@8.57.1)
@@ -26956,7 +26961,7 @@ snapshots:
       is-core-module: 2.16.1
       minimatch: 3.1.4
       resolve: 1.22.10
-      semver: 7.7.2
+      semver: 7.7.4
 
   eslint-plugin-no-inline-styles@1.0.5:
     dependencies:
