@@ -18,6 +18,8 @@ Input file control
 | onRemove | `((fileName: string, index: number) => void)` | - | Callback invoked when a file item is removed |
 | onFocus | `FocusEventHandler<HTMLDivElement>` | - | Focus event handler |
 | onBlur | `FocusEventHandler<HTMLDivElement>` | - | Blur event handler |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

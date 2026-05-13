@@ -13,6 +13,8 @@ Component which allows navigating long data lists.
 | **onPageChange** | `(page: number) => void` | - | Callback invoked when any page number is clicked |
 | siblingCount | `number` | `2` | Number of the active page siblings |
 | nextDisabled | `boolean` | - | Shows the next button as disabled. |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | variant | `"default" \| "compact"` | `default` | Variant of the pagination representation |
 | totalPages | `number` | - | Value of total pages of the data set used for calculation of page buttons. Value of total pages of the data set used for calculation of page buttons. Only optional for the `compact` variant. When not provided the last page can't be detected, so next button will always be enabled. Use `nextDisabled=true` to disable it when rendering the last page. |
 

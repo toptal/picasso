@@ -12,6 +12,9 @@ Stepper component display progress through a sequence of steps.
 | active | `number` | `0` | The index of the active step |
 | steps | `string[] \| { key: Key; content: ReactNode; }[]` | `[]` | Array of the step labels |
 | overflowEllipsis | `boolean` | `false` | Enable overflow ellipsis for labels (it will not work when custom block-level `steps.content` element is provided (for example, steps={[{ key: 'foo', content: <div>Longstring</div> }]}) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Stepper.Vertical
 
@@ -20,6 +23,9 @@ Stepper component display progress through a sequence of steps.
 | active | `number` | `0` | The index of the active step |
 | steps | `string[] \| { key: Key; content: ReactNode; }[]` | `[]` | Array of the step labels |
 | overflowEllipsis | `boolean` | - | Enable overflow ellipsis for labels (it will not work when custom block-level `steps.content` element is provided (for example, steps={[{ key: 'foo', content: <div>Longstring</div> }]}) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 

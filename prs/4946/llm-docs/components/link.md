@@ -8,6 +8,8 @@ The Link component allows you to easily customize anchor elements with your them
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | as | `"symbol" \| "object" \| "style" \| "title" \| "a" \| "abbr" \| "address" \| "area" \| "article" \| "aside" \| "audio" \| "b" \| "base" \| "bdi" \| "bdo" \| "big" \| "blockquote" \| "body" \| "br" \| ... 157 more ...` | `a` | The component used for the root node. Either a string to use a DOM element or a component. |
 | variant | `"default" \| "action"` | `default` | Either it's a regular link or an _action_. |
 | disabled | `boolean` | - | Indicates that the user cannot interact with the Link or its children |
@@ -16,8 +18,6 @@ The Link component allows you to easily customize anchor elements with your them
 | href | `string` | - | Destination the link points to |
 | onClick | `(event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void` | - | Callback invoked when component is clicked |
 | color | `"blue" \| "white"` | `blue` | Controls color of the link |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
 | size | `"default" \| "inherit"` | `default` | Controls font size of Link, whenever you are using Link inside another text with a different font size you should inherit parents font size. |
 
 ### Default

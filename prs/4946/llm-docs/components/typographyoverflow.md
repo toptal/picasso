@@ -14,6 +14,20 @@ Show tooltip when typography overflows
 | tooltipDelay | `"short" \| "long"` | - | A delay in showing the tooltip when typography overflows. |
 | disableTooltip | `boolean` | - | Do not show tooltips for shorten content. |
 | placement | `"bottom-end" \| "bottom-start" \| "bottom" \| "left-end" \| "left-start" \| "left" \| "right-end" \| "right-start" \| "right" \| "top-end" \| "top-start" \| "top"` | - | Where should the tooltip be positioned |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| variant | `"heading" \| "body"` | - | Font variant for inner text |
+| inline | `boolean` | - | Controls whether the Typography is inline or not |
+| align | `"left" \| "right" \| "inherit" \| "center" \| "justify"` | - | Text align of the inner text |
+| size | `"inherit" \| "xxsmall" \| "xsmall" \| "small" \| "medium" \| "large" \| "xlarge"` | - | Size of the inner text |
+| weight | `"inherit" \| "regular" \| "semibold"` | - | Font weight of the inner text |
+| invert | `boolean` | - | Invert color |
+| color | `"inherit" \| "green" \| "red" \| "yellow" \| "light-grey" \| "grey" \| "grey-main-2" \| "dark-grey" \| "black" \| "light-blue"` | - | Text color |
+| noWrap | `boolean` | - | Enable ellipsis for overflowing text |
+| as | `ElementType<HTMLAttributes<HTMLElement>>` | - | Rendered HTML markup |
+| underline | `"solid" \| "dashed"` | - | Controls when the Typography should have an underline |
+| lineThrough | `boolean` | - | Controls when the Typography should have line through |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 

@@ -9,6 +9,8 @@
 | children | `ReactNode` | - | Content |
 | rightPadding | `boolean` | `false` | Whether it should have right padding |
 | noBorder | `boolean` | `false` | Whether it should hide bottom border |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

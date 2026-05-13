@@ -15,6 +15,8 @@ RichText showcases the output of RichTextEditor.
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **value** | `ASTType` | - | [hast](https://github.com/syntax-tree/hast) format |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### AST from BE for normal view
 

@@ -6,7 +6,11 @@ Use BarChart with analytics data
 
 ### CategoriesChart
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| isAnimationActive | `boolean` | - | If set false, animation of bar will be disabled |
+| height | `string \| number` | - | Height of chart |
+| width | `string \| number` | - | Width of chart |
 
 ### Default
 

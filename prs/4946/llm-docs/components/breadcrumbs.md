@@ -9,6 +9,8 @@ Breadcrumbs component indicates the current page’s location within a navigatio
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Content of Breadcrumbs |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Breadcrumbs.Item
 
@@ -17,6 +19,9 @@ Breadcrumbs Item
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **active** | `boolean` | - | Whether the item is active |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | as | `enum` | `button` | The component used for the root node. Either a string to use a DOM element or a component. |
 
 ### Default

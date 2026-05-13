@@ -32,6 +32,25 @@ Date Picker component
 | indicatedIntervals | `CalendarDateRange[]` | - | Shows orange dot indicator in days between a date range |
 | numberOfMonths | `1 \| 2` | `1` | Display more than one month at the same time |
 | dropdownNavigation | `boolean` | - | Display dropdown navigation between months and years (requires minDate and maxDate to be set) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| size | `"small" \| "medium" \| "large"` | - | Component size |
+| autoFocus | `boolean` | - | If true, the input element will be focused during the first mount |
+| disabled | `boolean` | - | If true, the `Input` will be disabled |
+| name | `string` | - | Name attribute of the input element |
+| placeholder | `string` | - | Placeholder for value |
+| width | `"full" \| "shrink" \| "auto"` | - | Width of the component |
+| id | `string` | - | The id of the `input` element. |
+| iconPosition | `"start" \| "end"` | - | Whether icon should be placed at the beginning or end of the `Input` |
+| multilineResizable | `boolean` | - | Whether a multiline can be manually resized by the user, requires multiline prop to be set to true |
+| rowsMax | `string \| number` | - | Maximum number of rows to display when multiline option is set to true. |
+| startAdornment | `ReactNode` | - | Adds element at the start of the input - can't be used in combination with `iconPosition: start` |
+| endAdornment | `ReactNode` | - | Adds element at the end of the input - can't be used in combination with `iconPosition: end` |
+| limit | `number` | - | Adds a counter of characters (ignored in combination with `counter: entered`) |
+| counter | `"remaining" \| "entered"` | - | Type of the counter of characters |
+| enableReset | `boolean` | - | Whether to render reset icon when there is a value in the input |
+| onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
+| outlineRef | `Ref<HTMLElement>` | - | Ref of the input outline |
 
 ### Default
 

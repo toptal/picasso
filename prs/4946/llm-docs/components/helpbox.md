@@ -11,12 +11,16 @@ Container specialized for rendering suggestions
 | **children** | `ReactNode` | - | Children components (`Helpbox.Title`, `Helpbox.Content`, `Hdlpbox.Actions`) |
 | variant | `"transparent" \| "red" \| "green" \| "white" \| "yellow" \| "blue" \| "grey"` | - | Color variant of Helpbox |
 | onClose | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | - | Callback invoked when close is clicked |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Helpbox.Title
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `string` | - | Title of Helpbox |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Helpbox.Content
 
@@ -24,12 +28,16 @@ Container specialized for rendering suggestions
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Content of Helpbox |
 | width | `"shrink" \| "full"` | `full` | Width of the content. If set to `shrink` - the max-width of the content is 640px |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Helpbox.Actions
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Actions part of Helpbox |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

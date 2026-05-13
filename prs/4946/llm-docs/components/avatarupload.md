@@ -29,6 +29,8 @@ Gets the image from file input and displays it in the Avatar component.
 | status | `"error" \| "default"` | - | Indicate `AvatarUpload` is in `error` or `default` state |
 | uploading | `boolean` | `false` | Indicate whether the selected file is being uploaded |
 | autoFocus | `boolean` | - | Indicate whether component has focused state as default |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

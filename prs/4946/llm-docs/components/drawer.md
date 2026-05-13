@@ -19,6 +19,8 @@ Allows rendering a sidebar with custom content
 | maintainBodyScrollLock | `boolean` | - | enable Drawer to maintain body scroll lock |
 | transparentBackdrop | `boolean` | - | Specify the backdrop transparency |
 | disableBackdrop | `boolean` | - | Remove the backdrop and leave elements behind interactive |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

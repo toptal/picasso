@@ -13,6 +13,8 @@ Renders a small badge.
 | size | `"medium" \| "small" \| "large"` | `large` | Size of the `Badge` |
 | max | `number` | - | Max count to show. By default 9 for small size, 99 for other sizes |
 | children | `ReactNode` | - | The badged will be overlaid on it's children |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Variants
 

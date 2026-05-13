@@ -16,6 +16,8 @@
 | slidesToScroll | `number` | `1` | The number of slides to scroll when arrow navigation is used. |
 | onSlide | `((currentSlide: number) => void)` | - | Callback triggered when Carousel finished scrolling to a slide |
 | testIds | `{ arrows?: string; carousel?: string; dots?: string \| undefined; footer?: string \| undefined; header?: string \| undefined; navigation?: string \| undefined; next?: string \| undefined; prev?: string \| undefined; root?: string \| undefined; } \| undefined` | `{}` | data-testid passed to parts of the Carousel |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

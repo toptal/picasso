@@ -9,6 +9,8 @@ Elevated container with shadow
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | elevation | `number` | `1` | Paper elevation shadow |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -65,6 +65,8 @@ or
 | limit | `number` | `200` | Limits number of options to display on the list |
 | enableAutofill | `boolean` | - | Specifies whether the autofill enabled or not, disabled by default |
 | filterOptions | `((options: Option<string \| number>[], searchValue: string, getDisplayValue?: ((option: Option<string \| number> \| null) => string)) => Option<string \| number>[])` | `optionIncludesSearchCaseInsensitive` | A function that is invoked during search. It takes an array of options and a search value and returns filtered options |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -8,6 +8,8 @@
 |------|------|---------|-------------|
 | **value** | `number` | - | Percentage of completed progress |
 | showPercentage | `boolean` | `false` | Whether to show percentage value |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

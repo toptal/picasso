@@ -17,12 +17,16 @@ The layout element which is providing grid container functionality.
 | alignItems | `"flex-start" \| "center" \| "flex-end" \| "stretch" \| "baseline"` | `flex-start` | Defines the align-items style property based on the direction |
 | justifyContent | `"flex-start" \| "center" \| "flex-end" \| "space-between" \| "space-around" \| "space-evenly"` | `flex-start` | Defines the justify-content style property based on the direction |
 | wrap | `"wrap" \| "nowrap" \| "wrap-reverse"` | `wrap` | Defines the flex-wrap style property based on the direction |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Grid.Item
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | - | Content of Grid.Item |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | xs | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
 | sm | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
 | md | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |

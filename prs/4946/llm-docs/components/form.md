@@ -32,6 +32,7 @@ Form
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | labelEndAdornment | `ReactNode` | - | The label's end adornment |
 | **name** | `string` | - | The field name |
 | label | `ReactNode` | - | The field label text |

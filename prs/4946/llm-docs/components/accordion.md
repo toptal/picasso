@@ -18,14 +18,22 @@ Accordions store information behind collapsible sections,
 | borders | `"all" \| "middle" \| "none"` | `all` | Defines where the horizontal borders show |
 | onChange | `((event: ChangeEvent<{}>, expanded: boolean) => void)` | `() => {}` | Callback invoked when `Accordion` item is toggled |
 | transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Accordion.Details
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Accordion.Summary
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

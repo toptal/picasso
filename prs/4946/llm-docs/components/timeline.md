@@ -6,6 +6,8 @@
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | **children** | `ReactNode` | - | Timeline rows |
 
 ### Timeline.Row
@@ -16,6 +18,8 @@
 | icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Icon for the row between lines |
 | date | `string` | - | Timeline row date |
 | hasConnector | `boolean` | `true` | Whether to render a connector line after the row |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

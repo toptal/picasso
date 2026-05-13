@@ -8,6 +8,14 @@ Use LineChart with analytics data
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| height | `string \| number` | - | Height of chart |
+| width | `string \| number` | - | Width of chart |
+| tooltip | `boolean` | - | Toggle tooltip on hover |
+| customTooltip | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Requires `tooltip` to be `true` |
+| allowTooltipEscapeViewBox | `boolean` | - | Allows the tooltip to extend beyond the viewBox of the chart itself |
+| layout | `"vertical" \| "horizontal"` | - | Layout of the barChart |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | unit | `string` | - | Text label to be displayed on the Y axis |
 | xAxisKey | `string` | `x` | Name of point on the horizontal axis |
 | **lineConfig** | `Record<string, { color: string; variant?: 'solid' \| 'reference' }>` | - | A dictionary of each line name as a key and the line's color and variant for value |

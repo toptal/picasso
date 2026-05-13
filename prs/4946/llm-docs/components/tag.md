@@ -18,12 +18,17 @@ Tags are used to describe other topics, including textareas,
 | onDelete | `undefined: (() => void) \| undefined` | - | A callback which is invoked after remove `Icon` is clicked  Please note that specifying this callback automatically adds remove `Icon` as children of the `Tag` |
 | variant | `"light-grey" \| "blue" \| "green" \| "yellow" \| "red"` | `light-grey` | Variant of the `Tag` |
 | endAdornment | `ReactNode` | - | ReactNode rendered after label |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Tag.Group
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | - | List of `Tag` components which you want to render inside `TagGroup` |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Tag.Rectangular
 
@@ -31,6 +36,9 @@ Tags are used to describe other topics, including textareas,
 |------|------|---------|-------------|
 | variant | `"red" \| "yellow" \| "dark-grey" \| "light-grey" \| "green" \| "light-blue" \| "blue-main" \| "blue-darker"` | `light-grey` | Variant of the rectangular `Tag`, can not be used with the `indicator` property at the same time. |
 | indicator | `"red" \| "yellow" \| "light-grey" \| "green" \| "light-blue" \| "blue-darker" \| "blue" \| "grey-darker"` | - | Indicator color, can not be used with the `variant` property at the same time. The Tag's `variant` property is automatically set to `light` when indicator color is set. |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Tag.Connection
 
@@ -51,6 +59,9 @@ Used when you need toggable Tag
 | disabled | `boolean` | - | Defines if `Tag` is disabled |
 | icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Specify the icon which should be rendered inside Tag |
 | onChange | `((checked: boolean) => void)` | - | Callback invoked when component is clicked |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 

@@ -20,6 +20,8 @@ Allows rendering of menus and custom content triggered by custom anchors
 | onClose | `(() => void)` | - | Callback invoked when component is closed |
 | contentOverflow | `scroll \| visible` | `scroll` | Sets the desired behavior for an element's overflow. When `scroll` it limits max-height of a content of the dropdown. When `visible` it displays as much content as it possible without vertical scrollbar. |
 | classes | `{ popper?: string; content?: string; } \| undefined` | - | Sets styles for the inner wrapper |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | contentStyle | `{ height?: string; maxHeight?: string; } \| undefined` | - | Control content element style |
 | offset | `{ top?: PicassoSpacing \| ResponsiveSpacingType; bottom?: PicassoSpacing \| ResponsiveSpacingType; left?: PicassoSpacing \| ... 1 more ... \| undefined; right?: PicassoSpacing \| ... 1 more ... \| undefined; } \| undefined` | - | Offset of content element relative to anchor element |
 
@@ -28,6 +30,8 @@ Allows rendering of menus and custom content triggered by custom anchors
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | size | `"small" \| "medium"` | `medium` | A Dropdown.Arrow can have different sizes |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

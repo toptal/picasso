@@ -20,24 +20,32 @@ A modal displays content that temporarily blocks interactions with the main view
 | align | `"top" \| "centered"` | `centered` | Position of the modal relative to the browser's viewport |
 | transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) |
 | paperProps | `HTMLAttributes<HTMLDivElement>` | - | used for specifying aria attributes, changing role, or customizing styles |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Modal.Title
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Title content |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Modal.Content
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Content of Modal |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Modal.Actions
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Action content (e.g. Buttons) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

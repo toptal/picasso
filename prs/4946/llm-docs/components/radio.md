@@ -14,6 +14,9 @@ Radio buttons are best used when users need to select a single option from a set
 | disabled | `boolean` | `false` | Defines if `Radio` is disabled |
 | checked | `boolean` | - | Defines if `Radio` is checked by default |
 | onChange | `undefined: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void` | - | Callback invoked when `Radio` changes its state |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Radio.Group
 
@@ -23,6 +26,11 @@ Radio group component
 |------|------|---------|-------------|
 | horizontal | `boolean` | `false` | Align radios horizontally |
 | spacing | `0 \| 8 \| 16 \| 24 \| 32 \| 64 \| 72 \| 80` | - | Defines amount of space between radio buttons components (in px) |
+| xs | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority |
+| sm | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens |
+| md | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens |
+| lg | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the lg breakpoint and wider screens |
+| xl | `false \| GridSize` | - | Defines the number of grids the component is going to use. It's applied for the xl breakpoint and wider screens |
 
 ### Default
 

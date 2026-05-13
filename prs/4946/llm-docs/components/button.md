@@ -22,6 +22,9 @@ A Button indicates a possible user action.
 | value | `string \| number` | - | HTML Value of Button component |
 | title | `string` | - | HTML title of Button component |
 | type | `"submit" \| "reset" \| "button"` | `button` | HTML type of Button component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | as | `"symbol" \| "abbr" \| "address" \| "article" \| "aside" \| "b" \| "bdi" \| "bdo" \| "big" \| "blockquote" \| "caption" \| "cite" \| "code" \| "dd" \| "del" \| "details" \| "dfn" \| "dt" \| "em" \| "figcaption" \| ... 95 more ...` | `button` | The component used for the root node. Either a string to use a DOM element or a component. |
 
 ### Button.Circular
@@ -38,6 +41,8 @@ A Button indicates a possible user action.
 | variant | `"primary" \| "flat" \| "transparent"` | `primary` | The variant to use |
 | value | `string \| number` | - | HTML Value of Button component |
 | responsive | `boolean` | - | Adjust button size to be bigger on screens under xl |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Button.Action
 
@@ -52,12 +57,16 @@ A Button indicates a possible user action.
 | loading | `boolean` | - | Shows a loading indicator and disables click events |
 | onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
 | value | `string \| number` | - | HTML Value of Button component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Button.Group
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | List of `Button` components which you want to render as `ButtonGroup` |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Button.Split
 
@@ -69,6 +78,8 @@ A Button indicates a possible user action.
 | size | `"small" \| "medium" \| "large"` | `medium` | A button can have different sizes |
 | variant | `"primary" \| "secondary"` | `primary` | The variant to use |
 | disabled | `boolean` | - | Is component disaled or not |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Button.Checkbox
 
@@ -84,6 +95,8 @@ A Button indicates a possible user action.
 | onChange | `((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void)` | - | Callback invoked when value is changed |
 | **children** | `ReactNode` | - | Button text |
 | id | `string` | - | The id of the input element |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Button.Radio
 
@@ -99,6 +112,8 @@ A Button indicates a possible user action.
 | onChange | `((event: ChangeEvent<HTMLInputElement>, checked: boolean) => void)` | - | Callback invoked when value is changed |
 | **children** | `ReactNode` | - | Button text |
 | id | `string` | - | The id of the input element |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

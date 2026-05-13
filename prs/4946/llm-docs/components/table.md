@@ -13,6 +13,8 @@ Root component representing table
 | **children** | `ReactNode` | - | Children components (`Table.Head`, `Table.Body`, `Table.Footer`) |
 | spacing | `"regular" \| "compact" \| "narrow"` | `regular` | Inner spacing |
 | variant | `"clear" \| "bordered" \| "striped"` | `bordered` | Appearance variant |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Table.Head
 
@@ -21,12 +23,17 @@ Table Header component
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | The content of the component, normally `Table.Row` |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Table.SectionHead
 
 Table section header
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Table.Footer
 
@@ -35,6 +42,8 @@ Table Footer component
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Zero or more Table.Row elements. |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Table.Body
 
@@ -43,6 +52,8 @@ Table Body component
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | The content of the component, normally `Table.Row` |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Table.Row
 
@@ -55,6 +66,8 @@ Table row container
 | selected | `boolean` | `false` | If true, the table row will have the selected shading |
 | onClick | `((event: MouseEvent<HTMLTableRowElement, MouseEvent>) => void)` | - | Callback invoked when user clicks on table row |
 | stripeEven | `boolean` | `false` | Set a stripe even background for the row |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Table.Cell
 
@@ -65,6 +78,9 @@ Cell for table content
 | align | `"inherit" \| "left" \| "center" \| "right" \| "justify"` | `inherit` | Set the text-align on the table cell content |
 | colSpan | `number` | - | Indicates for how many columns the cell extends |
 | rowSpan | `number` | - | Indicates for how many rows the cell extends |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Table.ExpandableRow
 
@@ -77,6 +93,8 @@ Expandable row
 | expanded | `boolean` | `false` | Whether the row is in collapsed or expanded state |
 | stripeEven | `boolean` | `false` | Set a stripe even background for the row |
 | defaultExpanded | `boolean` | - | Makes the row appear without transition when it is expanded the very first time |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### TableSortableCell
 
@@ -89,6 +107,9 @@ Sortable cell for table header
 | align | `"inherit" \| "left" \| "center" \| "right" \| "justify"` | `inherit` | Set the text-align on the table cell content |
 | colSpan | `number` | - | Indicates for how many columns the cell extends |
 | rowSpan | `number` | - | Indicates for how many rows the cell extends |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Plain table
 

@@ -22,6 +22,8 @@
 | onFocus | `(() => void)` | - | Callback for focus event |
 | placeholder | `string` | - | The placeholder attribute specifies a short hint that describes the expected value of a text editor. |
 | plugins | `EditorPlugin[]` | - | List of plugins to enable on the editor |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -17,12 +17,16 @@ A PageTopBar component
 | actionItems | `ReactNode` | - | Action items |
 | variant | `"dark" \| "light" \| "grey" \| "black"` | `dark` | Color variant |
 | testIds | `{ hamburger?: string; }` | - | Test identifiers |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.TopBar.Menu
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Menu content |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.TopBar.Item
 
@@ -32,6 +36,9 @@ A PageTopBar component
 | selected | `boolean` | - | Highlights the item as selected |
 | onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
 | onMouseEnter | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is hovered |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Page.TopBarMenu
 
@@ -41,6 +48,8 @@ A PageTopBar component
 | meta | `ReactNode` | - | Additional content |
 | avatar | `string` | - | Photo url |
 | **children** | `ReactNode` | - | Menu content |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

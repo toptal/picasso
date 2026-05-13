@@ -24,6 +24,8 @@ Slider is used to pick a numeric value from the predefined range
 | disableTrackHighlight | `boolean` | - | Disable track highlight. |
 | name | `string` | - | Name attribute of the `input` element. |
 | id | `string` | - | Id attribute of the `input` element. |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 
