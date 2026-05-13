@@ -51,15 +51,23 @@ CLI flags: `--component=<id>`, `--tier=<N>`, `--dry-run`, `--no-merge`, `--agent
 - For full gate including Happo: `HAPPO_API_KEY` + `HAPPO_API_SECRET` set in env (see §Happo setup below).
 - For sandbox / smoke runs: set `MIGRATION_GATE_HAPPO=skip` to bypass Happo.
 
-### Known lockfile-cascade caveat
+### Lockfile-form policy (revised 2026-05-13)
 
-`.npmrc` has `link-workspace-packages=true`. The committed `pnpm-lock.yaml` uses **npm-fetched** specs for workspace deps (e.g. `'@toptal/picasso-shared': version: 15.0.0(...)` — not `link:packages/shared`). Master CI's `pnpm install --frozen-lockfile` preserves this. The orchestrator's bootstrap does the same.
+`pnpm-workspace.yaml` has `linkWorkspacePackages: true`. The committed `pnpm-lock.yaml` (master + integration branches as of 2026-05-13 baseline reset) uses the **compact `link:packages/X` form** for workspace deps — e.g. `'@toptal/picasso-shared': version: link:packages/shared` — NOT the expanded peer-suffix form `15.0.0(@material-ui/core@4.12.4(...))(@toptal/picasso-provider@5.0.2(...))...` that earlier prompt versions assumed.
 
-But: when the **agent edits a `package.json`'s deps** (legitimately, e.g. to drop `@mui/base`) and runs `pnpm install` to refresh the lockfile, pnpm honors `link-workspace-packages=true` and **cascade-rewrites** dozens of workspace dep entries from versioned specs to `link:packages/<X>`. The cascade alters tsc's transitive resolution graph and exposes latent type errors in downstream packages (the canonical example is `BreadcrumbsItem.tsx` failing with TS2322 on `OverridableComponent<Props>`), which then breaks the gate's `happo` stage.
+Both forms are valid pnpm output. The compact form is preferred because:
+- ~7,500 fewer lines of lockfile (~36k vs ~43k)
+- Migration PR diffs become tiny (<300 lines) — workspace deps are stable references that don't change per migration
+- No transitive changeset-bot false positives from peer-suffix cascade dedupe
 
-**Fix in [PROMPT-light.md](PROMPT-light.md) / [PROMPT-heavy.md](PROMPT-heavy.md):** the agent is now instructed to run `pnpm install --config.link-workspace-packages=false` instead of plain `pnpm install`. With the flag, pnpm refreshes only what the agent's edit actually changed (e.g. removes `@mui/base` from the lockfile) and leaves the rest of the workspace deps at their npm-fetched specs. Lockfile diff stays small and focused.
+**Earlier policy** (REVOKED 2026-05-13): the agent was instructed to run `pnpm install --config.link-workspace-packages=false`. That flag forces the expanded form. Reasoning at the time was concern about `BreadcrumbsItem.tsx` TS2322 / happo gate breakage from "cascade rewrites" — turned out to be a different problem (peer-suffix re-emission, not link:packages/X itself). The flag mandate was the root cause of the Backdrop PR #4954 6,875-line lockfile diff.
 
-If you see hundreds of `link:packages/<X>` substitutions in the diff during local debugging, the flag was omitted somewhere — reset with `git checkout HEAD -- pnpm-lock.yaml` and re-run with the flag.
+**Current policy**:
+- Agent runs **plain `pnpm install`** (no workspace-link override flag).
+- The committed lockfile baseline (master + post-reset feature branches) is already in compact `link:packages/X` form. pnpm preserves that form for unchanged workspace entries during incremental installs.
+- Expected migration lockfile diff: < 300 lines. If > 1000 lines OR `link:packages/X` lines are being replaced with expanded peer-suffix form, the agent (or someone) passed the override flag — reset with `git checkout origin/<base-branch> -- pnpm-lock.yaml && pnpm install` (plain).
+
+If a Tier 0 migration genuinely needs a different transitive resolution (e.g. `@base-ui/react^1.4.1` added, `@mui/base` removed), expect those lines specifically to change in the diff — the rest of the workspace stays stable.
 
 ### Mandatory Playwright runtime check (when `--with-mcp` is active)
 

@@ -6,16 +6,19 @@
     "Backdrop": {
       "tier": 0,
       "package": "packages/base/Backdrop",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4954",
+      "branch": "migrate-Backdrop",
+      "worktree": "migration-runs/2026-05-13/Backdrop/worktree",
+      "iterations": 1,
       "merged_at": null,
-      "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0."
+      "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
+      "review_iterations": 1,
+      "last_review_seen_at": "2026-05-13T08:21:29.875Z",
+      "session_id": "7fa7812a-804e-4745-911a-58257c9628ee"
     },
     "Badge": {
       "tier": 0,
@@ -34,7 +37,7 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "awaiting_ci",
+      "status": "ready_to_merge",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
       "versionBump": "major",

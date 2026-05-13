@@ -45,25 +45,32 @@ Your task:
      if present. Replace with `react: ">=16.12.0"` (or current floor).
      Per v4 §2.6, `@base-ui/react` supports React 19 and Picasso lifts
      the React 18-era cap as part of every Tier 0/1 migration.
-   - **After editing any package.json deps, run `pnpm install --config.link-workspace-packages=false` from
-     the repo root and stage `pnpm-lock.yaml` in the same commit.** Missing
-     lockfile update is the single most common reason CI's "Build packages"
-     step fails on dep-bumping migrations. The `--config.link-workspace-packages=false`
-     flag is **mandatory**: without it, pnpm honors the repo's `.npmrc`
-     setting (`link-workspace-packages=true`) and cascade-rewrites dozens
-     of workspace dep entries from npm-fetched specs to `link:packages/<X>`.
-     That cascade exposes latent type errors in downstream packages
-     (e.g. `BreadcrumbsItem.tsx` TS2322 on `OverridableComponent<Props>`)
-     and breaks the orchestrator's `pnpm happo` gate. CI is unaffected
-     because it always uses `--frozen-lockfile`. Validate before commit:
-     `git status` shows `pnpm-lock.yaml` modified IFF you touched any
-     `dependencies` / `devDependencies` / `peerDependencies`. If deps
-     changed but the lockfile didn't, the resolution didn't move — verify
-     the new dep is already in the lockfile (`grep '@base-ui/react' pnpm-lock.yaml`).
-     The lockfile diff should be small (only the deps you actually edited
-     plus their transitive resolutions) — if it's hundreds of `link:packages/`
-     substitutions, you forgot the flag; reset with
-     `git checkout HEAD -- pnpm-lock.yaml` and re-run with the flag.
+   - **After editing any package.json deps, run plain `pnpm install` from
+     the repo root and stage `pnpm-lock.yaml` in the same commit.** Trust
+     Picasso's `pnpm-workspace.yaml` configuration as-is. **DO NOT pass
+     `--config.link-workspace-packages=false`** (or any other workspace-link
+     override). Earlier versions of this prompt mandated that flag; the
+     mandate has been REVOKED as of 2026-05-13. Picasso intentionally uses
+     `linkWorkspacePackages: true` so the lockfile represents workspace
+     deps as compact `link:packages/X` references — overriding that flag
+     forces pnpm to rewrite every workspace package entry to expanded
+     peer-suffix form, producing ~7,500 extra lines of unrelated lockfile
+     diff and triggering spurious changeset-bot complaints on transitively
+     touched packages.
+   - **Expect a typical migration's `pnpm-lock.yaml` diff to be < 300 lines**
+     for a single-component dep change. Common patterns:
+     `+ '@base-ui/react': link:...` and `- '@mui/base': ...` plus a few
+     transitive resolution changes. If the diff is > 1000 lines OR you see
+     `link:packages/X` lines being REPLACED with expanded peer-suffix form,
+     the workspace-link representation has been broken — reset with
+     `git checkout origin/<base-branch> -- pnpm-lock.yaml && pnpm install`
+     (plain — NO flag) and try again.
+   - Missing lockfile update is a common reason CI's "Build packages" step
+     fails on dep-bumping migrations. Validate before commit: `git status`
+     shows `pnpm-lock.yaml` modified IFF you touched any `dependencies` /
+     `devDependencies` / `peerDependencies`. If deps changed but the lockfile
+     didn't, the resolution didn't move — verify the new dep is already in
+     the lockfile (`grep '@base-ui/react' pnpm-lock.yaml`).
 
 3. Preserve the public prop surface. When @base-ui/react's types narrow
    vs Picasso's wider public types (e.g. polymorphic components where
