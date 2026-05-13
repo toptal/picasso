@@ -133,6 +133,20 @@ run_stage_skip() {
   echo "SKIP: $reason" >"$RUN_DIR/$name.log"
 }
 
+# Part 4 (2026-05-13): hard-fail a stage without running a command. Used
+# for missing-prerequisite cases (e.g. HAPPO_API_KEY unset). Distinguished
+# from `run_stage` (runs + FAIL on non-zero exit) — `run_stage_fail`
+# records the FAIL outright with an explanatory reason.
+run_stage_fail() {
+  local name="$1"
+  local reason="$2"
+  echo "→ [$name] FAIL: $reason" | tee -a "$RUN_DIR/console.log"
+  STAGES+=("$name")
+  STATUSES+=("FAIL")
+  DURATIONS+=("0")
+  echo "FAIL: $reason" >"$RUN_DIR/$name.log"
+}
+
 # ---------- stages ---------------------------------------------------------
 
 # 0a. Changeset presence — the agent must author .changeset/<component>-migration.md
@@ -385,7 +399,20 @@ fi
 if [ "${MIGRATION_GATE_HAPPO:-run}" = "skip" ]; then
   run_stage_skip "happo" "MIGRATION_GATE_HAPPO=skip"
 elif [ -z "${HAPPO_API_KEY:-}" ] || [ -z "${HAPPO_API_SECRET:-}" ]; then
-  run_stage_skip "happo" "HAPPO_API_KEY/HAPPO_API_SECRET unset (see ORCHESTRATOR.md §Happo setup)"
+  # Part 4 (2026-05-13): Happo is now MANDATORY for migrations. Previously
+  # this path skipped silently — that meant Happo failures first surfaced
+  # in CI (Backdrop PR #4954, Slider PR #4955) with no opportunity for the
+  # agent to iterate locally. Now we hard-fail with explicit setup hints.
+  # Bypass: set MIGRATION_GATE_HAPPO=skip explicitly (sandbox/smoke runs).
+  {
+    echo "❌ [happo] HAPPO_API_KEY / HAPPO_API_SECRET unset — Happo is required for migrations."
+    echo "   Setup: see docs/migration/ORCHESTRATOR.md §Happo setup."
+    echo "   Quick fix — inline for this run:"
+    echo "     HAPPO_API_KEY=... HAPPO_API_SECRET=... pnpm orchestrate --component=<Name> ..."
+    echo "   Explicit opt-out (sandbox / smoke only):"
+    echo "     MIGRATION_GATE_HAPPO=skip pnpm orchestrate --component=<Name> ..."
+  } | tee -a "$RUN_DIR/console.log"
+  run_stage_fail "happo" "HAPPO_API_KEY/HAPPO_API_SECRET unset — required for migration. See docs/migration/ORCHESTRATOR.md §Happo setup."
 else
   # 6a. Run Happo CLI — uploads screenshots + creates the report.
   HAPPO_LOG="$RUN_DIR/happo.log"

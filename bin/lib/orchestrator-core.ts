@@ -503,32 +503,69 @@ const manifest = {
       }
 
       // If the explicit item has already been processed (escalated, done,
-      // awaiting_*), don't re-select it inside a batch loop. Returning null
-      // makes runBatch terminate cleanly with "no-work" — operator can
-      // re-run with `--force` (or reset manifest) to retry. Without this,
-      // the batch loop would re-process the same just-escalated item and
-      // print confusing "another orchestrator run" lock messages.
-      if (item.status !== 'queued' && item.status !== 'in_progress') {
+      // awaiting_review, ready_to_merge), don't re-select it inside a batch
+      // loop. Returning null makes runBatch terminate cleanly with
+      // "no-work" — operator can re-run with `--force` (or reset manifest)
+      // to retry. Without this, the batch loop would re-process the same
+      // just-escalated item and print confusing "another orchestrator run"
+      // lock messages.
+      //
+      // Part 4 (2026-05-13): `awaiting_ci` IS pickable — represents
+      // resumable CI-pending state (timeout without verdict, or just
+      // post-review-pending). The orchestrator's CI re-poll + iteration
+      // loop continues from where the previous run left off.
+      if (
+        item.status !== 'queued' &&
+        item.status !== 'in_progress' &&
+        item.status !== 'awaiting_ci'
+      ) {
         return null
       }
 
       return item
     }
 
+    // Part 4 (2026-05-13): pick `awaiting_ci` items in addition to `queued`
+    // and `in_progress`. Priority order:
+    //   1. in_progress  — resume an interrupted migration
+    //   2. awaiting_ci  — resume a timed-out CI poll
+    //   3. queued       — start a fresh migration
+    // Within each bucket: tier ascending, then alphabetical.
+    const pickable: readonly ManifestItem['status'][] = [
+      'in_progress',
+      'awaiting_ci',
+      'queued',
+    ]
     const candidates = items.filter(item => {
-      if (item.status !== 'queued') {
+      if (!pickable.includes(item.status)) {
         return false
       }
       if (opts.tier !== null && item.tier !== opts.tier) {
         return false
       }
 
-      // All dependencies must be done.
-      return item.depends_on.every(dep => m.components[dep]?.status === 'done')
+      // All dependencies must be done. (Only applied to truly fresh
+      // pickups — `in_progress` and `awaiting_ci` already have their
+      // dependencies satisfied implicitly.)
+      if (item.status === 'queued') {
+        return item.depends_on.every(
+          dep => m.components[dep]?.status === 'done'
+        )
+      }
+
+      return true
     })
 
-    // Tier order, then alphabetical for stability.
-    candidates.sort((a, b) => a.tier - b.tier || a.id.localeCompare(b.id))
+    candidates.sort((a, b) => {
+      const statusOrder =
+        pickable.indexOf(a.status) - pickable.indexOf(b.status)
+
+      if (statusOrder !== 0) {
+        return statusOrder
+      }
+
+      return a.tier - b.tier || a.id.localeCompare(b.id)
+    })
 
     return candidates[0] ?? null
   },
@@ -1727,6 +1764,18 @@ const agent = {
             'Bash(pnpm -F:*)',
             'Bash(pnpm list:*)',
             'Bash(pnpm davinci-qa:*)',
+            // Picasso's `test:unit` script wraps `davinci-qa unit ...` with
+            // a NODE_OPTIONS prefix + a build:package prerequisite. The agent
+            // often reaches for `pnpm test:unit --testPathPattern <path>`
+            // (the natural form per package.json scripts). Without these
+            // patterns the agent burns iterations trying `pnpm test:unit`,
+            // `pnpm exec davinci-qa unit`, `NODE_OPTIONS=... pnpm exec ...`
+            // — all rejected. Empirically observed on Slider migration
+            // 2026-05-13: 4 distinct rejected variants before the agent
+            // gave up on local unit tests. Mirrors the davinci-syntax
+            // lesson from PR #4941 above.
+            'Bash(pnpm test:*)',
+            'Bash(pnpm exec davinci-qa:*)',
             'Bash(pnpm build:package)',
             'Bash(pnpm cypress:*)',
             'Bash(pnpm test:integration:*)',
@@ -1749,6 +1798,13 @@ const agent = {
             'Bash(git show:*)',
             'Bash(git blame:*)',
             'Bash(git check-ignore:*)',
+            // `git stash` is worktree-local (no remote effect) — sometimes
+            // the agent wants to stash WIP edits to run a clean test or
+            // typecheck pass, then unstash. Covers `git stash`, `git stash
+            // push`, `git stash pop`, `git stash list`. Empirically observed
+            // on Slider migration 2026-05-13 where the agent tried
+            // `git stash; pnpm davinci-qa unit ...` and got rejected.
+            'Bash(git stash:*)',
             // ripgrep fallback for multiline/dotall patterns that the Grep
             // tool can't easily express (`--multiline --multiline-dotall`).
             // Read-only; Grep tool covers the common case but `rg` is the
@@ -2455,23 +2511,53 @@ async function sweepOne(
           checks.mergeStateStatus ?? '?'
         }, ${checks.pending.length} reported check(s) pending)`
       )
-      manifest.update(manifestAbs, item.id, { status: 'awaiting_ci' })
+      manifest.update(manifestAbs, item.id, {
+        status: 'awaiting_ci',
+        awaiting_ci_since: new Date().toISOString(),
+      })
 
       return
     }
   }
 
-  // awaiting_ci: reviewer approval already landed, but rollup was pending
-  // on a prior tick. Re-check the rollup now:
-  //   success → ready_to_merge (CI greened up).
-  //   timeout (still pending) → log + return; no agent work needed.
-  //   failure → flip back to awaiting_review + thread failures into the
-  //     agent's next invocation so it can investigate logs and push a fix.
+  // awaiting_ci: two flavors:
+  //   (a) Phase 3.5+ — reviewer approval already landed, rollup pending.
+  //   (b) Part 4 (2026-05-13) — agent's CI poll timed out without verdict.
+  // Both resume the same way: re-check the rollup, react to state.
+  //   success → ready_to_merge if reviewer-approved, else awaiting_review.
+  //   timeout (still pending) → log + return; check 24h max-age cap.
+  //   failure → flip to awaiting_review + thread failures to agent.
   if (item.status === 'awaiting_ci') {
+    // 24h max-age cap: if item has been in awaiting_ci > 24h, transition
+    // to needs_human. Catches "operator forgot" / "CI genuinely broken".
+    if (item.awaiting_ci_since) {
+      const ageMs = Date.now() - new Date(item.awaiting_ci_since).getTime()
+      const maxAgeMs = 24 * 60 * 60 * 1000
+
+      if (ageMs > maxAgeMs) {
+        const ageHours = (ageMs / 1000 / 60 / 60).toFixed(1)
+
+        log(
+          'sweep',
+          `${item.id}: awaiting_ci → needs_human (stuck for ${ageHours}h; 24h max-age cap)`
+        )
+        manifest.update(manifestAbs, item.id, {
+          status: 'needs_human',
+          escalation_reason: `awaiting_ci > 24h (${ageHours}h since ${item.awaiting_ci_since})`,
+        })
+
+        return
+      }
+    }
+
     const checks = await gh.snapshotChecks(prUrl, wtPath)
 
     if (checks.state === 'success') {
-      manifest.update(manifestAbs, item.id, { status: 'ready_to_merge' })
+      // Clear the awaiting_ci timestamp now that CI greened up.
+      manifest.update(manifestAbs, item.id, {
+        status: 'ready_to_merge',
+        awaiting_ci_since: null,
+      })
       log(
         'sweep',
         `${item.id}: CI green after waiting (${
@@ -2495,7 +2581,8 @@ async function sweepOne(
 
       return
     }
-    // state === 'failure'
+    // state === 'failure' — clear awaiting_ci timestamp + flip to
+    // awaiting_review so the agent can engage on the failure(s) this tick.
     log(
       'sweep',
       `${item.id}: CI failed while awaiting_ci (${
@@ -2504,7 +2591,10 @@ async function sweepOne(
         checks.mergeStateStatus ?? '?'
       }) — handing back to agent for fixes`
     )
-    manifest.update(manifestAbs, item.id, { status: 'awaiting_review' })
+    manifest.update(manifestAbs, item.id, {
+      status: 'awaiting_review',
+      awaiting_ci_since: null,
+    })
     ciFailureContext = checks.failed
   }
 
@@ -3001,6 +3091,37 @@ export async function run(
     )
   }
 
+  // Part 4 (2026-05-13): Happo is mandatory for migrations. If creds
+  // aren't set AND operator hasn't explicitly opted out via
+  // MIGRATION_GATE_HAPPO=skip, refuse to start. Catches the common
+  // "ran without setting up Happo" footgun BEFORE the agent invocation
+  // burns iterations. Gate also re-checks this — defense in depth.
+  if (
+    !opts.dryRun &&
+    process.env.MIGRATION_GATE_HAPPO !== 'skip' &&
+    (!process.env.HAPPO_API_KEY || !process.env.HAPPO_API_SECRET)
+  ) {
+    log(
+      'env',
+      '❌ HAPPO_API_KEY / HAPPO_API_SECRET unset — Happo is required for migrations.'
+    )
+    log('env', '   Setup: docs/migration/ORCHESTRATOR.md §Happo setup')
+    log(
+      'env',
+      '   Quick fix (inline): HAPPO_API_KEY=... HAPPO_API_SECRET=... pnpm orchestrate ...'
+    )
+    log(
+      'env',
+      '   Explicit opt-out (sandbox only): MIGRATION_GATE_HAPPO=skip pnpm orchestrate ...'
+    )
+
+    return {
+      status: 'no-work',
+      reason:
+        'HAPPO_API_KEY/HAPPO_API_SECRET unset — refusing to start migration',
+    }
+  }
+
   const m = manifest.read(manifestAbs)
   const item = manifest.pickNext(m, opts)
 
@@ -3493,19 +3614,36 @@ export async function run(
         `pending: ${pollResult.pending.map(c => c.name).join(', ')}`
     )
 
-    return escalate(
-      workflow,
-      item,
-      state,
-      {
-        shouldEscalate: true,
-        reason: `CI timeout after ${ciTimeout}min; pending: ${pollResult.pending
-          .map(c => c.name)
-          .join(', ')}`,
-      },
-      manifestAbs,
-      rootDir
-    )
+    // Part 4 (2026-05-13): CI timeout no longer escalates to `needs_human`.
+    // CI being slow/queued/hung-on-artifact-upload is a wait-it-out
+    // condition, not a human-judgment one. Transition to `awaiting_ci`
+    // (resumable) so the next `pnpm orchestrate --component=X` run OR
+    // the next `--review-sweep` tick re-polls CI and continues iteration
+    // when results land.
+    //
+    // Safety net: sweep enforces a 24h max-age cap on `awaiting_ci`. If
+    // CI is STILL pending 24h later, sweep transitions to `needs_human`
+    // (operator forgot, or CI is genuinely broken on this PR).
+    const pendingNames = pollResult.pending.map(c => c.name).join(', ')
+    const reason = `CI timeout after ${ciTimeout}min; pending: ${pendingNames}`
+
+    log('ci', `${item.id}: in_progress → awaiting_ci (${reason})`)
+    manifest.update(manifestAbs, item.id, {
+      status: 'awaiting_ci',
+      awaiting_ci_since: new Date().toISOString(),
+      escalation_reason: null,
+      iterations: state.iterations,
+    })
+
+    // Return as 'pr-opened' — the PR IS open, CI is just pending. Caller
+    // doesn't differentiate "PR opened, CI green" vs "PR opened, CI
+    // pending"; the manifest reflects awaiting_ci status which sweep +
+    // future pickNext use to resume.
+    return {
+      status: 'pr-opened',
+      prUrl,
+      reason: `awaiting_ci: ${reason}`,
+    }
   }
 
   // Phase 3.3 — CI iteration loop. While CI is failing AND we have

@@ -87,15 +87,16 @@
     "Slider": {
       "tier": 0,
       "package": "packages/base/Slider",
-      "status": "queued",
+      "status": "needs_human",
       "depends_on": [],
       "target_path": "@base-ui/react/slider",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
-      "merged_at": null
+      "pr": "https://github.com/toptal/picasso/pull/4955",
+      "branch": "migrate-Slider",
+      "worktree": "migration-runs/2026-05-13/Slider/worktree",
+      "iterations": 1,
+      "merged_at": null,
+      "escalation_reason": "CI timeout after 60min; pending: Integration Tests / Run Integration Tests (2), Happo (Picasso/Cypress)"
     },
     "Switch": {
       "tier": 0,
