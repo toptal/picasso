@@ -72,11 +72,19 @@ This document lists the design patterns that every Picasso component in this rep
       </Modal.Actions>
     </Modal>
     ```
+16. **Use `testIds` for multi-part test selectors.** When a component has multiple independently testable parts and the root `data-testid` is not enough, expose a single optional `testIds` prop — an object whose keys map to each addressable part. Each key is itself optional, and the component should fall back to sensible defaults or skip the attribute when unset. Do not add per-part `data-testid` props at the top level.
+
+    ```ts
+    // Shape — keys depend on the component's parts:
+    testIds?: {
+      [partName: string]: string | undefined
+    }
+    ```
 
 ## Form components
 
 Rules in this section apply only to form components (inputs, selects, checkboxes, radios, date pickers, file uploaders, and similar field-style components).
 
-1. **Extend `FieldProps`.** Every form component's props interface must extend `FieldProps` — the project's extended version of `final-form`'s field props. This guarantees a consistent contract for `value`, `onChange`, validation state, error messaging, and form integration.
+1. **Extend `FieldProps` (or a descendant).** Every form component's props interface must extend `FieldProps` — the project's extended version of `final-form`'s field props — or a type that itself extends `FieldProps` (e.g., `InputProps`, `SelectProps`). This guarantees a consistent contract for `value`, `onChange`, validation state, error messaging, and form integration across every field-style component.
 2. **Honor the standard form-field props.** Form components must accept and respect the full set of standard field props provided by `final-form` / `FieldProps` — including `name`, `value`, `defaultValue`, `required`, `disabled`, `onChange`, `onBlur`, `onFocus`, and any others surfaced by `FieldProps`. Do not selectively omit or rename them.
 3. **Render through `PicassoField`.** Internally, every form component must use `PicassoField` as its wrapper. This centralizes label, hint, error, required-marker, and layout behavior so all fields look and behave consistently. Do not reimplement field chrome ad hoc.
