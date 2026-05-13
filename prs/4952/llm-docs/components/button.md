@@ -32,7 +32,6 @@ A Button indicates a possible user action.
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | active | `boolean` | - | Show button in the active state (left mouse button down) |
-| as | `ElementType` | - | The component used for the root node. Either a string to use a DOM element or a component. |
 | disabled | `boolean` | - | Disables button |
 | focused | `boolean` | - | Set focused style for the button |
 | hovered | `boolean` | - | Set hovered style for the button |
@@ -50,7 +49,6 @@ A Button indicates a possible user action.
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | active | `boolean` | - | Show button in the active state (left mouse button down) |
-| as | `ElementType` | - | The component used for the root node. Either a string to use a DOM element or a component. |
 | disabled | `boolean` | - | Disables button |
 | focused | `boolean` | - | Set focused style for the button |
 | hovered | `boolean` | - | Set hovered style for the button |
