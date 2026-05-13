@@ -42,16 +42,22 @@ export interface ManifestItem {
      */
     | 'ready_to_merge'
     /**
-     * Phase 3.5+ (2026-05-11) — set when reviewer approval has landed but
-     * the head commit's status-check rollup is still pending (not all
-     * checks reported terminal). The PR isn't yet safe to merge. Sweep
-     * re-checks the rollup on each tick:
-     *   - rollup success → ready_to_merge
-     *   - rollup failure → awaiting_review (agent re-engages on the
-     *     failed checks; see CI-failure feedback in sweepOne)
+     * Phase 3.5+ (2026-05-11) — originally: set when reviewer approval
+     * has landed but the head commit's status-check rollup is still
+     * pending. Extended (Part 4, 2026-05-13) to ALSO cover the "agent's
+     * CI poll timed out without verdict" case — same resumable semantics.
+     * Both cases mean: PR is open, CI is pending or has timed out without
+     * a terminal verdict, sweep mode (and pickNext) resumes by re-polling.
+     *
+     * Sweep re-checks the rollup on each tick:
+     *   - rollup success → awaiting_review or ready_to_merge (depending
+     *     on reviewer approval state)
+     *   - rollup failure → feed agent the failed checks (CI iteration
+     *     loop, see sweepOne)
      *   - still pending → stay
-     * Reviewer's approval is preserved across these transitions — we don't
-     * make the agent re-process review comments while just waiting on CI.
+     *
+     * Max age: 24h since `awaiting_ci_since` — after that, sweep
+     * transitions to `needs_human` (operator forgot about the PR).
      */
     | 'awaiting_ci'
     | 'done'
@@ -73,6 +79,13 @@ export interface ManifestItem {
   target_path?: string
   /** Phase 3 — ISO timestamp of last successful CI completion. */
   last_ci_green_at?: string | null
+  /**
+   * Part 4 (2026-05-13) — ISO timestamp when item entered `awaiting_ci`
+   * status. Used by sweep mode to enforce the 24h max-age cap: items in
+   * `awaiting_ci` longer than 24h transition to `needs_human` (operator
+   * forgot). Cleared when item transitions out of `awaiting_ci`.
+   */
+  awaiting_ci_since?: string | null
   /**
    * Phase 3.5 — ISO timestamp of the latest review/comment processed by
    * the most recent --review-sweep. Reviews older than this marker are

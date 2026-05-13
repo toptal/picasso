@@ -264,9 +264,74 @@ Available tools:
 
 4. **Use judgment on which interactions to exercise.** Don't run a script — think about what would prove the migration works. For Backdrop: open + close (verify mount/unmount), and the `Invisible` variant. For Button: hover, focus, click, plus disabled state if it's a separate story. For Modal: open, close via backdrop click, close via Escape, scroll inside. The bar is "would a reasonable reviewer think I actually verified this works", not "I clicked one button".
 
-5. `browser_take_screenshot` once per meaningful state (default trigger view, component-open view, key variants). These are sanity checks, not the gate — Happo handles pixel-perfect comparison. You're confirming the component renders and reacts; not that pixels are identical.
+5. `browser_take_screenshot` per meaningful state — see the dedicated **Visual verification** section below for the full PoC-style baseline-vs-local comparison workflow.
 
 Skipping this is exiting with an unverified migration. The orchestrator's gate does NOT catch runtime-only errors — Happo only compares pixel diffs against a baseline, which passes if a runtime exception causes an empty render with no baseline yet, or if the visual is unchanged but a console error fires. And **viewing only the trigger button** is the most common false-positive: the migrated component never rendered, console was clean, but you verified nothing.
+
+### Visual verification — baseline vs local Storybook comparison (PoC pattern, revised 2026-05-13)
+
+**Two complementary visual tools — different roles, different strengths:**
+
+| Tool | Strength | Use it for |
+|---|---|---|
+| **Playwright MCP** (this section) | Fast feedback, interactive (hover/click/focus/keyboard), compares MORE than just pixels (console errors, accessibility tree, runtime warnings) | Live iteration during development. Catch obvious regressions FAST before the slower Happo cycle. |
+| **Happo** (next section) | Authoritative pixel-diff against persisted baselines, designer-approval workflow, parallel browser/viewport coverage, CI-gating | Final regression authority. Even if Playwright says "looks fine to me", Happo is the source of truth — must be green (or all diffs marked intentional). |
+
+Playwright is the **fast iteration tool** during your loop. Happo is the **authoritative gate**. Use Playwright continuously; use Happo to confirm at the end of each iteration.
+
+**Goal: pixel-perfect parity between the deployed baseline and your local edits for ALL stories, ALL variants, ALL interaction states.**
+
+You have TWO reference Storybooks:
+
+- **Baseline** — `https://picasso.toptal.net/` — Picasso's deployed Storybook from master. Always-on, represents the pre-migration look. Use this as your reference image.
+- **Local** — `http://localhost:9001/` — operator's local Storybook running from your worktree (started before migration via `pnpm start:storybook`). Reflects your edits in real-time as you save files.
+
+#### Workflow
+
+1. **Enumerate stories**: `browser_navigate` to `https://picasso.toptal.net/`. Click your component in the left sidebar under `Components / <Name>`. Record each story's URL pattern (typically `?path=/story/components-<lowercase>--<story-id>`). The deployed Storybook's story IDs MATCH the local ones (same Storybook source).
+
+2. **For each story, capture and compare**:
+   - `browser_navigate` to the baseline URL on `picasso.toptal.net` → `browser_take_screenshot` → save to `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`
+   - `browser_navigate` to the same story on `http://localhost:9001` → `browser_take_screenshot` → save to `migration-runs/<run-date>/<Component>/playwright/local--<story-id>.png`
+   - Use your vision capability to compare the two images side-by-side. Look for layout shifts, color differences, missing/extra elements, font/spacing changes.
+
+3. **For each story, exercise interaction states**: default, hover, clicked, focused (where applicable to the component). For Switch: default + hover + focused + checked. For Tooltip: default trigger + opened tooltip + arrow position. For Modal: closed + opened + Escape-close. Use `browser_hover` / `browser_click` between captures.
+   - Save interaction-state shots as `local--<story-id>--<state>.png` (e.g. `local--default--hover.png`). Baseline interactive states: navigate baseline + repeat hover/click; save as `baseline--<story-id>--<state>.png`.
+
+4. **For each diff identified during comparison**:
+   - **REGRESSION** (unintentional, broke something): edit the source in your worktree, save, Storybook hot-reloads → re-capture local → re-compare. Iterate.
+   - **INTENTIONAL** (e.g. Base UI's `data-disabled=""` attribute, dropped `base-` class prefix, focus-ring 1px shift from `outline-mode` change): add a one-line note to the changeset under `## Intentional visual changes`. Example:
+     ```md
+     ## Intentional visual changes
+     - `data-disabled=""` attribute added by Base UI (Tier 0 expected)
+     - Focus outline 1px shift due to outline-mode update
+     - Trailing `base-` token dropped from `className` (cosmetic)
+     ```
+
+5. **Storage**: all screenshots under `migration-runs/<run-date>/<Component>/playwright/`. The `migration-runs/` directory is gitignored — these are local debug artifacts, never committed. The operator can scroll through them post-iteration to verify your work.
+
+#### Exit criterion for visual verification
+
+Either:
+- **Pixel-perfect match** between baseline and local for every story + variant + interaction state, OR
+- All remaining diffs are explicitly listed in the changeset's `## Intentional visual changes` section with one-line rationale per slot.
+
+Anything else means iterate.
+
+### Happo iteration (Part 4, 2026-05-13)
+
+The gate runs `pnpm happo --only <Component>` after Playwright verification. This is the authoritative visual regression check — Happo screenshots get uploaded to https://happo.io and diffed against master's baseline.
+
+**Happo is now mandatory locally** — the gate fails if `HAPPO_API_KEY` / `HAPPO_API_SECRET` aren't set in your env. If you see "HAPPO_API_KEY unset" in the gate log, STOP and ask the operator to set them up (see `ORCHESTRATOR.md` §Happo setup).
+
+If Happo reports diffs:
+
+1. **Read the Happo report URL** from the failure log (typically `https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>`).
+2. **Inspect each diff** at the report URL. For each, decide regression vs intentional using the same logic as §Visual verification above.
+3. **Iterate** — REGRESSION → fix source + re-run gate; INTENTIONAL → mark in changeset's `## Intentional visual changes` section.
+4. **Goal: Happo report green**. Iterate until Happo passes locally OR you've explicitly marked every remaining slot as intentional (these will then go to designer for accept/reject in CI's Happo UI).
+
+The orchestrator's classifier feeds Happo failures back to you as `feed-to-agent` triggers (NOT immediate escalations). You share the migrate-loop's `--max-iterations` budget; stuck-detection (same diff set across 2 consecutive iters) escalates to designer naturally.
 
 **Working acceptance** (run for regular feedback during iteration):
 - `pnpm --filter @toptal/picasso-<NAME> build:package` passes (types + emit)

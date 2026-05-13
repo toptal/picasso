@@ -96,7 +96,8 @@ const ASSERTION_MARKERS = [
   /expect\(.*\)\.toHaveTextContent\(/,
   /expect\(.*\)\.toHaveBeenCalled/,
 ]
-const CYPRESS_FAIL_MARKER = /CypressError|Cypress could not verify|cy\..* timed out/
+const CYPRESS_FAIL_MARKER =
+  /CypressError|Cypress could not verify|cy\..* timed out/
 const HAPPO_MARKERS = [
   /happo\.io\/[^\s]*\/compare\//,
   /Happo\s.*\sdiffs?\sfound/i,
@@ -133,9 +134,10 @@ const MAX_EXCERPT_BYTES = 6000
  * FAIL to handle all three formats.
  */
 function extractFailedTestPaths(log: string): readonly string[] {
-  const matches = log.match(/(?:^|\s)FAIL\s+(\S+\.(?:test|spec)\.[a-z]+)/g) ?? []
+  const matches =
+    log.match(/(?:^|\s)FAIL\s+(\S+\.(?:test|spec)\.[a-z]+)/g) ?? []
   const paths = matches
-    .map((line) => line.replace(/^.*FAIL\s+/, '').trim())
+    .map(line => line.replace(/^.*FAIL\s+/, '').trim())
     .filter(Boolean)
 
   return [...new Set(paths)]
@@ -174,9 +176,10 @@ function extractLintFiles(log: string, repoRoot?: string): readonly string[] {
 
     // Error row: indented, contains "error" (not "warning").
     if (currentFile && /^\s+\d+:\d+\s+error\b/.test(line)) {
-      const rel = repoRoot && currentFile.startsWith(repoRoot)
-        ? currentFile.slice(repoRoot.length).replace(/^\/+/, '')
-        : currentFile
+      const rel =
+        repoRoot && currentFile.startsWith(repoRoot)
+          ? currentFile.slice(repoRoot.length).replace(/^\/+/, '')
+          : currentFile
 
       if (!files.includes(rel)) {
         files.push(rel)
@@ -204,7 +207,9 @@ function extractPackageJsonsFromSyncpack(log: string): readonly string[] {
   let m: RegExpExecArray | null
 
   while ((m = re.exec(log)) !== null) {
-    if (m[1]) {out.add(m[1])}
+    if (m[1]) {
+      out.add(m[1])
+    }
   }
 
   return [...out]
@@ -223,17 +228,27 @@ export function classifyCIFailure(
 ): FailureClassification {
   const name = check.name.toLowerCase()
 
-  // 1. Happo — escalate. Per migration plan v4 §6.3, the gate script
-  //    enforces zero-diff OR designer-accepted via Happo's REST API
-  //    BEFORE Happo failures reach this classifier. If a Happo check is
-  //    failing in CI, it means real unresolved diffs exist that need
-  //    designer review — not a flake. The Phase 3 auto-fix-rerun (and
-  //    Tier 2 batch B Slice 4 sweep retry) are removed in favour of the
-  //    strict gate.
-  if (name.includes('happo') || HAPPO_MARKERS.some((re) => re.test(log))) {
+  // 1. Happo — feed-to-agent (Part 4, 2026-05-13). Earlier policy
+  //    escalated Happo failures unconditionally to designer review. New
+  //    policy: agent attempts to iterate on Happo diffs same as lint/test
+  //    failures. The agent reads the Happo report URL from the log,
+  //    inspects each diff via the report, and decides per slot:
+  //      - regression → edit source to match baseline; re-run gate
+  //      - intentional → mark in changeset's `## Intentional visual
+  //        changes` section; gate ignores listed slots in subsequent iters
+  //    After the iteration budget (--max-iterations / --max-ci-iterations)
+  //    is exhausted with same diff-set persisting, the outer loop's
+  //    stuck-detection triggers escalation to designer review naturally.
+  //    No separate MAX_HAPPO_ITERATIONS counter — Happo iteration shares
+  //    the existing iteration budget (operator's choice 2026-05-13).
+  if (name.includes('happo') || HAPPO_MARKERS.some(re => re.test(log))) {
     return {
-      class: 'escalate',
-      reason: 'Happo unresolved diffs — designer review required (see Happo report URL)',
+      class: 'feed-to-agent',
+      reason:
+        'Happo diffs — agent inspects report URL + decides per slot ' +
+        '(regression: fix source; intentional: mark in changeset). ' +
+        'After iteration budget exhausted with same diffs, stuck-detection ' +
+        'escalates to designer.',
       stage: 'happo',
       excerpt: tail(log, MAX_EXCERPT_BYTES),
       paths: [],
@@ -242,7 +257,7 @@ export function classifyCIFailure(
 
   // 2. Danger — meta-rule failure means the orchestrator's commit/PR-title
   // format itself is wrong. Agent can't fix this; needs operator.
-  if (name === 'danger' || DANGER_MARKERS.some((re) => re.test(log))) {
+  if (name === 'danger' || DANGER_MARKERS.some(re => re.test(log))) {
     return {
       class: 'escalate',
       reason: 'Danger CI failed — orchestrator commit/title format bug',
@@ -259,14 +274,16 @@ export function classifyCIFailure(
   // -u would mask the assertion bug. We err on the safe side: if any
   // assertion-style expect is present, classify as feed-to-agent instead.
   const hasSnapshot = SNAPSHOT_MARKER.test(log)
-  const hasNonSnapshotAssertion = ASSERTION_MARKERS.some((re) => re.test(log))
+  const hasNonSnapshotAssertion = ASSERTION_MARKERS.some(re => re.test(log))
 
   if (hasSnapshot && !hasNonSnapshotAssertion) {
     const testPaths = extractFailedTestPaths(log)
 
     return {
       class: 'auto-fix-snapshot',
-      reason: `Snapshot regression in ${testPaths.length || 'unknown'} test file(s)`,
+      reason: `Snapshot regression in ${
+        testPaths.length || 'unknown'
+      } test file(s)`,
       stage: 'jest',
       paths: testPaths,
     }
@@ -321,7 +338,7 @@ export function classifyCIFailure(
   }
 
   // 8. Build / module-resolution failures.
-  if (BUILD_MARKERS.some((re) => re.test(log))) {
+  if (BUILD_MARKERS.some(re => re.test(log))) {
     return {
       class: 'feed-to-agent',
       reason: 'Build / module-resolution failure',
@@ -348,10 +365,15 @@ export function classifyCIFailure(
   // mismatches exist, the job fails. The agent can fix these by editing
   // package.json with the correct version (caret-prefix for npm deps,
   // exact version for workspace deps). See PROMPT-light/heavy §2/§4.
-  if (/HighestSemverMismatch|LocalPackageMismatch|syncpack[: ]list-mismatches/.test(log)) {
+  if (
+    /HighestSemverMismatch|LocalPackageMismatch|syncpack[: ]list-mismatches/.test(
+      log
+    )
+  ) {
     return {
       class: 'feed-to-agent',
-      reason: 'Syncpack dependency-version mismatch (npm: use ^x.y.z; workspace: use exact version)',
+      reason:
+        'Syncpack dependency-version mismatch (npm: use ^x.y.z; workspace: use exact version)',
       stage: 'syncpack',
       excerpt: tail(log, MAX_EXCERPT_BYTES),
       paths: extractPackageJsonsFromSyncpack(log),
