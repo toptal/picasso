@@ -43,6 +43,7 @@ import {
   readFileSync,
   writeFileSync,
 } from 'node:fs'
+import * as net from 'node:net'
 import * as path from 'node:path'
 import * as os from 'node:os'
 
@@ -778,6 +779,224 @@ const worktree = {
     }
     await shell('git', ['worktree', 'remove', '--force', worktreePath])
   },
+}
+
+// ---------------------------------------------------------------------------
+// storybook
+// ---------------------------------------------------------------------------
+// Part 4 (2026-05-13): orchestrator owns Storybook lifecycle so the agent
+// can use Playwright MCP against a locally-served Storybook reflecting its
+// worktree edits. Before this, the operator had to manually `cd <worktree>
+// && pnpm start:storybook` from a separate terminal — friction.
+//
+// Lifecycle: started AFTER worktree.bootstrap (which `pnpm install`s deps)
+// and BEFORE the first agent.invoke. Killed at the end of runOne via the
+// outer try/finally (regardless of success/escalate/timeout).
+//
+// Port allocation: prefers 9001 (matches the canonical URL in prompts). If
+// taken (operator running their own Storybook from main repo), falls back
+// to next free port in 9002..9020. The actual URL is recorded in
+// `migration-runs/<date>/<Component>/storybook-url.txt` so the agent can
+// read it if the port differs from 9001 — but in practice 9001 is the
+// hot path.
+
+interface StorybookHandle {
+  readonly url: string
+  readonly port: number
+  readonly kill: () => Promise<void>
+}
+
+const STORYBOOK_PORT_RANGE_START = 9001
+const STORYBOOK_PORT_RANGE_END = 9020
+const STORYBOOK_READY_TIMEOUT_MS = 3 * 60 * 1000 // 3 min cold-start budget
+const STORYBOOK_POLL_INTERVAL_MS = 2000
+
+const storybook = {
+  async findFreePort(): Promise<number> {
+    for (
+      let port = STORYBOOK_PORT_RANGE_START;
+      port <= STORYBOOK_PORT_RANGE_END;
+      port++
+    ) {
+      // eslint-disable-next-line no-await-in-loop
+      const free = await isPortFree(port)
+
+      if (free) {
+        return port
+      }
+    }
+    throw new Error(
+      `No free port in ${STORYBOOK_PORT_RANGE_START}..${STORYBOOK_PORT_RANGE_END} — too many concurrent Storybooks?`
+    )
+  },
+
+  /**
+   * Spawn Storybook in the worktree on the next free port. Returns a
+   * handle with the URL + a `kill()` method. Returns null if Storybook
+   * fails to come up within STORYBOOK_READY_TIMEOUT_MS (orchestrator
+   * continues without — agent's Playwright check will degrade gracefully
+   * by logging "Storybook unavailable").
+   *
+   * Detached + process-group kill ensures we clean up the whole tree
+   * (`pnpm` parent + `start-storybook` child + webpack workers).
+   */
+  async start(
+    worktreePath: string,
+    runDir: string
+  ): Promise<StorybookHandle | null> {
+    const port = await storybook.findFreePort()
+
+    log(
+      'storybook',
+      `starting in ${worktreePath} on port ${port} (cold start can take 60-120s)...`
+    )
+
+    const child = spawn('pnpm', ['start:storybook', '-p', String(port)], {
+      cwd: worktreePath,
+      detached: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      env: { ...process.env, CI: 'true', BROWSER: 'none' },
+    })
+
+    // Drain stdout/stderr (otherwise the pipes can fill + block the child)
+    child.stdout?.on('data', () => {
+      /* drain */
+    })
+    child.stderr?.on('data', () => {
+      /* drain */
+    })
+
+    const startedAt = Date.now()
+    const ready = await waitForPort(port, STORYBOOK_READY_TIMEOUT_MS)
+
+    if (!ready) {
+      log(
+        'storybook',
+        `failed to become ready within ${
+          STORYBOOK_READY_TIMEOUT_MS / 1000
+        }s — killing + continuing without`
+      )
+      killProcessTree(child.pid)
+
+      return null
+    }
+    const elapsedSec = ((Date.now() - startedAt) / 1000).toFixed(1)
+
+    log('storybook', `ready at http://localhost:${port}/ in ${elapsedSec}s`)
+
+    const url = `http://localhost:${port}`
+
+    // Write URL to run-dir so agent can read it if port differs from 9001.
+    // The prompts hardcode 9001 as the canonical URL; this file is the
+    // override hint when fallback was needed.
+    try {
+      writeFileSync(path.join(runDir, 'storybook-url.txt'), `${url}\n`, 'utf8')
+    } catch {
+      /* ignore */
+    }
+
+    return {
+      url,
+      port,
+      async kill() {
+        log('storybook', `killing pid ${child.pid} on port ${port}`)
+        killProcessTree(child.pid)
+        // Brief wait so SIGTERM has a chance to propagate before runOne exits.
+        await new Promise(resolve => setTimeout(resolve, 1000))
+      },
+    }
+  },
+}
+
+/**
+ * Is `port` free to bind on 127.0.0.1? Used to detect operator's running
+ * Storybook (or some other listener) on 9001 before spawning our own.
+ */
+async function isPortFree(port: number): Promise<boolean> {
+  return new Promise(resolve => {
+    const tester = net.createServer()
+
+    tester.once('error', () => resolve(false))
+    tester.once('listening', () => {
+      tester.close(() => resolve(true))
+    })
+    tester.listen(port, '127.0.0.1')
+  })
+}
+
+/** Poll `port` accepting connections until ready or timeout. */
+async function waitForPort(port: number, timeoutMs: number): Promise<boolean> {
+  const deadline = Date.now() + timeoutMs
+
+  while (Date.now() < deadline) {
+    // eslint-disable-next-line no-await-in-loop
+    const open = await canConnectTo(port)
+
+    if (open) {
+      return true
+    }
+    // eslint-disable-next-line no-await-in-loop
+    await new Promise(resolve =>
+      setTimeout(resolve, STORYBOOK_POLL_INTERVAL_MS)
+    )
+  }
+
+  return false
+}
+
+async function canConnectTo(port: number): Promise<boolean> {
+  return new Promise(resolve => {
+    const socket = new net.Socket()
+    const cleanup = (result: boolean) => {
+      socket.destroy()
+      resolve(result)
+    }
+
+    socket.setTimeout(1000)
+    socket.once('connect', () => cleanup(true))
+    socket.once('error', () => cleanup(false))
+    socket.once('timeout', () => cleanup(false))
+    socket.connect(port, '127.0.0.1')
+  })
+}
+
+/**
+ * POSIX process-group kill: kill the whole tree (pnpm parent + start-
+ * storybook child + webpack workers). SIGTERM first, SIGKILL after 5s.
+ *
+ * Reference: spawn() with `detached: true` makes the child a process-
+ * group leader (PGID === PID). `process.kill(-pgid, signal)` signals
+ * every process in that group.
+ */
+function killProcessTree(pid: number | undefined): void {
+  if (!pid) {
+    return
+  }
+
+  // Negative pid = signal whole process group.
+  try {
+    process.kill(-pid, 'SIGTERM')
+  } catch {
+    // Fallback if process-group kill fails: just kill the immediate child.
+    try {
+      process.kill(pid, 'SIGTERM')
+    } catch {
+      /* nothing to kill */
+    }
+  }
+
+  // SIGKILL backstop after grace period.
+  setTimeout(() => {
+    try {
+      process.kill(-pid, 'SIGKILL')
+    } catch {
+      try {
+        process.kill(pid, 'SIGKILL')
+      } catch {
+        /* already dead */
+      }
+    }
+  }, 5000)
 }
 
 // ---------------------------------------------------------------------------
@@ -3226,84 +3445,34 @@ export async function run(
   // for the full rationale.
   await worktree.bootstrap(wtPath)
 
-  // Step 5: manifest update.
-  manifest.update(manifestAbs, item.id, {
-    status: 'in_progress',
-    branch,
-    worktree: path.relative(rootDir, wtPath),
-    iterations: 0,
-  })
+  // Step 4c (Part 4, 2026-05-13): start Storybook in worktree so agent can
+  // use Playwright MCP against a locally-served copy reflecting its edits.
+  // Cold start budget: ~3 min. Returns null on timeout/failure — orchestrator
+  // continues without (agent's Playwright check degrades with a warning).
+  // Killed by the try/finally below regardless of run() exit path.
+  const storybookHandle = await storybook.start(wtPath, runDir)
 
-  // Step 3 (early): snapshot pre-state.
-  log('loop', `snapshotting pre-state`)
-  const snapshotResult = await shellLine(workflow.diff(item.id, 'snapshot'), {
-    cwd: wtPath,
-    env: { ...process.env, MIGRATION_RUN_DATE: runDate },
-  })
+  // Wrap the remainder of run() so any return path (success, escalate,
+  // dry-run, etc.) triggers Storybook cleanup. There are 17 return points
+  // below; try/finally is the only sane way to handle them uniformly.
+  try {
+    // Step 5: manifest update.
+    manifest.update(manifestAbs, item.id, {
+      status: 'in_progress',
+      branch,
+      worktree: path.relative(rootDir, wtPath),
+      iterations: 0,
+    })
 
-  if (snapshotResult.exitCode !== 0) {
-    log('loop', `snapshot failed: ${snapshotResult.stderr}`)
-
-    return escalate(
-      workflow,
-      item,
-      {
-        item,
-        iterations: 0,
-        lastGate: null,
-        gateHistory: [],
-        ciFailures: [],
-        architecturalReviews: 0,
-        startedAt: ISO(),
-      },
-      { shouldEscalate: true, reason: 'pre-state snapshot failed' },
-      manifestAbs,
-      rootDir
-    )
-  }
-
-  // Optional: start Storybook in the worktree so the agent can use Playwright
-  // MCP for visual verification (--with-mcp). Tier 1 cleanup migrations don't
-  // need this; Tier 0 / 2 / 3 do (any component where Happo is load-bearing).
-  let storybookProc: ReturnType<typeof spawn> | null = null
-
-  if (opts.withMcp) {
-    log(
-      'loop',
-      'starting Storybook (--with-mcp); polling http://localhost:9001'
-    )
-    storybookProc = spawn('pnpm', ['start:storybook'], {
+    // Step 3 (early): snapshot pre-state.
+    log('loop', `snapshotting pre-state`)
+    const snapshotResult = await shellLine(workflow.diff(item.id, 'snapshot'), {
       cwd: wtPath,
-      stdio: ['ignore', 'pipe', 'pipe'],
-      detached: false,
-      env: process.env,
-    })
-    // Ensure Storybook is killed on any orchestrator exit path. Synchronous
-    // handler is fine; SIGTERM is fire-and-forget.
-    const killStorybook = (): void => {
-      if (storybookProc && !storybookProc.killed) {
-        storybookProc.kill('SIGTERM')
-      }
-    }
-
-    process.once('exit', killStorybook)
-    process.once('SIGINT', () => {
-      killStorybook()
-      process.exit(130)
-    })
-    process.once('SIGTERM', () => {
-      killStorybook()
-      process.exit(143)
+      env: { ...process.env, MIGRATION_RUN_DATE: runDate },
     })
 
-    const ready = await waitForUrl('http://localhost:9001', 60_000)
-
-    if (!ready) {
-      log(
-        'loop',
-        'Storybook did not become ready within 60s; killing and escalating'
-      )
-      storybookProc.kill('SIGTERM')
+    if (snapshotResult.exitCode !== 0) {
+      log('loop', `snapshot failed: ${snapshotResult.stderr}`)
 
       return escalate(
         workflow,
@@ -3317,567 +3486,150 @@ export async function run(
           architecturalReviews: 0,
           startedAt: ISO(),
         },
-        {
-          shouldEscalate: true,
-          reason: 'Storybook failed to start within 60s',
-        },
+        { shouldEscalate: true, reason: 'pre-state snapshot failed' },
         manifestAbs,
         rootDir
       )
     }
-    log('loop', 'Storybook ready at http://localhost:9001')
-  }
 
-  // Steps 6–9: agent + gate + iterate.
-  const state: RunState = {
-    item,
-    iterations: 0,
-    lastGate: null,
-    gateHistory: [],
-    ciFailures: [],
-    architecturalReviews: 0,
-    startedAt: ISO(),
-  }
+    // Optional: start Storybook in the worktree so the agent can use Playwright
+    // MCP for visual verification (--with-mcp). Tier 1 cleanup migrations don't
+    // need this; Tier 0 / 2 / 3 do (any component where Happo is load-bearing).
+    let storybookProc: ReturnType<typeof spawn> | null = null
 
-  let lastFeedback: string | null = null
-  // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
-  // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
-  // keeps the full canonical-prompt + rules + per-item-plan context from
-  // iter 1 in conversation memory and the orchestrator sends only the delta.
-  const sessionId = randomUUID()
-
-  await fs.writeFile(path.join(runDir, 'session.id'), sessionId + '\n', 'utf8')
-  log('loop', `session id: ${sessionId} (iter 1 tags, iter 2+ resumes)`)
-
-  while (state.iterations < opts.maxIterations) {
-    state.iterations += 1
-    log('loop', `iteration ${state.iterations}/${opts.maxIterations}`)
-
-    // Assemble prompt.
-    // Iter 1: full canonical prompt + rules + per-item-plan + tier extras.
-    // Iter 2+: delta only (gate feedback + accumulated diff). Claude keeps
-    //         the iter-1 context via --resume.
-    const prompt =
-      state.iterations === 1
-        ? await agent.assemblePrompt(workflow, item, 0, null, rootDir, wtPath)
-        : await agent.assembleDeltaPrompt(
-            state.iterations - 1,
-            lastFeedback,
-            wtPath
-          )
-    // runDir is already `<repo>/migration-runs/<date>/<itemId>/` (since
-    // dirname(wtPath) strips the trailing `worktree`); don't append item.id again.
-    const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
-
-    await fs.mkdir(path.dirname(promptPath), { recursive: true })
-    await fs.writeFile(promptPath, prompt, 'utf8')
-
-    // Invoke agent.
-    const agentLogPath = path.join(runDir, `agent.${state.iterations}.log`)
-
-    log(
-      'loop',
-      `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}, ${
-        state.iterations === 1 ? 'session-start' : 'session-resume'
-      }); log=${agentLogPath}`
-    )
-    const agentResult = await agent.invoke(
-      {
-        prompt,
+    if (opts.withMcp) {
+      log(
+        'loop',
+        'starting Storybook (--with-mcp); polling http://localhost:9001'
+      )
+      storybookProc = spawn('pnpm', ['start:storybook'], {
         cwd: wtPath,
-        agent: opts.agent,
-        withMcp: opts.withMcp,
-        sessionId,
-        isFirstIteration: state.iterations === 1,
-      },
-      agentLogPath
-    )
+        stdio: ['ignore', 'pipe', 'pipe'],
+        detached: false,
+        env: process.env,
+      })
+      // Ensure Storybook is killed on any orchestrator exit path. Synchronous
+      // handler is fine; SIGTERM is fire-and-forget.
+      const killStorybook = (): void => {
+        if (storybookProc && !storybookProc.killed) {
+          storybookProc.kill('SIGTERM')
+        }
+      }
 
-    // Tier 2 batch B / Slice 3 — token telemetry. Snapshot the session
-    // log AFTER every agent.invoke (success or failure) so cost.json
-    // tracks the full canary cost including failed iters.
-    await recordTokenSnapshot(
-      runDir,
-      item.id,
-      sessionId,
-      state.iterations,
-      wtPath
-    )
+      process.once('exit', killStorybook)
+      process.once('SIGINT', () => {
+        killStorybook()
+        process.exit(130)
+      })
+      process.once('SIGTERM', () => {
+        killStorybook()
+        process.exit(143)
+      })
 
-    if (agentResult.exitCode !== 0) {
-      log('loop', `agent exited non-zero (${agentResult.exitCode})`)
+      const ready = await waitForUrl('http://localhost:9001', 60_000)
 
-      // Resilience: detect "no progress possible" failures and escalate
-      // immediately instead of burning the iteration budget on the same
-      // re-failing call. Triggered by canary 25 (PR #4906 spending cap
-      // hit at iter 1 → 10 retries × ~6s each → escalation, ~60s wasted).
-      // Patterns are matched against the agent log (the CLI tends to emit
-      // these to stdout, not stderr).
-      const noProgressReason = await detectNoProgressFailure(agentLogPath)
+      if (!ready) {
+        log(
+          'loop',
+          'Storybook did not become ready within 60s; killing and escalating'
+        )
+        storybookProc.kill('SIGTERM')
 
-      if (noProgressReason) {
         return escalate(
           workflow,
           item,
-          state,
+          {
+            item,
+            iterations: 0,
+            lastGate: null,
+            gateHistory: [],
+            ciFailures: [],
+            architecturalReviews: 0,
+            startedAt: ISO(),
+          },
           {
             shouldEscalate: true,
-            reason: `agent failure not retry-recoverable: ${noProgressReason}`,
+            reason: 'Storybook failed to start within 60s',
           },
           manifestAbs,
           rootDir
         )
       }
-
-      lastFeedback = `Agent invocation failed (exit ${agentResult.exitCode}). See ${agentLogPath}.`
-      continue
+      log('loop', 'Storybook ready at http://localhost:9001')
     }
 
-    // Run gate.
-    const gateReport = await gate.run(
-      workflow.gate(item.id),
-      item.id,
-      wtPath,
-      runDate
-    )
-
-    state.lastGate = gateReport
-    state.gateHistory = [...state.gateHistory, gateReport]
-    manifest.update(manifestAbs, item.id, { iterations: state.iterations })
-
-    if (workflow.successCriteria(gateReport)) {
-      log('loop', `gates pass on iteration ${state.iterations}`)
-      lastFeedback = null
-      break
-    }
-
-    log(
-      'loop',
-      `gate composite=${gateReport.composite}; preparing next iteration`
-    )
-    if (existsSync(gateReport.reportPath)) {
-      lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
-    }
-
-    const decision = workflow.escalationCriteria(state)
-
-    if (decision.shouldEscalate) {
-      return escalate(workflow, item, state, decision, manifestAbs, rootDir)
-    }
-  }
-
-  if (!state.lastGate || state.lastGate.composite !== 'PASS') {
-    return escalate(
-      workflow,
+    // Steps 6–9: agent + gate + iterate.
+    const state: RunState = {
       item,
-      state,
-      {
-        shouldEscalate: true,
-        reason: `gate did not pass after ${opts.maxIterations} iterations`,
-      },
-      manifestAbs,
-      rootDir
-    )
-  }
-
-  // Step 8 (post-pass): produce diff report (the PR body).
-  await shellLine(workflow.diff(item.id, 'report'), {
-    cwd: wtPath,
-    env: { ...process.env, MIGRATION_RUN_DATE: runDate },
-  })
-
-  // Step 10: commit + push.
-  // `--no-verify` skips Husky pre-commit hooks. Rationale:
-  //   1. The orchestrator's gate stage already runs lint, jest, tsc, build,
-  //      cypress, happo — which is a strict superset of what the pre-commit
-  //      hook does (lint-staged, syncpack, check:icon-sizes). Running the
-  //      hook would be redundant work.
-  //   2. The hook calls `.husky/_/husky.sh` which is created by `husky install`
-  //      via the `prepare` npm script. Worktrees don't trigger `prepare` on
-  //      creation, so the include is missing and the hook fails before doing
-  //      anything useful.
-  //   3. The orchestrator commits inside an isolated worktree; the
-  //      consequences of a bad commit are contained until human PR review.
-  // Pre-push hooks (`pre-push`) are also skipped via `git push --no-verify`
-  // for the same reasons.
-  const commitMsg = workflow.commitMessage(item.id, item)
-  const commitMsgFile = path.join(
-    os.tmpdir(),
-    `commit-msg-${item.id}.${process.pid}`
-  )
-
-  await fs.writeFile(commitMsgFile, commitMsg, 'utf8')
-
-  await shell('git', ['add', '-A'], { cwd: wtPath })
-  const commitResult = await shell(
-    'git',
-    ['commit', '--no-verify', '--file', commitMsgFile],
-    { cwd: wtPath }
-  )
-
-  if (commitResult.exitCode !== 0) {
-    return escalate(
-      workflow,
-      item,
-      state,
-      {
-        shouldEscalate: true,
-        reason: `git commit failed: ${
-          commitResult.stderr || commitResult.stdout
-        }`,
-      },
-      manifestAbs,
-      rootDir
-    )
-  }
-
-  const pushResult = await shell(
-    'git',
-    ['push', '--no-verify', '-u', 'origin', branch],
-    { cwd: wtPath }
-  )
-
-  if (pushResult.exitCode !== 0) {
-    return escalate(
-      workflow,
-      item,
-      state,
-      { shouldEscalate: true, reason: `git push failed: ${pushResult.stderr}` },
-      manifestAbs,
-      rootDir
-    )
-  }
-
-  // Step 10: PR.
-  // diff.sh writes its report inside the worktree (its $ROOT is the worktree
-  // when invoked with cwd=wtPath). Read from the worktree-internal path so
-  // the gh PR body picks up the agent's actual diff for this iteration.
-  const diffPath = path.join(
-    wtPath,
-    'migration-runs',
-    runDate,
-    item.id,
-    'diff.md'
-  )
-  const prUrl = await gh.createPR({
-    title: workflow.prTitle(item.id, item),
-    base: workflow.baseBranch,
-    head: branch,
-    bodyFile: diffPath,
-    cwd: wtPath,
-    assignees: workflow.assignees,
-  })
-
-  manifest.update(manifestAbs, item.id, { pr: prUrl })
-
-  // Lessons-learned append moved post-CI (2026-05-07). Previously this
-  // ran right after PR-open, which captured ONLY the initial migration
-  // diff and missed any patterns the agent applied while iterating on
-  // CI failures. Now it runs once after CI settles green so the diff
-  // captures end-to-end behaviour (initial migration + CI fixes).
-
-  // Phase 3.1 — CI poll. Both `--no-merge` (sandbox) and merge-mode go
-  // through the poll; `--no-merge` just skips the eventual merge call. The
-  // poll is gated by `opts.ciTimeoutMinutes > 0` so operators can opt out
-  // (e.g. when CI is known to be down for maintenance, or for ultra-fast
-  // dry-canaries that don't care about CI).
-  const ciTimeout = opts.ciTimeoutMinutes ?? workflow.ciTimeoutMinutes
-
-  if (ciTimeout <= 0) {
-    log('loop', `CI poll disabled (--ci-timeout-minutes=0); PR=${prUrl}`)
-
-    return { status: 'pr-opened', prUrl }
-  }
-
-  log('loop', `polling CI on ${prUrl} (timeout=${ciTimeout}min, interval=30s)`)
-  let lastSummary = ''
-  let pollResult = await gh.pollChecks(prUrl, wtPath, {
-    timeoutMinutes: ciTimeout,
-    intervalSeconds: 30,
-    onTick: snapshot => {
-      const summary = snapshot
-        .map(c => `${c.name}=${c.conclusion || c.status || '?'}`)
-        .sort()
-        .join(' ')
-
-      if (summary !== lastSummary) {
-        log('ci', `${snapshot.length} checks: ${summary}`)
-        lastSummary = summary
-      }
-    },
-  })
-
-  if (pollResult.state === 'timeout') {
-    log(
-      'ci',
-      `timed out after ${ciTimeout}min with ${pollResult.pending.length} ` +
-        `pending: ${pollResult.pending.map(c => c.name).join(', ')}`
-    )
-
-    // Part 4 (2026-05-13): CI timeout no longer escalates to `needs_human`.
-    // CI being slow/queued/hung-on-artifact-upload is a wait-it-out
-    // condition, not a human-judgment one. Transition to `awaiting_ci`
-    // (resumable) so the next `pnpm orchestrate --component=X` run OR
-    // the next `--review-sweep` tick re-polls CI and continues iteration
-    // when results land.
-    //
-    // Safety net: sweep enforces a 24h max-age cap on `awaiting_ci`. If
-    // CI is STILL pending 24h later, sweep transitions to `needs_human`
-    // (operator forgot, or CI is genuinely broken on this PR).
-    const pendingNames = pollResult.pending.map(c => c.name).join(', ')
-    const reason = `CI timeout after ${ciTimeout}min; pending: ${pendingNames}`
-
-    log('ci', `${item.id}: in_progress → awaiting_ci (${reason})`)
-    manifest.update(manifestAbs, item.id, {
-      status: 'awaiting_ci',
-      awaiting_ci_since: new Date().toISOString(),
-      escalation_reason: null,
-      iterations: state.iterations,
-    })
-
-    // Return as 'pr-opened' — the PR IS open, CI is just pending. Caller
-    // doesn't differentiate "PR opened, CI green" vs "PR opened, CI
-    // pending"; the manifest reflects awaiting_ci status which sweep +
-    // future pickNext use to resume.
-    return {
-      status: 'pr-opened',
-      prUrl,
-      reason: `awaiting_ci: ${reason}`,
-    }
-  }
-
-  // Phase 3.3 — CI iteration loop. While CI is failing AND we have
-  // budget, classify each failed check, react (auto-fix or feed agent),
-  // push, re-poll. Escalate when classification recommends it or budget
-  // is exhausted.
-  //
-  // (Phase 3 Happo-flake mitigation removed in v4 Step 4 — strict gate
-  // replaces flake retries; auto-fix-rerun classification was retired
-  // in failure-classifier.ts.)
-
-  // CI-iteration budget. Decoupled from --max-iterations (which gates the
-  // migrate-loop) because CI fixes are typically cheap (~$0.50-1 / cycle)
-  // and we want the orchestrator to be STUBBORN about fixing failures
-  // before escalating to a human. Default 5 cycles; override with
-  // --max-ci-iterations=N. Stuck detection (same failure-set twice
-  // consecutively) triggers earlier escalation regardless of budget.
-  const maxCIIterations = opts.maxCIIterations ?? 5
-  let ciIteration = 0
-  let lastFailureSet = ''
-
-  while (pollResult.state === 'failure' && ciIteration < maxCIIterations) {
-    ciIteration += 1
-    state.iterations += 1
-    log(
-      'ci',
-      `iter ${ciIteration}/${maxCIIterations}: ${pollResult.failed.length}/${
-        pollResult.checks.length
-      } checks failed: ${pollResult.failed
-        .map(c => `${c.name}(${c.conclusion})`)
-        .join(', ')}`
-    )
-
-    // Fetch logs + classify in parallel.
-    const classifications = await Promise.all(
-      pollResult.failed.map(async failed => {
-        const log_ = await gh.fetchJobLog(failed.detailsUrl, wtPath)
-
-        return {
-          check: failed,
-          log: log_,
-          decision: classifyCIFailure(
-            { name: failed.name, conclusion: failed.conclusion },
-            log_,
-            { repoRoot: rootDir }
-          ),
-        }
-      })
-    )
-
-    classifications.forEach(c =>
-      log(
-        'ci',
-        `classify "${c.check.name}" → ${c.decision.class} (${c.decision.reason})`
-      )
-    )
-
-    // Stuck detection: same failure set as last iteration ⇒ no progress.
-    const failureSet = classifications
-      .map(c => `${c.check.name}:${c.decision.class}`)
-      .sort()
-      .join('|')
-
-    if (ciIteration >= 2 && failureSet === lastFailureSet) {
-      log('ci', `stuck on same failure set as last iter — escalating`)
-      const stuckOn = classifications.map(c => c.check.name).join(', ')
-
-      return escalate(
-        workflow,
-        item,
-        state,
-        {
-          shouldEscalate: true,
-          reason: `CI iteration stuck: same failure-set after ${ciIteration} cycles (${stuckOn})`,
-        },
-        manifestAbs,
-        rootDir
-      )
-    }
-    lastFailureSet = failureSet
-
-    // Non-poison-pill: only escalate if EVERY classification is `escalate`.
-    // If at least one is fixable, attempt the fixables and re-poll —
-    // unfixed escalate-class items will resurface next iteration.
-    const fixables = classifications.filter(
-      c => c.decision.class !== 'escalate'
-    )
-    const escalates = classifications.filter(
-      c => c.decision.class === 'escalate'
-    )
-
-    if (fixables.length === 0) {
-      // All classifications are escalate. Surface the first one as the reason.
-      const first = escalates[0]
-
-      return escalate(
-        workflow,
-        item,
-        state,
-        {
-          shouldEscalate: true,
-          reason: `CI failure on "${first?.check.name ?? '?'}" (${
-            first?.decision.reason ?? 'all unclassified'
-          })`,
-        },
-        manifestAbs,
-        rootDir
-      )
+      iterations: 0,
+      lastGate: null,
+      gateHistory: [],
+      ciFailures: [],
+      architecturalReviews: 0,
+      startedAt: ISO(),
     }
 
-    if (escalates.length > 0) {
-      log(
-        'ci',
-        `mixed: ${escalates.length} escalate-class + ${fixables.length} fixable; attempting fixables first`
-      )
-    }
+    let lastFeedback: string | null = null
+    // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
+    // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
+    // keeps the full canonical-prompt + rules + per-item-plan context from
+    // iter 1 in conversation memory and the orchestrator sends only the delta.
+    const sessionId = randomUUID()
 
-    // Apply auto-fix paths (snapshot regen, lint --fix). These run on the
-    // worktree; afterwards we commit + push to update the PR branch.
-    let didAutoFix = false
-
-    for (const c of classifications) {
-      if (
-        c.decision.class === 'auto-fix-snapshot' &&
-        c.decision.paths.length > 0
-      ) {
-        const pattern = c.decision.paths.join('|')
-
-        log('ci', `auto-fix snapshot: jest -u --testPathPattern "${pattern}"`)
-        await shell(
-          'pnpm',
-          [
-            'davinci-qa',
-            'unit',
-            '--config=./jest.spec.mjs',
-            '--testPathPattern',
-            pattern,
-            '-u',
-          ],
-          {
-            cwd: wtPath,
-            env: {
-              ...process.env,
-              NODE_OPTIONS: '--no-experimental-require-module',
-            },
-          }
-        )
-        didAutoFix = true
-      } else if (
-        c.decision.class === 'auto-fix-lint' &&
-        c.decision.paths.length > 0
-      ) {
-        log(
-          'ci',
-          `auto-fix lint: davinci-syntax lint code ${c.decision.paths.join(
-            ' '
-          )}`
-        )
-        await shell(
-          'pnpm',
-          ['davinci-syntax', 'lint', 'code', ...c.decision.paths],
-          { cwd: wtPath }
-        )
-        didAutoFix = true
-      }
-    }
-
-    // (auto-fix-rerun empty-commit branch removed — v4 Step 4 strict
-    // Happo gate replaces flake retries.)
-    const didRerun = false
-
-    // Feed-to-agent classifications: assemble a CI-feedback delta prompt
-    // and invoke the agent (session-resume). The agent edits files; gate
-    // runs locally afterwards as a sanity check.
-    //
-    // Bug 5 fix (2026-05-07): also include `auto-fix-lint` decisions whose
-    // `paths` array is empty. Empty paths means `extractLintFiles` couldn't
-    // parse file paths from CI's ANSI-coloured lint output (different format
-    // than local `pnpm davinci-syntax`). Without this fallback, the orches-
-    // trator had no path forward — auto-fix loop skipped (paths empty),
-    // feed-to-agent loop didn't include them (wrong class), and the early-
-    // bail at "no actionable CI classifications" escalated. Now we pass the
-    // log excerpt to the agent and let it figure out which files to fix.
-    const feedDecisions = classifications.filter(
-      c =>
-        c.decision.class === 'feed-to-agent' ||
-        (c.decision.class === 'auto-fix-lint' && c.decision.paths.length === 0)
+    await fs.writeFile(
+      path.join(runDir, 'session.id'),
+      sessionId + '\n',
+      'utf8'
     )
+    log('loop', `session id: ${sessionId} (iter 1 tags, iter 2+ resumes)`)
 
-    if (feedDecisions.length > 0) {
-      const ciFeedback =
-        '# CI failures (post-PR-open)\n\n' +
-        feedDecisions
-          .map(
-            c =>
-              `## ${c.check.name}\n\n` +
-              `**Reason:** ${c.decision.reason}\n\n` +
-              (c.decision.paths.length
-                ? `**Affected paths:** ${c.decision.paths.join(', ')}\n\n`
-                : '') +
-              '**Log excerpt:**\n```\n' +
-              (c.decision.excerpt ?? '(no excerpt)') +
-              '\n```\n'
-          )
-          .join('\n')
-      const ciPrompt = await agent.assembleDeltaPrompt(
-        state.iterations - 1,
-        ciFeedback,
-        wtPath
-      )
+    while (state.iterations < opts.maxIterations) {
+      state.iterations += 1
+      log('loop', `iteration ${state.iterations}/${opts.maxIterations}`)
+
+      // Assemble prompt.
+      // Iter 1: full canonical prompt + rules + per-item-plan + tier extras.
+      // Iter 2+: delta only (gate feedback + accumulated diff). Claude keeps
+      //         the iter-1 context via --resume.
+      const prompt =
+        state.iterations === 1
+          ? await agent.assemblePrompt(workflow, item, 0, null, rootDir, wtPath)
+          : await agent.assembleDeltaPrompt(
+              state.iterations - 1,
+              lastFeedback,
+              wtPath
+            )
+      // runDir is already `<repo>/migration-runs/<date>/<itemId>/` (since
+      // dirname(wtPath) strips the trailing `worktree`); don't append item.id again.
       const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
 
-      await fs.writeFile(promptPath, ciPrompt, 'utf8')
+      await fs.mkdir(path.dirname(promptPath), { recursive: true })
+      await fs.writeFile(promptPath, prompt, 'utf8')
+
+      // Invoke agent.
       const agentLogPath = path.join(runDir, `agent.${state.iterations}.log`)
 
       log(
-        'ci',
-        `iter ${state.iterations}: feed-to-agent on ${feedDecisions
-          .map(d => d.check.name)
-          .join(', ')}`
+        'loop',
+        `invoking agent (${opts.agent}${opts.withMcp ? ' +mcp' : ''}, ${
+          state.iterations === 1 ? 'session-start' : 'session-resume'
+        }); log=${agentLogPath}`
       )
       const agentResult = await agent.invoke(
         {
-          prompt: ciPrompt,
+          prompt,
           cwd: wtPath,
           agent: opts.agent,
           withMcp: opts.withMcp,
           sessionId,
-          isFirstIteration: false,
+          isFirstIteration: state.iterations === 1,
         },
         agentLogPath
       )
 
-      // Slice 3 — token snapshot for the CI iteration's agent call.
+      // Tier 2 batch B / Slice 3 — token telemetry. Snapshot the session
+      // log AFTER every agent.invoke (success or failure) so cost.json
+      // tracks the full canary cost including failed iters.
       await recordTokenSnapshot(
         runDir,
         item.id,
@@ -3887,20 +3639,35 @@ export async function run(
       )
 
       if (agentResult.exitCode !== 0) {
-        return escalate(
-          workflow,
-          item,
-          state,
-          {
-            shouldEscalate: true,
-            reason: `agent invocation failed during CI iteration: exit ${agentResult.exitCode}`,
-          },
-          manifestAbs,
-          rootDir
-        )
+        log('loop', `agent exited non-zero (${agentResult.exitCode})`)
+
+        // Resilience: detect "no progress possible" failures and escalate
+        // immediately instead of burning the iteration budget on the same
+        // re-failing call. Triggered by canary 25 (PR #4906 spending cap
+        // hit at iter 1 → 10 retries × ~6s each → escalation, ~60s wasted).
+        // Patterns are matched against the agent log (the CLI tends to emit
+        // these to stdout, not stderr).
+        const noProgressReason = await detectNoProgressFailure(agentLogPath)
+
+        if (noProgressReason) {
+          return escalate(
+            workflow,
+            item,
+            state,
+            {
+              shouldEscalate: true,
+              reason: `agent failure not retry-recoverable: ${noProgressReason}`,
+            },
+            manifestAbs,
+            rootDir
+          )
+        }
+
+        lastFeedback = `Agent invocation failed (exit ${agentResult.exitCode}). See ${agentLogPath}.`
+        continue
       }
 
-      // Sanity gate locally before pushing.
+      // Run gate.
       const gateReport = await gate.run(
         workflow.gate(item.id),
         item.id,
@@ -3909,102 +3676,162 @@ export async function run(
       )
 
       state.lastGate = gateReport
+      state.gateHistory = [...state.gateHistory, gateReport]
+      manifest.update(manifestAbs, item.id, { iterations: state.iterations })
 
-      if (!workflow.successCriteria(gateReport)) {
-        log(
-          'ci',
-          `iter ${state.iterations}: local gate still failing after agent edit; pushing anyway and letting CI re-evaluate`
-        )
+      if (workflow.successCriteria(gateReport)) {
+        log('loop', `gates pass on iteration ${state.iterations}`)
+        lastFeedback = null
+        break
+      }
+
+      log(
+        'loop',
+        `gate composite=${gateReport.composite}; preparing next iteration`
+      )
+      if (existsSync(gateReport.reportPath)) {
+        lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
+      }
+
+      const decision = workflow.escalationCriteria(state)
+
+      if (decision.shouldEscalate) {
+        return escalate(workflow, item, state, decision, manifestAbs, rootDir)
       }
     }
 
-    if (!didAutoFix && !didRerun && feedDecisions.length === 0) {
-      // Nothing to do — every classification was something we didn't act
-      // on (shouldn't happen given the escalate-first guard, but be safe).
+    if (!state.lastGate || state.lastGate.composite !== 'PASS') {
       return escalate(
         workflow,
         item,
         state,
         {
           shouldEscalate: true,
-          reason: 'no actionable CI classifications; aborting',
+          reason: `gate did not pass after ${opts.maxIterations} iterations`,
         },
         manifestAbs,
         rootDir
       )
     }
 
-    // Stage + commit any new working-tree changes (auto-fix outputs,
-    // agent edits). The empty-commit rerun was already created above (if
-    // applicable) so we may end up with two commits per iteration: the
-    // rerun marker + the auto-fix delta. That's fine — both push together.
-    const ciCommitMsg =
-      workflow.commitMessage(item.id, item) +
-      `\n\n[ci-iter ${state.iterations}]`
-    const ciCommitMsgFile = path.join(
+    // Step 8 (post-pass): produce diff report (the PR body).
+    await shellLine(workflow.diff(item.id, 'report'), {
+      cwd: wtPath,
+      env: { ...process.env, MIGRATION_RUN_DATE: runDate },
+    })
+
+    // Step 10: commit + push.
+    // `--no-verify` skips Husky pre-commit hooks. Rationale:
+    //   1. The orchestrator's gate stage already runs lint, jest, tsc, build,
+    //      cypress, happo — which is a strict superset of what the pre-commit
+    //      hook does (lint-staged, syncpack, check:icon-sizes). Running the
+    //      hook would be redundant work.
+    //   2. The hook calls `.husky/_/husky.sh` which is created by `husky install`
+    //      via the `prepare` npm script. Worktrees don't trigger `prepare` on
+    //      creation, so the include is missing and the hook fails before doing
+    //      anything useful.
+    //   3. The orchestrator commits inside an isolated worktree; the
+    //      consequences of a bad commit are contained until human PR review.
+    // Pre-push hooks (`pre-push`) are also skipped via `git push --no-verify`
+    // for the same reasons.
+    const commitMsg = workflow.commitMessage(item.id, item)
+    const commitMsgFile = path.join(
       os.tmpdir(),
-      `commit-msg-${item.id}.ci.${state.iterations}.${process.pid}`
+      `commit-msg-${item.id}.${process.pid}`
     )
 
-    await fs.writeFile(ciCommitMsgFile, ciCommitMsg, 'utf8')
+    await fs.writeFile(commitMsgFile, commitMsg, 'utf8')
+
     await shell('git', ['add', '-A'], { cwd: wtPath })
     const commitResult = await shell(
       'git',
-      ['commit', '--no-verify', '--file', ciCommitMsgFile],
+      ['commit', '--no-verify', '--file', commitMsgFile],
       { cwd: wtPath }
     )
-    const didAutoFixCommit = commitResult.exitCode === 0
 
-    // Push if we have ANY new commit on this iteration — either the
-    // rerun marker (didRerun) or the auto-fix delta (didAutoFixCommit).
-    if (didRerun || didAutoFixCommit) {
-      const pushResult = await shell(
-        'git',
-        ['push', '--no-verify', 'origin', branch],
-        { cwd: wtPath }
-      )
-
-      if (pushResult.exitCode !== 0) {
-        return escalate(
-          workflow,
-          item,
-          state,
-          {
-            shouldEscalate: true,
-            reason: `git push failed during CI iteration: ${pushResult.stderr}`,
-          },
-          manifestAbs,
-          rootDir
-        )
-      }
-      const what = [
-        didRerun ? 'rerun marker' : '',
-        didAutoFixCommit ? 'auto-fix delta' : '',
-      ]
-        .filter(Boolean)
-        .join(' + ')
-
-      log(
-        'ci',
-        `iter ${state.iterations}: pushed ${what}; waiting 60s for CI to register new commit, then re-polling`
-      )
-      // Without this delay, the next pollChecks call returns stale rollup
-      // state for the OLD commit (canary 29 / PR #4935: re-poll fired
-      // 570ms after push and saw the prior failure → instant escalate
-      // before auto-fix-rerun got a chance). 60s is long enough for
-      // GitHub Actions to enqueue a new run for the pushed SHA, short
-      // enough not to bloat happy-path runs.
-      await sleep(60_000)
-    } else {
-      log(
-        'ci',
-        `iter ${state.iterations}: no commit produced (exit ${commitResult.exitCode}); CI will re-evaluate the existing tip`
+    if (commitResult.exitCode !== 0) {
+      return escalate(
+        workflow,
+        item,
+        state,
+        {
+          shouldEscalate: true,
+          reason: `git commit failed: ${
+            commitResult.stderr || commitResult.stdout
+          }`,
+        },
+        manifestAbs,
+        rootDir
       )
     }
 
-    // Re-poll. CI may need a few seconds to register the new run for the
-    // pushed commit; pollChecks's warmup handles that.
-    pollResult = await gh.pollChecks(prUrl, wtPath, {
+    const pushResult = await shell(
+      'git',
+      ['push', '--no-verify', '-u', 'origin', branch],
+      { cwd: wtPath }
+    )
+
+    if (pushResult.exitCode !== 0) {
+      return escalate(
+        workflow,
+        item,
+        state,
+        {
+          shouldEscalate: true,
+          reason: `git push failed: ${pushResult.stderr}`,
+        },
+        manifestAbs,
+        rootDir
+      )
+    }
+
+    // Step 10: PR.
+    // diff.sh writes its report inside the worktree (its $ROOT is the worktree
+    // when invoked with cwd=wtPath). Read from the worktree-internal path so
+    // the gh PR body picks up the agent's actual diff for this iteration.
+    const diffPath = path.join(
+      wtPath,
+      'migration-runs',
+      runDate,
+      item.id,
+      'diff.md'
+    )
+    const prUrl = await gh.createPR({
+      title: workflow.prTitle(item.id, item),
+      base: workflow.baseBranch,
+      head: branch,
+      bodyFile: diffPath,
+      cwd: wtPath,
+      assignees: workflow.assignees,
+    })
+
+    manifest.update(manifestAbs, item.id, { pr: prUrl })
+
+    // Lessons-learned append moved post-CI (2026-05-07). Previously this
+    // ran right after PR-open, which captured ONLY the initial migration
+    // diff and missed any patterns the agent applied while iterating on
+    // CI failures. Now it runs once after CI settles green so the diff
+    // captures end-to-end behaviour (initial migration + CI fixes).
+
+    // Phase 3.1 — CI poll. Both `--no-merge` (sandbox) and merge-mode go
+    // through the poll; `--no-merge` just skips the eventual merge call. The
+    // poll is gated by `opts.ciTimeoutMinutes > 0` so operators can opt out
+    // (e.g. when CI is known to be down for maintenance, or for ultra-fast
+    // dry-canaries that don't care about CI).
+    const ciTimeout = opts.ciTimeoutMinutes ?? workflow.ciTimeoutMinutes
+
+    if (ciTimeout <= 0) {
+      log('loop', `CI poll disabled (--ci-timeout-minutes=0); PR=${prUrl}`)
+
+      return { status: 'pr-opened', prUrl }
+    }
+
+    log(
+      'loop',
+      `polling CI on ${prUrl} (timeout=${ciTimeout}min, interval=30s)`
+    )
+    let lastSummary = ''
+    let pollResult = await gh.pollChecks(prUrl, wtPath, {
       timeoutMinutes: ciTimeout,
       intervalSeconds: 30,
       onTick: snapshot => {
@@ -4019,66 +3846,495 @@ export async function run(
         }
       },
     })
-  }
 
-  if (pollResult.state === 'failure') {
-    return escalate(
-      workflow,
-      item,
-      state,
-      {
-        shouldEscalate: true,
-        reason: `CI still failing after ${state.iterations}/${
-          opts.maxIterations
-        } iterations: ${pollResult.failed.map(c => c.name).join(', ')}`,
-      },
-      manifestAbs,
-      rootDir
+    if (pollResult.state === 'timeout') {
+      log(
+        'ci',
+        `timed out after ${ciTimeout}min with ${pollResult.pending.length} ` +
+          `pending: ${pollResult.pending.map(c => c.name).join(', ')}`
+      )
+
+      // Part 4 (2026-05-13): CI timeout no longer escalates to `needs_human`.
+      // CI being slow/queued/hung-on-artifact-upload is a wait-it-out
+      // condition, not a human-judgment one. Transition to `awaiting_ci`
+      // (resumable) so the next `pnpm orchestrate --component=X` run OR
+      // the next `--review-sweep` tick re-polls CI and continues iteration
+      // when results land.
+      //
+      // Safety net: sweep enforces a 24h max-age cap on `awaiting_ci`. If
+      // CI is STILL pending 24h later, sweep transitions to `needs_human`
+      // (operator forgot, or CI is genuinely broken on this PR).
+      const pendingNames = pollResult.pending.map(c => c.name).join(', ')
+      const reason = `CI timeout after ${ciTimeout}min; pending: ${pendingNames}`
+
+      log('ci', `${item.id}: in_progress → awaiting_ci (${reason})`)
+      manifest.update(manifestAbs, item.id, {
+        status: 'awaiting_ci',
+        awaiting_ci_since: new Date().toISOString(),
+        escalation_reason: null,
+        iterations: state.iterations,
+      })
+
+      // Return as 'pr-opened' — the PR IS open, CI is just pending. Caller
+      // doesn't differentiate "PR opened, CI green" vs "PR opened, CI
+      // pending"; the manifest reflects awaiting_ci status which sweep +
+      // future pickNext use to resume.
+      return {
+        status: 'pr-opened',
+        prUrl,
+        reason: `awaiting_ci: ${reason}`,
+      }
+    }
+
+    // Phase 3.3 — CI iteration loop. While CI is failing AND we have
+    // budget, classify each failed check, react (auto-fix or feed agent),
+    // push, re-poll. Escalate when classification recommends it or budget
+    // is exhausted.
+    //
+    // (Phase 3 Happo-flake mitigation removed in v4 Step 4 — strict gate
+    // replaces flake retries; auto-fix-rerun classification was retired
+    // in failure-classifier.ts.)
+
+    // CI-iteration budget. Decoupled from --max-iterations (which gates the
+    // migrate-loop) because CI fixes are typically cheap (~$0.50-1 / cycle)
+    // and we want the orchestrator to be STUBBORN about fixing failures
+    // before escalating to a human. Default 5 cycles; override with
+    // --max-ci-iterations=N. Stuck detection (same failure-set twice
+    // consecutively) triggers earlier escalation regardless of budget.
+    const maxCIIterations = opts.maxCIIterations ?? 5
+    let ciIteration = 0
+    let lastFailureSet = ''
+
+    while (pollResult.state === 'failure' && ciIteration < maxCIIterations) {
+      ciIteration += 1
+      state.iterations += 1
+      log(
+        'ci',
+        `iter ${ciIteration}/${maxCIIterations}: ${pollResult.failed.length}/${
+          pollResult.checks.length
+        } checks failed: ${pollResult.failed
+          .map(c => `${c.name}(${c.conclusion})`)
+          .join(', ')}`
+      )
+
+      // Fetch logs + classify in parallel.
+      const classifications = await Promise.all(
+        pollResult.failed.map(async failed => {
+          const log_ = await gh.fetchJobLog(failed.detailsUrl, wtPath)
+
+          return {
+            check: failed,
+            log: log_,
+            decision: classifyCIFailure(
+              { name: failed.name, conclusion: failed.conclusion },
+              log_,
+              { repoRoot: rootDir }
+            ),
+          }
+        })
+      )
+
+      classifications.forEach(c =>
+        log(
+          'ci',
+          `classify "${c.check.name}" → ${c.decision.class} (${c.decision.reason})`
+        )
+      )
+
+      // Stuck detection: same failure set as last iteration ⇒ no progress.
+      const failureSet = classifications
+        .map(c => `${c.check.name}:${c.decision.class}`)
+        .sort()
+        .join('|')
+
+      if (ciIteration >= 2 && failureSet === lastFailureSet) {
+        log('ci', `stuck on same failure set as last iter — escalating`)
+        const stuckOn = classifications.map(c => c.check.name).join(', ')
+
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: `CI iteration stuck: same failure-set after ${ciIteration} cycles (${stuckOn})`,
+          },
+          manifestAbs,
+          rootDir
+        )
+      }
+      lastFailureSet = failureSet
+
+      // Non-poison-pill: only escalate if EVERY classification is `escalate`.
+      // If at least one is fixable, attempt the fixables and re-poll —
+      // unfixed escalate-class items will resurface next iteration.
+      const fixables = classifications.filter(
+        c => c.decision.class !== 'escalate'
+      )
+      const escalates = classifications.filter(
+        c => c.decision.class === 'escalate'
+      )
+
+      if (fixables.length === 0) {
+        // All classifications are escalate. Surface the first one as the reason.
+        const first = escalates[0]
+
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: `CI failure on "${first?.check.name ?? '?'}" (${
+              first?.decision.reason ?? 'all unclassified'
+            })`,
+          },
+          manifestAbs,
+          rootDir
+        )
+      }
+
+      if (escalates.length > 0) {
+        log(
+          'ci',
+          `mixed: ${escalates.length} escalate-class + ${fixables.length} fixable; attempting fixables first`
+        )
+      }
+
+      // Apply auto-fix paths (snapshot regen, lint --fix). These run on the
+      // worktree; afterwards we commit + push to update the PR branch.
+      let didAutoFix = false
+
+      for (const c of classifications) {
+        if (
+          c.decision.class === 'auto-fix-snapshot' &&
+          c.decision.paths.length > 0
+        ) {
+          const pattern = c.decision.paths.join('|')
+
+          log('ci', `auto-fix snapshot: jest -u --testPathPattern "${pattern}"`)
+          await shell(
+            'pnpm',
+            [
+              'davinci-qa',
+              'unit',
+              '--config=./jest.spec.mjs',
+              '--testPathPattern',
+              pattern,
+              '-u',
+            ],
+            {
+              cwd: wtPath,
+              env: {
+                ...process.env,
+                NODE_OPTIONS: '--no-experimental-require-module',
+              },
+            }
+          )
+          didAutoFix = true
+        } else if (
+          c.decision.class === 'auto-fix-lint' &&
+          c.decision.paths.length > 0
+        ) {
+          log(
+            'ci',
+            `auto-fix lint: davinci-syntax lint code ${c.decision.paths.join(
+              ' '
+            )}`
+          )
+          await shell(
+            'pnpm',
+            ['davinci-syntax', 'lint', 'code', ...c.decision.paths],
+            { cwd: wtPath }
+          )
+          didAutoFix = true
+        }
+      }
+
+      // (auto-fix-rerun empty-commit branch removed — v4 Step 4 strict
+      // Happo gate replaces flake retries.)
+      const didRerun = false
+
+      // Feed-to-agent classifications: assemble a CI-feedback delta prompt
+      // and invoke the agent (session-resume). The agent edits files; gate
+      // runs locally afterwards as a sanity check.
+      //
+      // Bug 5 fix (2026-05-07): also include `auto-fix-lint` decisions whose
+      // `paths` array is empty. Empty paths means `extractLintFiles` couldn't
+      // parse file paths from CI's ANSI-coloured lint output (different format
+      // than local `pnpm davinci-syntax`). Without this fallback, the orches-
+      // trator had no path forward — auto-fix loop skipped (paths empty),
+      // feed-to-agent loop didn't include them (wrong class), and the early-
+      // bail at "no actionable CI classifications" escalated. Now we pass the
+      // log excerpt to the agent and let it figure out which files to fix.
+      const feedDecisions = classifications.filter(
+        c =>
+          c.decision.class === 'feed-to-agent' ||
+          (c.decision.class === 'auto-fix-lint' &&
+            c.decision.paths.length === 0)
+      )
+
+      if (feedDecisions.length > 0) {
+        const ciFeedback =
+          '# CI failures (post-PR-open)\n\n' +
+          feedDecisions
+            .map(
+              c =>
+                `## ${c.check.name}\n\n` +
+                `**Reason:** ${c.decision.reason}\n\n` +
+                (c.decision.paths.length
+                  ? `**Affected paths:** ${c.decision.paths.join(', ')}\n\n`
+                  : '') +
+                '**Log excerpt:**\n```\n' +
+                (c.decision.excerpt ?? '(no excerpt)') +
+                '\n```\n'
+            )
+            .join('\n')
+        const ciPrompt = await agent.assembleDeltaPrompt(
+          state.iterations - 1,
+          ciFeedback,
+          wtPath
+        )
+        const promptPath = path.join(runDir, `prompt.${state.iterations}.txt`)
+
+        await fs.writeFile(promptPath, ciPrompt, 'utf8')
+        const agentLogPath = path.join(runDir, `agent.${state.iterations}.log`)
+
+        log(
+          'ci',
+          `iter ${state.iterations}: feed-to-agent on ${feedDecisions
+            .map(d => d.check.name)
+            .join(', ')}`
+        )
+        const agentResult = await agent.invoke(
+          {
+            prompt: ciPrompt,
+            cwd: wtPath,
+            agent: opts.agent,
+            withMcp: opts.withMcp,
+            sessionId,
+            isFirstIteration: false,
+          },
+          agentLogPath
+        )
+
+        // Slice 3 — token snapshot for the CI iteration's agent call.
+        await recordTokenSnapshot(
+          runDir,
+          item.id,
+          sessionId,
+          state.iterations,
+          wtPath
+        )
+
+        if (agentResult.exitCode !== 0) {
+          return escalate(
+            workflow,
+            item,
+            state,
+            {
+              shouldEscalate: true,
+              reason: `agent invocation failed during CI iteration: exit ${agentResult.exitCode}`,
+            },
+            manifestAbs,
+            rootDir
+          )
+        }
+
+        // Sanity gate locally before pushing.
+        const gateReport = await gate.run(
+          workflow.gate(item.id),
+          item.id,
+          wtPath,
+          runDate
+        )
+
+        state.lastGate = gateReport
+
+        if (!workflow.successCriteria(gateReport)) {
+          log(
+            'ci',
+            `iter ${state.iterations}: local gate still failing after agent edit; pushing anyway and letting CI re-evaluate`
+          )
+        }
+      }
+
+      if (!didAutoFix && !didRerun && feedDecisions.length === 0) {
+        // Nothing to do — every classification was something we didn't act
+        // on (shouldn't happen given the escalate-first guard, but be safe).
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: 'no actionable CI classifications; aborting',
+          },
+          manifestAbs,
+          rootDir
+        )
+      }
+
+      // Stage + commit any new working-tree changes (auto-fix outputs,
+      // agent edits). The empty-commit rerun was already created above (if
+      // applicable) so we may end up with two commits per iteration: the
+      // rerun marker + the auto-fix delta. That's fine — both push together.
+      const ciCommitMsg =
+        workflow.commitMessage(item.id, item) +
+        `\n\n[ci-iter ${state.iterations}]`
+      const ciCommitMsgFile = path.join(
+        os.tmpdir(),
+        `commit-msg-${item.id}.ci.${state.iterations}.${process.pid}`
+      )
+
+      await fs.writeFile(ciCommitMsgFile, ciCommitMsg, 'utf8')
+      await shell('git', ['add', '-A'], { cwd: wtPath })
+      const commitResult = await shell(
+        'git',
+        ['commit', '--no-verify', '--file', ciCommitMsgFile],
+        { cwd: wtPath }
+      )
+      const didAutoFixCommit = commitResult.exitCode === 0
+
+      // Push if we have ANY new commit on this iteration — either the
+      // rerun marker (didRerun) or the auto-fix delta (didAutoFixCommit).
+      if (didRerun || didAutoFixCommit) {
+        const pushResult = await shell(
+          'git',
+          ['push', '--no-verify', 'origin', branch],
+          { cwd: wtPath }
+        )
+
+        if (pushResult.exitCode !== 0) {
+          return escalate(
+            workflow,
+            item,
+            state,
+            {
+              shouldEscalate: true,
+              reason: `git push failed during CI iteration: ${pushResult.stderr}`,
+            },
+            manifestAbs,
+            rootDir
+          )
+        }
+        const what = [
+          didRerun ? 'rerun marker' : '',
+          didAutoFixCommit ? 'auto-fix delta' : '',
+        ]
+          .filter(Boolean)
+          .join(' + ')
+
+        log(
+          'ci',
+          `iter ${state.iterations}: pushed ${what}; waiting 60s for CI to register new commit, then re-polling`
+        )
+        // Without this delay, the next pollChecks call returns stale rollup
+        // state for the OLD commit (canary 29 / PR #4935: re-poll fired
+        // 570ms after push and saw the prior failure → instant escalate
+        // before auto-fix-rerun got a chance). 60s is long enough for
+        // GitHub Actions to enqueue a new run for the pushed SHA, short
+        // enough not to bloat happy-path runs.
+        await sleep(60_000)
+      } else {
+        log(
+          'ci',
+          `iter ${state.iterations}: no commit produced (exit ${commitResult.exitCode}); CI will re-evaluate the existing tip`
+        )
+      }
+
+      // Re-poll. CI may need a few seconds to register the new run for the
+      // pushed commit; pollChecks's warmup handles that.
+      pollResult = await gh.pollChecks(prUrl, wtPath, {
+        timeoutMinutes: ciTimeout,
+        intervalSeconds: 30,
+        onTick: snapshot => {
+          const summary = snapshot
+            .map(c => `${c.name}=${c.conclusion || c.status || '?'}`)
+            .sort()
+            .join(' ')
+
+          if (summary !== lastSummary) {
+            log('ci', `${snapshot.length} checks: ${summary}`)
+            lastSummary = summary
+          }
+        },
+      })
+    }
+
+    if (pollResult.state === 'failure') {
+      return escalate(
+        workflow,
+        item,
+        state,
+        {
+          shouldEscalate: true,
+          reason: `CI still failing after ${state.iterations}/${
+            opts.maxIterations
+          } iterations: ${pollResult.failed.map(c => c.name).join(', ')}`,
+        },
+        manifestAbs,
+        rootDir
+      )
+    }
+
+    log('ci', `all ${pollResult.checks.length} checks PASS`)
+
+    // Phase 3.5 redesign — async review handling.
+    //
+    // Migration mode never blocks waiting for human review. After CI is
+    // green, transition the item to `awaiting_review` and exit. A separate
+    // command (`pnpm orchestrate --review-sweep`) walks all
+    // `awaiting_review` items on its own cadence (cron, manual) to fetch
+    // new review activity, classify it, and react. This decouples the
+    // CPU-paced migration loop from the human-paced review cadence.
+    //
+    // Per operator preference: orchestrator NEVER auto-merges. Approval
+    // signal moves the item to `ready_to_merge` and stops; operator runs
+    // `gh pr merge` manually.
+    manifest.update(manifestAbs, item.id, {
+      status: 'awaiting_review',
+      last_ci_green_at: ISO(),
+      session_id: sessionId,
+    })
+    log(
+      'loop',
+      `${item.id}: status=awaiting_review (CI green; run --review-sweep when reviews land)`
     )
+
+    // Lessons append (moved here from PR-open). Captures the full
+    // migration diff including any CI-fix iterations. Non-fatal on error.
+    try {
+      await lessons.append(
+        workflow,
+        item,
+        prUrl,
+        state.iterations,
+        wtPath,
+        rootDir
+      )
+    } catch (err) {
+      log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
+    }
+
+    await releaseLock(rootDir, item.id)
+
+    return { status: 'pr-opened', prUrl }
+  } finally {
+    // Part 4 (2026-05-13): kill the Storybook spawned at the top of this
+    // function. Runs on EVERY exit path (success, escalate, dry-run,
+    // throw). Safe to call when handle is null (start failed).
+    if (storybookHandle) {
+      await storybookHandle.kill().catch(err => {
+        log(
+          'storybook',
+          `kill failed (non-fatal, process may be already dead): ${
+            (err as Error).message
+          }`
+        )
+      })
+    }
   }
-
-  log('ci', `all ${pollResult.checks.length} checks PASS`)
-
-  // Phase 3.5 redesign — async review handling.
-  //
-  // Migration mode never blocks waiting for human review. After CI is
-  // green, transition the item to `awaiting_review` and exit. A separate
-  // command (`pnpm orchestrate --review-sweep`) walks all
-  // `awaiting_review` items on its own cadence (cron, manual) to fetch
-  // new review activity, classify it, and react. This decouples the
-  // CPU-paced migration loop from the human-paced review cadence.
-  //
-  // Per operator preference: orchestrator NEVER auto-merges. Approval
-  // signal moves the item to `ready_to_merge` and stops; operator runs
-  // `gh pr merge` manually.
-  manifest.update(manifestAbs, item.id, {
-    status: 'awaiting_review',
-    last_ci_green_at: ISO(),
-    session_id: sessionId,
-  })
-  log(
-    'loop',
-    `${item.id}: status=awaiting_review (CI green; run --review-sweep when reviews land)`
-  )
-
-  // Lessons append (moved here from PR-open). Captures the full
-  // migration diff including any CI-fix iterations. Non-fatal on error.
-  try {
-    await lessons.append(
-      workflow,
-      item,
-      prUrl,
-      state.iterations,
-      wtPath,
-      rootDir
-    )
-  } catch (err) {
-    log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
-  }
-
-  await releaseLock(rootDir, item.id)
-
-  return { status: 'pr-opened', prUrl }
 }
 
 // ---------------------------------------------------------------------------

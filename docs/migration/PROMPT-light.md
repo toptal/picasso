@@ -284,7 +284,7 @@ Playwright is the **fast iteration tool** during your loop. Happo is the **autho
 You have TWO reference Storybooks:
 
 - **Baseline** — `https://picasso.toptal.net/` — Picasso's deployed Storybook from master. Always-on, represents the pre-migration look. Use this as your reference image.
-- **Local** — `http://localhost:9001/` — operator's local Storybook running from your worktree (started before migration via `pnpm start:storybook`). Reflects your edits in real-time as you save files.
+- **Local** — `http://localhost:9001/` — Storybook running INSIDE your worktree, auto-started by the orchestrator after `pnpm install` and BEFORE your session began. Reflects your edits in real-time as you save files. If port 9001 was taken, fallback port is in `migration-runs/<run-date>/<Component>/storybook-url.txt` — read it first to get the actual URL.
 
 #### Workflow
 
