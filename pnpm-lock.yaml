@@ -3412,7 +3412,7 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0(prop-types@15.8.1)(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@babel/types':
@@ -3479,7 +3479,7 @@ importers:
         specifier: ^2.12.3
         version: 2.12.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@types/d3':
@@ -3507,7 +3507,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@types/jscodeshift':
@@ -3625,7 +3625,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(final-form@4.20.9)(prop-types@15.8.1)(react-final-form@6.5.9(final-form@4.20.9)(react@18.2.0))(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@testing-library/react-hooks':
@@ -3656,7 +3656,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@babel/types':
@@ -3690,7 +3690,7 @@ importers:
         specifier: 2.0.3
         version: 2.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@testing-library/react':
@@ -3781,7 +3781,7 @@ importers:
         specifier: 6.5.4
         version: 6.5.4(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
       use-debounce:
         specifier: ^10.0.0
@@ -3911,7 +3911,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@material-ui/core':
@@ -3982,7 +3982,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@toptal/picasso-provider':
@@ -4025,7 +4025,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
       typescript:
-        specifier: ~5.5.0
+        specifier: ^5.5.0
         version: 5.5.4
     devDependencies:
       '@toptal/picasso-test-utils':
