@@ -515,10 +515,18 @@ const manifest = {
       // resumable CI-pending state (timeout without verdict, or just
       // post-review-pending). The orchestrator's CI re-poll + iteration
       // loop continues from where the previous run left off.
+      //
+      // Part 4 (2026-05-14): when `--variant` is EXPLICITLY passed, bypass
+      // the status filter. Variants are independent parallel runs on a
+      // different branch + worktree path, so the manifest's status from
+      // the previous default-variant run doesn't apply. Default `v1`
+      // (variant not passed) still respects the filter — preserves the
+      // "don't re-process escalated" protection for batch loops.
       if (
         item.status !== 'queued' &&
         item.status !== 'in_progress' &&
-        item.status !== 'awaiting_ci'
+        item.status !== 'awaiting_ci' &&
+        !opts.variantExplicit
       ) {
         return null
       }
@@ -3367,11 +3375,20 @@ export async function run(
 
   if (opts.dryRun) {
     log('loop', '--dry-run: planned 14 steps follow:')
+    const variantSuffixDry = opts.variant ? `-${opts.variant}` : ''
+    const branchPreview =
+      opts.branch ?? `${workflow.branchName(item.id)}${variantSuffixDry}`
+    const wtPathPreview = worktree.pathFor(
+      `${item.id}${variantSuffixDry}`,
+      TODAY()
+    )
     const planned = [
       `1. Verify deps merged for: ${item.depends_on.join(', ') || '(none)'}`,
-      `2. git worktree add ${worktree.pathFor(item.id, TODAY())} -b ${
-        opts.branch ?? workflow.branchName(item.id)
-      }${opts.branch ? ' (--branch override)' : ''}`,
+      `2. git worktree add ${wtPathPreview} -b ${branchPreview}${
+        opts.branch ? ' (--branch override)' : ''
+      } [variant=${opts.variant}${
+        opts.variantExplicit ? ', explicit' : ', default'
+      }]`,
       `3. Snapshot pre-state: ${workflow.diff(item.id, 'snapshot')}`,
       `4. Update manifest: status=in_progress`,
       ...(opts.withMcp
@@ -3429,8 +3446,19 @@ export async function run(
 
   // Real run.
   const runDate = TODAY()
-  const branch = opts.branch ?? workflow.branchName(item.id)
-  const wtPath = path.join(rootDir, worktree.pathFor(item.id, runDate))
+  // Part 4 (2026-05-14): apply variant suffix to branch + worktree path.
+  // Default variant `'v1'` means every migration's branch is `migrate-Badge-v1`
+  // and worktree is `migration-runs/<date>/Badge-v1/worktree`. Variants v2+
+  // produce independent parallel PRs for orchestrator A/B/C comparison.
+  // The `--branch` override (if explicitly passed) takes precedence — operator
+  // can specify any name they want; otherwise default is `<workflowDefault>-<variant>`.
+  const variantSuffix = opts.variant ? `-${opts.variant}` : ''
+  const branch =
+    opts.branch ?? `${workflow.branchName(item.id)}${variantSuffix}`
+  const wtPath = path.join(
+    rootDir,
+    worktree.pathFor(`${item.id}${variantSuffix}`, runDate)
+  )
   const runDir = path.dirname(wtPath)
 
   await fs.mkdir(runDir, { recursive: true })
@@ -3948,8 +3976,91 @@ export async function run(
         .join('|')
 
       if (ciIteration >= 2 && failureSet === lastFailureSet) {
-        log('ci', `stuck on same failure set as last iter — escalating`)
         const stuckOn = classifications.map(c => c.check.name).join(', ')
+
+        // Part 4 (2026-05-14): when stuck-detection fires on Happo-ONLY
+        // failures, route to `awaiting_review` (designer review) instead
+        // of `needs_human` (agent failed). Happo failures persisting after
+        // N iterations means the diffs need visual human judgment — they're
+        // either:
+        //   1. Intentional visual changes from the migration (designer
+        //      accepts in Happo UI)
+        //   2. Unrelated environmental drift (designer accepts)
+        //   3. Real regressions the agent couldn't fix (designer rejects;
+        //      sweep re-engages agent via the existing CI re-poll path)
+        //
+        // All three resolve via designer interaction with Happo UI, not via
+        // operator intervention on orchestrator state. `awaiting_review`
+        // is the correct status; sweep will pick up Happo's status flip
+        // (PENDING → SUCCESS via accept, or → FAILURE via reject) and
+        // route appropriately.
+        //
+        // Empirical motivation: Badge PR #4957 (2026-05-13) — agent
+        // correctly diagnosed Happo Cypress diffs as non-Badge (CategoriesChart
+        // recharts flake + PageTopBarMenu sub-perceptual drift), made no
+        // spurious source changes, but stuck-detection still escalated to
+        // needs_human. The PR was ready for designer review; needs_human
+        // was misleading.
+        const allHappo = classifications.every(c =>
+          c.check.name.toLowerCase().includes('happo')
+        )
+
+        if (allHappo) {
+          log(
+            'ci',
+            `stuck on Happo-only diffs after ${ciIteration} iterations — transitioning to awaiting_review (designer review)`
+          )
+
+          const happoLinks = classifications
+            .map(c => {
+              const m = c.log.match(/https:\/\/happo\.io\/[^\s)"'`]+/)
+
+              return m
+                ? `- **${c.check.name}**: ${m[0]}`
+                : `- **${c.check.name}** (Happo report URL not found in log)`
+            })
+            .join('\n')
+
+          const comment = [
+            '🎨 **Visual regression review needed** (orchestrator soft-escalation)',
+            '',
+            `The orchestrator agent iterated ${ciIteration} times on Happo diffs. The remaining diffs persist and require designer judgment:`,
+            '',
+            happoLinks,
+            '',
+            'These may be:',
+            '- **Intentional** visual changes from the migration — accept in Happo UI; PR proceeds.',
+            '- **Unrelated environmental drift** (e.g. recharts hover-tooltip flakes, sub-perceptual sizing shifts) — accept in Happo UI; PR proceeds.',
+            "- **Real regressions** the agent could not auto-fix — reject in Happo UI; the orchestrator's `--review-sweep` will re-engage the agent.",
+            '',
+            'After your decision, the next sweep tick polls Happo + transitions the PR accordingly. No manual orchestrator-state action needed.',
+          ].join('\n')
+
+          try {
+            await gh.commentPR(prUrl, comment, rootDir)
+          } catch (e) {
+            log(
+              'ci',
+              `Happo soft-escalation PR comment failed (non-fatal): ${
+                (e as Error).message
+              }`
+            )
+          }
+
+          manifest.update(manifestAbs, item.id, {
+            status: 'awaiting_review',
+            iterations: state.iterations,
+            escalation_reason: null,
+          })
+
+          return {
+            status: 'pr-opened',
+            prUrl,
+            reason: `awaiting_review: Happo diffs require designer review after ${ciIteration} iterations (${stuckOn})`,
+          }
+        }
+
+        log('ci', `stuck on same failure set as last iter — escalating`)
 
         return escalate(
           workflow,
@@ -4369,6 +4480,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
   const reviewTimeoutStr = get('--review-timeout-minutes')
   const maxItemsStr = get('--max-items')
   const maxCIIterStr = get('--max-ci-iterations')
+  const variantRaw = get('--variant')
 
   const agent: OrchestratorOptions['agent'] =
     agentRaw === 'cursor' || agentRaw === 'codex' ? agentRaw : 'claude'
@@ -4395,5 +4507,7 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     batch: has('--batch'),
     reviewSweep: has('--review-sweep'),
     maxItems: maxItemsStr ? Number(maxItemsStr) : null,
+    variant: variantRaw ?? 'v1',
+    variantExplicit: variantRaw !== null,
   }
 }

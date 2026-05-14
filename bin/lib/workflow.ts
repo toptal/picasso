@@ -433,4 +433,37 @@ export interface OrchestratorOptions {
    * isolated batch) without editing the workflow descriptor.
    */
   readonly baseBranch: string | null
+
+  /**
+   * Variant suffix appended to branch name + worktree path. Default: `'v1'`.
+   *
+   * Use case: produce multiple parallel PRs for the same component to
+   * compare orchestrator/prompt iterations side-by-side without losing
+   * the previous attempt. Example:
+   *
+   *     pnpm orchestrate --component=Badge --variant=v2
+   *     # → branch: migrate-Badge-v2
+   *     # → worktree: migration-runs/<date>/Badge-v2/worktree
+   *     # → PR opens fresh on migrate-Badge-v2
+   *
+   * The default `v1` is applied even when `--variant` is not passed —
+   * every migration's branch+worktree gets a versioned suffix for clarity.
+   *
+   * Status-filter bypass: when `--variant` is EXPLICITLY passed (regardless
+   * of value), `pickNext` skips the "is item queued/in_progress/awaiting_ci"
+   * check. So `--variant=v2` works even when the manifest's status is
+   * `awaiting_review` / `needs_human` / `done` — the variant is an
+   * independent fresh run, not a continuation of prior state.
+   *
+   * CLI: `--variant=<suffix>` (default `v1`).
+   */
+  readonly variant: string
+
+  /**
+   * Was `--variant` explicitly passed (truthy) vs defaulted to `'v1'`?
+   * Used by `pickNext` to decide whether to bypass the status filter:
+   * explicit variant → bypass (operator explicitly chose a parallel run);
+   * default `v1` → respect the filter (treat as normal first run).
+   */
+  readonly variantExplicit: boolean
 }

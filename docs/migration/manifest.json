@@ -23,16 +23,17 @@
     "Badge": {
       "tier": 0,
       "package": "packages/base/Badge",
-      "status": "queued",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
-      "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
+      "pr": "https://github.com/toptal/picasso/pull/4957",
+      "branch": "migrate-Badge",
+      "worktree": "migration-runs/2026-05-13/Badge/worktree",
+      "iterations": 4,
       "merged_at": null,
-      "notes": "No Badge in @base-ui/react. Already mostly custom; remove @mui/base import + Tailwind only."
+      "notes": "No Badge in @base-ui/react. Already mostly custom; remove @mui/base import + Tailwind only.",
+      "escalation_reason": null
     },
     "Button": {
       "tier": 0,
