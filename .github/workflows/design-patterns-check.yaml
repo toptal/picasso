@@ -1,0 +1,85 @@
+name: Picasso Design Patterns Check
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  design-patterns:
+    name: Picasso design patterns
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude design-patterns review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: '--allowed-tools "Bash(git diff:*),Bash(git fetch:*),Read,Write"'
+          prompt: |
+            You are reviewing this pull request against the Picasso component
+            library design-pattern rules. Follow these steps:
+
+            1. Read `./PICASSO_COMPONENT_DESIGN_PATTERNS.md`. It contains:
+               - Rules under `## Patterns` (apply to all components).
+               - Rules under `## Form components` (apply only to
+                 form/field-style components: inputs, selects, checkboxes,
+                 radios, date pickers, file uploaders, etc.). Label these
+                 rules F1, F2, F3 in the table.
+            2. Run `git fetch --no-tags --depth=1 origin ${{ github.base_ref }}`
+               and then `git diff origin/${{ github.base_ref }}...HEAD --
+               'packages/**/*.tsx' 'packages/**/*.ts'
+               ':(exclude)**/*.test.*' ':(exclude)**/*.spec.*'
+               ':(exclude)**/*.stories.*'` to obtain the PR diff. Evaluate
+               ONLY the added/modified component code in that diff.
+            3. Skip rules that are not relevant to the diff. Skip the F-rules
+               for non-form components.
+            4. Write your review to `design-patterns-report.md` as a single
+               Markdown table — and ONLY that table. No preamble, no notes,
+               no summary, no surrounding prose.
+
+            Table format:
+
+            | Rule | Status |
+            | --- | --- |
+            | <id> — <short label> | :white_check_mark: OR :x: <short reason ≤ 20 words> |
+
+            - Use the rule's id followed by an em-dash and short label
+              (e.g., `1 — Optimize defaults for the common case`).
+            - One row per evaluated rule. Use `:white_check_mark:` for pass,
+              `:x: <reason>` for fail.
+            - If every evaluated rule passes, every row is
+              `:white_check_mark:`.
+
+            5. After writing the file, also output the exact same table as
+               your final message so it appears in the PR comment.
+
+      - name: Fail if any rule is unsatisfied
+        run: |
+          if [ ! -f design-patterns-report.md ]; then
+            echo "No report produced — failing."
+            exit 1
+          fi
+          if grep -q ':x:' design-patterns-report.md; then
+            echo "One or more design pattern rules failed. See the table in the PR comment or the step above."
+            exit 1
+          fi
+          echo "All design pattern rules satisfied."
