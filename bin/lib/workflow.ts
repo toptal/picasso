@@ -104,6 +104,52 @@ export interface ManifestItem {
    * when the item terminates (done / escalated).
    */
   session_id?: string | null
+  /**
+   * Part 4 (2026-05-14) — multi-variant support. Each variant key (e.g.
+   * `v1`, `v2`) tracks an independent migration run on its own branch +
+   * worktree. The component-level fields (tier, package, depends_on,
+   * target_path, versionBump, notes) stay flat and are shared across
+   * variants. Per-run state (status, pr, branch, worktree, iterations,
+   * etc.) lives per-variant.
+   *
+   * Backward compatibility: when `variants` is absent or empty, the flat
+   * fields above (status, pr, branch, worktree, iterations, ...) are
+   * read as the implicit "v1" variant. When `variants` is present, it
+   * is the authoritative source; flat fields mirror the most-recently-
+   * touched variant for legacy read paths.
+   *
+   * Sweep walks every entry in `variants` (or the flat v1 fallback)
+   * independently, so multiple parallel PRs for the same component all
+   * get their CI re-polled, reviews fetched, agent re-engaged as needed.
+   */
+  variants?: Record<string, VariantState>
+}
+
+/**
+ * Part 4 (2026-05-14) — per-variant slice of a ManifestItem. Captures
+ * fields that differ per parallel migration run on the same component.
+ */
+export interface VariantState {
+  status:
+    | 'queued'
+    | 'in_progress'
+    | 'awaiting_ci'
+    | 'awaiting_review'
+    | 'ready_to_merge'
+    | 'done'
+    | 'needs_human'
+    | 'blocked'
+  pr: string | null
+  branch: string | null
+  worktree: string | null
+  iterations: number
+  merged_at: string | null
+  escalation_reason?: string | null
+  last_ci_green_at?: string | null
+  last_review_seen_at?: string | null
+  review_iterations?: number
+  session_id?: string | null
+  awaiting_ci_since?: string | null
 }
 
 /**
