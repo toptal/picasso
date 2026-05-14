@@ -62,10 +62,6 @@ export interface OverridableComponent<P = {}> extends NamedComponent<P> {
     props: PropsWithOverridableAs<T, P>
   ): JSX.Element | null
   <R = unknown>(props: P & RefAttributes<R>): JSX.Element | null
-  // Non-generic fallback so `const X: OverridableComponent<P> = (props) => ...`
-  // gets contextual typing for `props`. Without it, TS picks neither generic
-  // overload and the parameter falls back to implicit `any`.
-  (props: P): JSX.Element | null
 }
 
 type BaseEnvironments = 'development' | 'staging' | 'production'

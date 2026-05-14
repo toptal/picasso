@@ -26,7 +26,15 @@ Picasso now builds against TypeScript 5.5 and pulls its lint/test/codegen infras
 
 Public type surface:
 
-- the `OverridableComponent<P>` type in `@toptal/picasso-shared` gains two additional call signatures listed AFTER the existing polymorphic `as`-prop signature: a ref-attribute overload `<R = unknown>(props: P & RefAttributes<R>) => JSX.Element | null` so `forwardRef<R, P>(...)` assigns cleanly under TS 5.x's stricter assignability when `P` contains required fields, and a non-generic fallback `(props: P) => JSX.Element | null` so consumer code shaped like `const X: OverridableComponent<Props> = (props) => ...` keeps contextual typing on `props` (without it TS picks neither generic overload and the parameter falls back to implicit `any`). Declaration order means plain `<X />` and `<X as={...} />` callers continue to resolve to the original signature and keep their pre-5.5 inference behavior.
+- the `OverridableComponent<P>` type in `@toptal/picasso-shared` gains one additional ref-attribute call signature `<R = unknown>(props: P & RefAttributes<R>) => JSX.Element | null` listed AFTER the existing polymorphic `as`-prop signature, so `forwardRef<R, P>(...)` assigns cleanly under TS 5.x's stricter assignability when `P` contains required fields. Plain `<X />` and `<X as={...} />` callers continue to resolve to the original signature and keep their inference behavior.
+- **consumer migration for one pattern.** TS 5.5 changed how contextual typing flows through callable interfaces that contain generic call signatures (see microsoft/TypeScript#59350 and the archived language-spec section on "Contextual Signatures"). Consumer code shaped like `const Wrap: OverridableComponent<Props> = ({ a, b }) => ...` no longer projects `Props` into the destructured parameter under TS 5.5+, and the destructured bindings become implicit `any`. The migration is a single annotation per HOC file:
+  ```typescript
+  // Before
+  const Wrap: OverridableComponent<Props> = ({ a, b }) => ...
+  // After
+  const Wrap: OverridableComponent<Props> = ({ a, b }: Props) => ...
+  ```
+  JSX consumption (`<X />`, `<X as="a" />`, `<X ref={r} />`) is unaffected. This same limitation exists with the pre-PF-2031 single-overload interface shape; we expose it by requiring TS 5.5+.
 - the `composeValidators` helper in `@toptal/picasso-forms` becomes overloaded — a typed signature for callers passing `FieldValidator<T>[]` (full type inference on the composed validator) and a permissive `readonly unknown[]` signature that preserves all pre-PF-2031 call patterns. The composed function additionally forwards `meta` to each underlying validator (previously dropped); validators that ignore `meta` are unaffected, validators that read it now receive what they were always typed to receive.
 
 Internal type cleanups in `picasso-codemod`, `picasso-shared`, `Tagselector`, `Container`, `Menu`, `PromptModal`, `List`, `Select`, `TreeView`, `NumberInput`, and `BarChartIndicators` (not publicly exported) resolve `any` lint regressions surfaced by `@typescript-eslint` v8. `OverviewBlock`, `Page`, `Breadcrumbs`, `Button`, `ButtonAction`, `ButtonBase`, `ButtonCircular`, `MenuItem`, `Link`, and `SidebarItem` compile cleanly without source changes once `OverridableComponent` gains its forwardRef-compatible overload.
