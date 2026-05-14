@@ -2853,8 +2853,7 @@ export async function runReviewSweep(
         target.variantId,
         target.state,
         manifestAbs,
-        rootDir,
-        opts.variant
+        rootDir
       )
       processed += 1
     } catch (err) {
@@ -2886,6 +2885,17 @@ async function sweepOne(
   // Manifest writes route to `manifest.updateVariant(..., variantId, ...)`
   // so the per-variant slot stays authoritative.
   const item: ManifestItem = { ...itemRaw, ...state }
+
+  // `id` is set as a non-enumerable property by manifest.read, which means
+  // it gets dropped by the spread above. Re-attach it explicitly — without
+  // it, downstream code reads `item.id` as undefined and emits commands like
+  // `bin/migration-gate.sh "undefined"` (gate exit 65, sweep skips target).
+  Object.defineProperty(item, 'id', {
+    value: itemRaw.id,
+    enumerable: false,
+    writable: false,
+    configurable: false,
+  })
   const updateForVariant = (patch: Partial<VariantState>) =>
     manifest.updateVariant(manifestAbs, item.id, variantId, patch)
 
