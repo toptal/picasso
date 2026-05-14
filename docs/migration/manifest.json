@@ -16,8 +16,8 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 3,
-      "last_review_seen_at": "2026-05-14T15:04:13.173Z",
+      "review_iterations": 4,
+      "last_review_seen_at": "2026-05-14T21:50:14.640Z",
       "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
       "escalation_reason": null,
       "last_ci_green_at": null,
@@ -32,8 +32,8 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-14T15:04:13.173Z",
-          "review_iterations": 3,
+          "last_review_seen_at": "2026-05-14T21:50:14.640Z",
+          "review_iterations": 4,
           "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
           "awaiting_ci_since": null
         }
@@ -139,8 +139,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-14T15:08:03.774Z",
-      "review_iterations": 1,
+      "last_review_seen_at": "2026-05-14T21:54:36.912Z",
+      "review_iterations": 2,
       "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
       "awaiting_ci_since": null,
       "variants": {
@@ -153,8 +153,8 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-14T15:08:03.774Z",
-          "review_iterations": 1,
+          "last_review_seen_at": "2026-05-14T21:54:36.912Z",
+          "review_iterations": 2,
           "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
           "awaiting_ci_since": null
         }

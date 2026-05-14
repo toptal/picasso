@@ -54,3 +54,11 @@ Auto-accumulated by the orchestrator after each successful component migration. 
 - When @base-ui/react replaces a single MUI component with compound parts (Root/Control/Track/Indicator/Thumb), derive ownerState locally (range detection, mark positions, active mark) and route slot props through children — see `rules/base-ui-react-api-crib.md`; don't try to shim `slots`/`slotProps`.
 - Don't widen peerDeps incidentally (`react: ">=16.12.0 < 19.0.0"` → `">=16.12.0"`) as part of an internals swap — keep the existing range unless React 19 support is the explicit, tested scope of the PR.
 - Reference: https://github.com/toptal/picasso/pull/4955
+
+## Slider — 2026-05-14 (review iter 2)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 2
+- Compound parts must keep the original `classes`/`slotProps` callsites' DOM-level styling intent (negative margins like `-mt-[7px] -ml-[6px]` were dropped here — visual parity regressions on positioning belong in api-preservation iter-1 checks, not review fixes).
+- Range-vs-single value sliders need explicit `isRange` handling and `onChange` signature preservation `(event, value, activeThumbIndex)` — reviewers consistently flag dropped callback args and array/number normalization gaps when migrating from `@mui/base` to `@base-ui/react`.
+- Custom slot components (Mark, ValueLabel) lose `ownerState`/`slotProps` plumbing in @base-ui/react; future migrations should define explicit typed props from iter-1 rather than retaining MUI-shaped prop interfaces — see rules/base-ui-react-api-crib for the compound-parts replacement pattern.
+- Reference: https://github.com/toptal/picasso/pull/4955

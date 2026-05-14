@@ -298,23 +298,25 @@ You have TWO reference Storybooks:
 3. **For each story, exercise interaction states**: default, hover, clicked, focused (where applicable to the component). For Switch: default + hover + focused + checked. For Tooltip: default trigger + opened tooltip + arrow position. For Modal: closed + opened + Escape-close. Use `browser_hover` / `browser_click` between captures.
    - Save interaction-state shots as `local--<story-id>--<state>.png` (e.g. `local--default--hover.png`). Baseline interactive states: navigate baseline + repeat hover/click; save as `baseline--<story-id>--<state>.png`.
 
-4. **For each diff identified during comparison**:
-   - **REGRESSION** (unintentional, broke something): edit the source in your worktree, save, Storybook hot-reloads → re-capture local → re-compare. Iterate.
-   - **INTENTIONAL** (e.g. Base UI's `data-disabled=""` attribute, dropped `base-` class prefix, focus-ring 1px shift from `outline-mode` change): add a one-line note to the changeset under `## Intentional visual changes`. Example:
-     ```md
-     ## Intentional visual changes
-     - `data-disabled=""` attribute added by Base UI (Tier 0 expected)
-     - Focus outline 1px shift due to outline-mode update
-     - Trailing `base-` token dropped from `className` (cosmetic)
-     ```
+4. **For each diff identified during comparison — pixel-perfect is the only acceptable outcome**:
+
+   **Picasso is a UI kit.** Consumers depend on byte-identical rendering across releases. A migration's job is to swap the underlying library while keeping output pixel-identical. **Any visual delta on the migrated component is a REGRESSION you must fix in source**, not an "intentional consequence of the new DOM."
+
+   - **REGRESSION** (default for any delta on the migrated component): edit Tailwind / CSS / overrides in your worktree until the local screenshot matches the baseline byte-for-byte. Hot-reload, re-capture, re-compare. Iterate. Common compensations:
+     - New `data-*` attribute changes specificity → add a `[data-attr]:` Tailwind selector replicating the old appearance.
+     - `@base-ui/react` adds inline styles (e.g. `style="transform: translateX(...)"`) → either match via Tailwind utilities or override with `style={{ transform: ... }}` to keep the prior visual.
+     - Dropped/added wrapper element shifts margins → adjust `gap`/`p-*`/`m-*` so the rendered geometry stays the same.
+     - Focus outline differs → mirror old `:focus-visible` styles via `data-[focused]:outline-*` or analogous selector.
+
+   - **INTENTIONAL** is **effectively forbidden** during a refactor migration. Only valid when the operator pre-approved a design-led change for this migration and documented it in `docs/migration/components/<X>.md` under an **"Approved visual deltas"** heading. Self-declared "intentional" calls (e.g. "Base UI's `data-disabled` attribute, accept it") have produced wrong outcomes (Slider PR #4955: 8 diffs labeled intentional for DOM-shape reasons — wrong; those needed CSS compensation). If you're tempted to use this bucket: stop, treat as regression, and fix.
 
 5. **Storage**: all screenshots under `migration-runs/<run-date>/<Component>/playwright/`. The `migration-runs/` directory is gitignored — these are local debug artifacts, never committed. The operator can scroll through them post-iteration to verify your work.
 
 #### Exit criterion for visual verification
 
-Either:
-- **Pixel-perfect match** between baseline and local for every story + variant + interaction state, OR
-- All remaining diffs are explicitly listed in the changeset's `## Intentional visual changes` section with one-line rationale per slot.
+**Pixel-perfect match** between baseline (`picasso.toptal.net`) and local (`localhost:9001`) for every story + variant + interaction state of the migrated component.
+
+The ONLY exception: deltas explicitly listed under "Approved visual deltas" in `docs/migration/components/<Component>.md` (operator-authored). If that section doesn't exist or the delta isn't listed, it's a regression — fix it.
 
 Anything else means iterate.
 
@@ -326,10 +328,10 @@ The gate runs `pnpm happo --only <Component>` after Playwright verification. Thi
 
 If Happo reports diffs:
 
-1. **Read the Happo report URL** from the failure log (typically `https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>`).
-2. **Inspect each diff** at the report URL. For each, decide regression vs intentional using the same logic as §Visual verification above.
-3. **Iterate** — REGRESSION → fix source + re-run gate; INTENTIONAL → mark in changeset's `## Intentional visual changes` section.
-4. **Goal: Happo report green**. Iterate until Happo passes locally OR you've explicitly marked every remaining slot as intentional (these will then go to designer for accept/reject in CI's Happo UI).
+1. **The orchestrator pre-downloads each diff pair's old/new PNG** under `migration-runs/<run-date>/<Component>/happo-diffs/<idx>-<check-slug>/<idx>-<component>-<variant>-<target>.{old,new}.png`. `Read` each PNG via the multimodal Read tool — that's the authoritative source. The Happo report URL (`https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>`) is a fallback if pre-fetch failed.
+2. **Classify per the strict matrix in §Visual verification** above: REGRESSION on migrated component → fix; UNRELATED FLAKE on a different component → PR comment with pixel evidence; INTENTIONAL → only if pre-approved in plan file.
+3. **Iterate to zero**. For every regression: identify the visual delta from pixel comparison, find the source cause (Tailwind class missing, data-attr selector needed, library default to override), edit, re-run gate. Pixel-perfect is the bar.
+4. **Goal: Happo report green with zero migrated-component diffs**. Iterate until Happo passes locally OR every remaining diff is on an unrelated component (designer accepts those in Happo UI).
 
 The orchestrator's classifier feeds Happo failures back to you as `feed-to-agent` triggers (NOT immediate escalations). You share the migrate-loop's `--max-iterations` budget; stuck-detection (same diff set across 2 consecutive iters) escalates to designer naturally.
 

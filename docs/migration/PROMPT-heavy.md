@@ -327,23 +327,25 @@ You have TWO reference Storybooks:
    - Accordion: collapsed + expanded + expanded-with-content + multi-item interactions
    - Use `browser_hover` / `browser_click` / `browser_press_key` between captures. Save as `local--<story-id>--<state>.png` (and `baseline--<story-id>--<state>.png` for matching baseline state).
 
-4. **For each diff identified during comparison**:
-   - **REGRESSION** (unintentional, broke something): edit the source in your worktree, save, Storybook hot-reloads → re-capture local → re-compare. Iterate.
-   - **INTENTIONAL** (e.g. Base UI's `data-state=open` selectors vs MUI's `:hover`, different focus-ring animation, slot composition shift): add a one-line note to the changeset under `## Intentional visual changes`. Example:
-     ```md
-     ## Intentional visual changes
-     - Tooltip arrow position shifts 2px due to Base UI's `<Tooltip.Arrow>` positioning model
-     - Hover state uses `data-[state=open]` transition vs MUI's `:hover` (Base UI pattern)
-     - Slot wrapper structure changed: `MUITooltip > tooltip` → `Tooltip.Popup > content`
-     ```
+4. **For each diff identified during comparison — pixel-perfect is the only acceptable outcome**:
+
+   **Picasso is a UI kit.** Consumers depend on byte-identical rendering across releases. A migration's job is to swap the underlying library while keeping output pixel-identical. **Any visual delta on the migrated component is a REGRESSION you must fix in source**, not "the new library's way."
+
+   - **REGRESSION** (default for any delta on the migrated component): edit Tailwind / CSS / overrides in your worktree until local matches baseline byte-for-byte. Hot-reload, re-capture, re-compare. Iterate. Tier 2/3 work involves heavier slot rewrites — that doesn't relax the pixel-perfect bar; it raises the compensation work. Common fixes:
+     - `@base-ui/react` slot composition (e.g. `<Tooltip.Popup>` vs MUI's `<MUITooltip>`) emits different DOM. Mirror the prior visual via Tailwind on the new slot (`Tooltip.Popup` styled to match old wrapper geometry).
+     - `data-state="open"` selectors replace `:hover` / `:focus-visible` — add `data-[state=open]:` Tailwind rules that replicate the old transition.
+     - Arrow / popper positioning differs from MUI's model → set explicit `offset` props on the `Positioner` until pixel-aligned.
+     - Class-name churn (`base-X` prefix dropped) → if anything visually depends on the old class, restore the rule via Tailwind under a new selector.
+
+   - **INTENTIONAL** is **effectively forbidden** during a refactor migration. Only valid when the operator pre-approved a design-led change for this migration and documented it in `docs/migration/components/<X>.md` under an **"Approved visual deltas"** heading. Self-declared "intentional" calls have produced wrong outcomes — they're regressions in disguise. If you're tempted to use this bucket: stop, treat as regression, find the CSS compensation.
 
 5. **Storage**: all screenshots under `migration-runs/<run-date>/<Component>/playwright/`. The `migration-runs/` directory is gitignored — these are local debug artifacts, never committed.
 
 #### Exit criterion for visual verification
 
-Either:
-- **Pixel-perfect match** between baseline and local for every story + variant + interaction state, OR
-- All remaining diffs are explicitly listed in the changeset's `## Intentional visual changes` section with one-line rationale per slot.
+**Pixel-perfect match** between baseline (`picasso.toptal.net`) and local (`localhost:9001`) for every story + variant + interaction state of the migrated component.
+
+The ONLY exception: deltas explicitly listed under "Approved visual deltas" in `docs/migration/components/<Component>.md` (operator-authored). If that section doesn't exist or the delta isn't listed, it's a regression — fix it.
 
 Anything else means iterate.
 
@@ -355,10 +357,10 @@ The gate runs `pnpm happo --only <Component>` after Playwright verification. Thi
 
 If Happo reports diffs:
 
-1. **Read the Happo report URL** from the failure log (typically `https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>`).
-2. **Inspect each diff** at the report URL. For each, decide regression vs intentional using the same logic as §Visual verification above. For Tier 2/3 components with heavier slot vocabularies, many diffs may be legitimately intentional (slot composition changes, class-name churn) — list them clearly.
-3. **Iterate** — REGRESSION → fix source + re-run gate; INTENTIONAL → mark in changeset's `## Intentional visual changes` section.
-4. **Goal: Happo report green**. Iterate until Happo passes locally OR you've explicitly marked every remaining slot as intentional (these will then go to designer for accept/reject in CI's Happo UI).
+1. **The orchestrator pre-downloads each diff pair's old/new PNG** under `migration-runs/<run-date>/<Component>/happo-diffs/<idx>-<check-slug>/<idx>-<component>-<variant>-<target>.{old,new}.png`. `Read` each PNG via the multimodal Read tool — that's the authoritative source. The Happo report URL (`https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>`) is a fallback.
+2. **Classify per the strict matrix in §Visual verification** above: REGRESSION on migrated component → fix in source (Tailwind compensation, data-attr selectors, slot-level overrides); UNRELATED FLAKE on a different component → PR comment with pixel evidence; INTENTIONAL → only if pre-approved in plan file. Tier 2/3 work does NOT relax the pixel-perfect requirement — heavier slot rewrites mean more compensation work, not lower bar.
+3. **Iterate to zero**. For every regression: identify the visual delta pixel-by-pixel, find the source cause, edit, re-run gate. Pixel-perfect on the migrated component is the bar.
+4. **Goal: Happo report green with zero migrated-component diffs**. Iterate until Happo passes locally OR every remaining diff is on an unrelated component (designer accepts those in Happo UI).
 
 The orchestrator's classifier feeds Happo failures back to you as `feed-to-agent` triggers (NOT immediate escalations). You share the migrate-loop's `--max-iterations` budget; stuck-detection (same diff set across 2 consecutive iters) escalates to designer naturally.
 
