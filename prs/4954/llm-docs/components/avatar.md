@@ -17,6 +17,8 @@ Profile photo.
 | src | `string` | - | Photo url |
 | showEmblem | `boolean` | - | Displays Toptal logo |
 | onEdit | `((event: MouseEvent<Element, MouseEvent>) => void)` | - | Callback to show edit-on-click and receive event |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

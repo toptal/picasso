@@ -16,6 +16,8 @@ Ratings provide a way for users to express their opinion
 | max | `number` | `5` | Number of rating icons |
 | interactive | `boolean` | `true` | Flag to allow or disable interactions with the component |
 | size | `"small" \| "large"` | `small` | Size variant |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Rating.Thumbs
 
@@ -26,6 +28,8 @@ Ratings provide a way for users to express their opinion
 | onChange | `((value: boolean, event: ChangeEvent<HTMLDivElement>) => void)` | - | Callback invoked when the rating is changed |
 | interactive | `boolean` | `true` | If the component should respond to user interactions. If false the value cannot be changed by the user. Defaults to true |
 | size | `"small" \| "large"` | `small` | Size of the input control. Defaults to small |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -17,6 +17,16 @@ Input component for numbers
 | icon | `ReactNode` | - | Specify icon which should be rendered inside NumberInput |
 | disabled | `boolean` | - | Indicates whether component is in disabled state |
 | onChange | `((event: ChangeEvent<HTMLInputElement>) => void)` | `() => {}` | Callback invoked when `NumberInput` changes its state. |
+| size | `"small" \| "medium" \| "large"` | `medium` | Component size |
+| autoFocus | `boolean` | - | If true, the input element will be focused during the first mount |
+| width | `"full" \| "shrink" \| "auto"` | - | Width of the component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| multilineResizable | `boolean` | - | If true, `TextArea` would be resizable vertical |
+| status | `"error" \| "success" \| "warning" \| "default"` | `default` | Indicate input status |
+| enableReset | `boolean` | - | Whether to render reset icon when there is a value in the input |
+| onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
+| inputRef | `Ref<HTMLInputElement>` | - | Ref of the input element |
 
 ### Default
 

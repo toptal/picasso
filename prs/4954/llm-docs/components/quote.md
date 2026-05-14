@@ -9,6 +9,8 @@ Use quotes to highlight quoted content.
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | children | `ReactNode` | - | Main content of the Quote |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

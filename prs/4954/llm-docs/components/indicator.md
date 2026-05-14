@@ -7,6 +7,8 @@
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **color** | `"red" \| "yellow" \| "blue" \| "green" \| "light-grey"` | - | Indicator color |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

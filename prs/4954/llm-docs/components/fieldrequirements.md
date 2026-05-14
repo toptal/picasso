@@ -14,6 +14,8 @@ Component to list field requirements to be valid
 | error | `boolean` | - | Indicate whether `PasswordInput` is in error state |
 | timeout | `number` | `500` | Duration for the collapse animation |
 | **requirements** | `FieldRequirement<TValueType>[]` | - | Array of object to specify requirements. They will be executed |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

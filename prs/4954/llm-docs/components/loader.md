@@ -13,6 +13,8 @@ Loaders indicate that an action is underway and that the user must wait to proce
 | size | `"small" \| "medium" \| "large"` | `medium` | Size of the `Loader` |
 | value | `number` | - | Set the value if want to have static loader with the value specified |
 | variant | `"blue" \| "inherit"` | `blue` | Set this value if you want loader to inherit color of the parent, primary by default |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

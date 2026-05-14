@@ -17,6 +17,18 @@ Predefined modal for short prompts that asks user for input.
 | **onSubmit** | `(result: unknown) => unknown` | - | Callback on Submit onClick event, returns result of input component if defined |
 | onCancel | `(() => void)` | - | Callback on Cancel onClick event |
 | onClose | `(() => void)` | - | Callback executed when attempting to close modal |
+| **open** | `boolean` | - | Whether modal should be displayed |
+| size | `"xsmall" \| "small" \| "medium" \| "large" \| "xlarge" \| "full-screen"` | `small` | Width of modal |
+| onBackdropClick | `(() => void)` | - | Callback executed when backdrop was clicked |
+| disableBackdropClick | `boolean` | - | If `true`, clicking the backdrop will not fire `onClose` or `onBackdropClick` |
+| onOpen | `(() => void)` | - | Callback executed when modal is being opened |
+| container | `ContainerValue` | - | A node, or a function that returns node. The container will have the portal children appended to it. |
+| hideBackdrop | `boolean` | - | If `true`, the backdrop is not rendered |
+| align | `"top" \| "centered"` | - | Position of the modal relative to the browser's viewport |
+| transitionProps | `TransitionProps` | - | Animation lifecycle callbacks. Backed by [react-transition-group/Transition](https://reactcommunity.org/react-transition-group/transition#Transition-props) |
+| paperProps | `HTMLAttributes<HTMLDivElement>` | - | used for specifying aria attributes, changing role, or customizing styles |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

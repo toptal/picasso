@@ -26,6 +26,8 @@ Use Container to add space between 2 elements.
 | right | `SpacingType` | - | margin-right for the container transformed to `rem` |
 | padded | `SpacingType` | - | padding for the container transformed to `rem` |
 | gap | `SpacingType` | - | Gap between elements for a flex container |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

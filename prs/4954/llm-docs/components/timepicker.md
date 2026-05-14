@@ -11,6 +11,16 @@ Time Picker component
 | value | `string` | - | Time value that will be selected in TimePicker |
 | status | `"error" \| "warning" \| "default"` | `default` | Indicate whether `TimePicker` is in `error`, `warning` or `default` state |
 | onChange | `((value: string) => void)` | - | Called on input change |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| size | `"small" \| "medium" \| "large"` | - | Component size |
+| autoFocus | `boolean` | - | If true, the input element will be focused during the first mount |
+| disabled | `boolean` | - | If true, the `Input` will be disabled |
+| name | `string` | - | Name attribute of the input element |
+| width | `"full" \| "shrink" \| "auto"` | - | Width of the component |
+| enableReset | `boolean` | - | Whether to render reset icon when there is a value in the input |
+| onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
+| outlineRef | `Ref<HTMLElement>` | - | Ref of the input outline |
 
 ### Default
 

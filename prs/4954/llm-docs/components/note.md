@@ -4,25 +4,37 @@
 
 ### Note
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Note.Title
 
 Note title
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Note.Subtitle
 
 Note subtitle
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Note.Content
 
 Note content
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

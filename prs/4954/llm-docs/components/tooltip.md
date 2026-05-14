@@ -28,6 +28,8 @@ Tooltips display informative text when users hover over, focus on, or tap an ele
         left: SPACING_0,
         top: SPACING_0,
       }` | Offset to allow shifting tooltip's position from left and top. |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

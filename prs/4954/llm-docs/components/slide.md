@@ -4,7 +4,10 @@
 
 ### Slide
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -17,6 +17,8 @@ Show user avatar and name along with addition content
 | invert | `boolean` | `false` | Invert color |
 | center | `AlignmentType` | `auto` | Center text vertically  * auto - if no children is provided text will be centered * manual - based on `center` prop `boolean` value |
 | children | `ReactNode` | - | Additional content of UserBadge |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -12,6 +12,8 @@ A Page component
 | width | `"wide" \| "full"` | - | Define container width `wide` \| `full` |
 | centered | `boolean` | - | Horizontally centers the content |
 | **children** | `ReactNode` | - | Children components (`Page.TopBar`, `Page.Content`, `Page.Footer`) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.Helmet
 
@@ -25,12 +27,16 @@ A Page component
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Custom components that render content of page |
 | flex | `boolean` | `true` | Use flexbox |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.Article
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Custom components that render content of page |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.Footer
 
@@ -38,12 +44,16 @@ A Page component
 |------|------|---------|-------------|
 | copyrightContent | `ReactNode` | `<CopyrightContent />` | Content for copyright. You can override default if needed. |
 | rightContent | `ReactNode` | `null` | Content for the right side of the `Footer` |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.Banner
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | **children** | `ReactNode` | - | Children components |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Page.Autocomplete
 
@@ -55,6 +65,36 @@ A Page component
 | noOptionsText | `string \| null` | - | Label to show when no options were found (pass "null" to hide label completely) |
 | renderOption | `((option: Item, index: number) => ReactNode)` | - | Callback responsible for rendering the option given the option and its index in the list of options |
 | poweredByGoogle | `boolean` | - | Show the "Powered By Google" label |
+| **value** | `string` | - | The value of the selected option, required for a controlled component. |
+| onChange | `((value: string, options: ChangedOptions) => void)` | - | Callback invoked when `input` element value is changed |
+| onSelect | `((item: Item, event: MouseEvent<Element, MouseEvent> \| KeyboardEvent<Element>) => void)` | - | Callback invoked when selection changes |
+| onKeyDown | `((event: KeyboardEvent<HTMLInputElement>, inputValue: string) => void)` | - | Callback invoked when key is pressed |
+| size | `"medium" \| "large"` | - | Component size |
+| disabled | `boolean` | - | Whether a component is disabled |
+| placeholder | `string` | - | Placeholder for value |
+| width | `"full" \| "shrink" \| "auto"` | - | Width of the component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| onFocus | `FocusEventHandler<HTMLInputElement>` | - | Focus event handler |
+| onBlur | `FocusEventHandler<HTMLInputElement>` | - | Blur event handler |
+| closeOnSelect | `boolean` | - | Whether to close popper upon selection |
+| onOtherOptionSelect | `((value: string, event: MouseEvent<Element, MouseEvent> \| KeyboardEvent<Element>) => void)` | - | Callback invoked when other option selected |
+| menuWidth | `string` | - | Width of the menu |
+| loading | `boolean` | - | Shows the loading icon when options are loading |
+| showOtherOption | `boolean` | - | Allow to show the other option in the list of options |
+| options | `Item[] \| null` | - | List of options |
+| getDisplayValue | `((item: Item \| null) => string)` | - | A function that takes a display value from the option item |
+| startAdornment | `ReactNode` | - | ReactNode for labels that will be used as start InputAdornment - |
+| endAdornment | `ReactNode` | - | ReactNode for labels that will be used as end InputAdornment - |
+| status | `"error" \| "success" \| "warning" \| "default"` | - | Indicate `Autocomplete` status |
+| icon | `ReactNode` | - | Specify icon which should be rendered inside Input |
+| inputComponent | `ComponentType<InputProps>` | - | Custom input component |
+| getKey | `((item: Item) => string)` | - | Provide unique key for each option |
+| enableAutofill | `boolean` | - | Specifies whether the autofill enabled or not, disabled by default |
+| enableReset | `boolean` | - | Whether to render reset icon when there is a value in the input |
+| onResetClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when reset button was clicked |
+| popperContainer | `HTMLElement` | - | DOM element that wraps the Popper |
+| popperOptions | `PopperOptions` | - | Options provided to the popper.js instance |
 
 ### Default
 

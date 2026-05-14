@@ -9,6 +9,8 @@
 | transitionDuration | `number` | - | The duration for the transition, in milliseconds |
 | **open** | `boolean` | - | If `true`, the backdrop is shown |
 | invisible | `boolean` | - | If true, the backdrop is invisible |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -10,6 +10,8 @@ Menu list.
 |------|------|---------|-------------|
 | variant | `"slide" \| "drilldown"` | `slide` | Switches between slide and drilldown variants |
 | allowNestedNavigation | `boolean` | `true` | Whether or not to handle nested navigation |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Menu.Item
 
@@ -29,6 +31,9 @@ Menu list.
 | avatar | `ReactElement<AvatarProps, { ({ size, ...props }: Props): Element; displayName: string; }>` | - | Render an <Avatar /> |
 | onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
 | onMouseEnter | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is hovered |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 

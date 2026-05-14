@@ -13,6 +13,8 @@ The Toptal logo is the visual representation of the products we create.
 |------|------|---------|-------------|
 | emblem | `boolean` | - | Whether logo should be shown as TT emblem or full word mark |
 | variant | `"default" \| "white" \| "black" \| "grey" \| "blue"` | `default` | Variant of the `Logo` |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -16,12 +16,16 @@ Navigation items provide access to parts in your app
 | size | `"small" \| "medium" \| "large"` | `medium` | Different width of sidebar |
 | disableSticky | `boolean` | - | Make sidebar scroll with the content |
 | onCollapse | `(() => void)` | - | Callback when sidebar is collapsed |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Sidebar.Menu
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | bottom | `boolean` | `false` | Defines is sidebar menu pushed to bottom of sidebar |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Sidebar.Item
 
@@ -46,6 +50,8 @@ Navigation items provide access to parts in your app
 |------|------|---------|-------------|
 | collapsedLogo | `ReactNode` | - | Logo to display when Sidebar is in collapsed state |
 | fullLogo | `ReactNode` | - | Logo to display when Sidebar is in default state |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

@@ -8,6 +8,20 @@ SubmitButton reacts to the submission state of the form.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| active | `boolean` | - | Show button in the active state (left mouse button down) |
+| disabled | `boolean` | - | Disables button |
+| fullWidth | `boolean` | - | Take the full width of a container |
+| hovered | `boolean` | - | Set hovered style for the button |
+| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
+| iconPosition | `"left" \| "right"` | - | Icon can be positioned on the left or right |
+| loading | `boolean` | - | Shows a loading indicator and disables click events |
+| onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
+| size | `"small" \| "medium" \| "large"` | - | A button can have different sizes |
+| value | `string \| number` | - | HTML Value of Button component |
+| title | `string` | - | HTML title of Button component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | buttonType | `string` | `rectangular` | The button type to use |
 | variant | `string` | - | The variant to use. Depending on the "buttonType" property value, the "variant" property accepts circular or action button "variant" property values. |
 

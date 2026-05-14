@@ -13,12 +13,17 @@ Notification standard way to notify user about important information
 | variant | `"red" \| "green" \| "white" \| "yellow"` | `yellow` | Style variant of Notification |
 | icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Add <Icon /> before Notification content |
 | elevated | `boolean` | `false` | Enable elevated appearance for Notification |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Notification.Actions
 
 Notification actions
 
-_No props._
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

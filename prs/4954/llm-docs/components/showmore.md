@@ -15,6 +15,8 @@ Strips provided content.
 | initialExpanded | `boolean` | - | Define component initial state, whether it should be collapsed or not |
 | disableToggle | `boolean` | - | Define whether action link should be displayed or not |
 | onToggle | `((nextState: boolean) => void)` | - | Callback triggered when show more/less is clicked |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

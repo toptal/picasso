@@ -19,6 +19,8 @@
 | onDrop | `(acceptedFiles: File[], fileRejections: FileRejection[], event:DragEvent \| Event) => void` | - |  Callback for when the drop event occurs. Note that this callback is invoked after the getFilesFromEvent callback is done.  Files are accepted or rejected based on the accept, multiple, minSize and maxSize props. accept must be a valid MIME type according to input element specification or a valid file extension. If multiple is set to false and additional files are dropped, all files besides the first will be rejected. Any file which does not have a size in the minSize, maxSize range, will be rejected as well.  Note that the onDrop callback will always be invoked regardless if the dropped files were accepted or rejected. If you'd like to react to a specific scenario, use the onDropAccepted/onDropRejected props.  onDrop will provide you with an array of File objects which you can then process and send to a server. For example, with SuperAgent as a http/ajax library:        function onDrop(acceptedFiles) {         const req = request.post('/upload')         acceptedFiles.forEach(file => {           req.attach(file.name, file)         })         req.end(callback)       }        |
 | validator | `(file:File) => FileError \| FileError[] \| null` | - | Custom validation function |
 | value | `FileUpload[]` | - | Value uses the File interface. |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

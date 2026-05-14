@@ -14,6 +14,9 @@ Tabs allow to switch between content sections
 | icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | The Icon element |
 | avatar | `string \| null` | - | Image URL |
 | description | `string` | - | Description |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 

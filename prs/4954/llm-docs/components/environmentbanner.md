@@ -10,6 +10,8 @@ Banner on page top to highlight current environment
 |------|------|---------|-------------|
 | **environment** | `"development" \| "staging" \| "production" \| "temploy" \| "test"` | - | Name of the current environment |
 | **productName** | `string` | - | Name of the product to be rendered alongside environment (i.e. Blackfish, Talent, Portal, Billing) |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Variants
 

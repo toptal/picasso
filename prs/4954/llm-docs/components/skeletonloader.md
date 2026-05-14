@@ -8,18 +8,25 @@
 |------|------|---------|-------------|
 | rows | `number` | `1` | Specify the amount of rows |
 | uniqueKey | `string` | - | Default to random unique id, you can set your own unique id to fix SSR |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | `{}` | Style applied to root element |
 
 ### SkeletonLoader.Header
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | uniqueKey | `string` | - | Default to random unique id, you can set your own unique id to fix SSR |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### SkeletonLoader.Button
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | uniqueKey | `string` | - | Default to random unique id, you can set your own unique id to fix SSR |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| size | `"small" \| "medium" \| "large"` | `medium` | A button can have different sizes |
 
 ### Page Loader
 

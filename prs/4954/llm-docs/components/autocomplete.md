@@ -43,6 +43,8 @@
 | popperContainer | `HTMLElement` | - | DOM element that wraps the Popper |
 | popperOptions | `PopperOptions` | - | Options provided to the popper.js instance |
 | size | `"medium" \| "large"` | - | Component size |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | otherOptionText | `string` | `Other option:` | Text prefix for other option |
 | renderOtherOption | `((value: string) => ReactNode)` | - | Callback responsible for rendering the other option given the input's value |
 | noOptionsText | `string \| null` | `No options` | Label to show when no options were found (pass "null" to hide label completely) |

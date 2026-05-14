@@ -12,6 +12,8 @@ Display any types of images.
 | **src** | `string` | - | Image url |
 | srcSet | `string` | - | A set of image sources |
 | variant | `"rectangle" \| "circular"` | `rectangle` | Image shape type |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

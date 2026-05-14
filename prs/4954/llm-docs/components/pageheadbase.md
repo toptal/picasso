@@ -15,6 +15,9 @@
 | titleLoading | `boolean` | `false` | Shows the loading skeleton when title is loading |
 | subtitle | `string` | - | Subtitle |
 | subtitleLoading | `boolean` | `false` | Shows the loading skeleton when subtitle is loading |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 

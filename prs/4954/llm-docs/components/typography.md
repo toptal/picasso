@@ -20,6 +20,9 @@ Our primary typeface is Proxima Nova, a contemporary font that combines humanist
 | as | `ElementType<HTMLAttributes<HTMLElement>>` | - | Rendered HTML markup |
 | underline | `"solid" \| "dashed"` | - | Controls when the Typography should have an underline |
 | lineThrough | `boolean` | - | Controls when the Typography should have line through |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Normal text
 

@@ -6,6 +6,8 @@
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | variant | `ordered \| unordered` | `unordered` | The variant to use |
 | start | `number` | `1` | Specifies the start value of the first list item in an ordered list |
 | styleType | `"circle" \| "disc" \| "checkmark" \| "arrow" \| "numeral" \| "alpha" \| "roman"` | - | Style for items bullet/ordinal, can be overridden on a item level |
@@ -14,6 +16,8 @@
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | type | `"circle" \| "disc" \| "checkmark" \| "arrow" \| "numeral" \| "alpha" \| "roman"` | - | Style of the bullet/ordinal |
 
 ### Ordered

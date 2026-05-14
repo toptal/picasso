@@ -20,6 +20,8 @@
 }
         ` | - | List of available accounts |
 | onSelect | `((account: Account) => void)` | `() => {}` | Callback invoked when specific role record is clicked in the list |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 

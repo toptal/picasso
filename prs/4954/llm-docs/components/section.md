@@ -17,6 +17,8 @@ Use sections to organize content on the page
 | collapsed | `boolean` | - | Controlled collapsed state |
 | onToggle | `((collapsed: boolean) => void)` | - | Callback when the collapsed state changes |
 | titleSize | `"small" \| "medium"` | `medium` | Title size of the inner text |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | variant | `bordered \| default \| withHeaderBar` | `default` | The variant to use |
 
 ### Default

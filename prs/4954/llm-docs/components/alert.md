@@ -12,6 +12,8 @@ Use to alert user about important information
 | variant | `"red" \| "green" \| "yellow" \| "blue"` | `yellow` | Style variant of Alert |
 | onClose | `((event: MouseEvent<HTMLButtonElement, MouseEvent>) => void)` | - | Callback invoked when close is clicked |
 | actions | `Actions` | - | Optional button actions |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Alert.Inline
 
@@ -19,6 +21,8 @@ Use to alert user about important information
 |------|------|---------|-------------|
 | children | `ReactNode` | - | Main content of the Alert |
 | variant | `"red" \| "green" \| "yellow" \| "blue"` | `yellow` | Style variant of Alert |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 
 ### Default
 
