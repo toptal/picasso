@@ -1,7 +1,7 @@
 {
   "name": "@toptal/picasso-provider",
   "version": "5.0.2",
-  "description": "Picasso provider (temp test edit)",
+  "description": "Picasso provider",
   "author": "Toptal",
   "license": "MIT",
   "main": "dist-package/src/index.js",
@@ -25,7 +25,7 @@
   },
   "peerDependencies": {
     "react": ">=16.12.0 < 19.0.0",
-    "typescript": "~4.7.0"
+    "typescript": "^5.5.0"
   },
   "dependencies": {
     "@material-ui/core": "4.12.4",
