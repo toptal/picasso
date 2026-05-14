@@ -16,9 +16,28 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 2,
-      "last_review_seen_at": "2026-05-14T09:34:38.355Z",
-      "session_id": "7fa7812a-804e-4745-911a-58257c9628ee"
+      "review_iterations": 3,
+      "last_review_seen_at": "2026-05-14T15:04:13.173Z",
+      "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "awaiting_ci_since": null,
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4954",
+          "branch": "migrate-Backdrop",
+          "worktree": "migration-runs/2026-05-13/Backdrop/worktree",
+          "iterations": 1,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": "2026-05-14T15:04:13.173Z",
+          "review_iterations": 3,
+          "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Badge": {
       "tier": 0,
@@ -33,7 +52,28 @@
       "iterations": 4,
       "merged_at": null,
       "notes": "No Badge in @base-ui/react. Already mostly custom; remove @mui/base import + Tailwind only.",
-      "escalation_reason": null
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": "2026-05-14T15:05:49.239Z",
+      "review_iterations": 1,
+      "session_id": "bac5d670-be3d-48df-b19f-c3ccac68f5d2",
+      "awaiting_ci_since": null,
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4957",
+          "branch": "migrate-Badge",
+          "worktree": "migration-runs/2026-05-13/Badge/worktree",
+          "iterations": 4,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": "2026-05-14T15:05:49.239Z",
+          "review_iterations": 1,
+          "session_id": "bac5d670-be3d-48df-b19f-c3ccac68f5d2",
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Button": {
       "tier": 0,
@@ -97,7 +137,28 @@
       "worktree": "migration-runs/2026-05-13/Slider/worktree",
       "iterations": 1,
       "merged_at": null,
-      "escalation_reason": null
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": "2026-05-14T15:08:03.774Z",
+      "review_iterations": 1,
+      "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
+      "awaiting_ci_since": null,
+      "variants": {
+        "v1": {
+          "status": "awaiting_review",
+          "pr": "https://github.com/toptal/picasso/pull/4955",
+          "branch": "migrate-Slider",
+          "worktree": "migration-runs/2026-05-13/Slider/worktree",
+          "iterations": 1,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": null,
+          "last_review_seen_at": "2026-05-14T15:08:03.774Z",
+          "review_iterations": 1,
+          "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Switch": {
       "tier": 0,

@@ -2232,6 +2232,16 @@ const agent = {
             'Bash(gh pr comment:*)',
             'Bash(gh api:*)',
             'Bash(gh run view:*)',
+            // Happo visual-regression report inspection (sweep mode, 2026-05-14).
+            // When a Happo check is in `ciFailureContext`, the prompt surfaces
+            // the report URL via `detailsUrl`. The agent uses `WebFetch` to
+            // read the report's HTML (Happo embeds the rejected-snapshot list
+            // in the page payload) and decide regression-vs-intentional per
+            // snapshot. Without WebFetch the agent has no way to see the
+            // visual diffs and falls back to "respond to reviewer comments"
+            // only — which is why Slider PR #4955 ignored its rejected Happo
+            // diffs in the 2026-05-14 sweep.
+            'WebFetch',
           ]
           const mcpTools = inv.withMcp
             ? [
@@ -3144,9 +3154,20 @@ async function sweepOne(
     const checks = await gh.snapshotChecks(prUrl, wtPath)
 
     if (checks.state === 'failure' && checks.failed.length > 0) {
+      const happoFailed = checks.failed.filter(c => /happo/i.test(c.name))
+      const otherFailed = checks.failed.filter(c => !/happo/i.test(c.name))
+      const breakdown =
+        happoFailed.length > 0 && otherFailed.length > 0
+          ? `${otherFailed.length} CI + ${happoFailed.length} Happo`
+          : happoFailed.length > 0
+          ? `${happoFailed.length} Happo`
+          : `${otherFailed.length} CI`
+
       log(
         'sweep',
-        `${item.id}: awaiting_review + CI failing (${checks.failed
+        `${
+          item.id
+        }: awaiting_review + CI failing [${breakdown}] (${checks.failed
           .map(c => c.name)
           .join(', ')}) — engaging agent on failures`
       )
@@ -3266,9 +3287,20 @@ async function sweepOne(
     pendingProposals.length === 0 &&
     ciFailureContext
   ) {
+    const happoCount = ciFailureContext.filter(c =>
+      /happo/i.test(c.name)
+    ).length
+    const otherCount = ciFailureContext.length - happoCount
+    const breakdown = [
+      otherCount > 0 ? `${otherCount} CI` : '',
+      happoCount > 0 ? `${happoCount} Happo` : '',
+    ]
+      .filter(Boolean)
+      .join(' + ')
+
     log(
       'sweep',
-      `${item.id}: no new comments, but ${ciFailureContext.length} CI failure(s) — agent will investigate`
+      `${item.id}: no new comments, but ${ciFailureContext.length} failure(s) [${breakdown}] — agent will investigate`
     )
   }
 
@@ -3445,29 +3477,80 @@ async function sweepOne(
           .join('\n')
       : '') +
     (ciFailureContext && ciFailureContext.length > 0
-      ? `\n## CI failures to address (post-approval)\n\n` +
-        "The reviewer has already approved this PR but the head commit's CI rollup is RED. Investigate each failed check below, fix the underlying issue in the code, and let the orchestrator push the fix.\n\n" +
-        'How to investigate:\n' +
-        '- `gh run view <run-id> --log-failed` — print only the failed-step output (run-id is in the `detailsUrl` below as `.../actions/runs/<run-id>/...`).\n' +
-        '- `gh api repos/<owner>/<repo>/actions/jobs/<job-id>/logs` — raw log of a single job.\n' +
-        '- Reproduce locally before pushing: run the equivalent `pnpm` script (typecheck / davinci-syntax / unit / cypress / happo) inside this worktree.\n\n' +
-        'Constraints (do NOT shortcut):\n' +
-        "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes shim handling, or any other documented constraint just to make CI green.\n" +
-        '- Do NOT delete or skip failing tests to make them pass.\n' +
-        '- Do NOT modify CI workflows (`.github/workflows/*`).\n' +
-        '- If a failure looks like a flake (passes locally, network/timeout in CI), reply with a brief diagnosis and DO NOT push — the operator will re-run.\n' +
-        "- If the fix conflicts with the reviewer's prior approval (changes the API surface they signed off on), reply with the proposed fix as a MEDIUM-confidence proposal (👍 to confirm) instead of editing.\n\n" +
-        'Failed checks:\n\n' +
-        ciFailureContext
-          .map((c, idx) => {
-            return (
-              `### CI failure ${idx + 1} — ${c.name}\n\n` +
-              `- status: ${c.status}\n` +
-              `- conclusion: ${c.conclusion}\n` +
-              `- detailsUrl: ${c.detailsUrl || '(none)'}\n`
-            )
-          })
-          .join('\n')
+      ? (() => {
+          // Split Happo failures from other CI failures — they require
+          // different investigation paths (Happo report URL vs gh run logs)
+          // and different decision matrices (regression-vs-intentional
+          // vs deterministic fix). Without this split the agent treats
+          // Happo like a build failure and skips reading the report,
+          // which is exactly what happened on Slider PR #4955 sweep tick
+          // 2026-05-14 (agent fixed type casts from review comments but
+          // never opened the Happo report).
+          const happoFailures = ciFailureContext.filter(c =>
+            /happo/i.test(c.name)
+          )
+          const otherFailures = ciFailureContext.filter(
+            c => !/happo/i.test(c.name)
+          )
+          const happoSection =
+            happoFailures.length > 0
+              ? `\n## Happo visual regressions to address\n\n` +
+                "The Happo check(s) below reported visual diffs against the Picasso master baseline. The orchestrator's `--review-sweep` engages on these even when the only signal is a red Happo status (no new reviewer comments needed).\n\n" +
+                'For each failed Happo report:\n\n' +
+                '1. **Read the report.** Use `WebFetch` on the `reportUrl` — Happo embeds the rejected-snapshot list (component name + variant + per-image old/new URLs) in the page payload. If WebFetch returns a JS-shell with no usable content, fall back to `Bash(gh api repos/<owner>/<repo>/commits/<head-sha>/status)` and inspect the `target_url` field for the same Happo check context (Happo writes its target_url as the report URL).\n' +
+                '2. **For each diff, classify** into one of three buckets:\n' +
+                '   - **REGRESSION** — the migration accidentally changed visual output (e.g. wrong padding, missing border, color shift on the migrated component). Fix the source code; the orchestrator commits + pushes; Happo re-runs; designer accepts the new clean run.\n' +
+                "   - **INTENTIONAL** — legitimate consequence of migrating to @base-ui/react (e.g. a new focus-ring style, a `data-disabled=''` attribute attached to a slightly different node, a Tailwind-driven margin shift that's correct per design tokens). Do NOT change source. Instead: append an entry to the PR's changeset under a `## Intentional visual changes` heading (one bullet per snapshot, brief one-line justification), and post a single PR comment listing every intentional snapshot with the same justifications. The designer accepts these in the Happo UI; PR proceeds.\n" +
+                '   - **UNRELATED FLAKE** — diff is in a non-target component (e.g. recharts hover-tooltip animation, an unrelated story whose snapshot drifted sub-perceptually). Do NOT change source. Post a brief PR comment diagnosing the flake (component, story id, suspected cause). Designer accepts in Happo UI.\n' +
+                "3. **If your only finding is 'all intentional / all flake'** → do not edit any source (the orchestrator will detect the empty diff and skip the push). Post your classification comment and exit — next sweep tick polls Happo state.\n\n" +
+                'Constraints:\n' +
+                "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes-shim handling, or any other documented constraint just to make Happo green.\n" +
+                '- Do NOT bulk-classify everything as "intentional" to bypass the loop. Each intentional entry must name the snapshot AND the design-justified reason.\n' +
+                '- Do NOT push empty/cosmetic source changes solely to trigger a Happo re-run; the gate will detect "no real diff" and skip.\n\n' +
+                'Failed Happo report(s):\n\n' +
+                happoFailures
+                  .map((c, idx) => {
+                    return (
+                      `### Happo report ${idx + 1} — ${c.name}\n\n` +
+                      `- status: ${c.status}\n` +
+                      `- conclusion: ${c.conclusion}\n` +
+                      `- reportUrl: ${
+                        c.detailsUrl ||
+                        '(missing — fetch via gh api commit status)'
+                      }\n`
+                    )
+                  })
+                  .join('\n')
+              : ''
+          const otherSection =
+            otherFailures.length > 0
+              ? `\n## CI failures to address\n\n` +
+                "The head commit's CI rollup has these non-Happo failed check(s). Investigate, fix in code, and let the orchestrator push.\n\n" +
+                'How to investigate:\n' +
+                '- `gh run view <run-id> --log-failed` — print only the failed-step output (run-id is in the `detailsUrl` below as `.../actions/runs/<run-id>/...`).\n' +
+                '- `gh api repos/<owner>/<repo>/actions/jobs/<job-id>/logs` — raw log of a single job.\n' +
+                '- Reproduce locally before pushing: run the equivalent `pnpm` script (typecheck / davinci-syntax / unit / cypress) inside this worktree.\n\n' +
+                'Constraints (do NOT shortcut):\n' +
+                "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes-shim handling, or any other documented constraint just to make CI green.\n" +
+                '- Do NOT delete or skip failing tests to make them pass.\n' +
+                '- Do NOT modify CI workflows (`.github/workflows/*`).\n' +
+                '- If a failure looks like a flake (passes locally, network/timeout in CI), reply with a brief diagnosis and DO NOT push — the operator will re-run.\n' +
+                "- If the fix conflicts with a reviewer's prior approval (changes the API surface they signed off on), reply with the proposed fix as a MEDIUM-confidence proposal (👍 to confirm) instead of editing.\n\n" +
+                'Failed checks:\n\n' +
+                otherFailures
+                  .map((c, idx) => {
+                    return (
+                      `### CI failure ${idx + 1} — ${c.name}\n\n` +
+                      `- status: ${c.status}\n` +
+                      `- conclusion: ${c.conclusion}\n` +
+                      `- detailsUrl: ${c.detailsUrl || '(none)'}\n`
+                    )
+                  })
+                  .join('\n')
+              : ''
+
+          return happoSection + otherSection
+        })()
       : '')
   // Resume agent session if we have one stored; else fresh session.
   const sessionId = item.session_id ?? randomUUID()
