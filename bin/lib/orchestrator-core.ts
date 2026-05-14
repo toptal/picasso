@@ -51,6 +51,7 @@ import { classifyCIFailure } from './failure-classifier'
 import { classifyReview, type Review as RawReview } from './review-classifier'
 import { appendCostSnapshot } from './token-telemetry'
 import { syncToConfluence } from './confluence-sync'
+import { fetchHappoDiffsForCheck, type HappoCheckDiffs } from './happo-fetch'
 import type {
   EscalationDecision,
   GateReport,
@@ -172,6 +173,193 @@ type PollChecksResult =
 function log(prefix: string, message: string): void {
   // eslint-disable-next-line no-console
   console.log(`[${ISO()}] [${prefix}] ${message}`)
+}
+
+/**
+ * Build the agent prompt section for Happo visual-regression failures.
+ *
+ * Used in two places that share the same data shape:
+ *   - sweepOne: when `ciFailureContext` contains failed Happo check(s).
+ *   - runOne's CI iteration loop: when feed-to-agent classifications include
+ *     `stage === 'happo'` failures.
+ *
+ * Two modes — picked per-check by the caller based on whether the
+ * orchestrator was able to pre-fetch the diff PNGs via Happo's API:
+ *
+ *  - **Rich mode** (`fetched` supplied): the orchestrator downloaded each
+ *    diff pair's old/new PNGs to local paths. The prompt lists those paths
+ *    and instructs the agent to `Read` each one — Claude is multimodal and
+ *    Read of an image file presents the pixels directly. This is the
+ *    primary path: the agent can actually SEE each before/after pair and
+ *    classify confidently (regression vs intentional vs flake) instead of
+ *    inferring from surrounding signals.
+ *  - **URL-only fallback**: when API fetch fails (missing creds, network
+ *    error, unparseable URL). The agent gets the report URL and the
+ *    instruction to try WebFetch / gh api as a best-effort. This preserves
+ *    the prior behavior so a Happo API outage doesn't break the sweep.
+ *
+ * Returns empty string when there are no Happo failures.
+ */
+interface HappoFailureInput {
+  check: CheckSnapshot
+  /** Pre-fetched diff data + local PNG paths. Undefined for URL-only fallback. */
+  fetched?: HappoCheckDiffs
+  /** Reason fetch failed, if applicable. Surfaced to the agent so it knows
+   *  why the rich path didn't kick in (and can choose to WebFetch instead). */
+  fetchError?: string
+}
+
+/**
+ * Pre-fetch Happo compare-results + diff PNGs for every failed Happo
+ * check. Each result is downloaded into `runDir/happo-diffs/<idx>-<slug>/`
+ * so the agent's Read tool can inspect the pixels directly.
+ *
+ * Graceful degradation: any per-check failure (missing creds, network
+ * error, parse error, 404) is captured in `fetchError` and the prompt
+ * falls back to URL-only for that check — the rest still get rich mode.
+ * This keeps the sweep tick non-fatal under Happo outages.
+ *
+ * No-op when HAPPO_API_KEY/HAPPO_API_SECRET aren't set in env: every
+ * input gets `fetchError: 'creds missing'` and the URL-only fallback
+ * kicks in. (This is unusual on the operator's machine because the
+ * gate's strict Happo stage already enforces creds before migration,
+ * but sweep mode may run in a different env.)
+ */
+async function prefetchHappoDiffs(
+  failed: readonly CheckSnapshot[],
+  runDir: string
+): Promise<HappoFailureInput[]> {
+  const apiKey = process.env.HAPPO_API_KEY
+  const apiSecret = process.env.HAPPO_API_SECRET
+  const result: HappoFailureInput[] = []
+
+  for (let i = 0; i < failed.length; i++) {
+    const check = failed[i]
+
+    if (!check.detailsUrl) {
+      result.push({
+        check,
+        fetchError: 'check has no detailsUrl (Happo report URL)',
+      })
+      continue
+    }
+
+    if (!apiKey || !apiSecret) {
+      result.push({
+        check,
+        fetchError: 'HAPPO_API_KEY/HAPPO_API_SECRET unset in orchestrator env',
+      })
+      continue
+    }
+
+    const slugName = check.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+    const destDir = path.join(
+      runDir,
+      'happo-diffs',
+      `${String(i + 1).padStart(2, '0')}-${slugName}`
+    )
+
+    try {
+      const fetched = await fetchHappoDiffsForCheck({
+        checkName: check.name,
+        reportUrl: check.detailsUrl,
+        destDir,
+        apiKey,
+        apiSecret,
+      })
+
+      log(
+        'happo',
+        `pre-fetched ${fetched.totalDiffs} diff pair(s) for ${check.name} → ${destDir}`
+      )
+      result.push({ check, fetched })
+    } catch (err) {
+      const msg = (err as Error).message
+
+      log('happo', `pre-fetch failed for ${check.name}: ${msg}`)
+      result.push({ check, fetchError: msg })
+    }
+  }
+
+  return result
+}
+
+function buildHappoFailureSection(
+  happoFailures: readonly HappoFailureInput[]
+): string {
+  if (happoFailures.length === 0) {
+    return ''
+  }
+
+  return (
+    `\n## Happo visual regressions — pixel-perfect requirement\n\n` +
+    '**Picasso is a UI kit.** A component migration (e.g. `@mui/base` → `@base-ui/react`) is an internal refactor: the rendered output for every story MUST stay byte-identical to the pre-migration baseline. **Any non-zero Happo pixel diff on a migrated-component story is a REGRESSION you must fix.** Not "an intentional consequence of the new DOM" — a regression. Reasoning like *"@base-ui/react emits `data-orientation`, that\'s just the new library\'s output"* is a description of what caused the regression, not a justification for accepting it. The fix is to add a CSS / Tailwind rule (e.g. a `[data-orientation]:` selector) that compensates so the visual output matches the baseline.\n\n' +
+    'The "intentional visual change" bucket is **effectively forbidden** for the migrated component itself. Use it ONLY when the operator pre-approved a design-led visual change for this migration and documented it in the per-component plan file (`docs/migration/components/<X>.md` under "Approved visual deltas"). Self-declared "intentional" calls have produced wrong outcomes (Slider PR #4955: 8 Storybook diffs labeled "intentional" because the new DOM shape differs — wrong; those need CSS compensation, not designer-accept).\n\n' +
+    'For each failed Happo report below:\n\n' +
+    '1. **Inspect every diff pair pixel-by-pixel.** If a report has `Local diff pairs` listed, `Read` each `oldPath` and `newPath` PNG directly — Claude is multimodal; the Read tool presents the image. **Looking at the pixels is the ONLY valid basis for classification.** Surrounding-signal heuristics ("Storybook is green, must be flake") have produced wrong calls. If no local pairs are listed (fetch failed), `WebFetch` the `reportUrl`; if that returns the SPA shell, fall back to `Bash(gh api repos/<owner>/<repo>/commits/<head-sha>/status)` for the `target_url`.\n' +
+    '2. **Identify the migration target.** Find this PR\'s migrating component (changeset, PR title, commit message). That component name MUST match the diff\'s `component` field for the "regression-on-migrated-component" path below.\n' +
+    '3. **Classify each diff using this strict matrix**:\n' +
+    '   - **REGRESSION on migrated component** (default for any diff whose `component` matches the migration target) → **MUST FIX**. Read old.png vs new.png; identify what changed (border, padding, color, focus-ring, hover state, transition timing, anti-aliasing of an icon). Find the cause in your worktree — usually a missing Tailwind class, a `data-*` selector that needs adding (e.g. `[data-disabled]:opacity-50`, `[data-orientation=horizontal]:flex-row`), a CSS variable that shifted, or an underlying library default to override. Edit source. Goal: **zero pixel diff** on the next gate run.\n' +
+    "   - **UNRELATED FLAKE** (the diff's `component` is something OTHER than the migration target — e.g. `PageTopBarMenu` diff during a Slider migration) → no source change. Post a single PR comment naming each unrelated snapshot with pixel evidence (what shifted, by roughly how much) so the designer can confidently accept in the Happo UI. Don't bulk-dismiss without per-snapshot inspection.\n" +
+    "   - **INTENTIONAL** (only if approved in the plan file) → annotate the changeset's `## Intentional visual changes` section + post a PR comment citing the plan-file authorization line. If unsure: it's NOT intentional — treat as regression and fix.\n" +
+    "4. **Playwright comparison is part of the loop, not optional.** When the orchestrator detects Happo failures during sweep AND `--with-mcp` was passed, it starts the worktree's Storybook before invoking you. For each Happo diff on a migrated-component story:\n" +
+    '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/?path=/story/<story-id>` (pre-migration deployed baseline).\n' +
+    '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`.\n' +
+    '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/?path=/story/<story-id>` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken).\n' +
+    '   - `mcp__playwright__browser_take_screenshot` → save under `local--<story-id>.png`.\n' +
+    '   - For interactive components (Slider/Switch/Tabs/etc.) repeat for `hover`/`focus`/`pressed`/`disabled` states. Use `browser_hover`/`browser_click`/`browser_press_key` between captures.\n' +
+    '   - Read both baseline and local PNGs; the visual delta tells you what Tailwind class / data-attribute selector / inline-style override is needed. Edit source, save, Storybook hot-reloads, re-capture, re-compare. Iterate until pixel-perfect, then re-run gate.\n\n' +
+    'Constraints:\n' +
+    "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes-shim handling, or any other documented constraint just to make Happo green.\n" +
+    '- Do NOT bulk-classify diffs as "intentional." Each intentional entry must cite a plan-file authorization line.\n' +
+    '- Do NOT push empty/cosmetic source changes solely to trigger a Happo re-run; the gate will detect "no real diff" and skip.\n' +
+    '- Your PR comment MUST cite the specific snapshot pixels you observed (e.g. "oldPath: 2px solid #blue border on Thumb; newPath: no border — added Tailwind class `border border-blue-500` on `[data-thumb]` selector to fix"). If you didn\'t Read the PNG, you cannot classify.\n' +
+    '- Default disposition for a migrated-component diff is **FIX**, not punt-to-designer.\n\n' +
+    'Failed Happo report(s):\n\n' +
+    happoFailures
+      .map((failure, idx) => {
+        const lines = [
+          `### Happo report ${idx + 1} — ${failure.check.name}`,
+          '',
+          `- status: ${failure.check.status}`,
+          `- conclusion: ${failure.check.conclusion}`,
+          `- reportUrl: ${
+            failure.check.detailsUrl ||
+            '(missing — fetch via gh api commit status)'
+          }`,
+        ]
+
+        if (failure.fetched) {
+          lines.push(
+            `- summary: ${failure.fetched.summary || '(none)'}`,
+            `- total diffs: ${failure.fetched.totalDiffs}`,
+            `- unchanged: ${failure.fetched.unchangedCount}`,
+            '',
+            'Local diff pairs (Read each pair to see the pixels):',
+            ''
+          )
+          failure.fetched.diffs.forEach((d, j) => {
+            lines.push(
+              `  ${j + 1}. ${d.component} / ${d.variant} / ${d.target}` +
+                (d.width && d.height ? ` (${d.width}x${d.height})` : '')
+            )
+            lines.push(`     - oldPath: ${d.oldPath}`)
+            lines.push(`     - newPath: ${d.newPath}`)
+          })
+        } else if (failure.fetchError) {
+          lines.push(
+            '',
+            `- (orchestrator could not pre-fetch diff PNGs: ${failure.fetchError} — fall back to WebFetch on reportUrl)`
+          )
+        }
+
+        return lines.join('\n')
+      })
+      .join('\n\n')
+  )
 }
 
 function repoRoot(): string {
@@ -3419,6 +3607,21 @@ async function sweepOne(
     ? await fs.readFile(reviewProtocolPath, 'utf8')
     : '# Reviewer comment response protocol\n\n(missing — see docs/migration/PROMPT-review-response.md)'
 
+  // Hoisted from below — needed by the Happo pre-fetch so diff PNGs land
+  // under <runDir>/happo-diffs/ where the agent's Read tool can see them.
+  const runDir = path.dirname(wtPath)
+
+  // Pre-fetch Happo diff PNGs for failed Happo checks (if any) so the
+  // agent can Read the actual pixels instead of guessing from surrounding
+  // signals. See `prefetchHappoDiffs` doc for graceful-degradation rules.
+  const happoCheckSnapshots = ciFailureContext
+    ? ciFailureContext.filter(c => /happo/i.test(c.name))
+    : []
+  const happoFailureInputs =
+    happoCheckSnapshots.length > 0
+      ? await prefetchHappoDiffs(happoCheckSnapshots, runDir)
+      : []
+
   const reviewFeedback =
     '# Review-response protocol\n\n' +
     reviewProtocol +
@@ -3479,49 +3682,22 @@ async function sweepOne(
     (ciFailureContext && ciFailureContext.length > 0
       ? (() => {
           // Split Happo failures from other CI failures — they require
-          // different investigation paths (Happo report URL vs gh run logs)
-          // and different decision matrices (regression-vs-intentional
+          // different investigation paths (Happo report URL + downloaded
+          // PNGs vs gh run logs) and different decision matrices
+          // (regression-vs-intentional-vs-flake based on pixel inspection
           // vs deterministic fix). Without this split the agent treats
-          // Happo like a build failure and skips reading the report,
-          // which is exactly what happened on Slider PR #4955 sweep tick
+          // Happo like a build failure and skips reading the diffs, which
+          // is exactly what happened on Slider/Backdrop sweep ticks
           // 2026-05-14 (agent fixed type casts from review comments but
-          // never opened the Happo report).
-          const happoFailures = ciFailureContext.filter(c =>
-            /happo/i.test(c.name)
-          )
+          // never opened the Happo diffs).
+          //
+          // `happoFailureInputs` is pre-computed above (server-side
+          // download of diff PNGs); we pass it through to the section
+          // builder so the prompt embeds local file paths.
           const otherFailures = ciFailureContext.filter(
             c => !/happo/i.test(c.name)
           )
-          const happoSection =
-            happoFailures.length > 0
-              ? `\n## Happo visual regressions to address\n\n` +
-                "The Happo check(s) below reported visual diffs against the Picasso master baseline. The orchestrator's `--review-sweep` engages on these even when the only signal is a red Happo status (no new reviewer comments needed).\n\n" +
-                'For each failed Happo report:\n\n' +
-                '1. **Read the report.** Use `WebFetch` on the `reportUrl` — Happo embeds the rejected-snapshot list (component name + variant + per-image old/new URLs) in the page payload. If WebFetch returns a JS-shell with no usable content, fall back to `Bash(gh api repos/<owner>/<repo>/commits/<head-sha>/status)` and inspect the `target_url` field for the same Happo check context (Happo writes its target_url as the report URL).\n' +
-                '2. **For each diff, classify** into one of three buckets:\n' +
-                '   - **REGRESSION** — the migration accidentally changed visual output (e.g. wrong padding, missing border, color shift on the migrated component). Fix the source code; the orchestrator commits + pushes; Happo re-runs; designer accepts the new clean run.\n' +
-                "   - **INTENTIONAL** — legitimate consequence of migrating to @base-ui/react (e.g. a new focus-ring style, a `data-disabled=''` attribute attached to a slightly different node, a Tailwind-driven margin shift that's correct per design tokens). Do NOT change source. Instead: append an entry to the PR's changeset under a `## Intentional visual changes` heading (one bullet per snapshot, brief one-line justification), and post a single PR comment listing every intentional snapshot with the same justifications. The designer accepts these in the Happo UI; PR proceeds.\n" +
-                '   - **UNRELATED FLAKE** — diff is in a non-target component (e.g. recharts hover-tooltip animation, an unrelated story whose snapshot drifted sub-perceptually). Do NOT change source. Post a brief PR comment diagnosing the flake (component, story id, suspected cause). Designer accepts in Happo UI.\n' +
-                "3. **If your only finding is 'all intentional / all flake'** → do not edit any source (the orchestrator will detect the empty diff and skip the push). Post your classification comment and exit — next sweep tick polls Happo state.\n\n" +
-                'Constraints:\n' +
-                "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes-shim handling, or any other documented constraint just to make Happo green.\n" +
-                '- Do NOT bulk-classify everything as "intentional" to bypass the loop. Each intentional entry must name the snapshot AND the design-justified reason.\n' +
-                '- Do NOT push empty/cosmetic source changes solely to trigger a Happo re-run; the gate will detect "no real diff" and skip.\n\n' +
-                'Failed Happo report(s):\n\n' +
-                happoFailures
-                  .map((c, idx) => {
-                    return (
-                      `### Happo report ${idx + 1} — ${c.name}\n\n` +
-                      `- status: ${c.status}\n` +
-                      `- conclusion: ${c.conclusion}\n` +
-                      `- reportUrl: ${
-                        c.detailsUrl ||
-                        '(missing — fetch via gh api commit status)'
-                      }\n`
-                    )
-                  })
-                  .join('\n')
-              : ''
+          const happoSection = buildHappoFailureSection(happoFailureInputs)
           const otherSection =
             otherFailures.length > 0
               ? `\n## CI failures to address\n\n` +
@@ -3560,22 +3736,45 @@ async function sweepOne(
     reviewFeedback,
     wtPath
   )
-  const runDir = path.dirname(wtPath)
   const promptPath = path.join(runDir, `prompt.review-${reviewIters}.txt`)
 
   await fs.writeFile(promptPath, reviewPrompt, 'utf8')
+
+  // Start Storybook for this sweep tick ONLY when (a) the operator passed
+  // --with-mcp, AND (b) we have Happo failures to address. The agent needs
+  // localhost:9001 (worktree's Storybook with its in-progress edits) for
+  // pixel-perfect verification against picasso.toptal.net (baseline). For
+  // sweep ticks with only review comments + no Happo, Storybook is overhead
+  // we skip — cold start is 60–120s and we'd burn that on every tick.
+  //
+  // Killed in the finally block below regardless of agent exit path so we
+  // never leak processes between sweep targets.
+  const needsStorybook = opts.withMcp && happoFailureInputs.length > 0
+  const sweepStorybookHandle = needsStorybook
+    ? await storybook.start(wtPath, runDir)
+    : null
+
   const agentLogPath = path.join(runDir, `agent.review-${reviewIters}.log`)
-  const agentResult = await agent.invoke(
-    {
-      prompt: reviewPrompt,
-      cwd: wtPath,
-      agent: opts.agent,
-      withMcp: opts.withMcp,
-      sessionId,
-      isFirstIteration,
-    },
-    agentLogPath
-  )
+
+  let agentResult: Awaited<ReturnType<typeof agent.invoke>>
+
+  try {
+    agentResult = await agent.invoke(
+      {
+        prompt: reviewPrompt,
+        cwd: wtPath,
+        agent: opts.agent,
+        withMcp: opts.withMcp,
+        sessionId,
+        isFirstIteration,
+      },
+      agentLogPath
+    )
+  } finally {
+    if (sweepStorybookHandle) {
+      await sweepStorybookHandle.kill()
+    }
+  }
 
   // Slice 3 — token snapshot for the sweep iteration's agent call.
   // We use a synthetic iteration number (review-iter offset by 1000)
@@ -4626,21 +4825,48 @@ export async function run(
       )
 
       if (feedDecisions.length > 0) {
-        const ciFeedback =
-          '# CI failures (post-PR-open)\n\n' +
-          feedDecisions
-            .map(
-              c =>
-                `## ${c.check.name}\n\n` +
-                `**Reason:** ${c.decision.reason}\n\n` +
-                (c.decision.paths.length
-                  ? `**Affected paths:** ${c.decision.paths.join(', ')}\n\n`
-                  : '') +
-                '**Log excerpt:**\n```\n' +
-                (c.decision.excerpt ?? '(no excerpt)') +
-                '\n```\n'
-            )
-            .join('\n')
+        // Split Happo failures from the generic feed-to-agent template.
+        // Happo needs server-side pre-fetched diff PNGs (the orchestrator
+        // downloads them so the agent's multimodal Read tool sees the
+        // pixels) + an explicit regression/intentional/flake decision
+        // matrix. The generic template only ships a log excerpt that may
+        // or may not include the report URL. Without this split the agent
+        // treats Happo diffs as ordinary test failures and either flails
+        // or relies on stuck-detection + soft-escalation (which surfaces
+        // the URL as a PR comment for designer review). See 2026-05-14
+        // Slider/Backdrop/Badge observations.
+        const happoCheckSnapshots: CheckSnapshot[] = feedDecisions
+          .filter(d => d.decision.stage === 'happo')
+          .map(d => d.check)
+        const nonHappoDecisions = feedDecisions.filter(
+          d => d.decision.stage !== 'happo'
+        )
+        // Server-side pre-fetch — same path as sweep. Cheap and graceful
+        // (per-check failures don't abort the iteration; the URL-only
+        // fallback kicks in for that check).
+        const ciHappoFailures =
+          happoCheckSnapshots.length > 0
+            ? await prefetchHappoDiffs(happoCheckSnapshots, runDir)
+            : []
+        const happoSection = buildHappoFailureSection(ciHappoFailures)
+        const nonHappoSection =
+          nonHappoDecisions.length > 0
+            ? '# CI failures (post-PR-open)\n\n' +
+              nonHappoDecisions
+                .map(
+                  c =>
+                    `## ${c.check.name}\n\n` +
+                    `**Reason:** ${c.decision.reason}\n\n` +
+                    (c.decision.paths.length
+                      ? `**Affected paths:** ${c.decision.paths.join(', ')}\n\n`
+                      : '') +
+                    '**Log excerpt:**\n```\n' +
+                    (c.decision.excerpt ?? '(no excerpt)') +
+                    '\n```\n'
+                )
+                .join('\n')
+            : ''
+        const ciFeedback = nonHappoSection + happoSection
         const ciPrompt = await agent.assembleDeltaPrompt(
           state.iterations - 1,
           ciFeedback,
