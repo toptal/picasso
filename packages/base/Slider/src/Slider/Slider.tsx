@@ -174,6 +174,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
     'outline-0 absolute transition-shadow cursor-pointer',
+    '-translate-x-1/2 -translate-y-1/2',
     isThumbHidden && 'hidden'
   )
 
@@ -205,7 +206,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         className='block cursor-pointer w-full relative py-[6px] -my-[6px]'
       >
         <BaseUISlider.Control className='block w-full relative h-[1px]'>
-          <BaseUISlider.Track className='block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500'>
+          <BaseUISlider.Track className='block absolute w-full h-[1px] rounded-none bg-gray-500/[0.24]'>
             <BaseUISlider.Indicator className={indicatorClassName} />
           </BaseUISlider.Track>
           {marks &&

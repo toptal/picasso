@@ -16,7 +16,7 @@ exports[`Slider renders 1`] = `
         data-orientation="horizontal"
       >
         <div
-          class="block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
+          class="block absolute w-full h-[1px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -27,7 +27,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer -translate-x-1/2 -translate-y-1/2"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -76,7 +76,7 @@ exports[`Slider with initial value 1`] = `
         data-orientation="horizontal"
       >
         <div
-          class="block absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
+          class="block absolute w-full h-[1px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -87,7 +87,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer -translate-x-1/2 -translate-y-1/2"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
