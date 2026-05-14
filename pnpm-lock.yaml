@@ -3685,8 +3685,8 @@ importers:
         specifier: 2.0.3
         version: 2.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       typescript:
-        specifier: ~4.7.0
-        version: 4.7.4
+        specifier: ^5.5.0
+        version: 5.9.3
     devDependencies:
       '@testing-library/react':
         specifier: ^14.1.2
@@ -16997,8 +16997,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  typescript@5.2.2:
-    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -19975,7 +19975,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.4': {}
 
-  '@lerna/create@8.1.7(@swc/core@1.13.5)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@5.2.2)':
+  '@lerna/create@8.1.7(@swc/core@1.13.5)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@4.7.4)':
     dependencies:
       '@npmcli/arborist': 7.5.3
       '@npmcli/package-json': 5.2.0
@@ -19993,7 +19993,7 @@ snapshots:
       console-control-strings: 1.1.0
       conventional-changelog-core: 5.0.1
       conventional-recommended-bump: 7.0.1
-      cosmiconfig: 8.3.6(typescript@5.2.2)
+      cosmiconfig: 8.3.6(typescript@4.7.4)
       dedent: 1.5.3(babel-plugin-macros@3.1.0)
       execa: 5.0.0
       fs-extra: 11.3.2
@@ -25495,15 +25495,6 @@ snapshots:
     optionalDependencies:
       typescript: 4.7.4
 
-  cosmiconfig@8.3.6(typescript@5.2.2):
-    dependencies:
-      import-fresh: 3.3.0
-      js-yaml: 3.14.1
-      parse-json: 5.2.0
-      path-type: 4.0.0
-    optionalDependencies:
-      typescript: 5.2.2
-
   cosmiconfig@9.0.0(typescript@4.7.4):
     dependencies:
       env-paths: 2.2.1
@@ -26152,7 +26143,7 @@ snapshots:
       debug: 4.4.3(supports-color@7.2.0)
       filing-cabinet: 3.3.0
       precinct: 9.2.1
-      typescript: 4.9.5
+      typescript: 4.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -29902,7 +29893,7 @@ snapshots:
 
   lerna@8.1.7(@swc/core@1.13.5)(babel-plugin-macros@3.1.0)(encoding@0.1.13):
     dependencies:
-      '@lerna/create': 8.1.7(@swc/core@1.13.5)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@5.2.2)
+      '@lerna/create': 8.1.7(@swc/core@1.13.5)(babel-plugin-macros@3.1.0)(encoding@0.1.13)(typescript@4.7.4)
       '@npmcli/arborist': 7.5.3
       '@npmcli/package-json': 5.2.0
       '@npmcli/run-script': 8.1.0
@@ -29920,7 +29911,7 @@ snapshots:
       conventional-changelog-angular: 7.0.0
       conventional-changelog-core: 5.0.1
       conventional-recommended-bump: 7.0.1
-      cosmiconfig: 8.3.6(typescript@5.2.2)
+      cosmiconfig: 8.3.6(typescript@4.7.4)
       dedent: 1.5.3(babel-plugin-macros@3.1.0)
       envinfo: 7.13.0
       execa: 5.0.0
@@ -29973,7 +29964,7 @@ snapshots:
       strong-log-transformer: 2.1.0
       tar: 6.2.1
       temp-dir: 1.0.0
-      typescript: 5.2.2
+      typescript: 4.7.4
       upath: 2.0.1
       uuid: 10.0.0
       validate-npm-package-license: 3.0.4
@@ -35182,7 +35173,7 @@ snapshots:
 
   typescript@4.9.5: {}
 
-  typescript@5.2.2: {}
+  typescript@5.9.3: {}
 
   ua-parser-js@0.7.33: {}
 
