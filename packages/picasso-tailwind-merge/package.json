@@ -37,6 +37,11 @@
     "@toptal/picasso-tailwind": "4.0.0",
     "@toptal/picasso-test-utils": "2.0.0"
   },
+  "nx": {
+    "implicitDependencies": [
+      "!@toptal/picasso-test-utils"
+    ]
+  },
   "files": [
     "dist-package/**",
     "!dist-package/tsconfig.tsbuildinfo",
