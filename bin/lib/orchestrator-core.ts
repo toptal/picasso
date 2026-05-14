@@ -50,6 +50,7 @@ import * as os from 'node:os'
 import { classifyCIFailure } from './failure-classifier'
 import { classifyReview, type Review as RawReview } from './review-classifier'
 import { appendCostSnapshot } from './token-telemetry'
+import { syncToConfluence } from './confluence-sync'
 import type {
   EscalationDecision,
   GateReport,
@@ -57,6 +58,7 @@ import type {
   ManifestItem,
   OrchestratorOptions,
   RunState,
+  VariantState,
   Workflow,
 } from './workflow'
 
@@ -592,6 +594,107 @@ const manifest = {
 
     return m
   },
+
+  /**
+   * Part 4 (2026-05-14) — multi-variant manifest update. Writes a patch
+   * to `variants[variantId]` (creating the variant slot if needed) AND
+   * mirrors the most-relevant fields to the flat ManifestItem fields for
+   * backward-compat with read paths that haven't been variant-aware
+   * updated yet.
+   *
+   * The mirror is "most recently touched wins" — flat fields always
+   * reflect the variant we just updated. Sweep + future code paths
+   * should prefer reading from `variants[id]` directly via the
+   * `manifest.getVariantState` helper when they know which variant
+   * they're processing.
+   */
+  updateVariant(
+    absPath: string,
+    id: string,
+    variantId: string,
+    patch: Partial<VariantState>
+  ): Manifest {
+    const m = manifest.read(absPath)
+    const current = m.components[id]
+
+    if (!current) {
+      throw new Error(`No manifest entry for ${id}`)
+    }
+    const existingVariants = current.variants ?? {}
+    const existingVariant =
+      existingVariants[variantId] ??
+      manifest.getVariantState(current, variantId)
+    const updatedVariant: VariantState = { ...existingVariant, ...patch }
+
+    m.components[id] = {
+      ...current,
+      // Mirror to flat for backward-compat read paths.
+      status: updatedVariant.status,
+      pr: updatedVariant.pr,
+      branch: updatedVariant.branch,
+      worktree: updatedVariant.worktree,
+      iterations: updatedVariant.iterations,
+      merged_at: updatedVariant.merged_at,
+      escalation_reason: updatedVariant.escalation_reason,
+      last_ci_green_at: updatedVariant.last_ci_green_at,
+      last_review_seen_at: updatedVariant.last_review_seen_at,
+      review_iterations: updatedVariant.review_iterations,
+      session_id: updatedVariant.session_id,
+      awaiting_ci_since: updatedVariant.awaiting_ci_since,
+      // Per-variant slot is authoritative.
+      variants: {
+        ...existingVariants,
+        [variantId]: updatedVariant,
+      },
+    }
+    manifest.write(absPath, m)
+
+    return m
+  },
+
+  /**
+   * Read a specific variant's state. Falls back to the flat ManifestItem
+   * fields (treated as the implicit v1 variant) when `variants` is
+   * absent or doesn't contain `variantId`. Always returns a complete
+   * VariantState (never null).
+   */
+  getVariantState(item: ManifestItem, variantId: string): VariantState {
+    if (item.variants && item.variants[variantId]) {
+      return item.variants[variantId]
+    }
+
+    return {
+      status: item.status,
+      pr: item.pr,
+      branch: item.branch,
+      worktree: item.worktree,
+      iterations: item.iterations,
+      merged_at: item.merged_at,
+      escalation_reason: item.escalation_reason ?? null,
+      last_ci_green_at: item.last_ci_green_at ?? null,
+      last_review_seen_at: item.last_review_seen_at ?? null,
+      review_iterations: item.review_iterations,
+      session_id: item.session_id ?? null,
+      awaiting_ci_since: item.awaiting_ci_since ?? null,
+    }
+  },
+
+  /**
+   * Enumerate all variant ids that are present for an item. Returns
+   * the keys of `variants` if non-empty; otherwise synthesizes `['v1']`
+   * IF the flat fields look like an actual run (pr/branch/worktree set).
+   * Returns empty array for fully-queued items (no runs yet).
+   */
+  listVariantIds(item: ManifestItem): readonly string[] {
+    if (item.variants && Object.keys(item.variants).length > 0) {
+      return Object.keys(item.variants)
+    }
+    if (item.pr || item.branch || item.worktree) {
+      return ['v1']
+    }
+
+    return []
+  },
 }
 
 // ---------------------------------------------------------------------------
@@ -786,6 +889,74 @@ const worktree = {
       return
     }
     await shell('git', ['worktree', 'remove', '--force', worktreePath])
+  },
+
+  /**
+   * Part 4 (2026-05-14): re-create a worktree from an EXISTING remote branch.
+   * Used when sweep needs to engage the agent but the original worktree was
+   * deleted (operator cleanup, `pnpm clean`, etc.). Unlike `worktree.add`
+   * (which creates a NEW branch via `-b`), this method checks out the
+   * already-existing branch via `git fetch origin <branch>` + `git worktree
+   * add <path> origin/<branch>`. After checkout, runs `worktree.bootstrap`
+   * to install node_modules so the agent + gate can iterate.
+   *
+   * Failure mode: if `branch` doesn't exist on origin (e.g. PR was force-
+   * closed and branch deleted), throws — caller should escalate.
+   */
+  async recreate(branch: string, worktreePath: string): Promise<void> {
+    await fs.mkdir(path.dirname(worktreePath), { recursive: true })
+
+    // Fetch the latest remote ref for this branch.
+    const fetchResult = await shell('git', ['fetch', 'origin', branch])
+
+    if (fetchResult.exitCode !== 0) {
+      throw new Error(
+        `worktree.recreate: git fetch origin ${branch} failed — branch may have been deleted: ${
+          fetchResult.stderr || fetchResult.stdout
+        }`
+      )
+    }
+
+    // Defensive: remove any stale worktree path (e.g. partial dir from a
+    // crashed run). worktree.add does the same; we mirror it here.
+    if (existsSync(worktreePath)) {
+      log(
+        'worktree',
+        `pre-existing path ${worktreePath} — removing stale partial`
+      )
+      await shell('git', ['worktree', 'remove', '--force', worktreePath]).catch(
+        () => {
+          /* may not be a registered worktree */
+        }
+      )
+      if (existsSync(worktreePath)) {
+        await fs.rm(worktreePath, { recursive: true, force: true })
+      }
+    }
+
+    // Track origin/<branch> in a new local branch if not present locally;
+    // checkout into the worktree path.
+    const localExists = await shell('git', [
+      'show-ref',
+      '--verify',
+      '--quiet',
+      `refs/heads/${branch}`,
+    ])
+
+    const gitArgs =
+      localExists.exitCode === 0
+        ? ['worktree', 'add', worktreePath, branch]
+        : ['worktree', 'add', '-b', branch, worktreePath, `origin/${branch}`]
+
+    const result = await shell('git', gitArgs)
+
+    if (result.exitCode !== 0) {
+      throw new Error(
+        `worktree.recreate failed: ${result.stderr || result.stdout}`
+      )
+    }
+    log('worktree', `recreated ${worktreePath} from ${branch}`)
+    await this.bootstrap(worktreePath)
   },
 }
 
@@ -2271,6 +2442,22 @@ const agent = {
 // lessons (Tier 1.3: auto-accumulate migration patterns across components)
 // ---------------------------------------------------------------------------
 
+/**
+ * Part 4 (2026-05-14): non-fatal Confluence sync wrapper. Called from
+ * runOne (after PR open + status transition) and sweepOne (after every
+ * iteration that mutates state). Errors are logged and swallowed —
+ * Confluence sync should never block a migration.
+ */
+async function syncConfluence(manifestPath: string): Promise<void> {
+  try {
+    await syncToConfluence(manifestPath, undefined, msg =>
+      log('confluence', msg.replace(/^\[confluence-sync\]\s*/, ''))
+    )
+  } catch (err) {
+    log('confluence', `sync failed (non-fatal): ${(err as Error).message}`)
+  }
+}
+
 const lessons = {
   /**
    * After a successful migration (PR open), spawn a tiny claude subprocess to
@@ -2286,7 +2473,8 @@ const lessons = {
     prUrl: string,
     iterations: number,
     worktreePath: string,
-    rootDir: string
+    rootDir: string,
+    contextLabel?: string
   ): Promise<void> {
     const lessonsAbs = path.join(
       rootDir,
@@ -2338,22 +2526,41 @@ const lessons = {
     //   - runtime `typeof`/`isValidAs` guards (canonical: api-crib §"Don't add runtime typeof guards")
     //   - call-site type casts (canonical: api-crib §"Type alignment at the boundary")
     //   - any pattern already documented in rules/* — point to the rule instead.
-    const extractPrompt =
-      `Below is the END-TO-END diff that migrated component "${item.id}" to ${
-        item.target_path ?? 'a new stack'
-      } and got CI green. ` +
-      `The diff includes both the initial migration AND any CI-fix iterations the agent went through to land green checks. ` +
-      `Extract 2–3 patterns future migrations of OTHER components should reuse. ` +
-      `**Especially valuable: CI-fix patterns** — non-obvious things the agent had to do post-PR-open to make CI pass ` +
-      `(e.g. dependency version policy, project reference adjustments, snapshot regenerations on consumer packages). ` +
-      `These represent learnings the agent didn't know upfront — capturing them means the next migration won't re-discover. ` +
-      `Prefer merge-quality, durable patterns. Avoid prescribing patterns that ` +
-      `human reviewers commonly trim (runtime type guards, sprinkled inline casts) — ` +
-      `if the pattern is already in rules/base-ui-react-api-crib.md or rules/api-preservation.md, ` +
-      `point to the doc section instead of restating the how-to. ` +
-      `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. ` +
-      `No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
-      `\`\`\`diff\n${diffBody}\n\`\`\``
+    // Part 4 (2026-05-14): support review-iteration lessons (separate from
+    // migration-completion lessons). When `contextLabel` is set (e.g.
+    // "review iter 2"), the prompt focuses on patterns from responding to
+    // reviewer feedback; when absent, it's the original CI-green
+    // migration-completion extraction.
+    const isReviewIteration = !!contextLabel?.startsWith('review iter')
+    const extractPrompt = isReviewIteration
+      ? `Below is the diff of a review-driven iteration on the open PR for component "${
+          item.id
+        }" (${item.target_path ?? 'a new stack'}). ` +
+        `The agent received reviewer feedback on the PR and made code edits in response. ` +
+        `Extract 2–3 patterns future migrations should INTERNALIZE so they avoid the same reviewer feedback up-front. ` +
+        `**Especially valuable: review-response patterns** — things the agent had to fix that reviewers consistently flag ` +
+        `(e.g. API surface concerns, idiom mismatches, doc gaps). These represent reviewer expectations the agent didn't ` +
+        `meet on the first pass; future migrations should bake these in from iter 1. ` +
+        `Prefer merge-quality, durable patterns. If the pattern is already in rules/* (api-preservation, base-ui-react-api-crib, styling), ` +
+        `point to the doc section instead of restating the how-to. ` +
+        `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. ` +
+        `No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
+        `\`\`\`diff\n${diffBody}\n\`\`\``
+      : `Below is the END-TO-END diff that migrated component "${item.id}" to ${
+          item.target_path ?? 'a new stack'
+        } and got CI green. ` +
+        `The diff includes both the initial migration AND any CI-fix iterations the agent went through to land green checks. ` +
+        `Extract 2–3 patterns future migrations of OTHER components should reuse. ` +
+        `**Especially valuable: CI-fix patterns** — non-obvious things the agent had to do post-PR-open to make CI pass ` +
+        `(e.g. dependency version policy, project reference adjustments, snapshot regenerations on consumer packages). ` +
+        `These represent learnings the agent didn't know upfront — capturing them means the next migration won't re-discover. ` +
+        `Prefer merge-quality, durable patterns. Avoid prescribing patterns that ` +
+        `human reviewers commonly trim (runtime type guards, sprinkled inline casts) — ` +
+        `if the pattern is already in rules/base-ui-react-api-crib.md or rules/api-preservation.md, ` +
+        `point to the doc section instead of restating the how-to. ` +
+        `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. ` +
+        `No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
+        `\`\`\`diff\n${diffBody}\n\`\`\``
 
     const child = spawn('claude', ['-p', '--allowedTools', 'Read'], {
       cwd: rootDir,
@@ -2381,8 +2588,9 @@ const lessons = {
     }
 
     const date = TODAY()
+    const headingSuffix = contextLabel ? ` (${contextLabel})` : ''
     const entry =
-      `\n## ${item.id} — ${date}\n\n` +
+      `\n## ${item.id} — ${date}${headingSuffix}\n\n` +
       `- Tier ${item.tier} · target_path: \`${
         item.target_path ?? 'none'
       }\` · iterations: ${iterations}\n` +
@@ -2411,12 +2619,18 @@ async function escalate(
   state: RunState,
   decision: EscalationDecision,
   manifestPath: string,
-  rootDir: string
+  rootDir: string,
+  variant = 'v1'
 ): Promise<RunResult> {
   const reason = decision.reason ?? 'unspecified'
 
   log('escalate', `${item.id}: ${reason}`)
-  manifest.update(manifestPath, item.id, {
+  // Part 4 (2026-05-14): route through updateVariant so the variant slot
+  // (variants[variant]) AND flat fields both reflect the terminal state.
+  // Default variant 'v1' preserves backward compatibility for callers
+  // that don't pass an explicit variant — flat fields + variants.v1 stay
+  // in sync.
+  manifest.updateVariant(manifestPath, item.id, variant, {
     status: 'needs_human',
     escalation_reason: reason,
     iterations: state.iterations,
@@ -2579,19 +2793,35 @@ export async function runReviewSweep(
   }
 
   const m = manifest.read(manifestAbs)
-  // Sweep candidates: any item that's been pushed to GitHub and could
-  // have a state change. ready_to_merge items are included so the
-  // operator's manual merge is detected on the next sweep tick (Tier
-  // 2.4: post-merge reference populate).
-  const candidates = Object.values(m.components).filter(
-    i =>
-      (i.status === 'awaiting_review' ||
-        i.status === 'ready_to_merge' ||
-        i.status === 'awaiting_ci') &&
-      i.pr &&
-      i.branch &&
-      i.worktree
-  )
+  // Sweep candidates: enumerate every (component, variant) tuple whose
+  // variant-state is in a sweepable status with a real PR. Pre-Part-4
+  // multi-variant: one entry per component (flat fields). Post-Part-4:
+  // walk variants[] if present, fall back to the implicit v1 from flat
+  // fields when no variants object. ready_to_merge items are included
+  // so the operator's manual merge is detected on the next sweep tick.
+
+  type SweepTarget = {
+    item: ManifestItem
+    variantId: string
+    state: VariantState
+  }
+  const candidates: SweepTarget[] = []
+
+  for (const item of Object.values(m.components)) {
+    const variantIds = manifest.listVariantIds(item)
+
+    for (const variantId of variantIds) {
+      const state = manifest.getVariantState(item, variantId)
+      const sweepable =
+        state.status === 'awaiting_review' ||
+        state.status === 'ready_to_merge' ||
+        state.status === 'awaiting_ci'
+
+      if (sweepable && state.pr && state.branch && state.worktree) {
+        candidates.push({ item, variantId, state })
+      }
+    }
+  }
 
   if (candidates.length === 0) {
     log(
@@ -2602,25 +2832,35 @@ export async function runReviewSweep(
     return { status: 'no-work' }
   }
 
-  log(
-    'sweep',
-    `${candidates.length} item(s) to sweep (awaiting_review / awaiting_ci / ready_to_merge)`
-  )
+  log('sweep', `${candidates.length} (component, variant) target(s) to sweep`)
   let processed = 0
 
-  for (const item of candidates) {
-    if (!(await acquireLock(rootDir, item.id))) {
-      log('sweep', `${item.id}: skip (locked by another run)`)
+  for (const target of candidates) {
+    // Lock key includes variant — multiple variants of the same
+    // component can run concurrent sweep ticks on independent branches.
+    const lockKey = `${target.item.id}:${target.variantId}`
+
+    if (!(await acquireLock(rootDir, lockKey))) {
+      log('sweep', `${lockKey}: skip (locked by another run)`)
       continue
     }
 
     try {
-      await sweepOne(workflow, opts, item, manifestAbs, rootDir)
+      await sweepOne(
+        workflow,
+        opts,
+        target.item,
+        target.variantId,
+        target.state,
+        manifestAbs,
+        rootDir,
+        opts.variant
+      )
       processed += 1
     } catch (err) {
-      log('sweep', `${item.id}: error: ${(err as Error).message}`)
+      log('sweep', `${lockKey}: error: ${(err as Error).message}`)
     } finally {
-      await releaseLock(rootDir, item.id)
+      await releaseLock(rootDir, lockKey)
     }
   }
   log('sweep', `done — processed ${processed}/${candidates.length}`)
@@ -2631,10 +2871,24 @@ export async function runReviewSweep(
 async function sweepOne(
   workflow: Workflow,
   opts: OrchestratorOptions,
-  item: ManifestItem,
+  itemRaw: ManifestItem,
+  variantId: string,
+  state: VariantState,
   manifestAbs: string,
   rootDir: string
 ): Promise<void> {
+  // Part 4 (2026-05-14): multi-variant sweep. `state` is the per-variant
+  // slice authoritative for this tick; `itemRaw` retains component-level
+  // fields (tier, package, depends_on). For backward-compat with the
+  // body of sweepOne (which extensively reads item.status, item.pr, etc.
+  // as if they were the active variant), we build a view that merges
+  // state over itemRaw — sweepOne's existing code paths work unchanged.
+  // Manifest writes route to `manifest.updateVariant(..., variantId, ...)`
+  // so the per-variant slot stays authoritative.
+  const item: ManifestItem = { ...itemRaw, ...state }
+  const updateForVariant = (patch: Partial<VariantState>) =>
+    manifest.updateVariant(manifestAbs, item.id, variantId, patch)
+
   // Worktrees from older runs can disappear (operator cleanup, disk space
   // sweep, git worktree prune). The manifest still references them. gh-driven
   // operations don't actually need a local worktree — they query GitHub by
@@ -2642,7 +2896,9 @@ async function sweepOne(
   // git-driven operations later in the flow will still fail cleanly if they
   // really need the worktree.
   const declaredWtPath = path.join(rootDir, item.worktree as string)
-  const wtPath = existsSync(declaredWtPath) ? declaredWtPath : rootDir
+  // `wtPath` starts pointing at declared path if it exists, else rootDir
+  // fallback. May be reassigned below if we auto-recreate the worktree.
+  let wtPath = existsSync(declaredWtPath) ? declaredWtPath : rootDir
 
   if (wtPath !== declaredWtPath) {
     log(
@@ -2660,7 +2916,7 @@ async function sweepOne(
     .catch(() => null)) as { state?: string; mergedAt?: string | null } | null
 
   if (prState?.state === 'MERGED') {
-    manifest.update(manifestAbs, item.id, {
+    updateForVariant({
       status: 'done',
       merged_at: prState.mergedAt ?? ISO(),
     })
@@ -2684,7 +2940,7 @@ async function sweepOne(
   if (prState?.state === 'CLOSED') {
     // PR closed without merge — operator decided not to ship. Mark
     // blocked so subsequent sweeps don't keep checking.
-    manifest.update(manifestAbs, item.id, {
+    updateForVariant({
       status: 'blocked',
       escalation_reason: 'PR closed without merge',
     })
@@ -2728,7 +2984,7 @@ async function sweepOne(
           checks.failed.length
         } check(s), mergeStateStatus=${checks.mergeStateStatus ?? '?'})`
       )
-      manifest.update(manifestAbs, item.id, { status: 'awaiting_review' })
+      updateForVariant({ status: 'awaiting_review' })
       // Fall through so the agent engages on the failure this tick.
       ciFailureContext = checks.failed
     } else {
@@ -2738,7 +2994,7 @@ async function sweepOne(
           checks.mergeStateStatus ?? '?'
         }, ${checks.pending.length} reported check(s) pending)`
       )
-      manifest.update(manifestAbs, item.id, {
+      updateForVariant({
         status: 'awaiting_ci',
         awaiting_ci_since: new Date().toISOString(),
       })
@@ -2768,7 +3024,7 @@ async function sweepOne(
           'sweep',
           `${item.id}: awaiting_ci → needs_human (stuck for ${ageHours}h; 24h max-age cap)`
         )
-        manifest.update(manifestAbs, item.id, {
+        updateForVariant({
           status: 'needs_human',
           escalation_reason: `awaiting_ci > 24h (${ageHours}h since ${item.awaiting_ci_since})`,
         })
@@ -2781,7 +3037,7 @@ async function sweepOne(
 
     if (checks.state === 'success') {
       // Clear the awaiting_ci timestamp now that CI greened up.
-      manifest.update(manifestAbs, item.id, {
+      updateForVariant({
         status: 'ready_to_merge',
         awaiting_ci_since: null,
       })
@@ -2818,7 +3074,7 @@ async function sweepOne(
         checks.mergeStateStatus ?? '?'
       }) — handing back to agent for fixes`
     )
-    manifest.update(manifestAbs, item.id, {
+    updateForVariant({
       status: 'awaiting_review',
       awaiting_ci_since: null,
     })
@@ -2830,18 +3086,62 @@ async function sweepOne(
   // enforces zero-diff or designer-accepted via the Happo REST API
   // BEFORE the orchestrator opens a PR; flake retries are unnecessary.)
 
-  // Worktree must still exist for review-driven iteration; if not,
-  // escalate (extending sweep to re-create worktrees is out of scope
-  // for the first cut — operator can manually re-create or run migrate
-  // again).
+  // Part 4 (2026-05-14): if worktree missing, attempt auto-recreation
+  // from the existing remote branch. Sweep needs a real local worktree
+  // to engage the agent for source edits (reviewer feedback / CI fix).
+  // Pre-Part 4: missing worktree → needs_human escalation. Now: fetch
+  // origin/<branch>, recreate worktree, bootstrap node_modules, continue.
+  // Falls back to escalate only if recreate fails (branch deleted on
+  // remote, fetch error, etc.).
   if (!existsSync(wtPath)) {
-    manifest.update(manifestAbs, item.id, {
-      status: 'needs_human',
-      escalation_reason: `worktree missing at ${item.worktree}; sweep cannot iterate`,
-    })
-    log('sweep', `${item.id}: worktree missing; escalated`)
+    const declaredBranch = item.branch as string
 
-    return
+    log(
+      'sweep',
+      `${item.id}: worktree missing at ${item.worktree}; attempting auto-recreate from ${declaredBranch}`
+    )
+
+    try {
+      await worktree.recreate(declaredBranch, declaredWtPath)
+      log('sweep', `${item.id}: worktree recreated successfully`)
+      // Refresh wtPath now that the declared worktree path is live again.
+      wtPath = declaredWtPath
+    } catch (err) {
+      updateForVariant({
+        status: 'needs_human',
+        escalation_reason: `worktree missing at ${
+          item.worktree
+        }, auto-recreate failed: ${(err as Error).message}`,
+      })
+      log('sweep', `${item.id}: worktree recreate failed; escalated`)
+
+      return
+    }
+  }
+
+  // Part 4 (2026-05-14): for `awaiting_review` items, also re-check CI
+  // before processing reviews. Previously sweep only inspected CI when
+  // status was `ready_to_merge` or `awaiting_ci` — items in
+  // `awaiting_review` had their CI failures silently ignored (a Happo
+  // rejection from designer, e.g., never triggered agent iteration).
+  //
+  // Now: any sweep tick on an awaiting_review item also snapshots CI.
+  // If failing, populate ciFailureContext so the agent engages on the
+  // failures even when there are no new review comments. Bug surface
+  // observed on Slider PR #4955: designer rejected Happo Storybook diffs;
+  // sweep ignored because no new reviews + no CI re-check for this status.
+  if (item.status === 'awaiting_review' && !ciFailureContext) {
+    const checks = await gh.snapshotChecks(prUrl, wtPath)
+
+    if (checks.state === 'failure' && checks.failed.length > 0) {
+      log(
+        'sweep',
+        `${item.id}: awaiting_review + CI failing (${checks.failed
+          .map(c => c.name)
+          .join(', ')}) — engaging agent on failures`
+      )
+      ciFailureContext = checks.failed
+    }
   }
 
   // Fetch reviews. Filter to those newer than last_review_seen_at via
@@ -3001,7 +3301,7 @@ async function sweepOne(
     //   failure → don't transition; ciFailureContext is already set
     //     (populated when `checks` was taken above), agent will engage.
     if (checks.state === 'success') {
-      manifest.update(manifestAbs, item.id, {
+      updateForVariant({
         status: 'ready_to_merge',
         last_review_seen_at: nowIso,
       })
@@ -3018,7 +3318,7 @@ async function sweepOne(
     }
 
     if (checks.state === 'timeout') {
-      manifest.update(manifestAbs, item.id, {
+      updateForVariant({
         status: 'awaiting_ci',
         last_review_seen_at: nowIso,
       })
@@ -3199,7 +3499,7 @@ async function sweepOne(
   if (agentResult.exitCode !== 0) {
     const noProgressReason = await detectNoProgressFailure(agentLogPath)
 
-    manifest.update(manifestAbs, item.id, {
+    updateForVariant({
       status: 'needs_human',
       escalation_reason: noProgressReason
         ? `review-iter agent ${noProgressReason}`
@@ -3255,7 +3555,7 @@ async function sweepOne(
     )
 
     if (pushResult.exitCode !== 0) {
-      manifest.update(manifestAbs, item.id, {
+      updateForVariant({
         status: 'needs_human',
         escalation_reason: `review-iter push failed: ${pushResult.stderr}`,
         last_review_seen_at: nowIso,
@@ -3267,6 +3567,27 @@ async function sweepOne(
       'sweep',
       `${item.id}: pushed code changes; CI will re-evaluate; status remains awaiting_review`
     )
+
+    // Part 4 (2026-05-14): capture review-iteration lessons. The agent
+    // just landed source edits in response to reviewer feedback —
+    // future migrations should internalize these patterns to avoid the
+    // same review nits up-front. Non-fatal on error.
+    try {
+      await lessons.append(
+        workflow,
+        item,
+        prUrl,
+        reviewIters,
+        wtPath,
+        rootDir,
+        `review iter ${reviewIters}`
+      )
+    } catch (err) {
+      log(
+        'lessons',
+        `review-iter append failed (non-fatal): ${(err as Error).message}`
+      )
+    }
   } else {
     // No commit — agent replied without editing (MEDIUM/LOW confidence),
     // OR agent decided the comment didn't warrant action. Replies are
@@ -3281,11 +3602,14 @@ async function sweepOne(
 
   // Persist iteration state. Status remains awaiting_review — next sweep
   // checks for fresh reviews after CI re-runs.
-  manifest.update(manifestAbs, item.id, {
+  updateForVariant({
     review_iterations: reviewIters,
     last_review_seen_at: nowIso,
     session_id: sessionId,
   })
+
+  // Part 4 (2026-05-14): Confluence status sync — non-fatal.
+  await syncConfluence(manifestAbs)
 }
 
 export async function run(
@@ -3484,8 +3808,15 @@ export async function run(
   // dry-run, etc.) triggers Storybook cleanup. There are 17 return points
   // below; try/finally is the only sane way to handle them uniformly.
   try {
+    // Part 4 (2026-05-14): variant-aware manifest update closure. Writes
+    // are routed to variants[opts.variant] slot + mirrored to flat fields
+    // for backward-compat. Every manifest.update call inside run() goes
+    // through this so the variant slot stays in sync with flat fields.
+    const updateForVariant = (patch: Partial<VariantState>) =>
+      manifest.updateVariant(manifestAbs, item.id, opts.variant, patch)
+
     // Step 5: manifest update.
-    manifest.update(manifestAbs, item.id, {
+    updateForVariant({
       status: 'in_progress',
       branch,
       worktree: path.relative(rootDir, wtPath),
@@ -3516,7 +3847,8 @@ export async function run(
         },
         { shouldEscalate: true, reason: 'pre-state snapshot failed' },
         manifestAbs,
-        rootDir
+        rootDir,
+        opts.variant
       )
     }
 
@@ -3580,7 +3912,8 @@ export async function run(
             reason: 'Storybook failed to start within 60s',
           },
           manifestAbs,
-          rootDir
+          rootDir,
+          opts.variant
         )
       }
       log('loop', 'Storybook ready at http://localhost:9001')
@@ -3687,7 +4020,8 @@ export async function run(
               reason: `agent failure not retry-recoverable: ${noProgressReason}`,
             },
             manifestAbs,
-            rootDir
+            rootDir,
+            opts.variant
           )
         }
 
@@ -3705,7 +4039,7 @@ export async function run(
 
       state.lastGate = gateReport
       state.gateHistory = [...state.gateHistory, gateReport]
-      manifest.update(manifestAbs, item.id, { iterations: state.iterations })
+      updateForVariant({ iterations: state.iterations })
 
       if (workflow.successCriteria(gateReport)) {
         log('loop', `gates pass on iteration ${state.iterations}`)
@@ -3724,7 +4058,15 @@ export async function run(
       const decision = workflow.escalationCriteria(state)
 
       if (decision.shouldEscalate) {
-        return escalate(workflow, item, state, decision, manifestAbs, rootDir)
+        return escalate(
+          workflow,
+          item,
+          state,
+          decision,
+          manifestAbs,
+          rootDir,
+          opts.variant
+        )
       }
     }
 
@@ -3738,7 +4080,8 @@ export async function run(
           reason: `gate did not pass after ${opts.maxIterations} iterations`,
         },
         manifestAbs,
-        rootDir
+        rootDir,
+        opts.variant
       )
     }
 
@@ -3789,7 +4132,8 @@ export async function run(
           }`,
         },
         manifestAbs,
-        rootDir
+        rootDir,
+        opts.variant
       )
     }
 
@@ -3809,7 +4153,8 @@ export async function run(
           reason: `git push failed: ${pushResult.stderr}`,
         },
         manifestAbs,
-        rootDir
+        rootDir,
+        opts.variant
       )
     }
 
@@ -3833,7 +4178,7 @@ export async function run(
       assignees: workflow.assignees,
     })
 
-    manifest.update(manifestAbs, item.id, { pr: prUrl })
+    updateForVariant({ pr: prUrl })
 
     // Lessons-learned append moved post-CI (2026-05-07). Previously this
     // ran right after PR-open, which captured ONLY the initial migration
@@ -3896,7 +4241,7 @@ export async function run(
       const reason = `CI timeout after ${ciTimeout}min; pending: ${pendingNames}`
 
       log('ci', `${item.id}: in_progress → awaiting_ci (${reason})`)
-      manifest.update(manifestAbs, item.id, {
+      updateForVariant({
         status: 'awaiting_ci',
         awaiting_ci_since: new Date().toISOString(),
         escalation_reason: null,
@@ -4047,7 +4392,7 @@ export async function run(
             )
           }
 
-          manifest.update(manifestAbs, item.id, {
+          updateForVariant({
             status: 'awaiting_review',
             iterations: state.iterations,
             escalation_reason: null,
@@ -4071,7 +4416,8 @@ export async function run(
             reason: `CI iteration stuck: same failure-set after ${ciIteration} cycles (${stuckOn})`,
           },
           manifestAbs,
-          rootDir
+          rootDir,
+          opts.variant
         )
       }
       lastFailureSet = failureSet
@@ -4101,7 +4447,8 @@ export async function run(
             })`,
           },
           manifestAbs,
-          rootDir
+          rootDir,
+          opts.variant
         )
       }
 
@@ -4248,7 +4595,8 @@ export async function run(
               reason: `agent invocation failed during CI iteration: exit ${agentResult.exitCode}`,
             },
             manifestAbs,
-            rootDir
+            rootDir,
+            opts.variant
           )
         }
 
@@ -4282,7 +4630,8 @@ export async function run(
             reason: 'no actionable CI classifications; aborting',
           },
           manifestAbs,
-          rootDir
+          rootDir,
+          opts.variant
         )
       }
 
@@ -4326,7 +4675,8 @@ export async function run(
               reason: `git push failed during CI iteration: ${pushResult.stderr}`,
             },
             manifestAbs,
-            rootDir
+            rootDir,
+            opts.variant
           )
         }
         const what = [
@@ -4385,7 +4735,8 @@ export async function run(
           } iterations: ${pollResult.failed.map(c => c.name).join(', ')}`,
         },
         manifestAbs,
-        rootDir
+        rootDir,
+        opts.variant
       )
     }
 
@@ -4403,7 +4754,7 @@ export async function run(
     // Per operator preference: orchestrator NEVER auto-merges. Approval
     // signal moves the item to `ready_to_merge` and stops; operator runs
     // `gh pr merge` manually.
-    manifest.update(manifestAbs, item.id, {
+    updateForVariant({
       status: 'awaiting_review',
       last_ci_green_at: ISO(),
       session_id: sessionId,
@@ -4427,6 +4778,9 @@ export async function run(
     } catch (err) {
       log('lessons', `append failed (non-fatal): ${(err as Error).message}`)
     }
+
+    // Part 4 (2026-05-14): Confluence status sync — non-fatal.
+    await syncConfluence(manifestAbs)
 
     await releaseLock(rootDir, item.id)
 

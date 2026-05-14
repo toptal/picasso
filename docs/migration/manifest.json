@@ -16,8 +16,8 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 1,
-      "last_review_seen_at": "2026-05-13T08:21:29.875Z",
+      "review_iterations": 2,
+      "last_review_seen_at": "2026-05-14T09:34:38.355Z",
       "session_id": "7fa7812a-804e-4745-911a-58257c9628ee"
     },
     "Badge": {
@@ -38,7 +38,7 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "ready_to_merge",
+      "status": "needs_human",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
       "versionBump": "major",
@@ -50,8 +50,8 @@
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Reference for the light path; verify status before scaling.",
       "last_ci_green_at": "2026-05-08T07:02:21.508Z",
       "session_id": "79714792-6765-420a-9660-f1385fda0739",
-      "last_review_seen_at": "2026-05-11T13:06:16.529Z",
-      "escalation_reason": null,
+      "last_review_seen_at": "2026-05-14T09:38:57.092Z",
+      "escalation_reason": "review-iter agent exited 1",
       "review_iterations": 7
     },
     "Drawer": {
@@ -88,7 +88,7 @@
     "Slider": {
       "tier": 0,
       "package": "packages/base/Slider",
-      "status": "needs_human",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "@base-ui/react/slider",
       "versionBump": "major",
@@ -97,7 +97,7 @@
       "worktree": "migration-runs/2026-05-13/Slider/worktree",
       "iterations": 1,
       "merged_at": null,
-      "escalation_reason": "CI timeout after 60min; pending: Integration Tests / Run Integration Tests (2), Happo (Picasso/Cypress)"
+      "escalation_reason": null
     },
     "Switch": {
       "tier": 0,
