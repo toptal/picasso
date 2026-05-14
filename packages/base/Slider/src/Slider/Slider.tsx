@@ -191,7 +191,7 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    'mt-[0.5px] outline-0 absolute transition-shadow cursor-pointer',
+    'outline-0 absolute transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
 
@@ -218,8 +218,8 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
         id={id}
         className='block cursor-pointer width-full relative py-[6px] -my-[6px]'
       >
-        <BaseUISlider.Control className='block absolute inset-0'>
-          <BaseUISlider.Track className='block absolute w-full h-[1px] top-1/2 rounded-none bg-gray-500/[0.24]'>
+        <BaseUISlider.Control className='block absolute top-0 left-0 right-0 h-[13px]'>
+          <BaseUISlider.Track className='block absolute w-full h-[1px] top-1/2 -translate-y-1/2 rounded-none bg-gray-500/[0.24]'>
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',

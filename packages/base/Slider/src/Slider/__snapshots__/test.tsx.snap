@@ -12,12 +12,12 @@ exports[`Slider renders 1`] = `
       role="group"
     >
       <div
-        class="block absolute inset-0"
+        class="block absolute top-0 left-0 right-0 h-[13px]"
         data-orientation="horizontal"
         tabindex="-1"
       >
         <div
-          class="block absolute w-full h-[1px] top-1/2 rounded-none bg-gray"
+          class="block absolute w-full h-[1px] top-1/2 -translate-y rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -28,7 +28,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white mt-[0.5px] outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -75,12 +75,12 @@ exports[`Slider with initial value 1`] = `
       role="group"
     >
       <div
-        class="block absolute inset-0"
+        class="block absolute top-0 left-0 right-0 h-[13px]"
         data-orientation="horizontal"
         tabindex="-1"
       >
         <div
-          class="block absolute w-full h-[1px] top-1/2 rounded-none bg-gray"
+          class="block absolute w-full h-[1px] top-1/2 -translate-y rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -91,7 +91,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white mt-[0.5px] outline-0 absolute transition-shadow cursor-pointer"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
