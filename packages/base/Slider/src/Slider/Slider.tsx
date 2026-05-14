@@ -1,4 +1,3 @@
-import type { FocusEventHandler } from 'react'
 import React, { forwardRef, useRef } from 'react'
 import { Slider as BaseUISlider } from '@base-ui/react/slider'
 import type { SliderRootChangeEventDetails } from '@base-ui/react/slider'
@@ -164,21 +163,12 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       return
     }
 
-    const normalizedValue = Array.isArray(newValue)
+    const normalizedValue: number | number[] = Array.isArray(newValue)
       ? [...newValue]
       : (newValue as number)
 
-    onChange(
-      eventDetails.event as unknown as Event,
-      normalizedValue,
-      eventDetails.activeThumbIndex
-    )
+    onChange(eventDetails.event, normalizedValue, eventDetails.activeThumbIndex)
   }
-
-  const handleFocus = onFocus as
-    | FocusEventHandler<HTMLInputElement>
-    | undefined
-  const handleBlur = onBlur as FocusEventHandler<HTMLInputElement> | undefined
 
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
@@ -241,8 +231,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
                 key={`thumb-${index}`}
                 index={index}
                 id={thumbId}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 className={thumbClassName}
               >
                 <SliderValueLabel
@@ -262,8 +252,8 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
             <BaseUISlider.Thumb
               index={0}
               id={id}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
+              onFocus={onFocus}
+              onBlur={onBlur}
               className={thumbClassName}
             />
           )}
