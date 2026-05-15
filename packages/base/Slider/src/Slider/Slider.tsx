@@ -178,7 +178,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   )
 
   const indicatorClassName = twJoin(
-    'block h-[1px]',
+    'block !absolute h-[1px]',
     disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
   )
 
@@ -204,10 +204,9 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         onValueChange={handleValueChange}
         className='block cursor-pointer w-full relative py-[6px] -my-[6px]'
       >
-        <BaseUISlider.Control className='block w-full relative h-[1px]'>
-          <BaseUISlider.Track className='block absolute w-full h-[1px] rounded-none bg-gray-500/[0.24]'>
-            <BaseUISlider.Indicator className={indicatorClassName} />
-          </BaseUISlider.Track>
+        <BaseUISlider.Control className='block w-full relative h-[1px] -mb-[1px]'>
+          <BaseUISlider.Track className='block !absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500' />
+          <BaseUISlider.Indicator className={indicatorClassName} />
           {marks &&
             markPositions.map((markValue, index) => (
               <SliderMark

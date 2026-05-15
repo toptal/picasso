@@ -12,20 +12,19 @@ exports[`Slider renders 1`] = `
       role="group"
     >
       <div
-        class="block w-full relative h-[1px]"
+        class="block w-full relative h-[1px] -mb"
         data-orientation="horizontal"
       >
         <div
-          class="block absolute w-full h-[1px] rounded-none bg-gray"
+          class="block !absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
-        >
-          <div
-            class="block h-[1px] bg-blue"
-            data-orientation="horizontal"
-            style="position: relative; height: inherit; inset-inline-start: 0; width: 0%;"
-          />
-        </div>
+        />
+        <div
+          class="block !absolute h-[1px] bg-blue"
+          data-orientation="horizontal"
+          style="position: relative; height: inherit; inset-inline-start: 0; width: 0%;"
+        />
         <div
           class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[1.5px]"
           data-index="0"
@@ -72,20 +71,19 @@ exports[`Slider with initial value 1`] = `
       role="group"
     >
       <div
-        class="block w-full relative h-[1px]"
+        class="block w-full relative h-[1px] -mb"
         data-orientation="horizontal"
       >
         <div
-          class="block absolute w-full h-[1px] rounded-none bg-gray"
+          class="block !absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
-        >
-          <div
-            class="block h-[1px] bg-blue"
-            data-orientation="horizontal"
-            style="position: relative; height: inherit; inset-inline-start: 0; width: 4%;"
-          />
-        </div>
+        />
+        <div
+          class="block !absolute h-[1px] bg-blue"
+          data-orientation="horizontal"
+          style="position: relative; height: inherit; inset-inline-start: 0; width: 4%;"
+        />
         <div
           class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[1.5px]"
           data-index="0"
