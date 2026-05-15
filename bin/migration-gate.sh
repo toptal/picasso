@@ -414,7 +414,7 @@ elif [ -z "${HAPPO_API_KEY:-}" ] || [ -z "${HAPPO_API_SECRET:-}" ]; then
   } | tee -a "$RUN_DIR/console.log"
   run_stage_fail "happo" "HAPPO_API_KEY/HAPPO_API_SECRET unset — required for migration. See docs/migration/ORCHESTRATOR.md §Happo setup."
 else
-  # 6a. Run Happo CLI — uploads screenshots + creates the report.
+  # 6a. Run Happo CLI — uploads screenshots + creates the report for HEAD.
   HAPPO_LOG="$RUN_DIR/happo.log"
   HAPPO_STARTED=$(date +%s)
 
@@ -425,56 +425,81 @@ else
     HAPPO_CLI_OK=0
   fi
 
-  # 6b. Extract the report SHA / URL from Happo CLI output. Happo prints a
-  # line like "Report URL: https://happo.io/a/<account>/p/<project>/compare/<sha1>/<sha2>"
-  # OR similar; the exact format may vary by version. Try multiple patterns.
-  REPORT_URL=$(grep -Eo 'https://happo\.io/[a-zA-Z0-9/_-]+/(?:compare|reports?)/[a-zA-Z0-9/-]+' "$HAPPO_LOG" 2>/dev/null | head -1)
-  REPORT_SHA=$(echo "$REPORT_URL" | grep -Eo '[a-f0-9]{40}' | tail -1)
-
+  # 6b. Verify Happo diffs deterministically via the API. This replaces
+  # the earlier regex-extract-then-summarize path (which silently
+  # rubber-stamped Happo as PASS when the regex didn't match the CLI's
+  # actual output — Slider PR #4955: 8 real diffs persisted while local
+  # gate said PASS). `bin/lib/happo-verify.ts` derives (headSha, baseSha,
+  # accountId, projectId) from local git + workflow config + Happo API,
+  # then queries the compare-results endpoint for the exact diff count.
+  #
+  # Required env vars (sourced from workflow / .envrc):
+  #   HAPPO_BASE_BRANCH         — e.g. "feature/picasso-modernization-temp"
+  #   HAPPO_ACCOUNT_ID          — "675" (Picasso)
+  #   HAPPO_STORYBOOK_PROJECT_ID — "1189"
+  #   HAPPO_CYPRESS_PROJECT_ID  — "848"
+  # The orchestrator's `runGate` (bin/lib/orchestrator-core.ts) sets these
+  # before invoking us. Local manual runs can export them too.
   HAPPO_STATUS="PASS"
   HAPPO_REASON=""
 
   if [ "$HAPPO_CLI_OK" -ne 1 ]; then
     HAPPO_STATUS="FAIL"
     HAPPO_REASON="happo CLI failed; see $HAPPO_LOG"
-  elif [ -z "$REPORT_SHA" ]; then
-    # Couldn't extract a SHA from CLI output — log + best-effort PASS.
-    echo "  [happo-strict] could not extract report SHA from CLI output; treating as PASS" \
+  elif [ -z "${HAPPO_BASE_BRANCH:-}" ] || [ -z "${HAPPO_ACCOUNT_ID:-}" ] || [ -z "${HAPPO_STORYBOOK_PROJECT_ID:-}" ]; then
+    echo "  [happo-strict] HAPPO_BASE_BRANCH/HAPPO_ACCOUNT_ID/HAPPO_STORYBOOK_PROJECT_ID not set; cannot verify deterministically — treating as PASS (orchestrator should export these)" \
       | tee -a "$RUN_DIR/console.log"
   else
-    # 6c. Query Happo REST API for diff summary.
-    SUMMARY_JSON=$(curl -sf -u "$HAPPO_API_KEY:$HAPPO_API_SECRET" \
-      "https://happo.io/api/reports/$REPORT_SHA/summary" 2>>"$HAPPO_LOG")
-    CURL_OK=$?
+    # Run the TS verifier; capture JSON output. Exit codes:
+    #   0 — PASS or NO_BASELINE (best-effort PASS when baseline missing)
+    #   1 — FAIL (gate stage fails; sweep loop iter N+1 engages)
+    #   2 — ERROR (verifier itself broke; loud FAIL)
+    VERIFY_OUT_FILE="$RUN_DIR/happo-verify.json"
 
-    if [ $CURL_OK -ne 0 ]; then
-      echo "  [happo-strict] API call failed (curl exit $CURL_OK); treating as PASS, see $HAPPO_LOG" \
-        | tee -a "$RUN_DIR/console.log"
-    elif [ -z "$SUMMARY_JSON" ]; then
-      echo "  [happo-strict] empty API response; treating as PASS" \
-        | tee -a "$RUN_DIR/console.log"
-    else
-      # Parse with conservative jq — fall back to PASS if shape unknown.
-      DIFFS_TOTAL=$(echo "$SUMMARY_JSON" | jq -r '.diffsTotal // .summary.diffs // 0' 2>/dev/null)
-      UNRESOLVED=$(echo "$SUMMARY_JSON" \
-        | jq -r '[.diffs[]? | select((.status // "unreviewed") != "accepted")] | length' \
-        2>/dev/null)
+    echo "  [happo-strict] verifying via happo-verify.ts (account=$HAPPO_ACCOUNT_ID project=Picasso/Storybook base=$HAPPO_BASE_BRANCH component=${COMPONENT##*/})" \
+      | tee -a "$RUN_DIR/console.log"
 
-      # Numeric guards (jq might return "null" or empty on schema drift).
-      [ -z "$DIFFS_TOTAL" ] || ! [ "$DIFFS_TOTAL" -eq "$DIFFS_TOTAL" ] 2>/dev/null && DIFFS_TOTAL=0
-      [ -z "$UNRESOLVED" ] || ! [ "$UNRESOLVED" -eq "$UNRESOLVED" ] 2>/dev/null && UNRESOLVED=0
+    # Resolve happo-verify.ts relative to this script's location so the
+    # gate (which the orchestrator now invokes via absolute path — see
+    # orchestrator-core.ts gate.run rewriter) finds the sibling library.
+    # Hardcoded paths would break when developers clone elsewhere.
+    GATE_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    pnpm exec tsx "$GATE_SCRIPT_DIR/lib/happo-verify.ts" \
+      --worktree="$(pwd)" \
+      --base-branch="$HAPPO_BASE_BRANCH" \
+      --account-id="$HAPPO_ACCOUNT_ID" \
+      --project-id="$HAPPO_STORYBOOK_PROJECT_ID" \
+      --project-label="Picasso/Storybook" \
+      --component="${COMPONENT##*/}" \
+      > "$VERIFY_OUT_FILE" 2>>"$HAPPO_LOG"
+    VERIFY_EXIT=$?
 
-      echo "  [happo-strict] diffsTotal=$DIFFS_TOTAL, unresolved=$UNRESOLVED" \
-        | tee -a "$RUN_DIR/console.log"
-      echo "  [happo-strict] report: $REPORT_URL" | tee -a "$RUN_DIR/console.log"
+    VERIFY_STATUS=$(jq -r '.status // "ERROR"' "$VERIFY_OUT_FILE" 2>/dev/null || echo "ERROR")
+    VERIFY_REASON=$(jq -r '.reason // ""' "$VERIFY_OUT_FILE" 2>/dev/null)
+    VERIFY_REPORT_URL=$(jq -r '.reportUrl // ""' "$VERIFY_OUT_FILE" 2>/dev/null)
+    VERIFY_COMPONENT_DIFFS=$(jq -r '.componentDiffs // 0' "$VERIFY_OUT_FILE" 2>/dev/null)
+    VERIFY_UNRELATED_DIFFS=$(jq -r '.unrelatedDiffs // 0' "$VERIFY_OUT_FILE" 2>/dev/null)
 
-      if [ "$DIFFS_TOTAL" -eq 0 ] || [ "$UNRESOLVED" -eq 0 ]; then
-        HAPPO_STATUS="PASS"
-      else
-        HAPPO_STATUS="FAIL"
-        HAPPO_REASON="$UNRESOLVED unresolved Happo diffs — designer review needed at $REPORT_URL"
-      fi
+    echo "  [happo-strict] status=$VERIFY_STATUS componentDiffs=$VERIFY_COMPONENT_DIFFS unrelatedDiffs=$VERIFY_UNRELATED_DIFFS" \
+      | tee -a "$RUN_DIR/console.log"
+
+    if [ -n "$VERIFY_REPORT_URL" ]; then
+      echo "  [happo-strict] report: $VERIFY_REPORT_URL" | tee -a "$RUN_DIR/console.log"
     fi
+
+    case "$VERIFY_STATUS" in
+      PASS|NO_BASELINE)
+        HAPPO_STATUS="PASS"
+        ;;
+      FAIL)
+        HAPPO_STATUS="FAIL"
+        HAPPO_REASON="$VERIFY_COMPONENT_DIFFS unresolved Happo diff(s) on migrated component ${COMPONENT##*/} — see report $VERIFY_REPORT_URL (verifier output: $VERIFY_OUT_FILE)"
+        ;;
+      *)
+        HAPPO_STATUS="FAIL"
+        HAPPO_REASON="happo-verify ERROR (exit $VERIFY_EXIT): ${VERIFY_REASON:-unknown}"
+        ;;
+    esac
   fi
 
   HAPPO_ELAPSED=$(( $(date +%s) - HAPPO_STARTED ))

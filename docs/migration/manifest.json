@@ -78,7 +78,7 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "awaiting_review",
+      "status": "ready_to_merge",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
       "versionBump": "major",
@@ -90,10 +90,27 @@
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Reference for the light path; verify status before scaling.",
       "last_ci_green_at": "2026-05-08T07:02:21.508Z",
       "session_id": "79714792-6765-420a-9660-f1385fda0739",
-      "last_review_seen_at": "2026-05-14T09:38:57.092Z",
+      "last_review_seen_at": "2026-05-15T08:16:22.072Z",
       "escalation_reason": null,
       "review_iterations": 7,
-      "review_iter_failures": 0
+      "review_iter_failures": 0,
+      "awaiting_ci_since": null,
+      "variants": {
+        "v1": {
+          "status": "ready_to_merge",
+          "pr": "https://github.com/toptal/picasso/pull/4947",
+          "branch": "migrate-Button",
+          "worktree": "migration-runs/2026-05-08/Button/worktree",
+          "iterations": 1,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": "2026-05-08T07:02:21.508Z",
+          "last_review_seen_at": "2026-05-15T08:16:22.072Z",
+          "review_iterations": 7,
+          "session_id": "79714792-6765-420a-9660-f1385fda0739",
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Drawer": {
       "tier": 0,
@@ -140,8 +157,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-14T22:24:24.400Z",
-      "review_iterations": 3,
+      "last_review_seen_at": "2026-05-15T10:25:45.678Z",
+      "review_iterations": 5,
       "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
       "awaiting_ci_since": null,
       "variants": {
@@ -154,8 +171,8 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-14T22:24:24.400Z",
-          "review_iterations": 3,
+          "last_review_seen_at": "2026-05-15T10:25:45.678Z",
+          "review_iterations": 5,
           "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
           "awaiting_ci_since": null
         }
