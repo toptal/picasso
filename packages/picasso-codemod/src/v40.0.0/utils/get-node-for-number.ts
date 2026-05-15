@@ -1,3 +1,5 @@
+import type { NumericLiteral } from 'jscodeshift'
+
 import type { TransformationOptions } from '../types'
 
 export const NUMERIC_VALUE_TO_SPACING_CONSTANTS = [
@@ -13,7 +15,7 @@ export const NUMERIC_VALUE_TO_SPACING_CONSTANTS = [
 ]
 
 export const getNodeForNumber = (
-  node: any,
+  node: NumericLiteral,
   { api, reportManuallyFixableCase, addSpacingImport }: TransformationOptions
 ) => {
   const numericValue = node.value

@@ -4,6 +4,7 @@ import type {
   ButtonHTMLAttributes,
   ElementType,
   ComponentPropsWithRef,
+  RefAttributes,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -60,6 +61,7 @@ export interface OverridableComponent<P = {}> extends NamedComponent<P> {
   <T extends ElementType = ElementType<Omit<P, 'as'>>>(
     props: PropsWithOverridableAs<T, P>
   ): JSX.Element | null
+  <R = unknown>(props: P & RefAttributes<R>): JSX.Element | null
 }
 
 type BaseEnvironments = 'development' | 'staging' | 'production'

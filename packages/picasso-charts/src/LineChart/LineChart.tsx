@@ -297,9 +297,11 @@ export const LineChart = ({
                 allowTooltipEscapeViewBox ? positionOverride : undefined
               }
               content={customTooltip}
-              ref={(node: any) =>
-                (tooltipRef.current = node?.wrapperNode || null)
-              }
+              ref={node => {
+                tooltipRef.current =
+                  (node as { wrapperNode?: HTMLDivElement | null } | null)
+                    ?.wrapperNode ?? null
+              }}
             />
           )}
 

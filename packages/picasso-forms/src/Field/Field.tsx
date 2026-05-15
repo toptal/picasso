@@ -1,10 +1,11 @@
-import type { ChangeEvent, FocusEvent } from 'react'
+import type { FocusEvent, SyntheticEvent } from 'react'
 import React, { useMemo } from 'react'
 import type {
   FieldProps as FinalFieldProps,
   FieldRenderProps,
 } from 'react-final-form'
 import { useField } from 'react-final-form'
+import type { FieldValidator } from 'final-form'
 import type { Status as OutlinedInputStatus } from '@toptal/picasso-outlined-input'
 import { FormCompound as PicassoForm } from '@toptal/picasso-form'
 import type { TextLabelProps } from '@toptal/picasso-shared'
@@ -32,6 +33,13 @@ export type Props<
     type?: string
     label?: React.ReactNode
     status?: OutlinedInputStatus
+    // The runtime child props are a structural mix of the wrapped component's
+    // props plus final-form `input` bindings plus Field-synthesized metadata
+    // (e.g. `highlight: 'autofill'`). Static typing as TWrappedComponentProps
+    // breaks consumers that destructure the synthesized metadata; typing the
+    // synthesized metadata structurally breaks consumers that bind their
+    // signature to TWrappedComponentProps directly. The boundary is unsound
+    // by design — see PF-2031 for the upgrade context.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     children: (props: any) => React.ReactNode
     renderFieldRequirements?: (props: {
@@ -40,14 +48,19 @@ export type Props<
     }) => React.ReactNode
   }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getValidators = (required: boolean, validate?: any) => {
+const getValidators = <TValue,>(
+  required: boolean,
+  validate?: FieldValidator<TValue>
+): FieldValidator<TValue> | undefined => {
   if (required && validate) {
-    return composeValidators([requiredValidator, validate])
+    return composeValidators([
+      requiredValidator as FieldValidator<TValue>,
+      validate,
+    ])
   }
 
   if (required && !validate) {
-    return requiredValidator
+    return requiredValidator as FieldValidator<TValue>
   }
 
   return validate
@@ -131,8 +144,7 @@ const Field = <
     status,
     ...rest,
     ...input,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onChange: (event: ChangeEvent<HTMLElement> | any) => {
+    onChange: (event: SyntheticEvent<HTMLElement>) => {
       if (isFirefox && event?.target) {
         /**
          * The fix for autofill in Firefox, it's taken from:

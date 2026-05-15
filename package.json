@@ -127,7 +127,10 @@
       "highlight.js",
       "nx",
       "styled-components"
-    ]
+    ],
+    "patchedDependencies": {
+      "@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0": "patches/@storybook__react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.patch"
+    }
   },
   "devDependencies": {
     "@actions/core": "^1.10.0",
@@ -135,7 +138,7 @@
     "@babel/core": "^7.26.8",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.24.1",
-    "@babel/preset-typescript": "^7.22.5",
+    "@babel/preset-typescript": "^7.26.0",
     "@babel/standalone": "^7.23.1",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.29.7",
@@ -154,11 +157,11 @@
     "@topkit/analytics-charts": "56.0.10",
     "@toptal/base-tailwind": "2.0.0",
     "@toptal/browserslist-config": "^1.2.0",
-    "@toptal/davinci-ci": "^8.0.0",
-    "@toptal/davinci-code": "^2.0.15",
-    "@toptal/davinci-engine": "^14.0.0",
-    "@toptal/davinci-qa": "^19.0.0",
-    "@toptal/davinci-syntax": "^24.0.0",
+    "@toptal/davinci-ci": "8.0.1-alpha-feature-typescript-5.5-f29e7d47.9+f29e7d47",
+    "@toptal/davinci-code": "3.0.1-alpha-feature-typescript-5.5-f29e7d47.9+f29e7d47",
+    "@toptal/davinci-engine": "14.0.1-alpha-feature-typescript-5.5-f29e7d47.9+f29e7d47",
+    "@toptal/davinci-qa": "19.0.1-alpha-feature-typescript-5.5-f29e7d47.9+f29e7d47",
+    "@toptal/davinci-syntax": "24.0.1-alpha-feature-typescript-5.5-f29e7d47.9+f29e7d47",
     "@toptal/picasso": "54.1.5",
     "@toptal/picasso-accordion": "4.0.0",
     "@toptal/picasso-account-select": "4.0.0",
@@ -305,7 +308,7 @@
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "typescript": "~4.7.0",
+    "typescript": "~5.5.0",
     "url-loader": "^4.1.1",
     "yargs": "^17.5.1",
     "zx": "^8.8.5"

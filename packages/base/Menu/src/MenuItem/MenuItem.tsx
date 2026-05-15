@@ -43,7 +43,7 @@ export interface Props extends BaseProps, TextLabelProps, MenuItemAttributes {
   /** Checkmarks the item */
   checkmarked?: boolean
   /** Value of the item */
-  value?: string | Readonly<string[]> | number
+  value?: string | readonly string[] | number
   /** Variant of colors */
   variant?: VariantType
   /** Disables changing colors on hover/focus */

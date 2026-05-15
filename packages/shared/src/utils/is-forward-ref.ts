@@ -1,6 +1,7 @@
-const isForwardRef = (Component: any) =>
+const isForwardRef = (Component: unknown): boolean =>
   typeof Component === 'object' &&
   Component !== null &&
-  Component.$$typeof === Symbol.for('react.forward_ref')
+  (Component as { $$typeof?: symbol }).$$typeof ===
+    Symbol.for('react.forward_ref')
 
 export default isForwardRef
