@@ -1,3 +1,4 @@
+/* eslint-disable max-lines -- single cohesive module: fetch/parse/resolve Happo URLs + download PNGs. Splitting it would just move the same 320 LOC into two files with a circular-ish dependency. */
 /**
  * Happo report fetcher — pulls the structured diff list + per-snapshot
  * PNGs for a failed Happo check, so the migration agent can actually SEE
@@ -86,7 +87,14 @@ export interface LocalHappoDiff {
   height?: number
 }
 
-/** Full result of `fetchHappoDiffsForCheck` for one failed Happo check. */
+/** Full result of `fetchHappoDiffsForCheck` for one failed Happo check.
+ *
+ * `pending` is true when the failed check's target_url was a Happo `/jobs/{id}`
+ * URL pointing at a job that hasn't finished yet (Happo Cypress in-flight) OR
+ * a job Happo cancelled (e.g. superseded by a newer commit's job). In those
+ * cases `diffs` is empty and `pendingReason` describes why — the prompt
+ * builder can surface this so the agent doesn't hallucinate a fix from no
+ * evidence. */
 export interface HappoCheckDiffs {
   checkName: string
   reportUrl: string
@@ -94,6 +102,8 @@ export interface HappoCheckDiffs {
   unchangedCount: number
   totalDiffs: number
   diffs: LocalHappoDiff[]
+  pending?: boolean
+  pendingReason?: string
 }
 
 /**
@@ -118,8 +128,154 @@ export const parseHappoReportUrl = (url: string): HappoReportRef | null => {
   }
 }
 
+/**
+ * Parse `https://happo.io/a/{account}/jobs/{jobId}` → structured tuple,
+ * else null. Happo's GitHub commit status sets `target_url` to this shape
+ * (NOT the compare URL) while a job is still running OR for the
+ * Cypress-driven flow which posts a job-id rather than a compare URL.
+ */
+interface HappoJobRef {
+  accountId: string
+  jobId: string
+}
+
+const parseHappoJobUrl = (url: string): HappoJobRef | null => {
+  const match = url.match(/^https?:\/\/happo\.io\/a\/([^/]+)\/jobs\/(\d+)/i)
+
+  if (!match) {
+    return null
+  }
+
+  return { accountId: match[1], jobId: match[2] }
+}
+
 const basicAuthHeader = (apiKey: string, apiSecret: string): string =>
   `Basic ${Buffer.from(`${apiKey}:${apiSecret}`).toString('base64')}`
+
+/**
+ * Resolve a Happo `/jobs/{id}` URL to the underlying compare URL(s).
+ *
+ * The jobs endpoint returns metadata including each project's compare URL
+ * under `projects[].item.href`. A job has 1–N projects (Picasso typically
+ * has one: "Picasso/Cypress" XOR "Picasso/Storybook"). We match by the
+ * check name's project label (the orchestrator passes it in) and return
+ * the resolved compare URL.
+ *
+ * Returns:
+ *   - `{ status: 'resolved', compareUrl: ... }` — happy path
+ *   - `{ status: 'pending' }` — Happo hasn't finished the job yet
+ *     (CI Cypress still running). Caller should surface this to the agent
+ *     as "no diff data yet; wait for CI."
+ *   - `{ status: 'cancelled', message: ... }` — Happo cancelled this job
+ *     (typically: newer commit pushed; the next commit's job supersedes).
+ *     Caller should treat as "stale, ignore"; fresh PNG fetch will happen
+ *     on the next sweep tick.
+ */
+type ResolveJobResult =
+  | { status: 'resolved'; compareUrl: string }
+  | { status: 'pending' }
+  | { status: 'cancelled'; message: string }
+  | { status: 'project-not-found'; available: readonly string[] }
+
+interface ResolveJobArgs {
+  jobRef: HappoJobRef
+  /** Project label from the check name, e.g. "Picasso/Cypress". */
+  projectLabel: string
+  apiKey: string
+  apiSecret: string
+}
+
+interface HappoJobApiProjectItem {
+  href?: string
+  status?: string
+  statusMessage?: string
+  message?: string
+}
+
+interface HappoJobApiProject {
+  name?: string
+  id?: number
+  item?: HappoJobApiProjectItem
+}
+
+interface HappoJobApiResponse {
+  status?: string
+  finishedAt?: string | null
+  sha1?: string
+  sha2?: string
+  projects?: HappoJobApiProject[]
+}
+
+const resolveHappoJob = async ({
+  jobRef,
+  projectLabel,
+  apiKey,
+  apiSecret,
+}: ResolveJobArgs): Promise<ResolveJobResult> => {
+  const url = `${HAPPO_HOST}/api/a/${jobRef.accountId}/jobs/${jobRef.jobId}`
+  const resp = await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+      Authorization: basicAuthHeader(apiKey, apiSecret),
+    },
+  })
+
+  if (!resp.ok) {
+    throw new Error(
+      `Happo jobs API fetch failed: ${resp.status} ${resp.statusText} for ${url}`
+    )
+  }
+  const data = (await resp.json()) as HappoJobApiResponse
+
+  // A job with no `finishedAt` is still running. The Cypress check posts a
+  // jobs URL before the job completes; status will move to success/failure
+  // once Happo finishes diffing.
+  if (!data.finishedAt) {
+    return { status: 'pending' }
+  }
+
+  const projects = data.projects ?? []
+  const match = projects.find(proj => proj.name === projectLabel)
+
+  if (!match) {
+    return {
+      status: 'project-not-found',
+      available: projects.map(proj => proj.name ?? '?'),
+    }
+  }
+  const itemStatus = match.item?.status
+  const itemMessage =
+    match.item?.message ?? match.item?.statusMessage ?? '(no message)'
+
+  // Happo cancels jobs when a newer commit is pushed. The job won't have
+  // diff data; the new commit's job supersedes. Treat as stale.
+  if (itemStatus === 'cancelled' || /cancelled/i.test(itemMessage)) {
+    return { status: 'cancelled', message: itemMessage }
+  }
+  const href = match.item?.href
+
+  if (!href) {
+    throw new Error(
+      `Happo job ${jobRef.jobId} has no item.href for project "${projectLabel}"`
+    )
+  }
+
+  return {
+    status: 'resolved',
+    compareUrl: href.startsWith('http') ? href : `${HAPPO_HOST}${href}`,
+  }
+}
+
+/**
+ * Extract the project label from a check name like
+ * "Happo (Picasso/Cypress)" → "Picasso/Cypress". Returns null if the
+ * name doesn't match the expected shape.
+ */
+const extractProjectLabel = (checkName: string): string | null => {
+  const match = checkName.match(/^Happo\s*\(\s*([^)]+?)\s*\)\s*$/i)
+
+  return match ? match[1] : null
+}
 
 const fetchCompareResults = async (
   ref: HappoReportRef,
@@ -218,12 +374,81 @@ export const fetchHappoDiffsForCheck = async ({
   apiKey,
   apiSecret,
 }: FetchHappoDiffsArgs): Promise<HappoCheckDiffs> => {
-  const ref = parseHappoReportUrl(reportUrl)
+  // Resolve to a compare URL. Two input shapes:
+  //   - `/a/{acct}/p/{proj}/compare/{base}/{head}` — direct compare URL
+  //     (typical for Happo Storybook, completed jobs)
+  //   - `/a/{acct}/jobs/{jobId}` — job URL (typical for Happo Cypress
+  //     while in-flight, or job-driven workflows). Resolved via the
+  //     jobs API → underlying compare URL, with pending/cancelled
+  //     non-throwing outcomes.
+  let resolvedCompareUrl = reportUrl
+  let ref = parseHappoReportUrl(reportUrl)
 
   if (!ref) {
-    throw new Error(
-      `Cannot parse Happo report URL: ${reportUrl} — expected /a/{account}/p/{project}/compare/{base}/{head}`
-    )
+    const jobRef = parseHappoJobUrl(reportUrl)
+
+    if (!jobRef) {
+      throw new Error(
+        `Cannot parse Happo report URL: ${reportUrl} — expected /a/{account}/p/{project}/compare/{base}/{head} or /a/{account}/jobs/{jobId}`
+      )
+    }
+
+    const projectLabel = extractProjectLabel(checkName)
+
+    if (!projectLabel) {
+      throw new Error(
+        `Cannot extract project label from check name: "${checkName}" — expected "Happo (Project/Subproject)" shape`
+      )
+    }
+    const resolved = await resolveHappoJob({
+      jobRef,
+      projectLabel,
+      apiKey,
+      apiSecret,
+    })
+
+    if (resolved.status === 'pending') {
+      return {
+        checkName,
+        reportUrl,
+        summary: 'Happo job still running — no diff data yet',
+        unchangedCount: 0,
+        totalDiffs: 0,
+        diffs: [],
+        pending: true,
+        pendingReason:
+          'Happo Cypress job is still in flight (no finishedAt timestamp). The agent should NOT speculate on diffs from this check; wait for the next sweep tick.',
+      }
+    }
+
+    if (resolved.status === 'cancelled') {
+      return {
+        checkName,
+        reportUrl,
+        summary: `Happo job cancelled: ${resolved.message}`,
+        unchangedCount: 0,
+        totalDiffs: 0,
+        diffs: [],
+        pending: true,
+        pendingReason: `Happo cancelled this job (${resolved.message}). A newer commit's job supersedes; no diff data is meaningful here.`,
+      }
+    }
+
+    if (resolved.status === 'project-not-found') {
+      throw new Error(
+        `Happo job has no project matching "${projectLabel}". Available: [${resolved.available.join(
+          ', '
+        )}]`
+      )
+    }
+    resolvedCompareUrl = resolved.compareUrl
+    ref = parseHappoReportUrl(resolvedCompareUrl)
+
+    if (!ref) {
+      throw new Error(
+        `Resolved compare URL from job is unparseable: ${resolvedCompareUrl}`
+      )
+    }
   }
 
   const results = await fetchCompareResults(ref, apiKey, apiSecret)
@@ -281,7 +506,7 @@ export const fetchHappoDiffsForCheck = async ({
 
   return {
     checkName,
-    reportUrl,
+    reportUrl: resolvedCompareUrl,
     summary: results.summary ?? '',
     unchangedCount: results.unchangedCount ?? 0,
     totalDiffs: results.diffs.length,

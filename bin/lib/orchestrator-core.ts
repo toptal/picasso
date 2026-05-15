@@ -271,10 +271,17 @@ async function prefetchHappoDiffs(
         apiSecret,
       })
 
-      log(
-        'happo',
-        `pre-fetched ${fetched.totalDiffs} diff pair(s) for ${check.name} → ${destDir}`
-      )
+      if (fetched.pending) {
+        log(
+          'happo',
+          `${check.name} job not finalized (${fetched.summary}); agent will be told to wait`
+        )
+      } else {
+        log(
+          'happo',
+          `pre-fetched ${fetched.totalDiffs} diff pair(s) for ${check.name} → ${destDir}`
+        )
+      }
       result.push({ check, fetched })
     } catch (err) {
       const msg = (err as Error).message
@@ -334,7 +341,16 @@ function buildHappoFailureSection(
           }`,
         ]
 
-        if (failure.fetched) {
+        if (failure.fetched?.pending) {
+          lines.push(
+            `- status: PENDING (${failure.fetched.summary})`,
+            `- pendingReason: ${
+              failure.fetched.pendingReason ?? '(no reason supplied)'
+            }`,
+            '',
+            'DO NOT speculate on diffs for this check. The orchestrator was unable to retrieve diff data because Happo has not finished this job. Skip this check in your classification; wait for the next sweep tick when Happo has produced a final report.'
+          )
+        } else if (failure.fetched) {
           lines.push(
             `- summary: ${failure.fetched.summary || '(none)'}`,
             `- total diffs: ${failure.fetched.totalDiffs}`,
@@ -1450,6 +1466,28 @@ function killProcessTree(pid: number | undefined): void {
 // gate
 // ---------------------------------------------------------------------------
 
+/**
+ * Build the env vars `bin/migration-gate.sh`'s strict-Happo block needs to
+ * run `bin/lib/happo-verify.ts`. Picasso-specific account/project IDs are
+ * hardcoded here (discovered via the report URLs in commit-status data —
+ * see the `parseHappoReportUrl` regex). Base branch comes from workflow
+ * config (defaults to feature/picasso-modernization-temp for migrations).
+ *
+ * If `workflow.baseBranch` isn't set (rare), the verifier skips
+ * deterministic verification and falls back to best-effort PASS — same as
+ * before. So this is purely additive: when env is available, gate is
+ * strict; when not, gate behaves as before.
+ */
+const buildHappoGateEnv = (workflow: Workflow): NodeJS.ProcessEnv =>
+  workflow.baseBranch
+    ? {
+        HAPPO_BASE_BRANCH: workflow.baseBranch,
+        HAPPO_ACCOUNT_ID: '675',
+        HAPPO_STORYBOOK_PROJECT_ID: '1189',
+        HAPPO_CYPRESS_PROJECT_ID: '848',
+      }
+    : {}
+
 const gate = {
   /**
    * Run the workflow's gate command and consume its report.
@@ -1463,12 +1501,36 @@ const gate = {
     workflowGateCmd: string,
     itemId: string,
     cwd: string,
-    runDate: string
+    runDate: string,
+    extraEnv: NodeJS.ProcessEnv = {}
   ): Promise<GateReport> {
-    log('gate', `running: ${workflowGateCmd} (cwd=${cwd})`)
-    const result = await shellLine(workflowGateCmd, {
+    // Resolve `bin/migration-gate.sh ...` and similar relative
+    // orchestrator-tool paths to absolute paths rooted at the operator's
+    // repo. Without this, the gate would run the worktree's COPY of the
+    // script — which is stale when the worktree was forked from an older
+    // commit (observed on Slider PR #4955 worktree, 2026-05-15: the
+    // worktree's bin/migration-gate.sh was the pre-happo-verify version
+    // and silently rubber-stamped Happo as PASS). Orchestrator scripts
+    // are infrastructure and must run from the operator's latest version,
+    // not whatever was in the migration branch when the worktree was
+    // created.
+    const orchestratorRoot = repoRoot()
+    const resolvedGateCmd = workflowGateCmd.replace(
+      /(^|\s)bin\/(migration-gate\.sh|migration-diff\.sh)\b/g,
+      (_match, prefix, script) => `${prefix}${orchestratorRoot}/bin/${script}`
+    )
+
+    if (resolvedGateCmd !== workflowGateCmd) {
+      log(
+        'gate',
+        `rewrote relative gate path → absolute (worktree-stale-script guard)`
+      )
+    }
+
+    log('gate', `running: ${resolvedGateCmd} (cwd=${cwd})`)
+    const result = await shellLine(resolvedGateCmd, {
       cwd,
-      env: { ...process.env, MIGRATION_RUN_DATE: runDate },
+      env: { ...process.env, MIGRATION_RUN_DATE: runDate, ...extraEnv },
     })
 
     log(
@@ -2001,6 +2063,25 @@ const gh = {
     const result: RawReview[] = []
 
     for (const r of reviews) {
+      // Skip review shells: `state=COMMENTED + body=''` means the reviewer
+      // hit "Comment" on the PR review UI with no summary AND attached only
+      // inline (line-level) comments. The "Comment" wrapper itself carries
+      // no information; its content lives in the line comments which we
+      // fetch separately below. Without this skip, the orchestrator
+      // classified every such wrapper as "vedrani: unclear (conf=0.30,
+      // empty body)" and re-invoked the agent each sweep tick — including
+      // for wrappers around the agent's OWN past inline replies (which gh
+      // posts as the operator's login). Observed on Slider PR #4955.
+      //
+      // Keep APPROVED / CHANGES_REQUESTED / DISMISSED with empty body —
+      // those are meaningful (LGTM / vague change request / dismissal).
+      const isEmptyReviewShell =
+        (r.state ?? '').toUpperCase() === 'COMMENTED' && !(r.body ?? '').trim()
+
+      if (isEmptyReviewShell) {
+        continue
+      }
+
       result.push({
         state: r.state ?? '',
         body: r.body ?? '',
@@ -3834,133 +3915,28 @@ async function sweepOne(
     ? await storybook.start(wtPath, runDir)
     : null
 
-  const agentLogPath = path.join(runDir, `agent.review-${reviewIters}.log`)
-
-  let agentResult: Awaited<ReturnType<typeof agent.invoke>>
-
-  try {
-    agentResult = await agent.invoke(
-      {
-        prompt: reviewPrompt,
-        cwd: wtPath,
-        agent: opts.agent,
-        withMcp: opts.withMcp,
-        sessionId,
-        isFirstIteration,
-      },
-      agentLogPath
-    )
-  } finally {
-    if (sweepStorybookHandle) {
-      await sweepStorybookHandle.kill()
-    }
-  }
-
-  // Slice 3 — token snapshot for the sweep iteration's agent call.
-  // We use a synthetic iteration number (review-iter offset by 1000)
-  // so cost.json's snapshot list distinguishes inner-loop iters from
-  // review-driven iters.
-  await recordTokenSnapshot(
-    runDir,
-    item.id,
-    sessionId,
-    1000 + reviewIters,
-    wtPath
-  )
-
-  if (agentResult.exitCode !== 0) {
-    const noProgressReason = await detectNoProgressFailure(agentLogPath)
-
-    // Semantic give-up (the agent itself declared no further progress
-    // possible) → terminal needs_human regardless of count.
-    if (noProgressReason) {
-      updateForVariant({
-        status: 'needs_human',
-        escalation_reason: `review-iter agent ${noProgressReason}`,
-        last_review_seen_at: nowIso,
-      })
-
-      return
-    }
-
-    // Process-level failure (Anthropic 529, network blip, OOM, prompt
-    // assembly bug, etc.). These are typically transient — escalating to
-    // needs_human on the first occurrence terminally blocks a green +
-    // approved PR until manual intervention (observed on Button #4947:
-    // approved, CI clean, but sweep tick 7's agent exited 1 and the PR
-    // was parked in needs_human for 24h+). Use a small failure budget:
-    // stay in awaiting_review for transient failures so the next sweep
-    // tick retries; only escalate after REVIEW_ITER_FAILURE_BUDGET
-    // consecutive failures.
-    const REVIEW_ITER_FAILURE_BUDGET = 3
-    const prevFailures = state.review_iter_failures ?? 0
-    const nextFailures = prevFailures + 1
-
-    if (nextFailures >= REVIEW_ITER_FAILURE_BUDGET) {
-      updateForVariant({
-        status: 'needs_human',
-        escalation_reason: `review-iter agent exited ${agentResult.exitCode} on ${nextFailures} consecutive ticks — likely persistent (not transient)`,
-        last_review_seen_at: nowIso,
-        review_iter_failures: nextFailures,
-      })
-      log(
-        'sweep',
-        `${item.id}: review-iter agent exit ${agentResult.exitCode} — budget exhausted (${nextFailures}/${REVIEW_ITER_FAILURE_BUDGET}) → needs_human`
-      )
-
-      return
-    }
-
-    // Transient failure within budget — keep status retryable. DO NOT
-    // advance last_review_seen_at: leaving it at the prior value means
-    // the next sweep tick re-classifies the same comments + retries the
-    // agent on them. (Advancing would silently swallow the operator's
-    // comment.)
-    updateForVariant({
-      review_iter_failures: nextFailures,
-    })
-    log(
-      'sweep',
-      `${item.id}: review-iter agent exit ${agentResult.exitCode} — transient (${nextFailures}/${REVIEW_ITER_FAILURE_BUDGET}); status stays awaiting_review, next sweep tick will retry`
-    )
-
-    return
-  }
-
-  // Agent succeeded — reset the transient-failure counter so a future
-  // single failure doesn't compound with an old stale count.
-  if (state.review_iter_failures && state.review_iter_failures > 0) {
-    updateForVariant({ review_iter_failures: 0 })
-  }
-
-  // Sanity gate.
+  // Local iteration loop — mirrors `runOne`'s migrate loop. Sweep is the
+  // continuation of migration with new inputs (CI failures, reviewer
+  // comments, Happo diffs); the agent should likewise get multiple
+  // chances per tick to converge on a green gate, not one shot.
+  //
+  // First iter: full reviewPrompt (Happo PNGs, reviews, CI failure
+  // sections, library-source-mandate guidance — all baked in by the
+  // builder above). Subsequent iters: delta prompt with the previous
+  // gate report's content, so the agent sees its own breakage (e.g.
+  // "jest: 2 snapshots failed" with the exact diff) and self-corrects.
+  // Same stuck-detection as `runOne`: identical deterministic-failure
+  // set across two consecutive iters → escalate rather than burn budget.
+  //
+  // Why this matters (Slider PR #4955 review-iter 3 lesson): without
+  // local iteration the sweep agent runs once, breaks jest with a
+  // double-translate Tailwind addition, never sees the gate output,
+  // never gets to revisit its conclusion. With local iteration: agent
+  // edits → gate fails → agent sees "jest snapshot mismatch on
+  // -translate-x" → re-reads SliderThumb.js → realizes its prior
+  // compensation was wrong → reverts → gate passes → push.
+  const MAX_SWEEP_ITERS = 5
   const runDate = TODAY()
-  const gateReport = await gate.run(
-    workflow.gate(item.id),
-    item.id,
-    wtPath,
-    runDate
-  )
-
-  // Distinguish deterministic-stage failures (the agent broke something
-  // in source — jest snapshots out of sync, type error, build error,
-  // lint violation) from environmental-stage failures (Happo creds
-  // missing in the operator's env, network timeout, etc.). Pushing a
-  // commit that fails deterministic stages locally pollutes git history
-  // and slows the loop (Slider PR #4955 review-iter 3 commit 94822a181
-  // pushed jest-failing code; CI would surface it eventually but the
-  // broken state lived on the branch for hours).
-  //
-  // Deterministic stages run identically locally and in CI given the
-  // same source. If they fail locally, they WILL fail in CI — pushing
-  // is pure noise. Better to leave the worktree dirty (no commit, no
-  // push), mark the item as review_iter_failures bump (next sweep tick
-  // retries), and let the next agent invocation see its own broken
-  // state in the gate report.
-  //
-  // Environmental stages CAN succeed in CI even when failing locally
-  // (e.g. operator hasn't set HAPPO_API_KEY locally, but CI has it).
-  // Those still merit a push so CI can verify.
   const DETERMINISTIC_GATE_STAGES = new Set([
     'build',
     'tsc',
@@ -3971,86 +3947,479 @@ async function sweepOne(
     'lockfile-drift',
     'cypress',
     'consumers',
+    // `happo` is now in this set as of 2026-05-15 — the gate stage was
+    // rewritten to call `bin/lib/happo-verify.ts` which deterministically
+    // queries Happo's compare-results API for the current HEAD against
+    // the merge-base. Prior to this, the stage silently rubber-stamped
+    // as PASS when its regex couldn't extract a SHA, which left real
+    // visual regressions to surface only in CI (Slider PR #4955). Now
+    // local Happo gating triggers loop iter N+1 on real diffs, with
+    // freshly-pre-fetched PNGs (see post-iter re-fetch below).
+    'happo',
   ])
 
-  if (!workflow.successCriteria(gateReport)) {
-    const failedDeterministic = gateReport.stages.filter(
-      s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name)
-    )
+  let lastGateReport: GateReport | null = null
+  let iterFeedback: string | null = null
+  let lastDeterministicFailureSet: string | null = null
+  let lastAgentExitCode = 0
+  let lastAgentLogPath = ''
+  let convergence:
+    | 'green'
+    | 'env-only-fail'
+    | 'stuck'
+    | 'agent-failed'
+    | 'budget-exhausted' = 'budget-exhausted'
+  // Tracks whether this sweep tick has produced a commit yet. The first
+  // iter that produces source changes commits fresh; subsequent iters
+  // `--amend` so we end the tick with a single commit regardless of iter
+  // count. The commit-per-iter is REQUIRED so HEAD's SHA changes per
+  // iter — Happo dedups uploads by SHA, so uncommitted edits never reach
+  // the comparison API (observed on Slider PR #4955 review-iter 6 loop:
+  // agent made real fix attempts in iter 2 but Happo's compare-results
+  // returned the iter-1 diff list unchanged → false stuck-detection).
+  let sweepTickHasCommit = false
+  // Commit message file (created lazily on the first commit-producing
+  // iter, reused on subsequent amends).
+  let reviewCommitMsgFile: string | null = null
 
-    if (failedDeterministic.length > 0) {
-      log(
-        'sweep',
-        `${
-          item.id
-        }: deterministic gate stage(s) FAILED locally (${failedDeterministic
-          .map(s => s.name)
-          .join(
-            ', '
-          )}) — refusing to push broken commit. Bumping review_iter_failures so next sweep tick re-engages the agent on its own broken state.`
+  try {
+    for (let iter = 1; iter <= MAX_SWEEP_ITERS; iter++) {
+      // Prompt: iter 1 uses the full reviewPrompt (review + Happo + CI
+      // sections). Iter 2+ uses a delta with the prior gate report —
+      // claude --resume keeps the iter-1 context.
+      const iterPrompt =
+        iter === 1
+          ? reviewPrompt
+          : await agent.assembleDeltaPrompt(
+              reviewIters * 100 + iter - 1,
+              iterFeedback ?? '(no prior gate report)',
+              wtPath
+            )
+      const iterPromptPath = path.join(
+        runDir,
+        `prompt.review-${reviewIters}.iter${iter}.txt`
       )
 
-      const prevFailures = state.review_iter_failures ?? 0
-      const nextFailures = prevFailures + 1
-      const REVIEW_ITER_FAILURE_BUDGET = 3
+      await fs.writeFile(iterPromptPath, iterPrompt, 'utf8')
 
-      if (nextFailures >= REVIEW_ITER_FAILURE_BUDGET) {
-        updateForVariant({
-          status: 'needs_human',
-          escalation_reason: `agent broke deterministic gate stages (${failedDeterministic
-            .map(s => s.name)
-            .join(', ')}) and couldn't self-correct in ${nextFailures} ticks`,
-          last_review_seen_at: nowIso,
-          review_iter_failures: nextFailures,
-        })
-      } else {
-        updateForVariant({
-          review_iter_failures: nextFailures,
-        })
+      const iterAgentLogPath = path.join(
+        runDir,
+        `agent.review-${reviewIters}.iter${iter}.log`
+      )
+
+      lastAgentLogPath = iterAgentLogPath
+      log(
+        'sweep',
+        `${item.id}: review-iter ${reviewIters} loop iter ${iter}/${MAX_SWEEP_ITERS}`
+      )
+
+      // eslint-disable-next-line no-await-in-loop
+      const agentResult = await agent.invoke(
+        {
+          prompt: iterPrompt,
+          cwd: wtPath,
+          agent: opts.agent,
+          withMcp: opts.withMcp,
+          sessionId,
+          isFirstIteration: isFirstIteration && iter === 1,
+        },
+        iterAgentLogPath
+      )
+
+      // eslint-disable-next-line no-await-in-loop
+      await recordTokenSnapshot(
+        runDir,
+        item.id,
+        sessionId,
+        1000 + reviewIters * 100 + iter,
+        wtPath
+      )
+
+      if (agentResult.exitCode !== 0) {
+        // eslint-disable-next-line no-await-in-loop
+        const noProgressReason = await detectNoProgressFailure(iterAgentLogPath)
+
+        if (noProgressReason) {
+          updateForVariant({
+            status: 'needs_human',
+            escalation_reason: `review-iter agent ${noProgressReason}`,
+            last_review_seen_at: nowIso,
+          })
+          log(
+            'sweep',
+            `${item.id}: review-iter loop iter ${iter}: agent declared no progress (${noProgressReason}) → needs_human`
+          )
+          convergence = 'agent-failed'
+
+          return
+        }
+        // Process-level failure (transient: Anthropic 529, network, OOM).
+        // Break out of the loop; we'll handle via the cross-tick
+        // review_iter_failures budget below.
+        lastAgentExitCode = agentResult.exitCode
+        convergence = 'agent-failed'
+        log(
+          'sweep',
+          `${item.id}: review-iter loop iter ${iter}: agent exit ${agentResult.exitCode} (likely transient); breaking loop`
+        )
+        break
       }
 
-      // Leave the worktree dirty so the agent's next sweep-tick run sees
-      // the broken state in `git diff` and can revert/fix. Don't commit,
-      // don't push, don't advance last_review_seen_at.
+      // Stage + commit the agent's edits so the gate's Happo upload uses
+      // a fresh HEAD SHA. Without this, Happo dedups by SHA and the
+      // comparison API returns the SAME diffs across iters regardless of
+      // what the agent edited → false stuck-detection.
+      //
+      // First commit-producing iter → fresh commit. Subsequent iters →
+      // `--amend --no-edit`. Either way HEAD's SHA changes per iter, but
+      // the sweep tick ends with at most ONE commit on the branch.
+      //
+      // If the agent made no source changes (MEDIUM/LOW-confidence reply
+      // path), `git add -A` is a no-op and `git commit`/`--amend` will
+      // either skip (no staged changes) or amend with no changes; we
+      // detect via `git diff --cached --quiet`.
+      // eslint-disable-next-line no-await-in-loop
+      await shell('git', ['add', '-A'], { cwd: wtPath })
+      // eslint-disable-next-line no-await-in-loop
+      const stagedCheck = await shell('git', ['diff', '--cached', '--quiet'], {
+        cwd: wtPath,
+      })
+      const hasStagedChanges = stagedCheck.exitCode !== 0
+
+      if (hasStagedChanges) {
+        if (!sweepTickHasCommit) {
+          const reviewCommitMsg =
+            workflow.commitMessage(item.id, item) +
+            `\n\n[review-iter ${reviewIters}] address review feedback`
+
+          reviewCommitMsgFile = path.join(
+            os.tmpdir(),
+            `commit-msg-${item.id.replace(/\//g, '__')}.review.${reviewIters}.${
+              process.pid
+            }`
+          )
+          // eslint-disable-next-line no-await-in-loop
+          await fs.writeFile(reviewCommitMsgFile, reviewCommitMsg, 'utf8')
+          // eslint-disable-next-line no-await-in-loop
+          const commitResult = await shell(
+            'git',
+            ['commit', '--no-verify', '--file', reviewCommitMsgFile],
+            { cwd: wtPath }
+          )
+
+          if (commitResult.exitCode === 0) {
+            sweepTickHasCommit = true
+            log(
+              'sweep',
+              `${item.id}: review-iter loop iter ${iter}: committed agent edits (fresh) — SHA changes for Happo upload`
+            )
+          } else {
+            log(
+              'sweep',
+              `${
+                item.id
+              }: review-iter loop iter ${iter}: commit failed (${commitResult.stderr.trim()}); proceeding with uncommitted edits — Happo may dedup`
+            )
+          }
+        } else {
+          // eslint-disable-next-line no-await-in-loop
+          const amendResult = await shell(
+            'git',
+            ['commit', '--amend', '--no-edit', '--no-verify'],
+            { cwd: wtPath }
+          )
+
+          if (amendResult.exitCode === 0) {
+            log(
+              'sweep',
+              `${item.id}: review-iter loop iter ${iter}: amended commit — fresh SHA for Happo`
+            )
+          } else {
+            log(
+              'sweep',
+              `${
+                item.id
+              }: review-iter loop iter ${iter}: amend failed (${amendResult.stderr.trim()}); Happo dedup likely`
+            )
+          }
+        }
+      } else if (iter === 1) {
+        // Iter 1 with no agent edits — the agent took the MEDIUM/LOW
+        // confidence path (replied via gh, no source change). No commit,
+        // no Happo upload concern. The gate still runs (deterministic
+        // stages re-verify nothing broke); a green gate here just means
+        // "no edits + nothing pre-existing broken."
+        log(
+          'sweep',
+          `${item.id}: review-iter loop iter ${iter}: agent made no source changes (reply-only path)`
+        )
+      }
+
+      // Gate run.
+      // eslint-disable-next-line no-await-in-loop
+      const gateReport = await gate.run(
+        workflow.gate(item.id),
+        item.id,
+        wtPath,
+        runDate,
+        buildHappoGateEnv(workflow)
+      )
+
+      lastGateReport = gateReport
+
+      if (workflow.successCriteria(gateReport)) {
+        log(
+          'sweep',
+          `${item.id}: review-iter loop converged GREEN on iter ${iter}/${MAX_SWEEP_ITERS}`
+        )
+        convergence = 'green'
+        break
+      }
+
+      const failedDeterministic = gateReport.stages.filter(
+        s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name)
+      )
+
+      if (failedDeterministic.length === 0) {
+        log(
+          'sweep',
+          `${
+            item.id
+          }: review-iter loop iter ${iter}: only env-stage failures (${gateReport.stages
+            .filter(s => s.status === 'FAIL')
+            .map(s => s.name)
+            .join(', ')}) — no point iterating, will push so CI surfaces`
+        )
+        convergence = 'env-only-fail'
+        break
+      }
+
+      const currentFailureSet = failedDeterministic
+        .map(s => s.name)
+        .sort()
+        .join(',')
+
+      log(
+        'sweep',
+        `${item.id}: review-iter loop iter ${iter}: deterministic FAIL on [${currentFailureSet}]`
+      )
+
+      if (
+        lastDeterministicFailureSet !== null &&
+        currentFailureSet === lastDeterministicFailureSet
+      ) {
+        log(
+          'sweep',
+          `${item.id}: review-iter loop stuck on same deterministic failure set across 2 iters (${currentFailureSet}) — escalating instead of burning budget`
+        )
+        convergence = 'stuck'
+        break
+      }
+      lastDeterministicFailureSet = currentFailureSet
+
+      if (iter < MAX_SWEEP_ITERS) {
+        // Build feedback for next iter: gate report content if available,
+        // else a minimal summary so the agent at least knows which stage
+        // failed.
+        if (existsSync(gateReport.reportPath)) {
+          // eslint-disable-next-line no-await-in-loop
+          iterFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
+        } else {
+          iterFeedback = `Local gate failed on deterministic stages: ${currentFailureSet}. Inspect the per-stage logs under migration-runs/<run-date>/${item.id}/.`
+        }
+
+        // Happo iteration: when the gate's happo stage failed, the agent
+        // needs FRESH diff PNGs reflecting the post-iter-N state — not
+        // the stale pre-iter-1 PNGs that were pre-fetched at sweep
+        // start. Read the verifier's JSON output (written by the gate's
+        // strict-Happo block to <reportDir>/happo-verify.json) to get
+        // the new compare URL, then re-fetch PNGs into a fresh dir.
+        if (failedDeterministic.some(s => s.name === 'happo')) {
+          const reportDir = path.dirname(gateReport.reportPath)
+          const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+
+          if (existsSync(verifyJsonPath)) {
+            try {
+              // eslint-disable-next-line no-await-in-loop
+              const verifyJson = JSON.parse(
+                await fs.readFile(verifyJsonPath, 'utf8')
+              ) as { reportUrl?: string; status?: string }
+
+              if (verifyJson.reportUrl && verifyJson.status === 'FAIL') {
+                const iterDestDir = path.join(
+                  runDir,
+                  'happo-diffs',
+                  `iter-${iter}-storybook`
+                )
+                const apiKey = process.env.HAPPO_API_KEY
+                const apiSecret = process.env.HAPPO_API_SECRET
+
+                if (apiKey && apiSecret) {
+                  // eslint-disable-next-line no-await-in-loop
+                  const fresh = await fetchHappoDiffsForCheck({
+                    checkName: 'Happo (Picasso/Storybook)',
+                    reportUrl: verifyJson.reportUrl,
+                    destDir: iterDestDir,
+                    apiKey,
+                    apiSecret,
+                  })
+
+                  log(
+                    'happo',
+                    `iter ${iter} re-fetched ${fresh.totalDiffs} diff pair(s) post-gate-fail → ${iterDestDir}`
+                  )
+
+                  // Append the fresh PNG paths to the next iter's
+                  // feedback so the agent looks at the latest state.
+                  const freshSection =
+                    '\n\n## Fresh Happo diff PNGs (post-iter-' +
+                    iter +
+                    ' — these reflect your latest edits, NOT the pre-edit state from sweep start)\n\n' +
+                    'Read each pair to see what diff PERSISTS after your last attempt. Your prior edit either did not converge OR introduced different diffs. Compare oldPath (master baseline) vs newPath (your worktree HEAD).\n\n' +
+                    fresh.diffs
+                      .map(
+                        (d, j) =>
+                          `${j + 1}. ${d.component} / ${d.variant} / ${
+                            d.target
+                          }\n` +
+                          `   - oldPath: ${d.oldPath}\n` +
+                          `   - newPath: ${d.newPath}`
+                      )
+                      .join('\n')
+
+                  iterFeedback = (iterFeedback ?? '') + freshSection
+                }
+              }
+            } catch (err) {
+              log(
+                'happo',
+                `iter ${iter} re-fetch failed: ${(err as Error).message}`
+              )
+            }
+          }
+        }
+      }
+    }
+  } finally {
+    if (sweepStorybookHandle) {
+      await sweepStorybookHandle.kill()
+    }
+  }
+
+  // === Loop done — handle outcomes ===
+
+  // Outcome 1: agent process failure (transient). Use the cross-tick
+  // budget so a single 529 doesn't terminally park a PR.
+  if (convergence === 'agent-failed') {
+    const REVIEW_ITER_FAILURE_BUDGET = 3
+    const prevFailures = state.review_iter_failures ?? 0
+    const nextFailures = prevFailures + 1
+
+    if (nextFailures >= REVIEW_ITER_FAILURE_BUDGET) {
+      updateForVariant({
+        status: 'needs_human',
+        escalation_reason: `review-iter agent exited ${lastAgentExitCode} on ${nextFailures} consecutive ticks — likely persistent (not transient). Last log: ${lastAgentLogPath}`,
+        last_review_seen_at: nowIso,
+        review_iter_failures: nextFailures,
+      })
+      log(
+        'sweep',
+        `${item.id}: review-iter agent exit ${lastAgentExitCode} — budget exhausted (${nextFailures}/${REVIEW_ITER_FAILURE_BUDGET}) → needs_human`
+      )
+
       return
     }
+    updateForVariant({ review_iter_failures: nextFailures })
+    log(
+      'sweep',
+      `${item.id}: review-iter agent exit ${lastAgentExitCode} — transient (${nextFailures}/${REVIEW_ITER_FAILURE_BUDGET}); status stays awaiting_review, next sweep tick will retry`
+    )
 
+    return
+  }
+
+  // Outcome 2: loop stuck (same deterministic-failure set two iters in a
+  // row). Agent isn't making progress within this tick. Escalate to
+  // needs_human with the exact failure set as evidence.
+  if (convergence === 'stuck' && lastGateReport) {
+    const stuckFailures = lastGateReport.stages
+      .filter(s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name))
+      .map(s => s.name)
+      .join(', ')
+
+    updateForVariant({
+      status: 'needs_human',
+      escalation_reason: `review-iter loop stuck on deterministic gate stages: ${stuckFailures}. Worktree left dirty for operator inspection.`,
+      last_review_seen_at: nowIso,
+    })
+    log(
+      'sweep',
+      `${item.id}: review-iter loop stuck → needs_human (${stuckFailures})`
+    )
+
+    return
+  }
+
+  // Outcome 3: budget exhausted without converging green. Treat like
+  // stuck (the agent had MAX_SWEEP_ITERS chances and the failure set
+  // shifted each time without resolving) → escalate.
+  if (convergence === 'budget-exhausted' && lastGateReport) {
+    const failures = lastGateReport.stages
+      .filter(s => s.status === 'FAIL')
+      .map(s => s.name)
+      .join(', ')
+
+    updateForVariant({
+      status: 'needs_human',
+      escalation_reason: `review-iter loop hit MAX_SWEEP_ITERS=${MAX_SWEEP_ITERS} without converging green (last failures: ${failures}). Worktree left dirty for operator inspection.`,
+      last_review_seen_at: nowIso,
+    })
+    log(
+      'sweep',
+      `${item.id}: review-iter loop exhausted ${MAX_SWEEP_ITERS} iters → needs_human (${failures})`
+    )
+
+    return
+  }
+
+  // Outcome 4: env-only fail. Push anyway so CI surfaces the
+  // environmental failure (e.g. Happo creds in CI but not locally).
+  if (convergence === 'env-only-fail' && lastGateReport) {
     log(
       'sweep',
       `${
         item.id
-      }: local gate not green but only environmental stages failed (${gateReport.stages
+      }: only env-stage failures after loop — pushing so CI surfaces (${lastGateReport.stages
         .filter(s => s.status === 'FAIL')
         .map(s => s.name)
-        .join(', ')}) — pushing anyway, CI will surface`
+        .join(', ')})`
     )
+    // Fall through to commit + push.
   }
 
-  // Commit + push (only if the agent actually edited code — MEDIUM/LOW
-  // confidence paths in the protocol leave the worktree untouched and
-  // post replies only).
-  const reviewCommitMsg =
-    workflow.commitMessage(item.id, item) +
-    `\n\n[review-iter ${reviewIters}] address review feedback`
-  const reviewCommitMsgFile = path.join(
-    os.tmpdir(),
-    `commit-msg-${item.id.replace(/\//g, '__')}.review.${reviewIters}.${
-      process.pid
-    }`
-  )
+  // Outcome 5: GREEN. Fall through to commit + push.
 
-  await fs.writeFile(reviewCommitMsgFile, reviewCommitMsg, 'utf8')
-  await shell('git', ['add', '-A'], { cwd: wtPath })
-  const commitResult = await shell(
-    'git',
-    ['commit', '--no-verify', '--file', reviewCommitMsgFile],
-    { cwd: wtPath }
-  )
+  // Agent succeeded — reset the transient-failure counter so a future
+  // single failure doesn't compound with an old stale count.
+  if (state.review_iter_failures && state.review_iter_failures > 0) {
+    updateForVariant({ review_iter_failures: 0 })
+  }
 
-  if (commitResult.exitCode === 0) {
+  // Commit was already produced (or skipped if agent had no source edits)
+  // inside the loop above — see the per-iter stage+commit/amend block.
+  // Here we just need to PUSH if we have a commit AND the loop converged
+  // green / env-only-fail. Stuck/budget/agent-failed outcomes already
+  // returned above without reaching this point.
+  if (sweepTickHasCommit) {
     const pushResult = await shell(
       'git',
-      ['push', '--no-verify', 'origin', item.branch as string],
+      [
+        'push',
+        '--no-verify',
+        '--force-with-lease',
+        'origin',
+        item.branch as string,
+      ],
       { cwd: wtPath }
     )
 
@@ -4065,7 +4434,7 @@ async function sweepOne(
     }
     log(
       'sweep',
-      `${item.id}: pushed code changes; CI will re-evaluate; status remains awaiting_review`
+      `${item.id}: pushed code changes (force-with-lease for amended commit); CI will re-evaluate; status remains awaiting_review`
     )
 
     // Part 4 (2026-05-14): capture review-iteration lessons. The agent
@@ -4431,6 +4800,16 @@ export async function run(
     }
 
     let lastFeedback: string | null = null
+    // Per-iter commit tracker — same rationale as `sweepTickHasCommit` in
+    // `sweepOne`. Each loop iter, the agent's edits are staged + committed
+    // (fresh on first iter, amended on iter 2+) BEFORE the gate runs.
+    // This ensures HEAD's SHA changes per iter, so Happo's per-SHA dedup
+    // doesn't make `compare-results` return stale data across iters.
+    // Without this, iter 2+'s Happo gate would see iter-1 diffs regardless
+    // of the agent's iter-2 edits (observed on Slider sweep 2026-05-15:
+    // false stuck-detection after agent made real fix attempts).
+    let migrationHasCommit = false
+    let migrationCommitMsgFile: string | null = null
     // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
     // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
     // keeps the full canonical-prompt + rules + per-item-plan context from
@@ -4529,12 +4908,79 @@ export async function run(
         continue
       }
 
+      // Stage + commit-or-amend the agent's edits BEFORE the gate runs.
+      // This is required for Happo to see iter-fresh state (see comment
+      // on `migrationHasCommit` above). Mirrors `sweepOne`'s in-loop
+      // commit logic — keep the patterns aligned so future bug fixes
+      // apply uniformly.
+      await shell('git', ['add', '-A'], { cwd: wtPath })
+      const migrationStagedCheck = await shell(
+        'git',
+        ['diff', '--cached', '--quiet'],
+        { cwd: wtPath }
+      )
+
+      if (migrationStagedCheck.exitCode !== 0) {
+        if (!migrationHasCommit) {
+          const migrationCommitMsg = workflow.commitMessage(item.id, item)
+
+          migrationCommitMsgFile = path.join(
+            os.tmpdir(),
+            `commit-msg-${item.id.replace(/\//g, '__')}.migration.${
+              process.pid
+            }`
+          )
+          await fs.writeFile(migrationCommitMsgFile, migrationCommitMsg, 'utf8')
+          const migrationCommitResult = await shell(
+            'git',
+            ['commit', '--no-verify', '--file', migrationCommitMsgFile],
+            { cwd: wtPath }
+          )
+
+          if (migrationCommitResult.exitCode === 0) {
+            migrationHasCommit = true
+            log(
+              'loop',
+              `iter ${state.iterations}: committed agent edits (fresh) — HEAD SHA changes for Happo upload`
+            )
+          } else {
+            log(
+              'loop',
+              `iter ${
+                state.iterations
+              }: commit failed (${migrationCommitResult.stderr.trim()}); Happo may dedup`
+            )
+          }
+        } else {
+          const amendResult = await shell(
+            'git',
+            ['commit', '--amend', '--no-edit', '--no-verify'],
+            { cwd: wtPath }
+          )
+
+          if (amendResult.exitCode === 0) {
+            log(
+              'loop',
+              `iter ${state.iterations}: amended commit — fresh SHA for Happo`
+            )
+          } else {
+            log(
+              'loop',
+              `iter ${
+                state.iterations
+              }: amend failed (${amendResult.stderr.trim()}); Happo dedup likely`
+            )
+          }
+        }
+      }
+
       // Run gate.
       const gateReport = await gate.run(
         workflow.gate(item.id),
         item.id,
         wtPath,
-        runDate
+        runDate,
+        buildHappoGateEnv(workflow)
       )
 
       state.lastGate = gateReport
@@ -4591,45 +5037,28 @@ export async function run(
       env: { ...process.env, MIGRATION_RUN_DATE: runDate },
     })
 
-    // Step 10: commit + push.
-    // `--no-verify` skips Husky pre-commit hooks. Rationale:
-    //   1. The orchestrator's gate stage already runs lint, jest, tsc, build,
-    //      cypress, happo — which is a strict superset of what the pre-commit
-    //      hook does (lint-staged, syncpack, check:icon-sizes). Running the
-    //      hook would be redundant work.
-    //   2. The hook calls `.husky/_/husky.sh` which is created by `husky install`
-    //      via the `prepare` npm script. Worktrees don't trigger `prepare` on
-    //      creation, so the include is missing and the hook fails before doing
-    //      anything useful.
-    //   3. The orchestrator commits inside an isolated worktree; the
-    //      consequences of a bad commit are contained until human PR review.
-    // Pre-push hooks (`pre-push`) are also skipped via `git push --no-verify`
-    // for the same reasons.
-    const commitMsg = workflow.commitMessage(item.id, item)
-    const commitMsgFile = path.join(
-      os.tmpdir(),
-      `commit-msg-${item.id}.${process.pid}`
-    )
-
-    await fs.writeFile(commitMsgFile, commitMsg, 'utf8')
-
-    await shell('git', ['add', '-A'], { cwd: wtPath })
-    const commitResult = await shell(
-      'git',
-      ['commit', '--no-verify', '--file', commitMsgFile],
-      { cwd: wtPath }
-    )
-
-    if (commitResult.exitCode !== 0) {
+    // Step 10: push the commit produced inside the loop.
+    // `--no-verify` skips Husky pre-push hooks (rationale: the
+    // orchestrator's gate stage already runs lint/jest/tsc/build/cypress/
+    // happo, a strict superset of what pre-push would check; husky's hook
+    // include is missing in worktrees anyway because `prepare` doesn't
+    // fire on `git worktree add`).
+    //
+    // The migration's commit was made INSIDE the loop (per-iter, with
+    // amend on iter 2+) so HEAD's SHA changes per iter for Happo's
+    // benefit. By the time we reach this push step, `migrationHasCommit`
+    // should be true — if it isn't, the agent produced zero source
+    // changes across all iters, which is a degenerate state (gate passed
+    // without any migration work happening) → escalate.
+    if (!migrationHasCommit) {
       return escalate(
         workflow,
         item,
         state,
         {
           shouldEscalate: true,
-          reason: `git commit failed: ${
-            commitResult.stderr || commitResult.stdout
-          }`,
+          reason:
+            'gate passed without any agent source changes (0 commits produced across iters)',
         },
         manifestAbs,
         rootDir,
@@ -4637,9 +5066,13 @@ export async function run(
       )
     }
 
+    // `--force-with-lease` is required because iter 2+ amended the
+    // commit, rewriting history. Lease check ensures we don't clobber
+    // a concurrent push (defensive — there shouldn't be a concurrent
+    // push to a worktree-private branch).
     const pushResult = await shell(
       'git',
-      ['push', '--no-verify', '-u', 'origin', branch],
+      ['push', '--no-verify', '--force-with-lease', '-u', 'origin', branch],
       { cwd: wtPath }
     )
 
@@ -5132,7 +5565,8 @@ export async function run(
           workflow.gate(item.id),
           item.id,
           wtPath,
-          runDate
+          runDate,
+          buildHappoGateEnv(workflow)
         )
 
         state.lastGate = gateReport
