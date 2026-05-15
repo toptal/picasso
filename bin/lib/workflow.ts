@@ -148,6 +148,17 @@ export interface VariantState {
   last_ci_green_at?: string | null
   last_review_seen_at?: string | null
   review_iterations?: number
+  /**
+   * Count of consecutive review-sweep agent invocations that exited
+   * non-zero WITHOUT a no-progress signal (i.e. process-level / transient
+   * failures: Anthropic 529, network blip, OOM, prompt-assembly bug).
+   * Reset to 0 on any successful review-sweep iteration. Used by
+   * `sweepOne` to keep status at `awaiting_review` for the first few
+   * transient failures (resumable) instead of immediately escalating to
+   * `needs_human` (terminal). Caps at REVIEW_ITER_FAILURE_BUDGET → then
+   * escalates with the usual reason.
+   */
+  review_iter_failures?: number
   session_id?: string | null
   awaiting_ci_since?: string | null
 }

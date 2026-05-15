@@ -80,3 +80,11 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Custom slot components (Mark, ValueLabel) lose `ownerState`/`slotProps` plumbing in @base-ui/react; future migrations should define explicit typed props from iter-1 rather than retaining MUI-shaped prop interfaces — see `rules/base-ui-react-api-crib.md` for the compound-parts replacement pattern.
 - Self-classifying Happo diffs as "INTENTIONAL: designer to accept" (Slider review-sweep iter 2 PR comment) is now explicitly forbidden by the **Visual parity policy** above — INTENTIONAL requires plan-file authorization, default is FIX. The 8 Storybook Slider diffs from this PR should be re-engaged on the next sweep tick with the new pixel-perfect prompt.
 - Reference: https://github.com/toptal/picasso/pull/4955
+
+## Slider — 2026-05-14 (review iter 3)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 3
+- When MUI's `onChange(event, value)` becomes base-ui's `onValueChange(value, eventDetails)`, write an adapter that preserves Picasso's public `(event, value, activeThumbIndex)` shape unchanged — silent signature drift on the public callback is a top reviewer flag (see rules/api-preservation).
+- MUI `slots`/`slotProps` does NOT map 1:1 to base-ui — you must explicitly compose `Root`/`Control`/`Track`/`Indicator`/`Thumb` and hand-`.map` marks and multi-thumb/range arrays, since base-ui no longer auto-renders N thumbs from an array value (see rules/base-ui-react-api-crib).
+- Lift derived logic into pure module-scope helpers (e.g. `generateMarkPositions`, `resolveThumbValues`, `formatValueLabel`, `isMarkActive`) instead of inlining in the render — keeps the component under ESLint `complexity`/`max-statements` caps that CI enforces on the migration PR.
+- Reference: https://github.com/toptal/picasso/pull/4955
