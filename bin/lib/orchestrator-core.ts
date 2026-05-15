@@ -300,6 +300,8 @@ function buildHappoFailureSection(
     'The "intentional visual change" bucket is **effectively forbidden** for the migrated component itself. Use it ONLY when the operator pre-approved a design-led visual change for this migration and documented it in the per-component plan file (`docs/migration/components/<X>.md` under "Approved visual deltas"). Self-declared "intentional" calls have produced wrong outcomes (Slider PR #4955: 8 Storybook diffs labeled "intentional" because the new DOM shape differs — wrong; those need CSS compensation, not designer-accept).\n\n' +
     'For each failed Happo report below:\n\n' +
     '1. **Inspect every diff pair pixel-by-pixel.** If a report has `Local diff pairs` listed, `Read` each `oldPath` and `newPath` PNG directly — Claude is multimodal; the Read tool presents the image. **Looking at the pixels is the ONLY valid basis for classification.** Surrounding-signal heuristics ("Storybook is green, must be flake") have produced wrong calls. If no local pairs are listed (fetch failed), `WebFetch` the `reportUrl`; if that returns the SPA shell, fall back to `Bash(gh api repos/<owner>/<repo>/commits/<head-sha>/status)` for the `target_url`.\n' +
+    '   **CRITICAL: jsdom is not the browser.** Picasso\'s jest tests use jsdom, which does NOT serialize the CSS Transforms 2 individual-axis properties (`translate`, `rotate`, `scale`) into the `style=""` attribute. Real Chrome (Happo) DOES apply them. So if you base your diagnosis on what a Jest snapshot or `style=""` attribute shows, you will miss centering/positioning logic that @base-ui/react sets via the `translate:` property. **Before adding any Tailwind / CSS compensation for a positioning or layout diff, `Read` the relevant @base-ui/react source file** (e.g. `node_modules/@base-ui/react/slider/thumb/SliderThumb.js` for Slider.Thumb, `.../tooltip/popup/TooltipPopup.js` for Tooltip.Popup, etc.) and look for inline-style assignments inside the component\'s `getStyle` / `useMemo` / render path. Common patterns library-set: `translate: -50% -50%`, `position: absolute + offsets`, `transform-origin`. If the library already centers via `translate:`, do NOT add Tailwind `-translate-x-1/2 -translate-y-1/2` — they will COMPOSE (CSS `translate:` and `transform: translate()` are independent properties) and the element will be doubly-shifted. Empirical lesson: Slider PR #4955 review-iter 3 added Tailwind translates because the agent inferred "no centering" from jsdom; @base-ui actually centers via `translate:` already; the fix introduced a real visual regression.\n' +
+    '   **Also: Picasso\'s `jss-snapshot-serializer.cjs` mis-classifies multi-dash Tailwind utility names as JSS class names** and strips suffixes (`-translate-x-1/2` → `-translate-x`, `bg-blue-500` → `bg-blue`, anything matching `X-Y-Z` where Z is digits). So a Jest snapshot showing `class="... -translate-x"` does NOT mean the source class is `-translate-x`; it may be `-translate-x-1/2` mangled by the serializer. Check the source string directly.\n' +
     '2. **Identify the migration target.** Find this PR\'s migrating component (changeset, PR title, commit message). That component name MUST match the diff\'s `component` field for the "regression-on-migrated-component" path below.\n' +
     '3. **Classify each diff using this strict matrix**:\n' +
     '   - **REGRESSION on migrated component** (default for any diff whose `component` matches the migration target) → **MUST FIX**. Read old.png vs new.png; identify what changed (border, padding, color, focus-ring, hover state, transition timing, anti-aliasing of an icon). Find the cause in your worktree — usually a missing Tailwind class, a `data-*` selector that needs adding (e.g. `[data-disabled]:opacity-50`, `[data-orientation=horizontal]:flex-row`), a CSS variable that shifted, or an underlying library default to override. Edit source. Goal: **zero pixel diff** on the next gate run.\n' +
@@ -1247,9 +1249,87 @@ const storybook = {
 
       return null
     }
+
+    // Verify the listener is actually OUR child, not a stale Storybook
+    // from a prior orchestrator run that we connected to by accident.
+    // Symptom (Slider sweep 2026-05-14): log said "ready in 2.0s" — far
+    // too fast for a real cold start — because waitForPort connected to
+    // a stale process still bound to 9001 while our pnpm child was busy
+    // failing to bind. Two checks:
+    //   1. Our child must still be alive (didn't exit/crash on bind).
+    //   2. Optional: lsof confirms the listening PID is in our child's
+    //      process tree (pnpm parent → start-storybook → webpack worker
+    //      etc.). Skipped if lsof isn't available.
+    if (child.exitCode !== null || child.killed) {
+      log(
+        'storybook',
+        `child pnpm exited (code=${child.exitCode}, killed=${child.killed}) before becoming ready — port ${port} is bound by a stale process; refusing to connect`
+      )
+
+      return null
+    }
+
+    const listenerPidCheck = spawnSync(
+      'lsof',
+      ['-t', '-i', `:${port}`, '-sTCP:LISTEN'],
+      { encoding: 'utf8' }
+    )
+    const listenerPids = listenerPidCheck.stdout
+      .split('\n')
+      .map(s => s.trim())
+      .filter(Boolean)
+      .map(s => Number.parseInt(s, 10))
+      .filter(n => Number.isFinite(n))
+
+    if (listenerPids.length > 0 && child.pid) {
+      // Walk the listening PIDs' ancestry; one of them should be our
+      // child.pid (pnpm) or have it as an ancestor. Use `ps -o ppid=` to
+      // walk up the parent chain.
+      const isOurDescendant = listenerPids.some(listenerPid => {
+        let cur: number | null = listenerPid
+
+        for (let depth = 0; depth < 10 && cur && cur !== 1; depth++) {
+          if (cur === child.pid) {
+            return true
+          }
+          const psResult = spawnSync('ps', ['-o', 'ppid=', '-p', String(cur)], {
+            encoding: 'utf8',
+          })
+          const parent = Number.parseInt(psResult.stdout.trim(), 10)
+
+          if (!Number.isFinite(parent) || parent === cur) {
+            return false
+          }
+          cur = parent
+        }
+
+        return false
+      })
+
+      if (!isOurDescendant) {
+        log(
+          'storybook',
+          `port ${port} is bound by PID(s) [${listenerPids.join(
+            ', '
+          )}] which are NOT descendants of our child.pid=${
+            child.pid
+          } — refusing to connect to a stale Storybook. Kill it: kill ${listenerPids.join(
+            ' '
+          )}`
+        )
+        killProcessTree(child.pid)
+
+        return null
+      }
+    }
     const elapsedSec = ((Date.now() - startedAt) / 1000).toFixed(1)
 
-    log('storybook', `ready at http://localhost:${port}/ in ${elapsedSec}s`)
+    log(
+      'storybook',
+      `ready at http://localhost:${port}/ in ${elapsedSec}s (verified listener pid${
+        listenerPids.length > 1 ? 's' : ''
+      } ${listenerPids.join(',')} ∈ child pgid)`
+    )
 
     const url = `http://localhost:${port}`
 
@@ -3791,15 +3871,66 @@ async function sweepOne(
   if (agentResult.exitCode !== 0) {
     const noProgressReason = await detectNoProgressFailure(agentLogPath)
 
+    // Semantic give-up (the agent itself declared no further progress
+    // possible) → terminal needs_human regardless of count.
+    if (noProgressReason) {
+      updateForVariant({
+        status: 'needs_human',
+        escalation_reason: `review-iter agent ${noProgressReason}`,
+        last_review_seen_at: nowIso,
+      })
+
+      return
+    }
+
+    // Process-level failure (Anthropic 529, network blip, OOM, prompt
+    // assembly bug, etc.). These are typically transient — escalating to
+    // needs_human on the first occurrence terminally blocks a green +
+    // approved PR until manual intervention (observed on Button #4947:
+    // approved, CI clean, but sweep tick 7's agent exited 1 and the PR
+    // was parked in needs_human for 24h+). Use a small failure budget:
+    // stay in awaiting_review for transient failures so the next sweep
+    // tick retries; only escalate after REVIEW_ITER_FAILURE_BUDGET
+    // consecutive failures.
+    const REVIEW_ITER_FAILURE_BUDGET = 3
+    const prevFailures = state.review_iter_failures ?? 0
+    const nextFailures = prevFailures + 1
+
+    if (nextFailures >= REVIEW_ITER_FAILURE_BUDGET) {
+      updateForVariant({
+        status: 'needs_human',
+        escalation_reason: `review-iter agent exited ${agentResult.exitCode} on ${nextFailures} consecutive ticks — likely persistent (not transient)`,
+        last_review_seen_at: nowIso,
+        review_iter_failures: nextFailures,
+      })
+      log(
+        'sweep',
+        `${item.id}: review-iter agent exit ${agentResult.exitCode} — budget exhausted (${nextFailures}/${REVIEW_ITER_FAILURE_BUDGET}) → needs_human`
+      )
+
+      return
+    }
+
+    // Transient failure within budget — keep status retryable. DO NOT
+    // advance last_review_seen_at: leaving it at the prior value means
+    // the next sweep tick re-classifies the same comments + retries the
+    // agent on them. (Advancing would silently swallow the operator's
+    // comment.)
     updateForVariant({
-      status: 'needs_human',
-      escalation_reason: noProgressReason
-        ? `review-iter agent ${noProgressReason}`
-        : `review-iter agent exited ${agentResult.exitCode}`,
-      last_review_seen_at: nowIso,
+      review_iter_failures: nextFailures,
     })
+    log(
+      'sweep',
+      `${item.id}: review-iter agent exit ${agentResult.exitCode} — transient (${nextFailures}/${REVIEW_ITER_FAILURE_BUDGET}); status stays awaiting_review, next sweep tick will retry`
+    )
 
     return
+  }
+
+  // Agent succeeded — reset the transient-failure counter so a future
+  // single failure doesn't compound with an old stale count.
+  if (state.review_iter_failures && state.review_iter_failures > 0) {
+    updateForVariant({ review_iter_failures: 0 })
   }
 
   // Sanity gate.
@@ -3811,10 +3942,87 @@ async function sweepOne(
     runDate
   )
 
+  // Distinguish deterministic-stage failures (the agent broke something
+  // in source — jest snapshots out of sync, type error, build error,
+  // lint violation) from environmental-stage failures (Happo creds
+  // missing in the operator's env, network timeout, etc.). Pushing a
+  // commit that fails deterministic stages locally pollutes git history
+  // and slows the loop (Slider PR #4955 review-iter 3 commit 94822a181
+  // pushed jest-failing code; CI would surface it eventually but the
+  // broken state lived on the branch for hours).
+  //
+  // Deterministic stages run identically locally and in CI given the
+  // same source. If they fail locally, they WILL fail in CI — pushing
+  // is pure noise. Better to leave the worktree dirty (no commit, no
+  // push), mark the item as review_iter_failures bump (next sweep tick
+  // retries), and let the next agent invocation see its own broken
+  // state in the gate report.
+  //
+  // Environmental stages CAN succeed in CI even when failing locally
+  // (e.g. operator hasn't set HAPPO_API_KEY locally, but CI has it).
+  // Those still merit a push so CI can verify.
+  const DETERMINISTIC_GATE_STAGES = new Set([
+    'build',
+    'tsc',
+    'lint',
+    'jest',
+    'syncpack',
+    'changeset',
+    'lockfile-drift',
+    'cypress',
+    'consumers',
+  ])
+
   if (!workflow.successCriteria(gateReport)) {
+    const failedDeterministic = gateReport.stages.filter(
+      s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name)
+    )
+
+    if (failedDeterministic.length > 0) {
+      log(
+        'sweep',
+        `${
+          item.id
+        }: deterministic gate stage(s) FAILED locally (${failedDeterministic
+          .map(s => s.name)
+          .join(
+            ', '
+          )}) — refusing to push broken commit. Bumping review_iter_failures so next sweep tick re-engages the agent on its own broken state.`
+      )
+
+      const prevFailures = state.review_iter_failures ?? 0
+      const nextFailures = prevFailures + 1
+      const REVIEW_ITER_FAILURE_BUDGET = 3
+
+      if (nextFailures >= REVIEW_ITER_FAILURE_BUDGET) {
+        updateForVariant({
+          status: 'needs_human',
+          escalation_reason: `agent broke deterministic gate stages (${failedDeterministic
+            .map(s => s.name)
+            .join(', ')}) and couldn't self-correct in ${nextFailures} ticks`,
+          last_review_seen_at: nowIso,
+          review_iter_failures: nextFailures,
+        })
+      } else {
+        updateForVariant({
+          review_iter_failures: nextFailures,
+        })
+      }
+
+      // Leave the worktree dirty so the agent's next sweep-tick run sees
+      // the broken state in `git diff` and can revert/fix. Don't commit,
+      // don't push, don't advance last_review_seen_at.
+      return
+    }
+
     log(
       'sweep',
-      `${item.id}: local gate not green after review-response; pushing anyway, CI will surface`
+      `${
+        item.id
+      }: local gate not green but only environmental stages failed (${gateReport.stages
+        .filter(s => s.status === 'FAIL')
+        .map(s => s.name)
+        .join(', ')}) — pushing anyway, CI will surface`
     )
   }
 

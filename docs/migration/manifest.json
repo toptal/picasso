@@ -78,7 +78,7 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "needs_human",
+      "status": "awaiting_review",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
       "versionBump": "major",
@@ -91,8 +91,9 @@
       "last_ci_green_at": "2026-05-08T07:02:21.508Z",
       "session_id": "79714792-6765-420a-9660-f1385fda0739",
       "last_review_seen_at": "2026-05-14T09:38:57.092Z",
-      "escalation_reason": "review-iter agent exited 1",
-      "review_iterations": 7
+      "escalation_reason": null,
+      "review_iterations": 7,
+      "review_iter_failures": 0
     },
     "Drawer": {
       "tier": 0,
@@ -139,8 +140,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-14T21:54:36.912Z",
-      "review_iterations": 2,
+      "last_review_seen_at": "2026-05-14T22:24:24.400Z",
+      "review_iterations": 3,
       "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
       "awaiting_ci_since": null,
       "variants": {
@@ -153,8 +154,8 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-14T21:54:36.912Z",
-          "review_iterations": 2,
+          "last_review_seen_at": "2026-05-14T22:24:24.400Z",
+          "review_iterations": 3,
           "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
           "awaiting_ci_since": null
         }
