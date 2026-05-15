@@ -78,7 +78,3 @@ page
     title: 'PicassoLight with FixViewport and FontsLoader',
     takeScreenshot: false,
   })
-  .addExample('Picasso/story/LightWithNotificationsAndFavicon.example.tsx', {
-    title: 'PicassoLight with notifications and favicon',
-    takeScreenshot: false,
-  })
