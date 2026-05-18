@@ -200,6 +200,14 @@ Your task:
    - story files (they exercise the public API)
    - file locations or export names
 
+   **Snapshot regeneration precondition (mandatory, since 2026-05-18 Modal incident):** Before running `pnpm davinci-qa unit -u` on ANY consumer package's snapshots, verify the MIGRATING package builds cleanly:
+
+   ```bash
+   pnpm --filter @toptal/picasso-<name> build:package
+   ```
+
+   Why: the orchestrator's bootstrap runs `pnpm build:package` across all workspaces; if any package fails (e.g. mid-migration source breaks the workspace's transitive builds), bootstrap logs `continuing anyway (consumers stage may fail)` and continues with stale dist artifacts. Consumer tests then import a stale or broken `@toptal/picasso-<name>` and jsdom renders an empty body, so `jest -u` writes a 1-line minimal snap. CI later runs with a fresh build and renders 120+ lines — the committed snap is wrong. Modal PR #4967 was discarded specifically because of this failure mode (PromptModal snap captured `<div class="Picasso-root" />` only, CI then diffed `-1 / +120` lines). Always confirm the build is clean for the migrating package BEFORE accepting any regenerated consumer snapshot.
+
 7. **Author a changeset (mandatory).** Create `.changeset/<component-kebab>-migration.md` at the repo root before declaring done. The file accumulates on `feature/picasso-modernization`; the final `pnpm changeset version` at release time aggregates all per-PR files into a per-package CHANGELOG.
 
    Template:

@@ -134,13 +134,38 @@ const MAX_EXCERPT_BYTES = 6000
  * FAIL to handle all three formats.
  */
 function extractFailedTestPaths(log: string): readonly string[] {
-  const matches =
+  const paths = new Set<string>()
+  // Primary marker: jest's `FAIL packages/.../<name>.test.tsx` line.
+  const failMarkers =
     log.match(/(?:^|\s)FAIL\s+(\S+\.(?:test|spec)\.[a-z]+)/g) ?? []
-  const paths = matches
-    .map(line => line.replace(/^.*FAIL\s+/, '').trim())
-    .filter(Boolean)
 
-  return [...new Set(paths)]
+  for (const line of failMarkers) {
+    const stripped = line.replace(/^.*FAIL\s+/, '').trim()
+
+    if (stripped) {
+      paths.add(stripped)
+    }
+  }
+  // Fallback marker (added 2026-05-18 after Modal PR #4967): CI's "Static
+  // checks" job runs jest with a formatter that doesn't print the FAIL
+  // header — instead the failing test file appears in the call-stack
+  // line like `at Object.toMatchSnapshot (packages/.../test.tsx:29:25)`.
+  // Without this fallback the auto-fix-snapshot path silently ran with
+  // paths=[] and skipped the jest -u step entirely.
+  const stackMatches =
+    log.match(
+      /\bat\s+[\w$.<>]+\s+\((packages\/[^):\s]+\.(?:test|spec)\.[a-z]+):\d+/g
+    ) ?? []
+
+  for (const line of stackMatches) {
+    const match = line.match(/\((packages\/[^):\s]+\.(?:test|spec)\.[a-z]+):/)
+
+    if (match && match[1]) {
+      paths.add(match[1])
+    }
+  }
+
+  return [...paths]
 }
 
 /**

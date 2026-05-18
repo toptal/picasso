@@ -6163,10 +6163,24 @@ export async function run(
       // feed-to-agent loop didn't include them (wrong class), and the early-
       // bail at "no actionable CI classifications" escalated. Now we pass the
       // log excerpt to the agent and let it figure out which files to fix.
+      //
+      // 2026-05-18 (post-Modal-PR-#4967 incident): extend the same fallback
+      // to `auto-fix-snapshot` with empty paths. The CI log format for
+      // GitHub Actions Static checks job includes the failing test file
+      // path via `at Object.toMatchSnapshot (packages/.../test.tsx:29:25)`
+      // — NOT the `FAIL packages/...` shape that `extractFailedTestPaths`
+      // looks for. When extraction fails, paths is empty and the auto-fix
+      // loop above silently skips (line 6107 guard). Without this
+      // fallback, PromptModal's broken snap on Modal PR #4967 was
+      // classified as auto-fix-snapshot, had paths=[], no jest -u ran,
+      // no agent invocation happened on the snapshot regression, and the
+      // PR stuck-detected after iter 3 with the same failure set.
       const feedDecisions = classifications.filter(
         c =>
           c.decision.class === 'feed-to-agent' ||
           (c.decision.class === 'auto-fix-lint' &&
+            c.decision.paths.length === 0) ||
+          (c.decision.class === 'auto-fix-snapshot' &&
             c.decision.paths.length === 0)
       )
 

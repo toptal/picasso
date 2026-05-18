@@ -294,10 +294,68 @@ if [ "${MIGRATION_GATE_CONSUMERS:-run}" = "skip" ]; then
   run_stage_skip "consumers" "MIGRATION_GATE_CONSUMERS=skip"
   CONSUMER_PATHS=""
 else
-  CONSUMER_PATHS=$(git grep -l "base-${COMPONENT_LEAF}" -- 'packages/**/__snapshots__/*.snap' 2>/dev/null \
+  # Detection has TWO sources, unioned:
+  #
+  # (1) Snapshot files containing the `base-<Name>` className — Picasso's
+  #     convention to mark "this component rendered here". The old, fast
+  #     detection. Fails when the snapshot was previously regenerated and
+  #     the new render lost the marker (e.g. @base-ui/react's primitive
+  #     swap drops the `base-Modal` className in favor of
+  #     `data-base-ui-portal`), so prior consumer snaps may be silently
+  #     dropped after one migration round.
+  #
+  # (2) Test files that import `@toptal/picasso-<pkg-name>` directly,
+  #     where <pkg-name> is the kebab-cased package name (e.g.
+  #     `@toptal/picasso-modal` for Modal). Added 2026-05-18 after Modal
+  #     PR #4967: PromptModal's snapshot lost the `base-Modal` marker
+  #     after an in-worktree jest -u regenerated it with the new DOM,
+  #     so source (1) skipped PromptModal as a consumer — but its test
+  #     still imports Modal and would fail in CI. The import-based
+  #     detection catches consumers regardless of snap state.
+  # Derive the kebab-case package suffix from the component leaf name.
+  # Picasso convention: PascalCase component (Modal, PromptModal, Backdrop)
+  # → kebab npm name (@toptal/picasso-modal, @toptal/picasso-prompt-modal,
+  # @toptal/picasso-backdrop). Read the actual package.json `name` field
+  # rather than transforming — handles edge cases (acronyms, numbers)
+  # without portable-sed gymnastics across BSD/GNU. Falls back to a
+  # lowercase guess if the package.json isn't readable.
+  if [ -f "${PKG_PATH}/package.json" ]; then
+    PKG_NAME=$(node -e "console.log(require('./${PKG_PATH}/package.json').name)" 2>/dev/null || echo "")
+    PKG_NAME_KEBAB="${PKG_NAME#@toptal/picasso-}"
+  fi
+
+  if [ -z "${PKG_NAME_KEBAB:-}" ] || [ "$PKG_NAME_KEBAB" = "$PKG_NAME" ]; then
+    PKG_NAME_KEBAB=$(echo "$COMPONENT_LEAF" | tr '[:upper:]' '[:lower:]')
+  fi
+
+  SNAP_CONSUMER_PATHS=$(git grep -l "base-${COMPONENT_LEAF}" -- 'packages/**/__snapshots__/*.snap' 2>/dev/null \
     | sed 's|/src/.*||' \
     | grep -v "^${PKG_PATH}\$" \
     | sort -u)
+  # Source-import detection: walk all .ts/.tsx under packages/ for files
+  # that `import` the migrating package, take their containing package
+  # directory, and filter to only those packages that have tests (else
+  # there's no snapshot to regenerate). Note: PromptModal/test.tsx imports
+  # `../PromptModal` (relative) — not `@toptal/picasso-modal` — but
+  # PromptModal/PromptModal.tsx imports `@toptal/picasso-modal` directly,
+  # and PromptModal's test renders the component that internally renders
+  # Modal. So grepping only test files misses this case; we must scan
+  # all sources and use "has tests" as the gating signal.
+  IMPORT_CONSUMER_PATHS=$(git grep -l "@toptal/picasso-${PKG_NAME_KEBAB}\(['\"]\|/\)" \
+      -- 'packages/**/*.ts' 'packages/**/*.tsx' 2>/dev/null \
+    | sed 's|/src/.*||' \
+    | sort -u \
+    | grep -v "^${PKG_PATH}\$" \
+    | while read -r pkgdir; do
+        if [ -d "${pkgdir}/src" ] && \
+           git ls-files "${pkgdir}/src/**/test.tsx" \
+                       "${pkgdir}/src/**/*.test.tsx" \
+                       "${pkgdir}/src/**/*.spec.tsx" 2>/dev/null | grep -q .; then
+          echo "$pkgdir"
+        fi
+      done)
+  CONSUMER_PATHS=$(printf '%s\n%s\n' "$SNAP_CONSUMER_PATHS" "$IMPORT_CONSUMER_PATHS" \
+    | grep -v '^$' | sort -u)
 fi
 
 if [ -z "$CONSUMER_PATHS" ] && [ "${MIGRATION_GATE_CONSUMERS:-run}" != "skip" ]; then
@@ -522,10 +580,23 @@ else
           HAPPO_REASON="$VERIFY_COMPONENT_DIFFS unresolved Happo diff(s) on migrated component ${COMPONENT##*/} — see report $VERIFY_REPORT_URL (verifier output: $VERIFY_OUT_FILE)"
           ;;
         *)
-          # ERROR (verifier failed) is advisory — common cause is Happo
-          # propagation delay even after `happo run`. Don't fail gate on
-          # this; CI will re-verify post-push.
-          echo "  [happo] verifier ERROR (transient; CI will re-verify post-push)" \
+          # ERROR (verifier itself errored — most common cause: Happo
+          # propagation delay beyond the 210s retry budget). Policy
+          # changed 2026-05-18 (post-Modal-PR-#4967 incident): treat as
+          # FAIL instead of advisory-PASS. The previous "advisory PASS"
+          # path let the loop push to origin with unverified Happo,
+          # turning local gate green into a CI-only regression discovery
+          # — exactly the failure mode the local gate is supposed to
+          # prevent. By failing the stage, the migrate-loop retries
+          # the gate (which re-verifies; if Happo is now indexed it
+          # PASSes), and only pushes when Happo is actually verified.
+          # The orchestrator's stuck-detection still treats consecutive
+          # `happo:ERROR` keys as transient (see readHappoFailureKey)
+          # so we don't burn iterations on indexing delays — we just
+          # don't pretend the gate passed when it didn't.
+          HAPPO_STATUS="FAIL"
+          HAPPO_REASON="Happo verifier ERROR — could not confirm zero diffs on migrated component. Most likely Happo indexing delay beyond retry budget; retry gate or increase HAPPO_VERIFY_BUDGET. Verifier output: $VERIFY_OUT_FILE"
+          echo "  [happo] verifier ERROR — failing stage (was advisory before 2026-05-18)" \
             | tee -a "$RUN_DIR/console.log"
           ;;
       esac

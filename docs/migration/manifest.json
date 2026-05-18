@@ -161,7 +161,12 @@
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor."
+      "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. First run (PR #4967, branch migrate-Modal-v1) was discarded 2026-05-18 to validate orchestrator fixes from scratch: (a) consumers stage now detects via @toptal/picasso-<name> import scans not just snap markers, (b) happo verifier ERROR now FAILs gate not advisory-PASS, (c) auto-fix-snapshot empty-paths falls back to feed-to-agent + classifier extracts stack-trace test paths. See lessons-learned.md (Modal — 2026-05-18) for behavioral parity notes (initialFocus={modalRef}, base-ui-utils@0.2.8 patch, 6-target Happo budget).",
+      "escalation_reason": null,
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null
     },
     "Slider": {
       "tier": 0,

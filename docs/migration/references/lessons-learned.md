@@ -165,6 +165,16 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Remove obsolete sibling `tsconfig.json` `references` (here `../Backdrop`) when dropping the corresponding workspace dependency from `package.json`, otherwise `tsc -b` fails on the migration PR's "Build" job even though `pnpm install` succeeds.
 - Reference: https://github.com/toptal/picasso/pull/4966
 
+## Modal — 2026-05-18 (run discarded, restarted with orchestrator fixes)
+
+- Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 4 (discarded run; restarted clean)
+- **`initialFocus`-on-Popup parity with `@mui/base/Modal`**: `@mui/base/Modal` auto-focuses the modal root on mount, moving focus off the trigger button. The `@base-ui/react` `Dialog.Popup` default `initialFocus={false}` leaves focus on the trigger → visible `focus-visible` ring on the trigger button persists when modal opens, surfacing as a Drawer-behind-Modal Cypress diff. Fix: `initialFocus={modalRef}` (where `modalRef` is the `Dialog.Popup` ref, which has `tabindex=-1` so it absorbs focus without rendering a visible ring). Modal.tsx ~line 318.
+- **3 consumers of `@toptal/picasso-modal` have tests with snapshots that need regenerating**: `packages/base/PromptModal` (PromptModal wraps Modal as dialog primitive), `packages/base/Utils/src/utils/Modal` (`useModal` hook test), `packages/picasso-rich-text-editor` (ImagePluginModal). The local gate's consumer-stage detection now catches all three (was previously keyed only on `base-Modal` className in snap files, missed once snaps were regenerated to new Base UI DOM that uses `data-base-ui-portal` instead).
+- **Heavy Tier 0 → Happo verifier needs >210s budget**: Modal renders 6 viewport targets × 11 stories → Happo upload + indexing routinely exceeds the verifier's 210s retry budget. Verifier emitting `status=ERROR` now FAILs the gate (was advisory-PASS pre-2026-05-18 fix), so migrate-loop must retry until indexing completes. Consider per-component `HAPPO_VERIFY_BUDGET` override for Modal-class components if 210s is consistently insufficient.
+- **Same `@base-ui/utils@0.2.8` patch + tsconfig cleanup as Drawer** — see `patches/@base-ui__utils@0.2.8.patch` (strips `const` from generic params). Modal also removed obsolete `references` from `packages/base/Modal/tsconfig.json`.
+- **Bootstrap-build-failure pitfall**: when `pnpm build:package` fails at orchestrator bootstrap (`continuing anyway (consumers stage may fail)` log line), do NOT run `pnpm jest -u` on consumer snaps until you've verified `pnpm --filter @toptal/picasso-<name> build:package` succeeds for the migrating package. PromptModal's test imports `@toptal/picasso-modal`; if the consuming module is stale or missing, jsdom renders an empty body and `jest -u` writes a 1-line snap that CI then diffs as `-1 / +120` lines.
+- Reference: PR #4967 was closed + restarted to exercise the orchestrator fixes from scratch (consumer detection by import scan, happo-verifier ERROR-as-FAIL, auto-fix-snapshot stack-trace path extraction).
+
 ## Slider — 2026-05-18 (review iter 10)
 
 - Tier 0 · target_path: `@base-ui/react/slider` · iterations: 10
