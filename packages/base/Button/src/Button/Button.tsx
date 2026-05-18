@@ -35,7 +35,7 @@ export type VariantType =
 export type IconPositionType = 'left' | 'right'
 
 export interface Props
-  extends StandardProps,
+  extends Omit<StandardProps, 'classes'>,
     TextLabelProps,
     ButtonOrAnchorProps {
   /** Show button in the active state (left mouse button down) */
