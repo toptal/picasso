@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm davinci-syntax *)",
+      "Bash(pnpm davinci-qa *)",
+      "Bash(pnpm eslint *)",
+      "Bash(pnpm exec tsc --noEmit *)",
+      "Bash(pnpm typecheck *)",
+      "Bash(gh search *)",
+      "Bash(bash -n *)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_take_screenshot"
+    ]
+  }
+}
