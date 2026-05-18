@@ -249,14 +249,18 @@ This is ~12x faster than `pnpm lint` (which lints the whole repo). Use the scope
 If `--with-mcp` was passed to the orchestrator (default for Tier 0/2/3), you also have **Playwright MCP** tools and a Storybook server running at `http://localhost:9001`. **Runtime verification is required** — `pnpm typecheck` and the gate stages catch type/build errors but miss the class of bugs that fire only at render time: React 18/19 console warnings, `ReactDOM.render` deprecations, Base UI's `nativeButton` warning, broken `ref` forwarding, hydration mismatches, and components that throw silently and render blank (which Happo passes as "small diff"). The runtime check catches these before commit.
 
 Available tools:
-- `mcp__playwright__browser_navigate` to load story URLs (e.g. `http://localhost:9001/?path=/story/components-button--default`).
+- `mcp__playwright__browser_navigate` to load story URLs. **Picasso story IDs use the pattern `components-<name>--<name>-<story>` — the component name REPEATS after `--`**. Examples: `components-slider--slider-range`, `components-slider--slider-tooltip`, `components-button--button-default`, `components-backdrop--backdrop-invisible`. Do NOT use `components-slider--range` or `components-button--default` — those produce "Couldn't find story matching" errors.
 - `mcp__playwright__browser_take_screenshot` for pixel-level confirmation.
 - `mcp__playwright__browser_console_messages` to capture runtime warnings + errors.
 - `mcp__playwright__browser_hover` / `browser_click` to exercise interaction states.
 
 **Mandatory runtime check (required when `--with-mcp` is active — non-optional):**
 
-1. **Discover the story URLs.** `browser_navigate` to `http://localhost:9001/` and read the left sidebar to find your component's stories under `Components / <Name>`. URL pattern is `http://localhost:9001/?path=/story/components-<lowercase-name>--<story-id>` but the `<story-id>` part is **per-component** — for Backdrop it's `--backdrop` (default) + `--invisible` (variant), not `--default`. Inspect the story tree by reading `mcp__playwright__browser_snapshot` of the sidebar or just navigating into `Components` group to enumerate them.
+1. **Story URLs follow `components-<name>--<name>-<story>`** — the component name is repeated after `--`. Examples:
+   - Slider, "Range" story → `http://localhost:9001/?path=/story/components-slider--slider-range`
+   - Slider, "Tooltip" story → `http://localhost:9001/?path=/story/components-slider--slider-tooltip`
+   - Backdrop, "Invisible" story → `http://localhost:9001/?path=/story/components-backdrop--backdrop-invisible`
+   Story-name suffixes come from the `addExample` titles in `packages/base/<Component>/src/<Component>/story/index.jsx` (kebab-cased). Do NOT use `components-slider--range` — the repeated name segment is mandatory.
 
 2. **Render the actual component, not just the trigger.** Many stories show only a trigger button (e.g. Backdrop's default story shows an "Open Backdrop" button — the backdrop itself is hidden until clicked). After `browser_navigate`, look at the screenshot/snapshot: if you only see a placeholder button or instruction text, you have NOT verified the migrated component yet. `browser_click` the trigger (or whatever action makes the component visible), then re-screenshot. The thing you're migrating must be on screen before you call this check done.
 
@@ -288,7 +292,7 @@ You have TWO reference Storybooks:
 
 #### Workflow
 
-1. **Enumerate stories**: `browser_navigate` to `https://picasso.toptal.net/`. Click your component in the left sidebar under `Components / <Name>`. Record each story's URL pattern (typically `?path=/story/components-<lowercase>--<story-id>`). The deployed Storybook's story IDs MATCH the local ones (same Storybook source).
+1. **Enumerate stories**: URL pattern is `?path=/story/components-<name>--<name>-<story>` (component name REPEATED — see top of "Runtime check" section above). The deployed `picasso.toptal.net` and local `localhost:9001` use identical IDs (same Storybook source). To list a component's stories without trial-and-error, read `packages/base/<Component>/src/<Component>/story/index.jsx` — each `addExample(..., '<Title>', ...)` title becomes the kebab-cased story suffix.
 
 2. **For each story, capture and compare**:
    - `browser_navigate` to the baseline URL on `picasso.toptal.net` → `browser_take_screenshot` → save to `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`
