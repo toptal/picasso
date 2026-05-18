@@ -9,7 +9,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
   <span
     aria-checked="true"
     aria-labelledby="base-ui-:rg:-label"
-    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
+    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
     data-checked=""
     id="base-ui-:rf:"
     role="switch"
@@ -49,7 +49,7 @@ exports[`Switch renders default Switch without label 1`] = `
   >
     <span
       aria-checked="false"
-      class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
+      class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
       data-testid="switch"
       data-unchecked=""
       id="base-ui-:r0:"
@@ -85,7 +85,7 @@ exports[`Switch renders disabled state 1`] = `
     aria-checked="false"
     aria-disabled="true"
     aria-labelledby="base-ui-:r7:-label"
-    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group"
+    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
     data-disabled=""
     data-unchecked=""
     id="base-ui-:r6:"
