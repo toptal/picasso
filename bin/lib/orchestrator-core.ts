@@ -474,11 +474,15 @@ function buildHappoFailureSection(
     "   - **UNRELATED FLAKE** (the diff's `component` is something OTHER than the migration target — e.g. `PageTopBarMenu` diff during a Slider migration) → no source change. Post a single PR comment naming each unrelated snapshot with pixel evidence (what shifted, by roughly how much) so the designer can confidently accept in the Happo UI. Don't bulk-dismiss without per-snapshot inspection.\n" +
     "   - **INTENTIONAL** (only if approved in the plan file) → annotate the changeset's `## Intentional visual changes` section + post a PR comment citing the plan-file authorization line. If unsure: it's NOT intentional — treat as regression and fix.\n" +
     "4. **Playwright comparison is part of the loop, not optional.** When the orchestrator detects Happo failures during sweep AND `--with-mcp` was passed, it starts the worktree's Storybook before invoking you. For each Happo diff on a migrated-component story:\n" +
-    "   - **First, discover the actual story IDs** — don't guess. Picasso's Storybook story IDs follow the pattern `<kebab-title>--<kebab-story-name>`. The manager URL `?path=/story/<id>` and the iframe URL `iframe.html?id=<id>` use the SAME `<id>` value. Mapping:\n" +
-    '     - Manager URL: `https://picasso.toptal.net/?path=/story/components-slider--slider` (or `#default` hash)\n' +
-    '     - Iframe URL: `https://picasso.toptal.net/iframe.html?id=components-slider--slider`\n' +
-    '     - The id format here is `components-slider--slider` (NOT `components-slider--default` — the variant suffix after `--` is the kebab-cased story `name`, which often matches the component name itself for the primary story).\n' +
-    '     If you guessed an id and got "Couldn\'t find story matching", enumerate via `storyStoreV7`:\n' +
+    '   - **Picasso Storybook story IDs follow the pattern `components-<name>--<name>-<story>`** — the component name is REPEATED after `--`, then the story name is appended in kebab-case. Examples:\n' +
+    '     - Slider, "Range" story → `components-slider--slider-range`\n' +
+    '     - Slider, "Tooltip" story → `components-slider--slider-tooltip`\n' +
+    '     - Slider, "Initial value" story → `components-slider--slider-initial-value`\n' +
+    '     - Backdrop, "Default" story → `components-backdrop--backdrop-default`\n' +
+    '     **Do NOT navigate to `components-slider--range` or `components-slider--default`** — those produce "Couldn\'t find story matching" errors. The repeated component-name segment is mandatory.\n' +
+    '     Manager URL: `https://picasso.toptal.net/?path=/story/components-slider--slider-range`\n' +
+    '     Iframe URL:  `https://picasso.toptal.net/iframe.html?id=components-slider--slider-range`\n' +
+    '     Story names come from the `addExample` title in `packages/base/<Component>/src/<Component>/story/index.jsx` (the title string, kebab-cased). If you still need to enumerate, use `storyStoreV7`:\n' +
     '     ```js\n' +
     '     // browser_evaluate AFTER browser_navigate to ANY iframe.html?id=...\n' +
     '     // (the storyStore initializes once the iframe boots; the passed id need not exist):\n' +
