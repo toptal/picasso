@@ -36,7 +36,7 @@ describe('NotificationsProvider', () => {
 
     cy.getByTestId(TRIGGER_TEST_ID).click()
 
-    cy.get(`[data-testid=${NOTIFICATION_TEST_ID}]`).should('have.length', 5)
+    cy.getByTestId(NOTIFICATION_TEST_ID).should('have.length', 5)
   })
 
   it('caps at the configured maxNotifications', () => {
@@ -44,6 +44,6 @@ describe('NotificationsProvider', () => {
 
     cy.getByTestId(TRIGGER_TEST_ID).click()
 
-    cy.get(`[data-testid=${NOTIFICATION_TEST_ID}]`).should('have.length', 2)
+    cy.getByTestId(NOTIFICATION_TEST_ID).should('have.length', 2)
   })
 })
