@@ -52,6 +52,7 @@ import { classifyReview, type Review as RawReview } from './review-classifier'
 import { appendCostSnapshot } from './token-telemetry'
 import { syncToConfluence } from './confluence-sync'
 import { fetchHappoDiffsForCheck, type HappoCheckDiffs } from './happo-fetch'
+import { renderAnalysisForPrompt } from './happo-pixel-diff'
 import type {
   EscalationDecision,
   GateReport,
@@ -418,13 +419,22 @@ async function prefetchHappoPostGate({
     return (
       `\n\n## Fresh Happo diff PNGs (post-iter-${iter} — reflect your latest edits, not the pre-edit state)\n\n` +
       'Read each pair to see what diff PERSISTS after your last attempt. Your prior edit either did not converge OR introduced different diffs. Compare oldPath (baseline) vs newPath (your worktree HEAD).\n\n' +
+      'Each pair includes a quantitative `analysis` block (verdict + bbox + shift-vector). Use it to pick your next edit:\n' +
+      '- **positional_offset** → apply a positioning correction matching `bestDx`/`bestDy` (translate/inset/margin). The visual-Read is still useful for confirming WHICH element shifted.\n' +
+      '- **structural_difference** → stop iterating on translate/margin/inset. The diff is shape/color/shadow/blur/opacity. Run the computed-style diff to identify which non-positional property differs, OR flag to operator for explicit values.\n' +
+      '- **dimension_mismatch** → element changed size; look at box-sizing/padding/border-width/line-height.\n' +
+      '- **negligible** → noise; ignore.\n\n' +
       fresh.diffs
-        .map(
-          (d, j) =>
+        .map((d, j) => {
+          const head =
             `${j + 1}. ${d.component} / ${d.variant} / ${d.target}\n` +
             `   - oldPath: ${d.oldPath}\n` +
             `   - newPath: ${d.newPath}`
-        )
+
+          return d.analysis
+            ? `${head}\n${renderAnalysisForPrompt(d.analysis)}`
+            : head
+        })
         .join('\n')
     )
   } catch (err) {
@@ -450,6 +460,12 @@ function buildHappoFailureSection(
     'The "intentional visual change" bucket is **effectively forbidden** for the migrated component itself. Use it ONLY when the operator pre-approved a design-led visual change for this migration and documented it in the per-component plan file (`docs/migration/components/<X>.md` under "Approved visual deltas"). Self-declared "intentional" calls have produced wrong outcomes (Slider PR #4955: 8 Storybook diffs labeled "intentional" because the new DOM shape differs — wrong; those need CSS compensation, not designer-accept).\n\n' +
     'For each failed Happo report below:\n\n' +
     '1. **Inspect every diff pair pixel-by-pixel.** If a report has `Local diff pairs` listed, `Read` each `oldPath` and `newPath` PNG directly — Claude is multimodal; the Read tool presents the image. **Looking at the pixels is the ONLY valid basis for classification.** Surrounding-signal heuristics ("Storybook is green, must be flake") have produced wrong calls. If no local pairs are listed (fetch failed), `WebFetch` the `reportUrl`; if that returns the SPA shell, fall back to `Bash(gh api repos/<owner>/<repo>/commits/<head-sha>/status)` for the `target_url`.\n' +
+    '   **Read the `analysis` block on each pair BEFORE picking a fix strategy.** The orchestrator runs pixelmatch + a brute-force shift search on every downloaded diff pair (offsets in [-3..+3] px on each axis) and emits a verdict that routes you to the right diagnostic:\n' +
+    '   - `verdict: positional_offset` — the diff is explained by a `(bestDx, bestDy)` pixel translation; >80% of the diff closes when you shift the after image by that vector. **Action**: apply a positioning correction of that exact magnitude (translate/inset/margin) to the element identified by `regionHint` + visual inspection. Sub-pixel offsets that `getComputedStyle()` cannot reveal are typically this verdict.\n' +
+    '   - `verdict: structural_difference` — no shift in the search window reduces the diff meaningfully. **STOP trying translate/margin/inset edits.** The cause is shape/color/shadow/blur/opacity/border/border-radius/compositing — go straight to step 5 (computed-style diff) targeted at non-positional properties. If computed styles are identical, the cause is rendering-pipeline (anti-aliasing, GPU compositing) and needs operator-supplied explicit shadow/border values OR designer accept.\n' +
+    '   - `verdict: dimension_mismatch` — width or height differs between baseline and after. The element changed SIZE, not position. Look at `box-sizing`, `padding`, `border-width`, `line-height`, `width`/`height` setters, or content reflow.\n' +
+    '   - `verdict: negligible` — <5 diff pixels; AA / compression noise. Skip; no action.\n' +
+    '   The `diffBbox` field gives `{x, y, width, height}` of the diff region in image coords, and `regionHint` is a semantic location ("top-center", "middle-right", etc.). Use them to identify WHICH slot is shifted before applying a fix.\n' +
     '   **CRITICAL: jsdom is not the browser.** Picasso\'s jest tests use jsdom, which does NOT serialize the CSS Transforms 2 individual-axis properties (`translate`, `rotate`, `scale`) into the `style=""` attribute. Real Chrome (Happo) DOES apply them. So if you base your diagnosis on what a Jest snapshot or `style=""` attribute shows, you will miss centering/positioning logic that @base-ui/react sets via the `translate:` property. **Before adding any Tailwind / CSS compensation for a positioning or layout diff, `Read` the relevant @base-ui/react source file** (e.g. `node_modules/@base-ui/react/slider/thumb/SliderThumb.js` for Slider.Thumb, `.../tooltip/popup/TooltipPopup.js` for Tooltip.Popup, etc.) and look for inline-style assignments inside the component\'s `getStyle` / `useMemo` / render path. Common patterns library-set: `translate: -50% -50%`, `position: absolute + offsets`, `transform-origin`. If the library already centers via `translate:`, do NOT add Tailwind `-translate-x-1/2 -translate-y-1/2` — they will COMPOSE (CSS `translate:` and `transform: translate()` are independent properties) and the element will be doubly-shifted. Empirical lesson: Slider PR #4955 review-iter 3 added Tailwind translates because the agent inferred "no centering" from jsdom; @base-ui actually centers via `translate:` already; the fix introduced a real visual regression.\n' +
     '   **Also: Picasso\'s `jss-snapshot-serializer.cjs` mis-classifies multi-dash Tailwind utility names as JSS class names** and strips suffixes (`-translate-x-1/2` → `-translate-x`, `bg-blue-500` → `bg-blue`, anything matching `X-Y-Z` where Z is digits). So a Jest snapshot showing `class="... -translate-x"` does NOT mean the source class is `-translate-x`; it may be `-translate-x-1/2` mangled by the serializer. Check the source string directly.\n' +
     '2. **Identify the migration target.** Find this PR\'s migrating component (changeset, PR title, commit message). That component name MUST match the diff\'s `component` field for the "regression-on-migrated-component" path below.\n' +
@@ -551,6 +567,10 @@ function buildHappoFailureSection(
             )
             lines.push(`     - oldPath: ${d.oldPath}`)
             lines.push(`     - newPath: ${d.newPath}`)
+
+            if (d.analysis) {
+              lines.push(renderAnalysisForPrompt(d.analysis))
+            }
           })
         } else if (failure.fetchError) {
           lines.push(
@@ -3563,6 +3583,15 @@ export async function runReviewSweep(
   const candidates: SweepTarget[] = []
 
   for (const item of Object.values(m.components)) {
+    // Component filter — when `--component=X` is passed alongside
+    // `--review-sweep`, focus the sweep on a single component instead of
+    // walking every sweepable item. Useful for targeted iteration when
+    // the operator wants to validate a single PR's fix loop (e.g. new
+    // pixel-diff analyzer output on Slider) without touching other open
+    // PRs that aren't ready for another sweep tick.
+    if (opts.component && item.id !== opts.component) {
+      continue
+    }
     const variantIds = manifest.listVariantIds(item)
 
     for (const variantId of variantIds) {
@@ -3579,9 +3608,11 @@ export async function runReviewSweep(
   }
 
   if (candidates.length === 0) {
+    const scope = opts.component ? ` for --component=${opts.component}` : ''
+
     log(
       'sweep',
-      'no items in awaiting_review / awaiting_ci / ready_to_merge — nothing to sweep'
+      `no items in awaiting_review / awaiting_ci / ready_to_merge${scope} — nothing to sweep`
     )
 
     return { status: 'no-work' }

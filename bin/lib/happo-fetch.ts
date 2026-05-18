@@ -35,6 +35,8 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 
+import { analyzeDiffPair, type PixelDiffAnalysis } from './happo-pixel-diff'
+
 const HAPPO_HOST = 'https://happo.io'
 
 /** Parsed account/project/sha tuple from a Happo report URL. */
@@ -85,6 +87,12 @@ export interface LocalHappoDiff {
   newUrl: string
   width?: number
   height?: number
+  /** Quantitative pixel-diff analysis (pixelmatch + bbox + shift search).
+   *  Absent when analyzer failed (network race during download, PNG decode
+   *  error). The orchestrator surfaces this to the agent prompt so the
+   *  agent has a measurable target — "thumb is offset (1, 0) pixels" —
+   *  instead of just visual inspection. */
+  analysis?: PixelDiffAnalysis
 }
 
 /** Full result of `fetchHappoDiffsForCheck` for one failed Happo check.
@@ -491,6 +499,24 @@ export const fetchHappoDiffsForCheck = async ({
       apiSecret,
     })
 
+    // Run quantitative pixel-diff analysis on the downloaded pair.
+    // Non-fatal on errors — the analyzer encodes failures in the verdict
+    // field so the prompt builder can still surface what it has. Without
+    // this signal the agent has been observed iterating on speculative
+    // CSS edits (Slider PR #4955: 5+ rounds without converging) because
+    // its other tools (visual Read, getComputedStyle) can't reveal sub-
+    // pixel positional offsets or distinguish them from shadow/blur
+    // rendering differences.
+    let analysis: PixelDiffAnalysis | undefined
+
+    try {
+      analysis = await analyzeDiffPair(oldPath, newPath)
+    } catch {
+      // Defensive — analyzeDiffPair shouldn't throw, but if it does the
+      // surrounding sweep tick should continue with the diff PNGs alone.
+      analysis = undefined
+    }
+
     diffs.push({
       component: oldSnap.component,
       variant: oldSnap.variant,
@@ -501,6 +527,7 @@ export const fetchHappoDiffsForCheck = async ({
       newUrl,
       width: oldSnap.width,
       height: oldSnap.height,
+      analysis,
     })
   }
 

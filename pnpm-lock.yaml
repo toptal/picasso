@@ -414,6 +414,9 @@ importers:
       '@types/happo-cypress':
         specifier: ^4.1.3
         version: 4.1.3
+      '@types/pngjs':
+        specifier: ^6.0.5
+        version: 6.0.5
       '@types/react-truncate':
         specifier: ^2.3.4
         version: 2.3.4
@@ -522,6 +525,12 @@ importers:
       package-up:
         specifier: ^5.0.0
         version: 5.0.0
+      pixelmatch:
+        specifier: ^6.0.0
+        version: 6.0.0
+      pngjs:
+        specifier: ^7.0.0
+        version: 7.0.0
       postcss:
         specifier: ^8.4.32
         version: 8.4.32
@@ -7805,6 +7814,9 @@ packages:
   '@types/parse5@5.0.3':
     resolution: {integrity: sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==}
 
+  '@types/pngjs@6.0.5':
+    resolution: {integrity: sha512-0k5eKfrA83JOZPppLtS2C7OUtyNAl2wKNxfyYl9Q5g9lPkgBl/9hNyAu6HuEH2J4XmIv2znEpkDd0SaZVxW6iQ==}
+
   '@types/pretty-hrtime@1.0.1':
     resolution: {integrity: sha512-VjID5MJb1eGKthz2qUerWT8+R4b9N+CHvGCzg9fn4kWZgaF9AhdYikQio3R7wV8YY1NsQKPaCwKz1Yff+aHNUQ==}
 
@@ -14866,6 +14878,10 @@ packages:
   pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
+
+  pixelmatch@6.0.0:
+    resolution: {integrity: sha512-FYpL4XiIWakTnIqLqvt3uN4L9B3TsuHIvhLILzTiJZMJUsGvmKNeL4H3b6I99LRyerK9W4IuOXw+N28AtRgK2g==}
+    hasBin: true
 
   pkg-conf@2.1.0:
     resolution: {integrity: sha512-C+VUP+8jis7EsQZIhDYmS5qlNtjv2yP4SNtjXK9AP1ZcTRlnSfuumaTnRfYZnYgUUYVIKqL0fRvmUGDV2fmp6g==}
@@ -23870,6 +23886,10 @@ snapshots:
 
   '@types/parse5@5.0.3': {}
 
+  '@types/pngjs@6.0.5':
+    dependencies:
+      '@types/node': 24.5.2
+
   '@types/pretty-hrtime@1.0.1': {}
 
   '@types/prop-types@15.7.13': {}
@@ -32754,6 +32774,10 @@ snapshots:
   pinpoint@1.1.0: {}
 
   pirates@4.0.6: {}
+
+  pixelmatch@6.0.0:
+    dependencies:
+      pngjs: 7.0.0
 
   pkg-conf@2.1.0:
     dependencies:
