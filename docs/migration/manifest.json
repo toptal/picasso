@@ -181,18 +181,38 @@
     "Switch": {
       "tier": 0,
       "package": "packages/base/Switch",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "FormLabel"
       ],
       "target_path": "@base-ui/react/switch",
       "versionBump": "major",
-      "pr": "https://github.com/toptal/picasso/pull/4906",
-      "branch": null,
-      "worktree": null,
+      "pr": "https://github.com/toptal/picasso/pull/4965",
+      "branch": "migrate-Switch-v1",
+      "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
       "iterations": 0,
       "merged_at": null,
-      "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup."
+      "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
+      "escalation_reason": null,
+      "last_ci_green_at": "2026-05-18T09:20:16.164Z",
+      "last_review_seen_at": null,
+      "session_id": "484d81c4-49e3-4742-a70d-25458ba1ae2d",
+      "awaiting_ci_since": null,
+      "variants": {
+        "v1": {
+          "status": "in_progress",
+          "pr": "https://github.com/toptal/picasso/pull/4965",
+          "branch": "migrate-Switch-v1",
+          "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
+          "iterations": 0,
+          "merged_at": null,
+          "escalation_reason": null,
+          "last_ci_green_at": "2026-05-18T09:20:16.164Z",
+          "last_review_seen_at": null,
+          "session_id": "484d81c4-49e3-4742-a70d-25458ba1ae2d",
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Tabs": {
       "tier": 0,

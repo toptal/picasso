@@ -116,3 +116,11 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Reconstructing slot props (marks, value labels, thumb positioning) as ad-hoc helpers (`generateMarkPositions`, `resolveThumbValues`, `formatValueLabel`) duplicates @base-ui/react primitives — consult `rules/base-ui-react-api-crib` first to use the library's compound parts (e.g. `Slider.Mark`) before hand-rolling math like `((markValue - min) / (max - min)) * 100`.
 - The `!absolute` Tailwind important overrides and inline `position: relative` workarounds papering over @base-ui/react's default inline styles indicate a styling-collision pattern reviewers will flag — follow `rules/styling` for clearing library inline styles cleanly instead of `!important` escapes.
 - Reference: https://github.com/toptal/picasso/pull/4955
+
+## Switch — 2026-05-18
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 3
+- Lift the `react` peer-dependency upper bound (drop `< 19.0.0` cap) in the migrated package's `package.json` — base-ui/react's peer range exceeds the legacy Picasso cap and consumer install resolution fails CI otherwise.
+- Wrap base-ui's compound-part callback shape (e.g. `onCheckedChange(checked)`) to preserve the consumer-facing `onChange(event, checked)` signature at the public API surface — see `rules/api-preservation.md`.
+- Replace `@mui/base/<Single>` slot-system imports with the `@base-ui/react/<x>` compound parts (`Root` + `Thumb`/equivalent) — see `rules/base-ui-react-api-crib.md` for the per-component part mapping.
+- Reference: https://github.com/toptal/picasso/pull/4965
