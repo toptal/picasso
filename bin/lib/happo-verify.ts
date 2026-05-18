@@ -184,19 +184,58 @@ const main = async (): Promise<void> => {
     args.worktree
   )
 
-  // Query Happo's compare-results endpoint. Server-side this either
-  // returns an existing comparison OR generates one on first access (so
-  // calling this after `pnpm happo` upload is sufficient — no separate
-  // `happo compare` invocation needed).
+  // Query Happo's compare-results endpoint with retry-on-404. Happo
+  // takes time to index a freshly-uploaded report (the upload completes,
+  // but the API may 404 on `/api/reports/<sha>` for 30–90s after). When
+  // the orchestrator just committed agent edits, ran `pnpm happo`, and
+  // immediately queries us, we routinely hit this race. Without retry,
+  // the verifier emits ERROR → gate FAILS on what's actually pending
+  // propagation → stuck-detection escalates a transient state (observed
+  // on Slider PR #4955 review-sweep iter 2, 2026-05-15).
+  //
+  // Backoff schedule sums to ~90s (15+30+30+15). Non-404 errors don't
+  // retry (auth, server errors, etc.) — they're not transient.
+  const RETRY_DELAYS_MS = [15_000, 30_000, 30_000, 15_000]
   const compareUrl = `${HAPPO_HOST}/a/${args.accountId}/p/${args.projectId}/compare/${baseSha}/${headSha}`
-  const results = await fetchCompareResults(
-    args.accountId,
-    args.projectId,
-    baseSha,
-    headSha,
-    apiKey,
-    apiSecret
-  )
+
+  let results: Awaited<ReturnType<typeof fetchCompareResults>> | null = null
+
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
+    results = await fetchCompareResults(
+      args.accountId,
+      args.projectId,
+      baseSha,
+      headSha,
+      apiKey,
+      apiSecret
+    )
+
+    if (!('__status' in results)) {
+      break // 2xx — done
+    }
+
+    if (results.__status !== 404) {
+      break // non-404 errors aren't transient; emit ERROR below
+    }
+
+    if (attempt >= RETRY_DELAYS_MS.length) {
+      break // exhausted retries; fall through to diagnostic probe below
+    }
+    const delayMs = RETRY_DELAYS_MS[attempt]
+
+    process.stderr.write(
+      `[happo-verify] compare-results 404 (attempt ${attempt + 1}/${
+        RETRY_DELAYS_MS.length + 1
+      }); retrying in ${
+        delayMs / 1000
+      }s (Happo may still be indexing the upload)\n`
+    )
+    await new Promise<void>(resolve => setTimeout(resolve, delayMs))
+  }
+
+  if (!results) {
+    die('unexpected: no fetch attempt occurred')
+  }
 
   if ('__status' in results) {
     // 404 typically means one of the two SHAs has no report. If HEAD's

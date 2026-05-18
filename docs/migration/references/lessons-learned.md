@@ -39,6 +39,18 @@ Auto-accumulated by the orchestrator after each successful component migration. 
 - See `decisions/classes-shim.md` for full revision history + pending Tier 2/3 options.
 - Reference: PR #4947 review threads r3207767115 + r3207780637
 
+## Computed-style diff is the authoritative diagnostic — 2026-05-15 (Slider PR #4955 stalemate lesson)
+
+When Happo shows a small (~2–5 px) positional shift on a migrated component, **stop guessing from screenshots and run a computed-style diff** via Playwright's `browser_evaluate`. The diff between baseline (`picasso.toptal.net`) and local (`localhost:9001`) computed-style objects is a finite, deterministic list of properties — the answer is in there.
+
+Empirical: Slider PR #4955 had 8 Storybook Happo diffs all on `Slider`. The agent burned 5 distinct fix attempts (`-translate-x-1/2`, `ml-[1.5px]`, `top-[50%] -translate-y-2/4`, `!absolute` Indicator restructure, etc.) over multiple sweep ticks. Every attempt was speculative — based on PNG inspection alone. None converged.
+
+Root cause (found by reading master baseline source after the agent escalated): master's `Slider.tsx` thumb className had `-mt-[7px] -ml-[6px]` — negative margins for thumb centering with a **deliberate +1.5 px horizontal bias** (`-6px`, not `-7.5px`). The migration dropped these entirely, relying on `@base-ui/react`'s internal `translate: -50% -50%` which centers perfectly (0 px bias). Net: every Slider story renders ~1.5 px LEFT of where master rendered → visible diff in every Happo snapshot.
+
+A computed-style diff (`getComputedStyle(thumbEl)` on both renders) would have shown `margin-left: -6px` vs `margin-left: 0px` immediately. Root cause identified in seconds instead of $20+ of speculative iter-cost.
+
+**Forward rule** (now baked into `buildHappoFailureSection` prompt): stalemate is forbidden until the agent has captured `computed-styles-baseline.json` + `computed-styles-local.json` AND attempted at least 2 fixes targeting properties from the diff. Screenshots narrow the WHERE; computed styles tell you the WHAT.
+
 ## Visual parity policy — 2026-05-15 (pixel-perfect mandate + new tooling)
 
 **Picasso is a UI kit.** A migration is an internal library swap; consumers must see byte-identical output across releases. ANY non-zero pixel diff on a migrated-component story is a REGRESSION to fix in source, not an "intentional consequence" to mark for designer accept. The "intentional visual change" bucket is now allowed ONLY when a per-component plan file (`docs/migration/components/<X>.md`) has an explicit "Approved visual deltas" section listing the specific delta. Self-declared "intentional" calls (e.g. "Base UI emits `data-orientation`, accept it") are misclassifications — the fix is a `[data-orientation]:` Tailwind selector that compensates, not a designer-accept.
@@ -95,4 +107,12 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Wrap base-ui's new event-shape callbacks in an adapter that preserves the original public signature — here `handleValueChange((newValue, eventDetails)) → onChange(event, value, activeThumbIndex)` — so consumers don't break (see rules/api-preservation).
 - Replace MUI's `slots`/`slotProps`/`ownerState` plumbing with explicit, derived props on custom subcomponents (e.g. SliderMark now takes `positionPercent`/`sliderValue`/`forceInactive` instead of MUI's `ownerState.value`+`markActive`), and compute the data MUI used to compute internally (mark positions, range-vs-single thumb values) at the wrapper level — per rules/base-ui-react-api-crib.
 - Ship a `.changeset/*.md` entry alongside the migration calling out the @mui/base → @base-ui/react swap and any structural rebuild (compound parts here), since reviewers consistently flag missing release notes on major-bump migrations.
+- Reference: https://github.com/toptal/picasso/pull/4955
+
+## Slider — 2026-05-15 (review iter 7)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 7
+- Snapshot diffs that flip wrapper element from `<span>` to `<div>` and change DOM nesting depth signal a structural API change — reviewers flag these; verify against `rules/api-preservation` and call them out explicitly in the changeset rather than letting reviewers discover them in snapshots.
+- Reconstructing slot props (marks, value labels, thumb positioning) as ad-hoc helpers (`generateMarkPositions`, `resolveThumbValues`, `formatValueLabel`) duplicates @base-ui/react primitives — consult `rules/base-ui-react-api-crib` first to use the library's compound parts (e.g. `Slider.Mark`) before hand-rolling math like `((markValue - min) / (max - min)) * 100`.
+- The `!absolute` Tailwind important overrides and inline `position: relative` workarounds papering over @base-ui/react's default inline styles indicate a styling-collision pattern reviewers will flag — follow `rules/styling` for clearing library inline styles cleanly instead of `!important` escapes.
 - Reference: https://github.com/toptal/picasso/pull/4955
