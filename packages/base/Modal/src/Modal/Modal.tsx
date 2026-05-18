@@ -315,7 +315,13 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
             className
           )}
           style={style}
-          initialFocus={false}
+          // Match the legacy @mui/base/Modal behavior of auto-focusing the
+          // modal root on open (Drawer behind-modal Cypress regression).
+          // `modalRef` points at `Dialog.Popup`, which Base UI renders with
+          // `tabindex=-1` so the focus does not surface a `:focus-visible`
+          // ring on the trigger that opened the modal. Picasso's own
+          // document-focus listener (above) still handles tab-out recovery.
+          initialFocus={modalRef}
           finalFocus={false}
           onClick={handlePopupClick}
           {...rest}
