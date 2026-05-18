@@ -294,6 +294,149 @@ async function prefetchHappoDiffs(
   return result
 }
 
+/**
+ * Read the happo-verify.json written by the gate's strict-Happo block
+ * for the most recent gate run. Returns a content-aware "happo failure
+ * key" for stuck-detection, or null if the gate's failedStages doesn't
+ * include `happo`.
+ *
+ * Key format:
+ *   - `happo:<N>:<sortedComponents>`  — N unaccepted diffs on these components
+ *   - `happo:ERROR`                    — verifier itself errored (transient propagation race)
+ *   - `happo:NO_BASELINE`              — best-effort PASS (missing base)
+ *   - `happo:UNKNOWN`                  — JSON missing or unparseable (defensive)
+ *
+ * Originally inlined in sweepOne; extracted 2026-05-18 so runOne's
+ * migrate-loop + CI-iter loop can share the same logic. See A1/A2/B9
+ * in the orchestrator improvement plan.
+ */
+async function readHappoFailureKey(
+  failedStageNames: readonly string[],
+  reportDir: string
+): Promise<string | null> {
+  if (!failedStageNames.includes('happo')) {
+    return null
+  }
+  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+
+  if (!existsSync(verifyJsonPath)) {
+    return 'happo:UNKNOWN'
+  }
+  try {
+    const raw = await fs.readFile(verifyJsonPath, 'utf8')
+    const verify = JSON.parse(raw) as {
+      status?: string
+      componentDiffs?: number
+      diffComponents?: string[]
+    }
+
+    if (verify.status === 'ERROR') {
+      return 'happo:ERROR'
+    }
+
+    if (verify.status === 'NO_BASELINE') {
+      return 'happo:NO_BASELINE'
+    }
+    const components = (verify.diffComponents ?? []).slice().sort().join(',')
+
+    return `happo:${verify.componentDiffs ?? 0}:${components}`
+  } catch {
+    return 'happo:UNKNOWN'
+  }
+}
+
+/**
+ * After a gate run failed on `happo`, re-fetch the new compare-results
+ * diff PNGs into a per-iter directory so the next iter's agent prompt
+ * can `Read` them — these reflect the post-iter-N state, not the stale
+ * pre-loop-start pre-fetch.
+ *
+ * Returns a markdown section to append to the next iter's feedback OR
+ * null if no re-fetch happened (happo not failed, json missing, creds
+ * missing, etc.). Non-fatal on errors.
+ *
+ * `loopName` is used for log prefixes: 'migrate' / 'sweep' / 'ci'.
+ */
+interface PrefetchPostGateArgs {
+  failedStageNames: readonly string[]
+  reportDir: string
+  runDir: string
+  iter: number
+  loopName: 'migrate' | 'sweep' | 'ci'
+}
+
+async function prefetchHappoPostGate({
+  failedStageNames,
+  reportDir,
+  runDir,
+  iter,
+  loopName,
+}: PrefetchPostGateArgs): Promise<string | null> {
+  if (!failedStageNames.includes('happo')) {
+    return null
+  }
+  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+
+  if (!existsSync(verifyJsonPath)) {
+    return null
+  }
+
+  try {
+    const verifyJson = JSON.parse(
+      await fs.readFile(verifyJsonPath, 'utf8')
+    ) as { reportUrl?: string; status?: string }
+
+    if (!verifyJson.reportUrl || verifyJson.status !== 'FAIL') {
+      return null
+    }
+    const iterDestDir = path.join(
+      runDir,
+      'happo-diffs',
+      `${loopName}-iter-${iter}-storybook`
+    )
+    const apiKey = process.env.HAPPO_API_KEY
+
+    const apiSecret = process.env.HAPPO_API_SECRET
+
+    if (!apiKey || !apiSecret) {
+      return null
+    }
+
+    const fresh = await fetchHappoDiffsForCheck({
+      checkName: 'Happo (Picasso/Storybook)',
+      reportUrl: verifyJson.reportUrl,
+      destDir: iterDestDir,
+      apiKey,
+      apiSecret,
+    })
+
+    log(
+      'happo',
+      `${loopName}-iter ${iter} re-fetched ${fresh.totalDiffs} diff pair(s) post-gate-fail → ${iterDestDir}`
+    )
+
+    return (
+      `\n\n## Fresh Happo diff PNGs (post-iter-${iter} — reflect your latest edits, not the pre-edit state)\n\n` +
+      'Read each pair to see what diff PERSISTS after your last attempt. Your prior edit either did not converge OR introduced different diffs. Compare oldPath (baseline) vs newPath (your worktree HEAD).\n\n' +
+      fresh.diffs
+        .map(
+          (d, j) =>
+            `${j + 1}. ${d.component} / ${d.variant} / ${d.target}\n` +
+            `   - oldPath: ${d.oldPath}\n` +
+            `   - newPath: ${d.newPath}`
+        )
+        .join('\n')
+    )
+  } catch (err) {
+    log(
+      'happo',
+      `${loopName}-iter ${iter} re-fetch failed: ${(err as Error).message}`
+    )
+
+    return null
+  }
+}
+
 function buildHappoFailureSection(
   happoFailures: readonly HappoFailureInput[]
 ): string {
@@ -683,28 +826,9 @@ async function shellLine(
   return shell('bash', ['-c', line], opts)
 }
 
-/**
- * Poll an HTTP URL until it responds 200 OR timeout. Used to wait for
- * Storybook to be ready before invoking the agent with `--with-mcp`.
- */
-async function waitForUrl(url: string, timeoutMs: number): Promise<boolean> {
-  const deadline = Date.now() + timeoutMs
-
-  while (Date.now() < deadline) {
-    try {
-      const res = await fetch(url, { method: 'GET' })
-
-      if (res.ok || res.status === 304) {
-        return true
-      }
-    } catch {
-      // network not ready yet — wait + retry
-    }
-    await new Promise(resolve => setTimeout(resolve, 1000))
-  }
-
-  return false
-}
+// Note: `waitForUrl` helper was removed 2026-05-18 along with the legacy
+// `--with-mcp` Storybook block. `storybook.start()` now owns lifecycle
+// + readiness polling (lsof-based, validates port owner is our child).
 
 // ---------------------------------------------------------------------------
 // manifest
@@ -778,6 +902,26 @@ const manifest = {
         item.status !== 'awaiting_ci' &&
         !opts.variantExplicit
       ) {
+        return null
+      }
+
+      // B0b safety: even if status filter passes (e.g. status='in_progress'
+      // because the manifest is stale or got corrupted), refuse to re-pick
+      // a component that has an open PR. Migrate-mode is for FRESH
+      // migrations; an existing PR means the component is past the
+      // migrate-mode lifecycle. Sweep-mode is where such items belong.
+      //
+      // Without this, a stale `in_progress` manifest entry + an open PR
+      // → orchestrator re-runs migration → worktree.add safety rail
+      // (above) trips → escalates as needs_human. This check produces a
+      // gentler signal earlier: "PR already open for this item; use
+      // --review-sweep instead of --component for ongoing work."
+      if (item.pr) {
+        log(
+          'loop',
+          `${item.id}: refusing to pick for migrate-mode — PR already exists (${item.pr}). Use --review-sweep for ongoing work, or reset the manifest entry if you really want to start over.`
+        )
+
         return null
       }
 
@@ -985,24 +1129,67 @@ const worktree = {
   ): Promise<void> {
     await fs.mkdir(path.dirname(worktreePath), { recursive: true })
 
-    // Defensive cleanup: a previous run that crashed mid-flight (e.g. the
-    // worktree-add half-succeeded by creating the branch but failed on the
-    // checkout step) can leave a stale branch + partial worktree. Without
-    // this cleanup, every retry would fail with "branch already exists" or
-    // "directory already exists" until the operator manually purges. Detect
-    // and remove both before retrying. This is safe because an in-flight
-    // orchestrator holds an exclusive lock on the manifest item — if we
-    // got here, no other run is using these refs.
+    // SAFETY: refuse to destroy worktrees containing real work.
+    //
+    // The original "defensive cleanup" path (delete pre-existing worktree
+    // + branch unconditionally) was catastrophic in one observed case
+    // (Switch PR #4965, 2026-05-18): the `--component=X --batch`
+    // variantExplicit bug (B0) caused pickNext to re-pick a fully-
+    // migrated component (status=awaiting_review, PR open, CI green).
+    // worktree.add then SILENTLY DELETED the worktree and the branch
+    // that held the green migration commit, attempting to re-migrate
+    // from scratch. The PR remained intact on the remote (we'd pushed),
+    // but local state was lost.
+    //
+    // Defense in depth: even if pickNext's filter is buggy, refuse here
+    // to delete a branch with:
+    //   (a) commits not present in the base branch (unmerged local work)
+    //   (b) an open PR on the remote (PR URL would orphan)
+    //   (c) `--force-cleanup` not passed (operator explicit opt-in)
+    //
+    // Caller gets a thrown error; runOne's caller can decide to escalate
+    // to needs_human with a clear "would have destroyed work" reason.
     if (existsSync(worktreePath)) {
+      const branchCheckExists = await shell('git', [
+        'show-ref',
+        '--verify',
+        '--quiet',
+        `refs/heads/${branch}`,
+      ])
+
+      if (branchCheckExists.exitCode === 0) {
+        // Branch exists. Check for unmerged work vs the base branch.
+        const unmergedCheck = await shell('git', [
+          'log',
+          '--oneline',
+          `${base}..refs/heads/${branch}`,
+          '--max-count=1',
+        ])
+
+        const hasUnmergedCommits =
+          unmergedCheck.exitCode === 0 && unmergedCheck.stdout.trim().length > 0
+
+        if (hasUnmergedCommits) {
+          throw new Error(
+            `worktree.add safety: branch '${branch}' has commits not in '${base}' (would destroy work). ` +
+              `Worktree at ${worktreePath}. ` +
+              `If you really want to discard this work, run: ` +
+              `git worktree remove --force ${worktreePath} && git branch -D ${branch}. ` +
+              `More likely: the manifest re-selected an item that's already in awaiting_review (B0 bug?). ` +
+              `Check manifest status and component dependencies before retrying.`
+          )
+        }
+      }
+
+      // Path exists but branch has no unmerged work (or branch is gone).
+      // Safe to clean up as before — this is a genuine stale-partial case.
       log(
         'worktree',
-        `pre-existing path ${worktreePath} — removing stale partial`
+        `pre-existing path ${worktreePath} — removing stale partial (verified no unmerged work)`
       )
       await shell('git', ['worktree', 'remove', '--force', worktreePath]).catch(
         () => {}
       )
-      // shell-out can leave the dir if `git worktree remove` failed (e.g.
-      // worktree was never registered with git); fall back to rm -rf.
       if (existsSync(worktreePath)) {
         await fs.rm(worktreePath, { recursive: true, force: true })
       }
@@ -1015,7 +1202,30 @@ const worktree = {
     ])
 
     if (branchCheck.exitCode === 0) {
-      log('worktree', `pre-existing branch ${branch} — deleting stale ref`)
+      // Branch still exists (worktree path was gone, but ref persists).
+      // Re-check unmerged work before deletion. Mirrors the path-check
+      // above; covers the case where the operator removed the worktree
+      // dir manually but the branch ref remains.
+      const unmergedCheck = await shell('git', [
+        'log',
+        '--oneline',
+        `${base}..refs/heads/${branch}`,
+        '--max-count=1',
+      ])
+      const hasUnmergedCommits =
+        unmergedCheck.exitCode === 0 && unmergedCheck.stdout.trim().length > 0
+
+      if (hasUnmergedCommits) {
+        throw new Error(
+          `worktree.add safety: branch '${branch}' has commits not in '${base}' (would destroy work). ` +
+            `If you really want to discard this branch, run: git branch -D ${branch}. ` +
+            `Otherwise, check manifest state — likely the orchestrator is trying to re-migrate a completed item.`
+        )
+      }
+      log(
+        'worktree',
+        `pre-existing branch ${branch} — deleting stale ref (verified no unmerged work)`
+      )
       await shell('git', ['branch', '-D', branch]).catch(() => {})
     }
 
@@ -1584,6 +1794,46 @@ const gate = {
     const reportPath = path.join(reportDir, 'report.md')
     const jsonReportPath = path.join(reportDir, 'report.json')
 
+    // B3 (2026-05-18): surface happo-verify.json's decisive fields as a
+    // one-line orchestrator log entry. Previously this data was buried
+    // in the gate script's own log file, making it hard to see "did
+    // local Happo upload to the org account or skip with creds-mismatch?"
+    // from the orchestrator's top-level output. One log line per gate
+    // run keeps the verbosity bounded while making the verifier's
+    // result visible.
+    const happoVerifyPath = path.join(reportDir, 'happo-verify.json')
+
+    if (existsSync(happoVerifyPath)) {
+      try {
+        const verify = JSON.parse(readFileSync(happoVerifyPath, 'utf8')) as {
+          status?: string
+          componentDiffs?: number
+          unrelatedDiffs?: number
+          reportUrl?: string
+          reason?: string
+        }
+        const parts = [`status=${verify.status ?? '?'}`]
+
+        if (typeof verify.componentDiffs === 'number') {
+          parts.push(`componentDiffs=${verify.componentDiffs}`)
+        }
+
+        if (
+          typeof verify.unrelatedDiffs === 'number' &&
+          verify.unrelatedDiffs > 0
+        ) {
+          parts.push(`unrelatedDiffs=${verify.unrelatedDiffs}`)
+        }
+
+        if (verify.reportUrl) {
+          parts.push(`report=${verify.reportUrl}`)
+        }
+        log('happo-gate', parts.join(' '))
+      } catch {
+        /* malformed JSON — skip; gate report.md will surface the failure */
+      }
+    }
+
     let stages: GateReport['stages'] = []
     let composite: GateReport['composite'] =
       result.exitCode === 0 ? 'PASS' : 'FAIL'
@@ -1836,6 +2086,56 @@ const gh = {
    * runs in ~7-12 minutes; 30s × ~30 polls covers the 15-minute default
    * timeout with low API pressure (gh's rate limit is 5000/hr).
    */
+  /**
+   * Deduplicate the raw checks rollup by name. GitHub Actions concurrency
+   * cancels superseded workflow runs when a new push arrives, but the
+   * rollup keeps BOTH entries (CANCELLED + new). Without dedup, the
+   * classifier escalates on the CANCELLED entry while SUCCESS exists
+   * for the same check — observed on Switch migration 2026-05-18:
+   *   `Check=CANCELLED Check=SUCCESS ...`
+   *   `[ci] classify "Check" → escalate (unclassified CI failure on "Check" (CANCELLED))`
+   *
+   * Rule: when multiple entries share a name, drop entries whose
+   * conclusion is CANCELLED IF any non-CANCELLED entry exists for that
+   * name. If ONLY CANCELLED entries exist, keep one (real cancellation).
+   *
+   * Returns a new array; input is not mutated.
+   */
+  _dedupCheckRollup<
+    T extends {
+      name?: string
+      context?: string
+      conclusion?: string
+      state?: string
+    }
+  >(rollup: readonly T[]): T[] {
+    const nameOf = (c: T): string => c.name ?? c.context ?? '(unnamed)'
+    const concOf = (c: T): string =>
+      (c.conclusion ?? c.state ?? '').toUpperCase()
+    const byName = new Map<string, T[]>()
+
+    for (const entry of rollup) {
+      const name = nameOf(entry)
+      const list = byName.get(name) ?? []
+
+      list.push(entry)
+      byName.set(name, list)
+    }
+    const result: T[] = []
+
+    for (const [, entries] of byName) {
+      if (entries.length === 1) {
+        result.push(entries[0])
+        continue
+      }
+      const nonCancelled = entries.filter(e => concOf(e) !== 'CANCELLED')
+
+      result.push(...(nonCancelled.length > 0 ? nonCancelled : [entries[0]]))
+    }
+
+    return result
+  },
+
   async pollChecks(
     numberOrUrl: string,
     cwd: string,
@@ -1862,7 +2162,7 @@ const gh = {
         statusCheckRollup?: readonly RawCheckEntry[]
       } | null
 
-      const rollup = view?.statusCheckRollup ?? []
+      const rollup = gh._dedupCheckRollup(view?.statusCheckRollup ?? [])
       const snapshot: CheckSnapshot[] = rollup.map(c => ({
         name: c.name ?? c.context ?? '(unnamed)',
         // CheckRun uses `status` (QUEUED/IN_PROGRESS/COMPLETED) +
@@ -1921,7 +2221,7 @@ const gh = {
     const view = (await gh.viewPR(numberOrUrl, 'statusCheckRollup', cwd)) as {
       statusCheckRollup?: readonly RawCheckEntry[]
     } | null
-    const rollup = view?.statusCheckRollup ?? []
+    const rollup = gh._dedupCheckRollup(view?.statusCheckRollup ?? [])
     const snapshot: CheckSnapshot[] = rollup.map(c => ({
       name: c.name ?? c.context ?? '(unnamed)',
       status: (c.status ?? c.state ?? '').toUpperCase(),
@@ -1973,7 +2273,7 @@ const gh = {
       mergeStateStatus?: string
     } | null
 
-    const rollup = view?.statusCheckRollup ?? []
+    const rollup = gh._dedupCheckRollup(view?.statusCheckRollup ?? [])
     const snapshot: CheckSnapshot[] = rollup.map(c => ({
       name: c.name ?? c.context ?? '(unnamed)',
       status: (c.status ?? c.state ?? '').toUpperCase(),
@@ -2664,6 +2964,17 @@ const agent = {
             '--include-partial-messages',
             '--allowedTools',
             [...baseTools, ...mcpTools].join(' '),
+            // B4a (2026-05-18): `AskUserQuestion` is a built-in Claude
+            // Code tool that pops an interactive prompt for the human.
+            // In ANY orchestrator-driven run (migrate, sweep, batch,
+            // daemon) there's no human watching, so this tool will
+            // block forever waiting for input. Observed on Switch
+            // migration 2026-05-18 iter 1: tool_use[94] AskUserQuestion
+            // (didn't fully block that time but the risk is real).
+            // Always disallow — orchestrator runs are autonomous by
+            // definition; not even `--with-mcp` makes them interactive.
+            '--disallowedTools',
+            'AskUserQuestion',
           ]
 
           if (inv.withMcp) {
@@ -2719,6 +3030,20 @@ const agent = {
       })()
       let toolCallCount = 0
       const seenToolIds = new Set<string>()
+      // B10 + B12 (2026-05-18): categorize tool calls + track edit
+      // velocity. The heartbeat shows aggregated counts so operators
+      // can quickly tell "agent is exploring (lots of Reads/Bashes
+      // but no Edits)" vs "agent is making changes." Plus we time
+      // "last Edit/Write" so we can warn after N minutes without source
+      // edits — early stuck signal that doesn't abort the loop.
+      const toolCounts = {
+        playwright: 0,
+        edit: 0,
+        read: 0,
+        bash: 0,
+        other: 0,
+      }
+      let lastEditAt = 0
       const detectTool = (chunk: string): void => {
         // claude stream-json emits multiple events per tool call (partial
         // chunks during streaming + a final tool_use block). Each tool_use
@@ -2754,6 +3079,19 @@ const agent = {
 
           lastTool = display
           toolCallCount += 1
+          // B12: categorize the tool call.
+          if (name.startsWith('mcp__playwright__')) {
+            toolCounts.playwright += 1
+          } else if (name === 'Edit' || name === 'Write') {
+            toolCounts.edit += 1
+            lastEditAt = Date.now()
+          } else if (name === 'Read') {
+            toolCounts.read += 1
+          } else if (name === 'Bash') {
+            toolCounts.bash += 1
+          } else {
+            toolCounts.other += 1
+          }
           // Announce inline so operator sees activity in real time.
           log(tag, `tool_use[${toolCallCount}]: ${display}`)
         }
@@ -2789,9 +3127,25 @@ const agent = {
         const kb = (bytesWritten / 1024).toFixed(1)
         const stuck = idle > 120 ? ` ⚠️  no progress ${idle}s` : ''
 
+        // B10: warn after 10 min without Edit/Write tool calls. Iter
+        // could be in deep diagnostic phase (Playwright + computed-
+        // style comparison takes time and that's fine), OR stuck.
+        // Operator can decide whether to intervene. Soft signal only.
+        const noEditWarn =
+          elapsed > 600 && lastEditAt === 0
+            ? ` ⚠️  no Edit/Write in 10m (diagnostic phase or stuck?)`
+            : elapsed > 600 &&
+              lastEditAt > 0 &&
+              Date.now() - lastEditAt > 600_000
+            ? ` ⚠️  no Edit/Write in last 10m`
+            : ''
+        // B12: categorized tool counts. Quick scan: "lots of Reads,
+        // 0 Edits" → exploring. "Edits + Bash" → testing fixes.
+        const counts = `[pw:${toolCounts.playwright} edit:${toolCounts.edit} read:${toolCounts.read} bash:${toolCounts.bash} other:${toolCounts.other}]`
+
         log(
           tag,
-          `alive (${elapsed}s elapsed, ${kb}KB written, last tool: ${lastTool})${stuck}`
+          `alive (${elapsed}s elapsed, ${kb}KB written, ${counts}, last tool: ${lastTool})${stuck}${noEditWarn}`
         )
 
         if (idle * 1000 > HARD_TIMEOUT_MS && !killed) {
@@ -3564,22 +3918,29 @@ async function sweepOne(
       )
       ciFailureContext = checks.failed
     } else if (checks.state === 'timeout') {
-      // CI is still IN_PROGRESS — pending verdicts include Happo if not
-      // yet finished. Log clearly so the operator understands this isn't
-      // a no-op tick; the next sweep tick (after CI completes) will
-      // engage if anything red surfaces. Without this log, the silence
-      // looks like sweep "ignoring" Happo when it's actually waiting.
-      const pendingNames = checks.pending
-        .map(c => c.name)
-        .slice(0, 5)
-        .join(', ')
-      const more =
-        checks.pending.length > 5 ? ` +${checks.pending.length - 5} more` : ''
+      // B13: distinguish "still IN_PROGRESS" (>0 pending) from "stale
+      // rollup" (0 pending + no verdict). Both surface as state=timeout
+      // but mean different things — the previous log said "still
+      // IN_PROGRESS" even when 0 checks were pending, which was
+      // misleading.
+      if (checks.pending.length > 0) {
+        const pendingNames = checks.pending
+          .map(c => c.name)
+          .slice(0, 5)
+          .join(', ')
+        const more =
+          checks.pending.length > 5 ? ` +${checks.pending.length - 5} more` : ''
 
-      log(
-        'sweep',
-        `${item.id}: awaiting_review + CI still IN_PROGRESS (${checks.pending.length} check(s) pending: ${pendingNames}${more}) — deferring to next sweep tick once CI lands a verdict`
-      )
+        log(
+          'sweep',
+          `${item.id}: awaiting_review + CI still IN_PROGRESS (${checks.pending.length} check(s) pending: ${pendingNames}${more}) — deferring to next sweep tick once CI lands a verdict`
+        )
+      } else {
+        log(
+          'sweep',
+          `${item.id}: awaiting_review + CI verdict unclear (state=timeout, 0 pending, 0 failed) — likely stale rollup; deferring`
+        )
+      }
     }
   }
 
@@ -3948,9 +4309,51 @@ async function sweepOne(
           return happoSection + otherSection
         })()
       : '')
-  // Resume agent session if we have one stored; else fresh session.
-  const sessionId = item.session_id ?? randomUUID()
-  const isFirstIteration = !item.session_id
+  // B15 (2026-05-18): per-sweep-tick session reset above cache threshold.
+  // Anthropic's prompt cache makes resume cheap on cost, but the agent's
+  // effective context window saturates as cumulative cache grows. By the
+  // time Slider hit 8+ review-iters, cache_read was 105M tokens — the
+  // agent's iter-1 was re-reading the entire history just to find its
+  // bearings. Threshold reset: if prior cost.json shows the session has
+  // accumulated >SESSION_CACHE_RESET_THRESHOLD cache_read tokens, drop
+  // the session_id so the next agent invocation starts fresh. The
+  // agent re-reads PR thread, lessons-learned, pre-fetched PNGs in
+  // iter-1; these are sufficient to reconstruct "what was tried" without
+  // a 100M+ token resume. Within a tick, iter 2+ still resumes (tight
+  // loop, fresh context, no cache problem in 5 iters).
+  //
+  // 50M chosen as a tradeoff: well above a single big migration (~10-30M)
+  // but well below where context-window saturation degrades agent
+  // quality (~150M+).
+  const SESSION_CACHE_RESET_THRESHOLD = 50_000_000
+  let sessionId = item.session_id ?? randomUUID()
+  let isFirstIteration = !item.session_id
+
+  if (item.session_id) {
+    const costPath = path.join(runDir, 'cost.json')
+
+    if (existsSync(costPath)) {
+      try {
+        const cost = JSON.parse(await fs.readFile(costPath, 'utf8')) as {
+          total?: { cacheReadTokens?: number }
+        }
+        const cacheRead = cost.total?.cacheReadTokens ?? 0
+
+        if (cacheRead > SESSION_CACHE_RESET_THRESHOLD) {
+          log(
+            'sweep',
+            `${
+              item.id
+            }: prior session cache_read=${cacheRead.toLocaleString()} exceeds threshold ${SESSION_CACHE_RESET_THRESHOLD.toLocaleString()} — starting fresh session (agent re-reads context from PR thread + lessons + pre-fetched PNGs)`
+          )
+          sessionId = randomUUID()
+          isFirstIteration = true
+        }
+      } catch {
+        /* cost.json missing or unparseable — fall through to resume */
+      }
+    }
+  }
   const reviewPrompt = await agent.assembleDeltaPrompt(
     reviewIters - 1,
     reviewFeedback,
@@ -4796,8 +5199,73 @@ export async function run(
   // use Playwright MCP against a locally-served copy reflecting its edits.
   // Cold start budget: ~3 min. Returns null on timeout/failure — orchestrator
   // continues without (agent's Playwright check degrades with a warning).
-  // Killed by the try/finally below regardless of run() exit path.
+  // Killed by the try/finally below regardless of run() exit path AND by
+  // SIGINT/SIGTERM handlers (operator Ctrl+C) which the previous legacy
+  // `--with-mcp` block used to install. Those handlers now belong here
+  // since this is the actual storybook spawn site (the legacy block was
+  // a leftover from before `storybook.start()` existed — it spawned a
+  // SECOND storybook and 47s of polling waited for the FIRST one to die.
+  // Observed on Switch migration 2026-05-18).
   const storybookHandle = await storybook.start(wtPath, runDir)
+
+  if (storybookHandle) {
+    const handleForSignals = storybookHandle
+    const killOnExit = (): void => {
+      handleForSignals.kill().catch(() => {
+        /* fire and forget */
+      })
+    }
+
+    // B12 (2026-05-18): graceful SIGINT/SIGTERM with manifest checkpoint.
+    // On Ctrl+C, write an `interrupted_at: <iso>` marker to the manifest
+    // entry so a subsequent run can detect "this was a user-interrupted
+    // session, not a normal exit." Combined with the existing status
+    // preservation (last write before interrupt sticks), this lets the
+    // next run resume from a known-good checkpoint rather than treating
+    // the half-state as a fresh attempt.
+    const checkpointOnInterrupt = (): void => {
+      try {
+        // Synchronous write — we're about to exit, can't await.
+        // Best-effort: if manifest is locked or corrupted, the existing
+        // last-good state still persists on disk.
+        const mPath = path.join(rootDir, workflow.manifestPath)
+
+        if (existsSync(mPath)) {
+          const raw = readFileSync(mPath, 'utf8')
+          const parsed = JSON.parse(raw) as {
+            components: Record<string, Record<string, unknown>>
+          }
+
+          if (parsed.components[item.id]) {
+            parsed.components[item.id].interrupted_at = ISO()
+            writeFileSync(mPath, JSON.stringify(parsed, null, 2) + '\n', 'utf8')
+          }
+        }
+      } catch {
+        /* best-effort; manifest stays as last-good write */
+      }
+    }
+
+    process.once('exit', killOnExit)
+    process.once('SIGINT', () => {
+      log(
+        'loop',
+        '🛑 SIGINT received — checkpointing manifest + killing Storybook'
+      )
+      checkpointOnInterrupt()
+      killOnExit()
+      process.exit(130)
+    })
+    process.once('SIGTERM', () => {
+      log(
+        'loop',
+        '🛑 SIGTERM received — checkpointing manifest + killing Storybook'
+      )
+      checkpointOnInterrupt()
+      killOnExit()
+      process.exit(143)
+    })
+  }
 
   // Wrap the remainder of run() so any return path (success, escalate,
   // dry-run, etc.) triggers Storybook cleanup. There are 17 return points
@@ -4847,72 +5315,12 @@ export async function run(
       )
     }
 
-    // Optional: start Storybook in the worktree so the agent can use Playwright
-    // MCP for visual verification (--with-mcp). Tier 1 cleanup migrations don't
-    // need this; Tier 0 / 2 / 3 do (any component where Happo is load-bearing).
-    let storybookProc: ReturnType<typeof spawn> | null = null
-
-    if (opts.withMcp) {
-      log(
-        'loop',
-        'starting Storybook (--with-mcp); polling http://localhost:9001'
-      )
-      storybookProc = spawn('pnpm', ['start:storybook'], {
-        cwd: wtPath,
-        stdio: ['ignore', 'pipe', 'pipe'],
-        detached: false,
-        env: process.env,
-      })
-      // Ensure Storybook is killed on any orchestrator exit path. Synchronous
-      // handler is fine; SIGTERM is fire-and-forget.
-      const killStorybook = (): void => {
-        if (storybookProc && !storybookProc.killed) {
-          storybookProc.kill('SIGTERM')
-        }
-      }
-
-      process.once('exit', killStorybook)
-      process.once('SIGINT', () => {
-        killStorybook()
-        process.exit(130)
-      })
-      process.once('SIGTERM', () => {
-        killStorybook()
-        process.exit(143)
-      })
-
-      const ready = await waitForUrl('http://localhost:9001', 60_000)
-
-      if (!ready) {
-        log(
-          'loop',
-          'Storybook did not become ready within 60s; killing and escalating'
-        )
-        storybookProc.kill('SIGTERM')
-
-        return escalate(
-          workflow,
-          item,
-          {
-            item,
-            iterations: 0,
-            lastGate: null,
-            gateHistory: [],
-            ciFailures: [],
-            architecturalReviews: 0,
-            startedAt: ISO(),
-          },
-          {
-            shouldEscalate: true,
-            reason: 'Storybook failed to start within 60s',
-          },
-          manifestAbs,
-          rootDir,
-          opts.variant
-        )
-      }
-      log('loop', 'Storybook ready at http://localhost:9001')
-    }
+    // Storybook is already started above via `storybook.start()` (port-
+    // verified, with signal handlers wired up). The legacy `--with-mcp`
+    // block that used to live here (spawning a SECOND `pnpm start:
+    // storybook` and polling port 9001) was redundant — it just waited
+    // 47s for the FIRST Storybook to start, then reported "ready" on
+    // a port owned by a different child. Removed 2026-05-18.
 
     // Steps 6–9: agent + gate + iterate.
     const state: RunState = {
@@ -4936,6 +5344,13 @@ export async function run(
     // false stuck-detection after agent made real fix attempts).
     let migrationHasCommit = false
     let migrationCommitMsgFile: string | null = null
+    // A2 (2026-05-18): content-aware stuck detection in migrate-loop.
+    // Track the deterministic-failure-set key across iters; if iter N+1's
+    // key matches iter N's, escalate immediately — the agent is producing
+    // identical output. For `happo` failures, the key includes the actual
+    // diff count + components (via `readHappoFailureKey`), so "8→7 diffs"
+    // counts as progress (different key) and the loop continues.
+    let lastMigrateFailureKey: string | null = null
     // Session continuity (Tier 2.1) — one UUID per component. Iter 1 tags the
     // session via `--session-id`; iter 2+ resumes via `--resume`, so claude
     // keeps the full canonical-prompt + rules + per-item-plan context from
@@ -5125,6 +5540,85 @@ export async function run(
       )
       if (existsSync(gateReport.reportPath)) {
         lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
+      }
+
+      // A1+A2 (2026-05-18): content-aware stuck detection + per-iter
+      // Happo PNG re-fetch. Mirrors what sweepOne has been doing since
+      // 2026-05-15. Validated empirical case: Slider went from 8 → 7
+      // diffs across sweep ticks — coarse stage-name matching would
+      // flag as stuck; content-aware key sees PROGRESS and continues.
+      const failedDeterministicStages = gateReport.stages.filter(
+        s => s.status === 'FAIL'
+      )
+      const failedStageNames = failedDeterministicStages.map(s => s.name)
+      const reportDir = path.dirname(gateReport.reportPath)
+      const happoVerifyKey = await readHappoFailureKey(
+        failedStageNames,
+        reportDir
+      )
+      const currentFailureKey = failedDeterministicStages
+        .map(s =>
+          s.name === 'happo' && happoVerifyKey ? happoVerifyKey : s.name
+        )
+        .sort()
+        .join('|')
+
+      // Transient happo:ERROR (upload propagation race) doesn't count
+      // toward stuck-detection. Falls through to maxIterations cap.
+      const isTransientHappoOnly =
+        failedDeterministicStages.length === 1 &&
+        happoVerifyKey === 'happo:ERROR'
+
+      if (isTransientHappoOnly) {
+        log(
+          'loop',
+          `iter ${state.iterations}: failure is transient (happo verifier ERROR — upload propagation race); not counting toward stuck-detection`
+        )
+      } else if (
+        lastMigrateFailureKey !== null &&
+        currentFailureKey === lastMigrateFailureKey
+      ) {
+        log(
+          'loop',
+          `iter ${
+            state.iterations
+          }: stuck on identical failure content across 2 iters (${currentFailureKey}) — escalating instead of burning ${
+            opts.maxIterations - state.iterations
+          } more iters`
+        )
+
+        return escalate(
+          workflow,
+          item,
+          state,
+          {
+            shouldEscalate: true,
+            reason: `migrate-loop stuck on deterministic gate stages: ${currentFailureKey} (identical content across 2 consecutive iters). Worktree left dirty for operator inspection.`,
+          },
+          manifestAbs,
+          rootDir,
+          opts.variant
+        )
+      } else {
+        lastMigrateFailureKey = currentFailureKey
+      }
+
+      // Per-iter Happo PNG re-fetch — when happo failed, re-fetch the
+      // diff PNGs reflecting the latest committed state and append paths
+      // to the next iter's feedback. Lets the agent inspect WHAT
+      // persisted vs WHAT got fixed pixel-by-pixel.
+      const happoSection = await prefetchHappoPostGate({
+        failedStageNames,
+        reportDir,
+        runDir,
+        iter: state.iterations,
+        loopName: 'migrate',
+      })
+
+      if (happoSection && lastFeedback) {
+        lastFeedback = lastFeedback + happoSection
+      } else if (happoSection) {
+        lastFeedback = happoSection
       }
 
       const decision = workflow.escalationCriteria(state)
@@ -5373,11 +5867,82 @@ export async function run(
         )
       )
 
-      // Stuck detection: same failure set as last iteration ⇒ no progress.
-      const failureSet = classifications
-        .map(c => `${c.check.name}:${c.decision.class}`)
-        .sort()
-        .join('|')
+      // B9 (2026-05-18): content-aware stuck detection. Previously the key
+      // was `${name}:${decisionClass}` which can't distinguish "8 diffs"
+      // from "3 diffs" on the same Happo check — both produce
+      // `Happo (Picasso/Storybook):feed-to-agent`. With this enrichment,
+      // we fold the actual diff count + diff components into the key
+      // for Happo classifications by fetching compare-results from the
+      // failed check's reported URL. Non-happo failures use the original
+      // name:class key.
+      //
+      // Empirical motivation: Slider PR #4955 sweep ticks went from
+      // 8 → 7 → 8 diffs across runs. Without content-aware keys this
+      // looked identical at every iter; with them, the "8→7" transition
+      // is recognizable as PROGRESS, not stuck.
+      const apiKey = process.env.HAPPO_API_KEY
+      const apiSecret = process.env.HAPPO_API_SECRET
+      const failureKeyParts = await Promise.all(
+        classifications.map(async c => {
+          const isHappo = c.check.name.toLowerCase().includes('happo')
+
+          if (!isHappo || !apiKey || !apiSecret) {
+            return `${c.check.name}:${c.decision.class}`
+          }
+          const urlMatch = c.log.match(/https:\/\/happo\.io\/[^\s)"'`]+/)
+
+          if (!urlMatch) {
+            return `${c.check.name}:${c.decision.class}`
+          }
+          const ref = parseHappoReportUrl(urlMatch[0])
+
+          if (!ref) {
+            return `${c.check.name}:${c.decision.class}`
+          }
+          // Fetch compare-results for THIS happo check. ~200ms HTTP call,
+          // only fires when CI has happo failures. Cheap.
+          try {
+            const resp = await fetch(
+              `https://happo.io/api/a/${ref.accountId}/p/${ref.projectId}/comparisons/${ref.baseSha}/${ref.headSha}/compare-results`,
+              {
+                headers: {
+                  Accept: 'application/json',
+                  Authorization: `Basic ${Buffer.from(
+                    `${apiKey}:${apiSecret}`
+                  ).toString('base64')}`,
+                },
+              }
+            )
+
+            if (!resp.ok) {
+              return `${c.check.name}:${c.decision.class}:api-${resp.status}`
+            }
+            const data = (await resp.json()) as {
+              diffs?: { component?: string }[][]
+            }
+            const components = (data.diffs ?? [])
+              .map(p => p[0]?.component)
+              .filter((n): n is string => Boolean(n))
+            const uniqueSorted = Array.from(new Set(components))
+              .sort()
+              .join(',')
+
+            return `${c.check.name}:${c.decision.class}:diffs=${
+              (data.diffs ?? []).length
+            }:components=${uniqueSorted}`
+          } catch (err) {
+            log(
+              'ci',
+              `Happo compare-results fetch for stuck-detection failed (non-fatal): ${
+                (err as Error).message
+              }`
+            )
+
+            return `${c.check.name}:${c.decision.class}`
+          }
+        })
+      )
+      const failureSet = failureKeyParts.sort().join('|')
 
       if (ciIteration >= 2 && failureSet === lastFailureSet) {
         const stuckOn = classifications.map(c => c.check.name).join(', ')
@@ -5949,6 +6514,15 @@ export function parseOptions(argv: string[]): OrchestratorOptions {
     reviewSweep: has('--review-sweep'),
     maxItems: maxItemsStr ? Number(maxItemsStr) : null,
     variant: variantRaw ?? 'v1',
-    variantExplicit: variantRaw !== null,
+    // `variantRaw` is `string | undefined` from `get()`; previously this
+    // checked `!== null` which is ALWAYS true (undefined !== null in JS),
+    // so variantExplicit was always true → pickNext's status filter for
+    // `--component=X` mode never fired → repicked done/awaiting_review
+    // items in batch mode. Catastrophic: in one observed instance, a
+    // batch run destroyed a fully-migrated worktree+branch (PR open, CI
+    // green) by trying to re-migrate it from scratch. Switch PR #4965,
+    // 2026-05-18. `!= null` (loose equality) catches both null and
+    // undefined — correct for this check.
+    variantExplicit: variantRaw != null,
   }
 }

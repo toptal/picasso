@@ -124,3 +124,19 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Wrap base-ui's compound-part callback shape (e.g. `onCheckedChange(checked)`) to preserve the consumer-facing `onChange(event, checked)` signature at the public API surface — see `rules/api-preservation.md`.
 - Replace `@mui/base/<Single>` slot-system imports with the `@base-ui/react/<x>` compound parts (`Root` + `Thumb`/equivalent) — see `rules/base-ui-react-api-crib.md` for the per-component part mapping.
 - Reference: https://github.com/toptal/picasso/pull/4965
+
+## Slider — 2026-05-18 (review iter 8)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 8
+- When converting @mui/base `slots`/`slotProps` to @base-ui/react compound parts, every `ownerState`-derived value (markActive, position, value, index) must be computed in the parent and passed via explicit typed prop interfaces to custom subcomponents — slot prop types like `SliderValueLabelSlotProps` and `ownerState` no longer exist as contracts (see rules/base-ui-react-api-crib).
+- @base-ui/react ships no `marks` array prop and no `valueLabelFormat` — the parent must generate mark positions itself from `min/max/step` (defaulting `step` to a sane value to avoid NaN/infinite loops) and re-implement formatter helpers (`string | function | number`) locally so the public API stays parity-stable.
+- Every migration PR needs a `.changeset/<component>-migration.md` major-version entry that names the structural change (compound parts replacing slots) plus an explicit behavioral-parity promise; without it reviewers consistently flag missing version-bump justification.
+- Reference: https://github.com/toptal/picasso/pull/4955
+
+## Backdrop — 2026-05-18 (review iter 5)
+
+- Tier 0 · target_path: `none` · iterations: 5
+- Forward consumer `className` into the rendered element via `cx(..., className)` rather than dropping it — silently discarding `className` is a reviewer red flag and breaks the consumer styling contract (see `rules/api-preservation`).
+- When stripping injected slot props like `ownerState` from upstream `@mui/base` consumers, leave a brief comment explaining *why* the field is kept in the type but discarded at runtime, so reviewers don't read it as dead code.
+- Tests must assert something (`expect(container).toBeInTheDocument()`), not just render — "renders without crashing" with no assertion gets flagged every time.
+- Reference: https://github.com/toptal/picasso/pull/4954
