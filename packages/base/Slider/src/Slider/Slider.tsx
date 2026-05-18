@@ -170,10 +170,16 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange(eventDetails.event, normalizedValue, eventDetails.activeThumbIndex)
   }
 
+  // Override base-ui's inline `translate: -50% -50%` + `top: 50%` (creates a
+  // transform stacking context that affects descendant tooltip box-shadow
+  // rasterization) and mirror baseline's margin-based positioning so the
+  // thumb renders without a transform — keeps tooltip shadow pixel-identical
+  // to pre-migration baseline.
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    'outline-0 absolute transition-shadow cursor-pointer ml-[1.5px]',
+    'outline-0 absolute transition-shadow cursor-pointer',
+    '![translate:none] ![top:-7px] -ml-[6px]',
     '[&_input]:!top-auto [&_input]:!left-auto [&_input]:![clip-path:none] [&_input]:[clip:rect(0,0,0,0)]',
     isThumbHidden && 'hidden'
   )
