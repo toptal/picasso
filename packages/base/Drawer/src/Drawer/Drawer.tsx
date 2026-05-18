@@ -98,6 +98,22 @@ export const Drawer = ({
     }
   }, [open, setHasDrawer])
 
+  // @base-ui/react's FloatingFocusManager moves focus into Drawer.Popup via
+  // requestAnimationFrame (one frame later). The trigger button therefore
+  // briefly retains :focus-visible after click, which produces the same DOM
+  // state @mui/base/Modal avoided by moving focus synchronously. Blur the
+  // active element on open so visual snapshots match the legacy behavior.
+  useIsomorphicLayoutEffect(() => {
+    if (!open || typeof document === 'undefined') {
+      return
+    }
+    const active = document.activeElement
+
+    if (active && active !== document.body && 'blur' in active) {
+      ;(active as HTMLElement).blur()
+    }
+  }, [open])
+
   const handleOnClose = () => {
     onClose?.()
   }
