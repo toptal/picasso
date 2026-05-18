@@ -193,9 +193,14 @@ const main = async (): Promise<void> => {
   // propagation → stuck-detection escalates a transient state (observed
   // on Slider PR #4955 review-sweep iter 2, 2026-05-15).
   //
-  // Backoff schedule sums to ~90s (15+30+30+15). Non-404 errors don't
-  // retry (auth, server errors, etc.) — they're not transient.
-  const RETRY_DELAYS_MS = [15_000, 30_000, 30_000, 15_000]
+  // B18 (2026-05-18): bumped from 90s → 210s. The original budget was
+  // calibrated on small components (Backdrop, Switch). Drawer migration
+  // 2026-05-18 returned status=ERROR on both migrate-loop iters because
+  // the verifier exhausted the 90s budget waiting for Happo to index a
+  // fresh upload of a Tier-0-with-modal-like-behavior bundle. By CI
+  // time (~5 min later) the report WAS indexed — so 210s catches it.
+  // Non-404 errors don't retry (auth, server errors, etc.).
+  const RETRY_DELAYS_MS = [15_000, 30_000, 45_000, 60_000, 60_000]
   const compareUrl = `${HAPPO_HOST}/a/${args.accountId}/p/${args.projectId}/compare/${baseSha}/${headSha}`
 
   let results: Awaited<ReturnType<typeof fetchCompareResults>> | null = null

@@ -140,3 +140,27 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - When stripping injected slot props like `ownerState` from upstream `@mui/base` consumers, leave a brief comment explaining *why* the field is kept in the type but discarded at runtime, so reviewers don't read it as dead code.
 - Tests must assert something (`expect(container).toBeInTheDocument()`), not just render — "renders without crashing" with no assertion gets flagged every time.
 - Reference: https://github.com/toptal/picasso/pull/4954
+
+## Backdrop — 2026-05-18 (review iter 6)
+
+- Tier 0 · target_path: `none` · iterations: 6
+- When replacing a slot-based parent API (e.g. `@mui/base/Modal`), explicitly merge consumer `className` into the internal `cx(...)` — otherwise parent-passed classes (like Modal's `base-Modal`) silently drop, as the snapshot churn here shows.
+- If a leaf migrates ahead of its still-unmigrated parents, keep parent-injected props (e.g. `ownerState?: unknown`) typed and runtime-stripped with an inline comment naming the parent constraint, so reviewers don't ask "why is this here?"
+- Smoke tests should assert something real (e.g. `expect(container).toBeInTheDocument()`) rather than a bare `render(...)` — reviewers consistently flag assertion-free render calls.
+- Reference: https://github.com/toptal/picasso/pull/4954
+
+## Slider — 2026-05-18 (review iter 9)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 9
+- Verify that `step` has a runtime default before consumers rely on it — the agent had to add `step = 1` because @base-ui/react no longer infers it the way @mui/base did, and reviewers flag missing defaults that previously came from the upstream library.
+- When migrating compound-slot APIs (`slots`/`slotProps`/`onRender`-style render hooks), reconstruct the part tree explicitly with @base-ui/react compound parts and replace ownerState-based child props with plain typed props — see `rules/base-ui-react-api-crib.md` for the slot-to-parts mapping.
+- Translate event-handler shape changes deliberately (e.g. @base-ui/react's `onValueChange(value, eventDetails)` → Picasso's `onChange(event, value, activeThumbIndex)`) and normalize `readonly number[]` to mutable arrays at the boundary, per `rules/api-preservation.md` — reviewers consistently catch silent signature drift here.
+- Reference: https://github.com/toptal/picasso/pull/4955
+
+## Drawer — 2026-05-18
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 4
+- Add a `.changeset/<component>-migration.md` major-bump entry that enumerates dependency removals (e.g. `@mui/base`, `@material-ui/core` peer), peer-range lifts (`react` upper-bound drop), and any behavioral additions (swipe-dismiss, `disablePortal` no-op) — required for CI changeset gating and consumer-facing release notes.
+- When `@base-ui/utils@0.2.8` types leak into the migrated package's build, ship the existing root patch at `patches/@base-ui__utils@0.2.8.patch` via `pnpm.patchedDependencies` + `pnpm-lock.yaml` `patch_hash` rather than re-deriving — strips `const` from generic parameters that break TS project-reference builds.
+- Remove obsolete sibling `tsconfig.json` `references` (here `../Backdrop`) when dropping the corresponding workspace dependency from `package.json`, otherwise `tsc -b` fails on the migration PR's "Build" job even though `pnpm install` succeeds.
+- Reference: https://github.com/toptal/picasso/pull/4966
