@@ -8,8 +8,6 @@ A Button indicates a possible user action.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
 | active | `boolean` | `false` | Show button in the active state (left mouse button down) |
 | disabled | `boolean` | `false` | Disables button |
 | children | `ReactNode` | `null` | Content of Button component |
@@ -24,6 +22,8 @@ A Button indicates a possible user action.
 | value | `string \| number` | - | HTML Value of Button component |
 | title | `string` | - | HTML title of Button component |
 | type | `"submit" \| "reset" \| "button"` | `button` | HTML type of Button component |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
 | titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | as | `"symbol" \| "abbr" \| "address" \| "article" \| "aside" \| "b" \| "bdi" \| "bdo" \| "big" \| "blockquote" \| "caption" \| "cite" \| "code" \| "dd" \| "del" \| "details" \| "dfn" \| "dt" \| "em" \| "figcaption" \| ... 95 more ...` | `button` | The component used for the root node. Either a string to use a DOM element or a component. |
 
