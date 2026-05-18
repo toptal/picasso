@@ -1,8 +1,9 @@
-import type { ReactNode, HTMLAttributes } from 'react'
-import { Modal as Dialog } from '@mui/base/Modal'
+import type { ReactNode, HTMLAttributes, MouseEvent } from 'react'
+import { Dialog } from '@base-ui/react/dialog'
 import React, {
   forwardRef,
   useEffect,
+  useState,
   useRef,
   useCallback,
   useContext,
@@ -21,7 +22,6 @@ import {
 } from '@toptal/picasso-utils'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Fade } from '@toptal/picasso-fade'
-import { Backdrop } from '@toptal/picasso-backdrop'
 import ModalContext from '@toptal/picasso-modal-context'
 import { twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -118,6 +118,36 @@ const generateKey = (() => {
   return () => ++count
 })()
 
+const resolveContainer = (
+  container: ContainerValue | undefined,
+  fallback: HTMLElement | null
+): HTMLElement | undefined => {
+  if (typeof container === 'function') {
+    return container()
+  }
+
+  // `Dialog.Portal` treats an explicit `null` as "wait for the container to be
+  // resolved" and never mounts. We want the default-to-`document.body` path
+  // when neither a consumer-supplied container nor `PicassoRoot` is available,
+  // so coalesce a missing container to `undefined`.
+  return container ?? fallback ?? undefined
+}
+
+const resolveDuration = (
+  timeout: TransitionProps['timeout'],
+  fallback: number
+): number => {
+  if (typeof timeout === 'number') {
+    return timeout
+  }
+
+  if (timeout && typeof timeout === 'object') {
+    return timeout.exit ?? timeout.enter ?? fallback
+  }
+
+  return fallback
+}
+
 // eslint-disable-next-line react/display-name
 export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   {
@@ -152,6 +182,18 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   )
   const modalId = useRef(generateKey())
   const { rootRef } = useContext(RootContext)
+
+  // Internal "should the dialog be mounted" flag. Stays `true` while the exit
+  // transition runs so consumers see the modal in the DOM until Fade reports
+  // `onExited`, matching the legacy `closeAfterTransition` behavior the test
+  // suite relies on.
+  const [renderDialog, setRenderDialog] = useState(open)
+
+  useEffect(() => {
+    if (open) {
+      setRenderDialog(true)
+    }
+  }, [open])
 
   useEffect(() => {
     const handleDocumentFocus = () => {
@@ -205,76 +247,108 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
 
   usePageScrollLock(open)
 
-  const handleClose = useCallback(
-    (_event, reason: 'backdropClick' | 'escapeKeyDown') => {
-      if (reason === 'escapeKeyDown' && onClose) {
-        onClose()
-      } else if (reason === 'backdropClick' && !disableBackdropClick) {
-        if (onBackdropClick) {
-          onBackdropClick()
-        }
-
-        if (onClose) {
-          onClose()
-        }
+  const handleOpenChange = useCallback(
+    (nextOpen: boolean, details: Dialog.Root.ChangeEventDetails) => {
+      if (nextOpen) {
+        return
       }
+
+      if (details.reason === 'escape-key') {
+        onClose?.()
+      }
+    },
+    [onClose]
+  )
+
+  const handleFadeExited = useCallback(
+    (node: HTMLElement) => {
+      setRenderDialog(false)
+      transitionProps?.onExited?.(node)
+    },
+    [transitionProps]
+  )
+
+  const handlePopupClick = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      if (event.target !== event.currentTarget) {
+        return
+      }
+
+      if (disableBackdropClick) {
+        return
+      }
+
+      onBackdropClick?.()
+      onClose?.()
     },
     [disableBackdropClick, onBackdropClick, onClose]
   )
 
-  const duration = transitionProps?.timeout || transitionDuration
-  const backdropProps = { transitionDuration: duration }
+  const duration = resolveDuration(transitionProps?.timeout, transitionDuration)
+  const portalContainer = resolveContainer(container, picassoRootContainer)
+
+  if (!renderDialog) {
+    return null
+  }
 
   return (
-    <Dialog
-      {...rest}
-      ref={modalRef}
-      className={twMerge(
-        className,
-        'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center'
-      )}
-      style={style}
-      slots={{
-        backdrop: Backdrop,
-      }}
-      closeAfterTransition
-      slotProps={{
-        backdrop: backdropProps,
-      }}
-      container={container || picassoRootContainer}
-      hideBackdrop={hideBackdrop}
-      onClose={handleClose}
+    <Dialog.Root
       open={open}
-      disableEnforceFocus // we need our own mechanism to keep focus inside the Modals
-      disableScrollLock
+      modal={false}
+      disablePointerDismissal
+      onOpenChange={handleOpenChange}
     >
-      <Fade
-        in={open}
-        onEnter={onOpen}
-        onExited={transitionProps?.onExited}
-        timeout={transitionDuration}
-      >
-        <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
-          <ModalContext.Provider value>
-            {children}
-            {onClose && (
-              <ButtonCircular
-                aria-label='Close'
-                variant='flat'
-                className={twMerge(
-                  'absolute top-8 right-8',
-                  classes?.closeButton
+      <Dialog.Portal container={portalContainer} keepMounted>
+        {!hideBackdrop && (
+          <Fade in={open} timeout={duration}>
+            <div
+              aria-hidden
+              className='fixed z-modal inset-0 bg-black/50 [-webkit-tap-highlight-color:transparent]'
+            />
+          </Fade>
+        )}
+        <Dialog.Popup
+          ref={modalRef}
+          role='presentation'
+          className={twMerge(
+            'fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center bg-transparent outline-hidden',
+            className
+          )}
+          style={style}
+          initialFocus={false}
+          finalFocus={false}
+          onClick={handlePopupClick}
+          {...rest}
+        >
+          <Fade
+            in={open}
+            onEnter={onOpen}
+            onExited={handleFadeExited}
+            timeout={duration}
+          >
+            <ModalPaper size={size} align={align} tabIndex={-1} {...paperProps}>
+              <ModalContext.Provider value>
+                {children}
+                {onClose && (
+                  <ButtonCircular
+                    aria-label='Close'
+                    variant='flat'
+                    className={twMerge(
+                      'absolute top-8 right-8',
+                      classes?.closeButton
+                    )}
+                    onClick={onClose}
+                    data-testid={testIds?.closeButton}
+                  >
+                    <CloseMinor16 />
+                  </ButtonCircular>
                 )}
-                onClick={onClose}
-                data-testid={testIds?.closeButton}
-              >
-                <CloseMinor16 />
-              </ButtonCircular>
-            )}
-          </ModalContext.Provider>
-        </ModalPaper>
-      </Fade>
-    </Dialog>
+              </ModalContext.Provider>
+            </ModalPaper>
+          </Fade>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 })
 

@@ -2,90 +2,9 @@
 
 exports[`PromptModal renders 1`] = `
 <body>
-  <div
-    aria-hidden="true"
-  >
+  <div>
     <div
       class="Picasso-root"
-    />
-  </div>
-  <div
-    class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-    role="presentation"
-  >
-    <div
-      aria-hidden="true"
-      class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
-      style="transition-duration: 300ms; opacity: 1;"
-    />
-    <div
-      data-testid="sentinelStart"
-      tabindex="0"
-    />
-    <div
-      class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-      role="dialog"
-      style="transition-duration: 300ms; opacity: 1;"
-      tabindex="-1"
-    >
-      <div
-        class="pr-6 mt-8 mx-8 mb-0"
-      >
-        <h2
-          class="m-0 text-xl text-black font-semibold"
-        >
-          Test title
-        </h2>
-      </div>
-      <div
-        class="flex relative flex-auto overflow-y"
-      >
-        <div
-          class="pt-6 px-8 pb-8 overflow-auto flex-auto"
-        >
-          <p
-            class="m-0 text-md text-graphite font-regular"
-          >
-            Test message
-          </p>
-        </div>
-      </div>
-      <div
-        class="mt-0 mx-8 mb-8 text-right"
-      >
-        <button
-          aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
-          data-component-type="button"
-          role="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-          >
-            Cancel
-          </span>
-        </button>
-        <button
-          aria-disabled="false"
-          class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-          data-component-type="button"
-          role="button"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-          >
-            Submit
-          </span>
-        </button>
-      </div>
-    </div>
-    <div
-      data-testid="sentinelEnd"
-      tabindex="0"
     />
   </div>
 </body>
@@ -124,8 +43,8 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
     >
       <button
         aria-disabled="false"
-        aria-hidden="true"
         class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#4269D6] active:bg-[#1A41AB] bg-blue min-w h-8 py-0 px-4"
+        data-base-ui-inert=""
         data-component-type="button"
         role="button"
         tabindex="0"
@@ -138,84 +57,124 @@ exports[`PromptModal showPrompt opens and closes modal on Submit action 2`] = `
         </span>
       </button>
       <div
-        class="base-Modal fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center"
-        role="presentation"
+        data-base-ui-portal=""
+        id=":r5:"
       >
         <div
           aria-hidden="true"
-          class="opacity-0 transition-opacity fixed -z inset-0 bg-black -webkit-tap-highlight-color bg-black/50"
+          class="opacity-0 transition-opacity fixed z-modal inset-0 bg-black/50 [-webkit-tap-highlight"
+          data-base-ui-inert=""
           style="transition-duration: 300ms; opacity: 1;"
         />
-        <div
-          data-testid="sentinelStart"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
         <div
-          class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
-          role="dialog"
-          style="transition-duration: 300ms; opacity: 1;"
+          class="fixed z-modal inset-0 flex flex-col text-lg leading-[normal] justify-center items-center bg-transparent outline-hidden"
+          data-base-ui-focusable=""
+          data-open=""
+          id=":r3:"
+          role="presentation"
+          style="--nested-dialogs: 0;"
           tabindex="-1"
         >
           <div
-            class="pr-6 mt-8 mx-8 mb-0"
-          >
-            <h2
-              class="m-0 text-xl text-black font-semibold"
-            >
-              Test title
-            </h2>
-          </div>
-          <div
-            class="flex relative flex-auto overflow-y"
+            class="bg-white shadow-2 duration-300 delay-0 opacity-0 transition-opacity outline-hidden overflow-y flex flex-col m-4 sm:h-auto sm:m-8 max-w-[calc(100%_ sm:max-w-[calc(100%_ rounded-md w-[32.5rem] relative max-h-[calc(100%_ sm:max-h-[calc(100%_"
+            role="dialog"
+            style="transition-duration: 300ms; opacity: 1;"
+            tabindex="-1"
           >
             <div
-              class="pt-6 px-8 pb-8 overflow-auto flex-auto"
+              class="pr-6 mt-8 mx-8 mb-0"
             >
-              <p
-                class="m-0 text-md text-graphite font-regular"
+              <h2
+                class="m-0 text-xl text-black font-semibold"
               >
-                Test message
-              </p>
+                Test title
+              </h2>
+            </div>
+            <div
+              class="flex relative flex-auto overflow-y"
+            >
+              <div
+                class="pt-6 px-8 pb-8 overflow-auto flex-auto"
+              >
+                <p
+                  class="m-0 text-md text-graphite font-regular"
+                >
+                  Test message
+                </p>
+              </div>
+            </div>
+            <div
+              class="mt-0 mx-8 mb-8 text-right"
+            >
+              <button
+                aria-disabled="false"
+                class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
+                data-component-type="button"
+                role="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+                >
+                  Cancel
+                </span>
+              </button>
+              <button
+                aria-disabled="false"
+                class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
+                data-component-type="button"
+                role="button"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="items-center inline-flex font-semibold whitespace-nowrap text-button"
+                >
+                  Submit
+                </span>
+              </button>
             </div>
           </div>
-          <div
-            class="mt-0 mx-8 mb-8 text-right"
-          >
-            <button
-              aria-disabled="false"
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border border-solid text-black hover:border-black visited:text-black active:bg-gray active:border-black bg-white border-gray min-w h-8 py-0 px-4"
-              data-component-type="button"
-              role="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-              >
-                Cancel
-              </span>
-            </button>
-            <button
-              aria-disabled="false"
-              class="base-Button text-lg inline-flex items-center justify-center select-none appearance-none m-0 relative normal-case align-middle transition-colors duration-350 ease-out shrink-0 outline-hidden [[data-component-type="button"]+&]:ml cursor-pointer no-underline hover:no-underline rounded-sm shadow-none focus-visible:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] focus-within:shadow-[0_0_0_3px_rgba(32,78,207,0.48)] border-none text-white visited:text-white hover:bg-[#27D496] active:bg-[#00A96C] bg-green min-w h-8 py-0 px-4"
-              data-component-type="button"
-              role="button"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="items-center inline-flex font-semibold whitespace-nowrap text-button"
-              >
-                Submit
-              </span>
-            </button>
-          </div>
         </div>
-        <div
-          data-testid="sentinelEnd"
+        <span
+          data-base-ui-focus-guard=""
+          data-base-ui-inert=""
+          data-type="inside"
+          role="button"
+          style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
           tabindex="0"
         />
       </div>
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
+      <span
+        aria-owns=":r5:"
+        data-base-ui-inert=""
+        style="clip-path: inset(50%); position: fixed; top: 0px; left: 0px;"
+      />
+      <span
+        data-base-ui-focus-guard=""
+        data-base-ui-inert=""
+        data-type="outside"
+        role="button"
+        style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+        tabindex="0"
+      />
     </div>
   </div>
 </body>

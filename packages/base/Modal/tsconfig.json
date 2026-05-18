@@ -7,7 +7,6 @@
     { "path": "../../picasso-tailwind" },
     { "path": "../../picasso-tailwind-merge" },
     { "path": "../../shared" },
-    { "path": "../Backdrop" },
     { "path": "../Button" },
     { "path": "../Fade" },
     { "path": "../Icons" },
