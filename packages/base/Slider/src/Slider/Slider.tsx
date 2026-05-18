@@ -174,7 +174,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
     'outline-0 absolute transition-shadow cursor-pointer ml-[1.5px]',
-    '[&_input]:!top-auto [&_input]:!left-auto',
+    '[&_input]:!top-auto [&_input]:!left-auto [&_input]:![clip-path:none] [&_input]:[clip:rect(0,0,0,0)]',
     isThumbHidden && 'hidden'
   )
 
