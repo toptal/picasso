@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 import React, { Children, forwardRef } from 'react'
-import { Badge as MuiBadge } from '@mui/base'
 import type { BaseProps } from '@toptal/picasso-shared'
 import { twJoin, twMerge } from '@toptal/picasso-tailwind-merge'
 
@@ -28,7 +27,7 @@ const thresholds: Record<SizeType, number> = {
   large: 99,
 }
 
-export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
+export const Badge = forwardRef<HTMLSpanElement, Props>(function Badge(
   {
     children,
     style,
@@ -42,39 +41,36 @@ export const Badge = forwardRef<HTMLDivElement, Props>(function Badge(
   ref
 ) {
   const hasChildren = Children.count(children) > 0
+  const threshold = max ?? thresholds[size]
+  const displayContent = content > threshold ? `${threshold}+` : `${content}`
 
   return (
-    <MuiBadge
+    <span
       ref={ref}
       data-testid={testId}
-      badgeContent={content}
-      max={max || thresholds[size]}
-      showZero
-      slotProps={{
-        root: {
-          className: twMerge(
-            `inline-flex shrink-0 content-middle flex-nowrap justify-normal
-            text-[10px] font-semibold leading-3 align-middle text-graphite-700`,
-            hasChildren ? 'relative' : 'static',
-            className
-          ),
-          style: style,
-        },
-        badge: {
-          className: twJoin(
-            `border-solid items-center content-center inline-flex flex-nowrap 
-            justify-center z-[1] border rounded-full`,
-            classByVariant[variant],
-            hasChildren
-              ? 'absolute right-0 top-0 translate-x-[50%] translate-y-[-50%]'
-              : 'static',
-            classBySize[size]
-          ),
-        },
-      }}
+      style={style}
+      className={twMerge(
+        `inline-flex shrink-0 content-middle flex-nowrap justify-normal
+        text-[10px] font-semibold leading-3 align-middle text-graphite-700`,
+        hasChildren ? 'relative' : 'static',
+        className
+      )}
     >
       {children}
-    </MuiBadge>
+      <span
+        className={twJoin(
+          `border-solid items-center content-center inline-flex flex-nowrap
+          justify-center z-[1] border rounded-full`,
+          classByVariant[variant],
+          hasChildren
+            ? 'absolute right-0 top-0 translate-x-[50%] translate-y-[-50%]'
+            : 'static',
+          classBySize[size]
+        )}
+      >
+        {displayContent}
+      </span>
+    </span>
   )
 })
 
