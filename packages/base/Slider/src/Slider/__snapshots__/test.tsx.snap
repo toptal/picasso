@@ -26,7 +26,7 @@ exports[`Slider renders 1`] = `
           style="position: relative; height: inherit; inset-inline-start: 0; width: 0%;"
         />
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[1.5px]"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[1.5px] [&_input]:!top-auto [&_input]:!left-auto"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -85,7 +85,7 @@ exports[`Slider with initial value 1`] = `
           style="position: relative; height: inherit; inset-inline-start: 0; width: 4%;"
         />
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[1.5px]"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white outline-0 absolute transition-shadow cursor-pointer ml-[1.5px] [&_input]:!top-auto [&_input]:!left-auto"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
