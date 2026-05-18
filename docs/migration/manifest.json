@@ -16,8 +16,8 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 4,
-      "last_review_seen_at": "2026-05-14T21:50:14.640Z",
+      "review_iterations": 5,
+      "last_review_seen_at": "2026-05-18T10:38:07.150Z",
       "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
       "escalation_reason": null,
       "last_ci_green_at": null,
@@ -32,8 +32,8 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-14T21:50:14.640Z",
-          "review_iterations": 4,
+          "last_review_seen_at": "2026-05-18T10:38:07.150Z",
+          "review_iterations": 5,
           "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
           "awaiting_ci_since": null
         }
@@ -42,7 +42,7 @@
     "Badge": {
       "tier": 0,
       "package": "packages/base/Badge",
-      "status": "awaiting_review",
+      "status": "done",
       "depends_on": [],
       "target_path": "none",
       "versionBump": "major",
@@ -50,7 +50,7 @@
       "branch": "migrate-Badge",
       "worktree": "migration-runs/2026-05-13/Badge/worktree",
       "iterations": 4,
-      "merged_at": null,
+      "merged_at": "2026-05-18T07:04:22Z",
       "notes": "No Badge in @base-ui/react. Already mostly custom; remove @mui/base import + Tailwind only.",
       "escalation_reason": null,
       "last_ci_green_at": null,
@@ -60,12 +60,12 @@
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4957",
           "branch": "migrate-Badge",
           "worktree": "migration-runs/2026-05-13/Badge/worktree",
           "iterations": 4,
-          "merged_at": null,
+          "merged_at": "2026-05-18T07:04:22Z",
           "escalation_reason": null,
           "last_ci_green_at": null,
           "last_review_seen_at": "2026-05-14T15:05:49.239Z",
@@ -78,7 +78,7 @@
     "Button": {
       "tier": 0,
       "package": "packages/base/Button",
-      "status": "ready_to_merge",
+      "status": "done",
       "depends_on": [],
       "target_path": "@base-ui/react/button",
       "versionBump": "major",
@@ -86,7 +86,7 @@
       "branch": "migrate-Button",
       "worktree": "migration-runs/2026-05-08/Button/worktree",
       "iterations": 1,
-      "merged_at": null,
+      "merged_at": "2026-05-18T07:36:25Z",
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Reference for the light path; verify status before scaling.",
       "last_ci_green_at": "2026-05-08T07:02:21.508Z",
       "session_id": "79714792-6765-420a-9660-f1385fda0739",
@@ -97,12 +97,12 @@
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "ready_to_merge",
+          "status": "done",
           "pr": "https://github.com/toptal/picasso/pull/4947",
           "branch": "migrate-Button",
           "worktree": "migration-runs/2026-05-08/Button/worktree",
           "iterations": 1,
-          "merged_at": null,
+          "merged_at": "2026-05-18T07:36:25Z",
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-08T07:02:21.508Z",
           "last_review_seen_at": "2026-05-15T08:16:22.072Z",
@@ -157,8 +157,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-15T15:39:07.208Z",
-      "review_iterations": 7,
+      "last_review_seen_at": "2026-05-18T09:39:52.524Z",
+      "review_iterations": 8,
       "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
       "awaiting_ci_since": null,
       "variants": {
@@ -171,17 +171,18 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-15T15:39:07.208Z",
-          "review_iterations": 7,
+          "last_review_seen_at": "2026-05-18T09:39:52.524Z",
+          "review_iterations": 8,
           "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
-          "awaiting_ci_since": null
+          "awaiting_ci_since": null,
+          "review_iter_failures": 1
         }
       }
     },
     "Switch": {
       "tier": 0,
       "package": "packages/base/Switch",
-      "status": "in_progress",
+      "status": "awaiting_review",
       "depends_on": [
         "FormLabel"
       ],
@@ -190,26 +191,26 @@
       "pr": "https://github.com/toptal/picasso/pull/4965",
       "branch": "migrate-Switch-v1",
       "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
-      "iterations": 0,
+      "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
       "escalation_reason": null,
-      "last_ci_green_at": "2026-05-18T09:20:16.164Z",
+      "last_ci_green_at": "2026-05-18T09:20:16.165Z",
       "last_review_seen_at": null,
-      "session_id": "484d81c4-49e3-4742-a70d-25458ba1ae2d",
+      "session_id": null,
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "in_progress",
+          "status": "awaiting_review",
           "pr": "https://github.com/toptal/picasso/pull/4965",
           "branch": "migrate-Switch-v1",
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
-          "iterations": 0,
+          "iterations": 1,
           "merged_at": null,
           "escalation_reason": null,
-          "last_ci_green_at": "2026-05-18T09:20:16.164Z",
+          "last_ci_green_at": "2026-05-18T09:20:16.165Z",
           "last_review_seen_at": null,
-          "session_id": "484d81c4-49e3-4742-a70d-25458ba1ae2d",
+          "session_id": null,
           "awaiting_ci_since": null
         }
       }
