@@ -1,12 +1,11 @@
-import React, { useRef } from 'react'
-import { Modal } from '@mui/base/Modal'
+import React from 'react'
+import { Drawer as BaseUIDrawer } from '@base-ui/react/drawer'
 import type { BaseProps, TransitionProps } from '@toptal/picasso-shared'
 import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import type { ReactNode } from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
 import { Slide } from '@toptal/picasso-slide'
-import { Backdrop } from '@toptal/picasso-backdrop'
 import { Container } from '@toptal/picasso-container'
 import {
   useIsomorphicLayoutEffect,
@@ -23,7 +22,7 @@ export interface Props extends BaseProps {
   anchor?: AnchorType
   /** Drawer content */
   children: ReactNode
-  /** Disable the portal behavior. The children stay within it's parent DOM hierarchy. */
+  /** @deprecated [PF-1994] No-op since the migration to @base-ui/react/drawer; the popup is always portaled. */
   disablePortal?: boolean
   /** Specify if the drawer is opened or not */
   open: boolean
@@ -58,9 +57,17 @@ const oppositeDirection = {
   bottom: 'up',
 } as const
 
+const swipeDirectionByAnchor = {
+  left: 'left',
+  right: 'right',
+  top: 'up',
+  bottom: 'down',
+} as const
+
 export const Drawer = ({
   anchor = 'right',
-  disablePortal = false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  disablePortal: _disablePortal = false,
   onClose = () => {},
   width = 'regular',
   ...props
@@ -80,83 +87,90 @@ export const Drawer = ({
   } = props
   const { setHasDrawer } = useDrawer()
   const container = usePicassoRoot()
-  const ref = useRef<HTMLDivElement>(null)
 
   usePageScrollLock(Boolean(maintainBodyScrollLock && open))
 
   useIsomorphicLayoutEffect(() => {
     setHasDrawer(open)
 
-    const cleanup = () => {
+    return () => {
       setHasDrawer(false)
     }
-
-    return cleanup
   }, [open, setHasDrawer])
 
   const handleOnClose = () => {
-    if (onClose) {
-      onClose()
-    }
+    onClose?.()
   }
 
-  const backdropProps = { invisible: transparentBackdrop }
-
   return (
-    <Modal
+    <BaseUIDrawer.Root
       open={open}
-      ref={ref}
-      className={twMerge(
-        className,
-        'z-drawer inset-0',
-        !disableBackdrop && 'fixed'
-      )}
-      slots={{
-        backdrop: disableBackdrop ? undefined : Backdrop,
+      onOpenChange={isOpen => {
+        if (!isOpen) {
+          handleOnClose()
+        }
       }}
-      slotProps={{
-        backdrop: backdropProps,
-      }}
-      data-testid={testId}
-      data-private={dataPrivate}
-      style={style}
-      closeAfterTransition
-      onClose={handleOnClose}
-      disablePortal={disablePortal}
-      container={container}
-      disableScrollLock
-      disableEscapeKeyDown={false}
+      modal='trap-focus'
+      disablePointerDismissal={disableBackdrop}
+      swipeDirection={swipeDirectionByAnchor[anchor]}
     >
-      <Slide
-        in={open}
-        direction={oppositeDirection[anchor]}
-        timeout={transitionProps?.timeout}
-        onExited={transitionProps?.onExited}
-      >
-        <DrawerPaper anchor={anchor}>
-          <Container
-            flex
-            direction='column'
-            className={twMerge(
-              'max-w-full relative flex-1',
-              widthClassName[width]
-            )}
-          >
-            <DrawerTitle title={title} />
-            <Container flex className='flex-1'>
-              {children}
-            </Container>
-            <ButtonCircular
-              variant='flat'
-              icon={<CloseMinor16 />}
-              onClick={handleOnClose}
-              className='absolute right-6 top-4'
-              aria-label='Close drawer'
+      <BaseUIDrawer.Portal container={container ?? undefined} keepMounted>
+        <BaseUIDrawer.Viewport
+          className={twMerge(
+            'z-drawer',
+            !disableBackdrop && 'fixed inset-0',
+            className
+          )}
+          style={style}
+        >
+          {!disableBackdrop && (
+            <BaseUIDrawer.Backdrop
+              className={twMerge(
+                'fixed -z-[1] inset-0',
+                '-webkit-tap-highlight-color-transparent',
+                'transition-opacity duration-300',
+                'data-[starting-style]:opacity-0 data-[ending-style]:opacity-0',
+                transparentBackdrop ? 'bg-black/0' : 'bg-black/50'
+              )}
             />
-          </Container>
-        </DrawerPaper>
-      </Slide>
-    </Modal>
+          )}
+          <BaseUIDrawer.Popup
+            data-testid={testId}
+            data-private={dataPrivate}
+          >
+            <Slide
+              in={open}
+              direction={oppositeDirection[anchor]}
+              timeout={transitionProps?.timeout}
+              onExited={transitionProps?.onExited}
+            >
+              <DrawerPaper anchor={anchor}>
+                <Container
+                  flex
+                  direction='column'
+                  className={twMerge(
+                    'max-w-full relative flex-1',
+                    widthClassName[width]
+                  )}
+                >
+                  <DrawerTitle title={title} />
+                  <Container flex className='flex-1'>
+                    {children}
+                  </Container>
+                  <ButtonCircular
+                    variant='flat'
+                    icon={<CloseMinor16 />}
+                    onClick={handleOnClose}
+                    className='absolute right-6 top-4'
+                    aria-label='Close drawer'
+                  />
+                </Container>
+              </DrawerPaper>
+            </Slide>
+          </BaseUIDrawer.Popup>
+        </BaseUIDrawer.Viewport>
+      </BaseUIDrawer.Portal>
+    </BaseUIDrawer.Root>
   )
 }
 
