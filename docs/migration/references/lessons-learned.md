@@ -164,3 +164,11 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - When `@base-ui/utils@0.2.8` types leak into the migrated package's build, ship the existing root patch at `patches/@base-ui__utils@0.2.8.patch` via `pnpm.patchedDependencies` + `pnpm-lock.yaml` `patch_hash` rather than re-deriving — strips `const` from generic parameters that break TS project-reference builds.
 - Remove obsolete sibling `tsconfig.json` `references` (here `../Backdrop`) when dropping the corresponding workspace dependency from `package.json`, otherwise `tsc -b` fails on the migration PR's "Build" job even though `pnpm install` succeeds.
 - Reference: https://github.com/toptal/picasso/pull/4966
+
+## Slider — 2026-05-18 (review iter 10)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 10
+- Debug/diagnostic JSON dumps (`after-fix-thumbs.json`, `baseline-tooltip-computed.json`, `local-thumb-computed.json`, `local-thumbs-all.json`) landed at the repo root — gitignore or delete pixel-diff/computed-style artifacts before opening the PR, since reviewers consistently flag committed scratch files.
+- The `.changeset/` entry should explicitly state "behavioral parity" and name the @base-ui/react compound parts being assembled (`Slider.Root + Control + Track + Indicator + Thumb`), so reviewers can map old→new mentally instead of asking — capture this changeset shape in `rules/base-ui-react-api-crib`.
+- @base-ui/react's `Slider.Thumb` renders a visible native `<input>` that requires `[&_input]:!top-auto [&_input]:!left-auto [&_input]:![clip-path:none] [&_input]:[clip:rect(0,0,0,0)]` overrides to hide — bake this input-hiding recipe into `rules/styling` (or the base-ui crib) for any input-bearing slot.
+- Reference: https://github.com/toptal/picasso/pull/4955
