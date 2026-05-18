@@ -4309,51 +4309,30 @@ async function sweepOne(
           return happoSection + otherSection
         })()
       : '')
-  // B15 (2026-05-18): per-sweep-tick session reset above cache threshold.
-  // Anthropic's prompt cache makes resume cheap on cost, but the agent's
-  // effective context window saturates as cumulative cache grows. By the
-  // time Slider hit 8+ review-iters, cache_read was 105M tokens — the
-  // agent's iter-1 was re-reading the entire history just to find its
-  // bearings. Threshold reset: if prior cost.json shows the session has
-  // accumulated >SESSION_CACHE_RESET_THRESHOLD cache_read tokens, drop
-  // the session_id so the next agent invocation starts fresh. The
-  // agent re-reads PR thread, lessons-learned, pre-fetched PNGs in
-  // iter-1; these are sufficient to reconstruct "what was tried" without
-  // a 100M+ token resume. Within a tick, iter 2+ still resumes (tight
-  // loop, fresh context, no cache problem in 5 iters).
+  // B17 (2026-05-18, simplifies prior B15): always start sweep-tick
+  // agents with a fresh session_id. What `--resume` preserves between
+  // ticks is the agent's internal scratch reasoning — which goes stale
+  // anyway (5min–hours between ticks, CI runs, reviewer comments may
+  // land, Happo state changes). Fresh evaluation each tick is healthier.
   //
-  // 50M chosen as a tradeoff: well above a single big migration (~10-30M)
-  // but well below where context-window saturation degrades agent
-  // quality (~150M+).
-  const SESSION_CACHE_RESET_THRESHOLD = 50_000_000
-  let sessionId = item.session_id ?? randomUUID()
-  let isFirstIteration = !item.session_id
-
-  if (item.session_id) {
-    const costPath = path.join(runDir, 'cost.json')
-
-    if (existsSync(costPath)) {
-      try {
-        const cost = JSON.parse(await fs.readFile(costPath, 'utf8')) as {
-          total?: { cacheReadTokens?: number }
-        }
-        const cacheRead = cost.total?.cacheReadTokens ?? 0
-
-        if (cacheRead > SESSION_CACHE_RESET_THRESHOLD) {
-          log(
-            'sweep',
-            `${
-              item.id
-            }: prior session cache_read=${cacheRead.toLocaleString()} exceeds threshold ${SESSION_CACHE_RESET_THRESHOLD.toLocaleString()} — starting fresh session (agent re-reads context from PR thread + lessons + pre-fetched PNGs)`
-          )
-          sessionId = randomUUID()
-          isFirstIteration = true
-        }
-      } catch {
-        /* cost.json missing or unparseable — fall through to resume */
-      }
-    }
-  }
+  // Everything that DOES matter between ticks is already preserved
+  // without resume:
+  //   - PR thread (every prior orchestrator-reply visible via gh)
+  //   - lessons-learned.md (always loaded by contextPack)
+  //   - pre-fetched Happo PNGs (refreshed at sweep start)
+  //   - source code in the worktree
+  //   - PROMPT-review-response.md (always loaded)
+  //
+  // Anthropic's auto prompt-cache (5-min TTL, server-side) still gives
+  // cheap prefix re-use within a tick AND across rapid back-to-back ticks.
+  // We lose nothing on cost; we gain freshness on agent reasoning.
+  //
+  // Iter 2+ within the SAME tick still benefits from session continuity:
+  // we pass the same sessionId throughout the inner loop, and the agent
+  // CLI handles `--session-id` (iter 1) vs `--resume` (iter 2+) based on
+  // `isFirstIteration` below.
+  const sessionId = randomUUID()
+  const isFirstIteration = true
   const reviewPrompt = await agent.assembleDeltaPrompt(
     reviewIters - 1,
     reviewFeedback,
