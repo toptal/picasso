@@ -129,7 +129,7 @@ export const Drawer = ({
                 'fixed -z-[1] inset-0',
                 '-webkit-tap-highlight-color-transparent',
                 'transition-opacity duration-300',
-                'data-[starting-style]:opacity-0 data-[ending-style]:opacity-0',
+                'data-[closed]:opacity-0',
                 transparentBackdrop ? 'bg-black/0' : 'bg-black/50'
               )}
             />
