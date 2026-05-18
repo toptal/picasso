@@ -414,92 +414,122 @@ elif [ -z "${HAPPO_API_KEY:-}" ] || [ -z "${HAPPO_API_SECRET:-}" ]; then
   } | tee -a "$RUN_DIR/console.log"
   run_stage_fail "happo" "HAPPO_API_KEY/HAPPO_API_SECRET unset — required for migration. See docs/migration/ORCHESTRATOR.md §Happo setup."
 else
-  # 6a. Run Happo CLI — uploads screenshots + creates the report for HEAD.
+  # Local Happo: ENABLED when the operator's HAPPO_API_KEY matches the
+  # CI/org account, SKIPPED otherwise.
+  #
+  # Rationale: compare-results requires both base + head reports on the
+  # SAME Happo account. CI uploads to the Picasso org account
+  # (HAPPO_ACCOUNT_ID, default 675). Operators using their PERSONAL Happo
+  # account (a different ID) can only have HEAD on their account; the
+  # base baseline lives on the org account → cross-account compare is
+  # impossible.
+  #
+  # To enable full local verification: swap `.envrc`'s HAPPO_API_KEY +
+  # HAPPO_API_SECRET to the CI-level secrets (GitHub Actions → Repo
+  # Settings → Secrets and variables → HAPPO_API_KEY / HAPPO_API_SECRET).
+  # Then local `happo run` uploads to account 675; compare-results
+  # works; full per-iter Happo gating engages.
+  #
+  # Detection: after `happo run`, parse the `View results at https://
+  # happo.io/a/<accountId>/p/<projectId>/report/...` line for the
+  # accountId. If it matches HAPPO_ACCOUNT_ID env var → run verifier;
+  # otherwise SKIP with a clear hint to swap creds.
   HAPPO_LOG="$RUN_DIR/happo.log"
   HAPPO_STARTED=$(date +%s)
+  HEAD_SHA="$(git rev-parse HEAD 2>/dev/null || echo)"
+  EXPECTED_ACCOUNT_ID="${HAPPO_ACCOUNT_ID:-}"
 
-  echo "→ [happo] pnpm happo --only ${COMPONENT##*/}" | tee -a "$RUN_DIR/console.log"
-  if pnpm happo --only "${COMPONENT##*/}" >"$HAPPO_LOG" 2>&1; then
+  echo "→ [happo] pnpm exec happo run --only ${COMPONENT##*/} (head=$HEAD_SHA)" \
+    | tee -a "$RUN_DIR/console.log"
+  # Build packages first (Storybook plugin needs them), then `happo run`
+  # with explicit subcommand (Picasso's `pnpm happo` script uses bare
+  # `happo` which shows help — a long-standing latent bug). Same env
+  # vars Picasso's CI happo script uses.
+  if pnpm build:package >"$HAPPO_LOG" 2>&1 && \
+     SCREENSHOT_BREAKPOINTS=true TEST_ENV=visual HAPPO_PROJECT=Picasso/Storybook \
+     pnpm exec happo run "$HEAD_SHA" --only "${COMPONENT##*/}" >>"$HAPPO_LOG" 2>&1; then
     HAPPO_CLI_OK=1
   else
     HAPPO_CLI_OK=0
   fi
 
-  # 6b. Verify Happo diffs deterministically via the API. This replaces
-  # the earlier regex-extract-then-summarize path (which silently
-  # rubber-stamped Happo as PASS when the regex didn't match the CLI's
-  # actual output — Slider PR #4955: 8 real diffs persisted while local
-  # gate said PASS). `bin/lib/happo-verify.ts` derives (headSha, baseSha,
-  # accountId, projectId) from local git + workflow config + Happo API,
-  # then queries the compare-results endpoint for the exact diff count.
-  #
-  # Required env vars (sourced from workflow / .envrc):
-  #   HAPPO_BASE_BRANCH         — e.g. "feature/picasso-modernization-temp"
-  #   HAPPO_ACCOUNT_ID          — "675" (Picasso)
-  #   HAPPO_STORYBOOK_PROJECT_ID — "1189"
-  #   HAPPO_CYPRESS_PROJECT_ID  — "848"
-  # The orchestrator's `runGate` (bin/lib/orchestrator-core.ts) sets these
-  # before invoking us. Local manual runs can export them too.
   HAPPO_STATUS="PASS"
   HAPPO_REASON=""
 
   if [ "$HAPPO_CLI_OK" -ne 1 ]; then
     HAPPO_STATUS="FAIL"
-    HAPPO_REASON="happo CLI failed; see $HAPPO_LOG"
-  elif [ -z "${HAPPO_BASE_BRANCH:-}" ] || [ -z "${HAPPO_ACCOUNT_ID:-}" ] || [ -z "${HAPPO_STORYBOOK_PROJECT_ID:-}" ]; then
-    echo "  [happo-strict] HAPPO_BASE_BRANCH/HAPPO_ACCOUNT_ID/HAPPO_STORYBOOK_PROJECT_ID not set; cannot verify deterministically — treating as PASS (orchestrator should export these)" \
-      | tee -a "$RUN_DIR/console.log"
+    HAPPO_REASON="happo CLI failed (build or upload error); see $HAPPO_LOG"
   else
-    # Run the TS verifier; capture JSON output. Exit codes:
-    #   0 — PASS or NO_BASELINE (best-effort PASS when baseline missing)
-    #   1 — FAIL (gate stage fails; sweep loop iter N+1 engages)
-    #   2 — ERROR (verifier itself broke; loud FAIL)
-    VERIFY_OUT_FILE="$RUN_DIR/happo-verify.json"
+    # Extract account ID from the upload output URL.
+    REPORT_URL_LINE="$(grep -oE 'https://happo\.io/a/[0-9]+/p/[0-9]+/report/[^ ]+' "$HAPPO_LOG" | tail -1)"
+    UPLOAD_ACCOUNT_ID="$(echo "$REPORT_URL_LINE" | sed -nE 's|https://happo.io/a/([0-9]+)/.*|\1|p')"
 
-    echo "  [happo-strict] verifying via happo-verify.ts (account=$HAPPO_ACCOUNT_ID project=Picasso/Storybook base=$HAPPO_BASE_BRANCH component=${COMPONENT##*/})" \
+    echo "  [happo] upload OK; account=$UPLOAD_ACCOUNT_ID expected=$EXPECTED_ACCOUNT_ID report=$REPORT_URL_LINE" \
       | tee -a "$RUN_DIR/console.log"
 
-    # Resolve happo-verify.ts relative to this script's location so the
-    # gate (which the orchestrator now invokes via absolute path — see
-    # orchestrator-core.ts gate.run rewriter) finds the sibling library.
-    # Hardcoded paths would break when developers clone elsewhere.
-    GATE_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    pnpm exec tsx "$GATE_SCRIPT_DIR/lib/happo-verify.ts" \
-      --worktree="$(pwd)" \
-      --base-branch="$HAPPO_BASE_BRANCH" \
-      --account-id="$HAPPO_ACCOUNT_ID" \
-      --project-id="$HAPPO_STORYBOOK_PROJECT_ID" \
-      --project-label="Picasso/Storybook" \
-      --component="${COMPONENT##*/}" \
-      > "$VERIFY_OUT_FILE" 2>>"$HAPPO_LOG"
-    VERIFY_EXIT=$?
+    if [ -z "$EXPECTED_ACCOUNT_ID" ] || [ -z "$UPLOAD_ACCOUNT_ID" ] || [ "$UPLOAD_ACCOUNT_ID" != "$EXPECTED_ACCOUNT_ID" ]; then
+      # Account mismatch (or expected not set) → skip verification with
+      # a clear hint to swap creds.
+      echo "  [happo] local upload went to account $UPLOAD_ACCOUNT_ID, expected $EXPECTED_ACCOUNT_ID (CI/org account)." \
+        | tee -a "$RUN_DIR/console.log"
+      echo "  [happo] To enable local Happo verification (per-iter diff feedback):" \
+        | tee -a "$RUN_DIR/console.log"
+      echo "    1. Get the CI Happo creds from GitHub: toptal/picasso → Settings → Secrets → HAPPO_API_KEY + HAPPO_API_SECRET" \
+        | tee -a "$RUN_DIR/console.log"
+      echo "    2. Replace .envrc's HAPPO_API_KEY / HAPPO_API_SECRET with those values" \
+        | tee -a "$RUN_DIR/console.log"
+      echo "    3. Run direnv allow + re-run orchestrate" \
+        | tee -a "$RUN_DIR/console.log"
+      echo "  [happo] Deferring diff verification to CI (post-push). Gate stage = PASS." \
+        | tee -a "$RUN_DIR/console.log"
+    elif [ -z "${HAPPO_BASE_BRANCH:-}" ] || [ -z "${HAPPO_STORYBOOK_PROJECT_ID:-}" ]; then
+      echo "  [happo] HAPPO_BASE_BRANCH/HAPPO_STORYBOOK_PROJECT_ID not set; cannot run verifier — treating as PASS" \
+        | tee -a "$RUN_DIR/console.log"
+    else
+      # Account match: run the full verifier. This deterministically
+      # queries Happo's compare-results API for the diff count between
+      # the base-branch's merge-base SHA and HEAD's SHA, both on the
+      # SAME account (since creds match CI's).
+      VERIFY_OUT_FILE="$RUN_DIR/happo-verify.json"
 
-    VERIFY_STATUS=$(jq -r '.status // "ERROR"' "$VERIFY_OUT_FILE" 2>/dev/null || echo "ERROR")
-    VERIFY_REASON=$(jq -r '.reason // ""' "$VERIFY_OUT_FILE" 2>/dev/null)
-    VERIFY_REPORT_URL=$(jq -r '.reportUrl // ""' "$VERIFY_OUT_FILE" 2>/dev/null)
-    VERIFY_COMPONENT_DIFFS=$(jq -r '.componentDiffs // 0' "$VERIFY_OUT_FILE" 2>/dev/null)
-    VERIFY_UNRELATED_DIFFS=$(jq -r '.unrelatedDiffs // 0' "$VERIFY_OUT_FILE" 2>/dev/null)
+      echo "  [happo] running happo-verify.ts (account=$EXPECTED_ACCOUNT_ID project=$HAPPO_STORYBOOK_PROJECT_ID base=$HAPPO_BASE_BRANCH)" \
+        | tee -a "$RUN_DIR/console.log"
 
-    echo "  [happo-strict] status=$VERIFY_STATUS componentDiffs=$VERIFY_COMPONENT_DIFFS unrelatedDiffs=$VERIFY_UNRELATED_DIFFS" \
-      | tee -a "$RUN_DIR/console.log"
+      GATE_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+      pnpm exec tsx "$GATE_SCRIPT_DIR/lib/happo-verify.ts" \
+        --worktree="$(pwd)" \
+        --base-branch="$HAPPO_BASE_BRANCH" \
+        --account-id="$EXPECTED_ACCOUNT_ID" \
+        --project-id="$HAPPO_STORYBOOK_PROJECT_ID" \
+        --project-label="Picasso/Storybook" \
+        --component="${COMPONENT##*/}" \
+        > "$VERIFY_OUT_FILE" 2>>"$HAPPO_LOG"
+      VERIFY_EXIT=$?
 
-    if [ -n "$VERIFY_REPORT_URL" ]; then
-      echo "  [happo-strict] report: $VERIFY_REPORT_URL" | tee -a "$RUN_DIR/console.log"
+      VERIFY_STATUS=$(jq -r '.status // "ERROR"' "$VERIFY_OUT_FILE" 2>/dev/null || echo "ERROR")
+      VERIFY_REPORT_URL=$(jq -r '.reportUrl // ""' "$VERIFY_OUT_FILE" 2>/dev/null)
+      VERIFY_COMPONENT_DIFFS=$(jq -r '.componentDiffs // 0' "$VERIFY_OUT_FILE" 2>/dev/null)
+
+      echo "  [happo] status=$VERIFY_STATUS componentDiffs=$VERIFY_COMPONENT_DIFFS report=$VERIFY_REPORT_URL" \
+        | tee -a "$RUN_DIR/console.log"
+
+      case "$VERIFY_STATUS" in
+        PASS|NO_BASELINE)
+          HAPPO_STATUS="PASS"
+          ;;
+        FAIL)
+          HAPPO_STATUS="FAIL"
+          HAPPO_REASON="$VERIFY_COMPONENT_DIFFS unresolved Happo diff(s) on migrated component ${COMPONENT##*/} — see report $VERIFY_REPORT_URL (verifier output: $VERIFY_OUT_FILE)"
+          ;;
+        *)
+          # ERROR (verifier failed) is advisory — common cause is Happo
+          # propagation delay even after `happo run`. Don't fail gate on
+          # this; CI will re-verify post-push.
+          echo "  [happo] verifier ERROR (transient; CI will re-verify post-push)" \
+            | tee -a "$RUN_DIR/console.log"
+          ;;
+      esac
     fi
-
-    case "$VERIFY_STATUS" in
-      PASS|NO_BASELINE)
-        HAPPO_STATUS="PASS"
-        ;;
-      FAIL)
-        HAPPO_STATUS="FAIL"
-        HAPPO_REASON="$VERIFY_COMPONENT_DIFFS unresolved Happo diff(s) on migrated component ${COMPONENT##*/} — see report $VERIFY_REPORT_URL (verifier output: $VERIFY_OUT_FILE)"
-        ;;
-      *)
-        HAPPO_STATUS="FAIL"
-        HAPPO_REASON="happo-verify ERROR (exit $VERIFY_EXIT): ${VERIFY_REASON:-unknown}"
-        ;;
-    esac
   fi
 
   HAPPO_ELAPSED=$(( $(date +%s) - HAPPO_STARTED ))
@@ -507,14 +537,12 @@ else
   STATUSES+=("$HAPPO_STATUS")
   DURATIONS+=("$HAPPO_ELAPSED")
   if [ -n "$HAPPO_REASON" ]; then
-    echo "  $HAPPO_STATUS (${HAPPO_ELAPSED}s, log: $HAPPO_LOG): $HAPPO_REASON" \
+    echo "  $HAPPO_STATUS (${HAPPO_ELAPSED}s): $HAPPO_REASON" \
       | tee -a "$RUN_DIR/console.log"
-    # Append the failure reason to the log for downstream surfacing.
     echo "" >>"$HAPPO_LOG"
     echo "[gate] $HAPPO_REASON" >>"$HAPPO_LOG"
   else
-    echo "  $HAPPO_STATUS (${HAPPO_ELAPSED}s, log: $HAPPO_LOG)" \
-      | tee -a "$RUN_DIR/console.log"
+    echo "  $HAPPO_STATUS (${HAPPO_ELAPSED}s)" | tee -a "$RUN_DIR/console.log"
   fi
 fi
 

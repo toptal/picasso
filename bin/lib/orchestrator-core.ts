@@ -315,17 +315,59 @@ function buildHappoFailureSection(
     "   - **UNRELATED FLAKE** (the diff's `component` is something OTHER than the migration target — e.g. `PageTopBarMenu` diff during a Slider migration) → no source change. Post a single PR comment naming each unrelated snapshot with pixel evidence (what shifted, by roughly how much) so the designer can confidently accept in the Happo UI. Don't bulk-dismiss without per-snapshot inspection.\n" +
     "   - **INTENTIONAL** (only if approved in the plan file) → annotate the changeset's `## Intentional visual changes` section + post a PR comment citing the plan-file authorization line. If unsure: it's NOT intentional — treat as regression and fix.\n" +
     "4. **Playwright comparison is part of the loop, not optional.** When the orchestrator detects Happo failures during sweep AND `--with-mcp` was passed, it starts the worktree's Storybook before invoking you. For each Happo diff on a migrated-component story:\n" +
-    '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/?path=/story/<story-id>` (pre-migration deployed baseline).\n' +
+    "   - **First, discover the actual story IDs** — don't guess. Picasso's Storybook story IDs follow the pattern `<kebab-title>--<kebab-story-name>`. The manager URL `?path=/story/<id>` and the iframe URL `iframe.html?id=<id>` use the SAME `<id>` value. Mapping:\n" +
+    '     - Manager URL: `https://picasso.toptal.net/?path=/story/components-slider--slider` (or `#default` hash)\n' +
+    '     - Iframe URL: `https://picasso.toptal.net/iframe.html?id=components-slider--slider`\n' +
+    '     - The id format here is `components-slider--slider` (NOT `components-slider--default` — the variant suffix after `--` is the kebab-cased story `name`, which often matches the component name itself for the primary story).\n' +
+    '     If you guessed an id and got "Couldn\'t find story matching", enumerate via `storyStoreV7`:\n' +
+    '     ```js\n' +
+    '     // browser_evaluate AFTER browser_navigate to ANY iframe.html?id=...\n' +
+    '     // (the storyStore initializes once the iframe boots; the passed id need not exist):\n' +
+    '     await window.__STORYBOOK_PREVIEW__?.storyStoreValue?.cacheAllCSFFiles?.();\n' +
+    '     const entries = window.__STORYBOOK_PREVIEW__?.storyStoreValue?.storyIndex?.entries ?? {};\n' +
+    '     JSON.stringify(\n' +
+    '       Object.values(entries)\n' +
+    "         .filter(e => e.type === 'story' && /\\b<componentNameLower>\\b/i.test(e.title))\n" +
+    '         .map(e => ({ id: e.id, title: e.title, name: e.name })),\n' +
+    '       null, 0)\n' +
+    '     ```\n' +
+    '     Replace `<componentNameLower>` with the migration target (e.g. "slider"). The returned `id` values are the exact strings to use in `iframe.html?id=<id>` URLs. Story IDs may differ between baseline and local during migrations — discover BOTH.\n' +
+    '   - `mcp__playwright__browser_navigate` to `https://picasso.toptal.net/iframe.html?id=<resolved-baseline-id>` (pre-migration deployed baseline).\n' +
     '   - `mcp__playwright__browser_take_screenshot` → save under `migration-runs/<run-date>/<Component>/playwright/baseline--<story-id>.png`.\n' +
-    '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/?path=/story/<story-id>` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken).\n' +
+    '   - `mcp__playwright__browser_navigate` to `http://localhost:9001/iframe.html?id=<resolved-local-id>` (worktree Storybook, port may differ — read `migration-runs/<run-date>/<Component>/storybook-url.txt` if 9001 is taken).\n' +
     '   - `mcp__playwright__browser_take_screenshot` → save under `local--<story-id>.png`.\n' +
     '   - For interactive components (Slider/Switch/Tabs/etc.) repeat for `hover`/`focus`/`pressed`/`disabled` states. Use `browser_hover`/`browser_click`/`browser_press_key` between captures.\n' +
-    '   - Read both baseline and local PNGs; the visual delta tells you what Tailwind class / data-attribute selector / inline-style override is needed. Edit source, save, Storybook hot-reloads, re-capture, re-compare. Iterate until pixel-perfect, then re-run gate.\n\n' +
+    '   - Read both baseline and local PNGs; the visual delta tells you what direction the shift is. But screenshots alone are NOT enough to identify the exact CSS property — go to step 5.\n' +
+    '5. **MANDATORY: computed-style diff before declaring stalemate.** Screenshot inspection narrows down WHERE the diff is; computed styles tell you WHAT to change. For each migrated-component diff, you MUST run this diagnostic before considering escalation:\n' +
+    '   - In both browsers (picasso.toptal.net AND localhost:9001), use `mcp__playwright__browser_evaluate` to extract `getComputedStyle()` for the affected elements. Example for Slider:\n' +
+    '     ```js\n' +
+    '     const sel = (q) => document.querySelector(q);\n' +
+    '     const dump = (el) => el ? Object.fromEntries(\n' +
+    '       Array.from(getComputedStyle(el)).map(k => [k, getComputedStyle(el).getPropertyValue(k)])\n' +
+    '     ) : null;\n' +
+    '     // Pick selectors that exist in BOTH renders — use [role=slider], data-* attrs,\n' +
+    '     // class fragments, or tag+nth-of-type. Inspect via browser_snapshot first if unsure.\n' +
+    '     JSON.stringify({\n' +
+    '       thumb: dump(sel(\'[role="slider"], [data-orientation] > [data-index="0"]\')),\n' +
+    "       track: dump(sel('[data-orientation] > div')),\n" +
+    "       root:  dump(sel('.MuiSlider-root, [data-slider-root]')),\n" +
+    '     }, null, 0)\n' +
+    '     ```\n' +
+    "   - Save each browser's output to `migration-runs/<date>/<Component>/computed-styles-{baseline,local}.json`.\n" +
+    '   - Diff the two JSON files property-by-property. The 5-10 properties that differ ARE your fix list. Common offenders during @mui/base → @base-ui/react migrations: `margin-left`, `margin-top` (master used negative margins for centering; @base-ui uses `translate:` property instead — these compose differently in some cases), `box-sizing`, `padding-{x,y}`, `width` (when `box-content` vs `border-box` differs), `transform-origin`, `inset-inline-start` rounding.\n' +
+    '   - For each differing property, write a targeted Tailwind class or inline style override that makes the local computed value match baseline. Apply it to the most-specific element identified by the diff (thumb, track, root, etc.).\n' +
+    "   - Re-screenshot local. Re-run gate. If the diff count drops → progress, continue. If unchanged → the property you targeted wasn't the actual cause; pick the next differing property from the JSON diff.\n" +
+    '6. **Stalemate (give-up) is FORBIDDEN until you have**:\n' +
+    '   - Captured `computed-styles-baseline.json` AND `computed-styles-local.json` for the failing component.\n' +
+    '   - Posted the specific list of differing properties in a PR comment so the operator can see the diagnostic data.\n' +
+    '   - Made at least 2 distinct fix attempts targeting properties from the computed-style diff (NOT speculative Tailwind tweaks).\n' +
+    '   - Documented in the PR comment which property each fix attempt targeted and the resulting diff count.\n' +
+    '   The "stop replying if stuck" review-response meta-rule (PROMPT-review-response.md) does NOT apply when you have an open Happo failure on a migrated component. Pixel-perfect on the migrated component is a hard requirement; the diagnostic procedure above always converges if followed (the computed-style diff is a finite list).\n\n' +
     'Constraints:\n' +
     "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes-shim handling, or any other documented constraint just to make Happo green.\n" +
     '- Do NOT bulk-classify diffs as "intentional." Each intentional entry must cite a plan-file authorization line.\n' +
     '- Do NOT push empty/cosmetic source changes solely to trigger a Happo re-run; the gate will detect "no real diff" and skip.\n' +
-    '- Your PR comment MUST cite the specific snapshot pixels you observed (e.g. "oldPath: 2px solid #blue border on Thumb; newPath: no border — added Tailwind class `border border-blue-500` on `[data-thumb]` selector to fix"). If you didn\'t Read the PNG, you cannot classify.\n' +
+    '- Your PR comment MUST cite the specific computed-style properties that differ (e.g. "baseline thumb has `margin-left: -6px`; local has `margin-left: 0px` (centered via `translate: -50%` instead) — adding `-ml-[6px]` on thumb className"). If you didn\'t run the computed-style diff, you cannot escalate.\n' +
     '- Default disposition for a migrated-component diff is **FIX**, not punt-to-designer.\n\n' +
     'Failed Happo report(s):\n\n' +
     happoFailures
@@ -3521,6 +3563,23 @@ async function sweepOne(
           .join(', ')}) — engaging agent on failures`
       )
       ciFailureContext = checks.failed
+    } else if (checks.state === 'timeout') {
+      // CI is still IN_PROGRESS — pending verdicts include Happo if not
+      // yet finished. Log clearly so the operator understands this isn't
+      // a no-op tick; the next sweep tick (after CI completes) will
+      // engage if anything red surfaces. Without this log, the silence
+      // looks like sweep "ignoring" Happo when it's actually waiting.
+      const pendingNames = checks.pending
+        .map(c => c.name)
+        .slice(0, 5)
+        .join(', ')
+      const more =
+        checks.pending.length > 5 ? ` +${checks.pending.length - 5} more` : ''
+
+      log(
+        'sweep',
+        `${item.id}: awaiting_review + CI still IN_PROGRESS (${checks.pending.length} check(s) pending: ${pendingNames}${more}) — deferring to next sweep tick once CI lands a verdict`
+      )
     }
   }
 
@@ -3947,14 +4006,14 @@ async function sweepOne(
     'lockfile-drift',
     'cypress',
     'consumers',
-    // `happo` is now in this set as of 2026-05-15 — the gate stage was
-    // rewritten to call `bin/lib/happo-verify.ts` which deterministically
-    // queries Happo's compare-results API for the current HEAD against
-    // the merge-base. Prior to this, the stage silently rubber-stamped
-    // as PASS when its regex couldn't extract a SHA, which left real
-    // visual regressions to surface only in CI (Slider PR #4955). Now
-    // local Happo gating triggers loop iter N+1 on real diffs, with
-    // freshly-pre-fetched PNGs (see post-iter re-fetch below).
+    // `happo` is here CONDITIONALLY — the gate's happo stage either:
+    //   (a) Runs full verifier when local creds match CI account →
+    //       deterministic FAIL on real diffs → loop iter N+1 engages
+    //       agent with content-aware stuck detection (component diff
+    //       count, see happoVerifyKey extraction below)
+    //   (b) Skips with PASS when local creds point at a non-CI account
+    //       → no loop iteration on happo; CI verifies post-push
+    // Either way, happo's gate result is meaningful — include it.
     'happo',
   ])
 
@@ -4194,28 +4253,95 @@ async function sweepOne(
         break
       }
 
+      // Build a content-aware failure-set key for stuck-detection. The
+      // previous version only compared stage NAMES — so iter 1's "happo:
+      // 8 Slider diffs" and iter 2's "happo: ERROR (report not indexed
+      // yet)" both produced the same key (`happo`), making stuck-
+      // detection escalate on what was actually a transient verifier
+      // error. Now we read happo-verify.json (written by the gate's
+      // strict-Happo block) and fold the diff count + diff component
+      // list into the key. ERROR results are tagged distinctly so they
+      // never look "same as" a real diff failure.
+      //
+      // Pattern: `<stage>` for non-happo stages, or
+      //   `happo:<count>:<sortedComponents>` for happo with diff data
+      //   `happo:ERROR`                     for happo verifier ERROR
+      //   `happo:NO_BASELINE`               for missing-base best-effort
+      const happoVerifyJsonPath = path.join(
+        path.dirname(gateReport.reportPath),
+        'happo-verify.json'
+      )
+      // eslint-disable-next-line no-await-in-loop
+      const happoVerifyKey = await (async () => {
+        if (!failedDeterministic.some(s => s.name === 'happo')) {
+          return null
+        }
+        if (!existsSync(happoVerifyJsonPath)) {
+          return 'happo:UNKNOWN'
+        }
+        try {
+          const raw = await fs.readFile(happoVerifyJsonPath, 'utf8')
+          const verify = JSON.parse(raw) as {
+            status?: string
+            componentDiffs?: number
+            diffComponents?: string[]
+          }
+
+          if (verify.status === 'ERROR') {
+            return 'happo:ERROR'
+          }
+
+          if (verify.status === 'NO_BASELINE') {
+            return 'happo:NO_BASELINE'
+          }
+          const components = (verify.diffComponents ?? [])
+            .slice()
+            .sort()
+            .join(',')
+
+          return `happo:${verify.componentDiffs ?? 0}:${components}`
+        } catch {
+          return 'happo:UNKNOWN'
+        }
+      })()
+
       const currentFailureSet = failedDeterministic
-        .map(s => s.name)
+        .map(s =>
+          s.name === 'happo' && happoVerifyKey ? happoVerifyKey : s.name
+        )
         .sort()
-        .join(',')
+        .join('|')
 
       log(
         'sweep',
         `${item.id}: review-iter loop iter ${iter}: deterministic FAIL on [${currentFailureSet}]`
       )
 
-      if (
+      // Transient-only failures (happo ERROR = upload propagation race)
+      // don't count toward stuck-detection. Skip the equality check;
+      // proceed to next iter where Happo will probably have indexed the
+      // upload. Bounded by MAX_SWEEP_ITERS so we can't loop forever.
+      const isTransientOnly =
+        failedDeterministic.length === 1 && happoVerifyKey === 'happo:ERROR'
+
+      if (isTransientOnly) {
+        log(
+          'sweep',
+          `${item.id}: review-iter loop iter ${iter}: failure is transient (happo verifier ERROR — upload propagation race); not counting toward stuck-detection`
+        )
+      } else if (
         lastDeterministicFailureSet !== null &&
         currentFailureSet === lastDeterministicFailureSet
       ) {
         log(
           'sweep',
-          `${item.id}: review-iter loop stuck on same deterministic failure set across 2 iters (${currentFailureSet}) — escalating instead of burning budget`
+          `${item.id}: review-iter loop stuck on identical failure content across 2 iters (${currentFailureSet}) — escalating instead of burning budget`
         )
         convergence = 'stuck'
         break
+      } else {
+        lastDeterministicFailureSet = currentFailureSet
       }
-      lastDeterministicFailureSet = currentFailureSet
 
       if (iter < MAX_SWEEP_ITERS) {
         // Build feedback for next iter: gate report content if available,
