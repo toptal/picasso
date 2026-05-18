@@ -61,6 +61,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       checked={checked}
       className={cx(
         'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
+        'cursor-pointer outline-none data-[disabled]:cursor-default',
         className
       )}
       style={style}
