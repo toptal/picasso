@@ -12,10 +12,9 @@ export interface Props
   open: boolean
   /** If true, the backdrop is invisible */
   invisible?: boolean
-  // @mui/base/Modal injects `ownerState` and a `base-Modal` className via its
-  // slot mechanism. Modal + Drawer still rely on that path until they migrate
-  // off @mui/base, so both are stripped at runtime to keep them off the
-  // rendered DOM.
+  // @mui/base/Modal injects `ownerState` via its slot mechanism. Modal + Drawer
+  // still rely on that path until they migrate off @mui/base, so strip it at
+  // runtime to keep it off the rendered DOM.
   ownerState?: unknown
 }
 
@@ -25,10 +24,9 @@ export const Backdrop = React.forwardRef<HTMLDivElement, Props>(
       transitionDuration = 300,
       open,
       invisible = false,
-      /* eslint-disable @typescript-eslint/no-unused-vars */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ownerState: _ownerState,
-      className: _className,
-      /* eslint-enable @typescript-eslint/no-unused-vars */
+      className,
       ...rest
     } = props
 
@@ -39,7 +37,8 @@ export const Backdrop = React.forwardRef<HTMLDivElement, Props>(
             'fixed -z-[1] inset-0 bg-black',
             '-webkit-tap-highlight-color-transparent',
             { 'bg-black/0': invisible },
-            { 'bg-black/50': !invisible }
+            { 'bg-black/50': !invisible },
+            className
           )}
           ref={ref}
           {...rest}
