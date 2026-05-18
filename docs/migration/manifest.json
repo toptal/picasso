@@ -177,9 +177,9 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-18T12:23:05.684Z",
-      "review_iterations": 9,
-      "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
+      "last_review_seen_at": "2026-05-18T17:12:41.411Z",
+      "review_iterations": 10,
+      "session_id": "ebccd11d-bebf-44b4-bd9b-71ac25d551f9",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -191,9 +191,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-18T12:23:05.684Z",
-          "review_iterations": 9,
-          "session_id": "677f7a54-bc8c-4d00-8c28-eceac0d63fe8",
+          "last_review_seen_at": "2026-05-18T17:12:41.411Z",
+          "review_iterations": 10,
+          "session_id": "ebccd11d-bebf-44b4-bd9b-71ac25d551f9",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
