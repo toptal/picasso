@@ -8,13 +8,6 @@ Allows displaying counters.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| onClick | `((event: MouseEvent<Element, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
-| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
-| **value** | `ReactNode` | - | Counter value |
-| **label** | `ReactNode` | - | Counter title |
-| variant | `"value-green" \| "value-red" \| "value-yellow" \| "label-green" \| "label-red" \| "label-yellow"` | - | The color variant |
 | as | `ElementType` | `button` | Component used for the root node. Either a string to use a DOM element or a component. |
 
 ### OverviewBlock.Group

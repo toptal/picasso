@@ -8,57 +8,15 @@ A Button indicates a possible user action.
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| active | `boolean` | `false` | Show button in the active state (left mouse button down) |
-| disabled | `boolean` | `false` | Disables button |
-| children | `ReactNode` | `null` | Content of Button component |
-| fullWidth | `boolean` | `false` | Take the full width of a container |
-| hovered | `boolean` | `false` | Set hovered style for the button |
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
-| iconPosition | `"left" \| "right"` | `left` | Icon can be positioned on the left or right |
-| loading | `boolean` | `false` | Shows a loading indicator and disables click events |
-| onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
-| size | `"small" \| "medium" \| "large"` | `medium` | A button can have different sizes |
-| variant | `"primary" \| "negative" \| "positive" \| "secondary" \| "transparent"` | `primary` | The variant to use |
-| value | `string \| number` | - | HTML Value of Button component |
-| title | `string` | - | HTML title of Button component |
-| type | `"submit" \| "reset" \| "button"` | `button` | HTML type of Button component |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
-| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 | as | `"symbol" \| "abbr" \| "address" \| "article" \| "aside" \| "b" \| "bdi" \| "bdo" \| "big" \| "blockquote" \| "caption" \| "cite" \| "code" \| "dd" \| "del" \| "details" \| "dfn" \| "dt" \| "em" \| "figcaption" \| ... 95 more ...` | `button` | The component used for the root node. Either a string to use a DOM element or a component. |
 
 ### Button.Circular
 
-| Name | Type | Default | Description |
-|------|------|---------|-------------|
-| active | `boolean` | - | Show button in the active state (left mouse button down) |
-| disabled | `boolean` | - | Disables button |
-| focused | `boolean` | - | Set focused style for the button |
-| hovered | `boolean` | - | Set hovered style for the button |
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
-| loading | `boolean` | - | Shows a loading indicator and disables click events |
-| onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
-| variant | `"primary" \| "flat" \| "transparent"` | `primary` | The variant to use |
-| value | `string \| number` | - | HTML Value of Button component |
-| responsive | `boolean` | - | Adjust button size to be bigger on screens under xl |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
+_No props._
 
 ### Button.Action
 
-| Name | Type | Default | Description |
-|------|------|---------|-------------|
-| active | `boolean` | - | Show button in the active state (left mouse button down) |
-| disabled | `boolean` | - | Disables button |
-| focused | `boolean` | - | Set focused style for the button |
-| hovered | `boolean` | - | Set hovered style for the button |
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Add an `<Icon />` along Button's children |
-| iconPosition | `"left" \| "right"` | `left` | Icon can be positioned on the left or right |
-| loading | `boolean` | - | Shows a loading indicator and disables click events |
-| onClick | `((event: MouseEvent<HTMLButtonElement & HTMLAnchorElement, MouseEvent>) => void)` | - | Callback invoked when component is clicked |
-| value | `string \| number` | - | HTML Value of Button component |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
+_No props._
 
 ### Button.Group
 

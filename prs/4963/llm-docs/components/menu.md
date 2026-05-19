@@ -15,25 +15,7 @@ Menu list.
 
 ### Menu.Item
 
-| Name | Type | Default | Description |
-|------|------|---------|-------------|
-| menu | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Adds an arrow to the item |
-| disabled | `boolean` | - | Whether to render disabled item |
-| disableGutters | `boolean` | - | Whether to render without internal padding |
-| selected | `boolean` | - | Highlights the item as selected |
-| checkmarked | `boolean` | - | Checkmarks the item |
-| value | `string \| number \| readonly string[]` | - | Value of the item |
-| variant | `"light" \| "dark"` | `light` | Variant of colors |
-| nonSelectable | `boolean` | `false` | Disables changing colors on hover/focus |
-| children | `ReactNode` | - | The main content of the item |
-| description | `ReactNode` | - | The additional description |
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Render an `<Icon />` |
-| avatar | `ReactElement<AvatarProps, { ({ size, ...props }: Props): Element; displayName: string; }>` | - | Render an <Avatar /> |
-| onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
-| onMouseEnter | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is hovered |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
-| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
+_No props._
 
 ### Default
 

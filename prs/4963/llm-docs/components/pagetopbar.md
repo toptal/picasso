@@ -30,15 +30,7 @@ A PageTopBar component
 
 ### Page.TopBar.Item
 
-| Name | Type | Default | Description |
-|------|------|---------|-------------|
-| icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Pass icon to be used as part of item |
-| selected | `boolean` | - | Highlights the item as selected |
-| onClick | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is clicked |
-| onMouseEnter | `((event: MouseEvent<HTMLElement, MouseEvent>) => void)` | - | Callback when item is hovered |
-| className | `string` | - | Classnames applied to root element |
-| style | `CSSProperties` | - | Style applied to root element |
-| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
+_No props._
 
 ### Page.TopBarMenu
 
