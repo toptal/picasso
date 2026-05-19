@@ -51,7 +51,7 @@ export interface NamedComponent<P> {
   displayName?: string
 }
 
-// TODO: [PF-2031] this type preserves the existing lax behavior on purpose.
+// TODO: [FF-125] this type preserves the existing lax behavior on purpose.
 // When `as` is present in `P`, props collapse to `any` so consumer HOCs and
 // internal `forwardRef` assignments keep working under TS 5.5 the same way
 // they did on TS 4.7. The proper fix is a type that, when an `as` prop is
@@ -59,7 +59,7 @@ export interface NamedComponent<P> {
 // (HTML element or React component), so `<Button as='a' href={...} />`
 // would type-check `href` against the anchor element's attributes. That
 // rework has to avoid regressing the 11 internal forwardRef call sites —
-// out of scope for the TS 5.5 upgrade.
+// tracked in https://toptal-core.atlassian.net/browse/FF-125.
 export type OverridableComponent<P = {}> = ('as' extends keyof P
   ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (props: any) => JSX.Element | null
