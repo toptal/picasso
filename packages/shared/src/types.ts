@@ -2,9 +2,6 @@ import type {
   CSSProperties,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
-  ElementType,
-  ComponentPropsWithRef,
-  RefAttributes,
 } from 'react'
 
 import type { Classes } from './styles'
@@ -49,20 +46,25 @@ export type OmitInternalProps<T, K = ''> = Pick<
   Exclude<keyof T, keyof JssProps | K>
 >
 
-type PropsWithOverridableAs<T extends ElementType, P> = Omit<P, 'as'> & {
-  as?: T
-} & ComponentPropsWithRef<T>
-
-interface NamedComponent<P> {
+export interface NamedComponent<P> {
   defaultProps?: Partial<P>
   displayName?: string
 }
-export interface OverridableComponent<P = {}> extends NamedComponent<P> {
-  <T extends ElementType = ElementType<Omit<P, 'as'>>>(
-    props: PropsWithOverridableAs<T, P>
-  ): JSX.Element | null
-  <R = unknown>(props: P & RefAttributes<R>): JSX.Element | null
-}
+
+// TODO: [PF-2031] this type preserves the existing lax behavior on purpose.
+// When `as` is present in `P`, props collapse to `any` so consumer HOCs and
+// internal `forwardRef` assignments keep working under TS 5.5 the same way
+// they did on TS 4.7. The proper fix is a type that, when an `as` prop is
+// passed at the call site, inherits the full props of that target component
+// (HTML element or React component), so `<Button as='a' href={...} />`
+// would type-check `href` against the anchor element's attributes. That
+// rework has to avoid regressing the 11 internal forwardRef call sites —
+// out of scope for the TS 5.5 upgrade.
+export type OverridableComponent<P = {}> = ('as' extends keyof P
+  ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (props: any) => JSX.Element | null
+  : (props: P) => JSX.Element | null) &
+  NamedComponent<P>
 
 type BaseEnvironments = 'development' | 'staging' | 'production'
 type Environments = BaseEnvironments | 'temploy' | 'test'
