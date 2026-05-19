@@ -93,9 +93,11 @@ export const Drawer = ({
   useIsomorphicLayoutEffect(() => {
     setHasDrawer(open)
 
-    return () => {
+    const cleanup = () => {
       setHasDrawer(false)
     }
+
+    return cleanup
   }, [open, setHasDrawer])
 
   // @base-ui/react's FloatingFocusManager moves focus into Drawer.Popup via
@@ -143,7 +145,6 @@ export const Drawer = ({
             <BaseUIDrawer.Backdrop
               className={twMerge(
                 'fixed -z-[1] inset-0',
-                '-webkit-tap-highlight-color-transparent',
                 'transition-opacity duration-300',
                 'data-[closed]:opacity-0',
                 transparentBackdrop ? 'bg-black/0' : 'bg-black/50'
