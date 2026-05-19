@@ -51,20 +51,18 @@ export interface NamedComponent<P> {
   displayName?: string
 }
 
-// TODO: [FF-125] this type preserves the existing lax behavior on purpose.
-// When `as` is present in `P`, props collapse to `any` so consumer HOCs and
-// internal `forwardRef` assignments keep working under TS 5.5 the same way
-// they did on TS 4.7. The proper fix is a type that, when an `as` prop is
-// passed at the call site, inherits the full props of that target component
-// (HTML element or React component), so `<Button as='a' href={...} />`
-// would type-check `href` against the anchor element's attributes. That
-// rework has to avoid regressing the 11 internal forwardRef call sites —
-// tracked in https://toptal-core.atlassian.net/browse/FF-125.
-export type OverridableComponent<P = {}> = ('as' extends keyof P
-  ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (props: any) => JSX.Element | null
-  : (props: P) => JSX.Element | null) &
-  NamedComponent<P>
+// Strict on declared props, permissive on extras. Declared `P` fields are
+// type-checked at call sites (e.g. `<Button size='wrong'>` still errors).
+// Any other prop is accepted untyped — this is what makes the polymorphic
+// `as` usage continue to work without a generic call signature, and what
+// allows `forwardRef<HTMLElement, Props>(...)` to assign directly. The
+// trade-off versus the OLD shape: TS no longer infers prop types FROM the
+// `as` target (`<Button as={Link} to={...} />` won't validate `to` against
+// Link's props). Full polymorphic-inheritance typing is tracked in FF-125.
+export interface OverridableComponent<P = {}> extends NamedComponent<P> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (props: P & { [key: string]: any }): JSX.Element | null
+}
 
 type BaseEnvironments = 'development' | 'staging' | 'production'
 type Environments = BaseEnvironments | 'temploy' | 'test'
