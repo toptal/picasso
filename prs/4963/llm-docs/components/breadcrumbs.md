@@ -19,7 +19,10 @@ Breadcrumbs Item
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | as | `enum` | `button` | The component used for the root node. Either a string to use a DOM element or a component. |
-| active | `boolean` | - | Whether the item is active |
+| **active** | `boolean` | - | Whether the item is active |
+| className | `string` | - | Classnames applied to root element |
+| style | `CSSProperties` | - | Style applied to root element |
+| titleCase | `boolean` | - | Defines if the text should be transformed to title case |
 
 ### Default
 
