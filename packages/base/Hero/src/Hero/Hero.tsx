@@ -4,16 +4,23 @@ import { twMerge } from '@toptal/picasso-tailwind-merge'
 
 type Variant = 'filled' | 'outlined' | 'subtle'
 type Color = 'blue' | 'green'
+type Orientation = 'image-right' | 'image-left'
 
 export interface Props extends BaseProps {
   children: React.ReactNode
   variant?: Variant
   color?: Color
+  orientation?: Orientation
   as?: 'section' | 'header' | 'div'
 }
 
 const baseStyles =
-  'flex flex-col items-start gap-4 px-8 py-16 rounded-lg border border-solid'
+  'flex items-center gap-8 px-8 py-16 rounded-lg border border-solid'
+
+const orientationStyles: Record<Orientation, string> = {
+  'image-right': 'flex-row',
+  'image-left': 'flex-row-reverse',
+}
 
 const styles: Record<Variant, Record<Color, string>> = {
   filled: {
@@ -36,6 +43,7 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero(
     className,
     variant = 'filled',
     color = 'blue',
+    orientation = 'image-right',
     as: Component = 'section',
     ...rest
   },
@@ -44,7 +52,12 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero(
   return (
     <Component
       ref={ref as React.Ref<HTMLDivElement>}
-      className={twMerge(baseStyles, styles[variant][color], className)}
+      className={twMerge(
+        baseStyles,
+        orientationStyles[orientation],
+        styles[variant][color],
+        className
+      )}
       {...rest}
     >
       {children}
