@@ -310,6 +310,32 @@ const migrationWorkflow: Workflow = {
 
 async function main(): Promise<void> {
   const opts = parseOptions(process.argv)
+  // 2026-05-19: log parsed argv + resolved options at startup so the
+  // operator can immediately see if shell escaping ate any flags. Modal
+  // v2 run had `\` line-continuations get mangled and the orchestrator
+  // received only `--component=Modal ' '` — every other flag (max-
+  // iterations, base-branch, ci-timeout-minutes) silently fell back to
+  // defaults. Took 42 min + $12 of compute to notice. This log makes
+  // the same failure mode visible in the first second.
+
+  // eslint-disable-next-line no-console
+  console.log(
+    `\n[startup] argv: ${JSON.stringify(process.argv.slice(2))}\n` +
+      `[startup] resolved options:\n` +
+      `  component=${opts.component ?? '(none)'} tier=${
+        opts.tier ?? '(any)'
+      } variant=${opts.variant}\n` +
+      `  maxIterations=${opts.maxIterations} maxCIIterations=${opts.maxCIIterations} ciTimeoutMinutes=${opts.ciTimeoutMinutes}\n` +
+      `  batch=${opts.batch} reviewSweep=${opts.reviewSweep} dryRun=${
+        opts.dryRun ?? false
+      }\n` +
+      `  withMcp=${opts.withMcp} noMerge=${opts.noMerge ?? false}\n` +
+      `  baseBranch=${opts.baseBranch ?? '(workflow default)'} branch=${
+        opts.branch ?? '(workflow default)'
+      }\n` +
+      `  agent=${opts.agent}\n`
+  )
+
   // `--base-branch=<ref>` lets the operator route this run's PR to a
   // different integration branch without editing the workflow descriptor.
   // Applied once here so every downstream read of `workflow.baseBranch`

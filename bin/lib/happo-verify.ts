@@ -201,7 +201,24 @@ const main = async (): Promise<void> => {
   // time (~5 min later) the report WAS indexed — so 210s catches it.
   // Non-404 errors don't retry (auth, server errors, etc.).
   const RETRY_DELAYS_MS = [15_000, 30_000, 45_000, 60_000, 60_000]
-  const compareUrl = `${HAPPO_HOST}/a/${args.accountId}/p/${args.projectId}/compare/${baseSha}/${headSha}`
+
+  // 2026-05-19 (Modal v3 investigation): `pnpm happo run <sha> --only X`
+  // uploads the report with the identifier `<sha>-X` (the Happo CLI
+  // appends `-${only}` to the SHA — see
+  // node_modules/happo.io/build/executeCli.js line 34-36). The compare
+  // endpoint MUST be queried with the same identifier Happo stored the
+  // report under, otherwise the lookup misses and 404s indefinitely.
+  // Empirical: Modal compare with `<base-bare>/<head-bare>` 404s; same
+  // base × `<head>-Modal` returns 200 with the actual diff data. Drawer
+  // previously appeared to work with bare SHAs only because Happo's
+  // compare endpoint lazily creates `<bare>/<bare>` records on first
+  // GET — non-deterministic, fails for the asset-reuse path Modal hit.
+  // Base SHA stays bare because the integration branch's CI uploads
+  // WITHOUT --only (full Storybook → bare-SHA report).
+  const headIdentifier = args.migratedComponent
+    ? `${headSha}-${args.migratedComponent}`
+    : headSha
+  const compareUrl = `${HAPPO_HOST}/a/${args.accountId}/p/${args.projectId}/compare/${baseSha}/${headIdentifier}`
 
   let results: Awaited<ReturnType<typeof fetchCompareResults>> | null = null
 
@@ -210,7 +227,7 @@ const main = async (): Promise<void> => {
       args.accountId,
       args.projectId,
       baseSha,
-      headSha,
+      headIdentifier,
       apiKey,
       apiSecret
     )
@@ -249,20 +266,28 @@ const main = async (): Promise<void> => {
     // that's NO_BASELINE — can't compare, treat as best-effort PASS so
     // we don't block the gate on infra issues.
     if (results.__status === 404) {
-      // Probe which side is missing. `has-report` is the standard
-      // existence check (Happo CLI uses the same /api/reports/<sha>
-      // endpoint internally).
-      const probeHead = await fetch(`${HAPPO_HOST}/api/reports/${headSha}`, {
-        headers: { Authorization: basicAuthHeader(apiKey, apiSecret) },
-      })
-      const probeBase = await fetch(`${HAPPO_HOST}/api/reports/${baseSha}`, {
-        headers: { Authorization: basicAuthHeader(apiKey, apiSecret) },
-      })
+      // 2026-05-19 fix: probe URLs MUST match Happo CLI's
+      // node_modules/happo.io/build/fetchReport.js shape — that is
+      // `/api/reports/<id>?project=<projectLabel>`. The bare-URL form
+      // without the `?project=` query param was wrong: it returned 404
+      // even for reports that existed, leading the verifier to
+      // misclassify successful uploads as "missing HEAD" → ERROR. The
+      // HEAD identifier carries the `-<component>` suffix when
+      // `--only <component>` was used at upload time (see CLI logic).
+      const projectQuery = `?project=${encodeURIComponent(args.projectLabel)}`
+      const probeHead = await fetch(
+        `${HAPPO_HOST}/api/reports/${headIdentifier}${projectQuery}`,
+        { headers: { Authorization: basicAuthHeader(apiKey, apiSecret) } }
+      )
+      const probeBase = await fetch(
+        `${HAPPO_HOST}/api/reports/${baseSha}${projectQuery}`,
+        { headers: { Authorization: basicAuthHeader(apiKey, apiSecret) } }
+      )
 
       if (!probeHead.ok) {
         emit({
           status: 'ERROR',
-          reason: `Happo has no report for HEAD ${headSha} (project=${args.projectLabel}). Did 'pnpm happo --only ...' complete uploads? probe=${probeHead.status}`,
+          reason: `Happo has no report for HEAD ${headIdentifier} (project=${args.projectLabel}). Did 'pnpm happo --only ...' complete uploads? probe=${probeHead.status}`,
           headSha,
           baseSha,
         })
