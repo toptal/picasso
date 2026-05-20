@@ -238,6 +238,36 @@ Your task:
    - **Filename** is kebab-case: `button-migration.md`, `outlined-input-migration.md`. Avoid timestamps or PR numbers.
    - Format is enforced by lint-staged (prettier runs on `.changeset/*.md`); no need to hand-format.
 
+8. **Author a PR description (mandatory).** The orchestrator opens the PR with `bin/migration-diff.sh report` output as the body, which is mechanical (files/imports/prop-surface deltas). That's necessary but insufficient — reviewers need YOUR narrative on top: what you did, why you decided what, what you couldn't do. Write it to `migration-runs/<run-date>/<Component>/pr-description.md` BEFORE exit. `<run-date>` is today (YYYY-MM-DD); `<Component>` matches the per-item plan path (e.g. `Modal`, `PromptModal`). The orchestrator prepends this file to the mechanical diff report when opening the PR.
+
+   Required sections (each ≤4 sentences — reviewers scan, not read):
+
+   ```markdown
+   ## Summary
+
+   <One paragraph. What this PR migrates, at a high level how (compound parts, classes-shim policy applied, etc.). Reviewer should grasp the shape in 15 seconds.>
+
+   ## Decisions
+
+   - <Decision 1>: <what you chose> because <why>. <cite rule/decision doc if one applies>
+   - <Decision 2>: ...
+   (2-4 bullets, focused on choices a reviewer would otherwise ask about: classes-shim path taken, behavioral parity shims like `initialFocus={modalRef}`, patches applied to vendor deps, etc.)
+
+   ## Limitations / Out-of-scope
+
+   - <What this PR doesn't address + WHY>. e.g. "Tier-3 dependents (PromptModal, ImagePluginModal) not migrated — that's PF-1998's scope."
+   - <Known edge case worth mentioning>: e.g. "`disablePortal` kept as a no-op prop with `@deprecated` JSDoc; removal scheduled for next major."
+   (Skip section if truly nothing — but err on the side of including; this is the section reviewers refer back to.)
+
+   ## Verification
+
+   - **Local gate stages passed**: build, tsc, lint, jest, cypress, happo (see PR checks for CI re-verify).
+   - **Runtime check (Playwright)**: <what stories/states you exercised on `localhost:9001`>. e.g. "Default + Tooltip + Range stories; hover/focus/disabled states; zero console errors."
+   - **Visual parity** (if applicable): "Happo verifier returned 0 component diffs against base SHA <base>" OR "1 diff on <Story> — see Happo report for designer accept."
+   ```
+
+   Tone: **concise**, fact-dense. Each section caps at ~4 sentences or ~6 bullets. The mechanical diff report (auto-generated below your narrative in the PR body) carries the file-level details — your job is the *interpretation*. If a reviewer wants more depth, they ask in a PR comment; you respond there with detail.
+
 Output: file edits only. No explanations.
 
 ### Acceptance criteria — iterate to working, then run full
