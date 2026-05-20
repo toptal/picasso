@@ -72,6 +72,38 @@ jobs:
             5. After writing the file, also output the exact same table as
                your final message so it appears in the PR comment.
 
+      - name: Print report to console
+        if: always()
+        run: |
+          if [ ! -f design-patterns-report.md ]; then
+            echo "No report produced."
+            exit 0
+          fi
+          echo "===== Picasso design patterns report ====="
+          cat design-patterns-report.md
+          echo "=========================================="
+
+      - name: Post report as PR comment on failure
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if [ ! -f design-patterns-report.md ]; then
+            echo "No report to post."
+            exit 0
+          fi
+          if ! grep -q ':x:' design-patterns-report.md; then
+            echo "All rules passed — skipping PR comment."
+            exit 0
+          fi
+          {
+            echo "### Picasso design patterns check failed"
+            echo ""
+            cat design-patterns-report.md
+          } > pr-comment.md
+          gh pr comment "$PR_NUMBER" --body-file pr-comment.md
+
       - name: Fail if any rule is unsatisfied
         run: |
           if [ ! -f design-patterns-report.md ]; then
