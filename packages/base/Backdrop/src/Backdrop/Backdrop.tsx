@@ -12,9 +12,6 @@ export interface Props
   open: boolean
   /** If true, the backdrop is invisible */
   invisible?: boolean
-  // @mui/base/Modal injects `ownerState` via its slot mechanism. Modal + Drawer
-  // still rely on that path until they migrate off @mui/base, so strip it at
-  // runtime to keep it off the rendered DOM.
   ownerState?: unknown
 }
 
