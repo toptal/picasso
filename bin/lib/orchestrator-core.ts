@@ -471,8 +471,8 @@ function buildHappoFailureSection(
     '2. **Identify the migration target.** Find this PR\'s migrating component (changeset, PR title, commit message). That component name MUST match the diff\'s `component` field for the "regression-on-migrated-component" path below.\n' +
     '3. **Classify each diff using this strict matrix**:\n' +
     '   - **REGRESSION on migrated component** (default for any diff whose `component` matches the migration target) → **MUST FIX**. Read old.png vs new.png; identify what changed (border, padding, color, focus-ring, hover state, transition timing, anti-aliasing of an icon). Find the cause in your worktree — usually a missing Tailwind class, a `data-*` selector that needs adding (e.g. `[data-disabled]:opacity-50`, `[data-orientation=horizontal]:flex-row`), a CSS variable that shifted, or an underlying library default to override. Edit source. Goal: **zero pixel diff** on the next gate run.\n' +
-    "   - **UNRELATED FLAKE** (the diff's `component` is something OTHER than the migration target — e.g. `PageTopBarMenu` diff during a Slider migration) → no source change. Post a single PR comment naming each unrelated snapshot with pixel evidence (what shifted, by roughly how much) so the designer can confidently accept in the Happo UI. Don't bulk-dismiss without per-snapshot inspection.\n" +
-    "   - **INTENTIONAL** (only if approved in the plan file) → annotate the changeset's `## Intentional visual changes` section + post a PR comment citing the plan-file authorization line. If unsure: it's NOT intentional — treat as regression and fix.\n" +
+    "   - **UNRELATED FLAKE** (the diff's `component` is something OTHER than the migration target — e.g. `PageTopBarMenu` diff during a Slider migration) → no source change. Post ONE concise PR comment listing the unrelated snapshots as a short bulleted list (one line per snapshot: `Component/Variant — <≤8-word description of what shifted>`). NO per-diff prose, NO speculation about root cause, NO recommendations to designers. Cap the whole comment at ~80 words. The designer will inspect in the Happo UI and ask for detail if they need it. Per-snapshot inspection IS required (don't bulk-dismiss without looking), but the inspection notes stay LOCAL — only the short list goes into the PR comment.\n" +
+    "   - **INTENTIONAL** (only if approved in the plan file) → annotate the changeset's `## Intentional visual changes` section + post a SHORT PR comment (one sentence) citing the plan-file authorization line. If unsure: it's NOT intentional — treat as regression and fix.\n" +
     "4. **Playwright comparison is part of the loop, not optional.** When the orchestrator detects Happo failures during sweep AND `--with-mcp` was passed, it starts the worktree's Storybook before invoking you. For each Happo diff on a migrated-component story:\n" +
     '   - **Picasso Storybook story IDs follow the pattern `components-<name>--<name>-<story>`** — the component name is REPEATED after `--`, then the story name is appended in kebab-case. Examples:\n' +
     '     - Slider, "Range" story → `components-slider--slider-range`\n' +
@@ -521,16 +521,15 @@ function buildHappoFailureSection(
     '   - For each differing property, write a targeted Tailwind class or inline style override that makes the local computed value match baseline. Apply it to the most-specific element identified by the diff (thumb, track, root, etc.).\n' +
     "   - Re-screenshot local. Re-run gate. If the diff count drops → progress, continue. If unchanged → the property you targeted wasn't the actual cause; pick the next differing property from the JSON diff.\n" +
     '6. **Stalemate (give-up) is FORBIDDEN until you have**:\n' +
-    '   - Captured `computed-styles-baseline.json` AND `computed-styles-local.json` for the failing component.\n' +
-    '   - Posted the specific list of differing properties in a PR comment so the operator can see the diagnostic data.\n' +
+    '   - Captured `computed-styles-baseline.json` AND `computed-styles-local.json` for the failing component (kept locally — these are diagnostic artifacts, not PR-comment material).\n' +
     '   - Made at least 2 distinct fix attempts targeting properties from the computed-style diff (NOT speculative Tailwind tweaks).\n' +
-    '   - Documented in the PR comment which property each fix attempt targeted and the resulting diff count.\n' +
+    '   - Posted ONE SHORT PR comment (≤60 words) summarising: (a) which 2-3 computed-style properties differ in one line, (b) which fix attempts you made + their diff count outcomes in one line each. Do NOT paste raw JSON dumps. Do NOT recite the full diagnostic procedure. The operator will read the local artifacts if they want detail.\n' +
     '   The "stop replying if stuck" review-response meta-rule (PROMPT-review-response.md) does NOT apply when you have an open Happo failure on a migrated component. Pixel-perfect on the migrated component is a hard requirement; the diagnostic procedure above always converges if followed (the computed-style diff is a finite list).\n\n' +
     'Constraints:\n' +
     "- Migration rules in PROMPT-light.md / PROMPT-heavy.md still apply — don't loosen API preservation, classes-shim handling, or any other documented constraint just to make Happo green.\n" +
     '- Do NOT bulk-classify diffs as "intentional." Each intentional entry must cite a plan-file authorization line.\n' +
     '- Do NOT push empty/cosmetic source changes solely to trigger a Happo re-run; the gate will detect "no real diff" and skip.\n' +
-    '- Your PR comment MUST cite the specific computed-style properties that differ (e.g. "baseline thumb has `margin-left: -6px`; local has `margin-left: 0px` (centered via `translate: -50%` instead) — adding `-ml-[6px]` on thumb className"). If you didn\'t run the computed-style diff, you cannot escalate.\n' +
+    '- **Be concise in PR comments.** Reviewers have limited attention. Cap each comment at ~60 words for stalemates / ~80 words for unrelated-flake lists. Cite ONE-LINE references like "baseline `margin-left: -6px` vs local `0px`" — do NOT paste full computed-style JSON blocks. If reviewer asks for detail, expand in a follow-up reply.\n' +
     '- Default disposition for a migrated-component diff is **FIX**, not punt-to-designer.\n\n' +
     'Failed Happo report(s):\n\n' +
     happoFailures
@@ -2926,13 +2925,76 @@ const agent = {
    * Claude keeps the iter-1 canonical prompt + rules + per-item plan in
    * conversation memory; the orchestrator only needs to send the gate
    * feedback + accumulated diff. Tier 2.1 of post-canary-15 plan.
+   *
+   * 2026-05-20 (post-B17 fix): `injectContext` adds the contextPack files
+   * (rules, lessons-learned, decisions, per-item plan) to the prompt.
+   * Required for fresh-session invocations — sweep ticks since B17 start
+   * a new session per tick, losing the migrate-iter-1 contextPack from
+   * conversation memory. Without this, sweep agents have to re-discover
+   * patterns from the diff alone (lessons-learned is "always loaded by
+   * contextPack" per the original comment, but contextPack is only
+   * loaded by `assemblePrompt`, not `assembleDeltaPrompt`).
+   *
+   * Migrate iter 2+ (still session-resume) and CI-fix iter (also
+   * session-resume) should pass `injectContext: undefined` to avoid
+   * re-sending the same ~30 KB the cached session already has.
    */
   async assembleDeltaPrompt(
     iteration: number,
     feedback: string | null,
-    worktreePath: string
+    worktreePath: string,
+    injectContext?: {
+      workflow: Workflow
+      item: ManifestItem
+      rootDir: string
+    }
   ): Promise<string> {
     const sections: string[] = []
+
+    if (injectContext) {
+      const { workflow, item, rootDir } = injectContext
+      const knowledgeFiles: string[] = []
+      // Contextpack — same files migrate iter 1 receives. Tier-conditional
+      // shape (Tier 0 vs Tier 1 cleanup vs Tier 2/3 heavy) is encoded in
+      // workflow.contextPack(item) — reuse it for consistency.
+      const contextFiles = workflow.contextPack(item)
+
+      for (const file of contextFiles) {
+        const abs = path.join(rootDir, file)
+
+        if (existsSync(abs)) {
+          const body = await fs.readFile(abs, 'utf8')
+
+          knowledgeFiles.push(`## ${file}\n\n${body}`)
+        }
+      }
+      // Per-item plan file is loaded SEPARATELY in assemblePrompt; mirror
+      // here so sweep agents see component-specific decisions (e.g.
+      // Modal's classes-shim handling, Slider's interaction-states list).
+      const planPath = workflow.perItemPlan
+        ? path.join(rootDir, workflow.perItemPlan(item.id))
+        : null
+
+      if (planPath && existsSync(planPath)) {
+        const planBody = await fs.readFile(planPath, 'utf8')
+
+        knowledgeFiles.push(
+          `## ${workflow.perItemPlan!(item.id)}\n\n${planBody}`
+        )
+      }
+
+      if (knowledgeFiles.length > 0) {
+        sections.push(
+          `# Evolving knowledge from prior runs\n\n` +
+            `_The orchestrator started a fresh agent session for this tick; ` +
+            `these files capture rules, decisions, lessons learned from earlier ` +
+            `migrations, and the per-item plan. Read them before editing. ` +
+            `Patterns from \`lessons-learned.md\` apply across components — ` +
+            `do not re-discover them from scratch._\n\n` +
+            knowledgeFiles.join('\n\n---\n\n')
+        )
+      }
+    }
 
     sections.push(
       `# Iteration ${iteration + 1} feedback\n\n` +
@@ -3420,7 +3482,19 @@ const lessons = {
     iterations: number,
     worktreePath: string,
     rootDir: string,
-    contextLabel?: string
+    contextLabel?: string,
+    // 2026-05-20: when present (sweep iter contexts), the extraction
+    // prompt also gets the actual reviewer comment bodies. Without this,
+    // lessons extraction sees only the agent's diff and infers reviewer
+    // intent — lossy. Including the comments lets the LLM identify
+    // reviewer-preference patterns (naming, API-design, doc gaps) that
+    // aren't visible from the code-change alone.
+    reviewerComments?: readonly {
+      body: string
+      author?: string
+      authorAssociation?: string
+      at?: string
+    }[]
   ): Promise<void> {
     const lessonsAbs = path.join(
       rootDir,
@@ -3478,6 +3552,27 @@ const lessons = {
     // reviewer feedback; when absent, it's the original CI-green
     // migration-completion extraction.
     const isReviewIteration = !!contextLabel?.startsWith('review iter')
+    // 2026-05-20: render reviewer-comment bodies into the prompt for
+    // review-iter context. Without this, the LLM infers reviewer intent
+    // from the diff alone, missing preference signals ("reviewer prefers
+    // `as const`", "reviewer flagged X three times across two PRs") that
+    // only the comment text carries.
+    const reviewerCommentsBlock =
+      reviewerComments && reviewerComments.length > 0
+        ? '\n\nReviewer comments that triggered this iteration:\n\n' +
+          reviewerComments
+            .map((c, idx) => {
+              const author = c.author ?? '?'
+              const role = c.authorAssociation
+                ? ` (${c.authorAssociation.toLowerCase()})`
+                : ''
+              const body =
+                c.body.length > 600 ? c.body.slice(0, 600) + '…' : c.body
+
+              return `${idx + 1}. ${author}${role}: ${body.replace(/\n/g, ' ')}`
+            })
+            .join('\n')
+        : ''
     const extractPrompt = isReviewIteration
       ? `Below is the diff of a review-driven iteration on the open PR for component "${
           item.id
@@ -3487,10 +3582,12 @@ const lessons = {
         `**Especially valuable: review-response patterns** — things the agent had to fix that reviewers consistently flag ` +
         `(e.g. API surface concerns, idiom mismatches, doc gaps). These represent reviewer expectations the agent didn't ` +
         `meet on the first pass; future migrations should bake these in from iter 1. ` +
+        `Use the REVIEWER COMMENT TEXT below to ground the patterns in what reviewers actually asked for ` +
+        `— don't infer intent purely from the resulting diff (the diff is downstream of the reviewer's concern). ` +
         `Prefer merge-quality, durable patterns. If the pattern is already in rules/* (api-preservation, base-ui-react-api-crib, styling), ` +
         `point to the doc section instead of restating the how-to. ` +
         `Output: exactly 2–3 markdown bullet lines, each prefixed with "- " and ≤1 sentence. ` +
-        `No preamble, no closing remarks, no "Pattern A:" labels.\n\n` +
+        `No preamble, no closing remarks, no "Pattern A:" labels.${reviewerCommentsBlock}\n\n` +
         `\`\`\`diff\n${diffBody}\n\`\`\``
       : `Below is the END-TO-END diff that migrated component "${item.id}" to ${
           item.target_path ?? 'a new stack'
@@ -3546,6 +3643,574 @@ const lessons = {
 
     await fs.appendFile(lessonsAbs, entry, 'utf8')
     log('lessons', `appended ${item.id} entry to ${lessonsAbs}`)
+  },
+}
+
+// ---------------------------------------------------------------------------
+// checklist — pre-gate process-adherence verification
+// ---------------------------------------------------------------------------
+
+/**
+ * Count how many agent tool_use entries match a name prefix.
+ * Agent log format: `"name":"<ToolName>"` per JSONL entry.
+ */
+async function countAgentToolUses(
+  logPath: string,
+  namePrefix: string
+): Promise<number> {
+  if (!existsSync(logPath)) {
+    return 0
+  }
+  const body = await fs.readFile(logPath, 'utf8')
+  // Match `"name":"<prefix>...` occurrences in tool_use JSONL entries.
+  // Anchoring on `"type":"tool_use"` would be tighter but the stream-json
+  // structure varies; a simple name-search is enough here since the agent
+  // logs only emit tool names within tool_use payloads.
+  const escaped = namePrefix.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&')
+  const re = new RegExp(`"name":"${escaped}[^"]*"`, 'g')
+  const matches = body.match(re)
+
+  return matches ? matches.length : 0
+}
+
+/**
+ * Look for a successful `pnpm --filter <pkgName> build:package` invocation
+ * in the agent's Bash tool inputs. Returns true iff the most recent matching
+ * invocation appeared in the log AND no error marker followed it.
+ *
+ * Heuristic. We don't have exit codes from Bash tool calls in the log
+ * directly; we look at the COMMAND text (which the agent typed) and the
+ * RESULT body (which captures stdout/stderr). A "Done" / no-error result
+ * is treated as success. False positives are tolerable — the gate's
+ * `build` stage is the canonical verdict; this check is to catch agents
+ * who NEVER ran the build at all (Modal v1 incident).
+ */
+async function checkBuildPackageInvoked(
+  logPath: string,
+  pkgName: string
+): Promise<boolean> {
+  if (!existsSync(logPath)) {
+    return false
+  }
+  const body = await fs.readFile(logPath, 'utf8')
+  const escaped = pkgName.replace(/[$()*+.?[\\\]^{|}]/g, '\\$&')
+  const re = new RegExp(
+    `pnpm[^"\\\\]*--filter[^"\\\\]*${escaped}[^"\\\\]*build:package`,
+    'g'
+  )
+
+  return re.test(body)
+}
+
+/**
+ * Read a workspace package.json's `name` field. Returns null if missing.
+ */
+async function readPackageName(pkgDir: string): Promise<string | null> {
+  const pjsonPath = path.join(pkgDir, 'package.json')
+
+  if (!existsSync(pjsonPath)) {
+    return null
+  }
+  try {
+    const raw = await fs.readFile(pjsonPath, 'utf8')
+    const json = JSON.parse(raw) as { name?: string }
+
+    return json.name ?? null
+  } catch {
+    return null
+  }
+}
+
+interface ChecklistArgs {
+  item: ManifestItem
+  workflow: Workflow
+  opts: OrchestratorOptions
+  worktreePath: string
+  agentLogPath: string
+  rootDir: string
+  /** Iteration number for audit log naming + stuck-signal computation. */
+  iteration: number
+  /** Run dir for persisting audit.<iter>.md. */
+  runDir: string
+}
+
+interface AuditViolation {
+  severity: 'high' | 'medium' | 'low'
+  category: 'rule' | 'decision' | 'lesson'
+  what: string
+  citation: string
+}
+
+interface ChecklistResult {
+  ok: boolean
+  /** Hard failures (Layer A mechanical + Layer B HIGH severity) — appended to next-iter feedback. */
+  failures: readonly string[]
+  /** Soft notes (Layer B MEDIUM/LOW severity) — advisory, appended separately. */
+  advisoryNotes: readonly string[]
+  /** Passed checks for log readability. */
+  passed: readonly string[]
+  /** Audit's hint about lessons/rules that may need updating (forwarded to operator). */
+  stuckSignal: string | null
+  /** Concatenated key for stuck-detection across iters. */
+  auditKey: string
+}
+
+const checklist = {
+  /**
+   * Pre-gate enforcement: did the agent actually follow the mandatory
+   * process steps the prompt told them to follow? The gate.sh script
+   * verifies OUTCOMES (typecheck/lint/test/happo all green) — this
+   * checklist verifies PROCESS (agent ran Playwright on Tier 0, agent
+   * authored a changeset, agent rebuilt the package before regenerating
+   * consumer snapshots).
+   *
+   * Why both layers matter: empirically (Slider, Drawer, Modal v1/v2),
+   * the agent can find a path to gate-green that skips the prompt's
+   * mandated steps. The gate doesn't notice. The next migration repeats
+   * the skip. This loop is the "beginner mistakes get repeated" pattern
+   * the operator flagged — solved by checking process, not just outcome.
+   *
+   * Returns `{ ok, failures, passed }`. Caller prepends failures to the
+   * next-iter feedback (without burning an iter slot) and re-invokes
+   * the agent. If failures repeat after N retries, fall through to
+   * gate.run (the gate's deterministic outcomes are still the ultimate
+   * verdict — a skipped Playwright on a green-gated component is a
+   * warning, not a blocker).
+   *
+   * Currently implements Layer A only (mechanical, fast, deterministic).
+   * Layer B (LLM-based audit of rule/lesson/decision adherence) is a
+   * planned follow-up — see TODO at the end of this function.
+   */
+  async verify(args: ChecklistArgs): Promise<ChecklistResult> {
+    const failures: string[] = []
+    const passed: string[] = []
+
+    // 1. Changeset file. Mandatory per PROMPT-light §7 / PROMPT-heavy §7.
+    //    Slug derivation: lowercase + kebab. e.g. `Modal` → `modal-migration.md`,
+    //    `PromptModal` → `prompt-modal-migration.md`.
+    const slug = args.item.id
+      .replace(/([A-Z])/g, '-$1')
+      .toLowerCase()
+      .replace(/^-+/, '')
+    const changesetCandidates = [
+      path.join(args.worktreePath, '.changeset', `${slug}-migration.md`),
+      // Tolerate alt naming (operator-authored manual changesets, etc.)
+      path.join(
+        args.worktreePath,
+        '.changeset',
+        `${args.item.id.toLowerCase()}-migration.md`
+      ),
+    ]
+    const changesetExists = changesetCandidates.some(p => existsSync(p))
+
+    if (!changesetExists) {
+      failures.push(
+        `Changeset missing: expected at \`.changeset/${slug}-migration.md\` ` +
+          `(mandatory per PROMPT §7). Create it before exit — the file accumulates ` +
+          `on the integration branch and feeds the per-package CHANGELOG at release time.`
+      )
+    } else {
+      passed.push(`changeset present`)
+    }
+
+    // 2. Playwright runtime check — Tier 0 with --with-mcp (PROMPT §Runtime verification).
+    //    Empirically the agent has skipped this on 4+ Tier 0 runs (Slider, Backdrop,
+    //    Drawer, Modal v1/v2). Tier 0 components have portal/state/focus behavior
+    //    that text gates can't catch; runtime verification is non-optional.
+    if (args.item.tier === 0 && args.opts.withMcp) {
+      const pwCount = await countAgentToolUses(
+        args.agentLogPath,
+        'mcp__playwright__'
+      )
+      const MIN_PW_CALLS = 2
+
+      if (pwCount < MIN_PW_CALLS) {
+        failures.push(
+          `Playwright runtime check skipped: ${pwCount} \`mcp__playwright__*\` calls ` +
+            `(expected ≥${MIN_PW_CALLS} per PROMPT §"Mandatory runtime check"). ` +
+            `Navigate to a story for \`${args.item.id}\` on \`localhost:9001\`, ` +
+            `screenshot, check console messages. Tier 0 components NEED runtime ` +
+            `verification — text gates miss portal-mount / focus-ring / hydration issues.`
+        )
+      } else {
+        passed.push(`Playwright runtime check (${pwCount} calls)`)
+      }
+    }
+
+    // 3. `build:package` for the migrating package. Mandatory per PROMPT §6
+    //    (Modal incident 2026-05-18: skipping this caused PromptModal's snap
+    //    to be regenerated against a stale @toptal/picasso-modal → CI -1/+120).
+    const pkgName = await readPackageName(
+      path.join(args.rootDir, args.item.package)
+    )
+
+    if (pkgName) {
+      const buildInvoked = await checkBuildPackageInvoked(
+        args.agentLogPath,
+        pkgName
+      )
+
+      if (!buildInvoked) {
+        failures.push(
+          `\`pnpm --filter ${pkgName} build:package\` not invoked in this iter ` +
+            `(mandatory per PROMPT §6 — verify the migrating package builds cleanly ` +
+            `before regenerating any consumer snapshots).`
+        )
+      } else {
+        passed.push(`${pkgName} build:package invoked`)
+      }
+    }
+
+    // 4. PR description authored. Mandatory per PROMPT §8 (added
+    //    2026-05-20). Path mirrors what `bin/migration-diff.sh report`
+    //    reads when prepending the narrative above the mechanical diff:
+    //    `<wt>/migration-runs/<run-date>/<id>/pr-description.md`.
+    //    Missing → agent skipped the mandate; reviewers will get the
+    //    mechanical diff only.
+    //
+    //    Note: `<run-date>` here is computed from TODAY() — same source
+    //    the orchestrator uses for runDate elsewhere. If the migration
+    //    started YESTERDAY and the agent is iterating today, the file
+    //    won't be at today's date — but that's a degenerate case
+    //    (single-iter migrations close within minutes). For correctness
+    //    in cross-day cases, we glob across recent dates and accept any
+    //    matching file.
+    const prDescGlobMatches: string[] = []
+
+    try {
+      const yearMonth = TODAY().slice(0, 7) // YYYY-MM
+      const runsRoot = path.join(args.worktreePath, 'migration-runs')
+
+      if (existsSync(runsRoot)) {
+        const dirs = await fs.readdir(runsRoot)
+
+        for (const d of dirs) {
+          if (!d.startsWith(yearMonth)) {
+            continue
+          }
+          const candidate = path.join(
+            runsRoot,
+            d,
+            args.item.id,
+            'pr-description.md'
+          )
+
+          if (existsSync(candidate)) {
+            prDescGlobMatches.push(candidate)
+          }
+        }
+      }
+    } catch {
+      // Best-effort — checklist remains a warning, not a blocker.
+    }
+
+    if (prDescGlobMatches.length === 0) {
+      failures.push(
+        `PR description missing: expected at \`migration-runs/<run-date>/${args.item.id}/pr-description.md\` ` +
+          `(mandatory per PROMPT §8). The orchestrator's PR body uses this as the narrative ` +
+          `above the mechanical diff — without it, reviewers get file-level facts but no Summary / Decisions / Limitations / Verification.`
+      )
+    } else {
+      passed.push(`pr-description.md present`)
+    }
+
+    // Layer B: LLM-based judgment audit. Compares the agent's diff against
+    // documented rules, decisions, and lessons. Catches violations that
+    // Layer A's mechanical checks can't see (e.g. "agent fell back to
+    // `any` instead of casting at boundary", "agent skipped the Tier-0
+    // classes-shim pattern documented in decisions/classes-audit.md",
+    // "agent introduced CSS outside Tailwind utilities against styling.md").
+    //
+    // Non-fatal: HIGH severity violations go to `failures` (next-iter
+    // feedback). MEDIUM/LOW go to `advisoryNotes` (informational). Audit
+    // raw output saved to `<runDir>/audit.<iter>.md` for operator
+    // inspection. If the same violation persists across iters and the
+    // agent can't resolve it AND the gate passes, the migration proceeds
+    // — Layer B is advisory, never a hard block, per operator intent:
+    // *"if it's not possible to find such solution we should proceed to
+    // gate and to pushing if gate pass to PR. It means we potentially
+    // need to add new lessons or change existing ones."*
+    const advisoryNotes: string[] = []
+    let stuckSignal: string | null = null
+    const auditViolations: AuditViolation[] = []
+
+    try {
+      const audit = await this.judgeAudit(args)
+
+      stuckSignal = audit.stuckSignal
+      auditViolations.push(...audit.violations)
+
+      for (const v of audit.violations) {
+        const tag = `Audit (${v.severity.toUpperCase()}, ${v.category})`
+        const line = `${tag}: ${v.what} [cite: ${v.citation}]`
+
+        if (v.severity === 'high') {
+          failures.push(line)
+        } else {
+          advisoryNotes.push(line)
+        }
+      }
+
+      if (audit.violations.length === 0) {
+        passed.push('judgment audit clean')
+      }
+      // Persist raw output for operator inspection — even when there are
+      // no violations, the audit's full reasoning is useful evidence.
+      try {
+        const auditPath = path.join(args.runDir, `audit.${args.iteration}.md`)
+
+        await fs.mkdir(path.dirname(auditPath), { recursive: true })
+        await fs.writeFile(auditPath, audit.rawOutput, 'utf8')
+      } catch (writeErr) {
+        log(
+          'checklist',
+          `audit.${args.iteration}.md write failed (non-fatal): ${
+            (writeErr as Error).message
+          }`
+        )
+      }
+    } catch (auditErr) {
+      log(
+        'checklist',
+        `judgment audit crashed (non-fatal — Layer A signal preserved): ${
+          (auditErr as Error).message
+        }`
+      )
+    }
+
+    const auditKey = auditViolations
+      .map(v => `${v.severity}:${v.category}:${v.citation}`)
+      .sort()
+      .join('|')
+
+    return {
+      ok: failures.length === 0,
+      failures,
+      advisoryNotes,
+      passed,
+      stuckSignal,
+      auditKey,
+    }
+  },
+
+  /**
+   * Layer B — LLM-based judgment audit. Spawns a `claude -p` subprocess
+   * with rules/decisions/lessons + the agent's diff, asking it to identify
+   * concrete violations. Output format is parsed by the regex in this
+   * function; rawOutput is preserved for the operator-facing audit.<N>.md.
+   *
+   * Returns `{ violations, stuckSignal, rawOutput }`. Empty violations
+   * array means "audit clean".
+   *
+   * Cost: ~$0.10–0.30 per call depending on diff + context size. Tier 0
+   * with full context pack ~70 KB input. Skip when the diff is empty
+   * (iter ran but agent made no edits — nothing to audit).
+   */
+  async judgeAudit(args: ChecklistArgs): Promise<{
+    violations: AuditViolation[]
+    stuckSignal: string | null
+    rawOutput: string
+  }> {
+    // 1. Get the agent's accumulated diff (merge-base..HEAD).
+    const baseRef = args.workflow.baseBranch
+      ? `origin/${args.workflow.baseBranch}`
+      : 'origin/master'
+    const mbResult = await shell('git', ['merge-base', 'HEAD', baseRef], {
+      cwd: args.worktreePath,
+    })
+    const mergeBase = mbResult.stdout.trim()
+    const diffRange = mergeBase ? `${mergeBase}..HEAD` : 'HEAD~1..HEAD'
+    // Include working-tree changes too (`HEAD..` would miss uncommitted
+    // edits the agent just made before checklist runs). Use `git diff
+    // <base>` which shows working-tree vs base.
+    const diffResult = await shell('git', ['diff', diffRange], {
+      cwd: args.worktreePath,
+    })
+    const wtDiffResult = await shell('git', ['diff'], {
+      cwd: args.worktreePath,
+    })
+    const combinedDiff =
+      diffResult.stdout +
+      '\n\n# Uncommitted working-tree changes:\n' +
+      wtDiffResult.stdout
+    const MAX_DIFF_BYTES = 40_000
+    const diffBody =
+      combinedDiff.length > MAX_DIFF_BYTES
+        ? combinedDiff.slice(0, MAX_DIFF_BYTES) +
+          `\n\n[truncated; full diff is ${combinedDiff.length} bytes]`
+        : combinedDiff
+
+    if (!diffBody.trim() || !/^[-+]/m.test(diffBody)) {
+      return {
+        violations: [],
+        stuckSignal: null,
+        rawOutput: '(no diff to audit)',
+      }
+    }
+
+    // 2. Gather audit context files. Tier-aware to keep prompt within
+    //    ~80-90 KB ceiling. Always-loaded: api-preservation, lessons-learned,
+    //    classes-shim, classes-audit, per-component plan. Tier 0/2/3 add
+    //    base-ui-react-api-crib + styling. Tier 2/3 add jss-to-tailwind +
+    //    tokens. Modal/Drawer add backdrop-replacement.
+    // Note: decisions/classes-audit.md (26 KB) is intentionally OMITTED —
+    // it's empirical evidence behind classes-shim.md's decision matrix.
+    // The matrix in classes-shim.md is the authoritative rule the agent
+    // must follow; the audit's per-component data is operator-facing.
+    // Skipping it keeps the audit prompt under ~80 KB total.
+    const candidateFiles: (string | null)[] = [
+      'docs/migration/rules/api-preservation.md',
+      'docs/migration/references/lessons-learned.md',
+      'docs/migration/decisions/classes-shim.md',
+      args.workflow.perItemPlan
+        ? args.workflow.perItemPlan(args.item.id)
+        : null,
+    ]
+
+    if (args.item.tier === 0 || args.item.tier >= 2) {
+      candidateFiles.push(
+        'docs/migration/rules/base-ui-react-api-crib.md',
+        'docs/migration/rules/styling.md'
+      )
+    }
+
+    if (args.item.tier >= 2) {
+      candidateFiles.push(
+        'docs/migration/rules/jss-to-tailwind-crib.md',
+        'docs/migration/tokens/picasso-tailwind-tokens.md'
+      )
+    }
+
+    if ((args.item.depends_on ?? []).includes('Backdrop')) {
+      candidateFiles.push('docs/migration/decisions/backdrop-replacement.md')
+    }
+    const docSections: string[] = []
+
+    for (const file of candidateFiles) {
+      if (!file) {
+        continue
+      }
+      const abs = path.join(args.rootDir, file)
+
+      if (existsSync(abs)) {
+        const body = await fs.readFile(abs, 'utf8')
+
+        docSections.push(`### ${file}\n\n${body}`)
+      }
+    }
+
+    // 3. Build the audit prompt.
+    const prompt =
+      `You are auditing a migration diff for compliance with documented rules, decisions, and lessons.\n\n` +
+      `Component: ${args.item.id} (tier ${args.item.tier}, target_path: ${
+        args.item.target_path ?? 'none'
+      }).\n` +
+      `Iteration: ${args.iteration}.\n\n` +
+      `Goal: find CONCRETE violations of rules / decisions / lessons in the agent's diff.\n\n` +
+      `**STRICT RULES for what counts as a "violation"** (avoid false positives — these waste agent iters):\n` +
+      `1. A violation is something the diff DOES (or FAILS to do) that DIRECTLY CONTRADICTS a documented pattern. The contradiction must be unambiguous.\n` +
+      `2. "Could be better", "consider X", "may want to" are NOT violations. Skip those entirely.\n` +
+      `3. If after second reading you decide the diff is actually compliant, DO NOT add it to <violations>. Leave it out.\n` +
+      `4. The pattern must be cited from a specific doc + section that's IN THE AUDIT DOCUMENTS BELOW. Don't cite docs you can't see.\n` +
+      `5. Be CONCRETE: cite the file + line range in the diff. "packages/base/Modal/src/Modal.tsx line 42" is acceptable; "in some file" is not.\n` +
+      `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n\n` +
+      `Severity levels:\n` +
+      `- **high**: hard rule violations (e.g. fallback to \`any\` to silence lint, dropped public API surface from \`Omit<>\` decision, withClasses applied where decision matrix says drop) — these get appended to next-iter feedback as MUST-FIX.\n` +
+      `- **medium**: documented best-practice missed (e.g. missing data-* CSS compensation when @base-ui/react primitive emits one and lessons-learned flags this; styling.md violation; missed lesson from prior similar migration) — advisory.\n` +
+      `- **low**: minor doc-pointer suggestions (e.g. comment could cite the rule it implements). Use sparingly — most things at this severity should be skipped entirely.\n\n` +
+      `OUTPUT FORMAT (strict — orchestrator parses this with regex; deviations break parsing):\n\n` +
+      `<violations>\n` +
+      `- severity=high, category=rule, citation="rules/api-preservation.md §Type alignment", what="Agent dropped public type narrowing — diff at packages/.../Modal.tsx line 42 falls back to 'classes?: any'"\n` +
+      `- severity=medium, category=lesson, citation="lessons-learned.md Visual parity policy 2026-05-15", what="Diff omits data-orientation compensation; @base-ui/react/slider emits this attr and master had matching CSS"\n` +
+      `</violations>\n\n` +
+      `<stuck-signal>\n` +
+      `If the same violation has been flagged 2+ iters in a row and the agent can't resolve it, the underlying doc may need updating. ` +
+      `Output a one-line suggestion like \`<doc-path>: <what should be changed>\` OR exactly \`none\` if no doc-update signal.\n` +
+      `</stuck-signal>\n\n` +
+      `If no violations, output:\n\n` +
+      `<violations>\n</violations>\n` +
+      `<stuck-signal>\nnone\n</stuck-signal>\n\n` +
+      `**DO NOT** include a "Summary" or prose explanation after the structured blocks — the orchestrator only reads the blocks, prose is wasted tokens. End your response with </stuck-signal>.\n\n` +
+      `=== Audit Documents ===\n\n` +
+      docSections.join('\n\n---\n\n') +
+      `\n\n=== Agent Diff (range: ${diffRange}) ===\n\n` +
+      `\`\`\`diff\n${diffBody}\n\`\`\``
+
+    // 4. Spawn claude -p with prompt on stdin. Same pattern as lessons.append.
+    const child = spawn('claude', ['-p', '--allowedTools', 'Read'], {
+      cwd: args.rootDir,
+      stdio: ['pipe', 'pipe', 'pipe'],
+      env: process.env,
+    })
+
+    let rawOutput = ''
+
+    child.stdin?.write(prompt)
+    child.stdin?.end()
+    child.stdout?.on('data', chunk => {
+      rawOutput += chunk
+    })
+
+    const exitCode: number = await new Promise(resolve => {
+      child.on('close', code => resolve(code ?? 1))
+      child.on('error', () => resolve(127))
+    })
+
+    if (exitCode !== 0) {
+      log(
+        'checklist',
+        `audit subprocess exited ${exitCode}; treating as inconclusive (no violations recorded)`
+      )
+
+      return {
+        violations: [],
+        stuckSignal: null,
+        rawOutput: rawOutput || `(claude -p exit ${exitCode})`,
+      }
+    }
+
+    // 5. Parse output. Drop entries whose `what` text contains compliance-
+    // acknowledgement markers ("compliant", "complies", "no violation",
+    // "actually correct"). The LLM occasionally writes a "I was going to
+    // flag X but realized it's compliant" entry inside <violations>;
+    // those waste agent iters chasing non-issues. Smoke test 2026-05-20:
+    // Drawer audit returned 3 such entries despite being fully compliant.
+    const COMPLIANCE_MARKERS =
+      /\b(compliant|complies|no violation|actually correct|on second read|not actually|this is fine|false positive)\b/i
+    const violations: AuditViolation[] = []
+    const vMatch = rawOutput.match(/<violations>([\s\S]*?)<\/violations>/)
+
+    if (vMatch) {
+      const lines = vMatch[1].split('\n')
+
+      for (const line of lines) {
+        const m = line.match(
+          /^[-*]\s*severity=(high|medium|low),\s*category=(rule|decision|lesson),\s*citation="([^"]+)",\s*what="([^"]+)"/
+        )
+
+        if (m && !COMPLIANCE_MARKERS.test(m[4])) {
+          violations.push({
+            severity: m[1] as 'high' | 'medium' | 'low',
+            category: m[2] as 'rule' | 'decision' | 'lesson',
+            citation: m[3],
+            what: m[4],
+          })
+        } else if (m) {
+          log(
+            'checklist',
+            `audit: dropped compliance-marker entry ("${m[4].slice(0, 80)}")`
+          )
+        }
+      }
+    }
+    const sMatch = rawOutput.match(/<stuck-signal>([\s\S]*?)<\/stuck-signal>/)
+    const stuckSignalRaw = sMatch ? sMatch[1].trim() : 'none'
+    const stuckSignal =
+      stuckSignalRaw && stuckSignalRaw.toLowerCase() !== 'none'
+        ? stuckSignalRaw
+        : null
+
+    return { violations, stuckSignal, rawOutput }
   },
 }
 
@@ -4543,10 +5208,17 @@ async function sweepOne(
   // `isFirstIteration` below.
   const sessionId = randomUUID()
   const isFirstIteration = true
+  // 2026-05-20: pass contextPack into the delta prompt. Sweep starts a
+  // fresh session each tick (B17 always-fresh-session policy), so the
+  // agent has no prior memory of the migrate-iter-1 contextPack
+  // (rules, lessons-learned, decisions, plan). Without this injection
+  // the agent would re-discover patterns documented in lessons-learned —
+  // exactly the "beginner mistake" pattern the user flagged.
   const reviewPrompt = await agent.assembleDeltaPrompt(
     reviewIters - 1,
     reviewFeedback,
-    wtPath
+    wtPath,
+    { workflow, item, rootDir }
   )
   const promptPath = path.join(runDir, `prompt.review-${reviewIters}.txt`)
 
@@ -4614,6 +5286,14 @@ async function sweepOne(
   let lastDeterministicFailureSet: string | null = null
   let lastAgentExitCode = 0
   let lastAgentLogPath = ''
+  // 2026-05-20: Layer A + Layer B checklist state for sweep ticks.
+  // Per-iter failures get prepended to NEXT iter's iterFeedback (so the
+  // agent sees process violations + lesson/rule audit alongside the gate
+  // report). Reset to null on each clean iter. Audit-key tracks repeated
+  // violations for stuck-signal handling (see migrate-loop equivalent
+  // around line 5860 for the design rationale).
+  let pendingChecklistFeedback: string | null = null
+  let lastAuditKey: string | null = null
   let convergence:
     | 'green'
     | 'env-only-fail'
@@ -4714,6 +5394,110 @@ async function sweepOne(
           `${item.id}: review-iter loop iter ${iter}: agent exit ${agentResult.exitCode} (likely transient); breaking loop`
         )
         break
+      }
+
+      // 2026-05-20: Pre-gate checklist (Layer A mechanical + Layer B
+      // judgment audit). Same enforcement that runs in the migrate-loop
+      // applies here — sweep agents are still subject to rules/lessons/
+      // decisions, and reviewer-driven iters benefit from the audit
+      // catching cases where the agent's review response inadvertently
+      // breaks a documented pattern (e.g. agent reverts a Tier-0
+      // classes-shim decision based on a reviewer suggestion that
+      // contradicts the decision matrix).
+      //
+      // Same advisory semantics: HIGH failures + audit findings go to
+      // next-iter feedback; gate.run still proceeds; stuck-signals
+      // surface to operator. Iteration numbering uses the sweep's
+      // virtual iter space (`1000 + reviewIters*100 + iter`) to keep
+      // audit log filenames + token snapshots distinct from migrate-
+      // loop equivalents.
+      // eslint-disable-next-line no-await-in-loop
+      try {
+        const sweepIterNum = 1000 + reviewIters * 100 + iter
+        const checklistResult = await checklist.verify({
+          item,
+          workflow,
+          opts,
+          worktreePath: wtPath,
+          agentLogPath: iterAgentLogPath,
+          rootDir,
+          iteration: sweepIterNum,
+          runDir,
+        })
+
+        const sections: string[] = []
+
+        if (checklistResult.failures.length > 0) {
+          log(
+            'sweep',
+            `review-iter ${reviewIters} iter ${iter}: ${checklistResult.failures.length} checklist failure(s); appending to next-iter feedback`
+          )
+          for (const failure of checklistResult.failures) {
+            log('sweep', `  ✗ ${failure.split('\n')[0].slice(0, 200)}`)
+          }
+          sections.push(
+            `# Process-checklist failures from review-iter ${reviewIters}.${iter}\n\n` +
+              `The gate's outcome stages may still pass, but you skipped mandatory ` +
+              `process steps OR violated documented rules/decisions/lessons (HIGH severity). ` +
+              `Fix these in this iter or the next:\n\n` +
+              checklistResult.failures.map(f => `- ${f}`).join('\n')
+          )
+        } else {
+          log(
+            'sweep',
+            `review-iter ${reviewIters} iter ${iter}: all hard checks passed (${checklistResult.passed.join(
+              ', '
+            )})`
+          )
+        }
+
+        if (checklistResult.advisoryNotes.length > 0) {
+          log(
+            'sweep',
+            `review-iter ${reviewIters} iter ${iter}: ${checklistResult.advisoryNotes.length} advisory note(s)`
+          )
+          sections.push(
+            `# Advisory audit notes from review-iter ${reviewIters}.${iter}\n\n` +
+              `These are NOT hard blockers, but indicate rules/lessons your diff ` +
+              `should ideally address. If you can't address them without breaking ` +
+              `the gate, leave them — the orchestrator will surface them to the operator:\n\n` +
+              checklistResult.advisoryNotes.map(n => `- ${n}`).join('\n')
+          )
+        }
+
+        if (checklistResult.stuckSignal) {
+          log(
+            'sweep',
+            `review-iter ${reviewIters} iter ${iter}: STUCK-SIGNAL — ${checklistResult.stuckSignal}`
+          )
+
+          if (
+            lastAuditKey !== null &&
+            lastAuditKey === checklistResult.auditKey &&
+            checklistResult.auditKey !== ''
+          ) {
+            sections.push(
+              `# Repeated audit violations — doc may need updating\n\n` +
+                `The same audit findings persist across ≥2 sweep-loop iters. ` +
+                `If you cannot resolve them without breaking the gate, leave them ` +
+                `as-is and complete this sweep tick. The orchestrator has flagged ` +
+                `this to the operator; the rules / lessons / decisions may need ` +
+                `revision to reflect the new reality.\n\n` +
+                `Stuck-signal suggestion: ${checklistResult.stuckSignal}`
+            )
+          }
+        }
+        lastAuditKey = checklistResult.auditKey
+        pendingChecklistFeedback =
+          sections.length > 0 ? sections.join('\n\n---\n\n') : null
+      } catch (err) {
+        log(
+          'sweep',
+          `review-iter ${reviewIters} iter ${iter}: checklist verifier crashed (non-fatal): ${
+            (err as Error).message
+          }`
+        )
+        pendingChecklistFeedback = null
       }
 
       // Stage + commit the agent's edits so the gate's Happo upload uses
@@ -4938,12 +5722,25 @@ async function sweepOne(
       if (iter < MAX_SWEEP_ITERS) {
         // Build feedback for next iter: gate report content if available,
         // else a minimal summary so the agent at least knows which stage
-        // failed.
+        // failed. 2026-05-20: prepend pendingChecklistFeedback so the
+        // next iter sees BOTH the gate's outcome failures AND the
+        // process/audit failures from the current iter.
         if (existsSync(gateReport.reportPath)) {
           // eslint-disable-next-line no-await-in-loop
           iterFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
         } else {
           iterFeedback = `Local gate failed on deterministic stages: ${currentFailureSet}. Inspect the per-stage logs under migration-runs/<run-date>/${item.id}/.`
+        }
+
+        // 2026-05-20: prepend checklist + audit feedback so the agent
+        // sees BOTH gate outcomes AND process/lesson violations side-by-
+        // side. Two-channel feedback: gate = "what your code is missing"
+        // + checklist = "what process steps / lessons you skipped".
+        if (pendingChecklistFeedback) {
+          iterFeedback =
+            pendingChecklistFeedback +
+            '\n\n---\n\n' +
+            (iterFeedback ?? '(no gate report)')
         }
 
         // Happo iteration: when the gate's happo stage failed, the agent
@@ -5128,16 +5925,30 @@ async function sweepOne(
   // Here we just need to PUSH if we have a commit AND the loop converged
   // green / env-only-fail. Stuck/budget/agent-failed outcomes already
   // returned above without reaching this point.
+  //
+  // Regular `git push` (no `--force-with-lease`): within a sweep tick,
+  // iter 2+ amends iter 1's commit, which changes the tip SHA but keeps
+  // the same parent (= origin tip at start of tick). Pushing the amended
+  // tip is therefore a fast-forward from origin's perspective — no force
+  // needed. Across ticks, each new tick's iter 1 creates a FRESH commit
+  // on top of the previous tick's pushed tip (sweepTickHasCommit resets
+  // per tick), so history is append-only across ticks. The earlier
+  // `--force-with-lease` was a misdiagnosis: it claimed the amend
+  // required force, but the amend keeps the parent intact. Worse, the
+  // lease compares the LOCAL `refs/remotes/origin/<branch>` against the
+  // actual remote — and the worktree's local origin ref can go stale if
+  // another orchestrator process (e.g. an operator's manual push, or a
+  // rebase from a different machine) advances origin between ticks. In
+  // that case the lease rejects with "stale info" and the sweep dies
+  // into needs_human even though the local commit was a legitimate
+  // edit. Regular push correctly rejects only when origin has actually
+  // diverged (non-fast-forward), which is the case that truly needs
+  // operator attention — see Switch PR #4965 review-iter 1 escalation
+  // (2026-05-19) where stale local ref caused a spurious needs_human.
   if (sweepTickHasCommit) {
     const pushResult = await shell(
       'git',
-      [
-        'push',
-        '--no-verify',
-        '--force-with-lease',
-        'origin',
-        item.branch as string,
-      ],
+      ['push', '--no-verify', 'origin', item.branch as string],
       { cwd: wtPath }
     )
 
@@ -5152,13 +5963,18 @@ async function sweepOne(
     }
     log(
       'sweep',
-      `${item.id}: pushed code changes (force-with-lease for amended commit); CI will re-evaluate; status remains awaiting_review`
+      `${item.id}: pushed code changes; CI will re-evaluate; status remains awaiting_review`
     )
 
     // Part 4 (2026-05-14): capture review-iteration lessons. The agent
     // just landed source edits in response to reviewer feedback —
     // future migrations should internalize these patterns to avoid the
     // same review nits up-front. Non-fatal on error.
+    //
+    // 2026-05-20: pass `newReviews` so the extraction prompt sees the
+    // ACTUAL reviewer comment bodies, not just the resulting diff. Lets
+    // the LLM extract reviewer-preference patterns (naming, API design,
+    // doc gaps) that the code-change alone can't surface.
     try {
       await lessons.append(
         workflow,
@@ -5167,7 +5983,8 @@ async function sweepOne(
         reviewIters,
         wtPath,
         rootDir,
-        `review iter ${reviewIters}`
+        `review iter ${reviewIters}`,
+        newReviews
       )
     } catch (err) {
       log(
@@ -5523,6 +6340,16 @@ export async function run(
     }
 
     let lastFeedback: string | null = null
+    // 2026-05-20: process-checklist failures captured this iter, to be
+    // prepended to NEXT iter's lastFeedback so the agent sees what it
+    // skipped (changeset, Playwright on Tier 0, build:package) and can
+    // fix it. Reset on iter that passes all checks.
+    let pendingChecklistFeedback: string | null = null
+    // Layer B audit-key from prior iter — used to detect stuck-on-same-
+    // violation patterns. When iter N and iter N-1 have identical
+    // auditKey AND a stuck-signal, the orchestrator flags "lesson/rule
+    // may need updating" but lets the migration proceed (advisory).
+    let lastAuditKey: string | null = null
     // Per-iter commit tracker — same rationale as `sweepTickHasCommit` in
     // `sweepOne`. Each loop iter, the agent's edits are staged + committed
     // (fresh on first iter, amended on iter 2+) BEFORE the gate runs.
@@ -5636,6 +6463,104 @@ export async function run(
 
         lastFeedback = `Agent invocation failed (exit ${agentResult.exitCode}). See ${agentLogPath}.`
         continue
+      }
+
+      // 2026-05-20: pre-gate checklist enforcement (Layer A mechanical +
+      // Layer B LLM-judgment). Verifies the agent followed mandatory
+      // PROCESS steps (changeset, Playwright, build:package) AND that
+      // the diff respects rules, decisions, and lessons. Failures are
+      // appended to lastFeedback so the NEXT iter's prompt includes them.
+      // Per operator intent: Layer B is advisory — if violations can't
+      // be resolved AND the gate passes, the migration proceeds (the
+      // lesson/rule may need updating; we log a stuck-signal for that).
+      try {
+        const checklistResult = await checklist.verify({
+          item,
+          workflow,
+          opts,
+          worktreePath: wtPath,
+          agentLogPath,
+          rootDir,
+          iteration: state.iterations,
+          runDir,
+        })
+
+        const sections: string[] = []
+
+        if (checklistResult.failures.length > 0) {
+          log(
+            'checklist',
+            `iter ${state.iterations}: ${checklistResult.failures.length} hard failure(s) (Layer A + audit HIGH); appended to next-iter feedback`
+          )
+          for (const failure of checklistResult.failures) {
+            log('checklist', `  ✗ ${failure.split('\n')[0].slice(0, 200)}`)
+          }
+          sections.push(
+            `# Process-checklist failures from iter ${state.iterations}\n\n` +
+              `The gate's outcome stages may still pass, but you skipped mandatory ` +
+              `process steps OR violated documented rules/decisions/lessons (HIGH severity). ` +
+              `Fix these in this iter or the next:\n\n` +
+              checklistResult.failures.map(f => `- ${f}`).join('\n')
+          )
+        } else {
+          log(
+            'checklist',
+            `iter ${
+              state.iterations
+            }: all hard checks passed (${checklistResult.passed.join(', ')})`
+          )
+        }
+
+        if (checklistResult.advisoryNotes.length > 0) {
+          log(
+            'checklist',
+            `iter ${state.iterations}: ${checklistResult.advisoryNotes.length} advisory note(s) (Layer B MEDIUM/LOW)`
+          )
+          sections.push(
+            `# Advisory audit notes from iter ${state.iterations}\n\n` +
+              `These are NOT hard blockers, but indicate rules/lessons your diff ` +
+              `should ideally address. If you can't address them without breaking ` +
+              `the gate, leave them — the orchestrator will surface them to the operator:\n\n` +
+              checklistResult.advisoryNotes.map(n => `- ${n}`).join('\n')
+          )
+        }
+
+        if (checklistResult.stuckSignal) {
+          log(
+            'checklist',
+            `iter ${state.iterations}: STUCK-SIGNAL — ${checklistResult.stuckSignal}`
+          )
+          // Track audit-key collisions across iters: if the SAME violation
+          // set appears 2+ iters in a row, surface to next-iter feedback
+          // with a "this doc may need updating" note. Operator action,
+          // not orchestrator-side auto-edit.
+          if (
+            lastAuditKey !== null &&
+            lastAuditKey === checklistResult.auditKey &&
+            checklistResult.auditKey !== ''
+          ) {
+            sections.push(
+              `# Repeated audit violations — doc may need updating\n\n` +
+                `The same audit findings persist across ≥2 iters. ` +
+                `If you cannot resolve them without breaking the gate, leave them ` +
+                `as-is and complete the migration. The orchestrator has flagged ` +
+                `this to the operator; the rules / lessons / decisions may need ` +
+                `revision to reflect the new reality.\n\n` +
+                `Stuck-signal suggestion: ${checklistResult.stuckSignal}`
+            )
+          }
+        }
+        lastAuditKey = checklistResult.auditKey
+        pendingChecklistFeedback =
+          sections.length > 0 ? sections.join('\n\n---\n\n') : null
+      } catch (err) {
+        log(
+          'checklist',
+          `iter ${state.iterations}: verifier crashed (non-fatal): ${
+            (err as Error).message
+          }`
+        )
+        pendingChecklistFeedback = null
       }
 
       // Stage + commit-or-amend the agent's edits BEFORE the gate runs.
@@ -5812,6 +6737,19 @@ export async function run(
       )
       if (existsSync(gateReport.reportPath)) {
         lastFeedback = await fs.readFile(gateReport.reportPath, 'utf8')
+      }
+
+      // 2026-05-20: prepend any pending process-checklist failures to the
+      // next-iter feedback so the agent sees BOTH the gate's outcome
+      // failures AND the process steps it skipped. Two-stream feedback:
+      // gate stages = "what your code is missing", checklist = "what
+      // process steps you didn't run". Combined they catch both
+      // categories of mistake.
+      if (pendingChecklistFeedback) {
+        lastFeedback =
+          pendingChecklistFeedback +
+          '\n\n---\n\n' +
+          (lastFeedback ?? '(no gate report)')
       }
 
       // A1+A2 (2026-05-18): content-aware stuck detection + per-iter
@@ -6263,18 +7201,13 @@ export async function run(
             .join('\n')
 
           const comment = [
-            '🎨 **Visual regression review needed** (orchestrator soft-escalation)',
+            '🎨 **Visual regression — designer review needed**',
             '',
-            `The orchestrator agent iterated ${ciIteration} times on Happo diffs. The remaining diffs persist and require designer judgment:`,
+            `Agent iterated ${ciIteration}× on Happo; diffs persist:`,
             '',
             happoLinks,
             '',
-            'These may be:',
-            '- **Intentional** visual changes from the migration — accept in Happo UI; PR proceeds.',
-            '- **Unrelated environmental drift** (e.g. recharts hover-tooltip flakes, sub-perceptual sizing shifts) — accept in Happo UI; PR proceeds.',
-            "- **Real regressions** the agent could not auto-fix — reject in Happo UI; the orchestrator's `--review-sweep` will re-engage the agent.",
-            '',
-            'After your decision, the next sweep tick polls Happo + transitions the PR accordingly. No manual orchestrator-state action needed.',
+            'Accept in Happo UI to proceed, or reject to re-engage the agent on next sweep.',
           ].join('\n')
 
           try {
@@ -6534,6 +7467,62 @@ export async function run(
             manifestAbs,
             rootDir,
             opts.variant
+          )
+        }
+
+        // 2026-05-20: Pre-gate checklist (Layer A + Layer B) for CI-fix
+        // iters too. CI-fix is one-shot per failed CI cycle (no inner
+        // loop), so failures here can't be fed back to the same agent —
+        // they're surfaced via log + audit.<iter>.md for operator
+        // inspection. Next CI iter (if any) starts fresh and will run
+        // the checklist again against the new diff.
+        try {
+          const ciChecklistResult = await checklist.verify({
+            item,
+            workflow,
+            opts,
+            worktreePath: wtPath,
+            agentLogPath,
+            rootDir,
+            iteration: 2000 + state.iterations, // ci-iter virtual numbering
+            runDir,
+          })
+
+          if (ciChecklistResult.failures.length > 0) {
+            log(
+              'ci',
+              `iter ${state.iterations}: ${ciChecklistResult.failures.length} checklist failure(s) on CI-fix agent edit (surfaced via audit log; gate is authoritative for push)`
+            )
+            for (const failure of ciChecklistResult.failures) {
+              log('ci', `  ✗ ${failure.split('\n')[0].slice(0, 200)}`)
+            }
+          }
+
+          if (ciChecklistResult.advisoryNotes.length > 0) {
+            log(
+              'ci',
+              `iter ${state.iterations}: ${
+                ciChecklistResult.advisoryNotes.length
+              } advisory audit note(s) (see audit.${
+                2000 + state.iterations
+              }.md)`
+            )
+          }
+
+          if (ciChecklistResult.stuckSignal) {
+            log(
+              'ci',
+              `iter ${state.iterations}: STUCK-SIGNAL — ${ciChecklistResult.stuckSignal}`
+            )
+          }
+        } catch (err) {
+          log(
+            'ci',
+            `iter ${
+              state.iterations
+            }: checklist verifier crashed (non-fatal): ${
+              (err as Error).message
+            }`
           )
         }
 

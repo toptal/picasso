@@ -209,7 +209,7 @@
     "Switch": {
       "tier": 0,
       "package": "packages/base/Switch",
-      "status": "needs_human",
+      "status": "awaiting_review",
       "depends_on": [
         "FormLabel"
       ],
@@ -221,20 +221,22 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
-      "escalation_reason": "review-iter push failed: To github.com:toptal/picasso.git\n ! [rejected]            migrate-Switch-v1 -> migrate-Switch-v1 (stale info)\nerror: failed to push some refs to 'github.com:toptal/picasso.git'\n",
+      "review_iterations": 1,
+      "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T09:20:16.165Z",
       "last_review_seen_at": "2026-05-19T11:51:52.564Z",
       "session_id": null,
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "needs_human",
+          "status": "awaiting_review",
           "pr": "https://github.com/toptal/picasso/pull/4965",
           "branch": "migrate-Switch-v1",
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
           "iterations": 1,
           "merged_at": null,
-          "escalation_reason": "review-iter push failed: To github.com:toptal/picasso.git\n ! [rejected]            migrate-Switch-v1 -> migrate-Switch-v1 (stale info)\nerror: failed to push some refs to 'github.com:toptal/picasso.git'\n",
+          "review_iterations": 1,
+          "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T09:20:16.165Z",
           "last_review_seen_at": "2026-05-19T11:51:52.564Z",
           "session_id": null,

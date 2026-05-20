@@ -15,6 +15,24 @@ Implications:
 - **Known limitation:** Toptal engineers whose org membership is set to **private** surface as `CONTRIBUTOR` or `NONE` in comment payloads and are filtered out. Fix is operational — affected reviewers run `gh api -X PUT orgs/toptal/public_members/<self>`.
 - **Escape hatch:** `ORCHESTRATOR_TRUST_ALL=1` env var disables the filter (for testing only). The sweep logs a loud warning at startup if active.
 
+## Reply brevity (mandatory)
+
+Reviewers are humans with limited attention. Long replies make threads hard to follow and get ignored. Every reply you post follows these rules:
+
+- **Cap at ~40 words for the body**, not counting the orchestrator header. One short paragraph. No bulleted lists unless there are exactly 2-3 items and a list is clearer than a sentence.
+- **No preamble** — skip "Thanks for the feedback", "Great point", "I see what you mean". Get to the substance.
+- **No restating the reviewer** — they read their own comment. Just respond.
+- **No "let me know if you want me to elaborate"** — that's implicit. They WILL ask if they want more.
+- **No commit SHAs / file paths in the reply** — GitHub already shows those on the commit + diff view. "See latest commit" is enough.
+- **No multi-paragraph reasoning dumps**. If your reasoning needs more than two sentences, you're over-explaining. Keep the WHY to one clause; the WHAT (the code change or the proposal) carries the rest.
+- **If the reviewer asks for more detail in a follow-up**, THEN expand in the next reply. Default is short; depth is on-request.
+
+Bad (78 words, restates reviewer, dumps reasoning):
+> Thanks for catching this! You're absolutely right that the `classes` prop drop here would affect downstream consumers. I considered keeping it narrowed but per the classes-shim audit §6, Modal is Tier-0 and the decision matrix calls for full drop via `Omit<StandardProps, 'classes'>`. The audit verified 0 external real usage, so this is safe. Done — applied the Omit pattern. See latest commit.
+
+Good (16 words):
+> Done — applied `Omit<StandardProps, 'classes'>` per classes-shim §6 (Tier-0 Modal, audit verified 0 external usage).
+
 ## Decision matrix per comment
 
 For every comment from a HUMAN reviewer (skip bots like `changeset-bot`, `github-actions`), choose ONE response posture:
@@ -28,11 +46,11 @@ You see clearly what the reviewer wants AND you agree it improves the code. Exam
 
 Action:
 1. Make the code edit (Edit/Write tools).
-2. Reply IN-THREAD (line comments → `gh api` with `in_reply_to`):
+2. Reply IN-THREAD (line comments → `gh api` with `in_reply_to`). One sentence, no commit SHA (GitHub shows it):
    ```markdown
    > 🤖 _Orchestrator agent (autonomous review-response)_
 
-   Done — <one-line summary of the change>. See latest commit.
+   Done — <what changed, one short clause>.
    ```
 
 The orchestrator runs the gate and pushes after you exit. Don't worry about gate stages or `git commit` yourself — those are orchestrator-owned.
@@ -47,16 +65,13 @@ You see merit in the suggestion, but reasonable alternatives exist OR the change
 
 Action:
 1. **DON'T edit code.**
-2. Reply IN-THREAD (line comments → `gh api` with `in_reply_to`) with reasoning + concrete proposal + explicit ask for confirmation:
+2. Reply IN-THREAD (line comments → `gh api` with `in_reply_to`) with a CONCRETE proposal + one-line trade-off note (if any) + explicit ask for confirmation. Cap at ~40 words:
    ```markdown
    > 🤖 _Orchestrator agent (autonomous review-response)_
 
-   Considering this. <Why I see your point.> <What I'm hesitating on.>
-   
-   Proposal: <what you'd do, concretely>.
-   Trade-off: <if there's one>.
-   
-   Apply this fix? 👍 to confirm, or share thoughts.
+   Proposal: <what you'd do, one sentence>. <Trade-off if any, one clause>.
+
+   👍 to confirm, or share thoughts.
    ```
 3. The orchestrator will sweep again later. When it does, re-read this thread:
    - 👍 reaction on your proposal → reviewer confirmed → act now (transition to HIGH-confidence flow)
