@@ -1,22 +1,26 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import type { ButtonHTMLAttributes, ChangeEvent, ReactNode } from 'react'
-import React, { forwardRef } from 'react'
+import type { ChangeEvent, ReactNode } from 'react'
+import React, { forwardRef, useCallback } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import cx from 'classnames'
 
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
+    Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'color'> {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
   disabled?: boolean
   /** Text label for the `Switch` */
   label?: ReactNode
+  /** Identifies the switch in a form */
+  name?: string
   /** Callback invoked when `Switch` changed its value */
   onChange?: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void
+  /** Value submitted with the form when switch is on */
+  value?: string | number | readonly string[]
 }
 
 export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
@@ -30,15 +34,14 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     style,
     checked,
     titleCase,
-    color: _color, // eslint-disable-line @typescript-eslint/no-unused-vars
     value,
     'data-testid': dataTestId,
     ...rest
   } = props
 
-  const handleCheckedChange: BaseUISwitch.Root.Props['onCheckedChange'] = (
-    nextChecked,
-    eventDetails
+  const handleCheckedChange = (
+    nextChecked: boolean,
+    eventDetails: BaseUISwitch.Root.ChangeEventDetails
   ) => {
     onChange(
       eventDetails.event as unknown as ChangeEvent<HTMLInputElement>,
@@ -46,18 +49,24 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     )
   }
 
+  // base-ui sets `margin: -1px` via inline style on the hidden input to
+  // visually hide it. Without this fix the negative margin extends the Happo
+  // snapshot bounding box by 1 px in both axes vs the baseline. We override
+  // it imperatively so no `!important` is needed to beat the inline style.
+  const fixInputMargin = useCallback((node: HTMLInputElement | null) => {
+    if (node) {
+      node.style.margin = '0'
+    }
+  }, [])
+
   const switchElement = (
     <BaseUISwitch.Root
-      {...(rest as React.ComponentPropsWithoutRef<'span'>)}
-      ref={ref as React.Ref<HTMLElement>}
+      {...rest}
+      ref={ref}
       checked={checked}
       className={cx(
         'w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group',
         'cursor-pointer outline-none data-[disabled]:cursor-default',
-        // Neutralize the negative margin on @base-ui/react's visually-hidden input
-        // sibling. Without this the input's `margin: -1px` extends the snapshot
-        // region by +1px in both dimensions vs the @mui/base baseline.
-        '[&+input]:!m-0 [&+input]:!top-0 [&+input]:!left-0',
         className
       )}
       style={style}
@@ -65,6 +74,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       id={id}
       value={value === undefined ? undefined : String(value)}
       onCheckedChange={handleCheckedChange}
+      inputRef={fixInputMargin}
       data-testid={label ? undefined : dataTestId}
     >
       <span
