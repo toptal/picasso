@@ -46,6 +46,7 @@
     { "path": "packages/base/FormLayout" },
     { "path": "packages/base/Grid" },
     { "path": "packages/base/Helpbox" },
+    { "path": "packages/base/Hero" },
     { "path": "packages/base/Icons" },
     { "path": "packages/base/Image" },
     { "path": "packages/base/Input" },
