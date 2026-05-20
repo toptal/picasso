@@ -10,7 +10,7 @@ Allows rendering a sidebar with custom content
 |------|------|---------|-------------|
 | anchor | `"bottom" \| "left" \| "right" \| "top"` | `right` | Side from which the drawer will appear. |
 | **children** | `ReactNode` | - | Drawer content |
-| disablePortal | `boolean` | - | [PF-1994] No-op since the migration to @base-ui /react/drawer; the popup is always portaled. |
+| disablePortal | `boolean` | `false` | When true, renders inline (no portal) instead of being mounted in the document body |
 | **open** | `boolean` | - | Specify if the drawer is opened or not |
 | title | `ReactNode` | - | Specify the drawer title |
 | onClose | `(() => void)` | `() => {}` | Callback fired when the component requests to be closed. |
