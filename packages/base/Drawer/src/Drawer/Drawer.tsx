@@ -5,7 +5,6 @@ import { useDrawer, usePicassoRoot } from '@toptal/picasso-provider'
 import type { ReactNode } from 'react'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import { ButtonCircular } from '@toptal/picasso-button'
-import { Slide } from '@toptal/picasso-slide'
 import { Container } from '@toptal/picasso-container'
 import {
   useIsomorphicLayoutEffect,
@@ -40,6 +39,8 @@ export interface Props extends BaseProps {
   transparentBackdrop?: boolean
   /** Remove the backdrop and leave elements behind interactive  */
   disableBackdrop?: boolean
+  /** Disable the swipe-to-dismiss gesture (enabled by default with the @base-ui/react Drawer). */
+  disableSwipeToDismiss?: boolean
 }
 
 const widthClassName: Record<WidthType, string> = {
@@ -50,12 +51,15 @@ const widthClassName: Record<WidthType, string> = {
   wide: 'w-[60rem]',
 }
 
-const oppositeDirection = {
-  left: 'right',
-  right: 'left',
-  top: 'down',
-  bottom: 'up',
-} as const
+const popupPositionClassName: Record<AnchorType, string> = {
+  right:
+    'top-0 h-full left-auto right-0 data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full',
+  left:
+    'top-0 h-full left-0 right-auto data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full',
+  top: 'top-0 bottom-auto left-0 right-0 h-auto max-h-full data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full',
+  bottom:
+    'bottom-0 top-auto left-0 right-0 h-auto max-h-full data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full',
+}
 
 const swipeDirectionByAnchor = {
   left: 'left',
@@ -79,6 +83,7 @@ export const Drawer = ({
     maintainBodyScrollLock = true,
     transparentBackdrop,
     disableBackdrop,
+    disableSwipeToDismiss,
     className,
     style,
     'data-testid': testId,
@@ -122,36 +127,48 @@ export const Drawer = ({
           )}
         />
       )}
-      <BaseUIDrawer.Popup data-testid={testId} data-private={dataPrivate}>
-        <Slide
-          in={open}
-          direction={oppositeDirection[anchor]}
-          timeout={transitionProps?.timeout}
-          onExited={transitionProps?.onExited}
-        >
-          <DrawerPaper anchor={anchor}>
-            <Container
-              flex
-              direction='column'
-              className={twMerge(
-                'max-w-full relative flex-1',
-                widthClassName[width]
-              )}
-            >
-              <DrawerTitle title={title} />
-              <Container flex className='flex-1'>
-                {children}
-              </Container>
-              <ButtonCircular
-                variant='flat'
-                icon={<CloseMinor16 />}
-                onClick={handleOnClose}
-                className='absolute right-6 top-4'
-                aria-label='Close drawer'
-              />
+      <BaseUIDrawer.Popup
+        data-testid={testId}
+        data-private={dataPrivate}
+        style={{
+          transitionDuration: `${
+            typeof transitionProps?.timeout === 'number'
+              ? transitionProps.timeout
+              : 300
+          }ms`,
+        }}
+        onTransitionEnd={(e: React.TransitionEvent<HTMLDivElement>) => {
+          if (e.propertyName === 'transform' && !open) {
+            transitionProps?.onExited?.(e.currentTarget)
+          }
+        }}
+        className={twMerge(
+          'fixed z-drawer transition-transform',
+          popupPositionClassName[anchor]
+        )}
+      >
+        <DrawerPaper>
+          <Container
+            flex
+            direction='column'
+            className={twMerge(
+              'max-w-full relative flex-1',
+              widthClassName[width]
+            )}
+          >
+            <DrawerTitle title={title} />
+            <Container flex className='flex-1'>
+              {children}
             </Container>
-          </DrawerPaper>
-        </Slide>
+            <ButtonCircular
+              variant='flat'
+              icon={<CloseMinor16 />}
+              onClick={handleOnClose}
+              className='absolute right-6 top-4'
+              aria-label='Close drawer'
+            />
+          </Container>
+        </DrawerPaper>
       </BaseUIDrawer.Popup>
     </BaseUIDrawer.Viewport>
   )
@@ -166,7 +183,9 @@ export const Drawer = ({
       }}
       modal='trap-focus'
       disablePointerDismissal={disableBackdrop}
-      swipeDirection={swipeDirectionByAnchor[anchor]}
+      swipeDirection={
+        disableSwipeToDismiss ? undefined : swipeDirectionByAnchor[anchor]
+      }
     >
       {disablePortal ? (
         viewport
