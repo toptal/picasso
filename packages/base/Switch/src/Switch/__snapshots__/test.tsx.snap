@@ -9,7 +9,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
   <span
     aria-checked="true"
     aria-labelledby="base-ui-:rg:-label"
-    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default [&+input]:!m-0 [&+input]:!top-0 [&+input]:!left-0"
+    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
     data-checked=""
     id="base-ui-:rf:"
     role="switch"
@@ -26,7 +26,7 @@ exports[`Switch behaves correctly when interacting 1`] = `
   <input
     aria-hidden="true"
     id="base-ui-:rg:"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: 0px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     type="checkbox"
   />
@@ -49,7 +49,7 @@ exports[`Switch renders default Switch without label 1`] = `
   >
     <span
       aria-checked="false"
-      class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default [&+input]:!m-0 [&+input]:!top-0 [&+input]:!left-0"
+      class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
       data-testid="switch"
       data-unchecked=""
       id="base-ui-:r0:"
@@ -67,7 +67,7 @@ exports[`Switch renders default Switch without label 1`] = `
     <input
       aria-hidden="true"
       id="base-ui-:r1:"
-      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+      style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: 0px; position: fixed; top: 0px; left: 0px;"
       tabindex="-1"
       type="checkbox"
     />
@@ -85,7 +85,7 @@ exports[`Switch renders disabled state 1`] = `
     aria-checked="false"
     aria-disabled="true"
     aria-labelledby="base-ui-:r7:-label"
-    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default [&+input]:!m-0 [&+input]:!top-0 [&+input]:!left-0"
+    class="w-[40px] h-[24px] p-0 relative inline-flex z-0 overflow-visible shrink-0 align-middle group cursor-pointer outline-none data-[disabled]:cursor-default"
     data-disabled=""
     data-unchecked=""
     id="base-ui-:r6:"
@@ -105,7 +105,7 @@ exports[`Switch renders disabled state 1`] = `
     aria-hidden="true"
     disabled=""
     id="base-ui-:r7:"
-    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: -1px; position: fixed; top: 0px; left: 0px;"
+    style="clip-path: inset(50%); overflow: hidden; white-space: nowrap; border: 0px; padding: 0px; width: 1px; height: 1px; margin: 0px; position: fixed; top: 0px; left: 0px;"
     tabindex="-1"
     type="checkbox"
   />
