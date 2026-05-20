@@ -72,22 +72,13 @@ jobs:
             5. After writing the file, also output the exact same table as
                your final message so it appears in the PR comment.
 
-      - name: Print report to console
-        if: always()
-        run: |
-          if [ ! -f design-patterns-report.md ]; then
-            echo "No report produced."
-            exit 0
-          fi
-          echo "===== Picasso design patterns report ====="
-          cat design-patterns-report.md
-          echo "=========================================="
-
       - name: Post report as PR comment on failure
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          MARKER: '<!-- picasso-design-patterns-report -->'
         run: |
           if [ ! -f design-patterns-report.md ]; then
             echo "No report to post."
@@ -98,20 +89,35 @@ jobs:
             exit 0
           fi
           {
+            echo "$MARKER"
             echo "### Picasso design patterns check failed"
             echo ""
             cat design-patterns-report.md
           } > pr-comment.md
+
+          existing_ids=$(gh api --paginate "repos/$REPO/issues/$PR_NUMBER/comments" \
+            --jq "map(select(.body | contains(\"$MARKER\"))) | .[].id")
+
+          for id in $existing_ids; do
+            echo "Deleting previous comment $id."
+            gh api --method DELETE "repos/$REPO/issues/comments/$id"
+          done
+
+          echo "Creating new comment."
           gh pr comment "$PR_NUMBER" --body-file pr-comment.md
 
-      - name: Fail if any rule is unsatisfied
+      - name: Check design patterns report
+        if: always()
         run: |
           if [ ! -f design-patterns-report.md ]; then
             echo "No report produced — failing."
             exit 1
           fi
+          echo "===== Picasso design patterns report ====="
+          cat design-patterns-report.md
+          echo "=========================================="
           if grep -q ':x:' design-patterns-report.md; then
-            echo "One or more design pattern rules failed. See the table in the PR comment or the step above."
+            echo "One or more design pattern rules failed. See the table above or the PR comment."
             exit 1
           fi
           echo "All design pattern rules satisfied."
