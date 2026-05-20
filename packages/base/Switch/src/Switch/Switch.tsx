@@ -1,6 +1,6 @@
 import { Switch as BaseUISwitch } from '@base-ui/react/switch'
 import type { BaseProps, TextLabelProps } from '@toptal/picasso-shared'
-import type { ChangeEvent, ReactNode } from 'react'
+import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import React, { forwardRef, useCallback } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import cx from 'classnames'
@@ -8,19 +8,18 @@ import cx from 'classnames'
 export interface Props
   extends BaseProps,
     TextLabelProps,
-    Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'color'> {
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'type'> {
   /** Show Switch initially as checked */
   checked?: boolean
   /** Disable changing `Switch` state */
   disabled?: boolean
   /** Text label for the `Switch` */
   label?: ReactNode
-  /** Identifies the switch in a form */
-  name?: string
   /** Callback invoked when `Switch` changed its value */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void
-  /** Value submitted with the form when switch is on */
-  value?: string | number | readonly string[]
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void
 }
 
 export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
@@ -35,16 +34,17 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     checked,
     titleCase,
     value,
+    color, // eslint-disable-line
     'data-testid': dataTestId,
     ...rest
   } = props
 
-  const handleCheckedChange = (
-    nextChecked: boolean,
-    eventDetails: BaseUISwitch.Root.ChangeEventDetails
+  const handleCheckedChange: BaseUISwitch.Root.Props['onCheckedChange'] = (
+    nextChecked,
+    { event }
   ) => {
     onChange(
-      eventDetails.event as unknown as ChangeEvent<HTMLInputElement>,
+      event as unknown as React.ChangeEvent<HTMLInputElement>,
       nextChecked
     )
   }
@@ -59,9 +59,15 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     }
   }, [])
 
+  // Picasso's public Props extends `ButtonHTMLAttributes<HTMLButtonElement>`
+  // (master parity); base-ui's SwitchRoot renders a span and types its handlers
+  // for HTMLSpanElement. Cast at one boundary point to bridge the two without
+  // narrowing the consumer-facing contract.
+  const rootProps = rest as unknown as BaseUISwitch.Root.Props
+
   const switchElement = (
     <BaseUISwitch.Root
-      {...rest}
+      {...rootProps}
       ref={ref}
       checked={checked}
       className={cx(
