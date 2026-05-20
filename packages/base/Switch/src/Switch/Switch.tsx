@@ -16,10 +16,7 @@ export interface Props
   /** Text label for the `Switch` */
   label?: ReactNode
   /** Callback invoked when `Switch` changed its value */
-  onChange?: (
-    event: ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void
 }
 
 export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
@@ -49,14 +46,9 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     )
   }
 
-  // Picasso's public Props extends ButtonHTMLAttributes<HTMLButtonElement>
-  // (preserved for API stability), but @base-ui/react renders a <span>. The
-  // single boundary cast aligns the wider event-handler types with the span.
-  const rootRest = rest as unknown as BaseUISwitch.Root.Props
-
   const switchElement = (
     <BaseUISwitch.Root
-      {...rootRest}
+      {...(rest as React.ComponentPropsWithoutRef<'span'>)}
       ref={ref as React.Ref<HTMLElement>}
       checked={checked}
       className={cx(
