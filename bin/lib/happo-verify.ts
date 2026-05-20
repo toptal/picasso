@@ -428,7 +428,7 @@ const main = async (): Promise<void> => {
       args.accountId,
       args.projectId,
       baseSha,
-      headSha,
+      headIdentifier,
       apiKey,
       apiSecret
     )
