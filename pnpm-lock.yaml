@@ -1646,6 +1646,28 @@ importers:
         specifier: 2.0.0
         version: link:../Test-Utils
 
+  packages/base/Hero:
+    dependencies:
+      '@material-ui/core':
+        specifier: 4.12.4
+        version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@toptal/picasso-tailwind':
+        specifier: '>=2.7'
+        version: link:../../picasso-tailwind
+      '@toptal/picasso-tailwind-merge':
+        specifier: 2.0.4
+        version: link:../../picasso-tailwind-merge
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+    devDependencies:
+      '@toptal/picasso-test-utils':
+        specifier: 2.0.0
+        version: link:../Test-Utils
+
   packages/base/Icons:
     dependencies:
       '@toptal/picasso-tailwind':
