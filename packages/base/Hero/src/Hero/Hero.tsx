@@ -11,11 +11,16 @@ export interface Props extends BaseProps {
   variant?: Variant
   color?: Color
   orientation?: Orientation
+  isCompact?: boolean
   as?: 'section' | 'header' | 'div'
 }
 
-const baseStyles =
-  'flex items-center gap-8 px-8 py-16 rounded-lg border border-solid'
+const baseStyles = 'flex items-center gap-8 rounded-lg border border-solid'
+
+const sizeStyles = {
+  compact: 'px-4 py-8',
+  regular: 'px-8 py-16',
+}
 
 const orientationStyles: Record<Orientation, string> = {
   'image-right': 'flex-row',
@@ -44,6 +49,7 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero(
     variant = 'filled',
     color = 'blue',
     orientation = 'image-right',
+    isCompact = false,
     as: Component = 'section',
     ...rest
   },
@@ -54,6 +60,7 @@ export const Hero = forwardRef<HTMLElement, Props>(function Hero(
       ref={ref as React.Ref<HTMLDivElement>}
       className={twMerge(
         baseStyles,
+        isCompact ? sizeStyles.compact : sizeStyles.regular,
         orientationStyles[orientation],
         styles[variant][color],
         className
