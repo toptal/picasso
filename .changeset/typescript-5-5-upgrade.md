@@ -18,11 +18,11 @@
 '@toptal/picasso-tree-view': patch
 ---
 
-[PF-2031] Upgrade TypeScript to v5.5 and align davinci tooling to v24/v14/v19/v8/v3
+[PF-2031] Upgrade TypeScript to v5.5 and align davinci tooling to v25/v15/v19/v8/v3
 
 **BREAKING:** the `typescript` peer dependency on every published package moves from `~4.7.0` to `^5.5.0`. Consumers must be on TypeScript 5.5 or newer to install these packages. No other consumer code changes should be required — see "Public type surface" below.
 
-Picasso now builds against TypeScript 5.5 and pulls its lint/test/codegen infrastructure from `@toptal/davinci-syntax@24`, `@toptal/davinci-engine@14`, `@toptal/davinci-qa@19`, `@toptal/davinci-ci@8`, and `@toptal/davinci-code@3`. Build, typecheck, and lint all pass clean (0 errors).
+Picasso now builds against TypeScript 5.5 and pulls its lint/test/codegen infrastructure from `@toptal/davinci-syntax@25`, `@toptal/davinci-engine@15`, `@toptal/davinci-qa@19.1`, `@toptal/davinci-ci@8`, and `@toptal/davinci-code@3` (the stable releases of toptal/davinci#2677). Build, typecheck, and lint all pass clean (0 errors).
 
 Public type surface:
 
