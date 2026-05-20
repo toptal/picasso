@@ -16,9 +16,9 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 6,
-      "last_review_seen_at": "2026-05-18T12:15:30.651Z",
-      "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
+      "review_iterations": 7,
+      "last_review_seen_at": "2026-05-19T11:17:07.594Z",
+      "session_id": "81f08b58-7fc0-407e-9a84-3fa60bc9202e",
       "escalation_reason": null,
       "last_ci_green_at": null,
       "awaiting_ci_since": null,
@@ -32,9 +32,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-18T12:15:30.651Z",
-          "review_iterations": 6,
-          "session_id": "7fa7812a-804e-4745-911a-58257c9628ee",
+          "last_review_seen_at": "2026-05-19T11:17:07.594Z",
+          "review_iterations": 7,
+          "session_id": "81f08b58-7fc0-407e-9a84-3fa60bc9202e",
           "awaiting_ci_since": null
         }
       }
@@ -128,8 +128,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-      "last_review_seen_at": null,
-      "session_id": "c496abd2-cafd-4c04-b16f-b5d313004898",
+      "last_review_seen_at": "2026-05-19T11:21:16.952Z",
+      "session_id": "bbe72a7d-be88-4b72-8224-395c59e411ba",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -141,11 +141,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-          "last_review_seen_at": null,
-          "session_id": "c496abd2-cafd-4c04-b16f-b5d313004898",
-          "awaiting_ci_since": null
+          "last_review_seen_at": "2026-05-19T11:21:16.952Z",
+          "session_id": "bbe72a7d-be88-4b72-8224-395c59e411ba",
+          "awaiting_ci_since": null,
+          "review_iterations": 1
         }
-      }
+      },
+      "review_iterations": 1
     },
     "Modal": {
       "tier": 0,
@@ -161,7 +163,7 @@
       "worktree": null,
       "iterations": 0,
       "merged_at": null,
-      "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. First run (PR #4967, branch migrate-Modal-v1) was discarded 2026-05-18 to validate orchestrator fixes from scratch: (a) consumers stage now detects via @toptal/picasso-<name> import scans not just snap markers, (b) happo verifier ERROR now FAILs gate not advisory-PASS, (c) auto-fix-snapshot empty-paths falls back to feed-to-agent + classifier extracts stack-trace test paths. See lessons-learned.md (Modal — 2026-05-18) for behavioral parity notes (initialFocus={modalRef}, base-ui-utils@0.2.8 patch, 6-target Happo budget).",
+      "notes": "Picasso's Modal is the dialog primitive → Dialog.Root + Dialog.Backdrop + Dialog.Portal + Dialog.Popup. versionBump=major pending re-verify of external `classes` consumers per docs/migration/decisions/classes-audit.md §6/§9; if narrowed-keep path adopted, drop to minor. Three prior runs discarded (2026-05-18 PR #4967, 2026-05-19 v2 local-only, 2026-05-19 v3 local-only). The v3 investigation found the root cause behind chronic happo:ERROR failures: bin/lib/happo-verify.ts was constructing compare-URL with bare head SHA, but Happo CLI uploads `--only Component` reports at identifier `<sha>-<Component>` (see node_modules/happo.io/build/executeCli.js:34-36). Fixed by appending component suffix to headIdentifier + correcting probe URL to include `?project=<projectLabel>` (matches node_modules/happo.io/build/fetchReport.js). Smoke-tested against Modal v3's actual upload data: status=PASS componentDiffs=0 (Modal migration was always green; bug was only in the verifier query). See lessons-learned.md (Happo verifier URL construction — 2026-05-19).",
       "escalation_reason": null,
       "last_ci_green_at": null,
       "last_review_seen_at": null,
@@ -182,9 +184,9 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-18T17:12:41.411Z",
-      "review_iterations": 10,
-      "session_id": "ebccd11d-bebf-44b4-bd9b-71ac25d551f9",
+      "last_review_seen_at": "2026-05-19T11:30:02.820Z",
+      "review_iterations": 11,
+      "session_id": "6e869a72-732c-49a4-b4df-adf25f4d2124",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -196,9 +198,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-18T17:12:41.411Z",
-          "review_iterations": 10,
-          "session_id": "ebccd11d-bebf-44b4-bd9b-71ac25d551f9",
+          "last_review_seen_at": "2026-05-19T11:30:02.820Z",
+          "review_iterations": 11,
+          "session_id": "6e869a72-732c-49a4-b4df-adf25f4d2124",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -207,7 +209,7 @@
     "Switch": {
       "tier": 0,
       "package": "packages/base/Switch",
-      "status": "awaiting_review",
+      "status": "needs_human",
       "depends_on": [
         "FormLabel"
       ],
@@ -219,22 +221,22 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
-      "escalation_reason": null,
+      "escalation_reason": "review-iter push failed: To github.com:toptal/picasso.git\n ! [rejected]            migrate-Switch-v1 -> migrate-Switch-v1 (stale info)\nerror: failed to push some refs to 'github.com:toptal/picasso.git'\n",
       "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-      "last_review_seen_at": null,
+      "last_review_seen_at": "2026-05-19T11:51:52.564Z",
       "session_id": null,
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
-          "status": "awaiting_review",
+          "status": "needs_human",
           "pr": "https://github.com/toptal/picasso/pull/4965",
           "branch": "migrate-Switch-v1",
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
           "iterations": 1,
           "merged_at": null,
-          "escalation_reason": null,
+          "escalation_reason": "review-iter push failed: To github.com:toptal/picasso.git\n ! [rejected]            migrate-Switch-v1 -> migrate-Switch-v1 (stale info)\nerror: failed to push some refs to 'github.com:toptal/picasso.git'\n",
           "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-          "last_review_seen_at": null,
+          "last_review_seen_at": "2026-05-19T11:51:52.564Z",
           "session_id": null,
           "awaiting_ci_since": null
         }

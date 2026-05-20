@@ -40,3 +40,19 @@ migration-runs
 # debris example.
 .playwright-mcp
 
+# Migration diagnostic scratch at the worktree root. The orchestrator's
+# Happo-stalemate prompt (orchestrator-core.ts) tells the agent to save
+# computed-style + thumb-position dumps under `migration-runs/<date>/
+# <Component>/...` — which is the worktree's PARENT dir, NOT the worktree
+# itself. Agents that don't expand the path correctly default to writing
+# the file in CWD (= the worktree root = the repo root from git's view),
+# which `git add -A` then sweeps into the PR. Reviewers consistently flag
+# these as committed scratch files (PR #4955 Slider, PR #4965 Switch).
+# These patterns are a defensive backstop alongside fixing the prompt.
+/*-computed.json
+/*-thumbs*.json
+/after-fix-*.json
+/baseline-*.json
+/local-*.json
+/scripts/diff-happo.js
+**/__tests__/pixel-diff*.test.ts

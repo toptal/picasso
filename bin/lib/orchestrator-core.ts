@@ -1764,6 +1764,173 @@ const buildHappoGateEnv = (workflow: Workflow): NodeJS.ProcessEnv =>
       }
     : {}
 
+/**
+ * Re-run the Happo verifier in-place when the gate's verifier returned
+ * `status: 'ERROR'` (indexing race). Replaces the prior pattern of
+ * starting a fresh agent iteration on ERROR — which wastes agent context
+ * and budget because the agent has no diff data to act on. The smart
+ * path: wait for Happo to finish indexing, THEN proceed with real diff
+ * info OR a confirmed PASS.
+ *
+ * Implementation: invokes `bin/lib/happo-verify.ts` as a subprocess
+ * (same as gate.sh does), with exponential backoff between attempts.
+ * Writes the final verdict to `<reportDir>/happo-verify.json` so the
+ * existing readHappoFailureKey + prefetchHappoPostGate paths pick up
+ * the resolved state.
+ *
+ * Returns:
+ *   - `{ status: 'PASS' }`         — Happo indexed, zero diffs. Caller
+ *                                    should retry successCriteria.
+ *   - `{ status: 'FAIL', diffs }`  — Happo indexed, has diffs. Caller
+ *                                    proceeds to agent iter with real
+ *                                    diff info.
+ *   - `{ status: 'ERROR' }`        — Still ERROR after all attempts.
+ *                                    Caller falls through to existing
+ *                                    "transient happo:ERROR" path.
+ *   - `{ status: 'NO_BASELINE' }`  — Best-effort PASS.
+ *
+ * Added 2026-05-19 after Modal v2 run: agent.1/2/3 each spent ~5 min
+ * waiting on indexing-then-ERROR, never got diff data, escalated after
+ * iter cap. With this helper, ERROR converges in-place via cheap HTTP
+ * polls rather than expensive full agent iters.
+ */
+interface WaitForHappoIndexingArgs {
+  /** Worktree path (passed to verifier so it can read git HEAD). */
+  worktree: string
+  /** Run dir containing the gate's happo-verify.json output. */
+  reportDir: string
+  /** Component name for the verifier's --component flag. */
+  componentId: string
+  /** Happo project-label (default: Picasso/Storybook). */
+  projectLabel?: string
+  /** Workflow descriptor (for base branch + account/project IDs). */
+  workflow: Workflow
+  /** Max attempts. Default 5 (~10-min total wait). */
+  maxAttempts?: number
+}
+
+interface WaitForHappoIndexingResult {
+  status: 'PASS' | 'FAIL' | 'ERROR' | 'NO_BASELINE'
+  componentDiffs?: number
+  reportUrl?: string
+}
+
+const waitForHappoIndexing = async (
+  args: WaitForHappoIndexingArgs
+): Promise<WaitForHappoIndexingResult> => {
+  const {
+    worktree,
+    reportDir,
+    componentId,
+    projectLabel = 'Picasso/Storybook',
+    workflow,
+    maxAttempts = 5,
+  } = args
+
+  if (!workflow.baseBranch) {
+    return { status: 'ERROR' }
+  }
+  const env = {
+    ...process.env,
+    ...buildHappoGateEnv(workflow),
+  }
+  // Backoff schedule (ms) — total wait time ≤ 10 min for typical Modal-
+  // class components. Happo indexing for 6 viewport targets × N stories
+  // empirically completes within 5-8 min.
+  const delays = [60_000, 90_000, 120_000, 120_000, 120_000]
+  const verifyJsonPath = path.join(reportDir, 'happo-verify.json')
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const delay = delays[Math.min(attempt, delays.length - 1)]
+
+    log(
+      'happo-wait',
+      `attempt ${attempt + 1}/${maxAttempts} — sleeping ${
+        delay / 1000
+      }s before re-running verifier (Happo indexing race)`
+    )
+    await new Promise<void>(resolve => setTimeout(resolve, delay))
+
+    // Re-invoke happo-verify.ts the same way gate.sh does.
+    const verifierPath = path.join(repoRoot(), 'bin', 'lib', 'happo-verify.ts')
+    const result = await shell(
+      'pnpm',
+      [
+        'exec',
+        'tsx',
+        verifierPath,
+        `--worktree=${worktree}`,
+        `--base-branch=${workflow.baseBranch}`,
+        `--account-id=${env.HAPPO_ACCOUNT_ID}`,
+        `--project-id=${env.HAPPO_STORYBOOK_PROJECT_ID}`,
+        `--project-label=${projectLabel}`,
+        `--component=${componentId}`,
+      ],
+      { cwd: worktree, env }
+    )
+
+    // verifier emits JSON on stdout; capture + persist to the same file
+    // gate.sh writes (so downstream readHappoFailureKey picks it up).
+    const stdout = result.stdout.trim()
+
+    if (!stdout) {
+      log(
+        'happo-wait',
+        `attempt ${attempt + 1}: empty verifier stdout (exit=${
+          result.exitCode
+        }); retrying`
+      )
+      continue
+    }
+
+    try {
+      const parsed = JSON.parse(stdout) as WaitForHappoIndexingResult
+
+      // Persist to the same file gate.sh writes — keeps downstream
+      // readHappoFailureKey + prefetchHappoPostGate in sync.
+      await fs.writeFile(verifyJsonPath, stdout, 'utf8')
+
+      if (parsed.status === 'PASS' || parsed.status === 'NO_BASELINE') {
+        log(
+          'happo-wait',
+          `attempt ${attempt + 1}: status=${
+            parsed.status
+          } — Happo indexed cleanly`
+        )
+
+        return parsed
+      }
+
+      if (parsed.status === 'FAIL') {
+        log(
+          'happo-wait',
+          `attempt ${attempt + 1}: status=FAIL (${
+            parsed.componentDiffs ?? 0
+          } component diffs) — indexed, real regression to fix`
+        )
+
+        return parsed
+      }
+      // status === 'ERROR' — keep retrying.
+      log('happo-wait', `attempt ${attempt + 1}: still ERROR — will retry`)
+    } catch (parseErr) {
+      log(
+        'happo-wait',
+        `attempt ${attempt + 1}: could not parse verifier stdout (${
+          (parseErr as Error).message
+        }); retrying`
+      )
+    }
+  }
+
+  log(
+    'happo-wait',
+    `exhausted ${maxAttempts} attempts — verifier still ERROR; falling through to agent iter`
+  )
+
+  return { status: 'ERROR' }
+}
+
 const gate = {
   /**
    * Run the workflow's gate command and consume its report.
@@ -3416,13 +3583,20 @@ async function escalate(
   })
 
   // Emit an escalation block to the run dir.
-  const escPath = path.join(
-    rootDir,
-    'migration-runs',
-    TODAY(),
-    item.id,
-    'escalation.md'
-  )
+  //
+  // 2026-05-19 fix: prior path was `migration-runs/<date>/<item.id>/escalation.md`,
+  // missing the variant suffix that `runOne` actually uses for the run dir
+  // (e.g. `Modal-v1/`, not `Modal/`). `fs.writeFile` doesn't auto-create
+  // parents, so it crashed with ENOENT — observed on Modal v2 run when
+  // happo:ERROR stuck-detection triggered escalation. Two changes:
+  //   1. Append the variant suffix so the path matches `runOne`'s run dir.
+  //   2. Recursively create the parent dir before writing — defends
+  //      against the run dir having been cleaned up out-of-band (e.g.
+  //      operator manually pruning migration-runs/).
+  const runDirName =
+    variant && variant !== 'v1' ? `${item.id}-${variant}` : `${item.id}-v1`
+  const escDir = path.join(rootDir, 'migration-runs', TODAY(), runDirName)
+  const escPath = path.join(escDir, 'escalation.md')
   const block = [
     `# 🛑 Orchestrator escalation — \`${item.id}\``,
     '',
@@ -3436,6 +3610,7 @@ async function escalate(
     '',
   ].join('\n')
 
+  await fs.mkdir(escDir, { recursive: true })
   await fs.writeFile(escPath, block, 'utf8')
 
   if (item.pr) {
@@ -5541,6 +5716,89 @@ export async function run(
       state.lastGate = gateReport
       state.gateHistory = [...state.gateHistory, gateReport]
       updateForVariant({ iterations: state.iterations })
+
+      // 2026-05-19: Wait-for-Happo-indexing path. When gate failed ONLY
+      // on the happo stage with status=ERROR (verifier exhausted its
+      // retry budget on an indexing-race, not a real regression), do
+      // NOT start a new agent iter — the agent has no diff data and
+      // would just waste budget. Instead retry the verifier in-place
+      // with backoff. When Happo finally indexes, mutate gateReport so
+      // successCriteria picks up the resolved status, then fall through
+      // to either "gates pass" or "real regression → agent iter".
+      const happoOnlyFail =
+        gateReport.composite !== 'PASS' &&
+        gateReport.stages.filter(s => s.status === 'FAIL').length === 1 &&
+        gateReport.stages.find(s => s.status === 'FAIL' && s.name === 'happo')
+      const reportDirEarly = path.dirname(gateReport.reportPath)
+      const verifyJsonPathEarly = path.join(reportDirEarly, 'happo-verify.json')
+
+      if (happoOnlyFail && existsSync(verifyJsonPathEarly)) {
+        try {
+          const earlyVerify = JSON.parse(
+            await fs.readFile(verifyJsonPathEarly, 'utf8')
+          ) as { status?: string }
+
+          if (earlyVerify.status === 'ERROR') {
+            log(
+              'loop',
+              `iter ${state.iterations}: gate failed only on happo:ERROR — waiting for indexing in-place (no agent iter)`
+            )
+            const resolved = await waitForHappoIndexing({
+              worktree: wtPath,
+              reportDir: reportDirEarly,
+              componentId: item.id,
+              workflow,
+            })
+
+            if (
+              resolved.status === 'PASS' ||
+              resolved.status === 'NO_BASELINE'
+            ) {
+              // Mutate the happo stage in-place so the orchestrator's
+              // existing success-check picks up the resolved state. The
+              // gateReport object is the same reference used by
+              // workflow.successCriteria below.
+              const happoStage = gateReport.stages.find(s => s.name === 'happo')
+
+              if (happoStage) {
+                happoStage.status = 'PASS'
+              }
+              gateReport.composite = 'PASS'
+              log(
+                'loop',
+                `iter ${state.iterations}: Happo indexed cleanly (status=${resolved.status}); proceeding`
+              )
+            } else if (resolved.status === 'FAIL') {
+              // Happo indexed and DOES have real diffs. Keep the happo
+              // stage as FAIL but update reason to reflect actual diff
+              // count. The post-iter prefetch will pull the PNGs.
+              const happoStage = gateReport.stages.find(s => s.name === 'happo')
+
+              if (happoStage) {
+                happoStage.reason = `${
+                  resolved.componentDiffs ?? 0
+                } unresolved Happo diff(s) on ${item.id} — see report ${
+                  resolved.reportUrl ?? '(no url)'
+                }`
+              }
+              log(
+                'loop',
+                `iter ${state.iterations}: Happo indexed with ${
+                  resolved.componentDiffs ?? 0
+                } diff(s) on migrated component — agent iter will receive real diff data`
+              )
+            }
+            // ERROR after retries falls through to existing transient path.
+          }
+        } catch (waitErr) {
+          log(
+            'loop',
+            `iter ${state.iterations}: Happo wait failed (${
+              (waitErr as Error).message
+            }); falling through to agent iter`
+          )
+        }
+      }
 
       if (workflow.successCriteria(gateReport)) {
         log('loop', `gates pass on iteration ${state.iterations}`)

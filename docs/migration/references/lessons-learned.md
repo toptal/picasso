@@ -165,6 +165,25 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Remove obsolete sibling `tsconfig.json` `references` (here `../Backdrop`) when dropping the corresponding workspace dependency from `package.json`, otherwise `tsc -b` fails on the migration PR's "Build" job even though `pnpm install` succeeds.
 - Reference: https://github.com/toptal/picasso/pull/4966
 
+## Happo verifier URL construction — 2026-05-19 (root-cause for chronic Modal v2/v3 ERROR)
+
+After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR` after burning ~60 min × 2 of `happo-wait` polling, investigation revealed the bug was in the verifier itself, not a Happo service issue:
+
+- **`pnpm happo run <sha> --only <Component>` uploads the report at the identifier `<sha>-<Component>`**, not bare `<sha>`. See `node_modules/happo.io/build/executeCli.js:34-36`:
+  ```js
+  if (commander.default.only) {
+    usedSha = `${usedSha}-${commander.default.only}`;
+  }
+  ```
+- **The verifier was querying the compare endpoint with BARE head SHA** (`comparisons/<base-bare>/<head-bare>/compare-results`). For Drawer this happened to return 200 because Happo had lazily created the bare-SHA-to-bare-SHA compare record on a prior request. For Modal, no such lazy record existed → consistent 404 → verifier emitted ERROR → migrate-loop wasted hours retrying with no possible resolution.
+- **Direct evidence**: same Modal upload, two URLs:
+  - `comparisons/<base>/<head>/compare-results` → 404 (what verifier queried)
+  - `comparisons/<base>/<head>-Modal/compare-results` → 200 with `"summary":"No differences found.","unchangedCount":489` (what Happo actually has)
+- **Probe endpoint was also wrong**: verifier hit `/api/reports/<sha>` plain; Happo CLI uses `/api/reports/<id>?project=<projectLabel>` (see `node_modules/happo.io/build/fetchReport.js`). Without the `project` query param the probe 404'd on perfectly-good reports.
+- **Fix**: `bin/lib/happo-verify.ts` now constructs `headIdentifier = args.migratedComponent ? \`\${headSha}-\${args.migratedComponent}\` : headSha` and uses it in BOTH the compare URL and the probe URL, with the probe also passing `?project=<projectLabel>`. Base SHA stays bare (integration branch CI uploads with no `--only`).
+- **Lesson for the verifier-style tooling**: when reverse-engineering a vendor API, always trace what the vendor's own CLI does (their `fetchReport.js`, `runCommand.js`, etc.) rather than guessing from URL shapes seen in dashboard links. Two `git blame`-traceable bugs (`/api/reports/<sha>` and `/comparisons/<base>/<head>/`) survived through Slider, Backdrop, Drawer migrations because Happo's lazy compare-record creation made them work most of the time.
+- Reference: Modal v3 run 2026-05-19, agent commit `f946fb9e1`.
+
 ## Modal — 2026-05-18 (run discarded, restarted with orchestrator fixes)
 
 - Tier 0 · target_path: `@base-ui/react/dialog` · iterations: 4 (discarded run; restarted clean)
@@ -181,4 +200,20 @@ Common Tailwind/CSS compensations for `@base-ui/react` parity:
 - Debug/diagnostic JSON dumps (`after-fix-thumbs.json`, `baseline-tooltip-computed.json`, `local-thumb-computed.json`, `local-thumbs-all.json`) landed at the repo root — gitignore or delete pixel-diff/computed-style artifacts before opening the PR, since reviewers consistently flag committed scratch files.
 - The `.changeset/` entry should explicitly state "behavioral parity" and name the @base-ui/react compound parts being assembled (`Slider.Root + Control + Track + Indicator + Thumb`), so reviewers can map old→new mentally instead of asking — capture this changeset shape in `rules/base-ui-react-api-crib`.
 - @base-ui/react's `Slider.Thumb` renders a visible native `<input>` that requires `[&_input]:!top-auto [&_input]:!left-auto [&_input]:![clip-path:none] [&_input]:[clip:rect(0,0,0,0)]` overrides to hide — bake this input-hiding recipe into `rules/styling` (or the base-ui crib) for any input-bearing slot.
+- Reference: https://github.com/toptal/picasso/pull/4955
+
+## Drawer — 2026-05-19 (review iter 1)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 1
+- Deprecate-don't-delete props that have no equivalent in the new library: keep the prop in the type with `@deprecated` JSDoc + ticket reference and route it to a `_unused` destructure, since silent removal breaks consumer types (see rules/api-preservation).
+- When @base-ui/react components replace MUI ones, write a changeset that explicitly enumerates new implicit behaviors (swipe gestures, always-portaled, focus timing) so reviewers don't have to discover them — these are the questions reviewers consistently ask on first pass.
+- When @base-ui/react's async focus management (rAF-deferred `FloatingFocusManager`) diverges from @mui/base's synchronous focus, add a `useIsomorphicLayoutEffect` blur-on-open shim with a comment explaining the timing difference, since reviewers flag visual-snapshot regressions without it.
+- Reference: https://github.com/toptal/picasso/pull/4966
+
+## Slider — 2026-05-19 (review iter 11)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 11
+- Delete throwaway debug artifacts (`*-thumbs.json`, `baseline-*.json`, `local-*.json`) before pushing — reviewers consistently flag stray investigation dumps at repo root, so future migrations should write them to a gitignored scratch dir from iter 1.
+- Add the changeset under `.changeset/` with explicit "behavioral parity" framing and the new compound-parts surface enumerated (see `docs/migration/rules/api-preservation.md`) — reviewers expect the consumer-facing migration note up-front, not after a sweep.
+- When `@base-ui/react/slider` requires compound parts (Root + Control + Track + Indicator + Thumb) that diverge from the old single-component shape, rebuild marks/value-label on those parts from iter 1 rather than patching the legacy structure — per `docs/migration/rules/base-ui-react-api-crib.md`, reviewers reject "minimal-diff" shims that fight the new API.
 - Reference: https://github.com/toptal/picasso/pull/4955
