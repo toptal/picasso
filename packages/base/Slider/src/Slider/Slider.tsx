@@ -152,7 +152,6 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
   const isThumbHidden =
     hideThumbOnEmpty && (typeof value === 'undefined' || value === null)
 
-  const isRange = Array.isArray(value) || Array.isArray(defaultValue)
   const thumbValues = resolveThumbValues(value, defaultValue, min)
 
   const handleValueChange = (
@@ -170,22 +169,15 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
     onChange(eventDetails.event, normalizedValue, eventDetails.activeThumbIndex)
   }
 
-  // Override base-ui's inline `translate: -50% -50%` + `top: 50%` (creates a
-  // transform stacking context that affects descendant tooltip box-shadow
-  // rasterization) and mirror baseline's margin-based positioning so the
-  // thumb renders without a transform — keeps tooltip shadow pixel-identical
-  // to pre-migration baseline.
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
     'outline-0 absolute transition-shadow cursor-pointer',
-    '![translate:none] ![top:-7px] -ml-[6px]',
-    '[&_input]:!top-auto [&_input]:!left-auto [&_input]:![clip-path:none] [&_input]:[clip:rect(0,0,0,0)]',
     isThumbHidden && 'hidden'
   )
 
   const indicatorClassName = twJoin(
-    'block !absolute h-[1px]',
+    'block h-[1px]',
     disableTrackHighlight ? 'bg-gray-200' : 'bg-blue-500'
   )
 
@@ -211,58 +203,53 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         onValueChange={handleValueChange}
         className='block cursor-pointer w-full relative py-[6px] -my-[6px]'
       >
-        <BaseUISlider.Control className='block w-full relative h-[1px] -mb-[1px]'>
-          <BaseUISlider.Track className='block !absolute w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500' />
-          <BaseUISlider.Indicator className={indicatorClassName} />
-          {marks &&
-            markPositions.map((markValue, index) => (
-              <SliderMark
-                key={`mark-${markValue}`}
-                index={index}
-                markValue={markValue}
-                sliderValue={value}
-                positionPercent={
-                  max === min ? 0 : ((markValue - min) / (max - min)) * 100
-                }
-                forceInactive={Boolean(disableTrackHighlight)}
-              />
-            ))}
-          {thumbValues.map((thumbValue, index) => {
-            const thumbId = index === 0 ? id : undefined
-            const label = formatValueLabel(thumbValue, index, tooltipFormat)
-
-            return (
-              <BaseUISlider.Thumb
-                // eslint-disable-next-line react/no-array-index-key
-                key={`thumb-${index}`}
-                index={index}
-                id={thumbId}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                className={thumbClassName}
-              >
-                <SliderValueLabel
+        <BaseUISlider.Control className='block w-full relative h-[1px]'>
+          <BaseUISlider.Track className='block w-full h-[1px] opacity-[0.24] rounded-none bg-gray-500'>
+            <BaseUISlider.Indicator className={indicatorClassName} />
+            {marks &&
+              markPositions.map((markValue, index) => (
+                <SliderMark
+                  key={`mark-${markValue}`}
                   index={index}
-                  value={thumbValue}
-                  tooltip={isObserved ? tooltip : 'off'}
-                  onRender={handleValueLabelOnRender}
-                  yPlacement={isOnScreen ? 'top' : 'bottom'}
-                  isOverlaped={isPartiallyOverlapped}
+                  markValue={markValue}
+                  sliderValue={value}
+                  positionPercent={
+                    max === min ? 0 : ((markValue - min) / (max - min)) * 100
+                  }
+                  forceInactive={Boolean(disableTrackHighlight)}
+                />
+              ))}
+            {thumbValues.map((thumbValue, index) => {
+              const thumbId = index === 0 ? id : undefined
+              const label = formatValueLabel(thumbValue, index, tooltipFormat)
+
+              return (
+                <BaseUISlider.Thumb
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`thumb-${index}`}
+                  index={index}
+                  id={thumbId}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  className={thumbClassName}
+                  aria-valuemin={min}
+                  aria-valuemax={max}
+                  aria-valuenow={thumbValue}
                 >
-                  {label}
-                </SliderValueLabel>
-              </BaseUISlider.Thumb>
-            )
-          })}
-          {!isRange && thumbValues.length === 0 && (
-            <BaseUISlider.Thumb
-              index={0}
-              id={id}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              className={thumbClassName}
-            />
-          )}
+                  <SliderValueLabel
+                    index={index}
+                    value={thumbValue}
+                    tooltip={isObserved ? tooltip : 'off'}
+                    onRender={handleValueLabelOnRender}
+                    yPlacement={isOnScreen ? 'top' : 'bottom'}
+                    isOverlaped={isPartiallyOverlapped}
+                  >
+                    {label}
+                  </SliderValueLabel>
+                </BaseUISlider.Thumb>
+              )
+            })}
+          </BaseUISlider.Track>
         </BaseUISlider.Control>
       </BaseUISlider.Root>
     </div>
