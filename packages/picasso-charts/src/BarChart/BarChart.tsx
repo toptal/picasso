@@ -74,14 +74,7 @@ export interface Props<K extends string | number | symbol>
   autoSize?: boolean
   /** Maximum size for the bar */
   maxBarSize?: number
-  /**
-   * Function to format ticks of the value axis. Matches Recharts' own
-   * `TickFormatter` type, which intentionally accepts `any` because the
-   * runtime value depends on the axis kind (category / number / time) —
-   * narrowing here would force consumer callbacks declared with a
-   * concrete parameter type (e.g. `(value: number) => …`) to widen
-   * unnecessarily under `strictFunctionTypes`.
-   */
+  /** Function to format ticks of the value axis */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   valueAxisTickFormatter?: ((value: any, index: number) => string) | undefined
 }

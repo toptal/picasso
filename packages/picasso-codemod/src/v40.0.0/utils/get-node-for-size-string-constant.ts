@@ -1,5 +1,3 @@
-import type { StringLiteral } from 'jscodeshift'
-
 import type { TransformationOptions } from '../types'
 
 export const SIZE_TO_SPACING_CONSTANT: Record<string, string> = {
@@ -11,7 +9,7 @@ export const SIZE_TO_SPACING_CONSTANT: Record<string, string> = {
 }
 
 export const getNodeForSizeStringConstant = (
-  node: StringLiteral,
+  node: any,
   { api, addSpacingImport }: TransformationOptions
 ) => {
   const spacingConstant = node.value
