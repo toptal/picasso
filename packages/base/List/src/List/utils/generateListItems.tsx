@@ -1,12 +1,9 @@
-import type { ComponentProps } from 'react'
 import React from 'react'
 
 import List from '../List'
 
-type ListItemProps = ComponentProps<typeof List.Item>
-
 /* eslint-disable react/no-array-index-key */
-const generateListItems = (total: number, listItemProps?: ListItemProps) =>
+const generateListItems = (total: number, listItemProps?: any) =>
   Array(total)
     .fill(0)
     .map((_, index) => (

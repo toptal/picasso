@@ -2,8 +2,6 @@ import type {
   ConditionalExpression,
   JSXAttribute,
   JSXExpressionContainer,
-  ObjectExpression,
-  Property,
 } from 'jscodeshift'
 
 import type { TransformationOptions } from '../types'
@@ -25,14 +23,11 @@ export const getUpdatedNode = (
   } else if (node.type === 'NumericLiteral') {
     node = getNodeForNumber(node, options)
   } else if (node.type === 'ObjectExpression') {
-    const updatedProperties = (node.properties as Property[]).map(property => {
-      property.value = getUpdatedNode(
-        property.value as NodeType,
-        options
-      ) as Property['value']
+    const updatedProperties = node.properties.map((property: any) => {
+      property.value = getUpdatedNode(property.value, options)
 
       return property
-    }) as ObjectExpression['properties']
+    })
 
     node.properties = updatedProperties
   } else if (node.type === 'ConditionalExpression') {

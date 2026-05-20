@@ -75,7 +75,6 @@ export interface Props<K extends string | number | symbol>
   /** Maximum size for the bar */
   maxBarSize?: number
   /** Function to format ticks of the value axis */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   valueAxisTickFormatter?: ((value: any, index: number) => string) | undefined
 }
 

@@ -1,4 +1,4 @@
-import type { D3ZoomEvent, ZoomBehavior, ZoomedElementBaseType } from 'd3-zoom'
+import type { ZoomBehavior, ZoomedElementBaseType } from 'd3-zoom'
 import type { RefObject } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { zoom as d3zoom, select, zoomIdentity } from 'd3'
@@ -46,8 +46,8 @@ export const useZoom = <ZoomRefElement extends ZoomedElementBaseType>({
 
     const transformContainer = select(rootRef.current.firstElementChild)
 
-    zoom.on('zoom', (event: D3ZoomEvent<ZoomRefElement, unknown>) => {
-      transformContainer.attr('transform', event.transform.toString())
+    zoom.on('zoom', (event: any) => {
+      transformContainer.attr('transform', event.transform)
     })
 
     if (!initialized) {
