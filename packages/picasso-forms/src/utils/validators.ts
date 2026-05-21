@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const composeValidators = (validators: any[]) => (value: any, allValues: any) =>
   validators
     .filter(Boolean)

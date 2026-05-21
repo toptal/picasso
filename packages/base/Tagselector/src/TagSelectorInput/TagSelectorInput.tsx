@@ -43,7 +43,10 @@ export const TagSelectorInput = forwardRef<HTMLInputElement, InputProps>(
 
     let usedEndAdornment: React.ReactNode
 
-    if (endAdornment && React.isValidElement(endAdornment)) {
+    if (
+      endAdornment &&
+      React.isValidElement<{ className?: string }>(endAdornment)
+    ) {
       usedEndAdornment = React.cloneElement(endAdornment, {
         className: 'absolute top-[calc(50%-0.5em)] right-[0.625em] h-[1em]',
       })

@@ -51,7 +51,7 @@ const getClickHandler = (loading?: boolean, handler?: Props['onClick']) =>
 
 const getIcon = ({ icon }: { icon?: ReactElement }) => {
   if (!icon) {
-    return null
+    return undefined
   }
 
   return React.cloneElement(icon, {

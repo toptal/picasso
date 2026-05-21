@@ -2,6 +2,12 @@ packages:
   - 'packages/*'
   - 'packages/base/*'
 
+nodeLinker: hoisted
+strictPeerDependencies: false
+autoInstallPeers: true
+linkWorkspacePackages: true
+resolvePeersFromWorkspaceRoot: true
+
 # Supply-chain safeguard: refuse to install any public package published
 # less than this many minutes ago. Internal scopes are excluded so we can
 # still consume freshly-published @toptal/* and @topkit/*.
