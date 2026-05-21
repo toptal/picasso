@@ -1079,56 +1079,98 @@ const manifest = {
       manifest.getVariantState(current, variantId)
     const updatedVariant: VariantState = { ...existingVariant, ...patch }
 
-    m.components[id] = {
+    // Build the next state. Per-variant slot is always authoritative.
+    //
+    // Flat-field mirror rule (revised 2026-05-21):
+    //   - variantId === 'v1' → mirror to flat (back-compat for old read paths).
+    //   - variantId !== 'v1' → DO NOT mirror to flat. Flat fields are
+    //     strictly a v1 shadow. Mirroring vN (N≥2) into flat creates a
+    //     Frankenstein state: flat.pr from v1 + flat.status from vN +
+    //     flat.branch from vN, etc. — breaks pickNext + sweep readers
+    //     that still consult flat fields. Observed Slider v2 (2026-05-21)
+    //     causing flat.escalation_reason=v2's reason while flat.pr stayed
+    //     v1's URL → confusing manifest state for operator inspection.
+    const next: ManifestItem = {
       ...current,
-      // Mirror to flat for backward-compat read paths.
-      status: updatedVariant.status,
-      pr: updatedVariant.pr,
-      branch: updatedVariant.branch,
-      worktree: updatedVariant.worktree,
-      iterations: updatedVariant.iterations,
-      merged_at: updatedVariant.merged_at,
-      escalation_reason: updatedVariant.escalation_reason,
-      last_ci_green_at: updatedVariant.last_ci_green_at,
-      last_review_seen_at: updatedVariant.last_review_seen_at,
-      review_iterations: updatedVariant.review_iterations,
-      session_id: updatedVariant.session_id,
-      awaiting_ci_since: updatedVariant.awaiting_ci_since,
-      // Per-variant slot is authoritative.
       variants: {
         ...existingVariants,
         [variantId]: updatedVariant,
       },
     }
+
+    if (variantId === 'v1') {
+      Object.assign(next, {
+        status: updatedVariant.status,
+        pr: updatedVariant.pr,
+        branch: updatedVariant.branch,
+        worktree: updatedVariant.worktree,
+        iterations: updatedVariant.iterations,
+        merged_at: updatedVariant.merged_at,
+        escalation_reason: updatedVariant.escalation_reason,
+        last_ci_green_at: updatedVariant.last_ci_green_at,
+        last_review_seen_at: updatedVariant.last_review_seen_at,
+        review_iterations: updatedVariant.review_iterations,
+        session_id: updatedVariant.session_id,
+        awaiting_ci_since: updatedVariant.awaiting_ci_since,
+      })
+    }
+
+    m.components[id] = next
     manifest.write(absPath, m)
 
     return m
   },
 
   /**
-   * Read a specific variant's state. Falls back to the flat ManifestItem
-   * fields (treated as the implicit v1 variant) when `variants` is
-   * absent or doesn't contain `variantId`. Always returns a complete
-   * VariantState (never null).
+   * Read a specific variant's state.
+   *
+   * - If `variants[variantId]` exists, return it (authoritative).
+   * - Else if `variantId === 'v1'`, fall back to flat ManifestItem fields
+   *   (back-compat: flat fields are the implicit v1 mirror).
+   * - Else (variantId !== 'v1' and no slot): return a FRESH blank state.
+   *   CRITICAL: do NOT fall back to flat fields for non-v1 variants —
+   *   that would leak v1's pr/session_id/review_iterations/etc. into a
+   *   fresh variant, observed Slider v2 inheriting v1's PR URL and
+   *   breaking pickNext's PR-exists check (2026-05-21).
+   *
+   * Always returns a complete VariantState (never null).
    */
   getVariantState(item: ManifestItem, variantId: string): VariantState {
     if (item.variants && item.variants[variantId]) {
       return item.variants[variantId]
     }
 
+    if (variantId === 'v1') {
+      return {
+        status: item.status,
+        pr: item.pr,
+        branch: item.branch,
+        worktree: item.worktree,
+        iterations: item.iterations,
+        merged_at: item.merged_at,
+        escalation_reason: item.escalation_reason ?? null,
+        last_ci_green_at: item.last_ci_green_at ?? null,
+        last_review_seen_at: item.last_review_seen_at ?? null,
+        review_iterations: item.review_iterations,
+        session_id: item.session_id ?? null,
+        awaiting_ci_since: item.awaiting_ci_since ?? null,
+      }
+    }
+
+    // Non-v1 variant with no slot = fresh, never been run. Return blank.
     return {
-      status: item.status,
-      pr: item.pr,
-      branch: item.branch,
-      worktree: item.worktree,
-      iterations: item.iterations,
-      merged_at: item.merged_at,
-      escalation_reason: item.escalation_reason ?? null,
-      last_ci_green_at: item.last_ci_green_at ?? null,
-      last_review_seen_at: item.last_review_seen_at ?? null,
-      review_iterations: item.review_iterations,
-      session_id: item.session_id ?? null,
-      awaiting_ci_since: item.awaiting_ci_since ?? null,
+      status: 'queued',
+      pr: null,
+      branch: null,
+      worktree: null,
+      iterations: 0,
+      merged_at: null,
+      escalation_reason: null,
+      last_ci_green_at: null,
+      last_review_seen_at: null,
+      review_iterations: 0,
+      session_id: null,
+      awaiting_ci_since: null,
     }
   },
 
