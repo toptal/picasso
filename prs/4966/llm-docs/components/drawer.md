@@ -19,7 +19,7 @@ Allows rendering a sidebar with custom content
 | maintainBodyScrollLock | `boolean` | - | enable Drawer to maintain body scroll lock |
 | transparentBackdrop | `boolean` | - | Specify the backdrop transparency |
 | disableBackdrop | `boolean` | - | Remove the backdrop and leave elements behind interactive |
-| disableSwipeToDismiss | `boolean` | - | Disable the swipe-to-dismiss gesture (enabled by default with the @base-ui/react Drawer). |
+| disableSwipeToDismiss | `boolean` | - | Disable the swipe-to-dismiss gesture. Defaults to `true` for parity with the pre-@base-ui/react Drawer; pass `false` to opt into the new gesture. |
 | className | `string` | - | Classnames applied to root element |
 | style | `CSSProperties` | - | Style applied to root element |
 
