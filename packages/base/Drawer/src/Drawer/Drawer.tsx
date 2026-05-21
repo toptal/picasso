@@ -39,7 +39,7 @@ export interface Props extends BaseProps {
   transparentBackdrop?: boolean
   /** Remove the backdrop and leave elements behind interactive  */
   disableBackdrop?: boolean
-  /** Disable the swipe-to-dismiss gesture (enabled by default with the @base-ui/react Drawer). */
+  /** Disable the swipe-to-dismiss gesture. Defaults to `true` for parity with the pre-@base-ui/react Drawer; pass `false` to opt into the new gesture. */
   disableSwipeToDismiss?: boolean
 }
 
@@ -53,9 +53,9 @@ const widthClassName: Record<WidthType, string> = {
 
 const popupPositionClassName: Record<AnchorType, string> = {
   right:
-    'top-0 h-full left-auto right-0 data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full',
+    'top-0 h-full left-auto right-0 max-w-full data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full',
   left:
-    'top-0 h-full left-0 right-auto data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full',
+    'top-0 h-full left-0 right-auto max-w-full data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full',
   top: 'top-0 bottom-auto left-0 right-0 h-auto max-h-full data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full',
   bottom:
     'bottom-0 top-auto left-0 right-0 h-auto max-h-full data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full',
@@ -83,12 +83,19 @@ export const Drawer = ({
     maintainBodyScrollLock = true,
     transparentBackdrop,
     disableBackdrop,
-    disableSwipeToDismiss,
+    disableSwipeToDismiss = true,
     className,
     style,
     'data-testid': testId,
     'data-private': dataPrivate,
   } = props
+  const transitionDurationMs =
+    typeof transitionProps?.timeout === 'number'
+      ? transitionProps.timeout
+      : 300
+  const transitionDurationStyle: React.CSSProperties = {
+    transitionDuration: `${transitionDurationMs}ms`,
+  }
   const { setHasDrawer } = useDrawer()
   const container = usePicassoRoot()
 
@@ -121,22 +128,17 @@ export const Drawer = ({
         <BaseUIDrawer.Backdrop
           className={twMerge(
             'fixed -z-[1] inset-0',
-            'transition-opacity duration-300',
+            'transition-opacity',
             'data-[closed]:opacity-0',
             transparentBackdrop ? 'bg-black/0' : 'bg-black/50'
           )}
+          style={transitionDurationStyle}
         />
       )}
       <BaseUIDrawer.Popup
         data-testid={testId}
         data-private={dataPrivate}
-        style={{
-          transitionDuration: `${
-            typeof transitionProps?.timeout === 'number'
-              ? transitionProps.timeout
-              : 300
-          }ms`,
-        }}
+        style={transitionDurationStyle}
         onTransitionEnd={(e: React.TransitionEvent<HTMLDivElement>) => {
           if (e.propertyName === 'transform' && !open) {
             transitionProps?.onExited?.(e.currentTarget)
