@@ -1269,12 +1269,18 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0
     devDependencies:
+      '@toptal/picasso-modal':
+        specifier: 4.0.0
+        version: link:../Modal
       '@toptal/picasso-provider':
         specifier: 5.0.2
         version: link:../../picasso-provider
       '@toptal/picasso-tailwind-merge':
         specifier: 2.0.4
         version: link:../../picasso-tailwind-merge
+      '@toptal/picasso-test-utils':
+        specifier: 2.0.0
+        version: link:../Test-Utils
 
   packages/base/Dropdown:
     dependencies:

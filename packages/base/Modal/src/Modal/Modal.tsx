@@ -16,7 +16,8 @@ import { usePicassoRoot, RootContext } from '@toptal/picasso-provider'
 import { CloseMinor16 } from '@toptal/picasso-icons'
 import {
   useCombinedRefs,
-  ModalManager,
+  defaultModalManager,
+  generateModalId,
   usePageScrollLock,
 } from '@toptal/picasso-utils'
 import { ButtonCircular } from '@toptal/picasso-button'
@@ -66,8 +67,6 @@ export interface Props extends BaseProps, HTMLAttributes<HTMLDivElement> {
   }
 }
 
-const defaultManager = new ModalManager()
-
 // https://github.com/udacity/ud891/blob/gh-pages/lesson2-focus/07-modals-and-keyboard-traps/solution/modal.js#L25
 // found in https://developers.google.com/web/fundamentals/accessibility/focus/using-tabindex
 const focusableElementsString =
@@ -112,12 +111,6 @@ const isFocusInsideTooltip = () => {
   return false
 }
 
-const generateKey = (() => {
-  let count = 0
-
-  return () => ++count
-})()
-
 // eslint-disable-next-line react/display-name
 export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
   {
@@ -150,7 +143,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     ref,
     useRef<HTMLDivElement>(null)
   )
-  const modalId = useRef(generateKey())
+  const modalId = useRef(generateModalId())
   const { rootRef } = useContext(RootContext)
 
   useEffect(() => {
@@ -161,7 +154,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
         )
       }
 
-      if (!defaultManager.isTopModal(modalId.current)) {
+      if (!defaultModalManager.isTopModal(modalId.current)) {
         return
       }
 
@@ -195,11 +188,11 @@ export const Modal = forwardRef<HTMLDivElement, Props>(function Modal(
     const currentModalId = modalId.current
 
     if (open) {
-      defaultManager.add(currentModalId)
+      defaultModalManager.add(currentModalId)
     }
 
     return () => {
-      defaultManager.remove(currentModalId)
+      defaultModalManager.remove(currentModalId)
     }
   }, [open])
 
