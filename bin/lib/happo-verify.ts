@@ -109,6 +109,17 @@ interface VerifyOutput {
   componentDiffs?: number
   unrelatedDiffs?: number
   diffComponents?: string[]
+  /**
+   * Per-snapshot identifiers for stuck-detection (2026-05-20).
+   * Format: `<component>/<variant>/<target>` strings, sorted.
+   * Lets the orchestrator's stuck-detection distinguish "agent fixed
+   * snapshot A and broke snapshot B" (different set, NOT stuck) from
+   * "same 8 snapshots failing across iters" (same set, stuck). Without
+   * this granularity, Slider PR #4955 review-iter 12 escalated to
+   * needs_human after iter 2 reproduced iter 1's count even though the
+   * affected snapshots differed.
+   */
+  diffSnapshots?: string[]
 }
 
 const emit = (out: VerifyOutput): void => {
@@ -338,6 +349,33 @@ const main = async (): Promise<void> => {
     : diffComponents.length
   const unrelatedDiffs = allDiffs.length - componentDiffs
 
+  // 2026-05-20: per-snapshot identifiers for stuck-detection. Emit a
+  // sorted list of `<component>/<variant>/<target>` strings limited to
+  // the migrated component (so unrelated drift doesn't perturb the
+  // stuck-key). Iter-to-iter same-set indicates real stuck; different
+  // sets indicate the agent's last attempt shifted WHICH snapshots
+  // are failing (= progress, even if the count happens to be equal).
+  const diffSnapshots = Array.from(
+    new Set(
+      allDiffs
+        .map(pair => pair[0])
+        .filter(
+          (
+            snap
+          ): snap is {
+            component: string
+            variant: string
+            target: string
+            url: string
+          } =>
+            Boolean(snap?.component) &&
+            (!args.migratedComponent ||
+              snap.component === args.migratedComponent)
+        )
+        .map(snap => `${snap.component}/${snap.variant}/${snap.target}`)
+    )
+  ).sort()
+
   // Gate criterion: zero diffs on the migrated component (or, if no
   // migratedComponent given, zero diffs total). Unrelated diffs are
   // surfaced but don't fail the local gate — they're handled at sweep
@@ -353,6 +391,7 @@ const main = async (): Promise<void> => {
     componentDiffs,
     unrelatedDiffs,
     diffComponents: Array.from(new Set(diffComponents)),
+    diffSnapshots,
     reason:
       status === 'FAIL'
         ? `${componentDiffs} unaccepted Happo diff(s) on migrated component ${

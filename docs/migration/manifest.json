@@ -16,9 +16,9 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 7,
-      "last_review_seen_at": "2026-05-19T11:17:07.594Z",
-      "session_id": "81f08b58-7fc0-407e-9a84-3fa60bc9202e",
+      "review_iterations": 9,
+      "last_review_seen_at": "2026-05-20T17:33:48.409Z",
+      "session_id": "a2f1e648-b276-45a6-bab4-1dd74d5cf003",
       "escalation_reason": null,
       "last_ci_green_at": null,
       "awaiting_ci_since": null,
@@ -32,9 +32,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-19T11:17:07.594Z",
-          "review_iterations": 7,
-          "session_id": "81f08b58-7fc0-407e-9a84-3fa60bc9202e",
+          "last_review_seen_at": "2026-05-20T17:33:48.409Z",
+          "review_iterations": 9,
+          "session_id": "a2f1e648-b276-45a6-bab4-1dd74d5cf003",
           "awaiting_ci_since": null
         }
       }
@@ -128,8 +128,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-      "last_review_seen_at": "2026-05-19T11:21:16.952Z",
-      "session_id": "bbe72a7d-be88-4b72-8224-395c59e411ba",
+      "last_review_seen_at": "2026-05-20T17:40:41.914Z",
+      "session_id": "a3046b2d-8e44-4bda-9f78-4401d703b063",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -141,13 +141,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-          "last_review_seen_at": "2026-05-19T11:21:16.952Z",
-          "session_id": "bbe72a7d-be88-4b72-8224-395c59e411ba",
+          "last_review_seen_at": "2026-05-20T17:40:41.914Z",
+          "session_id": "a3046b2d-8e44-4bda-9f78-4401d703b063",
           "awaiting_ci_since": null,
-          "review_iterations": 1
+          "review_iterations": 3
         }
       },
-      "review_iterations": 1
+      "review_iterations": 3
     },
     "Modal": {
       "tier": 0,
@@ -184,9 +184,9 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-19T11:30:02.820Z",
-      "review_iterations": 11,
-      "session_id": "6e869a72-732c-49a4-b4df-adf25f4d2124",
+      "last_review_seen_at": "2026-05-20T18:38:41.467Z",
+      "review_iterations": 13,
+      "session_id": "90b86eac-7e1b-478f-9db1-b628a8a3e66c",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -198,9 +198,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-19T11:30:02.820Z",
-          "review_iterations": 11,
-          "session_id": "6e869a72-732c-49a4-b4df-adf25f4d2124",
+          "last_review_seen_at": "2026-05-20T18:38:41.467Z",
+          "review_iterations": 13,
+          "session_id": "90b86eac-7e1b-478f-9db1-b628a8a3e66c",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -221,11 +221,11 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
-      "review_iterations": 1,
+      "review_iterations": 3,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-      "last_review_seen_at": "2026-05-19T11:51:52.564Z",
-      "session_id": null,
+      "last_review_seen_at": "2026-05-20T18:49:40.998Z",
+      "session_id": "656ec5f5-fad1-4a75-bc69-391c5ce789c5",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -235,11 +235,11 @@
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
           "iterations": 1,
           "merged_at": null,
-          "review_iterations": 1,
+          "review_iterations": 3,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-          "last_review_seen_at": "2026-05-19T11:51:52.564Z",
-          "session_id": null,
+          "last_review_seen_at": "2026-05-20T18:49:40.998Z",
+          "session_id": "656ec5f5-fad1-4a75-bc69-391c5ce789c5",
           "awaiting_ci_since": null
         }
       }
