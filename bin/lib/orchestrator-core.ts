@@ -2951,14 +2951,15 @@ const agent = {
    * conversation memory; the orchestrator only needs to send the gate
    * feedback + accumulated diff. Tier 2.1 of post-canary-15 plan.
    *
-   * 2026-05-20 (post-B17 fix): `injectContext` adds the contextPack files
-   * (rules, lessons-learned, decisions, per-item plan) to the prompt.
+   * 2026-05-20 (post-B17 fix), revised 2026-05-21 (split-prompt overhaul):
+   * `injectContext` adds the contextPack files (rules, practices,
+   * design-patterns, code-standards, per-item plan) to the prompt.
    * Required for fresh-session invocations — sweep ticks since B17 start
    * a new session per tick, losing the migrate-iter-1 contextPack from
    * conversation memory. Without this, sweep agents have to re-discover
-   * patterns from the diff alone (lessons-learned is "always loaded by
-   * contextPack" per the original comment, but contextPack is only
-   * loaded by `assemblePrompt`, not `assembleDeltaPrompt`).
+   * patterns from the diff alone. (Note: lessons-learned.md was removed
+   * from contextPack as of 2026-05-21; graduated patterns live in
+   * `references/practices.md`.)
    *
    * Migrate iter 2+ (still session-resume) and CI-fix iter (also
    * session-resume) should pass `injectContext: undefined` to avoid
@@ -3012,9 +3013,9 @@ const agent = {
         sections.push(
           `# Evolving knowledge from prior runs\n\n` +
             `_The orchestrator started a fresh agent session for this tick; ` +
-            `these files capture rules, decisions, lessons learned from earlier ` +
+            `these files capture rules, decisions, graduated practices from prior ` +
             `migrations, and the per-item plan. Read them before editing. ` +
-            `Patterns from \`lessons-learned.md\` apply across components — ` +
+            `Patterns from \`references/practices.md\` apply across components — ` +
             `do not re-discover them from scratch._\n\n` +
             knowledgeFiles.join('\n\n---\n\n')
         )
@@ -3495,8 +3496,14 @@ const lessons = {
   /**
    * After a successful migration (PR open), spawn a tiny claude subprocess to
    * extract 2–3 reusable patterns from the agent's diff and append them to
-   * `docs/migration/references/lessons-learned.md`. Subsequent migrations
-   * include that file in their context pack and inherit the patterns.
+   * `docs/migration/references/lessons-learned.md`.
+   *
+   * As of 2026-05-21 (split-prompt overhaul), `lessons-learned.md` is
+   * AUDIT-ONLY — it is NO LONGER loaded into the contextPack. Patterns
+   * reach future agents via periodic manual graduation passes that promote
+   * recurring entries into `references/practices.md` (which IS in the
+   * contextPack). See lessons-learned.md header for the graduation
+   * protocol (~every 5–10 successful migrations, ≥3-occurrence threshold).
    *
    * Failures here are non-fatal — a missed lesson doesn't block the PR.
    */
@@ -4074,8 +4081,9 @@ const checklist = {
     }
 
     // 2. Gather audit context files. Tier-aware to keep prompt within
-    //    ~80-90 KB ceiling. Always-loaded: api-preservation, lessons-learned,
-    //    classes-shim, classes-audit, per-component plan. Tier 0/2/3 add
+    //    ~80-90 KB ceiling. Always-loaded: api-preservation, practices
+    //    (graduated patterns, not raw lessons log), design-patterns-addendum,
+    //    code-standards, classes-shim, per-component plan. Tier 0/2/3 add
     //    base-ui-react-api-crib + styling. Tier 2/3 add jss-to-tailwind +
     //    tokens. Modal/Drawer add backdrop-replacement.
     // Note: decisions/classes-audit.md (26 KB) is intentionally OMITTED —
@@ -4083,9 +4091,14 @@ const checklist = {
     // The matrix in classes-shim.md is the authoritative rule the agent
     // must follow; the audit's per-component data is operator-facing.
     // Skipping it keeps the audit prompt under ~80 KB total.
+    // Note (2026-05-21): lessons-learned.md was demoted to audit-only and
+    // is NO LONGER loaded by the critic either — graduated patterns flow
+    // into practices.md (which IS loaded).
     const candidateFiles: (string | null)[] = [
       'docs/migration/rules/api-preservation.md',
-      'docs/migration/references/lessons-learned.md',
+      'docs/migration/references/practices.md',
+      'docs/migration/references/design-patterns-addendum.md',
+      'docs/migration/references/code-standards.md',
       'docs/migration/decisions/classes-shim.md',
       args.workflow.perItemPlan
         ? args.workflow.perItemPlan(args.item.id)
@@ -4138,15 +4151,39 @@ const checklist = {
       `3. If after second reading you decide the diff is actually compliant, DO NOT add it to <violations>. Leave it out.\n` +
       `4. The pattern must be cited from a specific doc + section that's IN THE AUDIT DOCUMENTS BELOW. Don't cite docs you can't see.\n` +
       `5. Be CONCRETE: cite the file + line range in the diff. "packages/base/Modal/src/Modal.tsx line 42" is acceptable; "in some file" is not.\n` +
-      `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n\n` +
+      `6. If you cannot identify ANY violations, output an EMPTY <violations> block — that is the correct answer when the diff is clean. Do NOT pad with non-violations.\n` +
+      `7. Honor the migration carve-out (design-patterns-addendum.md §"Existing-violations carve-out"): pre-existing rule violations in already-shipped components REMAIN. Do NOT flag a violation if the diff PRESERVES an existing rule-violating shape (e.g., the component already had \`isOpen\` before the diff — preserving it is correct, NOT a violation of rule 14). Only flag violations that the DIFF INTRODUCES or that the agent had a clear opportunity to fix in the migration scope.\n\n` +
+      `**Standards compliance checklist — walk this in order on every audit.** Cite the matching §section for each violation. Skip items that don't apply to this diff:\n\n` +
+      `### A. Hard rules (severity=high if violated)\n` +
+      `1. **\`classes\` prop decision** (decisions/classes-audit.md + design-patterns-addendum.md §2): is the component Dropdown or OutlinedInput? If yes, the narrowed \`classes?: { ... }\` MUST be retained. For other Tier-0 components, audit-aligned drop via \`extends Omit<StandardProps, 'classes'>\` + runtime backstop. Flag any deviation.\n` +
+      `2. **Casts** (code-standards.md §"Type-narrowing & casting"): any \`any\` / \`as unknown as T\` / bare \`// @ts-ignore\` in component source files (NOT in *.test.tsx)?\n` +
+      `3. **\`useLayoutEffect\` from React** (code-standards.md §"SSR safety"): forbidden — must be \`useIsomorphicLayoutEffect\` from \`@toptal/picasso-shared\` (ESLint error in source).\n` +
+      `4. **Aggregate self-imports** (code-standards.md §"ESLint custom rules"): any sub-package importing from aggregate \`@toptal/picasso\`? ESLint error.\n` +
+      `5. **Build-before-snapshot precondition** (practices.md §"Build & snapshot precondition"): if diff regenerates snapshots, was \`pnpm -F @toptal/picasso-<NAME> build:package\` verified clean first? Look for 1-line empty-\`<div>\` snapshots — those are the precondition-failed signature.\n` +
+      `6. **Imperative ref for visual override** (code-standards.md §"CSS specificity ladder" + practices.md §"@base-ui/react idioms"): any \`ref={(node) => { ... .style.X = ... }}\` or \`useRef\` callback that mutates \`.style\` for visual/theme purposes? The Switch iter-2 pattern is NOT canonical; use slot \`className\` / Tailwind selectors / \`!important\` ladder instead.\n` +
+      `7. **\`!important\` without ladder justification** (code-standards.md §"CSS specificity ladder"): any new \`!important\` that doesn't sit AFTER rungs 1-3 were demonstrated insufficient? Look for adjacent comments explaining WHY lower rungs failed.\n\n` +
+      `### B. Reviewer-blocking practices (severity=medium-high)\n` +
+      `8. **API preservation** (practices.md §"API preservation"): consumer-facing handler signatures preserved (e.g., \`onChange(event, checked)\` not bare \`onCheckedChange\`)? Portal/behavior props preserved or deprecated-not-deleted with \`@deprecated\` JSDoc + ticket ref?\n` +
+      `9. **JSDoc on public props** (code-standards.md §"JSDoc rules"): every NEW or MODIFIED public Props field has \`/** description */\`? Internal passthrough props (\`ownerState\`, \`data-private\`) MUST NOT have JSDoc — they'd leak as public API.\n` +
+      `10. **\`@deprecated\` ticket ref** (code-standards.md §"JSDoc rules"): any \`@deprecated\` JSDoc that lacks a \`[ABC-1234]\` or URL? ESLint is warn-level only; reviewers consistently block.\n` +
+      `11. **Boolean prop prefix on NEW props** (PICASSO_COMPONENT_DESIGN_PATTERNS rule 14): any NEW boolean prop using \`is\`/\`has\`/\`should\` prefix? (Existing props on already-shipped components are carve-out-protected per rule 7 above.)\n` +
+      `12. **Changeset content** (code-standards.md §"Changeset conventions" + practices.md §"Changesets"): does \`.changeset/<name>.md\` enumerate (a) dep removals + peer cap lifts, (b) new implicit behaviors, (c) compound parts being assembled? Migration PR bump MUST be \`major\`. Body uses present-simple tense.\n` +
+      `13. **PR description completeness** (PROMPT-light/heavy.md §8): is \`migration-runs/<run-date>/<Component>/pr-description.md\` present and does it have Summary + Decisions + Limitations + Verification sections (each ≤4 sentences)?\n` +
+      `14. **Tailwind class ordering** (code-standards.md §"Tailwind class composition"): user-supplied \`className\` MUST be LAST in \`twMerge(structural, ..., className)\` so consumer overrides win. Look for reversed-order \`twMerge(className, structural)\` — silently breaks consumer customization.\n` +
+      `15. **Debug artifacts in working tree** (practices.md §"Verify before commit"): any \`*-thumbs.json\`, \`baseline-*.json\`, \`local-*.json\`, \`fetch-happo-diffs.mjs\` at repo root in the diff? Should be in a gitignored scratch dir.\n` +
+      `16. **tsconfig hygiene** (practices.md §"tsconfig & build hygiene"): when \`package.json\` drops a workspace dep, does \`tsconfig.json\` drop the matching \`references\` entry in the SAME commit? Mismatched configs fail \`tsc -b\` in CI's Build job.\n\n` +
+      `### C. @base-ui/react idioms (severity=medium)\n` +
+      `17. **Slot-based styling** (practices.md §"@base-ui/react idioms"): if the diff wraps an \`@base-ui/react\` component with multi-part slots, does it use \`slots={{ partName: Component }}\` + \`slotProps={{ partName: { className, ... } }}\` instead of a class dictionary? (OutlinedInput canonical.)\n` +
+      `18. **Polymorphic Button pattern** (rules/base-ui-react-api-crib.md §"Polymorphic Button"): \`nativeButton + render={React.createElement(as)}\` — NOT runtime \`typeof\`/\`isValidAs\` guards on the \`as\` prop.\n` +
+      `19. **\`@base-ui/utils@0.2.8\` patch** (practices.md §"@base-ui/react idioms"): Tier 0 components need it applied via \`pnpm.patchedDependencies\` + lockfile \`patch_hash\`; do NOT re-derive.\n\n` +
       `Severity levels:\n` +
       `- **high**: hard rule violations (e.g. fallback to \`any\` to silence lint, dropped public API surface from \`Omit<>\` decision, withClasses applied where decision matrix says drop) — these get appended to next-iter feedback as MUST-FIX.\n` +
-      `- **medium**: documented best-practice missed (e.g. missing data-* CSS compensation when @base-ui/react primitive emits one and lessons-learned flags this; styling.md violation; missed lesson from prior similar migration) — advisory.\n` +
+      `- **medium**: documented best-practice missed (e.g. missing data-* CSS compensation when @base-ui/react primitive emits one and practices.md flags this; styling.md violation; missed graduated pattern from prior similar migration) — advisory.\n` +
       `- **low**: minor doc-pointer suggestions (e.g. comment could cite the rule it implements). Use sparingly — most things at this severity should be skipped entirely.\n\n` +
       `OUTPUT FORMAT (strict — orchestrator parses this with regex; deviations break parsing):\n\n` +
       `<violations>\n` +
       `- severity=high, category=rule, citation="rules/api-preservation.md §Type alignment", what="Agent dropped public type narrowing — diff at packages/.../Modal.tsx line 42 falls back to 'classes?: any'"\n` +
-      `- severity=medium, category=lesson, citation="lessons-learned.md Visual parity policy 2026-05-15", what="Diff omits data-orientation compensation; @base-ui/react/slider emits this attr and master had matching CSS"\n` +
+      `- severity=medium, category=practice, citation="practices.md §Pixel-perfect visual parity", what="Diff omits data-orientation compensation; @base-ui/react/slider emits this attr and master had matching CSS"\n` +
       `</violations>\n\n` +
       `<stuck-signal>\n` +
       `If the same violation has been flagged 2+ iters in a row and the agent can't resolve it, the underlying doc may need updating. ` +
@@ -5218,7 +5255,7 @@ async function sweepOne(
   // Everything that DOES matter between ticks is already preserved
   // without resume:
   //   - PR thread (every prior orchestrator-reply visible via gh)
-  //   - lessons-learned.md (always loaded by contextPack)
+  //   - practices.md + design-patterns + code-standards (always loaded by contextPack)
   //   - pre-fetched Happo PNGs (refreshed at sweep start)
   //   - source code in the worktree
   //   - PROMPT-review-response.md (always loaded)
@@ -5233,12 +5270,14 @@ async function sweepOne(
   // `isFirstIteration` below.
   const sessionId = randomUUID()
   const isFirstIteration = true
-  // 2026-05-20: pass contextPack into the delta prompt. Sweep starts a
-  // fresh session each tick (B17 always-fresh-session policy), so the
-  // agent has no prior memory of the migrate-iter-1 contextPack
-  // (rules, lessons-learned, decisions, plan). Without this injection
-  // the agent would re-discover patterns documented in lessons-learned —
-  // exactly the "beginner mistake" pattern the user flagged.
+  // 2026-05-20 (revised 2026-05-21): pass contextPack into the delta prompt.
+  // Sweep starts a fresh session each tick (B17 always-fresh-session
+  // policy), so the agent has no prior memory of the migrate-iter-1
+  // contextPack (rules, practices, design-patterns, code-standards, plan).
+  // Without this injection the agent would re-discover patterns documented
+  // in practices.md — exactly the "beginner mistake" pattern the user
+  // flagged. (Note: lessons-learned.md was demoted to audit-only as of
+  // 2026-05-21; patterns reach the agent via practices.md instead.)
   const reviewPrompt = await agent.assembleDeltaPrompt(
     reviewIters - 1,
     reviewFeedback,

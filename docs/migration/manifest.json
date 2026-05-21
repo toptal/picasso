@@ -16,9 +16,9 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "No standalone Backdrop in @base-ui/react (only Dialog.Backdrop). Replacement strategy: docs/migration/decisions/backdrop-replacement.md. Modal + Drawer depend on this — migrate first within Tier 0.",
-      "review_iterations": 9,
-      "last_review_seen_at": "2026-05-20T17:33:48.409Z",
-      "session_id": "a2f1e648-b276-45a6-bab4-1dd74d5cf003",
+      "review_iterations": 10,
+      "last_review_seen_at": "2026-05-21T08:07:12.352Z",
+      "session_id": "0e684f53-1085-42ec-868a-a09d2b657061",
       "escalation_reason": null,
       "last_ci_green_at": null,
       "awaiting_ci_since": null,
@@ -32,9 +32,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-20T17:33:48.409Z",
-          "review_iterations": 9,
-          "session_id": "a2f1e648-b276-45a6-bab4-1dd74d5cf003",
+          "last_review_seen_at": "2026-05-21T08:07:12.352Z",
+          "review_iterations": 10,
+          "session_id": "0e684f53-1085-42ec-868a-a09d2b657061",
           "awaiting_ci_since": null
         }
       }
@@ -128,8 +128,8 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-      "last_review_seen_at": "2026-05-20T17:40:41.914Z",
-      "session_id": "a3046b2d-8e44-4bda-9f78-4401d703b063",
+      "last_review_seen_at": "2026-05-21T08:09:41.540Z",
+      "session_id": "4999ec9e-fd63-4d7e-a6b6-ae5cecec3d25",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -141,13 +141,13 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T15:18:52.299Z",
-          "last_review_seen_at": "2026-05-20T17:40:41.914Z",
-          "session_id": "a3046b2d-8e44-4bda-9f78-4401d703b063",
+          "last_review_seen_at": "2026-05-21T08:09:41.540Z",
+          "session_id": "4999ec9e-fd63-4d7e-a6b6-ae5cecec3d25",
           "awaiting_ci_since": null,
-          "review_iterations": 3
+          "review_iterations": 4
         }
       },
-      "review_iterations": 3
+      "review_iterations": 4
     },
     "Modal": {
       "tier": 0,
@@ -184,9 +184,9 @@
       "merged_at": null,
       "escalation_reason": null,
       "last_ci_green_at": null,
-      "last_review_seen_at": "2026-05-20T18:38:41.467Z",
-      "review_iterations": 13,
-      "session_id": "90b86eac-7e1b-478f-9db1-b628a8a3e66c",
+      "last_review_seen_at": "2026-05-21T08:32:28.692Z",
+      "review_iterations": 14,
+      "session_id": "f169313a-8ba8-44fd-97f9-32d9802407cc",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -198,9 +198,9 @@
           "merged_at": null,
           "escalation_reason": null,
           "last_ci_green_at": null,
-          "last_review_seen_at": "2026-05-20T18:38:41.467Z",
-          "review_iterations": 13,
-          "session_id": "90b86eac-7e1b-478f-9db1-b628a8a3e66c",
+          "last_review_seen_at": "2026-05-21T08:32:28.692Z",
+          "review_iterations": 14,
+          "session_id": "f169313a-8ba8-44fd-97f9-32d9802407cc",
           "awaiting_ci_since": null,
           "review_iter_failures": 0
         }
@@ -221,11 +221,11 @@
       "iterations": 1,
       "merged_at": null,
       "notes": "PR #4906 OPEN on @base-ui/react:1.2.0. Depends on FormLabel (Tier 1) — sequence after FormLabel cleanup.",
-      "review_iterations": 3,
+      "review_iterations": 4,
       "escalation_reason": null,
       "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-      "last_review_seen_at": "2026-05-20T18:49:40.998Z",
-      "session_id": "656ec5f5-fad1-4a75-bc69-391c5ce789c5",
+      "last_review_seen_at": "2026-05-21T09:25:26.957Z",
+      "session_id": "4beccd28-6dba-402b-8d67-a4d8f88b2503",
       "awaiting_ci_since": null,
       "variants": {
         "v1": {
@@ -235,11 +235,11 @@
           "worktree": "migration-runs/2026-05-18/Switch-v1/worktree",
           "iterations": 1,
           "merged_at": null,
-          "review_iterations": 3,
+          "review_iterations": 4,
           "escalation_reason": null,
           "last_ci_green_at": "2026-05-18T09:20:16.165Z",
-          "last_review_seen_at": "2026-05-20T18:49:40.998Z",
-          "session_id": "656ec5f5-fad1-4a75-bc69-391c5ce789c5",
+          "last_review_seen_at": "2026-05-21T09:25:26.957Z",
+          "session_id": "4beccd28-6dba-402b-8d67-a4d8f88b2503",
           "awaiting_ci_since": null
         }
       }
@@ -247,15 +247,35 @@
     "Tabs": {
       "tier": 0,
       "package": "packages/base/Tabs",
-      "status": "queued",
+      "status": "needs_human",
       "depends_on": [],
       "target_path": "@base-ui/react/tabs",
       "versionBump": "major",
       "pr": null,
-      "branch": null,
-      "worktree": null,
-      "iterations": 0,
-      "merged_at": null
+      "branch": "migrate-Tabs-v1",
+      "worktree": "migration-runs/2026-05-21/Tabs-v1/worktree",
+      "iterations": 2,
+      "merged_at": null,
+      "escalation_reason": "migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest (identical content across 2 consecutive iters). Worktree left dirty for operator inspection.",
+      "last_ci_green_at": null,
+      "last_review_seen_at": null,
+      "session_id": null,
+      "awaiting_ci_since": null,
+      "variants": {
+        "v1": {
+          "status": "needs_human",
+          "pr": null,
+          "branch": "migrate-Tabs-v1",
+          "worktree": "migration-runs/2026-05-21/Tabs-v1/worktree",
+          "iterations": 2,
+          "merged_at": null,
+          "escalation_reason": "migrate-loop stuck on deterministic gate stages: build|cypress|happo:UNKNOWN|jest (identical content across 2 consecutive iters). Worktree left dirty for operator inspection.",
+          "last_ci_green_at": null,
+          "last_review_seen_at": null,
+          "session_id": null,
+          "awaiting_ci_since": null
+        }
+      }
     },
     "Form": {
       "tier": 1,

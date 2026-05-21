@@ -1,10 +1,14 @@
-# Migration lessons learned
+# Migration lessons learned (audit-only log)
 
-Auto-accumulated by the orchestrator after each successful component migration. Each entry captures the 2–3 patterns that the agent applied, so subsequent migrations of similar components inherit hard-won knowledge.
+> **Role change as of 2026-05-21.** This file is now an **audit-only log**, no longer loaded into the migration agent's contextPack. The agent reads `references/practices.md` instead — a curated, deduplicated, categorized set of graduated patterns. This log remains for human review, audit trail, and pattern-graduation passes.
 
-**How this file is updated.** When the orchestrator successfully opens a PR for a component, a small post-success step (in `bin/lib/orchestrator-core.ts`) extracts the 2–3 most useful patterns from the agent's commit + asks claude to summarize them. The summary is appended to this file. Subsequent runs include this file in `migrationWorkflow.contextPack`, so the agent reads it as part of its prompt.
+Auto-accumulated by the orchestrator after each successful component migration. Each entry captures the 2–3 patterns that the agent applied. Use this log to:
+- **Audit**: review what patterns actually emerged from past migrations.
+- **Graduate**: periodically (every 5–10 successful migrations, or when this log crosses ~50 new entries past the last graduation marker), promote recurring patterns into `references/practices.md`. Graduation criteria: a pattern appears in ≥ 3 entries OR is cited explicitly by ≥ 1 reviewer as a load-bearing rule.
 
-**How to read this.** Skim for components that share your migration shape (Tier 0 light path, Tier 1 cleanup, Tier 2 heavy, etc.). The patterns are not prescriptive — they're what worked for that specific component. Apply judgment.
+**How this file is updated.** When the orchestrator successfully opens a PR for a component, a small post-success step (in `bin/lib/orchestrator-core.ts`) extracts the 2–3 most useful patterns from the agent's commit + asks Claude to summarize them. The summary is appended to this file. **The contextPack does NOT include this file** — patterns reach the agent via the next graduation pass into `practices.md`.
+
+**How to read this.** For graduation, cluster entries by theme (build precondition, classification, idioms, changeset format, etc.) and add to `practices.md` if not already covered there. For audit, skim by component or by date. Patterns here are *evidence of what worked*, not prescriptive — `practices.md` is the prescriptive form.
 
 **How to add manual entries.** If you discover a pattern outside an orchestrator run (e.g. while doing a manual migration takeover after escalation), append it manually using the same shape:
 
@@ -264,4 +268,28 @@ After two consecutive Modal runs (2026-05-19 v2 + v3) escalated on `happo:ERROR`
 - Preserve the public `onChange(event, checked)` signature when adapting base-ui's `onCheckedChange` — never narrow or rename consumer-facing handlers (see rules/api-preservation).
 - Keep migration diffs scoped to the component: no stray scratch/tooling files (e.g. `fetch-happo-diffs.mjs`) in the PR — verify `git status` before opening.
 - Avoid `as unknown as` casts on the whole `...rest` spread; if base-ui's root element type mismatches the public Props, address it at the prop-by-prop boundary rather than a blanket bridge cast.
+- Reference: https://github.com/toptal/picasso/pull/4965
+
+## Drawer — 2026-05-21 (review iter 4)
+
+- Tier 0 · target_path: `@base-ui/react/drawer` · iterations: 4
+- Sync backdrop and popup transition durations from the same `transitionProps.timeout` source rather than hardcoding either, since reviewers flag any visible desync when consumers customize timing (see rules/base-ui-react-api-crib §transitions).
+- Default new @base-ui/react gesture surfaces (swipe-to-dismiss, etc.) to OFF and document the opt-in in the changeset — migrations must preserve pre-migration behavior, with new gestures shipped as follow-ups (rules/api-preservation §new-behaviors).
+- When preserving compound class strings via `twMerge`, replicate the OLD precedence exactly (which classes are unconditional vs. conditional, and where `className` sits in the merge order) — reviewers diff this against the prior `twMerge(...)` call and flag silent shifts (rules/styling §twmerge-precedence).
+- Reference: https://github.com/toptal/picasso/pull/4966
+
+## Slider — 2026-05-21 (review iter 14)
+
+- Tier 0 · target_path: `@base-ui/react/slider` · iterations: 14
+- **Hit-target parity is a first-class migration gate**, not a snapshot check — @base-ui/react attaches pointer events to inner compound parts (Slider.Control, not Root), so click-expanding padding/`-my` from the @mui/base root must be reapplied on that inner part and verified by actual interaction before opening the PR.
+- **Neutralize @base-ui/react's accessibility-driven inline styles that break DOM-snapshot tools** — its hidden `<input type="range">` uses `position:fixed` + 100% size for VoiceOver focus, inflating Happo body heights; reset via `inputRef` to absolute 1×1 (and override base-ui's `translate: -50% -50%` thumb centering with `translate: none` + legacy offset) before regenerating visual baselines.
+- **Account for the +2 wrapper levels (Control > Track) in base-ui's compound DOM** when porting absolute-positioned children — Track's 1px now contributes to layout (was `position:absolute` in @mui/base), causing 1px shifts that need explicit `mb-[-1px]`-style compensation and a changeset note about the structural diff.
+- Reference: https://github.com/toptal/picasso/pull/4955
+
+## Switch — 2026-05-21 (review iter 4)
+
+- Tier 0 · target_path: `@base-ui/react/switch` · iterations: 4
+- When base-ui moves `role`/`aria-*` from the hidden `<input>` to the root span, treat it as a behavior change that needs explicit a11y verification in the iter-1 PR description (snapshot reviewers consistently flag silent role relocation) — extends `rules/base-ui-react-api-crib` parity-check guidance.
+- Don't paper over base-ui inline-style quirks (e.g. negative-margin on the hidden input) with imperative `node.style.x = ...` refs OR `!important` — both were rejected; investigate the root cause and resolve via the component's documented styling hooks/Tailwind classes, per `rules/styling`.
+- Preserve consumer-facing safety defaults from master (e.g. `onChange = () => {}`) and avoid `as unknown as` casts at handler boundaries — either keep the no-op default or guard before invoking, and bridge type mismatches at the prop-typing layer rather than at the call site (`rules/api-preservation`).
 - Reference: https://github.com/toptal/picasso/pull/4965

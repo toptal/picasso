@@ -676,6 +676,29 @@ done
     for i in "${!STAGES[@]}"; do
       if [ "${STATUSES[$i]}" = "FAIL" ]; then
         echo "- \`${STAGES[$i]}\` → \`$RUN_DIR/${STAGES[$i]}.log\` (last 30 lines:)"
+        # Per-stage doc pointers (2026-05-21): tell the agent which canonical
+        # doc resolves THIS failure class. Keeps it from re-discovering rules
+        # already in the contextPack.
+        case "${STAGES[$i]}" in
+          lint)
+            echo "  *Likely doc:* \`docs/migration/references/code-standards.md\` (ESLint custom rules, naming, JSDoc, casts) + \`PICASSO_COMPONENT_DESIGN_PATTERNS.md\` (canonical API rules)."
+            ;;
+          build)
+            echo "  *Likely doc:* \`docs/migration/rules/package-and-build.md\` (pnpm rules, lockfile diff caps, build-before-snapshot)."
+            ;;
+          jest)
+            echo "  *Likely doc:* \`docs/migration/references/practices.md\` §\"Build & snapshot precondition\" + §\"Test conventions\". If snapshots regressed, rerun \`pnpm -F <package> build:package\` BEFORE \`jest -u\` — see \`docs/migration/rules/package-and-build.md\` §\"Build-before-snapshot precondition\"."
+            ;;
+          tsc)
+            echo "  *Likely doc:* \`docs/migration/rules/api-preservation.md\` (cast at the boundary) + \`docs/migration/references/code-standards.md\` §\"Type-narrowing & casting\"."
+            ;;
+          happo)
+            echo "  *Likely doc:* \`docs/migration/references/happo-iteration.md\` (classification matrix, computed-style-diff requirement) + \`docs/migration/references/visual-verification.md\` (Playwright workflow, worked compensation examples)."
+            ;;
+          changeset)
+            echo "  *Likely doc:* \`docs/migration/PROMPT-light.md\` / \`PROMPT-heavy.md\` §7 (Changeset) + \`docs/migration/references/practices.md\` §\"Changesets\"."
+            ;;
+        esac
         echo
         echo '  ```'
         tail -n 30 "$RUN_DIR/${STAGES[$i]}.log" 2>/dev/null | sed 's/^/  /'

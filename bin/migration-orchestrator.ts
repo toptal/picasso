@@ -68,29 +68,48 @@ const migrationWorkflow: Workflow = {
   // JSS to translate). Loading the cribsheet on every iter doubled cache
   // reads (~$2 in notional cost) for nothing.
   //
-  // Per-tier rules:
-  //  - `always`: api-preservation + lessons-learned (every migration needs
+  // Per-tier rules (revised 2026-05-21 — split-prompt overhaul):
+  //  - `always`: api-preservation + package-and-build + visual-verification
+  //    + happo-iteration + practices + PICASSO_COMPONENT_DESIGN_PATTERNS
+  //    + design-patterns-addendum + code-standards (every migration needs
   //    these). Plan file is added separately by `assemblePrompt`.
+  //  - lessons-learned.md is NO LONGER in contextPack (demoted to
+  //    audit-only). Patterns reach the agent via `practices.md` after
+  //    periodic graduation passes — see lessons-learned.md header.
   //  - Tier 0 (light path, @mui/base → @base-ui/react): + base-ui-crib
   //    (the canonical compound-parts / nativeButton patterns) + styling
   //    (Tailwind class composition).
   //  - Tier 1 cleanup-only (`target_path === 'none'`, no source change):
-  //    skip everything else — these PRs are package.json-only deltas.
+  //    skip Tier-specific extras — these PRs are package.json-only deltas.
   //  - Tier 2/3 (heavy MUI v4 + JSS → Base UI + Tailwind): everything,
-  //    including JSS-to-Tailwind cribsheet + token reference.
+  //    including JSS-to-Tailwind cribsheet (now with worked examples) +
+  //    token reference.
   //
-  // Empirical sizes (May 2026): jss-to-tailwind-crib 24.7 KB,
-  // picasso-tailwind-tokens 5.4 KB, base-ui-react-api-crib ~7 KB,
-  // styling 3.3 KB, api-preservation 6.2 KB, lessons-learned ~1-2 KB
-  // (grows). Tier 0 prompt drops ~62 KB → ~32 KB. Tier 1 cleanup ~62 KB
-  // → ~17 KB. Tier 2/3 unchanged.
+  // Empirical sizes (post-overhaul 2026-05-21): jss-to-tailwind-crib ~30 KB
+  // (extended with worked examples), picasso-tailwind-tokens 5.4 KB,
+  // base-ui-react-api-crib ~7 KB, styling 3.3 KB, api-preservation 6.2 KB,
+  // package-and-build ~4 KB, visual-verification ~7 KB, happo-iteration
+  // ~4 KB, practices ~8 KB, design-patterns-addendum ~3 KB,
+  // PICASSO_COMPONENT_DESIGN_PATTERNS ~8 KB, code-standards ~10 KB.
+  // Tier 0 prompt drops ~32 KB → ~22 KB (-31% from v1; slim + standards docs).
+  // Tier 1 cleanup ~17 KB → ~12 KB (-29%).
+  // Tier 2/3 ~62 KB → ~33 KB (-47%).
   contextPack: item => {
     const always = [
       'docs/migration/rules/api-preservation.md',
-      // Tier 1.3: lessons auto-accumulated by post-success hook. Future
-      // migrations inherit patterns from earlier ones (e.g. Switch reads
-      // Button's lessons re polymorphic / nativeButton / onClick cast).
-      'docs/migration/references/lessons-learned.md',
+      'docs/migration/rules/package-and-build.md',
+      'docs/migration/references/visual-verification.md',
+      'docs/migration/references/happo-iteration.md',
+      'docs/migration/references/practices.md',
+      // Cherry-picked from master 2026-05-21 — canonical reviewer spec.
+      // Re-sync from master with `git checkout master -- PICASSO_COMPONENT_DESIGN_PATTERNS.md`
+      // whenever the doc updates upstream.
+      'PICASSO_COMPONENT_DESIGN_PATTERNS.md',
+      'docs/migration/references/design-patterns-addendum.md',
+      'docs/migration/references/code-standards.md',
+      // NOTE: lessons-learned.md is REMOVED from contextPack as of
+      // 2026-05-21. The file remains in the repo as an audit-only log.
+      // Graduated patterns flow into practices.md via manual graduation.
     ]
     const baseUI = [
       'docs/migration/rules/base-ui-react-api-crib.md',
