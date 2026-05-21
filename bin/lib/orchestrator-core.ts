@@ -964,10 +964,23 @@ const manifest = {
       // (above) trips → escalates as needs_human. This check produces a
       // gentler signal earlier: "PR already open for this item; use
       // --review-sweep instead of --component for ongoing work."
-      if (item.pr) {
+      //
+      // Part 4 (2026-05-21): variant-aware. With --variant=vN explicit
+      // (non-v1), the relevant PR is variants[vN].pr — top-level item.pr
+      // mirrors v1 for back-compat but doesn't speak for vN. Variants are
+      // independent parallel runs (see the variantExplicit comment in the
+      // status filter above); the PR check has to honor that.
+      const relevantPr =
+        opts.variantExplicit && opts.variant !== 'v1'
+          ? item.variants?.[opts.variant]?.pr ?? null
+          : item.pr
+
+      if (relevantPr) {
         log(
           'loop',
-          `${item.id}: refusing to pick for migrate-mode — PR already exists (${item.pr}). Use --review-sweep for ongoing work, or reset the manifest entry if you really want to start over.`
+          `${item.id}${
+            opts.variantExplicit ? `/${opts.variant}` : ''
+          }: refusing to pick for migrate-mode — PR already exists (${relevantPr}). Use --review-sweep for ongoing work, or reset the manifest entry if you really want to start over.`
         )
 
         return null
