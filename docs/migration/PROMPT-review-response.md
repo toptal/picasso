@@ -33,6 +33,19 @@ Bad (78 words, restates reviewer, dumps reasoning):
 Good (16 words):
 > Done — applied `Omit<StandardProps, 'classes'>` per classes-shim §6 (Tier-0 Modal, audit verified 0 external usage).
 
+## Ground every comment in the documented standards (2026-05-21)
+
+The contextPack injection at the top of this session gave you `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root), `docs/migration/references/design-patterns-addendum.md`, `docs/migration/references/code-standards.md`, and `docs/migration/references/practices.md`. These are the canonical sources for what reviewers cite.
+
+Before choosing a confidence tier:
+
+- **If the reviewer cites a rule by name** (e.g., "rule 14", "no `is` prefix", "extends BaseProps", "compound pattern") — verify it appears in `PICASSO_COMPONENT_DESIGN_PATTERNS.md` or `code-standards.md`. If it does, the reviewer is invoking a documented rule → HIGH-confidence acting is appropriate.
+- **If the reviewer's ask conflicts with a migration carve-out** (e.g., asks you to rename a pre-existing `isOpen` → `open`, or to convert `StandardProps` → `BaseProps` mid-swap) — `design-patterns-addendum.md §1 Existing-violations carve-out` says preserve. This is MEDIUM-confidence: propose preservation in-thread with a citation to the addendum, ask for confirmation.
+- **If the reviewer's ask cites a graduated practice** (e.g., "wrap the onChange with an adapter", "delete debug artifacts before push") — check `practices.md` for the corresponding section. If listed there, HIGH-confidence acting is appropriate.
+- **If you cannot find the cited rule in any loaded doc** — the reviewer may be invoking tribal knowledge. Stay MEDIUM-confidence and ask for the canonical source ("could you point me at the rule? I want to make sure I cite it correctly in the changeset.").
+
+This grounding step keeps you from acting on misremembered rules and gives every reply a citable reference.
+
 ## Decision matrix per comment
 
 For every comment from a HUMAN reviewer (skip bots like `changeset-bot`, `github-actions`), choose ONE response posture:
@@ -208,6 +221,8 @@ Standard Edit/Write tools, plus the gate's verification commands (`pnpm typechec
 If you didn't make code changes (MEDIUM/LOW confidence path), the orchestrator skips the push and just updates `last_review_seen_at`. Your replies are already posted to GitHub; they don't need a code commit.
 
 ## Confidence calibration — when in doubt, propose
+
+**Default heuristic**: a reviewer cites a documented rule (from `PICASSO_COMPONENT_DESIGN_PATTERNS.md`, `code-standards.md`, `practices.md`, or `design-patterns-addendum.md`) → HIGH. A reviewer asks for a change in tension with the migration carve-out (`design-patterns-addendum.md §1`) → MEDIUM, propose preservation. A reviewer cites a rule you can't find → MEDIUM, ask for the source.
 
 If you're unsure whether a change is HIGH or MEDIUM confidence, choose MEDIUM. False MEDIUM costs one extra sweep tick (cheap). False HIGH that the reviewer disagrees with means:
 1. Your edit went into the PR

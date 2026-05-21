@@ -164,3 +164,193 @@ Or, when the state belongs on a parent and the styling on a child, use `data-*` 
 2. Check `tokens/picasso-tailwind-tokens.md` for a matching token.
 3. If a token exists, use its name. If not, use `[arbitrary-value]` AND add `// TODO(tokens): <description>`.
 4. If the JSS pattern isn't in this table, search for the same pattern in `reference/Button.tsx` / `reference/Switch.tsx` first — Phase 0 has likely already solved it.
+
+---
+
+# Worked examples
+
+Use these as templates when the lookup table above isn't enough. Each example shows a real JSS pattern from Picasso source and the equivalent Tailwind, with the reasoning inline.
+
+## Example 1: JSS parent-ref selector → data-attribute selector
+
+**Before (JSS with parent-ref `&$expanded`)**:
+
+```ts
+const styles = createStyles({
+  root: {
+    height: 32,
+    transition: 'height 0.2s',
+    '&$expanded': {
+      height: 64,
+    },
+  },
+  expanded: {},
+})
+
+// Usage:
+<div className={cx(classes.root, expanded && classes.expanded)} />
+```
+
+**After (Tailwind data-attribute selector)**:
+
+```tsx
+// styles.ts
+export const createRootClassNames = (expanded: boolean): string[] => [
+  'h-8',                                  // height: 32px → h-8 (32 / 4)
+  'transition-[height]',                  // height transition
+  'duration-200',                         // 0.2s → 200ms
+  expanded ? 'data-[expanded]:h-16' : '', // data-attr selector wins via specificity
+]
+
+// Component.tsx
+<div
+  data-expanded={expanded || undefined}
+  className={twMerge(createRootClassNames(expanded), className)}
+/>
+```
+
+**Why**: parent-refs in JSS apply nested rules conditionally via classname overlap. In Tailwind, the equivalent is a data attribute on the same element + a `data-[attr]:` selector. The `|| undefined` trick prevents `data-expanded="false"` from appearing in the DOM (Picasso convention — boolean attrs are either present or absent).
+
+## Example 2: Dynamic class from prop state → conditional class array
+
+**Before (JSS with dynamic selector)**:
+
+```ts
+const styles = (theme) => createStyles({
+  root: ({ variant, disabled }) => ({
+    backgroundColor: variant === 'primary'
+      ? (disabled ? theme.palette.grey[400] : theme.palette.primary.main)
+      : 'transparent',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+  }),
+})
+```
+
+**After (Tailwind conditional array)**:
+
+```tsx
+// styles.ts
+export const createVariantClassNames = (
+  variant: 'primary' | 'transparent',
+  disabled: boolean
+): string[] => {
+  const classes: string[] = []
+  switch (variant) {
+    case 'primary':
+      classes.push(disabled ? 'bg-gray-400' : 'bg-blue-500')
+      break
+    case 'transparent':
+      classes.push('bg-transparent')
+      break
+  }
+  classes.push(disabled ? 'cursor-not-allowed' : 'cursor-pointer')
+  return classes
+}
+```
+
+**Why**: a `switch` over the union literal mirrors the JSS branching while staying type-safe. The PURE function shape (input props → string[]) is the Picasso convention from Button (see `reference/Button.tsx`).
+
+## Example 3: Raw hex / px → Picasso token (with TODO fallback)
+
+**Before (JSS literals)**:
+
+```ts
+const styles = createStyles({
+  root: {
+    backgroundColor: '#4269D6',  // some specific Picasso brand variant
+    borderRadius: '6px',         // non-token, picked by designer
+  },
+})
+```
+
+**After (token where one exists, literal + TODO where not)**:
+
+```tsx
+// styles.ts
+export const createRootClassNames = (): string[] => [
+  'bg-[#4269D6]',     // TODO(tokens): brand-blue-variant — designer can confirm canonical name
+  'rounded-[6px]',    // TODO(tokens): 6px isn't on the 4px scale; verify if intentional or rounded-md (4px) acceptable
+]
+```
+
+**Why**: never invent a Picasso token. If the canonical token exists in `tokens/picasso-tailwind-tokens.md`, use it. If not, use `[arbitrary-value]` AND a `TODO(tokens):` comment so the next reader can resolve. The migration is NOT the place to introduce new tokens — that's a coordinated design-system change.
+
+## Example 4: JSS pseudo `&:hover:not(:disabled)` → Tailwind `hover:enabled:*`
+
+**Before (JSS pseudo with state guard)**:
+
+```ts
+const styles = (theme) => createStyles({
+  root: {
+    backgroundColor: theme.palette.primary.main,
+    '&:hover:not(:disabled)': {
+      backgroundColor: theme.palette.primary.dark,
+    },
+    '&:focus-visible': {
+      outline: `2px solid ${theme.palette.primary.main}`,
+    },
+  },
+})
+```
+
+**After (Tailwind state modifiers)**:
+
+```tsx
+// styles.ts
+export const createInteractiveClassNames = (): string[] => [
+  'bg-blue-500',                            // primary.main
+  'hover:enabled:bg-blue-600',              // primary.dark on hover, but only when not disabled
+  'focus-visible:outline-2',                // 2px outline
+  'focus-visible:outline-blue-500',
+]
+```
+
+**Note on `@base-ui/react`**: if you're migrating away from `:focus-visible` to `@base-ui/react`'s `[data-focused]`, the equivalent is `data-[focused]:outline-2 data-[focused]:outline-blue-500`. See `references/visual-verification.md` §"Worked compensation examples" for that swap.
+
+## Example 5: `theme.spacing(N)` → gap-/space- utilities
+
+**Before (JSS spacing helpers)**:
+
+```ts
+const styles = (theme) => createStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    '& > * + *': {
+      marginTop: theme.spacing(2),  // 16px between children
+    },
+  },
+  inline: {
+    display: 'flex',
+    gap: theme.spacing(1),  // 8px between flex items
+  },
+})
+```
+
+**After (Tailwind space-/gap-)**:
+
+```tsx
+// styles.ts
+export const createStackClassNames = (): string[] => [
+  'flex',
+  'flex-col',
+  'space-y-4',  // theme.spacing(2) = 16px → space-y-4 (4 × 4 = 16)
+]
+
+export const createInlineClassNames = (): string[] => [
+  'flex',
+  'gap-2',      // theme.spacing(1) = 8px → gap-2 (2 × 4 = 8)
+]
+```
+
+**Why**: `space-y-*` mirrors the JSS `'& > * + *': { marginTop }` pattern exactly (margin between adjacent children, none on first/last). `gap-*` is preferred for new code, but verify it works on the layout shape (gap only applies inside flex/grid; space-y applies to any block container with multiple children).
+
+---
+
+## Anti-patterns to avoid
+
+- **Don't sprinkle `[arbitrary]` values when a token exists.** Always check `tokens/picasso-tailwind-tokens.md` first.
+- **Don't use `style={{...}}` for static values.** Only use inline `style` when the value is computed at runtime from props (Example 3-style "Dynamic values" table above).
+- **Don't keep `cx` chains longer than ~6 entries.** If you're listing 10 classes via `cx`, factor into a `createXxxClassNames` function in `styles.ts` (Button pattern).
+- **Don't rebuild parent-refs as `:has()`.** Use `data-*` attributes — `:has()` has weaker browser support and is harder to test.
+- **Don't compose `twMerge` with user `className` first.** `twMerge(className, structural)` lets the structural classes override the consumer. Reverse: `twMerge(structural, className)` — consumer-last wins (see `references/practices.md` §Tailwind ordering).

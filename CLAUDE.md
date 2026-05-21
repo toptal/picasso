@@ -14,7 +14,31 @@ Active migration tooling: `docs/migration/`
 - Operational migration plan: `docs/migration/migration-plan.md`
 - Run: `pnpm orchestrate --component=<Name>` (or `--tier=N`, `--dry-run`, `--no-merge`)
 
+## Canonical references for Picasso code
+
+When reasoning about Picasso component APIs, code style, or reviewer expectations, consult these in order:
+
+- `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root) — the source-of-truth API spec validated by CI. 16 component-level + 3 form-component rules. Cherry-picked from master onto the modernization branch so the canonical doc travels with every migration PR. Loaded into every migration prompt via contextPack. Re-sync from master with `git checkout master -- PICASSO_COMPONENT_DESIGN_PATTERNS.md` when the doc changes upstream.
+- `docs/migration/references/design-patterns-addendum.md` — migration-only delta: existing-violations carve-out (preserve pre-existing rule violations during a library swap) + rule 5 / rule 10 architectural exceptions (Dropdown/OutlinedInput Tier 3.b, StandardProps preservation).
+- `docs/migration/references/code-standards.md` — Picasso file structure, naming, JSDoc, ESLint custom rules, test conventions, Tailwind composition. Frequency-based rule strength (≥70% RULE, 30-70% preferred). Loaded into every migration prompt.
+- `docs/migration/references/practices.md` — graduated migration patterns (build precondition, visual classification, @base-ui/react idioms, changeset format, tsconfig hygiene). Loaded into every migration prompt. Curated from `lessons-learned.md` via periodic graduation passes.
+- `docs/migration/references/_survey-findings.md` — evidence base for the standards docs (implementer scratchpad — NOT loaded into agent context; the `_` prefix signals this).
+- `docs/contribution/component-api.md` — compound vs facade patterns, prop-naming principles.
+- `docs/contribution/changeset-guidelines.md` — canonical version-bump taxonomy (patch / minor / major) and changelog format. Graduated into `references/code-standards.md §Changeset conventions`.
+- `docs/contribution/visual-testing.md` — Happo + responsive component testing (`screenshotBreakpoints: true` on Storybook, `HAPPO_TARGETS` on Cypress). Graduated into `references/practices.md §Responsive component visual testing`.
+- `docs/contribution/github-workflow.md` — PR CI job list (Danger / Jest / Lint / Visual Tests / Deploy docs) + commit conventions. Graduated into `references/code-standards.md §CI job pipeline`.
+- `docs/contribution/pr_jobs.md` — `@toptal-bot` manual CI re-run commands. Graduated into `references/code-standards.md §"Manual CI override via @toptal-bot"`.
+- `docs/contribution/packages-architecture.md` — 4-layer tsconfig + Storybook webpack alias hierarchy. Graduated into `references/code-standards.md §"Build + Storybook tsconfig hierarchy"`.
+- `docs/contribution/accessibility.md` — Storybook a11y addon workflow (Violations / Passes / Incompletions tabs). Graduated into `references/practices.md §Accessibility validation`.
+- `docs/contribution/unit-testing.md` and `docs/contribution/creating-examples.md` — test and story conventions.
+- `docs/contribution/new-component-creation.md` — `pnpm generate:component` scaffolding tool (auto-creates folder, story, styles, test per code-standards.md structure).
+- **LEGACY — do NOT use as canonical**: `docs/contribution/css-naming.md` describes MUI v4 + JSS conventions (`root` + `rootFull`/`rootShrink` for variants, `classes` prop pattern). These predate the Tailwind migration. For migrated components, use `references/code-standards.md §Tailwind class composition` instead. The migration agent's `practices.md §"css-naming.md is LEGACY — do not follow"` enforces this.
+
+`docs/migration/references/lessons-learned.md` is now **AUDIT-ONLY** — auto-appended after each successful migration, but NOT in the agent's contextPack. Promoted patterns graduate to `practices.md` (manual pass, ~every 5–10 migrations).
+
 ## Code style for orchestrator (`bin/lib/*.ts` and `bin/*.ts`)
+
+(For Picasso component code style — what reviewers expect on migration PRs — see `PICASSO_COMPONENT_DESIGN_PATTERNS.md` (repo root), `docs/migration/references/design-patterns-addendum.md`, and `docs/migration/references/code-standards.md`. This section covers ORCHESTRATOR code only.)
 
 Picasso's ESLint config (root `.eslintrc.js`) extends `@toptal/davinci-syntax` and adds `ssr-friendly` + `eslint-plugin-local-rules`. CI's "Static checks" job lints the WHOLE repo (`pnpm eslint --ext=.ts,.tsx,.js,.jsx .`), so any error in `bin/lib/*.ts` blocks the migration PR's CI. Note: `.eslintignore` excludes `bin/` locally, so reproduce CI's behavior with `--no-ignore` when sanity-checking orchestrator changes.
 
@@ -71,6 +95,8 @@ PROMPT-light.md §5 + PROMPT-heavy.md §5 codify the research-aware decision mat
 **End-state target**: once all 28 components migrate, `StandardProps`, `JssProps`, `Classes` removed from `@toptal/picasso-shared`. Dropdown + OutlinedInput permanently retain their locally narrowed `classes?: { ... }`.
 
 Full audit + per-component data: `docs/migration/decisions/classes-audit.md`. Decision matrix: `docs/migration/decisions/classes-shim.md`.
+
+**Design-patterns tension.** `PICASSO_COMPONENT_DESIGN_PATTERNS.md` rule 5 forbids `classes` prop entirely. The Tier 3.b narrowed-`classes` retention on Dropdown + OutlinedInput is a deliberate, audit-backed transition exception — see `docs/migration/references/design-patterns-addendum.md` §"Migration-period architectural exceptions". End-state is full rule 5 compliance once consumers migrate off the narrowed shape.
 
 ## Branch hygiene
 
