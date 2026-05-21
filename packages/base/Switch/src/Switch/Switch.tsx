@@ -23,7 +23,7 @@ export interface Props
 }
 
 export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
-  { disabled = false, onChange = () => {}, ...props },
+  { disabled = false, onChange, ...props },
   ref
 ) {
   const {
@@ -43,6 +43,10 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     nextChecked,
     { event }
   ) => {
+    if (!onChange) {
+      return
+    }
+
     onChange(
       event as unknown as React.ChangeEvent<HTMLInputElement>,
       nextChecked
