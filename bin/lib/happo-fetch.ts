@@ -120,8 +120,16 @@ export interface HappoCheckDiffs {
  * (different host, missing segments, etc.).
  */
 export const parseHappoReportUrl = (url: string): HappoReportRef | null => {
+  // 2026-05-20: head capture group widened from `[0-9a-f]+` to
+  // `[0-9a-f]+(?:-[^/?#]+)?` so it includes the `-<Component>` suffix
+  // when present. Picasso uploads via `pnpm happo run <sha> --only <X>`
+  // which produces report identifier `<sha>-<X>` — see
+  // node_modules/happo.io/build/executeCli.js:34-36. Without the
+  // suffix capture, the orchestrator's compare-results re-fetch always
+  // 404s for component-scoped uploads (observed on Slider sweep
+  // 2026-05-20 13:06: `[happo] iter 1 re-fetch failed: 404 Not Found`).
   const match = url.match(
-    /^https?:\/\/happo\.io\/a\/([^/]+)\/p\/([^/]+)\/compare\/([0-9a-f]+)\/([0-9a-f]+)/i
+    /^https?:\/\/happo\.io\/a\/([^/]+)\/p\/([^/]+)\/compare\/([0-9a-f]+)\/([0-9a-f]+(?:-[^/?#]+)?)/i
   )
 
   if (!match) {

@@ -329,6 +329,7 @@ async function readHappoFailureKey(
       status?: string
       componentDiffs?: number
       diffComponents?: string[]
+      diffSnapshots?: string[]
     }
 
     if (verify.status === 'ERROR') {
@@ -337,6 +338,30 @@ async function readHappoFailureKey(
 
     if (verify.status === 'NO_BASELINE') {
       return 'happo:NO_BASELINE'
+    }
+    // 2026-05-20: per-snapshot key (was per-count key).
+    //
+    // Previously: `happo:<N>:<components>` — e.g. `happo:8:Slider`. This
+    // false-positive-flagged Slider PR #4955 review-iter 12 as stuck
+    // because iter 1 and iter 2 both produced 8 diffs on Slider, even
+    // though the agent's iter-2 edits affected DIFFERENT snapshots
+    // (added aria-* attrs in iter 1; removed -ml-[6px] in iter 2).
+    // Same count, completely different set → not actually stuck.
+    //
+    // Now: `happo:<sorted-snapshot-list>` keyed on the actual failing
+    // `<component>/<variant>/<target>` identifiers. Iter-to-iter:
+    //   - Identical set → genuinely stuck (agent isn't shifting which
+    //     snapshots fail) → escalate as before.
+    //   - Different set → agent shifted the failure surface (fixed some,
+    //     broke others, etc.) → progress signal → continue iterating.
+    //
+    // Fallback to component-count key when diffSnapshots is missing
+    // (older verifier output, edge cases) so the failure-key remains
+    // well-formed across versions.
+    const snapshots = verify.diffSnapshots ?? []
+
+    if (snapshots.length > 0) {
+      return `happo:snapshots:${snapshots.slice().sort().join('+')}`
     }
     const components = (verify.diffComponents ?? []).slice().sort().join(',')
 
@@ -5700,6 +5725,25 @@ async function sweepOne(
       const isTransientOnly =
         failedDeterministic.length === 1 && happoVerifyKey === 'happo:ERROR'
 
+      // 2026-05-20: composite stuck-key. Combines (a) the gate's per-
+      // snapshot Happo identifiers (so changing WHICH snapshots fail
+      // counts as progress) with (b) Layer B's audit-key (so changing
+      // WHICH lesson/rule/decision was violated also counts as progress).
+      // Stuck only when BOTH match prior iter — i.e. the gate failures
+      // AND the audit findings are identical, indicating the agent
+      // truly isn't shifting anything despite multiple tries.
+      //
+      // Empirical case (Slider PR #4955 review-iter 12, 2026-05-20):
+      //   iter 1: gate happo:8:Slider, audit removed [&_input]:!top-auto
+      //           + removed ![translate:none] (2 medium violations)
+      //   iter 2: gate happo:8:Slider, audit removed -ml-[6px]
+      //           (1 high violation, different)
+      // Old logic flagged iter 2 as stuck (same gate key). New logic
+      // sees the audit-key diverged → not stuck → continue iterating.
+      const compositeFailureKey = `${currentFailureSet}::audit=${
+        lastAuditKey ?? ''
+      }`
+
       if (isTransientOnly) {
         log(
           'sweep',
@@ -5707,16 +5751,16 @@ async function sweepOne(
         )
       } else if (
         lastDeterministicFailureSet !== null &&
-        currentFailureSet === lastDeterministicFailureSet
+        compositeFailureKey === lastDeterministicFailureSet
       ) {
         log(
           'sweep',
-          `${item.id}: review-iter loop stuck on identical failure content across 2 iters (${currentFailureSet}) — escalating instead of burning budget`
+          `${item.id}: review-iter loop stuck on identical failure content + audit findings across 2 iters (${compositeFailureKey}) — escalating instead of burning budget`
         )
         convergence = 'stuck'
         break
       } else {
-        lastDeterministicFailureSet = currentFailureSet
+        lastDeterministicFailureSet = compositeFailureKey
       }
 
       if (iter < MAX_SWEEP_ITERS) {
@@ -5853,18 +5897,78 @@ async function sweepOne(
     return
   }
 
+  // 2026-05-20: helper for stuck/budget-exhausted exit paths. Pushes
+  // the local commit BEFORE escalating so reviewers see the agent's
+  // actual attempt on the PR (matching the agent's already-posted "Done"
+  // replies). Without this, the local commit stays orphan'd on the
+  // worktree branch and PR replies refer to code that doesn't exist on
+  // origin — exactly the failure mode on Slider PR #4955 2026-05-20
+  // where two "Done — ..." comments landed on the OLD pushed commit.
+  // Best-effort: push failure is logged but not blocking the manifest
+  // transition to needs_human (operator can recover manually).
+  const pushPendingCommit = async (
+    outcomeLabel: string
+  ): Promise<{ pushed: boolean; reason?: string }> => {
+    if (!sweepTickHasCommit) {
+      return {
+        pushed: false,
+        reason: 'no commit to push (agent made no source changes)',
+      }
+    }
+    const result = await shell(
+      'git',
+      [
+        'push',
+        '--no-verify',
+        '--force-with-lease',
+        'origin',
+        item.branch as string,
+      ],
+      { cwd: wtPath }
+    )
+
+    if (result.exitCode !== 0) {
+      log(
+        'sweep',
+        `${
+          item.id
+        }: ${outcomeLabel} push failed (continuing to manifest update): ${result.stderr
+          .trim()
+          .slice(0, 200)}`
+      )
+
+      return {
+        pushed: false,
+        reason: `push failed: ${result.stderr.trim().slice(0, 100)}`,
+      }
+    }
+    log(
+      'sweep',
+      `${item.id}: ${outcomeLabel} — pushed local commit so reviewer sees agent's attempt`
+    )
+
+    return { pushed: true }
+  }
+
   // Outcome 2: loop stuck (same deterministic-failure set two iters in a
-  // row). Agent isn't making progress within this tick. Escalate to
-  // needs_human with the exact failure set as evidence.
+  // row). Agent isn't making progress within this tick. Push the latest
+  // attempt (so PR matches agent's replies + CI provides independent
+  // verdict), then escalate to needs_human.
   if (convergence === 'stuck' && lastGateReport) {
     const stuckFailures = lastGateReport.stages
       .filter(s => s.status === 'FAIL' && DETERMINISTIC_GATE_STAGES.has(s.name))
       .map(s => s.name)
       .join(', ')
+    const pushResult = await pushPendingCommit('stuck')
+    const pushNote = pushResult.pushed
+      ? 'Latest agent attempt has been pushed to the PR for visibility.'
+      : pushResult.reason
+      ? `Note: ${pushResult.reason}.`
+      : ''
 
     updateForVariant({
       status: 'needs_human',
-      escalation_reason: `review-iter loop stuck on deterministic gate stages: ${stuckFailures}. Worktree left dirty for operator inspection.`,
+      escalation_reason: `review-iter loop stuck on deterministic gate stages: ${stuckFailures}. ${pushNote} Worktree left dirty for operator inspection.`,
       last_review_seen_at: nowIso,
     })
     log(
@@ -5877,16 +5981,22 @@ async function sweepOne(
 
   // Outcome 3: budget exhausted without converging green. Treat like
   // stuck (the agent had MAX_SWEEP_ITERS chances and the failure set
-  // shifted each time without resolving) → escalate.
+  // shifted each time without resolving) → push latest, then escalate.
   if (convergence === 'budget-exhausted' && lastGateReport) {
     const failures = lastGateReport.stages
       .filter(s => s.status === 'FAIL')
       .map(s => s.name)
       .join(', ')
+    const pushResult = await pushPendingCommit('budget-exhausted')
+    const pushNote = pushResult.pushed
+      ? 'Latest agent attempt has been pushed to the PR for visibility.'
+      : pushResult.reason
+      ? `Note: ${pushResult.reason}.`
+      : ''
 
     updateForVariant({
       status: 'needs_human',
-      escalation_reason: `review-iter loop hit MAX_SWEEP_ITERS=${MAX_SWEEP_ITERS} without converging green (last failures: ${failures}). Worktree left dirty for operator inspection.`,
+      escalation_reason: `review-iter loop hit MAX_SWEEP_ITERS=${MAX_SWEEP_ITERS} without converging green (last failures: ${failures}). ${pushNote} Worktree left dirty for operator inspection.`,
       last_review_seen_at: nowIso,
     })
     log(
