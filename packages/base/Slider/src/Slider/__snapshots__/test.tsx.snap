@@ -6,17 +6,17 @@ exports[`Slider renders 1`] = `
     class="my-[6px] mx-0"
   >
     <div
-      class="block cursor-pointer w-full relative py-[6px] -my"
+      class="block w-full relative py-[6px] -my"
       data-orientation="horizontal"
       id="base-ui-:r0:"
       role="group"
     >
       <div
-        class="block w-full relative h-[1px] mb-[-1px]"
+        class="block w-full relative cursor-pointer py-[6px] -my"
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] rounded-none bg-gray"
+          class="block w-full h-[1px] mb-[-1px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >
@@ -69,17 +69,17 @@ exports[`Slider with initial value 1`] = `
     class="my-[6px] mx-0"
   >
     <div
-      class="block cursor-pointer w-full relative py-[6px] -my"
+      class="block w-full relative py-[6px] -my"
       data-orientation="horizontal"
       id="base-ui-:r8:"
       role="group"
     >
       <div
-        class="block w-full relative h-[1px] mb-[-1px]"
+        class="block w-full relative cursor-pointer py-[6px] -my"
         data-orientation="horizontal"
       >
         <div
-          class="block w-full h-[1px] rounded-none bg-gray"
+          class="block w-full h-[1px] mb-[-1px] rounded-none bg-gray"
           data-orientation="horizontal"
           style="position: relative;"
         >

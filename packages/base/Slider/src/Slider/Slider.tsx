@@ -137,7 +137,7 @@ const thumbPositionStyle: React.CSSProperties = {
   top: '-7px',
 }
 
-export const Slider = forwardRef<HTMLElement, Props>(function Slider(
+export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
   { defaultValue = 0, min = 0, max = 100, tooltip = 'off', ...props },
   ref
 ) {
@@ -216,7 +216,7 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
       style={style}
     >
       <BaseUISlider.Root
-        ref={ref as React.Ref<HTMLDivElement>}
+        ref={ref}
         defaultValue={defaultValue}
         value={value}
         min={min}
@@ -227,10 +227,17 @@ export const Slider = forwardRef<HTMLElement, Props>(function Slider(
         data-testid={dataTestid}
         data-private={dataPrivate}
         onValueChange={handleValueChange}
-        className='block cursor-pointer w-full relative py-[6px] -my-[6px]'
+        className='block w-full relative py-[6px] -my-[6px]'
       >
-        <BaseUISlider.Control className='block w-full relative h-[1px] mb-[-1px]'>
-          <BaseUISlider.Track className='block w-full h-[1px] rounded-none bg-gray-500/[0.24]'>
+        {/* py/-my also on Control because @base-ui/react attaches
+            pointerdown to SliderControl (not Root); Root's padding alone
+            wouldn't make the 12px-tall click target hot. */}
+        <BaseUISlider.Control className='block w-full relative cursor-pointer py-[6px] -my-[6px]'>
+          {/* mb-[-1px] zeroes Track's 1px contribution to Control.contentBox,
+              matching @mui/base which rendered the rail as `position: absolute`
+              (0px layout impact). Without it, our wrapper renders 1px taller
+              than master, shifting the thumb 1px upward. */}
+          <BaseUISlider.Track className='block w-full h-[1px] mb-[-1px] rounded-none bg-gray-500/[0.24]'>
             <BaseUISlider.Indicator className={indicatorClassName} />
             {marks &&
               markPositions.map((markValue, index) => (
