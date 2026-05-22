@@ -28,7 +28,7 @@ exports[`Slider renders 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 [&_input]:outline-none absolute transition-shadow cursor-pointer !translate-x !translate-y"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 [&_input]:outline-none absolute transition-shadow cursor-pointer !translate-none contain-layout"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r1:"
@@ -91,7 +91,7 @@ exports[`Slider with initial value 1`] = `
           />
         </div>
         <div
-          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 [&_input]:outline-none absolute transition-shadow cursor-pointer !translate-x !translate-y"
+          class="group/thumb flex justify-center items-center w-[15px] h-[15px] rounded-[50%] bg-blue border-[2px] border-solid border-white -mt -ml outline-0 [&_input]:outline-none absolute transition-shadow cursor-pointer !translate-none contain-layout"
           data-index="0"
           data-orientation="horizontal"
           id="base-ui-:r9:"
