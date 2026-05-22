@@ -1,5 +1,93 @@
 # Change Log
 
+## 55.0.0
+
+### Major Changes
+
+- [#4963](https://github.com/toptal/picasso/pull/4963) [`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897) Thanks [@dulishkovych](https://github.com/dulishkovych)!
+  [PF-2031] Upgrade TypeScript to v5.5 and align davinci tooling to v25/v15/v19/v8/v3
+  **BREAKING:** the `typescript` peer dependency on every published package moves from `~4.7.0` to `^5.5.0`. Consumers must be on TypeScript 5.5 or newer to install these packages. No other consumer code changes should be required — see "Public type surface" below.
+  Picasso now builds against TypeScript 5.5 and pulls its lint/test/codegen infrastructure from `@toptal/davinci-syntax@25`, `@toptal/davinci-engine@15`, `@toptal/davinci-qa@19.1`, `@toptal/davinci-ci@8`, and `@toptal/davinci-code@3` (the stable releases of toptal/davinci#2677). Build, typecheck, and lint all pass clean (0 errors).
+  Public type surface:
+  - the `OverridableComponent<P>` type in `@toptal/picasso-shared` is rewritten as a single-signature interface `(props: P & { [key: string]: any }) => JSX.Element | null`. declared fields of `P` remain strictly typed at JSX call sites (e.g. `<Button size={42} />` still errors), and any other prop is accepted untyped. this preserves the polymorphic `as`-prop usage pattern and lets `forwardRef<R, P>(...)` assign directly without an escape hatch. trade-off versus the pre-PF-2031 shape: TypeScript no longer pulls prop types FROM the `as` target — `<Button as={Link} to={...} />` does not validate `to` against `Link`'s props. full polymorphic-inheritance typing for the `as` prop is tracked in FF-125.
+  Internal type adjustments in `Tagselector`, `Container`, `Menu`, `PromptModal`, and `NumberInput` (not publicly exported) resolve build/lint regressions surfaced by `@typescript-eslint` v8. `OverviewBlock`, `Page`, `Breadcrumbs`, `Button`, `ButtonBase`, `ButtonCircular`, `MenuItem`, `Link`, and `SidebarItem` compile cleanly without source changes under the new `OverridableComponent` shape. `ButtonAction` got a one-line internal fix (an `icon` helper returning `null` where `ReactElement | undefined` was declared) that the stricter declared-prop typing in the new shape surfaced.
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-shared@16.0.0
+  - @toptal/picasso-container@3.1.5
+  - @toptal/picasso-list@5.0.22
+  - @toptal/picasso-menu@4.0.1
+  - @toptal/picasso-prompt-modal@3.0.1
+  - @toptal/picasso-select@5.0.1
+  - @toptal/picasso-tagselector@4.0.1
+  - @toptal/picasso-tree-view@3.0.46
+  - @toptal/picasso-accordion@4.0.1
+  - @toptal/picasso-alert@4.0.1
+  - @toptal/picasso-autocomplete@6.0.1
+  - @toptal/picasso-breadcrumbs@3.0.21
+  - @toptal/picasso-button@5.0.1
+  - @toptal/picasso-calendar@5.0.1
+  - @toptal/picasso-checkbox@5.0.24
+  - @toptal/picasso-drawer@3.0.46
+  - @toptal/picasso-dropdown@5.0.1
+  - @toptal/picasso-environment-banner@3.0.1
+  - @toptal/picasso-form@7.0.1
+  - @toptal/picasso-grid@6.0.0
+  - @toptal/picasso-icons@1.15.3
+  - @toptal/picasso-link@4.0.1
+  - @toptal/picasso-loader@3.0.6
+  - @toptal/picasso-modal@4.0.1
+  - @toptal/picasso-notification@5.0.1
+  - @toptal/picasso-page@6.0.1
+  - @toptal/picasso-paper@4.0.6
+  - @toptal/picasso-popper@2.0.3
+  - @toptal/picasso-radio@5.0.23
+  - @toptal/picasso-slider@5.0.1
+  - @toptal/picasso-step@4.0.20
+  - @toptal/picasso-switch@5.0.1
+  - @toptal/picasso-table@4.0.1
+  - @toptal/picasso-tabs@7.0.2
+  - @toptal/picasso-tag@5.0.1
+  - @toptal/picasso-tooltip@2.0.6
+  - @toptal/picasso-typography@5.0.1
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-avatar@7.0.1
+  - @toptal/picasso-avatar-upload@4.0.1
+  - @toptal/picasso-badge@4.0.1
+  - @toptal/picasso-carousel@4.0.34
+  - @toptal/picasso-file-input@5.0.1
+  - @toptal/picasso-form-label@1.0.5
+  - @toptal/picasso-input@5.0.1
+  - @toptal/picasso-input-adornment@4.0.1
+  - @toptal/picasso-number-input@5.0.1
+  - @toptal/picasso-outlined-input@5.0.1
+  - @toptal/picasso-overview-block@5.0.1
+  - @toptal/picasso-skeleton-loader@1.0.70
+  - @toptal/picasso-test-utils@2.0.1
+  - @toptal/picasso-timeline@5.0.9
+  - @toptal/picasso-account-select@4.0.1
+  - @toptal/picasso-application-update-notification@2.0.45
+  - @toptal/picasso-date-picker@4.0.1
+  - @toptal/picasso-dropzone@5.0.35
+  - @toptal/picasso-empty-state@2.0.24
+  - @toptal/picasso-helpbox@6.0.1
+  - @toptal/picasso-note@4.0.8
+  - @toptal/picasso-pagination@5.0.1
+  - @toptal/picasso-quote@2.0.10
+  - @toptal/picasso-rating@3.0.21
+  - @toptal/picasso-section@6.0.1
+  - @toptal/picasso-user-badge@5.1.23
+  - @toptal/picasso-date-select@2.0.1
+  - @toptal/picasso-password-input@5.1.14
+  - @toptal/picasso-show-more@3.0.1
+  - @toptal/picasso-timepicker@5.0.1
+  - @toptal/picasso-amount@1.0.13
+  - @toptal/picasso-typography-overflow@4.0.7
+  - @toptal/picasso-image@3.0.6
+  - @toptal/picasso-logo@2.0.19
+
 ## 54.1.5
 
 ### Patch Changes

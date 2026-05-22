@@ -1,5 +1,18 @@
 # @toptal/picasso-tabs
 
+## 7.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-shared@16.0.0
+  - @toptal/picasso-container@3.1.5
+  - @toptal/picasso-icons@1.15.3
+  - @toptal/picasso-typography@5.0.1
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-user-badge@5.1.23
+  - @toptal/picasso-typography-overflow@4.0.7
+
 ## 7.0.1
 
 ### Patch Changes

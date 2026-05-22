@@ -1,5 +1,46 @@
 # Change Log
 
+## 75.0.0
+
+### Major Changes
+
+- [#4963](https://github.com/toptal/picasso/pull/4963) [`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897) Thanks [@dulishkovych](https://github.com/dulishkovych)!
+  [PF-2031] Upgrade TypeScript to v5.5 and align davinci tooling to v25/v15/v19/v8/v3
+  **BREAKING:** the `typescript` peer dependency on every published package moves from `~4.7.0` to `^5.5.0`. Consumers must be on TypeScript 5.5 or newer to install these packages. No other consumer code changes should be required — see "Public type surface" below.
+  Picasso now builds against TypeScript 5.5 and pulls its lint/test/codegen infrastructure from `@toptal/davinci-syntax@25`, `@toptal/davinci-engine@15`, `@toptal/davinci-qa@19.1`, `@toptal/davinci-ci@8`, and `@toptal/davinci-code@3` (the stable releases of toptal/davinci#2677). Build, typecheck, and lint all pass clean (0 errors).
+  Public type surface:
+  - the `OverridableComponent<P>` type in `@toptal/picasso-shared` is rewritten as a single-signature interface `(props: P & { [key: string]: any }) => JSX.Element | null`. declared fields of `P` remain strictly typed at JSX call sites (e.g. `<Button size={42} />` still errors), and any other prop is accepted untyped. this preserves the polymorphic `as`-prop usage pattern and lets `forwardRef<R, P>(...)` assign directly without an escape hatch. trade-off versus the pre-PF-2031 shape: TypeScript no longer pulls prop types FROM the `as` target — `<Button as={Link} to={...} />` does not validate `to` against `Link`'s props. full polymorphic-inheritance typing for the `as` prop is tracked in FF-125.
+  Internal type adjustments in `Tagselector`, `Container`, `Menu`, `PromptModal`, and `NumberInput` (not publicly exported) resolve build/lint regressions surfaced by `@typescript-eslint` v8. `OverviewBlock`, `Page`, `Breadcrumbs`, `Button`, `ButtonBase`, `ButtonCircular`, `MenuItem`, `Link`, and `SidebarItem` compile cleanly without source changes under the new `OverridableComponent` shape. `ButtonAction` got a one-line internal fix (an `icon` helper returning `null` where `ReactElement | undefined` was declared) that the stricter declared-prop typing in the new shape surfaced.
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-rich-text-editor@19.0.0
+  - @toptal/picasso-shared@16.0.0
+  - @toptal/picasso-container@3.1.5
+  - @toptal/picasso-select@5.0.1
+  - @toptal/picasso-tagselector@4.0.1
+  - @toptal/picasso-autocomplete@6.0.1
+  - @toptal/picasso-button@5.0.1
+  - @toptal/picasso-checkbox@5.0.24
+  - @toptal/picasso-form@7.0.1
+  - @toptal/picasso-icons@1.15.3
+  - @toptal/picasso-notification@5.0.1
+  - @toptal/picasso-radio@5.0.23
+  - @toptal/picasso-switch@5.0.1
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-avatar-upload@4.0.1
+  - @toptal/picasso-file-input@5.0.1
+  - @toptal/picasso-form-label@1.0.5
+  - @toptal/picasso-input@5.0.1
+  - @toptal/picasso-number-input@5.0.1
+  - @toptal/picasso-outlined-input@5.0.1
+  - @toptal/picasso-date-picker@4.0.1
+  - @toptal/picasso-dropzone@5.0.35
+  - @toptal/picasso-rating@3.0.21
+  - @toptal/picasso-password-input@5.1.14
+  - @toptal/picasso-timepicker@5.0.1
+
 ## 74.0.0
 
 ### Major Changes

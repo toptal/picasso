@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-input-adornment",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Toptal UI components library - InputAdornment",
   "publishConfig": {
     "access": "public"

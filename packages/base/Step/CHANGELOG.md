@@ -1,5 +1,16 @@
 # @toptal/picasso-step
 
+## 4.0.20
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-shared@16.0.0
+  - @toptal/picasso-icons@1.15.3
+  - @toptal/picasso-typography@5.0.1
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-typography-overflow@4.0.7
+
 ## 4.0.19
 
 ### Patch Changes

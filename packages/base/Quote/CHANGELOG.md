@@ -1,5 +1,13 @@
 # @toptal/picasso-quote
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-container@3.1.5
+  - @toptal/picasso-typography@5.0.1
+
 ## 2.0.9
 
 ### Patch Changes

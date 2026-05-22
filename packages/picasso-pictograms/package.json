@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-pictograms",
-  "version": "5.5.1",
+  "version": "6.0.0",
   "description": "Pictogram components of Picasso",
   "author": "Toptal",
   "license": "MIT",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso-pictograms#readme",
   "peerDependencies": {
-    "@toptal/picasso-shared": "^15.0.0",
+    "@toptal/picasso-shared": "^16.0.0",
     "react": ">=16.12.0 < 19.0.0",
     "typescript": "^5.5.0"
   },

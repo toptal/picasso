@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-paper",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "Toptal UI components library - Paper",
   "publishConfig": {
     "access": "public"
