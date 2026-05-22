@@ -5,6 +5,30 @@ import React, { forwardRef, useCallback } from 'react'
 import { FormControlLabel } from '@toptal/picasso-form-label'
 import cx from 'classnames'
 
+const toSyntheticChangeEvent = (
+  nativeEvent: Event
+): React.ChangeEvent<HTMLInputElement> => {
+  const target = nativeEvent.target as HTMLInputElement
+
+  return {
+    bubbles: nativeEvent.bubbles,
+    cancelable: nativeEvent.cancelable,
+    currentTarget: target,
+    defaultPrevented: nativeEvent.defaultPrevented,
+    eventPhase: nativeEvent.eventPhase,
+    isTrusted: nativeEvent.isTrusted,
+    nativeEvent,
+    preventDefault: () => nativeEvent.preventDefault(),
+    isDefaultPrevented: () => nativeEvent.defaultPrevented,
+    stopPropagation: () => nativeEvent.stopPropagation(),
+    isPropagationStopped: () => false,
+    persist: () => {},
+    target,
+    timeStamp: nativeEvent.timeStamp,
+    type: nativeEvent.type,
+  }
+}
+
 export interface Props
   extends BaseProps,
     TextLabelProps,
@@ -34,10 +58,29 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     checked,
     titleCase,
     value,
-    color, // eslint-disable-line
+    color: _color, // eslint-disable-line @typescript-eslint/no-unused-vars
     'data-testid': dataTestId,
-    ...rest
+    name,
+    form,
+    tabIndex,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedBy,
   } = props
+
+  // Forward only consumer-provided values so base-ui's internal defaults
+  // (e.g. `tabIndex` from useButton, `aria-labelledby` from useAriaLabelledBy)
+  // aren't clobbered with `undefined`.
+  const rootForwarded: Partial<BaseUISwitch.Root.Props> = {
+    ...(name !== undefined && { name }),
+    ...(form !== undefined && { form }),
+    ...(tabIndex !== undefined && { tabIndex }),
+    ...(ariaLabel !== undefined && { 'aria-label': ariaLabel }),
+    ...(ariaLabelledBy !== undefined && { 'aria-labelledby': ariaLabelledBy }),
+    ...(ariaDescribedBy !== undefined && {
+      'aria-describedby': ariaDescribedBy,
+    }),
+  }
 
   const handleCheckedChange: BaseUISwitch.Root.Props['onCheckedChange'] = (
     nextChecked,
@@ -47,10 +90,7 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
       return
     }
 
-    onChange(
-      event as unknown as React.ChangeEvent<HTMLInputElement>,
-      nextChecked
-    )
+    onChange(toSyntheticChangeEvent(event), nextChecked)
   }
 
   // base-ui sets `margin: -1px` via inline style on the hidden input to
@@ -63,15 +103,9 @@ export const Switch = forwardRef<HTMLButtonElement, Props>(function Switch(
     }
   }, [])
 
-  // Picasso's public Props extends `ButtonHTMLAttributes<HTMLButtonElement>`
-  // (master parity); base-ui's SwitchRoot renders a span and types its handlers
-  // for HTMLSpanElement. Cast at one boundary point to bridge the two without
-  // narrowing the consumer-facing contract.
-  const rootProps = rest as unknown as BaseUISwitch.Root.Props
-
   const switchElement = (
     <BaseUISwitch.Root
-      {...rootProps}
+      {...rootForwarded}
       ref={ref}
       checked={checked}
       className={cx(
