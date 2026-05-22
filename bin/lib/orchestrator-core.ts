@@ -1228,9 +1228,56 @@ const worktree = {
   async add(
     branch: string,
     worktreePath: string,
-    base = 'HEAD'
+    base = 'HEAD',
+    opts: { resumeExistingBranch?: boolean } = {}
   ): Promise<void> {
     await fs.mkdir(path.dirname(worktreePath), { recursive: true })
+
+    // RESUME path (2026-05-22): use the existing branch as-is. Skips the
+    // safety check below because the caller already verified via manifest
+    // state that this is a legitimate resume (variant slot tracks this
+    // branch + iterations > 0 + no PR). Creates a fresh worktree dir
+    // pointing at the existing branch — preserves committed work across
+    // orchestrator runs. Critical for escalation-then-resume + future
+    // variant workflows.
+    if (opts.resumeExistingBranch) {
+      // Clean stale path if present (worktree dir from prior run).
+      if (existsSync(worktreePath)) {
+        log(
+          'worktree',
+          `pre-existing path ${worktreePath} — removing stale worktree dir (resume path)`
+        )
+        await shell('git', [
+          'worktree',
+          'remove',
+          '--force',
+          worktreePath,
+        ]).catch(() => {})
+        if (existsSync(worktreePath)) {
+          await fs.rm(worktreePath, { recursive: true, force: true })
+        }
+      }
+      log(
+        'worktree',
+        `resuming on existing branch ${branch} at ${worktreePath} (variant resume)`
+      )
+      const resumeResult = await shell('git', [
+        'worktree',
+        'add',
+        worktreePath,
+        branch,
+      ])
+
+      if (resumeResult.exitCode !== 0) {
+        throw new Error(
+          `git worktree add (resume) failed: ${
+            resumeResult.stderr || resumeResult.stdout
+          }`
+        )
+      }
+
+      return
+    }
 
     // SAFETY: refuse to destroy worktrees containing real work.
     //
@@ -6396,8 +6443,25 @@ export async function run(
   await fs.mkdir(runDir, { recursive: true })
 
   // Step 4: worktree.
-  log('loop', `creating worktree at ${wtPath}`)
-  await worktree.add(branch, wtPath)
+  //
+  // Resume detection (2026-05-22): if the manifest's variant slot already
+  // tracks this exact branch with prior iterations AND no open PR, this is
+  // a resume of an escalated/in-flight variant — use the existing branch
+  // instead of creating a fresh one. Preserves the agent's committed work
+  // across orchestrator runs. Critical for variant-mode workflow: without
+  // this, escalation = lose all commits (the worktree.add safety blocks
+  // fresh creation because the branch has unmerged work).
+  const variantStateForResume = manifest.getVariantState(item, opts.variant)
+  const resumeExistingBranch =
+    variantStateForResume.branch === branch &&
+    variantStateForResume.iterations > 0 &&
+    variantStateForResume.pr === null
+  const resumeLabel = resumeExistingBranch
+    ? ` (resume from existing branch — iter ${variantStateForResume.iterations})`
+    : ''
+
+  log('loop', `creating worktree at ${wtPath}${resumeLabel}`)
+  await worktree.add(branch, wtPath, 'HEAD', { resumeExistingBranch })
 
   // Step 4b: bootstrap worktree's node_modules with a real `pnpm install`.
   // Replaces the symlink-overlay approach (was destroyed by the agent's own
