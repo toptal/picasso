@@ -45,13 +45,16 @@ Categorized by problem domain. The agent applies the relevant category as each m
 
 ## Changesets
 
-- Migration PRs are **ALWAYS major**. Major rationale MUST be self-evident from the changeset alone — list the specific breaking surface.
-- Enumerate three things explicitly:
-  1. **Dep removals + peer cap lifts**: which packages out, which in, and the `react: < 19.0.0` cap drop.
-  2. **New implicit behaviors**: e.g., swipe-dismiss, async focus timing (`FloatingFocusManager` rAF-deferred), always-portaled.
-  3. **Compound parts being assembled**: e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`".
-- Framing: **"behavioral parity"** — reviewers expect this framing upfront, not after a sweep round (Drawer iter 1, iter 2 + Backdrop iter 9 + Slider iter 11, iter 12 + Switch iter 2).
-- For modified Props interfaces, state per-prop whether it's NEW or was INHERITED from a removed parent type (e.g., `ModalBackdropSlotProps`).
+- **Pick the bump tier from the standard taxonomy** (see `references/code-standards.md` §"Changeset conventions") — migration is not a category that forces `major`.
+  - `patch` — pure library swap, public API + types unchanged, behavioral parity verified by Jest snapshots + Happo + unit tests. This is the default for a clean Tier 0 / Tier 1 migration. `@mui/base` and `@material-ui/core` are Picasso `dependencies`, not consumer peer-deps; swapping them is invisible at the consumer dep tree. Widening the `react` peer cap is not breaking.
+  - `minor` — migration deliberately adds a new prop / prop value / opt-in behavior.
+  - `major` — ONLY when a consumer's existing usage breaks: removed/renamed prop, narrowed type, removed prop value, default flipped to change visible behavior, layout-shifting CSS that consumers must react to. If you can't name a concrete break, it's not major.
+- Framing: **"behavioral parity"** — reviewers expect this framing upfront (Drawer iter 1, iter 2 + Backdrop iter 9 + Slider iter 11, iter 12 + Switch iter 2). For `patch`-bump migrations this framing IS the changeset's primary content.
+- Enumerate only what's actually consumer-visible at the chosen tier:
+  - `patch`: one-line "Re-implement on `@base-ui/react`; public API unchanged" is sufficient.
+  - `minor`: name the new prop / value / behavior.
+  - `major`: name the specific breaking surface — required. Optionally enumerate compound parts being assembled (e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`") if consumers will need to know.
+- For modified Props interfaces (any tier), state per-prop whether it's NEW or was INHERITED from a removed parent type (e.g., `ModalBackdropSlotProps`).
 - For `@deprecated` props with `_unused` destructure: name them and the planned removal version.
 
 ## @base-ui/react idioms

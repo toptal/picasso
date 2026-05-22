@@ -255,21 +255,29 @@ Authoritative source: `docs/contribution/changeset-guidelines.md` (lines 5-46).
 - **`minor`** — new property; new property value; new functionality; new component.
 - **`major`** — deleting a component; deleting a component property; changing values for existing properties; changing the purpose of a property; changing horizontal layout (page-layout-break risk); any change requiring user action to upgrade.
 
-### Migration PRs are ALWAYS `major`
+### Migration PRs follow the standard taxonomy — NOT auto-major
 
-Peer-dep cap lift (`react: < 19.0.0` removed) + behavior changes (new implicit defaults from `@base-ui/react`) + potential layout shifts qualify as multiple `major` triggers simultaneously.
+Apply the taxonomy above to whatever the PR actually changes. No bump tier is reserved for "migration" as a category. The bump tier is a function of consumer-visible impact, not implementation effort.
+
+- **`patch`** is correct for a pure library swap (`@mui/base` → `@base-ui/react` or `@material-ui/core` → `@base-ui/react`) when the public Props API is identical, types match, and behavioral parity is verified by snapshot + Happo + unit tests. The CI gates (Jest, Lint, Visual Tests) are the contract that "no consumer-visible change" actually holds. **Rationale for why a library swap alone does NOT force major:**
+  - `@mui/base`, `@material-ui/core`, `@mui/*` are Picasso `dependencies`, NOT `peerDependencies`. Consumers do not have them in their `package.json`. Swapping them is invisible at the consumer dep tree.
+  - The `react: < 19.0.0` peer cap lift is not a major-trigger on its own — widening a peer range is not a breaking change for any existing consumer (they continue to resolve the React version they already use). Tightening a range is breaking; widening is not.
+  - Behavioral parity is verified by CI gates; we don't preemptively `major` on the chance of a regression. If a regression slips, that's a `patch` followup fix.
+- **`minor`** when the migration deliberately adds a new prop, a new prop value, or a new behavior the consumer can opt into.
+- **`major`** ONLY when the migration genuinely breaks a consumer's existing usage: removed/renamed prop, narrowed prop type, removed prop value, changed default that flips visible behavior, or a layout-shifting CSS change consumers would need to react to. List the specific breaking surface in the changeset body — if you can't name a concrete break, it's not major.
 
 ### Body format (from changeset-guidelines.md:32-45)
 
 ```markdown
 ---
-'@toptal/picasso-<name>': major
+'@toptal/picasso-<name>': patch  # or minor / major — pick per the taxonomy above
 ---
 
 ### <ComponentName>
-- dep removal + peer cap lift (`@mui/base` → `@base-ui/react`; `react: < 19.0.0` cap removed)
-- new behaviors introduced (e.g., swipe-dismiss, async focus timing, always-portaled)
-- compound parts enumerated (e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`")
+- what changed in one sentence (e.g., "Re-implement on `@base-ui/react`; public API unchanged.")
+- IF minor: the new prop / value / behavior added
+- IF major: the specific breaking surface (named prop removed, default flipped, etc.) — required
+- compound parts only if newly assembled and consumer-relevant (e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`")
 ```
 
 - Present-simple tense ("Fix button alignment", not "Fixed").
