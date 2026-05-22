@@ -44,6 +44,7 @@
     "symlink:off": "cross-env ./bin/symlink --unlink",
     "syncpack": "pnpm syncpack:list & pnpm syncpack:fix",
     "syncpack:fix": "syncpack fix-mismatches",
+    "version": "changeset version && pnpm install --lockfile-only",
     "syncpack:list": "syncpack list-mismatches",
     "test": "NODE_OPTIONS='--no-experimental-require-module' pnpm test:unit && pnpm test:integration",
     "test:combine": "pnpm exec istanbul-merge --out coverage/combined/report.json coverage/cypress/coverage-final.json coverage/jest/coverage-final.json && nyc report --temp-dir coverage/combined --report-dir coverage/combined --reporter html",
