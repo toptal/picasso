@@ -191,7 +191,7 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
   const thumbClassName = twJoin(
     'group/thumb flex justify-center items-center w-[15px] h-[15px]',
     'rounded-[50%] bg-blue-500 border-[2px] border-solid border-white',
-    'outline-0 absolute transition-shadow cursor-pointer',
+    'outline-0 [&_input]:outline-none absolute transition-shadow cursor-pointer',
     isThumbHidden && 'hidden'
   )
 
