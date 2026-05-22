@@ -219,7 +219,7 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
         className='block cursor-pointer width-full relative py-[6px] -my-[6px]'
       >
         <BaseUISlider.Control className='block absolute top-0 left-0 right-0 h-[13px]'>
-          <BaseUISlider.Track className='block absolute w-full h-[1px] top-1/2 -translate-y-1/2 rounded-none bg-gray-500/[0.24]'>
+          <BaseUISlider.Track className='block absolute w-full h-[1px] top-1/2 -translate-y-1/2 rounded-none bg-gray-500/24'>
             <BaseUISlider.Indicator
               className={twJoin(
                 'block h-[1px]',
