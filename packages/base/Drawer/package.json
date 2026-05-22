@@ -23,14 +23,14 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@mui/base": "5.0.0-beta.58",
-    "@toptal/picasso-slide": "1.0.4",
-    "@toptal/picasso-backdrop": "2.0.0",
-    "@toptal/picasso-paper": "4.0.5",
-    "@toptal/picasso-button": "5.0.0",
-    "@toptal/picasso-container": "3.1.4",
-    "@toptal/picasso-icons": "1.15.2",
-    "@toptal/picasso-typography": "5.0.0",
-    "@toptal/picasso-utils": "4.0.0"
+    "@toptal/picasso-slide": "workspace:*",
+    "@toptal/picasso-backdrop": "workspace:*",
+    "@toptal/picasso-paper": "workspace:*",
+    "@toptal/picasso-button": "workspace:*",
+    "@toptal/picasso-container": "workspace:*",
+    "@toptal/picasso-icons": "workspace:*",
+    "@toptal/picasso-typography": "workspace:*",
+    "@toptal/picasso-utils": "workspace:*"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -47,8 +47,8 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.2",
-    "@toptal/picasso-tailwind-merge": "2.0.4"
+    "@toptal/picasso-provider": "workspace:*",
+    "@toptal/picasso-tailwind-merge": "workspace:*"
   },
   "files": [
     "dist-package/**",

@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-utils": "4.0.0"
+    "@toptal/picasso-utils": "workspace:*"
   },
   "sideEffects": [
     "**/styles.ts",
@@ -38,8 +38,8 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-tailwind-merge": "2.0.4",
-    "@toptal/picasso-provider": "5.0.2"
+    "@toptal/picasso-tailwind-merge": "workspace:*",
+    "@toptal/picasso-provider": "workspace:*"
   },
   "files": [
     "dist-package/**",

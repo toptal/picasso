@@ -23,15 +23,15 @@
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
     "@mui/base": "5.0.0-beta.58",
-    "@toptal/picasso-backdrop": "2.0.0",
-    "@toptal/picasso-fade": "1.0.9",
-    "@toptal/picasso-paper": "4.0.5",
-    "@toptal/picasso-shared": "15.0.0",
-    "@toptal/picasso-button": "5.0.0",
-    "@toptal/picasso-icons": "1.15.2",
-    "@toptal/picasso-typography": "5.0.0",
-    "@toptal/picasso-utils": "4.0.0",
-    "@toptal/picasso-modal-context": "1.0.1",
+    "@toptal/picasso-backdrop": "workspace:*",
+    "@toptal/picasso-fade": "workspace:*",
+    "@toptal/picasso-paper": "workspace:*",
+    "@toptal/picasso-shared": "workspace:*",
+    "@toptal/picasso-button": "workspace:*",
+    "@toptal/picasso-icons": "workspace:*",
+    "@toptal/picasso-typography": "workspace:*",
+    "@toptal/picasso-utils": "workspace:*",
+    "@toptal/picasso-modal-context": "workspace:*",
     "debounce": "^1.2.1"
   },
   "sideEffects": [
@@ -48,9 +48,9 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-provider": "5.0.2",
-    "@toptal/picasso-tailwind-merge": "2.0.4",
-    "@toptal/picasso-test-utils": "2.0.0"
+    "@toptal/picasso-provider": "workspace:*",
+    "@toptal/picasso-tailwind-merge": "workspace:*",
+    "@toptal/picasso-test-utils": "workspace:*"
   },
   "files": [
     "dist-package/**",

@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/toptal/picasso/tree/master/packages/picasso#readme",
   "dependencies": {
-    "@toptal/picasso-container": "3.1.4",
-    "@toptal/picasso-file-input": "5.0.0",
-    "@toptal/picasso-form": "7.0.0",
-    "@toptal/picasso-icons": "1.15.2",
-    "@toptal/picasso-typography": "5.0.0",
-    "@toptal/picasso-utils": "4.0.0",
+    "@toptal/picasso-container": "workspace:*",
+    "@toptal/picasso-file-input": "workspace:*",
+    "@toptal/picasso-form": "workspace:*",
+    "@toptal/picasso-icons": "workspace:*",
+    "@toptal/picasso-typography": "workspace:*",
+    "@toptal/picasso-utils": "workspace:*",
     "classnames": "^2.5.1",
     "react-dropzone": "^14.2.3"
   },
@@ -44,7 +44,7 @@
     ".": "./dist-package/src/index.js"
   },
   "devDependencies": {
-    "@toptal/picasso-test-utils": "2.0.0"
+    "@toptal/picasso-test-utils": "workspace:*"
   },
   "files": [
     "dist-package/**",
