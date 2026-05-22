@@ -7,7 +7,9 @@ describe('Backdrop component', () => {
   afterEach(cleanup)
 
   it('should render without crash', () => {
-    render(<Backdrop open={true} />)
+    const { container } = render(<Backdrop open={true} />)
+
+    expect(container).toBeInTheDocument()
   })
 
   describe('when invisible prop is true', () => {
