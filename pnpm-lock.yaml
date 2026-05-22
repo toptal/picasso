@@ -1595,7 +1595,7 @@ importers:
         specifier: workspace:*
         version: link:../Icons
       '@toptal/picasso-shared':
-        specifier: 15.0.0
+        specifier: 16.0.0
         version: link:../../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.1.0'
@@ -3080,7 +3080,7 @@ importers:
         specifier: '>=2.7'
         version: link:../../picasso-tailwind
       '@toptal/picasso-tailwind-merge':
-        specifier: 2.0.4
+        specifier: 2.0.5
         version: link:../../picasso-tailwind-merge
       '@toptal/picasso-typography':
         specifier: workspace:*
@@ -3458,7 +3458,7 @@ importers:
         specifier: 4.12.4
         version: 4.12.4(@types/react@17.0.39)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@toptal/picasso-shared':
-        specifier: ^15.0.0
+        specifier: ^16.0.0
         version: link:../shared
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -3577,7 +3577,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
-        specifier: ^15.0.0
+        specifier: ^16.0.0
         version: link:../shared
       '@toptal/picasso-switch':
         specifier: workspace:*
@@ -3647,7 +3647,7 @@ importers:
   packages/picasso-pictograms:
     dependencies:
       '@toptal/picasso-shared':
-        specifier: ^15.0.0
+        specifier: ^16.0.0
         version: link:../shared
       '@toptal/picasso-utils':
         specifier: workspace:*
@@ -3869,7 +3869,7 @@ importers:
         specifier: workspace:*
         version: link:../base/Select
       '@toptal/picasso-shared':
-        specifier: ^15.0.0
+        specifier: ^16.0.0
         version: link:../shared
       '@toptal/picasso-tailwind':
         specifier: '>=2.7'
