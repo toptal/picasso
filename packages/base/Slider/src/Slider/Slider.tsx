@@ -228,6 +228,20 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
               )}
             />
           </BaseUISlider.Track>
+          {markValues.map((markValue, index) => {
+            const percent = ((markValue - min) / (max - min)) * 100
+
+            return (
+              <SliderMark
+                key={markValue}
+                data-index={index}
+                value={value}
+                markActive={isMarkActive(markValue, value)}
+                forceInactive={!!disableTrackHighlight}
+                style={{ left: `${percent}%` }}
+              />
+            )
+          })}
           {(thumbCount === 2 ? ['range-low', 'range-high'] : ['single']).map(
             (thumbKey, index) => {
               const currentVal = Array.isArray(value)
@@ -255,20 +269,6 @@ export const Slider = forwardRef<HTMLDivElement, Props>(function Slider(
               )
             }
           )}
-          {markValues.map((markValue, index) => {
-            const percent = ((markValue - min) / (max - min)) * 100
-
-            return (
-              <SliderMark
-                key={markValue}
-                data-index={index}
-                value={value}
-                markActive={isMarkActive(markValue, value)}
-                forceInactive={!!disableTrackHighlight}
-                style={{ left: `${percent}%` }}
-              />
-            )
-          })}
         </BaseUISlider.Control>
       </BaseUISlider.Root>
     </div>
