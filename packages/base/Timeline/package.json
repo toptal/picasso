@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-timeline",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "description": "Toptal UI components library - Timeline",
   "publishConfig": {
     "access": "public"

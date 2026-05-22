@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-amount",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Toptal UI components library - Amount",
   "publishConfig": {
     "access": "public"

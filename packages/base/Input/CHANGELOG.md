@@ -1,5 +1,18 @@
 # @toptal/picasso-input
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`440f217`](https://github.com/toptal/picasso/commit/440f217c1748d09beeca90e5277d2137d4251897)]:
+  - @toptal/picasso-shared@16.0.0
+  - @toptal/picasso-container@3.1.5
+  - @toptal/picasso-form@7.0.1
+  - @toptal/picasso-icons@1.15.3
+  - @toptal/picasso-utils@4.0.1
+  - @toptal/picasso-input-adornment@4.0.1
+  - @toptal/picasso-outlined-input@5.0.1
+
 ## 5.0.0
 
 ### Major Changes

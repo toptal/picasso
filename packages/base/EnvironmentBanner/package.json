@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-environment-banner",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Toptal UI components library - EnvironmentBanner",
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@toptal/picasso-tooltip",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Toptal UI components library - Tooltip",
   "publishConfig": {
     "access": "public"

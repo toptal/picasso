@@ -1,5 +1,12 @@
 # @toptal/picasso-paper
 
+## 4.0.6
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@4.0.1
+
 ## 4.0.5
 
 ### Patch Changes

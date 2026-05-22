@@ -1,5 +1,12 @@
 # @toptal/picasso-icons
 
+## 1.15.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @toptal/picasso-utils@4.0.1
+
 ## 1.15.2
 
 ### Patch Changes
