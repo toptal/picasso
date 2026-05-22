@@ -44,7 +44,7 @@ Tag Selector Label
 
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
-| as | `ElementType<any>` | - | The component used for the root node. Either a string to use a DOM element or a component. |
+| as | `ElementType` | - | The component used for the root node. Either a string to use a DOM element or a component. |
 | children | `ReactNode` | - | Text content of the `Tag` component |
 | icon | `ReactElement<any, string \| JSXElementConstructor<any>>` | - | Specify the icon which should be rendered inside Tag |
 | disabled | `boolean` | - | Defines if `Tag` is disabled |
