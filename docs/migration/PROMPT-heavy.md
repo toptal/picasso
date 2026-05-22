@@ -124,12 +124,16 @@ Preserve every `*.example.tsx`, `*.story.tsx`, `test.tsx`, and `story/index.jsx`
 
 ### 7. Changeset
 
-Add a `.changeset/<name>.md` major-bump entry. Apply `references/practices.md` §Changesets in full. Required content:
+Add a `.changeset/<name>.md` entry. Apply `references/practices.md` §Changesets + `references/code-standards.md` §"Changeset conventions" in full. Required content:
 
-- YAML frontmatter selecting the migrating package and `major` bump.
+- **Pick the bump tier from the standard taxonomy** — migration is NOT auto-major:
+  - `patch` — default for a clean library swap with identical public API + types + behavioral parity. `@mui/base` / `@material-ui/core` are Picasso `dependencies`, not consumer peer-deps; their removal is invisible to consumers. The `react: < 19.0.0` peer cap widening is not breaking. CI gates (Jest, Lint, Happo) are the contract that parity holds.
+  - `minor` — only if the migration deliberately adds a new prop, prop value, or opt-in behavior.
+  - `major` — ONLY when consumer usage actually breaks (removed/renamed prop, narrowed type, removed value, default flipped to change visible behavior, layout-shifting CSS). Name the concrete break — if you can't, it's not major.
+- YAML frontmatter selecting the migrating package and the bump tier you chose.
 - A "behavioral parity" framing.
-- Enumerate (a) dep removals + peer cap lifts (`@material-ui/core`, `@mui/base` out; `@base-ui/react` in; `react: < 19.0.0` cap removed), (b) new implicit behaviors introduced by `@base-ui/react` (swipe-dismiss, async focus, always-portaled, etc.), (c) compound parts being assembled.
-- For Tier 2/3 with richer slot vocabularies: be explicit about which slots are now consumer-visible via `className` vs which are internal-only.
+- For `patch`: one-line "Re-implement on `@base-ui/react`; public API unchanged" is sufficient.
+- For `minor` / `major`: name the new surface or the breaking surface. For Tier 2/3 with richer slot vocabularies, be explicit about which slots are now consumer-visible via `className` vs which are internal-only when that's part of the new surface.
 - For any `@deprecated` props with `_unused` destructure: name them and the planned removal version.
 
 ### 8. PR description (mandatory)

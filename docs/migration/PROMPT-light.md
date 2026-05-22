@@ -116,11 +116,16 @@ Preserve every `*.example.tsx`, `*.story.tsx`, `test.tsx`, and `story/index.jsx`
 
 ### 7. Changeset
 
-Add a `.changeset/<name>.md` major-bump entry. Apply `references/practices.md` §Changesets in full. Required content:
+Add a `.changeset/<name>.md` entry. Apply `references/practices.md` §Changesets + `references/code-standards.md` §"Changeset conventions" in full. Required content:
 
-- YAML frontmatter selecting the migrating package and `major` bump.
+- **Pick the bump tier from the standard taxonomy** — migration is NOT auto-major:
+  - `patch` — default for a clean library swap with identical public API + types + behavioral parity. `@mui/base` / `@material-ui/core` are Picasso `dependencies`, not consumer peer-deps; their removal is invisible to consumers. Widening the `react` peer cap is not breaking. CI gates (Jest, Lint, Happo) are the contract that parity holds.
+  - `minor` — only if the migration deliberately adds a new prop / value / opt-in behavior.
+  - `major` — ONLY when consumer usage actually breaks (removed/renamed prop, narrowed type, removed value, default flipped to change visible behavior, layout-shifting CSS). Name the concrete break — if you can't, it's not major.
+- YAML frontmatter selecting the migrating package and the bump tier you chose.
 - A "behavioral parity" framing.
-- Enumerate (a) dep removals + peer cap lifts, (b) new implicit behaviors introduced by `@base-ui/react` (e.g., swipe-dismiss, async focus), (c) compound parts being assembled (e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`").
+- For `patch`: one-line "Re-implement on `@base-ui/react`; public API unchanged" is sufficient.
+- For `minor` / `major`: name the new surface or the breaking surface (e.g., "Slider now assembled from `Slider.Root + Control + Track + Indicator + Thumb`" only matters to consumers if a compound part is now part of the public API).
 - For any `@deprecated` props with `_unused` destructure: name them and the planned removal version.
 
 ### 8. PR description (mandatory)

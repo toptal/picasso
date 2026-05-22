@@ -4157,17 +4157,40 @@ const checklist = {
     // Include working-tree changes too (`HEAD..` would miss uncommitted
     // edits the agent just made before checklist runs). Use `git diff
     // <base>` which shows working-tree vs base.
-    const diffResult = await shell('git', ['diff', diffRange], {
+    //
+    // Path filter (2026-05-22): restrict diff to migration-relevant paths
+    // only. Without this, when the orchestrator branch (pf-1992) carries
+    // unrelated infra/docs commits ahead of base-branch, the agent's
+    // worktree forks from pf-1992 HEAD and the FULL `base..HEAD` diff
+    // bundles ALL of those infra/docs changes WITH the actual migration.
+    // Critic's 40KB truncation then misses the migration entirely
+    // (Slider source observed at byte 477,962 / 503KB total this run).
+    // Include only: packages/** (component source + shared types),
+    // .changeset/** (migration's own changeset entry), and the per-item
+    // plan/component-docs path. Exclude pnpm-lock.yaml + yarn.lock (huge
+    // noise) and the rest of the repo (orchestrator infra, prompt docs).
+    const pathFilters = [
+      'packages/',
+      '.changeset/',
+      `docs/migration/components/${args.item.id.replace(/\//g, '__')}.md`,
+    ]
+    const diffArgs = ['diff', diffRange, '--', ...pathFilters]
+    const diffResult = await shell('git', diffArgs, {
       cwd: args.worktreePath,
     })
-    const wtDiffResult = await shell('git', ['diff'], {
+    const wtDiffResult = await shell('git', ['diff', '--', ...pathFilters], {
       cwd: args.worktreePath,
     })
     const combinedDiff =
       diffResult.stdout +
       '\n\n# Uncommitted working-tree changes:\n' +
       wtDiffResult.stdout
-    const MAX_DIFF_BYTES = 40_000
+    // 200KB cap (raised from 40KB 2026-05-22). Tier 0 light path migrations
+    // produce ~20-40KB of source diff; Tier 2/3 heavy path with JSS→Tailwind
+    // rewrites can hit 100-150KB. Path filter above keeps lockfile/docs out
+    // of the count. Still capped to defend against runaway: snapshot diffs
+    // for Modal-class components can be 80KB alone.
+    const MAX_DIFF_BYTES = 200_000
     const diffBody =
       combinedDiff.length > MAX_DIFF_BYTES
         ? combinedDiff.slice(0, MAX_DIFF_BYTES) +
@@ -4269,7 +4292,7 @@ const checklist = {
       `9. **JSDoc on public props** (code-standards.md §"JSDoc rules"): every NEW or MODIFIED public Props field has \`/** description */\`? Internal passthrough props (\`ownerState\`, \`data-private\`) MUST NOT have JSDoc — they'd leak as public API.\n` +
       `10. **\`@deprecated\` ticket ref** (code-standards.md §"JSDoc rules"): any \`@deprecated\` JSDoc that lacks a \`[ABC-1234]\` or URL? ESLint is warn-level only; reviewers consistently block.\n` +
       `11. **Boolean prop prefix on NEW props** (PICASSO_COMPONENT_DESIGN_PATTERNS rule 14): any NEW boolean prop using \`is\`/\`has\`/\`should\` prefix? (Existing props on already-shipped components are carve-out-protected per rule 7 above.)\n` +
-      `12. **Changeset content** (code-standards.md §"Changeset conventions" + practices.md §"Changesets"): does \`.changeset/<name>.md\` enumerate (a) dep removals + peer cap lifts, (b) new implicit behaviors, (c) compound parts being assembled? Migration PR bump MUST be \`major\`. Body uses present-simple tense.\n` +
+      `12. **Changeset content + bump tier** (code-standards.md §"Changeset conventions" + practices.md §"Changesets"): does \`.changeset/<name>.md\` pick the correct bump per the standard taxonomy? \`patch\` is the default for a clean library swap (public API + types unchanged, behavioral parity verified by CI). \`minor\` only if a new prop / value / opt-in behavior was added. \`major\` ONLY if a concrete consumer-visible break is named (removed/renamed prop, narrowed type, default flipped, layout-shifting CSS). Migration is NOT auto-major; \`@mui/base\` / \`@material-ui/core\` are Picasso \`dependencies\` not consumer peer-deps, and widening the \`react\` peer cap is not breaking. Body uses present-simple tense and behavioral-parity framing.\n` +
       `13. **PR description completeness** (PROMPT-light/heavy.md §8): is \`migration-runs/<run-date>/<Component>/pr-description.md\` present and does it have Summary + Decisions + Limitations + Verification sections (each ≤4 sentences)?\n` +
       `14. **Tailwind class ordering** (code-standards.md §"Tailwind class composition"): user-supplied \`className\` MUST be LAST in \`twMerge(structural, ..., className)\` so consumer overrides win. Look for reversed-order \`twMerge(className, structural)\` — silently breaks consumer customization.\n` +
       `15. **Debug artifacts in working tree** (practices.md §"Verify before commit"): any \`*-thumbs.json\`, \`baseline-*.json\`, \`local-*.json\`, \`fetch-happo-diffs.mjs\` at repo root in the diff? Should be in a gitignored scratch dir.\n` +
@@ -7061,12 +7084,25 @@ export async function run(
         failedStageNames,
         reportDir
       )
-      const currentFailureKey = failedDeterministicStages
+      const gateFailureKey = failedDeterministicStages
         .map(s =>
           s.name === 'happo' && happoVerifyKey ? happoVerifyKey : s.name
         )
         .sort()
         .join('|')
+
+      // 2026-05-22: extend failure key to include critic audit content
+      // when gate passed but critic flagged hard failures (the new
+      // gate=PASS + iter-continue path). Without this, two consecutive
+      // gate=PASS iters with DIFFERENT critic violations both produce
+      // empty gate-failure-keys → stuck-detection falsely fires.
+      // Observed Slider v2 2026-05-22 after critic-aware loop exit
+      // landed: iter 1 had 2 audit HIGH violations, iter 2 fixed one
+      // (real progress), but stuck-detection saw `"" === ""` → escalated.
+      const currentFailureKey =
+        gateFailureKey === '' && pendingChecklistFeedback !== null
+          ? `audit:${lastAuditKey ?? 'no-audit-key'}`
+          : gateFailureKey
 
       // Transient happo:ERROR (upload propagation race) doesn't count
       // toward stuck-detection. Falls through to maxIterations cap.
