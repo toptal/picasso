@@ -503,8 +503,20 @@ else
   # with explicit subcommand (Picasso's `pnpm happo` script uses bare
   # `happo` which shows help — a long-standing latent bug). Same env
   # vars Picasso's CI happo script uses.
+  #
+  # HAPPO_STORYBOOK_BUILD_COMMAND (2026-05-22): bypass happo-plugin-storybook's
+  # default `npx build-storybook` spawn. Default is broken in pnpm workspaces
+  # because Corepack intercepts `npx` when package.json declares
+  # `"packageManager": "pnpm@..."` and refuses with "This project is
+  # configured to use pnpm" (npx exits non-zero before build-storybook can
+  # run). Setting this env var to a path that contains `node_modules`
+  # makes the plugin use it directly as the binary (see
+  # node_modules/happo-plugin-storybook/index.js:92-94), skipping npx +
+  # Corepack entirely. Smoking gun: Slider v2 happo.log line "This project
+  # is configured to use pnpm ... ✗ Failed to build static storybook package".
   if pnpm build:package >"$HAPPO_LOG" 2>&1 && \
      SCREENSHOT_BREAKPOINTS=true TEST_ENV=visual HAPPO_PROJECT=Picasso/Storybook \
+     HAPPO_STORYBOOK_BUILD_COMMAND="./node_modules/.bin/build-storybook" \
      pnpm exec happo run "$HEAD_SHA" --only "${COMPONENT##*/}" >>"$HAPPO_LOG" 2>&1; then
     HAPPO_CLI_OK=1
   else
